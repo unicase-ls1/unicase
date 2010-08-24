@@ -409,7 +409,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
-		// TODO: results in test failures?
 		this.recordingFinished();
 		notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {

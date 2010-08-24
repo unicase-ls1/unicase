@@ -8,6 +8,7 @@ package org.unicase.metamodel.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -113,7 +115,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private Set<ProjectChangeObserver> observersToRemove;
 	private Set<ProjectChangeObserver> undetachableObservers;
 
-	private boolean loaded;
+	private Set<EObject> eObjectsCache;
+
+	private Map<EObject, ModelElementId> eObjectsToIdCache;
+
+	private Map<ModelElementId, EObject> idToEObjectsCache;
+
+	private boolean cachesInitialized;
 
 	// begin of custom code
 	/**
@@ -128,7 +136,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
 		observersToRemove = new HashSet<ProjectChangeObserver>();
 		undetachableObservers = new HashSet<ProjectChangeObserver>();
-
+		eObjectsToIdCache = new HashMap<EObject, ModelElementId>();
 	}
 
 	// end of custom code
@@ -153,66 +161,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
 				MetamodelPackage.PROJECT__MODEL_ELEMENTS);
 		}
-		// TODO: where to put code?
 
-		if (!loaded && modelElements != null && modelElements.size() != 0) {
-			for (EObject modelElement : modelElements) {
-				TreeIterator<EObject> it = modelElement.eAllContents();
-				while (it.hasNext()) {
-					EObject e = it.next();
-					try {
-						// TODO
-						XMIResource res = (XMIResource) e.eResource();
-						res.load(null);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						// Do NOT catch all Exceptions ("catch (Exception e)")
-						// Log AND handle Exceptions if possible
-						//
-						// You can just uncomment one of the lines below to log an exception:
-						// logException will show the logged excpetion to the user
-						// ModelUtil.logException(e1);
-						// ModelUtil.logException("YOUR MESSAGE HERE", e1);
-						// logWarning will only add the message to the error log
-						// ModelUtil.logWarning("YOUR MESSAGE HERE", e1);
-						// ModelUtil.logWarning("YOUR MESSAGE HERE");
-						//
-						// If handling is not possible declare and rethrow Exception
-					}
-				}
-			}
-
-			for (EObject modelElement : modelElements) {
-				ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
-				XMIResource res = (XMIResource) modelElement.eResource();
-				try {
-					res.load(null);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					// Do NOT catch all Exceptions ("catch (Exception e)")
-					// Log AND handle Exceptions if possible
-					//
-					// You can just uncomment one of the lines below to log an exception:
-					// logException will show the logged excpetion to the user
-					// ModelUtil.logException(e);
-					// ModelUtil.logException("YOUR MESSAGE HERE", e);
-					// logWarning will only add the message to the error log
-					// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-					// ModelUtil.logWarning("YOUR MESSAGE HERE");
-					//			
-					// If handling is not possible declare and rethrow Exception
-				}
-				if (res != null) {
-					id.setId(res.getID(modelElement));
-					// add checks when this case is ok
-					if (id.getId() != null) {
-						getEobjectsIdMap().put(modelElement, ModelUtil.clone(id));
-					}
-				}
-			}
-
-			loaded = true;
-		}
 		return modelElements;
 	}
 
@@ -236,7 +185,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @generated
 	 */
-	// TODO EM: remove NOT annotation
 	public EMap<EObject, ModelElementId> getEobjectsIdMap() {
 		if (eobjectsIdMap == null) {
 
@@ -246,6 +194,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		return eobjectsIdMap;
+	}
+
+	public void setEObjectsIdMap(EMap<EObject, ModelElementId> map) {
+		eobjectsIdMap = map;
 	}
 
 	/**
@@ -296,7 +248,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		} else {
 			// first add to map in order to have an id
 			getModelElements().add(me);
-			// addModelElementAndChildrenToCache(me);
+			addModelElementAndChildrenToCache(me);
 		}
 	}
 
@@ -545,13 +497,75 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#contains(org.unicase.model.ModelElement)
 	 */
 	public boolean contains(ModelElementId id) {
+		return getIdToEObjectCache().containsKey(id);
 		// return getModelElementsFromCache().keySet().contains(id);
-		return getEobjectsIdMap().containsValue(id);
+		// return getEobjectsIdMap().containsValue(id);
 	}
 
 	public boolean contains(EObject obj) {
-		return getEobjectsIdMap().containsKey(obj);
+		return getEObjectsCache().contains(obj);
+		// return getEobjectsIdMap().containsKey(obj);
 		// return getModelElementsFromCache().containsValue(obj);
+	}
+
+	private Map<ModelElementId, EObject> getIdToEObjectCache() {
+		if (idToEObjectsCache == null) {
+			initCaches();
+		}
+
+		return idToEObjectsCache;
+	}
+
+	private Set<EObject> getEObjectsCache() {
+		if (eObjectsCache == null) {
+			initCaches();
+		}
+
+		return eObjectsCache;
+	}
+
+	private void initCaches() {
+		eObjectsCache = new HashSet<EObject>();
+		idToEObjectsCache = new HashMap<ModelElementId, EObject>();
+		for (EObject modelElement : modelElements) {
+			TreeIterator<EObject> it = modelElement.eAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				Resource resource = obj.eResource();
+				if (resource instanceof XMIResource) {
+					XMIResource xmiResource = (XMIResource) resource;
+					try {
+						xmiResource.load(null);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						// Do NOT catch all Exceptions ("catch (Exception e)")
+						// Log AND handle Exceptions if possible
+						//
+						// You can just uncomment one of the lines below to log an exception:
+						// logException will show the logged excpetion to the user
+						// ModelUtil.logException(e);
+						// ModelUtil.logException("YOUR MESSAGE HERE", e);
+						// logWarning will only add the message to the error log
+						// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+						// ModelUtil.logWarning("YOUR MESSAGE HERE");
+						//			
+						// If handling is not possible declare and rethrow Exception
+					}
+					String id = xmiResource.getID(obj);
+					if (id != null) {
+						// TODO
+						// what now?
+						ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+						objId.setId(id);
+						eObjectsCache.add(obj);
+						eObjectsToIdCache.put(obj, objId);
+						idToEObjectsCache.put(objId, obj);
+						getEobjectsIdMap().put(obj, objId);
+					}
+				}
+			}
+		}
+		cachesInitialized = true;
 	}
 
 	/**
@@ -595,7 +609,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
 		if (project != null) {
 			ModelElementId id = project.getModelElementId(eObject);
-			if (modelElementIdToEObjectsCache.containsKey(id) && id != null) {
+			if (getIdToEObjectCache().containsKey(id) && id != null) {
 				throw new IllegalStateException("ModelElement is already in the project!");
 			}
 		} else if (eObject instanceof EObjectToModelElementIdMapImpl) {
@@ -658,7 +672,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			id = MetamodelFactory.eINSTANCE.createModelElementId();
 		}
 
-		// getModelElementsFromCache().put(id, eObject);
+		getEObjectToIdCache().put(eObject, id);
+		getEObjectsCache().add(eObject);
+		getIdToEObjectCache().put(id, eObject);
 		getEobjectsIdMap().put(eObject, id);
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
@@ -666,13 +682,26 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 	}
 
+	/**
+	 * @return
+	 */
+	private Map<EObject, ModelElementId> getEObjectToIdCache() {
+		return eObjectsToIdCache;
+	}
+
 	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
 		ModelElementId id = this.getModelElementId(modelElement);
-		this.modelElementIdToEObjectsCache.remove(id);
+		getEObjectsCache().remove(modelElement);
+		getEObjectToIdCache().remove(modelElement);
+		getIdToEObjectCache().remove(id);
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			ModelElementId childId = getModelElementId(child);
-			this.modelElementIdToEObjectsCache.remove(childId);
+			getEObjectsCache().remove(child);
+			getEObjectToIdCache().remove(child);
+			getIdToEObjectCache().remove(childId);
+
+			// this.modelElementIdToEObjectsCache.remove(childId);
 		}
 	}
 
@@ -697,15 +726,20 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#getModelElement(org.unicase.metamodel.ModelElementId)
 	 */
 	public EObject getModelElement(ModelElementId modelElementId) {
-		// EObject obj = this.getModelElementsFromCache().get(modelElementId);
 
-		for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
-			if (entry.getValue().equals(modelElementId)) {
-				return entry.getKey();
-			}
+		if (getIdToEObjectCache().containsKey(modelElementId)) {
+			return getIdToEObjectCache().get(modelElementId);
 		}
 
-		// look up deleted elements
+		// EObject obj = this.getModelElementsFromCache().get(modelElementId);
+
+		// for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
+		// if (entry.getValue().equals(modelElementId)) {
+		// return entry.getKey();
+		// }
+		// }
+
+		// TODO: look up deleted elements, inconsistency in the api, provide separate methods
 		for (Map.Entry<EObject, ModelElementId> entry : getDeletedEObjectsIdMap()) {
 			if (entry.getValue().equals(modelElementId)) {
 				return entry.getKey();
@@ -803,9 +837,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				eobjectsIdMap.values().remove(me);
 			}
 
-			eobjectsIdMap.values().remove(objectId);
+			getEobjectsIdMap().values().remove(objectId);
+			getEObjectsCache().remove(eObject);
+			getEObjectToIdCache().remove(eObject);
+			getIdToEObjectCache().remove(objectId);
 			// getModelElementsFromCache().keySet().remove(objectId);
-			getDeletedEObjectsIdMap().put(element, objectId);
+			getDeletedEObjectsIdMap().put(eObject, objectId);
 		}
 
 		// remove containment
@@ -914,43 +951,80 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final EObject modelElement) {
 
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
-			}
-		};
-
 		ModelElementId deletedModelElementId = getModelElementId(modelElement);
 		removeModelElementAndChildrenFromCache(modelElement);
 		getDeletedModelElements().add(modelElement);
 		getDeletedEObjectsIdMap().put(modelElement, deletedModelElementId);
 		getEobjectsIdMap().remove(modelElement);
 
+		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
+			public void run(ProjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
+			}
+		};
+
 		notifyProjectChangeObservers(command);
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.Project#getModelElement(org.eclipse.emf.ecore.EObject)
-	 */
+	public void updateCaches() {
+		for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
+			getEObjectsCache().add(entry.getKey());
+			getIdToEObjectCache().put(entry.getValue(), entry.getKey());
+			getEObjectToIdCache().put(entry.getKey(), entry.getValue());
+		}
+	}
+
 	public ModelElementId getModelElementId(EObject eObject) {
 
-		for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
-			if (entry.getValue().equals(eObject)) {
-				return ModelUtil.clone(entry.getValue());
+		if (!eObjectsToIdCache.containsKey(eObject) && !cachesInitialized) {
+			// id not yet loaded
+			if (getAllModelElements().contains(eObject)) {
+				// eobject contained in project, load resource
+				try {
+					Resource resource = eObject.eResource();
+					if (resource instanceof XMIResource) {
+						XMIResource xmiResource = (XMIResource) resource;
+						xmiResource.load(null);
+						String id = xmiResource.getID(eObject);
+						if (id != null) {
+							ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+							modelElementId.setId(id);
+							getEObjectsCache().add(eObject); // TODO: eobject already should be in set
+							getEObjectToIdCache().put(eObject, modelElementId);
+							getEobjectsIdMap().put(eObject, modelElementId);
+							getIdToEObjectCache().put(modelElementId, eObject);
+							return modelElementId;
+						}
+
+						return null;
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					// Do NOT catch all Exceptions ("catch (Exception e)")
+					// Log AND handle Exceptions if possible
+					//
+					// You can just uncomment one of the lines below to log an exception:
+					// logException will show the logged excpetion to the user
+					// ModelUtil.logException(e);
+					// ModelUtil.logException("", e);
+					// logWarning will only add the message to the error log
+					// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+					// ModelUtil.logWarning("YOUR MESSAGE HERE");
+					//			
+					// If handling is not possible declare and rethrow Exception
+				}
+
 			}
 		}
 
-		// also check newEObjects cache, as it contains IDs of already deleted EObjects
-		ModelElementId id = getDeletedEObjectsIdMap().get(eObject);
+		ModelElementId id = eObjectsToIdCache.get(eObject);
 
-		if (id != null) {
-			return ModelUtil.clone(id);
+		if (id == null) {
+			id = getDeletedEObjectsIdMap().get(eObject);
 		}
 
-		return null;
+		return id != null ? ModelUtil.clone(id) : null;
 	}
 
 	/**
@@ -973,7 +1047,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			// update: first remove it and then add the updated model element again
 			// getModelElementsFromCache().remove(newModelElementId);
 			// is EObjectsIdMap updated automatically?
+			EObject o = getEobjectsIdMap().get(newModelElementId);
 			getEobjectsIdMap().values().remove(newModelElementId);
+			getIdToEObjectCache().remove(newModelElementId);
+			getEObjectToIdCache().keySet().remove(newModelElementId);
+			getEObjectsCache().remove(o);
 		}
 		// check whether the model element previously has been deleted
 		else if (getDeletedEObjectsIdMap().containsValue(newModelElementId)) {
@@ -999,9 +1077,17 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		// correct ids
 		getEobjectsIdMap().put(newModelElement, newModelElementId);
+		getIdToEObjectCache().put(newModelElementId, newModelElement);
+		getEObjectToIdCache().put(newModelElement, newModelElementId);
+		getEObjectsCache().add(newModelElement);
+
 		for (EObject child : ModelUtil.getAllContainedModelElements(newModelElement, false)) {
 			ModelElementId childId = ModelUtil.clone(map.get(child));
 			getEobjectsIdMap().put(child, childId);
+			getIdToEObjectCache().put(childId, child);
+			getEObjectToIdCache().put(child, childId);
+			getEObjectsCache().add(child);
+
 			// getModelElementsFromCache().put(childId, child);
 		}
 
