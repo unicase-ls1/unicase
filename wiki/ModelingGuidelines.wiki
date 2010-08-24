@@ -31,28 +31,9 @@ We have a workflow and a set of rules in place to work with the ecore models in 
 <br>
 *_Modeling Rules:_*
 
-
-For all attributes in any of the models, what you should *NOT do*:
-
-    * *Do NOT* use the URI "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//".
-    * *Do NOT* use generics in the ecore!
-    * *Do NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
-          * Rename generated setter or getter to get/setXGen
-          * Write your own getter/setter marked with @generated NOT and call the get/setXGen
-          * Your added code must be null safe for any input parameter!
-          * Emf will now always update the generated part but leave your code untouched
+The general [EMFStore Modeling Guidelines] apply, please read them carefully!
 
 *_For the individual models:_*
-
-    * org.unicase.model:
-          # All model elements must have "!ModelElement" set as superclass
-          # All reference features of model elements must have the key property set to "identifier"
-          # All model elements must either be contained by another model element or by project
-          # The reference feature "lower bound" must *NOT* be greater than zero for any model element feature reference
-          # The id property must *NOT* be set for any model element feature
-          # *Do NOT* use simple attributes with a multiplicity greater than 1.
-          # *Do NOT* set unsetable to true for any feature
-          # *Do NOT* create non-transient reference to anything other than model element subtypes
 
     * org.unicase.emfstore.esmodel:
           #  All classes must be contained in the "!ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
