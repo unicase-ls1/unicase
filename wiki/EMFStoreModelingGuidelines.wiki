@@ -2,7 +2,7 @@
 
 = Obligatory Rules: Do´s and Dont´s =
 
-   * All model elements *must* have "ModelElement" set as superclass in the Ecore. Please note that this restriction will be removed with EMFStore 0.7.
+   * All model elements *must* have "ModelElement" set as superclass in the Ecore. Please note that this restriction will be removed with EMFStore 0.7.0.
    * The id property *must NOT* be set for any model element feature
    * The property "resolveProxies" of References *must* be left at its default value "true". Please note that if you generate your Ecore from XML-Schemata the value might be set to false. Reset it to true in this case. 
    * In the genmodel the property "containmentproxies" must be set to "true"
@@ -18,4 +18,4 @@
       * Emf will now always update the generated part but leave your code untouched 
 
 = Optional Rules =
-   * All reference features of model elements *should* have the key property set to "identifier". This makes the stored models more robust against failures.
+   * All reference features of model elements *should* have the key property set to "identifier". This makes the stored models more robust against failures. Please note that this rule will be obsolete as of EMFStore 0.7.0.
