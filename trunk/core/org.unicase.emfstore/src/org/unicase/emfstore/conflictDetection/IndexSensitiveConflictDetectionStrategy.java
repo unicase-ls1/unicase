@@ -224,7 +224,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		if (!operationA.isAdd()) {
 			for (ModelElementId id : operationA.getReferencedModelElements()) {
-				if (id.equals(operationB.getModelElementId())) {
+				if (id.equals(operationB.getOldValue())) {
 					return true;
 				}
 			}

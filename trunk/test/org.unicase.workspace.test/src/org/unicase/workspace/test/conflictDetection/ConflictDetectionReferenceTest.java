@@ -7,12 +7,15 @@ package org.unicase.workspace.test.conflictDetection;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -24,6 +27,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -784,7 +788,94 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		assertEquals(cd.getConflicting(ops1, ops2).size(), cd.getConflicting(ops2, ops1).size());
 
 		assertEquals(conflicts.size(), 0);
+	}
 
+	/**
+	 * Set vs add - no conflict.
+	 */
+	@Test
+	public void noConflictMultiReferenceAddVsSet() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+				TestElement first = getTestElement();
+				TestElement second = getTestElement();
+				TestElement inserted = getTestElement();
+				TestElement added = getTestElement();
+
+				testElement.getReferences().addAll(Arrays.asList(first, second));
+				clearOperations();
+
+				testElement.getReferences().set(1, inserted);
+				AbstractOperation set = checkAndGetOperation(MultiReferenceSetOperation.class);
+
+				testElement.getReferences().add(added);
+				AbstractOperation add = checkAndGetOperation(MultiReferenceOperation.class);
+
+				assertEquals(false, doConflict(set, add));
+				assertEquals(false, doConflict(add, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs remove - no conflict.
+	 */
+	@Test
+	public void noConflictMultiReferenceRemoveVsSet() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+				TestElement first = getTestElement();
+				TestElement second = getTestElement();
+				TestElement inserted = getTestElement();
+
+				testElement.getReferences().addAll(Arrays.asList(first, second));
+				clearOperations();
+
+				testElement.getReferences().remove(first);
+				AbstractOperation remove = checkAndGetOperation(MultiReferenceOperation.class);
+
+				testElement.getReferences().set(testElement.getReferences().indexOf(second), inserted);
+				AbstractOperation set = checkAndGetOperation(MultiReferenceSetOperation.class);
+
+				assertEquals(false, doConflict(set, remove));
+				assertEquals(false, doConflict(remove, set));
+			}
+		}.run(false);
+	}
+
+	/**
+	 * Set vs remove - conflict.
+	 */
+	@Test
+	public void conflictMultiReferenceRemoveVsSet() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				TestElement testElement = getTestElement();
+				TestElement first = getTestElement();
+				TestElement second = getTestElement();
+				TestElement inserted = getTestElement();
+
+				testElement.getReferences().addAll(Arrays.asList(first, second));
+				clearOperations();
+
+				testElement.getReferences().remove(second);
+				AbstractOperation remove = checkAndGetOperation(MultiReferenceOperation.class);
+
+				testElement.getReferences().add(second);
+				clearOperations();
+
+				testElement.getReferences().set(testElement.getReferences().indexOf(second), inserted);
+				AbstractOperation set = checkAndGetOperation(MultiReferenceSetOperation.class);
+
+				assertEquals(true, doConflict(set, remove));
+				assertEquals(true, doConflict(remove, set));
+			}
+		}.run(false);
 	}
 
 }

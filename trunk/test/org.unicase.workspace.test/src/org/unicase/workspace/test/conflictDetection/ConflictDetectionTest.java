@@ -5,8 +5,12 @@
  */
 package org.unicase.workspace.test.conflictDetection;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
@@ -49,5 +53,31 @@ public abstract class ConflictDetectionTest extends WorkspaceTest {
 
 	public ConflictDetectionStrategy getConflictDetectionStrategy() {
 		return new IndexSensitiveConflictDetectionStrategy();
+	}
+
+	/**
+	 * Convenience to get an operation by type.
+	 * 
+	 * @param clazz class of operation
+	 * @return operation
+	 */
+	protected AbstractOperation checkAndGetOperation(Class<? extends AbstractOperation> clazz) {
+		assertEquals(getProjectSpace().getOperations().size(), 1);
+		assertTrue(clazz.isInstance(getProjectSpace().getOperations().get(0)));
+		AbstractOperation operation = getProjectSpace().getOperations().get(0);
+		clearOperations();
+		assertEquals(getProjectSpace().getOperations().size(), 0);
+		return operation;
+	}
+
+	/**
+	 * Convenience method for conflict detection.
+	 * 
+	 * @param opA operation
+	 * @param opB operation
+	 * @return boolean
+	 */
+	protected boolean doConflict(AbstractOperation opA, AbstractOperation opB) {
+		return getConflictDetectionStrategy().doConflict(opB, opA);
 	}
 }
