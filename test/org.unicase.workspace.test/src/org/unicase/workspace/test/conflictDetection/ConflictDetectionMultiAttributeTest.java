@@ -6,7 +6,6 @@
 package org.unicase.workspace.test.conflictDetection;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -29,19 +28,6 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 			testElement.getStrings().add("value" + i);
 		}
 		return testElement;
-	}
-
-	private AbstractOperation checkAndGetOperation(Class<? extends AbstractOperation> clazz) {
-		assertEquals(getProjectSpace().getOperations().size(), 1);
-		assertTrue(clazz.isInstance(getProjectSpace().getOperations().get(0)));
-		AbstractOperation operation = getProjectSpace().getOperations().get(0);
-		clearOperations();
-		assertEquals(getProjectSpace().getOperations().size(), 0);
-		return operation;
-	}
-
-	private boolean doConflict(AbstractOperation removeOp, AbstractOperation addOp) {
-		return getConflictDetectionStrategy().doConflict(addOp, removeOp);
 	}
 
 	/**
