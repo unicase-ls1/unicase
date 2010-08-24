@@ -2,10 +2,10 @@
 
 = Obligatory Rules: Do´s and Dont´s =
 
-   * All model elements *must* have "ModelElement" set as superclass in the Ecore
-   * All model elements *must* either be contained by another model element or by project
+   * All model elements *must* have "ModelElement" set as superclass in the Ecore. Please note that this restriction will be removed with EMFStore 0.7.
    * The id property *must NOT* be set for any model element feature
    * The property "resolveProxies" of References *must* be left at its default value "true". Please note that if you generate your Ecore from XML-Schemata the value might be set to false. Reset it to true in this case. 
+   * In the genmodel the property "containmentproxies" must be set to "true"
    * Do *NOT* use simple attributes with a multiplicity greater than 1.
    * Do *NOT* set unsetable to true for any feature
    * Do *NOT* create non-transient references to anything other than model element subtypes. Non-transient references are allowed since they will not be saved.
