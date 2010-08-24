@@ -30,13 +30,13 @@ Additional Tutorials:
 
 Documentation:
 
+ * [EMFStoreModelingGuidelines Modeling Guidelines]
+
+ * [Model_API_Usage_Guidelines Model API Usage Guidelines]
+
  * [Coding_Guidelines Coding Guidelines]
  
  * [EMFStoreExtensionPoints Extension Point Documentation]
-
- * [ModelingGuidelines Modeling Guidelines]
-
- * [Model_API_Usage_Guidelines Model API Usage Guidelines]
 
  * [EMFStore_Configuration How to configure the EMFStore]
  
