@@ -98,15 +98,37 @@
          <constraints
                categories="org.unicase.model">
             <constraint
-                  class="org.unicase.model.urml.validation.MissingReferenceConstraint"
-                  id="org.unicase.model.MissingReferenceConstraint"
+                  class="org.unicase.model.urml.validation.ANDMissingReferenceConstraint"
+                  id="org.unicase.model.ANDMissingReferenceConstraint"
                   lang="Java"
                   mode="Batch"
                   name="Model Element Missing Reference"
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} has no {1}.
+                  {0} should have {1} reference.
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://unicase.org/model/urml">
+         </package>
+         <constraints
+               categories="org.unicase.model">
+            <constraint
+                  class="org.unicase.model.urml.validation.ORMissingReferenceConstraint"
+                  id="org.unicase.model.ORMissingReferenceConstraint"
+                  lang="Java"
+                  mode="Batch"
+                  name="Model Element Missing Reference"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} should have one of {1} references.
                </message>
             </constraint>
          </constraints>
@@ -128,7 +150,51 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} - has wrong field data for {1}.
+                  {0} has wrong field data for {1}.
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://unicase.org/model/urml/requirement">
+         </package>
+         <constraints
+               categories="org.unicase.model">
+            <constraint
+                  class="org.unicase.model.urml.requirement.validation.TerminalRequirementConstraint"
+                  id="org.unicase.model.TerminalRequirementConstraint"
+                  lang="Java"
+                  mode="Batch"
+                  name="Terminal Requirement"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} should have sub requirements or terminal flag.
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://unicase.org/model/urml/feature">
+         </package>
+         <constraints
+               categories="org.unicase.model">
+            <constraint
+                  class="org.unicase.model.urml.feature.validation.VariationPointRuleConstraint"
+                  id="org.unicase.model.VariationPointRuleConstraint"
+                  lang="Java"
+                  mode="Batch"
+                  name="Violated Variation Point Rule"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} violates {1} rule.
                </message>
             </constraint>
          </constraints>
