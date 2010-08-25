@@ -67,6 +67,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 				try {
 					usersession.logIn();
 					projectSpace.shareProject(usersession);
+
 				} catch (AccessControlException e1) {
 					// TODO Auto-generated catch block
 					// Do NOT catch all Exceptions ("catch (Exception e)")
@@ -124,7 +125,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 	}
 
 	/**
-	 *stops the server after the carying out the test.
+	 *stops the server after doing the test.
 	 */
 
 	@AfterClass
