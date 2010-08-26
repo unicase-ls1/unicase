@@ -30,8 +30,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -44,6 +44,8 @@ public class LoadPage extends WizardPage implements Listener {
 	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration analyzerConfig;
 	private boolean canFlipToNextPage;
+
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
 	/**
 	 * default path for the configuration file.
 	 */
@@ -56,7 +58,8 @@ public class LoadPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
+
 	}
 
 	/**
@@ -134,7 +137,7 @@ public class LoadPage extends WizardPage implements Listener {
 
 			resource = editingDomain.getResourceSet().createResource(fileURI);
 			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-			new UnicaseCommand() {
+			new AnalysisCommand(editingDomain) {
 
 				@Override
 				protected void doRun() {
@@ -167,7 +170,7 @@ public class LoadPage extends WizardPage implements Listener {
 			initConfig(DEFAULT_PATH);
 		}
 		final AnalyzerPage page = (AnalyzerPage) super.getNextPage();
-		new UnicaseCommand() {
+		new AnalysisCommand(editingDomain) {
 
 			@Override
 			protected void doRun() {

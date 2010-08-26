@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.exporters.ExportersPackage;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 
 /**
  * @author liya
@@ -39,6 +40,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
 	private Button selectFileLocation;
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
 
 	/**
 	 * @param pageName Name of the page
@@ -47,7 +49,7 @@ public class ExporterPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 
 	/**
@@ -132,22 +134,30 @@ public class ExporterPage extends WizardPage implements Listener {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 
-			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-				SWT.SAVE);
-			dialog.setFilterNames(new String[] { "CSV Files(*.csv)", "All Files(*.*)" });
-			dialog.setFilterExtensions(new String[] { ".csv", ".*" });
-			dialog.setOverwrite(true);
-			String initialFileName = "test.csv";
-			dialog.setFileName(initialFileName);
+			new AnalysisCommand(editingDomain) {
 
-			// dialog
-			String fileName = dialog.open();
-			String selected = dialog.getFilterPath() + fileName;
+				@Override
+				protected void doRun() {
+					FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+						SWT.SAVE);
+					dialog.setFilterNames(new String[] { "CSV Files(*.csv)", "All Files(*.*)" });
+					dialog.setFilterExtensions(new String[] { ".csv", ".*" });
+					dialog.setOverwrite(true);
+					String initialFileName = "test.csv";
+					dialog.setFileName(initialFileName);
 
-			if (fileName != null) {
-				exportPath.setText(selected);
-				selectFileLocation.setFocus();
-			}
+					// dialog
+					String fileName = dialog.open();
+					String selected = dialog.getFilterPath() + fileName;
+
+					if (fileName != null) {
+						exportPath.setText(selected);
+						selectFileLocation.setFocus();
+					}
+
+				}
+			}.run();
+
 		}
 	}
 

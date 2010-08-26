@@ -30,8 +30,8 @@ import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -52,6 +52,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 
 	private final TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
 
 	/**
 	 * @param pageName Name of the page
@@ -62,7 +63,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
 
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 
 	/**
@@ -238,7 +239,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {
 		final ExporterPage page = ((ProjectAnalyzerWizard) getWizard()).getExporterPage();
-		new UnicaseCommand() {
+		new AnalysisCommand(editingDomain) {
 
 			@Override
 			protected void doRun() {
