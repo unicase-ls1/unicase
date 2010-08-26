@@ -19,8 +19,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -34,10 +40,10 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -63,6 +69,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private LoadPage loadPage;
 	private ProjectSpace selectedProject;
 
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -70,6 +78,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
+
 		if (analyzers == null) {
 			if (ProjectAnalyzerWizardHelper.isTextNonEmpty(loadPage.getConfigurationPath())) {
 				loadPage.initConfig(loadPage.getConfigurationPath().getText());
@@ -112,7 +121,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			}
 		}
 
-		new UnicaseCommand() {
+		new AnalysisCommand(domain) {
+
 			@Override
 			protected void doRun() {
 				try {
@@ -125,14 +135,15 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					WorkspaceUtil.logException("Problems occur when creating the exporter!", e);
 				}
 
+				try {
+					analyzerConfig.eResource().save(null);
+				} catch (IOException e) {
+					WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
+				}
+
 			}
 		}.run();
 
-		try {
-			analyzerConfig.eResource().save(null);
-		} catch (IOException e) {
-			WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
-		}
 		return true;
 	}
 
@@ -146,12 +157,14 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					analyzerController.setMonitor(monitor);
 					int totalSteps = analyzerConfig.getIterator().getTotalSteps();
 					monitor.beginTask("Analyzing...", totalSteps);
+
 					try {
 						analyzerController.runAnalysis(analyzerConfig.getExporter());
-
 					} catch (IOException e) {
-						WorkspaceUtil.logException("Analysis is encountering problems!", e);
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+
 					System.out.println("Finished Analysis");
 
 					monitor.done();
@@ -172,6 +185,15 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// register an editing domain on the ressource
+		domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new TransactionalCommandStackImpl(), resourceSet);
+		((FactoryImpl) TransactionalEditingDomain.Factory.INSTANCE).mapResourceSet(domain);
+		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
 
 		Object firstElement;
 		if (!selection.isEmpty()) {
@@ -375,4 +397,14 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		this.selectedProject = selectedProject;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.Wizard#performCancel()
+	 */
+	@Override
+	public boolean performCancel() {
+		System.out.println("Perform Cancel called");
+		return true;
+	}
 }

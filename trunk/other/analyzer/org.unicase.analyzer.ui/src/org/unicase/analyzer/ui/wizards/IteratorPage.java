@@ -23,10 +23,10 @@ import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -40,6 +40,8 @@ public class IteratorPage extends WizardPage implements Listener {
 	private Button timeIteratorButton;
 
 	private AnalyzerConfiguration conf;
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
+	private final TransactionalEditingDomain editingDomain;
 
 	/**
 	 * @param pageName Name of the page
@@ -49,7 +51,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
-		TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class IteratorPage extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 		if (versionIteratorButton.getSelection()) {
 			final VersionIteratorPage page = ((ProjectAnalyzerWizard) getWizard()).getVersionIteratorPage();
-			new UnicaseCommand() {
+			new AnalysisCommand(editingDomain) {
 
 				@Override
 				protected void doRun() {
@@ -98,7 +100,7 @@ public class IteratorPage extends WizardPage implements Listener {
 
 		} else if (timeIteratorButton.getSelection()) {
 			final TimeIteratorPage page = ((ProjectAnalyzerWizard) getWizard()).getTimeIteratorPage();
-			new UnicaseCommand() {
+			new AnalysisCommand(editingDomain) {
 
 				@Override
 				protected void doRun() {

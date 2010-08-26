@@ -34,8 +34,8 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author liya
@@ -62,6 +62,8 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	private AnalyzerConfiguration conf;
 	private TimeIterator timeIterator;
 
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
+
 	/**
 	 * @param pageName Name of the page
 	 */
@@ -72,7 +74,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
 
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 
 	/**
@@ -136,6 +138,24 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		startDate = new CDateTime(group, CDT.BORDER);
 		startDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		startDate.setPattern("dd.MM.yyyy HH:mm");
+		// startDate.addFocusListener(new FocusListener() {
+		//
+		// public void focusGained(FocusEvent e) {
+		// // nothing to do here
+		// }
+		//
+		// public void focusLost(FocusEvent e) {
+		// new AnalysisCommand(editingDomain) {
+		//
+		// @Override
+		// protected void doRun() {
+		// ((DateVersionSpec) ((TimeIterator) conf.getIterator()).getVersionSpecQuery().getStartVersion())
+		// .eSet(VersioningPackage.eINSTANCE.getDateVersionSpec_Date(), startDate.getSelection());
+		// }
+		// }.run();
+		// }
+		//
+		// });
 
 		new Label(group, SWT.NONE).setText("End:");
 		gd = new GridData();
@@ -143,6 +163,23 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		endDate = new CDateTime(group, CDT.BORDER);
 		endDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		endDate.setPattern("dd.MM.yyyy HH:mm");
+		// endDate.addFocusListener(new FocusListener() {
+		//
+		// public void focusGained(FocusEvent e) {
+		// // nothing to do here
+		// }
+		//
+		// public void focusLost(FocusEvent e) {
+		// new AnalysisCommand(editingDomain) {
+		// @Override
+		// protected void doRun() {
+		// ((DateVersionSpec) ((TimeIterator) conf.getIterator()).getVersionSpecQuery().getEndVersion())
+		// .eSet(VersioningPackage.eINSTANCE.getDateVersionSpec_Date(), endDate.getSelection());
+		// }
+		// }.run();
+		// }
+		//
+		// });
 
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;
@@ -199,47 +236,13 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 
 		ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();
 		conf = wizard.getAnalyzerConfig();
-		// startDate for TimeIterator
-		// if (conf.getIterator() instanceof TimeIterator) {
-		// Calendar cal = Calendar.getInstance();
-		// cal.add(Calendar.MINUTE, -2);
-		// Date start = ((TimeIterator) conf.getIterator()).getStartDate();
-		// if (start == null || start.compareTo(cal.getTime()) < 0) {
-		// List<HistoryInfo> historyList;
-		// try {
-		// historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
-		// wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
-		// VersioningFactory.eINSTANCE.createHistoryQuery());
-		// HistoryInfo initialHistory = historyList.get(historyList.size());
-		// startDate.setSelection(initialHistory.getLogMessage().getDate());
-		// } catch (EmfStoreException e) {
-		// WorkspaceUtil.logException("Can not get the date of the project creation", e);
-		// }
-		//
-		// } else {
-		// startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
-		// }
-		// }
 
-		// endDate for TimeIterator
-		// if (conf.getIterator() instanceof TimeIterator) {
-		// if (((TimeIterator) conf.getIterator()).getEndDate() == null) {
-		// List<HistoryInfo> historyList;
-		// try {
-		// historyList = conf.getIterator().getConnectionManager().getHistoryInfo(
-		// wizard.getSelectedProject().getUsersession().getSessionId(), wizard.getSelectedProjectID(),
-		// VersioningFactory.eINSTANCE.createHistoryQuery());
-		// HistoryInfo initialHistory = historyList.get(0);
-		// endDate.setSelection(initialHistory.getLogMessage().getDate());
-		// } catch (EmfStoreException e) {
-		// WorkspaceUtil.logException("Can not get the date of the project creation", e);
-		// }
-		// } else {
-		// endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
-		// }
-		// }
-		startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
-		endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
+		if (((TimeIterator) conf.getIterator()).getStartDate() != null) {
+			startDate.setSelection(((TimeIterator) conf.getIterator()).getStartDate());
+		}
+		if (((TimeIterator) conf.getIterator()).getEndDate() != null) {
+			endDate.setSelection(((TimeIterator) conf.getIterator()).getEndDate());
+		}
 
 		// forward
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(),
@@ -288,7 +291,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {
 		final ExporterPage page = ((ProjectAnalyzerWizard) getWizard()).getExporterPage();
-		new UnicaseCommand() {
+		new AnalysisCommand(editingDomain) {
 			@Override
 			protected void doRun() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard) getWizard();

@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.DataAnalyzer;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.analyzer.ui.commands.AnalysisCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -43,6 +43,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private final List<IConfigurationElement> extendedAnalyzers;
 	private AnalyzerConfiguration conf;
 	private final TransactionalEditingDomain editingDomain;
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.analysis.EditingDomain";
 
 	/**
 	 * @param pageName Name of the page
@@ -53,7 +54,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		setDescription(PAGE_DESCRIPTION);
 		extendedAnalyzers = new ArrayList<IConfigurationElement>();
 		canFlipToNextPage = false;
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					}
 					if (add) {
 						analyzers.add(analyzer);
-						new UnicaseCommand() {
+						new AnalysisCommand(editingDomain) {
 
 							@Override
 							protected void doRun() {
@@ -199,7 +200,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					WorkspaceUtil.logException("Could not create the analyzer!", e);
 				}
 			} else {
-				new UnicaseCommand() {
+				new AnalysisCommand(editingDomain) {
 
 					@Override
 					protected void doRun() {
@@ -210,7 +211,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			}
 		}
 		final IteratorPage page = (IteratorPage) super.getNextPage();
-		new UnicaseCommand() {
+		new AnalysisCommand(editingDomain) {
 
 			@Override
 			protected void doRun() {

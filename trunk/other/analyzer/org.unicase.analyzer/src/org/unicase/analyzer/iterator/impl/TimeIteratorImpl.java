@@ -12,6 +12,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
@@ -348,7 +349,7 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 		this.endDateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
 
 		if (start instanceof DateVersionSpec && end instanceof DateVersionSpec) {
-			this.dateSpec = (DateVersionSpec) start;
+			this.dateSpec = (DateVersionSpec) EcoreUtil.copy(start);
 			this.startDataSpec = (DateVersionSpec) start;
 			this.endDateSpec = (DateVersionSpec) end;
 		} else {
