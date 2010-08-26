@@ -7,6 +7,11 @@ package org.unicase.ui.test;
 
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
+import org.unicase.model.organization.User;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.test.SetupHelper;
 
 /**
  * Provides method to open perspective and views.
@@ -46,6 +51,15 @@ public class UITestCommon {
 		bot.table().select(perspective);
 		bot.button("OK").click();
 
+	}
+
+	public static Usersession createUsersession(User user) {
+		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
+		WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+		session.setServerInfo(SetupHelper.getServerInfo());
+		session.setUsername(user.getName());
+		session.setPassword("super");
+		return session;
 	}
 
 }
