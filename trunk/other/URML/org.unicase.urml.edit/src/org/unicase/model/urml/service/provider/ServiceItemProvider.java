@@ -52,6 +52,7 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 			super.getPropertyDescriptors(object);
 
 			addSatisfiedRequirementsPropertyDescriptor(object);
+			addSubServicesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,6 +69,18 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 			getString("_UI_PropertyDescriptor_description", "_UI_Service_satisfiedRequirements_feature",
 				"_UI_Service_type"), ServicePackage.Literals.SERVICE__SATISFIED_REQUIREMENTS, true, false, true, null,
 			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sub Services feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSubServicesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Service_subServices_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Service_subServices_feature", "_UI_Service_type"),
+			ServicePackage.Literals.SERVICE__SUB_SERVICES, true, false, false, null, null, null));
 	}
 
 	/**

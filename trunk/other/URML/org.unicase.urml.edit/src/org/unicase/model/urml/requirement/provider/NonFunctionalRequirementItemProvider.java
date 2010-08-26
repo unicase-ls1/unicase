@@ -50,6 +50,7 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 			super.getPropertyDescriptors(object);
 
 			addConstrainedFeaturesPropertyDescriptor(object);
+			addSubNonFunctionalRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,6 +69,23 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES, true, false, true, null,
 			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sub Non Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSubNonFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description",
+				"_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature",
+				"_UI_NonFunctionalRequirement_type"),
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS, true, false,
+			false, null, null, null));
 	}
 
 	/**

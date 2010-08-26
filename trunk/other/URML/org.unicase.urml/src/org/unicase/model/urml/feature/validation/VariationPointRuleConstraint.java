@@ -22,7 +22,7 @@ public class VariationPointRuleConstraint extends AbstractModelConstraint {
 							.getErrorFeatureForModelElement(vpi, "selectedFeatures"));
 						return ctx.createFailureStatus(new Object[] {
 							vpi.eClass().getName() + ": '" + vpi.getName() + "'",
-							vp.eClass().getName() + ": '" + vp.getName() });
+							vp.eClass().getName() + ": '" + vp.getName() + "'" });
 					}
 				}
 			}

@@ -57,6 +57,7 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 			addStakeholdersPropertyDescriptor(object);
 			addRealizedFeaturesPropertyDescriptor(object);
 			addDetailingUseCasesPropertyDescriptor(object);
+			addSubGoalsPropertyDescriptor(object);
 			addInfluencingGoalsPropertyDescriptor(object);
 			addInfluencedGoalsPropertyDescriptor(object);
 		}
@@ -126,6 +127,18 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Goal_detailingUseCases_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Goal_detailingUseCases_feature", "_UI_Goal_type"),
 			GoalPackage.Literals.GOAL__DETAILING_USE_CASES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sub Goals feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSubGoalsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Goal_subGoals_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Goal_subGoals_feature", "_UI_Goal_type"),
+			GoalPackage.Literals.GOAL__SUB_GOALS, true, false, false, null, null, null));
 	}
 
 	/**

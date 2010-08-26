@@ -49,6 +49,7 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 			super.getPropertyDescriptors(object);
 
 			addDetailedFeaturesPropertyDescriptor(object);
+			addSubFunctionalRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -66,6 +67,22 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 					"_UI_FunctionalRequirement_type"),
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES, true, false, true, null, null,
 				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sub Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSubFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_FunctionalRequirement_subFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_subFunctionalRequirements_feature",
+				"_UI_FunctionalRequirement_type"),
+			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS, true, false, false, null,
+			null, null));
 	}
 
 	/**

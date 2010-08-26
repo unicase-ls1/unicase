@@ -10,36 +10,54 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.document.LeafSection;
+import org.unicase.model.urml.UrmlPackage;
+import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.danger.impl.DangerImpl;
 import org.unicase.model.urml.danger.impl.ProceduralMitigationImpl;
+import org.unicase.model.urml.feature.FeaturePackage;
 import org.unicase.model.urml.feature.impl.VariationPointImpl;
 import org.unicase.model.urml.feature.impl.VariationPointInstanceImpl;
+import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.model.urml.goal.impl.GoalImpl;
 import org.unicase.model.urml.goal.impl.GoalReferenceImpl;
 import org.unicase.model.urml.impl.StakeholderImpl;
+import org.unicase.model.urml.requirement.RequirementPackage;
 import org.unicase.model.urml.requirement.impl.FunctionalRequirementImpl;
 import org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl;
+import org.unicase.model.urml.usecase.UsecasePackage;
 import org.unicase.model.urml.usecase.impl.ApplicationDomainUseCaseImpl;
 import org.unicase.model.urml.usecase.impl.SolutionDomainUseCaseImpl;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 public class ANDMissingReferenceConstraint extends AbstractModelConstraint {
-	private HashMap<Class<? extends EObject>, String[]> checks;
+	private HashMap<Class<? extends EObject>, EStructuralFeature[]> featuresToCheck;
 
 	public ANDMissingReferenceConstraint() {
-		checks = new HashMap<Class<? extends EObject>, String[]>();
-		checks.put(DangerImpl.class, new String[] { "mitigations", "harmedAssets" });
-		checks.put(NonFunctionalRequirementImpl.class, new String[] { "implementingServices" });
-		checks.put(FunctionalRequirementImpl.class, new String[] { "implementingServices" });
-		checks.put(ProceduralMitigationImpl.class, new String[] { "mitigatedDangers" });
-		checks.put(VariationPointInstanceImpl.class, new String[] { "products", "variationPoint", "selectedFeatures" });
-		checks.put(VariationPointImpl.class, new String[] { "instances", "Sub_" });
-		checks.put(GoalImpl.class, new String[] { "stakeholders" });
-		checks.put(StakeholderImpl.class, new String[] { "goals" });
-		checks.put(GoalReferenceImpl.class, new String[] { "source", "target" });
-		checks.put(SolutionDomainUseCaseImpl.class, new String[] { "detailedFeature", "steps", "actors" });
-		checks.put(ApplicationDomainUseCaseImpl.class, new String[] { "detailedGoal", "steps", "actors" });
+		featuresToCheck = new HashMap<Class<? extends EObject>, EStructuralFeature[]>();
+		featuresToCheck.put(DangerImpl.class, new EStructuralFeature[] {
+			DangerPackage.eINSTANCE.getDanger_Mitigations(), DangerPackage.eINSTANCE.getDanger_HarmedAssets() });
+		featuresToCheck.put(NonFunctionalRequirementImpl.class, new EStructuralFeature[] { RequirementPackage.eINSTANCE
+			.getRequirement_ImplementingServices() });
+		featuresToCheck.put(FunctionalRequirementImpl.class, new EStructuralFeature[] { RequirementPackage.eINSTANCE
+			.getRequirement_ImplementingServices() });
+		featuresToCheck.put(ProceduralMitigationImpl.class, new EStructuralFeature[] { DangerPackage.eINSTANCE
+			.getMitigation_MitigatedDangers() });
+		featuresToCheck.put(VariationPointImpl.class, new EStructuralFeature[] {
+			FeaturePackage.eINSTANCE.getVariationPoint_Instances(),
+			FeaturePackage.eINSTANCE.getVariationPoint_OptionalSubFeatures() });
+		featuresToCheck.put(VariationPointInstanceImpl.class, new EStructuralFeature[] {
+			FeaturePackage.eINSTANCE.getVariationPointInstance_Products(),
+			FeaturePackage.eINSTANCE.getVariationPointInstance_VariationPoint(),
+			FeaturePackage.eINSTANCE.getVariationPointInstance_SelectedFeatures() });
+		featuresToCheck.put(GoalImpl.class, new EStructuralFeature[] { GoalPackage.eINSTANCE.getGoal_Stakeholders() });
+		featuresToCheck.put(StakeholderImpl.class, new EStructuralFeature[] { UrmlPackage.eINSTANCE
+			.getStakeholder_Goals() });
+		featuresToCheck.put(GoalReferenceImpl.class, new EStructuralFeature[] {
+			GoalPackage.eINSTANCE.getGoalReference_Source(), GoalPackage.eINSTANCE.getGoalReference_Target() });
+		featuresToCheck.put(SolutionDomainUseCaseImpl.class, new EStructuralFeature[] { UsecasePackage.eINSTANCE
+			.getSolutionDomainUseCase_DetailedFeature() });
+		featuresToCheck.put(ApplicationDomainUseCaseImpl.class, new EStructuralFeature[] { UsecasePackage.eINSTANCE
+			.getApplicationDomainUseCase_DetailedGoal() });
 	}
 
 	@Override
@@ -47,27 +65,24 @@ public class ANDMissingReferenceConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 		if (eType == EMFEventType.NULL) {
 			EObject eObj = ctx.getTarget();
-			if (checks.containsKey(eObj.getClass())) {
-				for (String featureName : checks.get(eObj.getClass())) {
-					Object field;
-					if (featureName.equals("Sub_")) {
-						field = eObj.eContents();
-					} else if (featureName.equals("Parent_")) {
-						field = eObj.eContainer();
-						if (field instanceof LeafSection) {
-							field = null;
-						}
-					} else {
-						EStructuralFeature feature = eObj.eClass().getEStructuralFeature(featureName);
-						field = eObj.eGet(feature);
-						EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-							(UnicaseModelElement) eObj, feature.getName());
-						ctx.addResult(errorFeature);
-					}
+			if (featuresToCheck.containsKey(eObj.getClass())) {
+				for (EStructuralFeature feature : featuresToCheck.get(eObj.getClass())) {
+					Object field = eObj.eGet(feature);
 					if ((field instanceof EList<?> && ((EList<?>) field).isEmpty()) || field == null) {
+						String featureName = "";
+						if (!feature.isMany()) {
+							featureName += "a(n) ";
+						}
+						featureName += "'" + feature.getName() + "'";
 						Object[] message = new Object[] {
-							eObj.eClass().getName() + ": '" + ((UnicaseModelElement) eObj).getName() + "'",
-							"'" + featureName.replaceAll("_", eObj.eClass().getName()) + "'" };
+							eObj.eClass().getName() + ": '" + ((UnicaseModelElement) eObj).getName() + "'", featureName };
+						try {
+							EStructuralFeature errorFeature = ValidationConstraintHelper
+								.getErrorFeatureForModelElement((UnicaseModelElement) eObj, feature.getName());
+							ctx.addResult(errorFeature);
+						} catch (NullPointerException e) {
+							// this happens if we try to get the parent feature : ignore
+						}
 						return ctx.createFailureStatus(message);
 					}
 				}
