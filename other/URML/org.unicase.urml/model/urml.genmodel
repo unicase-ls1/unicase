@@ -35,7 +35,7 @@
             ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/realizedFeatures"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/detailingUseCases"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/subGoals"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/subGoals"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/parentGoal"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//goal/Goal/influencingGoals"/>
@@ -60,13 +60,13 @@
       <genClasses ecoreClass="urml.ecore#//requirement/FunctionalRequirement">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//requirement/FunctionalRequirement/detailedFeatures"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//requirement/FunctionalRequirement/subFunctionalRequirements"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//requirement/FunctionalRequirement/subFunctionalRequirements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//requirement/FunctionalRequirement/parentFunctionalRequirement"/>
       </genClasses>
       <genClasses ecoreClass="urml.ecore#//requirement/NonFunctionalRequirement">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//requirement/NonFunctionalRequirement/constrainedFeatures"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//requirement/NonFunctionalRequirement/subNonFunctionalRequirements"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//requirement/NonFunctionalRequirement/subNonFunctionalRequirements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//requirement/NonFunctionalRequirement/parentNonFunctionalRequirement"/>
       </genClasses>
     </nestedGenPackages>
@@ -96,7 +96,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//service/Service/satisfiedRequirements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//service/Service/parentService"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//service/Service/subServices"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//service/Service/subServices"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Danger" basePackage="org.unicase.model.urml" resource="XML"
@@ -135,7 +135,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/detailingUseCases"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/parentFeature"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/subFeatures"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/subFeatures"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/AbstractFeature/excludingFeatures"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -153,7 +153,7 @@
             ecoreFeature="ecore:EReference urml.ecore#//feature/Feature/products"/>
       </genClasses>
       <genClasses ecoreClass="urml.ecore#//feature/VariationPoint">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/optionalSubFeatures"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/optionalSubFeatures"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute urml.ecore#//feature/VariationPoint/multiplicity"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference urml.ecore#//feature/VariationPoint/instances"/>

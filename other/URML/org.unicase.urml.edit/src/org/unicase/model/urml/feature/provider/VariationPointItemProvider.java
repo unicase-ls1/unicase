@@ -49,10 +49,26 @@ public class VariationPointItemProvider extends AbstractFeatureItemProvider impl
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOptionalSubFeaturesPropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
 			addInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Optional Sub Features feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addOptionalSubFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_VariationPoint_optionalSubFeatures_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_VariationPoint_optionalSubFeatures_feature",
+				"_UI_VariationPoint_type"), FeaturePackage.Literals.VARIATION_POINT__OPTIONAL_SUB_FEATURES, true,
+			false, false, null, null, null));
 	}
 
 	/**

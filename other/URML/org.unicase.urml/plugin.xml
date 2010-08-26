@@ -106,7 +106,7 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} should have {1} reference.
+                  {0} should have {1}.
                </message>
             </constraint>
          </constraints>
@@ -128,7 +128,7 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} should have one of {1} references.
+                  {0} should have {1}.
                </message>
             </constraint>
          </constraints>
@@ -150,7 +150,7 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} has wrong field data for {1}.
+                  {0} has a wrong {1}. (Not allowed: {2})
                </message>
             </constraint>
          </constraints>
@@ -172,7 +172,7 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} should have sub requirements or terminal flag.
+                  {0} should have sub requirements or terminal should be set to true.
                </message>
             </constraint>
          </constraints>
@@ -194,7 +194,29 @@
                   severity="ERROR"
                   statusCode="1">
                <message>
-                  {0} violates {1} rule.
+                  {0} does not conform the multiplicity of {1}.
+               </message>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://unicase.org/model/urml">
+         </package>
+         <constraints
+               categories="org.unicase.model">
+            <constraint
+                  class="org.unicase.model.urml.validation.ViolatedReferenceStructureConstraint"
+                  id="org.unicase.model.ViolatedReferenceStructureConstraint"
+                  lang="Java"
+                  mode="Batch"
+                  name="Violated Reference Structure"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0}: {1} references a parent element and one of his childs.
                </message>
             </constraint>
          </constraints>

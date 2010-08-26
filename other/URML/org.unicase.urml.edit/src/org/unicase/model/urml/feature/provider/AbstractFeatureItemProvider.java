@@ -55,6 +55,7 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 			addDetailingFunctionalRequirementsPropertyDescriptor(object);
 			addConstrainingNonFunctionalRequirementsPropertyDescriptor(object);
 			addDetailingUseCasesPropertyDescriptor(object);
+			addSubFeaturesPropertyDescriptor(object);
 			addExcludingFeaturesPropertyDescriptor(object);
 			addExcludedFeaturesPropertyDescriptor(object);
 			addRequiringFeaturesPropertyDescriptor(object);
@@ -120,6 +121,19 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_detailingUseCases_feature",
 				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__DETAILING_USE_CASES, true,
 			false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sub Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSubFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_subFeatures_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_subFeatures_feature",
+				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES, true, false,
+			false, null, null, null));
 	}
 
 	/**
