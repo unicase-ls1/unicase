@@ -41,6 +41,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
@@ -147,6 +148,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
+		List<EObject> result;
 
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 			super(viewer, xfer);
@@ -159,7 +161,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 			Object transferedObject = getJavaObject(data);
 
-			List<EObject> result = new ArrayList<EObject>();
+			result = new ArrayList<EObject>();
 
 			if (transferedObject instanceof List) {
 				List selection = (List) transferedObject;
@@ -170,7 +172,25 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 					}
 				}
 			}
+			this.handleDrop();
 			return result;
+		}
+
+		@Override
+		protected void handleDrop() {
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					for (EObject e : result) {
+						EObject add = getDiagram().getElement();
+						((MEDiagram) add).getElements().add((UnicaseModelElement) e);
+
+					}
+
+				}
+			}.run();
+			result = null;
 		}
 
 		protected abstract Object getJavaObject(TransferData data);
