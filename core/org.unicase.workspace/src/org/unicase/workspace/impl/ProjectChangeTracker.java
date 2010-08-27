@@ -47,7 +47,6 @@ import org.unicase.workspace.changeTracking.commands.CommandObserver;
 import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
-import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -216,6 +215,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		// filter unwanted notifications
+		if (FilterStack.DEFAULT.check(new NotificationInfo(notification))) {
+			return;
+		}
+
 		save(modelElement);
 		notificationRecorder.record(notification);
 		if (notificationRecorder.isRecordingComplete()) {
@@ -228,10 +232,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	private void recordingFinished() {
-
-		// canonize recorded notifications
-		NotificationFilter f = FilterStack.DEFAULT;
-		f.filter(notificationRecorder.getRecording());
 
 		// create operations from "valid" notifications, log invalid ones, accumulate the ops
 		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();

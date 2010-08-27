@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
  * This class filters a notification recording according to predefined stacks of filters. Available stacks are created
@@ -27,10 +27,7 @@ public final class FilterStack implements NotificationFilter {
 		new TransientFilter(),
 		//
 		new EmptyRemovalsFilter()
-	//
-	// new BidirectionalAddManyFilter(),
-	//
-	// new GenericBidirectionalFilter()
+
 	};
 
 	/**
@@ -46,13 +43,17 @@ public final class FilterStack implements NotificationFilter {
 	}
 
 	/**
-	 * @param recording the recording to filter
-	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#filter(org.unicase.workspace.changeTracking.notification.recording.NotificationRecording)
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#check(org.unicase.workspace.changeTracking.notification.NotificationInfo)
 	 */
-	public void filter(NotificationRecording recording) {
+	public boolean check(NotificationInfo notificationInfo) {
 		for (NotificationFilter f : filterList) {
-			f.filter(recording);
+			if (f.check(notificationInfo)) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 }
