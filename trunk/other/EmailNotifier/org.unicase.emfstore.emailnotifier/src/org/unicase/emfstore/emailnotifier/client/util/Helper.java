@@ -135,6 +135,7 @@ public final class Helper {
 	/**
 	 * Returns a project space from the local checked out projects that has the same project id as the one from the parameter.
 	 * 
+	 * @param usersession the current usersession
 	 * @param projectId the project id that you are interested in
 	 * @return the project space
 	 * @throws ProjectNotFoundException will be thrown if the project wasn't found in the local checked out projects

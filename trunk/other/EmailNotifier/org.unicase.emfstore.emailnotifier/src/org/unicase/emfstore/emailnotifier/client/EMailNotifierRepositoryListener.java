@@ -73,24 +73,20 @@ public class EMailNotifierRepositoryListener {
 	
 	/**
 	 * Adds a backchannel to each project to be able to listen to server events.
+	 * @throws EmfStoreException will be throw if the backchannel is not accessible
 	 */
-	public void createBackchannels() {
+	public void createBackchannels() throws EmfStoreException {
 		// backchannel handling
-		try {
-			BackchannelConnectionManager manager = new BackchannelConnectionManager();
-			manager.initConnection(backchannelServerInfo, usersession.getSessionId());
+		BackchannelConnectionManager manager = new BackchannelConnectionManager();
+		manager.initConnection(backchannelServerInfo, usersession.getSessionId());
 
-			// register backchannel listener
-			EMFStoreEventListener listener = new EMailNotifierProjectListener(emailNotifierStore, usersession, mailerInfo, notifierProxyClientRepositoryTimerThread);
-			
-			// backchannel registration for all projects
-			for (ProjectInfo projectInfo: usersession.getRemoteProjectList()) {
-				manager.registerRemoteListener(usersession.getSessionId(), listener, projectInfo.getProjectId());
-				Activator.log(Status.INFO, "Listener registered at project: " + projectInfo.getName());
-			}
-			
-		} catch (EmfStoreException e) {
-			Activator.logException(e);
+		// register backchannel listener
+		EMFStoreEventListener listener = new EMailNotifierProjectListener(emailNotifierStore, usersession, mailerInfo, notifierProxyClientRepositoryTimerThread);
+		
+		// backchannel registration for all projects
+		for (ProjectInfo projectInfo: usersession.getRemoteProjectList()) {
+			manager.registerRemoteListener(usersession.getSessionId(), listener, projectInfo.getProjectId());
+			Activator.log(Status.INFO, "Listener registered at project: " + projectInfo.getName());
 		}
 	}
 }

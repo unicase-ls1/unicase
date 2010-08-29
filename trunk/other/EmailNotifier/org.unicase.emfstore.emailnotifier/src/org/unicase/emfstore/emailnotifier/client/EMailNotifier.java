@@ -35,6 +35,7 @@ import org.unicase.emfstore.emailnotifier.email.MailerInfo;
 import org.unicase.emfstore.emailnotifier.exception.EMailNotifierException;
 import org.unicase.emfstore.emailnotifier.store.EMailNotifierStore;
 import org.unicase.emfstore.emailnotifier.store.ENSFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -166,17 +167,19 @@ public class EMailNotifier implements IApplication {
 			}
 			
 		} catch(EMailNotifierException e) {
-			// log exception and terminate - serious error occurred
-			Activator.logException(e);
-			Thread.currentThread().interrupt();
+			// log message and terminate - serious error occurred
+			Activator.log(IStatus.ERROR, e.getMessage());
+			System.exit(1);
+			
 		} catch (FileNotFoundException e) {
 			// log exception and terminate - serious error occurred
 			Activator.logException(e);
-			Thread.currentThread().interrupt();
+			System.exit(1);
+			
 		} catch (IOException e) {
 			// log exception and terminate - serious error occurred
 			Activator.logException(e);
-			Thread.currentThread().interrupt();
+			System.exit(1);
 		}
 		
 	}
@@ -186,13 +189,17 @@ public class EMailNotifier implements IApplication {
 		
 		// ini file doesn't exist. Create a dummy file.
 		try {
-			if( !configFile.getParentFile().mkdirs() ) {
-				throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
+			if( !configFile.getParentFile().exists() ) {
+				if(  !configFile.getParentFile().mkdirs() ) {
+					throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
+				}
 			}
 			
 			if( !configFile.createNewFile() ) {
 				throw new EMailNotifierException("Sample configuration file could be created. Expected location: '"+NOTIFIER_CONFIG_PATH+"'.");
 			}
+			
+			Activator.log(IStatus.ERROR, "Configuration file does not exist. (Path: "+ configFile +")");
 			
 			// copy notifierProxyClient.example.ini to destination
 			Bundle bundle = Activator.getDefault().getBundle();
@@ -212,6 +219,8 @@ public class EMailNotifier implements IApplication {
 			bufferedWriter.write(content);
 			bufferedWriter.flush();
 			bufferedWriter.close();
+			
+			Activator.log(IStatus.INFO, "Example configuration file created.");
 			
 		} catch (IOException e) {
 			Activator.logException(e);
@@ -249,40 +258,45 @@ public class EMailNotifier implements IApplication {
 	 * @throws EMailNotifierException a wrapper for email notifier related exceptions
 	 */
 	public void entryPoint() throws EMailNotifierException {
-		for(EMFStoreInfo configSection: emfStoreInfos) {
-			final Usersession usersession = configSection.getUsersession();
-    		final ServerInfo backchannelServerInfo = configSection.getBackchannelServerInfo();
-			
-    		// Create ProxyClient per Repository
-			String npcRepositoryLocation = NOTIFIER_FOLDER_PATH + configSection.getSectionName() + "." + EXTENSION;
-			EMailNotifierStore emailNotifierStore = createNPCStore(npcRepositoryLocation);
-    		
-			// create repository specific ProxyClient time supervisor
-    		EMailNotifierRepositoryTimer notifierProxyClientRepositoryTimer = new EMailNotifierRepositoryTimer(emailNotifierStore, usersession, configSection.getMailerInfo());
-    		Thread notifierProxyClientRepositoryTimerThread = new Thread(notifierProxyClientRepositoryTimer, "notifierProxyClientRepositoryTimerThread");
-    					
-    		// Create repository specific ProxyClient Notification gatherer
-			EMailNotifierRepositoryListener notifierProxyClientRepositoryListener = new EMailNotifierRepositoryListener(emailNotifierStore, usersession, backchannelServerInfo, configSection.getMailerInfo(), notifierProxyClientRepositoryTimerThread);
-    		notifierProxyClientRepositoryListener.createBackchannels();
-
-			// start notifierProxyClientRepositoryTimerThread after EMailNotifierRepositoryListener, otherwise the WorkspaceManger will not be 
-    		// initialized correctly. The projects will be checked out first, than the WorkspaceManger can return
-    		// WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces()
-    		// with set usersession in a ProjectSpace object.
-    		notifierProxyClientRepositoryTimerThread.start();
-		}
-		
-		Activator.log(IStatus.INFO, "E-Mail Notifier is running...");
-		
-		
-		// Main Application must not terminate
-		synchronized(Thread.currentThread()) {
-			try {
-				Thread.currentThread().wait();
-			
-			} catch (InterruptedException e) {
-				Activator.logException(e);
+		try {
+			for(EMFStoreInfo configSection: emfStoreInfos) {
+				final Usersession usersession = configSection.getUsersession();
+	    		final ServerInfo backchannelServerInfo = configSection.getBackchannelServerInfo();
+				
+	    		// Create ProxyClient per Repository
+				String npcRepositoryLocation = NOTIFIER_FOLDER_PATH + configSection.getSectionName() + "." + EXTENSION;
+				EMailNotifierStore emailNotifierStore = createNPCStore(npcRepositoryLocation);
+	    		
+				// create repository specific ProxyClient time supervisor
+	    		EMailNotifierRepositoryTimer notifierProxyClientRepositoryTimer = new EMailNotifierRepositoryTimer(emailNotifierStore, usersession, configSection.getMailerInfo());
+	    		Thread notifierProxyClientRepositoryTimerThread = new Thread(notifierProxyClientRepositoryTimer, "notifierProxyClientRepositoryTimerThread");
+	    					
+	    		// Create repository specific ProxyClient Notification gatherer
+				EMailNotifierRepositoryListener notifierProxyClientRepositoryListener = new EMailNotifierRepositoryListener(emailNotifierStore, usersession, backchannelServerInfo, configSection.getMailerInfo(), notifierProxyClientRepositoryTimerThread);
+	    		notifierProxyClientRepositoryListener.createBackchannels();
+	
+				// start notifierProxyClientRepositoryTimerThread after EMailNotifierRepositoryListener, otherwise the WorkspaceManger will not be 
+	    		// initialized correctly. The projects will be checked out first, than the WorkspaceManger can return
+	    		// WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces()
+	    		// with set usersession in a ProjectSpace object.
+	    		notifierProxyClientRepositoryTimerThread.start();
 			}
+			
+			Activator.log(IStatus.INFO, "E-Mail Notifier is running...");
+			
+			// Main Application must not terminate
+			synchronized(Thread.currentThread()) {
+				try {
+					Thread.currentThread().wait();
+				
+				} catch (InterruptedException e) {
+					Activator.logException(e);
+				}
+			}
+			
+		} catch(EmfStoreException e) {
+			Activator.log(IStatus.ERROR, "Backchannel is not accessible.");
+			Activator.logException(e);
 		}
 	}
 	
