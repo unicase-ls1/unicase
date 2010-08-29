@@ -71,12 +71,12 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 	 * The NPC storage will be locked while it is inspected. This is only done periodically and not the whole execution time.
 	 */
 	public void run() {
-		try {
-			// I don't know really why this is necessary, but without the session is not initialized.
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Activator.logException(e);
-		}
+//		try {
+//			// I don't know really why this is necessary, but without the session is not initialized.
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			Activator.logException(e);
+//		}
 		
 		while (true) {
 			try {
@@ -126,40 +126,11 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 					}
 					
 					// get max sleeping time
-					Date now = new Date();
-					try {
-						Date overallNextSending = getOverallNextSending();
-						
-						// Thread.currentThread().wait(0) -> will wait till notify
-						// Thread.currentThread().wait(1) -> will wait 1ms and will then continue processing
-						// Thread.sleep(0) -> will continue processing immediately
-						maxWaitTime = overallNextSending.getTime() - now.getTime();
-						
-					} catch(NoNextSendingException e) {
-						maxWaitTime = -1;
-					}
+					maxWaitTime = getMaxSleepTime();
 				}
 				
 				// wait for next notification group time overflow
-				synchronized(Thread.currentThread()) {
-					
-					try {
-						// Thread.currentThread().wait(0) -> will wait till notify
-						// Thread.currentThread().wait(1) -> will wait 1ms and will then continue processing
-						// Thread.sleep(0) -> will continue processing immediately
-						if( maxWaitTime == -1 ) { // nothing to send yet
-							Thread.currentThread().wait();
-							
-						} else if(maxWaitTime <= 0) {
-							Thread.currentThread().wait(1);
-						} else {
-							Thread.currentThread().wait(maxWaitTime);
-						}
-						
-					} catch (InterruptedException e) {
-						Activator.logException(e);
-					}
-				}
+				waitForExecution(maxWaitTime);
 
 			} catch (EMailNotifierException e) {
 				Activator.logException(e);
@@ -177,6 +148,53 @@ public class EMailNotifierRepositoryTimer implements Runnable {
 
 	}
 	
+	
+	/**
+	 * Calculates the time for sending the next aggregated NotificationGroup.
+	 * 
+	 * @return -1 if there is no next sending
+	 */
+	private long getMaxSleepTime() {
+		long maxWaitTime = 0;
+		Date now = new Date();
+		try {
+			Date overallNextSending = getOverallNextSending();
+			maxWaitTime = overallNextSending.getTime() - now.getTime();
+			
+		} catch(NoNextSendingException e) {
+			maxWaitTime = -1;
+		}
+		
+		return maxWaitTime;
+	}
+	
+	/**
+	 * This thread will wait as long as maxWaitTime.
+	 * 
+	 * @param maxWaitTime time to wait
+	 */
+	private void waitForExecution(long maxWaitTime) {
+		synchronized(Thread.currentThread()) {
+			
+			try {
+				// Thread.currentThread().wait(0) -> will wait till notify
+				// Thread.currentThread().wait(1) -> will wait 1ms and will then continue processing
+				// Thread.sleep(0) -> will continue processing immediately
+				if( maxWaitTime == -1 ) { // nothing to send yet
+					Thread.currentThread().wait();
+					
+				} else if(maxWaitTime <= 0) {
+					Thread.currentThread().wait(1);
+				} else {
+					Thread.currentThread().wait(maxWaitTime);
+				}
+				
+			} catch (InterruptedException e) {
+				Activator.logException(e);
+			}
+		}
+	}
+
 	/**
 	 * The ENS storage will be inspected if there is something to send.
 	 * 

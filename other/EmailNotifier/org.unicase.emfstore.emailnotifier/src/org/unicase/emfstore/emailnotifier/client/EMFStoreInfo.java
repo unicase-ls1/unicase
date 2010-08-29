@@ -47,6 +47,22 @@ public class EMFStoreInfo {
 		this.backchannelPort = backchannelPort;
 		this.mailerInfo = mailerInfo;
 		
+		String errorMessageIncompleteProperties = "Please verify configuration file. Some properties are missing.";
+		
+		// check serverInfo for set properties
+		if( serverInfo.getUrl() == null || serverInfo.getPort() == 0 || serverInfo.getCertificateAlias() == null || backchannelPort == 0 ) {
+			throw new EMailNotifierException( errorMessageIncompleteProperties );
+		}
+		
+		// check existence of username and password
+		if( username == null || password == null ) {
+			throw new EMailNotifierException( errorMessageIncompleteProperties );
+		}
+		
+		if( mailerInfo.getHost() == null || mailerInfo.getPort() == 0 || mailerInfo.getUsername() == null || mailerInfo.getPassword() == null || mailerInfo.getSender() == null ) {
+			throw new EMailNotifierException( errorMessageIncompleteProperties );
+		}
+		
 		// try to login - validation of login data
 		try {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
@@ -55,8 +71,12 @@ public class EMFStoreInfo {
     		usersession.setPassword( password );
     		usersession.logIn();
     		
+    		// check if user has admin rights. It is not enough to execute "usersession.getAdminBroker()",
+    		// access rights are only checked if data is accessed.
+    		usersession.getAdminBroker().getProjectInfos();
+    		
 		} catch(AccessControlException e) {
-			throw new EMailNotifierException( e.getMessage() );
+			throw new EMailNotifierException( "Access denied. User "+ username +" has not sufficient rights." );
 		
 		} catch (EmfStoreException e) {
 			throw new EMailNotifierException( e.getMessage() );

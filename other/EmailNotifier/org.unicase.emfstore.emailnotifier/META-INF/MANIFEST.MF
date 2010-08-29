@@ -10,8 +10,7 @@ Require-Bundle: org.unicase.backchannel.client,
  org.unicase.emailnotifierpreferences
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ClassPath: lib/ini4j-0.5.2-SNAPSHOT.jar,
- lib/mail.jar,
+Bundle-ClassPath: lib/mail.jar,
  .
 Export-Package: org.unicase.emfstore.emailnotifier.client,
  org.unicase.emfstore.emailnotifier.client.util,
