@@ -20,7 +20,6 @@ import org.unicase.model.diagram.DiagramPackage;
 public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentDiagramImpl() {
@@ -29,7 +28,6 @@ public class ComponentDiagramImpl extends MEDiagramImpl implements ComponentDiag
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

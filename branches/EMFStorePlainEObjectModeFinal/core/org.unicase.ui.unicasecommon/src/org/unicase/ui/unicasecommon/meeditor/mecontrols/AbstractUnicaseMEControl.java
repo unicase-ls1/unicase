@@ -10,14 +10,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
- * Abstract Control only for use with unicase meta model. Ensures that model lement is a sub tsype of
- * {@link ModelElement}
+ * Abstract Control only for use with unicase meta model. Ensures that model elment is a sub type of {@link EObject}
  * 
  * @author helming
  */
 public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	/**
-	 * ensures that Modelelement is a subtype of {@link ModelElement}.
+	 * ensures that Modelelement is a subtype of {@link EObject}.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#getModelElement()
 	 * @return the model element
@@ -31,7 +30,7 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Only accepts subtypes of {@link ModelElement}.
+	 * Only accepts subtypes of {@link EObject}.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#setModelElement(org.eclipse.emf.ecore.EObject)
 	 * @param modelElement the model element
@@ -46,7 +45,7 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Checks if model element is a subtype of {@link ModelElement} and return 0 if not.
+	 * Checks if model element is a subtype of {@link EObject} and return 0 if not.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
 	 *      org.eclipse.emf.ecore.EObject) {@inheritDoc}

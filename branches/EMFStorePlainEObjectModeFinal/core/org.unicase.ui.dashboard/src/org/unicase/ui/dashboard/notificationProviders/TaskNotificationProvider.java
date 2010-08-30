@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -22,7 +23,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.bug.BugPackage;
@@ -87,42 +87,30 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	private void handleOperation(AbstractOperation operation, EClass clazz) {
 		ModelElementId modelElementId = operation.getModelElementId();
 
-		ModelElement modelElement = getProjectSpace().getProject()
-				.getModelElement(modelElementId);
+		EObject modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
 		if (modelElement == null) {
 			// the ME was deleted from the project.
 			return;
 		}
-		if (clazz.isInstance(modelElement)
-				|| (OrganizationPackage.eINSTANCE.getUser()
-						.isInstance(modelElement))) {
-			Set<Group> groupsOfOrgUnit = OrgUnitHelper
-					.getAllGroupsOfOrgUnit(getUser());
+		if (clazz.isInstance(modelElement) || (OrganizationPackage.eINSTANCE.getUser().isInstance(modelElement))) {
+			Set<Group> groupsOfOrgUnit = OrgUnitHelper.getAllGroupsOfOrgUnit(getUser());
 			ReferenceOperation referenceOperation = getReferenceOperation(operation);
 			if (referenceOperation != null) {
 				String featureName = referenceOperation.getFeatureName();
-				processAssignments(featureName, referenceOperation,
-						modelElement, groupsOfOrgUnit, clazz);
-				processReviewAssignments(featureName, referenceOperation,
-						modelElement, groupsOfOrgUnit, clazz);
+				processAssignments(featureName, referenceOperation, modelElement, groupsOfOrgUnit, clazz);
+				processReviewAssignments(featureName, referenceOperation, modelElement, groupsOfOrgUnit, clazz);
 			} else if (operation instanceof AttributeOperation
-					&& ((AttributeOperation) operation).getFeatureName()
-							.equalsIgnoreCase(
-									TaskPackage.eINSTANCE
-											.getWorkItem_Resolved().getName())
-					&& modelElement instanceof WorkItem) {
+				&& ((AttributeOperation) operation).getFeatureName().equalsIgnoreCase(
+					TaskPackage.eINSTANCE.getWorkItem_Resolved().getName()) && modelElement instanceof WorkItem) {
 				// Ready for review
 				AttributeOperation op = (AttributeOperation) operation;
 				WorkItem workItem = (WorkItem) modelElement;
-				if (op.getNewValue().equals(new Boolean(true))
-						&& workItem.getReviewer() != null
-						&& workItem.getReviewer().equals(getUser())) {
+				if (op.getNewValue().equals(new Boolean(true)) && workItem.getReviewer() != null
+					&& workItem.getReviewer().equals(getUser())) {
 					readyForReviewItems.get(clazz).put(workItem, op);
 					getExcludedOperations().add(op.getOperationId());
-				} else if (op.getNewValue().equals(new Boolean(false))
-						&& workItem.getAssignee() != null
-						&& (workItem.getAssignee().equals(getUser()) || groupsOfOrgUnit
-								.contains(workItem.getAssignee()))) {
+				} else if (op.getNewValue().equals(new Boolean(false)) && workItem.getAssignee() != null
+					&& (workItem.getAssignee().equals(getUser()) || groupsOfOrgUnit.contains(workItem.getAssignee()))) {
 					assigneeItems.get(clazz).put(workItem, op);
 					getExcludedOperations().add(op.getOperationId());
 				}
@@ -130,71 +118,47 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		}
 	}
 
-	private void processReviewAssignments(String featureName,
-			ReferenceOperation referenceOperation, ModelElement modelElement,
-			Set<Group> groupsOfOrgUnit, EClass clazz) {
+	private void processReviewAssignments(String featureName, ReferenceOperation referenceOperation,
+		EObject modelElement, Set<Group> groupsOfOrgUnit, EClass clazz) {
 		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Reviewer().getName())
-				&& clazz.isInstance(modelElement)) {
-			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation)
-					.getNewValue();
-			ModelElement orgUnit = getProjectSpace().getProject()
-					.getModelElement(orgUnitId);
-			if (orgUnit != null && orgUnit instanceof User
-					&& orgUnit.equals(getUser())) {
-				reviewerItems.get(clazz).put((WorkItem) modelElement,
-						referenceOperation);
-				getExcludedOperations()
-						.add(referenceOperation.getOperationId());
+			&& clazz.isInstance(modelElement)) {
+			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
+			EObject orgUnit = getProjectSpace().getProject().getModelElement(orgUnitId);
+			if (orgUnit != null && orgUnit instanceof User && orgUnit.equals(getUser())) {
+				reviewerItems.get(clazz).put((WorkItem) modelElement, referenceOperation);
+				getExcludedOperations().add(referenceOperation.getOperationId());
 			}
-		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE
-				.getUser_WorkItemsToReview().getName())
-				&& modelElement.equals(getUser())) {
-			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation)
-					.getReferencedModelElements();
+		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE.getUser_WorkItemsToReview().getName())
+			&& modelElement.equals(getUser())) {
+			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation).getReferencedModelElements();
 			for (ModelElementId wiId : wiIds) {
-				ModelElement wi = getProjectSpace().getProject()
-						.getModelElement(wiId);
+				EObject wi = getProjectSpace().getProject().getModelElement(wiId);
 				if (wi != null && clazz.isInstance(wi)) {
-					reviewerItems.get(clazz).put((WorkItem) wi,
-							referenceOperation);
-					getExcludedOperations().add(
-							referenceOperation.getOperationId());
+					reviewerItems.get(clazz).put((WorkItem) wi, referenceOperation);
+					getExcludedOperations().add(referenceOperation.getOperationId());
 				}
 			}
 		}
 	}
 
-	private void processAssignments(String featureName,
-			ReferenceOperation referenceOperation, ModelElement modelElement,
-			Set<Group> groupsOfOrgUnit, EClass clazz) {
+	private void processAssignments(String featureName, ReferenceOperation referenceOperation, EObject modelElement,
+		Set<Group> groupsOfOrgUnit, EClass clazz) {
 		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())
-				&& clazz.isInstance(modelElement)) {
-			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation)
-					.getNewValue();
-			ModelElement orgUnit = getProjectSpace().getProject()
-					.getModelElement(orgUnitId);
-			if (orgUnit != null
-					&& (orgUnit.equals(getUser()) || groupsOfOrgUnit
-							.contains(orgUnit))) {
-				assigneeItems.get(clazz).put((WorkItem) modelElement,
-						referenceOperation);
-				getExcludedOperations()
-						.add(referenceOperation.getOperationId());
+			&& clazz.isInstance(modelElement)) {
+			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
+			EObject orgUnit = getProjectSpace().getProject().getModelElement(orgUnitId);
+			if (orgUnit != null && (orgUnit.equals(getUser()) || groupsOfOrgUnit.contains(orgUnit))) {
+				assigneeItems.get(clazz).put((WorkItem) modelElement, referenceOperation);
+				getExcludedOperations().add(referenceOperation.getOperationId());
 			}
-		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE
-				.getOrgUnit_Assignments().getName())
-				&& (modelElement.equals(getUser()) || groupsOfOrgUnit
-						.contains(modelElement))) {
-			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation)
-					.getReferencedModelElements();
+		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE.getOrgUnit_Assignments().getName())
+			&& (modelElement.equals(getUser()) || groupsOfOrgUnit.contains(modelElement))) {
+			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation).getReferencedModelElements();
 			for (ModelElementId wiId : wiIds) {
-				ModelElement wi = getProjectSpace().getProject()
-						.getModelElement(wiId);
+				EObject wi = getProjectSpace().getProject().getModelElement(wiId);
 				if (wi != null && clazz.isInstance(wi)) {
-					assigneeItems.get(clazz).put((WorkItem) wi,
-							referenceOperation);
-					getExcludedOperations().add(
-							referenceOperation.getOperationId());
+					assigneeItems.get(clazz).put((WorkItem) wi, referenceOperation);
+					getExcludedOperations().add(referenceOperation.getOperationId());
 				}
 			}
 		}
@@ -211,21 +175,18 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		for (EClass clazz : clazzes) {
 
 			if (!assigneeItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(
-						assigneeItems.get(clazz), clazz,
-						"You have been assigned ", "assignment");
+				ESNotification notification = createSingleNotification(assigneeItems.get(clazz), clazz,
+					"You have been assigned ", "assignment");
 				result.add(notification);
 			}
 			if (!readyForReviewItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(
-						readyForReviewItems.get(clazz), clazz,
-						"You can now review ", "ready-for-review");
+				ESNotification notification = createSingleNotification(readyForReviewItems.get(clazz), clazz,
+					"You can now review ", "ready-for-review");
 				result.add(notification);
 			}
 			if (!reviewerItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(
-						reviewerItems.get(clazz), clazz,
-						"You have been assigned to review ", "review");
+				ESNotification notification = createSingleNotification(reviewerItems.get(clazz), clazz,
+					"You have been assigned to review ", "review");
 				result.add(notification);
 			}
 
@@ -238,15 +199,12 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 	}
 
-	private ESNotification createSingleNotification(
-			Map<WorkItem, AbstractOperation> workItemMap, EClass clazz,
-			String message, String taskType) {
+	private ESNotification createSingleNotification(Map<WorkItem, AbstractOperation> workItemMap, EClass clazz,
+		String message, String taskType) {
 		Set<WorkItem> workItems = workItemMap.keySet();
-		ESNotification notification = NotificationFactory.eINSTANCE
-				.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New " + taskType + " items");
-		notification.setProject(ModelUtil.clone(getProjectSpace()
-				.getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
@@ -257,17 +215,17 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			stringBuilder.append(" ");
 			stringBuilder.append(clazz.getName());
 			stringBuilder.append(" ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
-					workItems.iterator().next(), getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
+				getProjectSpace()));
 		} else if (workItems.size() == 2) {
 			stringBuilder.append("the ");
 			stringBuilder.append(clazz.getName());
 			stringBuilder.append("s ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
-					workItems.iterator().next(), getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
+				getProjectSpace()));
 			stringBuilder.append(" and ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
-					workItems.iterator().next(), getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
+				getProjectSpace()));
 		} else {
 			stringBuilder.append("<a href=\"more\">");
 			stringBuilder.append(workItems.size());
@@ -277,22 +235,25 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		}
 		String text = stringBuilder.toString();
 		notification.setMessage(text);
-		Date date = workItems.iterator().next().getCreationDate();
+		// TODO: EM
+		// Date date = workItems.iterator().next().getCreationDate();
 		ArrayList<OperationId> ops = new ArrayList<OperationId>();
 		for (WorkItem workItem : workItems) {
-			notification.getRelatedModelElements().add(
-					workItem.getModelElementId());
+			ModelElementId workItemId = ModelUtil.getProject(workItem).getModelElementId(workItem);
+			notification.getRelatedModelElements().add(workItemId);
 			AbstractOperation abstractOperation = workItemMap.get(workItem);
 			ops.add(abstractOperation.getOperationId());
 			Date newDate = abstractOperation.getClientDate();
-			if (newDate != null && newDate.after(date)) {
-				date = newDate;
-			}
+			// TODO: EM
+			// if (newDate != null && newDate.after(date)) {
+			// date = newDate;
+			// }
 		}
-		if (date == null) {
-			date = new Date();
-		}
-		notification.setCreationDate(date);
+		// TODO: EM
+		// if (date == null) {
+		// date = new Date();
+		// }
+		// notification.setCreationDate(date);
 		notification.getRelatedOperations().addAll(ops);
 		return notification;
 	}
@@ -313,49 +274,34 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	protected void init() {
 		super.init();
 		clazzes.clear();
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-				DashboardKey.SHOW_BR_TASKS).getBooleanProperty()) {
+		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_BR_TASKS).getBooleanProperty()) {
 			EClass bugClass = BugPackage.eINSTANCE.getBugReport();
 			clazzes.add(bugClass);
-			assigneeItems.put(bugClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			reviewerItems.put(bugClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			readyForReviewItems.put(bugClass,
-					new HashMap<WorkItem, AbstractOperation>());
+			assigneeItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
+			reviewerItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
+			readyForReviewItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-				DashboardKey.SHOW_AI_TASKS).getBooleanProperty()) {
+		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_AI_TASKS).getBooleanProperty()) {
 			EClass aiClass = TaskPackage.eINSTANCE.getActionItem();
 			clazzes.add(aiClass);
-			assigneeItems.put(aiClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			reviewerItems.put(aiClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			readyForReviewItems.put(aiClass,
-					new HashMap<WorkItem, AbstractOperation>());
+			assigneeItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
+			reviewerItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
+			readyForReviewItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-				DashboardKey.SHOW_ISSUE_TASKS).getBooleanProperty()) {
+		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_ISSUE_TASKS)
+			.getBooleanProperty()) {
 			EClass issueClass = RationalePackage.eINSTANCE.getIssue();
 			clazzes.add(issueClass);
-			assigneeItems.put(issueClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			reviewerItems.put(issueClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			readyForReviewItems.put(issueClass,
-					new HashMap<WorkItem, AbstractOperation>());
+			assigneeItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
+			reviewerItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
+			readyForReviewItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-				DashboardKey.SHOW_WP_TASKS).getBooleanProperty()) {
+		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_WP_TASKS).getBooleanProperty()) {
 			EClass wpClass = TaskPackage.eINSTANCE.getWorkPackage();
 			clazzes.add(wpClass);
-			assigneeItems.put(wpClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			reviewerItems.put(wpClass,
-					new HashMap<WorkItem, AbstractOperation>());
-			readyForReviewItems.put(wpClass,
-					new HashMap<WorkItem, AbstractOperation>());
+			assigneeItems.put(wpClass, new HashMap<WorkItem, AbstractOperation>());
+			reviewerItems.put(wpClass, new HashMap<WorkItem, AbstractOperation>());
+			readyForReviewItems.put(wpClass, new HashMap<WorkItem, AbstractOperation>());
 		}
 	}
 }

@@ -44,7 +44,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
@@ -62,7 +61,6 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
-
 /**
  * Validation view.
  * 
@@ -78,7 +76,6 @@ public class ValidationView extends ViewPart {
 	private Workspace workspace;
 	private AdapterImpl workspaceListenerAdapter;
 	private Shell shell;
-
 
 	/**
 	 * Default constructor.
@@ -99,10 +96,8 @@ public class ValidationView extends ViewPart {
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
 					if (msg.getOldValue() != null
-							&& (msg.getOldValue() instanceof List<?> || msg
-									.getOldValue() instanceof ProjectSpace)) {
-						tableViewer
-						.setInput(new ArrayList<IConstraintStatus>());
+						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ProjectSpace)) {
+						tableViewer.setInput(new ArrayList<IConstraintStatus>());
 					}
 
 				}
@@ -117,15 +112,14 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER
-				| SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
+			| SWT.FULL_SELECTION);
 		createTable();
 		this.shell = parent.getShell();
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 		OpenFilterDialogAction openFilterDialogAction = new OpenFilterDialogAction();
-		openFilterDialogAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/openfilterlist.png"));
+		openFilterDialogAction.setImageDescriptor(Activator.getImageDescriptor("icons/openfilterlist.png"));
 		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
 		menuManager.add(openFilterDialogAction);
 		hookDoubleClickAction();
@@ -143,8 +137,7 @@ public class ValidationView extends ViewPart {
 		TableViewerColumn column;
 
 		// severity column
-		column = new TableViewerColumn(tableViewer,
-				SWT.CENTER, 0);
+		column = new TableViewerColumn(tableViewer, SWT.CENTER, 0);
 		column.getColumn().setText("Severity");
 		column.getColumn().setWidth(50);
 		setLabelProviderAndComparator(column, new SeverityLabelProvider());
@@ -177,8 +170,7 @@ public class ValidationView extends ViewPart {
 		tableViewer.setContentProvider(new ValidationContentProvider());
 	}
 
-	private void setLabelProviderAndComparator(TableViewerColumn column,
-			ColumnLabelProvider labelProvider) {
+	private void setLabelProviderAndComparator(TableViewerColumn column, ColumnLabelProvider labelProvider) {
 		column.setLabelProvider(labelProvider);
 		column.getViewer().setComparator(new TableViewerColumnSorter(tableViewer, column, labelProvider));
 	}
@@ -187,23 +179,18 @@ public class ValidationView extends ViewPart {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) event
-				.getSelection();
-				IConstraintStatus constraintStatus = (IConstraintStatus) selection
-				.getFirstElement();
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				IConstraintStatus constraintStatus = (IConstraintStatus) selection.getFirstElement();
 
 				EObject me = constraintStatus.getTarget();
-				Iterator<EObject> iterator = constraintStatus.getResultLocus()
-				.iterator();
-				if (me instanceof ModelElement) {
+				Iterator<EObject> iterator = constraintStatus.getResultLocus().iterator();
+				if (me instanceof EObject) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						ActionHelper.openModelElement((ModelElement) me,
-								errorLocation, viewId, new EMFStoreModelelementContext((ModelElement)me));
+						ActionHelper.openModelElement(me, errorLocation, viewId, new EMFStoreModelelementContext(me));
 					} else {
-						ActionHelper
-						.openModelElement((ModelElement) me, viewId,new EMFStoreModelelementContext((ModelElement)me));
+						ActionHelper.openModelElement(me, viewId, new EMFStoreModelelementContext(me));
 					}
 				}
 			}
@@ -218,7 +205,7 @@ public class ValidationView extends ViewPart {
 				Table table = (Table) e.getSource();
 				TableItem[] tableItems = table.getSelection();
 				final ArrayList<IConstraintStatus> stati = new ArrayList<IConstraintStatus>();
-				for(TableItem tableItem : tableItems) {
+				for (TableItem tableItem : tableItems) {
 					stati.add((IConstraintStatus) (tableItem.getData()));
 				}
 				Menu leftClickMenu = new Menu(shell, SWT.POP_UP);
@@ -228,7 +215,7 @@ public class ValidationView extends ViewPart {
 				refactorMenuItem.addListener(SWT.Selection, new Listener() {
 
 					public void handleEvent(Event event) {
-						for(AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
+						for (AbstractRefactoringStrategy refactoringStrategy : getRefactoringStrategiesFromExtensionPoint(stati)) {
 							refactoringStrategy.startRefactoring(shell);
 							break;
 						}
@@ -237,17 +224,19 @@ public class ValidationView extends ViewPart {
 				});
 				leftClickMenu.setVisible(true);
 			}
-			
+
 		});
 	}
 
-	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(ArrayList<IConstraintStatus> stati) {
+	private ArrayList<AbstractRefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(
+		ArrayList<IConstraintStatus> stati) {
 		ArrayList<AbstractRefactoringStrategy> refactoringStrategies = new ArrayList<AbstractRefactoringStrategy>();
-		for(IConstraintStatus status: stati) {
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.unicase.ui.validation.refactoring.strategies");
+		for (IConstraintStatus status : stati) {
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.ui.validation.refactoring.strategies");
 			for (IConfigurationElement element : config) {
 				try {
-					if(element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())){
+					if (element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())) {
 						final Object object = element.createExecutableExtension("strategy");
 						AbstractRefactoringStrategy strategy = (AbstractRefactoringStrategy) object;
 						strategy.setConstraintStatus(status);
@@ -264,8 +253,7 @@ public class ValidationView extends ViewPart {
 		return refactoringStrategies;
 	}
 
-	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator,
-			EStructuralFeature errorLocation) {
+	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator, EStructuralFeature errorLocation) {
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof EStructuralFeature) {
@@ -287,8 +275,7 @@ public class ValidationView extends ViewPart {
 	/**
 	 * Updates the validation view table.
 	 * 
-	 * @param validationResults
-	 *            validation results.
+	 * @param validationResults validation results.
 	 */
 	public void updateTable(List<IConstraintStatus> validationResults) {
 		tableViewer.setInput(validationResults);
@@ -299,11 +286,12 @@ public class ValidationView extends ViewPart {
 
 	private ArrayList<ValidationFilter> getFiltersFromExtensionPoint() {
 		final ArrayList<ValidationFilter> validationFilters = new ArrayList<ValidationFilter>();
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.unicase.ui.validation.filters");
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.validation.filters");
 		for (IConfigurationElement element : config) {
 			try {
 				Object object = element.createExecutableExtension("filter");
-				if(object instanceof ValidationFilter) {
+				if (object instanceof ValidationFilter) {
 					ValidationFilter validationFilter = (ValidationFilter) object;
 					validationFilters.add(validationFilter);
 				}
@@ -311,9 +299,8 @@ public class ValidationView extends ViewPart {
 				e.printStackTrace();
 			}
 		}
-		return validationFilters;		
+		return validationFilters;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -333,18 +320,18 @@ public class ValidationView extends ViewPart {
 
 		@Override
 		public void run() {
-			ValidationFilterList validationFilterList = new ValidationFilterList(shell, new ValidationFilterLabelProvider());
+			ValidationFilterList validationFilterList = new ValidationFilterList(shell,
+				new ValidationFilterLabelProvider());
 			validationFilterList.setElements(getFiltersFromExtensionPoint().toArray());
 			validationFilterList.setEmptySelectionMessage("No filter selected");
 			validationFilterList.setMultipleSelection(true);
 			validationFilterList.setTitle("Choose one or more filters");
-			validationFilterList.setImage(Activator
-					.getImageDescriptor("icons/openfilterlist.png").createImage());
+			validationFilterList.setImage(Activator.getImageDescriptor("icons/openfilterlist.png").createImage());
 			validationFilterList.open();
-			if(validationFilterList.getReturnCode() == Status.OK) {
+			if (validationFilterList.getReturnCode() == Status.OK) {
 				removeAllFilters();
-				for(Object object : validationFilterList.getResult()) {
-					if(object instanceof ValidationFilter) {
+				for (Object object : validationFilterList.getResult()) {
+					if (object instanceof ValidationFilter) {
 						applyFilter((ValidationFilter) object);
 					}
 				}
