@@ -186,6 +186,7 @@ public class ImportXMIAction implements IActionDelegate {
 	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
 		final EObject element, final int resourceIndex) {
 
+		// TODO: EM
 		// try to find a wrapper for the element which will be added to the project
 		// ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
 		// element, uri, resourceIndex);
