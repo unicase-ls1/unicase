@@ -6,24 +6,29 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -139,7 +144,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * 
 	 * @generated
 	 */
-	public Project getProjectState() {
+	public Project getProjectStateGen() {
 		if (projectState != null && projectState.eIsProxy()) {
 			InternalEObject oldProjectState = (InternalEObject) projectState;
 			projectState = (Project) eResolveProxy(oldProjectState);
@@ -159,6 +164,37 @@ public class VersionImpl extends EObjectImpl implements Version {
 			}
 		}
 		return projectState;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public Project getProjectState() {
+		// TODO: EM: check whether caches are copied
+		// if (projectState != null && projectState.eIsProxy()) {
+		// // load ids from resource
+		// Project project = getProjectStateGen();
+		// Resource resource = project.eResource();
+		// if (resource != null && (resource instanceof XMIResource)) {
+		// XMIResource xmiResource = (XMIResource) resource;
+		// TreeIterator<EObject> it = xmiResource.getAllContents();
+		// while (it.hasNext()) {
+		// EObject obj = it.next();
+		// String objId = xmiResource.getID(obj);
+		// if (objId != null) {
+		// ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		// modelElementId.setId(objId);
+		// project.getEobjectsIdMap().put(obj, modelElementId);
+		// }
+		// }
+		// }
+
+		// return project;
+		// }
+
+		return getProjectStateGen();
 	}
 
 	/**
@@ -211,9 +247,10 @@ public class VersionImpl extends EObjectImpl implements Version {
 				newProjectState, newProjectState));
 	}
 
-	public void setProjectStateEObjectIdMap(Map<EObject, ModelElementId> idMap) {
-		projectState.getEobjectsIdMap().putAll(idMap);
-	}
+	// TODO: EM check whether caches are copied
+	// public void setProjectStateEObjectIdMap(Map<EObject, ModelElementId> idMap) {
+	// projectState.getEobjectsIdMap().putAll(idMap);
+	// }
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -446,7 +483,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * 
 	 * @generated
 	 */
-	public ChangePackage getChanges() {
+	public ChangePackage getChangesGen() {
 		if (changes != null && changes.eIsProxy()) {
 			InternalEObject oldChanges = (InternalEObject) changes;
 			changes = (ChangePackage) eResolveProxy(oldChanges);
@@ -466,6 +503,55 @@ public class VersionImpl extends EObjectImpl implements Version {
 			}
 		}
 		return changes;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public ChangePackage getChanges() {
+		// TODO: EM check whether caches are copied
+		// if (changes != null && changes.eIsProxy()) {
+		// for (AbstractOperation operation : changes.getOperations()) {
+		// // load ids from resource for each id map that is associated
+		// // with a CreateDeleteOperation
+		// if (operation instanceof CreateDeleteOperation) {
+		// CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+		// EMap<EObject, ModelElementId> m = loadIdsFromResource(createDeleteOperation.eResource());
+		// createDeleteOperation.getEobjectsIdMap().addAll(m);
+		// }
+		// }
+		// return changes;
+		// }
+
+		return getChangesGen();
+	}
+
+	/**
+	 * Loads the XMI IDs from the given resource and returns them in a map together with the object each ID belongs to.
+	 * 
+	 * @param resource
+	 * @return
+	 */
+	private EMap<EObject, ModelElementId> loadIdsFromResource(Resource resource) {
+		EMap<EObject, ModelElementId> idMap = new BasicEMap<EObject, ModelElementId>();
+
+		if (resource != null && (resource instanceof XMIResource)) {
+			XMIResource xmiResource = (XMIResource) resource;
+			TreeIterator<EObject> it = xmiResource.getAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				String objId = xmiResource.getID(obj);
+				if (objId != null) {
+					ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+					modelElementId.setId(objId);
+					idMap.put(obj, modelElementId);
+				}
+			}
+		}
+
+		return idMap;
 	}
 
 	/**

@@ -8,6 +8,7 @@ package org.unicase.emfstore.core;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -15,7 +16,6 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Super class of all EmfstoreInterfaces. Emfstore interfaces performs sanity checks, runs accesscontrol and then
@@ -132,8 +132,8 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param modelElements modelelemnts
 	 * @throws AccessControlException access exception
 	 */
-	protected synchronized void checkReadAccess(SessionId sessionId, ProjectId projectId,
-		Set<ModelElement> modelElements) throws AccessControlException {
+	protected synchronized void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
+		throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
 		}
@@ -149,8 +149,8 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param modelElements modelelemnts
 	 * @throws AccessControlException access exception
 	 */
-	protected synchronized void checkWriteAccess(SessionId sessionId, ProjectId projectId,
-		Set<ModelElement> modelElements) throws AccessControlException {
+	protected synchronized void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
+		throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
 		}

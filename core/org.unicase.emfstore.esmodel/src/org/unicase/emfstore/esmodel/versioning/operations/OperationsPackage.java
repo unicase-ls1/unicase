@@ -397,21 +397,13 @@ public interface OperationsPackage extends EPackage {
 	int CREATE_DELETE_OPERATION__SUB_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Eobjects Id Map</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Create Delete Operation</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_DELETE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 4;
+	int CREATE_DELETE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '
@@ -1805,18 +1797,6 @@ public interface OperationsPackage extends EPackage {
 	EReference getCreateDeleteOperation_SubOperations();
 
 	/**
-	 * Returns the meta object for the map '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap
-	 * <em>Eobjects Id Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the map '<em>Eobjects Id Map</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap()
-	 * @see #getCreateDeleteOperation()
-	 * @generated
-	 */
-	EReference getCreateDeleteOperation_EobjectsIdMap();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation
 	 * <em>Attribute Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2488,14 +2468,6 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CREATE_DELETE_OPERATION__SUB_OPERATIONS = eINSTANCE.getCreateDeleteOperation_SubOperations();
-
-		/**
-		 * The meta object literal for the '<em><b>Eobjects Id Map</b></em>' map feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP = eINSTANCE.getCreateDeleteOperation_EobjectsIdMap();
 
 		/**
 		 * The meta object literal for the '

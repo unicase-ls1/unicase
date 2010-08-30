@@ -461,15 +461,6 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
-	public EReference getCreateDeleteOperation_EobjectsIdMap() {
-		return (EReference) createDeleteOperationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getAttributeOperation() {
 		return attributeOperationEClass;
 	}
@@ -901,7 +892,6 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		createEAttribute(createDeleteOperationEClass, CREATE_DELETE_OPERATION__DELETE);
 		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__SUB_OPERATIONS);
-		createEReference(createDeleteOperationEClass, CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP);
 
 		attributeOperationEClass = createEClass(ATTRIBUTE_OPERATION);
 		createEAttribute(attributeOperationEClass, ATTRIBUTE_OPERATION__OLD_VALUE);
@@ -1069,9 +1059,6 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEReference(getCreateDeleteOperation_SubOperations(), this.getReferenceOperation(), null, "subOperations",
 			null, 0, -1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCreateDeleteOperation_EobjectsIdMap(), theMetamodelPackage.getEObjectToModelElementIdMap(),
-			null, "eobjectsIdMap", null, 0, -1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeOperationEClass, AttributeOperation.class, "AttributeOperation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
