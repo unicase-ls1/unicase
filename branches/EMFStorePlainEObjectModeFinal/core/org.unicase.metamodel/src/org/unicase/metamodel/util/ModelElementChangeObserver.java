@@ -11,7 +11,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -49,7 +48,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	}
 
 	/**
-	 * Empty constructor. You can add elements to observe with {@link #observeElement(ModelElement)}
+	 * Empty constructor. You can add elements to observe with {@link #observeElement(EObject)}
 	 */
 	public ModelElementChangeObserver() {
 		this.observedElements = new ArrayList<EObject>();
@@ -68,7 +67,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
-	 *      org.unicase.model.ModelElement)
+	 *      org.eclipse.emf.core.EObject)
 	 */
 	public final void modelElementAdded(Project project, EObject modelElement) {
 		// reacting to new elements would be a contradiction to the idea of this class.
