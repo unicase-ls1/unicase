@@ -276,7 +276,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		usersession.addLoginObserver((ProjectSpaceImpl) projectSpace);
 		projectSpace.setProject(project);
 		// TODO
-		project.updateCaches();
+		// project.updateCaches();
 		projectSpace.setResourceCount(0);
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 

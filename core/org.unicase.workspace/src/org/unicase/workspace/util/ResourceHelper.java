@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
  * Helper for resource operations.
@@ -88,7 +89,7 @@ public final class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap()) {
+			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
 				EObject eObject = e.getKey();
 				String id = e.getValue().getId();
 				xmiResource.setID(eObject, id);

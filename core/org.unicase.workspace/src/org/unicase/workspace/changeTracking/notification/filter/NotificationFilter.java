@@ -6,18 +6,21 @@
 
 package org.unicase.workspace.changeTracking.notification.filter;
 
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
+import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
- * Interface for filtering an notification recording. NotificationFilter implementations are meant to remove unnecessary
- * or zero-effect notifications from the recording.
+ * Interface for filtering notifications.
  * 
  * @author chodnick
+ * @author koegel
  */
 public interface NotificationFilter {
 	/**
-	 * @param recording the recording to filter
+	 * Check a notification if it should be ignored.
+	 * 
+	 * @param notificationInfo the {@link NotificationInfo} to check
+	 * @return true if the notification is to be ignored
 	 */
-	void filter(NotificationRecording recording);
+	boolean check(NotificationInfo notificationInfo);
 
 }

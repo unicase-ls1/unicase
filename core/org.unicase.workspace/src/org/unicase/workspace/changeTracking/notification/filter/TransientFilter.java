@@ -6,11 +6,7 @@
 
 package org.unicase.workspace.changeTracking.notification.filter;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 
 /**
  * Filters notifications for transient features, as these have no effect on the persisted model state.
@@ -20,20 +16,12 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
 public class TransientFilter implements NotificationFilter {
 
 	/**
-	 * @param recording the recording to filter
-	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#filter(org.unicase.workspace.changeTracking.notification.recording.NotificationRecording)
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#check(org.unicase.workspace.changeTracking.notification.NotificationInfo)
 	 */
-	public void filter(NotificationRecording recording) {
-
-		List<NotificationInfo> rec = recording.asMutableList();
-
-		for (Iterator<NotificationInfo> it = rec.iterator(); it.hasNext();) {
-			NotificationInfo n = it.next();
-			if (n.isTransient()) {
-				it.remove();
-			}
-		}
-
+	public boolean check(NotificationInfo notificationInfo) {
+		return notificationInfo.isTransient();
 	}
 
 }
