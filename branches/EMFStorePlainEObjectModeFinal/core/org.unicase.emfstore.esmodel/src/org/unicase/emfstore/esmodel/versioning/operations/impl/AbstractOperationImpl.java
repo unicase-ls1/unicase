@@ -428,8 +428,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.ModelElement#getModelElementId()
 	 */
 	public OperationId getOperationId() {
 		if (this.identifier == null) {

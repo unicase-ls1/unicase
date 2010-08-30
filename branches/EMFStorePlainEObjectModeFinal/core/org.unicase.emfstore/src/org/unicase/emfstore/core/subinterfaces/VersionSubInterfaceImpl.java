@@ -146,7 +146,9 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			Version previousHeadVersion = versions.get(versions.size() - 1);
 
 			Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
-
+			// TODO: EM when and how to fill caches on server side,
+			// currently not triggered by foreseen calls
+			// newProjectState.updateCaches();
 			changePackage.apply(newProjectState);
 
 			newVersion.setProjectState(newProjectState);

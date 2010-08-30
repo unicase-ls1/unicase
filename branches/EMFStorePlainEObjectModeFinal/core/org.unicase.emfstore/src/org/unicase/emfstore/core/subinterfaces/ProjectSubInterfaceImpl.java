@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -34,7 +30,6 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 
@@ -85,7 +80,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * {@inheritDoc}
 	 */
 	public Project getProject(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
-		Project retProjectState = null;
+
 		synchronized (getMonitor()) {
 			PrimaryVersionSpec resolvedVersion = getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(
 				projectId, versionSpec);
@@ -105,27 +100,9 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					&& next.getPrimarySpec().compareTo(resolvedVersion) < 1; next = next.getNextVersion()) {
 					next.getChanges().apply(projectState);
 				}
-				retProjectState = projectState;
-			} else {
-				retProjectState = version.getProjectState();
+				return projectState;
 			}
-
-			Resource resource = retProjectState.eResource();
-			if (resource != null && (resource instanceof XMIResource)) {
-				XMIResource xmiResource = (XMIResource) resource;
-				TreeIterator<EObject> it = xmiResource.getAllContents();
-				while (it.hasNext()) {
-					EObject obj = it.next();
-					String objId = xmiResource.getID(obj);
-					if (objId != null) {
-						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-						modelElementId.setId(objId);
-						retProjectState.getEobjectsIdMap().put(obj, modelElementId);
-					}
-				}
-			}
-
-			return retProjectState;
+			return version.getProjectState();
 		}
 	}
 
@@ -181,7 +158,8 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				getResourceHelper().createResourceForProject(project, lastVersion.getPrimarySpec(),
 					projectHistory.getProjectId());
 				// TODO: check if this is OK
-				saveWithProject(lastVersion, lastVersion.getProjectState());
+
+				saveWithProject(lastVersion, project);// lastVersion.getProjectState());
 			} catch (FatalEmfStoreException e) {
 				throw new StorageException(StorageException.NOSAVE);
 			}

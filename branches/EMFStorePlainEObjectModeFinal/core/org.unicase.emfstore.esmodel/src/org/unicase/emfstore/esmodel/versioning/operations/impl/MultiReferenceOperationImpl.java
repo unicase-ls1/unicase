@@ -340,7 +340,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				}
 			}
 			for (EObject currentElement : referencedModelElements) {
-				if (!project.contains(currentElement)) {
+				if (!project.containsInstance(currentElement)) {
 					project.addModelElement(currentElement);
 				}
 			}

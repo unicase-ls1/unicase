@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import java.util.Map.Entry;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -33,10 +32,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -51,14 +48,14 @@ import org.unicase.metamodel.util.ModelUtil;
  * Model Element</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
  * Operations</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getEobjectsIdMap <em>
- * Eobjects Id Map</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
 public class CreateDeleteOperationImpl extends AbstractOperationImpl implements CreateDeleteOperation {
+
+	private Map<EObject, ModelElementId> eObjectToIdMap;
 
 	public void apply(Project project) {
 		if (isDelete()) {
@@ -81,13 +78,13 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			// resemble map and model element
 			clone.getEobjectsIdMap().clear();
 
-			for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
+			for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap().entrySet()) {
 				ModelElementId clonedId = ModelUtil.clone(e.getValue());
 				clone.getEobjectsIdMap().put(e.getKey(), clonedId);
 			}
 
 			// set the model element of the operation such that it is the same as in the map
-			for (Entry<EObject, ModelElementId> e : clone.getEobjectsIdMap()) {
+			for (Entry<EObject, ModelElementId> e : clone.getEobjectsIdMap().entrySet()) {
 				EObject element = e.getKey();
 				ModelElementId elementId = ModelUtil.clone(e.getValue());
 				if (elementId.equals(clone.getModelElementId())) {
@@ -96,7 +93,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				}
 			}
 
-			project.addModelElement(clone.getModelElement(), clone.getEobjectsIdMap().map());
+			project.addModelElement(clone.getModelElement(), clone.getEobjectsIdMap());
 
 			for (ReferenceOperation operation : getSubOperations()) {
 				operation.apply(project);
@@ -150,7 +147,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = ModelUtil.clone(getEobjectsIdMap().get(child));
-			createDeleteOperation.getEobjectsIdMap().put(copiedChild, childId);
+			((CreateDeleteOperationImpl) createDeleteOperation).getEobjectsIdMap().put(copiedChild, childId);
 		}
 
 		EList<ReferenceOperation> clonedSubOperations = createDeleteOperation.getSubOperations();
@@ -199,16 +196,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * @ordered
 	 */
 	protected EList<ReferenceOperation> subOperations;
-
-	/**
-	 * The cached value of the '{@link #getEobjectsIdMap() <em>Eobjects Id Map</em>}' map. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getEobjectsIdMap()
-	 * @generated
-	 * @ordered
-	 */
-	protected EMap<EObject, ModelElementId> eobjectsIdMap;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -341,18 +328,11 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		return subOperations;
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EMap<EObject, ModelElementId> getEobjectsIdMap() {
-		if (eobjectsIdMap == null) {
-			eobjectsIdMap = new EcoreEMap<EObject, ModelElementId>(
-				MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP, EObjectToModelElementIdMapImpl.class, this,
-				OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP);
+	public Map<EObject, ModelElementId> getEobjectsIdMap() {
+		if (eObjectToIdMap == null) {
+			eObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		}
-		return eobjectsIdMap;
+		return eObjectToIdMap;
 	}
 
 	/**
@@ -367,8 +347,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return basicSetModelElement(null, msgs);
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
-			return ((InternalEList<?>) getEobjectsIdMap()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -389,11 +367,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return basicGetModelElement();
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return getSubOperations();
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
-			if (coreType)
-				return getEobjectsIdMap();
-			else
-				return getEobjectsIdMap().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -417,9 +390,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			getSubOperations().clear();
 			getSubOperations().addAll((Collection<? extends ReferenceOperation>) newValue);
 			return;
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
-			((EStructuralFeature.Setting) getEobjectsIdMap()).set(newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -441,9 +411,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
 			return;
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
-			getEobjectsIdMap().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -462,8 +429,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return modelElement != null;
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
 			return subOperations != null && !subOperations.isEmpty();
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
-			return eobjectsIdMap != null && !eobjectsIdMap.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -521,28 +486,28 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 */
 	@Override
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
-		Set<ModelElementId> result = getAllDeletedModelElements();
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
 		for (ReferenceOperation operation : getSubOperations()) {
 			result.addAll(operation.getAllInvolvedModelElements());
 		}
 		return result;
 	}
 
-	public Set<ModelElementId> getAllDeletedModelElements() {
-		Set<ModelElementId> result = new HashSet<ModelElementId>();
-		for (EObject modelElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
-
-			Project p = ModelUtil.getProject(modelElement);
-			if (p != null) {
-				result.add(p.getModelElementId(modelElement));
-			}
-
-		}
-		for (ModelElementId id : getEobjectsIdMap().values()) {
-			result.add(id);
-		}
-		return result;
-	}
+	// public Set<ModelElementId> getAllDeletedModelElements() {
+	// Set<ModelElementId> result = new HashSet<ModelElementId>();
+	// for (EObject modelElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
+	//
+	// Project p = ModelUtil.getProject(modelElement);
+	// if (p != null) {
+	// result.add(p.getModelElementId(modelElement));
+	// }
+	//
+	// }
+	// for (ModelElementId id : getEobjectsIdMap().values()) {
+	// result.add(id);
+	// }
+	// return result;
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -603,22 +568,4 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getModelElement(org.unicase.metamodel.ModelElementId)
-	 */
-	public EObject getModelElement(ModelElementId modelElementId) {
-		for (ModelElementId id : getEobjectsIdMap().values()) {
-			if (id.equals(modelElementId)) {
-				return id;
-			}
-		}
-		for (EObject deletedElement : ModelUtil.getAllContainedModelElements(getModelElement(), false)) {
-			if (ModelUtil.getProject(deletedElement).getModelElementId(deletedElement).equals(modelElementId)) {
-				return deletedElement;
-			}
-		}
-		return null;
-	}
 } // CreateDeleteOperationImpl

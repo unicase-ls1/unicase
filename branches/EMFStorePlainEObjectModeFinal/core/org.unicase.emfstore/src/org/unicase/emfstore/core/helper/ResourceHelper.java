@@ -23,10 +23,12 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -105,7 +107,8 @@ public class ResourceHelper {
 			if (op instanceof CreateDeleteOperation) {
 				CreateDeleteOperation createDeleteOp = (CreateDeleteOperation) op;
 
-				for (Map.Entry<EObject, ModelElementId> e : createDeleteOp.getEobjectsIdMap()) {
+				for (Map.Entry<EObject, ModelElementId> e : ((CreateDeleteOperationImpl) createDeleteOp)
+					.getEobjectsIdMap().entrySet()) {
 					XMIResource res = (XMIResource) e.getKey().eResource();
 					if (res != null) {
 						res.setID(e.getKey(), e.getValue().getId());
@@ -208,21 +211,12 @@ public class ResourceHelper {
 		// TODO:
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap().entrySet()) {
+			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
 				xmiResource.setID(e.getKey(), e.getValue().getId());
 			}
 		}
 
-		if (projectResource == resource) {
-			m = project.getEobjectsIdMap();
-			project.getEobjectsIdMap().clear();
-		}
-
 		save(obj);
-
-		if (projectResource == resource) {
-			project.getEobjectsIdMap().addAll(m);
-		}
 	}
 
 	/**
@@ -234,25 +228,16 @@ public class ResourceHelper {
 	 */
 	public void saveWithProject(EObject eObject, Project project) {
 		Resource resource = eObject.eResource();
-		Resource projectResource = project.eResource();
-		EMap<EObject, ModelElementId> m = null;
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : project.getEobjectsIdMap()) {
+			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
 				xmiResource.setID(e.getKey(), e.getValue().getId());
 			}
 		}
 
 		try {
-			if (projectResource == resource) {
-				m = project.getEobjectsIdMap();
-				project.getEobjectsIdMap().clear();
-			}
 			eObject.eResource().save(null);
-			if (projectResource == resource) {
-				project.getEobjectsIdMap().addAll(m);
-			}
 		} catch (IOException e1) {
 			ModelUtil.logException("Saving of resource failed.", e1);
 		}

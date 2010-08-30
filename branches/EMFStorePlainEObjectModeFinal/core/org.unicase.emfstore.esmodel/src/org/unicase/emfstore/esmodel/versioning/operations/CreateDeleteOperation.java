@@ -5,10 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import java.util.Set;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -24,8 +21,6 @@ import org.unicase.metamodel.Project;
  * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
  * Operations</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEobjectsIdMap <em>Eobjects Id
- * Map</em>}</li>
  * </ul>
  * </p>
  * 
@@ -104,24 +99,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	EList<ReferenceOperation> getSubOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Eobjects Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Eobjects Id Map</em>' map isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Eobjects Id Map</em>' map.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_EobjectsIdMap()
-	 * @model mapType=
-	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 * @generated
-	 */
-	EMap<EObject, ModelElementId> getEobjectsIdMap();
-
-	/**
 	 * Get the id of the previous parent of the deleted element. Returns null if the deleted element did not have a
 	 * parent at the time of deletion or the parent cannot be determined anymore since it has also been removed from the
 	 * given project.
@@ -132,18 +109,10 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 */
 	ModelElementId getParentofDeletedElement(Project project);
 
-	/**
-	 * Get all deleted model elements.
-	 * 
-	 * @return a set of the ids of the deleted elements.
-	 */
-	Set<ModelElementId> getAllDeletedModelElements();
-
-	/**
-	 * Retrieve the ModelElement of the given id in this operation. Returns null if element is not in this operation
-	 * 
-	 * @param modelElementId the model element id
-	 * @return the model element or null
-	 */
-	EObject getModelElement(ModelElementId modelElementId);
+	// /**
+	// * Get all deleted model elements.
+	// *
+	// * @return a set of the ids of the deleted elements.
+	// */
+	// Set<ModelElementId> getAllDeletedModelElements();
 } // CreateDeleteOperation
