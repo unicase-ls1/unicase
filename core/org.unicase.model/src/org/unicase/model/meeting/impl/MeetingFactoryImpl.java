@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.meeting.*;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -19,13 +20,12 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static MeetingFactory init() {
@@ -42,8 +42,8 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MeetingFactoryImpl() {
@@ -52,7 +52,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +72,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Meeting createMeeting() {
@@ -83,7 +81,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeMeetingSection createCompositeMeetingSection() {
@@ -93,7 +90,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IssueMeetingSection createIssueMeetingSection() {
@@ -103,7 +99,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSection createWorkItemMeetingSection() {
@@ -113,7 +108,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MeetingPackage getMeetingPackage() {
@@ -122,7 +116,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

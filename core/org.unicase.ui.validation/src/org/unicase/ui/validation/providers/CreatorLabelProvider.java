@@ -8,7 +8,6 @@ package org.unicase.ui.validation.providers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * LabelProvider for the Creator Column.
@@ -24,8 +23,10 @@ public class CreatorLabelProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof IConstraintStatus) {
 			EObject target = ((IConstraintStatus) element).getTarget();
-			if (target instanceof ModelElement) {
-				return ((ModelElement) target).getCreator();
+			if (target instanceof EObject) {
+				// TODO: EM
+				return "getCreator() not yet implemened for plain EObjects mode!";
+				// return ((EObject) target).getCreator();
 			}
 		}
 		return super.getText(element);

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
@@ -36,13 +35,12 @@ public class DiscussionShouldBeIssueConstraint extends AbstractModelConstraint {
 		EObject eObject = context.getTarget();
 		EMFEventType eventType = context.getEventType();
 
-		if (eventType != EMFEventType.NULL || !(eObject instanceof ModelElement) || eObject instanceof Comment
-			|| eObject instanceof Issue) {
+		if (eventType != EMFEventType.NULL || eObject instanceof Comment || eObject instanceof Issue) {
 			return context.createSuccessStatus();
 		}
-		ModelElement modelElement = (ModelElement) eObject;
+
 		int count = 0;
-		for (EObject element : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+		for (EObject element : ModelUtil.getAllContainedModelElements(eObject, false)) {
 			if (element instanceof Comment) {
 				count += ModelUtil.getAllContainedModelElements(element, false).size();
 				count++;

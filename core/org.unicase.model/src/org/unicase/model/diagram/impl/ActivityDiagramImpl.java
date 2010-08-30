@@ -20,7 +20,6 @@ import org.unicase.model.diagram.DiagramPackage;
 public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityDiagramImpl() {
@@ -33,7 +32,6 @@ public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagra
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

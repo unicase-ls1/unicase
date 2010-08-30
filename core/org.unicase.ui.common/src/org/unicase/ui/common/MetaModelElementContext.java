@@ -46,7 +46,7 @@ public abstract class MetaModelElementContext {
 	public abstract Set<EClass> getAllModelElementEClasses();
 
 	/**
-	 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
 	 * @param parent The EObject to get conatinment references from
 	 */

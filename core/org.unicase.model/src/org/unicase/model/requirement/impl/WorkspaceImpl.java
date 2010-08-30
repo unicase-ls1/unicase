@@ -23,10 +23,10 @@ import org.unicase.model.requirement.Workspace;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.WorkspaceImpl#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.WorkspaceImpl#getSystemFunctions <em>System Functions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace {
@@ -42,7 +42,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -51,7 +50,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
@@ -74,7 +71,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -89,7 +85,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +98,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +111,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -134,7 +127,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +141,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

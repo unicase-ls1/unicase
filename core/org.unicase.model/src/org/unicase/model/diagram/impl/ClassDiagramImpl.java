@@ -13,13 +13,12 @@ import org.unicase.model.diagram.DiagramPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ClassDiagramImpl extends MEDiagramImpl implements ClassDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClassDiagramImpl() {
@@ -32,7 +31,6 @@ public class ClassDiagramImpl extends MEDiagramImpl implements ClassDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

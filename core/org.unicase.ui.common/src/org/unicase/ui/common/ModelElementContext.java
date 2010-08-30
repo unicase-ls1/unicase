@@ -68,28 +68,28 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	public abstract EditingDomain getEditingDomain();
 
 	/**
-	 * Returns all {@link ModelElement} in the context, which are of a certain type.
+	 * Returns all {@link EObject} in the context, which are of a certain type.
 	 * 
 	 * @param clazz the type
 	 * @param basicEList the list to be filled
-	 * @return a {@link Collection} of {@link ModelElement}
+	 * @return a {@link Collection} of {@link EObject}
 	 */
 	public abstract Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList);
 
 	/**
-	 * Returns all {@link ModelElement} in the context.
+	 * Returns all {@link EObject} in the context.
 	 * 
-	 * @return a {@link Collection} of {@link ModelElement}
+	 * @return a {@link Collection} of {@link EObject}
 	 */
 	public abstract Collection<EObject> getAllModelElements();
 
 	/**
-	 * Whether a {@link ModelElement} is a no domain element. Non Domain Elements which are not root nodes of the model
-	 * and do not exist on their own The Have the following characteristic behaviour: The dont appear in the openME
-	 * dialog, They are deleted if the last link to them is deleted, They are not shown in the new element wizard, They
-	 * are not shown in the METyselection dialog (Table View)
+	 * Whether a {@link EObject} is a no domain element. Non Domain Elements which are not root nodes of the model and
+	 * do not exist on their own The Have the following characteristic behaviour: The dont appear in the openME dialog,
+	 * They are deleted if the last link to them is deleted, They are not shown in the new element wizard, They are not
+	 * shown in the METyselection dialog (Table View)
 	 * 
-	 * @param eObject the {@link ModelElement}
+	 * @param eObject the {@link EObject}
 	 * @return if it is non domain
 	 */
 	public abstract boolean isNonDomainElement(EObject eObject);
@@ -102,10 +102,10 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	public abstract MetaModelElementContext getMetaModelElementContext();
 
 	/**
-	 * If a {@link ModelElement} is contained in this context and can be therefore referenced by the
-	 * {@link ModelElement} defining the context.
+	 * If a {@link EObject} is contained in this context and can be therefore referenced by the {@link EObject} defining
+	 * the context.
 	 * 
-	 * @param eObject the {@link ModelElement}
+	 * @param eObject the {@link EObject}
 	 * @return if the {@link EObject} is contained in the context
 	 */
 	public abstract boolean contains(EObject eObject);

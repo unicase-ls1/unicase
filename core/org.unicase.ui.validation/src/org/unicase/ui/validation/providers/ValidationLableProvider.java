@@ -11,10 +11,9 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.metamodel.ModelElement;
 
 /**
- * Lableprovider for validation view.
+ * Labelprovider for validation view.
  * 
  * @author wesendon
  */
@@ -27,9 +26,8 @@ public class ValidationLableProvider extends ColumnLabelProvider {
 	 */
 	public ValidationLableProvider() {
 		super();
-		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -39,7 +37,7 @@ public class ValidationLableProvider extends ColumnLabelProvider {
 	public Image getImage(Object object) {
 		if (object instanceof IConstraintStatus) {
 			EObject target = ((IConstraintStatus) object).getTarget();
-			if (target instanceof ModelElement) {
+			if (target instanceof EObject) {
 				return adapterFactoryLabelProvider.getImage(target);
 			}
 		}
@@ -53,7 +51,7 @@ public class ValidationLableProvider extends ColumnLabelProvider {
 	public String getText(Object object) {
 		if (object instanceof IConstraintStatus) {
 			EObject target = ((IConstraintStatus) object).getTarget();
-			if (target instanceof ModelElement) {
+			if (target instanceof EObject) {
 				return adapterFactoryLabelProvider.getText(target);
 			}
 		}

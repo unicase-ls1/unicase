@@ -9,27 +9,28 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Section</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.document.Section#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.unicase.model.document.Section#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.document.DocumentPackage#getSection()
  * @model interface="true" abstract="true"
  * @generated
  */
 public interface Section extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' container reference. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Parent</em>' container reference.
 	 * @see #setParent(CompositeSection)
 	 * @see org.unicase.model.document.DocumentPackage#getSection_Parent()
@@ -42,7 +43,6 @@ public interface Section extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.document.Section#getParent <em>Parent</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Parent</em>' container reference.
 	 * @see #getParent()
 	 * @generated
