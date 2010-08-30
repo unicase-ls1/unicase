@@ -24,65 +24,50 @@ import org.unicase.metamodel.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass modelElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass projectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass uniqueIdentifierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass identifiableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass modelElementIdEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass modelVersionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass eObjectToModelElementIdMapEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -103,18 +88,17 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link MetamodelPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link MetamodelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -147,7 +131,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getModelElement() {
@@ -156,7 +139,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getModelElement_Creator() {
@@ -165,7 +147,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getModelElement_CreationDate() {
@@ -174,7 +155,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProject() {
@@ -183,7 +163,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProject_ModelElements() {
@@ -192,7 +171,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProject_CutElements() {
@@ -201,43 +179,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getProject_EobjectsIdMap() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getProject_DeletedEObjectsIdMap() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getProject_NewEObjectsIdMap() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getProject_DeletedModelElements() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUniqueIdentifier() {
@@ -246,7 +187,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUniqueIdentifier_Id() {
@@ -255,7 +195,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIdentifiableElement() {
@@ -264,7 +203,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIdentifiableElement_Identifier() {
@@ -273,7 +211,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getModelElementId() {
@@ -282,7 +219,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getModelVersion() {
@@ -291,7 +227,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getModelVersion_ReleaseNumber() {
@@ -300,7 +235,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getNonDomainElement() {
@@ -309,34 +243,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getEObjectToModelElementIdMap() {
-		return eObjectToModelElementIdMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEObjectToModelElementIdMap_Key() {
-		return (EReference) eObjectToModelElementIdMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEObjectToModelElementIdMap_Value() {
-		return (EReference) eObjectToModelElementIdMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MetamodelFactory getMetamodelFactory() {
@@ -345,15 +251,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -369,10 +274,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
 		createEReference(projectEClass, PROJECT__CUT_ELEMENTS);
-		createEReference(projectEClass, PROJECT__EOBJECTS_ID_MAP);
-		createEReference(projectEClass, PROJECT__DELETED_EOBJECTS_ID_MAP);
-		createEReference(projectEClass, PROJECT__NEW_EOBJECTS_ID_MAP);
-		createEReference(projectEClass, PROJECT__DELETED_MODEL_ELEMENTS);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -386,23 +287,18 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(modelVersionEClass, MODEL_VERSION__RELEASE_NUMBER);
 
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
-
-		eObjectToModelElementIdMapEClass = createEClass(EOBJECT_TO_MODEL_ELEMENT_ID_MAP);
-		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY);
-		createEReference(eObjectToModelElementIdMapEClass, EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -439,18 +335,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getProject_CutElements(), ecorePackage.getEObject(), null, "cutElements", null, 0, -1,
 			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_EobjectsIdMap(), this.getEObjectToModelElementIdMap(), null, "eobjectsIdMap", null,
-			0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getProject_DeletedEObjectsIdMap(), this.getEObjectToModelElementIdMap(), null,
-			"deletedEObjectsIdMap", null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_NewEObjectsIdMap(), this.getEObjectToModelElementIdMap(), null, "newEObjectsIdMap",
-			null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_DeletedModelElements(), ecorePackage.getEObject(), null, "deletedModelElements",
-			null, 0, -1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -475,15 +359,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(eObjectToModelElementIdMapEClass, Map.Entry.class, "EObjectToModelElementIdMap", !IS_ABSTRACT,
-			!IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEObjectToModelElementIdMap_Key(), ecorePackage.getEObject(), null, "key", null, 0, 1,
-			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEObjectToModelElementIdMap_Value(), this.getModelElementId(), null, "value", null, 0, 1,
-			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

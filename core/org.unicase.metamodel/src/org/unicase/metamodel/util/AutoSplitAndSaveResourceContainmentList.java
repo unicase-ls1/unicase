@@ -6,6 +6,7 @@
 package org.unicase.metamodel.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -136,7 +137,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	private void saveResource(Resource resource) {
 		try {
 			resource.save(null);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			String message = "Saving to resource failed!";
 			ModelUtil.log(message, e, IStatus.ERROR);
 			throw new IllegalStateException(message, e);

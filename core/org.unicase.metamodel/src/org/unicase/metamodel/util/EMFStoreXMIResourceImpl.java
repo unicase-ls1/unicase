@@ -8,8 +8,8 @@ package org.unicase.metamodel.util;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 
 /**
@@ -19,7 +19,7 @@ import org.unicase.metamodel.ModelElement;
  */
 public class EMFStoreXMIResourceImpl extends XMIResourceImpl {
 
-	private static final EClass MODEL_ELEMENT_ECLASS = MetamodelPackage.eINSTANCE.getModelElement();
+	private static final EClass MODEL_ELEMENT_ECLASS = EcoreFactory.eINSTANCE.getEcorePackage().getEObject();
 
 	/**
 	 * Default Construtor.

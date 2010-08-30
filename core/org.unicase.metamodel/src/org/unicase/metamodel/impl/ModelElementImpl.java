@@ -18,18 +18,18 @@ import org.unicase.metamodel.ModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.metamodel.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.metamodel.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ *   <li>{@link org.unicase.metamodel.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
+ *   <li>{@link org.unicase.metamodel.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
 	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -37,9 +37,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final String CREATOR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -47,9 +47,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected String creator = CREATOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -57,9 +57,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final Date CREATION_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -68,7 +68,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementImpl() {
@@ -77,7 +76,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +85,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCreator() {
@@ -96,7 +93,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCreator(String newCreator) {
@@ -109,7 +105,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getCreationDate() {
@@ -118,7 +113,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCreationDate(Date newCreationDate) {
@@ -131,7 +125,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +140,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +157,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +174,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +189,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

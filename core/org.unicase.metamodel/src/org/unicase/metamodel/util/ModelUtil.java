@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +29,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,13 +37,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.unicase.metamodel.EObjectToModelElementIdMap;
+import org.osgi.framework.Bundle;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 
 /**
  * Utility class for ModelElements.
@@ -67,21 +65,6 @@ public final class ModelUtil {
 	 */
 	private ModelUtil() {
 		// nothing to do
-	}
-
-	/**
-	 * Copy a model element and its containment tree. The new model element and all its children have new unique ids.
-	 * Cross-referenced elements will not be copied.
-	 * 
-	 * @param <T> the type of the model element, must be a subtype of model element
-	 * @param modelElement the model element
-	 * @return a copy of the given model element and its containment tree
-	 */
-	public static EObject copy(EObject modelElement) {
-		// EObject copy = EcoreUtil.copy(modelElement);
-		EObject copy = clone(modelElement);
-		// reassignModelElementIds(copy);
-		return copy;
 	}
 
 	/**
@@ -113,7 +96,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
 	 * @param parent The EObject to get conatinment references from
 	 */
@@ -288,10 +271,6 @@ public final class ModelUtil {
 
 		// check if only cross references to known elements exist
 		for (EObject content : allChildEObjects) {
-			// TODO: instanceof on interface not working?
-			if (content instanceof EObjectToModelElementIdMapImpl || content instanceof EObjectToModelElementIdMap) {
-				continue;
-			}
 			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
 				return false;
 			}
@@ -531,37 +510,27 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * FU!
-	 * 
-	 * @param collection fu!
-	 * @param modelElement fu!
-	 * @return fu!
-	 */
-	public static boolean listContains(Collection<? extends EObject> collection, EObject modelElement) {
-		for (EObject me : collection) {
-
-			Project p1 = getProject(me);
-			Project p2 = getProject(modelElement);
-
-			if (p1 != null && p1 == p2) {
-				return p1.getModelElementId(me).equals(p2.getModelElementId(modelElement));
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * This will add a new entry to error log view of eclipse.
 	 * 
 	 * @param message message
 	 * @param exception exception
 	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
+	 * @throws LoggedException
 	 */
-	public static void log(String message, Throwable exception, int statusInt) {
+	public static void log(String message, Throwable exception, int statusInt) throws LoggedException {
 		Status status = new Status(statusInt, Platform.getBundle("org.unicase.metamodel").getSymbolicName(), statusInt,
 			message, exception);
 		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).log(status);
+
+		// find out version
+		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
+			org.osgi.framework.Constants.BUNDLE_VERSION);
+
+		// rethrow exception in case this ain't an external/internal release
+		if (emfStoreVersionString.endsWith("qualifier")) {
+			// throw new LoggedException(exception, exception.getMessage());
+		}
 	}
 
 	/**
@@ -776,29 +745,6 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * @param eObjects fjd
-	 * @param resourceURI dj
-	 * @throws IOException dj
-	 */
-	public static void saveObjectToResourceWithProject(List<? extends EObject> eObjects, URI resourceURI,
-		Project project) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(resourceURI);
-		EList<EObject> contents = resource.getContents();
-		contents.addAll(eObjects);
-
-		// add Ids to resource
-		if (resource instanceof XMIResource) {
-			XMIResource xmiResouce = (XMIResource) resource;
-			for (EObject obj : eObjects) {
-				xmiResouce.setID(obj, project.getEobjectsIdMap().get(obj).getId());
-			}
-		}
-
-		resource.save(null);
-	}
-
-	/**
 	 * Save an Eobject to a resource.
 	 * 
 	 * @param eObject the object
@@ -838,14 +784,7 @@ public final class ModelUtil {
 		// 1. Run: Put all children in set
 		while (contents.hasNext()) {
 			EObject content = contents.next();
-
-			if (!(content instanceof ModelElement)) {
-				errorStrings.add(content + " is not a org.unicase.metamodel.ModelElement\n");
-				continue;
-			}
-
 			childrenSet.addAll(content.eContents());
-
 		}
 
 		contents = resource.getAllContents();
@@ -854,11 +793,6 @@ public final class ModelUtil {
 		// Drop RootNode, will be imported as a child
 		while (contents.hasNext()) {
 			EObject content = contents.next();
-
-			if (!(content instanceof ModelElement)) {
-				// No report to errorStrings, because Run 1 will do this
-				continue;
-			}
 
 			if (!childrenSet.contains(content)) {
 				rootNodes.add(content);
@@ -951,13 +885,6 @@ public final class ModelUtil {
 			return null;
 		}
 
-		// in case this is a project space
-		for (EObject o : container.eContents()) {
-			if (o instanceof Project) {
-				return (Project) o;
-			}
-		}
-
 		if (seenModelElements.contains(container)) {
 			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
@@ -991,16 +918,6 @@ public final class ModelUtil {
 		return result;
 	}
 
-	public static Set<EObject> getCrossReferencedModelElements(EObject modelElement) {
-		Set<EObject> result = new HashSet<EObject>();
-		for (EObject crossReference : modelElement.eCrossReferences()) {
-			if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(crossReference)) {
-				result.add(crossReference);
-			}
-		}
-		return result;
-	}
-
 	public static Set<EObject> getContainedElements(EObject modelElement) {
 
 		Set<EObject> result = new HashSet<EObject>();
@@ -1008,6 +925,20 @@ public final class ModelUtil {
 			result.add(containee);
 		}
 		return result;
+	}
+
+	/**
+     * 
+     */
+	public static EObject getContainerModelElement(EObject modelElement) {
+		EObject container = modelElement.eContainer();
+		if (container == null) {
+			return null;
+		}
+		if (EcoreFactory.eINSTANCE.getEcorePackage().getEObject().isInstance(container)) {
+			return container;
+		}
+		return null;
 	}
 
 	/**
@@ -1028,5 +959,28 @@ public final class ModelUtil {
 			}
 		}
 		return result;
+	}
+
+	public static void removeModelElementAndChildrenFromResource(EObject modelElement) {
+		removeModelElementFromResource(modelElement);
+		Set<EObject> children = getAllContainedModelElements(modelElement, false);
+		for (EObject child : children) {
+			removeModelElementFromResource(child);
+		}
+	}
+
+	private static void removeModelElementFromResource(EObject modelElement) {
+		Resource resource = modelElement.eResource();
+		if (resource == null) {
+			// TODO: EM
+			return;
+			// throw new IllegalArgumentException("EObject doesn't have any resource.");
+		}
+		if (!(resource instanceof XMIResource)) {
+			throw new IllegalArgumentException("EObject's resource is not a XMI resource.");
+		}
+		XMIResource xmiResource = (XMIResource) resource;
+		xmiResource.getContents().remove(modelElement);
+		xmiResource.setID(modelElement, null);
 	}
 }

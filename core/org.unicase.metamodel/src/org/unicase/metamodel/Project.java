@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -23,10 +22,6 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  *             <ul>
  *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
  *             <li>{@link org.unicase.metamodel.Project#getCutElements <em>Cut Elements</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getEobjectsIdMap <em>Eobjects Id Map</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getDeletedEObjectsIdMap <em>Deleted EObjects Id Map</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getNewEObjectsIdMap <em>New EObjects Id Map</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getDeletedModelElements <em>Deleted Model Elements</em>}</li>
  *             </ul>
  *             </p>
  * @see org.unicase.metamodel.MetamodelPackage#getProject()
@@ -51,83 +46,12 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	EList<EObject> getModelElements();
 
-	/**
-	 * Returns the value of the '<em><b>Eobjects Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Eobjects Id Map</em>' map isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Eobjects Id Map</em>' map.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_EobjectsIdMap()
-	 * @model mapType=
-	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 *        ordered="false"
-	 * @generated
-	 */
-	EMap<EObject, ModelElementId> getEobjectsIdMap();
+	// TODO: EM
+	// void updateCaches();
 
-	// TODO:
-	void setEObjectsIdMap(EMap<EObject, ModelElementId> map);
+	EObject getDeletedModelElement(ModelElementId modelElementId);
 
-	void updateCaches();
-
-	/**
-	 * Returns the value of the '<em><b>Deleted EObjects Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Deleted EObjects Id Map</em>' reference list isn't clear, there really should be more
-	 * of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Deleted EObjects Id Map</em>' map.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedEObjectsIdMap()
-	 * @model mapType=
-	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 *        transient="true"
-	 * @generated
-	 */
-	EMap<EObject, ModelElementId> getDeletedEObjectsIdMap();
-
-	/**
-	 * Returns the value of the '<em><b>New EObjects Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>New EObjects Id Map</em>' map isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>New EObjects Id Map</em>' map.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_NewEObjectsIdMap()
-	 * @model mapType=
-	 *        "org.unicase.metamodel.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 *        transient="true"
-	 * @generated
-	 */
-	EMap<EObject, ModelElementId> getNewEObjectsIdMap();
-
-	/**
-	 * Returns the value of the '<em><b>Deleted Model Elements</b></em>' containment reference list. The list contents
-	 * are of type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Deleted Model Elements</em>' containment reference list isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Deleted Model Elements</em>' containment reference list.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_DeletedModelElements()
-	 * @model containment="true" resolveProxies="true" transient="true" ordered="false"
-	 * @generated
-	 */
-	EList<EObject> getDeletedModelElements();
+	ModelElementId getDeletedModelElementId(EObject modelElement);
 
 	/**
 	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
@@ -181,14 +105,6 @@ public interface Project extends EObject, IAdaptable {
 	 * @generated NOT
 	 */
 	<T extends EObject> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
-
-	/**
-	 * Returns whether the project contains a model element with the same id.
-	 * 
-	 * @param modelElement the id
-	 * @return true if the project contains such a model element
-	 */
-	boolean contains(EObject modelElement);
 
 	/**
 	 * Returns whether the project contains the exact same instance of the model element.
