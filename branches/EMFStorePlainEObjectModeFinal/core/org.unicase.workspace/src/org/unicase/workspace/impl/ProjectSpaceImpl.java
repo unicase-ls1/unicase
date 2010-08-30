@@ -20,8 +20,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -60,7 +58,6 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.AutoSplitAndSaveResourceContainmentList;
@@ -1555,13 +1552,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		URI projectSpaceURI = URI.createFileURI(projectSpaceFileName);
 		URI operationCompositeURI = URI.createFileURI(operationsCompositeFileName);
 
+		// TODO: create new IDs here
+		// if (getProject().getEobjectsIdMap() == null && getProject().getModelElements().size() != 0) {
+		// throw new IllegalStateException("Project does not have EObject ID map.");
+		// }
+
 		setResourceCount(0);
 		String fileName = projectFragementsFileNamePrefix + getResourceCount()
 			+ Configuration.getProjectFragmentFileExtension();
 		URI fileURI = URI.createFileURI(fileName);
 
 		List<Resource> resources = new ArrayList<Resource>();
-		Resource resource = resourceSet.createResource(fileURI);
+		XMIResource resource = (XMIResource) resourceSet.createResource(fileURI);
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
@@ -1572,13 +1574,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
-				resource = resourceSet.createResource(fileURI);
+				resource = (XMIResource) resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
 				resources.add(resource);
 				counter = 0;
 			}
 			counter++;
 			resource.getContents().add(modelElement);
+			resource.setID(modelElement, ((ProjectImpl) getProject()).getEObjectToIdCache().get(modelElement).getId());
 		}
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
 		if (this.getLocalOperations() == null) {
@@ -1591,47 +1594,38 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		projectSpaceResource.getContents().add(this);
 		resources.add(projectSpaceResource);
 
-		Resource projectResource = project.eResource();
-		EMap<EObject, ModelElementId> m = null;
-		for (Resource res : resources) {
-			try {
-				if (res instanceof XMIResource) {
-					XMIResource xmiResource = (XMIResource) res;
-					TreeIterator<EObject> it = xmiResource.getAllContents();
-					while (it.hasNext()) {
-						EObject o = it.next();
-						if (!(o instanceof Project) && !(o instanceof ModelElementId)
-							&& !(o instanceof EObjectToModelElementIdMapImpl)) {
-							ModelElementId id = project.getModelElementId(o);
-							if (id != null) {
-								xmiResource.setID(o, id.getId());
-							}
-						}
-					}
-				}
-				if (projectResource == res) {
-					m = project.getEobjectsIdMap();
-					project.setEObjectsIdMap(null);
-				}
-				res.save(Configuration.getResourceSaveOptions());
-				if (projectResource == res) {
-					project.setEObjectsIdMap(m);
-				}
-			} catch (IOException e) {
-				String message = "Save failed on a resource of the workspace failed!";
-				WorkspaceUtil.logWarning(message, e);
-			}
-		}
-
-		// save all resources that have been created
-		// for (Resource currentResource : resources) {
+		// Resource projectResource = project.eResource();
+		// EMap<EObject, ModelElementId> m = null;
+		// for (Resource res : resources) {
 		// try {
-		// currentResource.save(Configuration.getResourceSaveOptions());
+		// if (res instanceof XMIResource) {
+		// XMIResource xmiResource = (XMIResource) res;
+		// TreeIterator<EObject> it = xmiResource.getAllContents();
+		// while (it.hasNext()) {
+		// EObject o = it.next();
+		// if (!(o instanceof Project) && !(o instanceof ModelElementId)
+		// && !(o instanceof EObjectToModelElementIdMapImpl)) {
+		// ModelElementId id = project.getModelElementId(o);
+		// if (id != null) {
+		// xmiResource.setID(o, id.getId());
+		// }
+		// }
+		// }
+		// }
+		// if (projectResource == res) {
+		// m = project.getEobjectsIdMap();
+		// ((ProjectImpl) project).setEObjectsIdMap(null);
+		// }
+		// res.save(Configuration.getResourceSaveOptions());
+		// if (projectResource == res) {
+		// ((ProjectImpl) project).setEObjectsIdMap(m);
+		// }
 		// } catch (IOException e) {
-		// WorkspaceUtil.logException("Project Space resource init failed!", e);
-		//
+		// String message = "Save failed on a resource of the workspace failed!";
+		// WorkspaceUtil.logWarning(message, e);
 		// }
 		// }
+
 		init();
 	}
 
@@ -1949,8 +1943,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			// }
 		}
 		changeTracker.setAutoSave(true);
-		// changeTracker.saveDirtyResources();
-		changeTracker.saveDirtyResourcesWithProject(getProject());
+		changeTracker.saveDirtyResources();
 		startChangeRecording();
 
 		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
@@ -2024,8 +2017,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#exportLocalChanges(java.lang.String)
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
-
-		// ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
 		ResourceHelper.putElementIntoNewResourceWithProject(fileName, getLocalChangePackage(false), this.project);
 	}
 

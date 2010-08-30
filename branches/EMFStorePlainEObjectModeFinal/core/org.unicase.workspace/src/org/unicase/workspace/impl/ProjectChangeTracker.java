@@ -34,8 +34,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -47,7 +47,6 @@ import org.unicase.workspace.changeTracking.commands.CommandObserver;
 import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
-import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -125,12 +124,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			return;
 		}
 
-		// TODO: problem still exists when only one document has been added
-		// TODO:
-		save(modelElement);
-
 		addToResource(modelElement);
 		if (isRecording) {
+			// TODO: EM
 			// appendCreator(modelElement);
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
@@ -155,7 +151,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	}
 
 	private void addElementToResouce(final EObject modelElement) {
-		Resource oldResource = modelElement.eResource();
+		XMIResource oldResource = (XMIResource) modelElement.eResource();
+		// assign model element to a fixed resource
+		oldResource.getContents().add(modelElement);
+		oldResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
+		// set ID
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
@@ -170,11 +170,12 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			projectSpace.saveProjectSpaceOnly();
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
-			// put ID into resource
 			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
-			newResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
-
+			// unset ID on old resource
+			oldResource.setID(modelElement, null);
 			newResource.getContents().add(modelElement);
+			// set ID on created resource again
+			newResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
 			save(modelElement);
 		}
 	}
@@ -218,12 +219,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 	}
 
-	public void saveDirtyResourcesWithProject(Project project) {
-		if (autoSave) {
-			dirtyResourceSet.saveWithProject(project);
-		}
-	}
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -231,22 +226,23 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
+
+		// filter unwanted notifications
+		if (FilterStack.DEFAULT.check(new NotificationInfo(notification))) {
+			return;
+		}
+
 		save(modelElement);
-		notificationRecorder.record(notification, modelElement);
+		notificationRecorder.record(notification);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
 			}
-			// saveDirtyResources();
-			saveDirtyResourcesWithProject(project);
+			saveDirtyResources();
 		}
 	}
 
 	private void recordingFinished() {
-
-		// canonize recorded notifications
-		NotificationFilter f = FilterStack.DEFAULT;
-		f.filter(notificationRecorder.getRecording());
 
 		// create operations from "valid" notifications, log invalid ones, accumulate the ops
 		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();
@@ -292,7 +288,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * Aborts the current composite operation.
 	 */
 	public void abortCompositeOperation() {
-		recordingFinished();
 		projectSpace.undoLastOperation();
 		this.compositeOperation = null;
 		currentOperationListSize = operations.size();
@@ -329,6 +324,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * 
 	 * @param modelElement the model element.
 	 */
+	// TODO: EM
 	private void appendCreator(EObject modelElement) {
 		stopChangeRecording();
 		// TODO: EMFPlainEObjectTransition : getCreator
@@ -372,7 +368,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			createDeleteOperation.getEobjectsIdMap().put(copiedChild, childId);
+			((CreateDeleteOperationImpl) createDeleteOperation).getEobjectsIdMap().put(copiedChild, childId);
 		}
 
 		createDeleteOperation.setModelElement(copiedElement);
@@ -409,7 +405,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
-		this.recordingFinished();
+
 		notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
@@ -453,7 +449,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		List<EObject> deletedElements = new ArrayList<EObject>();
 		for (int i = removedElements.size() - 1; i >= 0; i--) {
 			EObject removedElement = removedElements.get(i);
-			if (!projectSpace.getProject().contains(removedElement)) {
+			if (!projectSpace.getProject().containsInstance(removedElement)) {
 				if (!deletedElements.contains(removedElement)) {
 					deletedElements.add(0, removedElement);
 				}
@@ -480,12 +476,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		// remove all deleted elements
 		newElementsOnClipboardAfterCommand.removeAll(deletedElements);
 
-		// handle copied elements => copy command
-		for (EObject copiedElement : newElementsOnClipboardAfterCommand) {
-			reassignModelElementIds(copiedElement);
+		if (projectSpace.getProject() != null) {
+			saveDirtyResources();
+		} else {
+			saveDirtyResources();
 		}
-		// saveDirtyResources();
-		saveDirtyResourcesWithProject(projectSpace.getProject());
 	}
 
 	private void cleanResources(EObject deletedElement) {
@@ -518,7 +513,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 				continue;
 			}
 
-			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass) eType)) {
+			// TODO: EM
+			// && // EcoreFactory.eINSTANCE.getEcorePackage().getEObject().isSuperTypeOf((EClass) eType)) {
+			// has been removed
+			if (eType instanceof EClass) {
 				modelElement.eUnset(reference);
 			}
 		}
@@ -544,7 +542,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		allContainedModelElements.add(deletedElement);
 		EObject copiedElement = EcoreUtil.copy(deletedElement);
 		deleteOperation.setModelElement(copiedElement);
-		deleteOperation.setModelElementId(ModelUtil.getProject(deletedElement).getModelElementId(deletedElement));
+		deleteOperation.setModelElementId(projectSpace.getProject().getDeletedModelElementId(deletedElement));
 		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
 			false);
 		copiedAllContainedModelElements.add(copiedElement);
@@ -552,8 +550,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		for (int i = 0; i < allContainedModelElements.size(); i++) {
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
-			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			deleteOperation.getEobjectsIdMap().put(copiedChild, childId);
+			ModelElementId childId = projectSpace.getProject().getDeletedModelElementId(child);
+			((CreateDeleteOperationImpl) deleteOperation).getEobjectsIdMap().put(copiedChild, childId);
 		}
 
 		deleteOperation.setDelete(true);
@@ -569,6 +567,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		} else {
 			projectSpace.addOperation(deleteOperation);
 		}
+
+		// remove deleted model element and children from resource
+		ModelUtil.removeModelElementAndChildrenFromResource(deletedElement);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -576,10 +577,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		List<CompositeOperation> compositeOperationsToDelete) {
 		Set<ModelElementId> allDeletedElementsIds = new HashSet<ModelElementId>();
 		for (EObject child : ModelUtil.getAllContainedModelElements(deletedElement, false)) {
-			ModelElementId childId = ModelUtil.getProject(child).getModelElementId(child);
+			ModelElementId childId = projectSpace.getProject().getDeletedModelElementId(child);
 			allDeletedElementsIds.add(childId);
 		}
-		allDeletedElementsIds.add(ModelUtil.getProject(deletedElement).getModelElementId(deletedElement));
+		allDeletedElementsIds.add(projectSpace.getProject().getDeletedModelElementId(deletedElement));
 
 		List<AbstractOperation> newOperations = operations.subList(currentOperationListSize, operations.size());
 		List<ReferenceOperation> referenceOperationsForDelete = new ArrayList<ReferenceOperation>();
@@ -631,11 +632,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			return singleReferenceOperation.getOldValue() != null && singleReferenceOperation.getNewValue() == null;
 		}
 		return false;
-	}
-
-	private void reassignModelElementIds(EObject copiedElement) {
-		// EM: see comment on reassignModelElementIds
-		// ModelUtil.reassignModelElementIds(copiedElement);
 	}
 
 	/**

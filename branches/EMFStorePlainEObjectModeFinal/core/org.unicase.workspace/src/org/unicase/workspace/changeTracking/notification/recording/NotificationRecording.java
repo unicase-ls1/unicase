@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.workspace.Activator;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
@@ -61,8 +60,8 @@ public class NotificationRecording {
 	/**
 	 * @param n the notification to add to the recording
 	 */
-	public void record(Notification n, EObject modelElement) {
-		chain.add(new NotificationInfo(n, modelElement));
+	public void record(Notification n) {
+		chain.add(new NotificationInfo(n));
 	}
 
 	/**

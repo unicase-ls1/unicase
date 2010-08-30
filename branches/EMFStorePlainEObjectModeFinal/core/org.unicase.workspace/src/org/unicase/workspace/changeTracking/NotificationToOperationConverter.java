@@ -27,7 +27,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.EObjectToModelElementIdMapImpl;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -49,6 +48,7 @@ public final class NotificationToOperationConverter {
 	 * @param n the notification to convert
 	 * @return the operation or null
 	 */
+	// BEGIN COMPLEX CODE
 	public AbstractOperation convert(NotificationInfo n) {
 
 		if (n.isTouch() || n.isTransient() || !n.isValid()) {
@@ -101,9 +101,10 @@ public final class NotificationToOperationConverter {
 
 		default:
 			return null;
-
 		}
 	}
+
+	// END COMPLEX CODE
 
 	@SuppressWarnings("unchecked")
 	private AbstractOperation handleMultiAttribute(NotificationInfo n) {
@@ -184,9 +185,11 @@ public final class NotificationToOperationConverter {
 		}
 
 		for (EObject valueElement : list) {
-			if (!(valueElement instanceof EObjectToModelElementIdMapImpl)) {
-				referencedModelElements.add(project.getModelElementId(valueElement));
+			ModelElementId id = project.getModelElementId(valueElement);
+			if (id == null) {
+				id = project.getDeletedModelElementId(valueElement);
 			}
+			referencedModelElements.add(id);
 		}
 		return op;
 
@@ -245,6 +248,17 @@ public final class NotificationToOperationConverter {
 
 	private AbstractOperation handleSetReference(NotificationInfo n) {
 
+		ModelElementId oldModelElementId = project.getModelElementId(n.getOldModelElementValue());
+		ModelElementId newModelElementId = project.getModelElementId(n.getNewModelElementValue());
+
+		if (oldModelElementId == null) {
+			oldModelElementId = project.getDeletedModelElementId(n.getOldModelElementValue());
+		}
+
+		if (newModelElementId == null) {
+			newModelElementId = project.getDeletedModelElementId(n.getNewModelElementValue());
+		}
+
 		if (!n.getReference().isMany()) {
 			SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
 			setCommonValues(op, (EObject) n.getNotifier());
@@ -252,11 +266,11 @@ public final class NotificationToOperationConverter {
 			setBidirectionalAndContainmentInfo(op, n.getReference());
 
 			if (n.getOldValue() != null) {
-				op.setOldValue(project.getModelElementId(n.getOldModelElementValue()));
+				op.setOldValue(oldModelElementId);
 			}
 
 			if (n.getNewValue() != null) {
-				op.setNewValue(project.getModelElementId(n.getNewModelElementValue()));
+				op.setNewValue(newModelElementId);
 			}
 
 			return op;
@@ -270,11 +284,11 @@ public final class NotificationToOperationConverter {
 			setOperation.setIndex(n.getPosition());
 
 			if (n.getOldValue() != null) {
-				setOperation.setOldValue(project.getModelElementId(n.getOldModelElementValue()));
+				setOperation.setOldValue(oldModelElementId);
 			}
 
 			if (n.getNewValue() != null) {
-				setOperation.setNewValue(project.getModelElementId(n.getNewModelElementValue()));
+				setOperation.setNewValue(newModelElementId);
 			}
 
 			return setOperation;
@@ -284,7 +298,11 @@ public final class NotificationToOperationConverter {
 	// utility methods
 	private void setCommonValues(AbstractOperation operation, EObject modelElement) {
 		operation.setClientDate(new Date());
-		operation.setModelElementId(project.getModelElementId(modelElement));
+		ModelElementId id = project.getModelElementId(modelElement);
+		if (id == null) {
+			id = project.getDeletedModelElementId(modelElement);
+		}
+		operation.setModelElementId(id);
 	}
 
 	private void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {

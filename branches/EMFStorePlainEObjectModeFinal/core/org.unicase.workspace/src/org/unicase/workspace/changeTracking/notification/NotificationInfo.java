@@ -29,16 +29,14 @@ public class NotificationInfo implements Notification {
 	private Notification notification;
 	private boolean valid;
 	private String validationMessage;
-	private EObject modelElement;
 
 	/**
 	 * The constructor needs the notification to wrap.
 	 * 
 	 * @param n the notification to wrap
 	 */
-	public NotificationInfo(Notification n, EObject modelElement) {
+	public NotificationInfo(Notification n) {
 		this.notification = n;
-		this.modelElement = modelElement;
 		NotificationValidator.getInstance().validate(this);
 	}
 
@@ -195,7 +193,7 @@ public class NotificationInfo implements Notification {
 			// notifications from project are never propagated, thus considered nonexistent
 			// however, they themselves might have followups
 			if (nextNotification.getNotifier() instanceof Project) {
-				NotificationInfo nextNextInfo = new NotificationInfo(nextNotification, null);
+				NotificationInfo nextNextInfo = new NotificationInfo(nextNotification);
 				return nextNextInfo.hasNext();
 			} else {
 				return true;
@@ -448,7 +446,7 @@ public class NotificationInfo implements Notification {
 	 * @return @see org.eclipse.emf.common.notify.Notification#getNotifier()
 	 */
 	public EObject getNotifierModelElement() {
-		return this.modelElement;
+		return (EObject) notification.getNotifier();
 	}
 
 	/**
