@@ -6,6 +6,7 @@
 package org.unicase.ui.dashboard.notificationProviders;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +46,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	public String getName() {
 		return NAME;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -71,8 +72,14 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String usersername) {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String usersername) {
+
+		// sanity checks
+		if (projectSpace == null || changePackages == null || usersername == null) {
+			return Collections.emptyList();
+		}
+
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
 		List<ChangePackage> newChangePackages = new ArrayList<ChangePackage>();
@@ -83,13 +90,11 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		}
 
 		// do not generate an update notification for a commit
-		if ((newChangePackages.size() == 1 && newChangePackages.get(0)
-				.getLogMessage() == null)) {
+		if ((newChangePackages.size() == 1 && newChangePackages.get(0).getLogMessage() == null)) {
 			return result;
 		}
 
-		ESNotification notification = NotificationFactory.eINSTANCE
-				.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setProject(ModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(usersername);
 		notification.setProvider(getName());
@@ -97,11 +102,10 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		if (newChangePackages.isEmpty()) {
 			notification.setCreationDate(new Date());
 			notification.setMessage("You checked out the project in version "
-					+ projectSpace.getBaseVersion().getIdentifier());
+				+ projectSpace.getBaseVersion().getIdentifier());
 			notification.setName("Project checkout");
 		} else {
-			Date date = newChangePackages.get(0).getLogMessage()
-					.getClientDate();
+			Date date = newChangePackages.get(0).getLogMessage().getClientDate();
 			for (ChangePackage cp : newChangePackages) {
 				if (cp.getLogMessage().getClientDate().after(date)) {
 					date = cp.getLogMessage().getClientDate();
