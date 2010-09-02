@@ -28,6 +28,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Attachment/referringModelElements"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Project"/>
+    <genClasses image="false" ecoreClass="model.ecore#//UnicaseLink">
+      <genOperations ecoreOperation="model.ecore#//UnicaseLink/getSource"/>
+      <genOperations ecoreOperation="model.ecore#//UnicaseLink/getTarget"/>
+    </genClasses>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//organization">
       <genClasses ecoreClass="model.ecore#//organization/User">

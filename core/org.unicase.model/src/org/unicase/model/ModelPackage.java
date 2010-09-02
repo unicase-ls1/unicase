@@ -472,6 +472,127 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_FEATURE_COUNT = MetamodelPackage.PROJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.UnicaseLink <em>Unicase Link</em>}' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.UnicaseLink
+	 * @see org.unicase.model.impl.ModelPackageImpl#getUnicaseLink()
+	 * @generated
+	 */
+	int UNICASE_LINK = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__IDENTIFIER = UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__NAME = UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__DESCRIPTION = UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__ANNOTATIONS = UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__ATTACHMENTS = UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__LEAF_SECTION = UNICASE_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__STATE = UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__APPLIED_STEREOTYPE_INSTANCES = UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Unicase Link</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_LINK_FEATURE_COUNT = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -636,6 +757,16 @@ public interface ModelPackage extends EPackage {
 	EClass getProject();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.UnicaseLink <em>Unicase Link</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Unicase Link</em>'.
+	 * @see org.unicase.model.UnicaseLink
+	 * @generated
+	 */
+	EClass getUnicaseLink();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -785,6 +916,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROJECT = eINSTANCE.getProject();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.UnicaseLink <em>Unicase Link</em>}' class. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.UnicaseLink
+		 * @see org.unicase.model.impl.ModelPackageImpl#getUnicaseLink()
+		 * @generated
+		 */
+		EClass UNICASE_LINK = eINSTANCE.getUnicaseLink();
 
 	}
 

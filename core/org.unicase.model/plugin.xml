@@ -250,7 +250,6 @@
            <constraint
                  class="org.unicase.model.requirement.validation.UseCaseMissingRequirementConstraint"
                  id="org.unicase.model.requirement.validation.UseCaseMissingRequirementConstraint"
-                 isEnabledByDefault="true"
                  lang="java"
                  mode="Batch"
                  name="Use Case Missing Requirement"
@@ -599,7 +598,6 @@
            <constraint
                  class="org.unicase.model.organization.validation.UserMissingEmailAddress"
                  id="org.unicase.model.organization.validation.UserMissingEmailAddress"
-                 isEnabledByDefault="true"
                  lang="Java"
                  mode="Batch"
                  name="User Missing Email Address"
@@ -612,7 +610,6 @@
            <constraint
                  class="org.unicase.model.organization.validation.UserMissingFirstName"
                  id="org.unicase.model.organization.validation.UserMissingFirstName"
-                 isEnabledByDefault="true"
                  lang="Java"
                  mode="Batch"
                  name="User Missing First Name"
@@ -625,7 +622,6 @@
            <constraint
                  class="org.unicase.model.organization.validation.UserMissingLastName"
                  id="org.unicase.model.organization.validation.UserMissingLastName"
-                 isEnabledByDefault="true"
                  lang="Java"
                  mode="Batch"
                  name="User Missing Last Name"
@@ -672,7 +668,6 @@
            <constraint
                  class="org.unicase.model.bug.validation.BugReportMissingResolutionConstraint"
                  id="org.unicase.model.bug.validation.BugReportMissingResolutionConstraint"
-                 isEnabledByDefault="true"
                  lang="Java"
                  mode="Batch"
                  name="Bug Report Missing Resolution Constraint"

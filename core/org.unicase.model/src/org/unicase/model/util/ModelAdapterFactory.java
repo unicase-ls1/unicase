@@ -15,6 +15,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.UnicaseLink;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -86,6 +87,11 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseProject(Project object) {
 			return createProjectAdapter();
+		}
+
+		@Override
+		public Adapter caseUnicaseLink(UnicaseLink object) {
+			return createUnicaseLinkAdapter();
 		}
 
 		@Override
@@ -211,6 +217,19 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseLink <em>Unicase Link</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.UnicaseLink
+	 * @generated
+	 */
+	public Adapter createUnicaseLinkAdapter() {
 		return null;
 	}
 

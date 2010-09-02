@@ -18,6 +18,7 @@ import org.unicase.model.Attachment;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.UnicaseLink;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -85,6 +86,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass projectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass unicaseLinkEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -373,6 +381,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
+	public EClass getUnicaseLink() {
+		return unicaseLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory) getEFactoryInstance();
 	}
@@ -414,6 +431,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(attachmentEClass, ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 
 		projectEClass = createEClass(PROJECT);
+
+		unicaseLinkEClass = createEClass(UNICASE_LINK);
 	}
 
 	/**
@@ -497,6 +516,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		annotationEClass.getESuperTypes().add(this.getUnicaseModelElement());
 		attachmentEClass.getESuperTypes().add(this.getUnicaseModelElement());
 		projectEClass.getESuperTypes().add(theMetamodelPackage.getProject());
+		unicaseLinkEClass.getESuperTypes().add(this.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(unicaseModelElementEClass, UnicaseModelElement.class, "UnicaseModelElement", IS_ABSTRACT,
@@ -560,6 +580,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getAttachment_ReferringModelElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(unicaseLinkEClass, UnicaseLink.class, "UnicaseLink", IS_ABSTRACT, IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(unicaseLinkEClass, this.getUnicaseModelElement(), "getSource", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(unicaseLinkEClass, this.getUnicaseModelElement(), "getTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
