@@ -33,7 +33,8 @@ import org.unicase.model.util.ValidationConstraintHelper;
  * 
  * @author helming
  */
-public class FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRequirementTasks extends AbstractModelConstraint {
+public class FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRequirementTasks extends
+	AbstractModelConstraint {
 	/**
 	 * default constructor.
 	 */
