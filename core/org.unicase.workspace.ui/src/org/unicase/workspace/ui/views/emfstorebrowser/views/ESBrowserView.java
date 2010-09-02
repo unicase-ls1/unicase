@@ -84,6 +84,10 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 					ServerInfo serverInfo = (ServerInfo) msg.getNewValue();
 					serverInfo.eAdapters().add(serverInfoAdapter);
 					viewer.refresh();
+				} else if (msg.getOldValue() instanceof ServerInfo) {
+					ServerInfo serverInfo = (ServerInfo) msg.getOldValue();
+					serverInfo.eAdapters().remove(serverInfoAdapter);
+					viewer.refresh();
 				}
 				if (msg.getFeature() != null
 					&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
