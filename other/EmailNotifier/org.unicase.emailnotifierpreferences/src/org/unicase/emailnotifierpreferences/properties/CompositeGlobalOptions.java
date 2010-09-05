@@ -50,7 +50,7 @@ public class CompositeGlobalOptions extends Composite {
 		this.user = user;
 		setExistEmail(existEmail);
 		GridLayoutFactory.fillDefaults().applyTo(this);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(this);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(this);
 
 		main = new Group(this, SWT.NONE);
 		GridLayoutFactory.fillDefaults().extendedMargins(0, 0, 5, 5).applyTo(main);
