@@ -12,8 +12,7 @@
   <eSubpackages name="goal" nsURI="http://unicase.org/model/urml/goal" nsPrefix="org.unicase.model.urml.goal">
     <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//UrmlModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="soft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" upperBound="-1"
-          eType="#//goal/GoalType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//goal/GoalType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholders" upperBound="-1"
           eType="#//Stakeholder" eOpposite="#//Stakeholder/goals" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="realizedFeatures" upperBound="-1"

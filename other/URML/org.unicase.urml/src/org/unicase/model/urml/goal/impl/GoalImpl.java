@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -69,14 +68,24 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected boolean soft = SOFT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GoalType> type;
+	protected static final GoalType TYPE_EDEFAULT = GoalType.BUSINESS_GOAL;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected GoalType type = TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getStakeholders() <em>Stakeholders</em>}' reference list. <!-- begin-user-doc
@@ -183,11 +192,20 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	 * 
 	 * @generated
 	 */
-	public EList<GoalType> getType() {
-		if (type == null) {
-			type = new EDataTypeUniqueEList<GoalType>(GoalType.class, this, GoalPackage.GOAL__TYPE);
-		}
+	public GoalType getType() {
 		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setType(GoalType newType) {
+		GoalType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL__TYPE, oldType, type));
 	}
 
 	/**
@@ -499,8 +517,7 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			setSoft((Boolean) newValue);
 			return;
 		case GoalPackage.GOAL__TYPE:
-			getType().clear();
-			getType().addAll((Collection<? extends GoalType>) newValue);
+			setType((GoalType) newValue);
 			return;
 		case GoalPackage.GOAL__STAKEHOLDERS:
 			getStakeholders().clear();
@@ -544,7 +561,7 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			setSoft(SOFT_EDEFAULT);
 			return;
 		case GoalPackage.GOAL__TYPE:
-			getType().clear();
+			setType(TYPE_EDEFAULT);
 			return;
 		case GoalPackage.GOAL__STAKEHOLDERS:
 			getStakeholders().clear();
@@ -582,7 +599,7 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 		case GoalPackage.GOAL__SOFT:
 			return soft != SOFT_EDEFAULT;
 		case GoalPackage.GOAL__TYPE:
-			return type != null && !type.isEmpty();
+			return type != TYPE_EDEFAULT;
 		case GoalPackage.GOAL__STAKEHOLDERS:
 			return stakeholders != null && !stakeholders.isEmpty();
 		case GoalPackage.GOAL__REALIZED_FEATURES:

@@ -544,19 +544,19 @@ public class SuggestsLabelEditPart extends LabelEditPart implements ITextAwareEd
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new SuggestsLabelFigure();
+		return new MayBeRefinedByLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class SuggestsLabelFigure extends WrappingLabel {
+	public class MayBeRefinedByLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public SuggestsLabelFigure() {
-			this.setText("suggests");
+		public MayBeRefinedByLabelFigure() {
+			this.setText("may be refined by");
 		}
 
 	}

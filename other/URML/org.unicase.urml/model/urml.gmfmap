@@ -615,7 +615,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="urml.gmfgraph#Suggests"/>
+          href="urml.gmfgraph#MayBeRefinedBy"/>
     </labelMappings>
     <diagramLink
         href="urml.gmfgraph#VariationPointFeature"/>
