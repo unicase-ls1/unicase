@@ -6,6 +6,7 @@
 package org.unicase.emailnotifierpreferences.properties;
 
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Vector;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -23,7 +24,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -36,13 +36,17 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emailnotifierpreferences.Activator;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.metamodel.Project;
+import org.unicase.model.emailnotificationgroup.AggregatedSettings;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.model.emailnotificationgroup.SendSettings;
+import org.unicase.model.emailnotificationgroup.Weekdays;
 import org.unicase.model.emailnotificationgroup.impl.EmailnotificationgroupFactoryImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -52,6 +56,7 @@ import org.unicase.workspace.ui.dialogs.LoginDialog;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
+
 /**
  * A property page for the EMail Notifier Service.
  * 
@@ -60,16 +65,15 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 public class EMailNotifierPage extends PropertyPage {
 
 	// maximum length for the name of a Notification Group
-	private static final Integer MAX = 15;
+	private static final Integer MAX = 13;
 
 	private Project project;
 	private ProjectSpace projectSpace;
 	private List<NotificationGroup> tempNotificationGroups;
 	private User currentUser;
-	private boolean existUser;
 	private boolean existEmail;
 
-	private TableViewer notificationGroupList;
+	private TableViewer notificationTableViewer;
 	private Composite compositeNotificationGroupProperties;
 	private Group groupNotificationGroupProperties;
 	private CompositeNotificationTypeSelection compositeNotificationTypeSelection;
@@ -80,10 +84,9 @@ public class EMailNotifierPage extends PropertyPage {
 	 * 
 	 * @author fuesescc
 	 */
-	private boolean init() {
-		existUser = true;
+	private void init() throws NoProjectException, UserNotExistentException {
 		if (!(getElement() instanceof Project)) {
-			return false;
+			throw new NoProjectException("User does not exist in the current project!");
 		}
 		tempNotificationGroups = new Vector<NotificationGroup>();
 		project = (Project) getElement();
@@ -100,36 +103,67 @@ public class EMailNotifierPage extends PropertyPage {
 			}
 		}
 		if (currentUser == null) {
-			existUser = false;
-			return false;
+			throw new UserNotExistentException("Could not determine the current project!");
 		} else {
-			if (currentUser.getEmail() == null) {
-				existEmail = false;
-			} else if (currentUser.getEmail().equals("")) {
+			if (currentUser.getEmail() == null || currentUser.getEmail().equals("")) {
 				existEmail = false;
 			} else {
 				existEmail = true;
 			}
 		}
-		return true;
+	}
+
+	/**
+	 * NoProjectException.
+	 * 
+	 * @author fuesescc
+	 */
+	@SuppressWarnings("serial")
+	public class NoProjectException extends Exception {
+		/**
+		 * Constructor for NoProjectException.
+		 * 
+		 * @param s Exception message
+		 */
+		public NoProjectException(String s) {
+			super(s);
+		}
+	}
+
+	/**
+	 * UserNotExistentException.
+	 * 
+	 * @author fuesescc
+	 */
+	@SuppressWarnings("serial")
+	public class UserNotExistentException extends Exception {
+		/**
+		 * Constructor for UserNotExistentException.
+		 * 
+		 * @param s Exception message
+		 */
+		public UserNotExistentException(String s) {
+			super(s);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @override
 	 */
 	protected Control createContents(Composite parent) {
 		GridLayoutFactory.fillDefaults().applyTo(parent);
 		noDefaultAndApplyButton();
-
-		if (!init()) {
-			Label label = new Label(parent, SWT.WRAP);
-			if (!existUser) {
-				label.setText("User does not exist in the current project!");
-				return label;
-			} else {
-				label.setText("Could not determine the current project!");
-				return label;
-			}
+		Label label = new Label(parent, SWT.WRAP);
+		try {
+			init();
+		} catch (UserNotExistentException e) {
+			label.setText("User does not exist in the current project!");
+			return label;
+		} catch (NoProjectException e) {
+			label.setText("Could not determine the current project!");
+			return label;
 		}
 
 		TabFolder folder = new TabFolder(parent, SWT.TOP);
@@ -139,7 +173,7 @@ public class EMailNotifierPage extends PropertyPage {
 		mainTab.setText("EMail Notifier Properties");
 
 		loadProperties();
-		notificationGroupList.refresh();
+		notificationTableViewer.refresh();
 
 		return folder;
 	}
@@ -154,19 +188,21 @@ public class EMailNotifierPage extends PropertyPage {
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 		GridDataFactory.fillDefaults().applyTo(root);
 
+		compositeGlobalOptions = new CompositeGlobalOptions(root, existEmail, currentUser);
+
 		final Composite compositeTop = new Composite(root, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(compositeTop);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).hint(540, SWT.DEFAULT).applyTo(
-			compositeTop);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(true, false).hint(540, SWT.DEFAULT)
+			.applyTo(compositeTop);
 
 		Group groupNotificationGroups = new Group(compositeTop, SWT.NONE);
 		GridLayoutFactory.fillDefaults().extendedMargins(3, 5, 10, 0).applyTo(groupNotificationGroups);
 		groupNotificationGroups.setText("Notification Groups");
 
-		notificationGroupList = new TableViewer(groupNotificationGroups, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
+		notificationTableViewer = new TableViewer(groupNotificationGroups, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 			| SWT.BORDER);
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.FILL).grab(false, true).hint(100, 150).applyTo(
-			notificationGroupList.getControl());
+			notificationTableViewer.getControl());
 
 		Composite btntoolbar = new Composite(groupNotificationGroups, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(3).margins(0, 5).spacing(11, 0).applyTo(btntoolbar);
@@ -176,9 +212,7 @@ public class EMailNotifierPage extends PropertyPage {
 		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(compositeNotificationGroupProperties);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(compositeNotificationGroupProperties);
 
-		compositeGlobalOptions = new CompositeGlobalOptions(root, existEmail, currentUser);
-
-		notificationGroupList.setContentProvider(new IStructuredContentProvider() {
+		notificationTableViewer.setContentProvider(new IStructuredContentProvider() {
 			@SuppressWarnings("unchecked")
 			public Object[] getElements(Object inputElement) {
 				List<NotificationGroup> l = (List<NotificationGroup>) inputElement;
@@ -189,11 +223,11 @@ public class EMailNotifierPage extends PropertyPage {
 			}
 
 			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-				notificationGroupList.refresh();
+				notificationTableViewer.refresh();
 			}
 		});
-		notificationGroupList.setInput(tempNotificationGroups);
-		notificationGroupList.setLabelProvider(new LabelProvider() {
+		notificationTableViewer.setInput(tempNotificationGroups);
+		notificationTableViewer.setLabelProvider(new LabelProvider() {
 			public Image getImage(Object element) {
 				return Activator.getImageDescriptor("icons/box.png").createImage();
 			}
@@ -202,30 +236,23 @@ public class EMailNotifierPage extends PropertyPage {
 				return ((NotificationGroup) element).getNotificationGroupName();
 			}
 		});
-		notificationGroupList.addSelectionChangedListener(new ISelectionChangedListener() {
+		notificationTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				disposeProperties();
 				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				if (selection != null) {
 					NotificationGroup group = (NotificationGroup) selection.getFirstElement();
 					if (group != null) {
-						String groupname = group.getNotificationGroupName();
-						createOptions(group, groupname);
+						createOptions(group);
 						compositeNotificationGroupProperties.layout();
 					}
 				}
 			}
 		});
-		notificationGroupList.addFilter(new ViewerFilter() {
+		notificationTableViewer.addFilter(new ViewerFilter() {
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
 				return true;
 			}
-		});
-		notificationGroupList.setSorter(new ViewerSorter() {
-			// public int compare(Viewer viewer, Object e1, Object e2) {
-			// return ((NotificationGroup) e1).getNotificationGroupName().compareTo(((NotificationGroup)
-			// e2).getNotificationGroupName());
-			// }
 		});
 
 		return root;
@@ -283,6 +310,26 @@ public class EMailNotifierPage extends PropertyPage {
 	 * {@inheritDoc}
 	 */
 	public boolean performOk() {
+		ListIterator<NotificationGroup> iterator = tempNotificationGroups.listIterator();
+		while (iterator.hasNext()) {
+			NotificationGroup group = iterator.next();
+			if (group.getSendOption().getValue() == SendSettings.NONE_VALUE) {
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), "Saving not possible",
+					"NotificationGroup \"" + group.getNotificationGroupName() + "\" has no send options set!");
+				return false;
+			} else if (group.getSendOption().getValue() == SendSettings.AGGREGATED_VALUE
+				&& group.getAggregatedOption().getValue() == AggregatedSettings.NONE_VALUE) {
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), "Saving not possible",
+					"NotificationGroup \"" + group.getNotificationGroupName() + "\" has no aggregated options set!");
+				return false;
+			} else if (group.getAggregatedOption().getValue() == AggregatedSettings.WEEKDAY_VALUE
+				&& group.getWeekdayOption().getValue() == Weekdays.NONE_VALUE) {
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), "Saving not possible",
+					"NotificationGroup \"" + group.getNotificationGroupName() + "\" has no weekday set!");
+				return false;
+			}
+		}
+
 		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
 		command.run();
 		if (projectSpace.getUsersession().isLoggedIn()) {
@@ -298,13 +345,24 @@ public class EMailNotifierPage extends PropertyPage {
 
 				@Override
 				protected void doRun() {
-					boolean yes = MessageDialog.openQuestion(getShell(), "Transmit properties",
-						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
-					if (yes) {
+					MessageDialog msgdialog = new MessageDialog(Display.getCurrent().getActiveShell(),
+						"Transmit properties", null, "You are currently not logged in!", MessageDialog.QUESTION,
+						new String[] { "Transmit properties now", "Transmit properties later" }, 1);
+					int chosen = msgdialog.open();
+					switch (chosen) {
+					case -1:
+						break;
+					case 0:
 						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(), projectSpace
 							.getUsersession(), projectSpace.getUsersession().getServerInfo());
 						loginDialog.open();
+						break;
+					case 1:
+						break;
+					default:
+						break;
 					}
+
 				}
 			}.run();
 
@@ -361,28 +419,29 @@ public class EMailNotifierPage extends PropertyPage {
 					newgroup.setNotificationGroupName(dlg.getValue());
 					tempNotificationGroups.add(newgroup);
 					disposeProperties();
-					notificationGroupList.refresh();
-					// ((Table) notificationGroupList.getControl()).select(tempNotificationGroups.size());
+					notificationTableViewer.refresh();
+					((Table) notificationTableViewer.getControl()).select(tempNotificationGroups.size() - 1);
+					createOptions(newgroup);
 				}
 			}
 		});
 		removeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) notificationTableViewer.getSelection();
 				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
 				if (group == null) {
 					return;
 				}
 				disposeProperties();
 				tempNotificationGroups.remove(group);
-				notificationGroupList.refresh();
+				notificationTableViewer.refresh();
 			}
 		});
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				IStructuredSelection selection = (IStructuredSelection) notificationGroupList.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) notificationTableViewer.getSelection();
 				NotificationGroup group = (NotificationGroup) selection.getFirstElement();
 				if (group == null) {
 					return;
@@ -394,8 +453,8 @@ public class EMailNotifierPage extends PropertyPage {
 				if (dlg.open() == Window.OK) {
 					group.setNotificationGroupName(dlg.getValue());
 					disposeProperties();
-					createOptions(group, dlg.getValue());
-					notificationGroupList.update(group, null);
+					createOptions(group);
+					notificationTableViewer.update(group, null);
 				}
 			}
 		});
@@ -406,12 +465,12 @@ public class EMailNotifierPage extends PropertyPage {
 	 * 
 	 * @author fuesescc
 	 */
-	private void createOptions(NotificationGroup group, String name) {
+	private void createOptions(NotificationGroup group) {
 		groupNotificationGroupProperties = new Group(compositeNotificationGroupProperties, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(0, 0, 5, 0).applyTo(
 			groupNotificationGroupProperties);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(groupNotificationGroupProperties);
-		groupNotificationGroupProperties.setText("Options for group \"" + name + "\"");
+		groupNotificationGroupProperties.setText("Options for group \"" + group.getNotificationGroupName() + "\"");
 		compositeNotificationTypeSelection = new CompositeNotificationTypeSelection(groupNotificationGroupProperties,
 			tempNotificationGroups, group);
 		new CompositeSendOptions(groupNotificationGroupProperties, tempNotificationGroups, group);

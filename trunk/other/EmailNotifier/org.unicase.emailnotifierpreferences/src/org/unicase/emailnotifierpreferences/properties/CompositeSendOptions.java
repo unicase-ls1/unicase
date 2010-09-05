@@ -22,8 +22,10 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
+import org.unicase.model.emailnotificationgroup.AggregatedSettings;
 import org.unicase.model.emailnotificationgroup.EmailnotificationgroupPackage;
 import org.unicase.model.emailnotificationgroup.NotificationGroup;
+import org.unicase.model.emailnotificationgroup.SendSettings;
 
 /**
  * A Class for the EMail Notifier Service. The Constructor creates a Composite holding the send options for a certain
@@ -76,7 +78,7 @@ public class CompositeSendOptions extends Composite {
 		GridDataFactory.fillDefaults().grab(false, true).applyTo(aggregated);
 
 		aggregated.setVisible(false);
-		if (group.getSendOption().getValue() == 2) {
+		if (group.getSendOption().getValue() == SendSettings.AGGREGATED.getValue()) {
 			aggregated.setVisible(true);
 		}
 
@@ -129,10 +131,10 @@ public class CompositeSendOptions extends Composite {
 			tempNotificationGroups.get(indexofbundle),
 			EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__AGGREGATED_OPTION));
 
-		if (group.getAggregatedOption().getValue() == 1) {
+		if (group.getAggregatedOption().getValue() == AggregatedSettings.DAYS.getValue()) {
 			createDaysSpinnerComp(indexofbundle, tempNotificationGroups);
 			extraControls.layout();
-		} else if (group.getAggregatedOption().getValue() == 2) {
+		} else if (group.getAggregatedOption().getValue() == AggregatedSettings.WEEKDAY.getValue()) {
 			createWeekdayOptionComp(indexofbundle, tempNotificationGroups);
 			extraControls.layout();
 		}
@@ -151,9 +153,10 @@ public class CompositeSendOptions extends Composite {
 		daysSpinner.setMaximum(30);
 		Label days = new Label(daysSpinnerComp, SWT.LEFT | SWT.BORDER);
 		days.setText("days");
-		daysSpinner.setSelection(1);
 		bindingContext.bindValue(SWTObservables.observeSelection(daysSpinner), EMFObservables.observeValue(tempBundles
 			.get(indexofbundle), EmailnotificationgroupPackage.Literals.NOTIFICATION_GROUP__DAYS_COUNT));
+		daysSpinner.setSelection(1);
+		tempBundles.get(indexofbundle).setDaysCount(1);
 		return daysSpinnerComp;
 	}
 
