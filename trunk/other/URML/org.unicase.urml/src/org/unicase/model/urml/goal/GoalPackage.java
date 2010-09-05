@@ -174,7 +174,7 @@ public interface GoalPackage extends EPackage {
 	int GOAL__SOFT = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -439,10 +439,10 @@ public interface GoalPackage extends EPackage {
 	EAttribute getGoal_Soft();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.model.urml.goal.Goal#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.urml.goal.Goal#getType <em>Type</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the attribute list '<em>Type</em>'.
+	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getType()
 	 * @see #getGoal()
 	 * @generated
@@ -629,7 +629,7 @@ public interface GoalPackage extends EPackage {
 		EAttribute GOAL__SOFT = eINSTANCE.getGoal_Soft();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute list feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @generated

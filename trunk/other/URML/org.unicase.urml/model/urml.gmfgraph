@@ -533,11 +533,11 @@
           text="instantiate"/>
     </descriptors>
     <descriptors
-        name="SuggestsLabelFigure">
+        name="MayBeRefinedByLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:Label"
-          name="SuggestsLabelFigure"
-          text="suggests"/>
+          name="MayBeRefinedByLabelFigure"
+          text="may be refined by"/>
     </descriptors>
     <descriptors
         name="SelectLabelFigure">
@@ -966,8 +966,8 @@
         y="20"/>
   </labels>
   <labels
-      name="Suggests"
-      figure="SuggestsLabelFigure"
+      name="MayBeRefinedBy"
+      figure="MayBeRefinedByLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"

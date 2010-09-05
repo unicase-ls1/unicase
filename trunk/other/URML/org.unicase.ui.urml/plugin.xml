@@ -113,7 +113,7 @@
             locationURI="toolbar:org.unicase.ui.urml.hypergraph.HypergraphView">
          <command
                commandId="org.unicase.ui.urml.hypergraph.AutoRefresh"
-               icon="icons/arrow_refresh_small.png"
+               icon="icons/link_with_editor.gif"
                label="Auto-Refresh"
                style="toggle"
                tooltip="Auto refresh content.">

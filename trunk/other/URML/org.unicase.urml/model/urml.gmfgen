@@ -1542,8 +1542,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="SuggestsLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SuggestsLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SuggestsLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;suggests&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            className="MayBeRefinedByLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MayBeRefinedByLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MayBeRefinedByLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;may be refined by&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
