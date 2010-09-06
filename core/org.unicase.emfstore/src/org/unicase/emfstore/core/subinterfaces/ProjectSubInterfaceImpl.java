@@ -157,8 +157,6 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				lastVersion.setProjectState(project);
 				getResourceHelper().createResourceForProject(project, lastVersion.getPrimarySpec(),
 					projectHistory.getProjectId());
-				// TODO: check if this is OK
-
 				saveWithProject(lastVersion, project);// lastVersion.getProjectState());
 			} catch (FatalEmfStoreException e) {
 				throw new StorageException(StorageException.NOSAVE);
