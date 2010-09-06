@@ -302,6 +302,9 @@ public final class NotificationToOperationConverter {
 		if (id == null) {
 			id = project.getDeletedModelElementId(modelElement);
 		}
+		if (id == null) {
+			throw new IllegalStateException("Model element doesn't have an ID.");
+		}
 		operation.setModelElementId(id);
 	}
 

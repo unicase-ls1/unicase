@@ -1552,36 +1552,32 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		URI projectSpaceURI = URI.createFileURI(projectSpaceFileName);
 		URI operationCompositeURI = URI.createFileURI(operationsCompositeFileName);
 
-		// TODO: create new IDs here
-		// if (getProject().getEobjectsIdMap() == null && getProject().getModelElements().size() != 0) {
-		// throw new IllegalStateException("Project does not have EObject ID map.");
-		// }
-
 		setResourceCount(0);
 		String fileName = projectFragementsFileNamePrefix + getResourceCount()
 			+ Configuration.getProjectFragmentFileExtension();
 		URI fileURI = URI.createFileURI(fileName);
 
 		List<Resource> resources = new ArrayList<Resource>();
-		XMIResource resource = (XMIResource) resourceSet.createResource(fileURI);
+		Resource resource = resourceSet.createResource(fileURI);
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<EObject> modelElements = getProject().getAllModelElements();
+		// List<EObject> modelElements = getProject().getAllModelElements();
+		List<EObject> modelElements = ModelUtil.getAllContainedModelElementsAsList(getProject(), false);
 		int counter = Configuration.getMaxMECountPerResource() + 1;
 		for (EObject modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
-				resource = (XMIResource) resourceSet.createResource(fileURI);
+				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
 				resources.add(resource);
 				counter = 0;
 			}
 			counter++;
 			resource.getContents().add(modelElement);
-			resource.setID(modelElement, ((ProjectImpl) getProject()).getEObjectToIdCache().get(modelElement).getId());
+			((XMIResource) resource).setID(modelElement, getProject().getModelElementId(modelElement).getId());
 		}
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
 		if (this.getLocalOperations() == null) {
@@ -1594,38 +1590,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		projectSpaceResource.getContents().add(this);
 		resources.add(projectSpaceResource);
 
-		// Resource projectResource = project.eResource();
-		// EMap<EObject, ModelElementId> m = null;
-		// for (Resource res : resources) {
-		// try {
-		// if (res instanceof XMIResource) {
-		// XMIResource xmiResource = (XMIResource) res;
-		// TreeIterator<EObject> it = xmiResource.getAllContents();
-		// while (it.hasNext()) {
-		// EObject o = it.next();
-		// if (!(o instanceof Project) && !(o instanceof ModelElementId)
-		// && !(o instanceof EObjectToModelElementIdMapImpl)) {
-		// ModelElementId id = project.getModelElementId(o);
-		// if (id != null) {
-		// xmiResource.setID(o, id.getId());
-		// }
-		// }
-		// }
-		// }
-		// if (projectResource == res) {
-		// m = project.getEobjectsIdMap();
-		// ((ProjectImpl) project).setEObjectsIdMap(null);
-		// }
-		// res.save(Configuration.getResourceSaveOptions());
-		// if (projectResource == res) {
-		// ((ProjectImpl) project).setEObjectsIdMap(m);
-		// }
-		// } catch (IOException e) {
-		// String message = "Save failed on a resource of the workspace failed!";
-		// WorkspaceUtil.logWarning(message, e);
-		// }
-		// }
+		// save all resources that have been created
+		for (Resource currentResource : resources) {
+			try {
+				currentResource.save(Configuration.getResourceSaveOptions());
+			} catch (IOException e) {
+				WorkspaceUtil.logException("Project Space resource init failed!", e);
 
+			}
+		}
 		init();
 	}
 
