@@ -35,5 +35,44 @@
             contributorClass="library.presentation.LibraryActionBarContributor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+         <command
+               commandId="exampleModel.editor.openprojects"
+               label="open project with editor"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="exampleModel.editor"
+            name="whatever">
+      </category>
+      <command
+            category="exampleModel.editor"
+            defaultHandler="exampleModel.editor.commands.OpenProjectHandler"
+            id="exampleModel.editor.openprojects"
+            name="whatever you want">
+      </command>
+   </extension>
 
 </plugin>
