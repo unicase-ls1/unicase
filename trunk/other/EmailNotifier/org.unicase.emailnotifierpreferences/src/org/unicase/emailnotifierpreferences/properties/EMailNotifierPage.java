@@ -55,6 +55,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.dialogs.LoginDialog;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
+import org.unicase.workspace.preferences.PreferenceManager;
 
 
 /**
@@ -91,6 +92,11 @@ public class EMailNotifierPage extends PropertyPage {
 		tempNotificationGroups = new Vector<NotificationGroup>();
 		project = (Project) getElement();
 		projectSpace = WorkspaceManager.getProjectSpace(project);
+		
+		PreferenceManager.INSTANCE.setDefaultProperty(EMailNotifierKey.NOTIFICATIONGROUPS, PreferenceManager.INSTANCE.createProperty(
+			EMailNotifierKey.NOTIFICATIONGROUPS, new EObject[] {}, projectSpace.getProjectId()));
+		PreferenceManager.INSTANCE.setDefaultProperty(EMailNotifierKey.ACTIVATED, PreferenceManager.INSTANCE.createProperty(
+			EMailNotifierKey.ACTIVATED, false, projectSpace.getProjectId()));
 
 		// check the current user
 		ACOrgUnitId userid = projectSpace.getUsersession().getACUser().getId();
