@@ -32,7 +32,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * This is the item provider adapter for a
@@ -95,7 +94,6 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
-			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP);
 		}
 		return childrenFeatures;
 	}
@@ -152,7 +150,6 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -394,9 +391,6 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			MetamodelFactory.eINSTANCE.createModelVersion()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
-
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
 				.createSingleReferenceOperation()));
@@ -408,10 +402,6 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
 				.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP, MetamodelFactory.eINSTANCE
-				.create(MetamodelPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 	}
 
 	/**
@@ -426,8 +416,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		Object childObject = child;
 
 		boolean qualify = childFeature == OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT
-			|| childFeature == OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS
-			|| childFeature == OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECTS_ID_MAP;
+			|| childFeature == OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
