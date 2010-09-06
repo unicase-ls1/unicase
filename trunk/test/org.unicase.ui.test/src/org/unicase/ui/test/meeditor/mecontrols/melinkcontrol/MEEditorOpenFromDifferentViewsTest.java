@@ -5,20 +5,28 @@
  */
 package org.unicase.ui.test.meeditor.mecontrols.melinkcontrol;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotEditor;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTable;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
@@ -29,6 +37,7 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -194,55 +203,55 @@ public class MEEditorOpenFromDifferentViewsTest {
 		}
 	}
 
-	// /**
-	// * Opens the task view. Than the ActionItem B is is opened.
-	// *
-	// * @throws PartInitException will be thrown if the active editor throws an exception
-	// */
-	// @Test
-	// public void taskView() throws PartInitException {
-	// UITestCommon.openView(bot, UNICASE_NODE, TASKVIEW);
-	// bot.sleep(2000);
-	//
-	// // part of test that requires UI-thread
-	// Display.getDefault().syncExec(new Runnable() {
-	// public void run() {
-	// final SWTBotTable table = bot.activeView().bot().table();
-	// select(table, "Action B");
-	// table.widget.notifyListeners(SWT.DefaultSelection, new Event());
-	// }
-	//
-	// });
-	// bot.sleep(2000);
-	//
-	// // check which element was opened
-	// SWTBotEditor activeEditor = bot.activeEditor();
-	// IEditorInput editorInput = activeEditor.getReference().getEditorInput();
-	// if (editorInput instanceof MEEditorInput) {
-	// MEEditorInput meEditorInput = (MEEditorInput) editorInput;
-	// EObject modelElement = meEditorInput.getModelElement();
-	// assertTrue(modelElement.equals(actionItem));
-	// }
-	// }
-
 	/**
-	 * Opens from the project the WorkPackage with name "Sprint 1" in the status view.
+	 * Opens the task view. Than the ActionItem B is is opened.
+	 * 
+	 * @throws PartInitException will be thrown if the active editor throws an exception
 	 */
-	private void showStatusView() {
-		UITestCommon.openView(bot, UNICASE_NODE, NAVIGATOR);
+	@Test
+	public void taskView() throws PartInitException {
+		UITestCommon.openView(bot, UNICASE_NODE, TASKVIEW);
 		bot.sleep(2000);
 
+		// part of test that requires UI-thread
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				SWTBotTreeItem projectNode = bot.activeView().bot().tree().getTreeItem("TestProject(Not shared)");
-				SWTBotTreeItem documentNode = projectNode.expand().getNode("Requirements Document");
-				SWTBotTreeItem leafNode = documentNode.expand().getNode("LeafSection");
-				SWTBotTreeItem sprint1Node = leafNode.expand().getNode("Sprint 1");
-				sprint1Node.contextMenu("Show Status").click();
+				final SWTBotTable table = bot.activeView().bot().table();
+				select(table, "Action B");
+				table.widget.notifyListeners(SWT.DefaultSelection, new Event());
 			}
+
 		});
 		bot.sleep(2000);
+
+		// check which element was opened
+		SWTBotEditor activeEditor = bot.activeEditor();
+		IEditorInput editorInput = activeEditor.getReference().getEditorInput();
+		if (editorInput instanceof MEEditorInput) {
+			MEEditorInput meEditorInput = (MEEditorInput) editorInput;
+			EObject modelElement = meEditorInput.getModelElement();
+			assertTrue(modelElement.equals(actionItem));
+		}
 	}
+
+	// /**
+	// * Opens from the project the WorkPackage with name "Sprint 1" in the status view.
+	// */
+	// private void showStatusView() {
+	// UITestCommon.openView(bot, UNICASE_NODE, NAVIGATOR);
+	// bot.sleep(2000);
+	//
+	// Display.getDefault().syncExec(new Runnable() {
+	// public void run() {
+	// SWTBotTreeItem projectNode = bot.activeView().bot().tree().getTreeItem("TestProject(Not shared)");
+	// SWTBotTreeItem documentNode = projectNode.expand().getNode("Requirements Document");
+	// SWTBotTreeItem leafNode = documentNode.expand().getNode("LeafSection");
+	// SWTBotTreeItem sprint1Node = leafNode.expand().getNode("Sprint 1");
+	// sprint1Node.contextMenu("Show Status").click();
+	// }
+	// });
+	// bot.sleep(2000);
+	// }
 
 	// /**
 	// * Opens the status view and activates the flat view. Than the ActionItem B will be opened.
