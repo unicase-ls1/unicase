@@ -7,8 +7,7 @@ package org.unicase.metamodel;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element Id</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.metamodel.MetamodelPackage#getModelElementId()
  * @model
  * @generated

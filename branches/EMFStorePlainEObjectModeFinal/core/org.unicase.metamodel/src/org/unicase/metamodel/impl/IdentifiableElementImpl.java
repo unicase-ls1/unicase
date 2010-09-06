@@ -19,17 +19,17 @@ import org.unicase.metamodel.MetamodelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.metamodel.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
+ * <li>{@link org.unicase.metamodel.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -37,9 +37,9 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -58,6 +58,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +68,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getIdentifier() {
@@ -75,6 +77,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
@@ -87,6 +90,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,6 +104,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,6 +119,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,6 +134,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +148,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
