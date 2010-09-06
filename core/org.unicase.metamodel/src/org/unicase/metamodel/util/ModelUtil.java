@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.Map.Entry;
@@ -42,6 +43,7 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
  * Utility class for ModelElements.
@@ -173,9 +175,23 @@ public final class ModelUtil {
 			}
 		}
 
-		EObject copy = EcoreUtil.copy(object);
+		if (object instanceof Project) {
 
-		res.getContents().add(copy);
+			Project copiedProject = ((ProjectImpl) object).copy();
+
+			if (res instanceof XMIResource) {
+				XMIResource xmiRes = (XMIResource) res;
+				for (Map.Entry<EObject, ModelElementId> entry : ((ProjectImpl) object).getEObjectToIdCache().entrySet()) {
+					// object).getEObjectToIdCache().entrySet())
+					// TODO: Do we care about the deleted and the new elements, too?
+					xmiRes.setID(copiedProject.getModelElement(entry.getValue()), entry.getValue().getId());
+				}
+			}
+			res.getContents().add(copiedProject);
+		} else {
+			EObject copy = EcoreUtil.copy(object);
+			res.getContents().add(copy);
+		}
 
 		try {
 			res.save(out, null);
@@ -300,6 +316,25 @@ public final class ModelUtil {
 		}
 
 		EObject result = res.getContents().get(0);
+		if (res instanceof XMIResource && result instanceof Project) {
+			((ProjectImpl) result).cachesInitialized = true;
+			XMIResource xmiRes = (XMIResource) res;
+			TreeIterator<EObject> it = ((Project) result).eAllContents();
+			while (it.hasNext()) {
+				EObject me = it.next();
+				String id = xmiRes.getID(me);
+				if (id == null) {
+					throw new SerializationException("Failed to retrieve ID for EObject contained in project: " + me);
+				}
+
+				ModelElementId meId = MetamodelFactory.eINSTANCE.createModelElementId();
+				meId.setId(id);
+				((ProjectImpl) result).getEObjectToIdCache().put(me, meId);
+				((ProjectImpl) result).getEObjectsCache().add(me);
+				((ProjectImpl) result).getIdToEObjectCache().put(meId, me);
+			}
+		}
+
 		res.getContents().remove(result);
 		return result;
 	}
@@ -528,8 +563,8 @@ public final class ModelUtil {
 			org.osgi.framework.Constants.BUNDLE_VERSION);
 
 		// rethrow exception in case this ain't an external/internal release
-		if (emfStoreVersionString.endsWith("qualifier")) {
-			// throw new LoggedException(exception, exception.getMessage());
+		if (emfStoreVersionString.endsWith("qualifier") && exception != null) {
+			throw new LoggedException(exception, exception.getMessage());
 		}
 	}
 
@@ -590,6 +625,9 @@ public final class ModelUtil {
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T clone(T eObject) {
 		EObject clone = EcoreUtil.copy(eObject);
+		if (eObject instanceof ProjectImpl) {
+			return (T) ((ProjectImpl) eObject).copy();
+		}
 		return (T) clone;
 	}
 
@@ -716,18 +754,41 @@ public final class ModelUtil {
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(resourceURI, false);
+		// TODO: EM loadonDemand in testcases changed
+		Resource resource = resourceSet.getResource(resourceURI, true);// false);
 		EList<EObject> contents = resource.getContents();
-		if (contents.size() > 1) {
-			throw new IOException("Resource containes multiple objects!");
-		}
+		// if (contents.size() > 1) {
+		// throw new IOException("Resource containes multiple objects!");
+		// }
 		if (contents.size() < 1) {
 			throw new IOException("Resource contains no objects");
 		}
 		EObject eObject = contents.get(0);
+
+		if (eObject instanceof ProjectImpl && resource instanceof XMIResource) {
+			ProjectImpl project = (ProjectImpl) eObject;
+			// TODO: cachesInitialized shouldn't be public
+			project.cachesInitialized = true;
+			XMIResource xmiResource = (XMIResource) resource;
+			ModelUtil.getAllContainedModelElementsAsList(project, false);
+			TreeIterator<EObject> it = project.eAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+				String id = xmiResource.getID(obj);
+				if (id != null) {
+					objId.setId(id);
+					project.getEObjectToIdCache().put(obj, objId);
+					project.getEObjectsCache().add(obj);
+					project.getIdToEObjectCache().put(objId, obj);
+				}
+			}
+		}
+
 		if (!(eClass.isInstance(eObject))) {
 			throw new IOException("Resource contains no objects of given class");
 		}
+
 		return (T) eObject;
 	}
 
@@ -740,7 +801,19 @@ public final class ModelUtil {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(resourceURI);
 		EList<EObject> contents = resource.getContents();
-		contents.addAll(eObjects);
+
+		for (EObject o : eObjects) {
+			contents.add(o);
+			if (o instanceof ProjectImpl && resource instanceof XMIResource) {
+				XMIResource xmiResource = (XMIResource) resource;
+				for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) o).getEObjectToIdCache().entrySet()) {
+					xmiResource.getContents().add(e.getKey());
+					xmiResource.setID(e.getKey(), e.getValue().getId());
+				}
+			}
+		}
+
+		// contents.addAll(eObjects);
 		resource.save(null);
 	}
 
@@ -950,14 +1023,19 @@ public final class ModelUtil {
 	 */
 	public static List<EObject> getAllContainedModelElementsAsList(EObject modelElement,
 		boolean includeTransientContainments) {
+
+		TreeIterator<EObject> it = modelElement.eAllContents();
 		List<EObject> result = new ArrayList<EObject>();
-		for (EObject containee : modelElement.eContents()) {
-			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
-				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+		while (it.hasNext()) {
+			EObject containee = it.next();
+			if (containee.eContainingFeature() != null && !containee.eContainingFeature().isTransient()
+				|| includeTransientContainments) {
+				List<EObject> elements = getAllContainedModelElementsAsList(containee, includeTransientContainments);
 				result.add(containee);
 				result.addAll(elements);
 			}
 		}
+
 		return result;
 	}
 
