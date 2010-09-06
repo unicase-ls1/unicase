@@ -6,17 +6,15 @@
 package org.unicase.workspace.util;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
  * Helper for resource operations.
@@ -89,10 +87,11 @@ public final class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
-				EObject eObject = e.getKey();
-				String id = e.getValue().getId();
-				xmiResource.setID(eObject, id);
+			TreeIterator<EObject> it = project.eAllContents();
+			while (it.hasNext()) {
+				EObject modelElement = it.next();
+				String modelElementId = project.getModelElementId(modelElement).getId();
+				xmiResource.setID(modelElement, modelElementId);
 			}
 		}
 
