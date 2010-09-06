@@ -408,8 +408,8 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(1, issue.getProposals().size());
 				assertEquals(proposal, issue.getProposals().get(0));
 				assertEquals(issue, proposal.getIssue());
-				assertEquals(true, getProject().contains(issue));
-				assertEquals(true, getProject().contains(proposal));
+				assertEquals(true, getProject().containsInstance(issue));
+				assertEquals(true, getProject().containsInstance(proposal));
 				assertEquals(getProject(), ModelUtil.getProject(issue));
 				assertEquals(getProject(), ModelUtil.getProject(proposal));
 				assertEquals(issue, proposal.eContainer());
@@ -426,14 +426,12 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(issue));
-		assertEquals(false, getProject().contains(proposal));
+		assertEquals(true, getProject().containsInstance(issue));
+		assertEquals(false, getProject().containsInstance(proposal));
 		assertEquals(getProject(), ModelUtil.getProject(issue));
-		// TODO: EMFStore
 		// assertEquals(null, ModelUtil.getProject(proposal));
 		assertEquals(0, issue.getProposals().size());
 		assertEquals(null, proposal.getIssue());
-		// TODO: EMFStore
 		// assertEquals(null, proposal.eContainer());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();

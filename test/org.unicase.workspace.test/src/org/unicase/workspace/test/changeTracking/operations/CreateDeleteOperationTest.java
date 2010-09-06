@@ -91,6 +91,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -104,8 +106,6 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		AbstractOperation operation = operations.get(0);
 		assertEquals(true, operation instanceof CreateDeleteOperation);
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
-
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
 		assertEquals(0, createDeleteOperation.getSubOperations().size());
@@ -139,11 +139,13 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 				useCase.setInitiatingActor(oldActor);
 				useCase.getParticipatingActors().add(newActor);
 				useCase.getParticipatingActors().add(otherActor);
-				assertEquals(true, getProject().contains(useCase));
+				assertEquals(true, getProject().containsInstance(useCase));
 				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				clearOperations();
 			}
 		}.run(false);
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
 		new UnicaseCommand() {
 			@Override
@@ -152,7 +154,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(false, getProject().contains(useCase));
+		assertEquals(false, getProject().containsInstance(useCase));
 		// assertEquals(null, useCase.eContainer());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -162,8 +164,6 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof CreateDeleteOperation);
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
 		assertEquals(true, createDeleteOperation.isDelete());
-
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
@@ -291,10 +291,10 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 				useCase.setInitiatingActor(oldActor);
 				useCase.getParticipatingActors().add(newActor);
 				useCase.getParticipatingActors().add(otherActor);
-				assertEquals(true, getProject().contains(useCase));
-				assertEquals(true, getProject().contains(oldActor));
-				assertEquals(true, getProject().contains(newActor));
-				assertEquals(true, getProject().contains(otherActor));
+				assertEquals(true, getProject().containsInstance(useCase));
+				assertEquals(true, getProject().containsInstance(oldActor));
+				assertEquals(true, getProject().containsInstance(newActor));
+				assertEquals(true, getProject().containsInstance(otherActor));
 				assertEquals(1, oldActor.getInitiatedUseCases().size());
 				assertEquals(1, newActor.getParticipatedUseCases().size());
 				assertEquals(1, otherActor.getParticipatedUseCases().size());
@@ -315,7 +315,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(false, getProject().contains(useCase));
+		assertEquals(false, getProject().containsInstance(useCase));
 		assertEquals(0, oldActor.getInitiatedUseCases().size());
 		assertEquals(0, newActor.getParticipatedUseCases().size());
 		assertEquals(0, otherActor.getParticipatedUseCases().size());
@@ -436,9 +436,9 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		assertEquals(true, getProject().contains(useCaseId));
-		assertEquals(true, getProject().contains(oldActor));
-		assertEquals(true, getProject().contains(newActor));
-		assertEquals(true, getProject().contains(otherActor));
+		assertEquals(true, getProject().containsInstance(oldActor));
+		assertEquals(true, getProject().containsInstance(newActor));
+		assertEquals(true, getProject().containsInstance(otherActor));
 		assertEquals(1, oldActor.getInitiatedUseCases().size());
 		assertEquals(1, newActor.getParticipatedUseCases().size());
 		assertEquals(1, otherActor.getParticipatedUseCases().size());
@@ -491,14 +491,16 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 				issue.setSolution(solution);
 				getProject().addModelElement(issue);
 
-				assertEquals(true, getProject().contains(issue));
-				assertEquals(true, getProject().contains(solution));
+				assertEquals(true, getProject().containsInstance(issue));
+				assertEquals(true, getProject().containsInstance(solution));
 				assertEquals(solution, issue.getSolution());
 				assertEquals(issue, solution.getIssue());
 
 				clearOperations();
 			}
 		}.run(false);
+
+		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 
 		new UnicaseCommand() {
 			@Override
@@ -507,8 +509,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(issue));
-		assertEquals(false, getProject().contains(solution));
+		assertEquals(true, getProject().containsInstance(issue));
+		assertEquals(false, getProject().containsInstance(solution));
 		assertEquals(null, issue.getSolution());
 		assertEquals(null, solution.getIssue());
 
@@ -518,8 +520,6 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof CreateDeleteOperation);
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
 		assertEquals(true, createDeleteOperation.isDelete());
-
-		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 
 		assertEquals(solutionId, createDeleteOperation.getModelElementId());
 
@@ -561,7 +561,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			protected void doRun() {
 				getProject().addModelElement(section);
 
-				assertEquals(true, getProject().contains(section));
+				assertEquals(true, getProject().containsInstance(section));
 
 				clearOperations();
 
@@ -569,8 +569,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(true, getProject().contains(section));
+		assertEquals(true, getProject().containsInstance(useCase));
+		assertEquals(true, getProject().containsInstance(section));
 		assertEquals(1, section.getModelElements().size());
 		assertEquals(section, useCase.getLeafSection());
 		assertEquals(useCase, section.getModelElements().iterator().next());

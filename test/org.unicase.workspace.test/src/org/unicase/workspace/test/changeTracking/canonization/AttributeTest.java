@@ -9,8 +9,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -18,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
@@ -40,9 +43,11 @@ public class AttributeTest extends WorkspaceTest {
 
 	/**
 	 * Tests canonization for consecutive attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void consecutiveAttributeChangeSingleFeature() {
+	public void consecutiveAttributeChangeSingleFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -95,6 +100,22 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				try {
+					ModelUtil.saveObjectToResource(getProject(), getProject().eResource().getURI());
+				} catch (IOException e) {
+					fail("Saving of resource failed.");
+				}
+			}
+		}.run(false);
+
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI());
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
@@ -482,9 +503,11 @@ public class AttributeTest extends WorkspaceTest {
 
 	/**
 	 * Tests canonization for mixed attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void mixedAttributeChangeMultiFeature() {
+	public void mixedAttributeChangeMultiFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -554,6 +577,13 @@ public class AttributeTest extends WorkspaceTest {
 		}.run(false);
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		// Project loadedProject =
+		// ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.createProject().eClass(),
+		// getProject().eResource().getURI());
+		//		
+		// assertTrue(ModelUtil.areEqual(getProject(), loadedProject));
+
 	}
 
 	/**
@@ -996,7 +1026,8 @@ public class AttributeTest extends WorkspaceTest {
 				useCase.setName("NameOfUseCase");
 				useCase.setDescription("DescriptionOfUseCase");
 
-				getProject().deleteModelElement(useCase);
+				EcoreUtil.delete(useCase);
+				// getProject().deleteModelElement(useCase);
 			}
 		}.run(false);
 
@@ -1375,7 +1406,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expect create, 1 attribute ops, 1 multiref op, the delete
-		assertEquals(operations.size(), 4);
+		assertEquals(4, operations.size());
 
 		new UnicaseCommand() {
 			@Override

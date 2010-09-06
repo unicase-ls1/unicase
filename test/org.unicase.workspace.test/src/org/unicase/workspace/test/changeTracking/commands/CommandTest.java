@@ -280,21 +280,17 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
 		Command deleteCommand = DeleteCommand.create(Configuration.getEditingDomain(), useCase);
 		Configuration.getEditingDomain().getCommandStack().execute(deleteCommand);
 
-		// TODO: key is null here
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
 		assertEquals(true, operation instanceof CreateDeleteOperation);
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
-
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
-		// EObject modelElement = createDeleteOperation.getModelElement();
-		// TODO: EMFStore: identity is lost
-		// ModelElementId modelElemetnId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
 
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
 		// assertEquals(useCaseId, modelElemetnId);
@@ -329,16 +325,18 @@ public class CommandTest extends WorkspaceTest {
 				useCase.setInitiatingActor(oldActor);
 				useCase.getParticipatingActors().add(newActor);
 				useCase.getParticipatingActors().add(otherActor);
-				assertEquals(true, getProject().contains(useCase));
+				assertEquals(true, getProject().containsInstance(useCase));
 				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				clearOperations();
 			}
 		}.run(false);
 
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
 		Command deleteCommand = DeleteCommand.create(Configuration.getEditingDomain(), useCase);
 		Configuration.getEditingDomain().getCommandStack().execute(deleteCommand);
 
-		assertEquals(false, getProject().contains(useCase));
+		assertEquals(false, getProject().containsInstance(useCase));
 		// assertEquals(null, useCase.eContainer());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
@@ -349,7 +347,6 @@ public class CommandTest extends WorkspaceTest {
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
 		assertEquals(true, createDeleteOperation.isDelete());
 
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 		// TODO: EMFStore
 		// EObject modelElement = createDeleteOperation.getModelElement();
 		// ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
