@@ -14,9 +14,16 @@ import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Tests for multiattributemove operations.
+ * 
+ * @author wesendon
+ */
 public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 
-	// TODO
+	/**
+	 * Simple move element.
+	 */
 	@Test
 	public void moveTest() {
 		new UnicaseCommand() {
@@ -38,7 +45,9 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
-	// TODO
+	/**
+	 * Move and validate operation.
+	 */
 	@Test
 	public void moveAndOperationTest() {
 		new UnicaseCommand() {
@@ -65,6 +74,9 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Move and reverse.
+	 */
 	@Test
 	public void moveAndReverseTest() {
 		new UnicaseCommand() {
@@ -73,7 +85,6 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				TestElement testElement = getTestElement();
 				testElement.getStrings().add("first");
 				testElement.getStrings().add("second");
-
 				getProjectSpace().getOperations().clear();
 
 				assertTrue(testElement.getStrings().size() == 2);
@@ -81,14 +92,12 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().get(1).equals("second"));
 
 				testElement.getStrings().move(0, 1);
-
 				assertTrue(testElement.getStrings().size() == 2);
 				assertTrue(testElement.getStrings().get(0).equals("second"));
 				assertTrue(testElement.getStrings().get(1).equals("first"));
 
 				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
 				operation.apply(getProject());
-
 				assertTrue(testElement.getStrings().size() == 2);
 				assertTrue(testElement.getStrings().get(0).equals("first"));
 				assertTrue(testElement.getStrings().get(1).equals("second"));

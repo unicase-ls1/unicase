@@ -18,8 +18,16 @@ import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * Tests for multiattributeset operations.
+ * 
+ * @author wesendon
+ */
 public class MultiAttributeSetTest extends WorkspaceTest {
 
+	/**
+	 * Set value test.
+	 */
 	@Test
 	public void setValueToFilledTest() {
 		new UnicaseCommand() {
@@ -42,6 +50,9 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Apply setoperation to element.
+	 */
 	@Test
 	public void applyValueToFilledTest() {
 		new UnicaseCommand() {
@@ -66,6 +77,9 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * apply setoperation with wrong index.
+	 */
 	@Test
 	public void applyValueToFilledWrongIndexTest() {
 		new UnicaseCommand() {
@@ -90,6 +104,9 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Apply to filled list.
+	 */
 	@Test
 	public void applyValueToMultiFilledTest() {
 		new UnicaseCommand() {
@@ -116,6 +133,9 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	/**
+	 * Set and reverse.
+	 */
 	@Test
 	public void setAndReverseTest() {
 		new UnicaseCommand() {

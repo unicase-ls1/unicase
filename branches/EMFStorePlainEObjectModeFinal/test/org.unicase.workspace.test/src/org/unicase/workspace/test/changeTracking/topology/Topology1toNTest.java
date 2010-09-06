@@ -212,6 +212,8 @@ public class Topology1toNTest extends TopologyTest {
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		actor.setName("actor");
+		actor2.setName("actor2");
 
 		getProject().addModelElement(section);
 		section.getModelElements().add(actor);
