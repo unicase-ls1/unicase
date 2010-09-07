@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
@@ -350,13 +351,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {
 
-		// 4 cases to check
-		// regular vs. regular
-		// regular vs. opposite
-		// opposite vs. regular
-		// opposite vs. opposite
-
-		// case 1: regular vs. regular
 		if (opA.getModelElementId().equals(opB.getModelElementId())
 			&& opA.getFeatureName().equals(opB.getFeatureName())) {
 
@@ -376,8 +370,25 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			}
 			return false;
 
-		}
+		} else {
+			if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT
+				.equals(opB.getContainmentType()))) {
+				return false;
+			}
 
+			if (!(opA.isAdd() == opB.isAdd())) {
+				return false;
+			}
+			for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
+
+				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
+
+					if (mA.equals(mB)) {
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
@@ -389,12 +400,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardSingleReferences(SingleReferenceOperation opA, SingleReferenceOperation opB) {
 
-		// 4 possible cases to check:
-		// regular vs. regular
-		// regular vs. opposite
-		// opposite vs. regular
-		// opposite vs. opposite
-
 		// case 1: regular vs. regular
 		if (opA.getModelElementId().equals(opB.getModelElementId())
 			&& opA.getFeatureName().equals(opB.getFeatureName())) {
@@ -404,9 +409,15 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			}
 			return false;
 
-		}
+		} else {
 
-		return false;
+			if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT
+				.equals(opB.getContainmentType()))) {
+				return false;
+			}
+
+			return (opA.getNewValue() != null && isSame(opA.getNewValue(), opB.getNewValue()));
+		}
 	}
 
 	private boolean doConflictHardAttributes(AttributeOperation opA, AttributeOperation opB) {
@@ -809,11 +820,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private boolean sameFeatureAndId(FeatureOperation operationA, FeatureOperation operationB) {
-		if (isSame(operationA.getModelElementId(), operationB.getModelElementId())
-			&& isSame(operationA.getFeatureName(), operationB.getFeatureName())) {
-			return true;
-		}
-		return false;
+		return (isSame(operationA.getModelElementId(), operationB.getModelElementId()) && isSame(operationA
+			.getFeatureName(), operationB.getFeatureName()));
 	}
 
 	private static boolean isCreateOperation(AbstractOperation op) {
