@@ -393,9 +393,22 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private boolean doConflictHardSingleMultiReferences(SingleReferenceOperation opA, MultiReferenceOperation opB) {
+		if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT.equals(opB
+			.getContainmentType()))) {
+			return false;
+		}
+
+		if (!opB.isAdd()) {
+			return false;
+		}
+
+		for (ModelElementId id : opB.getOtherInvolvedModelElements()) {
+			if (id.equals(opA.getNewValue())) {
+				return true;
+			}
+		}
 
 		return false;
-
 	}
 
 	private boolean doConflictHardSingleReferences(SingleReferenceOperation opA, SingleReferenceOperation opB) {
