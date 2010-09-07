@@ -131,8 +131,14 @@ public final class NotificationToOperationConverter {
 			break;
 		case Notification.REMOVE_MANY:
 			list = (List<Object>) n.getOldValue();
-			for (int value : ((int[]) n.getNewValue())) {
-				operation.getIndexes().add(value);
+			if (n.getNewValue() == null) {
+				for (int i = 0; i < list.size(); i++) {
+					operation.getIndexes().add(i);
+				}
+			} else {
+				for (int value : ((int[]) n.getNewValue())) {
+					operation.getIndexes().add(value);
+				}
 			}
 			break;
 		default:

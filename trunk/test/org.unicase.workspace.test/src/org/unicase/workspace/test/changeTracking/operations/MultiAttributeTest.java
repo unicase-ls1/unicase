@@ -155,6 +155,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
 				assertTrue(abstractOperation instanceof MultiAttributeOperation);
 				MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;
+				assertTrue(ao.getIndexes().size() == 1);
 				assertTrue(ao.getIndexes().get(0) == 0);
 				assertTrue(ao.getReferencedValues().get(0).equals("first"));
 				assertTrue(ao.isAdd());
@@ -162,6 +163,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				abstractOperation = getProjectSpace().getOperations().get(1);
 				assertTrue(abstractOperation instanceof MultiAttributeOperation);
 				ao = (MultiAttributeOperation) abstractOperation;
+				assertTrue(ao.getIndexes().size() == 2);
 				assertTrue(ao.getIndexes().get(0) == 1);
 				assertTrue(ao.getIndexes().get(1) == 2);
 				assertTrue(ao.getReferencedValues().get(0).equals("second"));
