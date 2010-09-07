@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
@@ -54,7 +55,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 			addInitiatingActorPropertyDescriptor(object);
 			addParticipatingActorsPropertyDescriptor(object);
 			addRealizedUserTaskPropertyDescriptor(object);
+			addPreconditionPropertyDescriptor(object);
 			addUseCaseStepsPropertyDescriptor(object);
+			addPostconditionPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addFunctionalRequirementsPropertyDescriptor(object);
 			addNonFunctionalRequirementsPropertyDescriptor(object);
@@ -197,6 +200,20 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
+	 * This adds a property descriptor for the Precondition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreconditionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_precondition_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_UseCase_precondition_feature", "_UI_UseCase_type"),
+			RequirementPackage.Literals.USE_CASE__PRECONDITION, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Use Case Steps feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -206,6 +223,20 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_useCaseSteps_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_UseCase_useCaseSteps_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__USE_CASE_STEPS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Postcondition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPostconditionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_postcondition_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_UseCase_postcondition_feature", "_UI_UseCase_type"),
+			RequirementPackage.Literals.USE_CASE__POSTCONDITION, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
