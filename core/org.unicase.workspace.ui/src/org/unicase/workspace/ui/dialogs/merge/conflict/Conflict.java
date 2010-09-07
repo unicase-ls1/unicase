@@ -19,9 +19,8 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * Main class representing a conflict. it offers all kind of convenience methods
- * and organizes the conflicts initialization. Read the constructor's
- * description for further implemenation details (
+ * Main class representing a conflict. it offers all kind of convenience methods and organizes the conflicts
+ * initialization. Read the constructor's description for further implemenation details (
  * {@link #Conflict(List, List, DecisionManager)})
  * 
  * @author wesendon
@@ -39,26 +38,23 @@ public abstract class Conflict extends Observable {
 	 * 
 	 * @see #Conflict(List, List, DecisionManager)
 	 */
+	// BEGIN COMPLEX CODE
 	protected List<AbstractOperation> operationsA;
 	protected List<AbstractOperation> operationsB;
 
+	// END COMPLEX CODE
+
 	/**
-	 * Default constructor for conflicts. Many conflicts only need one operation
-	 * for my and their side. But in order to use a suitable upper class for all
-	 * conflicts, conflicts requires a list of operations. opsA ~ myOperations,
-	 * opsB ~ theirOperations, but again, to keep it general, it's called A and
-	 * B. These fields are protected so the implementing Conflict should create
-	 * it's own getter method.
+	 * Default constructor for conflicts. Many conflicts only need one operation for my and their side. But in order to
+	 * use a suitable upper class for all conflicts, conflicts requires a list of operations. opsA ~ myOperations, opsB
+	 * ~ theirOperations, but again, to keep it general, it's called A and B. These fields are protected so the
+	 * implementing Conflict should create it's own getter method.
 	 * 
-	 * @param opsA
-	 *            first list of operations (often: myOperations)
-	 * @param opsB
-	 *            second list of operations (often: theirOperations)
-	 * @param decisionManager
-	 *            decision manager
+	 * @param opsA first list of operations (often: myOperations)
+	 * @param opsB second list of operations (often: theirOperations)
+	 * @param decisionManager decision manager
 	 */
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
-			DecisionManager decisionManager) {
+	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager) {
 		this(opsA, opsB, decisionManager, true);
 	}
 
@@ -66,18 +62,13 @@ public abstract class Conflict extends Observable {
 	 * Additional constructor, which allows deactivating initialization.
 	 * 
 	 * @see #Conflict(List, List, DecisionManager)
-	 * @param opsA
-	 *            first list of operations (often: myOperations)
-	 * @param opsB
-	 *            second list of operations (often: theirOperations)
-	 * @param decisionManager
-	 *            decision manager
-	 * @param init
-	 *            allows to deactivate initialization, has to be done manually
-	 *            otherwise.
+	 * @param opsA first list of operations (often: myOperations)
+	 * @param opsB second list of operations (often: theirOperations)
+	 * @param decisionManager decision manager
+	 * @param init allows to deactivate initialization, has to be done manually otherwise.
 	 */
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
-			DecisionManager decisionManager, boolean init) {
+	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager,
+		boolean init) {
 		this.operationsA = opsA;
 		this.operationsB = opsB;
 		this.decisionManager = decisionManager;
@@ -97,14 +88,12 @@ public abstract class Conflict extends Observable {
 		initAdditionalConflictOptions(options);
 	}
 
-	private void initAdditionalConflictOptions(
-			ArrayList<ConflictOption> options2) {
+	private void initAdditionalConflictOptions(ArrayList<ConflictOption> options2) {
 		if (!allowOtherOptions()) {
 			return;
 		}
-		IConfigurationElement[] config = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.unicase.workspace.ui.merge.customoption");
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.ui.merge.customoption");
 
 		for (IConfigurationElement e : config) {
 			try {
@@ -113,8 +102,7 @@ public abstract class Conflict extends Observable {
 
 					CustomConflictOptionFactory factory = (CustomConflictOptionFactory) object;
 					if (factory.isApplicableConflict(this)) {
-						CustomConflictOption customConflictOption = factory
-								.createCustomConflictOption(this);
+						CustomConflictOption customConflictOption = factory.createCustomConflictOption(this);
 						if (customConflictOption != null) {
 							options.add(customConflictOption);
 						}
@@ -122,16 +110,14 @@ public abstract class Conflict extends Observable {
 
 				}
 			} catch (CoreException e1) {
-				WorkspaceUtil.logException(
-						"Couldn't load merge option extension point.", e1);
+				WorkspaceUtil.logException("Couldn't load merge option extension point.", e1);
 				// fail silently
 			}
 		}
 	}
 
 	/**
-	 * Defines whether other option should be allowed via extension. E.g. Issue
-	 * option.
+	 * Defines whether other option should be allowed via extension. E.g. Issue option.
 	 * 
 	 * @return true, if other options are allowed
 	 */
@@ -142,8 +128,7 @@ public abstract class Conflict extends Observable {
 	/**
 	 * Is called in order to init the options.
 	 * 
-	 * @param options
-	 *            list of options
+	 * @param options list of options
 	 */
 	protected abstract void initConflictOptions(List<ConflictOption> options);
 
@@ -214,8 +199,7 @@ public abstract class Conflict extends Observable {
 	/**
 	 * Sets an options as solution for this conflict.
 	 * 
-	 * @param conflictOption
-	 *            option
+	 * @param conflictOption option
 	 */
 	public void setSolution(ConflictOption conflictOption) {
 		solution = conflictOption;
@@ -245,15 +229,13 @@ public abstract class Conflict extends Observable {
 	}
 
 	/**
-	 * This method is used by {@link DecisionManager} in order to create the
-	 * resulting operations.
+	 * This method is used by {@link DecisionManager} in order to create the resulting operations.
 	 * 
 	 * @return list of ops.
 	 */
 	public List<AbstractOperation> getRejectedTheirs() {
 		if (!isResolved()) {
-			throw new IllegalStateException(
-					"Can't call this method, unless conflict is resolved.");
+			throw new IllegalStateException("Can't call this method, unless conflict is resolved.");
 		}
 		if (solution.getType() == OptionType.TheirOperation) {
 			return new ArrayList<AbstractOperation>();
@@ -269,15 +251,13 @@ public abstract class Conflict extends Observable {
 	}
 
 	/**
-	 * This method is used by {@link DecisionManager} in order to create the
-	 * resulting operations.
+	 * This method is used by {@link DecisionManager} in order to create the resulting operations.
 	 * 
 	 * @return list of ops
 	 */
 	public List<AbstractOperation> getAcceptedMine() {
 		if (!isResolved()) {
-			throw new IllegalStateException(
-					"Can't call this method, unless conflict is resolved.");
+			throw new IllegalStateException("Can't call this method, unless conflict is resolved.");
 		}
 		if (solution.getType() == OptionType.TheirOperation) {
 			return new ArrayList<AbstractOperation>();
@@ -289,8 +269,7 @@ public abstract class Conflict extends Observable {
 	/**
 	 * Get an option by its type.
 	 * 
-	 * @param type
-	 *            type
+	 * @param type type
 	 * @return option or null
 	 */
 	public ConflictOption getOptionOfType(OptionType type) {
