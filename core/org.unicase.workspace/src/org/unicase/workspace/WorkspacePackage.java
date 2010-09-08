@@ -20,36 +20,35 @@ import org.unicase.metamodel.MetamodelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.workspace.WorkspaceFactory
  * @model kind="package"
  * @generated
  */
 public interface WorkspacePackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "workspace";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/workspace";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.workspace";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	WorkspacePackage eINSTANCE = org.unicase.workspace.impl.WorkspacePackageImpl.init();
@@ -65,36 +64,36 @@ public interface WorkspacePackage extends EPackage {
 	int WORKSPACE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Project Spaces</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Project Spaces</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORKSPACE__PROJECT_SPACES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORKSPACE__SERVER_INFOS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Usersessions</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Usersessions</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORKSPACE__USERSESSIONS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Active Project Space</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Active Project Space</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -120,24 +119,24 @@ public interface WorkspacePackage extends EPackage {
 	int SERVER_INFO = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVER_INFO__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Url</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVER_INFO__URL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Port</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Port</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -190,24 +189,24 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Username</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USERSESSION__USERNAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Password</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USERSESSION__PASSWORD = 1;
 
 	/**
-	 * The feature id for the '<em><b>Session Id</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Session Id</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -223,16 +222,16 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION__PERSISTENT_PASSWORD = 3;
 
 	/**
-	 * The feature id for the '<em><b>Server Info</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Server Info</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USERSESSION__SERVER_INFO = 4;
 
 	/**
-	 * The feature id for the '<em><b>Save Password</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Save Password</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -248,9 +247,9 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION__AC_USER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Changed Properties</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Changed Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -268,7 +267,6 @@ public interface WorkspacePackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.workspace.impl.ProjectSpaceImpl
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getProjectSpace()
 	 * @generated
@@ -276,8 +274,8 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -293,17 +291,17 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__PROJECT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__PROJECT_ID = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Project Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -319,122 +317,121 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__PROJECT_DESCRIPTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Events</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__EVENTS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Usersession</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Usersession</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__USERSESSION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Last Updated</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Last Updated</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__LAST_UPDATED = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__BASE_VERSION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Resource Count</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Resource Count</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__RESOURCE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Dirty</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__DIRTY = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__OLD_LOG_MESSAGES = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Local Operations</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Local Operations</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__LOCAL_OPERATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__NOTIFICATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Pending File Transfers</b></em>' containment reference list. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Pending File Transfers</b></em>' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__PENDING_FILE_TRANSFERS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Event Composite</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Event Composite</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__EVENT_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
-	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
-	 * The number of structural features of the '<em>Project Space</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Project Space</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
-	 * <em>Operation Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.workspace.impl.OperationCompositeImpl
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getOperationComposite()
 	 * @generated
@@ -442,27 +439,26 @@ public interface WorkspacePackage extends EPackage {
 	int OPERATION_COMPOSITE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int OPERATION_COMPOSITE__OPERATIONS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Operation Composite</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Operation Composite</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int OPERATION_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl
-	 * <em>Pending File Transfer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl <em>Pending File Transfer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.workspace.impl.PendingFileTransferImpl
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getPendingFileTransfer()
 	 * @generated
@@ -470,68 +466,67 @@ public interface WorkspacePackage extends EPackage {
 	int PENDING_FILE_TRANSFER = 5;
 
 	/**
-	 * The feature id for the '<em><b>Attachment Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attachment Id</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__ATTACHMENT_ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>File Version</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>File Version</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__FILE_VERSION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Chunk Number</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Chunk Number</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__CHUNK_NUMBER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Upload</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Upload</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__UPLOAD = 3;
 
 	/**
-	 * The feature id for the '<em><b>File Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__FILE_NAME = 4;
 
 	/**
-	 * The feature id for the '<em><b>Preliminary File Name</b></em>' attribute. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Preliminary File Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME = 5;
 
 	/**
-	 * The number of structural features of the '<em>Pending File Transfer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Pending File Transfer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.EventCompositeImpl <em>Event Composite</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.workspace.impl.EventCompositeImpl <em>Event Composite</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.workspace.impl.EventCompositeImpl
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getEventComposite()
 	 * @generated
@@ -539,27 +534,26 @@ public interface WorkspacePackage extends EPackage {
 	int EVENT_COMPOSITE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Events</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int EVENT_COMPOSITE__EVENTS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Event Composite</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Event Composite</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int EVENT_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl
-	 * <em>Notification Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl <em>Notification Composite</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.workspace.impl.NotificationCompositeImpl
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getNotificationComposite()
 	 * @generated
@@ -567,18 +561,18 @@ public interface WorkspacePackage extends EPackage {
 	int NOTIFICATION_COMPOSITE = 7;
 
 	/**
-	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int NOTIFICATION_COMPOSITE__NOTIFICATIONS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Notification Composite</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Notification Composite</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -595,10 +589,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getWorkspace();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Project Spaces</em>'.
 	 * @see org.unicase.workspace.Workspace#getProjectSpaces()
 	 * @see #getWorkspace()
@@ -607,10 +600,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ProjectSpaces();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Server Infos</em>'.
 	 * @see org.unicase.workspace.Workspace#getServerInfos()
 	 * @see #getWorkspace()
@@ -619,10 +611,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_ServerInfos();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Usersessions</em>'.
 	 * @see org.unicase.workspace.Workspace#getUsersessions()
 	 * @see #getWorkspace()
@@ -631,9 +622,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getWorkspace_Usersessions();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.Workspace#getActiveProjectSpace
-	 * <em>Active Project Space</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Active Project Space</em>'.
 	 * @see org.unicase.workspace.Workspace#getActiveProjectSpace()
 	 * @see #getWorkspace()
@@ -685,10 +675,9 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getServerInfo_Port();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Project Infos</em>'.
 	 * @see org.unicase.workspace.ServerInfo#getProjectInfos()
 	 * @see #getServerInfo()
@@ -697,9 +686,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getServerInfo_ProjectInfos();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getLastUsersession
-	 * <em>Last Usersession</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Last Usersession</em>'.
 	 * @see org.unicase.workspace.ServerInfo#getLastUsersession()
 	 * @see #getServerInfo()
@@ -708,9 +696,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getServerInfo_LastUsersession();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ServerInfo#getCertificateAlias
-	 * <em>Certificate Alias</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ServerInfo#getCertificateAlias <em>Certificate Alias</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Certificate Alias</em>'.
 	 * @see org.unicase.workspace.ServerInfo#getCertificateAlias()
 	 * @see #getServerInfo()
@@ -729,9 +716,8 @@ public interface WorkspacePackage extends EPackage {
 	EClass getUsersession();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getUsername
-	 * <em>Username</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Username</em>'.
 	 * @see org.unicase.workspace.Usersession#getUsername()
 	 * @see #getUsersession()
@@ -740,9 +726,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getUsersession_Username();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getPassword
-	 * <em>Password</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Password</em>'.
 	 * @see org.unicase.workspace.Usersession#getPassword()
 	 * @see #getUsersession()
@@ -751,9 +736,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getUsersession_Password();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.Usersession#getSessionId
-	 * <em>Session Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Session Id</em>'.
 	 * @see org.unicase.workspace.Usersession#getSessionId()
 	 * @see #getUsersession()
@@ -762,9 +746,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getUsersession_SessionId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getPersistentPassword
-	 * <em>Persistent Password</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Persistent Password</em>'.
 	 * @see org.unicase.workspace.Usersession#getPersistentPassword()
 	 * @see #getUsersession()
@@ -773,9 +756,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getUsersession_PersistentPassword();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.Usersession#getServerInfo
-	 * <em>Server Info</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Server Info</em>'.
 	 * @see org.unicase.workspace.Usersession#getServerInfo()
 	 * @see #getUsersession()
@@ -784,9 +766,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getUsersession_ServerInfo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#isSavePassword
-	 * <em>Save Password</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Save Password</em>'.
 	 * @see org.unicase.workspace.Usersession#isSavePassword()
 	 * @see #getUsersession()
@@ -795,9 +776,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getUsersession_SavePassword();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.Usersession#getACUser
-	 * <em>AC User</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>AC User</em>'.
 	 * @see org.unicase.workspace.Usersession#getACUser()
 	 * @see #getUsersession()
@@ -806,10 +786,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getUsersession_ACUser();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Changed Properties</em>'.
 	 * @see org.unicase.workspace.Usersession#getChangedProperties()
 	 * @see #getUsersession()
@@ -828,9 +807,8 @@ public interface WorkspacePackage extends EPackage {
 	EClass getProjectSpace();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProject
-	 * <em>Project</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Project</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getProject()
 	 * @see #getProjectSpace()
@@ -839,9 +817,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Project();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProjectId
-	 * <em>Project Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Project Id</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getProjectId()
 	 * @see #getProjectSpace()
@@ -850,9 +827,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_ProjectId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getProjectName
-	 * <em>Project Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Project Name</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getProjectName()
 	 * @see #getProjectSpace()
@@ -861,9 +837,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_ProjectName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getProjectDescription
-	 * <em>Project Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Project Description</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getProjectDescription()
 	 * @see #getProjectSpace()
@@ -872,9 +847,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_ProjectDescription();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getEvents
-	 * <em>Events</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Events</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getEvents()
 	 * @see #getProjectSpace()
@@ -883,9 +857,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Events();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getUsersession
-	 * <em>Usersession</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Usersession</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getUsersession()
 	 * @see #getProjectSpace()
@@ -894,9 +867,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Usersession();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getLastUpdated
-	 * <em>Last Updated</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Last Updated</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getLastUpdated()
 	 * @see #getProjectSpace()
@@ -905,9 +877,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_LastUpdated();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getBaseVersion
-	 * <em>Base Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Base Version</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getBaseVersion()
 	 * @see #getProjectSpace()
@@ -916,9 +887,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_BaseVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getResourceCount
-	 * <em>Resource Count</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Resource Count</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getResourceCount()
 	 * @see #getProjectSpace()
@@ -929,7 +899,6 @@ public interface WorkspacePackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Dirty</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#isDirty()
 	 * @see #getProjectSpace()
@@ -938,9 +907,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_Dirty();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.workspace.ProjectSpace#getOldLogMessages
-	 * <em>Old Log Messages</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute list '{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Old Log Messages</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getOldLogMessages()
 	 * @see #getProjectSpace()
@@ -949,10 +917,9 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getProjectSpace_OldLogMessages();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.workspace.ProjectSpace#getLocalOperations <em>Local Operations</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getLocalOperations <em>Local Operations</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Local Operations</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getLocalOperations()
 	 * @see #getProjectSpace()
@@ -961,10 +928,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_LocalOperations();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.ProjectSpace#getNotifications <em>Notifications</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getNotifications <em>Notifications</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getNotifications()
 	 * @see #getProjectSpace()
@@ -985,10 +951,9 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_PendingFileTransfers();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.workspace.ProjectSpace#getEventComposite <em>Event Composite</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.ProjectSpace#getEventComposite <em>Event Composite</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Event Composite</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getEventComposite()
 	 * @see #getProjectSpace()
@@ -1009,9 +974,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_NotificationComposite();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Operation Composite</em>'.
 	 * @see org.unicase.workspace.OperationComposite
 	 * @generated
@@ -1019,10 +983,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getOperationComposite();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.OperationComposite#getOperations <em>Operations</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.OperationComposite#getOperations <em>Operations</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Operations</em>'.
 	 * @see org.unicase.workspace.OperationComposite#getOperations()
 	 * @see #getOperationComposite()
@@ -1031,9 +994,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getOperationComposite_Operations();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.workspace.PendingFileTransfer
-	 * <em>Pending File Transfer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.workspace.PendingFileTransfer <em>Pending File Transfer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Pending File Transfer</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer
 	 * @generated
@@ -1041,10 +1003,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getPendingFileTransfer();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.workspace.PendingFileTransfer#getAttachmentId <em>Attachment Id</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference '{@link org.unicase.workspace.PendingFileTransfer#getAttachmentId <em>Attachment Id</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Attachment Id</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer#getAttachmentId()
 	 * @see #getPendingFileTransfer()
@@ -1053,9 +1014,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getPendingFileTransfer_AttachmentId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFileVersion
-	 * <em>File Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFileVersion <em>File Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>File Version</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer#getFileVersion()
 	 * @see #getPendingFileTransfer()
@@ -1064,9 +1024,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getPendingFileTransfer_FileVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getChunkNumber
-	 * <em>Chunk Number</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getChunkNumber <em>Chunk Number</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Chunk Number</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer#getChunkNumber()
 	 * @see #getPendingFileTransfer()
@@ -1075,9 +1034,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getPendingFileTransfer_ChunkNumber();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#isUpload
-	 * <em>Upload</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#isUpload <em>Upload</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Upload</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer#isUpload()
 	 * @see #getPendingFileTransfer()
@@ -1086,9 +1044,8 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getPendingFileTransfer_Upload();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFileName
-	 * <em>File Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>File Name</em>'.
 	 * @see org.unicase.workspace.PendingFileTransfer#getFileName()
 	 * @see #getPendingFileTransfer()
@@ -1119,10 +1076,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getEventComposite();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.EventComposite#getEvents <em>Events</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.EventComposite#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Events</em>'.
 	 * @see org.unicase.workspace.EventComposite#getEvents()
 	 * @see #getEventComposite()
@@ -1131,9 +1087,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getEventComposite_Events();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.workspace.NotificationComposite
-	 * <em>Notification Composite</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.workspace.NotificationComposite <em>Notification Composite</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Notification Composite</em>'.
 	 * @see org.unicase.workspace.NotificationComposite
 	 * @generated
@@ -1141,10 +1096,9 @@ public interface WorkspacePackage extends EPackage {
 	EClass getNotificationComposite();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.NotificationComposite#getNotifications <em>Notifications</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.NotificationComposite#getNotifications <em>Notifications</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
 	 * @see org.unicase.workspace.NotificationComposite#getNotifications()
 	 * @see #getNotificationComposite()
@@ -1153,8 +1107,8 @@ public interface WorkspacePackage extends EPackage {
 	EReference getNotificationComposite_Notifications();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1169,14 +1123,12 @@ public interface WorkspacePackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.WorkspaceImpl <em>Workspace</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.workspace.impl.WorkspaceImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getWorkspace()
 		 * @generated
@@ -1208,17 +1160,16 @@ public interface WorkspacePackage extends EPackage {
 		EReference WORKSPACE__USERSESSIONS = eINSTANCE.getWorkspace_Usersessions();
 
 		/**
-		 * The meta object literal for the '<em><b>Active Project Space</b></em>' reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Active Project Space</b></em>' reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference WORKSPACE__ACTIVE_PROJECT_SPACE = eINSTANCE.getWorkspace_ActiveProjectSpace();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.ServerInfoImpl <em>Server Info</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.ServerInfoImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getServerInfo()
 		 * @generated
@@ -1226,25 +1177,25 @@ public interface WorkspacePackage extends EPackage {
 		EClass SERVER_INFO = eINSTANCE.getServerInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__NAME = eINSTANCE.getServerInfo_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__URL = eINSTANCE.getServerInfo_Url();
 
 		/**
-		 * The meta object literal for the '<em><b>Port</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__PORT = eINSTANCE.getServerInfo_Port();
@@ -1258,25 +1209,24 @@ public interface WorkspacePackage extends EPackage {
 		EReference SERVER_INFO__PROJECT_INFOS = eINSTANCE.getServerInfo_ProjectInfos();
 
 		/**
-		 * The meta object literal for the '<em><b>Last Usersession</b></em>' reference feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Last Usersession</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SERVER_INFO__LAST_USERSESSION = eINSTANCE.getServerInfo_LastUsersession();
 
 		/**
-		 * The meta object literal for the '<em><b>Certificate Alias</b></em>' attribute feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Certificate Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__CERTIFICATE_ALIAS = eINSTANCE.getServerInfo_CertificateAlias();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.UsersessionImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getUsersession()
 		 * @generated
@@ -1284,57 +1234,57 @@ public interface WorkspacePackage extends EPackage {
 		EClass USERSESSION = eINSTANCE.getUsersession();
 
 		/**
-		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__USERNAME = eINSTANCE.getUsersession_Username();
 
 		/**
-		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__PASSWORD = eINSTANCE.getUsersession_Password();
 
 		/**
-		 * The meta object literal for the '<em><b>Session Id</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Session Id</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__SESSION_ID = eINSTANCE.getUsersession_SessionId();
 
 		/**
-		 * The meta object literal for the '<em><b>Persistent Password</b></em>' attribute feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Persistent Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__PERSISTENT_PASSWORD = eINSTANCE.getUsersession_PersistentPassword();
 
 		/**
-		 * The meta object literal for the '<em><b>Server Info</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Server Info</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__SERVER_INFO = eINSTANCE.getUsersession_ServerInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Save Password</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Save Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__SAVE_PASSWORD = eINSTANCE.getUsersession_SavePassword();
 
 		/**
-		 * The meta object literal for the '<em><b>AC User</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>AC User</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__AC_USER = eINSTANCE.getUsersession_ACUser();
@@ -1348,9 +1298,8 @@ public interface WorkspacePackage extends EPackage {
 		EReference USERSESSION__CHANGED_PROPERTIES = eINSTANCE.getUsersession_ChangedProperties();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.ProjectSpaceImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getProjectSpace()
 		 * @generated
@@ -1358,9 +1307,9 @@ public interface WorkspacePackage extends EPackage {
 		EClass PROJECT_SPACE = eINSTANCE.getProjectSpace();
 
 		/**
-		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__PROJECT = eINSTANCE.getProjectSpace_Project();
@@ -1374,17 +1323,17 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__PROJECT_ID = eINSTANCE.getProjectSpace_ProjectId();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Name</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Project Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__PROJECT_NAME = eINSTANCE.getProjectSpace_ProjectName();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Description</b></em>' attribute feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Project Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__PROJECT_DESCRIPTION = eINSTANCE.getProjectSpace_ProjectDescription();
@@ -1398,17 +1347,17 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__EVENTS = eINSTANCE.getProjectSpace_Events();
 
 		/**
-		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__USERSESSION = eINSTANCE.getProjectSpace_Usersession();
 
 		/**
-		 * The meta object literal for the '<em><b>Last Updated</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Last Updated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__LAST_UPDATED = eINSTANCE.getProjectSpace_LastUpdated();
@@ -1422,17 +1371,17 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__BASE_VERSION = eINSTANCE.getProjectSpace_BaseVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Resource Count</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Resource Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__RESOURCE_COUNT = eINSTANCE.getProjectSpace_ResourceCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Dirty</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Dirty</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__DIRTY = eINSTANCE.getProjectSpace_Dirty();
@@ -1464,7 +1413,6 @@ public interface WorkspacePackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Pending File Transfers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__PENDING_FILE_TRANSFERS = eINSTANCE.getProjectSpace_PendingFileTransfers();
@@ -1486,9 +1434,8 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__NOTIFICATION_COMPOSITE = eINSTANCE.getProjectSpace_NotificationComposite();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
-		 * <em>Operation Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.OperationCompositeImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getOperationComposite()
 		 * @generated
@@ -1504,9 +1451,8 @@ public interface WorkspacePackage extends EPackage {
 		EReference OPERATION_COMPOSITE__OPERATIONS = eINSTANCE.getOperationComposite_Operations();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl
-		 * <em>Pending File Transfer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl <em>Pending File Transfer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.PendingFileTransferImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getPendingFileTransfer()
 		 * @generated
@@ -1522,33 +1468,33 @@ public interface WorkspacePackage extends EPackage {
 		EReference PENDING_FILE_TRANSFER__ATTACHMENT_ID = eINSTANCE.getPendingFileTransfer_AttachmentId();
 
 		/**
-		 * The meta object literal for the '<em><b>File Version</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>File Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__FILE_VERSION = eINSTANCE.getPendingFileTransfer_FileVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Chunk Number</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Chunk Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__CHUNK_NUMBER = eINSTANCE.getPendingFileTransfer_ChunkNumber();
 
 		/**
-		 * The meta object literal for the '<em><b>Upload</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Upload</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__UPLOAD = eINSTANCE.getPendingFileTransfer_Upload();
 
 		/**
-		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__FILE_NAME = eINSTANCE.getPendingFileTransfer_FileName();
@@ -1563,9 +1509,8 @@ public interface WorkspacePackage extends EPackage {
 			.getPendingFileTransfer_PreliminaryFileName();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.EventCompositeImpl
-		 * <em>Event Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.EventCompositeImpl <em>Event Composite</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.EventCompositeImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getEventComposite()
 		 * @generated
@@ -1581,9 +1526,8 @@ public interface WorkspacePackage extends EPackage {
 		EReference EVENT_COMPOSITE__EVENTS = eINSTANCE.getEventComposite_Events();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl
-		 * <em>Notification Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl <em>Notification Composite</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.workspace.impl.NotificationCompositeImpl
 		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getNotificationComposite()
 		 * @generated

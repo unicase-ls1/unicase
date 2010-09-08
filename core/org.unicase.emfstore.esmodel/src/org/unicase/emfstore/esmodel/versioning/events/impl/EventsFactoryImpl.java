@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.esmodel.versioning.events.*;
 import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
@@ -44,31 +45,30 @@ import org.unicase.emfstore.esmodel.versioning.events.Validate;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static EventsFactory init() {
 		try {
-			EventsFactory theEventsFactory = (EventsFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning/events");
+			EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/events"); 
 			if (theEventsFactory != null) {
 				return theEventsFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new EventsFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EventsFactoryImpl() {
@@ -77,106 +77,76 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case EventsPackage.EVENT:
-			return createEvent();
-		case EventsPackage.READ_EVENT:
-			return createReadEvent();
-		case EventsPackage.MERGE_EVENT:
-			return createMergeEvent();
-		case EventsPackage.CHECKOUT_EVENT:
-			return createCheckoutEvent();
-		case EventsPackage.EXCEPTION_EVENT:
-			return createExceptionEvent();
-		case EventsPackage.PLUGIN_START_EVENT:
-			return createPluginStartEvent();
-		case EventsPackage.UPDATE_EVENT:
-			return createUpdateEvent();
-		case EventsPackage.ANNOTATION_EVENT:
-			return createAnnotationEvent();
-		case EventsPackage.REVERT_EVENT:
-			return createRevertEvent();
-		case EventsPackage.SHOW_HISTORY_EVENT:
-			return createShowHistoryEvent();
-		case EventsPackage.PERSPECTIVE_EVENT:
-			return createPerspectiveEvent();
-		case EventsPackage.DND_EVENT:
-			return createDNDEvent();
-		case EventsPackage.LINK_EVENT:
-			return createLinkEvent();
-		case EventsPackage.TRACE_EVENT:
-			return createTraceEvent();
-		case EventsPackage.NAVIGATOR_CREATE_EVENT:
-			return createNavigatorCreateEvent();
-		case EventsPackage.PLUGIN_FOCUS_EVENT:
-			return createPluginFocusEvent();
-		case EventsPackage.PRESENTATION_SWITCH_EVENT:
-			return createPresentationSwitchEvent();
-		case EventsPackage.UNDO_EVENT:
-			return createUndoEvent();
-		case EventsPackage.VALIDATE:
-			return createValidate();
-		case EventsPackage.SHOW_CHANGES_EVENT:
-			return createShowChangesEvent();
-		case EventsPackage.NOTIFICATION_READ_EVENT:
-			return createNotificationReadEvent();
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT:
-			return createNotificationGenerationEvent();
-		case EventsPackage.NOTIFICATION_IGNORE_EVENT:
-			return createNotificationIgnoreEvent();
-		case EventsPackage.URL_EVENT:
-			return createURLEvent();
-		case EventsPackage.MERGE_CHOICE_EVENT:
-			return createMergeChoiceEvent();
-		case EventsPackage.MERGE_GLOBAL_CHOICE_EVENT:
-			return createMergeGlobalChoiceEvent();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case EventsPackage.EVENT: return createEvent();
+			case EventsPackage.READ_EVENT: return createReadEvent();
+			case EventsPackage.MERGE_EVENT: return createMergeEvent();
+			case EventsPackage.CHECKOUT_EVENT: return createCheckoutEvent();
+			case EventsPackage.EXCEPTION_EVENT: return createExceptionEvent();
+			case EventsPackage.PLUGIN_START_EVENT: return createPluginStartEvent();
+			case EventsPackage.UPDATE_EVENT: return createUpdateEvent();
+			case EventsPackage.ANNOTATION_EVENT: return createAnnotationEvent();
+			case EventsPackage.REVERT_EVENT: return createRevertEvent();
+			case EventsPackage.SHOW_HISTORY_EVENT: return createShowHistoryEvent();
+			case EventsPackage.PERSPECTIVE_EVENT: return createPerspectiveEvent();
+			case EventsPackage.DND_EVENT: return createDNDEvent();
+			case EventsPackage.LINK_EVENT: return createLinkEvent();
+			case EventsPackage.TRACE_EVENT: return createTraceEvent();
+			case EventsPackage.NAVIGATOR_CREATE_EVENT: return createNavigatorCreateEvent();
+			case EventsPackage.PLUGIN_FOCUS_EVENT: return createPluginFocusEvent();
+			case EventsPackage.PRESENTATION_SWITCH_EVENT: return createPresentationSwitchEvent();
+			case EventsPackage.UNDO_EVENT: return createUndoEvent();
+			case EventsPackage.VALIDATE: return createValidate();
+			case EventsPackage.SHOW_CHANGES_EVENT: return createShowChangesEvent();
+			case EventsPackage.NOTIFICATION_READ_EVENT: return createNotificationReadEvent();
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT: return createNotificationGenerationEvent();
+			case EventsPackage.NOTIFICATION_IGNORE_EVENT: return createNotificationIgnoreEvent();
+			case EventsPackage.URL_EVENT: return createURLEvent();
+			case EventsPackage.MERGE_CHOICE_EVENT: return createMergeChoiceEvent();
+			case EventsPackage.MERGE_GLOBAL_CHOICE_EVENT: return createMergeGlobalChoiceEvent();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case EventsPackage.MERGE_CHOICE_SELECTION:
-			return createMergeChoiceSelectionFromString(eDataType, initialValue);
-		case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
-			return createMergeGlobalChoiceSelectionFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case EventsPackage.MERGE_CHOICE_SELECTION:
+				return createMergeChoiceSelectionFromString(eDataType, initialValue);
+			case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
+				return createMergeGlobalChoiceSelectionFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case EventsPackage.MERGE_CHOICE_SELECTION:
-			return convertMergeChoiceSelectionToString(eDataType, instanceValue);
-		case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
-			return convertMergeGlobalChoiceSelectionToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case EventsPackage.MERGE_CHOICE_SELECTION:
+				return convertMergeChoiceSelectionToString(eDataType, instanceValue);
+			case EventsPackage.MERGE_GLOBAL_CHOICE_SELECTION:
+				return convertMergeGlobalChoiceSelectionToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Event createEvent() {
@@ -186,7 +156,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReadEvent createReadEvent() {
@@ -196,7 +165,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergeEvent createMergeEvent() {
@@ -206,7 +174,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CheckoutEvent createCheckoutEvent() {
@@ -216,7 +183,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExceptionEvent createExceptionEvent() {
@@ -226,7 +192,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PluginStartEvent createPluginStartEvent() {
@@ -236,7 +201,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UpdateEvent createUpdateEvent() {
@@ -246,7 +210,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AnnotationEvent createAnnotationEvent() {
@@ -256,7 +219,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RevertEvent createRevertEvent() {
@@ -266,7 +228,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ShowHistoryEvent createShowHistoryEvent() {
@@ -276,7 +237,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PerspectiveEvent createPerspectiveEvent() {
@@ -286,7 +246,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DNDEvent createDNDEvent() {
@@ -296,7 +255,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LinkEvent createLinkEvent() {
@@ -306,7 +264,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TraceEvent createTraceEvent() {
@@ -316,7 +273,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NavigatorCreateEvent createNavigatorCreateEvent() {
@@ -326,7 +282,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PluginFocusEvent createPluginFocusEvent() {
@@ -336,7 +291,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PresentationSwitchEvent createPresentationSwitchEvent() {
@@ -346,7 +300,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UndoEvent createUndoEvent() {
@@ -356,7 +309,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Validate createValidate() {
@@ -366,7 +318,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ShowChangesEvent createShowChangesEvent() {
@@ -376,7 +327,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationReadEvent createNotificationReadEvent() {
@@ -386,7 +336,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationGenerationEvent createNotificationGenerationEvent() {
@@ -396,7 +345,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationIgnoreEvent createNotificationIgnoreEvent() {
@@ -406,7 +354,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public URLEvent createURLEvent() {
@@ -416,7 +363,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergeChoiceEvent createMergeChoiceEvent() {
@@ -426,7 +372,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergeGlobalChoiceEvent createMergeGlobalChoiceEvent() {
@@ -436,20 +381,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergeChoiceSelection createMergeChoiceSelectionFromString(EDataType eDataType, String initialValue) {
 		MergeChoiceSelection result = MergeChoiceSelection.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-				+ eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertMergeChoiceSelectionToString(EDataType eDataType, Object instanceValue) {
@@ -458,21 +399,17 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergeGlobalChoiceSelection createMergeGlobalChoiceSelectionFromString(EDataType eDataType,
 		String initialValue) {
 		MergeGlobalChoiceSelection result = MergeGlobalChoiceSelection.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-				+ eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertMergeGlobalChoiceSelectionToString(EDataType eDataType, Object instanceValue) {
@@ -481,16 +418,14 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventsPackage getEventsPackage() {
-		return (EventsPackage) getEPackage();
+		return (EventsPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

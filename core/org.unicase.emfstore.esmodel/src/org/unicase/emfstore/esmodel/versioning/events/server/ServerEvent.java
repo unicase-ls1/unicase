@@ -9,7 +9,8 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Event</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage#getServerEvent()
  * @model abstract="true"
  * @generated

@@ -108,7 +108,7 @@ public class ResourceHelper {
 				CreateDeleteOperation createDeleteOp = (CreateDeleteOperation) op;
 
 				for (Map.Entry<EObject, ModelElementId> e : ((CreateDeleteOperationImpl) createDeleteOp)
-					.getEobjectsIdMap().entrySet()) {
+					.getEObjectToIdMap().entrySet()) {
 					XMIResource res = (XMIResource) e.getKey().eResource();
 					if (res != null) {
 						res.setID(e.getKey(), e.getValue().getId());

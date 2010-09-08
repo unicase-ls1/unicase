@@ -35,6 +35,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -145,7 +146,9 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 			Version previousHeadVersion = versions.get(versions.size() - 1);
 
-			Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
+			// TODO: EM rather use ModelUtil.clone than import of ProjectImpl?
+			Project newProjectState = ((ProjectImpl) previousHeadVersion.getProjectState()).copy();
+			// Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
 			// TODO: EM when and how to fill caches on server side,
 			// currently not triggered by foreseen calls
 			// newProjectState.updateCaches();
@@ -221,7 +224,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 			Version previousHeadVersion = versions.get(versions.size() - 1);
 
-			Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
+			// TODO: EM rather use ModelUtil.clone than import of ProjectImpl?
+			Project newProjectState = ((ProjectImpl) previousHeadVersion.getProjectState()).copy(); // EcoreUtil.copy(previousHeadVersion.getProjectState());
 
 			changePackage.apply(newProjectState);
 

@@ -30,13 +30,13 @@ public class OneToOneContainmentTest extends CachingTest {
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		getProject().addModelElement(issue);
 
-		assertTrue(getProject().contains(issue));
+		assertTrue(getProject().containsInstance(issue));
 		assertEquals(getProject(), ModelUtil.getProject(issue));
 
 		Solution solution = RationaleFactory.eINSTANCE.createSolution();
 		issue.setSolution(solution);
 
-		assertTrue(getProject().contains(solution));
+		assertTrue(getProject().containsInstance(solution));
 		assertEquals(getProject(), ModelUtil.getProject(solution));
 		assertEquals(issue, solution.getIssue());
 		assertEquals(solution, issue.getSolution());
