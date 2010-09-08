@@ -8,31 +8,29 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Multi Attribute Move Operation</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex <em>Old Index
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex <em>New Index
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getReferencedValue <em>
- * Referenced Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex <em>Old Index</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex <em>New Index</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getReferencedValue <em>Referenced Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeMoveOperation()
  * @model
  * @generated
  */
 public interface MultiAttributeMoveOperation extends FeatureOperation {
 	/**
-	 * Returns the value of the '<em><b>Old Index</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Old Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Old Index</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Old Index</em>' attribute.
 	 * @see #setOldIndex(int)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeMoveOperation_OldIndex()
@@ -42,10 +40,8 @@ public interface MultiAttributeMoveOperation extends FeatureOperation {
 	int getOldIndex();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex
-	 * <em>Old Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getOldIndex <em>Old Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Old Index</em>' attribute.
 	 * @see #getOldIndex()
 	 * @generated
@@ -53,13 +49,13 @@ public interface MultiAttributeMoveOperation extends FeatureOperation {
 	void setOldIndex(int value);
 
 	/**
-	 * Returns the value of the '<em><b>New Index</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>New Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>New Index</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>New Index</em>' attribute.
 	 * @see #setNewIndex(int)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeMoveOperation_NewIndex()
@@ -69,10 +65,8 @@ public interface MultiAttributeMoveOperation extends FeatureOperation {
 	int getNewIndex();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex
-	 * <em>New Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getNewIndex <em>New Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>New Index</em>' attribute.
 	 * @see #getNewIndex()
 	 * @generated
@@ -80,13 +74,13 @@ public interface MultiAttributeMoveOperation extends FeatureOperation {
 	void setNewIndex(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Referenced Value</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Referenced Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Value</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Referenced Value</em>' attribute.
 	 * @see #setReferencedValue(Object)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getMultiAttributeMoveOperation_ReferencedValue()
@@ -96,10 +90,8 @@ public interface MultiAttributeMoveOperation extends FeatureOperation {
 	Object getReferencedValue();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getReferencedValue
-	 * <em>Referenced Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation#getReferencedValue <em>Referenced Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referenced Value</em>' attribute.
 	 * @see #getReferencedValue()
 	 * @generated

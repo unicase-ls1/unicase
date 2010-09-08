@@ -368,7 +368,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			((CreateDeleteOperationImpl) createDeleteOperation).getEobjectsIdMap().put(copiedChild, childId);
+			((CreateDeleteOperationImpl) createDeleteOperation).getEObjectToIdMap().put(copiedChild, childId);
 		}
 
 		createDeleteOperation.setModelElement(copiedElement);
@@ -551,7 +551,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			EObject child = allContainedModelElements.get(i);
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = projectSpace.getProject().getDeletedModelElementId(child);
-			((CreateDeleteOperationImpl) deleteOperation).getEobjectsIdMap().put(copiedChild, childId);
+			((CreateDeleteOperationImpl) deleteOperation).getEObjectToIdMap().put(copiedChild, childId);
 		}
 
 		deleteOperation.setDelete(true);

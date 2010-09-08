@@ -11,31 +11,31 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Merge Event</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent()
  * @model
  * @generated
  */
 public interface MergeEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Number Of Conflicts</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Number Of Conflicts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Number Of Conflicts</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Number Of Conflicts</em>' attribute.
 	 * @see #setNumberOfConflicts(int)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_NumberOfConflicts()
@@ -45,9 +45,8 @@ public interface MergeEvent extends Event {
 	int getNumberOfConflicts();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getNumberOfConflicts
-	 * <em>Number Of Conflicts</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Number Of Conflicts</em>' attribute.
 	 * @see #getNumberOfConflicts()
 	 * @generated
@@ -55,13 +54,13 @@ public interface MergeEvent extends Event {
 	void setNumberOfConflicts(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Total Time</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Total Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Total Time</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Total Time</em>' attribute.
 	 * @see #setTotalTime(int)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_TotalTime()
@@ -71,9 +70,8 @@ public interface MergeEvent extends Event {
 	int getTotalTime();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTotalTime
-	 * <em>Total Time</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Time</em>' attribute.
 	 * @see #getTotalTime()
 	 * @generated
@@ -81,13 +79,13 @@ public interface MergeEvent extends Event {
 	void setTotalTime(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Version</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_BaseVersion()
@@ -97,9 +95,8 @@ public interface MergeEvent extends Event {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getBaseVersion
-	 * <em>Base Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
@@ -107,13 +104,13 @@ public interface MergeEvent extends Event {
 	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Version</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Version</em>' containment reference.
 	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_TargetVersion()
@@ -123,9 +120,8 @@ public interface MergeEvent extends Event {
 	PrimaryVersionSpec getTargetVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion
-	 * <em>Target Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Version</em>' containment reference.
 	 * @see #getTargetVersion()
 	 * @generated
@@ -133,14 +129,14 @@ public interface MergeEvent extends Event {
 	void setTargetVersion(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Local Changes</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Local Changes</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_LocalChanges()
 	 * @model containment="true" resolveProxies="true"

@@ -11,26 +11,27 @@ import org.unicase.metamodel.ModelElementId;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Url Fragment</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getModelElementId <em>Model Element Id</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getModelElementId <em>Model Element Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrlFragment()
  * @model
  * @generated
  */
 public interface ModelElementUrlFragment extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrlFragment_Name()
@@ -40,9 +41,8 @@ public interface ModelElementUrlFragment extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getName <em>Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -50,13 +50,13 @@ public interface ModelElementUrlFragment extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Element Id</em>' containment reference isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #setModelElementId(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getModelElementUrlFragment_ModelElementId()
@@ -66,9 +66,8 @@ public interface ModelElementUrlFragment extends EObject {
 	ModelElementId getModelElementId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getModelElementId
-	 * <em>Model Element Id</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment#getModelElementId <em>Model Element Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #getModelElementId()
 	 * @generated

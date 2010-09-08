@@ -19,17 +19,17 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.EventImpl#getTimestamp <em>Timestamp</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.EventImpl#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class EventImpl extends EObjectImpl implements Event {
 	/**
-	 * The default value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTimestamp()
 	 * @generated
 	 * @ordered
@@ -37,9 +37,9 @@ public class EventImpl extends EObjectImpl implements Event {
 	protected static final Date TIMESTAMP_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTimestamp()
 	 * @generated
 	 * @ordered
@@ -48,7 +48,6 @@ public class EventImpl extends EObjectImpl implements Event {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EventImpl() {
@@ -57,7 +56,6 @@ public class EventImpl extends EObjectImpl implements Event {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +65,6 @@ public class EventImpl extends EObjectImpl implements Event {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getTimestamp() {
@@ -76,84 +73,76 @@ public class EventImpl extends EObjectImpl implements Event {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTimestamp(Date newTimestamp) {
 		Date oldTimestamp = timestamp;
 		timestamp = newTimestamp;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT__TIMESTAMP, oldTimestamp,
-				timestamp));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT__TIMESTAMP, oldTimestamp, timestamp));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.EVENT__TIMESTAMP:
-			return getTimestamp();
+			case EventsPackage.EVENT__TIMESTAMP:
+				return getTimestamp();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.EVENT__TIMESTAMP:
-			setTimestamp((Date) newValue);
-			return;
+			case EventsPackage.EVENT__TIMESTAMP:
+				setTimestamp((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.EVENT__TIMESTAMP:
-			setTimestamp(TIMESTAMP_EDEFAULT);
-			return;
+			case EventsPackage.EVENT__TIMESTAMP:
+				setTimestamp(TIMESTAMP_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.EVENT__TIMESTAMP:
-			return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
+			case EventsPackage.EVENT__TIMESTAMP:
+				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (timestamp: ");

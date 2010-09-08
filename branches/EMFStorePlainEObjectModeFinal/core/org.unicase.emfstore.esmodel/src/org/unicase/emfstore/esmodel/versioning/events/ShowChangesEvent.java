@@ -24,13 +24,13 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
  */
 public interface ShowChangesEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Source Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Version</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Version</em>' containment reference.
 	 * @see #setSourceVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getShowChangesEvent_SourceVersion()
@@ -40,9 +40,8 @@ public interface ShowChangesEvent extends Event {
 	PrimaryVersionSpec getSourceVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getSourceVersion
-	 * <em>Source Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getSourceVersion <em>Source Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source Version</em>' containment reference.
 	 * @see #getSourceVersion()
 	 * @generated
@@ -50,13 +49,13 @@ public interface ShowChangesEvent extends Event {
 	void setSourceVersion(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Version</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Version</em>' containment reference.
 	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getShowChangesEvent_TargetVersion()
@@ -66,9 +65,8 @@ public interface ShowChangesEvent extends Event {
 	PrimaryVersionSpec getTargetVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getTargetVersion
-	 * <em>Target Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getTargetVersion <em>Target Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Version</em>' containment reference.
 	 * @see #getTargetVersion()
 	 * @generated

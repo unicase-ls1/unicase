@@ -8,27 +8,28 @@ package org.unicase.emfstore.esmodel.versioning.events;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Merge Global Choice Event</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection <em>Selection</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection <em>Selection</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeGlobalChoiceEvent()
  * @model
  * @generated
  */
 public interface MergeGlobalChoiceEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Selection</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Selection</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Selection</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Selection</em>' attribute.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
 	 * @see #setSelection(MergeGlobalChoiceSelection)
@@ -39,9 +40,8 @@ public interface MergeGlobalChoiceEvent extends Event {
 	MergeGlobalChoiceSelection getSelection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection
-	 * <em>Selection</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent#getSelection <em>Selection</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Selection</em>' attribute.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection
 	 * @see #getSelection()

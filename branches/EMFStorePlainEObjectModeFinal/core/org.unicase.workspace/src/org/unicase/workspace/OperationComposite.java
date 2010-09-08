@@ -25,14 +25,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  */
 public interface OperationComposite extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getOperationComposite_Operations()
 	 * @model containment="true" resolveProxies="true"

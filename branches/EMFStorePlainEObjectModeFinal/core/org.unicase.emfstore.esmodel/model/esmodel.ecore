@@ -155,6 +155,8 @@
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
             eType="#//versioning/operations/ReferenceOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="eObjectToIdMap" upperBound="-1"
+            eType="#//versioning/operations/EObjectToModelElementIdMap" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
@@ -228,6 +230,11 @@
         <eLiterals name="NONE"/>
         <eLiterals name="CONTAINER" value="1"/>
         <eLiterals name="CONTAINMENT" value="2"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="EObjectToModelElementIdMap" instanceClassName="java.util.Map$Entry">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            containment="true"/>
       </eClassifiers>
       <eSubpackages name="semantic" nsURI="http://unicase.org/esmodel/versioning/operations/semantic"
           nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">

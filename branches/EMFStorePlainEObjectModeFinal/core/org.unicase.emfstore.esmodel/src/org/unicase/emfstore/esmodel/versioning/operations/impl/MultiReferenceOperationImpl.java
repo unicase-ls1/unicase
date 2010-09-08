@@ -36,22 +36,19 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index
- * </em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
- * <em>Referenced Model Elements</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MultiReferenceOperationImpl extends ReferenceOperationImpl implements MultiReferenceOperation {
 
 	/**
-	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -59,8 +56,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected static final boolean ADD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -68,9 +65,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -88,9 +85,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferencedModelElements()
 	 * @generated
 	 * @ordered
@@ -99,7 +95,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiReferenceOperationImpl() {
@@ -108,7 +103,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +112,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {
@@ -127,20 +120,17 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAdd(boolean newAdd) {
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__ADD,
-				oldAdd, add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__ADD, oldAdd, add));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -149,133 +139,122 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX,
-				oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX, oldIndex, index));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
+			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return referencedModelElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferencedModelElements()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return ((InternalEList<?>)getReferencedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			return isAdd();
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			return getIndex();
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return getReferencedModelElements();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				return isAdd();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				return getIndex();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return getReferencedModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			setAdd((Boolean) newValue);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			setIndex((Integer) newValue);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				setAdd((Boolean)newValue);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				setIndex((Integer)newValue);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				getReferencedModelElements().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			setAdd(ADD_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			setIndex(INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
-			return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				setAdd(ADD_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				setIndex(INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			return add != ADD_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			return index != INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return referencedModelElements != null && !referencedModelElements.isEmpty();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				return add != ADD_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				return index != INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return referencedModelElements != null && !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (add: ");
