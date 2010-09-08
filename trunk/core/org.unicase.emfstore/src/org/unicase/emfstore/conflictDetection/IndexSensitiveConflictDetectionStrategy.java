@@ -157,6 +157,16 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(MultiReferenceOperation) operationA);
 		}
 
+		if (isSingleRef(operationA) && isMultiRefSet(operationB)) {
+			return doConflictHardSingeMultiSet((SingleReferenceOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
+		}
+
+		if (isMultiRefSet(operationA) && isSingleRef(operationB)) {
+			return doConflictHardSingeMultiSet((SingleReferenceOperation) operationB,
+				(MultiReferenceSetOperation) operationA);
+		}
+
 		if (isMultiRef(operationA) && isMultiRefSet(operationB)) {
 			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationA,
 				(MultiReferenceSetOperation) operationB);
@@ -178,6 +188,14 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		return false;
+	}
+
+	private boolean doConflictHardSingeMultiSet(SingleReferenceOperation opA, MultiReferenceSetOperation opB) {
+		if (!bothContaining(opA, opB)) {
+			return false;
+		}
+
+		return (opA.getNewValue() != null && isSame(opA.getNewValue(), opB.getNewValue()));
 	}
 
 	private boolean doConflictHardMultiAttributeMoves(MultiAttributeMoveOperation operationA,
@@ -219,16 +237,25 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean doConflictHardMultiReferenceAndSet(MultiReferenceOperation operationA,
 		MultiReferenceSetOperation operationB) {
 
-		if (!sameFeatureAndId(operationA, operationB)) {
-			return false;
-		}
+		if (sameFeatureAndId(operationA, operationB)) {
 
-		if (!operationA.isAdd()) {
-			for (ModelElementId id : operationA.getReferencedModelElements()) {
-				if (id.equals(operationB.getOldValue())) {
-					return true;
+			if (!operationA.isAdd()) {
+				for (ModelElementId id : operationA.getReferencedModelElements()) {
+					if (id.equals(operationB.getOldValue())) {
+						return true;
+					}
 				}
 			}
+		} else {
+			if (!bothContaining(operationA, operationB)) {
+				return false;
+			}
+
+			if (!operationA.isAdd()) {
+				return false;
+			}
+
+			return containsId(operationA.getReferencedModelElements(), operationB.getModelElementId());
 		}
 
 		return false;
@@ -274,23 +301,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		return (index <= operationA.getIndex());
-	}
-
-	private boolean between(int index, int lower, int upper) {
-		if (lower > upper) {
-			return between(index, upper, lower);
-		}
-		return (lower <= index && index <= upper);
-	}
-
-	private int getLowestIndex(EList<Integer> indexes) {
-		int result = -1;
-		for (Integer tmp : indexes) {
-			if (result >= tmp || result == -1) {
-				result = tmp;
-			}
-		}
-		return result;
 	}
 
 	private boolean doConflictHardMultiAttributes(MultiAttributeOperation operationA, MultiAttributeOperation operationB) {
@@ -351,8 +361,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {
 
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 
 			// if add and remove meet, there might be a hard conflict
 			if (opA.isAdd() != opB.isAdd()) {
@@ -371,8 +380,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			return false;
 
 		} else {
-			if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT
-				.equals(opB.getContainmentType()))) {
+			if (!bothContaining(opA, opB)) {
 				return false;
 			}
 
@@ -393,8 +401,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private boolean doConflictHardSingleMultiReferences(SingleReferenceOperation opA, MultiReferenceOperation opB) {
-		if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT.equals(opB
-			.getContainmentType()))) {
+		if (!bothContaining(opA, opB)) {
 			return false;
 		}
 
@@ -413,9 +420,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardSingleReferences(SingleReferenceOperation opA, SingleReferenceOperation opB) {
 
-		// case 1: regular vs. regular
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 			// unless both operations set the same new value
 			if (isDifferent(opA.getNewValue(), opB.getNewValue())) {
 				return true;
@@ -424,8 +429,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		} else {
 
-			if (!(ContainmentType.CONTAINMENT.equals(opA.getContainmentType()) && ContainmentType.CONTAINMENT
-				.equals(opB.getContainmentType()))) {
+			if (!bothContaining(opA, opB)) {
 				return false;
 			}
 
@@ -436,8 +440,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean doConflictHardAttributes(AttributeOperation opA, AttributeOperation opB) {
 
 		// if same object's same feature is set, there's a potential conflict
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 
 			// unless both operations set the same new value
 			if (isSame(opA.getNewValue(), opB.getNewValue())) {
@@ -832,9 +835,31 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		return a.equals(b);
 	}
 
+	private boolean bothContaining(ReferenceOperation opA, ReferenceOperation opB) {
+		return ContainmentType.CONTAINMENT.equals(opA.getContainmentType())
+			&& ContainmentType.CONTAINMENT.equals(opB.getContainmentType());
+	}
+
 	private boolean sameFeatureAndId(FeatureOperation operationA, FeatureOperation operationB) {
 		return (isSame(operationA.getModelElementId(), operationB.getModelElementId()) && isSame(operationA
 			.getFeatureName(), operationB.getFeatureName()));
+	}
+
+	private boolean between(int index, int lower, int upper) {
+		if (lower > upper) {
+			return between(index, upper, lower);
+		}
+		return (lower <= index && index <= upper);
+	}
+
+	private int getLowestIndex(EList<Integer> indexes) {
+		int result = -1;
+		for (Integer tmp : indexes) {
+			if (result >= tmp || result == -1) {
+				result = tmp;
+			}
+		}
+		return result;
 	}
 
 	private static boolean isCreateOperation(AbstractOperation op) {
