@@ -149,9 +149,6 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			// TODO: EM rather use ModelUtil.clone than import of ProjectImpl?
 			Project newProjectState = ((ProjectImpl) previousHeadVersion.getProjectState()).copy();
 			// Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
-			// TODO: EM when and how to fill caches on server side,
-			// currently not triggered by foreseen calls
-			// newProjectState.updateCaches();
 			changePackage.apply(newProjectState);
 
 			newVersion.setProjectState(newProjectState);

@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -204,9 +203,6 @@ public class ResourceHelper {
 	private void saveInResourceWithProject(EObject obj, String fileName, Project project) throws FatalEmfStoreException {
 		Resource resource = serverSpace.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
 		resource.getContents().add(obj);
-
-		Resource projectResource = project.eResource();
-		EMap<EObject, ModelElementId> m = null;
 
 		// TODO:
 		if (resource instanceof XMIResource) {

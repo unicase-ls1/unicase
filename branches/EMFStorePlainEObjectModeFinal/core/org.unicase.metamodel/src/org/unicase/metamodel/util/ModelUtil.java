@@ -240,6 +240,9 @@ public final class ModelUtil {
 				Object referenceObject = object.eGet(reference, true);
 				if (reference.isMany()) {
 					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
+					if (result == null) {
+						System.out.println("REMOVE ME");
+					}
 					result.addAll(referencesList);
 				} else {
 					EObject crossReference = (EObject) referenceObject;
