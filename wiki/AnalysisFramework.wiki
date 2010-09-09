@@ -41,7 +41,7 @@ Including the following plug-ins:
 
 == Step 2: Create a new plug-in project for the empirical study ==
 
-Don't forget to add the dependency on the `org.unicase.analyzer` plug-in. Just go to the dependency tab of the MANIFEST.MF file of your plug-in.
+Don't forget to add the dependency on the `org.unicase.analyzer` plug-in. Just go to the dependency tab of the plugin.xml file of your plug-in.
 
 == Step 3: Implement the analyzer for your empirical study ==
 
@@ -53,7 +53,7 @@ Please write your own analyzer in the new plug-in by implementing *!DataAnalyzer
 
 == Step 4: Add the analyzer extension ==
 
-Go to the Extensions tab of your MANIFEST.MF file, and click *Add*. In the appearing wizard, select the `org.unicase.analyzer.analyzer ` extension-point. Right click on the extension just added, and go to "New -> client_analyzer". Click *Browse* at the "Extension Element Details" part and choose the class name of the analyzer you just created.
+Go to the Extensions tab of your plugin.xml file, and click *Add*. In the appearing wizard, select the `org.unicase.analyzer.analyzer ` extension-point. Right click on the extension just added, and go to "New -> client_analyzer". Click *Browse* at the "Extension Element Details" part and choose the class name of the analyzer you just created.
 
 == Step 5: Run your analysis ==
 
