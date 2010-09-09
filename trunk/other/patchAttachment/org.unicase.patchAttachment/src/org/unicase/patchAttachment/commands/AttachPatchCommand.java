@@ -24,7 +24,8 @@ import org.unicase.model.patchAttachment.PatchAttachmentPackage;
 import org.unicase.patchAttachment.adapter.TeamAdapterFactory;
 import org.unicase.patchAttachment.exported.AbstractTeamAdapter;
 import org.unicase.patchAttachment.exported.PatchAttachmentException;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
+//import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -115,7 +116,8 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 		//4) **** Open the model element ****
 			try{
-				UnicaseActionHelper.openModelElement(attachTo, this.getClass().getName());
+
+				//UnicaseActionHelper.openModelElement(attachTo, this.getClass().getName());
 			} catch (Throwable t){}
 			
 		} catch (Exception e) {
