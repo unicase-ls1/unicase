@@ -25,6 +25,7 @@ import org.unicase.patchAttachment.exported.UIUtil;
 import org.unicase.patchAttachment.ui.wizards.AttacheeSelectionDialog;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 public class SendPatchActionDelegate extends TeamAction{
 
@@ -37,25 +38,7 @@ public class SendPatchActionDelegate extends TeamAction{
 		
 		IResource[] res = getSelectedResources();
 	
-		//BEGIN DEBUGCODE
-		IConfigurationElement[] linkControls = Platform.getExtensionRegistry().getConfigurationElementsFor(
-		"org.unicase.ui.meeditor.melinkcontrols");
-
-	for (IConfigurationElement e : linkControls) {
-		String type = e.getAttribute("type");
-		try {
-			Class<?> resolvedType = Class.forName(type);
-			MELinkControl control = (MELinkControl) e.createExecutableExtension("class");
-
-
-		} catch (ClassNotFoundException e1) {
-			Activator.logException(e1);
-		} catch (CoreException e2) {
-			Activator.logException(e2);
-		}
-	}
-		if(true) return;
-		//END DEBUGCODE
+	
 		//None selected -> fail
 		if(ps.length==0){
 			error("No project selected!");

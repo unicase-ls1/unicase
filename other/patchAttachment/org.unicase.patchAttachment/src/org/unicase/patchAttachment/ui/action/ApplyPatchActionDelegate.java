@@ -12,6 +12,11 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.patchAttachment.PatchAttachment;
 import org.unicase.patchAttachment.applyPatch.BasicApplyPatchMethod;
 
+/**
+ * Kann geloescht werden :)
+ * @author jfinis
+ *
+ */
 public class ApplyPatchActionDelegate extends TeamAction{
 	
 	public ApplyPatchActionDelegate(){

@@ -28,14 +28,6 @@
                menubarPath="team.main"
                tooltip="Creates a patch and sends it to a unicase project.">
          </action>
-         <action
-               class="org.unicase.patchAttachment.ui.action.ApplyPatchActionDelegate"
-               definitionId="org.unicase.patchAttachment.ui.command.ApplyPatchCommand"
-               id="org.unicase.patchAttachment.ui.action.ApplyPatchAction"
-               label="Apply Patch from Unicase"
-               menubarPath="team.main"
-               tooltip="Applies a patch from unicase onto this resouce">
-         </action>
       </objectContribution>
    </extension>
    <extension
