@@ -45,11 +45,11 @@ Don't forget to add the dependency on the `org.unicase.analyzer` plug-in. Just g
 
 == Step 3: Implement the analyzer for your empirical study ==
 
-In EPAF, there is already a *DataAnalyzer* interface provided, which has two methods getColumnNames() and getValues(). getColumnNames() will return a list of String, the (header) names of the columns in the result sheet, e.g. Version, Date, Open Tasks in the table above. getValues() will return a list of object lists, i.e. a number of rows containing values for each column for a given project analysis data.
+In EPAF, there is already a *!DataAnalyzer* interface provided, which has two methods getColumnNames() and getValues(). getColumnNames() will return a list of String, the (header) names of the columns in the result sheet, e.g. Version, Date, Open Tasks in the table above. getValues() will return a list of object lists, i.e. a number of rows containing values for each column for a given project analysis data.
 
-There are two sub abstract classes, *SimpleDataAnalyzer* and *GlobalDataAnalyzer*. For the *SimpleDataAnalyzer*, you only need to implement the method getSimpleValues() which returns only one row of values per iteration. The *GlobalDataAnalyzer* will only return one global result in the end. 
+There are two sub abstract classes, *!SimpleDataAnalyzer* and *!GlobalDataAnalyzer*. For the *!SimpleDataAnalyzer*, you only need to implement the method getSimpleValues() which returns only one row of values per iteration. The *!GlobalDataAnalyzer* will only return one global result in the end. 
 
-Please write your own analyzer in the new plug-in by implementing *DataAnalyzer* (or extending *SimpleDataAnalyzer* or *GlobalDataAnalyzer* if needed). There are already couple of example analyzers under `org.unicase.analyzer.unicaseAnalyzers`. 
+Please write your own analyzer in the new plug-in by implementing *!DataAnalyzer* (or extending *!SimpleDataAnalyzer* or *!GlobalDataAnalyzer* if needed). There are already couple of example analyzers under `org.unicase.analyzer.unicaseAnalyzers`. 
 
 == Step 4: Add the analyzer extension ==
 
