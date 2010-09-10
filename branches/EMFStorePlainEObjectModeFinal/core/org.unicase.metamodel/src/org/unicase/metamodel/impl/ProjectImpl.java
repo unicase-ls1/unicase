@@ -801,23 +801,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			// resource available, read ID
 			XMIResource xmiResource = (XMIResource) resource;
 			try {
-				Map<String, Object> opts = new HashMap<String, Object>();
-				opts.put(XMIResource.OPTION_USE_XMI_TYPE, new Boolean(true));
-				xmiResource.load(opts);
+				xmiResource.load(null);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				// Do NOT catch all Exceptions ("catch (Exception e)")
-				// Log AND handle Exceptions if possible
-				//
-				// You can just uncomment one of the lines below to log an exception:
-				// logException will show the logged excpetion to the user
-				// ModelUtil.logException(e);
-				// ModelUtil.logException("YOUR MESSAGE HERE", e);
-				// logWarning will only add the message to the error log
-				// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-				// ModelUtil.logWarning("YOUR MESSAGE HERE");
-				//			
-				// If handling is not possible declare and rethrow Exception
+				throw new RuntimeException("Resource of model element " + modelElement + " couldn't be loaded");
 			}
 			String id = xmiResource.getID(modelElement);
 			if (id != null) {
