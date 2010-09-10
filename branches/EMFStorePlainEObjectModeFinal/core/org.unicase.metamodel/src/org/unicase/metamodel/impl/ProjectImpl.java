@@ -353,6 +353,15 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private void initCaches() {
 		for (EObject modelElement : modelElements) {
+
+			// TODO: EM convenience method
+			// put model element into cache
+			ModelElementId modelElementId = getIdForModelElement(modelElement);
+			eObjectsCache.add(modelElement);
+			eObjectToIdCache.put(modelElement, modelElementId);
+			idToEObjectCache.put(modelElementId, modelElement);
+
+			// put children of model element into cache
 			TreeIterator<EObject> it = modelElement.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
@@ -792,7 +801,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			// resource available, read ID
 			XMIResource xmiResource = (XMIResource) resource;
 			try {
-				xmiResource.load(null);
+				Map<String, Object> opts = new HashMap<String, Object>();
+				opts.put(XMIResource.OPTION_USE_XMI_TYPE, new Boolean(true));
+				xmiResource.load(opts);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				// Do NOT catch all Exceptions ("catch (Exception e)")
@@ -810,8 +821,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 			String id = xmiResource.getID(modelElement);
 			if (id != null) {
-				// TODO
-				// what now?
 				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
 				objId.setId(id);
 				return objId;
