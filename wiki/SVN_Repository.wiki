@@ -1,4 +1,4 @@
-*_Our SVN is hosted on googlecode. To check out the code please go to:_*
+*_Our SVN is hosted on googlecode. To check out the code please look at this page for the details:_*
 
              http://code.google.com/p/unicase/source/checkout
 
