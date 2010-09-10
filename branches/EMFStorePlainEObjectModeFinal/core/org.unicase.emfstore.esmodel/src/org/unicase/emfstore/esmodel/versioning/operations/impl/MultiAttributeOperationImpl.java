@@ -254,7 +254,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 				for (int i = 0; i < getReferencedValues().size(); i++) {
 					Object value = getReferencedValues().get(i);
 					int index = getIndexes().get(i);
-					if (index >= 0 && list.size() > index) {
+					if (index > -1 && list.size() > index) {
 						list.add(index, value);
 					} else {
 						list.add(value);

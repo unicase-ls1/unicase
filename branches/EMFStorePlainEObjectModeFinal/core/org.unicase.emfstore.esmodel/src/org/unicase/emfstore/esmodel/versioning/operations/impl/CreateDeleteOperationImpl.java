@@ -70,60 +70,29 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				return;
 			}
 
-			// List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
-			// allContainedModelElements.add(element);
-			// EObject copiedElement = EcoreUtil.copy(element);
-			// List<EObject> copiedAllContainedModelElements =
-			// ModelUtil.getAllContainedModelElementsAsList(copiedElement,
-			// false);
-			// copiedAllContainedModelElements.add(copiedElement);
-
 			// clone operation in order to retrieve the model element
 			CreateDeleteOperationImpl clone = ModelUtil.clone(this);
-			// clone.setModelElementId(ModelUtil.clone(getModelElementId()));
 
-			// after clone the model element is not the same anymore as in EObjectIdMap,
-			// resemble map and model element
-			// clone.getEObjectToIdMap().clear();
-
-			List<EObject> modelElements = new ArrayList<EObject>(getEObjectToIdMap().values());
-			List<EObject> copiedModelElements = new ArrayList<EObject>(clone.getEObjectToIdMap().values());
-			List<EObject> allContainedModelElements = new ArrayList<EObject>();
-			List<EObject> copiedAllContainedModelElements = new ArrayList<EObject>();
-
-			for (EObject modelElement : modelElements) {
-				allContainedModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
-				allContainedModelElements.add(modelElement);
-			}
-
-			for (EObject modelElement : copiedModelElements) {
-				copiedAllContainedModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
-				copiedAllContainedModelElements.add(modelElement);
-			}
+			EObject element = getModelElement();
+			List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
+			allContainedModelElements.add(element);
+			EObject copiedElement = EcoreUtil.copy(element);
+			// createDeleteOperation.setModelElement(copiedElement);
+			// createDeleteOperation.setModelElementId(ModelUtil.clone(this.getModelElementId()));
+			List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
+				false);
+			copiedAllContainedModelElements.add(copiedElement);
+			clone.getEObjectToIdMap().clear();
 
 			for (int i = 0; i < allContainedModelElements.size(); i++) {
 				EObject child = allContainedModelElements.get(i);
-				EObject copiedChild = copiedAllContainedModelElements.get(i); // copiedAllContainedModelElements.get(i);
-				ModelElementId childId = getEObjectToIdMap().get(child); // projectSpace.getProject().getModelElementId(child);
-				clone.getEObjectToIdMap().put(copiedChild, ModelUtil.clone(childId));
+				EObject copiedChild = copiedAllContainedModelElements.get(i);
+				ModelElementId childId = ModelUtil.clone(getEObjectToIdMap().get(child));
+				if (childId.equals(clone.getModelElementId())) {
+					clone.setModelElement(copiedChild);
+				}
+				clone.getEObjectToIdMap().put(copiedChild, childId);
 			}
-
-			// clone.setModelElement(clone.getEObjectToIdMap().get(clone.getModelElementId()));
-
-			// for (Map.Entry<EObject, ModelElementId> e : getEObjectToIdMap().entrySet()) {
-			// ModelElementId clonedId = ModelUtil.clone(e.getValue());
-			// clone.getEObjectToIdMap().put(ModelUtil.clone(e.getKey()), clonedId);
-			// }
-
-			// set the model element of the operation such that it is the same as in the map
-			// for (Entry<EObject, ModelElementId> e : clone.getEObjectToIdMap().entrySet()) {
-			// EObject element = e.getKey();
-			// ModelElementId elementId = ModelUtil.clone(e.getValue());
-			// if (elementId.equals(clone.getModelElementId())) {
-			// clone.setModelElement(element);
-			// break;
-			// }
-			// }
 
 			project.addModelElement(clone.getModelElement(), clone.getEObjectToIdMap().map());
 

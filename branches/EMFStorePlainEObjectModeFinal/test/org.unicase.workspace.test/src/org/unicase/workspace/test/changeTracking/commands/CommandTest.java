@@ -7,6 +7,7 @@
 package org.unicase.workspace.test.changeTracking.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -182,7 +183,7 @@ public class CommandTest extends WorkspaceTest {
 
 		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		ModelElementId copyOfActorReadId = ModelUtil.getProject(copyOfActorRead).getModelElementId(copyOfActorRead);
-		assertTrue(!actorId.equals(copyOfActorReadId));
+		assertFalse(actorId.equals(copyOfActorReadId));
 
 	}
 
@@ -218,7 +219,7 @@ public class CommandTest extends WorkspaceTest {
 
 		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		ModelElementId copyOfActorReadId = ModelUtil.getProject(copyOfActorRead).getModelElementId(copyOfActorRead);
-		assertTrue(!actorId.equals(copyOfActorReadId));
+		assertFalse(actorId.equals(copyOfActorReadId));
 	}
 
 	/**
@@ -259,7 +260,7 @@ public class CommandTest extends WorkspaceTest {
 
 		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
 		ModelElementId copyOfActorReadId = ModelUtil.getProject(copyOfActorRead).getModelElementId(copyOfActorRead);
-		assertTrue(!actorId.equals(copyOfActorReadId));
+		assertFalse(actorId.equals(copyOfActorReadId));
 	}
 
 	/**
