@@ -7,12 +7,17 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.io.IOException;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -102,9 +107,10 @@ public class CompositeOperationTest extends WorkspaceTest {
 	 * Test the creation and abort of a composite operation.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void abortSmallComposite() throws InvalidHandleException {
+	public void abortSmallComposite() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
@@ -157,6 +163,12 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI());
+
+		assertTrue(ModelUtil.areEqual(loadedProject, getProject()));
+		assertEquals(false, getProject().containsInstance(useCase));
+		assertEquals(true, getProject().containsInstance(section));
 	}
 
 	/**

@@ -6,6 +6,7 @@
 package org.unicase.metamodel;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -163,9 +164,9 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * Get all model elements of a project.
 	 * 
-	 * @return a list of model elements
+	 * @return a set of model elements
 	 */
-	EList<EObject> getAllModelElements();
+	Set<EObject> getAllModelElements();
 
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.

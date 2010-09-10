@@ -17,7 +17,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.metamodel.util.LoggedException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.util.WorkspaceLocationProvider;
@@ -61,9 +60,8 @@ public final class Configuration {
 	 * Get the Workspace directory.
 	 * 
 	 * @return the workspace directory path string
-	 * @throws LoggedException
 	 */
-	public static String getWorkspaceDirectory() throws LoggedException {
+	public static String getWorkspaceDirectory() {
 
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.workspace.workspaceLocationProvider");
@@ -120,9 +118,8 @@ public final class Configuration {
 	 * Get the Workspace file path.
 	 * 
 	 * @return the workspace file path string
-	 * @throws LoggedException
 	 */
-	public static String getWorkspacePath() throws LoggedException {
+	public static String getWorkspacePath() {
 		String workSpacePath = getWorkspaceDirectory() + "workspace.ucw";
 		return workSpacePath;
 	}
@@ -298,9 +295,8 @@ public final class Configuration {
 	 * workspace.
 	 * 
 	 * @return the file name
-	 * @throws LoggedException
 	 */
-	public static String getModelReleaseNumberFileName() throws LoggedException {
+	public static String getModelReleaseNumberFileName() {
 		return getWorkspaceDirectory() + MODEL_VERSION_FILENAME;
 	}
 
@@ -324,9 +320,8 @@ public final class Configuration {
 	 * Return the path of the plugin data directory inside the unicase workspace (trailing file separator included).
 	 * 
 	 * @return the plugin data directory absolute path as string
-	 * @throws LoggedException
 	 */
-	public static String getPluginDataBaseDirectory() throws LoggedException {
+	public static String getPluginDataBaseDirectory() {
 		return getWorkspaceDirectory() + PLUGIN_BASEDIR + File.separatorChar;
 	}
 

@@ -154,8 +154,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
 		// assign model element to a fixed resource
 		oldResource.getContents().add(modelElement);
-		oldResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
+		String modelElementId = projectSpace.getProject().getModelElementId(modelElement).getId();
 		// set ID
+		oldResource.setID(modelElement, modelElementId);
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
@@ -175,9 +176,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			oldResource.setID(modelElement, null);
 			newResource.getContents().add(modelElement);
 			// set ID on created resource again
-			newResource.setID(modelElement, projectSpace.getProject().getModelElementId(modelElement).getId());
-			save(modelElement);
+			newResource.setID(modelElement, modelElementId);
 		}
+		save(modelElement);
 	}
 
 	private void checkIfFileExists(String newfileName) {
@@ -406,7 +407,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
 
-		notificationRecorder.newRecording();
+		// notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
 		}

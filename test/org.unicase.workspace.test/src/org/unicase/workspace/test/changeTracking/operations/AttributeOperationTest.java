@@ -8,12 +8,14 @@ package org.unicase.workspace.test.changeTracking.operations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -68,6 +70,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
 		assertEquals(useCaseId, attributeOperation.getModelElementId());
+
 	}
 
 	/**
@@ -187,9 +190,11 @@ public class AttributeOperationTest extends WorkspaceTest {
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
+	 * @throws IOException
 	 */
 	@Test
-	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException,
+		IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
@@ -251,6 +256,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI());
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 }

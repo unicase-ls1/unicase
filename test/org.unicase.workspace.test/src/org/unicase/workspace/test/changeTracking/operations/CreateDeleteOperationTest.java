@@ -6,7 +6,9 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +20,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
@@ -269,10 +273,11 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
+	 * @throws IOException
 	 */
 	@Test
 	public void complexDeleteElementReverseTest() throws UnsupportedOperationException,
-		UnsupportedNotificationException {
+		UnsupportedNotificationException, IOException {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor oldActor = RequirementFactory.eINSTANCE.createActor();
@@ -446,6 +451,16 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseClone, oldActor.getInitiatedUseCases().get(0));
 		assertEquals(useCaseClone, newActor.getParticipatedUseCases().get(0));
 		assertEquals(useCaseClone, otherActor.getParticipatedUseCases().get(0));
+
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI());
+
+		assertTrue(ModelUtil.areEqual(loadedProject, getProject()));
+
+		assertEquals(true, getProject().contains(useCaseId));
+		assertEquals(true, getProject().containsInstance(oldActor));
+		assertEquals(true, getProject().containsInstance(newActor));
+		assertEquals(true, getProject().containsInstance(otherActor));
 	}
 
 	/**

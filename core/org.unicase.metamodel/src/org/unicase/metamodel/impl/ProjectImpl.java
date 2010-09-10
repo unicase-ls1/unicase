@@ -17,8 +17,6 @@ import java.util.Set;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -26,7 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,7 +35,6 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.LoggedException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeNotifier;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -157,10 +153,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#getAllModelElements()
 	 * @generated NOT
 	 */
-	public EList<EObject> getAllModelElements() {
-		// return getModelElements();
-		return this.getAllModelElementsbyClass(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(),
-			new BasicEList<EObject>());
+	public Set<EObject> getAllModelElements() {
+		if (!cachesInitialized) {
+			initCaches();
+		}
+
+		return eObjectsCache;
 	}
 
 	/**
@@ -183,11 +181,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public <T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
 		Boolean subclasses) {
-
-		// sanity check
-		if (!MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
-			return list;
-		}
 
 		if (subclasses) {
 			for (ModelElementId modelElementId : getIdToEObjectCache().keySet()) {
@@ -340,8 +333,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			initCaches();
 		}
 		return getIdToEObjectCache().containsKey(id);
-		// return getModelElementsFromCache().keySet().contains(id);
-		// return getEobjectsIdMap().containsValue(id);
 	}
 
 	public Map<ModelElementId, EObject> getIdToEObjectCache() {
@@ -361,87 +352,17 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	private void initCaches() {
-		// eObjectsCache = new HashSet<EObject>();
-		// idToEObjectCache = new HashMap<ModelElementId, EObject>();
 		for (EObject modelElement : modelElements) {
 			TreeIterator<EObject> it = modelElement.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
-				Resource resource = obj.eResource();
-				if (resource != null) {
-					if (resource instanceof XMIResource) {
-						// resource available, read ID
-						XMIResource xmiResource = (XMIResource) resource;
-						try {
-							xmiResource.load(null);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							// Do NOT catch all Exceptions ("catch (Exception e)")
-							// Log AND handle Exceptions if possible
-							//
-							// You can just uncomment one of the lines below to log an exception:
-							// logException will show the logged excpetion to the user
-							// ModelUtil.logException(e);
-							// ModelUtil.logException("YOUR MESSAGE HERE", e);
-							// logWarning will only add the message to the error log
-							// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-							// ModelUtil.logWarning("YOUR MESSAGE HERE");
-							//			
-							// If handling is not possible declare and rethrow Exception
-						}
-						String id = xmiResource.getID(obj);
-						if (id != null) {
-							// TODO
-							// what now?
-							ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
-							objId.setId(id);
-							eObjectsCache.add(obj);
-							eObjectToIdCache.put(obj, objId);
-							idToEObjectCache.put(objId, obj);
-						}
-					}
-				} else {
-					// create new ID
-					ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
-					eObjectsCache.add(obj);
-					eObjectToIdCache.put(obj, objId);
-					idToEObjectCache.put(objId, obj);
-				}
+				ModelElementId id = getIdForModelElement(obj);
+				eObjectsCache.add(obj);
+				eObjectToIdCache.put(obj, id);
+				idToEObjectCache.put(id, obj);
 			}
 		}
 		cachesInitialized = true;
-	}
-
-	/**
-	 * Get the model element cache.
-	 * 
-	 * @return the cache map
-	 */
-	// TODO: We'll put this back afterwards
-	// public Map<ModelElementId, EObject> getModelElementsFromCache() {
-	// initCacheAndNotifier();
-	// // TODO: HACK, consistency between cache and map currently not fixed
-	// for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap()) {
-	// modelElementIdToEObjectsCache.put(ModelUtil.clone(e.getValue()), e.getKey());
-	// }
-	// return modelElementIdToEObjectsCache.map();
-	// }
-
-	private void initCacheAndNotifier() {
-		if (modelElementIdToEObjectsCache == null) {
-			// init cache
-			modelElementIdToEObjectsCache = new BasicEMap<ModelElementId, EObject>();
-			TreeIterator<EObject> allContents = this.eAllContents();
-			while (allContents.hasNext()) {
-				EObject next = allContents.next();
-				// TODO: do we need an replacement for the instanceof check?
-				// if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-				ModelElementId id = ModelUtil.getProject(next).getModelElementId(next);
-				modelElementIdToEObjectsCache.put(id, next);
-				// }
-			}
-			new ProjectChangeNotifier(this);
-		}
 	}
 
 	/**
@@ -452,12 +373,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
 		addModelElementAndChildrenToCache(eObject);
-
-		// remove from deleted map, if entry exists
-		ModelElementId id = getDeletedModelElementId(eObject);
-		if (id != null) {
-			deletedEObjectToIdMap.remove(eObject);
-		}
 
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
@@ -475,27 +390,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-				try {
-					if (exceptionThrowingObservers.contains(projectChangeObserver)) {
-						if (undetachableObservers.contains(projectChangeObserver)) {
-							observersToRemove.add(projectChangeObserver);
-							ModelUtil.logException(
-								"Project Change Observer threw an exception again, it has been detached, UI may not update now: "
-									+ projectChangeObserver.getClass().getName(), ex);
-						} else {
-							ModelUtil.logException(
-								"Project Change Observer threw an exception again, but it will not be detached."
-									+ projectChangeObserver.getClass().getName(), ex);
-						}
+				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
+					if (undetachableObservers.contains(projectChangeObserver)) {
+						observersToRemove.add(projectChangeObserver);
+						ModelUtil.logException(
+							"Project Change Observer threw an exception again, it has been detached, UI may not update now: "
+								+ projectChangeObserver.getClass().getName(), ex);
 					} else {
-						exceptionThrowingObservers.add(projectChangeObserver);
-						ModelUtil.logWarning("Project Change Observer threw an exception: "
-							+ projectChangeObserver.getClass().getName(), ex);
+						ModelUtil.logException(
+							"Project Change Observer threw an exception again, but it will not be detached."
+								+ projectChangeObserver.getClass().getName(), ex);
 					}
-				} catch (LoggedException loggedException) {
-					// do nothing
+				} else {
+					exceptionThrowingObservers.add(projectChangeObserver);
+					ModelUtil.logWarning("Project Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().getName(), ex);
 				}
-
 			}
 		}
 		isNotifiying = false;
@@ -510,13 +420,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		// first check whether ID should be reassigned
 		ModelElementId id = newEObjectToIdMap.get(eObject);
 
-		if (id == null) {
-			id = getDeletedModelElementId(eObject);
-			// remove happens in caller
-		}
-
-		// if not, create a new ID
-		if (id == null) {
+		if (id != null) {
+			newEObjectToIdMap.values().remove(id);
+		} else {
+			// if not, create a new ID
 			id = MetamodelFactory.eINSTANCE.createModelElementId();
 		}
 
@@ -542,6 +449,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		ModelElementId id = getModelElementId(modelElement);
 		deletedEObjectToIdMap.put(modelElement, id);
+		newEObjectToIdMap.put(modelElement, id);
 
 		removeFromCaches(modelElement);
 		getEObjectToIdCache().remove(modelElement);
@@ -549,6 +457,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			ModelElementId childId = getModelElementId(child);
 			deletedEObjectToIdMap.put(child, childId);
+			newEObjectToIdMap.put(child, childId);
 			removeFromCaches(child);
 			getEObjectToIdCache().remove(child);
 		}
@@ -592,14 +501,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		return getIdToEObjectCache().get(modelElementId);
-
-		// EObject obj = this.getModelElementsFromCache().get(modelElementId);
-
-		// for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
-		// if (entry.getValue().equals(modelElementId)) {
-		// return entry.getKey();
-		// }
-		// }
 	}
 
 	/**
@@ -608,7 +509,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
-		initCacheAndNotifier();
+		new ProjectChangeNotifier(this);
 		this.observers.add(projectChangeObserver);
 	}
 
@@ -674,84 +575,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				containerModelElement.eSet(containmentFeature, null);
 			}
 		}
-		// if (!this.containsInstance(element)) {
-		// throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
-		// }
-		//
-		// EObject eObject;
-		// if (element instanceof ModelElementId) {
-		// eObject = getModelElementId(element); // getModelElementsFromCache().get(element);
-		// } else {
-		// eObject = element;
-		// }
-		//
-		// ModelElementId objectId = getModelElementId(eObject);
-		//
-		// deleteOutgoingCrossReferences(element);
-		// deleteIncomingCrossReferences(element);
-		//
-		// for (EObject child : ModelUtil.getAllContainedModelElements(element, false)) {
-		// deleteOutgoingCrossReferences(child);
-		// deleteIncomingCrossReferences(child);
-		// }
-		//
-		// if (element instanceof ModelElementId) {
-		// EObject o = getModelElement((ModelElementId) element);
-		// for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
-		// ModelElementId id = getEobjectsIdMap().get(me);
-		// getDeletedEObjectsIdMap().put(me, id);
-		// }
-		// } else {
-		// for (EObject me : ModelUtil.getAllContainedModelElementsAsList(element, false)) {
-		// ModelElementId id = getEobjectsIdMap().get(me);
-		// getDeletedEObjectsIdMap().put(me, id);
-		// }
-		// }
-		//
-		// if (element instanceof ModelElementId) {
-		// EObject o = getModelElement((ModelElementId) element);
-		//
-		// for (EObject me : ModelUtil.getAllContainedModelElementsAsList(o, false)) {
-		// eobjectsIdMap.values().remove(me);
-		// }
-		// } else {
-		//
-		// for (EObject me : ModelUtil.getAllContainedModelElementsAsList(eObject, false)) {
-		// eobjectsIdMap.values().remove(me);
-		// }
-		//
-		// getEobjectsIdMap().values().remove(objectId);
-		// // getModelElementsFromCache().keySet().remove(objectId);
-		// getDeletedEObjectsIdMap().put(eObject, objectId);
-		// }
-		//
-		// // remove containment
-		// EObject containerModelElement = eObject.eContainer();
-		// if (containerModelElement == this) {
-		// this.getModelElements().remove(eObject);
-		// } else {
-		// EReference containmentFeature = eObject.eContainmentFeature();
-		// if (containmentFeature.isMany()) {
-		// EList<?> containmentList = (EList<?>) containerModelElement.eGet(containmentFeature);
-		// containmentList.remove(eObject);
-		// } else {
-		// containerModelElement.eSet(containmentFeature, null);
-		// }
-		// }
-		//
-		// // TODO: unsure if this is still needed
-		// List<ModelElementId> unsettedIds = new BasicEList<ModelElementId>();
-		//
-		// for (Map.Entry<EObject, ModelElementId> e : getEobjectsIdMap().entrySet()) {
-		// if (e.getKey() == null) {
-		// unsettedIds.add(e.getValue());
-		// }
-		// }
-		//
-		// for (ModelElementId key : unsettedIds) {
-		// getEobjectsIdMap().values().remove(key);
-		// removeModelElementAndChildrenFromCache(containerModelElement)
-		// }
 	}
 
 	private void deleteOutgoingCrossReferences(EObject modelElement) {
@@ -830,27 +653,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @param modelElement the model element
 	 */
 	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final EObject modelElement) {
-
+		updateModelElementAndChildrenFromCache(modelElement);
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
 			}
 		};
-
-		updateModelElementAndChildrenFromCache(modelElement);
-		// getEobjectsIdMap().remove(modelElement);
-
 		notifyProjectChangeObservers(command);
-
 	}
-
-	// public void updateCaches() {
-	// for (Map.Entry<EObject, ModelElementId> entry : getEobjectsIdMap()) {
-	// getEObjectsCache().add(entry.getKey());
-	// getIdToEObjectCache().put(entry.getValue(), entry.getKey());
-	// getEObjectToIdCache().put(entry.getKey(), entry.getValue());
-	// }
-	// }
 
 	public ModelElementId getModelElementId(EObject eObject) {
 
@@ -923,54 +733,93 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
-		// since id is contained in map, all ids should be cloned
+		// since id is contained in map, all IDs should be cloned
 		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
 
 		// check whether the model element is already contained in the project
-		if (getEObjectToIdCache().containsValue(newModelElementId)) {
-			// update: first remove it and then add the updated model element again
-			// getModelElementsFromCache().remove(newModelElementId);
-			// is EObjectsIdMap updated automatically?
-			EObject o = getEObjectToIdCache().get(newModelElementId);
-			getIdToEObjectCache().remove(newModelElementId);
-			getEObjectToIdCache().keySet().remove(newModelElementId);
-			getEObjectsCache().remove(o);
+		if (contains(newModelElementId)) {
+			throw new IllegalStateException("Model element ID " + newModelElementId + " already contained in project.");
 		}
-		// check whether the model element previously has been deleted
-		else if (deletedEObjectToIdMap.containsValue(newModelElementId)) {
-			// add possibly updated model element and removed it from the deleted map
 
-			// EObject m = null;
-			// for (Map.Entry<EObject, ModelElementId> e : deletedEObjectToIdMap.entrySet()) {
-			// if (e.getValue().equals(newModelElementId)) {
-			// m = e.getKey();
-			// }
-			// }
+		for (Map.Entry<EObject, ModelElementId> entry : map.entrySet()) {
+			EObject modelElement = entry.getKey();
+			ModelElementId modelElementId = entry.getValue();
+			newEObjectToIdMap.put(modelElement, modelElementId);
+		}
 
-			// getDeletedModelElements().remove(m);
-			// remove added object from map that contains the already deleted
-			// EObjects
-			deletedEObjectToIdMap.values().remove(newModelElementId);
-			for (EObject child : ModelUtil.getAllContainedModelElements(newModelElement, false)) {
-				// id is contained
-				ModelElementId childId = ModelUtil.clone(map.get(child));
-				deletedEObjectToIdMap.values().remove(childId);
+		// // check whether the model element previously has been deleted
+		// if (deletedEObjectToIdMap.containsValue(newModelElementId)) {
+		//
+		// // put id in new map, in order to reuse id
+		// // newEObjectToIdMap.put(newModelElement, newModelElementId);
+		//
+		// List<EObject> allNewContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(newModelElement,
+		// false);
+		// allNewContainedModelElements.add(newModelElement);
+		// List<EObject> deletedAllContainedModelElements = new ArrayList<EObject>();
+		//
+		// for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap.entrySet()) {
+		// if (entry.getValue().equals(newModelElementId)) {
+		// EObject me = entry.getKey();
+		// deletedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(me, false);
+		// deletedAllContainedModelElements.add(me);
+		// }
+		// }
+		//
+		// for (int i = 0; i < allNewContainedModelElements.size(); i++) {
+		// EObject child = allNewContainedModelElements.get(i);
+		// EObject deletedChild = deletedAllContainedModelElements.get(i);
+		// ModelElementId deletedChildId = ModelUtil.clone(deletedEObjectToIdMap.get(deletedChild));
+		// newEObjectToIdMap.put(child, deletedChildId);
+		// deletedEObjectToIdMap.values().remove(deletedChildId);
+		// }
+		// }
+
+		getModelElements().add(newModelElement);
+	}
+
+	/**
+	 * Returns the ModelElementId for the given model element. If no such ID exists, a new one will be created.
+	 * 
+	 * @param modelElement
+	 * @return the ModelElementId for the given modelelement
+	 */
+	private ModelElementId getIdForModelElement(EObject modelElement) {
+
+		Resource resource = modelElement.eResource();
+
+		if (resource != null && resource instanceof XMIResource) {
+			// resource available, read ID
+			XMIResource xmiResource = (XMIResource) resource;
+			try {
+				xmiResource.load(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// Do NOT catch all Exceptions ("catch (Exception e)")
+				// Log AND handle Exceptions if possible
+				//
+				// You can just uncomment one of the lines below to log an exception:
+				// logException will show the logged excpetion to the user
+				// ModelUtil.logException(e);
+				// ModelUtil.logException("YOUR MESSAGE HERE", e);
+				// logWarning will only add the message to the error log
+				// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+				// ModelUtil.logWarning("YOUR MESSAGE HERE");
+				//			
+				// If handling is not possible declare and rethrow Exception
+			}
+			String id = xmiResource.getID(modelElement);
+			if (id != null) {
+				// TODO
+				// what now?
+				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+				objId.setId(id);
+				return objId;
 			}
 		}
 
-		getModelElements().add(newModelElement);
-
-		// correct ids
-		getIdToEObjectCache().put(newModelElementId, newModelElement);
-		getEObjectToIdCache().put(newModelElement, newModelElementId);
-		getEObjectsCache().add(newModelElement);
-
-		for (EObject child : ModelUtil.getAllContainedModelElements(newModelElement, false)) {
-			ModelElementId childId = ModelUtil.clone(map.get(child));
-			getIdToEObjectCache().put(childId, child);
-			getEObjectToIdCache().put(child, childId);
-			getEObjectsCache().add(child);
-		}
+		// create new ID
+		return MetamodelFactory.eINSTANCE.createModelElementId();
 	}
 
 	public Project copy() {

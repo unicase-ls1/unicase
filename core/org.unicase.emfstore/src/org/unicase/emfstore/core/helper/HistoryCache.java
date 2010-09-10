@@ -8,6 +8,7 @@ package org.unicase.emfstore.core.helper;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
@@ -98,7 +99,7 @@ public class HistoryCache {
 	}
 
 	private HashMap<ModelElementId, TreeSet<Version>> buildInitialHashMap(Version version) {
-		EList<EObject> allModelElements = version.getProjectState().getAllModelElements();
+		Set<EObject> allModelElements = version.getProjectState().getAllModelElements();
 		HashMap<ModelElementId, TreeSet<Version>> hashMap = new HashMap<ModelElementId, TreeSet<Version>>(
 			(int) (allModelElements.size() * 1.15) + 1);
 		for (EObject element : allModelElements) {

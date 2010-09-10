@@ -6,17 +6,19 @@
 package org.unicase.metamodel.util;
 
 /**
+ * Utility class for catching exceptions in tests.
+ * 
  * @author emueller
  */
 public class LoggedException extends RuntimeException {
 
-	private Throwable exception;
+	private static final long serialVersionUID = 2575497213330248095L;
 
 	/**
 	 * @param exception
 	 */
 	public LoggedException(Throwable exception) {
-		this.exception = exception;
+		super(exception);
 	}
 
 	/**
@@ -26,7 +28,4 @@ public class LoggedException extends RuntimeException {
 	public LoggedException(Throwable exception2, String message) {
 		super(message, exception2);
 	}
-
-	private static final long serialVersionUID = 2575497213330248095L;
-
 }
