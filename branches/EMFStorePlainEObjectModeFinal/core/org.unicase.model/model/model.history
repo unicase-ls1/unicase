@@ -7878,7 +7878,7 @@
       </operation>
     </changes>
   </releases>
-  <releases>
+  <releases date="2010-09-11T14:08:11.687+0200" label="">
     <changes xsi:type="history:Create" target="model.ecore#//attachment/UrlAttachment/url"
         referenceName="eAnnotations" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%">
       <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"
@@ -7898,5 +7898,314 @@
       <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%/@details.1"
           featureName="value" dataValue="2.5"/>
     </changes>
+    <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;for(def i = model.eAllContents(); i.hasNext(); ) {&#xD;&#xA;&#x9;def element = i.next();&#xD;&#xA;&#x9;if(element instanceof EReference) {&#xD;&#xA;&#x9;&#x9;element.eKeys.clear()&#xD;&#xA;&#x9;}&#xD;&#xA;}">
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/annotations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/attachments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/comments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//Annotation/annotatedModelElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//Attachment/referringModelElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//organization/User/workItemsToReview"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/groupMemberships"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/assignments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/participations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//organization/Group/orgUnits"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkPackage/containedWorkItems"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/containingWorkpackage"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/predecessors"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/successors"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/assignee"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/reviewer"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/participants"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//task/Milestone/containedModelElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//diagram/MEDiagram/elements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//diagram/MEDiagram/newElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/participatedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/superClasses"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/subClasses"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/incomingAssociations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/outgoingAssociations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/attributes"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/methods"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/demoParticipations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Package/containedPackageElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Package/facadeClass"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/parentPackage"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/outgoingDependencies"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/incomingDependencies"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/source"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/target"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Attribute/definingClass"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Attribute/implementationEnumeration"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/arguments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/definingClass"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/calledMethods"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/callingMethods"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/demoParticipations"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Dependency/source"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Dependency/target"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Enumeration/literals"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//classes/Enumeration/attributes"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedModelElements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//document/CompositeSection/subsections"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//document/Section/parent"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/useCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/initiatingActor"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/participatingActors"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/realizedUserTask"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/useCaseSteps"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/scenarios"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/functionalRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/identifiedClasses"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/includedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/extendedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/systemFunctions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/steps"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/initiatingActorInstance"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingActorInstances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/instantiatedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/functionalRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingMethods"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingClasses"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUserTask"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUserTasks"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/instances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/instantiatedActor"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedUseCase"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedSystemFunction"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/useCase"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/usecases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/workspace"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/initiatingActor"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/participatingActors"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/realizingUseCases"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//requirement/Workspace/systemFunctions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/proposals"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/solution"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/criteria"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/assessments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/issue"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/underlyingProposals"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/issue"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Criterion/assessments"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/proposal"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/criterion"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/sender"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/recipients"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/commentedElement"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/Component/packages"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/Component/offeredServices"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/Component/consumedServices"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/Component/subsystems"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/offeringComponent"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/consumingComponents"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//component/DeploymentNode/components"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/facilitator"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/minutetaker"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/timekeeper"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/participants"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/sections"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/source"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/target"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/outgoingTransitions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/incomingTransitions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/affectedContainers"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/stereotypes"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/profile"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeInstances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeAttributes"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotype"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/modelElement"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotype"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/incomingTransitions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/outgoingTransitions"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/source"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/target"
+          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:MigrationChange" migration="unicaseModelElementClass = model.UnicaseModelElement&#xA;modelElementClass = metamodel.ModelElement&#xA;unicaseModelElementClass.eSuperTypes.remove(modelElementClass)&#xA;&#xA;for(element in unicaseModelElementClass.allInstances) {&#xA;&#x9;def id = element.unset(modelElementClass.identifier)&#xA;&#x9;element.uri = id&#xA;}">
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
+          featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+    </changes>
   </releases>
+  <releases/>
 </history:History>
