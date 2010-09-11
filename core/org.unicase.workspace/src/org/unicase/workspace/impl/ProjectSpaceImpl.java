@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
@@ -103,36 +104,38 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
  * 
  * @implements LoginObserver <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getPendingFileTransfers <em>Pending File Transfers</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification Composite</em>}</li>
- * </ul>
- * </p>
- *
+ *             <p>
+ *             The following features are implemented:
+ *             <ul>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description
+ *             </em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getPendingFileTransfers <em>Pending File Transfers
+ *             </em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification
+ *             Composite</em>}</li>
+ *             </ul>
+ *             </p>
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -140,9 +143,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -150,9 +153,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -160,9 +163,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -190,9 +193,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -200,9 +203,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EList<Event> events;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getUsersession()
 	 * @generated
 	 * @ordered
@@ -210,9 +213,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected Usersession usersession;
 
 	/**
-	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -220,9 +223,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final Date LAST_UPDATED_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -240,9 +243,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -250,9 +253,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final int RESOURCE_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -310,8 +313,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EList<ESNotification> notifications;
 
 	/**
-	 * The cached value of the '{@link #getPendingFileTransfers() <em>Pending File Transfers</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPendingFileTransfers() <em>Pending File Transfers</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPendingFileTransfers()
 	 * @generated
 	 * @ordered
@@ -329,8 +333,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EventComposite eventComposite;
 
 	/**
-	 * The cached value of the '{@link #getNotificationComposite() <em>Notification Composite</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNotificationComposite() <em>Notification Composite</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNotificationComposite()
 	 * @generated
 	 * @ordered
@@ -382,6 +387,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -391,6 +397,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Project getProject() {
@@ -417,6 +424,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Project basicGetProject() {
@@ -425,6 +433,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
@@ -443,6 +452,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
@@ -464,6 +474,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -490,6 +501,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId basicGetProjectId() {
@@ -498,6 +510,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
@@ -516,6 +529,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
@@ -537,6 +551,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -545,6 +560,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
@@ -557,6 +573,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -565,6 +582,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
@@ -577,6 +595,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Deprecated
@@ -628,6 +647,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession getUsersession() {
@@ -645,6 +665,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession basicGetUsersession() {
@@ -653,6 +674,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
@@ -665,6 +687,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getLastUpdated() {
@@ -673,6 +696,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLastUpdated(Date newLastUpdated) {
@@ -685,6 +709,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -711,6 +736,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -719,6 +745,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -737,6 +764,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -758,6 +786,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getResourceCount() {
@@ -766,6 +795,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResourceCount(int newResourceCount) {
@@ -778,6 +808,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDirty() {
@@ -786,6 +817,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDirty(boolean newDirty) {
@@ -798,6 +830,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<String> getOldLogMessages() {
@@ -810,6 +843,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationComposite getLocalOperations() {
@@ -836,6 +870,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationComposite basicGetLocalOperations() {
@@ -844,6 +879,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalOperations(OperationComposite newLocalOperations, NotificationChain msgs) {
@@ -862,6 +898,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLocalOperations(OperationComposite newLocalOperations) {
@@ -883,6 +920,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Deprecated
@@ -933,6 +971,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<PendingFileTransfer> getPendingFileTransfers() {
@@ -945,6 +984,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventComposite getEventComposite() {
@@ -971,6 +1011,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventComposite basicGetEventComposite() {
@@ -979,6 +1020,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEventComposite(EventComposite newEventComposite, NotificationChain msgs) {
@@ -997,6 +1039,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEventComposite(EventComposite newEventComposite) {
@@ -1018,6 +1061,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationComposite getNotificationComposite() {
@@ -1045,6 +1089,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationComposite basicGetNotificationComposite() {
@@ -1053,6 +1098,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNotificationComposite(NotificationComposite newNotificationComposite,
@@ -1073,6 +1119,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNotificationComposite(NotificationComposite newNotificationComposite) {
@@ -1516,8 +1563,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		// List<EObject> modelElements = getProject().getAllModelElements();
-		List<EObject> modelElements = ModelUtil.getAllContainedModelElementsAsList(getProject(), false);
+		Set<EObject> modelElements = getProject().getAllModelElements();
 		int counter = Configuration.getMaxMECountPerResource() + 1;
 		for (EObject modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
@@ -1559,6 +1605,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1588,6 +1635,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1645,6 +1693,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -1709,6 +1758,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1768,6 +1818,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1812,6 +1863,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

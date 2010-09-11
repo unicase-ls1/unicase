@@ -182,8 +182,6 @@ public final class ModelUtil {
 			if (res instanceof XMIResource) {
 				XMIResource xmiRes = (XMIResource) res;
 				for (Map.Entry<EObject, ModelElementId> entry : ((ProjectImpl) object).getEObjectToIdCache().entrySet()) {
-					// object).getEObjectToIdCache().entrySet())
-					// TODO: Do we care about the deleted and the new elements, too?
 					xmiRes.setID(copiedProject.getModelElement(entry.getValue()), entry.getValue().getId());
 				}
 			}

@@ -171,12 +171,14 @@ public class EmfStoreValidator {
 				continue;
 			}
 			System.out.println("Checking project: " + history.getProjectId().getId());
-			history = (ProjectHistory) EcoreUtil.copy(history);
+			// TODO: EM if we copy here there's no resource..
+			// history = (ProjectHistory) EcoreUtil.copy(history);
 			Project state = null;
 
 			for (Version version : history.getVersions()) {
+
 				if (version.getProjectState() != null && state == null) {
-					state = (Project) EcoreUtil.copy(version.getProjectState());
+					state = ModelUtil.clone(version.getProjectState());
 				} else {
 
 					version.getChanges().apply(state, true);
@@ -188,7 +190,7 @@ public class EmfStoreValidator {
 								+ " not equal in version " + version.getPrimarySpec().getIdentifier());
 							// debug(history, state, version);
 						}
-						state = (Project) EcoreUtil.copy(version.getProjectState());
+						state = ModelUtil.clone(version.getProjectState());
 					}
 				}
 			}

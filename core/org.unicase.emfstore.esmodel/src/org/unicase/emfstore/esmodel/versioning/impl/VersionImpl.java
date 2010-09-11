@@ -176,10 +176,11 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	public Project getProjectState() {
 		// TODO: EM: check whether caches are copied, DUPLICATE
-		if (projectState != null && projectState.eIsProxy()) {
+		if ((projectState != null && projectState.eIsProxy())) {
 			// load ids from resource
-			Project project = getProjectStateGen();
+			ProjectImpl project = (ProjectImpl) getProjectStateGen();
 			Resource resource = project.eResource();
+			project.cachesInitialized = true;
 			if (resource != null && (resource instanceof XMIResource)) {
 				XMIResource xmiResource = (XMIResource) resource;
 				TreeIterator<EObject> it = xmiResource.getAllContents();
@@ -189,9 +190,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 					if (objId != null) {
 						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 						modelElementId.setId(objId);
-						((ProjectImpl) project).getEObjectToIdCache().put(obj, modelElementId);
-						((ProjectImpl) project).getIdToEObjectCache().put(modelElementId, obj);
-						((ProjectImpl) project).getEObjectsCache().add(obj);
+						(project).getEObjectToIdCache().put(obj, modelElementId);
+						(project).getIdToEObjectCache().put(modelElementId, obj);
+						(project).getEObjectsCache().add(obj);
 					}
 				}
 			}
@@ -518,6 +519,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public ChangePackage getChanges() {
 		// TODO: EM check whether caches are copied
 		if (changes != null && changes.eIsProxy()) {
+			changes = getChangesGen();
 			for (AbstractOperation operation : changes.getOperations()) {
 				// load ids from resource for each id map that is associated
 				// with a CreateDeleteOperation
