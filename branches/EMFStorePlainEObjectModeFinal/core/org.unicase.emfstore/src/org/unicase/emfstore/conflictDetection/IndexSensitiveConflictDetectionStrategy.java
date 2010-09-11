@@ -17,11 +17,14 @@ import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationU
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
@@ -37,6 +40,7 @@ import org.unicase.metamodel.util.ModelUtil;
  * A conflict detection strategy that will operate on a per attribute and feature level.
  * 
  * @author chodnick
+ * @author wesendon
  */
 // BEGIN COMPLEX CODE
 public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectionStrategy {
@@ -154,6 +158,16 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(MultiReferenceOperation) operationA);
 		}
 
+		if (isSingleRef(operationA) && isMultiRefSet(operationB)) {
+			return doConflictHardSingeMultiSet((SingleReferenceOperation) operationA,
+				(MultiReferenceSetOperation) operationB);
+		}
+
+		if (isMultiRefSet(operationA) && isSingleRef(operationB)) {
+			return doConflictHardSingeMultiSet((SingleReferenceOperation) operationB,
+				(MultiReferenceSetOperation) operationA);
+		}
+
 		if (isMultiRef(operationA) && isMultiRefSet(operationB)) {
 			return doConflictHardMultiReferenceAndSet((MultiReferenceOperation) operationA,
 				(MultiReferenceSetOperation) operationB);
@@ -177,6 +191,14 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		return false;
 	}
 
+	private boolean doConflictHardSingeMultiSet(SingleReferenceOperation opA, MultiReferenceSetOperation opB) {
+		if (!bothContaining(opA, opB)) {
+			return false;
+		}
+
+		return (opA.getNewValue() != null && isSame(opA.getNewValue(), opB.getNewValue()));
+	}
+
 	private boolean doConflictHardMultiAttributeMoves(MultiAttributeMoveOperation operationA,
 		MultiAttributeMoveOperation operationB) {
 		// this is a soft conflict
@@ -186,8 +208,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean doConflictHardMultiAttributeSets(MultiAttributeSetOperation operationA,
 		MultiAttributeSetOperation operationB) {
 
-		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
-			.equals(operationB.getFeatureName()))) {
+		if (!sameFeatureAndId(operationA, operationB)) {
 			return false;
 		}
 
@@ -201,8 +222,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferenceSet(MultiReferenceSetOperation operationA,
 		MultiReferenceSetOperation operationB) {
-		if (!(operationA.getModelElementId().equals(operationB.getModelElementId()) && operationA.getFeatureName()
-			.equals(operationB.getFeatureName()))) {
+
+		if (!sameFeatureAndId(operationA, operationB)) {
 			return false;
 		}
 
@@ -216,26 +237,78 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferenceAndSet(MultiReferenceOperation operationA,
 		MultiReferenceSetOperation operationB) {
+
+		if (sameFeatureAndId(operationA, operationB)) {
+
+			if (!operationA.isAdd()) {
+				for (ModelElementId id : operationA.getReferencedModelElements()) {
+					if (id.equals(operationB.getOldValue())) {
+						return true;
+					}
+				}
+			}
+		} else {
+			if (!bothContaining(operationA, operationB)) {
+				return false;
+			}
+
+			if (!operationA.isAdd()) {
+				return false;
+			}
+
+			return containsId(operationA.getReferencedModelElements(), operationB.getModelElementId());
+		}
+
 		return false;
 	}
 
 	private boolean doConflictHardMultiAttAndMove(MultiAttributeMoveOperation operationB,
 		MultiAttributeOperation operationA) {
-		return false;
+
+		if (!sameFeatureAndId(operationA, operationB)) {
+			return false;
+		}
+
+		int index = getLowestIndex(operationA.getIndexes());
+		if (index == -1) {
+			return false;
+		}
+
+		return (index <= operationB.getOldIndex() || index <= operationB.getNewIndex());
 	}
 
 	private boolean doConflictHardMultiAttMoveAndSet(MultiAttributeMoveOperation operationA,
 		MultiAttributeSetOperation operationB) {
+		if (!sameFeatureAndId(operationA, operationB)) {
+			return false;
+		}
+
+		if (between(operationB.getIndex(), operationA.getOldIndex(), operationA.getNewIndex())) {
+			return true;
+		}
+
 		return false;
 	}
 
 	private boolean doConflictHardMultiAttAndSet(MultiAttributeOperation operationB,
 		MultiAttributeSetOperation operationA) {
-		return false;
+		if (!sameFeatureAndId(operationA, operationB)) {
+			return false;
+		}
+
+		int index = getLowestIndex(operationB.getIndexes());
+		if (index == -1) {
+			return false;
+		}
+
+		return (index <= operationA.getIndex());
 	}
 
 	private boolean doConflictHardMultiAttributes(MultiAttributeOperation operationA, MultiAttributeOperation operationB) {
-		return false;
+		if (!sameFeatureAndId(operationA, operationB)) {
+			return false;
+		}
+		return true;
 	}
 
 	private boolean doConflictHardCreateDelete(CreateDeleteOperation opA, AbstractOperation opB) {
@@ -290,15 +363,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {
 
-		// 4 cases to check
-		// regular vs. regular
-		// regular vs. opposite
-		// opposite vs. regular
-		// opposite vs. opposite
-
-		// case 1: regular vs. regular
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 
 			// if add and remove meet, there might be a hard conflict
 			if (opA.isAdd() != opB.isAdd()) {
@@ -316,156 +381,68 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			}
 			return false;
 
+		} else {
+			if (!bothContaining(opA, opB)) {
+				return false;
+			}
+
+			if (!(opA.isAdd() == opB.isAdd())) {
+				return false;
+			}
+			for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
+
+				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
+
+					if (mA.equals(mB)) {
+						return true;
+					}
+				}
+			}
 		}
-
-		// due to refactoring in changerecording, opposite checks aren't necessary anymore. Bidirectional links now
-		// cause two operations.
-
-		// // case 2: regular vs. opposite
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		//
-		// // if add and remove meet, there might be a hard conflict (opposite is added to when regular is added to,
-		// // and removed from when regular also removes)
-		// if (opA.isAdd() != opB.isAdd()) {
-		//
-		// ModelElementId mA = opA.getModelElementId();
-		//
-		// for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-		//
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		// }
-		//
-		// }
-		//
-		// // case 3: opposite vs. regular
-		// if (opB.getFeatureName().equals(opA.getOppositeFeatureName())) {
-		//
-		// // if add and remove meet, there might be a hard conflict (opposite is added to when regular is added to,
-		// // and removed from when regular also removes)
-		// if (opA.isAdd() != opB.isAdd()) {
-		//
-		// ModelElementId mB = opB.getModelElementId();
-		//
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		//
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		//
-		// }
-		//
-		// }
-		//
-		// // case 4: opposite vs. opposite
-		// // opposite feature names can be null?
-		// if (opB.getOppositeFeatureName() != null &&
-		// opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		//
-		// for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-		//
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		// }
-		// }
 		return false;
 	}
 
 	private boolean doConflictHardSingleMultiReferences(SingleReferenceOperation opA, MultiReferenceOperation opB) {
+		if (!bothContaining(opA, opB)) {
+			return false;
+		}
+
+		if (!opB.isAdd()) {
+			return false;
+		}
+
+		for (ModelElementId id : opB.getOtherInvolvedModelElements()) {
+			if (id.equals(opA.getNewValue())) {
+				return true;
+			}
+		}
 
 		return false;
-
-		// // 1 possible case to check
-		// // regular vs. opposite
-		//
-		// // case 1: regular vs. opposite
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		//
-		// for (ModelElementId m : opB.getOtherInvolvedModelElements()) {
-		// if (m.equals(opA.getModelElementId())) {
-		//
-		// if (opB.isAdd()) {
-		// if (isDifferent(opA.getNewValue(), opB.getModelElementId())) {
-		// return true;
-		// }
-		// } else if (isDifferent(opA.getNewValue(), null)) {
-		// return true;
-		// }
-		//
-		// }
-		// }
-		// }
-		//
-		// return false;
 	}
 
 	private boolean doConflictHardSingleReferences(SingleReferenceOperation opA, SingleReferenceOperation opB) {
 
-		// 4 possible cases to check:
-		// regular vs. regular
-		// regular vs. opposite
-		// opposite vs. regular
-		// opposite vs. opposite
-
-		// case 1: regular vs. regular
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 			// unless both operations set the same new value
 			if (isDifferent(opA.getNewValue(), opB.getNewValue())) {
 				return true;
 			}
 			return false;
 
+		} else {
+
+			if (!bothContaining(opA, opB)) {
+				return false;
+			}
+
+			return (opA.getNewValue() != null && isSame(opA.getNewValue(), opB.getNewValue()));
 		}
-
-		// due to refactoring in changerecording, opposite checks aren't necessary anymore. Bidirectional links now
-		// cause two operations.
-
-		// // case 2: regular vs. opposite
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		// for (ModelElementId m : opB.getOtherInvolvedModelElements()) {
-		// if (m.equals(opA.getModelElementId()) && isDifferent(opA.getNewValue(), opB.getModelElementId())) {
-		// return true;
-		// }
-		// }
-		// }
-		//
-		// // case 3: opposite vs. regular
-		// if (opB.getFeatureName().equals(opA.getOppositeFeatureName())) {
-		// for (ModelElementId m : opA.getOtherInvolvedModelElements()) {
-		// if (m.equals(opB.getModelElementId()) && isDifferent(opB.getNewValue(), opA.getModelElementId())) {
-		// return true;
-		// }
-		// }
-		// }
-		//
-		// // case 4: opposite vs. opposite
-		// if (opB.isBidirectional() && opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		//
-		// for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-		//
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		// }
-		// }
-
-		return false;
 	}
 
 	private boolean doConflictHardAttributes(AttributeOperation opA, AttributeOperation opB) {
 
 		// if same object's same feature is set, there's a potential conflict
-		if (opA.getModelElementId().equals(opB.getModelElementId())
-			&& opA.getFeatureName().equals(opB.getFeatureName())) {
+		if (sameFeatureAndId(opA, opB)) {
 
 			// unless both operations set the same new value
 			if (isSame(opA.getNewValue(), opB.getNewValue())) {
@@ -562,35 +539,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		// Due to refactoring: The opposite case is covered by the second operation created by bidirectional links.
 
 		return false;
-
-		// // 1 case only
-		// // opposite vs. opposite
-		//
-		// // index integrity can only be broken, if both are added to the same feature
-		// if (isDifferent(opA.getNewValue(), opB.getNewValue())) {
-		// return false;
-		// }
-		//
-		// // identical ops don't conflict
-		// if (opB.getModelElementId().equals(opA.getModelElementId()) && isSame(opA.getOldValue(), opB.getOldValue()))
-		// {
-		// return false;
-		// }
-		//
-		// if (opB.isBidirectional() && opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		//
-		// for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-		//
-		// // index integrity breaks only if the operations weren't identical
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		// }
-		// }
-		//
-		// return false;
 	}
 
 	private boolean doConflictIndexIntegrityMultiMoveSingleReferences(MultiReferenceMoveOperation opA,
@@ -600,26 +548,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		// opposite case is covered by the second operation created by bidirectional links.
 		return false;
 
-		// // 1 case only
-		// // regular vs. opposite
-		//
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		//
-		// // might conflict for equal elements
-		// // if (isSame(opB.getNewValue(), opA.getModelElementId())
-		// // && isSame(opB.getModelElementId(), opA.getReferencedModelElementId())) {
-		// // return true;
-		// // }
-		// // might conflict for different manipulated elements as well, if the move's
-		// // target is the last index, we can't tell from here, so the assumption is, that it conflicts
-		// // potentiality is there
-		// // else
-		// if (isSame(opB.getNewValue(), opA.getModelElementId())) {
-		// return true;
-		// }
-		//
-		// }
-		// return false;
 	}
 
 	private boolean doConflictIndexIntegrityMultiMoveMultiReferences(MultiReferenceMoveOperation opA,
@@ -654,24 +582,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		}
 
-		// due to refactoring in changerecording, opposite checks aren't necessary anymore. Bidirectional links now
-		// cause two operations.
-
-		// // regular vs. opposite
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		//
-		// if (containsId(opB.getReferencedModelElements(), opA.getModelElementId())) {
-		//
-		// if (opA.getReferencedModelElementId().equals(opB.getModelElementId())) {
-		// if (opB.isAdd()) {
-		// return true;
-		// }
-		// } else {
-		// return true;
-		// }
-		// }
-		// }
-
 		return false;
 	}
 
@@ -697,24 +607,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		return false;
 
-		// if (!opB.isAdd()) {
-		// return false;
-		// }
-		//
-		// // 1 case to look for
-		// // opposite vs. regular
-		// if (opB.getFeatureName().equals(opA.getOppositeFeatureName())) {
-		//
-		// ModelElementId mB = opB.getModelElementId();
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		// if (mA.equals(mB) && isDifferent(opB.getModelElementId(), opA.getNewValue())) {
-		// return true;
-		// }
-		// }
-		//
-		// }
-		//
-		// return false;
 	}
 
 	private boolean doConflictIndexIntegrityMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {
@@ -784,37 +676,11 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			}
 		}
 
-		// due to refactoring in changerecording, opposite checks aren't necessary anymore. Bidirectional links now
-		// cause two operations.
-
-		// // case 2: regular vs. opposite
-		// if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
-		//
-		// ModelElementId mA = opA.getModelElementId();
-		// for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		//
-		// }
-		//
-		// // case 3: opposite vs. regular
-		// if (opB.getFeatureName().equals(opA.getOppositeFeatureName())) {
-		//
-		// ModelElementId mB = opB.getModelElementId();
-		// for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-		// if (mA.equals(mB)) {
-		// return true;
-		// }
-		// }
-		// }
-
 		return false;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDoc} TODO multiattribute and mulitreferenceset operations are not yet considerered
 	 * 
 	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
 	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
@@ -969,6 +835,33 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		// if neither is null, let the objects sort out equality
 		return a.equals(b);
+	}
+
+	private boolean bothContaining(ReferenceOperation opA, ReferenceOperation opB) {
+		return ContainmentType.CONTAINMENT.equals(opA.getContainmentType())
+			&& ContainmentType.CONTAINMENT.equals(opB.getContainmentType());
+	}
+
+	private boolean sameFeatureAndId(FeatureOperation operationA, FeatureOperation operationB) {
+		return (isSame(operationA.getModelElementId(), operationB.getModelElementId()) && isSame(operationA
+			.getFeatureName(), operationB.getFeatureName()));
+	}
+
+	private boolean between(int index, int lower, int upper) {
+		if (lower > upper) {
+			return between(index, upper, lower);
+		}
+		return (lower <= index && index <= upper);
+	}
+
+	private int getLowestIndex(EList<Integer> indexes) {
+		int result = -1;
+		for (Integer tmp : indexes) {
+			if (result >= tmp || result == -1) {
+				result = tmp;
+			}
+		}
+		return result;
 	}
 
 	private static boolean isCreateOperation(AbstractOperation op) {

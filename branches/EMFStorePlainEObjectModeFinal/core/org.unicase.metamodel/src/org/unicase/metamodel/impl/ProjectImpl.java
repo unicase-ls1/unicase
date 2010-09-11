@@ -85,6 +85,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	public boolean cachesInitialized;
 
+	private ProjectChangeNotifier changeNotifier;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -351,8 +353,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectsCache;
 	}
 
+	// TODO: EM put into interface
 	private void initCaches() {
-		for (EObject modelElement : modelElements) {
+		for (EObject modelElement : getModelElements()) {
 
 			// TODO: EM convenience method
 			// put model element into cache
@@ -741,6 +744,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#addModelElement(org.eclipse.emf.ecore.EObject, java.util.Collection)
 	 */
 	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
+
+		// TODO: EM, no notifications are fired? why?
+		if (observers.isEmpty() && changeNotifier == null) {
+			changeNotifier = new ProjectChangeNotifier(this);
+		}
 
 		// since id is contained in map, all IDs should be cloned
 		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
