@@ -32,4 +32,13 @@ public class SerializationException extends Exception {
 	public SerializationException(EObject eObject) {
 		super("(De-)Serialization failed: " + eObject.toString());
 	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param msg exception message
+	 */
+	public SerializationException(String msg) {
+		super(msg);
+	}
 }

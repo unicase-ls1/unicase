@@ -160,7 +160,7 @@ public final class ModelUtil {
 	 * @throws SerializationException if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object) throws SerializationException {
-		return eObjectToString(object, false);
+		return eObjectToString(object, false, false);
 	}
 
 	/**
@@ -168,10 +168,11 @@ public final class ModelUtil {
 	 * 
 	 * @param object the eObject
 	 * @param overrideContainmentCheck if true, no containment check
+	 * @param overrideHrefCheck checks whether there is a href in the serialized text
 	 * @return String representation of the EObject
 	 * @throws SerializationException if a serialization problem occurs
 	 */
-	public static String eObjectToString(EObject object, boolean overrideContainmentCheck)
+	public static String eObjectToString(EObject object, boolean overrideContainmentCheck, boolean overrideHrefCheck)
 		throws SerializationException {
 		if (object == null) {
 			return null;
@@ -195,7 +196,29 @@ public final class ModelUtil {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-		return out.toString();
+		String result = out.toString();
+		if (!overrideHrefCheck) {
+			hrefCheck(result);
+		}
+		return result;
+	}
+
+	private static void hrefCheck(String result) throws SerializationException {
+		char[] needle = "href".toCharArray();
+		int pointer = 0;
+		boolean insideQuotes = false;
+		for (char character : result.toCharArray()) {
+			if (character == '"') {
+				insideQuotes = !insideQuotes;
+			}
+			if (!insideQuotes && character == needle[pointer]) {
+				if (++pointer == needle.length) {
+					throw new SerializationException("Serialization failed due to href detection.");
+				}
+			} else {
+				pointer = 0;
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
