@@ -7,6 +7,7 @@ package org.unicase.emfstore.connection.xmlrpc.util;
 
 import org.apache.xmlrpc.serializer.TypeSerializerImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
 import org.xml.sax.ContentHandler;
@@ -32,7 +33,10 @@ public class EObjectSerializer extends TypeSerializerImpl {
 			throw new SAXException("Couldn't serialize, no EObject found");
 		}
 		try {
-			write(pHandler, EOBJECT_TAG, ModelUtil.eObjectToString((EObject) pObject));
+			// for now, href test should only be used in internal releases or dev mode
+			boolean overrideHref = ServerConfiguration.isReleaseVersion();
+
+			write(pHandler, EOBJECT_TAG, ModelUtil.eObjectToString((EObject) pObject, false, overrideHref));
 		} catch (SerializationException e) {
 			throw new SAXException("Couldn't serialize EObject", e);
 		}
