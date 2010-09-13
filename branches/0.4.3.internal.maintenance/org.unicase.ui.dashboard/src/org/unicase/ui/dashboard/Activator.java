@@ -8,13 +8,16 @@ package org.unicase.ui.dashboard;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.osgi.framework.internal.core.AbstractBundle;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Version;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
+@SuppressWarnings("restriction")
 public class Activator extends AbstractUIPlugin {
 
 	/**
@@ -32,37 +35,42 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 		Bundle bundle = Platform.getBundle("org.eclipse.swt.cocoa.macosx");
-		if(bundle!=null &&
-			bundle.getVersion().getMajor() == 3 &&
-			bundle.getVersion().getMinor() == 5){
+		if (bundle != null && bundle instanceof AbstractBundle) {
+			// casting necessary because the Version was not directly visible until Equinox/OSGi 3.5.
+			AbstractBundle abstractBundle = (AbstractBundle) bundle;
+			Version version = abstractBundle.getVersion();
+			if (version.getMajor() == 3 && version.getMinor() == 5) {
 				shouldFixHeightForCocoa = true;
+			}
 		}
 	}
-	
+
 	/**
-	 * Fixes a bug in the Cocoa implementation of the SWT Link control (version 3.5). 
-	 * Note that this is a rather <b>quick</b> workaround since this issue is supposed to be fixed in 3.6.
-	 * It may not apply for all use cases of the Link control!
-	 * @param height
-	 * @return
+	 * Fixes a bug in the Cocoa implementation of the SWT Link control (version 3.5). Note that this is a rather
+	 * <b>quick</b> workaround since this issue is supposed to be fixed in 3.6. It may not apply for all use cases of
+	 * the Link control!
+	 * 
+	 * @param height the original height.
+	 * @return the fixed height if the patch is applicable or otherwise - the original.
 	 */
-	public int fixHeightForCocoa(int height){
-		if(!shouldFixHeightForCocoa){
+	public int fixHeightForCocoa(int height) {
+		if (!shouldFixHeightForCocoa) {
 			return height;
 		}
 		double fix = 1.5;
-		if(height<=15){
-			// two liners need a different fix 
+		if (height <= 15) {
+			// two liners need a different fix
 			fix = 2.0;
 		}
-		int ret = (int) (fix*height);
+		int ret = (int) (fix * height);
 		return ret;
 	}
 
 	// BEGIN SUPRESS CATCH EXCEPTION
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @throws Exception if any error occurs
 	 */
 	@Override
@@ -73,6 +81,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @throws Exception if any error occurs
 	 */
 	@Override
@@ -82,7 +91,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	// END SUPRESS CATCH EXCEPTION
-	
+
 	/**
 	 * Returns the shared instance.
 	 * 
@@ -93,11 +102,9 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path.
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
 	 * 
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
