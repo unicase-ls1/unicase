@@ -85,7 +85,7 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 	 */
 	@Override
 	protected Label createMessageArea(Composite composite) {
-		Label label = new Label(composite, SWT.WRAP);
+		Label label = super.createMessageArea(composite);
 		if (getMessage() != null) {
 			label.setText(getMessage());
 		}
