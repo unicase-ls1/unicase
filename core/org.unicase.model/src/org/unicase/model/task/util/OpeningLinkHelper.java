@@ -59,12 +59,10 @@ public final class OpeningLinkHelper {
 			}
 			// Create path
 			ModelElementPath path = UtilFactory.eINSTANCE.createModelElementPath();
-			// TODO: EMFPlainObjectTransition: list.get(0)
 			path.setSource(ModelUtil.getProject(list.get(0)).getModelElementId(list.get(0)));
 			path.setTarget(ModelUtil.getProject(opened).getModelElementId(opened));
 			if (list.size() > 1) {
 				for (int i = 1; i < list.size(); i++) {
-					// TODO: EMFPlainObjectTransition: list.get(i)
 					path.getPath().add(ModelUtil.getProject(list.get(i)).getModelElementId(list.get(i)));
 				}
 			}
