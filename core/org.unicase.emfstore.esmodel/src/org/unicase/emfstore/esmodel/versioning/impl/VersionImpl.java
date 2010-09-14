@@ -175,7 +175,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated NOT
 	 */
 	public Project getProjectState() {
-		// TODO: EM: check whether caches are copied, DUPLICATE
 		if ((projectState != null && projectState.eIsProxy())) {
 			// load ids from resource
 			ProjectImpl project = (ProjectImpl) getProjectStateGen();
@@ -252,11 +251,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__PROJECT_STATE,
 				newProjectState, newProjectState));
 	}
-
-	// TODO: EM check whether caches are copied
-	// public void setProjectStateEObjectIdMap(Map<EObject, ModelElementId> idMap) {
-	// projectState.getEobjectsIdMap().putAll(idMap);
-	// }
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -517,7 +511,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated NOT
 	 */
 	public ChangePackage getChanges() {
-		// TODO: EM check whether caches are copied
 		if (changes != null && changes.eIsProxy()) {
 			changes = getChangesGen();
 			for (AbstractOperation operation : changes.getOperations()) {

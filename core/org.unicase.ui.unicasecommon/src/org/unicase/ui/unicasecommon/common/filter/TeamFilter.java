@@ -61,7 +61,7 @@ public class TeamFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: EMFPlainEObjectTransition, getCreator method
+			// TODO: PlainEObjectMode, getCreator, getAssignee
 			// if (workItem.getAssignee() == null) {
 			// for (OrgUnit orgUnit : team) {
 			// if (orgUnit.getName().equals(workItem.getCreator())) {
@@ -72,7 +72,7 @@ public class TeamFilter extends ViewerFilter {
 
 		}
 
-			// TODO: EMFPlainEObjectTransition, getCreator method
+		// TODO: PlainEObjectMode, getCreator
 		/*
 		 * else if (element instanceof EObject) { String creator = ((EObject) element).getCreator(); for (OrgUnit
 		 * orgUnit : team) { if (orgUnit.getName().equals(creator)) { return true; } } }

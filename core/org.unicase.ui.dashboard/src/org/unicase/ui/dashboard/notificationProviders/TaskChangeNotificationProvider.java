@@ -93,19 +93,19 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
-		// TODO: EM
+		// TODO: PlainEObjectMode, getCreationDate (date)
 		// Date date = workItemsSet.iterator().next().getCreationDate();
 		for (WorkItem workItem : workItemsSet) {
 			ModelElementId workItemId = ModelUtil.getProject(workItem).getModelElementId(workItem);
 			notification.getRelatedOperations().add(workItems.get(workItem).getOperationId());
 			notification.getRelatedModelElements().add(workItemId);
 			Date newDate = workItems.get(workItem).getClientDate();
-			// TODO: EM
+			// TODO: PlainEObjectMode, getCreationDate (date)
 			// if (newDate != null && newDate.after(date)) {
 			// date = newDate;
 			// }
 		}
-		// TODO: EM
+		// TODO: PlainEObjectMode, getCreationDate (date)
 		// if (date == null) {
 		// date = new Date();
 		// }

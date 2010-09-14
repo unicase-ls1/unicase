@@ -47,12 +47,10 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	EList<EObject> getModelElements();
 
-	// TODO: EM
-	// void updateCaches();
-
-	EObject getDeletedModelElement(ModelElementId modelElementId);
-
-	ModelElementId getDeletedModelElementId(EObject modelElement);
+	/**
+	 * Initializes the ID caches of the project.
+	 */
+	void initCaches();
 
 	/**
 	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type

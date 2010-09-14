@@ -295,10 +295,10 @@ final class NotificationValidator {
 
 	}
 
+	// TODO: PlainEObjectMode, method now seems to be obsolet
 	private boolean checkModelElementList(List<?> aList) {
 
 		for (Object value : aList) {
-			// TODO: EMFPlainEObjectTransition, ModelElement class check
 			// if (!(value instanceof ModelElement)) {
 			// return false;
 			// }

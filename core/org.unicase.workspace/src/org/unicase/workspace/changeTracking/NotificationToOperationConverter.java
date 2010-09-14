@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -187,7 +188,7 @@ public final class NotificationToOperationConverter {
 		for (EObject valueElement : list) {
 			ModelElementId id = project.getModelElementId(valueElement);
 			if (id == null) {
-				id = project.getDeletedModelElementId(valueElement);
+				id = ((ProjectImpl) project).getDeletedModelElementId(valueElement);
 			}
 			referencedModelElements.add(id);
 		}
@@ -252,11 +253,11 @@ public final class NotificationToOperationConverter {
 		ModelElementId newModelElementId = project.getModelElementId(n.getNewModelElementValue());
 
 		if (oldModelElementId == null) {
-			oldModelElementId = project.getDeletedModelElementId(n.getOldModelElementValue());
+			oldModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getOldModelElementValue());
 		}
 
 		if (newModelElementId == null) {
-			newModelElementId = project.getDeletedModelElementId(n.getNewModelElementValue());
+			newModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getNewModelElementValue());
 		}
 
 		if (!n.getReference().isMany()) {
@@ -300,7 +301,7 @@ public final class NotificationToOperationConverter {
 		operation.setClientDate(new Date());
 		ModelElementId id = project.getModelElementId(modelElement);
 		if (id == null) {
-			id = project.getDeletedModelElementId(modelElement);
+			id = ((ProjectImpl) project).getDeletedModelElementId(modelElement);
 		}
 		if (id == null) {
 			throw new IllegalStateException("Model element doesn't have an ID.");

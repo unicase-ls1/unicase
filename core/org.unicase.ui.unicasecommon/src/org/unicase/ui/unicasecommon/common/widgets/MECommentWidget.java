@@ -139,7 +139,7 @@ public class MECommentWidget extends Composite {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		Label commentTime = new Label(commentTitleBar, SWT.WRAP);
-		// TODO : EMFPlainEObjectTransition: creation date
+		// TODO : PlainEObjectMode, getCreationDate
 		// commentTime.setText(dateFormat.format(comment.getCreationDate()));
 
 		Composite commentTitleBarBorder = new Composite(this, SWT.NONE);
@@ -189,9 +189,7 @@ public class MECommentWidget extends Composite {
 						new UnicaseCommand() {
 							@Override
 							protected void doRun() {
-								// TODO: EMFStore check whether deletion works as expected
 								ModelUtil.getProject(comment).deleteModelElement(comment);
-								// MECommentWidget.this.comment.delete();
 								MECommentWidget.this.dispose();
 								MECommentWidget parent = MECommentWidget.this.getParentWidget();
 								if (parent != null && parent.getParentWidget() != null) {
@@ -227,7 +225,7 @@ public class MECommentWidget extends Composite {
 		// author
 		final OrgUnit sender = comment.getSender();
 		if (sender == null) {
-			// TODO: EM creator
+			// TODO: PlainEObjectMode, getCreator
 			// builder.append(comment.getCreator());
 		} else {
 			builder.append(sender.getName() + "");

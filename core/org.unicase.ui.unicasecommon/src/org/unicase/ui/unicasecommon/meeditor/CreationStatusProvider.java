@@ -44,7 +44,7 @@ public class CreationStatusProvider implements StatusMessageProvider {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		StringBuffer stringBuffer = new StringBuffer();
-		// TODO: EM: creation date
+		// TODO: PlainEObjectMode, getCreationDate
 		// Date creationDate = unicaseModelElement.getCreationDate();
 		String creatorHint = "";
 		// if (creationDate != null) {

@@ -71,14 +71,14 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: EMFPlainObjectTransition: getCreator, getAssignee
+			// TODO: PlainEObjectMode, getCreator, getAssignee
 			// if (user.getName().equals(workItem.getCreator()) && workItem.getAssignee() == null) {
 			// return true;
 			// }
 
 		}
 
-			// TODO: EMFPlainEObjectTransition, getCreator method
+		// TODO: PlainEObjectMode, getCreator
 		/*
 		 * else if (element instanceof ModelElement) { String creator = ((ModelElement) element).getCreator(); if
 		 * (user.getName().equals(creator)) { return true; } }
@@ -109,7 +109,7 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: EMFPlainEObjectTransition, getCreator method
+			// TODO: PlainEObjectMode, getCreator
 			// if (workItem.getAssignee() == null) {
 			// for (OrgUnit orgUnit : team) {
 			// if (orgUnit.getName().equals(workItem.getCreator())) {
@@ -120,7 +120,7 @@ public class UserFilter extends ViewerFilter {
 
 		}
 
-			// TODO: EMFPlainEObjectTransition, getCreator method
+		// TODO: PlainEObjectMode, getCreator
 		/*
 		 * else if (element instanceof ModelElement) { String creator = ((ModelElement) element).getCreator(); for
 		 * (OrgUnit orgUnit : team) { if (orgUnit.getName().equals(creator)) { return true; } } }

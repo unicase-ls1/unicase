@@ -353,27 +353,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectsCache;
 	}
 
-	// TODO: EM put into interface
-	private void initCaches() {
-		for (EObject modelElement : getModelElements()) {
+	public void initCaches() {
 
-			// TODO: EM convenience method
+		for (EObject modelElement : getModelElements()) {
 			// put model element into cache
 			ModelElementId modelElementId = getIdForModelElement(modelElement);
-			eObjectsCache.add(modelElement);
-			eObjectToIdCache.put(modelElement, modelElementId);
-			idToEObjectCache.put(modelElementId, modelElement);
+			putIntoCaches(modelElement, modelElementId);
 
 			// put children of model element into cache
 			TreeIterator<EObject> it = modelElement.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
 				ModelElementId id = getIdForModelElement(obj);
-				eObjectsCache.add(obj);
-				eObjectToIdCache.put(obj, id);
-				idToEObjectCache.put(id, obj);
+				putIntoCaches(obj, id);
 			}
 		}
+
 		cachesInitialized = true;
 	}
 
@@ -457,7 +452,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectToIdCache;
 	}
 
-	private void updateModelElementAndChildrenFromCache(EObject modelElement) {
+	public void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
+		eObjectsCache.add(modelElement);
+		eObjectToIdCache.put(modelElement, modelElementId);
+		idToEObjectCache.put(modelElementId, modelElement);
+	}
+
+	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
 
 		ModelElementId id = getModelElementId(modelElement);
 		deletedEObjectToIdMap.put(modelElement, id);
@@ -476,7 +477,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	/**
-	 * @param child
+	 * Removes the given model element from the EObject cache and the idToEObject cache in case the caches have been
+	 * initialized.
+	 * 
+	 * @param modelElement the model element to be removed from the caches
 	 */
 	private void removeFromCaches(EObject modelElement) {
 		if (cachesInitialized) {
@@ -665,7 +669,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @param modelElement the model element
 	 */
 	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final EObject modelElement) {
-		updateModelElementAndChildrenFromCache(modelElement);
+		removeModelElementAndChildrenFromCache(modelElement);
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
@@ -686,34 +690,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 					if (resource instanceof XMIResource) {
 						XMIResource xmiResource = (XMIResource) resource;
 						xmiResource.load(null);
+						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+
 						String id = xmiResource.getID(eObject);
 						if (id != null) {
-							ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+							// change ID
 							modelElementId.setId(id);
 							getEObjectToIdCache().put(eObject, modelElementId);
 							return ModelUtil.clone(modelElementId);
 						}
 
-						// TODO: EM
-						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+						// return new ID
 						getEObjectToIdCache().put(eObject, modelElementId);
 						return ModelUtil.clone(modelElementId);
-						// return null;
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					// Do NOT catch all Exceptions ("catch (Exception e)")
-					// Log AND handle Exceptions if possible
-					//
-					// You can just uncomment one of the lines below to log an exception:
-					// logException will show the logged excpetion to the user
-					// ModelUtil.logException(e);
-					// ModelUtil.logException("", e);
-					// logWarning will only add the message to the error log
-					// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-					// ModelUtil.logWarning("YOUR MESSAGE HERE");
-					//			
-					// If handling is not possible declare and rethrow Exception
+					throw new RuntimeException("Could't load resource for model element " + eObject);
 				}
 
 			}
@@ -745,7 +737,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
-		// TODO: EM, no notifications are fired? why?
+		// TODO: PlainEObjectMode, no notifications are fired? why?
 		if (observers.isEmpty() && changeNotifier == null) {
 			changeNotifier = new ProjectChangeNotifier(this);
 		}

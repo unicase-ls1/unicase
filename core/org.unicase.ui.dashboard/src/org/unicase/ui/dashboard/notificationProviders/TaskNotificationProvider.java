@@ -235,7 +235,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		}
 		String text = stringBuilder.toString();
 		notification.setMessage(text);
-		// TODO: EM
+		// TODO: PlainEObjectMode, getCreationDate
 		// Date date = workItems.iterator().next().getCreationDate();
 		ArrayList<OperationId> ops = new ArrayList<OperationId>();
 		for (WorkItem workItem : workItems) {
@@ -244,12 +244,12 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			AbstractOperation abstractOperation = workItemMap.get(workItem);
 			ops.add(abstractOperation.getOperationId());
 			Date newDate = abstractOperation.getClientDate();
-			// TODO: EM
+			// TODO: PlainEObjectMode, getCreationDate (date)
 			// if (newDate != null && newDate.after(date)) {
 			// date = newDate;
 			// }
 		}
-		// TODO: EM
+		// TODO: PlainEObjectMode, getCreationDate (date)
 		// if (date == null) {
 		// date = new Date();
 		// }

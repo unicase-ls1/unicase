@@ -185,10 +185,9 @@ public class MECommentReplyWidget extends Composite {
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).applyTo(recipients);
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(modelElement)
-			.getModelElementId(modelElement));
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(modelElement));
 		// try {
-		// TODO: EM creator
+		// TODO: PlainEObjectMode, getCreator
 		// User user = OrgUnitHelper.getUser(projectSpace, modelElement.getCreator());
 		// recipientsList.add(user);
 		// } catch (CannotMatchUserInProjectException e1) {

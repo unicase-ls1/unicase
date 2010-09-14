@@ -40,6 +40,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
@@ -332,7 +333,8 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+		Project project = ModelUtil.getProject(useCase);
+		ModelElementId useCaseId = project.getModelElementId(useCase);
 
 		Command deleteCommand = DeleteCommand.create(Configuration.getEditingDomain(), useCase);
 		Configuration.getEditingDomain().getCommandStack().execute(deleteCommand);
@@ -348,12 +350,7 @@ public class CommandTest extends WorkspaceTest {
 		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
 		assertEquals(true, createDeleteOperation.isDelete());
 
-		// TODO: EMFStore
-		// EObject modelElement = createDeleteOperation.getModelElement();
-		// ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
-		// assertEquals(useCaseId, modelElementId);
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
 
 		assertEquals(8, subOperations.size());
