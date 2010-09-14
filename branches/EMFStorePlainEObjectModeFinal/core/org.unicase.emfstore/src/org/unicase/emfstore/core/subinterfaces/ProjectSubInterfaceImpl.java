@@ -31,8 +31,8 @@ import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This subinterfaces implements all project related functionality for the
@@ -96,9 +96,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					// the xml files were inconsistent.
 					throw new EmfStoreException("Couldn't find project state.");
 				}
-				// TODO: EM
-				Project projectState = ((ProjectImpl) version.getProjectState()).copy(); // (Project)
-																							// EcoreUtil.copy(version.getProjectState());
+				Project projectState = ModelUtil.clone(version.getProjectState());
 				for (Version next = version.getNextVersion(); next != null
 					&& next.getPrimarySpec().compareTo(resolvedVersion) < 1; next = next.getNextVersion()) {
 					next.getChanges().apply(projectState);

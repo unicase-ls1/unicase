@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ModelElementTooltip;
 import org.unicase.workspace.ProjectSpace;
 
@@ -107,8 +108,7 @@ public final class URLHelper {
 		}
 		ret.append(name);
 		ret.append("%");
-		// TODO: EM: retrieve identifier of modelelement
-		// ret.append(modelElement.getIdentifier());
+		ret.append(ModelUtil.getProject(modelElement).getModelElementId(modelElement).getId());
 		ret.append("\">");
 		int limit = style;
 		if (style == UNLTD) {

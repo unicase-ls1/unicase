@@ -753,22 +753,34 @@ public final class ModelUtil {
 	 * @throws IOException if loading the object from the resource fails.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI) throws IOException {
+	public static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI, boolean checkConstraints)
+		throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		// TODO: EM loadonDemand in testcases changed
-		Resource resource = resourceSet.getResource(resourceURI, true);// false);
+		Resource resource;
+
+		if (checkConstraints) {
+			resource = resourceSet.getResource(resourceURI, false);
+		} else {
+			resource = resourceSet.getResource(resourceURI, true);
+		}
+
 		EList<EObject> contents = resource.getContents();
-		// if (contents.size() > 1) {
-		// throw new IOException("Resource containes multiple objects!");
-		// }
+
+		if (checkConstraints) {
+			if (contents.size() > 1) {
+				throw new IOException("Resource containes multiple objects!");
+			}
+		}
+
 		if (contents.size() < 1) {
 			throw new IOException("Resource contains no objects");
 		}
+
 		EObject eObject = contents.get(0);
 
 		if (eObject instanceof ProjectImpl && resource instanceof XMIResource) {
 			ProjectImpl project = (ProjectImpl) eObject;
-			// TODO: cachesInitialized shouldn't be public
+			// TODO: EM cachesInitialized shouldn't be public
 			project.cachesInitialized = true;
 			XMIResource xmiResource = (XMIResource) resource;
 			ModelUtil.getAllContainedModelElementsAsList(project, false);
@@ -779,9 +791,7 @@ public final class ModelUtil {
 				String id = xmiResource.getID(obj);
 				if (id != null) {
 					objId.setId(id);
-					project.getEObjectToIdCache().put(obj, objId);
-					project.getEObjectsCache().add(obj);
-					project.getIdToEObjectCache().put(objId, obj);
+					project.putIntoCaches(obj, objId);
 				}
 			}
 		}
@@ -808,13 +818,11 @@ public final class ModelUtil {
 			if (o instanceof ProjectImpl && resource instanceof XMIResource) {
 				XMIResource xmiResource = (XMIResource) resource;
 				for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) o).getEObjectToIdCache().entrySet()) {
-					// xmiResource.getContents().add(e.getKey());
 					xmiResource.setID(e.getKey(), e.getValue().getId());
 				}
 			}
 		}
 
-		// TODO: EM
 		contents.addAll(eObjects);
 		resource.save(null);
 	}
@@ -942,14 +950,9 @@ public final class ModelUtil {
 	 * @return the project or null if the element is not contained in a project.
 	 */
 	public static Project getProject(EObject modelElement) {
-		if (modelElement instanceof ModelElementId) {
-			// TODO : EMFPlainEObjectTransition: id is contained in map
-			return (Project) modelElement.eContainer().eContainer();
-		} else {
-			Set<EObject> seenModelElements = new HashSet<EObject>();
-			seenModelElements.add(modelElement);
-			return getProject(modelElement, seenModelElements);
-		}
+		Set<EObject> seenModelElements = new HashSet<EObject>();
+		seenModelElements.add(modelElement);
+		return getProject(modelElement, seenModelElements);
 	}
 
 	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
@@ -1052,9 +1055,7 @@ public final class ModelUtil {
 	private static void removeModelElementFromResource(EObject modelElement) {
 		Resource resource = modelElement.eResource();
 		if (resource == null) {
-			// TODO: EM
 			return;
-			// throw new IllegalArgumentException("EObject doesn't have any resource.");
 		}
 		if (!(resource instanceof XMIResource)) {
 			throw new IllegalArgumentException("EObject's resource is not a XMI resource.");

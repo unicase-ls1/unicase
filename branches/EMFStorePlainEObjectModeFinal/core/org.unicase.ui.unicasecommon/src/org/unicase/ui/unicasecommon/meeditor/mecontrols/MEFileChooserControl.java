@@ -435,7 +435,6 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		}
 		// set information needed for transfer
 		FileInformation fileInfo = new FileInformation();
-		// TODO : EMFPlainEObjectTransition
 		fileInfo.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
 		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 		fileInfo.setFileName(fileAttachment.getFileName());

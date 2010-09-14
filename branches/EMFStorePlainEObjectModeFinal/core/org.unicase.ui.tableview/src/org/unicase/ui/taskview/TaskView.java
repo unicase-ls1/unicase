@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
@@ -31,7 +32,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
@@ -463,7 +463,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -477,7 +477,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -493,7 +493,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}

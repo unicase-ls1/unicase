@@ -47,12 +47,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		EObject destructee = null;
-		// TODO: EMFPlainObjectTransition: instanceof ModelElement has been replaced with null check, ok?
-		if (this.getElementToDestroy() != null) {
-			destructee = this.getElementToDestroy();
-		} else {
-			return CommandResult.newErrorCommandResult("Element to delete is no ModelElement");
-		}
+		destructee = this.getElementToDestroy();
 		EditPart diagramEditPart = EditPartUtility.getDiagramEditPart(this.editPart);
 		MEDiagram diag = (MEDiagram) EditPartUtility.getElement(diagramEditPart);
 		diag.getElements().remove(destructee);

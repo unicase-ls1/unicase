@@ -171,7 +171,6 @@ public class EmfStoreValidator {
 				continue;
 			}
 			System.out.println("Checking project: " + history.getProjectId().getId());
-			// TODO: EM if we copy here there's no resource..
 			// history = (ProjectHistory) EcoreUtil.copy(history);
 			Project state = null;
 

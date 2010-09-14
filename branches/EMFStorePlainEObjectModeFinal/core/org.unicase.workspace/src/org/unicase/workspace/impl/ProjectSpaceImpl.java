@@ -1907,7 +1907,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		stopChangeRecording();
 		changeTracker.setAutoSave(false);
 
-		// TODO: EM: Set user as creator when sharing a project
+		// TODO: PlainEObjectMode: Set user as creator when sharing a project
 		for (EObject me : this.getProject().getAllModelElements()) {
 			// if (me.getCreator() == null || me.getCreator().equals("")
 			// || me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
