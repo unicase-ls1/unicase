@@ -164,7 +164,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 		assertEquals(0, getProjectSpace().getOperations().size());
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, getProject()));
 		assertEquals(false, getProject().containsInstance(useCase));

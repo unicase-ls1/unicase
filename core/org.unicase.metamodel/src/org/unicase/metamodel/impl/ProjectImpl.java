@@ -435,9 +435,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		if (cachesInitialized) {
-			getEObjectToIdCache().put(eObject, id);
-			getEObjectsCache().add(eObject);
-			getIdToEObjectCache().put(id, eObject);
+			putIntoCaches(eObject, id);
 		}
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
@@ -682,7 +680,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		if (!eObjectToIdCache.containsKey(eObject) && !cachesInitialized) {
 			// id not yet loaded
-			// TODO: EM getAllModelElements not yet working
 			if (ModelUtil.getAllContainedModelElementsAsList(this, false).contains(eObject)) {
 				// eobject contained in project, load resource
 				try {
@@ -756,34 +753,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			newEObjectToIdMap.put(modelElement, modelElementId);
 		}
 
-		// // check whether the model element previously has been deleted
-		// if (deletedEObjectToIdMap.containsValue(newModelElementId)) {
-		//
-		// // put id in new map, in order to reuse id
-		// // newEObjectToIdMap.put(newModelElement, newModelElementId);
-		//
-		// List<EObject> allNewContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(newModelElement,
-		// false);
-		// allNewContainedModelElements.add(newModelElement);
-		// List<EObject> deletedAllContainedModelElements = new ArrayList<EObject>();
-		//
-		// for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap.entrySet()) {
-		// if (entry.getValue().equals(newModelElementId)) {
-		// EObject me = entry.getKey();
-		// deletedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(me, false);
-		// deletedAllContainedModelElements.add(me);
-		// }
-		// }
-		//
-		// for (int i = 0; i < allNewContainedModelElements.size(); i++) {
-		// EObject child = allNewContainedModelElements.get(i);
-		// EObject deletedChild = deletedAllContainedModelElements.get(i);
-		// ModelElementId deletedChildId = ModelUtil.clone(deletedEObjectToIdMap.get(deletedChild));
-		// newEObjectToIdMap.put(child, deletedChildId);
-		// deletedEObjectToIdMap.values().remove(deletedChildId);
-		// }
-		// }
-
 		getModelElements().add(newModelElement);
 	}
 
@@ -832,10 +801,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				throw new IllegalStateException("Model element '" + child + "' has no ID.");
 			}
 
-			copiedProject.getEObjectToIdCache().put(copiedChild, childId);
-			copiedProject.getEObjectsCache().add(copiedChild);
-			copiedProject.getIdToEObjectCache().put(childId, copiedChild);
-
+			copiedProject.putIntoCaches(copiedChild, childId);
 		}
 
 		return copiedProject;

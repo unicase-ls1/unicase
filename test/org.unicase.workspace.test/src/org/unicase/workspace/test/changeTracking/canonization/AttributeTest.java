@@ -12,7 +12,6 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -101,20 +100,8 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		// new UnicaseCommand() {
-		//
-		// @Override
-		// protected void doRun() {
-		// try {
-		// ModelUtil.saveObjectToResource(getProject(), getProject().eResource().getURI());
-		// } catch (IOException e) {
-		// fail("Saving of resource failed.");
-		// }
-		// }
-		// }.run(false);
-
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -176,7 +163,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -239,7 +226,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -294,7 +281,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 0);
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -349,7 +336,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 0);
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -406,7 +393,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 0);
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -471,7 +458,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -542,7 +529,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -625,7 +612,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -697,7 +684,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -769,7 +756,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -839,7 +826,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -907,7 +894,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -981,7 +968,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
@@ -1073,7 +1060,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -1104,9 +1091,7 @@ public class AttributeTest extends WorkspaceTest {
 			protected void doRun() {
 				useCase.setName("NameOfUseCase");
 				useCase.setDescription("DescriptionOfUseCase");
-
-				EcoreUtil.delete(useCase);
-				// getProject().deleteModelElement(useCase);
+				getProject().deleteModelElement(useCase);
 			}
 		}.run(false);
 
@@ -1153,7 +1138,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -1252,7 +1237,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
@@ -1424,7 +1409,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -1470,7 +1455,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
@@ -1541,7 +1526,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI());
+			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}

@@ -122,18 +122,18 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Compares to projects. Two projects are equal if all model elements are equal.
+	 * Compares two EObject by checking whether the string representations of the EObjects are equal
 	 * 
-	 * @param projectA the first project
-	 * @param projectB the second project
-	 * @return true if the projects are equal
+	 * @param eobjectA the first EObject
+	 * @param eobjectB the second EObject
+	 * @return true if the two objects are equal
 	 */
-	public static boolean areEqual(Project projectA, Project projectB) {
+	public static boolean areEqual(EObject eobjectA, EObject eobjectB) {
 		String stringA;
 		String stringB;
 		try {
-			stringA = eObjectToString(projectA);
-			stringB = eObjectToString(projectB);
+			stringA = eObjectToString(eobjectA);
+			stringB = eObjectToString(eobjectB);
 		} catch (SerializationException e) {
 			return false;
 		}
@@ -958,6 +958,10 @@ public final class ModelUtil {
 	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
 
 		EObject container = eObject.eContainer();
+
+		if (eObject instanceof Project) {
+			return (Project) eObject;
+		}
 
 		if (container == null) {
 			return null;
