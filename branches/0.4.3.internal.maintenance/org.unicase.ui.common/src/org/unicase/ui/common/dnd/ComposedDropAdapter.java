@@ -204,11 +204,6 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		setInitialEventFeedback(event);
 		eventFeedback = event.feedback;
 
-		if (source.size() > 1) {
-			event.detail = DND.DROP_NONE;
-			return;
-		}
-
 		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
 			|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
 			targetConatiner = target.eContainer();

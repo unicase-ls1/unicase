@@ -8,10 +8,13 @@ package org.unicase.ui.unicasecommon.diagram.part;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -27,8 +30,16 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DropTarget;
+import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.FocusEvent;
@@ -41,11 +52,13 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramAction;
+import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -148,53 +161,121 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
-		List<EObject> result;
+		private List<ModelElement> mesDrop, mesAdd;
+		private int x, y;
 
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 			super(viewer, xfer);
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
-		protected List<EObject> getObjectsBeingDropped() {
-			TransferData data = getCurrentEvent().currentDataType;
-
-			Object transferedObject = getJavaObject(data);
-
-			result = new ArrayList<EObject>();
-
-			if (transferedObject instanceof List) {
-				List selection = (List) transferedObject;
-				for (Iterator it = selection.iterator(); it.hasNext();) {
-					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof ModelElement) {
-						result.add((EObject) nextSelectedObject);
+		public boolean isEnabled(DropTargetEvent event) {
+			setEnablementDeterminedByCommand(false);
+			if (super.isEnabled(event)) {
+				if (!mesDrop.isEmpty()) {
+					MEDiagram diagram = (MEDiagram) getDiagram().getElement();
+					mesAdd = new ArrayList<ModelElement>();
+					for (ModelElement me : mesDrop) {
+						// do not add elements that are already added and check if they are allowed for the diagram
+						if (!diagram.getElements().contains(me) && isAllowedType(diagram, me)) {
+							mesAdd.add(me);
+						}
+					}
+					if (!mesAdd.isEmpty()) {
+						DropTarget target = (DropTarget) event.widget;
+						org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
+						x = location.x;
+						y = location.y;
+						return true;
 					}
 				}
 			}
-			this.handleDrop();
-			return result;
+			return false;
+		}
+
+		@SuppressWarnings("unchecked")
+		private boolean isAllowedType(MEDiagram diagram, ModelElement dropee) {
+			// get all registered contexts
+			Set<IClientContext> clientContexts = ClientContextManager.getInstance().getClientContexts();
+			for (IClientContext clientContext : clientContexts) {
+				IElementType[] containedTypes = ElementTypeRegistry.getInstance().getElementTypes(clientContext);
+				IElementType diagramType = ElementTypeRegistry.getInstance().getElementType(diagram, clientContext);
+				IElementType dropeeType = ElementTypeRegistry.getInstance().getElementType(dropee, clientContext);
+				boolean containedDropee = false;
+				boolean containedDiagram = false;
+				// checks all types in a given context if they contain the diagram and the dropped element
+				for (IElementType containedType : containedTypes) {
+					if (containedType.equals(diagramType)) {
+						containedDiagram = true;
+					}
+					if (containedType.equals(dropeeType)) {
+						containedDropee = true;
+					}
+				}
+				if (containedDiagram && containedDropee) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		@Override
+		protected List<ModelElement> getObjectsBeingDropped() {
+			TransferData data = getCurrentEvent().currentDataType;
+			Object transferedObject = getJavaObject(data);
+			mesDrop = new ArrayList<ModelElement>();
+			if (transferedObject instanceof List) {
+				List<?> selection = (List<?>) transferedObject;
+				for (Iterator<?> it = selection.iterator(); it.hasNext();) {
+					Object nextSelectedObject = it.next();
+					if (nextSelectedObject instanceof ModelElement) {
+						mesDrop.add((ModelElement) nextSelectedObject);
+					}
+				}
+			}
+			return mesDrop;
 		}
 
 		@Override
 		protected void handleDrop() {
-			new UnicaseCommand() {
+			int messageResult;
+			if (mesAdd.size() != mesDrop.size()) {
+				// if not all elements could be added
+				MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Only " + mesAdd.size() + " of "
+					+ mesDrop.size() + " item(s) could be added. Add item(s)?", MessageDialog.QUESTION, new String[] {
+					"Yes", "No" }, 0);
+				messageResult = dialog.open();
+			} else {
+				messageResult = MessageDialog.OK;
+			}
+			if (messageResult == MessageDialog.OK) {
+				new UnicaseCommand() {
 
-				@Override
-				protected void doRun() {
-					for (EObject e : result) {
-						EObject add = getDiagram().getElement();
-						((MEDiagram) add).getElements().add((UnicaseModelElement) e);
-
+					@Override
+					protected void doRun() {
+						int counter = 0;
+						for (EObject me : mesAdd) {
+							// add reference to the element
+							((MEDiagram) getDiagram().getElement()).getElements().add((UnicaseModelElement) me);
+							// create the View for the element
+							CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me),
+								getDiagramEditPart(), new Point(x + counter * 20, y + counter * 20),
+								getPreferencesHint());
+							try {
+								command.execute(getProgressMonitor(), null);
+							} catch (ExecutionException e) {
+								ModelUtil.logException("Could not create a view for the droped content.", e);
+							}
+							counter++;
+						}
 					}
-
-				}
-			}.run();
-			result = null;
+				}.run();
+			}
+			mesDrop = null;
+			mesAdd = null;
 		}
 
 		protected abstract Object getJavaObject(TransferData data);
-
 	}
 
 	/**

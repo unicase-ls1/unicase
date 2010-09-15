@@ -254,6 +254,12 @@ public abstract class  MEDropAdapter {
 	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source,
 		ModelElement target, ModelElement dropee) {
 
+		// moved from ComposedDropAdapter
+		if (source.size() > 1) {
+			event.detail = DND.DROP_NONE;
+			return false;
+		}
+		
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
 			if (!((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
