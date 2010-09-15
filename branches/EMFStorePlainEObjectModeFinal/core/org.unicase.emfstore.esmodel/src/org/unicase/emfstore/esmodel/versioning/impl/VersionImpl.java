@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -178,22 +179,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 		if ((projectState != null && projectState.eIsProxy())) {
 			// load ids from resource
 			ProjectImpl project = (ProjectImpl) getProjectStateGen();
-			Resource resource = project.eResource();
 			project.cachesInitialized = true;
-			if (resource != null && (resource instanceof XMIResource)) {
-				XMIResource xmiResource = (XMIResource) resource;
-				TreeIterator<EObject> it = xmiResource.getAllContents();
-				while (it.hasNext()) {
-					EObject obj = it.next();
-					String objId = xmiResource.getID(obj);
-					if (objId != null) {
-						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
-						modelElementId.setId(objId);
-						(project).getEObjectToIdCache().put(obj, modelElementId);
-						(project).getIdToEObjectCache().put(modelElementId, obj);
-						(project).getEObjectsCache().add(obj);
-					}
-				}
+
+			Resource resource = project.eResource();
+			EMap<EObject, ModelElementId> idMap = loadIdsFromResource(resource);
+
+			for (Map.Entry<EObject, ModelElementId> e : idMap) {
+				project.putIntoCaches(e.getKey(), e.getValue());
 			}
 
 			return project;

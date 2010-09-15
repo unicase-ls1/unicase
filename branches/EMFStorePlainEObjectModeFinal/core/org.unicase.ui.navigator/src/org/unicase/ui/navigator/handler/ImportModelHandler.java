@@ -191,7 +191,7 @@ public class ImportModelHandler extends AbstractHandler {
 	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
 		final EObject element, final int resourceIndex) {
 
-		// TODO
+		// TODO: PlainEObjectMode, test import
 		// try to find a wrapper for the element which will be added to the project
 		// ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
 		// element, uri, resourceIndex);
@@ -203,6 +203,6 @@ public class ImportModelHandler extends AbstractHandler {
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		projectSpace.getProject().addModelElement(ModelUtil.copy(element));
+		projectSpace.getProject().addModelElement(ModelUtil.clone(element));
 	}
 }

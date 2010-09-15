@@ -85,7 +85,6 @@ public class ResourceHelper {
 	public void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
 		throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
-		// TODO:
 		saveInResourceWithProject(project, filename, project);
 	}
 
@@ -204,7 +203,6 @@ public class ResourceHelper {
 		Resource resource = serverSpace.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
 		resource.getContents().add(obj);
 
-		// TODO:
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
 			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
