@@ -233,10 +233,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 	private void recordingFinished() {
 
-		// canonize recorded notifications
-		NotificationFilter f = FilterStack.DEFAULT;
-		f.filter(notificationRecorder.getRecording());
-
 		// create operations from "valid" notifications, log invalid ones, accumulate the ops
 		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();
 		List<NotificationInfo> rec = notificationRecorder.getRecording().asMutableList();

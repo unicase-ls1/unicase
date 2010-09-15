@@ -7,11 +7,8 @@
 package org.unicase.workspace.changeTracking.notification.filter;
 
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 
 /**
  * This class filters zero effect remove operations from a notification recording. An example of a zero effect remove is
@@ -22,20 +19,14 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
 public class EmptyRemovalsFilter implements NotificationFilter {
 
 	/**
-	 * @param recording the recording to filter
-	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#filter(org.unicase.workspace.changeTracking.notification.recording.NotificationRecording)
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#check(org.unicase.workspace.changeTracking.notification.NotificationInfo)
 	 */
-	public void filter(NotificationRecording recording) {
+	public boolean check(NotificationInfo notificationInfo) {
 
-		List<NotificationInfo> rec = recording.asMutableList();
-
-		for (Iterator<NotificationInfo> it = rec.iterator(); it.hasNext();) {
-			NotificationInfo n = it.next();
-			if (n.isRemoveManyEvent() && n.getNewValue() == null && n.getOldValue() instanceof Collection<?>
-				&& ((Collection<?>) n.getOldValue()).isEmpty()) {
-				it.remove();
-			}
-		}
-
+		return notificationInfo.isRemoveManyEvent() && notificationInfo.getNewValue() == null
+			&& notificationInfo.getOldValue() instanceof Collection<?>
+			&& ((Collection<?>) notificationInfo.getOldValue()).isEmpty();
 	}
 }
