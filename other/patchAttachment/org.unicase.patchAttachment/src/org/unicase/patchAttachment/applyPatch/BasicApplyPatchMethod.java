@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.team.internal.ui.actions.TeamAction;
 import org.unicase.patchAttachment.exported.IApplyPatchMethod;
 
-public class BasicApplyPatchMethod extends TeamAction implements IApplyPatchMethod{
+public class BasicApplyPatchMethod extends TeamAction{
 
 
 
@@ -25,10 +25,18 @@ public class BasicApplyPatchMethod extends TeamAction implements IApplyPatchMeth
 
 	/**
 	 * Applies a patch onto a target. Target may be null.
+	 * Returns true if the patch was applied and false if the user canceled
 	 */
-	public void applyPatch(IStorage patch, IResource target) {
-		ApplyPatchOperation	op= new ApplyPatchOperation(getTargetPart(), patch, target, new CompareConfiguration());
+	public boolean applyPatch(IStorage patch, IResource target) {
+		ApplyPatchAttachmentOperation	op= new ApplyPatchAttachmentOperation(getTargetPart(), patch, target, new CompareConfiguration());
 		BusyIndicator.showWhile(Display.getDefault(), op); 
+		try {
+			op.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return !op.wasCanceled();
 	}
 
 }

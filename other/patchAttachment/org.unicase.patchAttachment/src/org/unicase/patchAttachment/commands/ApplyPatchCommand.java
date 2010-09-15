@@ -151,8 +151,8 @@ public class ApplyPatchCommand extends UnicaseCommand{
 		}
 
 		private void applyFile(File f) {
-			new BasicApplyPatchMethod().applyPatch(new LocalFileStorage(f), null);
-			openInformation("Patch applied","Patch successfully applied");
+			boolean succeeded = new BasicApplyPatchMethod().applyPatch(new LocalFileStorage(f), null);
+			if(succeeded)openInformation("Patch applied","Patch successfully applied");
 		}
 	}
 
