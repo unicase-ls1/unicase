@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/TestSpecFeature_1.0.0.jar" id="TestSpecFeature" version="1.0.0">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="unicase"/>
+</site>
