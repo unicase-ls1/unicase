@@ -176,4 +176,10 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 
 	}
 
+	@Override
+	public boolean isAssociationClass(EObject eObject) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
