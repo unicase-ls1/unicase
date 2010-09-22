@@ -259,6 +259,25 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link org.unicase.metamodel.AssociationClassElement
+	 * <em>Association Class Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.metamodel.AssociationClassElement
+	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getAssociationClassElement()
+	 * @generated
+	 */
+	int ASSOCIATION_CLASS_ELEMENT = 7;
+
+	/**
+	 * The number of structural features of the '<em>Association Class Element</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_ELEMENT_FEATURE_COUNT = 0;
+
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
 
 	/**
@@ -410,6 +429,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.metamodel.AssociationClassElement
+	 * <em>Association Class Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Association Class Element</em>'.
+	 * @see org.unicase.metamodel.AssociationClassElement
+	 * @generated
+	 */
+	EClass getAssociationClassElement();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -555,6 +584,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.metamodel.AssociationClassElement
+		 * <em>Association Class Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.metamodel.AssociationClassElement
+		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getAssociationClassElement()
+		 * @generated
+		 */
+		EClass ASSOCIATION_CLASS_ELEMENT = eINSTANCE.getAssociationClassElement();
 
 	}
 
