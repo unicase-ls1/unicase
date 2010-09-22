@@ -72,11 +72,6 @@
         eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnicaseLink" abstract="true" interface="true"
-      eSuperTypes="#//UnicaseModelElement">
-    <eOperations name="getSource" eType="#//UnicaseModelElement"/>
-    <eOperations name="getTarget" eType="#//UnicaseModelElement"/>
-  </eClassifiers>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit">
