@@ -15,7 +15,6 @@ import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.UnicaseLink;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -128,19 +127,6 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelPackage.UNICASE_LINK: {
-			UnicaseLink unicaseLink = (UnicaseLink) theEObject;
-			T result = caseUnicaseLink(unicaseLink);
-			if (result == null)
-				result = caseUnicaseModelElement(unicaseLink);
-			if (result == null)
-				result = caseModelElement(unicaseLink);
-			if (result == null)
-				result = caseIdentifiableElement(unicaseLink);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -236,19 +222,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseProject(Project object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unicase Link</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unicase Link</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnicaseLink(UnicaseLink object) {
 		return null;
 	}
 
