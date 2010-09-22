@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
@@ -178,8 +179,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 
 	@Override
 	public boolean isAssociationClass(EObject eObject) {
-		// TODO Auto-generated method stub
-		return false;
+		return (eObject instanceof AssociationClassElement);
 	}
 
 }

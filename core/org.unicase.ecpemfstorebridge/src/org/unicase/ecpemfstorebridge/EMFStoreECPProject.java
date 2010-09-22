@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
@@ -186,8 +187,8 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 
 	}
 
+	@Override
 	public boolean isAssociationClass(EObject eObject) {
-		// TODO Auto-generated method stub
-		return false;
+		return (eObject instanceof AssociationClassElement);
 	}
 }
