@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -74,6 +75,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass associationClassElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -267,6 +275,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * 
 	 * @generated
 	 */
+	public EClass getAssociationClassElement() {
+		return associationClassElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public MetamodelFactory getMetamodelFactory() {
 		return (MetamodelFactory) getEFactoryInstance();
 	}
@@ -310,6 +327,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(modelVersionEClass, MODEL_VERSION__RELEASE_NUMBER);
 
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
+
+		associationClassElementEClass = createEClass(ASSOCIATION_CLASS_ELEMENT);
 	}
 
 	/**
@@ -385,6 +404,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(associationClassElementEClass, AssociationClassElement.class, "AssociationClassElement",
+			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

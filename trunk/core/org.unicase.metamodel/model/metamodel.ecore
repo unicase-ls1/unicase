@@ -26,4 +26,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="releaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationClassElement" abstract="true"
+      interface="true"/>
 </ecore:EPackage>
