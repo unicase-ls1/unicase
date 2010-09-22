@@ -185,4 +185,9 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 		super.projectDeleted();
 
 	}
+
+	public boolean isAssociationClass(EObject eObject) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
