@@ -42,4 +42,13 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 		return instance;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.common.MetaModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EClass)
+	 */
+	@Override
+	public boolean isAssociationClassElement(EClass eClazz) {
+		return ModelUtil.isAssociationClassElement(eClazz);
+	}
 }

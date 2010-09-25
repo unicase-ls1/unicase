@@ -17,6 +17,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.workspace.Configuration;
@@ -82,9 +83,13 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 *      org.eclipse.emf.common.util.BasicEList)
 	 */
 	@Override
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
 		Collection<EObject> ret = new BasicEList<EObject>();
-		ret.addAll(project.getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>()));
+		for (EObject element : project.getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>())) {
+			if (association || !isAssociationClassElement(element)) {
+				ret.add(element);
+			}
+		}
 		return ret;
 	}
 
@@ -177,9 +182,28 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.common.ModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
 	@Override
-	public boolean isAssociationClass(EObject eObject) {
+	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.common.ModelElementContext#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		if (isAssociationClassElement(eObject)) {
+			AssociationClassElement ace = (AssociationClassElement) eObject;
+			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
+				.getAssociationFeatures());
+		}
+		return null;
+	}
 }

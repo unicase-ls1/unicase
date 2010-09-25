@@ -10,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.ECPModelelementContext;
 import org.unicase.ui.common.MetaModelElementContext;
 
@@ -68,6 +69,10 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	MetaModelElementContext getMetaModelElementContext();
 
 	boolean isNonDomainElement(EObject eObject);
+
+	boolean isAssociationClassElement(EObject eObject);
+
+	ECPAssociationClassElement getAssociationClassElement(EObject eObject);
 
 	void dispose();
 

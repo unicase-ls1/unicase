@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
@@ -921,5 +922,20 @@ public final class ModelUtil {
 			// set edeliver to previous state
 			element.eSetDeliver(eDeliver);
 		}
+	}
+
+	/**
+	 * Whether a {@link EClass} is a association class. Association classes are not displayed as dedicated elements. A
+	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
+	 * widgets allows to trace transparently without seeing the association class.
+	 * 
+	 * @param eClazz the {@link EClass}
+	 * @return if it is an association
+	 */
+	public static boolean isAssociationClassElement(EClass eClazz) {
+		if (eClazz == null) {
+			return false;
+		}
+		return AssociationClassElement.class.isAssignableFrom(eClazz.getInstanceClass());
 	}
 }
