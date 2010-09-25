@@ -12,6 +12,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
+import org.unicase.ui.common.util.AssociationClassHelper;
 
 /**
  * A mouse adapter regarding deletion of model elements.
@@ -46,7 +47,8 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 	 */
 	@Override
 	public void mouseUp(MouseEvent e) {
-		if (reference.isContainment() && context.isNonDomainElement(opposite)) {
+		if ((reference.isContainment() && context.isNonDomainElement(opposite))
+			|| AssociationClassHelper.getInstance().isAssociationClass(opposite)) {
 			new DeleteModelElementCommand(opposite, context).run();
 		} else {
 			new DeleteReferenceCommand(modelElement, reference, opposite, context.getEditingDomain()).run();

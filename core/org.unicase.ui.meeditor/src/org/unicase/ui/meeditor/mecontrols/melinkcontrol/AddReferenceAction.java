@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -55,7 +54,7 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, new BasicEList<EObject>());
+			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, false);
 			allElements.remove(modelElement);
 			Object object = modelElement.eGet(eReference);
 

@@ -11,8 +11,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.util.AssociationClassHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
@@ -74,9 +77,14 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
-		// TODO Auto-generated method stub
-		return project.getAllModelElementsbyClass(clazz, basicEList);
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
+		Collection<EObject> ret = new BasicEList<EObject>();
+		for (EObject element : project.getAllModelElementsbyClass(clazz, new BasicEList<EObject>())) {
+			if (association || isAssociationClassElement(element)) {
+				ret.add(element);
+			}
+		}
+		return ret;
 	}
 
 	/**
@@ -133,4 +141,19 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 		super.contextDeleted();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isAssociationClassElement(EObject eObject) {
+		return project.isAssociationClassElement(eObject);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		return project.getAssociationClassElement(eObject);
+	}
 }

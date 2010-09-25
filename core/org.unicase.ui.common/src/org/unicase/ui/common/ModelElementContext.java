@@ -9,10 +9,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.metamodel.AssociationClassElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * The context of a certain {@link ModelElement}. Subclasses shall call modelelementDeleted and contextDeleted.
@@ -71,10 +72,21 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	 * Returns all {@link ModelElement} in the context, which are of a certain type.
 	 * 
 	 * @param clazz the type
-	 * @param basicEList the list to be filled
 	 * @return a {@link Collection} of {@link ModelElement}
 	 */
-	public abstract Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList);
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz) {
+		return getAllModelElementsbyClass(clazz, true);
+	}
+
+	/**
+	 * Returns all {@link ModelElement} in the context, which are of a certain type. Could exclude
+	 * {@link AssociationClassElement}'s.
+	 * 
+	 * @param clazz the type
+	 * @param association whether to include {@link AssociationClassElement}
+	 * @return a {@link Collection} of {@link ModelElement}
+	 */
+	public abstract Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association);
 
 	/**
 	 * Returns all {@link ModelElement} in the context.
@@ -98,8 +110,19 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	 * Whether a {@link ModelElement} is a association class. Association classes are not displayed as dedicated
 	 * elements. A link from one element to another which goes over an association class is displayed by a dedicated
 	 * widget. This widgets allows to trace transparently without seeing the association class.
+	 * 
+	 * @param eObject the {@link ModelElement}
+	 * @return if it is an association
 	 */
-	public abstract boolean isAssociationClass(EObject eObject);
+	public abstract boolean isAssociationClassElement(EObject eObject);
+
+	/**
+	 * Returns an {@link AssociationClassElement} wrapper for a {@link ModelElement}.
+	 * 
+	 * @param eObject the {@link ModelElement}
+	 * @return the wrapper, {@code null} if {@link ModelElement} not exists
+	 */
+	public abstract ECPAssociationClassElement getAssociationClassElement(EObject eObject);
 
 	/**
 	 * Returns the {@link MetaModelElementContext}.

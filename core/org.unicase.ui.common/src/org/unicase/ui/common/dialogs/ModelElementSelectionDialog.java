@@ -11,7 +11,6 @@ import java.util.Comparator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -102,7 +101,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 */
 	public ModelElementSelectionDialog(ModelElementContext context, EClass classType, boolean multiSelection) {
 		this(multiSelection);
-		modelElements = context.getAllModelElementsbyClass(classType, new BasicEList<EObject>());
+		modelElements = context.getAllModelElementsbyClass(classType);
 	}
 
 	/**

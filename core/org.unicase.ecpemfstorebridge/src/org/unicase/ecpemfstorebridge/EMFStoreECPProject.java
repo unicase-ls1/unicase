@@ -20,6 +20,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
@@ -187,8 +188,26 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 
 	}
 
-	@Override
-	public boolean isAssociationClass(EObject eObject) {
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
+	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		if (isAssociationClassElement(eObject)) {
+			AssociationClassElement ace = (AssociationClassElement) eObject;
+			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
+				.getAssociationFeatures());
+		}
+		return null;
 	}
 }
