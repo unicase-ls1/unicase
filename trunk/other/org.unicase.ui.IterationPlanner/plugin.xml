@@ -22,7 +22,7 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.unicase.model.recommendationstrategy">
+         point="org.unicase.metamodel.recommendationstrategy">
       <strategy
             baseElementClass="org.unicase.model.task.WorkItem"
             eReferenceName="assignee"
