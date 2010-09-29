@@ -6,6 +6,33 @@
 
 package org.unicase.ui.iterationplanner.assigneerecommendation;
 
-public interface AssigneeRecommendationStrategy {
+import java.util.List;
 
+public abstract class AssigneeRecommendationStrategy {
+
+	private final int maxNumOfAssignees;
+	private final double expertiseThreshold;
+
+	public AssigneeRecommendationStrategy(int maxNumOfAssignees, double expertiseThreshold) {
+		this.maxNumOfAssignees = maxNumOfAssignees;
+		this.expertiseThreshold = expertiseThreshold;
+	}
+
+	/**
+	 * This returns a sorted list of assignees qualified to do this task. The list returns maximum number of assignees
+	 * as defined in maxNumOfAssignees, and also contains only assignees whose expertise is regarding the given task is
+	 * more than expertiesThreshold.
+	 * 
+	 * @param task
+	 * @return
+	 */
+	public abstract List<AssigneeExpertise> getRecommendedAssignees(Task task);
+
+	public int getMaxNumOfAssignees() {
+		return maxNumOfAssignees;
+	}
+
+	public double getExpertiseThreshold() {
+		return expertiseThreshold;
+	}
 }

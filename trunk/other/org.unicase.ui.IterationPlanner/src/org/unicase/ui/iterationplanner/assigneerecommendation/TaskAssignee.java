@@ -4,15 +4,15 @@ import java.util.List;
 
 public class TaskAssignee {
 
-	private final List<Assignee> recommendedAssignees;
+	private final List<AssigneeExpertise> recommendedAssignees;
 	private final Task task;
 
-	public TaskAssignee(List<Assignee> recommendedAssignees, Task task) {
-		this.recommendedAssignees = recommendedAssignees;
+	public TaskAssignee(Task task, List<AssigneeExpertise> assignees) {
+		this.recommendedAssignees = assignees;
 		this.task = task;
 	}
 
-	public List<Assignee> getRecommendedAssignees() {
+	public List<AssigneeExpertise> getRecommendedAssignees() {
 		return recommendedAssignees;
 	}
 
