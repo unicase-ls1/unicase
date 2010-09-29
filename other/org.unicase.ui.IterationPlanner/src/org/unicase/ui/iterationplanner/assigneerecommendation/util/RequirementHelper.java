@@ -3,13 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.iterationplanner.util;
-
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.ui.iterationplanner.IterationPlannerManager;
+package org.unicase.ui.iterationplanner.assigneerecommendation.util;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * @author hodaie
@@ -23,7 +22,8 @@ public class RequirementHelper {
 	 * 
 	 * @param iterationPlannerManager iteration planning manager
 	 */
-	public RequirementHelper(IterationPlannerManager iterationPlannerManager) {}
+	public RequirementHelper() {
+	}
 
 	/**
 	 * Constructor.
@@ -31,7 +31,7 @@ public class RequirementHelper {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param reqs input requirement
 	 */
-	public RequirementHelper(IterationPlannerManager iterationPlannerManager, List<FunctionalRequirement> reqs) {
+	public RequirementHelper(List<FunctionalRequirement> reqs) {
 		this.requirements = reqs;
 	}
 

@@ -9,12 +9,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.iterationplanner.assigneerecommender;
+package org.unicase.ui.iterationplanner.assigneerecommendation;
 
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.iterationplanner.util.TaskHelper;
+import org.unicase.ui.iterationplanner.assigneerecommendation.util.TaskHelper;
 
 import java.util.Collection;
 import java.util.HashMap;

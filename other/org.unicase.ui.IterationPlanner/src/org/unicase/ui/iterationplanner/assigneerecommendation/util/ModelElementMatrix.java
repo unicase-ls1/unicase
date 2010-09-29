@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.util;
+package org.unicase.ui.iterationplanner.assigneerecommendation.util;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
