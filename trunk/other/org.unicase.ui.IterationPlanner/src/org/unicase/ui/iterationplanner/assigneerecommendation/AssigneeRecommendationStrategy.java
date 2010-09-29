@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.iterationplanner.assigneerecommender;
+package org.unicase.ui.iterationplanner.assigneerecommendation;
 
 import java.util.ArrayList;
 import java.util.Collection;

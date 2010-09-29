@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.ui.iterationplanner.commands.ShowIterationPlanningWizardHandler"
+            defaultHandler="org.unicase.ui.iterationplanner.ui.commands.ShowIterationPlanningWizardHandler"
             id="org.unicase.ui.IterationPlanner.ShowIterationPlanningWizard"
             name="ShowIterationPlanningWizard">
       </command>
@@ -27,7 +27,7 @@
             baseElementClass="org.unicase.model.task.WorkItem"
             eReferenceName="assignee"
             name="org.unicase.ui.IterationPlanner.WorkItem_Assignee"
-            strategyClass="org.unicase.ui.iterationplanner.assigneerecommender.AssigneeRecommendationStrategy">
+            strategyClass="org.unicase.ui.iterationplanner.assigneerecommendation.AssigneeRecommendationStrategy">
       </strategy>
    </extension>
    <extension

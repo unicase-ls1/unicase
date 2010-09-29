@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.assigneerecommender;
+package org.unicase.ui.iterationplanner.assigneerecommendation;
 
 import org.jdmp.core.algorithm.classification.Classifier;
 import org.jdmp.core.dataset.ClassificationDataSet;

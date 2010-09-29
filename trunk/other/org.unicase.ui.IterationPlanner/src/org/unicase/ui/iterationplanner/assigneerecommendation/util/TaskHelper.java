@@ -3,7 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.iterationplanner.util;
+package org.unicase.ui.iterationplanner.assigneerecommendation.util;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -12,12 +17,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.iterationplanner.IterationPlannerManager;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author Hodaie
@@ -35,8 +34,7 @@ public class TaskHelper {
 	 * @param lastSprint last sprint
 	 * @param workpackages work packages
 	 */
-	public TaskHelper(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint,
-		List<WorkPackage> workpackages) {
+	public TaskHelper(WorkPackage lastSprint, List<WorkPackage> workpackages) {
 		this.lastSprint = lastSprint;
 		this.workpackages = workpackages;
 
@@ -48,8 +46,7 @@ public class TaskHelper {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param relatedTaskStrategy relateTaskStrategy
 	 */
-	public TaskHelper(IterationPlannerManager iterationPlannerManager) {
-
+	public TaskHelper() {
 	}
 
 	/**
