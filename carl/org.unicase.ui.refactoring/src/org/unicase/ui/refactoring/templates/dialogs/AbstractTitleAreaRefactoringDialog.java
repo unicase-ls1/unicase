@@ -13,7 +13,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.templates.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.templates.util.RefactoringDialogHelper;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
-import org.unicase.ui.validation.refactoring.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -109,7 +108,7 @@ public abstract class AbstractTitleAreaRefactoringDialog extends TitleAreaDialog
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public RefactoringStrategy getAbstractRefactoringStrategy() {
+	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 

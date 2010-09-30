@@ -54,7 +54,7 @@ import org.unicase.ui.validation.refactoring.RefactoringResult;
 			// create text for work package
 			getRefactoringDialogHelper().createText(composite, "Set new value");
 			// create link for work package
-			getRefactoringDialogHelper().createMEControl(new MEEnumControl(), composite, (UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getInvalidStructuralFeature().getName());
+			getRefactoringDialogHelper().createMEControl(new MEEnumControl(), composite, (UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getFirstInvalidStructuralFeature().getName());
 			// create the remaining dialog area
 			return super.createDialogArea(parent);
 		}

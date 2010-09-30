@@ -67,7 +67,7 @@ public class AnyFeatureViolationRefactoringDialog extends AbstractTitleAreaRefac
 		composite = getRefactoringDialogHelper().createComposite(body, SWT.NONE, new GridLayout(1, false), new GridData(SWT.FILL, SWT.FILL, true,
 				true));
 		// create control
-		AbstractMEControl meControl = RefactoringDialogHelper.getMEControl(getInvalidEObject(), getAbstractRefactoringStrategy().getInvalidStructuralFeature());
+		AbstractMEControl meControl = RefactoringDialogHelper.getMEControl(getInvalidEObject(), getAbstractRefactoringStrategy().getFirstInvalidStructuralFeature());
 		// create text
 		if(meControl == null) {
 			getRefactoringDialogHelper().createText(composite, "There are no editor parts registered for this feature.");
@@ -75,7 +75,7 @@ public class AnyFeatureViolationRefactoringDialog extends AbstractTitleAreaRefac
 			getRefactoringDialogHelper().createText(composite, "Please set a valid value or reference:");
 			// create me control
 			getRefactoringDialogHelper().createMEControl(meControl, composite, 
-					(UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getInvalidStructuralFeature().getName());
+					(UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getFirstInvalidStructuralFeature().getName());
 		}
 		// create the remaining dialog area
 		return parent;

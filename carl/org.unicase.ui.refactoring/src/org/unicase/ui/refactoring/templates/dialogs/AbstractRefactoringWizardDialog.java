@@ -12,7 +12,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.templates.AbstractRefactoringStrategy;
 import org.unicase.ui.refactoring.templates.dialogs.wizards.AbstractRefactoringWizard;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
-import org.unicase.ui.validation.refactoring.RefactoringStrategy;
 
 /**
  * @author pfeifferc
@@ -118,7 +117,7 @@ public abstract class AbstractRefactoringWizardDialog extends WizardDialog imple
 	/**
 	 * @return the abstract refactoring strategy
 	 */
-	public RefactoringStrategy getAbstractRefactoringStrategy() {
+	public AbstractRefactoringStrategy getAbstractRefactoringStrategy() {
 		return abstractRefactoringStrategy;
 	}
 
