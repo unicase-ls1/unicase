@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.assigneerecommendation;
+package org.unicase.iterationplanner.assigneerecommendation;
 
 /**
  * This class is only for implementation reason. It has only in relation to a Task a semantic meaning, and expresses the

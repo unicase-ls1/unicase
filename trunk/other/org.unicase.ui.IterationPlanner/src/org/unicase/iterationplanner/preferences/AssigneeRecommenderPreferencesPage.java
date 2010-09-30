@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.iterationplanner.preferences;
+package org.unicase.iterationplanner.preferences;
 
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -21,8 +21,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.unicase.iterationplanner.Activator;
 import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
-import org.unicase.ui.iterationplanner.Activator;
 
 public class AssigneeRecommenderPreferencesPage extends PreferencePage implements IWorkbenchPreferencePage {
 
