@@ -43,7 +43,7 @@ public class CreatorFilter extends ValidationFilter {
 	 */
 	@Override
 	public Image getImage() {
-		return Activator.getImageDescriptor("icons/user.png").createImage();
+		return Activator.getImageDescriptor("icons/user_filter.png").createImage();
 	}
 
 	/**
