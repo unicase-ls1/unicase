@@ -375,7 +375,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
 				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
-					if (undetachableObservers.contains(projectChangeObserver)) {
+					if (!undetachableObservers.contains(projectChangeObserver)) {
 						observersToRemove.add(projectChangeObserver);
 						ModelUtil.logException(
 							"Project Change Observer threw an exception again, it has been detached, UI may not update now: "
