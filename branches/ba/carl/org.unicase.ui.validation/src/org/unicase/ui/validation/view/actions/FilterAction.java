@@ -21,18 +21,18 @@ import org.unicase.ui.validation.view.util.ValidationViewHelper;
  * 
  * @author pfeifferc
  */
-public final class OpenFilterDialogAction extends Action {
+public final class FilterAction extends Action {
 
 	private Shell shell;
 	private TableViewer tableViewer;
 
 	/**
-	 * The {@link OpenFilterDialogAction} constructor.
+	 * The {@link FilterAction} constructor.
 	 * 
 	 * @param shell the {@link Shell}
 	 * @param tableViewer the {@link TableViewer}
 	 */
-	public OpenFilterDialogAction(Shell shell, TableViewer tableViewer) {
+	public FilterAction(Shell shell, TableViewer tableViewer) {
 		this.shell = shell;
 		this.tableViewer = tableViewer;
 	}

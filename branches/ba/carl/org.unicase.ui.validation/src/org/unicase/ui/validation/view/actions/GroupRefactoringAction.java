@@ -6,7 +6,12 @@
 
 package org.unicase.ui.validation.view.actions;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -41,6 +46,7 @@ public final class GroupRefactoringAction extends Action {
 	 * 
 	 * @see org.eclipse.jface.action.Action#run()
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		ListDialog groupRefactoringDialog = new ListDialog(validationView.getShell());
@@ -65,6 +71,10 @@ public final class GroupRefactoringAction extends Action {
 		if (groupRefactoringDialog.getReturnCode() == Status.OK && groupRefactoringDialog.getResult().length > 0) {
 			RefactoringStrategy refactoringStrategy = (RefactoringStrategy) groupRefactoringDialog.getResult()[0];
 			refactoringStrategy.setInvalidEObject(validationView.geteObjectToShowFor());
+			List<IConstraintStatus> input = (List<IConstraintStatus>) validationView.getTableViewer().getInput();
+			Set<IConstraintStatus> set = new HashSet<IConstraintStatus>();
+			set.addAll(input);
+			refactoringStrategy.setConstraintStati(set);
 			refactoringStrategy.startRefactoring();
 		}
 	}

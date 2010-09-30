@@ -7,7 +7,9 @@
 package org.unicase.ui.validation.view.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -116,25 +118,25 @@ public final class ValidationViewHelper {
 				String name = element.getAttribute("name");
 				String description = element.getAttribute("description");
 				String constraintId = constraintStatus.getConstraint().getDescriptor().getId();
+				Set<IConstraintStatus> constraintStati = new HashSet<IConstraintStatus>();
+				constraintStati.add(constraintStatus);
 				if (applicableForClass.equals(constraintId)) {
 					final Object object = element.createExecutableExtension("strategy");
 					RefactoringStrategy strategy = (RefactoringStrategy) object;
-					strategy.setConstraintStatus(constraintStatus);
+					strategy.setConstraintStati(constraintStati);
 					strategy.setDescription(description);
 					strategy.setId(id);
 					strategy.setName(name);
 					strategy.setInvalidEObject(constraintStatus.getTarget());
-					strategy.setInvalidStructuralFeature(invalidStructuralFeature);
 					refactoringStrategies.add(strategy);
 				} else if (applicableForClass.equals("org.unicase.constraint.generic.all")) {
 					final Object object = element.createExecutableExtension("strategy");
 					anyRefactoringStrategy = (RefactoringStrategy) object;
-					anyRefactoringStrategy.setConstraintStatus(constraintStatus);
+					anyRefactoringStrategy.setConstraintStati(constraintStati);
 					anyRefactoringStrategy.setDescription(description);
 					anyRefactoringStrategy.setInvalidEObject(constraintStatus.getTarget());
 					anyRefactoringStrategy.setId(id);
 					anyRefactoringStrategy.setName(name);
-					anyRefactoringStrategy.setInvalidStructuralFeature(invalidStructuralFeature);
 				}
 				if (refactoringStrategies.size() == 0 && anyRefactoringStrategy != null) {
 					refactoringStrategies.add(anyRefactoringStrategy);
