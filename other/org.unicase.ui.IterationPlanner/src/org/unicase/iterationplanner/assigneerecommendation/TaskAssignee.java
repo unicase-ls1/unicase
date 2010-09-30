@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.assigneerecommendation;
+package org.unicase.iterationplanner.assigneerecommendation;
 
 import java.util.List;
 
