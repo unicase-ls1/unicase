@@ -42,10 +42,10 @@ public class AnyFeatureViolationRefactoringStrategy extends AbstractRefactoringS
 	 */
 	@Override
 	public RefactoringResult performRefactoring() {
-		if(getInvalidStructuralFeature() == null) {
+		if(getFirstInvalidStructuralFeature() == null) {
 			return RefactoringResult.ABORT;
 		}
-		EStructuralFeature structuralFeature = getInvalidStructuralFeature();
+		EStructuralFeature structuralFeature = getFirstInvalidStructuralFeature();
 		if(structuralFeature instanceof EReference) {
 			openDialog(structuralFeature);
 			return RefactoringResult.SUCCESS_CREATE;
@@ -53,7 +53,7 @@ public class AnyFeatureViolationRefactoringStrategy extends AbstractRefactoringS
 		abstractRefactoringDialog = new AnyFeatureViolationRefactoringDialog(getShell(), this);
 		abstractRefactoringDialog.create();
 		abstractRefactoringDialog.setTitle("Please set a valid value or reference");
-		abstractRefactoringDialog.setMessage(getConstraintStatus().getMessage());
+		abstractRefactoringDialog.setMessage(getConstraintStati().iterator().next().getMessage());
 		abstractRefactoringDialog.open();
 		return abstractRefactoringDialog.getRefactoringResult();
 	}

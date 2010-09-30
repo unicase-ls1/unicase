@@ -8,6 +8,7 @@ package org.unicase.ui.refactoring.templates;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
@@ -36,12 +37,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	/**
 	 * The validation constraint status.
 	 */
-	private IConstraintStatus constraintStatus;
-
-	/**
-	 * The validation constraint status.
-	 */
-	private EStructuralFeature invalidStructuralFeature;
+	private Set<IConstraintStatus> constraintStati;
 
 	// REFACTORING data objects
 
@@ -254,31 +250,16 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	}
 
 	/**
-	 * @return getConstraintStatus
-	 */
-	public IConstraintStatus getConstraintStatus() {
-		return constraintStatus;
-	}
-
-	/**
-	 * @param constraintStatus {@link IConstraintStatus}
-	 */
-	public void setConstraintStatus(IConstraintStatus constraintStatus) {
-		this.constraintStatus = constraintStatus;
-	}
-
-	/**
-	 * @param invalidStructuralFeature {@link EStructuralFeature}
-	 */
-	public void setInvalidStructuralFeature(EStructuralFeature invalidStructuralFeature) {
-		this.invalidStructuralFeature = invalidStructuralFeature;
-	}
-
-	/**
 	 * @return getInvalidStructuralFeature
 	 */
-	public EStructuralFeature getInvalidStructuralFeature() {
-		return invalidStructuralFeature;
+	public EStructuralFeature getFirstInvalidStructuralFeature() {
+		IConstraintStatus constraintStatus = getConstraintStati().iterator().next();
+		for(EObject eObject: constraintStatus.getResultLocus()) {
+			if(eObject instanceof EStructuralFeature) {
+				return (EStructuralFeature) eObject;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -328,5 +309,19 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 */
 	public ProjectSpace getProjectSpace() {
 		return projectSpace;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Set<IConstraintStatus> getConstraintStati() {
+		return constraintStati;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setConstraintStati(Set<IConstraintStatus> constraintStati) {
+		this.constraintStati = constraintStati;
 	}
 }

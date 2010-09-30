@@ -54,7 +54,7 @@ public class SingleLinkViolationRefactoringDialog extends AbstractTitleAreaRefac
 		getRefactoringDialogHelper().createText(composite, "Set new reference");
 		// create link for work package
 		getRefactoringDialogHelper().createMEControl(new MESingeLinkControlWithoutNewReferenceAction(), composite, 
-				(UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getInvalidStructuralFeature().getName());
+				(UnicaseModelElement) getInvalidEObject(), getAbstractRefactoringStrategy().getFirstInvalidStructuralFeature().getName());
 		// create the remaining dialog area
 		return super.createDialogArea(parent);
 	}

@@ -45,15 +45,15 @@ public abstract class AbstractRefactoringWizard extends Wizard implements IPageC
 	/**
 	 * @return the constraint status
 	 */
-	public IConstraintStatus getConstraintStatus() {
-		return abstractRefactoringStrategy.getConstraintStatus();
+	public IConstraintStatus getFirstConstraintStatus() {
+		return abstractRefactoringStrategy.getConstraintStati().iterator().next();
 	}
 
 	/**
 	 * @return the invalid model element
 	 */
 	public UnicaseModelElement getInvalidModelElement() {
-		return (UnicaseModelElement) getConstraintStatus().getTarget();
+		return (UnicaseModelElement) getFirstConstraintStatus().getTarget();
 	}
 
 	/**
