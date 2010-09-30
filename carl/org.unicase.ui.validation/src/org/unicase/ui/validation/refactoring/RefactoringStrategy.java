@@ -6,8 +6,9 @@
 
 package org.unicase.ui.validation.refactoring;
 
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.swt.widgets.Shell;
 
@@ -50,22 +51,12 @@ public interface RefactoringStrategy {
 	/**
 	 * @return getConstraintStatus
 	 */
-	IConstraintStatus getConstraintStatus();
+	Set<IConstraintStatus> getConstraintStati();
 
 	/**
-	 * @param constraintStatus {@link IConstraintStatus}
+	 * @param constraintStati {@link IConstraintStatus}
 	 */
-	void setConstraintStatus(IConstraintStatus constraintStatus);
-
-	/**
-	 * @param invalidStructuralFeature {@link EStructuralFeature}
-	 */
-	void setInvalidStructuralFeature(EStructuralFeature invalidStructuralFeature);
-
-	/**
-	 * @return getInvalidStructuralFeature
-	 */
-	EStructuralFeature getInvalidStructuralFeature();
+	void setConstraintStati(Set<IConstraintStatus> constraintStati);
 
 	/**
 	 * @param name the

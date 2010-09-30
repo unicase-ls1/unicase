@@ -52,7 +52,7 @@ import org.unicase.ui.common.validation.providers.ValidationResultProvider;
 import org.unicase.ui.validation.Activator;
 import org.unicase.ui.validation.refactoring.RefactoringStrategy;
 import org.unicase.ui.validation.view.actions.GroupRefactoringAction;
-import org.unicase.ui.validation.view.actions.OpenFilterDialogAction;
+import org.unicase.ui.validation.view.actions.FilterAction;
 import org.unicase.ui.validation.view.providers.ConstraintLabelProvider;
 import org.unicase.ui.validation.view.providers.CreatorLabelProvider;
 import org.unicase.ui.validation.view.providers.DescriptionLabelProvider;
@@ -279,10 +279,10 @@ public class ValidationView extends ViewPart implements ValidationListener {
 	private void addMenuBarContributions() {
 		// show button to open filter dialog and choose filters to apply to table
 		IToolBarManager menuManager = getViewSite().getActionBars().getToolBarManager();
-		OpenFilterDialogAction openFilterDialogAction = new OpenFilterDialogAction(shell, getTableViewer());
-		openFilterDialogAction.setImageDescriptor(Activator.getImageDescriptor("icons/openfilterlist.png"));
-		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
-		menuManager.add(openFilterDialogAction);
+		FilterAction filterAction = new FilterAction(shell, getTableViewer());
+		filterAction.setImageDescriptor(Activator.getImageDescriptor("icons/openfilterlist.png"));
+		filterAction.setToolTipText("Add one or more filters to be applied to the validation view.");
+		menuManager.add(filterAction);
 		GroupRefactoringAction groupRefactoringAction = new GroupRefactoringAction(this);
 		groupRefactoringAction.setImageDescriptor(Activator.getImageDescriptor("icons/bell_go.png"));
 		groupRefactoringAction.setToolTipText("Execute group refactorings.");
