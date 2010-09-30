@@ -66,7 +66,14 @@ public final class WorkspaceManager {
 	 */
 	public static WorkspaceManager getInstance() {
 		if (instance == null) {
-			instance = new WorkspaceManager();
+			try {
+				instance = new WorkspaceManager();
+				// BEGIN SURPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				ModelUtil.logException("Workspace Initialization failed, shutting down", e);
+				throw e;
+			}
+			// END SURPRESS CATCH EXCEPTION
 		}
 		return instance;
 	}
