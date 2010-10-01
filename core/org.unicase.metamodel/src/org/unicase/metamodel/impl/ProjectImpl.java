@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -83,7 +83,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private Map<ModelElementId, EObject> idToEObjectCache;
 
-	public boolean cachesInitialized;
+	private boolean cachesInitialized;
 
 	private ProjectChangeNotifier changeNotifier;
 
@@ -156,11 +156,28 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @generated NOT
 	 */
 	public Set<EObject> getAllModelElements() {
-		if (!cachesInitialized) {
+		if (!isCacheInitialized()) {
 			initCaches();
 		}
 
 		return eObjectsCache;
+	}
+
+	public Set<ModelElementId> getAllModelElementIds() {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return idToEObjectCache.keySet();
+	}
+
+	private boolean isCacheInitialized() {
+
+		if (changeNotifier == null) {
+			changeNotifier = new ProjectChangeNotifier(this);
+		}
+
+		return cachesInitialized;
 	}
 
 	/**
@@ -331,22 +348,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#contains(org.unicase.model.ModelElement)
 	 */
 	public boolean contains(ModelElementId id) {
-		if (!cachesInitialized) {
+		if (!isCacheInitialized()) {
 			initCaches();
 		}
 		return getIdToEObjectCache().containsKey(id);
 	}
 
-	public Map<ModelElementId, EObject> getIdToEObjectCache() {
-		if (!cachesInitialized) {
+	private Map<ModelElementId, EObject> getIdToEObjectCache() {
+		if (!isCacheInitialized()) {
 			initCaches();
 		}
 
 		return idToEObjectCache;
 	}
 
-	public Set<EObject> getEObjectsCache() {
-		if (!cachesInitialized) {
+	private Set<EObject> getEObjectsCache() {
+		if (!isCacheInitialized()) {
 			initCaches();
 		}
 
@@ -354,6 +371,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	public void initCaches() {
+
+		if (isCacheInitialized()) {
+			return;
+		}
 
 		for (EObject modelElement : getModelElements()) {
 			// put model element into cache
@@ -366,10 +387,35 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				EObject obj = it.next();
 				ModelElementId id = getIdForModelElement(obj);
 				putIntoCaches(obj, id);
+				// TODO:PlainEObjectMode, these 2 lines are needed for migration, currently the IDs is thus setted twice
+				// when adding a new model element
+				XMIResource xmiRes = (XMIResource) obj.eResource();
+				xmiRes.setID(obj, id.getId());
 			}
 		}
 
+		if (changeNotifier == null) {
+			changeNotifier = new ProjectChangeNotifier(this);
+		}
+
 		cachesInitialized = true;
+	}
+
+	/**
+	 * Initializes the caches with the given mappings.
+	 * 
+	 * @param eObjectToIdMap
+	 * @param idToEObjectMap
+	 */
+	public void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap) {
+		// 1. maps setzen
+		// 2. cacheinit auf true
+		// 3. notifier erzeugen
+		cachesInitialized = true;
+		eObjectToIdCache = eObjectToIdMap;
+		idToEObjectCache = idToEObjectMap;
+		eObjectsCache = eObjectToIdMap.keySet();
+		changeNotifier = new ProjectChangeNotifier(this);
 	}
 
 	/**
@@ -434,7 +480,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			id = MetamodelFactory.eINSTANCE.createModelElementId();
 		}
 
-		if (cachesInitialized) {
+		if (isCacheInitialized()) {
 			putIntoCaches(eObject, id);
 		}
 
@@ -450,10 +496,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectToIdCache;
 	}
 
-	public void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
-		eObjectsCache.add(modelElement);
+	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
 		eObjectToIdCache.put(modelElement, modelElementId);
 		idToEObjectCache.put(modelElementId, modelElement);
+		// TODO: PlainEObjectMode, why is cache filled automatically?
+		if (!eObjectsCache.contains(modelElement)) {
+			eObjectsCache.add(modelElement);
+		}
 	}
 
 	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
@@ -481,7 +530,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @param modelElement the model element to be removed from the caches
 	 */
 	private void removeFromCaches(EObject modelElement) {
-		if (cachesInitialized) {
+		if (isCacheInitialized()) {
 			ModelElementId id = this.getModelElementId(modelElement);
 			getEObjectsCache().remove(modelElement);
 			getIdToEObjectCache().remove(id);
@@ -510,7 +559,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public EObject getModelElement(ModelElementId modelElementId) {
 
-		if (!cachesInitialized) {
+		if (!isCacheInitialized()) {
 			initCaches();
 		}
 
@@ -523,7 +572,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
-		new ProjectChangeNotifier(this);
+		initCaches();
 		this.observers.add(projectChangeObserver);
 	}
 
@@ -678,7 +727,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	public ModelElementId getModelElementId(EObject eObject) {
 
-		if (!eObjectToIdCache.containsKey(eObject) && !cachesInitialized) {
+		if (!eObjectToIdCache.containsKey(eObject) && !isCacheInitialized()) {
 			// id not yet loaded
 			if (ModelUtil.getAllContainedModelElementsAsList(this, false).contains(eObject)) {
 				// eobject contained in project, load resource
@@ -734,11 +783,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
-		// TODO: PlainEObjectMode, no notifications are fired? why?
-		if (observers.isEmpty() && changeNotifier == null) {
-			changeNotifier = new ProjectChangeNotifier(this);
-		}
-
 		// since id is contained in map, all IDs should be cloned
 		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
 
@@ -787,23 +831,36 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	public Project copy() {
-		ProjectImpl copiedProject = (ProjectImpl) EcoreUtil.copy(this);
-		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(this, false);
-		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedProject,
-			false);
-		copiedProject.cachesInitialized = true;
 
-		for (int i = 0; i < allContainedModelElements.size(); i++) {
-			EObject child = allContainedModelElements.get(i);
-			EObject copiedChild = copiedAllContainedModelElements.get(i);
-			ModelElementId childId = getModelElementId(child);
-			if (childId == null) {
-				throw new IllegalStateException("Model element '" + child + "' has no ID.");
-			}
+		Copier copier = new ProjectCopier();
+		ProjectImpl result = (ProjectImpl) copier.copy(this);
+		result.cachesInitialized = true;
+		copier.copyReferences();
+		return result;
 
-			copiedProject.putIntoCaches(copiedChild, childId);
-		}
-
-		return copiedProject;
+		// long currentTimeMillis = System.currentTimeMillis();
+		// ProjectImpl copiedProject = (ProjectImpl) EcoreUtil.copy(this);
+		// List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(this, false);
+		// ModelUtil.logInfo("Total time for commit point 0: " + (System.currentTimeMillis() - currentTimeMillis));
+		// List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedProject,
+		// false);
+		// copiedProject.cachesInitialized = true;
+		//
+		// ModelUtil.logInfo("Total time for commit point 1: " + (System.currentTimeMillis() - currentTimeMillis));
+		//
+		// for (int i = 0; i < allContainedModelElements.size(); i++) {
+		// EObject child = allContainedModelElements.get(i);
+		// EObject copiedChild = copiedAllContainedModelElements.get(i);
+		// ModelElementId childId = getModelElementId(child);
+		// if (childId == null) {
+		// throw new IllegalStateException("Model element '" + child + "' has no ID.");
+		// }
+		//
+		// copiedProject.putIntoCaches(copiedChild, childId);
+		// }
+		//
+		// ModelUtil.logInfo("Total time for commit point 2: " + (System.currentTimeMillis() - currentTimeMillis));
+		//
+		// return copiedProject;
 	}
 }

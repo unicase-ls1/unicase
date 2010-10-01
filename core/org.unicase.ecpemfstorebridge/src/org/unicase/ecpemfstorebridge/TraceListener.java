@@ -6,7 +6,6 @@
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
@@ -27,9 +26,9 @@ public class TraceListener implements org.unicase.ui.common.TraceListener {
 	 *      java.lang.String, java.lang.String)
 	 */
 	public void onTrace(EObject source, EObject target, String feature, String view) {
-		if (source instanceof ModelElement && target instanceof ModelElement) {
-			final ModelElement targetModelElement = (ModelElement) target;
-			final ModelElement sourceModelElement = (ModelElement) source;
+		if (source instanceof EObject && target instanceof EObject) {
+			final EObject targetModelElement = target;
+			final EObject sourceModelElement = source;
 			final String featureName = feature;
 
 			new UnicaseCommand() {

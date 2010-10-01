@@ -6,7 +6,6 @@
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.ModelElementOpenListener;
@@ -28,21 +27,18 @@ public class ModelelementOpenListener implements ModelElementOpenListener {
 	 *      java.lang.String)
 	 */
 	public void onOpen(EObject opened, String sourceView, String openView) {
-		if (opened instanceof ModelElement) {
-			final String source = sourceView;
-			final String readView = openView;
-			final ModelElement me = (ModelElement) opened;
-			final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
-			new UnicaseCommand() {
-				@Override
-				protected void doRun() {
-					Project p = ModelUtil.getProject(me);
-					WorkspaceUtil.logReadEvent(projectSpace, (p == null ? null : p.getModelElementId(me)), source,
-						readView);
-				}
-			}.run();
-		}
-
+		final String source = sourceView;
+		final String readView = openView;
+		final EObject me = opened;
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				Project p = ModelUtil.getProject(me);
+				WorkspaceUtil
+					.logReadEvent(projectSpace, (p == null ? null : p.getModelElementId(me)), source, readView);
+			}
+		}.run();
 	}
 
 }

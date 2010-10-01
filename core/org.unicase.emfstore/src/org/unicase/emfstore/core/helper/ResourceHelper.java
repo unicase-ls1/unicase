@@ -205,12 +205,24 @@ public class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
+			// TODO: PlainEObjectMode
 			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
 				xmiResource.setID(e.getKey(), e.getValue().getId());
 			}
+			// for (EObject modelElement : project.getAllModelElements()) {
+			// ModelElementId modelElementId = project.getModelElementId(modelElement);
+			// xmiResource.setID(modelElement, modelElementId.getId());
+			// }
 		}
 
 		save(obj);
+	}
+
+	private void setXmiIdsOnResource(Project project, XMIResource xmiResource) {
+		for (EObject modelElement : project.getAllModelElements()) {
+			ModelElementId modelElementId = project.getModelElementId(modelElement);
+			xmiResource.setID(modelElement, modelElementId.getId());
+		}
 	}
 
 	/**
