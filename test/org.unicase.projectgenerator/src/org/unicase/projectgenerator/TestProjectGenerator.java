@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.metamodel.IdentifiableElement;
@@ -141,17 +142,10 @@ public class TestProjectGenerator {
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
-				if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
-					if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(MetamodelPackage.eINSTANCE
-						.getProject()))) {
-						// this can be instantiated
-						meNonAbstractClasses.add(eClass);
-					}
-				} else {
-					if (!(eClass.isAbstract() || eClass.isInterface())) {
-						// this can be instantiated
-						nonMEnonAbstractClasses.add(eClass);
-					}
+				if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(MetamodelPackage.eINSTANCE
+					.getProject()))) {
+					// this can be instantiated
+					meNonAbstractClasses.add(eClass);
 				}
 			} else if (eObject instanceof EPackage) {
 				EPackage eSubPackage = (EPackage) eObject;
@@ -294,7 +288,7 @@ public class TestProjectGenerator {
 	 * this adds an instance to (EClass, ItsInstances) hash-tables.
 	 */
 	private void keepTrackOf(EClass eClass, EObject instance) {
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
+		if (eClass.equals(EcorePackage.eINSTANCE.getEObject())) {
 			// if instance is a ModelElement, add it to model elements
 			// hash-table
 			if (meInstancesByClass.get(eClass) == null) {
@@ -574,7 +568,7 @@ public class TestProjectGenerator {
 		List<EObject> result;
 		HashMap<EClass, List<EObject>> map;
 		// if EClass is a ModelElement sub-class, look in MEs hash-table
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(type)) {
+		if (type.equals(EcorePackage.eINSTANCE.getEObject()) || MODELELEMENT_ECLASS.isSuperTypeOf(type)) { // MODELELEMENT_ECLASS.isSuperTypeOf(type))
 			map = meInstancesByClass;
 		} else {
 			map = nonMEInstancesByClass;
@@ -585,7 +579,7 @@ public class TestProjectGenerator {
 			Iterator<EClass> iterator = map.keySet().iterator();
 			while (iterator.hasNext()) {
 				EClass eClass = iterator.next();
-				if (type.isSuperTypeOf(eClass)) {
+				if (type.isSuperTypeOf(eClass) || type.equals(EcorePackage.eINSTANCE.getEObject())) {
 					result.addAll(map.get(eClass));
 				}
 
@@ -633,7 +627,7 @@ public class TestProjectGenerator {
 			for (int i = 0; i < lackingFreeInstances; i++) {
 				// if required, create new instances, but take care not to
 				// create Sections
-				freeMEs.add(createInstance(MetamodelPackage.eINSTANCE.getModelElement(), true));
+				freeMEs.add(createInstance(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), true));
 
 			}
 		}
@@ -773,14 +767,14 @@ public class TestProjectGenerator {
 		List<EClass> result = new ArrayList<EClass>();
 		List<EClass> todo;
 		// check whether it's a ME or non-ME
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(superClass)) {
+		if (superClass instanceof EObject) {
 			todo = meNonAbstractClasses;
 		} else {
 			todo = nonMEnonAbstractClasses;
 		}
 
 		for (EClass eClass : todo) {
-			if (superClass.isSuperTypeOf(eClass)) {
+			if (superClass.isSuperTypeOf(eClass) || superClass.equals(EcorePackage.eINSTANCE.getEObject())) {
 				result.add(eClass);
 			}
 		}

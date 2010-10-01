@@ -68,13 +68,13 @@
             class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
             name="org.unicase.ui.meeditor.mesinglelinkcontrol"
             showLabel="true"
-            type="org.unicase.metamodel.ModelElement">
+            type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
             class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl"
             name="org.unicase.ui.meeditor.memultilinkcontrol"
             showLabel="false"
-            type="org.unicase.metamodel.ModelElement">
+            type="org.eclipse.emf.ecore.EObject">
       </widget>
    </extension>
 </plugin>

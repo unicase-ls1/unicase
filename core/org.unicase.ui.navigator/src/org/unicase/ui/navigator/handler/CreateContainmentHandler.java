@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ui.common.util.ActionHelper;
@@ -82,11 +83,13 @@ public class CreateContainmentHandler extends AbstractHandler {
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
-			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.equals(newMEInstance)) {
 				reference = containmentitem;
 
 				break;
-			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+			} else if (eReferenceType.isSuperTypeOf(newMEInstance.eClass())
+				|| eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())) {
 
 				reference = containmentitem;
 				break;

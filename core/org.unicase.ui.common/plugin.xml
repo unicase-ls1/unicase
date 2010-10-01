@@ -42,7 +42,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.metamodel.ModelElement">
+                          value="org.eclipse.emf.ecore.EObject">
                     </instanceof>
                  </iterate>
                  <count
@@ -89,7 +89,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.metamodel.ModelElement">
+                          value="org.eclipse.emf.ecore.EObject">
                     </instanceof>
                  </iterate>
                  <count
@@ -105,12 +105,23 @@
   </extension>
   <extension
         point="org.eclipse.core.expressions.definitions">
-     <definition
+        <definition
            id="org.unicase.ui.common.commands.modelElement">
-        <instanceof
-              value="org.unicase.metamodel.ModelElement">
-        </instanceof>
-     </definition>
+        <and>
+           <instanceof
+                 value="org.eclipse.emf.ecore.EObject">
+           </instanceof>
+           <not>
+              <instanceof
+                    value="org.unicase.workspace.ProjectSpace">
+              </instanceof>
+           </not>
+           <not>
+              <instanceof
+                    value="org.unicase.metamodel.Project">
+              </instanceof>
+           </not>
+        </and>     </definition>
   </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
@@ -202,11 +213,11 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.metamodel.ModelElement">
+                 name="org.eclipse.emf.ecore.EObject">
            </objectClass>
         </enablement>
         <description>
-           If the porject has local changes.
+           If the project has local changes.
         </description>
      </decorator>
      <decorator

@@ -80,7 +80,7 @@
                   checkEnabled="false">
                <iterate>
                   <instanceof
-                        value="org.unicase.metamodel.ModelElement">
+                        value="org.eclipse.emf.ecore.EObject">
                   </instanceof>
                </iterate>
             </visibleWhen>
@@ -94,7 +94,7 @@
                   checkEnabled="false">
                <iterate>
                   <instanceof
-                        value="org.unicase.metamodel.ModelElement">
+                        value="org.eclipse.emf.ecore.EObject">
                   </instanceof>
                </iterate>
             </visibleWhen>

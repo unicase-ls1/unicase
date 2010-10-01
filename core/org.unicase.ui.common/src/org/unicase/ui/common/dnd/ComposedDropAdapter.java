@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
@@ -278,7 +279,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			Set<EClass> toBeRemoved = new HashSet<EClass>();
 			for (EClass eClass1 : intersection) {
 				for (EClass eClass2 : intersection) {
-					if (!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)) {
+					if (!eClass2.equals(eClass1)
+						&& (eClass2.isSuperTypeOf(eClass1) || eClass2.equals(EcorePackage.eINSTANCE.getEObject()))) {
 						toBeRemoved.add(eClass2);
 					}
 				}

@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
@@ -128,7 +129,8 @@ public abstract class MEDropAdapter {
 			// of drag source. We suppose that elements with different types are
 			// not allowed to be drag and dropped.
 			if (ref.getEReferenceType().equals(dropee.eClass())
-				|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
+				|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())
+				|| ref.getEReferenceType().equals(EcorePackage.eINSTANCE.getEObject())) {
 				return ref;
 			}
 		}
@@ -322,8 +324,8 @@ public abstract class MEDropAdapter {
 		for (EReference ref : target.eClass().getEAllContainments()) {
 
 			if (!ref.isContainer()
-				&& (ref.getEReferenceType().equals(refType) || ref.getEReferenceType().isSuperTypeOf(refType))) {
-
+				&& (ref.getEReferenceType().equals(refType) || ref.getEReferenceType().isSuperTypeOf(refType))
+				|| ref.getEReferenceType().equals(EcorePackage.eINSTANCE.getEObject())) {
 				result = true;
 				break;
 			}
