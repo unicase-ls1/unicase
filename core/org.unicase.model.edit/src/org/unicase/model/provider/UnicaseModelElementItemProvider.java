@@ -21,23 +21,22 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.provider.ModelElementItemProvider;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.UnicaseModelElement} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.UnicaseModelElement} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UnicaseModelElementItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnicaseModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +44,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,13 +58,15 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
 			addCommentsPropertyDescriptor(object);
+			addCreatorPropertyDescriptor(object);
+			addCreationDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -77,8 +78,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
@@ -90,8 +91,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotations feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Annotations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
@@ -103,8 +104,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachments feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attachments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
@@ -116,8 +117,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Comments feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Comments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addCommentsPropertyDescriptor(Object object) {
@@ -129,11 +130,37 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
+	 * This adds a property descriptor for the Creator feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCreatorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creator_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creator_feature",
+				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creation Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCreationDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creationDate_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creationDate_feature",
+				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,6 +175,7 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,6 +201,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		case ModelPackage.UNICASE_MODEL_ELEMENT__NAME:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
@@ -184,9 +214,9 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,8 +232,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
