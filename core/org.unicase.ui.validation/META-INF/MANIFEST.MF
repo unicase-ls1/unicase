@@ -8,10 +8,7 @@ Require-Bundle: org.unicase.ui.common;visibility:=reexport,
  org.unicase.ecpemfstorebridge
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.eclipse.emf.validation.model,
- org.unicase.model.organization,
- org.unicase.model.task,
- org.unicase.ui.unicasecommon.common.util
+Import-Package: org.eclipse.emf.validation.model
 Export-Package: org.unicase.ui.validation.filter,
  org.unicase.ui.validation.refactoring.strategy
 Bundle-Vendor: unicase.org
