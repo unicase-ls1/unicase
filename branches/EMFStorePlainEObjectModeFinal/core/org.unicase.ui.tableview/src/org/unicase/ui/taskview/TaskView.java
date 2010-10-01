@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
@@ -382,9 +381,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			MetamodelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(

@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Set;
 
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -1563,9 +1563,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		Set<EObject> modelElements = getProject().getAllModelElements();
-		int counter = Configuration.getMaxMECountPerResource() + 1;
+		List<EObject> modelElements = this.getProject().getModelElements();
+		// TODO: PlainEObjectMode
+		int counter = 0;// Configuration.getMaxMECountPerResource() + 1;
 		for (EObject modelElement : modelElements) {
+
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
@@ -1577,8 +1579,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			counter++;
 			resource.getContents().add(modelElement);
+
+			TreeIterator<EObject> it = modelElement.eAllContents();
+			while (it.hasNext()) {
+				EObject child = it.next();
+				counter++;
+				((XMIResource) resource).setID(child, getProject().getModelElementId(child).getId());
+
+			}
+
 			((XMIResource) resource).setID(modelElement, getProject().getModelElementId(modelElement).getId());
 		}
+
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
 		if (this.getLocalOperations() == null) {
 			this.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());

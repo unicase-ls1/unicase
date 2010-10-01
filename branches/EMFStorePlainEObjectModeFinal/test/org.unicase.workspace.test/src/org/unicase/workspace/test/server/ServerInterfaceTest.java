@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
@@ -182,7 +183,8 @@ public class ServerInterfaceTest extends ServerTests {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 
 		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
-		attributeOperation.setModelElementId(getGeneratedProject().getAllModelElements().get(0).getModelElementId());
+		attributeOperation.setModelElementId(getGeneratedProject().getModelElementId(
+			(EObject) getGeneratedProject().getAllModelElements().toArray()[0]));
 		attributeOperation.setFeatureName("name");
 		attributeOperation.setNewValue("nameeee");
 

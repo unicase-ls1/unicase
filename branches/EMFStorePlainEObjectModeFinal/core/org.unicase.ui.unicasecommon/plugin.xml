@@ -15,7 +15,7 @@
               id="org.unicase.ui.common.commands.subscriptionTester"
               namespace="org.unicase.ui.common.commands"
               properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.metamodel.ModelElement">
+              type="org.eclipse.emf.ecore.EObject">
         </propertyTester>
  </extension>
 <extension
@@ -422,7 +422,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.metamodel.ModelElement">
+                          value="org.eclipse.emf.ecore.EObject">
                     </instanceof>
                  </iterate>
                  <count
@@ -442,7 +442,7 @@
                           ifEmpty="false"
                           operator="and">
                        <instanceof
-                             value="org.unicase.metamodel.ModelElement">
+                             value="org.eclipse.emf.ecore.EObject">
                        </instanceof>
                     </iterate>
                     <count
@@ -542,7 +542,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.metamodel.ModelElement">
+                          value="org.eclipse.emf.ecore.EObject">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -568,7 +568,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.metamodel.ModelElement">
+                          value="org.eclipse.emf.ecore.EObject">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -606,7 +606,7 @@
            id="org.unicase.ui.common.commands.modelElementNotSection">
         <and>
            <instanceof
-                 value="org.unicase.metamodel.ModelElement">
+                 value="org.eclipse.emf.ecore.EObject">
            </instanceof>
            <not>
               <instanceof
@@ -614,12 +614,6 @@
               </instanceof>
            </not>
         </and>
-     </definition>
-     <definition
-           id="org.unicase.ui.common.commands.modelElement">
-        <instanceof
-              value="org.unicase.metamodel.ModelElement">
-        </instanceof>
      </definition>
      <definition
            id="org.unicase.ui.common.commands.workPackage">
@@ -637,7 +631,7 @@
            id="org.unicase.ui.common.commands.directAnnotatable">
         <and>
            <instanceof
-                 value="org.unicase.metamodel.ModelElement">
+                 value="org.eclipse.emf.ecore.EObject">
            </instanceof>
            <not>
               <instanceof
@@ -658,7 +652,7 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.metamodel.ModelElement">
+                 name="org.eclipse.emf.ecore.EObject">
            </objectClass>
         </enablement>
         <description>
@@ -801,25 +795,25 @@
           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol.MECommentsLinkControl"
           name="org.unicase.ui.unicasecommon.commentlinkcontrol"
           showLabel="true"
-          type="org.unicase.metamodel.ModelElement">
+          type="org.eclipse.emf.ecore.EObject">
     </widget>
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl"
           name="org.unicase.ui.unicasecommon.assessmentmatrixcontrol"
           showLabel="false"
-          type="org.unicase.metamodel.ModelElement">
+          type="org.eclipse.emf.ecore.EObject">
     </widget>
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.uccontrol.UseCaseStepsControl"
           name="org.unicase.ui.unicasecommon.usecasestepscontrol"
           showLabel="false"
-          type="org.unicase.metamodel.ModelElement">
+          type="org.eclipse.emf.ecore.EObject">
     </widget>
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol.MergingIssueResolutionControl"
           name="org.unicase.ui.unicasecommon.mergingissueresolutin"
           showLabel="true"
-          type="org.unicase.metamodel.ModelElement">
+          type="org.eclipse.emf.ecore.EObject">
     </widget>
  </extension>
  <extension
@@ -841,7 +835,7 @@
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.MEURLLinkControl"
           name="org.unicase.ui.unicasecommon.meurllinkcontrol"
-          type="org.unicase.metamodel.ModelElement">
+          type="org.eclipse.emf.ecore.EObject">
     </widget>
  </extension>
  <extension

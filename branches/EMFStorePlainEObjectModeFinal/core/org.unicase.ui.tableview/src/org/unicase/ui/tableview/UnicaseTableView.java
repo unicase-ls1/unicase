@@ -11,6 +11,8 @@ import java.util.regex.PatternSyntaxException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
@@ -28,8 +30,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
@@ -108,9 +108,9 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		parent.setLayout(new GridLayout());
 		createFilterText(parent);
 
-		viewer = new METableViewer(parent, MetamodelPackage.eINSTANCE.getModelElement());
+		viewer = new METableViewer(parent, EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
 		viewer.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		viewer.createColumns(MetamodelPackage.eINSTANCE.getModelElement(), null, false);
+		viewer.createColumns(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), null, false);
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspaceListenerAdapter = new AdapterImpl() {
@@ -253,9 +253,9 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
-	 *      org.unicase.model.UnicaseModelElement)
+	 *      org.eclipse.emf.
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -264,7 +264,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -274,7 +274,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		viewer.getTableViewer().update(modelElement, null);
 	}
 
