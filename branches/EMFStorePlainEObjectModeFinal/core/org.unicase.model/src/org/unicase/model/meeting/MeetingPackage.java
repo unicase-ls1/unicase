@@ -142,6 +142,24 @@ public interface MeetingPackage extends EPackage {
 	int MEETING__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -321,6 +339,24 @@ public interface MeetingPackage extends EPackage {
 	int MEETING_SECTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -422,6 +458,24 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__CREATOR = MEETING_SECTION__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
@@ -537,6 +591,24 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__CREATOR = MEETING_SECTION__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -648,6 +720,24 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__CREATOR = MEETING_SECTION__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.

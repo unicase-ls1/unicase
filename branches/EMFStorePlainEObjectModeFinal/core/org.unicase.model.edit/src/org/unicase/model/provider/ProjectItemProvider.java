@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.activity.ActivityFactory;
@@ -468,6 +469,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			OperationsFactory.eINSTANCE.createModelElementGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			EventsFactory.eINSTANCE.createEvent()));
@@ -1125,6 +1129,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			OperationsFactory.eINSTANCE.createModelElementGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			EventsFactory.eINSTANCE.createEvent()));

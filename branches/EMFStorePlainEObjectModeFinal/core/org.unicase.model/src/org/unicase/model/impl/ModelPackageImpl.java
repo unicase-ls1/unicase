@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
@@ -308,6 +309,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUnicaseModelElement_Creator() {
+		return (EAttribute) unicaseModelElementEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUnicaseModelElement_CreationDate() {
+		return (EAttribute) unicaseModelElementEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -383,6 +402,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__STATE);
 		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
 		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__COMMENTS);
+		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__CREATOR);
+		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__CREATION_DATE);
 
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
@@ -443,6 +464,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		UtilPackage theUtilPackage = (UtilPackage) EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI);
 		ActivityPackage theActivityPackage = (ActivityPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(MetamodelPackage.eNS_URI);
 
@@ -509,6 +531,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getComment_CommentedElement(), "comments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
+		initEAttribute(getUnicaseModelElement_Creator(), theEcorePackage.getEString(), "creator", null, 0, 1,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnicaseModelElement_CreationDate(), theEcorePackage.getEDate(), "creationDate", null, 0, 1,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(annotationEClass, Annotation.class, "Annotation", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

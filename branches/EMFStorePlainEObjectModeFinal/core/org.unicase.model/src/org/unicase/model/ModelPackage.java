@@ -141,13 +141,31 @@ public interface ModelPackage extends EPackage {
 	int UNICASE_MODEL_ELEMENT__COMMENTS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_MODEL_ELEMENT__CREATOR = 9;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_MODEL_ELEMENT__CREATION_DATE = 10;
+
+	/**
 	 * The number of structural features of the '<em>Unicase Model Element</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = 9;
+	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class. <!--
@@ -236,6 +254,24 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
@@ -342,6 +378,24 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTACHMENT__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
@@ -498,6 +552,28 @@ public interface ModelPackage extends EPackage {
 	EReference getUnicaseModelElement_Comments();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Creator</em>'.
+	 * @see org.unicase.model.UnicaseModelElement#getCreator()
+	 * @see #getUnicaseModelElement()
+	 * @generated
+	 */
+	EAttribute getUnicaseModelElement_Creator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreationDate <em>Creation Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Creation Date</em>'.
+	 * @see org.unicase.model.UnicaseModelElement#getCreationDate()
+	 * @see #getUnicaseModelElement()
+	 * @generated
+	 */
+	EAttribute getUnicaseModelElement_CreationDate();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Annotation <em>Annotation</em>}'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -648,6 +724,22 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UNICASE_MODEL_ELEMENT__COMMENTS = eINSTANCE.getUnicaseModelElement_Comments();
+
+		/**
+		 * The meta object literal for the '<em><b>Creator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNICASE_MODEL_ELEMENT__CREATOR = eINSTANCE.getUnicaseModelElement_Creator();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNICASE_MODEL_ELEMENT__CREATION_DATE = eINSTANCE.getUnicaseModelElement_CreationDate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class.

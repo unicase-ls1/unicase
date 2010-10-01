@@ -142,6 +142,24 @@ public interface StatePackage extends EPackage {
 	int STATE_NODE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_NODE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_NODE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Outgoing Transitions</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -254,6 +272,24 @@ public interface StatePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE__COMMENTS = STATE_NODE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CREATOR = STATE_NODE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CREATION_DATE = STATE_NODE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Transitions</b></em>' reference list.
@@ -395,6 +431,24 @@ public interface StatePackage extends EPackage {
 	int TRANSITION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -516,6 +570,24 @@ public interface StatePackage extends EPackage {
 	int STATE_INITIAL__COMMENTS = STATE_NODE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INITIAL__CREATOR = STATE_NODE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INITIAL__CREATION_DATE = STATE_NODE__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Outgoing Transitions</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -628,6 +700,24 @@ public interface StatePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_END__COMMENTS = STATE_NODE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_END__CREATOR = STATE_NODE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_END__CREATION_DATE = STATE_NODE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Transitions</b></em>' reference list.

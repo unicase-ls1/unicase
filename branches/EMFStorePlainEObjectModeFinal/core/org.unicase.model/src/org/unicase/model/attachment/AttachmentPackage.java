@@ -141,6 +141,24 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT__COMMENTS = ModelPackage.ATTACHMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -252,6 +270,24 @@ public interface AttachmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_ATTACHMENT__COMMENTS = ModelPackage.ATTACHMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
