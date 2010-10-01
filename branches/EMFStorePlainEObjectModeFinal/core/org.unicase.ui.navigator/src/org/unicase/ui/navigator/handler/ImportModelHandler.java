@@ -15,11 +15,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -54,62 +54,81 @@ public class ImportModelHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
-		if (projectSpace == null && selectedModelElement == null) {
-			return null;
-		}
-
-		final String fileName = getFileName();
-		if (fileName == null) {
-			return null;
-		}
-
-		final URI fileURI = URI.createFileURI(fileName);
-
-		// create resource set and resource
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		final Resource resource = resourceSet.getResource(fileURI, true);
-
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final EClass clazz = EcoreFactory.eINSTANCE.createEClass();
+		clazz.setName("foo");
+		EStructuralFeature attribute = EcoreFactory.eINSTANCE.createEAttribute();
+		EStructuralFeature attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
+		attribute.setName("attribute1");
+		attribute2.setName("attribute2");
+		clazz.getEStructuralFeatures().add(attribute);
+		clazz.getEStructuralFeatures().add(attribute2);
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				importFile(projectSpace, fileURI, resource, progressDialog);
+				projectSpace.getProject().addModelElement(clazz);
 			}
+		}.run(false);
 
-		}.run();
+		return clazz;
 
-		return null;
+		// final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
+		// if (projectSpace == null && selectedModelElement == null) {
+		// return null;
+		// }
+		//
+		// final String fileName = getFileName();
+		// if (fileName == null) {
+		// return null;
+		// }
+		//
+		// final URI fileURI = URI.createFileURI(fileName);
+		//
+		// // create resource set and resource
+		// ResourceSet resourceSet = new ResourceSetImpl();
+		//
+		// final Resource resource = resourceSet.getResource(fileURI, true);
+		//
+		// final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+		// .getActiveWorkbenchWindow().getShell());
+		//
+		// new UnicaseCommand() {
+		// @Override
+		// protected void doRun() {
+		// importFile(projectSpace, fileURI, resource, progressDialog);
+		// }
+		//
+		// }.run();
+		//
+		// return null;
 	}
 
 	private void importFile(final ProjectSpace projectSpace, final URI fileURI, final Resource resource,
 		final ProgressMonitorDialog progressDialog) {
-		try {
-			progressDialog.open();
-			progressDialog.getProgressMonitor().beginTask("Import model...", 100);
 
-			Set<EObject> importElements = validation(resource);
-
-			if (importElements.size() > 0) {
-				int i = 0;
-				for (EObject eObject : importElements) {
-					// run the import command
-					runImport(projectSpace, fileURI, EcoreUtil.copy(eObject), i);
-					progressDialog.getProgressMonitor().worked(10);
-					i++;
-				}
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			ModelUtil.logException(e);
-			// END SUPRESS CATCH EXCEPTION
-		} finally {
-			progressDialog.getProgressMonitor().done();
-			progressDialog.close();
-		}
+		// try {
+		// progressDialog.open();
+		// progressDialog.getProgressMonitor().beginTask("Import model...", 100);
+		//
+		// Set<EObject> importElements = validation(resource);
+		//
+		// if (importElements.size() > 0) {
+		// int i = 0;
+		// for (EObject eObject : importElements) {
+		// // run the import command
+		// runImport(projectSpace, fileURI, EcoreUtil.copy(eObject), i);
+		// progressDialog.getProgressMonitor().worked(10);
+		// i++;
+		// }
+		// }
+		// // BEGIN SUPRESS CATCH EXCEPTION
+		// } catch (RuntimeException e) {
+		// ModelUtil.logException(e);
+		// // END SUPRESS CATCH EXCEPTION
+		// } finally {
+		// progressDialog.getProgressMonitor().done();
+		// progressDialog.close();
+		// }
 	}
 
 	// Validates if the EObjects can be imported
@@ -125,8 +144,6 @@ public class ImportModelHandler extends AbstractHandler {
 			while (contents.hasNext()) {
 				EObject content = contents.next();
 				if (!(content != null)) {
-					// TODO: Report to Console //System.out.println(content +
-					// " is not a ModelElement and can not be imported");
 					continue;
 				}
 				childrenSet.add(content);
@@ -161,6 +178,7 @@ public class ImportModelHandler extends AbstractHandler {
 	}
 
 	private String getFileName() {
+
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
@@ -203,6 +221,8 @@ public class ImportModelHandler extends AbstractHandler {
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
+
+		// TODO: PlainEObjectMode, Wrapper
 		projectSpace.getProject().addModelElement(ModelUtil.clone(element));
 	}
 }

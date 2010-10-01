@@ -235,8 +235,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		}
 		String text = stringBuilder.toString();
 		notification.setMessage(text);
-		// TODO: PlainEObjectMode, getCreationDate
-		// Date date = workItems.iterator().next().getCreationDate();
+		Date date = workItems.iterator().next().getCreationDate();
 		ArrayList<OperationId> ops = new ArrayList<OperationId>();
 		for (WorkItem workItem : workItems) {
 			ModelElementId workItemId = ModelUtil.getProject(workItem).getModelElementId(workItem);
@@ -244,16 +243,14 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			AbstractOperation abstractOperation = workItemMap.get(workItem);
 			ops.add(abstractOperation.getOperationId());
 			Date newDate = abstractOperation.getClientDate();
-			// TODO: PlainEObjectMode, getCreationDate (date)
-			// if (newDate != null && newDate.after(date)) {
-			// date = newDate;
-			// }
+			if (newDate != null && newDate.after(date)) {
+				date = newDate;
+			}
 		}
-		// TODO: PlainEObjectMode, getCreationDate (date)
-		// if (date == null) {
-		// date = new Date();
-		// }
-		// notification.setCreationDate(date);
+		if (date == null) {
+			date = new Date();
+		}
+		notification.setCreationDate(date);
 		notification.getRelatedOperations().addAll(ops);
 		return notification;
 	}

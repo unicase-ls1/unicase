@@ -8,8 +8,10 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -193,14 +195,16 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		// return false;
 		// }
 
-		// for the case of multi selection (not implemented yet) only allow drop, if all droppees come from the same
+		// for the case of multi selection (not implemented yet) only allow drop, if all dropees come from the same
 		// container
 		if (!haveSameEContainer(source)) {
 			return false;
 		}
 
 		// drop only allowed elements
-		if (!reference.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
+		EClass eReferenceType = reference.getEReferenceType();
+		if (!eReferenceType.isSuperTypeOf(dropee.eClass())
+			&& !eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())) {
 			return false;
 		}
 

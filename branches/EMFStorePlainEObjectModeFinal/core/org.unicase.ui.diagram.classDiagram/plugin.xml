@@ -384,7 +384,7 @@
                      id="org.unicase.ui.diagram.classDiagram.part.DiagramTypeTester"
                      namespace="org.unicase.classDiagram"
                      properties="isDiagramType"
-                     type="org.unicase.metamodel.ModelElement">
+                     type="org.eclipse.emf.ecore.EObject">
                </propertyTester>
             </extension>
    

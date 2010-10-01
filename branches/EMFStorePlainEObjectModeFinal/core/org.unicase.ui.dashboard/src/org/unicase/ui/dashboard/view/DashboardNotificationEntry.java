@@ -507,9 +507,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
 			Comment comment = RationaleFactory.eINSTANCE.createComment();
 			comment.setDescription(getNotification().getDetails());
-			// TODO: PlainEObjectMode, setCreator, setCreationDate
-			// comment.setCreator(getNotification().getSender());
-			// comment.setCreationDate(getNotification().getCreationDate());
+			comment.setCreator(getNotification().getSender());
+			comment.setCreationDate(getNotification().getCreationDate());
 			comments.add(comment);
 			return comments;
 		}

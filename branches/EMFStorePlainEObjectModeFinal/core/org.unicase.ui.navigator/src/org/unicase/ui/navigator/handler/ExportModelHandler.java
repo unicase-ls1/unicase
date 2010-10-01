@@ -111,7 +111,7 @@ public class ExportModelHandler extends AbstractHandler {
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof EObject) {
 
-				copyModelElement = ModelUtil.copy((EObject) firstElement);
+				copyModelElement = ModelUtil.clone((EObject) firstElement);
 
 				// only export the rootnode makes xml with references, otherwise (see (commented) line two) the children
 				// will be "real" nested as containments of the node (is not necessary)
