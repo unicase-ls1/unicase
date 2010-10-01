@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -177,15 +178,21 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	public Project getProjectState() {
 		if ((projectState != null && projectState.eIsProxy())) {
-			// load ids from resource
 			ProjectImpl project = (ProjectImpl) getProjectStateGen();
-			project.cachesInitialized = true;
 
 			Resource resource = project.eResource();
-			EMap<EObject, ModelElementId> idMap = loadIdsFromResource(resource);
+			if (resource instanceof XMIResource) {
+				EMap<EObject, ModelElementId> eObjectToIdMap = loadIdsFromResource((XMIResource) resource);
 
-			for (Map.Entry<EObject, ModelElementId> e : idMap) {
-				project.putIntoCaches(e.getKey(), e.getValue());
+				// create reverse mapping
+				Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>(eObjectToIdMap
+					.size());
+
+				for (Map.Entry<EObject, ModelElementId> entry : eObjectToIdMap.entrySet()) {
+					idToEObjectMap.put(entry.getValue(), entry.getKey());
+				}
+
+				project.initCaches(eObjectToIdMap.map(), idToEObjectMap);
 			}
 
 			return project;
@@ -508,9 +515,11 @@ public class VersionImpl extends EObjectImpl implements Version {
 			for (AbstractOperation operation : changes.getOperations()) {
 				// load ids from resource for each id map that is associated
 				// with a CreateDeleteOperation
-				if (operation instanceof CreateDeleteOperation) {
+				Resource resource = operation.eResource();
+				if (operation instanceof CreateDeleteOperation && resource instanceof XMIResource) {
 					CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
-					EMap<EObject, ModelElementId> m = loadIdsFromResource(createDeleteOperation.eResource());
+					EMap<EObject, ModelElementId> m = loadIdsFromResource((XMIResource) createDeleteOperation
+						.eResource());
 					createDeleteOperation.getEObjectToIdMap().addAll(m);
 				}
 			}
@@ -523,14 +532,18 @@ public class VersionImpl extends EObjectImpl implements Version {
 	/**
 	 * Loads the XMI IDs from the given resource and returns them in a map together with the object each ID belongs to.
 	 * 
-	 * @param resource
-	 * @return
+	 * @param resource the resource from which to load the ID mappings
+	 * @return a map consisting of object/id mappings, if the resource doesn't contain an eobject/id mapping null will
+	 *         be returned
 	 */
-	private EMap<EObject, ModelElementId> loadIdsFromResource(Resource resource) {
-		EMap<EObject, ModelElementId> idMap = new BasicEMap<EObject, ModelElementId>();
+	private EMap<EObject, ModelElementId> loadIdsFromResource(XMIResource xmiResource) {
 
-		if (resource != null && (resource instanceof XMIResource)) {
-			XMIResource xmiResource = (XMIResource) resource;
+		EMap<EObject, ModelElementId> eObjectToIdMap;
+
+		if (xmiResource != null) {
+			// guess a rough initial size by looking at the size of the contents
+			eObjectToIdMap = new BasicEMap<EObject, ModelElementId>(xmiResource.getContents().size());
+
 			TreeIterator<EObject> it = xmiResource.getAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
@@ -538,12 +551,14 @@ public class VersionImpl extends EObjectImpl implements Version {
 				if (objId != null) {
 					ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 					modelElementId.setId(objId);
-					idMap.put(obj, modelElementId);
+					eObjectToIdMap.put(obj, modelElementId);
 				}
 			}
+
+			return eObjectToIdMap; // .map();
 		}
 
-		return idMap;
+		return null;
 	}
 
 	/**

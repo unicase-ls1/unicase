@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -100,7 +101,7 @@ public final class ModelUtil {
 	/**
 	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
-	 * @param parent The EObject to get conatinment references from
+	 * @param parent The EObject to get containment references from
 	 */
 	public static EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
@@ -108,12 +109,13 @@ public final class ModelUtil {
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
-			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.equals(newMEInstance)) {
 				reference = containmentitem;
 
 				break;
-			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
-
+			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
+				|| eReferenceType.isSuperTypeOf(newMEInstance.eClass())) {
 				reference = containmentitem;
 				break;
 			}
@@ -176,13 +178,13 @@ public final class ModelUtil {
 		}
 
 		if (object instanceof Project) {
-
-			Project copiedProject = ((ProjectImpl) object).copy();
+			Project project = (Project) object;
+			Project copiedProject = (Project) clone(object);
 
 			if (res instanceof XMIResource) {
 				XMIResource xmiRes = (XMIResource) res;
-				for (Map.Entry<EObject, ModelElementId> entry : ((ProjectImpl) object).getEObjectToIdCache().entrySet()) {
-					xmiRes.setID(copiedProject.getModelElement(entry.getValue()), entry.getValue().getId());
+				for (ModelElementId modelElementId : project.getAllModelElementIds()) {
+					xmiRes.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
 				}
 			}
 			res.getContents().add(copiedProject);
@@ -238,9 +240,6 @@ public final class ModelUtil {
 				Object referenceObject = object.eGet(reference, true);
 				if (reference.isMany()) {
 					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
-					if (result == null) {
-						System.out.println("REMOVE ME");
-					}
 					result.addAll(referencesList);
 				} else {
 					EObject crossReference = (EObject) referenceObject;
@@ -318,8 +317,10 @@ public final class ModelUtil {
 
 		EObject result = res.getContents().get(0);
 		if (res instanceof XMIResource && result instanceof Project) {
-			((ProjectImpl) result).cachesInitialized = true;
+			Project project = (Project) result;
 			XMIResource xmiRes = (XMIResource) res;
+			Map<EObject, ModelElementId> eObjectToIdMap = new HashMap<EObject, ModelElementId>();
+			Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>();
 			TreeIterator<EObject> it = ((Project) result).eAllContents();
 			while (it.hasNext()) {
 				EObject me = it.next();
@@ -330,10 +331,11 @@ public final class ModelUtil {
 
 				ModelElementId meId = MetamodelFactory.eINSTANCE.createModelElementId();
 				meId.setId(id);
-				((ProjectImpl) result).getEObjectToIdCache().put(me, meId);
-				((ProjectImpl) result).getEObjectsCache().add(me);
-				((ProjectImpl) result).getIdToEObjectCache().put(meId, me);
+				eObjectToIdMap.put(me, meId);
+				idToEObjectMap.put(meId, me);
 			}
+
+			project.initCaches(eObjectToIdMap, idToEObjectMap);
 		}
 
 		res.getContents().remove(result);
@@ -375,7 +377,7 @@ public final class ModelUtil {
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
 				EClass subClass = (EClass) classifier;
-				if (clazz.isSuperTypeOf(subClass)
+				if ((clazz.isSuperTypeOf(subClass) || clazz.equals(EcorePackage.eINSTANCE.getEObject()))
 					&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
 					ret.add(subClass);
 				}
@@ -432,7 +434,8 @@ public final class ModelUtil {
 		}
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass);
+			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass)
+				|| eClass.equals(EcorePackage.eINSTANCE.getEObject());
 			if (isSuperTypeOf && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
@@ -779,11 +782,11 @@ public final class ModelUtil {
 		EObject eObject = contents.get(0);
 
 		if (eObject instanceof ProjectImpl && resource instanceof XMIResource) {
-			ProjectImpl project = (ProjectImpl) eObject;
-			// TODO: EM cachesInitialized shouldn't be public
-			project.cachesInitialized = true;
 			XMIResource xmiResource = (XMIResource) resource;
-			ModelUtil.getAllContainedModelElementsAsList(project, false);
+			Project project = (Project) eObject;
+			Map<EObject, ModelElementId> eObjectToIdMap = new HashMap<EObject, ModelElementId>();
+			Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>();
+
 			TreeIterator<EObject> it = project.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
@@ -791,9 +794,12 @@ public final class ModelUtil {
 				String id = xmiResource.getID(obj);
 				if (id != null) {
 					objId.setId(id);
-					project.putIntoCaches(obj, objId);
+					eObjectToIdMap.put(obj, objId);
+					idToEObjectMap.put(objId, obj);
 				}
 			}
+
+			project.initCaches(eObjectToIdMap, idToEObjectMap);
 		}
 
 		if (!(eClass.isInstance(eObject))) {
@@ -815,7 +821,8 @@ public final class ModelUtil {
 
 		for (EObject o : eObjects) {
 			contents.add(o);
-			if (o instanceof ProjectImpl && resource instanceof XMIResource) {
+			if (o instanceof Project && resource instanceof XMIResource) {
+				Project project = (Project) o;
 				XMIResource xmiResource = (XMIResource) resource;
 				for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) o).getEObjectToIdCache().entrySet()) {
 					xmiResource.setID(e.getKey(), e.getValue().getId());
@@ -825,6 +832,13 @@ public final class ModelUtil {
 
 		contents.addAll(eObjects);
 		resource.save(null);
+	}
+
+	public static void setXmiIdsOnResource(Project project, XMIResource xmiResource) {
+		for (EObject modelElement : project.getAllModelElements()) {
+			ModelElementId modelElementId = project.getModelElementId(modelElement);
+			xmiResource.setID(modelElement, modelElementId.getId());
+		}
 	}
 
 	/**
@@ -1034,13 +1048,16 @@ public final class ModelUtil {
 		boolean includeTransientContainments) {
 
 		TreeIterator<EObject> it = modelElement.eAllContents();
+
 		List<EObject> result = new ArrayList<EObject>();
 		while (it.hasNext()) {
 			EObject containee = it.next();
 			if (containee.eContainingFeature() != null && !containee.eContainingFeature().isTransient()
 				|| includeTransientContainments) {
 				List<EObject> elements = getAllContainedModelElementsAsList(containee, includeTransientContainments);
-				result.add(containee);
+				if (!result.contains(containee)) {
+					result.add(containee);
+				}
 				result.addAll(elements);
 			}
 		}
@@ -1049,11 +1066,12 @@ public final class ModelUtil {
 	}
 
 	public static void removeModelElementAndChildrenFromResource(EObject modelElement) {
-		removeModelElementFromResource(modelElement);
+
 		Set<EObject> children = getAllContainedModelElements(modelElement, false);
 		for (EObject child : children) {
 			removeModelElementFromResource(child);
 		}
+		removeModelElementFromResource(modelElement);
 	}
 
 	private static void removeModelElementFromResource(EObject modelElement) {
@@ -1070,19 +1088,7 @@ public final class ModelUtil {
 		try {
 			xmiResource.save(null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			// Do NOT catch all Exceptions ("catch (Exception e)")
-			// Log AND handle Exceptions if possible
-			//
-			// You can just uncomment one of the lines below to log an exception:
-			// logException will show the logged excpetion to the user
-			// ModelUtil.logException(e);
-			// ModelUtil.logException("YOUR MESSAGE HERE", e);
-			// logWarning will only add the message to the error log
-			// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-			// ModelUtil.logWarning("YOUR MESSAGE HERE");
-			//			
-			// If handling is not possible declare and rethrow Exception
+			throw new RuntimeException(e);
 		}
 	}
 }

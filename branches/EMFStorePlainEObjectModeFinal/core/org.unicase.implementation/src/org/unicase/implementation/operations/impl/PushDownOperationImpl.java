@@ -204,8 +204,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -213,6 +212,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getAttributes();
 	}
+
 	// end of custom code
 
 	/**
@@ -226,8 +226,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -235,6 +234,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getOutgoingAssociations();
 	}
+
 	// end of custom code
 
 	/**
@@ -248,8 +248,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -257,6 +256,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return superClass.getIncomingAssociations();
 	}
+
 	// end of custom code
 
 	/**
@@ -270,8 +270,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -279,10 +278,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 		Class superClass = getSuperClass(project);
 		return !superClass.getSubClasses().isEmpty();
 	}
-	
+
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -293,6 +291,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 
 		return attributes.size() + outgoingAssociations.size() + incomingAssociations.size() > 0;
 	}
+
 	// end of custom code
 
 	/**
@@ -421,11 +420,11 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownAttributes(List<Attribute> attributes, Class superClass) {
 		for (Attribute attribute : attributes) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Attribute subAttribute = (Attribute) ModelUtil.copy(attribute);
+				Attribute subAttribute = ModelUtil.clone(attribute);
 				subClass.getAttributes().add(subAttribute);
 			}
 
-			attribute.delete();
+			ModelUtil.getProject(attribute).deleteModelElement(attribute);
 		}
 	}
 
@@ -433,8 +432,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownOutgoingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Association subAssociation = (Association) ModelUtil.copy(association);
-				((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
+				Association subAssociation = ModelUtil.clone(association);
+				((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
+					.add(subAssociation);
 				subAssociation.setSource(subClass);
 				if (association.getSourceRole() != null && superClass.getSubClasses().size() > 1) {
 					subAssociation.setSourceRole(OperationHelper.firstLower(subClass.getName()));
@@ -442,7 +442,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 				subAssociation.setTarget(association.getTarget());
 			}
 
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
 
@@ -450,8 +450,9 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownIncomingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Association subAssociation = (Association) ModelUtil.copy(association);
-				((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
+				Association subAssociation = ModelUtil.clone(association);
+				((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
+					.add(subAssociation);
 				subAssociation.setTarget(subClass);
 				if (association.getTargetRole() != null && superClass.getSubClasses().size() > 1) {
 					subAssociation.setTargetRole(OperationHelper.firstLower(subClass.getName()));
@@ -459,7 +460,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 				subAssociation.setSource(association.getSource());
 			}
 
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
 } // PushDownOperationImpl

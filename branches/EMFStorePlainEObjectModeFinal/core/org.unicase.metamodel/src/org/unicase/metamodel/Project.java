@@ -53,6 +53,11 @@ public interface Project extends EObject, IAdaptable {
 	void initCaches();
 
 	/**
+	 * Initializes the ID caches of the project with the given mappings.
+	 */
+	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap);
+
+	/**
 	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
 	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
@@ -165,6 +170,13 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a set of model elements
 	 */
 	Set<EObject> getAllModelElements();
+
+	/**
+	 * Get all model element ID of this project
+	 * 
+	 * @return a set of model element IDs
+	 */
+	Set<ModelElementId> getAllModelElementIds();
 
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.
