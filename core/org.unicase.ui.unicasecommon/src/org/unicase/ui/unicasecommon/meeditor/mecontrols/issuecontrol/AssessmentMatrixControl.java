@@ -97,18 +97,15 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		assessmentListener = new AssessmentListener();
 		proposalListener = new ProposalListener();
 
-		// TODO: PlainEObjectMode: ModelElementChangeListeners
-		// issue.addModelElementChangeListener(issueListener);
+		issue.addModelElementChangeListener(issueListener);
 		for (Criterion criterion : issue.getCriteria()) {
-			// criterion.addModelElementChangeListener(criterionListener);
+			criterion.addModelElementChangeListener(criterionListener);
 		}
 		for (Proposal proposal : issue.getProposals()) {
-			// TODO: PlainEObjectMode: ModelElementChangeListeners
-			// proposal.addModelElementChangeListener(proposalListener);
+			proposal.addModelElementChangeListener(proposalListener);
 			for (Assessment assessment : proposal.getAssessments()) {
 				if (issue.getCriteria().contains(assessment.getCriterion())) {
-					// TODO: PlainEObjectMode: ModelElementChangeListeners
-					// assessment.addModelElementChangeListener(assessmentListener);
+					assessment.addModelElementChangeListener(assessmentListener);
 				}
 			}
 		}
@@ -151,27 +148,23 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		// dispose controls
 		disposeControls();
 
-		// TODO: PlainEObjectMode: ModelElementChangeListener
 		if (issue != null) {
 			for (Proposal proposal : issue.getProposals()) {
-				// TODO: PlainEObjectMode: ModelElementChangeLister
-				// proposal.removeModelElementChangeListener(proposalListener);
+				proposal.removeModelElementChangeListener(proposalListener);
 			}
 			for (Criterion criterion : issue.getCriteria()) {
-				// TODO: PlainEObjectMode: ModelElementChangeLister
-				// criterion.removeModelElementChangeListener(criterionListener);
+				criterion.removeModelElementChangeListener(criterionListener);
 			}
 			for (Proposal proposal : issue.getProposals()) {
 				for (Assessment assessment : proposal.getAssessments()) {
 					if (issue.getCriteria().contains(assessment.getCriterion())) {
-						// TODO: PlainEObjectMode: ModelElementChangeLister
-						// assessment.removeModelElementChangeListener(assessmentListener);
+						assessment.removeModelElementChangeListener(assessmentListener);
 					}
 				}
 			}
 		}
-		// TODO: PlainEObjectMode: ModelElementChangeLister
-		// issue.removeModelElementChangeListener(issueListener);
+
+		issue.removeModelElementChangeListener(issueListener);
 	}
 
 	/**
@@ -301,8 +294,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 				assessment.setName("new Assessment");
 				assessment.setProposal(p);
 				assessment.setCriterion(c);
-				// TODO : PlainEObjectMode, ModelElementChangeListener
-				// assessment.addModelElementChangeListener(assessmentListener);
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}.run();
 
@@ -343,45 +335,37 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	}
 
 	private void removeAssessmentListener(Proposal proposal) {
-		// TODO : PlainEObjectMode, ModelElementChangeListener
-		// proposal.removeModelElementChangeListener(proposalListener);
+		proposal.removeModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
 			if (issue.getCriteria().contains(assessment.getCriterion())) {
-				// TODO : PlainEObjectMode, ModelElementChangeListener
-				// assessment.removeModelElementChangeListener(assessmentListener);
+				assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
 	private void removeAssessmentListener(Criterion criterion) {
-		// TODO: PlainEObjectMode: ModelElementChangeListener
-		// criterion.removeModelElementChangeListener(criterionListener);
+		criterion.removeModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {
 			if (issue.getProposals().contains(assessment.getProposal())) {
-				// TODO: PlainEObjectMode: ModelElementChangeListener
-				// assessment.removeModelElementChangeListener(assessmentListener);
+				assessment.removeModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
 	private void addAssessmentListener(Proposal proposal) {
-		// TODO: PlainEObjectMode: ModelElementChangeListener
-		// proposal.addModelElementChangeListener(proposalListener);
+		proposal.addModelElementChangeListener(proposalListener);
 		for (Assessment assessment : proposal.getAssessments()) {
 			if (issue.getCriteria().contains(assessment.getCriterion())) {
-				// TODO: PlainEObjectMode: ModelElementChangeListener
-				// assessment.addModelElementChangeListener(assessmentListener);
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
 	}
 
 	private void addAssessmentListener(Criterion criterion) {
-		// TODO: PlainEObjectMode, ModelElementChangeListener
-		// criterion.addModelElementChangeListener(criterionListener);
+		criterion.addModelElementChangeListener(criterionListener);
 		for (Assessment assessment : criterion.getAssessments()) {
 			if (issue.getProposals().contains(assessment.getProposal())) {
-				// TODO: PlainEObjectMode, ModelElementChangeListener
-				// assessment.addModelElementChangeListener(assessmentListener);
+				assessment.addModelElementChangeListener(assessmentListener);
 			}
 		}
 	}

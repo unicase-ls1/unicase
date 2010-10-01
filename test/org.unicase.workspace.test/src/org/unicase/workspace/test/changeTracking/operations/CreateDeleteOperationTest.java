@@ -6,6 +6,8 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -13,7 +15,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -23,10 +29,16 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.meeting.CompositeMeetingSection;
+import org.unicase.model.meeting.IssueMeetingSection;
+import org.unicase.model.meeting.Meeting;
+import org.unicase.model.meeting.MeetingFactory;
+import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.Solution;
@@ -272,7 +284,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(1, referencedModelElements3.size());
 		assertEquals(useCaseId, referencedModelElements3.get(0));
 
-		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
+		// ((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
 		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
 			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 		Project loadedProject = loadedProjectSpace.getProject();
@@ -759,6 +771,91 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		multiReferenceOperation = (MultiReferenceOperation) operation2;
 		assertEquals(false, createOperation.isDelete());
 
+	}
+
+	@Test
+	public void createEAttributes() throws IOException {
+		final EClass clazz = EcoreFactory.eINSTANCE.createEClass();
+		EStructuralFeature attribute = EcoreFactory.eINSTANCE.createEAttribute();
+		EStructuralFeature attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
+		attribute.setName("attribute1");
+		attribute2.setName("attribute2");
+		clazz.getEStructuralFeatures().add(attribute);
+		clazz.getEStructuralFeatures().add(attribute2);
+
+		assertEquals(2, clazz.eContents().size());
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(clazz);
+			}
+		}.run(false);
+
+		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+
+		// perform asserts with loaded project space
+		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
+	}
+
+	@Test
+	public void testECoreUtilCopyWithMeetings() {
+		CompositeMeetingSection compMeetingSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		IssueMeetingSection issueMeeting = MeetingFactory.eINSTANCE.createIssueMeetingSection();
+		WorkItemMeetingSection workItemMeetingSecion = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
+		compMeetingSection.getSubsections().add(issueMeeting);
+		compMeetingSection.getSubsections().add(workItemMeetingSecion);
+
+		final Meeting meeting = MeetingFactory.eINSTANCE.createMeeting();
+		meeting.getSections().add(compMeetingSection);
+		meeting.setIdentifiedIssuesSection(issueMeeting);
+		meeting.setIdentifiedWorkItemsSection(workItemMeetingSecion);
+
+		Meeting copiedMeeting = (Meeting) EcoreUtil.copy(meeting);
+		assertFalse(copiedMeeting.getIdentifiedIssuesSection() == meeting.getIdentifiedIssuesSection());
+		assertFalse(copiedMeeting.getIdentifiedWorkItemsSection() == meeting.getIdentifiedWorkItemsSection());
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(meeting);
+			}
+		}.run(false);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(1, operations.size());
+
+		AbstractOperation operation1 = operations.get(0);
+		assertTrue(operation1 instanceof CreateDeleteOperation);
+		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation1;
+		assertFalse(createDeleteOperation.isDelete());
+
+		Meeting meetingSection = (Meeting) createDeleteOperation.getModelElement();
+		assertFalse(meeting.getIdentifiedIssuesSection() == meetingSection.getIdentifiedIssuesSection());
+
+	}
+
+	@Test
+	public void testCopyProject() {
+		final CompositeMeetingSection compMeetingSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		IssueMeetingSection issueMeeting = MeetingFactory.eINSTANCE.createIssueMeetingSection();
+		WorkItemMeetingSection workItemMeetingSecion = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
+		compMeetingSection.getSubsections().add(issueMeeting);
+		compMeetingSection.getSubsections().add(workItemMeetingSecion);
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(compMeetingSection);
+			}
+		}.run(false);
+
+		Project p = ((ProjectImpl) getProject()).copy();
+		assertNotNull(p);
 	}
 
 	/**

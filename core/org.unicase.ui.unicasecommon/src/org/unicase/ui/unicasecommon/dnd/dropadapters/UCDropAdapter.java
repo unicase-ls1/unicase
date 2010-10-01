@@ -81,7 +81,7 @@ public class UCDropAdapter extends MEDropAdapter {
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		// TODO: PlainEObjectTransition, any criteria to filter for?
+		// TODO: PlainEObjectMode, any criteria to filter for?
 		return EcoreFactory.eINSTANCE.getEcorePackage().getEObject().eClass();
 	}
 

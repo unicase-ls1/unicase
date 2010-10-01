@@ -39,6 +39,8 @@ import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -186,12 +188,12 @@ public class MECommentReplyWidget extends Composite {
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(modelElement));
-		// try {
-		// TODO: PlainEObjectMode, getCreator
-		// User user = OrgUnitHelper.getUser(projectSpace, modelElement.getCreator());
-		// recipientsList.add(user);
-		// } catch (CannotMatchUserInProjectException e1) {
-		// }
+		try {
+			User user = OrgUnitHelper.getUser(projectSpace, modelElement.getCreator());
+			recipientsList.add(user);
+		} catch (CannotMatchUserInProjectException e1) {
+
+		}
 		rebuildRecipientList(recipients, recipientsList);
 		recipientsComposite.layout();
 

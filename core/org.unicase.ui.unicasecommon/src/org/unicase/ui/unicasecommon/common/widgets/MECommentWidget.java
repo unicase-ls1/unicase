@@ -139,8 +139,9 @@ public class MECommentWidget extends Composite {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		Label commentTime = new Label(commentTitleBar, SWT.WRAP);
-		// TODO : PlainEObjectMode, getCreationDate
-		// commentTime.setText(dateFormat.format(comment.getCreationDate()));
+		if (comment.getCreationDate() != null) {
+			commentTime.setText(dateFormat.format(comment.getCreationDate()));
+		}
 
 		Composite commentTitleBarBorder = new Composite(this, SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(commentTitleBarBorder);
@@ -225,8 +226,7 @@ public class MECommentWidget extends Composite {
 		// author
 		final OrgUnit sender = comment.getSender();
 		if (sender == null) {
-			// TODO: PlainEObjectMode, getCreator
-			// builder.append(comment.getCreator());
+			builder.append(comment.getCreator());
 		} else {
 			builder.append(sender.getName() + "");
 		}

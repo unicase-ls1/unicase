@@ -593,7 +593,7 @@
                        <iterate>
                           <not>
                              <instanceof
-                                   value="org.unicase.metamodel.ModelElement">
+                                   value="org.eclipse.emf.ecore.EObject">
                              </instanceof>
                           </not>
                        </iterate>
@@ -646,13 +646,6 @@
                                 value="1">
                           </count>
                        </or>
-                       <iterate>
-                          <not>
-                             <instanceof
-                                   value="org.unicase.metamodel.ModelElement">
-                             </instanceof>
-                          </not>
-                       </iterate>
                     </and>
                  </visibleWhen>
               </command>
@@ -675,7 +668,7 @@
                        <iterate>
                           <not>
                              <instanceof
-                                   value="org.unicase.metamodel.ModelElement">
+                                   value="org.eclipse.emf.ecore.EObject">
                              </instanceof>
                           </not>
                        </iterate>
@@ -686,90 +679,6 @@
                     commandId="org.unicase.ui.navigator.importModel"
                     icon="icons/import.gif"
                     label="Import Model Element"
-                    style="push">
-                 <visibleWhen
-                       checkEnabled="false">
-                    <and>
-                       <iterate
-                             ifEmpty="false"
-                             operator="and">
-                          <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
-                          </instanceof>
-                       </iterate>
-                       <count
-                             value="1">
-                       </count>
-                    </and>
-                 </visibleWhen>
-              </command>
-              <command
-                    commandId="org.unicase.ui.navigator.changeAttribute"
-                    icon="icons/import.gif"
-                    label="Change Attribute"
-                    style="push">
-                 <visibleWhen
-                       checkEnabled="false">
-                    <and>
-                       <iterate
-                             ifEmpty="false"
-                             operator="and">
-                          <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
-                          </instanceof>
-                       </iterate>
-                       <count
-                             value="1">
-                       </count>
-                    </and>
-                 </visibleWhen>
-              </command>
-              <command
-                    commandId="org.unicase.ui.navigator.changeReference"
-                    icon="icons/import.gif"
-                    label="Change Reference"
-                    style="push">
-                 <visibleWhen
-                       checkEnabled="false">
-                    <and>
-                       <iterate
-                             ifEmpty="false"
-                             operator="and">
-                          <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
-                          </instanceof>
-                       </iterate>
-                       <count
-                             value="1">
-                       </count>
-                    </and>
-                 </visibleWhen>
-              </command>
-              <command
-                    commandId="org.unicase.ui.navigator.delete"
-                    icon="icons/import.gif"
-                    label="Delete"
-                    style="push">
-                 <visibleWhen
-                       checkEnabled="false">
-                    <and>
-                       <iterate
-                             ifEmpty="false"
-                             operator="and">
-                          <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
-                          </instanceof>
-                       </iterate>
-                       <count
-                             value="1">
-                       </count>
-                    </and>
-                 </visibleWhen>
-              </command>
-              <command
-                    commandId="org.unicase.ui.navigator.deleteBook"
-                    icon="icons/import.gif"
-                    label="Delete 1st Book "
                     style="push">
                  <visibleWhen
                        checkEnabled="false">
@@ -829,7 +738,7 @@
                     <iterate>
                        <not>
                           <instanceof
-                                value="org.unicase.metamodel.ModelElement">
+                                value="org.eclipse.emf.ecore.EObject">
                           </instanceof>
                        </not>
                     </iterate>

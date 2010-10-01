@@ -231,6 +231,8 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		Project expectedProject = ModelUtil.clone(getProject());
 
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
 		final AbstractOperation r = attributeOperation.reverse();
 		final AbstractOperation rr = r.reverse();
 

@@ -26,10 +26,10 @@ import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
@@ -54,7 +54,10 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		selectedME = ActionHelper.getSelectedModelElement();
 		if (selectedME == null || selectedME instanceof MEDiagram) {
 			return new IContributionItem[0];
+		} else if (selectedME instanceof ProjectSpace) {
+			selectedME = ((ProjectSpace) selectedME).getProject();
 		}
+
 		// 2. get its containments
 		List<EReference> containments = selectedME.eClass().getEAllContainments();
 
@@ -124,7 +127,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;

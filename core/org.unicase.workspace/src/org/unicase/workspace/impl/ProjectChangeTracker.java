@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -155,9 +156,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
 		// assign model element to a fixed resource
 		oldResource.getContents().add(modelElement);
-		String modelElementId = projectSpace.getProject().getModelElementId(modelElement).getId();
-		// set ID
-		oldResource.setID(modelElement, modelElementId);
+		setModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
@@ -174,12 +173,35 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			URI fileURI = URI.createFileURI(newfileName);
 			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
 			// unset ID on old resource
-			oldResource.setID(modelElement, null);
+			unsetModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
 			newResource.getContents().add(modelElement);
 			// set ID on created resource again
-			newResource.setID(modelElement, modelElementId);
+			setModelElementIdAndChildrenIdOnResource(modelElement, newResource);
+			// newResource.setID(modelElement, modelElementId);
 		}
 		save(modelElement);
+	}
+
+	private void setModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
+		String modelElementId = projectSpace.getProject().getModelElementId(modelElement).getId();
+		resource.setID(modelElement, modelElementId);
+
+		TreeIterator<EObject> it = modelElement.eAllContents();
+		while (it.hasNext()) {
+			EObject child = it.next();
+			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
+			resource.setID(child, childId.getId());
+		}
+	}
+
+	private void unsetModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
+		resource.setID(modelElement, null);
+
+		TreeIterator<EObject> it = modelElement.eAllContents();
+		while (it.hasNext()) {
+			EObject child = it.next();
+			resource.setID(child, null);
+		}
 	}
 
 	private void checkIfFileExists(String newfileName) {
@@ -326,7 +348,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * 
 	 * @param modelElement the model element.
 	 */
-	// TODO: PlainEObjectModle, appendCreater
+	// TODO: PlainEObjectMode, appendCreater
 	private void appendCreator(EObject modelElement) {
 		stopChangeRecording();
 		// if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {

@@ -13,6 +13,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -51,8 +52,11 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		ModelElementId actor1Id = getProject().getModelElementId(actor);
+		ModelElementId actor2Id = project2.getModelElementId(actor);
+
+		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
+		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
 		new UnicaseCommand() {
 			@Override
@@ -95,8 +99,11 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		ModelElementId actor1Id = getProject().getModelElementId(actor);
+		ModelElementId actor2Id = project2.getModelElementId(actor);
+
+		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
+		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 		new UnicaseCommand() {
 
 			@Override
@@ -141,8 +148,11 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		final Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		ModelElementId actor1Id = getProject().getModelElementId(actor);
+		ModelElementId actor2Id = project2.getModelElementId(actor);
+
+		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
+		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
 		new UnicaseCommand() {
 

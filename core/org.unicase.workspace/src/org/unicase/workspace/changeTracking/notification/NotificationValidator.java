@@ -155,14 +155,6 @@ final class NotificationValidator {
 				return;
 			}
 
-			// new values must always be model elements
-			if (!checkModelElementList((List<?>) n.getOldValue())) {
-				n.setValid(false);
-				n.setValidationMessage(n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName()
-					+ " reference feature contains a non-model element.");
-				return;
-			}
-
 			// checking up on EMF, the reference must have max multiplicity greater than 1...
 			if (!n.getReference().isMany()) {
 				n.setValid(false);
@@ -192,14 +184,6 @@ final class NotificationValidator {
 				n.setValid(false);
 				n.setValidationMessage("Non-List newValue argument for ADD_MANY notification on: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
-				return;
-			}
-
-			// new values must always be model elements
-			if (!checkModelElementList((List<?>) n.getNewValue())) {
-				n.setValid(false);
-				n.setValidationMessage(n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName()
-					+ " reference feature contains a non-model element.");
 				return;
 			}
 
@@ -292,20 +276,5 @@ final class NotificationValidator {
 		}
 
 		// no validation for SET attribute
-
 	}
-
-	// TODO: PlainEObjectMode, method now seems to be obsolet
-	private boolean checkModelElementList(List<?> aList) {
-
-		for (Object value : aList) {
-			// if (!(value instanceof ModelElement)) {
-			// return false;
-			// }
-		}
-
-		return true;
-
-	}
-
 }

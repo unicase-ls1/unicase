@@ -10,6 +10,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
@@ -71,18 +72,16 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: PlainEObjectMode, getCreator, getAssignee
-			// if (user.getName().equals(workItem.getCreator()) && workItem.getAssignee() == null) {
-			// return true;
-			// }
+			if (user.getName().equals(workItem.getCreator()) && workItem.getAssignee() == null) {
+				return true;
+			}
 
+		} else if (element instanceof UnicaseModelElement) {
+			String creator = ((UnicaseModelElement) element).getCreator();
+			if (user.getName().equals(creator)) {
+				return true;
+			}
 		}
-
-		// TODO: PlainEObjectMode, getCreator
-		/*
-		 * else if (element instanceof ModelElement) { String creator = ((ModelElement) element).getCreator(); if
-		 * (user.getName().equals(creator)) { return true; } }
-		 */
 
 		return false;
 	}
@@ -109,22 +108,22 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-			// TODO: PlainEObjectMode, getCreator
-			// if (workItem.getAssignee() == null) {
-			// for (OrgUnit orgUnit : team) {
-			// if (orgUnit.getName().equals(workItem.getCreator())) {
-			// return true;
-			// }
-			// }
-			// }
+			if (workItem.getAssignee() == null) {
+				for (OrgUnit orgUnit : team) {
+					if (orgUnit.getName().equals(workItem.getCreator())) {
+						return true;
+					}
+				}
+			}
 
+		} else if (element instanceof UnicaseModelElement) {
+			String creator = ((UnicaseModelElement) element).getCreator();
+			for (OrgUnit orgUnit : team) {
+				if (orgUnit.getName().equals(creator)) {
+					return true;
+				}
+			}
 		}
-
-		// TODO: PlainEObjectMode, getCreator
-		/*
-		 * else if (element instanceof ModelElement) { String creator = ((ModelElement) element).getCreator(); for
-		 * (OrgUnit orgUnit : team) { if (orgUnit.getName().equals(creator)) { return true; } } }
-		 */
 
 		return false;
 	}
