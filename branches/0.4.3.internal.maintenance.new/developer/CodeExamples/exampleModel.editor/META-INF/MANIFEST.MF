@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: exampleModel.editor;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.4.6.internal
 Bundle-ClassPath: .
 Bundle-Activator: library.presentation.LibraryEditorPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.unicase.metamodel.edit;visibility:=reexport,
- org.unicase.ui.common;bundle-version="1.0.0"
+ org.unicase.ui.common;bundle-version="0.4.6.internal"
 Bundle-ActivationPolicy: lazy

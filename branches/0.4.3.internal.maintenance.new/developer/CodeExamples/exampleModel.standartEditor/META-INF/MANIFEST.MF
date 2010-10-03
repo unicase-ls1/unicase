@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: exampleModel.editor;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.4.6.internal
 Bundle-ClassPath: .
 Bundle-Activator: library.presentation.LibraryEditorPlugin$Implementation
 Bundle-Vendor: %providerName
