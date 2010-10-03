@@ -17,12 +17,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -76,18 +72,10 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			return createCreateDeleteOperation();
 		case OperationsPackage.ATTRIBUTE_OPERATION:
 			return createAttributeOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
-			return createMultiAttributeOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION:
-			return createMultiAttributeSetOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
-			return createMultiAttributeMoveOperation();
 		case OperationsPackage.SINGLE_REFERENCE_OPERATION:
 			return createSingleReferenceOperation();
 		case OperationsPackage.MULTI_REFERENCE_OPERATION:
 			return createMultiReferenceOperation();
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION:
-			return createMultiReferenceSetOperation();
 		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION:
 			return createMultiReferenceMoveOperation();
 		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
@@ -168,36 +156,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 * 
 	 * @generated
 	 */
-	public MultiAttributeOperation createMultiAttributeOperation() {
-		MultiAttributeOperationImpl multiAttributeOperation = new MultiAttributeOperationImpl();
-		return multiAttributeOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public MultiAttributeSetOperation createMultiAttributeSetOperation() {
-		MultiAttributeSetOperationImpl multiAttributeSetOperation = new MultiAttributeSetOperationImpl();
-		return multiAttributeSetOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
-		MultiAttributeMoveOperationImpl multiAttributeMoveOperation = new MultiAttributeMoveOperationImpl();
-		return multiAttributeMoveOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public SingleReferenceOperation createSingleReferenceOperation() {
 		SingleReferenceOperationImpl singleReferenceOperation = new SingleReferenceOperationImpl();
 		return singleReferenceOperation;
@@ -211,16 +169,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public MultiReferenceOperation createMultiReferenceOperation() {
 		MultiReferenceOperationImpl multiReferenceOperation = new MultiReferenceOperationImpl();
 		return multiReferenceOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public MultiReferenceSetOperation createMultiReferenceSetOperation() {
-		MultiReferenceSetOperationImpl multiReferenceSetOperation = new MultiReferenceSetOperationImpl();
-		return multiReferenceSetOperation;
 	}
 
 	/**

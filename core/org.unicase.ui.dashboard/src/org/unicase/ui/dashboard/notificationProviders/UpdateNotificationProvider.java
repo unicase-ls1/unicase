@@ -6,7 +6,6 @@
 package org.unicase.ui.dashboard.notificationProviders;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -17,13 +16,9 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Provides notifications on updates of a project space.
@@ -53,33 +48,8 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
-
-		try {
-			User currentUser = OrgUnitHelper.getUser(projectSpace);
-			return provideNotifications(projectSpace, changePackages, currentUser.getName());
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
-	 *      java.util.List, java.lang.String)
-	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String usersername) {
-
-		// sanity checks
-		if (projectSpace == null || changePackages == null || usersername == null) {
-			return Collections.emptyList();
-		}
-
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
+			List<ChangePackage> changePackages, String currentUsername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
 		List<ChangePackage> newChangePackages = new ArrayList<ChangePackage>();
@@ -90,22 +60,25 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		}
 
 		// do not generate an update notification for a commit
-		if ((newChangePackages.size() == 1 && newChangePackages.get(0).getLogMessage() == null)) {
+		if ((newChangePackages.size() == 1 && newChangePackages.get(0)
+				.getLogMessage() == null)) {
 			return result;
 		}
 
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE
+				.createESNotification();
 		notification.setProject(ModelUtil.clone(projectSpace.getProjectId()));
-		notification.setRecipient(usersername);
+		notification.setRecipient(currentUsername);
 		notification.setProvider(getName());
 
 		if (newChangePackages.isEmpty()) {
 			notification.setCreationDate(new Date());
 			notification.setMessage("You checked out the project in version "
-				+ projectSpace.getBaseVersion().getIdentifier());
+					+ projectSpace.getBaseVersion().getIdentifier());
 			notification.setName("Project checkout");
 		} else {
-			Date date = newChangePackages.get(0).getLogMessage().getClientDate();
+			Date date = newChangePackages.get(0).getLogMessage()
+					.getClientDate();
 			for (ChangePackage cp : newChangePackages) {
 				if (cp.getLogMessage().getClientDate().after(date)) {
 					date = cp.getLogMessage().getClientDate();

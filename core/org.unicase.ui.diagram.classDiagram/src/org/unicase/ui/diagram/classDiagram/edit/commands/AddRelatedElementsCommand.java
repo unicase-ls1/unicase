@@ -24,10 +24,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.diagram.classDiagram.edit.parts.AssociationEditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association2EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association3EditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.Association4EditPart;
-import org.unicase.ui.diagram.classDiagram.edit.parts.AssociationEditPart;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.diagram.classDiagram.part.ShowRelatedElementsController;
 import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;

@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.meeditor;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Provides the priorities for a given attribute of a ME.
@@ -21,5 +21,5 @@ public interface IAttributeDescriptor<A> {
 	 * @param modelElement the model element
 	 * @return Returns the property from a given propertyDescriptor as an A value.
 	 */
-	A getValue(IItemPropertyDescriptor propertyDescriptor, EObject modelElement);
+	A getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement);
 }

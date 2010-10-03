@@ -10,9 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.NotificationManager;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigatormeeditorbridge.ModelElementOpener;
 
 /**
  * This a handler to open MEDiagrams with MEEditor. By default MEdiagrams are opened using diagram editor.
@@ -27,11 +25,10 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getSelectedModelElement();
 		if (me instanceof MEDiagram) {
-			NotificationManager.getInstance().onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
-				"org.unicase.ui.meeditor.MEEditor");
-			new ModelElementOpener().openModelElement(me);
+			ActionHelper.openMEwithMEEditor(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor");
 		}
 
 		return null;
 	}
+
 }

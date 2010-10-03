@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +27,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
 import org.unicase.workspace.Configuration;
@@ -54,7 +55,8 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, false);
+			Collection<ModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
+				new BasicEList<ModelElement>());
 			allElements.remove(modelElement);
 			Object object = modelElement.eGet(eReference);
 
@@ -79,9 +81,9 @@ public class AddReferenceAction extends Action {
 
 			// take care of circular references
 			if (eReference.isContainment()) {
-				Iterator<EObject> iter = allElements.iterator();
+				Iterator<ModelElement> iter = allElements.iterator();
 				while (iter.hasNext()) {
-					EObject me = iter.next();
+					ModelElement me = iter.next();
 					if (EcoreUtil.isAncestor(me, modelElement)) {
 						iter.remove();
 					}
@@ -101,7 +103,7 @@ public class AddReferenceAction extends Action {
 					List<EObject> list = new ArrayList<EObject>();
 					for (Object result : results) {
 						if (result instanceof EObject) {
-							list.add((EObject) result);
+							list.add((ModelElement) result);
 							progressDialog.getProgressMonitor().worked(10);
 						}
 					}
@@ -121,8 +123,7 @@ public class AddReferenceAction extends Action {
 	}
 
 	private EReference eReference;
-	private EObject modelElement;
-	private final ModelElementContext context;
+	private ModelElement modelElement;
 
 	/**
 	 * Default constructor.
@@ -131,11 +132,9 @@ public class AddReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public AddReferenceAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext context) {
+	public AddReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
-		this.context = context;
 
 		Object obj = null;
 		if (!eReference.getEReferenceType().isAbstract()) {

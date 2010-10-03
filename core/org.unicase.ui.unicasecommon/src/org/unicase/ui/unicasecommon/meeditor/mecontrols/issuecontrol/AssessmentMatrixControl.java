@@ -36,8 +36,6 @@ import org.unicase.model.rationale.impl.RationaleFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -45,7 +43,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
+public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private static final int MAX_LENGTH_CRITERIA_NAME = 20;
 	private static final int PRIORITY = 2;
@@ -207,7 +205,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 			hyperlink.setLayoutData(hyperLinkGridData);
 			hyperlink.layout();
 			IHyperlinkListener listener = new MEHyperLinkAdapter(criteria.get(i), issue, RationalePackage.eINSTANCE
-				.getIssue_Criteria().getName(), UnicaseActionHelper.getContext(issue));
+				.getIssue_Criteria().getName());
 			hyperlink.addHyperlinkListener(listener);
 		}
 
@@ -221,13 +219,13 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 			final Hyperlink hyperlink = getToolkit().createHyperlink(matrixSection, currentProposal.getName(),
 				parentStyle);
 			IHyperlinkListener listener = new MEHyperLinkAdapter(currentProposal, issue, RationalePackage.eINSTANCE
-				.getIssue_Proposals().getName(), UnicaseActionHelper.getContext(issue));
+				.getIssue_Proposals().getName());
 			hyperlink.addHyperlinkListener(listener);
 			getToolkit().createLabel(matrixSection, "     ");
 			for (int i = 0; i < criteria.size(); i++) {
 				Criterion criterion = criteria.get(i);
 				Assessment assessment = getAssessment(currentProposal, criterion);
-				ControlFactory cFactory = new ControlFactory();
+				ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 				final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
 					.getPropertyDescriptor(assessment, "value");
 				AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue,
@@ -236,7 +234,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 
 				Composite comp = getToolkit().createComposite(matrixSection);
 				assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue, assessment,
-					UnicaseActionHelper.getContext(issue), getToolkit());
+					getEditingDomain(), getToolkit());
 				comp.setLayout(new GridLayout(1, true));
 				GridData gridData = new GridData();
 				gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;

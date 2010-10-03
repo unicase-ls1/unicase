@@ -7,17 +7,6 @@
             listener="org.unicase.ui.unicasecommon.meeditor.commands.FileAttachmentUpdaterImpl">
       </updatefileattachments>
    </extension>
-   
-    <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-        <propertyTester
-              class="org.unicase.ui.unicasecommon.common.commands.SubscriptionTester"
-              id="org.unicase.ui.common.commands.subscriptionTester"
-              namespace="org.unicase.ui.common.commands"
-              properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.metamodel.ModelElement">
-        </propertyTester>
- </extension>
 <extension
          point="org.eclipse.ui.views">
       <category
@@ -546,7 +535,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.unicasecommon.common.commands.isNotSubscribed"
+                          property="org.unicase.ui.common.commands.isNotSubscribed"
                           value="true">
                     </test>
                  </iterate>
@@ -572,7 +561,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.unicasecommon.common.commands.isSubscribed"
+                          property="org.unicase.ui.common.commands.isSubscribed"
                           value="true">
                     </test>
                  </iterate>
@@ -759,7 +748,16 @@
 			</popupContribution>
 		</contributionItemProvider>
 </extension>
-
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.ui.common.commands.SubscriptionTester"
+              id="org.unicase.ui.common.commands.subscriptionTester"
+              namespace="org.unicase.ui.common.commands"
+              properties="isSubscribed,isNotSubscribed"
+              type="org.unicase.metamodel.ModelElement">
+        </propertyTester>
+ </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
     <page
@@ -874,9 +872,6 @@
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.WorkPackageDropAdapter">
     </MEDropAdapter>
     <MEDropAdapter
-          class="org.unicase.ui.unicasecommon.dnd.dropadapters.MilestoneDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.IssueMeetingDiscussionSectionDropAdapter">
     </MEDropAdapter>
  </extension>
@@ -886,6 +881,12 @@
           class="org.unicase.ui.unicasecommon.merge.IssueConflictOptionFactory"
           name="org.unicase.ui.unicasecommon.merge.issuefactory">
     </customoption>
+ </extension>
+ <extension
+       point="org.unicase.ui.navigator.replaceProjectSpaceContentProvider">
+    <ProjectSpaceContentProvider
+          class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider">
+    </ProjectSpaceContentProvider>
  </extension>
  <extension
        point="org.unicase.ui.navigator.menuconfiguration">
@@ -900,17 +901,4 @@
           name="Notify users">
     </dialogTray>
  </extension>
-  <extension
-        point="org.unicase.ui.meeditor.statusmessage">
-     <provider
-           class="org.unicase.ui.unicasecommon.meeditor.CreationStatusProvider">
-     </provider>
-  </extension>
-  <extension
-        point="org.unicase.ui.navigator.replaceContentProvider">
-     <ContentProvider
-           class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider"
-           type="org.unicase.workspace.impl.ProjectSpaceImpl">
-     </ContentProvider>
-  </extension>
 </plugin>

@@ -30,7 +30,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.dnd.MEDropAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -77,8 +77,9 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 						// add reference to the element
 						diagram.getElements().add((UnicaseModelElement) me);
 						// create the View for the element
-						CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me), diagramEditor
-							.getDiagramEditPart(), new Point(20 * counter, 20 * counter), PreferencesHint.USE_DEFAULTS);
+						CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me),
+							diagramEditor.getDiagramEditPart(), new Point(20 * counter, 20 * counter),
+							PreferencesHint.USE_DEFAULTS);
 						try {
 							command.execute(null, null);
 						} catch (ExecutionException e) {

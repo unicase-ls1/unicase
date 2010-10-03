@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
@@ -28,39 +29,25 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.metamodel.ModelElement;
-import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
-import org.unicase.ui.common.NotificationManager;
+import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
  */
 public final class ActionHelper {
-	// TODO: move constants
-	/**
-	 * The ID of the meeditor.
-	 */
-	public static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
-	/**
-	 * Constant for the open model element command.
-	 */
-	public static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
+
+	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
+	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
 	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.unicase.ui.meeditor.openModelElementDiscussion";
-	/**
-	 * Constant for the modelelement to be opened.
-	 */
-	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
-	/**
-	 * Constant for the modelelement context.
-	 */
-	public static final String MECONTEXT_EVALUATIONCONTEXT_VARIABLE = "meContext";
 
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
 	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
@@ -87,8 +74,8 @@ public final class ActionHelper {
 		if (partId != null && partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor().getEditorInput();
-			Object obj = editorInput.getAdapter(EObject.class);
+			.getActiveEditor().getEditorInput();
+			Object obj = editorInput.getAdapter(ModelElement.class);
 
 			if (obj instanceof ModelElement) {
 				me = (ModelElement) obj;
@@ -108,19 +95,7 @@ public final class ActionHelper {
 		return me;
 	}
 
-	/**
-	 * Note: this method is deprecated. use openModelElement(EObject, String) insetad. you do not have to pass a context
-	 * anymore.
-	 * 
-	 * @param me ModelElement to open
-	 * @param sourceView the view that requested the open model element
-	 * @param context the context of the model element
-	 * @deprecated
-	 */
-	@Deprecated
-	public static void openModelElement(final EObject me, final String sourceView, ModelElementContext context) {
-		openModelElement(me, sourceView);
-	}
+
 
 	/**
 	 * This opens the model element.
@@ -128,39 +103,51 @@ public final class ActionHelper {
 	 * @param me ModelElement to open
 	 * @param sourceView the view that requested the open model element
 	 */
-	public static void openModelElement(final EObject me, final String sourceView) {
+	public static void openModelElement(final ModelElement me, final String sourceView) {
 		if (me == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
-				"The model element you are trying to open was deleted!");
+			"The model element you are trying to open was deleted!");
 			return;
 		}
 		IConfigurationElement[] modelelementopener = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.common.modelelementopener");
-		ModelElementOpener bestCandidate = null;
-		int bestValue = -1;
+		"org.unicase.ui.common.modelelementopener");
+		ModelElementOpener bestCandidate=null;
+		int bestValue=0;
 		String name = "";
-		for (IConfigurationElement element : modelelementopener) {
+		for(IConfigurationElement element:modelelementopener ){
 			try {
 				ModelElementOpener modelelementOpener = (ModelElementOpener) element.createExecutableExtension("class");
-				int value = modelelementOpener.canOpen(me);
-				if (value > bestValue) {
-					bestCandidate = modelelementOpener;
-					bestValue = value;
-					name = element.getAttribute("name");
+				int value=modelelementOpener.canOpen(me);
+				if(value>bestValue){
+					bestCandidate=modelelementOpener;
+					bestValue=value;
+					name=element.getAttribute("name");
 				}
 			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);
+				WorkspaceUtil.logException(e.getMessage(), e);	
 			}
 		}
-		NotificationManager.getInstance().onOpen(me, sourceView, name);
-		// BEGIN SUPRESS CATCH EXCEPTION
-		try {
-			bestCandidate.openModelElement(me);
-		} catch (RuntimeException e) {
-			Activator.getDefault().logException(e);
+		if(bestCandidate==null){
+			logEvent(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+			openMEwithMEEditor(me);
+			return;
 		}
-		// END SUPRESS CATCH EXCEPTION
+		logEvent(me, sourceView, name);
+		bestCandidate.openModelElement(me);
+		
+	}
 
+	private static void logEvent(final ModelElement me, final String sourceView, final String readView) {
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				
+				WorkspaceUtil.logReadEvent(projectSpace, me.getModelElementId(), sourceView, readView);
+			}
+		}.run();
+
+		
 	}
 
 	/**
@@ -188,7 +175,7 @@ public final class ActionHelper {
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotDefinedException e) {
-			// DialogHandler.showExceptionDialog(e);
+			//DialogHandler.showExceptionDialog(e);
 		} catch (NotEnabledException e) {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
@@ -201,28 +188,57 @@ public final class ActionHelper {
 	}
 
 	/**
+	 * @param me model element
+	 */
+	private static void openMEwithMEEditor(ModelElement me) {
+		// this method opens a model element indirectly using IEvaluationContext
+		// variable
+		// the variable is here set to ME which must be opened,
+		// and this ME is then read in MEEditor form this variable
+		// after setting the Variable, the open command in MEEditor is invoked
+		// using
+		// HandlerService
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+
+		try {
+			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+
+	}
+
+	/**
 	 * This opens the model element and marks the feature as having a problem (error, warning, etc.).
 	 * 
 	 * @param me ModelElement to open
 	 * @param problemFeature the feature to be marked as having a problem
 	 * @param sourceView the view that requested the open model element
-	 * @param context the context of the model element
 	 */
 	public static void openModelElement(final ModelElement me, EStructuralFeature problemFeature,
-		final String sourceView, ModelElementContext context) {
+		final String sourceView) {
 		if (me == null) {
 			return;
 		}
 		if (problemFeature == null) {
-			openModelElement(me, sourceView, context);
+			openModelElement(me, sourceView);
 		}
 
-		NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
-		openAndMarkMEWithMEEditor(me, problemFeature, context);
+		logEvent(me, sourceView,"org.unicase.ui.meeditor.MEEditor");
+		openAndMarkMEWithMEEditor(me, problemFeature);
 	}
 
-	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature,
-		ModelElementContext context2) {
+	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature) {
 		// this method works as the one above but in addition marks a feature as having a problem
 
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
@@ -230,7 +246,6 @@ public final class ActionHelper {
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
 		context.addVariable(FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE, problemFeature);
-		context.addVariable(MECONTEXT_EVALUATIONCONTEXT_VARIABLE, context2);
 
 		try {
 			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
@@ -318,9 +333,7 @@ public final class ActionHelper {
 	 * registered its SelectionProvider.
 	 * 
 	 * @return the selected Object or null if selection is not an IStructuredSelection
-	 * @deprecated use unicase action helper or getSelectedModelelement instead
 	 */
-	@Deprecated
 	public static ModelElement getSelectedModelElement() {
 		Object obj = getSelection();
 		if (obj instanceof ModelElement) {
@@ -338,26 +351,12 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
-	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
-	 * registered its SelectionProvider.
-	 * 
-	 * @return the selected Object or null if selection is not an IStructuredSelection
+	 * @param viewer ColumnViewer .
+	 * @param classname String sorceView .
+	 * @return AltKeyDoubleClickAction .
 	 */
-	public static EObject getSelectedModelelement() {
-		Object obj = getSelection();
-		if (obj instanceof EObject) {
-			return (EObject) obj;
-		} else if (obj instanceof DelegatingWrapperItemProvider) {
-			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof EObject) {
-				return (EObject) ((DelegatingWrapperItemProvider) obj).getValue();
-			} else {
-				return null;
-			}
-
-		} else {
-			return null;
-		}
+	public static AltKeyDoubleClickAction createKeyHookDCAction(ColumnViewer viewer, String classname) {
+		return new AltKeyDoubleClickAction(viewer, classname);
 	}
 
 	/**
@@ -415,6 +414,18 @@ public final class ActionHelper {
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
+	}
+
+	/**
+	 * Open a model element in the meeditor.
+	 * 
+	 * @param me the element to open
+	 * @param sourceView the view that send the open request (use a unique id here).
+	 */
+	public static void openMEwithMEEditor(ModelElement me, String sourceView) {
+		logEvent(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+		openMEwithMEEditor(me);
+		
 	}
 
 }

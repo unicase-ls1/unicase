@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.action.Action;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -35,13 +35,13 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.commands.DeleteModelElementCommand;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
@@ -56,7 +56,8 @@ import org.unicase.ui.meeditor.mecontrols.METextControl;
  */
 public class MEEditorPage extends FormPage {
 
-	private EObject modelElement;
+	private EditingDomain editingDomain;
+	private ModelElement modelElement;
 	private FormToolkit toolkit;
 	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
 
@@ -69,7 +70,6 @@ public class MEEditorPage extends FormPage {
 	private Composite rightColumnComposite;
 	private Composite bottomComposite;
 	private EStructuralFeature problemFeature;
-	private final ModelElementContext modelElementContext;
 
 	/**
 	 * Default constructor.
@@ -77,15 +77,30 @@ public class MEEditorPage extends FormPage {
 	 * @param editor the {@link MEEditor}
 	 * @param id the {@link FormPage#id}
 	 * @param title the title
+	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
-	 * @param modelElementContext the {@link ModelElementContext}
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, ModelElementContext modelElementContext,
-		EObject modelElement) {
+	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
 		super(editor, id, title);
-		this.modelElementContext = modelElementContext;
+		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 
+	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param editor a editor
+	 * @param id the {@link FormPage#id}
+	 * @param title the title
+	 * @param editingDomain the editingDomain
+	 * @param modelElement the modelElement
+	 */
+	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain,
+		ModelElement modelElement) {
+		super(editor, id, title);
+		this.editingDomain = editingDomain;
+		this.modelElement = modelElement;
 	}
 
 	/**
@@ -94,13 +109,13 @@ public class MEEditorPage extends FormPage {
 	 * @param editor the {@link MEEditor}
 	 * @param id the {@link FormPage#id}
 	 * @param title the title
+	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 *@param problemFeature the problemFeature
-	 *@param modelElementContext the {@link ModelElementContext}
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, ModelElementContext modelElementContext,
-		EObject modelElement, EStructuralFeature problemFeature) {
-		this(editor, id, title, modelElementContext, modelElement);
+	public MEEditorPage(MEEditor editor, String id, String title, TransactionalEditingDomain editingDomain,
+		ModelElement modelElement, EStructuralFeature problemFeature) {
+		this(editor, id, title, editingDomain, modelElement);
 		this.problemFeature = problemFeature;
 	}
 
@@ -198,13 +213,6 @@ public class MEEditorPage extends FormPage {
 		IEvaluationService service = (IEvaluationService) PlatformUI.getWorkbench()
 			.getService(IEvaluationService.class);
 		service.addSourceProvider(sourceProvider);
-		form.getToolBarManager().add(new Action("", Activator.getImageDescriptor("icons/delete.gif")) {
-
-			@Override
-			public void run() {
-				new DeleteModelElementCommand(modelElement, modelElementContext).run();
-			}
-		});
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),
 			"toolbar:org.unicase.ui.meeditor.MEEditorPage");
 		form.getToolBarManager().update(true);
@@ -256,7 +264,7 @@ public class MEEditorPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 			attributeComposite);
 
-		ControlFactory controlFactory = new ControlFactory();
+		ControlFactory controlFactory = new ControlFactory(editingDomain, this.getEditor().getToolkit());
 
 		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
 			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor, modelElement);
@@ -271,14 +279,14 @@ public class MEEditorPage extends FormPage {
 				label.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
-					modelElementContext, toolkit);
+					editingDomain, toolkit);
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
 				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
 					control);
 				meControl.applyCustomLayoutData();
 			} else {
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
-					modelElementContext, toolkit);
+					editingDomain, toolkit);
 				control.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
 				GridDataFactory.fillDefaults().span(2, 1).grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0)

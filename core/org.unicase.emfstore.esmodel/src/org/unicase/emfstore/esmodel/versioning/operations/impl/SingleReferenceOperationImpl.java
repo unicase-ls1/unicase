@@ -332,12 +332,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 		try {
 			reference = (EReference) this.getFeature(modelElement);
 			modelElement.eSet(reference, newModelElement);
-			// keep elements in the project if they are disconnected, if they really need to be deleted there will be a
-			// delete operation
-			if (reference.isContainer() && newModelElement == null) {
+			if (newModelElement == null && reference.isContainer()) {
 				project.addModelElement(modelElement);
-			} else if (reference.isContainment() && newModelElement == null) {
-				project.addModelElement(newModelElement);
 			}
 		} catch (UnkownFeatureException e) {
 			// silently fail

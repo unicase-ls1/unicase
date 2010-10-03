@@ -36,7 +36,6 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.TaskView;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -182,7 +181,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
@@ -264,8 +263,16 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		viewer.refresh();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 	}
 
 	/**

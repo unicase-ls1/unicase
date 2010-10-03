@@ -35,7 +35,6 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -44,7 +43,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class MECommentsLinkControl extends AbstractUnicaseMEControl {
+public class MECommentsLinkControl extends AbstractMEControl {
 	/**
 	 * Project Changeobserever for comment thread.
 	 * 
@@ -61,16 +60,18 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 			}
 		}
 
-		public void modelElementRemoved(Project project, ModelElement modelElement) {
-			// nothing to do
+		public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		}
+
+		public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		}
 
 		public void notify(Notification notification, Project project, ModelElement modelElement) {
-			// nothing to do
 		}
 
 		public void projectDeleted(Project project) {
-			// nothing to do
+			// TODO Auto-generated method stub
+
 		}
 	}
 

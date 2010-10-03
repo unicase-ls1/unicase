@@ -70,7 +70,6 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS);
-			childrenFeatures.add(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -101,7 +100,6 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		switch (notification.getFeatureID(Project.class)) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

@@ -8,7 +8,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -29,7 +28,9 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.NonDomainElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 
@@ -45,20 +46,18 @@ public class MELinkControl {
 	private EReference eReference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
+	private ModelElementChangeListener observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
-	protected EObject link;
-	protected EObject contextModelElement;
+	protected ModelElement link;
+	protected ModelElement contextModelElement;
 	protected FormToolkit toolkit;
-	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
-	private ModelElementContext context;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		final EObject link, EObject contextModelElement, FormToolkit toolkit, ModelElementContext context) {
-		this.context = context;
+		final ModelElement link, ModelElement contextModelElement, FormToolkit toolkit) {
 		Object feature = itemPropertyDescriptor.getFeature(link);
 		this.eReference = (EReference) feature;
 		this.link = link;
@@ -80,14 +79,14 @@ public class MELinkControl {
 	protected void createDeleteAction(int style) {
 		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
-		if (eReference.isContainment() && (context.isNonDomainElement(link))) {
+		if (eReference.isContainment() && (link instanceof NonDomainElement)) {
 			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
 		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
 		}
 		deleteLink.setImage(deleteImage);
 
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link, context));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, eReference, link));
 	}
 
 	protected void createHyperlink(final Composite parent, int style) {
@@ -102,11 +101,10 @@ public class MELinkControl {
 		};
 		labelProvider.addListener(labelProviderListener);
 
-		ArrayList<EObject> list = new ArrayList<EObject>();
+		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
 		list.add(link);
-		modelElementChangeListener = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
+		observer = new ModelElementChangeListener() {
 
-			@Override
 			public void onChange(Notification notification) {
 				Display.getDefault().asyncExec(new Runnable() {
 
@@ -122,9 +120,13 @@ public class MELinkControl {
 					}
 
 				});
+			}
 
+			public void onRuntimeExceptionInListener(RuntimeException exception) {
+				(link).removeModelElementChangeListener(observer);
 			}
 		};
+		(link).addModelElementChangeListener(observer);
 
 		Image image = labelProvider.getImage(link);
 		imageHyperlink = toolkit.createImageHyperlink(linkComposite, style);
@@ -134,7 +136,7 @@ public class MELinkControl {
 		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
 		hyperlink = toolkit.createHyperlink(linkComposite, (shortLabelProvider.getText(link)), style);
 		hyperlink.setToolTipText(shortLabelProvider.getText(link));
-		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName(), context);
+		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 	}
@@ -148,19 +150,18 @@ public class MELinkControl {
 	 */
 
 	public void dispose() {
-		if (modelElementChangeListener != null) {
-			modelElementChangeListener.remove();
+		if (link != null) {
+			link.removeModelElementChangeListener(observer);
 		}
-		if (labelProvider != null) {
-			labelProvider.removeListener(labelProviderListener);
-			labelProvider.dispose();
-		}
+		labelProvider.removeListener(labelProviderListener);
+		labelProvider.dispose();
 		if (linkComposite != null) {
 			linkComposite.dispose();
 		}
 	}
 
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
+		ModelElement contextModelElement2) {
 		return 0;
 	}
 

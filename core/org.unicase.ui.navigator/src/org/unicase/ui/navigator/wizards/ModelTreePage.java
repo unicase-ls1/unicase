@@ -13,7 +13,6 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -85,7 +84,6 @@ public class ModelTreePage extends WizardPage implements Listener {
 			treeViewer.getControl());
 		treeViewer.setContentProvider(new ModelTreeContentProvider(selected));
 		treeViewer.setLabelProvider(new MEClassLabelProvider());
-		treeViewer.setComparator(new ViewerComparator());
 		treeViewer.addFilter(filter);
 		// give an empty object, otherwise it does not initialize
 		treeViewer.setInput(new Object());

@@ -34,15 +34,14 @@ public class ConstantThresholdSelection implements LinkSelectionStrategy {
 	 */
 	public Map<ModelElement, Double> selectCandidates(Map<ModelElement, Double> selectionMap) {
 		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
-
-		if (selectionMap != null) {
-			for (ModelElement me : selectionMap.keySet()) {
-				Double val = selectionMap.get(me);
-				if (val != null && val > threshold) {
-					result.put(me, val);
-				}
+		
+		if(selectionMap != null){
+		for (ModelElement me : selectionMap.keySet()) {
+			Double val = selectionMap.get(me);
+			if (val != null && val > threshold) {
+				result.put(me, val);
 			}
-		}
+		}}
 
 		return result;
 	}

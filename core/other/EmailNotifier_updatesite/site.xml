@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="EMailNotifier" url="http://unicase.googlecode.com/svn/updatesite/EmailNotifier/EMailNotifier">
+      Service that allows the user to be notified about changes in
+a unicase project via email.
+   </description>
+   <feature url="features/UNICASE EMailNotifier_0.4.5.jar" id="UNICASE EMailNotifier" version="0.4.5">
+      <category name="EMailNotifier"/>
+   </feature>
+   <category-def name="EMailNotifier" label="EMailNotifier"/>
+</site>

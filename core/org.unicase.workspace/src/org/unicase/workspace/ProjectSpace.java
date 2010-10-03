@@ -674,13 +674,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	void addCommitObserver(CommitObserver observer);
 
 	/**
-	 * Remove a commit observer from the project space.
-	 * 
-	 * @param observer a project commit observer
-	 */
-	void removeCommitObserver(CommitObserver observer);
-
-	/**
 	 * Gathers all local operations and canonizes them.
 	 * 
 	 * @param canonized true if the operations should be canonized

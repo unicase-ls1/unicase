@@ -38,7 +38,6 @@ import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -51,7 +50,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author shterev
  * @author nagel
  */
-public class MEURLControl extends AbstractUnicaseMEControl {
+public class MEURLControl extends AbstractMEControl {
 	private static final int PRIORITY = 2;
 
 	/**
@@ -242,6 +241,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	private class URLValidator implements IInputValidator {
 
 		public String isValid(String newText) {
+
 			if (newText.matches("(((https?|ftp)://)?(www\\.)?(\\w+\\.){1,}+\\w+){1}(/.*)*")) {
 				return null;
 			} else {

@@ -12,7 +12,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.MEEditor;
@@ -56,7 +55,7 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 			return null;
 		}
 		MEEditorInput input;
-		input = new MEEditorInput(me, new EMFStoreModelelementContext(me));
+		input = new MEEditorInput(me);
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
 				"org.unicase.ui.meeditor", true);

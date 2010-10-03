@@ -5,17 +5,14 @@
  */
 package org.unicase.ui.navigator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Transactional and composed content provider with all registered label providers.
@@ -24,7 +21,7 @@ import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryConten
  */
 public class TreeContentProvider extends TransactionalAdapterFactoryContentProvider {
 
-	private HashMap<String, ContentProvider> contentProviders = new HashMap<String, ContentProvider>();
+	private ProjectSpaceContentProvider contentProvider;
 
 	/**
 	 * Directly Transfer to project. {@inheritDoc}
@@ -33,60 +30,32 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		String className = object.getClass().getCanonicalName();
-		ContentProvider replaceContentProvider = contentProviders.get(className);
-		if (replaceContentProvider != null) {
-			return replaceContentProvider.getChildren((EObject) object).toArray();
+		if (object instanceof ProjectSpace && contentProvider != null) {
+			return contentProvider.getChildren((ProjectSpace) object).toArray();
 		}
 		return super.getChildren(object);
 	}
 
 	/**
 	 * default constructor.
-	 * 
-	 * @param editingDomain the transactional editing domain
 	 */
-	public TreeContentProvider(TransactionalEditingDomain editingDomain) {
-		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	public TreeContentProvider() {
+		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.replaceContentProvider");
-		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();
-		list.addAll(Arrays.asList(confs));
-		for (IConfigurationElement element : list) {
-			String attribute = element.getAttribute("type");
-			if (contentProviders.get(attribute) != null) {
-				Activator.logException(new IllegalStateException("Duplicate RootObjectContent Provider registered"));
-				continue;
-			}
+			"org.unicase.ui.navigator.replaceProjectSpaceContentProvider");
+		if (confs.length > 1) {
+			WorkspaceUtil.logWarning("Duplicate ProjectSpaceContent Provider registered", new IllegalStateException());
+		}
+		if (confs.length == 1) {
 			try {
-				ContentProvider contentProvider = (ContentProvider) element.createExecutableExtension("class");
-				contentProviders.put(attribute, contentProvider);
+				contentProvider = (ProjectSpaceContentProvider) confs[0].createExecutableExtension("class");
 
 			} catch (CoreException e) {
-				Activator.logException(e);
+				WorkspaceUtil.logException(e.getMessage(), e);
 			}
-
 		}
 
 	}
-
-	// /**
-	// * {@inheritDoc}
-	// *
-	// * @see
-	// org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#getElements(java.lang.Object)
-	// */
-	// @Override
-	// public Object[] getElements(Object object) {
-	// ArrayList<EObject> ret = new ArrayList<EObject>();
-	// if (object instanceof ECPWorkspace) {
-	// ECPWorkspace ecpWorkspace = (ECPWorkspace) object;
-	// EList<ECPProject> projects = ecpWorkspace.getProjects();
-	// for (ECPProject project : projects) {
-	// ret.add(project.getRootObject());
-	// }
-	// }
-	// return ret.toArray();
-	// }
 
 }

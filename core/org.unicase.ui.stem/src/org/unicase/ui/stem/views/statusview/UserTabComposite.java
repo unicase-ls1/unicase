@@ -30,6 +30,7 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
@@ -38,7 +39,6 @@ import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelPro
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -114,8 +114,8 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 				if (sel.getFirstElement() instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer
-						.getClass().getName());
+					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+						.getName());
 				}
 			}
 
@@ -245,10 +245,20 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		// nothing to do
 
 	}
 

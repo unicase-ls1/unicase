@@ -19,7 +19,6 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  *             The following features are supported:
  *             <ul>
  *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getCutElements <em>Cut Elements</em>}</li>
  *             </ul>
  *             </p>
  * @see org.unicase.metamodel.MetamodelPackage#getProject()
@@ -43,22 +42,6 @@ public interface Project extends EObject, IAdaptable {
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();
-
-	/**
-	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.metamodel.ModelElement}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cut Elements</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Cut Elements</em>' containment reference list.
-	 * @see org.unicase.metamodel.MetamodelPackage#getProject_CutElements()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
-	 * @generated
-	 */
-	EList<ModelElement> getCutElements();
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -164,7 +147,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements
 	 */
 	EList<ModelElement> getAllModelElements();
-
+	
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.
 	 */

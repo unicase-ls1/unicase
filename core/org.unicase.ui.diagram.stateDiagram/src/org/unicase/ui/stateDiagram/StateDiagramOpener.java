@@ -5,7 +5,8 @@
  */
 package org.unicase.ui.stateDiagram;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.ui.common.ModelElementOpener;
@@ -23,14 +24,14 @@ public class StateDiagramOpener extends DiagramOpener implements ModelElementOpe
 	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
-	public int canOpen(EObject me) {
+	public int canOpen(ModelElement me) {
 		if (me instanceof StateDiagram) {
-			// MEDiagram diagram = (MEDiagram) me;
-			// if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			return 1;
-			// }
+//			MEDiagram diagram = (MEDiagram) me;
+//			if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+				return 1;
+//			}
 		}
-		return DONOTOPEN;
+		return 0;
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class StateDiagramOpener extends DiagramOpener implements ModelElementOpe
 	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
-	public void openModelElement(EObject modelElement) {
+	public void openModelElement(ModelElement modelElement) {
 		if (modelElement instanceof MEDiagram) {
 			MEDiagram diagram = (MEDiagram) modelElement;
 			super.openDiagram(diagram, "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID");

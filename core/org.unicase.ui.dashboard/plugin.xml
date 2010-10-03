@@ -161,11 +161,4 @@
             class="org.unicase.ui.dashboard.DashboardDeleteProjectObserver">
       </observer>
    </extension>
-   <extension
-         point="org.unicase.ui.common.modelelementopener">
-      <ModelElementOpener
-            class="org.unicase.ui.dashboard.ModelElementOpener"
-            name="org.unicase.ui.dashboard.ModelElementOpener">
-      </ModelElementOpener>
-   </extension>
 </plugin>

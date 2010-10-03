@@ -250,14 +250,12 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * 
-	 * @generated NOT
-	 * @return the type
+	 * @generated
 	 */
 	public String getType() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-			"getType is not implemented. Must be implmented in any subtype of MEDiagram");
+		throw new UnsupportedOperationException();
 	}
 
 	/**

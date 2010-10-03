@@ -10,7 +10,6 @@ import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -28,7 +27,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Standard widgets to edit a date attribute.
@@ -79,8 +79,7 @@ public class MEDateControl extends AbstractMEControl {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
-
-				new ECPCommand(getModelElement()) {
+				new UnicaseCommand() {
 
 					@Override
 					protected void doRun() {
@@ -104,7 +103,7 @@ public class MEDateControl extends AbstractMEControl {
 			}
 
 			public void focusLost(FocusEvent e) {
-				new ECPCommand(getModelElement()) {
+				new UnicaseCommand() {
 
 					@Override
 					protected void doRun() {
@@ -119,7 +118,7 @@ public class MEDateControl extends AbstractMEControl {
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				new ECPCommand(getModelElement()) {
+				new UnicaseCommand() {
 
 					@Override
 					protected void doRun() {
@@ -142,7 +141,7 @@ public class MEDateControl extends AbstractMEControl {
 
 	private void update() {
 
-		new ECPCommand(getModelElement()) {
+		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
@@ -167,14 +166,8 @@ public class MEDateControl extends AbstractMEControl {
 		}.run();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
-	 *      org.eclipse.emf.ecore.EObject)
-	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		return PRIORITY;
 	}
 }

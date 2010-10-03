@@ -23,10 +23,10 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.TaskTableUtil;
 import org.unicase.ui.stem.views.statusview.dnd.ActivityTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -96,8 +96,8 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 				if (sel.getFirstElement() instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer
-						.getClass().getName());
+					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+						.getName());
 				}
 			}
 
@@ -150,8 +150,18 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		// nothing to do
 
 	}
 

@@ -19,7 +19,6 @@ public abstract class UnicaseCommandWithParameterAndResult<T, U> extends Recordi
 
 	private T result;
 	private U parameter;
-	private RuntimeException runtimeException;
 
 	/**
 	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
@@ -35,14 +34,7 @@ public abstract class UnicaseCommandWithParameterAndResult<T, U> extends Recordi
 	 */
 	@Override
 	protected final void doExecute() {
-		try {
-			this.result = doRun(parameter);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			// END SUPRESS CATCH EXCEPTION
-			runtimeException = e;
-			throw e;
-		}
+		this.result = doRun(parameter);
 	}
 
 	/**
@@ -60,26 +52,9 @@ public abstract class UnicaseCommandWithParameterAndResult<T, U> extends Recordi
 	 * @return the result
 	 */
 	public T run(U parameter) {
-		return run(parameter, true);
-	}
-
-	/**
-	 * Executes the command on the workspaces editing domain.
-	 * 
-	 * @param parameter the parameter
-	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
-	 * @return the result
-	 */
-	public T run(U parameter, boolean ignoreExceptions) {
 		this.parameter = parameter;
-		runtimeException = null;
-
+		// this.execute();
 		Configuration.getEditingDomain().getCommandStack().execute(this);
-
-		if (!ignoreExceptions && runtimeException != null) {
-			throw runtimeException;
-		}
-
 		return this.result;
 	}
 

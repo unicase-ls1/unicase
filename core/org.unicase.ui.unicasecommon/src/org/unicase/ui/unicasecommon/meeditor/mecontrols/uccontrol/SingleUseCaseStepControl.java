@@ -40,8 +40,6 @@ import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -49,7 +47,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
+public class SingleUseCaseStepControl extends AbstractMEControl {
 
 	private EReference reference;
 	private Composite parentComposite;
@@ -233,8 +231,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(buttonComposite, parentStyle);
 		deleteLink.setBackground(backGroundColor);
 		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement(),
-			UnicaseActionHelper.getContext(getModelElement())));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		deleteLink.setLayoutData(gdDeleteLink);
 	}
 
@@ -255,12 +252,12 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 			cDescription.dispose();
 		}
 
-		ControlFactory cFactory = new ControlFactory();
+		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(),
 			"name");
 		textControlName = cFactory.createControl(pDescriptorName, getModelElement());
 		cName = textControlName.createControl(textComposite, parentStyle, pDescriptorName, getModelElement(),
-			UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+			getEditingDomain(), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 16).grab(true, false).applyTo(cName);
 
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(
@@ -273,7 +270,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		}
 
 		cDescription = textControlDescription.createControl(textComposite, parentStyle, pDescriptorDescription,
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+			getModelElement(), getEditingDomain(), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
 
 		cDescription.setBackground(mainComposite.getBackground());
@@ -301,7 +298,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		}
 
 		final IItemPropertyDescriptor pDescriptorIncluded;
-		ControlFactory cFactory = new ControlFactory();
+		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 
 		if (((Step) getModelElement()).isUserStep()) {
 			// TODO getting the right descriptor is currently hard coded. Maybe should be changed.
@@ -320,7 +317,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 
 		includeLinkControl = cFactory.createControl(pDescriptorIncluded, getModelElement());
 		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle, pDescriptorIncluded,
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+			getModelElement(), getEditingDomain(), getToolkit());
 		cIncludeLink.setBackground(mainComposite.getBackground());
 
 		includeComposite.layout();

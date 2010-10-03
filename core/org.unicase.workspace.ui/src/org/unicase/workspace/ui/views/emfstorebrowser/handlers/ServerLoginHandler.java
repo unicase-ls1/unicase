@@ -29,16 +29,21 @@ public class ServerLoginHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService()
+				.getSelection();
 		if (selection.isEmpty()) {
 			return null;
 		}
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
-		if (obj instanceof TreeNode && ((TreeNode) obj).getValue() instanceof ServerInfo) {
+		if (obj instanceof TreeNode
+				&& ((TreeNode) obj).getValue() instanceof ServerInfo) {
 			ServerInfo serverInfo = (ServerInfo) ((TreeNode) obj).getValue();
-			Shell parentShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			Shell shell = new Shell(parentShell, parentShell.getStyle() | SWT.RESIZE);
+			Shell parentShell = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell();
+			Shell shell = new Shell(parentShell, parentShell.getStyle()
+					| SWT.RESIZE);
 			LoginDialog loginDialog = new LoginDialog(shell, serverInfo);
 			loginDialog.open(false);
 		}

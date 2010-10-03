@@ -24,13 +24,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * This class is responsible for displaying the file size of the FileAttachment file size attribute value.
  * 
  * @author pfeifferc
  */
-public class MEFileSizeControl extends AbstractUnicaseMEControl {
+public class MEFileSizeControl extends AbstractMEControl {
 
 	private final String[] magnitude = { " byte", " Kilobyte", " Megabyte", " Gigabyte", " Terabyte", " petabyte" };
 

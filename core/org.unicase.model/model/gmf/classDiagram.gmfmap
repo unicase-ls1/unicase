@@ -19,7 +19,7 @@
         <diagramLabel
             href="model.gmfgraph#ClassNode_name"/>
         <features
-            href="../model.ecore#//UnicaseModelElement/name"/>
+            href="../model.ecore#//ModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -97,7 +97,7 @@
         <diagramLabel
             href="model.gmfgraph#PackageNode_name"/>
         <features
-            href="../model.ecore#//UnicaseModelElement/name"/>
+            href="../model.ecore#//ModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -128,7 +128,7 @@
       <diagramLabel
           href="model.gmfgraph#AssociationLine_name"/>
       <features
-          href="../model.ecore#//classes/Association/type"/>
+          href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
@@ -181,7 +181,7 @@
       <diagramLabel
           href="model.gmfgraph#AssociationLine_name"/>
       <features
-          href="../model.ecore#//classes/Association/type"/>
+          href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
@@ -234,7 +234,7 @@
       <diagramLabel
           href="model.gmfgraph#AssociationLine_name"/>
       <features
-          href="../model.ecore#//classes/Association/type"/>
+          href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
@@ -287,7 +287,7 @@
       <diagramLabel
           href="model.gmfgraph#AssociationLine_name"/>
       <features
-          href="../model.ecore#//classes/Association/type"/>
+          href="../model.ecore#//ModelElement/name"/>
     </labelMappings>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
@@ -351,7 +351,7 @@
     <domainModel
         href="../model.ecore#//diagram"/>
     <domainMetaElement
-        href="../model.ecore#//diagram/ClassDiagram"/>
+        href="../model.ecore#//diagram/MEDiagram"/>
     <palette
         href="model.gmftool#//@palette"/>
   </diagram>

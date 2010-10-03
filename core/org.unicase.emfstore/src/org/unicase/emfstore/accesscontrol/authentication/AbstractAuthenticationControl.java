@@ -13,7 +13,6 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
-import org.unicase.emfstore.exceptions.ServerKeyStoreException;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -42,33 +41,11 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
 		throws AccessControlException {
 		checkClientVersion(clientVersionInfo);
-		password = preparePassword(password);
-		if (verifySuperUser(username, password) || verifyPassword(username, password)) {
+		password = ServerKeyStoreManager.getInstance().decrypt(password);
+		if ((username.equals(superuser) && password.equals(superuserpw)) || verifyPassword(username, password)) {
 			return EsmodelFactory.eINSTANCE.createSessionId();
 		}
 		throw new AccessControlException();
-	}
-
-	/**
-	 * Prepares password before it is used for authentication. Normally this includes decrypting the password
-	 * 
-	 * @param password password
-	 * @return prepared password
-	 * @throws ServerKeyStoreException in case of an exception
-	 */
-	protected String preparePassword(String password) throws ServerKeyStoreException {
-		return ServerKeyStoreManager.getInstance().decrypt(password);
-	}
-
-	/**
-	 * Check username and password against superuser.
-	 * 
-	 * @param username username
-	 * @param password password
-	 * @return true if super user
-	 */
-	protected boolean verifySuperUser(String username, String password) {
-		return (username.equals(superuser) && password.equals(superuserpw));
 	}
 
 	/**

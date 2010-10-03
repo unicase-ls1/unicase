@@ -26,7 +26,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Handler for deleting a server info.
+ * Handler for deleting a server info
  * 
  * @author shterev
  */
@@ -36,8 +36,10 @@ public class DeleteServerInfoHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService()
+				.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (!(obj instanceof TreeNode)) {
 			return null;
@@ -45,10 +47,12 @@ public class DeleteServerInfoHandler extends AbstractHandler {
 		TreeNode node = (TreeNode) obj;
 
 		final ServerInfo serverInfo = (ServerInfo) node.getValue();
-		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
+		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getProjectSpaces();
 		ArrayList<ProjectSpace> usedSpaces = new ArrayList<ProjectSpace>();
 		for (ProjectSpace projectSpace : projectSpaces) {
-			if (projectSpace.getUsersession().getServerInfo().equals(serverInfo)) {
+			if (projectSpace.getUsersession().getServerInfo()
+					.equals(serverInfo)) {
 				usedSpaces.add(projectSpace);
 			}
 		}
@@ -57,17 +61,24 @@ public class DeleteServerInfoHandler extends AbstractHandler {
 			for (ProjectSpace pSpace : usedSpaces) {
 				message += "\n" + pSpace.getProjectName();
 			}
-			DialogHandler.showErrorDialog("Cannot delete \'" + serverInfo.getName()
-				+ "\' because it is currently used by the following projects: \n" + message);
+			DialogHandler
+					.showErrorDialog("Cannot delete \'"
+							+ serverInfo.getName()
+							+ "\' because it is currently used by the following projects: \n"
+							+ message);
 		} else {
-			if (MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Confirm deletion",
-				"Are you sure you want to delete \'" + serverInfo.getName() + "\'")) {
+			if (MessageDialog.openQuestion(Display.getCurrent()
+					.getActiveShell(), "Confirm deletion",
+					"Are you sure you want to delete \'" + serverInfo.getName()
+							+ "\'")) {
 				new UnicaseCommand() {
 					@Override
 					protected void doRun() {
-						WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos().remove(serverInfo);
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.getServerInfos().remove(serverInfo);
 						EcoreUtil.delete(serverInfo);
-						WorkspaceManager.getInstance().getCurrentWorkspace().save();
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.save();
 					};
 				}.run();
 			}

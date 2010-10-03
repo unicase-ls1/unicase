@@ -37,12 +37,10 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -185,11 +183,17 @@ public class MECommentReplyWidget extends Composite {
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).applyTo(recipients);
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement.getProject());
-		try {
-			User user = OrgUnitHelper.getUser(projectSpace, modelElement.getCreator());
-			recipientsList.add(user);
-		} catch (CannotMatchUserInProjectException e1) {
+		if (modelElement instanceof Comment) {
+			Comment comment = ((Comment) modelElement);
+			if (comment.getSender() != null) {
+				recipientsList.add(comment.getSender());
+			}
+		}
+		if (modelElement instanceof WorkItem) {
+			WorkItem workItem = (WorkItem) modelElement;
+			if (workItem.getAssignee() != null) {
+				recipientsList.add(workItem.getAssignee());
+			}
 		}
 		rebuildRecipientList(recipients, recipientsList);
 		recipientsComposite.layout();

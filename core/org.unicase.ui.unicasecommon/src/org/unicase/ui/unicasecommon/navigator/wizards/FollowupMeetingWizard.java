@@ -18,7 +18,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -146,7 +146,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 			}
 		}.run();
 
-		UnicaseActionHelper.openModelElement(followupMeeting, this.getClass().getName());
+		ActionHelper.openModelElement(followupMeeting, this.getClass().getName());
 	}
 
 	private void addMeetingStatusItems(Meeting meeting, List<WorkItem> statusItems) {

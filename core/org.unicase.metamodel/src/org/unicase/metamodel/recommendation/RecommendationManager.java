@@ -46,8 +46,8 @@ public class RecommendationManager {
 
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.metamodel.recommendationstrategy");
-
-		// System.out.println("exes: "+rawExtensions.length);
+		
+//		System.out.println("exes: "+rawExtensions.length);
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				// create a data object which composites all the information of an extension
@@ -67,8 +67,8 @@ public class RecommendationManager {
 					// add it to the check
 					check.add(tempStrategy.getEReferenceName() + tempStrategy.getBaseClassName());
 
-					// System.out.println(tempStrategy.getEReferenceName() + tempStrategy.getBaseClassName());
-
+//					System.out.println(tempStrategy.getEReferenceName() + tempStrategy.getBaseClassName());
+					
 					// the generalized elements
 					if (tempStrategy.getEReferenceName().equals("ALL")) {
 						general.put(tempStrategy.getBaseClassName(), tempStrategy);
@@ -102,44 +102,50 @@ public class RecommendationManager {
 		if (base != null && ref != null) {
 			String baseClassKey = getFullQualifiedClassName(base.eClass());
 
-			// System.out.println(ref.getName()+" " +getFullQualifiedClassName(base.eClass()));
+//			System.out.println(ref.getName()+" " +getFullQualifiedClassName(base.eClass()));
+			
 
+		
 			// 1. Step: Is there a special recommendation for this reference and base?
 			for (StrategyExtension ex : extensions) {
-				// System.out.println(ex.getEReferenceName()+" " + ex.getBaseClassName());
-
+//				System.out.println(ex.getEReferenceName()+" " + ex.getBaseClassName());
+				
 				if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(baseClassKey)) {
 					return ex.getRecommendationStrategy();
 				}
 			}
-
+			
+		
 			// 2. Step: Check super-type and interfaces for special recommendations
 			for (StrategyExtension ex : extensions) {
 				for (EClass superType : base.eClass().getEAllSuperTypes()) {
 					String key = this.getFullQualifiedClassName(superType);
 
-					// System.out.println(ex.getEReferenceName()+" " + key);
+//					System.out.println(ex.getEReferenceName()+" " + key);
 					if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(key)) {
 						return ex.getRecommendationStrategy();
 					}
 				}
 			}
 
+			
 			// 3. Step: is there a general strategy for this base?
 			if (general.containsKey(baseClassKey)) {
 				return general.get(baseClassKey).getRecommendationStrategy();
 			}
 
+			
 			// 4. Step: is there a general strategy for the super-type or interfaces
 			for (EClass superType : base.eClass().getEAllSuperTypes()) {
 				String key = this.getFullQualifiedClassName(superType);
 
-				// System.out.println(key);
+//				System.out.println(key);
 				if (general.containsKey(key)) {
 					return general.get(key).getRecommendationStrategy();
 				}
 			}
 
+			
 			// 5. Step: is there a general for the model element (the most basic)
 			if (general.containsKey(BASE_CLASS)) {
 				return general.get(BASE_CLASS).getRecommendationStrategy();
@@ -171,33 +177,32 @@ public class RecommendationManager {
 	public Map<ModelElement, Double> getMatchMap(final ModelElement base, EReference ref,
 		final Collection<ModelElement> elements, LinkSelectionStrategy selStrategy) {
 
-		try {
-
-			if (base == null || ref == null || elements == null || elements.size() == 0) {
-				return new HashMap<ModelElement, Double>();
+		try{
+			
+		if (base == null || ref == null || elements == null || elements.size() == 0) {
+			return new HashMap<ModelElement, Double>();
+		}
+		
+		RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
+		
+		if (recStrategy != null) {
+			System.out.println("Strategy "+recStrategy.getName() + " for "+ref.getName()+ " and "+elements.size() + " elements.");
+			
+			Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
+			
+			if (selStrategy != null) {
+				rec = selStrategy.selectCandidates(rec);
 			}
 
-			RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
-
-			if (recStrategy != null) {
-				System.out.println("Strategy " + recStrategy.getName() + " for " + ref.getName() + " and "
-					+ elements.size() + " elements.");
-
-				Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
-
-				if (selStrategy != null) {
-					rec = selStrategy.selectCandidates(rec);
-				}
-
-				return rec;
-			}
+			return rec;
+		}
 		}
 		// BEGIN SUPRESS CATCH EXCEPTION
-		catch (RuntimeException e) {
-			ModelUtil.logException("Exception during recommendation.", e);
+		catch (RuntimeException e){
+			ModelUtil.logException("Exception during recommendation.", e);			
 		}
 		// END SUPRESS CATCH EXCEPTION
-
+		
 		return new HashMap<ModelElement, Double>();
 	}
 

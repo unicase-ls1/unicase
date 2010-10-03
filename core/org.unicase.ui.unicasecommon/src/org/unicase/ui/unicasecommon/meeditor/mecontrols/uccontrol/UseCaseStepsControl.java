@@ -27,8 +27,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -36,7 +35,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class UseCaseStepsControl extends AbstractUnicaseMEControl {
+public class UseCaseStepsControl extends AbstractMEControl {
 
 	private static final int PRIORITY = 2;
 
@@ -223,7 +222,7 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 
 					if (me.isUserStep()) {
 						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
-							UnicaseActionHelper.getContext(me), getToolkit());
+							getEditingDomain(), getToolkit());
 						c.setLayoutData(gdUserStep);
 						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
 						empty2.setLayoutData(gdEmpty);
@@ -231,7 +230,7 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
 						empty2.setLayoutData(gdEmpty);
 						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
-							UnicaseActionHelper.getContext(me), getToolkit());
+							getEditingDomain(), getToolkit());
 						c.setLayoutData(gdUserStep);
 					}
 

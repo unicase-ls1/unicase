@@ -1,8 +1,3 @@
-/**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
@@ -12,9 +7,9 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ui.meeditor.Activator;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 public class MELinkControlFactory {
 	private HashMap<Class<?>, ArrayList<MELinkControl>> controlRegistry;
@@ -41,16 +36,16 @@ public class MELinkControlFactory {
 				controlRegistry.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
-				Activator.logException(e1);
+				WorkspaceUtil.logException(e1.getMessage(), e1);
 			} catch (CoreException e2) {
-				Activator.logException(e2);
+				WorkspaceUtil.logException(e2.getMessage(), e2);
 			}
 		}
 
 	}
 
-	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final EObject link,
-		EObject contextModelElement) {
+	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link,
+		ModelElement contextModelElement) {
 		ArrayList<MELinkControl> candidates = new ArrayList<MELinkControl>();
 		Set<Class<?>> keySet = controlRegistry.keySet();
 		for (Class<?> clazz : keySet) {
@@ -75,7 +70,7 @@ public class MELinkControlFactory {
 	}
 
 	private MELinkControl getBestCandidate(ArrayList<MELinkControl> candidates,
-		IItemPropertyDescriptor itemPropertyDescriptor, final EObject link, EObject contextModelElement) {
+		IItemPropertyDescriptor itemPropertyDescriptor, final ModelElement link, ModelElement contextModelElement) {
 		int bestValue = 0;
 		MELinkControl bestCandidate = null;
 		for (MELinkControl abstractMEControl : candidates) {

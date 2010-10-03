@@ -18,7 +18,6 @@ import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
@@ -146,24 +145,34 @@ public final class Configuration {
 	 * @return server info
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.defaultConfigurationProvider");
-		for (IConfigurationElement extension : rawExtensions) {
-			try {
-				ConfigurationProvider provider = (ConfigurationProvider) extension
-					.createExecutableExtension("providerClass");
-				List<ServerInfo> defaultServerInfos = provider.getDefaultServerInfos();
-				if (defaultServerInfos != null) {
-					return defaultServerInfos;
-				}
-			} catch (CoreException e) {
-				// fail silently
-			}
-		}
+		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		ArrayList<ServerInfo> result = new ArrayList<ServerInfo>();
-		result.add(getLocalhostServerInfo());
-		return result;
+		if (isReleaseVersion()) {
+			serverInfos.add(getReleaseServerInfo());
+		}
+		if (isInternalReleaseVersion()) {
+			serverInfos.add(getInternalServerInfo());
+		}
+		if (isDeveloperVersion()) {
+			serverInfos.add(getLocalhostServerInfo());
+		}
+		return serverInfos;
+	}
+
+	private static ServerInfo getReleaseServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("unicase Server");
+		serverInfo.setPort(443);
+		serverInfo.setUrl("unicase.in.tum.de");
+		return serverInfo;
+	}
+
+	private static ServerInfo getInternalServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("unicase Developer Server");
+		serverInfo.setPort(443);
+		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
+		return serverInfo;
 	}
 
 	private static ServerInfo getLocalhostServerInfo() {
@@ -171,7 +180,6 @@ public final class Configuration {
 		serverInfo.setName("Localhost Server");
 		serverInfo.setPort(8080);
 		serverInfo.setUrl("localhost");
-		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_DEV_CERTIFICATE);
 
 		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
 		superUsersession.setServerInfo(serverInfo);

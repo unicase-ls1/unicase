@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil;
 
 /**
  * Switch for case study.
@@ -51,7 +50,7 @@ public class CaseStudySwitch {
 	private void flattenComposites(List<AbstractOperation> operations) {
 		for (int i = 0; i < operations.size(); i++) {
 			AbstractOperation abstractOperation = operations.get(i);
-			if (OperationUtil.isComposite(abstractOperation)) {
+			if (DecisionUtil.isComposite(abstractOperation)) {
 				operations.remove(i);
 				CompositeOperation composite = (CompositeOperation) abstractOperation;
 				operations.addAll(i, composite.getSubOperations());

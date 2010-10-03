@@ -22,19 +22,13 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author helming
  */
-public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.ContentProvider {
+public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.ProjectSpaceContentProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.unicase.ui.navigator.ProjectSpaceContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
 	 */
-	public Collection<?> getChildren(EObject rootObject) {
-		ProjectSpace projectSpace;
-		if (rootObject instanceof ProjectSpace) {
-			projectSpace = (ProjectSpace) rootObject;
-		} else {
-			return Collections.EMPTY_LIST;
-		}
+	public Collection<?> getChildren(ProjectSpace projectSpace) {
 
 		final Project project = projectSpace.getProject();
 		if (project == null) {
@@ -59,9 +53,9 @@ public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.Con
 	/**
 	 * Always true since thre is the orphasn folder. {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#hasChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.unicase.ui.navigator.ProjectSpaceContentProvider#hasChildren(org.unicase.workspace.ProjectSpace)
 	 */
-	public boolean hasChildren(EObject rootObject) {
+	public boolean hasChildren(ProjectSpace projectSpace) {
 		return true;
 	}
 
