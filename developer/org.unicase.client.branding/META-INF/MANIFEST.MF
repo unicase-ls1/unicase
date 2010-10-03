@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UNICASE Client Branding
+Bundle-SymbolicName: org.unicase.client.branding
+Bundle-Version: 0.4.6.internal
+Bundle-Activator: org.unicase.client.branding.Activator
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
