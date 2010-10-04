@@ -1,5 +1,7 @@
 #summary EMFStore subproject navigational page.
 
+NEWS: Here you can find the [Models2010TutorialEMFStore slides and material] of the Models 2010 Tutorial of the EMFStore
+
   * [EMFStore What is EMFStore?]
 
   * [EMFStoreFeatures Why should I use EMFStore?]
