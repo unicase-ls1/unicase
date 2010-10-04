@@ -1088,7 +1088,7 @@ public final class ModelUtil {
 		try {
 			xmiResource.save(null);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("XMI Resource for model element " + modelElement + " couldn't be saved");
 		}
 	}
 }
