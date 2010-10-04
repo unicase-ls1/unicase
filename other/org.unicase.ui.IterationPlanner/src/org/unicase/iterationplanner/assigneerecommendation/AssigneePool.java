@@ -22,7 +22,7 @@ public class AssigneePool {
 
 	}
 
-	public List<Assignee> getAssignees() {
+	public List<Assignee> getAvailableAssignees() {
 		return assignees;
 	}
 

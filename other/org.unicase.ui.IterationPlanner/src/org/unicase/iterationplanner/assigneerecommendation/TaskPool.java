@@ -22,8 +22,28 @@ public class TaskPool {
 
 	}
 
-	public List<Task> getTasks() {
+	public List<Task> getTasksToPlan() {
 		return tasks;
+	}
+
+	/**
+	 * all done tasks in project done tasks are those that are resolved or checked
+	 * 
+	 * @return
+	 */
+	private List<Task> getAllDoneTasks() {
+		return null;
+	}
+
+	/**
+	 * get related tasks (using all done tasks, predecessors, successors, requirements, refining requirements, refined
+	 * requirements) this is used for Model Based Assignee Recommendation
+	 * 
+	 * @return
+	 */
+	public List<Task> getRelatedTasks(Task task) {
+		getAllDoneTasks();
+		return null;
 	}
 
 }
