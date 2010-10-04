@@ -6,7 +6,9 @@
 package org.unicase.ui.navigator.handler;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -15,15 +17,19 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.PreferenceHelper;
@@ -53,82 +59,69 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final EClass clazz = EcoreFactory.eINSTANCE.createEClass();
-		clazz.setName("foo");
-		EStructuralFeature attribute = EcoreFactory.eINSTANCE.createEAttribute();
-		EStructuralFeature attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
-		attribute.setName("attribute1");
-		attribute2.setName("attribute2");
-		clazz.getEStructuralFeatures().add(attribute);
-		clazz.getEStructuralFeatures().add(attribute2);
+		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
+		Project p = ModelUtil.getProject(selectedModelElement);
+		if (selectedModelElement instanceof ProjectSpace) {
+			p = ((ProjectSpace) selectedModelElement).getProject();
+		}
+		final Project project = p;
+
+		if (project == null && selectedModelElement == null) {
+			return null;
+		}
+
+		final String fileName = getFileName();
+		if (fileName == null) {
+			return null;
+		}
+
+		final URI fileURI = URI.createFileURI(fileName);
+
+		// create resource set and resource
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		final Resource resource = resourceSet.getResource(fileURI, true);
+
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				projectSpace.getProject().addModelElement(clazz);
+				importFile(project, fileURI, resource, progressDialog);
 			}
+
 		}.run(false);
 
-		return clazz;
-
-		// final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
-		// if (projectSpace == null && selectedModelElement == null) {
-		// return null;
-		// }
-		//
-		// final String fileName = getFileName();
-		// if (fileName == null) {
-		// return null;
-		// }
-		//
-		// final URI fileURI = URI.createFileURI(fileName);
-		//
-		// // create resource set and resource
-		// ResourceSet resourceSet = new ResourceSetImpl();
-		//
-		// final Resource resource = resourceSet.getResource(fileURI, true);
-		//
-		// final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-		// .getActiveWorkbenchWindow().getShell());
-		//
-		// new UnicaseCommand() {
-		// @Override
-		// protected void doRun() {
-		// importFile(projectSpace, fileURI, resource, progressDialog);
-		// }
-		//
-		// }.run();
-		//
-		// return null;
+		return null;
 	}
 
-	private void importFile(final ProjectSpace projectSpace, final URI fileURI, final Resource resource,
+	private void importFile(Project project, final URI fileURI, final Resource resource,
 		final ProgressMonitorDialog progressDialog) {
 
-		// try {
-		// progressDialog.open();
-		// progressDialog.getProgressMonitor().beginTask("Import model...", 100);
-		//
-		// Set<EObject> importElements = validation(resource);
-		//
-		// if (importElements.size() > 0) {
-		// int i = 0;
-		// for (EObject eObject : importElements) {
-		// // run the import command
-		// runImport(projectSpace, fileURI, EcoreUtil.copy(eObject), i);
-		// progressDialog.getProgressMonitor().worked(10);
-		// i++;
-		// }
-		// }
-		// // BEGIN SUPRESS CATCH EXCEPTION
-		// } catch (RuntimeException e) {
-		// ModelUtil.logException(e);
-		// // END SUPRESS CATCH EXCEPTION
-		// } finally {
-		// progressDialog.getProgressMonitor().done();
-		// progressDialog.close();
-		// }
+		try {
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Import model...", 100);
+
+			Set<EObject> importElements = validation(resource);
+
+			if (importElements.size() > 0) {
+				int i = 0;
+				for (EObject eObject : importElements) {
+					// run the import command
+					runImport(project, fileURI, EcoreUtil.copy(eObject), i);
+					progressDialog.getProgressMonitor().worked(10);
+					i++;
+				}
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			ModelUtil.logException(e);
+			// END SUPRESS CATCH EXCEPTION
+		} finally {
+			progressDialog.getProgressMonitor().done();
+			progressDialog.close();
+		}
 	}
 
 	// Validates if the EObjects can be imported
@@ -206,8 +199,8 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @param element - the modelElement to import.
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
-	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
-		final EObject element, final int resourceIndex) {
+	private void runImport(final Project project, final org.eclipse.emf.common.util.URI uri, final EObject element,
+		final int resourceIndex) {
 
 		// TODO: PlainEObjectMode, test import
 		// try to find a wrapper for the element which will be added to the project
@@ -223,6 +216,23 @@ public class ImportModelHandler extends AbstractHandler {
 		// copy wrapper to reset model element ids
 
 		// TODO: PlainEObjectMode, Wrapper
-		projectSpace.getProject().addModelElement(ModelUtil.clone(element));
+		// use found ids?
+		Resource resource = element.eResource();
+		if (resource instanceof XMIResource) {
+			XMIResource xmiResource = (XMIResource) resource;
+			String id = xmiResource.getID(element);
+			if (id != null) {
+				ModelElementId elementId = MetamodelFactory.eINSTANCE.createModelElementId();
+				elementId.setId(id);
+				Map<EObject, ModelElementId> objectToIdMap = new HashMap<EObject, ModelElementId>();
+				// Map<ModelElementId, EObject> idToObjectMap = new HashMap<ModelElementId, EObject>();
+				objectToIdMap.put(element, elementId);
+				// idToObjectMap.put(element, elementId);
+				project.addModelElement(element, objectToIdMap);
+				return;
+			}
+		}
+
+		project.addModelElement(element);
 	}
 }

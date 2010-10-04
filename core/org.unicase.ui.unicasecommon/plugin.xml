@@ -421,9 +421,15 @@
                  <iterate
                        ifEmpty="false"
                        operator="and">
-                    <instanceof
-                          value="org.eclipse.emf.ecore.EObject">
-                    </instanceof>
+                    <and>
+                    	<instanceof value="org.eclipse.emf.ecore.EObject" />
+                    	<not>
+                    		<instanceof value="org.unicase.workspace.ProjectSpace" />
+                    	</not>
+                    	<not>
+                    		<instanceof value="org.unicase.metamodel.Project" />
+                    	</not>
+                    </and>
                  </iterate>
                  <count
                        value="1">
