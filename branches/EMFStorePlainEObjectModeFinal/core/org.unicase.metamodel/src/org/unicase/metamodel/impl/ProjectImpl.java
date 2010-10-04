@@ -387,10 +387,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				EObject obj = it.next();
 				ModelElementId id = getIdForModelElement(obj);
 				putIntoCaches(obj, id);
-				// TODO:PlainEObjectMode, these 2 lines are needed for migration, currently the IDs is thus setted twice
+				// TODO:PlainEObjectMode, these 2 lines are needed for migration, currently the IDs is thus setted
+				// twice
 				// when adding a new model element
-				XMIResource xmiRes = (XMIResource) obj.eResource();
-				xmiRes.setID(obj, id.getId());
 			}
 		}
 

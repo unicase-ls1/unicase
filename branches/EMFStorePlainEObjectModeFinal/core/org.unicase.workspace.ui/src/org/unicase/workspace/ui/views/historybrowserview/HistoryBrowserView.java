@@ -588,7 +588,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		query.setSource(source);
 		query.setTarget(target);
 		query.setIncludeChangePackage(true);
-		if (modelElement != null) {
+		if (modelElement != null && !(modelElement instanceof ProjectSpace) && !(modelElement instanceof Project)) {
 			query.getModelElements().add(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 		}
 
