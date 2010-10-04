@@ -78,7 +78,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
 		Collection<EObject> ret = new BasicEList<EObject>();
 		for (EObject element : project.getAllModelElementsbyClass(clazz, new BasicEList<EObject>())) {
-			if (association || isAssociationClassElement(element)) {
+			if (association || !isAssociationClassElement(element)) {
 				ret.add(element);
 			}
 		}
