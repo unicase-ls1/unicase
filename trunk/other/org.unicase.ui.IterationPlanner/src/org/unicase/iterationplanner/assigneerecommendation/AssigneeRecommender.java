@@ -22,7 +22,7 @@ public class AssigneeRecommender {
 	public List<TaskAssignee> getTaskAssignees() {
 
 		List<TaskAssignee> result = new ArrayList<TaskAssignee>();
-		for (Task task : TaskPool.getInstance().getTasks()) {
+		for (Task task : TaskPool.getInstance().getTasksToPlan()) {
 			List<AssigneeExpertise> assignees = recommendationStrategy.getRecommendedAssignees(task);
 			result.add(new TaskAssignee(task, assignees));
 		}

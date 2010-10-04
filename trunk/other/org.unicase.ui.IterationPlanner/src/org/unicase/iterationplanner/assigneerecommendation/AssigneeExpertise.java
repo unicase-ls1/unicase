@@ -8,11 +8,11 @@ package org.unicase.iterationplanner.assigneerecommendation;
  */
 public class AssigneeExpertise implements Comparable<AssigneeExpertise> {
 
-	private final Assignee assingee;
+	private final Assignee assignee;
 	private final double expertise;
 
-	public AssigneeExpertise(Assignee assingee, double expertise) {
-		this.assingee = assingee;
+	public AssigneeExpertise(Assignee assignee, double expertise) {
+		this.assignee = assignee;
 		this.expertise = expertise;
 	}
 
@@ -20,8 +20,8 @@ public class AssigneeExpertise implements Comparable<AssigneeExpertise> {
 		return expertise;
 	}
 
-	public Assignee getAssingee() {
-		return assingee;
+	public Assignee getAssignee() {
+		return assignee;
 	}
 
 	public int compareTo(AssigneeExpertise otherAssignee) {

@@ -16,7 +16,7 @@ public class Assignee {
 
 	}
 
-	public OrgUnit getAssignee() {
+	public OrgUnit getOrgUnit() {
 		return assignee;
 	}
 
