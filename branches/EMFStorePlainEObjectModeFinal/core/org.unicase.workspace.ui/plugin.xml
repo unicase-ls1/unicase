@@ -746,6 +746,25 @@
                  </and>
               </visibleWhen>
            </command>
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                   <or>
+                    	<instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                    	</instanceof>
+                    	<instanceof
+                           value="org.unicase.metamodel.Project"/>
+                    </or>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
         </menu>
         <menu
               label="label">
