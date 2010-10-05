@@ -31,7 +31,9 @@ The following metarial was used for the tutorial hosted on Models 2010
 
  * [ECPDownloads Update Site]
 
- * [http:// Example Model Plugins]
+ * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/exampleModel.zip Example Model Plugins]
+
+ * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/sampleSolution.zip Example Model Plugins (Sample Solution]
 
 
 
