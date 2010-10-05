@@ -8,7 +8,7 @@
    * In the genmodel the property "containmentproxies" must be set to "true"
    * Do *NOT* use simple attributes with a multiplicity greater than 1.
    * Do *NOT* set unsetable to true for any feature
-   * Do *NOT* create non-transient references to anything other than model element subtypes. Non-transient references are allowed since they will not be saved.
+   * Do *NOT* create non-transient references to anything other than model element subtypes. Non-transient references are allowed since they will not be saved. Please note that this restriction will be removed with EMFStore 0.7.0. 
    * Do *NOT* use the URI "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//". Use the "http://..." URIs
    * Do *NOT* use generics in the Ecore!
    * Do *NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
