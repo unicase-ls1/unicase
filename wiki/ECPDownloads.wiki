@@ -23,12 +23,7 @@ The ECP features can be installed from this update site:
 <wiki:comment>
 ==Releases==
 
-*There are currently no releases available at the moment, but there will a release on April 1st.*
 
-Soon the ECP features can be installed from this update site:
-
-[http://unicase.googlecode.com/svn/updatesite/ecp http://unicase.googlecode.com
-/svn/updatesite/ecp]
 
 
 
