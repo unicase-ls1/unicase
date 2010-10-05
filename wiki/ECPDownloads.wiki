@@ -12,6 +12,10 @@ The ECP features can be installed from this update site:
 
 ==New and Noteworthy==
 
+0.6.3.nightly:
+
+  * Added XMI persistence (Beta)
+
 0.5.18.nightly:
 
   * Added extension points to release
