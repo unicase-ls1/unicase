@@ -1,0 +1,9 @@
+#summary Models 2010 Tutorial on EMFStore
+
+Materials:
+[ECPDownloads Update Site with EMFStore and EMFClientPlatform]
+[http://wwwbruegge.in.tum.de/static/shared/emfstore/tutorials/models2010/EMFStoreModels2010Tutorial.pdf Slides]
+[http://help.eclipse.org/galileo/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl Libary Example Model]
+[http://wwwbruegge.in.tum.de/static/shared/emfstore/tutorials/models2010/exampleClient.zip Example Client Plugin]
+[http://wwwbruegge.in.tum.de/static/shared/emfstore/tutorials/models2010/solution.zip Example Model Plugins]
+[http://code.google.com/p/unicase/wiki/EMFStoreGettingStarted EMFStore Getting Started]
