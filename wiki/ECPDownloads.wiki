@@ -8,6 +8,9 @@ The ECP features can be installed from this update site:
 
 *Please note, the the ECP installation is not compatible with the latest nightly EMFStore Release.*
 
+
+*Please turn "Group items by category" off and install all plugins from the website.*
+
 [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
 
 ==New and Noteworthy==
