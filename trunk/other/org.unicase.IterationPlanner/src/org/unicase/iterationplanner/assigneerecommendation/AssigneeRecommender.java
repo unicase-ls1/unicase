@@ -19,12 +19,12 @@ public class AssigneeRecommender {
 		return recommendationStrategy;
 	}
 
-	public List<TaskAssignee> getTaskAssignees() {
+	public List<TaskPotentialAssigneeList> getTaskAssignees() {
 
-		List<TaskAssignee> result = new ArrayList<TaskAssignee>();
+		List<TaskPotentialAssigneeList> result = new ArrayList<TaskPotentialAssigneeList>();
 		for (Task task : TaskPool.getInstance().getTasksToPlan()) {
 			List<AssigneeExpertise> assignees = recommendationStrategy.getRecommendedAssignees(task);
-			result.add(new TaskAssignee(task, assignees));
+			result.add(new TaskPotentialAssigneeList(task, assignees));
 		}
 
 		return result;

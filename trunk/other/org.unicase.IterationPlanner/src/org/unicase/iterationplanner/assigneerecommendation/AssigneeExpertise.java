@@ -26,9 +26,9 @@ public class AssigneeExpertise implements Comparable<AssigneeExpertise> {
 
 	public int compareTo(AssigneeExpertise otherAssignee) {
 		if (otherAssignee.getExpertise() > this.expertise) {
-			return -1;
+			return 1;
 		}
-		return 1;
+		return -1;
 	}
 
 }

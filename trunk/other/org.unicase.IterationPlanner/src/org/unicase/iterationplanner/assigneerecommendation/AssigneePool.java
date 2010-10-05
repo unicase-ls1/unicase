@@ -1,6 +1,9 @@
 package org.unicase.iterationplanner.assigneerecommendation;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.unicase.model.organization.User;
 
 public class AssigneePool {
 
@@ -22,8 +25,23 @@ public class AssigneePool {
 
 	}
 
-	public List<Assignee> getAvailableAssignees() {
+	public List<Assignee> getAssignees() {
+		if (assignees == null) {
+			assignees = new ArrayList<Assignee>();
+		}
 		return assignees;
+	}
+
+	public void setAssignees(List<User> users) {
+		assignees = new ArrayList<Assignee>();
+		for (User user : users) {
+			try {
+				assignees.add(new Assignee(user));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }

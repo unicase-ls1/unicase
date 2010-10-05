@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.emfstore.esmodel.edit,
  org.unicase.workspace.edit,
  org.eclipse.emf.transaction.ui,
- org.eclipse.ui.ide.application
+ org.eclipse.ui.ide.application,
+ org.unicase.ecpemfstorebridge;bundle-version="1.0.0",
+ org.unicase.ui.navigatormeeditorbridge;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
