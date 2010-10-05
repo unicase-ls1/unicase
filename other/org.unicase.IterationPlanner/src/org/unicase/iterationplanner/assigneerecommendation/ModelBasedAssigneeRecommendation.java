@@ -19,17 +19,22 @@ public class ModelBasedAssigneeRecommendation extends AssigneeRecommendationStra
 		List<AssigneeExpertise> recommendedAssignees = new ArrayList<AssigneeExpertise>();
 
 		// get related tasks
-		List<Task> relatedTasks = TaskPool.getInstance().getRelatedTasks(task);
+		List<Task> relatedTasks = new ArrayList<Task>();
+		try {
+			relatedTasks.addAll(TaskPool.getInstance().getRelatedTasks(task));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// all available assignees (from AssigneePool)
-		List<Assignee> availableAssignees = AssigneePool.getInstance().getAvailableAssignees();
+		List<Assignee> availableAssignees = AssigneePool.getInstance().getAssignees();
 
 		for (Assignee assignee : availableAssignees) {
 			double expertise = getExperties(assignee, relatedTasks);
 			recommendedAssignees.add(new AssigneeExpertise(assignee, expertise));
 		}
 		Collections.sort(recommendedAssignees);
-		return recommendedAssignees;
+		return recommendedAssignees.subList(0, getMaxNumOfAssignees());
 	}
 
 	/**
