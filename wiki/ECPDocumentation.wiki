@@ -1,4 +1,5 @@
 #summary Documentation of ECP
+[ModelsTutorial Models 2010 Tutorial]
 
 All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/TutorialsForUNICASE TutorialsForUNICASE channel]. You can enlarge the video and switch to HD for a better quality on !YouTube. To do this click into the video while it is running embedded in this website, this will open the video on !YouTube, where you can change the resolution and maximize to full screen.
 
@@ -25,19 +26,4 @@ Documentation:
 
  * [Model_API_Usage_Guidelines Model API Usage Guidelines]
 
-=Tutorial Models 2010=
 
-The following metarial was used for the tutorial hosted on Models 2010. Please use a Eclipse Galileo Modeling Edition. Install the update site and import the example model. The example solution contains the same plugins from the example model, but with the completed tasks from the tutorial. If you want to look at the solution, you should use a second workspace for that. Please contact us, if you have any questions.
-
- * [ECPDownloads Update Site]
-
- * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/exampleModel.zip Example Model Plugins]
-
- * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/sampleSolution.zip Example Model Plugins (Sample Solution)]
-
- * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/tutorialSlides.zip Tutorial Slides]
-
-
-
-*Important Note*:
-We know that this documentation is only a first start and we are still working on extending the documentation. 
