@@ -15,9 +15,9 @@ import java.util.List;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiAttributeSetSetConflict extends Conflict {
 
@@ -26,22 +26,32 @@ public class MultiAttributeSetSetConflict extends Conflict {
 		super(opsA, opsB, decisionManager);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
+	 */
 	@Override
-	protected ConflictContext initConflictContext() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
 
-	@Override
-	protected ConflictDescription initConflictDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		description
+			.setDescription("You have changed an element from the [feature] attribute of [modelelement], which was changed in the repository");
+
+		return description;
 	}
 
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		// TODO Auto-generated method stub
+		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
+		myOption.addOperations(getMyOperations());
+		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
+		theirOption.addOperations(getTheirOperations());
 
+		myOption.setOptionLabel("Keep my element");
+		theirOption.setOptionLabel("Keep their element");
+
+		options.add(myOption);
+		options.add(theirOption);
 	}
 
 }

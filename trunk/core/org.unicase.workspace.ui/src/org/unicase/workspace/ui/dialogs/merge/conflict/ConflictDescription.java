@@ -9,12 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
- * Container for the conflict description. The description contains placeholder
- * marked through surrounding [ ]. The values for the placeholders are stored in
- * a hashmap. This separation is done in order to support formated text. Use
+ * Container for the conflict description. The description contains placeholder marked through surrounding [ ]. The
+ * values for the placeholders are stored in a hashmap. This separation is done in order to support formated text. Use
  * {@link #getResolvedDescription()} in order to get a simple string.
  * 
  * @author wesendon
@@ -24,12 +25,12 @@ public class ConflictDescription {
 	private Map<String, Object> values;
 	private String description;
 	private String imageName;
+	private DecisionManager decisionManager;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param description
-	 *            description
+	 * @param description description
 	 */
 	public ConflictDescription(String description) {
 		this.description = description;
@@ -39,12 +40,13 @@ public class ConflictDescription {
 	/**
 	 * Add a place holder.
 	 * 
-	 * @param key
-	 *            key
-	 * @param value
-	 *            value
+	 * @param key key
+	 * @param value value
 	 */
 	public void add(String key, Object value) {
+		if (value instanceof ModelElementId) {
+			value = decisionManager.getModelElement((ModelElementId) value);
+		}
 		values.put(key, value);
 	}
 
@@ -52,7 +54,6 @@ public class ConflictDescription {
 	 * Get description with placeholders unreplaced.
 	 * 
 	 * @see #getResolvedDescription()
-	 * 
 	 * @return description
 	 */
 	public String getDescription() {
@@ -80,8 +81,7 @@ public class ConflictDescription {
 	/**
 	 * Set image.
 	 * 
-	 * @param name
-	 *            name of file
+	 * @param name name of file
 	 */
 	public void setImage(String name) {
 		this.imageName = name;
@@ -91,8 +91,7 @@ public class ConflictDescription {
 	/**
 	 * Set description.
 	 * 
-	 * @param description
-	 *            text
+	 * @param description text
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -111,9 +110,17 @@ public class ConflictDescription {
 			if (value instanceof ModelElement) {
 				value = DecisionUtil.getClassAndName((ModelElement) value);
 			}
-			result = result.replace(tmp, (value != null) ? value.toString()
-					: "");
+			result = result.replace(tmp, (value != null) ? value.toString() : "");
 		}
 		return result;
+	}
+
+	/**
+	 * Sets the decisionManager.
+	 * 
+	 * @param decisionManager manager.
+	 */
+	public void setDecisionManager(DecisionManager decisionManager) {
+		this.decisionManager = decisionManager;
 	}
 }

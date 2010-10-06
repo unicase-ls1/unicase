@@ -16,31 +16,20 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiAttributeConflict extends Conflict {
 
-	private final boolean myAdd;
-
 	public MultiAttributeConflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 		DecisionManager decisionManager, boolean myAdd) {
-		super(opsA, opsB, decisionManager);
-		this.myAdd = myAdd;
+		super(opsA, opsB, decisionManager, myAdd, true);
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictContext()
+	 * LEFT: ADDING RIGHT: REMOVING
 	 */
-	@Override
-	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(getMyOperation().getModelElementId()),
-			getMyOperation().getFeatureName(), getDecisionManager().getAuthorForOperation(getTheirOperation()));
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -48,10 +37,18 @@ public class MultiAttributeConflict extends Conflict {
 	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription() {
-		ConflictDescription conflictDescription = new ConflictDescription("Multiattribute Conflict");
-		conflictDescription.setImage("attribute.gif");
-		return conflictDescription;
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
+		String descriptionTxt = "Multiattribute Conflict";
+
+		if (isLeftMy()) {
+			descriptionTxt = "You have added an element to the [feature] attribute of [modelelement], which was removed in the repository.";
+		} else {
+			descriptionTxt = "An element of the [feature] attribute of [modelelement] was added in the repository. You chose to remove it.";
+		}
+
+		description.setDescription(descriptionTxt);
+		description.setImage("attribute.gif");
+		return description;
 	}
 
 	/**
@@ -61,33 +58,25 @@ public class MultiAttributeConflict extends Conflict {
 	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		ConflictOption my = new ConflictOption(getLabel(true), OptionType.MyOperation);
-		my.getOperations().addAll((myAdd) ? operationsA : operationsB);
+		ConflictOption my = new ConflictOption(getLabel(true) + " "
+			+ getMyOperation(MultiAttributeOperation.class).getReferencedValues().get(0), OptionType.MyOperation);
+		my.addOperations(getMyOperations());
 
-		ConflictOption their = new ConflictOption(getLabel(false), OptionType.TheirOperation);
-		their.getOperations().addAll((!myAdd) ? operationsA : operationsB);
+		ConflictOption their = new ConflictOption(getLabel(false) + " "
+			+ getTheirOperation(MultiAttributeOperation.class).getReferencedValues().get(0), OptionType.TheirOperation);
+		their.addOperations(getTheirOperations());
 
 		options.add(my);
 		options.add(their);
 	}
 
+	/**
+	 * TODO adjust lable
+	 * 
+	 * @param you
+	 * @return
+	 */
 	private String getLabel(boolean you) {
-		return ((myAdd && you || (!myAdd && !you)) ? "Add" : "Remove") + " ";
-	}
-
-	private MultiAttributeOperation getMyOperation() {
-		return (myAdd) ? getAdding() : getRemoving();
-	}
-
-	private MultiAttributeOperation getTheirOperation() {
-		return (!myAdd) ? getAdding() : getRemoving();
-	}
-
-	private MultiAttributeOperation getAdding() {
-		return (MultiAttributeOperation) operationsA.get(0);
-	}
-
-	private MultiAttributeOperation getRemoving() {
-		return (MultiAttributeOperation) operationsB.get(0);
+		return ((isLeftMy() && you || (!isLeftMy() && !you)) ? "Add" : "Remove") + " ";
 	}
 }

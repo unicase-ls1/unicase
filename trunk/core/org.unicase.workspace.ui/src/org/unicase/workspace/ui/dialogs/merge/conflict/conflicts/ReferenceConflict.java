@@ -15,8 +15,7 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 /**
- * Container for {@link MultiReferenceConflict} and
- * {@link SingleReferenceConflict}.
+ * Container for {@link MultiReferenceConflict} and {@link SingleReferenceConflict}.
  * 
  * @author wesendon
  */
@@ -27,17 +26,12 @@ public class ReferenceConflict extends Conflict {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param conflict
-	 *            underlying conflict, {@link MultiReferenceConflict} or
-	 *            {@link SingleReferenceConflict}
-	 * @param myOps
-	 *            list of my operations
-	 * @param theirOps
-	 *            list of their operations
+	 * @param conflict underlying conflict, {@link MultiReferenceConflict} or {@link SingleReferenceConflict}
+	 * @param myOps list of my operations
+	 * @param theirOps list of their operations
 	 */
-	public ReferenceConflict(Conflict conflict, List<AbstractOperation> myOps,
-			List<AbstractOperation> theirOps) {
-		super(myOps, theirOps, conflict.getDecisionManager(), false);
+	public ReferenceConflict(Conflict conflict, List<AbstractOperation> myOps, List<AbstractOperation> theirOps) {
+		super(myOps, theirOps, conflict.getDecisionManager(), conflict.isLeftMy(), false);
 		if (!(conflict instanceof SingleReferenceConflict || conflict instanceof MultiReferenceConflict)) {
 			throw new IllegalStateException("Only reference conflicts allowed.");
 		}
@@ -65,7 +59,7 @@ public class ReferenceConflict extends Conflict {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription() {
+	protected ConflictDescription initConflictDescription(ConflictDescription desc) {
 		return conflict.getConflictDescription();
 	}
 
@@ -77,10 +71,10 @@ public class ReferenceConflict extends Conflict {
 		for (ConflictOption option : conflict.getOptions()) {
 			if (option.getType() == OptionType.MyOperation) {
 				option.getOperations().clear();
-				option.getOperations().addAll(operationsA);
+				option.getOperations().addAll(getLeftOperations());
 			} else if (option.getType() == OptionType.TheirOperation) {
 				option.getOperations().clear();
-				option.getOperations().addAll(operationsB);
+				option.getOperations().addAll(getRightOperations());
 			}
 			options.add(option);
 		}
