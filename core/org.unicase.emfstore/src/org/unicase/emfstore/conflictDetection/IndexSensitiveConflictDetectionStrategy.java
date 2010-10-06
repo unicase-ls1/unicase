@@ -222,13 +222,18 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean doConflictHardMultiReferenceSet(MultiReferenceSetOperation operationA,
 		MultiReferenceSetOperation operationB) {
 
-		if (!sameFeatureAndId(operationA, operationB)) {
-			return false;
-		}
+		if (sameFeatureAndId(operationA, operationB)) {
 
-		if (operationA.getIndex() == operationB.getIndex()
-			&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
-			return true;
+			if (operationA.getIndex() == operationB.getIndex()
+				&& isDifferent(operationA.getNewValue(), operationB.getNewValue())) {
+				return true;
+			}
+		} else {
+			if (!bothContaining(operationA, operationB)) {
+				return false;
+			}
+
+			return isSame(operationA.getNewValue(), operationB.getNewValue());
 		}
 
 		return false;
@@ -255,7 +260,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				return false;
 			}
 
-			return containsId(operationA.getReferencedModelElements(), operationB.getModelElementId());
+			return containsId(operationA.getReferencedModelElements(), operationB.getNewValue());
 		}
 
 		return false;
