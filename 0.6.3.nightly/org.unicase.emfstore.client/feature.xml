@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client"
       label="EMFStore Client Feature"
-      version="0.6.2.nightly"
+      version="0.6.3.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -221,15 +221,15 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.unicase.emfstore"/>
-      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
    </requires>
 
    <plugin
          id="org.unicase.workspace"
          download-size="0"
          install-size="0"
-         version="0.6.2.nightly"
+         version="0.6.3.nightly"
          unpack="false"/>
 
    <plugin

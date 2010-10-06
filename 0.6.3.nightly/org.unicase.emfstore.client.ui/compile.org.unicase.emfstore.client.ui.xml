@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile org.unicase.emfstore.client.ui" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../org.unicase.metamodel.edit" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.emfstore.esmodel.edit" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.emfstore.branding" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.workspace.edit" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.ui.common" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.workspace.ui" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.ui.meeditor" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.ui.navigator" target="build.jars"/>
+	</target>
+</project>

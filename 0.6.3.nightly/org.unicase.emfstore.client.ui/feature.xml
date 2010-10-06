@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client.ui"
       label="EMFStore Client UI Feature"
-      version="0.6.2.nightly"
+      version="0.6.3.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -222,23 +222,21 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
       <import plugin="org.eclipse.emf.databinding.edit"/>
       <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.unicase.workspace"/>
-      <import plugin="org.unicase.emfstore.esmodel" version="0.5.13.nightly" match="greaterOrEqual"/>
-      <import plugin="org.unicase.metamodel.edit" version="0.5.13.nightly" match="greaterOrEqual"/>
+      <import plugin="org.unicase.emfstore.esmodel" version="0.6.3.nightly" match="greaterOrEqual"/>
+      <import plugin="org.unicase.metamodel.edit" version="0.6.3.nightly" match="greaterOrEqual"/>
       <import plugin="org.unicase.metamodel"/>
       <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.runtime"/>
    </requires>
 
    <plugin
@@ -292,6 +290,20 @@ litigation.
 
    <plugin
          id="org.unicase.emfstore.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.navigatormeeditorbridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ecpemfstorebridge"
          download-size="0"
          install-size="0"
          version="0.0.0"
