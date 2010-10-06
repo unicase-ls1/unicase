@@ -54,7 +54,7 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, false);
+			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, true);
 			allElements.remove(modelElement);
 			Object object = modelElement.eGet(eReference);
 

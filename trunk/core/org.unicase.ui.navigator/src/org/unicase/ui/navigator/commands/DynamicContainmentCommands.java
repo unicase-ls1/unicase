@@ -166,10 +166,10 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	 */
 	private void addCommandsForSubTypes(EClass refClass, List<IContributionItem> commands) {
 
-		// do not create commands for subclasses of ModelElement
-		if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
-			return;
-		}
+		// TODO EMFPlainObjectTransition: do not create commands for subclasses of ModelElement
+		// if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
+		// return;
+		// }
 
 		Set<EClass> eClazz = ModelUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);

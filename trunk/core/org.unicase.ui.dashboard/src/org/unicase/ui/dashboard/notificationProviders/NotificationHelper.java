@@ -8,9 +8,10 @@ package org.unicase.ui.dashboard.notificationProviders;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 
@@ -28,8 +29,7 @@ public final class NotificationHelper {
 	/**
 	 * Returns the latest date of a list of operations.
 	 * 
-	 * @param list
-	 *            a list of AbstractOperations
+	 * @param list a list of AbstractOperations
 	 * @return the latest date.
 	 */
 	public static Date getLastDate(List<AbstractOperation> list) {
@@ -52,27 +52,20 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the
-	 * message of Notifications.
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
-	 * @param meId
-	 *            The id of the model element
-	 * @param projectSpace
-	 *            the project space
-	 * @param active
-	 *            if there should be an actual link, or just the name
+	 * @param meId The id of the model element
+	 * @param projectSpace the project space
+	 * @param active if there should be an actual link, or just the name
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId,
-			ProjectSpace projectSpace, boolean active) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, boolean active) {
 
-		ModelElement modelElement = projectSpace.getProject().getModelElement(
-				meId);
+		EObject modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null && modelElement instanceof UnicaseModelElement) {
 			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 			if (active) {
-				return getHTMLLinkForModelElement(unicaseModelElement,
-						projectSpace);
+				return getHTMLLinkForModelElement(unicaseModelElement, projectSpace);
 			}
 			return unicaseModelElement.getName();
 		}
@@ -80,32 +73,24 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the
-	 * message of Notifications.
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
-	 * @param meId
-	 *            The id of the model element
-	 * @param projectSpace
-	 *            the project space
+	 * @param meId The id of the model element
+	 * @param projectSpace the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId,
-			ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
 		return getHTMLLinkForModelElement(meId, projectSpace, true);
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the
-	 * message of Notifications.
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
-	 * @param modelElement
-	 *            The model element
-	 * @param projectSpace
-	 *            the project space
+	 * @param modelElement The model element
+	 * @param projectSpace the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(
-			UnicaseModelElement modelElement, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace) {
 		String label = "null";
 		if (modelElement != null && modelElement.getName() != null) {
 			label = modelElement.getName().replaceAll("\"", "\\'");
@@ -114,20 +99,15 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the
-	 * message of Notifications.
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
-	 * @param modelElement
-	 *            The model element
-	 * @param projectSpace
-	 *            the project space
-	 * @param label
-	 *            the link's label
+	 * @param modelElement The model element
+	 * @param projectSpace the project space
+	 * @param label the link's label
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(
-			UnicaseModelElement modelElement, ProjectSpace projectSpace,
-			String label) {
+	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace,
+		String label) {
 		if (modelElement == null) {
 			return "";
 		}
@@ -145,7 +125,7 @@ public final class NotificationHelper {
 		}
 		ret.append(name);
 		ret.append("%");
-		ret.append(modelElement.getIdentifier());
+		ret.append(ModelUtil.getProject(modelElement).getModelElementId(modelElement).getId());
 		ret.append("\">");
 		ret.append(label);
 		ret.append("</a>");

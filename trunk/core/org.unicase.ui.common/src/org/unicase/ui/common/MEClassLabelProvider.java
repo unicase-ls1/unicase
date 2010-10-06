@@ -48,8 +48,8 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 			EClass eClass = (EClass) object;
 			EPackage ePackage = eClass.getEPackage();
 			if (!eClass.isAbstract() && !eClass.isInterface()) {
-				EObject eobject = ePackage.getEFactoryInstance().create(eClass);
-				return super.getImage(eobject);
+				EObject newMEInstance = ePackage.getEFactoryInstance().create(eClass);
+				return super.getImage(newMEInstance);
 			} else {
 				return super.getImage(object);
 			}

@@ -24,12 +24,11 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.ModelElementWrapperDescriptor;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -55,9 +54,14 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ModelElement selectedModelElement = ActionHelper.getSelectedModelElement();
-		if (projectSpace == null && selectedModelElement == null) {
+		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
+		Project p = ModelUtil.getProject(selectedModelElement);
+		if (selectedModelElement instanceof ProjectSpace) {
+			p = ((ProjectSpace) selectedModelElement).getProject();
+		}
+		final Project project = p;
+
+		if (project == null && selectedModelElement == null) {
 			return null;
 		}
 
@@ -79,16 +83,17 @@ public class ImportModelHandler extends AbstractHandler {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				importFile(projectSpace, fileURI, resource, progressDialog);
+				importFile(project, fileURI, resource, progressDialog);
 			}
 
-		}.run();
+		}.run(false);
 
 		return null;
 	}
 
-	private void importFile(final ProjectSpace projectSpace, final URI fileURI, final Resource resource,
+	private void importFile(Project project, final URI fileURI, final Resource resource,
 		final ProgressMonitorDialog progressDialog) {
+
 		try {
 			progressDialog.open();
 			progressDialog.getProgressMonitor().beginTask("Import model...", 100);
@@ -99,7 +104,7 @@ public class ImportModelHandler extends AbstractHandler {
 				int i = 0;
 				for (EObject eObject : importElements) {
 					// run the import command
-					runImport(projectSpace, fileURI, (ModelElement) EcoreUtil.copy(eObject), i);
+					runImport(project, fileURI, EcoreUtil.copy(eObject), i);
 					progressDialog.getProgressMonitor().worked(10);
 					i++;
 				}
@@ -126,9 +131,7 @@ public class ImportModelHandler extends AbstractHandler {
 			// 1. Run: Put all children in set
 			while (contents.hasNext()) {
 				EObject content = contents.next();
-				if (!(content instanceof ModelElement)) {
-					// TODO: Report to Console //System.out.println(content +
-					// " is not a ModelElement and can not be imported");
+				if (!(content != null)) {
 					continue;
 				}
 				childrenSet.add(content);
@@ -139,7 +142,7 @@ public class ImportModelHandler extends AbstractHandler {
 		// Drop RootNode, will be imported as a child
 		for (EObject rootNode : rootContent) {
 
-			if (!(rootNode instanceof ModelElement)) {
+			if (!(rootNode != null)) {
 				// No report to Console, because Run 1 will do this
 				continue;
 			}
@@ -163,6 +166,7 @@ public class ImportModelHandler extends AbstractHandler {
 	}
 
 	private String getFileName() {
+
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
@@ -190,20 +194,21 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @param element - the modelElement to import.
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
-	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
-		final ModelElement element, final int resourceIndex) {
+	private void runImport(final Project project, final org.eclipse.emf.common.util.URI uri, final EObject element,
+		final int resourceIndex) {
 
+		// TODO: PlainEObjectMode, test import
 		// try to find a wrapper for the element which will be added to the project
-		ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
-			element, uri, resourceIndex);
-
-		// if no wrapper could be created, use the element itself to add it to the project
-		if (wrapper == null) {
-			wrapper = element;
-		}
+		// EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
+		// element, uri, resourceIndex);
+		//
+		// // if no wrapper could be created, use the element itself to add it to the project
+		// if (wrapper == null) {
+		// wrapper = element;
+		// }
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		projectSpace.getProject().addModelElement(ModelUtil.copy(wrapper));
+		project.addModelElement(element);
 	}
 }

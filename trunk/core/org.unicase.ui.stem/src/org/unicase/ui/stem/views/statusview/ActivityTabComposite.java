@@ -7,6 +7,7 @@ package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -19,7 +20,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
@@ -141,7 +141,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -150,7 +150,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -161,7 +161,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		treeViewer.refresh();
 	}
 

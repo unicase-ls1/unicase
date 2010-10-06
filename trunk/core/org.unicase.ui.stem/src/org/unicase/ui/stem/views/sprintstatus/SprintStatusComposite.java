@@ -10,6 +10,7 @@ import java.util.Comparator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -23,7 +24,6 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
@@ -175,7 +175,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
@@ -186,7 +186,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -197,7 +197,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}

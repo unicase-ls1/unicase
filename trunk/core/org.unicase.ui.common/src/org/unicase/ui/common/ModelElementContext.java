@@ -12,11 +12,9 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.ModelElement;
 
 /**
- * The context of a certain {@link ModelElement}. Subclasses shall call modelelementDeleted and contextDeleted.
+ * The context of a certain {@link EObject}. Subclasses shall call modelelementDeleted and contextDeleted.
  * 
  * @author helming
  */
@@ -69,58 +67,58 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	public abstract EditingDomain getEditingDomain();
 
 	/**
-	 * Returns all {@link ModelElement} in the context, which are of a certain type.
+	 * Returns all {@link EObject} in the context, which are of a certain type.
 	 * 
 	 * @param clazz the type
-	 * @return a {@link Collection} of {@link ModelElement}
+	 * @return a {@link Collection} of {@link EObject}
 	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz) {
 		return getAllModelElementsbyClass(clazz, true);
 	}
 
 	/**
-	 * Returns all {@link ModelElement} in the context, which are of a certain type. Could exclude
+	 * Returns all {@link EObject} in the context, which are of a certain type. Could exclude
 	 * {@link AssociationClassElement}'s.
 	 * 
 	 * @param clazz the type
 	 * @param association whether to include {@link AssociationClassElement}
-	 * @return a {@link Collection} of {@link ModelElement}
+	 * @return a {@link Collection} of {@link EObject}
 	 */
 	public abstract Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association);
 
 	/**
-	 * Returns all {@link ModelElement} in the context.
+	 * Returns all {@link EObject} in the context.
 	 * 
-	 * @return a {@link Collection} of {@link ModelElement}
+	 * @return a {@link Collection} of {@link EObject}
 	 */
 	public abstract Collection<EObject> getAllModelElements();
 
 	/**
-	 * Whether a {@link ModelElement} is a no domain element. Non Domain Elements which are not root nodes of the model
-	 * and do not exist on their own The Have the following characteristic behaviour: The dont appear in the openME
-	 * dialog, They are deleted if the last link to them is deleted, They are not shown in the new element wizard, They
-	 * are not shown in the METyselection dialog (Table View)
+	 * Whether a {@link EObject} is a no domain element. Non Domain Elements which are not root nodes of the model and
+	 * do not exist on their own The Have the following characteristic behavior: The don't appear in the openME dialog,
+	 * They are deleted if the last link to them is deleted, They are not shown in the new element wizard, They are not
+	 * shown in the METyselection dialog (Table View)
 	 * 
-	 * @param eObject the {@link ModelElement}
+	 * @param eObject the {@link EObject}
 	 * @return if it is non domain
 	 */
 	public abstract boolean isNonDomainElement(EObject eObject);
 
 	/**
-	 * Whether a {@link ModelElement} is a association class. Association classes are not displayed as dedicated
-	 * elements. A link from one element to another which goes over an association class is displayed by a dedicated
-	 * widget. This widgets allows to trace transparently without seeing the association class.
+	 * Whether a {@link EObject} is a association class. Association classes are not displayed as dedicated elements. A
+	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
+	 * widgets allows to trace transparently without seeing the association class.
 	 * 
-	 * @param eObject the {@link ModelElement}
+	 * @param eObject the {@link EObject}
 	 * @return if it is an association
 	 */
 	public abstract boolean isAssociationClassElement(EObject eObject);
 
 	/**
-	 * Returns an {@link AssociationClassElement} wrapper for a {@link ModelElement}.
+	 * Returns an {@link AssociationClassElement} wrapper for a {@link EObject}.
 	 * 
-	 * @param eObject the {@link ModelElement}
-	 * @return the wrapper, {@code null} if {@link ModelElement} not exists
+	 * @param eObject the {@link EObject}
+	 * @return the wrapper, {@code null} if {@link EObject} not exists
 	 */
 	public abstract ECPAssociationClassElement getAssociationClassElement(EObject eObject);
 
@@ -132,10 +130,10 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	public abstract MetaModelElementContext getMetaModelElementContext();
 
 	/**
-	 * If a {@link ModelElement} is contained in this context and can be therefore referenced by the
-	 * {@link ModelElement} defining the context.
+	 * If a {@link EObject} is contained in this context and can be therefore referenced by the {@link EObject} defining
+	 * the context.
 	 * 
-	 * @param eObject the {@link ModelElement}
+	 * @param eObject the {@link EObject}
 	 * @return if the {@link EObject} is contained in the context
 	 */
 	public abstract boolean contains(EObject eObject);

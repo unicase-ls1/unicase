@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -45,8 +46,6 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -77,8 +76,9 @@ public class DashboardPropertyPage extends PropertyPage {
 		@Override
 		protected Object doRun() {
 			ArrayList<ModelElementId> subscriptionsIds = new ArrayList<ModelElementId>();
-			for (ModelElement me : subscriptions) {
-				subscriptionsIds.add(me.getModelElementId());
+			for (EObject me : subscriptions) {
+				ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
+				subscriptionsIds.add(meId);
 			}
 			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS, subscriptionsIds
 				.toArray(new ModelElementId[0]));
@@ -123,7 +123,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	private Project project;
 	private ProjectSpace projectSpace;
 
-	private HashSet<ModelElement> subscriptions;
+	private HashSet<EObject> subscriptions;
 	private Spinner taskTraceLength;
 	private HashSet<EClass> taskTraceClasses;
 	private Button showBRTasks;
@@ -207,7 +207,7 @@ public class DashboardPropertyPage extends PropertyPage {
 				dialog.setMultipleSelection(true);
 				dialog.setElements(project.getAllModelElements().toArray());
 				if (dialog.open() == Window.OK) {
-					subscriptions.addAll((List<? extends ModelElement>) Arrays.asList(dialog.getResult()));
+					subscriptions.addAll((List<? extends EObject>) Arrays.asList(dialog.getResult()));
 					elementsTable.setInput(subscriptions.toArray());
 				}
 			}
@@ -223,7 +223,7 @@ public class DashboardPropertyPage extends PropertyPage {
 				Iterator<Object> iterator = selection.iterator();
 				while (iterator.hasNext()) {
 					Object o = iterator.next();
-					ModelElement modelElement = (ModelElement) o;
+					EObject modelElement = (EObject) o;
 					subscriptions.remove(modelElement);
 					elementsTable.setInput(subscriptions.toArray());
 				}
@@ -265,7 +265,7 @@ public class DashboardPropertyPage extends PropertyPage {
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), meClassLabelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
-				Set<EClass> subclasses = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement());
+				Set<EClass> subclasses = ModelUtil.getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
 				subclasses.removeAll(taskTraceClasses);
 				dialog.setElements(subclasses.toArray());
 				if (dialog.open() == Window.OK) {
@@ -420,7 +420,7 @@ public class DashboardPropertyPage extends PropertyPage {
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
 
 		// init the model based UI
-		subscriptions = new HashSet<ModelElement>();
+		subscriptions = new HashSet<EObject>();
 		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
 			OrgUnitProperty subscriptionsProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				DashboardKey.SUBSCRIPTIONS);
@@ -428,7 +428,7 @@ public class DashboardPropertyPage extends PropertyPage {
 
 			for (EObject id : subscriptionsIds) {
 				if (id instanceof ModelElementId) {
-					ModelElement modelElement = project.getModelElement((ModelElementId) id);
+					EObject modelElement = project.getModelElement((ModelElementId) id);
 					if (modelElement != null) {
 						subscriptions.add(modelElement);
 					}

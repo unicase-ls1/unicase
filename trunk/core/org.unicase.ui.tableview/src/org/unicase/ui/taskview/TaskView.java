@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
@@ -30,8 +31,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
@@ -382,9 +381,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			MetamodelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
@@ -463,7 +462,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -477,7 +476,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -493,7 +492,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
