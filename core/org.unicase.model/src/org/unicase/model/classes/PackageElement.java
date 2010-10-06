@@ -26,29 +26,27 @@ import org.unicase.model.UnicaseModelElement;
  */
 public interface PackageElement extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Parent Package</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.classes.Package#getContainedPackageElements
-	 * <em>Contained Package Elements</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parent Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Package#getContainedPackageElements <em>Contained Package Elements</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent Package</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Parent Package</em>' container reference.
 	 * @see #setParentPackage(org.unicase.model.classes.Package)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_ParentPackage()
 	 * @see org.unicase.model.classes.Package#getContainedPackageElements
-	 * @model opposite="containedPackageElements" keys="identifier" transient="false"
+	 * @model opposite="containedPackageElements" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Package getParentPackage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.PackageElement#getParentPackage <em>Parent Package</em>}'
-	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.classes.PackageElement#getParentPackage <em>Parent Package</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Package</em>' container reference.
 	 * @see #getParentPackage()
 	 * @generated
@@ -56,37 +54,39 @@ public interface PackageElement extends UnicaseModelElement {
 	void setParentPackage(org.unicase.model.classes.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Outgoing Dependencies</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.classes.Dependency}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Outgoing Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Dependency}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Dependencies</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Outgoing Dependencies</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_OutgoingDependencies()
 	 * @see org.unicase.model.classes.Dependency#getSource
-	 * @model opposite="source" keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="source"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Dependency> getOutgoingDependencies();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Dependencies</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.classes.Dependency}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Incoming Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Dependency}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Dependencies</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Incoming Dependencies</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_IncomingDependencies()
 	 * @see org.unicase.model.classes.Dependency#getTarget
-	 * @model opposite="target" keys="identifier" annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 * @model opposite="target"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<Dependency> getIncomingDependencies();

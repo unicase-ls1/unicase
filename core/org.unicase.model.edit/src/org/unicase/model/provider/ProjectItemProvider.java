@@ -11,13 +11,28 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
+import org.unicase.emfstore.esmodel.notification.NotificationFactory;
+import org.unicase.emfstore.esmodel.url.UrlFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
@@ -33,19 +48,20 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.model.util.UtilFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Project} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.Project} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
@@ -53,8 +69,8 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,9 +116,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,6 +126,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ModelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -224,6 +243,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RationaleFactory.eINSTANCE.createAudioComment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -290,6 +312,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			UtilFactory.eINSTANCE.createModelElementPath()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -306,6 +331,462 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectHistory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createSessionId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createServerSpace()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createDateVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createLogMessage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryQuery()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHeadVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersionProperty()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createModelElementGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createCheckoutEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createExceptionEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginStartEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createUpdateEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createAnnotationEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createRevertEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowHistoryEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPerspectiveEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createDNDEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createLinkEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createTraceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginFocusEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createUndoEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createValidate()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowChangesEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACUser()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnitId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createReaderRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createWriterRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createProjectAdminRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createServerAdmin()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotificationFactory.eINSTANCE.createESNotification()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createServerUrl()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createProjectUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrl()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createEdge()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createFillStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createLineStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createFontStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createTitleStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createSortingStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDescriptionStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createSize()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createLocation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBounds()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createRatio()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createIdentityAnchor()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createRoutingStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createRelativeBendpoints()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createImage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createCanonicalStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createShapeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createConnectorStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createPageStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDrawerStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createGuideStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createGuide()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.create(NotationPackage.Literals.NODE_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createFilteringStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagramStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createImageStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createImageBufferStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createNamedStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createPropertiesSetStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.create(NotationPackage.Literals.STRING_TO_PROPERTY_VALUE_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createPropertyValue()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDataTypeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createSingleValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createIntValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createIntListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBooleanValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDoubleValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDoubleListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createStringValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createStringListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createEObjectValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createEObjectListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createByteArrayValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBooleanListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createHintedDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createMultiDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createTextStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createLineTypeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createArrowStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createShape()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicDecorationNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createDecorationNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createListCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createConnector()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createStandardDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicSemanticCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createSemanticListCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			ModelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			OrganizationFactory.eINSTANCE.createUser()));
@@ -422,6 +903,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			RationaleFactory.eINSTANCE.createAudioComment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
@@ -488,6 +972,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			UtilFactory.eINSTANCE.createModelElementPath()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ActivityFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
@@ -504,12 +991,465 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEObject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEAnnotation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEClass()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEDataType()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEEnum()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEPackage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEParameter()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEReference()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEGenericType()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createETypeParameter()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectHistory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createSessionId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createServerSpace()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createProjectId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createDateVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createLogMessage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryQuery()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHeadVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersionProperty()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.createModelElementGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createCheckoutEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createExceptionEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginStartEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createUpdateEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createAnnotationEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createRevertEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowHistoryEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createPerspectiveEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createDNDEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createLinkEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createTraceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginFocusEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createUndoEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createValidate()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowChangesEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACUser()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACGroup()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnitId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			RolesFactory.eINSTANCE.createReaderRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			RolesFactory.eINSTANCE.createWriterRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			RolesFactory.eINSTANCE.createProjectAdminRole()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			RolesFactory.eINSTANCE.createServerAdmin()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotificationFactory.eINSTANCE.createESNotification()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			UrlFactory.eINSTANCE.createServerUrl()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			UrlFactory.eINSTANCE.createProjectUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrl()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createEdge()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createFillStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createLineStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createFontStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createTitleStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createSortingStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDescriptionStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createSize()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createLocation()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBounds()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createRatio()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createIdentityAnchor()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createRoutingStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createRelativeBendpoints()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createImage()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createCanonicalStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createShapeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createConnectorStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createPageStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDrawerStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createGuideStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createGuide()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.create(NotationPackage.Literals.NODE_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createFilteringStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagramStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createImageStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createImageBufferStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createNamedStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createPropertiesSetStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.create(NotationPackage.Literals.STRING_TO_PROPERTY_VALUE_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createPropertyValue()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDataTypeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createSingleValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createIntValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createIntListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBooleanValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDoubleValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDoubleListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createStringValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createStringListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createEObjectValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createEObjectListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createByteArrayValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBooleanListValueStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createHintedDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createMultiDiagramLinkStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createTextStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createLineTypeStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createArrowStyle()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createShape()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicDecorationNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createDecorationNode()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createListCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createConnector()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createStandardDiagram()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createBasicSemanticCompartment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createSemanticListCompartment()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -528,8 +1468,8 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
