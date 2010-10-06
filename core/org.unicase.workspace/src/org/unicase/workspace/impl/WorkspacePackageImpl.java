@@ -30,62 +30,53 @@ import org.unicase.workspace.WorkspacePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass workspaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass serverInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass usersessionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass projectSpaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass operationCompositeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pendingFileTransferEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eventCompositeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass notificationCompositeEClass = null;
@@ -109,18 +100,17 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link WorkspacePackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link WorkspacePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -156,7 +146,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getWorkspace() {
@@ -165,7 +154,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ProjectSpaces() {
@@ -174,7 +162,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ServerInfos() {
@@ -183,7 +170,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_Usersessions() {
@@ -192,7 +178,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ActiveProjectSpace() {
@@ -201,7 +186,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getServerInfo() {
@@ -210,7 +194,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Name() {
@@ -219,7 +202,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Url() {
@@ -228,7 +210,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Port() {
@@ -237,7 +218,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_ProjectInfos() {
@@ -246,7 +226,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_LastUsersession() {
@@ -255,7 +234,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_CertificateAlias() {
@@ -264,7 +242,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUsersession() {
@@ -273,7 +250,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Username() {
@@ -282,7 +258,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Password() {
@@ -291,7 +266,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_SessionId() {
@@ -300,7 +274,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_PersistentPassword() {
@@ -309,7 +282,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ServerInfo() {
@@ -318,7 +290,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_SavePassword() {
@@ -327,7 +298,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ACUser() {
@@ -336,7 +306,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ChangedProperties() {
@@ -345,7 +314,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProjectSpace() {
@@ -354,7 +322,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Project() {
@@ -363,7 +330,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_ProjectId() {
@@ -372,7 +338,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectName() {
@@ -381,7 +346,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectDescription() {
@@ -390,7 +354,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Events() {
@@ -399,7 +362,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Usersession() {
@@ -408,7 +370,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_LastUpdated() {
@@ -417,7 +378,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_BaseVersion() {
@@ -426,7 +386,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ResourceCount() {
@@ -435,7 +394,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_Dirty() {
@@ -444,7 +402,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_OldLogMessages() {
@@ -453,7 +410,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_LocalOperations() {
@@ -462,7 +418,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Notifications() {
@@ -471,7 +426,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_PendingFileTransfers() {
@@ -480,7 +434,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_EventComposite() {
@@ -489,7 +442,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_NotificationComposite() {
@@ -498,7 +450,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOperationComposite() {
@@ -507,7 +458,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOperationComposite_Operations() {
@@ -516,7 +466,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPendingFileTransfer() {
@@ -525,7 +474,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPendingFileTransfer_AttachmentId() {
@@ -534,7 +482,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_FileVersion() {
@@ -543,7 +490,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_ChunkNumber() {
@@ -552,7 +498,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_Upload() {
@@ -561,7 +506,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_FileName() {
@@ -570,7 +514,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_PreliminaryFileName() {
@@ -579,7 +522,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEventComposite() {
@@ -588,7 +530,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEventComposite_Events() {
@@ -597,7 +538,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getNotificationComposite() {
@@ -606,7 +546,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNotificationComposite_Notifications() {
@@ -615,7 +554,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkspaceFactory getWorkspaceFactory() {
@@ -624,15 +562,14 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -703,15 +640,14 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {

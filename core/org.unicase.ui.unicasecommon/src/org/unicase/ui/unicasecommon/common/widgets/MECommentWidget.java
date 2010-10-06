@@ -21,6 +21,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
@@ -73,7 +74,7 @@ public class MECommentWidget extends Composite {
 	 * @param composite the parent composite
 	 * @param showReplies show/hide replies
 	 */
-	public MECommentWidget(Comment comment, Composite composite, boolean showReplies) {
+	public MECommentWidget(final Comment comment, Composite composite, boolean showReplies) {
 		super(composite, SWT.NONE);
 		this.comment = comment;
 		replies = new ArrayList<MECommentWidget>();
@@ -138,7 +139,9 @@ public class MECommentWidget extends Composite {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		Label commentTime = new Label(commentTitleBar, SWT.WRAP);
-		commentTime.setText(dateFormat.format(comment.getCreationDate()));
+		if (comment.getCreationDate() != null) {
+			commentTime.setText(dateFormat.format(comment.getCreationDate()));
+		}
 
 		Composite commentTitleBarBorder = new Composite(this, SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(commentTitleBarBorder);
@@ -187,7 +190,7 @@ public class MECommentWidget extends Composite {
 						new UnicaseCommand() {
 							@Override
 							protected void doRun() {
-								MECommentWidget.this.comment.delete();
+								ModelUtil.getProject(comment).deleteModelElement(comment);
 								MECommentWidget.this.dispose();
 								MECommentWidget parent = MECommentWidget.this.getParentWidget();
 								if (parent != null && parent.getParentWidget() != null) {

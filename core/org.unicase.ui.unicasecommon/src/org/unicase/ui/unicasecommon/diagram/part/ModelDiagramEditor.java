@@ -51,7 +51,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
@@ -161,7 +160,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
-		private List<ModelElement> mesDrop, mesAdd;
+		private List<EObject> mesDrop, mesAdd;
 		private int x, y;
 
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
@@ -174,8 +173,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			if (super.isEnabled(event)) {
 				if (!mesDrop.isEmpty()) {
 					MEDiagram diagram = (MEDiagram) getDiagram().getElement();
-					mesAdd = new ArrayList<ModelElement>();
-					for (ModelElement me : mesDrop) {
+					mesAdd = new ArrayList<EObject>();
+					for (EObject me : mesDrop) {
 						// do not add elements that are already added and check if they are allowed for the diagram
 						if (!diagram.getElements().contains(me) && isAllowedType(diagram, me)) {
 							mesAdd.add(me);
@@ -194,7 +193,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		}
 
 		@SuppressWarnings("unchecked")
-		private boolean isAllowedType(MEDiagram diagram, ModelElement dropee) {
+		private boolean isAllowedType(MEDiagram diagram, EObject dropee) {
 			// get all registered contexts
 			Set<IClientContext> clientContexts = ClientContextManager.getInstance().getClientContexts();
 			for (IClientContext clientContext : clientContexts) {
@@ -220,16 +219,16 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		}
 
 		@Override
-		protected List<ModelElement> getObjectsBeingDropped() {
+		protected List<EObject> getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
 			Object transferedObject = getJavaObject(data);
-			mesDrop = new ArrayList<ModelElement>();
+			mesDrop = new ArrayList<EObject>();
 			if (transferedObject instanceof List) {
 				List<?> selection = (List<?>) transferedObject;
 				for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof ModelElement) {
-						mesDrop.add((ModelElement) nextSelectedObject);
+					if (nextSelectedObject instanceof EObject) {
+						mesDrop.add((EObject) nextSelectedObject);
 					}
 				}
 			}

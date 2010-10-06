@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
@@ -393,6 +394,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));

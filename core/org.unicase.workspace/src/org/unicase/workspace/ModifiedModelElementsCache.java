@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
@@ -129,10 +129,9 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		if (number == null || number < 1) {
 			number = 1;
 			if (!modifiedModelElements.containsKey(parentModelElementId)) {
-				ModelElement nextParentModelElement = getModelElementForId(parentModelElementId)
-					.getContainerModelElement();
-				if (nextParentModelElement != null) {
-					addOneToParent(nextParentModelElement.getModelElementId());
+				EObject nextParentModelElement = getModelElementForId(parentModelElementId).eContainer();
+				if (nextParentModelElement != null && nextParentModelElement != this.projectSpace.getProject()) {
+					addOneToParent(this.projectSpace.getProject().getModelElementId(nextParentModelElement));
 				}
 			}
 		} else {
@@ -146,15 +145,15 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @return the model element id of the parent of the model element id passed as reference, or null if there is none
 	 */
 	private ModelElementId getNextParentModelElementId(ModelElementId childModelElementId) {
-		ModelElement childModelElement = getModelElementForId(childModelElementId);
+		EObject childModelElement = getModelElementForId(childModelElementId);
 		if (childModelElement == null) {
 			return null;
 		}
-		ModelElement nextParentModelElement = childModelElement.getContainerModelElement();
-		if (nextParentModelElement == null) {
+		EObject nextParentModelElement = childModelElement.eContainer();
+		if (nextParentModelElement == null || nextParentModelElement == this.projectSpace.getProject()) {
 			return null;
 		} else {
-			return nextParentModelElement.getModelElementId();
+			return this.projectSpace.getProject().getModelElementId(nextParentModelElement);
 		}
 	}
 
@@ -162,7 +161,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @param modelElementId the
 	 * @return the model element for the model element id passed as reference
 	 */
-	private ModelElement getModelElementForId(ModelElementId modelElementId) {
+	private EObject getModelElementForId(ModelElementId modelElementId) {
 		return projectSpace.getProject().getModelElement(modelElementId);
 	}
 

@@ -16,7 +16,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.workspace.WorkspaceManager;
@@ -75,6 +76,7 @@ public class MEURLLinkControl extends MELinkControl {
 			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
 				.createImage();
 			urlHyperlink.setImage(launchImage);
+
 			modelElementChangeListener2 = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
 
 				@Override
@@ -96,10 +98,13 @@ public class MEURLLinkControl extends MELinkControl {
 						return;
 					}
 					Program.launch(url);
-					ModelElement urlAttachement = (ModelElement) link;
-					MEURLControl.logEvent(((ModelElement) contextModelElement).getModelElementId(), urlAttachement
-						.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
-						"org.unicase.ui.meeditor");
+					EObject urlAttachement = link;
+					ModelElementId contextModelElementId = ModelUtil.getProject(contextModelElement).getModelElementId(
+						contextModelElement);
+					ModelElementId urlModelElementId = ModelUtil.getProject(urlAttachement).getModelElementId(
+						urlAttachement);
+					MEURLControl.logEvent(contextModelElementId, urlModelElementId, WorkspaceManager
+						.getProjectSpace(urlAttachement), "org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
 				}

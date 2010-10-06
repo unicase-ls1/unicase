@@ -10,7 +10,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
@@ -76,8 +76,8 @@ public class UserFilter extends ViewerFilter {
 				return true;
 			}
 
-		} else if (element instanceof ModelElement) {
-			String creator = ((ModelElement) element).getCreator();
+		} else if (element instanceof UnicaseModelElement) {
+			String creator = ((UnicaseModelElement) element).getCreator();
 			if (user.getName().equals(creator)) {
 				return true;
 			}
@@ -116,14 +116,15 @@ public class UserFilter extends ViewerFilter {
 				}
 			}
 
-		} else if (element instanceof ModelElement) {
-			String creator = ((ModelElement) element).getCreator();
+		} else if (element instanceof UnicaseModelElement) {
+			String creator = ((UnicaseModelElement) element).getCreator();
 			for (OrgUnit orgUnit : team) {
 				if (orgUnit.getName().equals(creator)) {
 					return true;
 				}
 			}
 		}
+
 		return false;
 	}
 
