@@ -51,6 +51,8 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiAttributeS
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceSetConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceSetSetConflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceSetSingleConflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.MultiReferenceSingleConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.ReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.conflicts.SingleReferenceConflict;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
@@ -189,6 +191,11 @@ public class DecisionManager {
 				addConflict(createMultiMultiConflict(conf));
 				continue;
 
+			} else if ((isMultiRef(my) && isSingleRef(their)) || (isMultiRef(their) && isSingleRef(my))) {
+
+				addConflict(createMultiSingle(conf));
+				continue;
+
 			} else if (isCompositeRef(my) && isCompositeRef(their)) {
 
 				addConflict(createReferenceConflict(conf));
@@ -208,6 +215,11 @@ public class DecisionManager {
 			} else if (isMultiRefSet(my) && isMultiRefSet(their)) {
 
 				addConflict(createMultiRefSetSet(conf));
+				continue;
+
+			} else if ((isMultiRefSet(my) && isSingleRef(their)) || (isMultiRefSet(their) && isSingleRef(my))) {
+
+				addConflict(createMultiSetSingle(conf));
 				continue;
 
 			} else if (isMultiAtt(my) && isMultiAtt(their)) {
@@ -261,6 +273,22 @@ public class DecisionManager {
 			return new MultiReferenceSetConflict(conf.getMyOperations(), conf.getTheirOperations(), this, true);
 		} else {
 			return new MultiReferenceSetConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
+		}
+	}
+
+	private Conflict createMultiSetSingle(Conflicting conf) {
+		if (isMultiRefSet(conf.getMyOperation())) {
+			return new MultiReferenceSetSingleConflict(conf.getMyOperations(), conf.getTheirOperations(), this, true);
+		} else {
+			return new MultiReferenceSetSingleConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
+		}
+	}
+
+	private Conflict createMultiSingle(Conflicting conf) {
+		if (isMultiRef(conf.getMyOperation())) {
+			return new MultiReferenceSingleConflict(conf.getMyOperations(), conf.getTheirOperations(), this, true);
+		} else {
+			return new MultiReferenceSingleConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
 		}
 	}
 
