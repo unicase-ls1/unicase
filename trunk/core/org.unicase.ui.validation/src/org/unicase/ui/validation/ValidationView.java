@@ -54,7 +54,8 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
@@ -226,12 +227,11 @@ public class ValidationView extends ViewPart {
 
 				EObject me = constraintStatus.getTarget();
 				Iterator<EObject> iterator = constraintStatus.getResultLocus().iterator();
-				if (me instanceof ModelElement) {
+				if (me instanceof EObject) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						ActionHelper.openModelElement((ModelElement) me, errorLocation, viewId,
-							new EMFStoreModelelementContext((ModelElement) me));
+						ActionHelper.openModelElement(me, errorLocation, viewId, new EMFStoreModelelementContext(me));
 					} else {
 						ActionHelper.openModelElement(me, viewId);
 					}
@@ -356,10 +356,10 @@ public class ValidationView extends ViewPart {
 	}
 
 	private void removeAllTableItemsForEObject(final IConstraintStatus status) {
-		ModelElement deletee = (ModelElement) status.getTarget();
+		EObject deletee = status.getTarget();
 		for (TableItem tableItem : tableViewer.getTable().getItems()) {
 			IConstraintStatus constraintStatus = (IConstraintStatus) tableItem.getData();
-			ModelElement modelElement = (ModelElement) constraintStatus.getTarget();
+			EObject modelElement = constraintStatus.getTarget();
 			if (deletee == modelElement) {
 				tableItem.dispose();
 			}
@@ -414,7 +414,9 @@ public class ValidationView extends ViewPart {
 
 							@Override
 							protected void doRun() {
-								((ModelElement) status.getTarget()).delete();
+								EObject target = status.getTarget();
+								Project project = ModelUtil.getProject(target);
+								project.deleteModelElement(target);
 							}
 						}.run();
 					}

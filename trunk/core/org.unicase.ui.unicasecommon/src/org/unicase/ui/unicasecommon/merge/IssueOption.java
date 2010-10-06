@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
@@ -105,7 +105,7 @@ public class IssueOption extends CustomConflictOption {
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
 		EObject eContainer = project;
 		if (myOperations.size() > 0) {
-			ModelElement modelElement = project.getModelElement(myOperations.get(0).getModelElementId());
+			EObject modelElement = project.getModelElement(myOperations.get(0).getModelElementId());
 			if (modelElement != null) {
 				eContainer = modelElement;
 			}
@@ -135,8 +135,8 @@ public class IssueOption extends CustomConflictOption {
 		try {
 			compositeOperation.end("Created Merge Issue", "Created a merge issue after updating from version "
 				+ conflict.getDecisionManager().getBaseVersion().getIdentifier() + " to "
-				+ conflict.getDecisionManager().getTargetVersion().getIdentifier() + ".", mergeIssue
-				.getModelElementId());
+				+ conflict.getDecisionManager().getTargetVersion().getIdentifier() + ".", ModelUtil.getProject(
+				mergeIssue).getModelElementId(mergeIssue));
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
@@ -156,7 +156,7 @@ public class IssueOption extends CustomConflictOption {
 			set.addAll(operation.getAllInvolvedModelElements());
 		}
 		for (ModelElementId id : set) {
-			ModelElement modelElement = project.getModelElement(id);
+			EObject modelElement = project.getModelElement(id);
 			if (modelElement instanceof UnicaseModelElement) {
 				EList<Annotation> annotations = ((UnicaseModelElement) modelElement).getAnnotations();
 				if (!annotations.contains(mergeIssue)) {

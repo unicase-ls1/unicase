@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -55,7 +57,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
@@ -379,6 +380,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.addOperationListener(modifiedModelElementsCache);
 		this.addCommitObserver(modifiedModelElementsCache);
 		shareObservers.add(modifiedModelElementsCache);
+
 	}
 
 	// end of custom code
@@ -1499,7 +1501,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	private void cleanCutElements() {
-		for (ModelElement cutElement : getProject().getCutElements()) {
+		for (EObject cutElement : getProject().getCutElements()) {
 			project.deleteModelElement(cutElement);
 		}
 
@@ -1561,9 +1563,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<ModelElement> modelElements = getProject().getAllModelElements();
+		List<EObject> modelElements = this.getProject().getModelElements();
+		// TODO: PlainEObjectMode, test if resource split works as expected
 		int counter = Configuration.getMaxMECountPerResource() + 1;
-		for (ModelElement modelElement : modelElements) {
+		for (EObject modelElement : modelElements) {
+
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
@@ -1575,7 +1579,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			counter++;
 			resource.getContents().add(modelElement);
+
+			TreeIterator<EObject> it = modelElement.eAllContents();
+			while (it.hasNext()) {
+				EObject child = it.next();
+				counter++;
+				((XMIResource) resource).setID(child, getProject().getModelElementId(child).getId());
+
+			}
+
+			((XMIResource) resource).setID(modelElement, getProject().getModelElementId(modelElement).getId());
 		}
+
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
 		if (this.getLocalOperations() == null) {
 			this.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
@@ -1904,13 +1919,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		stopChangeRecording();
 		changeTracker.setAutoSave(false);
 
-		// Set user as creator when sharing a project
-		for (ModelElement me : this.getProject().getAllModelElements()) {
-			if (me.getCreator() == null || me.getCreator().equals("")
-				|| me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
-				me.setCreator(usersession.getUsername());
-				changeTracker.save(me);
-			}
+		// TODO: PlainEObjectMode: Set user as creator when sharing a project
+		for (EObject me : this.getProject().getAllModelElements()) {
+			// if (me.getCreator() == null || me.getCreator().equals("")
+			// || me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
+			// me.setCreator(usersession.getUsername());
+			// changeTracker.save(me);
+			// }
 		}
 		changeTracker.setAutoSave(true);
 		changeTracker.saveDirtyResources();
@@ -1987,8 +2002,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#exportLocalChanges(java.lang.String)
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
-
-		ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
+		ResourceHelper.putElementIntoNewResourceWithProject(fileName, getLocalChangePackage(false), this.project);
 	}
 
 	/**
@@ -2066,9 +2080,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
 	 */
-	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
+	public EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
-		ModelElement modelElement = getProject().getModelElement(modelElementId);
+		EObject modelElement = getProject().getModelElement(modelElementId);
 		if (modelElement == null) {
 			throw new MEUrlResolutionException();
 		}

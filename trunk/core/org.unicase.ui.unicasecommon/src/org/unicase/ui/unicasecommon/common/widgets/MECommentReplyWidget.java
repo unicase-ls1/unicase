@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -90,7 +91,8 @@ public class MECommentReplyWidget extends Composite {
 			}
 			newComment.setSender(sender);
 			try {
-				compositeOperationHandle.end("add comment", "Added new comment", modelElement.getModelElementId());
+				compositeOperationHandle.end("add comment", "Added new comment", ModelUtil.getProject(modelElement)
+					.getModelElementId(modelElement));
 				notifyCommentAdded(newComment);
 			} catch (InvalidHandleException e) {
 				WorkspaceUtil.logException("Could not add comment, there was a composite operation handle exception.",
@@ -185,11 +187,12 @@ public class MECommentReplyWidget extends Composite {
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).applyTo(recipients);
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement.getProject());
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(modelElement));
 		try {
 			User user = OrgUnitHelper.getUser(projectSpace, modelElement.getCreator());
 			recipientsList.add(user);
 		} catch (CannotMatchUserInProjectException e1) {
+
 		}
 		rebuildRecipientList(recipients, recipientsList);
 		recipientsComposite.layout();

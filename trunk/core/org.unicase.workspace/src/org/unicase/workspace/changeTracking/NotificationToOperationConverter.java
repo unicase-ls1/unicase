@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -24,8 +25,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOpera
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -35,9 +37,10 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
  */
 public final class NotificationToOperationConverter {
 
-	// hide constructor, this class should be used statically only
-	private NotificationToOperationConverter() {
+	private Project project;
 
+	public NotificationToOperationConverter(Project project) {
+		this.project = project;
 	}
 
 	/**
@@ -47,11 +50,14 @@ public final class NotificationToOperationConverter {
 	 * @return the operation or null
 	 */
 	// BEGIN COMPLEX CODE
-	public static AbstractOperation convert(NotificationInfo n) {
+	public AbstractOperation convert(NotificationInfo n) {
+
 		if (n.isTouch() || n.isTransient() || !n.isValid()) {
 			return null;
 		}
+
 		switch (n.getEventType()) {
+
 		case Notification.SET:
 			if (n.isAttributeNotification()) {
 				return handleSetAttribute(n);
@@ -102,7 +108,7 @@ public final class NotificationToOperationConverter {
 	// END COMPLEX CODE
 
 	@SuppressWarnings("unchecked")
-	private static AbstractOperation handleMultiAttribute(NotificationInfo n) {
+	private AbstractOperation handleMultiAttribute(NotificationInfo n) {
 		MultiAttributeOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeOperation();
 		setCommonValues(operation, n.getNotifierModelElement());
 		operation.setFeatureName(n.getAttribute().getName());
@@ -153,7 +159,7 @@ public final class NotificationToOperationConverter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static AbstractOperation handleMultiReference(NotificationInfo n) {
+	private AbstractOperation handleMultiReference(NotificationInfo n) {
 
 		MultiReferenceOperation op = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
 		setCommonValues(op, n.getNotifierModelElement());
@@ -163,48 +169,52 @@ public final class NotificationToOperationConverter {
 		op.setIndex(n.getPosition());
 		List<ModelElementId> referencedModelElements = op.getReferencedModelElements();
 
-		List<ModelElement> list = null;
+		List<EObject> list = null;
 
 		switch (n.getEventType()) {
 
 		case Notification.ADD:
-			list = new ArrayList<ModelElement>();
+			list = new ArrayList<EObject>();
 			list.add(n.getNewModelElementValue());
 			break;
 		case Notification.ADD_MANY:
-			list = (List<ModelElement>) n.getNewValue();
+			list = (List<EObject>) n.getNewValue();
 			break;
 		case Notification.REMOVE:
-			list = new ArrayList<ModelElement>();
+			list = new ArrayList<EObject>();
 			list.add(n.getOldModelElementValue());
 			break;
 		case Notification.REMOVE_MANY:
-			list = (List<ModelElement>) n.getOldValue();
+			list = (List<EObject>) n.getOldValue();
 			break;
 		default:
 			break;
 		}
 
-		for (ModelElement valueElement : list) {
-			referencedModelElements.add(valueElement.getModelElementId());
+		for (EObject valueElement : list) {
+			ModelElementId id = project.getModelElementId(valueElement);
+			if (id == null) {
+				id = ((ProjectImpl) project).getDeletedModelElementId(valueElement);
+			}
+			referencedModelElements.add(id);
 		}
 		return op;
 
 	}
 
-	private static AbstractOperation handleReferenceMove(NotificationInfo n) {
+	private AbstractOperation handleReferenceMove(NotificationInfo n) {
 
 		MultiReferenceMoveOperation op = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
-		op.setReferencedModelElementId(n.getNewModelElementValue().getModelElementId());
+		op.setReferencedModelElementId(project.getModelElementId(n.getNewModelElementValue()));
 		op.setNewIndex(n.getPosition());
 		op.setOldIndex((Integer) n.getOldValue());
 
 		return op;
 	}
 
-	private static AbstractOperation handleAttributeMove(NotificationInfo n) {
+	private AbstractOperation handleAttributeMove(NotificationInfo n) {
 		MultiAttributeMoveOperation operation = OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation();
 		setCommonValues(operation, n.getNotifierModelElement());
 		operation.setFeatureName(n.getAttribute().getName());
@@ -214,7 +224,7 @@ public final class NotificationToOperationConverter {
 		return operation;
 	}
 
-	private static AbstractOperation handleSetAttribute(NotificationInfo n) {
+	private AbstractOperation handleSetAttribute(NotificationInfo n) {
 
 		if (!n.getAttribute().isMany()) {
 			AttributeOperation op = null;
@@ -243,37 +253,49 @@ public final class NotificationToOperationConverter {
 		}
 	}
 
-	private static AbstractOperation handleSetReference(NotificationInfo n) {
+	private AbstractOperation handleSetReference(NotificationInfo n) {
+
+		ModelElementId oldModelElementId = project.getModelElementId(n.getOldModelElementValue());
+		ModelElementId newModelElementId = project.getModelElementId(n.getNewModelElementValue());
+
+		if (oldModelElementId == null) {
+			oldModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getOldModelElementValue());
+		}
+
+		if (newModelElementId == null) {
+			newModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getNewModelElementValue());
+		}
 
 		if (!n.getReference().isMany()) {
 			SingleReferenceOperation op = OperationsFactory.eINSTANCE.createSingleReferenceOperation();
-			setCommonValues(op, (ModelElement) n.getNotifier());
+			setCommonValues(op, (EObject) n.getNotifier());
 			op.setFeatureName(n.getReference().getName());
 			setBidirectionalAndContainmentInfo(op, n.getReference());
 
 			if (n.getOldValue() != null) {
-				op.setOldValue(n.getOldModelElementValue().getModelElementId());
+				op.setOldValue(oldModelElementId);
 			}
 
 			if (n.getNewValue() != null) {
-				op.setNewValue(n.getNewModelElementValue().getModelElementId());
+				op.setNewValue(newModelElementId);
 			}
+
 			return op;
 
 		} else {
 			MultiReferenceSetOperation setOperation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
-			setCommonValues(setOperation, (ModelElement) n.getNotifier());
+			setCommonValues(setOperation, (EObject) n.getNotifier());
 			setOperation.setFeatureName(n.getReference().getName());
 			setBidirectionalAndContainmentInfo(setOperation, n.getReference());
 
 			setOperation.setIndex(n.getPosition());
 
 			if (n.getOldValue() != null) {
-				setOperation.setOldValue(n.getOldModelElementValue().getModelElementId());
+				setOperation.setOldValue(oldModelElementId);
 			}
 
 			if (n.getNewValue() != null) {
-				setOperation.setNewValue(n.getNewModelElementValue().getModelElementId());
+				setOperation.setNewValue(newModelElementId);
 			}
 
 			return setOperation;
@@ -281,12 +303,19 @@ public final class NotificationToOperationConverter {
 	}
 
 	// utility methods
-	private static void setCommonValues(AbstractOperation operation, ModelElement modelElement) {
+	private void setCommonValues(AbstractOperation operation, EObject modelElement) {
 		operation.setClientDate(new Date());
-		operation.setModelElementId(modelElement.getModelElementId());
+		ModelElementId id = project.getModelElementId(modelElement);
+		if (id == null) {
+			id = ((ProjectImpl) project).getDeletedModelElementId(modelElement);
+		}
+		if (id == null) {
+			throw new IllegalStateException("Model element doesn't have an ID.");
+		}
+		operation.setModelElementId(id);
 	}
 
-	private static void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {
+	private void setBidirectionalAndContainmentInfo(ReferenceOperation referenceOperation, EReference reference) {
 		if (reference.getEOpposite() != null) {
 			referenceOperation.setBidirectional(true);
 			referenceOperation.setOppositeFeatureName(reference.getEOpposite().getName());
@@ -301,7 +330,7 @@ public final class NotificationToOperationConverter {
 		}
 	}
 
-	private static boolean isDiagramLayoutAttribute(EAttribute attribute, ModelElement modelElement) {
+	private boolean isDiagramLayoutAttribute(EAttribute attribute, EObject modelElement) {
 		// FIXME: HACK to check if attribute is the layout of a diagram
 		boolean isLayoutAttribute = attribute.getName().equals("diagramLayout");
 		return isLayoutAttribute;

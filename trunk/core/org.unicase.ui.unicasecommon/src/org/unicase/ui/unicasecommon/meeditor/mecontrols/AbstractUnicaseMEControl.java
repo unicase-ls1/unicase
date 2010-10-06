@@ -7,39 +7,37 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
- * Abstract Control only for use with unicase meta model. Ensures that model lement is a sub tsype of
- * {@link ModelElement}
+ * Abstract Control only for use with unicase meta model. Ensures that model elment is a sub type of {@link EObject}
  * 
  * @author helming
  */
 public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	/**
-	 * ensures that Modelelement is a subtype of {@link ModelElement}.
+	 * ensures that Modelelement is a subtype of {@link EObject}.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#getModelElement()
 	 * @return the model element
 	 */
 	@Override
-	public ModelElement getModelElement() {
-		if (super.getModelElement() instanceof ModelElement) {
-			return (ModelElement) super.getModelElement();
+	public EObject getModelElement() {
+		if (super.getModelElement() != null) {
+			return super.getModelElement();
 		}
 		throw new IllegalArgumentException();
 	}
 
 	/**
-	 * Only accepts subtypes of {@link ModelElement}.
+	 * Only accepts subtypes of {@link EObject}.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#setModelElement(org.eclipse.emf.ecore.EObject)
 	 * @param modelElement the model element
 	 */
 	@Override
 	public void setModelElement(EObject modelElement) {
-		if (modelElement instanceof ModelElement) {
+		if (modelElement != null) {
 			super.setModelElement(modelElement);
 		} else {
 			throw new IllegalArgumentException("Unicase Controls are only usable with ModelElement, not with EObjects");
@@ -47,24 +45,16 @@ public abstract class AbstractUnicaseMEControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Checks if model element is a subtype of {@link ModelElement} and return 0 if not.
+	 * Checks if model element is a subtype of {@link EObject} and return 0 if not.
 	 * 
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#canRender(org.eclipse.emf.edit.provider.IItemPropertyDescriptor,
 	 *      org.eclipse.emf.ecore.EObject) {@inheritDoc}
 	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		if (modelElement instanceof ModelElement) {
-			return canRender(itemPropertyDescriptor, (ModelElement) modelElement);
+		if (modelElement != null) {
+			return canRender(itemPropertyDescriptor, modelElement);
 		}
 		return DO_NOT_RENDER;
 	}
-
-	/**
-	 * @param itemPropertyDescriptor the property descriptor
-	 * @param modelElement the model element
-	 * @return if the control can render a certain attribute.
-	 */
-	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement);
-
 }

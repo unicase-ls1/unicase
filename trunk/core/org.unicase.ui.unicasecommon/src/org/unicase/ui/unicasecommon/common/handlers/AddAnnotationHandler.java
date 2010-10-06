@@ -12,10 +12,12 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
@@ -89,7 +91,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// see ActionHelper.getModelElement()
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
-		Project project = me.getProject();
+		Project project = ModelUtil.getProject(me);
 		if (!(me.getLeafSection() == null)) {
 			annotation = createAnnotation(me.getLeafSection(), 1);
 		} else if (me.eContainer() instanceof WorkPackage) {
@@ -130,7 +132,6 @@ public class AddAnnotationHandler extends AbstractHandler {
 		} else {
 			result = null;
 		}
-
 		new AddAnnotationCommand(i, object, result).run();
 
 		return result;
@@ -162,18 +163,19 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 	}
 
-	private EReference getStructuralFeature(final ModelElement newMEInstance, EObject parent) {
+	private EReference getStructuralFeature(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
 		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
-			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.equals(newMEInstance)) {
 				reference = containmentitem;
 
 				break;
-			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
-
+			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
+				|| (eReferenceType.isSuperTypeOf(newMEInstance.eClass()))) {
 				reference = containmentitem;
 				break;
 			}

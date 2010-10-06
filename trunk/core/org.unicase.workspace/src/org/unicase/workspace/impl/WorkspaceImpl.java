@@ -257,6 +257,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// get Project from server
 		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo
 			.getProjectId(), projectInfoCopy.getVersion());
+
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
@@ -577,7 +578,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
 		copy.setUsersession(null);
-		ResourceHelper.putElementIntoNewResource(absoluteFileName, copy);
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copy, projectSpace.getProject()); // (absoluteFileName,
+		// copy);
 	}
 
 	/**
@@ -587,7 +589,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
 		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
-		ResourceHelper.putElementIntoNewResource(absoluteFileName, copy);
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copy, WorkspaceManager.getInstance()
+			.getCurrentWorkspace().getActiveProjectSpace().getProject());
 	}
 
 	/**
@@ -598,7 +601,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
 		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
-		ResourceHelper.putElementIntoNewResource(absoluteFileName, project);
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, project, project); // (absoluteFileName,
+		// project);
 	}
 
 	/**

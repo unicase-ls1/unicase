@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
@@ -97,8 +97,6 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		assessmentListener = new AssessmentListener();
 		proposalListener = new ProposalListener();
 
-		// add listeners
-
 		issue.addModelElementChangeListener(issueListener);
 		for (Criterion criterion : issue.getCriteria()) {
 			criterion.addModelElementChangeListener(criterionListener);
@@ -148,10 +146,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	public void dispose() {
 
 		// dispose controls
-
 		disposeControls();
-
-		// dispose listeners
 
 		if (issue != null) {
 			for (Proposal proposal : issue.getProposals()) {
@@ -168,6 +163,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 				}
 			}
 		}
+
 		issue.removeModelElementChangeListener(issueListener);
 	}
 
@@ -378,7 +374,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		if (!(modelElement instanceof Issue)) {
 			return DO_NOT_RENDER;
 		}

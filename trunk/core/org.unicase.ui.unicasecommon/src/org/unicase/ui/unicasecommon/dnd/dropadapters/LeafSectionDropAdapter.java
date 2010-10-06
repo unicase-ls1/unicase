@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
@@ -31,12 +30,12 @@ public class LeafSectionDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
 		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		if (!(dropee instanceof Annotation)) {
 			super.drop(event, target, source);
 		} else {
-			for (ModelElement me : source) {
+			for (EObject me : source) {
 				((Annotation) me).setLeafSection((LeafSection) target);
 			}
 		}

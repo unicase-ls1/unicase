@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -38,7 +39,7 @@ import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -77,7 +78,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		if (!(modelElement instanceof FileAttachment)) {
 			return DO_NOT_RENDER;
 		}
@@ -232,7 +233,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	private final class RemoveTransferSelectionListener implements SelectionListener {
 
 		public void widgetSelected(SelectionEvent e) {
-			WorkspaceManager.getProjectSpace(fileAttachment).removePendingFileUpload(fileAttachment.getIdentifier());
+			WorkspaceManager.getProjectSpace(fileAttachment).removePendingFileUpload(
+				ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
 			setUploadButtonAccordingToTransferStatus(false);
 		}
 
@@ -386,7 +388,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 				// fileInformation.setChunkNumber(0);
 				fileInformation.setFileVersion(-1);
 				fileInformation.setFileName(fileDialog.getFileName());
-				fileInformation.setFileAttachmentId((fileAttachment).getIdentifier());
+				fileInformation.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(
+					fileAttachment).getId());
 				try {
 					// adds a pending file upload request
 					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation,
@@ -432,7 +435,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		}
 		// set information needed for transfer
 		FileInformation fileInfo = new FileInformation();
-		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
 		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 		fileInfo.setFileName(fileAttachment.getFileName());
 		return fileInfo;
@@ -446,7 +449,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	 */
 	private File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
 		FileInformation fileInformation = new FileInformation();
-		fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInformation.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment)
+			.getId());
 		if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")) {
 			throw new FileNotFoundException("File does not exist!");
 		}

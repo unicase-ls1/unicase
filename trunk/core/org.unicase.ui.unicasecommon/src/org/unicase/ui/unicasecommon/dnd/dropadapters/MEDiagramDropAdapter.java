@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.part.EditorPart;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
@@ -40,17 +39,15 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author Hodaie
  */
 public class MEDiagramDropAdapter extends MEDropAdapter {
-	private List<ModelElement> mesAdd;
+	private List<EObject> mesAdd;
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.metamodel.ModelElement, java.util.List)
+	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent, EObject, java.util.List)
 	 */
-	@SuppressWarnings("deprecation")
 	@Override
-	public void drop(DropTargetEvent event, final ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, final EObject target, List<EObject> source) {
 		int messageResult;
 		if (mesAdd.size() != source.size()) {
 			// if not all elements could be added
@@ -99,12 +96,12 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	 *      org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, final List<ModelElement> source,
-		final ModelElement target, ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, final List<EObject> source, final EObject target,
+		EObject dropee) {
 		if (!source.isEmpty()) {
 			MEDiagram diagram = (MEDiagram) target;
-			mesAdd = new ArrayList<ModelElement>();
-			for (ModelElement me : source) {
+			mesAdd = new ArrayList<EObject>();
+			for (EObject me : source) {
 				// do not add elements that are already added and check if they are allowed for the diagram
 				if (!diagram.getElements().contains(me) && isAllowedType(diagram, me)) {
 					mesAdd.add(me);
@@ -118,7 +115,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean isAllowedType(MEDiagram diagram, ModelElement dropee) {
+	private boolean isAllowedType(MEDiagram diagram, EObject dropee) {
 		// get all registered contexts
 		Set<IClientContext> clientContexts = ClientContextManager.getInstance().getClientContexts();
 		for (IClientContext clientContext : clientContexts) {
