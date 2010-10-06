@@ -10,18 +10,24 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 // WORK IN PROGRESS !
 //
 
+import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.getClassAndName;
+
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultiReferenceSetConflict extends Conflict {
 
-	private final boolean myMultiRef;
+	private boolean containmentConflict;
 
 	/**
 	 * Default constructor.
@@ -33,9 +39,15 @@ public class MultiReferenceSetConflict extends Conflict {
 	 */
 	public MultiReferenceSetConflict(List<AbstractOperation> multiRef, List<AbstractOperation> multiRefSet,
 		DecisionManager decisionManager, boolean myMultiRef) {
-		super(multiRef, multiRefSet, decisionManager);
-		this.myMultiRef = myMultiRef;
+		super(multiRef, multiRefSet, decisionManager, myMultiRef, false);
+		containmentConflict = ((MultiReferenceOperation) getLeftOperation()).isAdd()
+			&& !getLeftOperation().getModelElementId().equals(getRightOperation().getModelElementId());
+		init();
 	}
+
+	/**
+	 * LEFT MultiRef, Right MultiRefSet
+	 */
 
 	/**
 	 * {@inheritDoc}
@@ -45,13 +57,22 @@ public class MultiReferenceSetConflict extends Conflict {
 	@Override
 	protected ConflictDescription initConflictDescription(ConflictDescription description) {
 
-		if (isLeftMy()) {
-			description.setDescription("");
+		if (containmentConflict) {
+			description
+				.setDescription("You have moved [target] to the [feature] reference of [modelelement], on the repository it was moved to [othercontainer].");
+		} else if (isLeftMy()) {
+			description
+				.setDescription("You have removed [target] from the [feature] reference of [modelelement], which was set in the repository");
 		} else {
-			description.setDescription("");
+			description
+				.setDescription("You have set [target] in the [feature] reference of [modelelement], which was removed in the repository.");
 		}
 
+		description.add("target", isLeftMy() ? getMyOperation(MultiReferenceOperation.class)
+			.getReferencedModelElements().get(0) : getMyOperation(MultiReferenceSetOperation.class).getNewValue());
+		description.add("othercontainer", getLeftOperation().getModelElementId());
 		description.setImage("multiref.gif");
+
 		return description;
 	}
 
@@ -67,12 +88,27 @@ public class MultiReferenceSetConflict extends Conflict {
 		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
 		theirOption.addOperations(getTheirOperations());
 
-		if (isLeftMy()) {
-			myOption.setOptionLabel("");
-			theirOption.setOptionLabel("");
+		if (containmentConflict) {
+			ModelElement target = getDecisionManager().getModelElement(
+				((MultiReferenceOperation) getLeftOperation()).getReferencedModelElements().get(0));
+
+			myOption.setOptionLabel("Move " + getClassAndName(target) + "to"
+				+ getClassAndName(getDecisionManager().getModelElement(getMyOperation().getModelElementId())));
+			theirOption.setOptionLabel("Move " + getClassAndName(target) + " to"
+				+ getClassAndName(getDecisionManager().getModelElement(getTheirOperation().getModelElementId())));
+
+		} else if (isLeftMy()) {
+			ModelElement target = getDecisionManager().getModelElement(
+				getMyOperation(MultiReferenceOperation.class).getReferencedModelElements().get(0));
+
+			myOption.setOptionLabel("Remove " + DecisionUtil.getClassAndName(target));
+			theirOption.setOptionLabel("Set " + DecisionUtil.getClassAndName(target));
 		} else {
-			myOption.setOptionLabel("");
-			theirOption.setOptionLabel("");
+			ModelElement target = getDecisionManager().getModelElement(
+				getTheirOperation(MultiReferenceOperation.class).getReferencedModelElements().get(0));
+
+			myOption.setOptionLabel("Set " + DecisionUtil.getClassAndName(target));
+			theirOption.setOptionLabel("Remove " + DecisionUtil.getClassAndName(target));
 		}
 
 		options.add(myOption);

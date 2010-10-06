@@ -10,20 +10,29 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 // WORK IN PROGRESS !
 //
 
+import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.getClassAndName;
+
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
+import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultiReferenceSetSetConflict extends Conflict {
 
+	private boolean cotainmentConflict;
+
 	public MultiReferenceSetSetConflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 		DecisionManager decisionManager) {
-		super(opsA, opsB, decisionManager);
+		super(opsA, opsB, decisionManager, true, false);
+		cotainmentConflict = getMyOperation().getModelElementId().equals(getTheirOperation().getModelElementId());
+		init();
 	}
 
 	/**
@@ -33,13 +42,17 @@ public class MultiReferenceSetSetConflict extends Conflict {
 	 */
 	@Override
 	protected ConflictDescription initConflictDescription(ConflictDescription description) {
-
-		if (isLeftMy()) {
-			description.setDescription("");
+		String txt = "";
+		if (!cotainmentConflict) {
+			txt = "You have set the value [value] to the [feature] reference of [modelelement], it was set to [ovalue] on the repository";
 		} else {
-			description.setDescription("");
+			txt = "You have moved the element [value] to [modelelement], it was moved to [othercontainer] on the repository.";
 		}
 
+		description.add("value", getMyOperation(MultiReferenceSetOperation.class).getNewValue());
+		description.add("ovalue", getTheirOperation(MultiReferenceSetOperation.class).getNewValue());
+		description.add("othercontainer", getTheirOperation().getModelElementId());
+		description.setDescription(txt);
 		description.setImage("multiref.gif");
 		return description;
 	}
@@ -51,16 +64,22 @@ public class MultiReferenceSetSetConflict extends Conflict {
 		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
 		theirOption.addOperations(getTheirOperations());
 
-		if (isLeftMy()) {
-			myOption.setOptionLabel("");
-			theirOption.setOptionLabel("");
+		if (!cotainmentConflict) {
+			myOption.setOptionLabel(DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
+				getMyOperation(MultiReferenceSetOperation.class).getNewValue())));
+			theirOption.setOptionLabel(DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
+				getTheirOperation(MultiReferenceSetOperation.class).getNewValue())));
 		} else {
-			myOption.setOptionLabel("");
-			theirOption.setOptionLabel("");
+			ModelElement target = getDecisionManager().getModelElement(
+				getMyOperation(MultiReferenceSetOperation.class).getNewValue());
+
+			myOption.setOptionLabel("Move " + getClassAndName(target) + "to"
+				+ getClassAndName(getDecisionManager().getModelElement(getMyOperation().getModelElementId())));
+			theirOption.setOptionLabel("Move " + getClassAndName(target) + " to"
+				+ getClassAndName(getDecisionManager().getModelElement(getTheirOperation().getModelElementId())));
 		}
 
 		options.add(myOption);
 		options.add(theirOption);
 	}
-
 }
