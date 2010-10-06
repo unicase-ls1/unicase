@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Backchannel Client Plugin
 Bundle-SymbolicName: org.unicase.backchannel.client
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.6.3.nightly
 Bundle-Activator: org.unicase.backchannel.client.Activator
 Require-Bundle: org.unicase.workspace,
  org.unicase.backchannel.server;visibility:=reexport
