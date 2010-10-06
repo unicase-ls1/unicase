@@ -26,12 +26,13 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 public class MultiReferenceSetSetConflict extends Conflict {
 
-	private boolean cotainmentConflict;
+	private boolean containmentConflict;
 
 	public MultiReferenceSetSetConflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 		DecisionManager decisionManager) {
 		super(opsA, opsB, decisionManager, true, false);
-		cotainmentConflict = getMyOperation().getModelElementId().equals(getTheirOperation().getModelElementId());
+		// is this rule enough?
+		containmentConflict = getMyOperation().getModelElementId().equals(getTheirOperation().getModelElementId());
 		init();
 	}
 
@@ -43,7 +44,7 @@ public class MultiReferenceSetSetConflict extends Conflict {
 	@Override
 	protected ConflictDescription initConflictDescription(ConflictDescription description) {
 		String txt = "";
-		if (!cotainmentConflict) {
+		if (!containmentConflict) {
 			txt = "You have set the value [value] to the [feature] reference of [modelelement], it was set to [ovalue] on the repository";
 		} else {
 			txt = "You have moved the element [value] to [modelelement], it was moved to [othercontainer] on the repository.";
@@ -64,7 +65,7 @@ public class MultiReferenceSetSetConflict extends Conflict {
 		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
 		theirOption.addOperations(getTheirOperations());
 
-		if (!cotainmentConflict) {
+		if (!containmentConflict) {
 			myOption.setOptionLabel(DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
 				getMyOperation(MultiReferenceSetOperation.class).getNewValue())));
 			theirOption.setOptionLabel(DecisionUtil.getClassAndName(getDecisionManager().getModelElement(
