@@ -15,9 +15,9 @@ import java.util.List;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiReferenceSetSetConflict extends Conflict {
 
@@ -26,22 +26,41 @@ public class MultiReferenceSetSetConflict extends Conflict {
 		super(opsA, opsB, decisionManager);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
+	 */
 	@Override
-	protected ConflictContext initConflictContext() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
 
-	@Override
-	protected ConflictDescription initConflictDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isLeftMy()) {
+			description.setDescription("");
+		} else {
+			description.setDescription("");
+		}
+
+		description.setImage("multiref.gif");
+		return description;
 	}
 
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		// TODO Auto-generated method stub
+		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
+		myOption.addOperations(getMyOperations());
+		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
+		theirOption.addOperations(getTheirOperations());
 
+		if (isLeftMy()) {
+			myOption.setOptionLabel("");
+			theirOption.setOptionLabel("");
+		} else {
+			myOption.setOptionLabel("");
+			theirOption.setOptionLabel("");
+		}
+
+		options.add(myOption);
+		options.add(theirOption);
 	}
 
 }

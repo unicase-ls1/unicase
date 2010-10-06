@@ -157,6 +157,10 @@ public class DecisionManager {
 		createConflicts(conflicting);
 	}
 
+	/**
+	 * BEGIN FACTORY TODO EXTRACT FACTORY CLASS.
+	 */
+
 	// BEGIN COMPLEX CODE
 	private void createConflicts(ArrayList<Conflicting> conflicting) {
 		// Create Conflicts from Conflicting
@@ -296,7 +300,7 @@ public class DecisionManager {
 		if (isMultiAttSet(conf.getMyOperation())) {
 			return new MultiAttributeMoveSetConflict(conf.getMyOperations(), conf.getTheirOperations(), this, true);
 		} else {
-			return new MultiAttributeMoveSetConflict(conf.getTheirOperations(), conf.getMyOperations(), this, true);
+			return new MultiAttributeMoveSetConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
 		}
 	}
 
@@ -389,6 +393,10 @@ public class DecisionManager {
 			return new CompositeConflict(conf.getTheirOperations(), conf.getMyOperations(), this, false);
 		}
 	}
+
+	/**
+	 * FACTORY END
+	 */
 
 	/**
 	 * Returns the conflicts.

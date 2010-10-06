@@ -13,6 +13,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
@@ -38,11 +40,9 @@ public abstract class Conflict extends Observable {
 	 * 
 	 * @see #Conflict(List, List, DecisionManager)
 	 */
-	// BEGIN COMPLEX CODE
-	protected List<AbstractOperation> operationsA;
-	protected List<AbstractOperation> operationsB;
-
-	// END COMPLEX CODE
+	private List<AbstractOperation> leftOperations;
+	private List<AbstractOperation> rightOperations;
+	private boolean leftIsMy;
 
 	/**
 	 * Default constructor for conflicts. Many conflicts only need one operation for my and their side. But in order to
@@ -50,27 +50,39 @@ public abstract class Conflict extends Observable {
 	 * ~ theirOperations, but again, to keep it general, it's called A and B. These fields are protected so the
 	 * implementing Conflict should create it's own getter method.
 	 * 
-	 * @param opsA first list of operations (often: myOperations)
-	 * @param opsB second list of operations (often: theirOperations)
+	 * @param leftOperations first list of operations (often: myOperations)
+	 * @param rightOperations second list of operations (often: theirOperations)
 	 * @param decisionManager decision manager
 	 */
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager) {
-		this(opsA, opsB, decisionManager, true);
+	public Conflict(List<AbstractOperation> leftOperations, List<AbstractOperation> rightOperations,
+		DecisionManager decisionManager) {
+		this(leftOperations, rightOperations, decisionManager, true, true);
+	}
+
+	/**
+	 * Determines whether left operations are my.
+	 * 
+	 * @return boolean
+	 */
+	public boolean isLeftMy() {
+		return leftIsMy;
 	}
 
 	/**
 	 * Additional constructor, which allows deactivating initialization.
 	 * 
 	 * @see #Conflict(List, List, DecisionManager)
-	 * @param opsA first list of operations (often: myOperations)
-	 * @param opsB second list of operations (often: theirOperations)
+	 * @param leftOperations first list of operations (often: myOperations)
+	 * @param rightOperations second list of operations (often: theirOperations)
 	 * @param decisionManager decision manager
+	 * @param leftIsMy left operations are my changes
 	 * @param init allows to deactivate initialization, has to be done manually otherwise.
 	 */
-	public Conflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB, DecisionManager decisionManager,
-		boolean init) {
-		this.operationsA = opsA;
-		this.operationsB = opsB;
+	public Conflict(List<AbstractOperation> leftOperations, List<AbstractOperation> rightOperations,
+		DecisionManager decisionManager, boolean leftIsMy, boolean init) {
+		this.leftIsMy = leftIsMy;
+		this.leftOperations = leftOperations;
+		this.rightOperations = rightOperations;
 		this.decisionManager = decisionManager;
 		if (init) {
 			init();
@@ -135,16 +147,33 @@ public abstract class Conflict extends Observable {
 	/**
 	 * Init conflict description.
 	 * 
+	 * @param description pre initialized description
 	 * @return description
 	 */
-	protected abstract ConflictDescription initConflictDescription();
+	protected abstract ConflictDescription initConflictDescription(ConflictDescription description);
+
+	private ConflictDescription initConflictDescription() {
+		ConflictDescription description = new ConflictDescription("");
+		description.setImage("notset.gif");
+		ModelElement modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
+		if (modelElement != null) {
+			description.add("modelelement", modelElement);
+		}
+		if (getMyOperation() instanceof FeatureOperation) {
+			description.add("feature", ((FeatureOperation) getMyOperation()).getFeatureName());
+		}
+		description.setDecisionManager(getDecisionManager());
+		return initConflictDescription(description);
+	}
 
 	/**
 	 * Inits the ConflictContext.
 	 * 
 	 * @return context.
 	 */
-	protected abstract ConflictContext initConflictContext();
+	protected ConflictContext initConflictContext() {
+		return new ConflictContext(getDecisionManager(), getMyOperation(), getTheirOperation());
+	}
 
 	/**
 	 * Returns the conflict context.
@@ -275,4 +304,101 @@ public abstract class Conflict extends Observable {
 	public ConflictOption getOptionOfType(OptionType type) {
 		return DecisionUtil.getConflictOptionByType(getOptions(), type);
 	}
+
+	/**
+	 * Get my operations.
+	 * 
+	 * @return list of operations
+	 */
+	protected List<AbstractOperation> getMyOperations() {
+		return ((leftIsMy) ? leftOperations : rightOperations);
+	}
+
+	/**
+	 * Get their operations.
+	 * 
+	 * @return list of operations
+	 */
+	protected List<AbstractOperation> getTheirOperations() {
+		return ((!leftIsMy) ? leftOperations : rightOperations);
+	}
+
+	/**
+	 * Get left operations.
+	 * 
+	 * @return list of operations
+	 */
+	protected List<AbstractOperation> getLeftOperations() {
+		return leftOperations;
+	}
+
+	/**
+	 * get right operations.
+	 * 
+	 * @return list of operations
+	 */
+	protected List<AbstractOperation> getRightOperations() {
+		return rightOperations;
+	}
+
+	/**
+	 * Get first left operation.
+	 * 
+	 * @return operation
+	 */
+	protected AbstractOperation getLeftOperation() {
+		return leftOperations.get(0);
+	}
+
+	/**
+	 * get first right operation.
+	 * 
+	 * @return operation
+	 */
+	protected AbstractOperation getRightOperation() {
+		return rightOperations.get(0);
+	}
+
+	/**
+	 * Get my operation.
+	 * 
+	 * @return operation
+	 */
+	protected AbstractOperation getMyOperation() {
+		return getMyOperations().get(0);
+	}
+
+	/**
+	 * Get their operation.
+	 * 
+	 * @return operation
+	 */
+	protected AbstractOperation getTheirOperation() {
+		return getTheirOperations().get(0);
+	}
+
+	/**
+	 * Get my operation and cast.
+	 * 
+	 * @param <T> cast type
+	 * @param clazz {@link AbstractOperation} class to which will be casted
+	 * @return operation
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T> T getMyOperation(Class<T> clazz) {
+		return (T) getMyOperation();
+	}
+
+	/**
+	 * Get their operation and cast.
+	 * 
+	 * @param <T> cast type
+	 * @param clazz {@link AbstractOperation} class to which will be casted
+	 * @return operation
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T> T getTheirOperation(Class<T> clazz) {
+		return (T) getTheirOperation();
+	}
+
 }

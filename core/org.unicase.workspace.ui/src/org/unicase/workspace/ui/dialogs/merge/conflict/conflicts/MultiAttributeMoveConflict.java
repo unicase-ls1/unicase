@@ -13,34 +13,17 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiAttributeMoveConflict extends Conflict {
 
-	private final boolean isMyAdd;
-
 	public MultiAttributeMoveConflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 		DecisionManager decisionManager, boolean isMyAdd) {
-		super(opsA, opsB, decisionManager);
-		this.isMyAdd = isMyAdd;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictContext()
-	 */
-	@Override
-	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(getMyOperation().getModelElementId()),
-			getMyOperation().getFeatureName(), getDecisionManager().getAuthorForOperation(getTheirOperation()));
+		super(opsA, opsB, decisionManager, isMyAdd, true);
 	}
 
 	/**
@@ -49,9 +32,16 @@ public class MultiAttributeMoveConflict extends Conflict {
 	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription() {
-		// TODO Auto-generated method stub
-		return null;
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
+		if (isLeftMy()) {
+			description
+				.setDescription("You have added an element to the [feature] attribute of [modelelement], which was moved in the repository");
+		} else {
+			description
+				.setDescription("You've moved an element of the [feature] attribute of [modelelement], which stands in conflict with an add on the repository.");
+		}
+
+		return description;
 	}
 
 	/**
@@ -61,23 +51,20 @@ public class MultiAttributeMoveConflict extends Conflict {
 	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		// TODO Auto-generated method stub
+		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
+		myOption.addOperations(getMyOperations());
+		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
+		theirOption.addOperations(getTheirOperations());
 
-	}
+		if (isLeftMy()) {
+			myOption.setOptionLabel("Add element");
+			theirOption.setOptionLabel("Move element");
+		} else {
+			myOption.setOptionLabel("Move element");
+			theirOption.setOptionLabel("Add element");
+		}
 
-	private FeatureOperation getMyOperation() {
-		return (isMyAdd) ? getMultiAtt() : getMultiMove();
-	}
-
-	private FeatureOperation getTheirOperation() {
-		return (!isMyAdd) ? getMultiAtt() : getMultiMove();
-	}
-
-	private MultiAttributeOperation getMultiAtt() {
-		return (MultiAttributeOperation) operationsA.get(0);
-	}
-
-	private MultiAttributeMoveOperation getMultiMove() {
-		return (MultiAttributeMoveOperation) operationsB.get(0);
+		options.add(myOption);
+		options.add(theirOption);
 	}
 }

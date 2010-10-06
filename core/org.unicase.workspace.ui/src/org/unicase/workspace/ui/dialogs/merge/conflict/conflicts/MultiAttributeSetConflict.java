@@ -13,35 +13,22 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiAttributeSetConflict extends Conflict {
 
-	private final boolean isMyRemove;
-
 	public MultiAttributeSetConflict(List<AbstractOperation> opsA, List<AbstractOperation> opsB,
 		DecisionManager decisionManager, boolean isMyRemove) {
-		super(opsA, opsB, decisionManager);
-		this.isMyRemove = isMyRemove;
+		super(opsA, opsB, decisionManager, isMyRemove, true);
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictContext()
+	 * LEFT: Remove, RIGHT: set
 	 */
-	@Override
-	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(getMyOperation().getModelElementId()),
-			getMyOperation().getFeatureName(), getDecisionManager().getAuthorForOperation(getTheirOperation()));
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -49,9 +36,17 @@ public class MultiAttributeSetConflict extends Conflict {
 	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription() {
-		// TODO Auto-generated method stub
-		return null;
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
+
+		if (isLeftMy()) {
+			description
+				.setDescription("You have removed an element from the [feature] attribute of [modelelement], which was changed in the repository");
+		} else {
+			description
+				.setDescription("You have changed an element from the [feature] attribute of [modelelement], which was removed in the repository");
+		}
+
+		return description;
 	}
 
 	/**
@@ -61,24 +56,20 @@ public class MultiAttributeSetConflict extends Conflict {
 	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		// TODO Auto-generated method stub
+		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
+		myOption.addOperations(getMyOperations());
+		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
+		theirOption.addOperations(getTheirOperations());
 
+		if (isLeftMy()) {
+			myOption.setOptionLabel("Remove element");
+			theirOption.setOptionLabel("Change element");
+		} else {
+			myOption.setOptionLabel("Change element");
+			theirOption.setOptionLabel("Remove element");
+		}
+
+		options.add(myOption);
+		options.add(theirOption);
 	}
-
-	private FeatureOperation getMyOperation() {
-		return (isMyRemove) ? getAdding() : getSet();
-	}
-
-	private FeatureOperation getTheirOperation() {
-		return (!isMyRemove) ? getAdding() : getSet();
-	}
-
-	private MultiAttributeOperation getAdding() {
-		return (MultiAttributeOperation) operationsA.get(0);
-	}
-
-	private MultiAttributeSetOperation getSet() {
-		return (MultiAttributeSetOperation) operationsB.get(0);
-	}
-
 }

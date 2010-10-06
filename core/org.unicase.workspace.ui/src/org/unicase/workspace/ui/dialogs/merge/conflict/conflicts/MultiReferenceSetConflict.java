@@ -13,14 +13,11 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 public class MultiReferenceSetConflict extends Conflict {
 
@@ -43,23 +40,19 @@ public class MultiReferenceSetConflict extends Conflict {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictContext()
-	 */
-	@Override
-	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(getMyOperation().getModelElementId()),
-			getMyOperation().getFeatureName(), getDecisionManager().getAuthorForOperation(getTheirOperation()));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.Conflict#initConflictDescription()
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription() {
-		// TODO Auto-generated method stub
-		return null;
+	protected ConflictDescription initConflictDescription(ConflictDescription description) {
+
+		if (isLeftMy()) {
+			description.setDescription("");
+		} else {
+			description.setDescription("");
+		}
+
+		description.setImage("multiref.gif");
+		return description;
 	}
 
 	/**
@@ -69,24 +62,21 @@ public class MultiReferenceSetConflict extends Conflict {
 	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		// TODO Auto-generated method stub
+		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
+		myOption.addOperations(getMyOperations());
+		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
+		theirOption.addOperations(getTheirOperations());
+
+		if (isLeftMy()) {
+			myOption.setOptionLabel("");
+			theirOption.setOptionLabel("");
+		} else {
+			myOption.setOptionLabel("");
+			theirOption.setOptionLabel("");
+		}
+
+		options.add(myOption);
+		options.add(theirOption);
 
 	}
-
-	private FeatureOperation getMyOperation() {
-		return (myMultiRef) ? getMultiOperation() : getSetOperation();
-	}
-
-	private FeatureOperation getTheirOperation() {
-		return (!myMultiRef) ? getMultiOperation() : getSetOperation();
-	}
-
-	private MultiReferenceOperation getMultiOperation() {
-		return (MultiReferenceOperation) operationsA.get(0);
-	}
-
-	private MultiReferenceSetOperation getSetOperation() {
-		return (MultiReferenceSetOperation) operationsB.get(0);
-	}
-
 }
