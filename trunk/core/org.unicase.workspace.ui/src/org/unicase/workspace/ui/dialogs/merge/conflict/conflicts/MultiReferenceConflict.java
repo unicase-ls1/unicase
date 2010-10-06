@@ -63,7 +63,7 @@ public class MultiReferenceConflict extends Conflict {
 			descriptionTxt = "The [target] was added to the [feature] reference"
 				+ " of the [modelelement] on the repository." + " You chose to remove it, please decide.";
 		}
-		description = new ConflictDescription(descriptionTxt);
+		description.setDescription(descriptionTxt);
 		description.add("target", getMyOperation(MultiReferenceOperation.class).getReferencedModelElements().get(0));
 		description.add("othercontainer", getTheirOperation(MultiReferenceOperation.class).getModelElementId());
 
