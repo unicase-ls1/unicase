@@ -7,8 +7,8 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
@@ -104,14 +104,14 @@ public class DeletionConflict extends Conflict {
 	}
 
 	private String keepMsg() {
-		ModelElement modelElement = getDecisionManager().getModelElement(getRightOperation().getModelElementId());
+		EObject modelElement = getDecisionManager().getModelElement(getRightOperation().getModelElementId());
 		String result = "Recover " + DecisionUtil.getClassAndName(modelElement);
 		result += generateOthers();
 		return result;
 	}
 
 	private String deleteMsg() {
-		ModelElement modelElement = getDecisionManager().getModelElement(getLeftOperation().getModelElementId());
+		EObject modelElement = getDecisionManager().getModelElement(getLeftOperation().getModelElementId());
 		return "Delete " + DecisionUtil.getClassAndName(modelElement);
 	}
 }

@@ -12,9 +12,9 @@ import java.util.Observable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
@@ -155,7 +155,7 @@ public abstract class Conflict extends Observable {
 	private ConflictDescription initConflictDescription() {
 		ConflictDescription description = new ConflictDescription("");
 		description.setImage("notset.gif");
-		ModelElement modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
+		EObject modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
 		if (modelElement != null) {
 			description.add("modelelement", modelElement);
 		}

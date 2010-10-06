@@ -28,9 +28,9 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
@@ -83,10 +83,10 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
 				ret = changePackageVisualizationHelper.getDescription((AbstractOperation) value);
-			} else if (value instanceof ModelElement) {
-				ret = UiUtil.getNameForModelElement(((ModelElement) value));
+			} else if (value instanceof EObject) {
+				ret = UiUtil.getNameForModelElement(((EObject) value));
 			} else if (value instanceof ModelElementId) {
-				ModelElement modelElement = changePackageVisualizationHelper.getModelElement((ModelElementId) value);
+				EObject modelElement = changePackageVisualizationHelper.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
 					ret = UiUtil.getNameForModelElement(modelElement);
 				} else {
@@ -229,10 +229,16 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		if (((TreeNode) element).getParent() != null
 			&& ((TreeNode) element).getParent().getValue() instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) ((TreeNode) element).getParent().getValue();
-			if ((value instanceof ModelElementId && value.equals(op.getModelElementId()))
-				|| (value instanceof ModelElement && ((ModelElement) value).getModelElementId().equals(
-					op.getModelElementId()))) {
+			if ((value instanceof ModelElementId && value.equals(op.getModelElementId()))) {
 				return bold;
+			}
+
+			if (value instanceof EObject) {
+				EObject modelElement = (EObject) value;
+				Project project = ModelUtil.getProject(modelElement);
+				if (project != null && project.getModelElementId(modelElement).equals(op.getModelElementId())) {
+					return bold;
+				}
 			}
 		}
 		return null;

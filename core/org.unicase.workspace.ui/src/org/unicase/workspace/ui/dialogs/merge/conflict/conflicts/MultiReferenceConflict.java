@@ -9,9 +9,9 @@ import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.getClassA
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
@@ -81,7 +81,7 @@ public class MultiReferenceConflict extends Conflict {
 		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
 		theirOption.addOperations(getTheirOperations());
 
-		ModelElement target = getDecisionManager().getModelElement(
+		EObject target = getDecisionManager().getModelElement(
 			getMyOperation(MultiReferenceOperation.class).getReferencedModelElements().get(0));
 
 		if (containmentConflict) {

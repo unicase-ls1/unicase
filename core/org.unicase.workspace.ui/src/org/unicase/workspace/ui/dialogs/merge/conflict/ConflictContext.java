@@ -5,9 +5,9 @@
  */
 package org.unicase.workspace.ui.dialogs.merge.conflict;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 
 /**
@@ -17,7 +17,7 @@ import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
  */
 public class ConflictContext {
 
-	private final ModelElement modelElement;
+	private final EObject modelElement;
 	private final String attribute;
 	private final String opponent;
 
@@ -28,7 +28,7 @@ public class ConflictContext {
 	 * @param attribute attribute
 	 * @param opponent opponent
 	 */
-	public ConflictContext(ModelElement modelElement, String attribute, String opponent) {
+	public ConflictContext(EObject modelElement, String attribute, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = attribute;
 		this.opponent = opponent;
@@ -40,7 +40,7 @@ public class ConflictContext {
 	 * @param modelElement element
 	 * @param opponent opponent
 	 */
-	public ConflictContext(ModelElement modelElement, String opponent) {
+	public ConflictContext(EObject modelElement, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = null;
 		this.opponent = opponent;
@@ -64,7 +64,7 @@ public class ConflictContext {
 	 * 
 	 * @return element
 	 */
-	public ModelElement getModelElement() {
+	public EObject getModelElement() {
 		return modelElement;
 	}
 

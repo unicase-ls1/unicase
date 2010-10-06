@@ -43,7 +43,6 @@ public class AttributeConflict extends Conflict {
 	protected ConflictDescription initConflictDescription(ConflictDescription description) {
 		description.setDescription("You have changed the [feature] attribute of [modelelement] to [myvalue]."
 			+ " This attribute was changed to [theirvalue] on the repository.");
-
 		description.add("myvalue", getMyOperation(AttributeOperation.class).getNewValue());
 		description.add("theirvalue", getTheirOperation(AttributeOperation.class).getNewValue());
 		description.setImage("attribute.gif");

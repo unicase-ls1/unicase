@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.dialogs.merge.util;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
@@ -14,7 +15,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
@@ -171,12 +171,12 @@ public final class DecisionUtil {
 	}
 
 	/**
-	 * Returns Class and Name of {@link ModelElement}.
+	 * Returns Class and Name of {@link EObject}.
 	 * 
 	 * @param modelElement modelelement
 	 * @return string
 	 */
-	public static String getClassAndName(ModelElement modelElement) {
+	public static String getClassAndName(EObject modelElement) {
 		if (modelElement == null) {
 			return "";
 		}

@@ -16,6 +16,7 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -66,7 +67,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -131,12 +131,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 			// now we know that one tree node is selected with a non null value
 			Object element = node.getValue();
-			ModelElement selectedModelElement = null;
-			if (element instanceof ModelElement) {
-				ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
-				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
-				return new StructuredSelection(selectedModelElement);
-			} else if (element instanceof CompositeOperation) {
+			EObject selectedModelElement = null;
+
+			if (element instanceof CompositeOperation) {
 				CompositeOperation comop = (CompositeOperation) element;
 				AbstractOperation mainOperation = comop.getMainOperation();
 				if (mainOperation != null) {
@@ -148,9 +145,23 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
 				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
 				return new StructuredSelection(selectedModelElement);
-			}
-			return super.getSelection();
+			} else if (element instanceof EObject) {
+				if (element instanceof ProjectSpace) {
+					selectedModelElement = ((ProjectSpace) element).getProject();
+				} else if (element instanceof ModelElementId
+					&& projectSpace.getProject().contains((ModelElementId) element)) {
+					selectedModelElement = projectSpace.getProject().getModelElement((ModelElementId) element);
+				} else if (projectSpace.getProject().containsInstance((EObject) element)) {
+					selectedModelElement = (EObject) element;
+				} else {
+					// TODO: PlainEObjectMode, what happens with deleted elements and stuff like the HistoryInfo node?
+					return super.getSelection();
+				}
 
+				return new StructuredSelection(selectedModelElement);
+			}
+
+			return super.getSelection();
 		}
 	}
 
@@ -246,7 +257,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 	private int headVersion;
 
-	private ModelElement modelElement;
+	private EObject modelElement;
 
 	private TreeViewer viewer;
 	private Map<Integer, ChangePackage> changePackageCache;
@@ -308,8 +319,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
 					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
-					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
+					if (node.getValue() instanceof EObject) {
+						ActionHelper.openModelElement((EObject) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -596,7 +607,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 * @param projectSpace the input project space
 	 * @param me the input model element
 	 */
-	public void setInput(ProjectSpace projectSpace, ModelElement me) {
+	public void setInput(ProjectSpace projectSpace, EObject me) {
 		noProjectHint.dispose();
 		this.parent.layout();
 		this.projectSpace = projectSpace;
@@ -657,8 +668,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		query.setSource(source);
 		query.setTarget(target);
 		query.setIncludeChangePackage(true);
-		if (modelElement != null) {
-			query.getModelElements().add(modelElement.getModelElementId());
+		if (modelElement != null && !(modelElement instanceof ProjectSpace)) {
+			query.getModelElements().add(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
 		}
 
 		return query;
@@ -680,7 +691,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			if (modelElement != null) {
 				Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
 				for (AbstractOperation ao : changePackage.getOperations()) {
-					if (!ao.getAllInvolvedModelElements().contains(modelElement.getModelElementId())) {
+					if (!ao.getAllInvolvedModelElements().contains(
+						ModelUtil.getProject(modelElement).getModelElementId(modelElement))) {
 						operationsToRemove.add(ao);
 					}
 				}
