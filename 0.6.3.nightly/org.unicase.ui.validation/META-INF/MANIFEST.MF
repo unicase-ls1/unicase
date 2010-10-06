@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: UNICASE Validation Plugin
 Bundle-SymbolicName: org.unicase.ui.validation;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.6.3.nightly
 Bundle-Activator: org.unicase.ui.validation.Activator
 Require-Bundle: org.unicase.ui.common;visibility:=reexport,
  org.unicase.ecpemfstorebridge
