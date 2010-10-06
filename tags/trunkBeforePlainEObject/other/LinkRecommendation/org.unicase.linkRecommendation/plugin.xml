@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="RecommendationStrategies"
+         name="RecommendationStrategies"
+         point="org.unicase.metamodel.recommendationstrategy">
+      <strategy
+            baseElementClass="org.unicase.model.task.WorkItem"
+            eReferenceName="annotatedModelElement"
+            name="org.unicase.linkRecommendation.VsmAndRar"
+            strategyClass="org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.VsmAndRarCombinedStrategy">
+      </strategy>
+      <strategy
+            baseElementClass="org.unicase.model.UnicaseModelElement"
+            eReferenceName="ALL"
+            name="org.unicase.linkRecommendation.VSM"
+            strategyClass="org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy">
+      </strategy>
+   </extension>
+
+</plugin>
