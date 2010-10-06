@@ -10,45 +10,44 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage
  * @generated
  */
 public interface OperationsFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	OperationsFactory eINSTANCE = org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Composite Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Composite Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Composite Operation</em>'.
 	 * @generated
 	 */
 	CompositeOperation createCompositeOperation();
 
 	/**
-	 * Returns a new object of class '<em>Create Delete Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Create Delete Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Create Delete Operation</em>'.
 	 * @generated
 	 */
 	CreateDeleteOperation createCreateDeleteOperation();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Attribute Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Attribute Operation</em>'.
 	 * @generated
 	 */
 	AttributeOperation createAttributeOperation();
 
 	/**
-	 * Returns a new object of class '<em>Multi Attribute Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Multi Attribute Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Multi Attribute Operation</em>'.
 	 * @generated
 	 */
@@ -64,9 +63,9 @@ public interface OperationsFactory extends EFactory {
 	MultiAttributeSetOperation createMultiAttributeSetOperation();
 
 	/**
-	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Multi Attribute Move Operation</em>'.
 	 * @generated
 	 */
@@ -82,8 +81,8 @@ public interface OperationsFactory extends EFactory {
 	SingleReferenceOperation createSingleReferenceOperation();
 
 	/**
-	 * Returns a new object of class '<em>Multi Reference Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Multi Reference Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Multi Reference Operation</em>'.
 	 * @generated
 	 */
@@ -99,49 +98,49 @@ public interface OperationsFactory extends EFactory {
 	MultiReferenceSetOperation createMultiReferenceSetOperation();
 
 	/**
-	 * Returns a new object of class '<em>Multi Reference Move Operation</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Multi Reference Move Operation</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Multi Reference Move Operation</em>'.
 	 * @generated
 	 */
 	MultiReferenceMoveOperation createMultiReferenceMoveOperation();
 
 	/**
-	 * Returns a new object of class '<em>Diagram Layout Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Diagram Layout Operation</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Diagram Layout Operation</em>'.
 	 * @generated
 	 */
 	DiagramLayoutOperation createDiagramLayoutOperation();
 
 	/**
-	 * Returns a new object of class '<em>Operation Id</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Operation Id</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation Id</em>'.
 	 * @generated
 	 */
 	OperationId createOperationId();
 
 	/**
-	 * Returns a new object of class '<em>Operation Group</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Operation Group</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Operation Group</em>'.
 	 * @generated
 	 */
 	OperationGroup createOperationGroup();
 
 	/**
-	 * Returns a new object of class '<em>Model Element Group</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>Model Element Group</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>Model Element Group</em>'.
 	 * @generated
 	 */
 	ModelElementGroup createModelElementGroup();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

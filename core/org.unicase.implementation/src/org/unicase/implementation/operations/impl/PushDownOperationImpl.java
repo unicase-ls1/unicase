@@ -420,11 +420,11 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownAttributes(List<Attribute> attributes, Class superClass) {
 		for (Attribute attribute : attributes) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Attribute subAttribute = ModelUtil.copy(attribute);
+				Attribute subAttribute = ModelUtil.clone(attribute);
 				subClass.getAttributes().add(subAttribute);
 			}
 
-			attribute.delete();
+			ModelUtil.getProject(attribute).deleteModelElement(attribute);
 		}
 	}
 
@@ -432,7 +432,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownOutgoingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Association subAssociation = ModelUtil.copy(association);
+				Association subAssociation = ModelUtil.clone(association);
 				((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
 					.add(subAssociation);
 				subAssociation.setSource(subClass);
@@ -442,7 +442,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 				subAssociation.setTarget(association.getTarget());
 			}
 
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
 
@@ -450,7 +450,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 	public static void pushDownIncomingAssociations(List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (org.unicase.model.classes.Class subClass : superClass.getSubClasses()) {
-				Association subAssociation = ModelUtil.copy(association);
+				Association subAssociation = ModelUtil.clone(association);
 				((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
 					.add(subAssociation);
 				subAssociation.setTarget(subClass);
@@ -460,7 +460,7 @@ public class PushDownOperationImpl extends SemanticCompositeOperationImpl implem
 				subAssociation.setSource(association.getSource());
 			}
 
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
 } // PushDownOperationImpl

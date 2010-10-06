@@ -7,12 +7,12 @@ package org.unicase.emfstore.accesscontrol;
 
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Control for the authorization of users.
@@ -54,7 +54,7 @@ public interface AuthorizationControl {
 	 * @param modelElements a set of model elements
 	 * @throws AccessControlException if the session may not read any of the model elements
 	 */
-	void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
+	void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
 		throws AccessControlException;
 
 	/**
@@ -65,7 +65,7 @@ public interface AuthorizationControl {
 	 * @param modelElements a set of model elements
 	 * @throws AccessControlException if the session may not write any of the model elements
 	 */
-	void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
+	void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
 		throws AccessControlException;
 
 	/**

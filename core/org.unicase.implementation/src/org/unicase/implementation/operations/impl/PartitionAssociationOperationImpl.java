@@ -239,7 +239,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 		for (Class subClass : target.getSubClasses()) {
 			String name = OperationHelper.firstLower(subClass.getName());
-			Association subAssociation = ModelUtil.copy(association);
+			Association subAssociation = ModelUtil.clone(association);
 			((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
 
 			subAssociation.setSource(association.getSource());
@@ -248,7 +248,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 			subAssociation.setName(name);
 		}
 
-		association.delete();
+		ModelUtil.getProject(association).deleteModelElement(association);
 	}
 
 } // PartitionAssociationOperationImpl

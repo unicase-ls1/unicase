@@ -25,31 +25,30 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static VersioningFactory init() {
 		try {
-			VersioningFactory theVersioningFactory = (VersioningFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning");
+			VersioningFactory theVersioningFactory = (VersioningFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning"); 
 			if (theVersioningFactory != null) {
 				return theVersioningFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VersioningFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VersioningFactoryImpl() {
@@ -58,40 +57,28 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case VersioningPackage.TAG_VERSION_SPEC:
-			return createTagVersionSpec();
-		case VersioningPackage.DATE_VERSION_SPEC:
-			return createDateVersionSpec();
-		case VersioningPackage.PRIMARY_VERSION_SPEC:
-			return createPrimaryVersionSpec();
-		case VersioningPackage.LOG_MESSAGE:
-			return createLogMessage();
-		case VersioningPackage.CHANGE_PACKAGE:
-			return createChangePackage();
-		case VersioningPackage.HISTORY_INFO:
-			return createHistoryInfo();
-		case VersioningPackage.HISTORY_QUERY:
-			return createHistoryQuery();
-		case VersioningPackage.VERSION:
-			return createVersion();
-		case VersioningPackage.HEAD_VERSION_SPEC:
-			return createHeadVersionSpec();
-		case VersioningPackage.VERSION_PROPERTY:
-			return createVersionProperty();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case VersioningPackage.TAG_VERSION_SPEC: return createTagVersionSpec();
+			case VersioningPackage.DATE_VERSION_SPEC: return createDateVersionSpec();
+			case VersioningPackage.PRIMARY_VERSION_SPEC: return createPrimaryVersionSpec();
+			case VersioningPackage.LOG_MESSAGE: return createLogMessage();
+			case VersioningPackage.CHANGE_PACKAGE: return createChangePackage();
+			case VersioningPackage.HISTORY_INFO: return createHistoryInfo();
+			case VersioningPackage.HISTORY_QUERY: return createHistoryQuery();
+			case VersioningPackage.VERSION: return createVersion();
+			case VersioningPackage.HEAD_VERSION_SPEC: return createHeadVersionSpec();
+			case VersioningPackage.VERSION_PROPERTY: return createVersionProperty();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TagVersionSpec createTagVersionSpec() {
@@ -101,7 +88,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DateVersionSpec createDateVersionSpec() {
@@ -111,7 +97,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec createPrimaryVersionSpec() {
@@ -121,7 +106,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage createLogMessage() {
@@ -131,7 +115,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage createChangePackage() {
@@ -141,7 +124,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryInfo createHistoryInfo() {
@@ -151,7 +133,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryQuery createHistoryQuery() {
@@ -161,7 +142,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version createVersion() {
@@ -171,7 +151,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HeadVersionSpec createHeadVersionSpec() {
@@ -181,7 +160,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersionProperty createVersionProperty() {
@@ -191,16 +169,14 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersioningPackage getVersioningPackage() {
-		return (VersioningPackage) getEPackage();
+		return (VersioningPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

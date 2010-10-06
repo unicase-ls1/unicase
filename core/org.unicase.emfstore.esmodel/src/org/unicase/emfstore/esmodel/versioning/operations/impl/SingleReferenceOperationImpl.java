@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -19,7 +20,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -322,8 +322,9 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 	}
 
 	public void apply(Project project) {
-		ModelElement modelElement = project.getModelElement(getModelElementId());
-		ModelElement newModelElement = project.getModelElement(getNewValue());
+		EObject modelElement = project.getModelElement(getModelElementId());
+		EObject oldModelElement = project.getModelElement(getOldValue());
+		EObject newModelElement = project.getModelElement(getNewValue());
 		if (modelElement == null) {
 			// silently fail
 			return;
@@ -336,8 +337,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 			// delete operation
 			if (reference.isContainer() && newModelElement == null) {
 				project.addModelElement(modelElement);
-			} else if (reference.isContainment() && newModelElement == null) {
-				project.addModelElement(newModelElement);
+			} else if (reference.isContainment() && newModelElement == null && oldModelElement != null) {
+				project.addModelElement(oldModelElement);
 			}
 		} catch (UnkownFeatureException e) {
 			// silently fail

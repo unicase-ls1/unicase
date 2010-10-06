@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -20,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOpera
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -30,22 +30,19 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getIndex <em>Index
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getOldValue <em>Old
- * Value</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getNewValue <em>New
- * Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getOldValue <em>Old Value</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceSetOperationImpl#getNewValue <em>New Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl implements MultiReferenceSetOperation {
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -63,9 +60,9 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getOldValue()
 	 * @generated
 	 * @ordered
@@ -73,9 +70,9 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	protected ModelElementId oldValue;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewValue()
 	 * @generated
 	 * @ordered
@@ -84,7 +81,6 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiReferenceSetOperationImpl() {
@@ -93,7 +89,6 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +98,6 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -112,39 +106,32 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX, oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX, oldIndex, index));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getOldValue() {
 		if (oldValue != null && oldValue.eIsProxy()) {
-			InternalEObject oldOldValue = (InternalEObject) oldValue;
-			oldValue = (ModelElementId) eResolveProxy(oldOldValue);
+			InternalEObject oldOldValue = (InternalEObject)oldValue;
+			oldValue = (ModelElementId)eResolveProxy(oldOldValue);
 			if (oldValue != oldOldValue) {
-				InternalEObject newOldValue = (InternalEObject) oldValue;
-				NotificationChain msgs = oldOldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, null);
+				InternalEObject newOldValue = (InternalEObject)oldValue;
+				NotificationChain msgs = oldOldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, null);
 				if (newOldValue.eInternalContainer() == null) {
-					msgs = newOldValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+					msgs = newOldValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, oldValue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, oldValue));
 			}
 		}
 		return oldValue;
@@ -152,7 +139,6 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetOldValue() {
@@ -161,67 +147,53 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOldValue(ModelElementId newOldValue, NotificationChain msgs) {
 		ModelElementId oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, newOldValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, newOldValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOldValue(ModelElementId newOldValue) {
 		if (newOldValue != oldValue) {
 			NotificationChain msgs = null;
 			if (oldValue != null)
-				msgs = ((InternalEObject) oldValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+				msgs = ((InternalEObject)oldValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
 			if (newOldValue != null)
-				msgs = ((InternalEObject) newOldValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+				msgs = ((InternalEObject)newOldValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
 			msgs = basicSetOldValue(newOldValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, newOldValue, newOldValue));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, newOldValue, newOldValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getNewValue() {
 		if (newValue != null && newValue.eIsProxy()) {
-			InternalEObject oldNewValue = (InternalEObject) newValue;
-			newValue = (ModelElementId) eResolveProxy(oldNewValue);
+			InternalEObject oldNewValue = (InternalEObject)newValue;
+			newValue = (ModelElementId)eResolveProxy(oldNewValue);
 			if (newValue != oldNewValue) {
-				InternalEObject newNewValue = (InternalEObject) newValue;
-				NotificationChain msgs = oldNewValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, null);
+				InternalEObject newNewValue = (InternalEObject)newValue;
+				NotificationChain msgs = oldNewValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, null);
 				if (newNewValue.eInternalContainer() == null) {
-					msgs = newNewValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+					msgs = newNewValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newValue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newValue));
 			}
 		}
 		return newValue;
@@ -229,7 +201,6 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetNewValue() {
@@ -238,152 +209,134 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNewValue(ModelElementId newNewValue, NotificationChain msgs) {
 		ModelElementId oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newNewValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newNewValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewValue(ModelElementId newNewValue) {
 		if (newNewValue != newValue) {
 			NotificationChain msgs = null;
 			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
 			if (newNewValue != null)
-				msgs = ((InternalEObject) newNewValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+				msgs = ((InternalEObject)newNewValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
 			msgs = basicSetNewValue(newNewValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, newNewValue, newNewValue));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, newNewValue, newNewValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			return basicSetOldValue(null, msgs);
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-			return basicSetNewValue(null, msgs);
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+				return basicSetOldValue(null, msgs);
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+				return basicSetNewValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			return getIndex();
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			if (resolve)
-				return getOldValue();
-			return basicGetOldValue();
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-			if (resolve)
-				return getNewValue();
-			return basicGetNewValue();
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
+				return getIndex();
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+				if (resolve) return getOldValue();
+				return basicGetOldValue();
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+				if (resolve) return getNewValue();
+				return basicGetNewValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			setIndex((Integer) newValue);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			setOldValue((ModelElementId) newValue);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-			setNewValue((ModelElementId) newValue);
-			return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
+				setIndex((Integer)newValue);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+				setOldValue((ModelElementId)newValue);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+				setNewValue((ModelElementId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			setIndex(INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			setOldValue((ModelElementId) null);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-			setNewValue((ModelElementId) null);
-			return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
+				setIndex(INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+				setOldValue((ModelElementId)null);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+				setNewValue((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-			return index != INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			return oldValue != null;
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-			return newValue != null;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
+				return index != INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+				return oldValue != null;
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+				return newValue != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (index: ");
@@ -398,7 +351,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
 	 */
 	public void apply(Project project) {
-		ModelElement parentElement = project.getModelElement(getModelElementId());
+		EObject parentElement = project.getModelElement(getModelElementId());
 		if (parentElement == null) {
 			// fail silently
 			return;
@@ -412,10 +365,10 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		}
 		Object object = parentElement.eGet(reference);
 		@SuppressWarnings("unchecked")
-		EList<ModelElement> list = (EList<ModelElement>) object;
+		EList<EObject> list = (EList<EObject>) object;
 
-		ModelElement newElement = project.getModelElement(getNewValue());
-		ModelElement oldElement = project.getModelElement(getOldValue());
+		EObject newElement = project.getModelElement(getNewValue());
+		EObject oldElement = project.getModelElement(getOldValue());
 
 		if (newElement == null || oldElement == null) {
 			// fail silently

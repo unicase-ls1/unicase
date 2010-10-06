@@ -8,10 +8,10 @@ package org.unicase.metamodel.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -22,8 +22,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -117,6 +117,45 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelVersion()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS
+			|| childFeature == MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
@@ -166,14 +205,14 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			final Project project = (Project) object;
-			final Collection<ModelElement> ret = new ArrayList<ModelElement>();
+			final Collection<EObject> ret = new ArrayList<EObject>();
 			EObject econtainer = null;
-			EList<ModelElement> allmes = project.getAllModelElements();
+			Set<EObject> allmes = project.getAllModelElements();
 			// FIXME: ugly hack to avoid dependency to workspace
 			boolean isInProjectSpace = project.eContainer() != null
 				&& project.eContainer().eClass().getName().equals("ProjectSpace");
 			// FIXME: ugly hack to avoid dependency to model
-			for (ModelElement temp : allmes) {
+			for (EObject temp : allmes) {
 				econtainer = temp.eContainer();
 				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp.eClass().getName()
 					.equals("CompositeSection")))

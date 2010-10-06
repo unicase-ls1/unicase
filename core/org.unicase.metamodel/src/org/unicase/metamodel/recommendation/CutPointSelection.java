@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * This strategy returns just the first x results, according to their ranking in the map.
@@ -36,12 +36,11 @@ public class CutPointSelection implements LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	public SortedMap<ModelElement, Double> selectCandidates(Map<ModelElement, Double> selectionMap) {
-		TreeMap<ModelElement, Double> result = new TreeMap<ModelElement, Double>(
-			new ProbabilityComparator(selectionMap));
+	public SortedMap<EObject, Double> selectCandidates(Map<EObject, Double> selectionMap) {
+		TreeMap<EObject, Double> result = new TreeMap<EObject, Double>(new ProbabilityComparator(selectionMap));
 
 		// add just non-zeros
-		for (ModelElement me : selectionMap.keySet()) {
+		for (EObject me : selectionMap.keySet()) {
 			Double val = selectionMap.get(me);
 			if (val != null && val > 0) {
 				result.put(me, val);
@@ -51,7 +50,7 @@ public class CutPointSelection implements LinkSelectionStrategy {
 		Object[] sortedKeyArray = result.keySet().toArray();
 		// if cutpoint is zero, only zero elements are filtered.
 		if (sortedKeyArray.length > cutPoint && cutPoint != 0) {
-			ModelElement last = (ModelElement) sortedKeyArray[cutPoint];
+			EObject last = (EObject) sortedKeyArray[cutPoint];
 			return result.headMap(last);
 		} else { // less suggestions than cut point demands
 			return result;
@@ -63,23 +62,23 @@ public class CutPointSelection implements LinkSelectionStrategy {
 	 * 
 	 * @author Henning Femmer
 	 */
-	class ProbabilityComparator implements java.util.Comparator<ModelElement> {
+	class ProbabilityComparator implements java.util.Comparator<EObject> {
 
-		private Map<ModelElement, Double> probabilityMap;
+		private Map<EObject, Double> probabilityMap;
 
 		/**
 		 * The constructor.
 		 * 
 		 * @param selectionMap the map
 		 */
-		public ProbabilityComparator(Map<ModelElement, Double> selectionMap) {
+		public ProbabilityComparator(Map<EObject, Double> selectionMap) {
 			this.probabilityMap = selectionMap;
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
-		public int compare(ModelElement o1, ModelElement o2) {
+		public int compare(EObject o1, EObject o2) {
 			Double val1 = (probabilityMap.containsKey(o1)) ? probabilityMap.get(o1) : 0.0;
 			Double val2 = (probabilityMap.containsKey(o2)) ? probabilityMap.get(o2) : 0.0;
 

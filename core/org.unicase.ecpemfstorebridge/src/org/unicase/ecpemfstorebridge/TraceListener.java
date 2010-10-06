@@ -6,7 +6,8 @@
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -25,9 +26,9 @@ public class TraceListener implements org.unicase.ui.common.TraceListener {
 	 *      java.lang.String, java.lang.String)
 	 */
 	public void onTrace(EObject source, EObject target, String feature, String view) {
-		if (source instanceof ModelElement && target instanceof ModelElement) {
-			final ModelElement targetModelElement = (ModelElement) target;
-			final ModelElement sourceModelElement = (ModelElement) source;
+		if (source instanceof EObject && target instanceof EObject) {
+			final EObject targetModelElement = target;
+			final EObject sourceModelElement = source;
 			final String featureName = feature;
 
 			new UnicaseCommand() {
@@ -35,12 +36,14 @@ public class TraceListener implements org.unicase.ui.common.TraceListener {
 				protected void doRun() {
 					ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 						.getActiveProjectSpace();
-					WorkspaceUtil.logTraceEvent(activeProjectSpace, sourceModelElement.getModelElementId(),
-						targetModelElement.getModelElementId(), featureName);
+					Project p1 = ModelUtil.getProject(sourceModelElement);
+					Project p2 = ModelUtil.getProject(targetModelElement);
+					WorkspaceUtil.logTraceEvent(activeProjectSpace, p1 == null ? null : p1
+						.getModelElementId(sourceModelElement), p2 == null ? null : p2
+						.getModelElementId(targetModelElement), featureName);
 				}
 			}.run();
 		}
 
 	}
-
 }

@@ -16,9 +16,9 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
@@ -41,7 +41,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * Default constructor.
 	 * 
-	 * @param projectSpace the projectspace
+	 * @param projectSpace the project space
 	 */
 	public EMFStoreECPProject(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
@@ -90,7 +90,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean contains(EObject eObject) {
-		return (((ModelElement) eObject).getProject().equals(projectSpace.getProject()));
+		return ModelUtil.getProject(eObject).equals(projectSpace.getProject());
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
 		Collection<EObject> ret = new BasicEList<EObject>();
-		ret.addAll(projectSpace.getProject().getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>()));
+		ret.addAll(projectSpace.getProject().getAllModelElementsbyClass(clazz, new BasicEList<EObject>()));
 		return ret;
 	}
 
@@ -151,7 +151,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		// Do nothing
 
 	}
@@ -162,7 +162,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		super.modelelementDeleted(modelElement);
 
 	}
@@ -173,7 +173,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing
 
 	}

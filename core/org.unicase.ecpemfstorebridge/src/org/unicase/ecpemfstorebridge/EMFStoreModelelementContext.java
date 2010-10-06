@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
@@ -30,7 +30,7 @@ import org.unicase.workspace.Configuration;
 public class EMFStoreModelelementContext extends ModelElementContext implements ProjectChangeObserver {
 
 	private final Project project;
-	private ModelElement modelelement;
+	private EObject modelelement;
 
 	/**
 	 * Constructor for the OpenModelelementdialog. Will be removed, when Navigator is refactored.
@@ -47,10 +47,10 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param me the {@link ModelElement}
+	 * @param me the {@link EObject}
 	 */
-	public EMFStoreModelelementContext(ModelElement me) {
-		this(me.getProject());
+	public EMFStoreModelelementContext(EObject me) {
+		this(ModelUtil.getProject(me));
 		this.modelelement = me;
 	}
 
@@ -85,7 +85,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	@Override
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
 		Collection<EObject> ret = new BasicEList<EObject>();
-		for (EObject element : project.getAllModelElementsbyClass(clazz, new BasicEList<ModelElement>())) {
+		for (EObject element : project.getAllModelElements()) {
 			if (association || !isAssociationClassElement(element)) {
 				ret.add(element);
 			}
@@ -110,9 +110,11 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 */
 	@Override
 	public boolean contains(EObject dropee) {
-		if (dropee instanceof ModelElement) {
-			return (((ModelElement) dropee).getProject().equals(project));
+		Project p = ModelUtil.getProject(dropee);
+		if (p != null) {
+			return p.equals(project);
 		}
+
 		return false;
 	}
 
@@ -132,7 +134,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void modelElementAdded(Project project, EObject modelElement) {
 		// Do nothing.
 
 	}
@@ -143,7 +145,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
+	public void modelElementRemoved(Project project, EObject modelElement) {
 		if (modelElement.equals(this.modelelement)) {
 			modelElementDeleted();
 		}
@@ -156,7 +158,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing
 
 	}

@@ -599,15 +599,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	public static void pullUpAttributes(List<Attribute> attributes, Class superClass) {
 		for (Attribute attribute : attributes) {
-			Attribute superAttribute = ModelUtil.copy(attribute);
+			Attribute superAttribute = ModelUtil.clone(attribute);
 			superClass.getAttributes().add(superAttribute);
 			for (Class subClass : superClass.getSubClasses()) {
 				if (subClass != attribute.getDefiningClass()) {
 					Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(subClass, attribute);
-					sameAttribute.delete();
+					ModelUtil.getProject(sameAttribute).deleteModelElement(sameAttribute);
 				}
 			}
-			attribute.delete();
+			ModelUtil.getProject(attribute).deleteModelElement(attribute);
 		}
 	}
 
@@ -618,15 +618,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				if (subClass != association.getSource()) {
 					Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(subClass,
 						association);
-					sameAssociation.delete();
+					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
 				}
 			}
-			Association superAssociation = ModelUtil.copy(association);
+			Association superAssociation = ModelUtil.clone(association);
 			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
 				.add(superAssociation);
 			superAssociation.setSource(superClass);
 			superAssociation.setTarget(association.getTarget());
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
 
@@ -637,16 +637,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				if (subClass != association.getSource()) {
 					Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(subClass,
 						association);
-					sameAssociation.delete();
+					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
 				}
 			}
-			Association superAssociation = ModelUtil.copy(association);
+			Association superAssociation = ModelUtil.clone(association);
 			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
 				.add(superAssociation);
 			superAssociation.setSource(association.getSource());
 			superAssociation.setTarget(superClass);
-			association.delete();
+			ModelUtil.getProject(association).deleteModelElement(association);
 		}
 	}
-
 } // PullUpAttributeOperationImpl
