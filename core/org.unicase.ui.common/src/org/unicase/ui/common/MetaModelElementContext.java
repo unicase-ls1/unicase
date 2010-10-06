@@ -12,17 +12,18 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.unicase.metamodel.AssociationClassElement;
 
 /**
- * MetaModelContext used by the editor to determine which modelelements belong to the model.
+ * MetaModelContext used by the editor to determine which model elements belong to the model.
  * 
  * @author helming
  */
 public abstract class MetaModelElementContext {
 
 	/**
-	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
+	 * Retrieve all EClasses from the ECore package registry that are subclasses of the given EClass. Does not include
 	 * abstract classes or interfaces.
 	 * 
 	 * @param eClass the superClass of the subClasses to retrieve
@@ -44,12 +45,15 @@ public abstract class MetaModelElementContext {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
+
 			if (association || !isAssociationClassElement(subClass)) {
-				if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+				if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass.isSuperTypeOf(subClass))
+					&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
 					result.add(subClass);
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -71,9 +75,9 @@ public abstract class MetaModelElementContext {
 	public abstract boolean isAssociationClassElement(EClass eClazz);
 
 	/**
-	 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
-	 * @param parent The EObject to get conatinment references from
+	 * @param parent The EObject to get containment references from
 	 */
 	public EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
@@ -81,12 +85,13 @@ public abstract class MetaModelElementContext {
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
-			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.equals(newMEInstance)) {
 				reference = containmentitem;
 
 				break;
-			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
-
+			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
+				|| eReferenceType.isSuperTypeOf(newMEInstance.eClass())) {
 				reference = containmentitem;
 				break;
 			}

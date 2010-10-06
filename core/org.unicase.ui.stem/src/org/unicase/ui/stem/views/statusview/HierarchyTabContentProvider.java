@@ -11,10 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
@@ -109,7 +110,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		UnicaseModelElement modelElement = (UnicaseModelElement) object;
 		if (viewer.getInput() instanceof WorkPackage) {
 			WorkPackage workPackage = (WorkPackage) viewer.getInput();
-			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
+			Set<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElements(workPackage, false);
 			EList<Annotation> annotations = modelElement.getAnnotations();
 			for (Annotation annotation : annotations) {
 				if (allContainedModelElements.contains(annotation)) {

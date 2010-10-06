@@ -4,7 +4,7 @@
    
    <extension-point id="menuconfiguration" name="Menu Configuration" schema="schema/menuconfiguration.exsd"/>
    <extension-point id="org.unicase.ui.navigator.replaceContentProvider" name="Replace Content Provider" schema="schema/org.unicase.ui.navigator.replaceContentProvider.exsd"/>
-   <extension-point id="ecpWorkspaceProvider" name="ECP Workspace" schema="schema/ecpWorkspaceProvider.exsd"/>
+   <extension-point id="org.unicase.ui.navigator.ecpWorkspaceProvider" name="ECP Workspace" schema="schema/ecpWorkspaceProvider.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -79,9 +79,21 @@
             <visibleWhen
                   checkEnabled="false">
                <iterate>
+                  <and>
                   <instanceof
-                        value="org.unicase.metamodel.ModelElement">
+                        value="org.eclipse.emf.ecore.EObject">
                   </instanceof>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.metamodel.Project">
+                  	</instanceof>
+                  </not>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.workspace.ProjectSpace">
+                  	</instanceof>
+                  </not>
+	            </and>
                </iterate>
             </visibleWhen>
          </command>
@@ -93,9 +105,21 @@
             <visibleWhen
                   checkEnabled="false">
                <iterate>
+               	<and>
                   <instanceof
-                        value="org.unicase.metamodel.ModelElement">
+                        value="org.eclipse.emf.ecore.EObject">
                   </instanceof>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.metamodel.Project">
+                  	</instanceof>
+                  </not>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.workspace.ProjectSpace">
+                  	</instanceof>
+                  </not>
+	            </and>
                </iterate>
             </visibleWhen>
          </command>

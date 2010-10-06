@@ -15,7 +15,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
@@ -62,11 +61,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		final ModelElement newMEInstance;
+		final EObject newMEInstance;
 		if (selectedEObject != null && newMEType != null) {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
+			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 			if (selectedEObject instanceof ProjectSpace) {
 				new UnicaseCommand() {
 					@Override

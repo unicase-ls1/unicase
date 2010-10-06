@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.ui.navigator.workSpaceModel.*;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;

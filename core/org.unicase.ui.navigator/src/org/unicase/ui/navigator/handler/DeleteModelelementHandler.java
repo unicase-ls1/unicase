@@ -8,7 +8,7 @@ package org.unicase.ui.navigator.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
@@ -26,7 +26,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ModelElement me = ActionHelper.getModelElement(event);
+		EObject me = ActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}
@@ -36,7 +36,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		return null;
 	}
 
-	private void deleteModelElement(final ModelElement me) {
+	private void deleteModelElement(final EObject me) {
 		try {
 			new DeleteModelElementCommand(me, WorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
 		} catch (NoWorkspaceException e) {

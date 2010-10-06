@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -46,7 +47,6 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
@@ -63,8 +63,8 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.ui.util.URLHelper;
+import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -139,14 +139,11 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				return;
 			}
 			try {
-				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE
-						.createModelElementUrl(text);
-				ModelElement modelElement = null;
-				ModelElementUrlFragment modelElementUrlFragment = modelElementUrl
-						.getModelElementUrlFragment();
+				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
+				EObject modelElement = null;
+				ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
 				try {
-					modelElement = getProjectSpace().resolve(
-							modelElementUrlFragment);
+					modelElement = getProjectSpace().resolve(modelElementUrlFragment);
 				} catch (MEUrlResolutionException e1) {
 				}
 				UnicaseActionHelper.openModelElement(modelElement, DashboardEditor.ID);
@@ -177,20 +174,14 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent composite.
-	 * @param style
-	 *            the style.
-	 * @param notification
-	 *            the notification.
-	 * @param project
-	 *            the project.
-	 * @param page
-	 *            a back link to the dashboard page (needed only for layout
-	 *            purposes).
+	 * @param parent the parent composite.
+	 * @param style the style.
+	 * @param notification the notification.
+	 * @param project the project.
+	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public DashboardNotificationEntry(DashboardPage page, Composite parent,
-			int style, ESNotification notification, ProjectSpace project) {
+	public DashboardNotificationEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+		ProjectSpace project) {
 		super(page, parent, style, notification, project);
 		localResources = new ArrayList<Resource>();
 
@@ -198,18 +189,14 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		localResources.add(lightBlue);
 
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
-		if (getNotification().getProvider().equals(
-				PushedNotificationProvider.NAME)
-				&& PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-						DashboardKey.HIGHLIGHT_PUSHED_COMMENTS)
-						.getBooleanProperty()) {
-			notificationColor = getDisplay().getSystemColor(
-					SWT.COLOR_INFO_BACKGROUND);
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)
+			&& PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.HIGHLIGHT_PUSHED_COMMENTS)
+				.getBooleanProperty()) {
+			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		comments = getComments();
 		createEntry();
 	}
@@ -231,16 +218,13 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	@Override
 	protected void createEntry() {
 		// contains the entry and the close button
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
-				.margins(3, 0).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 0).applyTo(this);
 		setBackground(notificationColor);
 
 		// contains the entry - everything apart from the close button
 		notificationComposite = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				notificationComposite);
-		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(
-				notificationComposite);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationComposite);
+		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(notificationComposite);
 
 		if (getNotification().getRelatedModelElements().size() == 0) {
 			// assuming that _all_ notifications are based on a specific element
@@ -255,8 +239,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		addMouseTrackListener(this, hoverListener);
 	}
 
-	private void addMouseTrackListener(Control control,
-			MouseTrackListener listener) {
+	private void addMouseTrackListener(Control control, MouseTrackListener listener) {
 		control.addMouseTrackListener(listener);
 		if (control instanceof Composite) {
 			for (Control c : ((Composite) control).getChildren()) {
@@ -267,10 +250,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 
 	private void createComments() {
 		commentsComposite = new Composite(notificationComposite, SWT.NONE);
-		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(
-				commentsComposite);
-		GridDataFactory.fillDefaults().span(3, 1).indent(20, 0).grab(true,
-				false).applyTo(commentsComposite);
+		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(commentsComposite);
+		GridDataFactory.fillDefaults().span(3, 1).indent(20, 0).grab(true, false).applyTo(commentsComposite);
 		MECommentWidgetListener commentsWidgetListener = new MECommentWidgetListener() {
 			public void commentLayoutUpdated() {
 				completeLayout(true);
@@ -285,8 +266,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			}
 		};
 		for (Comment comment : comments) {
-			MECommentWidget widget = new MECommentWidget(comment,
-					commentsComposite);
+			MECommentWidget widget = new MECommentWidget(comment, commentsComposite);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
 			widget.addCommentWidgetListener(commentsWidgetListener);
 		}
@@ -321,29 +301,24 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	private void createDrawer() {
 
 		drawerComposite = new Composite(notificationComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(380, 0).grab(true, false)
-				.span(3, 1).indent(20, 0).applyTo(drawerComposite);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8)
-				.extendedMargins(3, 3, 3, 3).applyTo(drawerComposite);
+		GridDataFactory.fillDefaults().hint(380, 0).grab(true, false).span(3, 1).indent(20, 0).applyTo(drawerComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(
+			drawerComposite);
 		drawerComposite.setBackground(lightBlue);
 
 		for (ModelElementId mid : getNotification().getRelatedModelElements()) {
-			Control drawerEntry = URLHelper.getModelElementLink(
-					drawerComposite, mid, getProjectSpace(), URLHelper.UNLTD);
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(
-					drawerEntry);
+			Control drawerEntry = URLHelper.getModelElementLink(drawerComposite, mid, getProjectSpace(),
+				URLHelper.UNLTD);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
 		}
 
 	}
 
 	private void createCloseButton() {
-		final Image closeImage = Activator
-				.getImageDescriptor("icons/close.png").createImage();
-		final Image closeImageRed = Activator.getImageDescriptor(
-				"icons/cross.png").createImage();
+		final Image closeImage = Activator.getImageDescriptor("icons/close.png").createImage();
+		final Image closeImageRed = Activator.getImageDescriptor("icons/cross.png").createImage();
 		closeButton = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-				.hint(18, 26).applyTo(closeButton);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).hint(18, 26).applyTo(closeButton);
 		closeButton.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
 				if (mouseOver) {
@@ -359,9 +334,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		closeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				boolean hide = MessageDialog.openQuestion(getShell(),
-						"Remove notification",
-						"Are you sure you want to delete this notification?");
+				boolean hide = MessageDialog.openQuestion(getShell(), "Remove notification",
+					"Are you sure you want to delete this notification?");
 				if (hide) {
 					new UnicaseCommand() {
 						@Override
@@ -377,7 +351,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	}
 
 	private void createNotificationEntry() {
-		ModelElement modelElement = getFirstModelElement();
+		EObject modelElement = getFirstModelElement();
 
 		// TODO Add the changepackage to the notification OR add the
 		// modelelement itself on create/deletes.
@@ -386,17 +360,14 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		}
 
 		// the composite that wraps the whole notification
-		Composite notificationEntry = new Composite(notificationComposite,
-				SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				notificationEntry);
-		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false)
-				.margins(6, 6).spacing(3, 0).applyTo(notificationEntry);
+		Composite notificationEntry = new Composite(notificationComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationEntry);
+		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).margins(6, 6).spacing(3, 0).applyTo(
+			notificationEntry);
 
 		// the image
 		final Image image = labelProvider.getImage(modelElement);
-		final Composite imageComposite = new Composite(notificationEntry,
-				SWT.NONE);
+		final Composite imageComposite = new Composite(notificationEntry, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(16, 16).applyTo(imageComposite);
 		imageComposite.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
@@ -415,8 +386,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		}
 		entryMessage.setText(text);
 		int height = Activator.getDefault().fixHeightForCocoa(entryMessage.computeSize(400, SWT.DEFAULT).y);
-		GridDataFactory.fillDefaults().hint(400, height).grab(true, false)
-				.applyTo(entryMessage);
+		GridDataFactory.fillDefaults().hint(400, height).grab(true, false).applyTo(entryMessage);
 		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
 
 		// the toolbar
@@ -430,64 +400,53 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		// the date
 		Label date = new Label(notificationEntry, SWT.NONE);
 		date.setText(format.format(getNotification().getCreationDate()));
-		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(
-				date);
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
 		date.setForeground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
 	}
 
 	private void createToolbar(Composite parent) {
 		toolbar = new Composite(parent, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-				.applyTo(toolbar);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(toolbar);
 		RowLayout layout = new RowLayout();
 		layout.spacing = 0;
 		layout.marginTop = 0;
 		toolbar.setLayout(layout);
 		if (getNotification().getRelatedModelElements().size() > 1) {
-			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(
-					toolbar, "details.png", 150);
+			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png", 150);
 			toogleDrawer.setToolTipText("Toggle details");
 			ToggleDrawerAdapter toggleDrawerAdapter = new ToggleDrawerAdapter();
 			toogleDrawer.addMouseListener(toggleDrawerAdapter);
+			entryMessage.addMouseListener(toggleDrawerAdapter);
 		}
 		if (comments.size() > 0 && comments.get(0).eContainer() != null) {
-			DashboardToolbarAction openThread = new DashboardToolbarAction(
-					toolbar, "comments.png", 110);
+			DashboardToolbarAction openThread = new DashboardToolbarAction(toolbar, "comments.png", 110);
 			openThread.setToolTipText("Open the discussion thread");
 			openThread.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent e) {
-					ModelElement modelElement = comments.get(0)
-							.getFirstParent();
+					EObject modelElement = comments.get(0).getFirstParent();
 					ActionHelper.openDiscussion(modelElement, false);
 				}
 			});
 		}
-		final ModelElement modelElement = getFirstModelElement();
-		if (modelElement != null
-				&& !getNotification().getRelatedOperations().isEmpty()) {
-			DashboardToolbarAction showOperations = new DashboardToolbarAction(
-					toolbar, "historyview.png", 110);
+		final EObject modelElement = getFirstModelElement();
+		if (modelElement != null && !getNotification().getRelatedOperations().isEmpty()) {
+			DashboardToolbarAction showOperations = new DashboardToolbarAction(toolbar, "historyview.png", 110);
 			showOperations.setToolTipText("View changes");
 			showOperations.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent event) {
-					IWorkbenchPage page = PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getActivePage();
+					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					HistoryBrowserView historyBrowserView = null;
 					String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
 					try {
-						historyBrowserView = (HistoryBrowserView) page
-								.showView(viewId);
+						historyBrowserView = (HistoryBrowserView) page.showView(viewId);
 					} catch (PartInitException e) {
 						DialogHandler.showExceptionDialog(e);
 					}
 					if (historyBrowserView != null) {
-						historyBrowserView.setInput(getProjectSpace(),
-								modelElement);
-						historyBrowserView
-								.highlightOperations(getNotification()
-										.getRelatedOperations());
+						historyBrowserView.setInput(getProjectSpace(), modelElement);
+						historyBrowserView.highlightOperations(getNotification().getRelatedOperations());
 					}
 				}
 			});
@@ -497,11 +456,9 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
 		if (open) {
-			GridDataFactory.createFrom(
-					(GridData) drawerComposite.getLayoutData()).hint(380,
-					SWT.DEFAULT).applyTo(drawerComposite);
-			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE
-					.createNotificationReadEvent();
+			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, SWT.DEFAULT).applyTo(
+				drawerComposite);
+			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 			readEvent.setNotificationId(getNotification().getIdentifier());
 			readEvent.setReadView(DashboardEditor.ID);
 			readEvent.setSourceView(DashboardEditor.ID);
@@ -513,9 +470,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				}
 			}.run();
 		} else {
-			GridDataFactory.createFrom(
-					(GridData) drawerComposite.getLayoutData()).hint(380, 0)
-					.applyTo(drawerComposite);
+			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, 0)
+				.applyTo(drawerComposite);
 		}
 		showDrawer = !open;
 		getPage().getForm().reflow(true);
@@ -524,8 +480,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	}
 
 	private void logEvent(ModelElementId modelElementId, String source) {
-		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE
-				.createNotificationReadEvent();
+		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 		readEvent.setModelElement(modelElementId);
 		readEvent.setNotificationId(getNotification().getIdentifier());
 		readEvent.setReadView("org.unicase.ui.meeditor");
@@ -540,8 +495,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	}
 
 	private void logEvent(ESNotification n, ProjectSpace projectSpace) {
-		NotificationIgnoreEvent notificationIgnoreEvent = EventsFactory.eINSTANCE
-				.createNotificationIgnoreEvent();
+		NotificationIgnoreEvent notificationIgnoreEvent = EventsFactory.eINSTANCE.createNotificationIgnoreEvent();
 		notificationIgnoreEvent.setTimestamp(new Date());
 		notificationIgnoreEvent.setNotificationId(n.getIdentifier());
 		projectSpace.addEvent(notificationIgnoreEvent);
@@ -550,8 +504,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	private List<Comment> getComments() {
 		ArrayList<Comment> comments = new ArrayList<Comment>();
 
-		if (getNotification().getProvider().equals(
-				PushedNotificationProvider.NAME)) {
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
 			Comment comment = RationaleFactory.eINSTANCE.createComment();
 			comment.setDescription(getNotification().getDetails());
 			comment.setCreator(getNotification().getSender());
@@ -559,15 +512,12 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			comments.add(comment);
 			return comments;
 		}
-		if (getNotification().getProvider().equals(
-				CommentsNotificationProvider.NAME)) {
+		if (getNotification().getProvider().equals(CommentsNotificationProvider.NAME)) {
 			if (getNotification().getRelatedModelElements().size() < 1) {
 				return comments;
 			}
-			for (ModelElementId mid : getNotification()
-					.getRelatedModelElements()) {
-				ModelElement comment = getProjectSpace().getProject()
-						.getModelElement(mid);
+			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
+				EObject comment = getProjectSpace().getProject().getModelElement(mid);
 				if (comment != null) {
 					comments.add((Comment) comment);
 				}

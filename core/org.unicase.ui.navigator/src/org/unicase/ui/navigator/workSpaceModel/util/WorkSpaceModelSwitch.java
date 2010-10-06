@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ui.navigator.workSpaceModel.*;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
