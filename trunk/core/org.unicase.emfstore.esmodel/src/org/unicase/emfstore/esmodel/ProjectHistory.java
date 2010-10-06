@@ -28,13 +28,13 @@ import org.unicase.emfstore.esmodel.versioning.Version;
  */
 public interface ProjectHistory extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectHistory_ProjectId()
@@ -44,9 +44,8 @@ public interface ProjectHistory extends EObject {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectId <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectId <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
@@ -54,14 +53,14 @@ public interface ProjectHistory extends EObject {
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.Version}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.Version}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Versions</em>' containment reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Versions</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectHistory_Versions()
 	 * @model containment="true" resolveProxies="true" required="true"
@@ -78,13 +77,13 @@ public interface ProjectHistory extends EObject {
 	Version getLastVersion();
 
 	/**
-	 * Returns the value of the '<em><b>Project Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Name</em>' attribute.
 	 * @see #setProjectName(String)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectHistory_ProjectName()
@@ -94,9 +93,8 @@ public interface ProjectHistory extends EObject {
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectName <em>Project Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectName <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
 	 * @generated
@@ -104,13 +102,13 @@ public interface ProjectHistory extends EObject {
 	void setProjectName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Description</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
 	 * @see org.unicase.emfstore.esmodel.EsmodelPackage#getProjectHistory_ProjectDescription()
@@ -120,9 +118,8 @@ public interface ProjectHistory extends EObject {
 	String getProjectDescription();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectDescription
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.ProjectHistory#getProjectDescription <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Description</em>' attribute.
 	 * @see #getProjectDescription()
 	 * @generated

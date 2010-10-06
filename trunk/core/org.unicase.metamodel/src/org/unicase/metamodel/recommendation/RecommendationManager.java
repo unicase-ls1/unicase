@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -98,7 +98,7 @@ public class RecommendationManager {
 	 * @param base the model element, for which suggestions will be made
 	 * @return a recommendationStrategy to the specified type
 	 */
-	public RecommendationStrategy getRecommendationStrategy(EReference ref, ModelElement base) {
+	public RecommendationStrategy getRecommendationStrategy(EReference ref, EObject base) {
 		if (base != null && ref != null) {
 			String baseClassKey = getFullQualifiedClassName(base.eClass());
 
@@ -168,13 +168,13 @@ public class RecommendationManager {
 	 * @param selStrategy a LinkSelectionStrategy like CutPointSelection etc, null for no selection filtering
 	 * @return a map modelElement -> double value reference. The higher the better. Value should be in (0..1]
 	 */
-	public Map<ModelElement, Double> getMatchMap(final ModelElement base, EReference ref,
-		final Collection<ModelElement> elements, LinkSelectionStrategy selStrategy) {
+	public Map<EObject, Double> getMatchMap(final EObject base, EReference ref, final Collection<EObject> elements,
+		LinkSelectionStrategy selStrategy) {
 
 		try {
 
 			if (base == null || ref == null || elements == null || elements.size() == 0) {
-				return new HashMap<ModelElement, Double>();
+				return new HashMap<EObject, Double>();
 			}
 
 			RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
@@ -183,7 +183,7 @@ public class RecommendationManager {
 				System.out.println("Strategy " + recStrategy.getName() + " for " + ref.getName() + " and "
 					+ elements.size() + " elements.");
 
-				Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
+				Map<EObject, Double> rec = recStrategy.getMatchingMap(base, elements);
 
 				if (selStrategy != null) {
 					rec = selStrategy.selectCandidates(rec);
@@ -198,7 +198,7 @@ public class RecommendationManager {
 		}
 		// END SUPRESS CATCH EXCEPTION
 
-		return new HashMap<ModelElement, Double>();
+		return new HashMap<EObject, Double>();
 	}
 
 	/**

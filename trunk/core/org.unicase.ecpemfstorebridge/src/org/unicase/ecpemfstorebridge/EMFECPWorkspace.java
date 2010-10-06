@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
@@ -85,8 +84,8 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 	 */
 	@Override
 	public ECPProject getProject(EObject me) {
-		if (me instanceof ModelElement) {
-			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace((ModelElement) me);
+		if (me instanceof EObject) {
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
 			return mapping.get(projectSpace);
 		}
 		if (me instanceof ProjectSpace) {
@@ -117,8 +116,8 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 			return;
 		}
 		final ProjectSpace projectSpace;
-		if (modelelement instanceof ModelElement) {
-			ModelElement me = (ModelElement) modelelement;
+		if (modelelement instanceof EObject) {
+			EObject me = (EObject) modelelement;
 			projectSpace = org.unicase.workspace.WorkspaceManager.getProjectSpace(me);
 		} else if (modelelement instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) modelelement;

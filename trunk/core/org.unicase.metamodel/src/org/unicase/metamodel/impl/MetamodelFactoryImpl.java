@@ -18,13 +18,12 @@ import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static MetamodelFactory init() {
@@ -41,8 +40,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MetamodelFactoryImpl() {
@@ -51,7 +50,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +68,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project createProject() {
@@ -80,7 +77,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId createModelElementId() {
@@ -90,7 +86,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelVersion createModelVersion() {
@@ -103,13 +98,21 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * 
 	 * @generated
 	 */
+	// public ModelElementEObjectWrapper createModelElementEObjectWrapper() {
+	// ModelElementEObjectWrapperImpl modelElementEObjectWrapper = new ModelElementEObjectWrapperImpl();
+	// return modelElementEObjectWrapper;
+	// }
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MetamodelPackage getMetamodelPackage() {
 		return (MetamodelPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

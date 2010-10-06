@@ -5,6 +5,9 @@
  */
 package org.unicase.metamodel;
 
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +33,7 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.metamodel.ModelElement}. <!-- begin-user-doc -->
+	 * type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
@@ -39,14 +42,24 @@ public interface Project extends EObject, IAdaptable {
 	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElements()
-	 * @model containment="true" resolveProxies="true" keys="identifier" ordered="false"
+	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
-	EList<ModelElement> getModelElements();
+	EList<EObject> getModelElements();
+
+	/**
+	 * Initializes the ID caches of the project.
+	 */
+	void initCaches();
+
+	/**
+	 * Initializes the ID caches of the project with the given mappings.
+	 */
+	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap);
 
 	/**
 	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.metamodel.ModelElement}. <!-- begin-user-doc -->
+	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cut Elements</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
@@ -55,10 +68,10 @@ public interface Project extends EObject, IAdaptable {
 	 * 
 	 * @return the value of the '<em>Cut Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_CutElements()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<ModelElement> getCutElements();
+	EList<EObject> getCutElements();
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -71,8 +84,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
-		Boolean subclasses);
+	<T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list, Boolean subclasses);
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -84,7 +96,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
+	<T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
 
 	/**
 	 * Retrieve a list of model elements of a certain type in project that are directly contained in the project.
@@ -96,15 +108,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
-
-	/**
-	 * Returns whether the project contains a model element with the same id.
-	 * 
-	 * @param modelElement the id
-	 * @return true if the project contains such a model element
-	 */
-	boolean contains(ModelElement modelElement);
+	<T extends EObject> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
 
 	/**
 	 * Returns whether the project contains the exact same instance of the model element.
@@ -112,7 +116,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @param modelElement the model element
 	 * @return true if the project contains the instance
 	 */
-	boolean containsInstance(ModelElement modelElement);
+	boolean containsInstance(EObject modelElement);
 
 	/**
 	 * Get the model element with the given id from the project.
@@ -120,7 +124,7 @@ public interface Project extends EObject, IAdaptable {
 	 * @param modelElementId the model element id
 	 * @return the model element or null if it is not in the project
 	 */
-	ModelElement getModelElement(ModelElementId modelElementId);
+	EObject getModelElement(ModelElementId modelElementId);
 
 	/**
 	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
@@ -141,14 +145,16 @@ public interface Project extends EObject, IAdaptable {
 	 * 
 	 * @param modelElementImpl the model element to delete
 	 */
-	void deleteModelElement(ModelElement modelElementImpl);
+	void deleteModelElement(EObject modelElementImpl);
 
 	/**
 	 * Add a model element to the project.
 	 * 
 	 * @param newModelElement the new model element
 	 */
-	void addModelElement(ModelElement newModelElement);
+	void addModelElement(EObject newModelElement);
+
+	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map);
 
 	/**
 	 * Returns whether the project contains a model element with the same id.
@@ -161,13 +167,27 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * Get all model elements of a project.
 	 * 
-	 * @return a list of model elements
+	 * @return a set of model elements
 	 */
-	EList<ModelElement> getAllModelElements();
+	Set<EObject> getAllModelElements();
+
+	/**
+	 * Get all model element ID of this project
+	 * 
+	 * @return a set of model element IDs
+	 */
+	Set<ModelElementId> getAllModelElementIds();
 
 	/**
 	 * Deletes a project by notifying all project change observers about the deletion.
 	 */
 	void delete();
 
+	/**
+	 * Retrieve the ModelELement wrapper for an EObject.
+	 * 
+	 * @param eObject the eObject
+	 * @return the wrapper
+	 */
+	ModelElementId getModelElementId(EObject eObject);
 } // Project

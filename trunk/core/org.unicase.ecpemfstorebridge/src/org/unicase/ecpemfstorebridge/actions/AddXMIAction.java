@@ -5,8 +5,6 @@
  */
 package org.unicase.ecpemfstorebridge.actions;
 
-import java.util.Collection;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -16,7 +14,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IActionDelegate;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -72,7 +69,7 @@ public class AddXMIAction implements IActionDelegate {
 			projectSpace.setProjectDescription("Imported.");
 			projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
-			project.getModelElements().addAll((Collection<? extends ModelElement>) resource.getContents());
+			project.getModelElements().addAll(resource.getContents());
 			((WorkspaceImpl) currentWorkspace).addProjectSpace(projectSpace);
 			projectSpace.init();
 

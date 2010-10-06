@@ -5,11 +5,11 @@
  */
 package org.unicase.metamodel.provider;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.metamodel.ModelElement;
 
 /**
  * Helps with validation of modelelements.
@@ -29,7 +29,7 @@ public final class ValidationConstraintHelper {
 	 * @param featureName the featureName
 	 * @return the structuralFeature
 	 */
-	public static EStructuralFeature getErrorFeatureForModelElement(ModelElement modelElement, String featureName) {
+	public static EStructuralFeature getErrorFeatureForModelElement(EObject modelElement, String featureName) {
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IItemPropertyDescriptor itemPropertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(

@@ -5,6 +5,7 @@
  */
 package org.unicase.metamodel.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ import java.util.Set;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -25,10 +26,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -40,6 +44,7 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  * @generated
  */
 public class ProjectImpl extends EObjectImpl implements Project {
+
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -48,7 +53,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> modelElements;
+	protected EList<EObject> modelElements;
+
 	/**
 	 * The cached value of the '{@link #getCutElements() <em>Cut Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -57,13 +63,29 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> cutElements;
-	private Map<ModelElementId, ModelElement> modelElementCache;
+	protected EList<EObject> cutElements;
+
+	protected EMap<ModelElementId, EObject> modelElementIdToEObjectsCache;
+
 	private List<ProjectChangeObserver> observers;
 	private boolean isNotifiying;
 	private Set<ProjectChangeObserver> exceptionThrowingObservers;
 	private Set<ProjectChangeObserver> observersToRemove;
 	private Set<ProjectChangeObserver> undetachableObservers;
+
+	private Set<EObject> eObjectsCache;
+
+	private Map<EObject, ModelElementId> eObjectToIdCache;
+
+	private Map<EObject, ModelElementId> deletedEObjectToIdMap;
+
+	private Map<EObject, ModelElementId> newEObjectToIdMap;
+
+	private Map<ModelElementId, EObject> idToEObjectCache;
+
+	private boolean cachesInitialized;
+
+	private ProjectChangeNotifier changeNotifier;
 
 	// begin of custom code
 	/**
@@ -78,6 +100,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
 		observersToRemove = new HashSet<ProjectChangeObserver>();
 		undetachableObservers = new HashSet<ProjectChangeObserver>();
+		eObjectToIdCache = new HashMap<EObject, ModelElementId>();
+		deletedEObjectToIdMap = new HashMap<EObject, ModelElementId>();
+		newEObjectToIdMap = new HashMap<EObject, ModelElementId>();
+		eObjectsCache = new HashSet<EObject>();
+		idToEObjectCache = new HashMap<ModelElementId, EObject>();
 	}
 
 	// end of custom code
@@ -97,9 +124,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getModelElements() {
+	public EList<EObject> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList.Resolving<ModelElement>(ModelElement.class, this,
+			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
 				MetamodelPackage.PROJECT__MODEL_ELEMENTS);
 		}
 		return modelElements;
@@ -110,23 +137,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getCutElements() {
+	public EList<EObject> getCutElements() {
 		if (cutElements == null) {
-			cutElements = new EObjectContainmentEList.Resolving<ModelElement>(ModelElement.class, this,
+			cutElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
 				MetamodelPackage.PROJECT__CUT_ELEMENTS);
 		}
 		return cutElements;
 	}
 
-	// begin of custom code
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.Project#addModelElement(org.unicase.model.ModelElement)
-	 * @generated NOT
-	 */
-	public void addModelElement(ModelElement modelElement) {
-		this.getModelElements().add(modelElement);
+	public void addModelElement(EObject me) {
+		getModelElements().add(me);
 	}
 
 	/**
@@ -135,9 +155,29 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#getAllModelElements()
 	 * @generated NOT
 	 */
-	public EList<ModelElement> getAllModelElements() {
-		return this.getAllModelElementsbyClass(MetamodelPackage.eINSTANCE.getModelElement(),
-			new BasicEList<ModelElement>());
+	public Set<EObject> getAllModelElements() {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return eObjectsCache;
+	}
+
+	public Set<ModelElementId> getAllModelElementIds() {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return idToEObjectCache.keySet();
+	}
+
+	private boolean isCacheInitialized() {
+
+		if (changeNotifier == null) {
+			changeNotifier = new ProjectChangeNotifier(this);
+		}
+
+		return cachesInitialized;
 	}
 
 	/**
@@ -146,7 +186,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list) {
+	public <T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list) {
 		return getAllModelElementsbyClass(modelElementClass, list, true);
 	}
 
@@ -158,24 +198,19 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	// two casts below are guarded by initial sanity check and if statement
 	@SuppressWarnings("unchecked")
-	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
+	public <T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
 		Boolean subclasses) {
 
-		// sanity check
-		if (!MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
-			return list;
-		}
-
 		if (subclasses) {
-			for (ModelElementId modelElementId : getModelElementsFromCache().keySet()) {
-				ModelElement modelElement = this.getModelElement(modelElementId);
+			for (ModelElementId modelElementId : getIdToEObjectCache().keySet()) {
+				EObject modelElement = this.getModelElement(modelElementId);
 				if (modelElementClass.isInstance(modelElement)) {
 					list.add((T) modelElement);
 				}
 			}
 		} else {
-			for (ModelElementId modelElementId : getModelElementsFromCache().keySet()) {
-				ModelElement modelElement = this.getModelElement(modelElementId);
+			for (ModelElementId modelElementId : getIdToEObjectCache().keySet()) {
+				EObject modelElement = this.getModelElement(modelElementId);
 				if (modelElement.eClass() == modelElementClass) {
 					list.add((T) modelElement);
 				}
@@ -193,12 +228,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	// cast below is guarded by sanity check
 	@SuppressWarnings("unchecked")
-	public <T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list) {
+	public <T extends EObject> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list) {
 
-		if (!MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
-			return list;
-		}
-		for (ModelElement modelElement : this.getModelElements()) {
+		for (EObject modelElement : this.getModelElements()) {
 			if (modelElementClass.isInstance(modelElement)) {
 				list.add((T) modelElement);
 			}
@@ -251,11 +283,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		switch (featureID) {
 		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
 			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getModelElements().addAll((Collection<? extends EObject>) newValue);
 			return;
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			getCutElements().clear();
-			getCutElements().addAll((Collection<? extends ModelElement>) newValue);
+			getCutElements().addAll((Collection<? extends EObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,35 +347,74 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @generated NOT
 	 * @see org.unicase.metamodel.Project#contains(org.unicase.model.ModelElement)
 	 */
-	public boolean contains(ModelElement modelElement) {
-		return contains(modelElement.getModelElementId());
+	public boolean contains(ModelElementId id) {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+		return getIdToEObjectCache().containsKey(id);
+	}
+
+	private Map<ModelElementId, EObject> getIdToEObjectCache() {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return idToEObjectCache;
+	}
+
+	private Set<EObject> getEObjectsCache() {
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return eObjectsCache;
+	}
+
+	public void initCaches() {
+
+		if (isCacheInitialized()) {
+			return;
+		}
+
+		for (EObject modelElement : getModelElements()) {
+			// put model element into cache
+			ModelElementId modelElementId = getIdForModelElement(modelElement);
+			putIntoCaches(modelElement, modelElementId);
+
+			// put children of model element into cache
+			TreeIterator<EObject> it = modelElement.eAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				ModelElementId id = getIdForModelElement(obj);
+				putIntoCaches(obj, id);
+				// TODO:PlainEObjectMode, these 2 lines are needed for migration, currently the IDs is thus setted
+				// twice
+				// when adding a new model element
+			}
+		}
+
+		if (changeNotifier == null) {
+			changeNotifier = new ProjectChangeNotifier(this);
+		}
+
+		cachesInitialized = true;
 	}
 
 	/**
-	 * Get the model element cache.
+	 * Initializes the caches with the given mappings.
 	 * 
-	 * @return the cache map
+	 * @param eObjectToIdMap
+	 * @param idToEObjectMap
 	 */
-	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
-		initCacheAndNotifier();
-		return modelElementCache;
-	}
-
-	private void initCacheAndNotifier() {
-		if (modelElementCache == null) {
-			// init cache
-			modelElementCache = new HashMap<ModelElementId, ModelElement>();
-			TreeIterator<EObject> allContents = this.eAllContents();
-			while (allContents.hasNext()) {
-				EObject next = allContents.next();
-				if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(next)) {
-					ModelElement modelElement = (ModelElement) next;
-					modelElementCache.put(modelElement.getModelElementId(), modelElement);
-				}
-			}
-			// projectChangeNotifier = new ProjectChangeNotifier(this);
-			new ProjectChangeNotifier(this);
-		}
+	public void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap) {
+		// 1. maps setzen
+		// 2. cacheinit auf true
+		// 3. notifier erzeugen
+		cachesInitialized = true;
+		eObjectToIdCache = eObjectToIdMap;
+		idToEObjectCache = idToEObjectMap;
+		eObjectsCache = eObjectToIdMap.keySet();
+		changeNotifier = new ProjectChangeNotifier(this);
 	}
 
 	/**
@@ -352,15 +423,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void handleEMFModelElementAdded(final Project project, final ModelElement modelElement) {
-		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
-			throw new IllegalStateException("ModelElement is already in the project!");
-		}
-		// checkForCrossReferences(modelElement);
-		addModelElementAndChildrenToCache(modelElement);
+	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
+		addModelElementAndChildrenToCache(eObject);
+
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.modelElementAdded(project, modelElement);
+				projectChangeObserver.modelElementAdded(project, eObject);
 			}
 		};
 		notifyProjectChangeObservers(command);
@@ -390,7 +458,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 					ModelUtil.logWarning("Project Change Observer threw an exception: "
 						+ projectChangeObserver.getClass().getName(), ex);
 				}
-
 			}
 		}
 		isNotifiying = false;
@@ -400,17 +467,72 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		this.observersToRemove.clear();
 	}
 
-	private void addModelElementAndChildrenToCache(ModelElement modelElement) {
-		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			this.modelElementCache.put(child.getModelElementId(), child);
+	private void addModelElementAndChildrenToCache(EObject eObject) {
+
+		// first check whether ID should be reassigned
+		ModelElementId id = newEObjectToIdMap.get(eObject);
+
+		if (id != null) {
+			newEObjectToIdMap.values().remove(id);
+		} else {
+			// if not, create a new ID
+			id = MetamodelFactory.eINSTANCE.createModelElementId();
+		}
+
+		if (isCacheInitialized()) {
+			putIntoCaches(eObject, id);
+		}
+
+		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
+			addModelElementAndChildrenToCache(child);
 		}
 	}
 
-	private void removeModelElementAndChildrenFromCache(ModelElement modelElement) {
-		this.modelElementCache.remove(modelElement.getModelElementId());
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			this.modelElementCache.remove(child.getModelElementId());
+	/**
+	 * @return
+	 */
+	public Map<EObject, ModelElementId> getEObjectToIdCache() {
+		return eObjectToIdCache;
+	}
+
+	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
+		eObjectToIdCache.put(modelElement, modelElementId);
+		idToEObjectCache.put(modelElementId, modelElement);
+		// TODO: PlainEObjectMode, why is cache filled automatically?
+		if (!eObjectsCache.contains(modelElement)) {
+			eObjectsCache.add(modelElement);
+		}
+	}
+
+	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
+
+		ModelElementId id = getModelElementId(modelElement);
+		deletedEObjectToIdMap.put(modelElement, id);
+		newEObjectToIdMap.put(modelElement, id);
+
+		removeFromCaches(modelElement);
+		getEObjectToIdCache().remove(modelElement);
+
+		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+			ModelElementId childId = getModelElementId(child);
+			deletedEObjectToIdMap.put(child, childId);
+			newEObjectToIdMap.put(child, childId);
+			removeFromCaches(child);
+			getEObjectToIdCache().remove(child);
+		}
+	}
+
+	/**
+	 * Removes the given model element from the EObject cache and the idToEObject cache in case the caches have been
+	 * initialized.
+	 * 
+	 * @param modelElement the model element to be removed from the caches
+	 */
+	private void removeFromCaches(EObject modelElement) {
+		if (isCacheInitialized()) {
+			ModelElementId id = this.getModelElementId(modelElement);
+			getEObjectsCache().remove(modelElement);
+			getIdToEObjectCache().remove(id);
 		}
 	}
 
@@ -420,8 +542,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
-	public void handleEMFNotification(final Notification notification, final Project project,
-		final ModelElement modelElement) {
+	public void handleEMFNotification(final Notification notification, final Project project, final EObject modelElement) {
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.notify(notification, project, modelElement);
@@ -433,19 +554,15 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.Project#contains(org.unicase.metamodel.ModelElementId)
-	 */
-	public boolean contains(ModelElementId modelElementId) {
-		return this.getModelElementsFromCache().containsKey(modelElementId);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.metamodel.Project#getModelElement(org.unicase.metamodel.ModelElementId)
 	 */
-	public ModelElement getModelElement(ModelElementId modelElementId) {
-		return this.getModelElementsFromCache().get(modelElementId);
+	public EObject getModelElement(ModelElementId modelElementId) {
+
+		if (!isCacheInitialized()) {
+			initCaches();
+		}
+
+		return getIdToEObjectCache().get(modelElementId);
 	}
 
 	/**
@@ -454,7 +571,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @see org.unicase.metamodel.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
-		initCacheAndNotifier();
+		initCaches();
 		this.observers.add(projectChangeObserver);
 	}
 
@@ -478,13 +595,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.unicase.metamodel.Project#containsInstance(org.unicase.model.ModelElement)
 	 */
-	public boolean containsInstance(ModelElement modelElement) {
-		ModelElementId modelElementId = modelElement.getModelElementId();
-		if (!this.contains(modelElementId)) {
-			return false;
-		}
-		ModelElement element = this.getModelElementsFromCache().get(modelElementId);
-		return element == modelElement;
+	public boolean containsInstance(EObject modelElement) {
+		return getEObjectsCache().contains(modelElement);
 	}
 
 	/**
@@ -492,22 +604,29 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.unicase.metamodel.Project#deleteModelElement(org.unicase.model.ModelElement)
 	 */
-	public void deleteModelElement(final ModelElement modelElement) {
-		if (!this.contains(modelElement)) {
+	public void deleteModelElement(final EObject modelElement) {
+		if (!this.containsInstance(modelElement)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
+		//
+		// ModelElementId deletedModelElementId = getModelElementId(modelElement);
+		// removeModelElementAndChildrenFromCache(modelElement);
+		// getDeletedEObjectsIdMap().put(modelElement, deletedModelElementId);
+		// getEobjectsIdMap().remove(modelElement);
 
 		deleteOutgoingCrossReferences(modelElement);
 		deleteIncomingCrossReferences(modelElement);
 
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			deleteOutgoingCrossReferences(child);
 			deleteIncomingCrossReferences(child);
 		}
 
 		// remove containment
-		ModelElement containerModelElement = modelElement.getContainerModelElement();
+		EObject containerModelElement = ModelUtil.getContainerModelElement(modelElement);
 		if (containerModelElement == null) {
+			// removeModelElementAndChildrenFromCache(modelElement);
+			// getEobjectsIdMap().remove(modelElement);
 			this.getModelElements().remove(modelElement);
 		} else {
 			EReference containmentFeature = modelElement.eContainmentFeature();
@@ -520,24 +639,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 	}
 
-	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
+	private void deleteOutgoingCrossReferences(EObject modelElement) {
 		// delete all non containment cross references to other elments
 		for (EReference reference : modelElement.eClass().getEAllReferences()) {
 			EClassifier eType = reference.getEType();
 			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
 				continue;
 			}
-
-			if (eType instanceof EClass && MetamodelPackage.eINSTANCE.getModelElement().isSuperTypeOf((EClass) eType)) {
+			if (eType instanceof EClass) {
 				modelElement.eUnset(reference);
 			}
 		}
 	}
 
-	private void deleteIncomingCrossReferences(ModelElement modelElement) {
+	private void deleteIncomingCrossReferences(EObject modelElement) {
 		// delete all non containment cross references from other elements in the project
-		for (ModelElement otherModelElement : this.getAllModelElements()) {
-			for (ModelElement otherElementOpposite : otherModelElement.getLinkedModelElements()) {
+		for (EObject otherModelElement : ModelUtil.getAllContainedModelElements(this, false)) {
+			for (EObject otherElementOpposite : otherModelElement.eCrossReferences()) {
 				if (otherElementOpposite == modelElement) {
 					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
 					for (EReference reference : references) {
@@ -555,8 +673,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 	}
 
-	private boolean isCorrespondingReference(ModelElement modelElement, ModelElement otherModelElement,
-		EReference reference) {
+	private boolean isCorrespondingReference(EObject modelElement, EObject otherModelElement, EReference reference) {
 		if (reference.isMany()) {
 			if (otherModelElement.eGet(reference) == null) {
 				return false;
@@ -597,15 +714,152 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @param projectImpl the project
 	 * @param modelElement the model element
 	 */
-	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final ModelElement modelElement) {
-		this.removeModelElementAndChildrenFromCache(modelElement);
+	public void handleEMFModelElementRemoved(final ProjectImpl projectImpl, final EObject modelElement) {
+		removeModelElementAndChildrenFromCache(modelElement);
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
 			public void run(ProjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
 			}
 		};
 		notifyProjectChangeObservers(command);
-
 	}
 
+	public ModelElementId getModelElementId(EObject eObject) {
+
+		if (!eObjectToIdCache.containsKey(eObject) && !isCacheInitialized()) {
+			// id not yet loaded
+			if (ModelUtil.getAllContainedModelElementsAsList(this, false).contains(eObject)) {
+				// eobject contained in project, load resource
+				try {
+					Resource resource = eObject.eResource();
+					if (resource instanceof XMIResource) {
+						XMIResource xmiResource = (XMIResource) resource;
+						xmiResource.load(null);
+						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+
+						String id = xmiResource.getID(eObject);
+						if (id != null) {
+							// change ID
+							modelElementId.setId(id);
+							getEObjectToIdCache().put(eObject, modelElementId);
+							return ModelUtil.clone(modelElementId);
+						}
+
+						// return new ID
+						getEObjectToIdCache().put(eObject, modelElementId);
+						return ModelUtil.clone(modelElementId);
+					}
+				} catch (IOException e) {
+					throw new RuntimeException("Could't load resource for model element " + eObject);
+				}
+
+			}
+		}
+
+		ModelElementId id = eObjectToIdCache.get(eObject);
+
+		return ModelUtil.clone(id);
+	}
+
+	public ModelElementId getDeletedModelElementId(EObject deletedModelElement) {
+		return ModelUtil.clone(deletedEObjectToIdMap.get(deletedModelElement));
+	}
+
+	public EObject getDeletedModelElement(ModelElementId modelElementId) {
+		for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap.entrySet()) {
+			if (entry.getValue().equals(modelElementId)) {
+				return entry.getKey();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.Project#addModelElement(org.eclipse.emf.ecore.EObject, java.util.Collection)
+	 */
+	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
+
+		// since id is contained in map, all IDs should be cloned
+		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
+
+		// check whether the model element is already contained in the project
+		if (contains(newModelElementId)) {
+			throw new IllegalStateException("Model element ID " + newModelElementId + " already contained in project.");
+		}
+
+		for (Map.Entry<EObject, ModelElementId> entry : map.entrySet()) {
+			EObject modelElement = entry.getKey();
+			ModelElementId modelElementId = entry.getValue();
+			newEObjectToIdMap.put(modelElement, modelElementId);
+		}
+
+		getModelElements().add(newModelElement);
+	}
+
+	/**
+	 * Returns the ModelElementId for the given model element. If no such ID exists, a new one will be created.
+	 * 
+	 * @param modelElement
+	 * @return the ModelElementId for the given modelelement
+	 */
+	private ModelElementId getIdForModelElement(EObject modelElement) {
+
+		Resource resource = modelElement.eResource();
+
+		if (resource != null && resource instanceof XMIResource) {
+			// resource available, read ID
+			XMIResource xmiResource = (XMIResource) resource;
+			try {
+				xmiResource.load(null);
+			} catch (IOException e) {
+				throw new RuntimeException("Resource of model element " + modelElement + " couldn't be loaded");
+			}
+			String id = xmiResource.getID(modelElement);
+			if (id != null) {
+				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+				objId.setId(id);
+				return objId;
+			}
+		}
+
+		// create new ID
+		return MetamodelFactory.eINSTANCE.createModelElementId();
+	}
+
+	public Project copy() {
+
+		Copier copier = new ProjectCopier();
+		ProjectImpl result = (ProjectImpl) copier.copy(this);
+		result.cachesInitialized = true;
+		copier.copyReferences();
+		return result;
+
+		// long currentTimeMillis = System.currentTimeMillis();
+		// ProjectImpl copiedProject = (ProjectImpl) EcoreUtil.copy(this);
+		// List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(this, false);
+		// ModelUtil.logInfo("Total time for commit point 0: " + (System.currentTimeMillis() - currentTimeMillis));
+		// List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedProject,
+		// false);
+		// copiedProject.cachesInitialized = true;
+		//
+		// ModelUtil.logInfo("Total time for commit point 1: " + (System.currentTimeMillis() - currentTimeMillis));
+		//
+		// for (int i = 0; i < allContainedModelElements.size(); i++) {
+		// EObject child = allContainedModelElements.get(i);
+		// EObject copiedChild = copiedAllContainedModelElements.get(i);
+		// ModelElementId childId = getModelElementId(child);
+		// if (childId == null) {
+		// throw new IllegalStateException("Model element '" + child + "' has no ID.");
+		// }
+		//
+		// copiedProject.putIntoCaches(copiedChild, childId);
+		// }
+		//
+		// ModelUtil.logInfo("Total time for commit point 2: " + (System.currentTimeMillis() - currentTimeMillis));
+		//
+		// return copiedProject;
+	}
 }

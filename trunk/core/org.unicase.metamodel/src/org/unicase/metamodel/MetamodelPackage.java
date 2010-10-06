@@ -61,67 +61,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getIdentifiableElement()
 	 * @generated
 	 */
-	int IDENTIFIABLE_ELEMENT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIABLE_ELEMENT__IDENTIFIER = 0;
-
-	/**
-	 * The number of structural features of the '<em>Identifiable Element</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelElementImpl <em>Model Element</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.metamodel.impl.ModelElementImpl
-	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelElement()
-	 * @generated
-	 */
-	int MODEL_ELEMENT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__IDENTIFIER = IDENTIFIABLE_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__CREATOR = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__CREATION_DATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Model Element</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int IDENTIFIABLE_ELEMENT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
@@ -131,7 +71,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getProject()
 	 * @generated
 	 */
-	int PROJECT = 1;
+	int PROJECT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -167,7 +107,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getUniqueIdentifier()
 	 * @generated
 	 */
-	int UNIQUE_IDENTIFIER = 2;
+	int UNIQUE_IDENTIFIER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -187,6 +127,23 @@ public interface MetamodelPackage extends EPackage {
 	int UNIQUE_IDENTIFIER_FEATURE_COUNT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT__IDENTIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Identifiable Element</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelElementIdImpl <em>Model Element Id</em>}'
 	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -194,7 +151,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelElementId()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ID = 4;
+	int MODEL_ELEMENT_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -221,7 +178,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelVersion()
 	 * @generated
 	 */
-	int MODEL_VERSION = 5;
+	int MODEL_VERSION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Release Number</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -248,7 +205,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getNonDomainElement()
 	 * @generated
 	 */
-	int NON_DOMAIN_ELEMENT = 6;
+	int NON_DOMAIN_ELEMENT = 5;
 
 	/**
 	 * The number of structural features of the '<em>Non Domain Element</em>' class. <!-- begin-user-doc --> <!--
@@ -279,38 +236,6 @@ public interface MetamodelPackage extends EPackage {
 	int ASSOCIATION_CLASS_ELEMENT_FEATURE_COUNT = 0;
 
 	String MODEL_URL_PREFIX = "http://unicase.org/model/";
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Model Element</em>'.
-	 * @see org.unicase.metamodel.ModelElement
-	 * @generated
-	 */
-	EClass getModelElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.ModelElement#getCreator <em>Creator</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Creator</em>'.
-	 * @see org.unicase.metamodel.ModelElement#getCreator()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_Creator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.ModelElement#getCreationDate
-	 * <em>Creation Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Creation Date</em>'.
-	 * @see org.unicase.metamodel.ModelElement#getCreationDate()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_CreationDate();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.metamodel.Project <em>Project</em>}'. <!-- begin-user-doc
@@ -460,32 +385,6 @@ public interface MetamodelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelElementImpl <em>Model Element</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.metamodel.impl.ModelElementImpl
-		 * @see org.unicase.metamodel.impl.MetamodelPackageImpl#getModelElement()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Creator</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CREATOR = eINSTANCE.getModelElement_Creator();
-
-		/**
-		 * The meta object literal for the '<em><b>Creation Date</b></em>' attribute feature. <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CREATION_DATE = eINSTANCE.getModelElement_CreationDate();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -594,7 +493,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ASSOCIATION_CLASS_ELEMENT = eINSTANCE.getAssociationClassElement();
-
 	}
 
 } // MetamodelPackage

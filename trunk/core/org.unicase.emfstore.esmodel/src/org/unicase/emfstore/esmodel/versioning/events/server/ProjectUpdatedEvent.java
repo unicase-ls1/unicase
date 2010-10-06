@@ -10,27 +10,27 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Project Updated Event</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getNewVersion <em>New Version
- * </em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getNewVersion <em>New Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage#getProjectUpdatedEvent()
  * @model
  * @generated
  */
 public interface ProjectUpdatedEvent extends ServerProjectEvent {
 	/**
-	 * Returns the value of the '<em><b>New Version</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>New Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>New Version</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>New Version</em>' containment reference.
 	 * @see #setNewVersion(PrimaryVersionSpec)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage#getProjectUpdatedEvent_NewVersion()
@@ -40,10 +40,8 @@ public interface ProjectUpdatedEvent extends ServerProjectEvent {
 	PrimaryVersionSpec getNewVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getNewVersion
-	 * <em>New Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent#getNewVersion <em>New Version</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>New Version</em>' containment reference.
 	 * @see #getNewVersion()
 	 * @generated

@@ -23,11 +23,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.ModelElementWrapperDescriptor;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -114,7 +112,7 @@ public class ImportXMIAction implements IActionDelegate {
 				int i = 0;
 				for (EObject eObject : importElements) {
 					// run the import command
-					runImport(projectSpace, fileURI, (ModelElement) EcoreUtil.copy(eObject), i);
+					runImport(projectSpace, fileURI, EcoreUtil.copy(eObject), i);
 					progressDialog.getProgressMonitor().worked(10);
 					i++;
 				}
@@ -141,7 +139,7 @@ public class ImportXMIAction implements IActionDelegate {
 			// 1. Run: Put all children in set
 			while (contents.hasNext()) {
 				EObject content = contents.next();
-				if (!(content instanceof ModelElement)) {
+				if (!(content instanceof EObject)) {
 					// TODO: Report to Console //System.out.println(content +
 					// " is not a ModelElement and can not be imported");
 					continue;
@@ -154,7 +152,7 @@ public class ImportXMIAction implements IActionDelegate {
 		// Drop RootNode, will be imported as a child
 		for (EObject rootNode : rootContent) {
 
-			if (!(rootNode instanceof ModelElement)) {
+			if (!(rootNode instanceof EObject)) {
 				// No report to Console, because Run 1 will do this
 				continue;
 			}
@@ -186,20 +184,21 @@ public class ImportXMIAction implements IActionDelegate {
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
 	private void runImport(final ProjectSpace projectSpace, final org.eclipse.emf.common.util.URI uri,
-		final ModelElement element, final int resourceIndex) {
+		final EObject element, final int resourceIndex) {
 
+		// TODO: PlainEObjectMode
 		// try to find a wrapper for the element which will be added to the project
-		ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
-			element, uri, resourceIndex);
+		// ModelElement wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
+		// element, uri, resourceIndex);
 
 		// if no wrapper could be created, use the element itself to add it to the project
-		if (wrapper == null) {
-			wrapper = element;
-		}
+		// if (wrapper == null) {
+		// wrapper = element;
+		// }
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		projectSpace.getProject().addModelElement(ModelUtil.copy(wrapper));
+		projectSpace.getProject().addModelElement(element);
 	}
 
 	/**

@@ -32,7 +32,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 
 /**
@@ -355,13 +354,15 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private Set<ModelElementId> getAllDeletedElements(CreateDeleteOperation op) {
-		Set<ModelElement> allDeleteTreeElements = op.getModelElement().getAllContainedModelElements();
-		allDeleteTreeElements.add(op.getModelElement());
-		Set<ModelElementId> result = new HashSet<ModelElementId>(allDeleteTreeElements.size());
-		for (ModelElement modelElement : allDeleteTreeElements) {
-			result.add(modelElement.getModelElementId());
-		}
-		return result;
+		// EObject element = op.getModelElement();
+		return new HashSet<ModelElementId>(op.getEObjectToIdMap().values());
+		// Set<EObject> allDeleteTreeElements = ModelUtil.getAllContainedModelElements(element, false);
+		// allDeleteTreeElements.add(op.getModelElement());
+		// Set<ModelElementId> result = new HashSet<ModelElementId>(allDeleteTreeElements.size());
+		// for (EObject modelElement : allDeleteTreeElements) {
+		// result.add(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
+		// }
+		// return result;
 	}
 
 	private boolean doConflictHardMultiReferences(MultiReferenceOperation opA, MultiReferenceOperation opB) {

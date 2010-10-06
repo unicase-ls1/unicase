@@ -8,7 +8,7 @@ package org.unicase.metamodel.recommendation;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.metamodel.ModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Henning Femmer
@@ -32,11 +32,11 @@ public class ConstantThresholdSelection implements LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	public Map<ModelElement, Double> selectCandidates(Map<ModelElement, Double> selectionMap) {
-		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
+	public Map<EObject, Double> selectCandidates(Map<EObject, Double> selectionMap) {
+		Map<EObject, Double> result = new HashMap<EObject, Double>();
 
 		if (selectionMap != null) {
-			for (ModelElement me : selectionMap.keySet()) {
+			for (EObject me : selectionMap.keySet()) {
 				Double val = selectionMap.get(me);
 				if (val != null && val > threshold) {
 					result.put(me, val);

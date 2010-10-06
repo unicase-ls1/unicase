@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -22,8 +23,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Validates the serverspace in three different ways. First it resolves all proxies, then checks whether all ME have ids
@@ -142,8 +144,9 @@ public class EmfStoreValidator {
 					}
 				}
 				if (version.getProjectState() != null) {
-					for (ModelElement me : version.getProjectState().getAllModelElements()) {
-						if (me.getModelElementId() == null || me.getModelElementId().getId() == null) {
+					for (EObject me : version.getProjectState().getAllModelElements()) {
+						ModelElementId modelElementId = ModelUtil.getProject(me).getModelElementId(me);
+						if (modelElementId == null || modelElementId.getId() == null) {
 							errors.add("ModelElement has no ModelElementId in project: "
 								+ projectHistory.getProjectId() + " version: "
 								+ version.getPrimarySpec().getIdentifier());
@@ -168,12 +171,13 @@ public class EmfStoreValidator {
 				continue;
 			}
 			System.out.println("Checking project: " + history.getProjectId().getId());
-			history = (ProjectHistory) EcoreUtil.copy(history);
+			// history = (ProjectHistory) EcoreUtil.copy(history);
 			Project state = null;
 
 			for (Version version : history.getVersions()) {
+
 				if (version.getProjectState() != null && state == null) {
-					state = (Project) EcoreUtil.copy(version.getProjectState());
+					state = ModelUtil.clone(version.getProjectState());
 				} else {
 
 					version.getChanges().apply(state, true);
@@ -185,7 +189,7 @@ public class EmfStoreValidator {
 								+ " not equal in version " + version.getPrimarySpec().getIdentifier());
 							// debug(history, state, version);
 						}
-						state = (Project) EcoreUtil.copy(version.getProjectState());
+						state = ModelUtil.clone(version.getProjectState());
 					}
 				}
 			}

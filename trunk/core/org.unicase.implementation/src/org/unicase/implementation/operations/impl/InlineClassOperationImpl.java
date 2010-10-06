@@ -20,6 +20,7 @@ import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
@@ -191,8 +192,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -209,7 +209,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		}
 		return associations;
 	}
-	
+
 	// end of custom code
 
 	/**
@@ -223,8 +223,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -234,11 +233,9 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		inlineClasses.add(association.getTarget());
 		return inlineClasses;
 	}
-	
 
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -248,8 +245,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -264,8 +260,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -275,8 +270,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -287,6 +281,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		EList<Association> incomingAssociations = inlinedClass.getIncomingAssociations();
 		return incomingAssociations.size() == 1 && incomingAssociations.get(0) == association;
 	}
+
 	// end of custom code
 
 	/**
@@ -382,8 +377,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 
 		contextClass.getAttributes().addAll(attributes);
 		contextClass.getOutgoingAssociations().addAll(associations);
-		association.delete();
-		inlinedClass.delete();
+		ModelUtil.getProject(association).deleteModelElement(association);
+		ModelUtil.getProject(inlinedClass).deleteModelElement(inlinedClass);
 	}
 
 } // InlineClassOperationImpl

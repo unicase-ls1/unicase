@@ -243,30 +243,6 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} instances. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected MultiReferenceOperationItemProvider multiReferenceOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createMultiReferenceOperationAdapter() {
-		if (multiReferenceOperationItemProvider == null) {
-			multiReferenceOperationItemProvider = new MultiReferenceOperationItemProvider(this);
-		}
-
-		return multiReferenceOperationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -288,6 +264,30 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 		}
 
 		return multiReferenceSetOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation} instances. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiReferenceOperationItemProvider multiReferenceOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiReferenceOperationAdapter() {
+		if (multiReferenceOperationItemProvider == null) {
+			multiReferenceOperationItemProvider = new MultiReferenceOperationItemProvider(this);
+		}
+
+		return multiReferenceOperationItemProvider;
 	}
 
 	/**
@@ -412,6 +412,28 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EObjectToModelElementIdMapItemProvider eObjectToModelElementIdMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectToModelElementIdMapAdapter() {
+		if (eObjectToModelElementIdMapItemProvider == null) {
+			eObjectToModelElementIdMapItemProvider = new EObjectToModelElementIdMapItemProvider(this);
+		}
+
+		return eObjectToModelElementIdMapItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -519,6 +541,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 			multiAttributeMoveOperationItemProvider.dispose();
 		if (singleReferenceOperationItemProvider != null)
 			singleReferenceOperationItemProvider.dispose();
+		if (multiReferenceSetOperationItemProvider != null)
+			multiReferenceSetOperationItemProvider.dispose();
 		if (multiReferenceOperationItemProvider != null)
 			multiReferenceOperationItemProvider.dispose();
 		if (multiReferenceSetOperationItemProvider != null)
@@ -533,6 +557,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 			operationGroupItemProvider.dispose();
 		if (modelElementGroupItemProvider != null)
 			modelElementGroupItemProvider.dispose();
+		if (eObjectToModelElementIdMapItemProvider != null)
+			eObjectToModelElementIdMapItemProvider.dispose();
 	}
 
 }

@@ -19,6 +19,7 @@ import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
@@ -124,11 +125,10 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 	public org.unicase.model.classes.Class getSuperClass(Project project) {
 		return OperationHelper.getElement(project, getSuperClass());
 	}
-	
+
 	// begin of custom code
 	/**
-	 * {@inheritDoc}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -136,8 +136,9 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 		Class superClass = getSuperClass(project);
 		return !superClass.getSubClasses().isEmpty();
 	}
+
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -227,7 +228,8 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 			subClass.getSuperClasses().remove(superClass);
 			subClass.getSuperClasses().addAll(superClass.getSuperClasses());
 		}
-		superClass.delete();
+
+		ModelUtil.getProject(superClass).deleteModelElement(superClass);
 	}
 
 } // InlineSuperClassOperationImpl

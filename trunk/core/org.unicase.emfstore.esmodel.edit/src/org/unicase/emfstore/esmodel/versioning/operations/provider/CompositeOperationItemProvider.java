@@ -260,6 +260,9 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
