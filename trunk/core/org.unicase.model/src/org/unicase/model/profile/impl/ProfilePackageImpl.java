@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -57,55 +56,47 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass profileEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeAttributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeAttributeSimpleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeAttributeInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeAttributeInstanceStringEClass = null;
@@ -129,18 +120,17 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link ProfilePackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link ProfilePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -259,7 +249,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProfile() {
@@ -268,7 +257,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProfile_AffectedContainers() {
@@ -277,7 +265,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProfile_Stereotypes() {
@@ -286,7 +273,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotype() {
@@ -295,7 +281,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotype_Required() {
@@ -304,7 +289,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotype_Profile() {
@@ -313,7 +297,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotype_StereotypeInstances() {
@@ -322,7 +305,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotype_StereotypeAttributes() {
@@ -331,7 +313,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeInstance() {
@@ -340,7 +321,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeInstance_Stereotype() {
@@ -349,7 +329,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeInstance_ModelElement() {
@@ -358,7 +337,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeInstance_StereotypeAttributeInstances() {
@@ -367,7 +345,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeAttribute() {
@@ -376,7 +353,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeAttribute_Stereotype() {
@@ -385,7 +361,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeAttribute_StereotypeAttributeInstances() {
@@ -394,7 +369,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeAttributeSimple() {
@@ -403,7 +377,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotypeAttributeSimple_Type() {
@@ -412,7 +385,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeAttributeInstance() {
@@ -421,7 +393,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeAttributeInstance_StereotypeInstance() {
@@ -430,7 +401,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStereotypeAttributeInstance_StereotypeAttribute() {
@@ -439,7 +409,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeAttributeInstanceString() {
@@ -448,7 +417,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotypeAttributeInstanceString_Value() {
@@ -457,7 +425,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProfileFactory getProfileFactory() {
@@ -466,15 +433,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -515,15 +481,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -538,8 +503,6 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -559,11 +522,9 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		initEReference(getProfile_AffectedContainers(), theModelPackage.getUnicaseModelElement(), null,
 			"affectedContainers", null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProfile_AffectedContainers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getProfile_Stereotypes(), this.getStereotype(), this.getStereotype_Profile(), "stereotypes",
 			null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProfile_Stereotypes().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeEClass, Stereotype.class, "Stereotype", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -572,17 +533,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		initEReference(getStereotype_Profile(), this.getProfile(), this.getProfile_Stereotypes(), "profile", null, 0,
 			1, Stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotype_Profile().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotype_StereotypeInstances(), this.getStereotypeInstance(), this
 			.getStereotypeInstance_Stereotype(), "stereotypeInstances", null, 0, -1, Stereotype.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotype_StereotypeInstances().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotype_StereotypeAttributes(), this.getStereotypeAttribute(), this
 			.getStereotypeAttribute_Stereotype(), "stereotypeAttributes", null, 0, -1, Stereotype.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotype_StereotypeAttributes().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeInstanceEClass, StereotypeInstance.class, "StereotypeInstance", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -590,18 +548,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotype_StereotypeInstances(), "stereotype", null, 0, 1, StereotypeInstance.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotypeInstance_Stereotype().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeInstance_ModelElement(), theModelPackage.getUnicaseModelElement(), theModelPackage
 			.getUnicaseModelElement_AppliedStereotypeInstances(), "modelElement", null, 0, 1, StereotypeInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getStereotypeInstance_ModelElement().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeInstance_StereotypeAttributeInstances(), this.getStereotypeAttributeInstance(),
 			this.getStereotypeAttributeInstance_StereotypeInstance(), "stereotypeAttributeInstances", null, 0, -1,
 			StereotypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeInstance_StereotypeAttributeInstances().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeEClass, StereotypeAttribute.class, "StereotypeAttribute", IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -609,13 +563,10 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotype_StereotypeAttributes(), "stereotype", null, 0, 1, StereotypeAttribute.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotypeAttribute_Stereotype().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeAttribute_StereotypeAttributeInstances(), this.getStereotypeAttributeInstance(),
 			this.getStereotypeAttributeInstance_StereotypeAttribute(), "stereotypeAttributeInstances", null, 0, -1,
 			StereotypeAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttribute_StereotypeAttributeInstances().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeSimpleEClass, StereotypeAttributeSimple.class, "StereotypeAttributeSimple",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -629,14 +580,10 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotypeInstance_StereotypeAttributeInstances(), "stereotypeInstance", null, 0, 1,
 			StereotypeAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttributeInstance_StereotypeInstance().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeAttributeInstance_StereotypeAttribute(), this.getStereotypeAttribute(), this
 			.getStereotypeAttribute_StereotypeAttributeInstances(), "stereotypeAttribute", null, 0, 1,
 			StereotypeAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttributeInstance_StereotypeAttribute().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeInstanceStringEClass, StereotypeAttributeInstanceString.class,
 			"StereotypeAttributeInstanceString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

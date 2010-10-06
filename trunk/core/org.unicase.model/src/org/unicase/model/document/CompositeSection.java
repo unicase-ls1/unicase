@@ -23,19 +23,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompositeSection extends Section {
 	/**
-	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.document.Section}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.document.Section#getParent <em>Parent</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.document.Section}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.Section#getParent <em>Parent</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsections</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getCompositeSection_Subsections()
 	 * @see org.unicase.model.document.Section#getParent
-	 * @model opposite="parent" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="parent" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */

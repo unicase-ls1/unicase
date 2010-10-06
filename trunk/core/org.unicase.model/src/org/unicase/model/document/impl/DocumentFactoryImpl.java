@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.document.*;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
@@ -17,13 +18,12 @@ import org.unicase.model.document.LeafSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DocumentFactory init() {
@@ -40,8 +40,8 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DocumentFactoryImpl() {
@@ -50,7 +50,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +66,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LeafSection createLeafSection() {
@@ -77,7 +75,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeSection createCompositeSection() {
@@ -87,7 +84,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DocumentPackage getDocumentPackage() {
@@ -96,7 +92,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

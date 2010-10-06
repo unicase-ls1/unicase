@@ -7,10 +7,12 @@ package org.unicase.model.diagram;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Class Diagram</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.model.diagram.DiagramPackage#getClassDiagram()
  * @model
  * @generated
  */
 public interface ClassDiagram extends MEDiagram {
 } // ClassDiagram
+

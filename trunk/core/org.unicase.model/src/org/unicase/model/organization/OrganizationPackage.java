@@ -20,36 +20,35 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.organization.OrganizationFactory
  * @model kind="package"
  * @generated
  */
 public interface OrganizationPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "organization";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/organization";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.organization";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	OrganizationPackage eINSTANCE = org.unicase.model.organization.impl.OrganizationPackageImpl.init();
@@ -67,7 +66,6 @@ public interface OrganizationPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.organization.impl.OrgUnitImpl <em>Org Unit</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.organization.impl.OrgUnitImpl
 	 * @see org.unicase.model.organization.impl.OrganizationPackageImpl#getOrgUnit()
 	 * @generated
@@ -75,40 +73,16 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -133,26 +107,26 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -168,26 +142,44 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT__AC_ORG_ID = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -212,48 +204,24 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__PARTICIPATIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Org Unit</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Org Unit</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ORG_UNIT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER__IDENTIFIER = ORG_UNIT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER__CREATOR = ORG_UNIT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER__CREATION_DATE = ORG_UNIT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__NAME = ORG_UNIT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -278,26 +246,26 @@ public interface OrganizationPackage extends EPackage {
 	int USER__ATTACHMENTS = ORG_UNIT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int USER__INCOMING_DOCUMENT_REFERENCES = ORG_UNIT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int USER__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -313,26 +281,44 @@ public interface OrganizationPackage extends EPackage {
 	int USER__APPLIED_STEREOTYPE_INSTANCES = ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int USER__COMMENTS = ORG_UNIT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__CREATOR = ORG_UNIT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__AC_ORG_ID = ORG_UNIT__AC_ORG_ID;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -357,41 +343,41 @@ public interface OrganizationPackage extends EPackage {
 	int USER__PARTICIPATIONS = ORG_UNIT__PARTICIPATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Email</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__EMAIL = ORG_UNIT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>First Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>First Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__FIRST_NAME = ORG_UNIT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Last Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Last Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__LAST_NAME = ORG_UNIT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Work Items To Review</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Work Items To Review</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int USER__WORK_ITEMS_TO_REVIEW = ORG_UNIT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>User</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>User</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -408,40 +394,16 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__IDENTIFIER = ORG_UNIT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__CREATOR = ORG_UNIT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__CREATION_DATE = ORG_UNIT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__NAME = ORG_UNIT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -466,26 +428,26 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__ATTACHMENTS = ORG_UNIT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__INCOMING_DOCUMENT_REFERENCES = ORG_UNIT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__LEAF_SECTION = ORG_UNIT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -501,26 +463,44 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__APPLIED_STEREOTYPE_INSTANCES = ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__COMMENTS = ORG_UNIT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__CREATOR = ORG_UNIT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__AC_ORG_ID = ORG_UNIT__AC_ORG_ID;
 
 	/**
-	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -545,16 +525,16 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__PARTICIPATIONS = ORG_UNIT__PARTICIPATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Org Units</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Org Units</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GROUP__ORG_UNITS = ORG_UNIT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Group</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Group</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -573,7 +553,6 @@ public interface OrganizationPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getEmail <em>Email</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Email</em>'.
 	 * @see org.unicase.model.organization.User#getEmail()
 	 * @see #getUser()
@@ -582,9 +561,8 @@ public interface OrganizationPackage extends EPackage {
 	EAttribute getUser_Email();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getFirstName
-	 * <em>First Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>First Name</em>'.
 	 * @see org.unicase.model.organization.User#getFirstName()
 	 * @see #getUser()
@@ -593,9 +571,8 @@ public interface OrganizationPackage extends EPackage {
 	EAttribute getUser_FirstName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getLastName
-	 * <em>Last Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Last Name</em>'.
 	 * @see org.unicase.model.organization.User#getLastName()
 	 * @see #getUser()
@@ -604,9 +581,8 @@ public interface OrganizationPackage extends EPackage {
 	EAttribute getUser_LastName();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.User#getWorkItemsToReview
-	 * <em>Work Items To Review</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.User#getWorkItemsToReview <em>Work Items To Review</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Work Items To Review</em>'.
 	 * @see org.unicase.model.organization.User#getWorkItemsToReview()
 	 * @see #getUser()
@@ -625,9 +601,8 @@ public interface OrganizationPackage extends EPackage {
 	EClass getOrgUnit();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.OrgUnit#getAcOrgId
-	 * <em>Ac Org Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.organization.OrgUnit#getAcOrgId <em>Ac Org Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Ac Org Id</em>'.
 	 * @see org.unicase.model.organization.OrgUnit#getAcOrgId()
 	 * @see #getOrgUnit()
@@ -648,9 +623,8 @@ public interface OrganizationPackage extends EPackage {
 	EReference getOrgUnit_GroupMemberships();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getAssignments
-	 * <em>Assignments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Assignments</em>'.
 	 * @see org.unicase.model.organization.OrgUnit#getAssignments()
 	 * @see #getOrgUnit()
@@ -659,9 +633,8 @@ public interface OrganizationPackage extends EPackage {
 	EReference getOrgUnit_Assignments();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getParticipations
-	 * <em>Participations</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Participations</em>'.
 	 * @see org.unicase.model.organization.OrgUnit#getParticipations()
 	 * @see #getOrgUnit()
@@ -680,9 +653,8 @@ public interface OrganizationPackage extends EPackage {
 	EClass getGroup();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.Group#getOrgUnits
-	 * <em>Org Units</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Org Units</em>'.
 	 * @see org.unicase.model.organization.Group#getOrgUnits()
 	 * @see #getGroup()
@@ -691,8 +663,8 @@ public interface OrganizationPackage extends EPackage {
 	EReference getGroup_OrgUnits();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -707,37 +679,35 @@ public interface OrganizationPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.organization.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.organization.impl.UserImpl
 		 * @see org.unicase.model.organization.impl.OrganizationPackageImpl#getUser()
 		 * @generated
 		 */
 		EClass USER = eINSTANCE.getUser();
 		/**
-		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USER__EMAIL = eINSTANCE.getUser_Email();
 		/**
-		 * The meta object literal for the '<em><b>First Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>First Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USER__FIRST_NAME = eINSTANCE.getUser_FirstName();
 		/**
-		 * The meta object literal for the '<em><b>Last Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Last Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USER__LAST_NAME = eINSTANCE.getUser_LastName();
@@ -749,18 +719,17 @@ public interface OrganizationPackage extends EPackage {
 		 */
 		EReference USER__WORK_ITEMS_TO_REVIEW = eINSTANCE.getUser_WorkItemsToReview();
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.organization.impl.OrgUnitImpl <em>Org Unit</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.organization.impl.OrgUnitImpl <em>Org Unit</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.organization.impl.OrgUnitImpl
 		 * @see org.unicase.model.organization.impl.OrganizationPackageImpl#getOrgUnit()
 		 * @generated
 		 */
 		EClass ORG_UNIT = eINSTANCE.getOrgUnit();
 		/**
-		 * The meta object literal for the '<em><b>Ac Org Id</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Ac Org Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute ORG_UNIT__AC_ORG_ID = eINSTANCE.getOrgUnit_AcOrgId();
@@ -772,32 +741,31 @@ public interface OrganizationPackage extends EPackage {
 		 */
 		EReference ORG_UNIT__GROUP_MEMBERSHIPS = eINSTANCE.getOrgUnit_GroupMemberships();
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Assignments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ORG_UNIT__ASSIGNMENTS = eINSTANCE.getOrgUnit_Assignments();
 		/**
-		 * The meta object literal for the '<em><b>Participations</b></em>' reference list feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Participations</b></em>' reference list feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ORG_UNIT__PARTICIPATIONS = eINSTANCE.getOrgUnit_Participations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.organization.impl.GroupImpl <em>Group</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.organization.impl.GroupImpl
 		 * @see org.unicase.model.organization.impl.OrganizationPackageImpl#getGroup()
 		 * @generated
 		 */
 		EClass GROUP = eINSTANCE.getGroup();
 		/**
-		 * The meta object literal for the '<em><b>Org Units</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Org Units</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GROUP__ORG_UNITS = eINSTANCE.getGroup_OrgUnits();

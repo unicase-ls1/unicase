@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -52,27 +51,23 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ComponentPackageImpl extends EPackageImpl implements ComponentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass componentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass componentServiceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass deploymentNodeEClass = null;
@@ -96,18 +91,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link ComponentPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link ComponentPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -226,7 +220,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComponent() {
@@ -235,7 +228,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_Packages() {
@@ -244,7 +236,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_OfferedServices() {
@@ -253,7 +244,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_ConsumedServices() {
@@ -262,7 +252,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_Subsystems() {
@@ -271,7 +260,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComponentService() {
@@ -280,7 +268,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponentService_OfferingComponent() {
@@ -289,7 +276,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponentService_ConsumingComponents() {
@@ -298,7 +284,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDeploymentNode() {
@@ -307,7 +292,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDeploymentNode_Components() {
@@ -316,7 +300,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComponentFactory getComponentFactory() {
@@ -325,15 +308,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -358,15 +340,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -383,8 +364,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -401,21 +380,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		initEReference(getComponent_Packages(), theClassesPackage.getPackage(), null, "packages", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComponent_Packages().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_OfferedServices(), this.getComponentService(), this
 			.getComponentService_OfferingComponent(), "offeredServices", null, 0, -1, Component.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getComponent_OfferedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_ConsumedServices(), this.getComponentService(), this
 			.getComponentService_ConsumingComponents(), "consumedServices", null, 0, -1, Component.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getComponent_ConsumedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_Subsystems(), theClassesPackage.getPackage(), null, "subsystems", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComponent_Subsystems().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(componentServiceEClass, ComponentService.class, "ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -423,20 +398,16 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 			.getComponent_OfferedServices(), "offeringComponent", null, 0, 1, ComponentService.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getComponentService_OfferingComponent().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponentService_ConsumingComponents(), this.getComponent(), this
 			.getComponent_ConsumedServices(), "consumingComponents", null, 0, -1, ComponentService.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getComponentService_ConsumingComponents().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(deploymentNodeEClass, DeploymentNode.class, "DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeploymentNode_Components(), this.getComponent(), null, "components", null, 0, -1,
 			DeploymentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDeploymentNode_Components().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -444,8 +415,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {

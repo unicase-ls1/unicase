@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -55,41 +54,35 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stateNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stateInitialEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stateEndEClass = null;
@@ -113,18 +106,17 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link StatePackage#eINSTANCE} when that field is accessed. Clients should not
-	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link StatePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -243,7 +235,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getState() {
@@ -252,7 +243,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getState_ExitConditions() {
@@ -261,7 +251,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getState_Activities() {
@@ -270,7 +259,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getState_EntryConditions() {
@@ -279,7 +267,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getTransition() {
@@ -288,7 +275,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTransition_Condition() {
@@ -297,7 +283,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTransition_Source() {
@@ -306,7 +291,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTransition_Target() {
@@ -315,7 +299,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStateNode() {
@@ -324,7 +307,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStateNode_OutgoingTransitions() {
@@ -333,7 +315,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStateNode_IncomingTransitions() {
@@ -342,7 +323,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStateInitial() {
@@ -351,7 +331,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStateEnd() {
@@ -360,7 +339,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateFactory getStateFactory() {
@@ -369,15 +347,14 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -407,15 +384,14 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -430,8 +406,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -461,22 +435,18 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		initEReference(getTransition_Source(), this.getStateNode(), this.getStateNode_OutgoingTransitions(), "source",
 			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getTransition_Target(), this.getStateNode(), this.getStateNode_IncomingTransitions(), "target",
 			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stateNodeEClass, StateNode.class, "StateNode", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateNode_OutgoingTransitions(), this.getTransition(), this.getTransition_Source(),
 			"outgoingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStateNode_OutgoingTransitions().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStateNode_IncomingTransitions(), this.getTransition(), this.getTransition_Target(),
 			"incomingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStateNode_IncomingTransitions().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stateInitialEClass, StateInitial.class, "StateInitial", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
