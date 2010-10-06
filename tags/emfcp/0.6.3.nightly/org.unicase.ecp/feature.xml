@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp"
       label="EMF Client Platform"
-      version="0.5.9.nightly"
+      version="0.6.3.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.ecp.branding">
 
@@ -222,26 +222,11 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.unicase.emfstore.esmodel" version="0.5.8.nightly" match="greaterOrEqual"/>
-      <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.2" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
-      <import plugin="org.unicase.metamodel" version="0.5.8.nightly" match="greaterOrEqual"/>
-      <import plugin="org.unicase.metamodel.edit" version="0.5.8.nightly" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.unicase.ui.common"/>
+      <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.jface.databinding"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.emf.databinding.edit"/>
-      <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.unicase.ui.navigator"/>
    </requires>
 
    <plugin

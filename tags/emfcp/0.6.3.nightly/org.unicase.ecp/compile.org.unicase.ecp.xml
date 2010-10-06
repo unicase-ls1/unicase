@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile org.unicase.ecp" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../org.unicase.ecp.branding" target="build.jars"/>
+		<ant antfile="build.xml" dir="../org.unicase.ui.validation" target="build.jars"/>
+	</target>
+</project>

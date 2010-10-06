@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.backchannel"
       label="EMFStore Backchannel"
-      version="0.6.2.nightly"
+      version="0.6.3.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
