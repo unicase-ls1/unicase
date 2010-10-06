@@ -7,11 +7,11 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
@@ -53,10 +53,10 @@ public class SingleReferenceConflict extends Conflict {
 				+ "This reference was set to [theirvalue] on the repository. Please decide.";
 		}
 		description.setDescription(descriptionTxt);
-		ModelElement myNewValue = getDecisionManager().getModelElement(
+		EObject myNewValue = getDecisionManager().getModelElement(
 			getMyOperation(SingleReferenceOperation.class).getNewValue());
 		description.add("myvalue", (myNewValue == null) ? "(unset)" : myNewValue);
-		ModelElement theirNewValue = getDecisionManager().getModelElement(
+		EObject theirNewValue = getDecisionManager().getModelElement(
 			getTheirOperation(SingleReferenceOperation.class).getNewValue());
 		description.add("theirvalue", (theirNewValue == null) ? "(unset)" : theirNewValue);
 
@@ -66,7 +66,7 @@ public class SingleReferenceConflict extends Conflict {
 	}
 
 	private boolean isContainmentFeature() {
-		ModelElement modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
+		EObject modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
 		if (modelElement == null) {
 			return false;
 		}

@@ -7,13 +7,14 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.Date;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -39,14 +40,13 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 	@Override
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
-		ModelElement modelElement = getModelElement();
+		EObject modelElement = getModelElement();
 		if (projectSpace == null) {
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getProjectSpace(modelElement.getProject());
+			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpace(
+				ModelUtil.getProject(modelElement));
 		}
 
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		HistoryBrowserView historyBrowserView = null;
 		String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
 		try {
@@ -62,8 +62,7 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 	}
 
 	private void logEvent(final ProjectSpace finalProjectSpace, String viewId) {
-		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE
-				.createPluginFocusEvent();
+		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
 		historyEvent.setPluginId(viewId);
 		historyEvent.setTimestamp(new Date());
 		finalProjectSpace.addEvent(historyEvent);
