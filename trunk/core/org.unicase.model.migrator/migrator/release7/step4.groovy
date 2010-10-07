@@ -1,8 +1,8 @@
-unicaseModelElementClass = model.UnicaseModelElement
 modelElementClass = metamodel.ModelElement
-unicaseModelElementClass.eSuperTypes.remove(modelElementClass)
+identifiableElementClass = metamodel.IdentifiableElement
+modelElementClass.eSuperTypes.remove(identifiableElementClass)
 
-for(element in unicaseModelElementClass.allInstances) {
+for(element in model.UnicaseModelElement.allInstances) {
 	def id = element.unset(modelElementClass.identifier)
 	element.setUuid(id)
 }

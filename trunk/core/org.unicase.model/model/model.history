@@ -55,26 +55,26 @@
             featureName="abstract" dataValue="true" oldDataValue="false"/>
       </changes>
       <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element">
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@changes.3/@element">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@changes.3/@element"
             featureName="name" dataValue="ModelElement"/>
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@changes.3/@element"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element"
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@changes.3/@element"
             featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/creator">
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creator"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@changes.3/@element"
+          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/creator">
+        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creator"
             featureName="name" dataValue="creator"/>
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creator"
+        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creator"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/creationDate">
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creationDate"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@changes.3/@element"
+          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/creationDate">
+        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creationDate"
             featureName="name" dataValue="creationDate"/>
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creationDate"
+        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creationDate"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </changes>
       <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
@@ -99,7 +99,7 @@
         <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
-            featureName="eType" referenceValue="#//@releases.7/@changes.9/@element"/>
+            featureName="eType" referenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
         <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
             featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </changes>
@@ -112,7 +112,7 @@
         <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
-            featureName="eType" referenceValue="#//@releases.7/@changes.9/@element"/>
+            featureName="eType" referenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
         <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
             featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       </changes>
@@ -6670,7 +6670,7 @@
         featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement" featureName="eSuperTypes"
-        referenceValue="#//@releases.7/@changes.9/@element"/>
+        referenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
     <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement"
         referenceName="eStructuralFeatures">
       <element xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -8357,22 +8357,34 @@
         featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:Remove" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
         featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    <changes xsi:type="history:MigrationChange" migration="unicaseModelElementClass = model.UnicaseModelElement&#xA;modelElementClass = metamodel.ModelElement&#xA;unicaseModelElementClass.eSuperTypes.remove(modelElementClass)&#xA;&#xA;for(element in unicaseModelElementClass.allInstances) {&#xA;&#x9;def id = element.unset(modelElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
-      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
-          featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element"/>
-    </changes>
     <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
         featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
-        oldReferenceValue="#//@releases.7/@changes.9/@element"/>
+        oldReferenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
     <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
         featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
-        oldReferenceValue="#//@releases.7/@changes.9/@element"/>
-    <changes xsi:type="history:Delete" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-        referenceName="eClassifiers">
-      <element xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      </element>
+        oldReferenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
+    <changes xsi:type="history:MigrationChange" migration="modelElementClass = metamodel.ModelElement&#xA;identifiableElementClass = metamodel.IdentifiableElement&#xA;modelElementClass.eSuperTypes.remove(identifiableElementClass)&#xA;&#xA;for(element in model.UnicaseModelElement.allInstances) {&#xA;&#x9;def id = element.unset(modelElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
+      <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@changes.3/@element"
+          featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
+    </changes>
+    <changes xsi:type="history:OperationChange">
+      <changes xsi:type="history:Move" target="model.ecore#//UnicaseModelElement"
+          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/creationDate"
+          source="#//@releases.7/@changes.9/@changes.3/@element"/>
+      <changes xsi:type="history:Move" target="model.ecore#//UnicaseModelElement"
+          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/creator"
+          source="#//@releases.7/@changes.9/@changes.3/@element"/>
+      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
+          featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@changes.3/@element"/>
+      <changes xsi:type="history:Delete" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers">
+        <element xsi:type="ecore:EClass" name="ModelElement" abstract="true"/>
+      </changes>
+      <operation name="inlineSuperClass">
+        <parameters name="superClass">
+          <referenceValue element="#//@releases.7/@changes.9/@changes.3/@element"/>
+        </parameters>
+      </operation>
     </changes>
   </releases>
   <releases/>
