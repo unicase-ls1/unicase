@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.profile.*;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.profile.ProfilePackage;
@@ -21,12 +20,13 @@ import org.unicase.model.profile.StereotypeInstance;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ProfileFactory init() {
@@ -43,8 +43,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFactoryImpl() {
@@ -53,6 +53,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +76,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Profile createProfile() {
@@ -84,6 +86,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype createStereotype() {
@@ -93,6 +96,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeInstance createStereotypeInstance() {
@@ -102,6 +106,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeSimple createStereotypeAttributeSimple() {
@@ -111,6 +116,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeInstanceString createStereotypeAttributeInstanceString() {
@@ -120,6 +126,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfilePackage getProfilePackage() {
@@ -128,6 +135,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

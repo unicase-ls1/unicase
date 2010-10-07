@@ -22,16 +22,17 @@ import org.unicase.model.UnicaseModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
+ * <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AnnotationImpl extends UnicaseModelElementImpl implements Annotation {
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotatedModelElements()
 	 * @generated
 	 * @ordered
@@ -40,6 +41,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnnotationImpl() {
@@ -48,6 +50,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,6 +60,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getAnnotatedModelElements() {
@@ -70,6 +74,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -85,6 +90,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +104,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,6 +118,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -127,6 +135,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +150,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

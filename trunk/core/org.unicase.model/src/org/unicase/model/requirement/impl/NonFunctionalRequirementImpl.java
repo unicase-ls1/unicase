@@ -27,13 +27,16 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted
+ * Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use
+ * Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions
+ * </em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {
@@ -66,9 +69,9 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	 */
 	protected EList<SystemFunction> systemFunctions;
 	/**
-	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUserTasks()
 	 * @generated
 	 * @ordered
@@ -77,6 +80,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -85,6 +89,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,6 +99,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
@@ -107,6 +113,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
@@ -120,6 +127,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
@@ -133,6 +141,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserTask> getUserTasks() {
@@ -146,6 +155,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -168,6 +178,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +198,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,6 +218,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -234,6 +247,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -257,6 +271,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

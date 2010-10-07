@@ -13,12 +13,13 @@ import org.unicase.model.Project;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Project</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProjectImpl extends org.unicase.metamodel.impl.ProjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectImpl() {
@@ -27,6 +28,7 @@ public class ProjectImpl extends org.unicase.metamodel.impl.ProjectImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

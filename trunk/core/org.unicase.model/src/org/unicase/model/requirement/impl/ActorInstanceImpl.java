@@ -50,6 +50,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 	/**
 	 * The cached value of the '{@link #getParticipatedScenarios() <em>Participated Scenarios</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipatedScenarios()
 	 * @generated
 	 * @ordered
@@ -68,6 +69,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorInstanceImpl() {
@@ -76,6 +78,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,6 +88,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getInitiatedScenarios() {
@@ -98,6 +102,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getParticipatedScenarios() {
@@ -111,6 +116,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor getInstantiatedActor() {
@@ -128,6 +134,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor basicGetInstantiatedActor() {
@@ -136,6 +143,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInstantiatedActor(Actor newInstantiatedActor, NotificationChain msgs) {
@@ -154,6 +162,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInstantiatedActor(Actor newInstantiatedActor) {
@@ -175,6 +184,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -198,6 +208,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,6 +226,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,6 +246,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -257,6 +270,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,6 +291,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

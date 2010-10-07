@@ -14,14 +14,15 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Instantiation Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.classes.ClassesPackage#getInstantiationType()
  * @model
  * @generated
  */
 public enum InstantiationType implements Enumerator {
 	/**
-	 * The '<em><b>Concrete</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>Concrete</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #CONCRETE_VALUE
 	 * @generated
 	 * @ordered
@@ -29,8 +30,8 @@ public enum InstantiationType implements Enumerator {
 	CONCRETE(0, "Concrete", "Concrete"),
 
 	/**
-	 * The '<em><b>Abstract</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>Abstract</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #ABSTRACT_VALUE
 	 * @generated
 	 * @ordered
@@ -38,8 +39,8 @@ public enum InstantiationType implements Enumerator {
 	ABSTRACT(1, "Abstract", "Abstract"),
 
 	/**
-	 * The '<em><b>Interface</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>Interface</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #INTERFACE_VALUE
 	 * @generated
 	 * @ordered
@@ -47,13 +48,13 @@ public enum InstantiationType implements Enumerator {
 	INTERFACE(2, "Interface", "Interface");
 
 	/**
-	 * The '<em><b>Concrete</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Concrete</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Concrete</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CONCRETE
 	 * @model name="Concrete"
 	 * @generated
@@ -62,13 +63,13 @@ public enum InstantiationType implements Enumerator {
 	public static final int CONCRETE_VALUE = 0;
 
 	/**
-	 * The '<em><b>Abstract</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Abstract</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Abstract</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ABSTRACT
 	 * @model name="Abstract"
 	 * @generated
@@ -77,13 +78,13 @@ public enum InstantiationType implements Enumerator {
 	public static final int ABSTRACT_VALUE = 1;
 
 	/**
-	 * The '<em><b>Interface</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Interface</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Interface</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #INTERFACE
 	 * @model name="Interface"
 	 * @generated
@@ -100,17 +101,17 @@ public enum InstantiationType implements Enumerator {
 	private static final InstantiationType[] VALUES_ARRAY = new InstantiationType[] { CONCRETE, ABSTRACT, INTERFACE, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Instantiation Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!--
+	 * A public read-only list of all the '<em><b>Instantiation Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<InstantiationType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc
+	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified literal value. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static InstantiationType get(String literal) {
@@ -124,9 +125,9 @@ public enum InstantiationType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static InstantiationType getByName(String name) {
@@ -140,9 +141,9 @@ public enum InstantiationType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc
+	 * Returns the '<em><b>Instantiation Type</b></em>' literal with the specified integer value. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static InstantiationType get(int value) {
@@ -159,25 +160,28 @@ public enum InstantiationType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private InstantiationType(int value, String name, String literal) {
@@ -188,6 +192,7 @@ public enum InstantiationType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -196,6 +201,7 @@ public enum InstantiationType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -204,6 +210,7 @@ public enum InstantiationType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -211,9 +218,9 @@ public enum InstantiationType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

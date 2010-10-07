@@ -35,17 +35,17 @@ import org.unicase.model.meeting.util.MeetingAdapterFactory;
 public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MeetingItemProviderAdapterFactory() {
@@ -80,9 +80,9 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	protected MeetingItemProvider meetingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.meeting.Meeting}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.meeting.Meeting}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,16 +95,17 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.meeting.CompositeMeetingSection} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.meeting.CompositeMeetingSection}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompositeMeetingSectionItemProvider compositeMeetingSectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.meeting.CompositeMeetingSection}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.model.meeting.CompositeMeetingSection}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,14 +120,15 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.meeting.IssueMeetingSection} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IssueMeetingSectionItemProvider issueMeetingSectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.meeting.IssueMeetingSection}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.meeting.IssueMeetingSection}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,16 +141,17 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.meeting.WorkItemMeetingSection} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.meeting.WorkItemMeetingSection}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkItemMeetingSectionItemProvider workItemMeetingSectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,8 +164,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -170,8 +173,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -180,6 +183,7 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,9 +192,9 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +204,7 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,8 +220,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -224,8 +229,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -233,9 +238,9 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -247,8 +252,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {

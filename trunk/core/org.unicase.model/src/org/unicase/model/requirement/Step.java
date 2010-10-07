@@ -10,30 +10,29 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.Step#isUserStep <em>User Step</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#isUserStep <em>User Step</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.requirement.RequirementPackage#getStep()
  * @model
  * @generated
  */
 public interface Step extends UnicaseModelElement, NonDomainElement {
 	/**
-	 * Returns the value of the '<em><b>User Step</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>User Step</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User Step</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>User Step</em>' attribute.
 	 * @see #setUserStep(boolean)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_UserStep()
@@ -53,13 +52,13 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	void setUserStep(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Included Use Case</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Included Use Case</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Included Use Case</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Included Use Case</em>' reference.
 	 * @see #setIncludedUseCase(UseCase)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedUseCase()
@@ -69,8 +68,9 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	UseCase getIncludedUseCase();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Included Use Case</em>' reference.
 	 * @see #getIncludedUseCase()
 	 * @generated
@@ -78,13 +78,13 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	void setIncludedUseCase(UseCase value);
 
 	/**
-	 * Returns the value of the '<em><b>Included System Function</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Included System Function</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Included System Function</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Included System Function</em>' reference.
 	 * @see #setIncludedSystemFunction(SystemFunction)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_IncludedSystemFunction()
@@ -94,8 +94,9 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	SystemFunction getIncludedSystemFunction();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getIncludedSystemFunction
+	 * <em>Included System Function</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Included System Function</em>' reference.
 	 * @see #getIncludedSystemFunction()
 	 * @generated
@@ -103,14 +104,14 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	void setIncludedSystemFunction(SystemFunction value);
 
 	/**
-	 * Returns the value of the '<em><b>Use Case</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Use Case</b></em>' container reference. It is bidirectional and its opposite is
+	 * '{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Use Case</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Use Case</em>' container reference.
 	 * @see #setUseCase(UseCase)
 	 * @see org.unicase.model.requirement.RequirementPackage#getStep_UseCase()
@@ -121,8 +122,9 @@ public interface Step extends UnicaseModelElement, NonDomainElement {
 	UseCase getUseCase();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}' container
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Use Case</em>' container reference.
 	 * @see #getUseCase()
 	 * @generated
