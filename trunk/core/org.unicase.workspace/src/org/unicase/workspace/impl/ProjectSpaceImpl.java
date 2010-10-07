@@ -1344,10 +1344,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changes = connectionManager
 			.getChanges(getUsersession().getSessionId(), projectId, baseVersion, resolvedVersion);
 
+		ChangePackage localchanges = getLocalChangePackage(false);
+
 		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
-			ChangePackage changePackage = getLocalChangePackage(false);
-			if (conflictDetector.doConflict(change, changePackage)) {
+			if (conflictDetector.doConflict(change, localchanges)) {
 				throw new ChangeConflictException(changes, this, conflictDetector);
 			}
 		}
@@ -1358,9 +1359,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		final List<ChangePackage> cps = changes;
+
+		// revert
+		this.revert();
+
+		// apply changes from repo
 		for (ChangePackage change : cps) {
 			applyOperations(change.getCopyOfOperations(), false);
 		}
+
+		// reapply local changes
+		applyOperations(localchanges.getCopyOfOperations(), true);
 
 		setBaseVersion(resolvedVersion);
 		saveProjectSpaceOnly();
