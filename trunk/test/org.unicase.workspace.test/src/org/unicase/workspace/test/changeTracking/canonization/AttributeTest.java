@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -18,7 +19,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentFactory;
@@ -40,9 +43,11 @@ public class AttributeTest extends WorkspaceTest {
 
 	/**
 	 * Tests canonization for consecutive attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void consecutiveAttributeChangeSingleFeature() {
+	public void consecutiveAttributeChangeSingleFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -95,13 +100,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void consecutiveAttributeChangeSingleFeatureToNull() {
+	public void consecutiveAttributeChangeSingleFeatureToNull() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -151,13 +162,20 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
+
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void consecutiveAttributeChangeSingleFeatureNullToValue() {
+	public void consecutiveAttributeChangeSingleFeatureNullToValue() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -207,13 +225,20 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
+
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes, resulting in a noop.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void attributeChangeNoOp() {
+	public void attributeChangeNoOp() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -255,13 +280,20 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting the name to its original value
 		assertEquals(operations.size(), 0);
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
+
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes, resulting in a noop.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void attributeChangeNoOpNull() {
+	public void attributeChangeNoOpNull() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -303,13 +335,19 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting the name to its original value
 		assertEquals(operations.size(), 0);
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes, resulting in a noop.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void attributeChangeMultiFeatureNoOp() {
+	public void attributeChangeMultiFeatureNoOp() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -354,13 +392,19 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting everything to its original value
 		assertEquals(operations.size(), 0);
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes on multiple features.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void consecutiveAttributeChangeMultiFeature() {
+	public void consecutiveAttributeChangeMultiFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -413,13 +457,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for mixed attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void mixedAttributeChangeSingleFeature() {
+	public void mixedAttributeChangeSingleFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -478,13 +528,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for mixed attribute changes on a single feature.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void mixedAttributeChangeMultiFeature() {
+	public void mixedAttributeChangeMultiFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -554,15 +610,21 @@ public class AttributeTest extends WorkspaceTest {
 		}.run(false);
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Test the creation and completion of a composite operation, that contains attribute changes.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void compositeAttributeChangesACA() throws InvalidHandleException {
+	public void compositeAttributeChangesACA() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		new UnicaseCommand() {
@@ -589,7 +651,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -619,15 +682,21 @@ public class AttributeTest extends WorkspaceTest {
 		}.run(false);
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Test the creation and completion of a composite operation, that contains attribute changes.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void compositeAttributeChangesAC() throws InvalidHandleException {
+	public void compositeAttributeChangesAC() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
@@ -655,7 +724,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -685,15 +755,20 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Test the creation and completion of a composite operation, that contains attribute changes.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void compositeAttributeChangesCA() throws InvalidHandleException {
+	public void compositeAttributeChangesCA() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		new UnicaseCommand() {
@@ -718,7 +793,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -749,13 +825,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for create and consecutive attribute changes.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void createAndChangeAttributesSimple() {
+	public void createAndChangeAttributesSimple() throws IOException {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
@@ -792,7 +874,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "DescriptionOfUseCase");
 
 		// test if the create is reversible and re-reversible
-		Project expectedProject = ModelUtil.clone(getProject());
+		Project expectedProject = ((ProjectImpl) getProject()).copy(); // ModelUtil.clone(getProject());
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
@@ -811,13 +893,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for create and consecutive attribute changes.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void createAndChangeAttributesComplex() {
+	public void createAndChangeAttributesComplex() throws IOException {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
@@ -879,15 +967,20 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
 
 	/**
 	 * Test the creation and completion of a composite operation, that contains attribute changes.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void createAndAttributeChangesACA() throws InvalidHandleException {
+	public void createAndAttributeChangesACA() throws InvalidHandleException, IOException {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
@@ -905,7 +998,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -965,13 +1059,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes followed by a delete.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void changeAttributesAndDeleteSimple() {
+	public void changeAttributesAndDeleteSimple() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		new UnicaseCommand() {
@@ -991,7 +1091,6 @@ public class AttributeTest extends WorkspaceTest {
 			protected void doRun() {
 				useCase.setName("NameOfUseCase");
 				useCase.setDescription("DescriptionOfUseCase");
-
 				getProject().deleteModelElement(useCase);
 			}
 		}.run(false);
@@ -1038,13 +1137,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 	/**
 	 * Tests canonization for consecutive attribute changes and delete.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void changeAttributesAndDeleteComplex() {
+	public void changeAttributesAndDeleteComplex() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
@@ -1131,6 +1236,10 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
 
 	/**
@@ -1202,9 +1311,10 @@ public class AttributeTest extends WorkspaceTest {
 	 * Test the creation and completion of a composite operation, that contains attribute changes.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void attributeChangesACAAndDelete() throws InvalidHandleException {
+	public void attributeChangesACAAndDelete() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		new UnicaseCommand() {
@@ -1229,7 +1339,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
+						section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -1297,13 +1408,20 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
+
 	}
 
 	/**
 	 * Tests canonization for create, attribute changes and delete.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void createChangeAttributeAndDelete() {
+	public void createChangeAttributeAndDelete() throws IOException {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
@@ -1336,13 +1454,19 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
 
 	/**
 	 * Tests canonization for create, attribute changes and delete.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void createChangeReferencesAndDelete() {
+	public void createChangeReferencesAndDelete() throws IOException {
 
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 
@@ -1370,7 +1494,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expect create, 1 attribute ops, 1 multiref op, the delete
-		assertEquals(operations.size(), 4);
+		assertEquals(4, operations.size());
 
 		new UnicaseCommand() {
 			@Override
@@ -1401,6 +1525,10 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}
 
 }

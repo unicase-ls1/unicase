@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -40,8 +42,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
@@ -71,13 +71,13 @@ public final class IntegrationTestHelper {
 	private static TransactionalEditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
 	private Random random;
-	private List<ModelElement> allMEsInProject;
+	private Set<EObject> allMEsInProject;
 	private Project testProject;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param randomSeed ranodm seed
+	 * @param randomSeed random seed
 	 * @param testProject test project
 	 */
 	public IntegrationTestHelper(long randomSeed, Project testProject) {
@@ -88,7 +88,7 @@ public final class IntegrationTestHelper {
 	/**
 	 * Creates an empty project space.
 	 * 
-	 * @param name project sapce name
+	 * @param name project space name
 	 * @return an empty project space
 	 */
 	public static ProjectSpace createEmptyProjectSpace(String name) {
@@ -154,7 +154,7 @@ public final class IntegrationTestHelper {
 	}
 
 	/**
-	 * This method compares two projects using {@link ModelUtil#areEqual(Project, Project)}. You can also use
+	 * This method compares two projects using {@link ModelUtil#areEqual(EObject, EObject)}. You can also use
 	 * linearCompare(project, project) to identify the position in which the project differ.
 	 * 
 	 * @param testSpace test project space
@@ -404,9 +404,9 @@ public final class IntegrationTestHelper {
 	 * @param unique if they must be unique
 	 * @return a random list of MEs
 	 */
-	public List<ModelElement> getRandomMEs(Project project, int num, boolean unique) {
+	public List<EObject> getRandomMEs(Project project, int num, boolean unique) {
 
-		List<ModelElement> result = new ArrayList<ModelElement>();
+		List<EObject> result = new ArrayList<EObject>();
 		if (allMEsInProject == null) {
 			System.out.println("getting list of all model elements in project...");
 			allMEsInProject = project.getAllModelElements();
@@ -421,7 +421,7 @@ public final class IntegrationTestHelper {
 
 		if (unique) {
 			do {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
+				final EObject me = (EObject) allMEsInProject.toArray()[getRandom().nextInt(numOfMEs - 1)];
 				if (!result.contains(me)) {
 					result.add(me);
 				}
@@ -430,7 +430,7 @@ public final class IntegrationTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
+				final EObject me = (EObject) allMEsInProject.toArray()[getRandom().nextInt(numOfMEs - 1)];
 				result.add(me);
 			}
 
@@ -444,8 +444,8 @@ public final class IntegrationTestHelper {
 	 * @param project project
 	 * @return randomly selected ME
 	 */
-	public ModelElement getRandomME(Project project) {
-		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
+	public EObject getRandomME(Project project) {
+		List<EObject> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
 
@@ -457,9 +457,9 @@ public final class IntegrationTestHelper {
 	 * @param type model element type
 	 * @return ME or null if there is no ME of this type in project
 	 */
-	public ModelElement getRandomMEofType(Project project, EClass type) {
+	public EObject getRandomMEofType(Project project, EClass type) {
 
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(type, new BasicEList<ModelElement>());
+		List<EObject> refTypeMEs = project.getAllModelElementsbyClass(type, new BasicEList<EObject>());
 
 		int size = refTypeMEs.size();
 		if (size == 0) {
@@ -467,7 +467,7 @@ public final class IntegrationTestHelper {
 			// throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
 		}
 
-		ModelElement me = refTypeMEs.get(getRandomPosition(size));
+		EObject me = refTypeMEs.get(getRandomPosition(size));
 		return me;
 	}
 
@@ -476,11 +476,11 @@ public final class IntegrationTestHelper {
 	 * 
 	 * @return ME
 	 */
-	public ModelElement createRandomME() {
-		Set<EClass> eClazzSet = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement());
+	public EObject createRandomME() {
+		Set<EClass> eClazzSet = ModelUtil.getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
 		ArrayList<EClass> eClazz = new ArrayList<EClass>(eClazzSet);
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
-		ModelElement me = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject me = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		return me;
 	}
@@ -517,7 +517,7 @@ public final class IntegrationTestHelper {
 	 * @param attribute attribute to change
 	 */
 	@SuppressWarnings("unchecked")
-	public void changeAttribute(ModelElement me, EAttribute attribute) {
+	public void changeAttribute(EObject me, EAttribute attribute) {
 
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
@@ -615,12 +615,11 @@ public final class IntegrationTestHelper {
 	 * @param me ME
 	 * @return a random selected attribute
 	 */
-	public EAttribute getRandomAttribute(ModelElement me) {
+	public EAttribute getRandomAttribute(EObject me) {
 		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
-			if (tmpAttr.isChangeable() && tmpAttr.getFeatureID() != MetamodelPackage.MODEL_ELEMENT__IDENTIFIER
-				&& !tmpAttr.isTransient()) {
+			if (tmpAttr.isChangeable() && !tmpAttr.isTransient()) {
 				attributes.add(tmpAttr);
 			}
 		}
@@ -641,7 +640,7 @@ public final class IntegrationTestHelper {
 	 * @param me model element
 	 * @return random reference of this ME
 	 */
-	public EReference getRandomReference(ModelElement me) {
+	public EReference getRandomReference(EObject me) {
 		int size = me.eClass().getEAllReferences().size();
 		int position = getRandomPosition(size);
 		EReference ref = null;
@@ -659,7 +658,7 @@ public final class IntegrationTestHelper {
 	 * @param me ME
 	 * @return randomly selected changeable non-transient non-containment reference of this ME
 	 */
-	public EReference getRandomNonContainmentRef(ModelElement me) {
+	public EReference getRandomNonContainmentRef(EObject me) {
 		EReference nonContainmentRef = null;
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllReferences()) {
@@ -684,7 +683,7 @@ public final class IntegrationTestHelper {
 	 * @param me ME
 	 * @return a randomly selected containment reference of this ME. It is changeable and not transient
 	 */
-	public EReference getRandomContainmentRef(ModelElement me) {
+	public EReference getRandomContainmentRef(EObject me) {
 		EReference containmentRef = null;
 		List<EReference> containments = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllContainments()) {
@@ -711,23 +710,23 @@ public final class IntegrationTestHelper {
 	 * @return model element which is added to this reference
 	 */
 	@SuppressWarnings("unchecked")
-	public ModelElement changeNonContainementRef(ModelElement me, EReference ref, Project project) {
+	public EObject changeNonContainementRef(EObject me, EReference ref, Project project) {
 
 		EClass refType = ref.getEReferenceType();
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(refType, new BasicEList<ModelElement>());
+		List<EObject> refTypeMEs = project.getAllModelElementsbyClass(refType, new BasicEList<EObject>());
 
 		if (refTypeMEs.contains(me)) {
 			refTypeMEs.remove(me);
 		}
 
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandomPosition(refTypeMEs.size()));
+		EObject toBeReferencedME = refTypeMEs.get(getRandomPosition(refTypeMEs.size()));
 
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
-					+ me.getIdentifier());
+					+ ModelUtil.getProject(me).getModelElementId(me).getId());
 			} else {
 				int position = getRandomPosition(eList.size());
 				eList.add(position, toBeReferencedME);
@@ -749,13 +748,13 @@ public final class IntegrationTestHelper {
 	 * @param toBeReferencedME model element to reference
 	 */
 	@SuppressWarnings("unchecked")
-	public void changeReference(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
+	public void changeReference(EObject me, EReference ref, EObject toBeReferencedME) {
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
-					+ me.getIdentifier());
+					+ ModelUtil.getProject(me).getModelElementId(me).getId());
 			} else {
 				int position = getRandomPosition(eList.size());
 				eList.add(position, toBeReferencedME);
@@ -772,7 +771,7 @@ public final class IntegrationTestHelper {
 	 * @param me ME model element to change
 	 * @param attribute an attribute with multiple values (isMany = true)
 	 */
-	public void moveMultiAttributeValue(ModelElement me, EAttribute attribute) {
+	public void moveMultiAttributeValue(EObject me, EAttribute attribute) {
 		if (!attribute.isMany()) {
 			throw new IllegalArgumentException("Given attribute must be multiple valued (isMany = true)");
 		}
@@ -795,7 +794,7 @@ public final class IntegrationTestHelper {
 	 * @param ref EReference to change
 	 */
 	@SuppressWarnings("unchecked")
-	public void moveMultiReferenceValue(ModelElement me, EReference ref) {
+	public void moveMultiReferenceValue(EObject me, EReference ref) {
 		if (!ref.isMany()) {
 			throw new IllegalArgumentException("Given reference must be multiple valued (isMany = true)");
 		}
@@ -803,7 +802,7 @@ public final class IntegrationTestHelper {
 		EList<EObject> eList = (EList<EObject>) object;
 		if (eList == null) {
 			throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
-				+ me.getIdentifier());
+				+ ModelUtil.getProject(me).getModelElementId(me).getId());
 		} else {
 			int position1 = getRandomPosition(eList.size());
 			int position2 = getRandomPosition(eList.size());
@@ -846,7 +845,7 @@ public final class IntegrationTestHelper {
 	@SuppressWarnings("unchecked")
 	public void doContainemntReferenceAddNew() {
 		// get a random ME and one of its containment references
-		ModelElement me = getRandomME(testProject);
+		EObject me = getRandomME(testProject);
 		EReference refToChange = getRandomContainmentRef(me);
 
 		// Maybe this ME does not have any containment references. Then choose another one.
@@ -870,8 +869,7 @@ public final class IntegrationTestHelper {
 
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on "
-					+ me.getIdentifier());
-
+					+ ModelUtil.getProject(me).getModelElementId(me).getId());
 			} else {
 				int position = getRandomPosition(eList.size());
 				eList.add(position, newInstance);
@@ -887,7 +885,7 @@ public final class IntegrationTestHelper {
 	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
 	 */
 	public void doChangeAttribute() {
-		ModelElement me = getRandomME(getTestProject());
+		EObject me = getRandomME(getTestProject());
 		EAttribute attributeToChange = getRandomAttribute(me);
 		changeAttribute(me, attributeToChange);
 
@@ -899,8 +897,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doNonContainmentReferenceAdd() {
 
-		ModelElement meToReference = null;
-		ModelElement me = null;
+		EObject meToReference = null;
+		EObject me = null;
 		EReference refToChange = null;
 
 		while (meToReference == null) {
@@ -924,7 +922,7 @@ public final class IntegrationTestHelper {
 	 * Change the same attribute on a randomly selected ME twice.
 	 */
 	public void doAttributeTransitiveChange() {
-		ModelElement me = getRandomME(getTestProject());
+		EObject me = getRandomME(getTestProject());
 		EAttribute attributeToChange = getRandomAttribute(me);
 
 		// from unset or a to b
@@ -939,7 +937,7 @@ public final class IntegrationTestHelper {
 	 * This move an element in a many reference list to another position.
 	 */
 	public void doMultiReferenceMove() {
-		ModelElement me = getRandomME(getTestProject());
+		EObject me = getRandomME(getTestProject());
 		EReference refToChange = getRandomReference(me);
 
 		while (refToChange == null || !refToChange.isMany()) {
@@ -956,8 +954,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doDelete() {
 
-		ModelElement me = getRandomME(getTestProject());
-		me.delete();
+		EObject me = getRandomME(getTestProject());
+		ModelUtil.getProject(me).deleteModelElement(me);
 
 	}
 
@@ -966,8 +964,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doContainmentReferenceMove() {
 
-		ModelElement meToMove = null;
-		ModelElement me = null;
+		EObject meToMove = null;
+		EObject me = null;
 		EReference refToChange = null;
 
 		while (meToMove == null) {
@@ -998,10 +996,10 @@ public final class IntegrationTestHelper {
 	 * Moves meToMove to meC.
 	 */
 	public void doContainmentRefTransitiveChange() {
-		ModelElement meA = null;
-		ModelElement meB = null;
-		ModelElement meC = null;
-		ModelElement meToMove = null;
+		EObject meA = null;
+		EObject meB = null;
+		EObject meC = null;
+		EObject meToMove = null;
 		EReference refToChange = null;
 
 		while (refToChange == null || meB == null || meC == null) {
@@ -1010,7 +1008,7 @@ public final class IntegrationTestHelper {
 				meA = getRandomME(testProject);
 				int contentsSize = meA.eContents().size();
 				if (contentsSize != 0) {
-					meToMove = (ModelElement) meA.eContents().get(getRandomPosition(contentsSize));
+					meToMove = meA.eContents().get(getRandomPosition(contentsSize));
 				}
 
 			}
@@ -1038,7 +1036,7 @@ public final class IntegrationTestHelper {
 	 * @param refToChange
 	 * @return
 	 */
-	private boolean sanityCheckContainmentRefTransitiveChange(ModelElement meB, ModelElement meC, EObject meToMove,
+	private boolean sanityCheckContainmentRefTransitiveChange(EObject meB, EObject meC, EObject meToMove,
 		EReference refToChange) {
 
 		if (meToMove == null) {
@@ -1060,7 +1058,7 @@ public final class IntegrationTestHelper {
 	 * create a random ME and change one of its attributes.
 	 */
 	public void doCreateAndChangeAttribute() {
-		ModelElement me = createRandomME();
+		EObject me = createRandomME();
 		EAttribute attributeToChange = getRandomAttribute(me);
 
 		while (attributeToChange == null) {
@@ -1078,8 +1076,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doCreateAndChangeRef() {
 
-		ModelElement meToReference = null;
-		ModelElement me = null;
+		EObject meToReference = null;
+		EObject me = null;
 		EReference refToChange = null;
 
 		while (meToReference == null) {
@@ -1104,13 +1102,13 @@ public final class IntegrationTestHelper {
 	 * attributes, and again changes one of its references.
 	 */
 	public void doCreateAndMultipleChange() {
-		ModelElement me = null;
+		EObject me = null;
 		EAttribute attr1 = null;
 		EAttribute attr2 = null;
 		EReference ref1 = null;
 		EReference ref2 = null;
-		ModelElement meToRef1 = null;
-		ModelElement meToRef2 = null;
+		EObject meToRef1 = null;
+		EObject meToRef2 = null;
 
 		while (!sanityCheckCreateAndMultipleChange(me, ref1, meToRef1, ref2, meToRef2)) {
 			meToRef1 = null;
@@ -1145,8 +1143,8 @@ public final class IntegrationTestHelper {
 	 * @param meToRef2
 	 * @return
 	 */
-	private boolean sanityCheckCreateAndMultipleChange(ModelElement me, EReference ref1, ModelElement meToRef1,
-		EReference ref2, ModelElement meToRef2) {
+	private boolean sanityCheckCreateAndMultipleChange(EObject me, EReference ref1, EObject meToRef1, EReference ref2,
+		EObject meToRef2) {
 
 		if (ref1 == null || ref2 == null) {
 			return false;
@@ -1172,8 +1170,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doCreateChangeRefDelete() {
 
-		ModelElement meToReference = null;
-		ModelElement me = null;
+		EObject meToReference = null;
+		EObject me = null;
 		EReference refToChange = null;
 
 		while (meToReference == null) {
@@ -1188,8 +1186,7 @@ public final class IntegrationTestHelper {
 
 		getTestProject().getModelElements().add(me);
 		changeReference(me, refToChange, meToReference);
-		me.delete();
-
+		ModelUtil.getProject(me).deleteModelElement(me);
 	}
 
 	/**
@@ -1197,9 +1194,9 @@ public final class IntegrationTestHelper {
 	 */
 	public void doCreateDelete() {
 
-		ModelElement me = createRandomME();
+		EObject me = createRandomME();
 		getTestProject().getModelElements().add(me);
-		me.delete();
+		getTestProject().deleteModelElement(me);
 
 	}
 
@@ -1208,8 +1205,8 @@ public final class IntegrationTestHelper {
 	 */
 	public void doDeleteAndRevert() {
 
-		ModelElement modelElement = getRandomME(getTestProject());
-		modelElement.delete();
+		EObject modelElement = getRandomME(getTestProject());
+		getTestProject().deleteModelElement(modelElement);
 		List<AbstractOperation> operations = WorkspaceManager.getProjectSpace(testProject).getOperations();
 		CreateDeleteOperation operation = (CreateDeleteOperation) operations.get(operations.size() - 1);
 		CreateDeleteOperation reverse = (CreateDeleteOperation) operation.reverse();
@@ -1222,14 +1219,14 @@ public final class IntegrationTestHelper {
 	@SuppressWarnings("unchecked")
 	public void doNonContainmentReferenceRemove() {
 
-		ModelElement me = getRandomME(getTestProject());
+		EObject me = getRandomME(getTestProject());
 
 		while (me.eCrossReferences().size() < 1) {
 			me = getRandomME(getTestProject());
 		}
 
 		int indexToRemove = getRandomPosition(me.eCrossReferences().size());
-		ModelElement meToRemove = (ModelElement) me.eCrossReferences().get(indexToRemove);
+		EObject meToRemove = me.eCrossReferences().get(indexToRemove);
 
 		EReference refToChange = findReference(me, meToRemove);
 
@@ -1251,13 +1248,13 @@ public final class IntegrationTestHelper {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private EReference findReference(ModelElement modelElement, ModelElement referencedME) {
+	private EReference findReference(EObject modelElement, EObject referencedME) {
 
 		List<EReference> refsMatchingReferencedME = new ArrayList<EReference>();
 		for (EReference ref : modelElement.eClass().getEAllReferences()) {
 			if (!(ref.isContainer() || ref.isContainment())
 				&& (ref.getEReferenceType().equals(referencedME.eClass()) || ref.getEReferenceType().isSuperTypeOf(
-					referencedME.eClass()))) {
+					referencedME.eClass())) || ref.getEReferenceType().equals(EcorePackage.eINSTANCE.getEObject())) {
 				refsMatchingReferencedME.add(ref);
 			}
 		}
@@ -1292,7 +1289,7 @@ public final class IntegrationTestHelper {
 	 */
 	public void doMultiAttributeMove() {
 
-		ModelElement me = getRandomME(getTestProject());
+		EObject me = getRandomME(getTestProject());
 		EAttribute attributeToChange = getRandomAttribute(me);
 		int tries = 0;
 		// since isMany() attributes are very rare, we try for limited times to find one.

@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -41,7 +42,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				operation.setFeatureName("strings");
 				operation.getIndexes().add(0);
 				operation.getReferencedValues().add("inserted");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -69,7 +70,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				operation.setFeatureName("strings");
 				operation.getIndexes().add(0);
 				operation.getReferencedValues().add("inserted");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -100,7 +101,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				operation.getIndexes().add(2);
 				operation.getReferencedValues().add("inserted");
 				operation.getReferencedValues().add("inserted2");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -130,7 +131,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 				operation.setFeatureName("strings");
 				operation.getIndexes().add(0);
 				operation.getReferencedValues().add("first");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 

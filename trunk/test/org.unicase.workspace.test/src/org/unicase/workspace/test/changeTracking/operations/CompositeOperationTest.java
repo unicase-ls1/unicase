@@ -7,11 +7,18 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.io.IOException;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.RequirementFactory;
@@ -47,7 +54,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.setName("Name");
 				section.setDescription("Description");
 
-				assertEquals(true, getProject().contains(section));
+				assertEquals(true, getProject().containsInstance(section));
 				assertEquals("Name", section.getName());
 				assertEquals("Description", section.getDescription());
 				assertEquals(0, section.getModelElements().size());
@@ -66,22 +73,24 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.setDescription("newDescription");
 				section.getModelElements().add(useCase);
 
-				assertEquals(true, getProject().contains(useCase));
-				assertEquals(getProject(), useCase.getProject());
+				assertEquals(true, getProject().containsInstance(useCase));
+				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				assertEquals(useCase, section.getModelElements().iterator().next());
 				assertEquals("newName", section.getName());
 				assertEquals("newDescription", section.getDescription());
 
+				ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
+
 				try {
-					handle.end("sectionCreation", "description", section.getModelElementId());
+					handle.end("sectionCreation", "description", sectionId);
 				} catch (InvalidHandleException e) {
 					fail();
 				}
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(useCase));
-		assertEquals(getProject(), useCase.getProject());
+		assertEquals(true, getProject().containsInstance(useCase));
+		assertEquals(getProject(), ModelUtil.getProject(useCase));
 		assertEquals(useCase, section.getModelElements().iterator().next());
 		assertEquals("newName", section.getName());
 		assertEquals("newDescription", section.getDescription());
@@ -98,9 +107,10 @@ public class CompositeOperationTest extends WorkspaceTest {
 	 * Test the creation and abort of a composite operation.
 	 * 
 	 * @throws InvalidHandleException if the test fails
+	 * @throws IOException
 	 */
 	@Test
-	public void abortSmallComposite() throws InvalidHandleException {
+	public void abortSmallComposite() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
@@ -112,7 +122,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.setName("Name");
 				section.setDescription("Description");
 
-				assertEquals(true, getProject().contains(section));
+				assertEquals(true, getProject().containsInstance(section));
 				assertEquals("Name", section.getName());
 				assertEquals("Description", section.getDescription());
 				assertEquals(0, section.getModelElements().size());
@@ -131,8 +141,8 @@ public class CompositeOperationTest extends WorkspaceTest {
 				section.setDescription("newDescription");
 				section.getModelElements().add(useCase);
 
-				assertEquals(true, getProject().contains(useCase));
-				assertEquals(getProject(), useCase.getProject());
+				assertEquals(true, getProject().containsInstance(useCase));
+				assertEquals(getProject(), ModelUtil.getProject(useCase));
 				assertEquals(useCase, section.getModelElements().iterator().next());
 				assertEquals("newName", section.getName());
 				assertEquals("newDescription", section.getDescription());
@@ -145,14 +155,20 @@ public class CompositeOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(section));
+		assertEquals(true, getProject().containsInstance(section));
 		assertEquals("Name", section.getName());
 		assertEquals("Description", section.getDescription());
 		assertEquals(0, section.getModelElements().size());
-		assertEquals(false, getProject().contains(useCase));
+		assertEquals(false, getProject().containsInstance(useCase));
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, getProject()));
+		assertEquals(false, getProject().containsInstance(useCase));
+		assertEquals(true, getProject().containsInstance(section));
 	}
 
 	/**

@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.PendingFileTransfer;
@@ -39,7 +39,7 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 	private ArrayList<PendingFileTransfer> pendingFileTransfersUpload;
 	private ArrayList<FileAttachment> fileAttachments;
 	private ArrayList<File> sampleFiles;
-	private EList<ModelElement> modelElements;
+	private Set<EObject> modelElements;
 	private File cacheFolder;
 
 	/**
@@ -99,7 +99,7 @@ public class AddAndExecutePendingFileTransfersTest extends AbstractFileAPIClient
 		modelElements = getTestProject().getAllModelElements();
 		System.out.println("-> Project has " + modelElements.size() + " model elements.");
 		fileAttachments = new ArrayList<FileAttachment>();
-		for (ModelElement modelElement : modelElements) {
+		for (EObject modelElement : modelElements) {
 			if (AttachmentPackage.eINSTANCE.getFileAttachment().isInstance(modelElement)) {
 				fileAttachments.add((FileAttachment) modelElement);
 			}

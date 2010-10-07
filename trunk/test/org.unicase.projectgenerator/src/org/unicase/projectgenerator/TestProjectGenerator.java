@@ -22,12 +22,13 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -67,7 +68,7 @@ public class TestProjectGenerator {
 
 	private final Random random;
 	// these two are just shortcuts in order to save typing
-	private static final EClass MODELELEMENT_ECLASS = MetamodelPackage.eINSTANCE.getModelElement();
+	private static final EClass MODELELEMENT_ECLASS = EcoreFactory.eINSTANCE.getEcorePackage().getEObject();
 	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE.getSection();
 
 	// maintain a list of instances of every class. This is to avoid
@@ -141,17 +142,10 @@ public class TestProjectGenerator {
 		for (EObject eObject : ePackage.eContents()) {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
-				if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
-					if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(MetamodelPackage.eINSTANCE
-						.getProject()))) {
-						// this can be instantiated
-						meNonAbstractClasses.add(eClass);
-					}
-				} else {
-					if (!(eClass.isAbstract() || eClass.isInterface())) {
-						// this can be instantiated
-						nonMEnonAbstractClasses.add(eClass);
-					}
+				if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(MetamodelPackage.eINSTANCE
+					.getProject()))) {
+					// this can be instantiated
+					meNonAbstractClasses.add(eClass);
 				}
 			} else if (eObject instanceof EPackage) {
 				EPackage eSubPackage = (EPackage) eObject;
@@ -215,8 +209,8 @@ public class TestProjectGenerator {
 		createReferences();
 
 		// distribute some model elements on LeafSections
-		EList<ModelElement> leafSections = project.getAllModelElementsbyClass(DocumentPackage.eINSTANCE
-			.getLeafSection(), new BasicEList<ModelElement>());
+		EList<EObject> leafSections = project.getAllModelElementsbyClass(DocumentPackage.eINSTANCE.getLeafSection(),
+			new BasicEList<EObject>());
 		for (EObject ls : leafSections) {
 			distributeMEsOnLeafSection((LeafSection) ls);
 		}
@@ -284,8 +278,8 @@ public class TestProjectGenerator {
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
-			if (obj instanceof ModelElement) {
-				project.addModelElement((ModelElement) obj);
+			if (obj instanceof EObject) {
+				project.addModelElement(obj);
 			}
 		}
 	}
@@ -294,7 +288,7 @@ public class TestProjectGenerator {
 	 * this adds an instance to (EClass, ItsInstances) hash-tables.
 	 */
 	private void keepTrackOf(EClass eClass, EObject instance) {
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
+		if (eClass.equals(EcorePackage.eINSTANCE.getEObject())) {
 			// if instance is a ModelElement, add it to model elements
 			// hash-table
 			if (meInstancesByClass.get(eClass) == null) {
@@ -322,14 +316,14 @@ public class TestProjectGenerator {
 		allMEs.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
 
 		for (EObject me : allMEs) {
-			initializeReferences((ModelElement) me);
+			initializeReferences(me);
 		}
 	}
 
 	/**
 	 * this sets the references according their type.
 	 */
-	private void initializeReferences(ModelElement me) {
+	private void initializeReferences(EObject me) {
 
 		List<EReference> references = me.eClass().getEAllReferences();
 		for (EReference ref : references) {
@@ -367,7 +361,7 @@ public class TestProjectGenerator {
 	 * @param upperBound
 	 */
 	@SuppressWarnings("unchecked")
-	private void createNormalReference(ModelElement me, EReference ref, int lowerBound, int upperBound) {
+	private void createNormalReference(EObject me, EReference ref, int lowerBound, int upperBound) {
 		// create a list of all instances of reference type
 		// and get a random number for number of references
 		List<EObject> instancesOfRefType = new ArrayList<EObject>();
@@ -404,8 +398,8 @@ public class TestProjectGenerator {
 				EObject newInstance = createInstance(ref.getEReferenceType(), noSection);
 				instancesOfRefType.add(newInstance);
 				// if it's a ModelElement, add it to project too
-				if (newInstance instanceof ModelElement) {
-					project.addModelElement((ModelElement) newInstance);
+				if (newInstance instanceof EObject) {
+					project.addModelElement(newInstance);
 				}
 			}
 
@@ -437,7 +431,7 @@ public class TestProjectGenerator {
 	 * time container reference of the opposite object.
 	 */
 	@SuppressWarnings("unchecked")
-	private void createContainmentRef(ModelElement me, EReference ref, int lowerBound, int upperBound) {
+	private void createContainmentRef(EObject me, EReference ref, int lowerBound, int upperBound) {
 		// check special cases
 		if (checkSpecialCase(me, ref)) {
 			return;
@@ -498,7 +492,7 @@ public class TestProjectGenerator {
 	/**
 	 * this checks ME and Ref against some special cases.
 	 */
-	private boolean checkSpecialCase(ModelElement me, EReference ref) {
+	private boolean checkSpecialCase(EObject me, EReference ref) {
 		boolean result = false;
 		if (ref.getEReferenceType().equals(MetamodelPackage.eINSTANCE.getModelElementId())) {
 			// for all instances the model element id is set
@@ -574,7 +568,7 @@ public class TestProjectGenerator {
 		List<EObject> result;
 		HashMap<EClass, List<EObject>> map;
 		// if EClass is a ModelElement sub-class, look in MEs hash-table
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(type)) {
+		if (type.equals(EcorePackage.eINSTANCE.getEObject()) || MODELELEMENT_ECLASS.isSuperTypeOf(type)) { // MODELELEMENT_ECLASS.isSuperTypeOf(type))
 			map = meInstancesByClass;
 		} else {
 			map = nonMEInstancesByClass;
@@ -585,7 +579,7 @@ public class TestProjectGenerator {
 			Iterator<EClass> iterator = map.keySet().iterator();
 			while (iterator.hasNext()) {
 				EClass eClass = iterator.next();
-				if (type.isSuperTypeOf(eClass)) {
+				if (type.isSuperTypeOf(eClass) || type.equals(EcorePackage.eINSTANCE.getEObject())) {
 					result.addAll(map.get(eClass));
 				}
 
@@ -633,7 +627,7 @@ public class TestProjectGenerator {
 			for (int i = 0; i < lackingFreeInstances; i++) {
 				// if required, create new instances, but take care not to
 				// create Sections
-				freeMEs.add(createInstance(MetamodelPackage.eINSTANCE.getModelElement(), true));
+				freeMEs.add(createInstance(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), true));
 
 			}
 		}
@@ -719,7 +713,7 @@ public class TestProjectGenerator {
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
 
 			if (attribute.getEType().getInstanceClass().equals(String.class) && attribute.isChangeable()) {
-				if (instance instanceof ModelElement && attribute.getName().equalsIgnoreCase("name")) {
+				if (instance instanceof EObject && attribute.getName().equalsIgnoreCase("name")) {
 					// special case for name attribute of model elements
 					UnicaseModelElement modelElement = (UnicaseModelElement) instance;
 					modelElement.setName(instance.eClass().getName() + ":" + random.nextInt(20000));
@@ -773,14 +767,14 @@ public class TestProjectGenerator {
 		List<EClass> result = new ArrayList<EClass>();
 		List<EClass> todo;
 		// check whether it's a ME or non-ME
-		if (MODELELEMENT_ECLASS.isSuperTypeOf(superClass)) {
+		if (superClass instanceof EObject) {
 			todo = meNonAbstractClasses;
 		} else {
 			todo = nonMEnonAbstractClasses;
 		}
 
 		for (EClass eClass : todo) {
-			if (superClass.isSuperTypeOf(eClass)) {
+			if (superClass.isSuperTypeOf(eClass) || superClass.equals(EcorePackage.eINSTANCE.getEObject())) {
 				result.add(eClass);
 			}
 		}
