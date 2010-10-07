@@ -20,18 +20,21 @@ import org.unicase.model.diagram.DiagramPackage;
 public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityDiagramImpl() {
 		super();
 	}
 
+	@Override
 	public String getType() {
 		return "Activity";
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

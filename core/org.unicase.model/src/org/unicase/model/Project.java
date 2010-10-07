@@ -8,8 +8,7 @@ package org.unicase.model;
 /**
  * <!-- begin-user-doc --> THIS IS ONLY A DUMMY CLASS FOR COMPATIBILITY ISSUES DO NOT USE THIS CLASS. A representation
  * of the model object '<em><b>Project</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
  * @generated
