@@ -4,6 +4,157 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history/0.1.42">
   <releases date="2009-06-13T17:13:48.937+0200" label="0">
     <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+            featureName="name" dataValue="metamodel"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+            featureName="nsURI" dataValue="http://unicase.org/metamodel"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+            featureName="nsPrefix" dataValue="org.unicase.metamodel"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eAnnotations" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+            featureName="source" dataValue="http://www.cs.tum.edu/cope"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+          referenceName="details" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+            featureName="key" dataValue="historyURI"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+            featureName="value" dataValue="../../../resource/org.unicase.model/model/model.history"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
+            featureName="name" dataValue="Project"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
+            featureName="name" dataValue="UniqueIdentifier"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+            featureName="name" dataValue="id"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+            featureName="lowerBound" dataValue="1" oldDataValue="0"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+            featureName="defaultValueLiteral" dataValue="Default Value Literal&#x9;"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
+            featureName="name" dataValue="IdentifiableElement"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
+            featureName="name" dataValue="ModelElement"/>
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element"
+            featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
+      </changes>
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/creator">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creator"
+            featureName="name" dataValue="creator"/>
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creator"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </changes>
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/creationDate">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creationDate"
+            featureName="name" dataValue="creationDate"/>
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/creationDate"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+            featureName="name" dataValue="identifier"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+            featureName="lowerBound" dataValue="1" oldDataValue="0"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+            featureName="iD" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="name" dataValue="modelElements"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="ordered" dataValue="false" oldDataValue="true"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="containment" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="eType" referenceValue="#//@releases.7/@changes.9/@element"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+            featureName="name" dataValue="cutElements"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+            featureName="containment" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+            featureName="eType" referenceValue="#//@releases.7/@changes.9/@element"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            featureName="name" dataValue="ModelElementId"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+            featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion"
+            featureName="name" dataValue="ModelVersion"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber"
+            featureName="name" dataValue="releaseNumber"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+            featureName="name" dataValue="NonDomainElement"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+            featureName="interface" dataValue="true" oldDataValue="false"/>
+      </changes>
+      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+            featureName="name" dataValue="AssociationClassElement"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+            featureName="interface" dataValue="true" oldDataValue="false"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:Create" element="model.ecore#/">
         <changes xsi:type="history:Set" element="model.ecore#/" featureName="name"
             dataValue="model"/>
@@ -13,31 +164,31 @@
             dataValue="org.unicase.model"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
-          element="#//@releases.0/@changes.1/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element"
-            featureName="name" dataValue="Project"/>
-      </changes>
-      <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
           element="#//@releases.0/@changes.2/@element">
         <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element"
-            featureName="name" dataValue="UniqueIdentifier"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element"
-            featureName="abstract" dataValue="true" oldDataValue="false"/>
-      </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.2/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.2/@element/id">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/id"
-            featureName="name" dataValue="id"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/id"
-            featureName="lowerBound" dataValue="1" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/id"
-            featureName="defaultValueLiteral" dataValue="Default Value Literal&#x9;"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/id"
-            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            featureName="name" dataValue="Project"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
           element="#//@releases.0/@changes.3/@element">
         <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element"
+            featureName="name" dataValue="UniqueIdentifier"/>
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+      </changes>
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.3/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.3/@element/id">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/id"
+            featureName="name" dataValue="id"/>
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/id"
+            featureName="lowerBound" dataValue="1" oldDataValue="0"/>
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/id"
+            featureName="defaultValueLiteral" dataValue="Default Value Literal&#x9;"/>
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/id"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
+          element="#//@releases.0/@changes.4/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element"
             featureName="name" dataValue="IdentifiableElement"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
@@ -47,7 +198,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement"
-            featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.3/@element"/>
+            featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.4/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/name">
@@ -83,15 +234,15 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
-          referenceName="eAnnotations" element="#//@releases.0/@changes.18/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element"
+          referenceName="eAnnotations" element="#//@releases.0/@changes.19/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.19/@element"
             featureName="source" dataValue="teneo.jpa"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.18/@element"
-          referenceName="details" element="#//@releases.0/@changes.18/@element/@details.0">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element/@details.0"
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.19/@element"
+          referenceName="details" element="#//@releases.0/@changes.19/@element/@details.0">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.19/@element/@details.0"
             featureName="key" dataValue="value"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.18/@element/@details.0"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.19/@element/@details.0"
             featureName="value" dataValue="@Type(type=&quot;text&quot;)"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
@@ -114,17 +265,17 @@
             featureName="value" dataValue="left"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.15/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.15/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.16/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.16/@element"
             featureName="name" dataValue="creator"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.15/@element"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.16/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.16/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.16/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.17/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.17/@element"
             featureName="name" dataValue="creationDate"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.16/@element"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.17/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
@@ -162,31 +313,31 @@
         <changes xsi:type="history:Add" element="model.ecore#//Attachment" featureName="eSuperTypes"
             referenceValue="model.ecore#//UnicaseModelElement"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.3/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.3/@element/identifier">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/identifier"
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.4/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.4/@element/identifier">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element/identifier"
             featureName="name" dataValue="identifier"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/identifier"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element/identifier"
             featureName="lowerBound" dataValue="1" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/identifier"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element/identifier"
             featureName="iD" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.3/@element/identifier"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element/identifier"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.1/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.1/@element/modelElements">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element/modelElements"
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.2/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.2/@element/modelElements">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/modelElements"
             featureName="name" dataValue="modelElements"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element/modelElements"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/modelElements"
             featureName="ordered" dataValue="false" oldDataValue="true"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element/modelElements"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/modelElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element/modelElements"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/modelElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.1/@element/modelElements"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.2/@element/modelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
-        <changes xsi:type="history:Add" element="#//@releases.0/@changes.1/@element/modelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+        <changes xsi:type="history:Add" element="#//@releases.0/@changes.2/@element/modelElements"
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//Annotation" referenceName="eStructuralFeatures"
           element="model.ecore#//Annotation/annotatedModelElements">
@@ -197,7 +348,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//Annotation/annotatedModelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//Annotation/annotatedModelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/annotations">
@@ -212,7 +363,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//Annotation/annotatedModelElements"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/annotations"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/annotations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/annotations"
           referenceName="eAnnotations" element="model.ecore#//UnicaseModelElement/annotations/%org.unicase.ui.meeditor%">
@@ -261,7 +412,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//Attachment/referringModelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//Attachment/referringModelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/attachments">
@@ -276,7 +427,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//Attachment/referringModelElements"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/attachments"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/attachments"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/attachments"
           referenceName="eAnnotations" element="model.ecore#//UnicaseModelElement/attachments/%org.unicase.ui.meeditor%">
@@ -298,11 +449,11 @@
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
-          element="#//@releases.0/@changes.4/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.4/@element"
+          element="#//@releases.0/@changes.5/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.5/@element"
             featureName="name" dataValue="ModelElementId"/>
-        <changes xsi:type="history:Add" element="#//@releases.0/@changes.4/@element"
-            featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.2/@element"/>
+        <changes xsi:type="history:Add" element="#//@releases.0/@changes.5/@element"
+            featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.3/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
           element="#//@releases.5/@changes.32/@changes.0/@element">
@@ -314,15 +465,15 @@
             featureName="interface" dataValue="true" oldDataValue="false"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eClassifiers"
-          element="#//@releases.0/@changes.5/@element">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.5/@element"
+          element="#//@releases.0/@changes.6/@element">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.6/@element"
             featureName="name" dataValue="ModelVersion"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.0/@changes.5/@element"
-          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.5/@element/releaseNumber">
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.5/@element/releaseNumber"
+      <changes xsi:type="history:Create" target="#//@releases.0/@changes.6/@element"
+          referenceName="eStructuralFeatures" element="#//@releases.0/@changes.6/@element/releaseNumber">
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.6/@element/releaseNumber"
             featureName="name" dataValue="releaseNumber"/>
-        <changes xsi:type="history:Set" element="#//@releases.0/@changes.5/@element/releaseNumber"
+        <changes xsi:type="history:Set" element="#//@releases.0/@changes.6/@element/releaseNumber"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
@@ -451,7 +602,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/Group/orgUnits"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//organization/Group/orgUnits"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//organization/OrgUnit"
           referenceName="eStructuralFeatures" element="model.ecore#//organization/OrgUnit/groupMemberships">
@@ -466,7 +617,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/Group/orgUnits"
             featureName="eOpposite" referenceValue="model.ecore#//organization/OrgUnit/groupMemberships"/>
         <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/groupMemberships"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//organization/OrgUnit/groupMemberships"
           referenceName="eAnnotations" element="model.ecore#//organization/OrgUnit/groupMemberships/%org.unicase.ui.meeditor%">
@@ -535,7 +686,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/User/workItemsToReview"
             featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
         <changes xsi:type="history:Add" element="model.ecore#//organization/User/workItemsToReview"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//organization/OrgUnit"
           referenceName="eStructuralFeatures" element="model.ecore#//organization/OrgUnit/participations">
@@ -546,7 +697,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/OrgUnit/participations"
             featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
         <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/participations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task" referenceName="eClassifiers"
           element="model.ecore#//task/WorkPackage">
@@ -614,7 +765,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/containingWorkpackage"
             featureName="eType" referenceValue="model.ecore#//task/WorkPackage"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/containingWorkpackage"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkPackage" referenceName="eStructuralFeatures"
           element="model.ecore#//task/WorkPackage/containedWorkItems">
@@ -631,7 +782,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/containingWorkpackage"
             featureName="eOpposite" referenceValue="model.ecore#//task/WorkPackage/containedWorkItems"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkPackage/containedWorkItems"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkPackage/containedWorkItems"
           referenceName="eAnnotations" element="model.ecore#//task/WorkPackage/containedWorkItems/%org.unicase.ui.meeditor%">
@@ -680,7 +831,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/successors"
             featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/successors"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures"
           element="model.ecore#//task/WorkItem/predecessors">
@@ -695,7 +846,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/successors"
             featureName="eOpposite" referenceValue="model.ecore#//task/WorkItem/predecessors"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/predecessors"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/predecessors"
           referenceName="eAnnotations" element="model.ecore#//task/WorkItem/predecessors/%org.unicase.ui.meeditor%">
@@ -742,7 +893,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/assignee"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/assignee"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//organization/OrgUnit"
           referenceName="eStructuralFeatures" element="model.ecore#//organization/OrgUnit/assignments">
@@ -757,7 +908,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/assignee"
             featureName="eOpposite" referenceValue="model.ecore#//organization/OrgUnit/assignments"/>
         <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/assignments"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//organization/OrgUnit/assignments"
           referenceName="eAnnotations" element="model.ecore#//organization/OrgUnit/assignments/%org.unicase.ui.meeditor%">
@@ -827,7 +978,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/User/workItemsToReview"
             featureName="eOpposite" referenceValue="model.ecore#//task/WorkItem/reviewer"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/reviewer"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/reviewer"
           referenceName="eAnnotations" element="model.ecore#//task/WorkItem/reviewer/%org.unicase.ui.meeditor%">
@@ -861,7 +1012,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//organization/OrgUnit/participations"
             featureName="eOpposite" referenceValue="model.ecore#//task/WorkItem/participants"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/participants"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/participants"
           referenceName="eAnnotations" element="model.ecore#//task/WorkItem/participants/%org.unicase.ui.meeditor%">
@@ -1028,7 +1179,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//task/Milestone/containedModelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//task/Milestone/containedModelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//task/Milestone/containedModelElements"
           referenceName="eAnnotations" element="model.ecore#//task/Milestone/containedModelElements/%org.unicase.ui.meeditor%">
@@ -1225,7 +1376,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/elements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//diagram/MEDiagram/elements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//diagram/MEDiagram"
           referenceName="eStructuralFeatures" element="model.ecore#//diagram/MEDiagram/gmfdiagram">
@@ -1251,7 +1402,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram/newElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//diagram/MEDiagram/newElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//diagram/MEDiagram"
           referenceName="eStructuralFeatures" element="model.ecore#//diagram/MEDiagram/diagramLayout">
@@ -1358,7 +1509,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/subClasses"
             featureName="eType" referenceValue="model.ecore#//classes/Class"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/subClasses"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class" referenceName="eStructuralFeatures"
           element="model.ecore#//classes/Class/superClasses">
@@ -1373,7 +1524,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/subClasses"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Class/superClasses"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/superClasses"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class/superClasses"
           referenceName="eAnnotations" element="model.ecore#//classes/Class/superClasses/%org.unicase.ui.meeditor%">
@@ -1453,7 +1604,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/PackageElement/parentPackage"
             featureName="eType" referenceValue="model.ecore#//classes/Package"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/parentPackage"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Package" referenceName="eStructuralFeatures"
           element="model.ecore#//classes/Package/containedPackageElements">
@@ -1470,7 +1621,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/PackageElement/parentPackage"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Package/containedPackageElements"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Package/containedPackageElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Package/containedPackageElements"
           referenceName="eAnnotations" element="model.ecore#//classes/Package/containedPackageElements/%org.unicase.ui.meeditor%">
@@ -1526,7 +1677,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/outgoingAssociations"
             featureName="eType" referenceValue="model.ecore#//classes/Association"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/outgoingAssociations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class/outgoingAssociations"
           referenceName="eAnnotations" element="model.ecore#//classes/Class/outgoingAssociations/%org.unicase.ui.meeditor%">
@@ -1558,7 +1709,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/outgoingAssociations"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Association/source"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Association/source"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Association/source"
           referenceName="eAnnotations" element="model.ecore#//classes/Association/source/%org.unicase.ui.meeditor%">
@@ -1586,7 +1737,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Association/target"
             featureName="eType" referenceValue="model.ecore#//classes/Class"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Association/target"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class" referenceName="eStructuralFeatures"
           element="model.ecore#//classes/Class/incomingAssociations">
@@ -1601,7 +1752,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Association/target"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Class/incomingAssociations"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/incomingAssociations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class/incomingAssociations"
           referenceName="eAnnotations" element="model.ecore#//classes/Class/incomingAssociations/%org.unicase.ui.meeditor%">
@@ -2323,7 +2474,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Method/calledMethods"
             featureName="eType" referenceValue="model.ecore#//classes/Method"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Method/calledMethods"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Method/calledMethods"
           referenceName="eAnnotations" element="model.ecore#//classes/Method/calledMethods/%org.unicase.ui.meeditor%">
@@ -2357,7 +2508,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Method/calledMethods"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Method/callingMethods"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Method/callingMethods"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Method/callingMethods"
           referenceName="eAnnotations" element="model.ecore#//classes/Method/callingMethods/%org.unicase.ui.meeditor%">
@@ -2602,7 +2753,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Dependency/source"
             featureName="eOpposite" referenceValue="model.ecore#//classes/PackageElement/outgoingDependencies"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/outgoingDependencies"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/PackageElement/outgoingDependencies"
           referenceName="eAnnotations" element="model.ecore#//classes/PackageElement/outgoingDependencies/%org.unicase.ui.meeditor%">
@@ -2662,7 +2813,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Dependency/target"
             featureName="eOpposite" referenceValue="model.ecore#//classes/PackageElement/incomingDependencies"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/incomingDependencies"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/PackageElement/incomingDependencies"
           referenceName="eAnnotations" element="model.ecore#//classes/PackageElement/incomingDependencies/%org.unicase.ui.meeditor%">
@@ -2736,7 +2887,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
             featureName="eType" referenceValue="model.ecore#//document/LeafSection"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/leafSection"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection"
           referenceName="eStructuralFeatures" element="model.ecore#//document/LeafSection/modelElements">
@@ -2753,7 +2904,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
             featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/modelElements"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/modelElements"
           referenceName="eAnnotations" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%">
@@ -2783,7 +2934,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedModelElements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences">
@@ -2798,7 +2949,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/incomingDocumentReferences"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
           referenceName="eAnnotations" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences/%org.unicase.ui.meeditor%">
@@ -2856,7 +3007,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/CompositeSection/subsections"
             featureName="eType" referenceValue="model.ecore#//document/Section"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/CompositeSection/subsections"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/CompositeSection/subsections"
           referenceName="eAnnotations" element="model.ecore#//document/CompositeSection/subsections/%org.unicase.ui.meeditor%">
@@ -2888,7 +3039,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/CompositeSection/subsections"
             featureName="eOpposite" referenceValue="model.ecore#//document/Section/parent"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/Section/parent"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
           element="model.ecore#//requirement">
@@ -2950,7 +3101,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
             featureName="eType" referenceValue="model.ecore#//requirement/FunctionalRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement">
@@ -2963,7 +3114,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
           referenceName="eAnnotations" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement/%org.unicase.ui.meeditor%">
@@ -3036,7 +3187,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement/stakeholder"
           referenceName="eAnnotations" element="model.ecore#//requirement/FunctionalRequirement/stakeholder/%org.unicase.ui.meeditor%">
@@ -3080,7 +3231,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/participatedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/participatedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class/participatedUseCases"
           referenceName="eAnnotations" element="model.ecore#//classes/Class/participatedUseCases/%org.unicase.ui.meeditor%">
@@ -3140,7 +3291,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
             featureName="eType" referenceValue="model.ecore#//requirement/FunctionalRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/functionalRequirements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/FunctionalRequirement/useCases">
@@ -3155,7 +3306,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/FunctionalRequirement/useCases"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/useCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement/useCases"
           referenceName="eAnnotations" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%">
@@ -3208,7 +3359,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/participatedUseCases"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/identifiedClasses"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/identifiedClasses"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/identifiedClasses"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%">
@@ -3238,7 +3389,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/includedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/includedUseCases"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/includedUseCases/%org.unicase.ui.meeditor%">
@@ -3268,7 +3419,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/extendedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/extendedUseCases"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/extendedUseCases/%org.unicase.ui.meeditor%">
@@ -3305,7 +3456,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Method/demoParticipations"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Method/demoParticipations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Method/demoParticipations"
           referenceName="eAnnotations" element="model.ecore#//classes/Method/demoParticipations/%org.unicase.ui.meeditor%">
@@ -3335,7 +3486,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/FunctionalRequirement/scenarios"
           referenceName="eAnnotations" element="model.ecore#//requirement/FunctionalRequirement/scenarios/%org.unicase.ui.meeditor%">
@@ -3365,7 +3516,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/scenarios"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/scenarios"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/scenarios"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/scenarios/%org.unicase.ui.meeditor%">
@@ -3399,7 +3550,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/scenarios"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/instantiatedUseCases"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/instantiatedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario/instantiatedUseCases"
           referenceName="eAnnotations" element="model.ecore#//requirement/Scenario/instantiatedUseCases/%org.unicase.ui.meeditor%">
@@ -3433,7 +3584,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/functionalRequirements"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/functionalRequirements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario/functionalRequirements"
           referenceName="eAnnotations" element="model.ecore#//requirement/Scenario/functionalRequirements/%org.unicase.ui.meeditor%">
@@ -3467,7 +3618,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//classes/Method/demoParticipations"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/participatingMethods"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingMethods"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Scenario/participatingClasses">
@@ -3478,7 +3629,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/participatingClasses"
             featureName="eType" referenceValue="model.ecore#//classes/Class"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingClasses"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class" referenceName="eStructuralFeatures"
           element="model.ecore#//classes/Class/demoParticipations">
@@ -3493,7 +3644,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/participatingClasses"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Class/demoParticipations"/>
         <changes xsi:type="history:Add" element="model.ecore#//classes/Class/demoParticipations"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//classes/Class/demoParticipations"
           referenceName="eAnnotations" element="model.ecore#//classes/Class/demoParticipations/%org.unicase.ui.meeditor%">
@@ -3530,7 +3681,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/initiatedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UseCase/initiatingActor">
@@ -3543,7 +3694,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUseCases"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/initiatingActor"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/initiatingActor"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/initiatingActor"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/initiatingActor/%org.unicase.ui.meeditor%">
@@ -3592,7 +3743,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/participatedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UseCase/participatingActors">
@@ -3607,7 +3758,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUseCases"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/participatingActors"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/participatingActors"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/participatingActors"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/participatingActors/%org.unicase.ui.meeditor%">
@@ -3663,7 +3814,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/instances"
             featureName="eType" referenceValue="model.ecore#//requirement/ActorInstance"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/instances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/instances"
           referenceName="eAnnotations" element="model.ecore#//requirement/Actor/instances/%org.unicase.ui.meeditor%">
@@ -3693,7 +3844,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Scenario/initiatingActorInstance">
@@ -3706,7 +3857,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/initiatingActorInstance"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/initiatingActorInstance"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario/initiatingActorInstance"
           referenceName="eAnnotations" element="model.ecore#//requirement/Scenario/initiatingActorInstance/%org.unicase.ui.meeditor%">
@@ -3755,7 +3906,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Scenario/participatingActorInstances">
@@ -3770,7 +3921,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/participatingActorInstances"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingActorInstances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario/participatingActorInstances"
           referenceName="eAnnotations" element="model.ecore#//requirement/Scenario/participatingActorInstances/%org.unicase.ui.meeditor%">
@@ -3826,7 +3977,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/instances"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/ActorInstance/instantiatedActor"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/instantiatedActor"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/ActorInstance/instantiatedActor"
           referenceName="eAnnotations" element="model.ecore#//requirement/ActorInstance/instantiatedActor/%org.unicase.ui.meeditor%">
@@ -3867,7 +4018,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps"
             featureName="eType" referenceValue="model.ecore#//requirement/Step"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/useCaseSteps"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Scenario"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Scenario/steps">
@@ -3880,7 +4031,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/steps"
             featureName="eType" referenceValue="model.ecore#//requirement/Step"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/steps"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Step" referenceName="eStructuralFeatures"
           element="model.ecore#//requirement/Step/userStep">
@@ -3896,7 +4047,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Step/includedUseCase"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/includedUseCase"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Step" referenceName="eStructuralFeatures"
           element="model.ecore#//requirement/Step/useCase">
@@ -3909,7 +4060,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/useCaseSteps"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Step/useCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/useCase"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement" referenceName="eClassifiers"
           element="model.ecore#//requirement/SystemFunction">
@@ -3927,7 +4078,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Step/includedSystemFunction"
             featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/includedSystemFunction"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/SystemFunction/input">
@@ -3966,7 +4117,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask"
             featureName="eType" referenceValue="model.ecore#//requirement/UserTask"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/realizedUserTask"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Actor/participatedUserTasks">
@@ -3977,7 +4128,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks"
             featureName="eType" referenceValue="model.ecore#//requirement/UserTask"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/participatedUserTasks"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UserTask/initiatingActor">
@@ -3986,7 +4137,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/initiatingActor"
             featureName="eType" referenceValue="model.ecore#//requirement/Actor"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/initiatingActor"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Actor/initiatedUserTask">
@@ -3999,7 +4150,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/initiatingActor"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Actor/initiatedUserTask"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/initiatedUserTask"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UserTask/participatingActors">
@@ -4014,7 +4165,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UserTask/participatingActors"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/participatingActors"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/UserTask/realizingUseCases">
@@ -4029,7 +4180,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UserTask/realizingUseCases"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/realizingUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
           element="model.ecore#//rationale">
@@ -4093,7 +4244,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Proposal/issue"
             featureName="eType" referenceValue="model.ecore#//rationale/Issue"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal/issue"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue" referenceName="eStructuralFeatures"
           element="model.ecore#//rationale/Issue/proposals">
@@ -4110,7 +4261,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Proposal/issue"
             featureName="eOpposite" referenceValue="model.ecore#//rationale/Issue/proposals"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/proposals"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/proposals"
           referenceName="eAnnotations" element="model.ecore#//rationale/Issue/proposals/%org.unicase.ui.meeditor%">
@@ -4168,7 +4319,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Solution/underlyingProposals"
             featureName="eType" referenceValue="model.ecore#//rationale/Proposal"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution/underlyingProposals"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Solution/underlyingProposals"
           referenceName="eAnnotations" element="model.ecore#//rationale/Solution/underlyingProposals/%org.unicase.ui.meeditor%">
@@ -4196,7 +4347,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Solution/issue"
             featureName="eType" referenceValue="model.ecore#//rationale/Issue"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution/issue"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue" referenceName="eStructuralFeatures"
           element="model.ecore#//rationale/Issue/solution">
@@ -4211,7 +4362,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Solution/issue"
             featureName="eOpposite" referenceValue="model.ecore#//rationale/Issue/solution"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/solution"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/solution"
           referenceName="eAnnotations" element="model.ecore#//rationale/Issue/solution/%org.unicase.ui.meeditor%">
@@ -4274,7 +4425,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
           referenceName="eAnnotations" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%">
@@ -4308,7 +4459,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/nonFunctionalRequirements"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%">
@@ -4338,7 +4489,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
             featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios">
@@ -4353,7 +4504,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
           referenceName="eAnnotations" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%">
@@ -4402,7 +4553,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Issue/criteria"
             featureName="eType" referenceValue="model.ecore#//rationale/Criterion"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/criteria"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Issue/criteria"
           referenceName="eAnnotations" element="model.ecore#//rationale/Issue/criteria/%org.unicase.ui.meeditor%">
@@ -4439,7 +4590,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Assessment/proposal"
             featureName="eType" referenceValue="model.ecore#//rationale/Proposal"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment/proposal"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Proposal"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Proposal/assessments">
@@ -4456,7 +4607,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Assessment/proposal"
             featureName="eOpposite" referenceValue="model.ecore#//rationale/Proposal/assessments"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal/assessments"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Proposal/assessments"
           referenceName="eAnnotations" element="model.ecore#//rationale/Proposal/assessments/%org.unicase.ui.meeditor%">
@@ -4484,7 +4635,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Assessment/criterion"
             featureName="eType" referenceValue="model.ecore#//rationale/Criterion"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment/criterion"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Criterion"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Criterion/assessments">
@@ -4499,7 +4650,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Assessment/criterion"
             featureName="eOpposite" referenceValue="model.ecore#//rationale/Criterion/assessments"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Criterion/assessments"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Criterion/assessments"
           referenceName="eAnnotations" element="model.ecore#//rationale/Criterion/assessments/%org.unicase.ui.meeditor%">
@@ -4541,7 +4692,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/sender"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/sender"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Comment"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Comment/recipients">
@@ -4552,7 +4703,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/recipients"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/recipients"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//rationale/Comment"
           referenceName="eStructuralFeatures" element="model.ecore#//rationale/Comment/commentedElement">
@@ -4561,7 +4712,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/commentedElement"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/commentedElement"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/comments">
@@ -4578,7 +4729,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/commentedElement"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/comments"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/comments"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/comments"
           referenceName="eAnnotations" element="model.ecore#//UnicaseModelElement/comments/%org.unicase.ui.meeditor%">
@@ -4624,7 +4775,7 @@
         <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@changes.4/@changes.0/@element"
             featureName="eType" referenceValue="#//@releases.5/@changes.3/@changes.0/@element"/>
         <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.4/@changes.0/@element"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="#//@releases.5/@changes.3/@changes.0/@element"
           referenceName="eStructuralFeatures" element="#//@releases.5/@changes.3/@changes.0/@element/sourceVersion">
@@ -4670,7 +4821,7 @@
         <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@changes.1/@changes.0/@element"
             featureName="eType" referenceValue="model.ecore#//change/MergingProposal"/>
         <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.1/@changes.0/@element"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
           referenceName="eStructuralFeatures" element="#//@releases.5/@changes.2/@changes.2/@changes.0/@element">
@@ -4679,7 +4830,7 @@
         <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@changes.2/@changes.0/@element"
             featureName="eType" referenceValue="#//@releases.5/@changes.3/@changes.0/@element"/>
         <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.2/@changes.0/@element"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//change" referenceName="eClassifiers"
           element="model.ecore#//change/MergingSolution">
@@ -4697,7 +4848,7 @@
         <changes xsi:type="history:Set" element="#//@releases.5/@changes.2/@changes.3/@changes.0/@element"
             featureName="eType" referenceValue="#//@releases.5/@changes.3/@changes.0/@element"/>
         <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.3/@changes.0/@element"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
           element="model.ecore#//bug">
@@ -4953,7 +5104,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/Component/packages"
             featureName="eType" referenceValue="model.ecore#//classes/Package"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/Component/packages"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/Component"
           referenceName="eStructuralFeatures" element="model.ecore#//component/Component/subsystems">
@@ -4964,7 +5115,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/Component/subsystems"
             featureName="eType" referenceValue="model.ecore#//classes/Package"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/Component/subsystems"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component" referenceName="eClassifiers"
           element="model.ecore#//component/ComponentService">
@@ -4980,7 +5131,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/ComponentService/offeringComponent"
             featureName="eType" referenceValue="model.ecore#//component/Component"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/ComponentService/offeringComponent"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/Component"
           referenceName="eStructuralFeatures" element="model.ecore#//component/Component/offeredServices">
@@ -4997,7 +5148,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/ComponentService/offeringComponent"
             featureName="eOpposite" referenceValue="model.ecore#//component/Component/offeredServices"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/Component/offeredServices"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/ComponentService/offeringComponent"
           referenceName="eAnnotations" element="model.ecore#//component/ComponentService/offeringComponent/%org.unicase.ui.meeditor%">
@@ -5027,7 +5178,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/ComponentService/consumingComponents"
             featureName="eType" referenceValue="model.ecore#//component/Component"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/ComponentService/consumingComponents"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/Component"
           referenceName="eStructuralFeatures" element="model.ecore#//component/Component/consumedServices">
@@ -5042,7 +5193,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/ComponentService/consumingComponents"
             featureName="eOpposite" referenceValue="model.ecore#//component/Component/consumedServices"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/Component/consumedServices"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/ComponentService/consumingComponents"
           referenceName="eAnnotations" element="model.ecore#//component/ComponentService/consumingComponents/%org.unicase.ui.meeditor%">
@@ -5079,7 +5230,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//component/DeploymentNode/components"
             featureName="eType" referenceValue="model.ecore#//component/Component"/>
         <changes xsi:type="history:Add" element="model.ecore#//component/DeploymentNode/components"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//component/DeploymentNode/components"
           referenceName="eAnnotations" element="model.ecore#//component/DeploymentNode/components/%org.unicase.ui.meeditor%">
@@ -5201,7 +5352,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/facilitator"
             featureName="eType" referenceValue="model.ecore#//organization/User"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/facilitator"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/facilitator"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/facilitator/%org.unicase.ui.meeditor%">
@@ -5229,7 +5380,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/minutetaker"
             featureName="eType" referenceValue="model.ecore#//organization/User"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/minutetaker"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/minutetaker"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/minutetaker/%org.unicase.ui.meeditor%">
@@ -5257,7 +5408,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/timekeeper"
             featureName="eType" referenceValue="model.ecore#//organization/User"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/timekeeper"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/timekeeper"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/timekeeper/%org.unicase.ui.meeditor%">
@@ -5287,7 +5438,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/participants"
             featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/participants"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/participants"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/participants/%org.unicase.ui.meeditor%">
@@ -5328,7 +5479,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/sections"
             featureName="eType" referenceValue="model.ecore#//meeting/MeetingSection"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/sections"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/sections"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/sections/%org.unicase.ui.meeditor%">
@@ -5395,7 +5546,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
             featureName="eType" referenceValue="model.ecore#//meeting/MeetingSection"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting" referenceName="eClassifiers"
           element="model.ecore#//meeting/IssueMeetingSection">
@@ -5411,7 +5562,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
             featureName="eType" referenceValue="model.ecore#//meeting/IssueMeetingSection"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/identifiedIssuesSection"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/identifiedIssuesSection/%org.unicase.ui.meeditor%">
@@ -5441,7 +5592,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
             featureName="eType" referenceValue="model.ecore#//rationale/Issue"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/IssueMeetingSection/includedIssues"
           referenceName="eAnnotations" element="model.ecore#//meeting/IssueMeetingSection/includedIssues/%org.unicase.ui.meeditor%">
@@ -5476,7 +5627,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
             featureName="eType" referenceValue="model.ecore#//meeting/WorkItemMeetingSection"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
           referenceName="eAnnotations" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection/%org.unicase.ui.meeditor%">
@@ -5506,7 +5657,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
             featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
         <changes xsi:type="history:Add" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
           referenceName="eAnnotations" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems/%org.unicase.ui.meeditor%">
@@ -5596,7 +5747,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/source"
             featureName="eType" referenceValue="model.ecore#//state/StateNode"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/Transition/source"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//state/StateNode" referenceName="eStructuralFeatures"
           element="model.ecore#//state/StateNode/outgoingTransitions">
@@ -5611,7 +5762,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/source"
             featureName="eOpposite" referenceValue="model.ecore#//state/StateNode/outgoingTransitions"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/outgoingTransitions"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//state/StateNode" referenceName="eStructuralFeatures"
           element="model.ecore#//state/StateNode/incomingTransitions">
@@ -5622,7 +5773,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="eType" referenceValue="model.ecore#//state/Transition"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/incomingTransitions"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//state/Transition" referenceName="eStructuralFeatures"
           element="model.ecore#//state/Transition/target">
@@ -5635,7 +5786,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="eOpposite" referenceValue="model.ecore#//state/Transition/target"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/Transition/target"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//state" referenceName="eClassifiers"
           element="model.ecore#//state/StateInitial">
@@ -5810,7 +5961,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/Profile/affectedContainers"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/Profile/affectedContainers"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile" referenceName="eClassifiers"
           element="model.ecore#//profile/Stereotype">
@@ -5830,7 +5981,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/Profile/stereotypes"
             featureName="eType" referenceValue="model.ecore#//profile/Stereotype"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/Profile/stereotypes"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/Stereotype"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/Stereotype/required">
@@ -5850,7 +6001,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/Profile/stereotypes"
             featureName="eOpposite" referenceValue="model.ecore#//profile/Stereotype/profile"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/profile"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile" referenceName="eClassifiers"
           element="model.ecore#//profile/StereotypeInstance">
@@ -5868,7 +6019,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/Stereotype/stereotypeInstances"
             featureName="eType" referenceValue="model.ecore#//profile/StereotypeInstance"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/stereotypeInstances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/StereotypeInstance"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/StereotypeInstance/stereotype">
@@ -5881,7 +6032,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/Stereotype/stereotypeInstances"
             featureName="eOpposite" referenceValue="model.ecore#//profile/StereotypeInstance/stereotype"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/stereotype"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/StereotypeInstance"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/StereotypeInstance/modelElement">
@@ -5890,7 +6041,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeInstance/modelElement"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/modelElement"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances">
@@ -5907,7 +6058,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeInstance/modelElement"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile" referenceName="eClassifiers"
           element="model.ecore#//profile/StereotypeAttribute">
@@ -5925,7 +6076,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttribute/stereotype"
             featureName="eType" referenceValue="model.ecore#//profile/Stereotype"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttribute/stereotype"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/Stereotype"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/Stereotype/stereotypeAttributes">
@@ -5942,7 +6093,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttribute/stereotype"
             featureName="eOpposite" referenceValue="model.ecore#//profile/Stereotype/stereotypeAttributes"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/stereotypeAttributes"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile" referenceName="eClassifiers"
           element="model.ecore#//profile/StereotypeAttributeSimple">
@@ -5976,7 +6127,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
             featureName="eType" referenceValue="model.ecore#//profile/StereotypeAttributeInstance"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/StereotypeAttributeInstance"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance">
@@ -5985,7 +6136,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
             featureName="eType" referenceValue="model.ecore#//profile/StereotypeInstance"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/StereotypeInstance"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances">
@@ -6002,7 +6153,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
             featureName="eOpposite" referenceValue="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile/StereotypeAttributeInstance"
           referenceName="eStructuralFeatures" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute">
@@ -6015,7 +6166,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
             featureName="eOpposite" referenceValue="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"/>
         <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//profile" referenceName="eClassifiers"
           element="model.ecore#//profile/StereotypeAttributeInstanceString">
@@ -6052,7 +6203,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
             featureName="containment" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
-            featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+            featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//util/ModelElementPath"
           referenceName="eStructuralFeatures" element="model.ecore#//util/ModelElementPath/target">
@@ -6061,7 +6212,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
             featureName="containment" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
-            featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+            featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//util/ModelElementPath"
           referenceName="eStructuralFeatures" element="model.ecore#//util/ModelElementPath/path">
@@ -6072,7 +6223,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
             featureName="containment" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
-            featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+            featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
           element="model.ecore#//activity">
@@ -6106,7 +6257,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//activity/Transition/source"
             featureName="eType" referenceValue="model.ecore#//activity/ActivityObject"/>
         <changes xsi:type="history:Add" element="model.ecore#//activity/Transition/source"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//activity/ActivityObject"
           referenceName="eStructuralFeatures" element="model.ecore#//activity/ActivityObject/outgoingTransitions">
@@ -6121,7 +6272,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//activity/Transition/source"
             featureName="eOpposite" referenceValue="model.ecore#//activity/ActivityObject/outgoingTransitions"/>
         <changes xsi:type="history:Add" element="model.ecore#//activity/ActivityObject/outgoingTransitions"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//activity/Transition"
           referenceName="eStructuralFeatures" element="model.ecore#//activity/Transition/target">
@@ -6130,7 +6281,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//activity/Transition/target"
             featureName="eType" referenceValue="model.ecore#//activity/ActivityObject"/>
         <changes xsi:type="history:Add" element="model.ecore#//activity/Transition/target"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//activity/ActivityObject"
           referenceName="eStructuralFeatures" element="model.ecore#//activity/ActivityObject/incomingTransitions">
@@ -6145,7 +6296,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//activity/Transition/target"
             featureName="eOpposite" referenceValue="model.ecore#//activity/ActivityObject/incomingTransitions"/>
         <changes xsi:type="history:Add" element="model.ecore#//activity/ActivityObject/incomingTransitions"
-            featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+            featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//activity/Transition"
           referenceName="eStructuralFeatures" element="model.ecore#//activity/Transition/condition">
@@ -6194,12 +6345,12 @@
       <element xsi:type="ecore:EClass" name="Project">
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
             upperBound="-1" eType="ecore:EClass model.ecore#//UnicaseModelElement"
-            containment="true" eKeys="#//@releases.0/@changes.3/@element/identifier"/>
+            containment="true" eKeys="#//@releases.0/@changes.4/@element/identifier"/>
       </element>
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eClassifiers">
-      <changes xsi:type="history:Remove" element="#//@releases.0/@changes.4/@element"
-          featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.2/@element"/>
+      <changes xsi:type="history:Remove" element="#//@releases.0/@changes.5/@element"
+          featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.3/@element"/>
       <element xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -6208,277 +6359,277 @@
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eClassifiers">
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
-          featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.3/@element"/>
+          featureName="eSuperTypes" referenceValue="#//@releases.0/@changes.4/@element"/>
       <changes xsi:type="history:Remove" element="model.ecore#//Annotation/annotatedModelElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/annotations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//Attachment/referringModelElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/attachments"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/Group/orgUnits"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/groupMemberships"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/User/workItemsToReview"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/participations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/containingWorkpackage"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkPackage/containedWorkItems"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/successors"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/predecessors"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/assignee"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/assignments"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/reviewer"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/participants"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/Milestone/containedModelElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//diagram/MEDiagram/elements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//diagram/MEDiagram/newElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/subClasses"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/superClasses"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/parentPackage"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Package/containedPackageElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/outgoingAssociations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/source"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/target"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/incomingAssociations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/calledMethods"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/callingMethods"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/outgoingDependencies"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/incomingDependencies"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedModelElements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/CompositeSection/subsections"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/Section/parent"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/participatedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/functionalRequirements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/useCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/identifiedClasses"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/includedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/extendedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/demoParticipations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/scenarios"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/instantiatedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/functionalRequirements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingMethods"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingClasses"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/demoParticipations"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/initiatingActor"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/participatingActors"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/instances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/initiatingActorInstance"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingActorInstances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/instantiatedActor"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/useCaseSteps"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/steps"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedUseCase"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/useCase"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedSystemFunction"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/realizedUserTask"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUserTasks"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/initiatingActor"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUserTask"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/participatingActors"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/realizingUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/issue"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/proposals"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/underlyingProposals"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/issue"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/solution"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/criteria"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/proposal"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/assessments"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/criterion"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Criterion/assessments"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/sender"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/recipients"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/commentedElement"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/comments"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.5/@changes.2/@changes.4/@changes.0/@element"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.5/@changes.2/@changes.1/@changes.0/@element"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.5/@changes.2/@changes.2/@changes.0/@element"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.5/@changes.2/@changes.3/@changes.0/@element"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/packages"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/subsystems"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/offeringComponent"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/offeredServices"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/consumingComponents"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/consumedServices"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/DeploymentNode/components"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/facilitator"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/minutetaker"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/timekeeper"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/participants"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/sections"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/source"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/outgoingTransitions"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/incomingTransitions"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/target"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/affectedContainers"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/stereotypes"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/profile"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeInstances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotype"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/modelElement"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotype"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeAttributes"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/source"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/outgoingTransitions"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/target"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/incomingTransitions"
-          featureName="eKeys" referenceValue="#//@releases.0/@changes.3/@element/identifier"/>
+          featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <element xsi:type="ecore:EClass" name="IdentifiableElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -6487,11 +6638,11 @@
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eClassifiers">
       <changes xsi:type="history:Remove" element="model.ecore#//util/ModelElementPath/source"
-          featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+          featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       <changes xsi:type="history:Remove" element="model.ecore#//util/ModelElementPath/target"
-          featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+          featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       <changes xsi:type="history:Remove" element="model.ecore#//util/ModelElementPath/path"
-          featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+          featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
       <element xsi:type="ecore:EClass" name="ModelElementId"/>
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eClassifiers">
@@ -6502,24 +6653,24 @@
     <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement" featureName="name"
         dataValue="UnicaseModelElement" oldDataValue="ModelElement"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
-        featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+        featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
-        featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+        featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
-        featureName="eType" referenceValue="#//@releases.0/@changes.4/@element"/>
+        featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
         featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
-        oldReferenceValue="#//@releases.0/@changes.4/@element"/>
+        oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
-        featureName="eType" referenceValue="model.ecore#//task/ActionItem" oldReferenceValue="#//@releases.0/@changes.4/@element"/>
+        featureName="eType" referenceValue="model.ecore#//task/ActionItem" oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
         featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         oldReferenceValue="model.ecore#//task/ActionItem"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
         featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
-        oldReferenceValue="#//@releases.0/@changes.4/@element"/>
+        oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+        referenceValue="#//@releases.7/@changes.9/@element"/>
     <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement"
         referenceName="eStructuralFeatures">
       <element xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -8202,9 +8353,26 @@
       <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/target"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </changes>
+    <changes xsi:type="history:Remove" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Remove" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+        featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:MigrationChange" migration="unicaseModelElementClass = model.UnicaseModelElement&#xA;modelElementClass = metamodel.ModelElement&#xA;unicaseModelElementClass.eSuperTypes.remove(modelElementClass)&#xA;&#xA;for(element in unicaseModelElementClass.allInstances) {&#xA;&#x9;def id = element.unset(modelElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
-          featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+          featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element"/>
+    </changes>
+    <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        oldReferenceValue="#//@releases.7/@changes.9/@element"/>
+    <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        oldReferenceValue="#//@releases.7/@changes.9/@element"/>
+    <changes xsi:type="history:Delete" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+        referenceName="eClassifiers">
+      <element xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      </element>
     </changes>
   </releases>
   <releases/>
