@@ -1,8 +1,5 @@
-modelElementClass = metamodel.ModelElement
-identifiableElementClass = metamodel.IdentifiableElement
-modelElementClass.eSuperTypes.remove(identifiableElementClass)
-
-for(element in model.UnicaseModelElement.allInstances) {
-	def id = element.unset(modelElementClass.identifier)
-	element.setUuid(id)
-}
+modelElementsReference = metamodel.Project.modelElements
+eObjectClass = emf.EObject
+modelElementsReference.eType = eObjectClass
+cutElementsReference = metamodel.Project.cutElements
+cutElementsReference.eType = eObjectClass
