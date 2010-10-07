@@ -89,8 +89,12 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) operation;
 		assertEquals("initiatedUseCases", multiReferenceOperation.getFeatureName());
 		assertEquals("initiatingActor", multiReferenceOperation.getOppositeFeatureName());
-		assertEquals(useCase.getModelElementId(), multiReferenceOperation.getReferencedModelElements().get(0));
-		assertEquals(actor.getModelElementId(), multiReferenceOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+		ModelElementId actorId = ModelUtil.getProject(actor).getModelElementId(actor);
+
+		assertEquals(useCaseId, multiReferenceOperation.getReferencedModelElements().get(0));
+		assertEquals(actorId, multiReferenceOperation.getModelElementId());
 		assertTrue(multiReferenceOperation.isBidirectional());
 		assertTrue(multiReferenceOperation.isAdd());
 		assertEquals(1, multiReferenceOperation.getOtherInvolvedModelElements().size());
@@ -100,14 +104,14 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
 		assertEquals(null, singleReferenceOperation.getOldValue());
-		assertEquals(actor.getModelElementId(), singleReferenceOperation.getNewValue());
+		assertEquals(actorId, singleReferenceOperation.getNewValue());
 		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(useCaseId, singleReferenceOperation.getModelElementId());
 		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(1, otherInvolvedModelElements.size());
-		assertEquals(actor.getModelElementId(), otherInvolvedModelElements.iterator().next());
+		assertEquals(actorId, otherInvolvedModelElements.iterator().next());
 	}
 
 	/**
@@ -211,16 +215,20 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
-		assertEquals(oldActor.getModelElementId(), singleReferenceOperation.getOldValue());
-		assertEquals(newActor.getModelElementId(), singleReferenceOperation.getNewValue());
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+		ModelElementId oldActorId = ModelUtil.getProject(oldActor).getModelElementId(oldActor);
+		ModelElementId newActorId = ModelUtil.getProject(newActor).getModelElementId(newActor);
+
+		assertEquals(oldActorId, singleReferenceOperation.getOldValue());
+		assertEquals(newActorId, singleReferenceOperation.getNewValue());
 		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(useCaseId, singleReferenceOperation.getModelElementId());
 		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
-		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(oldActorId));
+		assertEquals(true, otherInvolvedModelElements.contains(newActorId));
 
 		AbstractOperation reverse = singleReferenceOperation.reverse();
 		assertEquals(true, reverse instanceof SingleReferenceOperation);
@@ -236,16 +244,16 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 
 		assertEquals(oldActor, useCase.getInitiatingActor());
 
-		assertEquals(newActor.getModelElementId(), reversedSingleReferenceOperation.getOldValue());
-		assertEquals(oldActor.getModelElementId(), reversedSingleReferenceOperation.getNewValue());
+		assertEquals(newActorId, reversedSingleReferenceOperation.getOldValue());
+		assertEquals(oldActorId, reversedSingleReferenceOperation.getNewValue());
 		assertEquals("initiatingActor", reversedSingleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), reversedSingleReferenceOperation.getModelElementId());
+		assertEquals(useCaseId, reversedSingleReferenceOperation.getModelElementId());
 		assertEquals("initiatedUseCases", reversedSingleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, reversedSingleReferenceOperation.isBidirectional());
 		otherInvolvedModelElements = reversedSingleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
-		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(oldActorId));
+		assertEquals(true, otherInvolvedModelElements.contains(newActorId));
 	}
 
 	/**
@@ -338,18 +346,23 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		AbstractOperation op0 = operations.get(0);
 		assertTrue(op0 instanceof MultiReferenceOperation);
 		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) op0;
-		assertEquals(multiReferenceOperation.getModelElementId(), oldIssue.getModelElementId());
+
+		ModelElementId oldIssueId = ModelUtil.getProject(oldIssue).getModelElementId(oldIssue);
+		ModelElementId proposalId = ModelUtil.getProject(proposal).getModelElementId(proposal);
+		ModelElementId newIssueId = ModelUtil.getProject(newIssue).getModelElementId(newIssue);
+
+		assertEquals(multiReferenceOperation.getModelElementId(), oldIssueId);
 		assertFalse(multiReferenceOperation.isAdd());
-		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposal.getModelElementId());
+		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposalId);
 		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
 		assertEquals(multiReferenceOperation.getIndex(), 0);
 
 		AbstractOperation op1 = operations.get(1);
 		assertTrue(op1 instanceof MultiReferenceOperation);
 		multiReferenceOperation = (MultiReferenceOperation) op1;
-		assertEquals(multiReferenceOperation.getModelElementId(), newIssue.getModelElementId());
+		assertEquals(multiReferenceOperation.getModelElementId(), newIssueId);
 		assertTrue(multiReferenceOperation.isAdd());
-		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposal.getModelElementId());
+		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposalId);
 		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
 		assertEquals(multiReferenceOperation.getIndex(), 0);
 
@@ -357,18 +370,18 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
-		assertEquals(oldIssue.getModelElementId(), singleReferenceOperation.getOldValue());
-		assertEquals(newIssue.getModelElementId(), singleReferenceOperation.getNewValue());
+		assertEquals(oldIssueId, singleReferenceOperation.getOldValue());
+		assertEquals(newIssueId, singleReferenceOperation.getNewValue());
 		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation
 			.getFeatureName());
-		assertEquals(proposal.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(proposalId, singleReferenceOperation.getModelElementId());
 		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation
 			.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(newIssue.getModelElementId()));
-		assertEquals(true, otherInvolvedModelElements.contains(oldIssue.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(newIssueId));
+		assertEquals(true, otherInvolvedModelElements.contains(oldIssueId));
 	}
 
 	/**
@@ -395,13 +408,15 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				assertEquals(1, issue.getProposals().size());
 				assertEquals(proposal, issue.getProposals().get(0));
 				assertEquals(issue, proposal.getIssue());
-				assertEquals(true, getProject().contains(issue));
-				assertEquals(true, getProject().contains(proposal));
-				assertEquals(getProject(), issue.getProject());
-				assertEquals(getProject(), proposal.getProject());
+				assertEquals(true, getProject().containsInstance(issue));
+				assertEquals(true, getProject().containsInstance(proposal));
+				assertEquals(getProject(), ModelUtil.getProject(issue));
+				assertEquals(getProject(), ModelUtil.getProject(proposal));
 				assertEquals(issue, proposal.eContainer());
 			}
 		}.run(false);
+
+		ModelElementId proposalId = ModelUtil.getProject(proposal).getModelElementId(proposal);
 
 		new UnicaseCommand() {
 
@@ -411,24 +426,26 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		assertEquals(true, getProject().contains(issue));
-		assertEquals(false, getProject().contains(proposal));
-		assertEquals(getProject(), issue.getProject());
-		assertEquals(null, proposal.getProject());
+		assertEquals(true, getProject().containsInstance(issue));
+		assertEquals(false, getProject().containsInstance(proposal));
+		assertEquals(getProject(), ModelUtil.getProject(issue));
+		// assertEquals(null, ModelUtil.getProject(proposal));
 		assertEquals(0, issue.getProposals().size());
 		assertEquals(null, proposal.getIssue());
-		assertEquals(null, proposal.eContainer());
+		// assertEquals(null, proposal.eContainer());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
+
+		ModelElementId issueId = ModelUtil.getProject(issue).getModelElementId(issue);
 
 		assertEquals(true, operations.get(0) instanceof CreateDeleteOperation);
 		CreateDeleteOperation deleteOperation = (CreateDeleteOperation) operations.get(0);
 		assertEquals(true, deleteOperation.isDelete());
 		assertEquals(true, deleteOperation.getModelElement() instanceof Proposal);
 		assertEquals("proposal", ((Proposal) deleteOperation.getModelElement()).getName());
-		assertEquals(proposal.getModelElementId(), deleteOperation.getModelElementId());
+		assertEquals(proposalId, deleteOperation.getModelElementId());
 
 		List<ReferenceOperation> subOperations = ((CreateDeleteOperation) operations.get(0)).getSubOperations();
 		assertEquals(2, subOperations.size());
@@ -436,9 +453,9 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		AbstractOperation op0 = subOperations.get(0);
 		assertTrue(op0 instanceof MultiReferenceOperation);
 		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) op0;
-		assertEquals(multiReferenceOperation.getModelElementId(), issue.getModelElementId());
+		assertEquals(multiReferenceOperation.getModelElementId(), issueId);
 		assertFalse(multiReferenceOperation.isAdd());
-		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposal.getModelElementId());
+		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposalId);
 		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
 		assertEquals(multiReferenceOperation.getIndex(), 0);
 
@@ -446,16 +463,16 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
-		assertEquals(issue.getModelElementId(), singleReferenceOperation.getOldValue());
+		assertEquals(issueId, singleReferenceOperation.getOldValue());
 		assertEquals(null, singleReferenceOperation.getNewValue());
 		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation
 			.getFeatureName());
-		assertEquals(proposal.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(proposalId, singleReferenceOperation.getModelElementId());
 		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation
 			.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(1, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(issue.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(issueId));
 	}
 }

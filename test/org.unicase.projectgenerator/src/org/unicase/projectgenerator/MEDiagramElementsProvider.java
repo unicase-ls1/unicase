@@ -12,7 +12,6 @@ import java.util.Random;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.classes.ClassesPackage;
@@ -40,11 +39,11 @@ public class MEDiagramElementsProvider {
 	 * @return a list of model element instances matching this diagram type
 	 * @param diagramType diagram type
 	 */
-	public List<ModelElement> getMatchingElements(EClass diagramType) {
-		ArrayList<ModelElement> result = new ArrayList<ModelElement>();
+	public List<EObject> getMatchingElements(EClass diagramType) {
+		ArrayList<EObject> result = new ArrayList<EObject>();
 		List<EClass> matchingEClazz = getMatchingEClazz(diagramType);
 		for (EClass eClass : matchingEClazz) {
-			result.addAll(project.getAllModelElementsbyClass(eClass, new BasicEList<ModelElement>(), true));
+			result.addAll(project.getAllModelElementsbyClass(eClass, new BasicEList<EObject>(), true));
 		}
 		return result;
 	}
@@ -57,7 +56,7 @@ public class MEDiagramElementsProvider {
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		List<EClass> matchingEClazz = getMatchingEClazz(diagramType);
 		for (EClass eClass : matchingEClazz) {
-			result.addAll(project.getAllModelElementsbyClass(eClass, new BasicEList<ModelElement>(), true));
+			result.addAll(project.getAllModelElementsbyClass(eClass, new BasicEList<EObject>(), true));
 		}
 		return result.size() == 0 ? 0 : new Random().nextInt(result.size());
 	}

@@ -10,9 +10,9 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
@@ -39,7 +39,7 @@ public class TestEstimateComputation extends TestCase {
 	private int leafOpenerEstimatesSum;
 	private int leafOpenerClosedEstimatesSum;
 
-	private WorkPackage createWorkPackage(ModelElement parent) {
+	private WorkPackage createWorkPackage(EObject parent) {
 		WorkPackage workPackage = TaskFactory.eINSTANCE.createWorkPackage();
 
 		if (parent == null) {
@@ -57,7 +57,7 @@ public class TestEstimateComputation extends TestCase {
 	}
 
 	// copied from AssignNewActionItemHandler
-	private ActionItem createActionItem(ModelElement parent) {
+	private ActionItem createActionItem(EObject parent) {
 		ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 
 		if (parent instanceof WorkPackage) {

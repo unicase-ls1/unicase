@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.Solution;
@@ -29,14 +30,14 @@ public class OneToOneContainmentTest extends CachingTest {
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		getProject().addModelElement(issue);
 
-		assertTrue(getProject().contains(issue));
-		assertEquals(getProject(), issue.getProject());
+		assertTrue(getProject().containsInstance(issue));
+		assertEquals(getProject(), ModelUtil.getProject(issue));
 
 		Solution solution = RationaleFactory.eINSTANCE.createSolution();
 		issue.setSolution(solution);
 
-		assertTrue(getProject().contains(solution));
-		assertEquals(getProject(), solution.getProject());
+		assertTrue(getProject().containsInstance(solution));
+		assertEquals(getProject(), ModelUtil.getProject(solution));
 		assertEquals(issue, solution.getIssue());
 		assertEquals(solution, issue.getSolution());
 	}

@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -118,9 +119,10 @@ public class ConflictDetectionSelectiveCommitSpecialCases extends ConflictDetect
 			@Override
 			protected void doRun() {
 				assertTrue("Not allowed operations in ps2", ps2.getLocalOperations().getOperations().isEmpty());
-
-				LeafSection tmpLSection2 = (LeafSection) project2.getModelElement(leafSection2.getModelElementId());
-				ActionItem tmpAi = (ActionItem) project2.getModelElement(ai.getModelElementId());
+				ModelElementId leafSection2Id = project2.getModelElementId(leafSection2);
+				ModelElementId aiId = project2.getModelElementId(ai);
+				LeafSection tmpLSection2 = (LeafSection) project2.getModelElement(leafSection2Id);
+				ActionItem tmpAi = (ActionItem) project2.getModelElement(aiId);
 				tmpLSection2.getModelElements().add(tmpAi);
 
 				assertTrue("Wrong number of operations in ps2 afer moving actionItem", ps2.getLocalOperations()

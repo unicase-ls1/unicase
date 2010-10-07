@@ -8,12 +8,15 @@ package org.unicase.workspace.test.changeTracking.operations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
@@ -63,7 +66,11 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
+
 	}
 
 	/**
@@ -113,7 +120,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("new UseCase", attributeOperation.getOldValue());
 		assertEquals("otherName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
 	}
 
 	/**
@@ -151,7 +161,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 		assertEquals("oldName", attributeOperation.getOldValue());
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+
+		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+
+		assertEquals(useCaseId, attributeOperation.getModelElementId());
 
 		new UnicaseCommand() {
 
@@ -164,7 +177,8 @@ public class AttributeOperationTest extends WorkspaceTest {
 				assertEquals("newName", reversedAttributeOperation.getOldValue());
 				assertEquals("oldName", reversedAttributeOperation.getNewValue());
 				assertEquals("name", reversedAttributeOperation.getFeatureName());
-				assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
+				ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
+				assertEquals(useCaseId, reversedAttributeOperation.getModelElementId());
 			}
 		}.run(false);
 
@@ -176,9 +190,11 @@ public class AttributeOperationTest extends WorkspaceTest {
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
+	 * @throws IOException
 	 */
 	@Test
-	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException,
+		IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
@@ -215,6 +231,8 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		Project expectedProject = ModelUtil.clone(getProject());
 
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
 		final AbstractOperation r = attributeOperation.reverse();
 		final AbstractOperation rr = r.reverse();
 
@@ -240,6 +258,10 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
+		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+			.getProject(), getProject().eResource().getURI(), false);
+
+		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
 
 }

@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -66,7 +67,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				operation.setIndex(0);
 				operation.setNewValue("inserted");
 				operation.setOldValue("oldValue");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -93,7 +94,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				operation.setIndex(42);
 				operation.setNewValue("inserted");
 				operation.setOldValue("oldValue");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -120,7 +121,7 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 				operation.setIndex(1);
 				operation.setNewValue("inserted");
 				operation.setOldValue("second");
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 

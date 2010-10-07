@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -71,9 +72,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
 				operation.setFeatureName("references");
 				operation.setIndex(0);
-				operation.setNewValue(newValue.getModelElementId());
-				operation.setOldValue(oldValue.getModelElementId());
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setNewValue(ModelUtil.getProject(newValue).getModelElementId(newValue));
+				operation.setOldValue(ModelUtil.getProject(oldValue).getModelElementId(oldValue));
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -103,9 +104,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
 				operation.setFeatureName("references");
 				operation.setIndex(42);
-				operation.setNewValue(newValue.getModelElementId());
-				operation.setOldValue(oldValue.getModelElementId());
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setNewValue(ModelUtil.getProject(newValue).getModelElementId(newValue));
+				operation.setOldValue(ModelUtil.getProject(oldValue).getModelElementId(oldValue));
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 
 				operation.apply(getProject());
 
@@ -135,9 +136,9 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 				MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
 				operation.setFeatureName("references");
 				operation.setIndex(1);
-				operation.setNewValue(newValue.getModelElementId());
-				operation.setOldValue(second.getModelElementId());
-				operation.setModelElementId(testElement.getModelElementId());
+				operation.setNewValue(ModelUtil.getProject(newValue).getModelElementId(newValue));
+				operation.setOldValue(ModelUtil.getProject(second).getModelElementId(second));
+				operation.setModelElementId(ModelUtil.getProject(testElement).getModelElementId(testElement));
 				operation.apply(getProject());
 				assertTrue(testElement.getReferences().size() == 3);
 				assertTrue(testElement.getReferences().get(0).equals(first));
