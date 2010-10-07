@@ -8365,7 +8365,7 @@
           featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
           oldReferenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
     </changes>
-    <changes xsi:type="history:MigrationChange" migration="modelElementClass = metamodel.ModelElement&#xA;identifiableElementClass = metamodel.IdentifiableElement&#xA;modelElementClass.eSuperTypes.remove(identifiableElementClass)&#xA;&#xA;for(element in model.UnicaseModelElement.allInstances) {&#xA;&#x9;def id = element.unset(modelElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
+    <changes xsi:type="history:MigrationChange" migration="modelElementClass = metamodel.ModelElement&#xA;identifiableElementClass = metamodel.IdentifiableElement&#xA;modelElementClass.eSuperTypes.remove(identifiableElementClass)&#xA;&#xA;for(element in model.UnicaseModelElement.allInstances) {&#xA;&#x9;def id = element.unset(identifiableElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
       <changes xsi:type="history:Remove" element="#//@releases.7/@changes.8/@changes.3/@element"
           featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
     </changes>
