@@ -51,7 +51,7 @@ public interface UseCase extends UrmlModelElement {
 	 * @return the value of the '<em>Actors</em>' reference list.
 	 * @see org.unicase.model.urml.usecase.UsecasePackage#getUseCase_Actors()
 	 * @see org.unicase.model.urml.usecase.Actor#getUseCases
-	 * @model opposite="useCases" keys="identifier"
+	 * @model opposite="useCases"
 	 * @generated
 	 */
 	EList<Actor> getActors();

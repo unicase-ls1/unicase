@@ -7,9 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.NonDomainElement;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.goal.Goal;
@@ -88,10 +86,6 @@ public class GoalSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(goal);
 			if (result == null)
-				result = caseModelElement(goal);
-			if (result == null)
-				result = caseIdentifiableElement(goal);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -101,13 +95,9 @@ public class GoalSwitch<T> {
 			if (result == null)
 				result = caseUrmlModelElement(goalReference);
 			if (result == null)
-				result = caseNonDomainElement(goalReference);
+				result = caseAssociationClassElement(goalReference);
 			if (result == null)
 				result = caseUnicaseModelElement(goalReference);
-			if (result == null)
-				result = caseModelElement(goalReference);
-			if (result == null)
-				result = caseIdentifiableElement(goalReference);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -144,33 +134,6 @@ public class GoalSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -198,16 +161,16 @@ public class GoalSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'. <!--
+	 * Returns the result of interpreting the object as an instance of '<em>Association Class Element</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Association Class Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNonDomainElement(NonDomainElement object) {
+	public T caseAssociationClassElement(AssociationClassElement object) {
 		return null;
 	}
 

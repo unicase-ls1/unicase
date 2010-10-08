@@ -178,6 +178,7 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GoalPackage.Literals.GOAL__SUB_GOALS);
+			childrenFeatures.add(GoalPackage.Literals.GOAL__INFLUENCED_GOALS);
 		}
 		return childrenFeatures;
 	}
@@ -234,6 +235,7 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case GoalPackage.GOAL__SUB_GOALS:
+		case GoalPackage.GOAL__INFLUENCED_GOALS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -252,6 +254,9 @@ public class GoalItemProvider extends UrmlModelElementItemProvider implements IE
 
 		newChildDescriptors.add(createChildParameter(GoalPackage.Literals.GOAL__SUB_GOALS, GoalFactory.eINSTANCE
 			.createGoal()));
+
+		newChildDescriptors.add(createChildParameter(GoalPackage.Literals.GOAL__INFLUENCED_GOALS, GoalFactory.eINSTANCE
+			.createGoalReference()));
 	}
 
 	/**

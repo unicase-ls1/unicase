@@ -33,7 +33,7 @@ public interface Mitigation extends UrmlModelElement {
 	 * @return the value of the '<em>Mitigated Dangers</em>' reference list.
 	 * @see org.unicase.model.urml.danger.DangerPackage#getMitigation_MitigatedDangers()
 	 * @see org.unicase.model.urml.danger.Danger#getMitigations
-	 * @model opposite="mitigations" keys="identifier"
+	 * @model opposite="mitigations"
 	 * @generated
 	 */
 	EList<Danger> getMitigatedDangers();

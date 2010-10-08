@@ -35,7 +35,7 @@ public interface VariationPoint extends AbstractFeature {
 	 * @return the value of the '<em>Optional Sub Features</em>' containment reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPoint_OptionalSubFeatures()
 	 * @see org.unicase.model.urml.feature.AbstractFeature#getOptionalParentVariationPoint
-	 * @model opposite="optionalParentVariationPoint" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="optionalParentVariationPoint" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<AbstractFeature> getOptionalSubFeatures();

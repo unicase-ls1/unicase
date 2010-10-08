@@ -132,14 +132,6 @@
          </with>
       </definition>
    </extension>
-   <extension
-         point="org.unicase.ui.meeditor.melinkcontrols">
-      <widget
-            class="org.unicase.ui.urml.meeditor.GoalInfluenceLinkControl"
-            name="org.unicase.ui.urml.meeditor.GoalInfluenceLinkControl"
-            type="org.unicase.metamodel.ModelElement">
-      </widget>
-   </extension>
 
 
 </plugin>

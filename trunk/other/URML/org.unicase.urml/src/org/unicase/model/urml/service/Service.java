@@ -37,7 +37,7 @@ public interface Service extends Asset {
 	 * @return the value of the '<em>Satisfied Requirements</em>' reference list.
 	 * @see org.unicase.model.urml.service.ServicePackage#getService_SatisfiedRequirements()
 	 * @see org.unicase.model.urml.requirement.Requirement#getImplementingServices
-	 * @model opposite="implementingServices" keys="identifier"
+	 * @model opposite="implementingServices"
 	 * @generated
 	 */
 	EList<Requirement> getSatisfiedRequirements();
@@ -84,7 +84,7 @@ public interface Service extends Asset {
 	 * @return the value of the '<em>Sub Services</em>' containment reference list.
 	 * @see org.unicase.model.urml.service.ServicePackage#getService_SubServices()
 	 * @see org.unicase.model.urml.service.Service#getParentService
-	 * @model opposite="parentService" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="parentService" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Service> getSubServices();

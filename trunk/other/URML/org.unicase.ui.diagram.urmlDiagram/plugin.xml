@@ -863,12 +863,6 @@
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
-<extension
-      point="org.unicase.ui.common.medropadapter">
-   <MEDropAdapter
-         class="org.unicase.ui.diagram.urml.own.adapter.URMLDropAdapter">
-   </MEDropAdapter>
-</extension>
 
 
    <!-- optionally, specify keybindings -->

@@ -378,12 +378,12 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 
 		// Obtain other dependent packages
 		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 		FeaturePackage theFeaturePackage = (FeaturePackage) EPackage.Registry.INSTANCE
 			.getEPackage(FeaturePackage.eNS_URI);
 		UsecasePackage theUsecasePackage = (UsecasePackage) EPackage.Registry.INSTANCE
 			.getEPackage(UsecasePackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -392,7 +392,7 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		// Add supertypes to classes
 		goalEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
 		goalReferenceEClass.getESuperTypes().add(theUrmlPackage.getUrmlModelElement());
-		goalReferenceEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
+		goalReferenceEClass.getESuperTypes().add(theMetamodelPackage.getAssociationClassElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -403,43 +403,34 @@ public class GoalPackageImpl extends EPackageImpl implements GoalPackage {
 		initEReference(getGoal_Stakeholders(), theUrmlPackage.getStakeholder(), theUrmlPackage.getStakeholder_Goals(),
 			"stakeholders", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_Stakeholders().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_RealizedFeatures(), theFeaturePackage.getAbstractFeature(), theFeaturePackage
 			.getAbstractFeature_Goals(), "realizedFeatures", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_RealizedFeatures().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_DetailingUseCases(), theUsecasePackage.getApplicationDomainUseCase(), theUsecasePackage
 			.getApplicationDomainUseCase_DetailedGoal(), "detailingUseCases", null, 0, 1, Goal.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getGoal_DetailingUseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_SubGoals(), this.getGoal(), this.getGoal_ParentGoal(), "subGoals", null, 0, -1,
 			Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_SubGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_ParentGoal(), this.getGoal(), this.getGoal_SubGoals(), "parentGoal", null, 0, 1,
 			Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_ParentGoal().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_InfluencingGoals(), this.getGoalReference(), this.getGoalReference_Target(),
 			"influencingGoals", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_InfluencingGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoal_InfluencedGoals(), this.getGoalReference(), this.getGoalReference_Source(),
-			"influencedGoals", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			"influencedGoals", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoal_InfluencedGoals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(goalReferenceEClass, GoalReference.class, "GoalReference", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGoalReference_Source(), this.getGoal(), this.getGoal_InfluencedGoals(), "source", null, 0, 1,
 			GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoalReference_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getGoalReference_Target(), this.getGoal(), this.getGoal_InfluencingGoals(), "target", null, 0,
 			1, GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getGoalReference_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getGoalReference_Weight(), this.getGoalReferenceType(), "weight", null, 0, 1,
 			GoalReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);

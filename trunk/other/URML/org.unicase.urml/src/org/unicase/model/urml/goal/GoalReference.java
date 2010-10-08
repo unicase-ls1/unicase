@@ -3,7 +3,7 @@
  */
 package org.unicase.model.urml.goal;
 
-import org.unicase.metamodel.NonDomainElement;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
@@ -21,9 +21,9 @@ import org.unicase.model.urml.UrmlModelElement;
  * @model
  * @generated
  */
-public interface GoalReference extends UrmlModelElement, NonDomainElement {
+public interface GoalReference extends UrmlModelElement, AssociationClassElement {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
+	 * Returns the value of the '<em><b>Source</b></em>' container reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description
@@ -31,20 +31,20 @@ public interface GoalReference extends UrmlModelElement, NonDomainElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Source</em>' reference.
+	 * @return the value of the '<em>Source</em>' container reference.
 	 * @see #setSource(Goal)
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoalReference_Source()
 	 * @see org.unicase.model.urml.goal.Goal#getInfluencedGoals
-	 * @model opposite="influencedGoals" keys="identifier"
+	 * @model opposite="influencedGoals" transient="false"
 	 * @generated
 	 */
 	Goal getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.goal.GoalReference#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.urml.goal.GoalReference#getSource <em>Source</em>}' container
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' container reference.
 	 * @see #getSource()
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface GoalReference extends UrmlModelElement, NonDomainElement {
 	 * @see #setTarget(Goal)
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoalReference_Target()
 	 * @see org.unicase.model.urml.goal.Goal#getInfluencingGoals
-	 * @model opposite="influencingGoals" keys="identifier"
+	 * @model opposite="influencingGoals"
 	 * @generated
 	 */
 	Goal getTarget();

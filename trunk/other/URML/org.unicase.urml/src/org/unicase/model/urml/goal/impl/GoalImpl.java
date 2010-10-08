@@ -392,8 +392,8 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	 */
 	public EList<GoalReference> getInfluencedGoals() {
 		if (influencedGoals == null) {
-			influencedGoals = new EObjectWithInverseResolvingEList<GoalReference>(GoalReference.class, this,
-				GoalPackage.GOAL__INFLUENCED_GOALS, GoalPackage.GOAL_REFERENCE__SOURCE);
+			influencedGoals = new EObjectContainmentWithInverseEList.Resolving<GoalReference>(GoalReference.class,
+				this, GoalPackage.GOAL__INFLUENCED_GOALS, GoalPackage.GOAL_REFERENCE__SOURCE);
 		}
 		return influencedGoals;
 	}

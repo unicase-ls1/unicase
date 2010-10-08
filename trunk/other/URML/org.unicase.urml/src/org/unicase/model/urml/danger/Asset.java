@@ -35,7 +35,7 @@ public interface Asset extends UrmlModelElement {
 	 * @return the value of the '<em>Triggered Dangers</em>' reference list.
 	 * @see org.unicase.model.urml.danger.DangerPackage#getAsset_TriggeredDangers()
 	 * @see org.unicase.model.urml.danger.Danger#getTriggeringAssets
-	 * @model opposite="triggeringAssets" keys="identifier"
+	 * @model opposite="triggeringAssets"
 	 * @generated
 	 */
 	EList<Danger> getTriggeredDangers();
@@ -53,7 +53,7 @@ public interface Asset extends UrmlModelElement {
 	 * @return the value of the '<em>Harming Dangers</em>' reference list.
 	 * @see org.unicase.model.urml.danger.DangerPackage#getAsset_HarmingDangers()
 	 * @see org.unicase.model.urml.danger.Danger#getHarmedAssets
-	 * @model opposite="harmedAssets" keys="identifier"
+	 * @model opposite="harmedAssets"
 	 * @generated
 	 */
 	EList<Danger> getHarmingDangers();

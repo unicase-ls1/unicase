@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.Asset;
@@ -327,8 +326,6 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 
 		// Obtain other dependent packages
 		UrmlPackage theUrmlPackage = (UrmlPackage) EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -345,32 +342,26 @@ public class DangerPackageImpl extends EPackageImpl implements DangerPackage {
 		initEReference(getAsset_TriggeredDangers(), this.getDanger(), this.getDanger_TriggeringAssets(),
 			"triggeredDangers", null, 0, -1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAsset_TriggeredDangers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAsset_HarmingDangers(), this.getDanger(), this.getDanger_HarmedAssets(), "harmingDangers",
 			null, 0, -1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAsset_HarmingDangers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(dangerEClass, Danger.class, "Danger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDanger_TriggeringAssets(), this.getAsset(), this.getAsset_TriggeredDangers(),
 			"triggeringAssets", null, 0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDanger_TriggeringAssets().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getDanger_HarmedAssets(), this.getAsset(), this.getAsset_HarmingDangers(), "harmedAssets", null,
 			0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDanger_HarmedAssets().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getDanger_Mitigations(), this.getMitigation(), this.getMitigation_MitigatedDangers(),
 			"mitigations", null, 0, -1, Danger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDanger_Mitigations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(mitigationEClass, Mitigation.class, "Mitigation", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMitigation_MitigatedDangers(), this.getDanger(), this.getDanger_Mitigations(),
 			"mitigatedDangers", null, 0, -1, Mitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMitigation_MitigatedDangers().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(proceduralMitigationEClass, ProceduralMitigation.class, "ProceduralMitigation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

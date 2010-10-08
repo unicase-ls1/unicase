@@ -63,30 +63,6 @@ public interface FeaturePackage extends EPackage {
 	int ABSTRACT_FEATURE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_FEATURE__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_FEATURE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_FEATURE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -163,6 +139,22 @@ public interface FeaturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_FEATURE__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_FEATURE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_FEATURE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Goals</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -291,30 +283,6 @@ public interface FeaturePackage extends EPackage {
 	int FEATURE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IDENTIFIER = ABSTRACT_FEATURE__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__CREATOR = ABSTRACT_FEATURE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__CREATION_DATE = ABSTRACT_FEATURE__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -391,6 +359,22 @@ public interface FeaturePackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE__COMMENTS = ABSTRACT_FEATURE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CREATION_DATE = ABSTRACT_FEATURE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CREATOR = ABSTRACT_FEATURE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Goals</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -526,30 +510,6 @@ public interface FeaturePackage extends EPackage {
 	int VARIATION_POINT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT__IDENTIFIER = ABSTRACT_FEATURE__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT__CREATOR = ABSTRACT_FEATURE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT__CREATION_DATE = ABSTRACT_FEATURE__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -626,6 +586,22 @@ public interface FeaturePackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIATION_POINT__COMMENTS = ABSTRACT_FEATURE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT__CREATION_DATE = ABSTRACT_FEATURE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT__CREATOR = ABSTRACT_FEATURE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Goals</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -779,30 +755,6 @@ public interface FeaturePackage extends EPackage {
 	int VARIATION_POINT_INSTANCE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT_INSTANCE__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT_INSTANCE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT_INSTANCE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -881,6 +833,22 @@ public interface FeaturePackage extends EPackage {
 	int VARIATION_POINT_INSTANCE__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT_INSTANCE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT_INSTANCE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Variation Point</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -923,30 +891,6 @@ public interface FeaturePackage extends EPackage {
 	 * @generated
 	 */
 	int PRODUCT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1025,6 +969,22 @@ public interface FeaturePackage extends EPackage {
 	 * @ordered
 	 */
 	int PRODUCT__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Variation Point Instances</b></em>' reference list. <!-- begin-user-doc --> <!--

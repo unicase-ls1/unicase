@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.urml.Stakeholder;
@@ -258,8 +257,6 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		FeaturePackage theFeaturePackage = (FeaturePackage) EPackage.Registry.INSTANCE
 			.getEPackage(FeaturePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI);
 
@@ -289,7 +286,6 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		initEReference(getStakeholder_Goals(), theGoalPackage.getGoal(), theGoalPackage.getGoal_Stakeholders(),
 			"goals", null, 0, -1, Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStakeholder_Goals().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(urmlDiagramEClass, URMLDiagram.class, "URMLDiagram", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

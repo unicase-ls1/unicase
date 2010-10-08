@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.feature.AbstractFeature;
@@ -90,10 +88,6 @@ public class FeatureSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(abstractFeature);
 			if (result == null)
-				result = caseModelElement(abstractFeature);
-			if (result == null)
-				result = caseIdentifiableElement(abstractFeature);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -106,10 +100,6 @@ public class FeatureSwitch<T> {
 				result = caseUrmlModelElement(feature);
 			if (result == null)
 				result = caseUnicaseModelElement(feature);
-			if (result == null)
-				result = caseModelElement(feature);
-			if (result == null)
-				result = caseIdentifiableElement(feature);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -124,10 +114,6 @@ public class FeatureSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(variationPoint);
 			if (result == null)
-				result = caseModelElement(variationPoint);
-			if (result == null)
-				result = caseIdentifiableElement(variationPoint);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -139,10 +125,6 @@ public class FeatureSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(variationPointInstance);
 			if (result == null)
-				result = caseModelElement(variationPointInstance);
-			if (result == null)
-				result = caseIdentifiableElement(variationPointInstance);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -153,10 +135,6 @@ public class FeatureSwitch<T> {
 				result = caseUrmlModelElement(product);
 			if (result == null)
 				result = caseUnicaseModelElement(product);
-			if (result == null)
-				result = caseModelElement(product);
-			if (result == null)
-				result = caseIdentifiableElement(product);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -231,33 +209,6 @@ public class FeatureSwitch<T> {
 	 * @generated
 	 */
 	public T caseProduct(Product object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

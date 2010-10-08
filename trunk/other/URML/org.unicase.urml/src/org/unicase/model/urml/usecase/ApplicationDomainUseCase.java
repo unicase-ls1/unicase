@@ -35,7 +35,7 @@ public interface ApplicationDomainUseCase extends UseCase {
 	 * @return the value of the '<em>Detailed Goal</em>' reference list.
 	 * @see org.unicase.model.urml.usecase.UsecasePackage#getApplicationDomainUseCase_DetailedGoal()
 	 * @see org.unicase.model.urml.goal.Goal#getDetailingUseCases
-	 * @model opposite="detailingUseCases" keys="identifier"
+	 * @model opposite="detailingUseCases"
 	 * @generated
 	 */
 	EList<Goal> getDetailedGoal();

@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.DangerPackage;
@@ -321,8 +320,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 		ServicePackage theServicePackage = (ServicePackage) EPackage.Registry.INSTANCE
 			.getEPackage(ServicePackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		FeaturePackage theFeaturePackage = (FeaturePackage) EPackage.Registry.INSTANCE
 			.getEPackage(FeaturePackage.eNS_URI);
@@ -343,7 +340,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getService_SatisfiedRequirements(), "implementingServices", null, 0, -1, Requirement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getRequirement_ImplementingServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getRequirement_Terminal(), theEcorePackage.getEBoolean(), "terminal", null, 0, 1,
 			Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
@@ -354,20 +350,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			theFeaturePackage.getAbstractFeature_DetailingFunctionalRequirements(), "detailedFeatures", null, 0, -1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_DetailedFeatures().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getFunctionalRequirement_SubFunctionalRequirements(), this.getFunctionalRequirement(), this
 			.getFunctionalRequirement_ParentFunctionalRequirement(), "subFunctionalRequirements", null, 0, -1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_SubFunctionalRequirements().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getFunctionalRequirement_ParentFunctionalRequirement(), this.getFunctionalRequirement(), this
 			.getFunctionalRequirement_SubFunctionalRequirements(), "parentFunctionalRequirement", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_ParentFunctionalRequirement().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -375,20 +365,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			theFeaturePackage.getAbstractFeature_ConstrainingNonFunctionalRequirements(), "constrainedFeatures", null,
 			0, -1, NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_ConstrainedFeatures().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getNonFunctionalRequirement_SubNonFunctionalRequirements(), this.getNonFunctionalRequirement(),
 			this.getNonFunctionalRequirement_ParentNonFunctionalRequirement(), "subNonFunctionalRequirements", null, 0,
 			-1, NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_SubNonFunctionalRequirements().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getNonFunctionalRequirement_ParentNonFunctionalRequirement(),
 			this.getNonFunctionalRequirement(), this.getNonFunctionalRequirement_SubNonFunctionalRequirements(),
 			"parentNonFunctionalRequirement", null, 0, 1, NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_ParentNonFunctionalRequirement().getEKeys().add(
-			theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // RequirementPackageImpl
