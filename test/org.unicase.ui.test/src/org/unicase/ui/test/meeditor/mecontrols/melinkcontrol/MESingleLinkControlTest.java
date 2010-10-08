@@ -19,6 +19,7 @@ import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
@@ -50,7 +51,7 @@ public class MESingleLinkControlTest extends MEEditorTest {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("Joker");
 				project.addModelElement(user);
@@ -106,7 +107,7 @@ public class MESingleLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
 				workpackage.setName("Sprint1");
 				project.addModelElement(workpackage);
@@ -138,7 +139,7 @@ public class MESingleLinkControlTest extends MEEditorTest {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				WorkPackage workpackage = TaskFactory.eINSTANCE.createWorkPackage();
 				workpackage.setName("Sprint1");
 				project.addModelElement(workpackage);

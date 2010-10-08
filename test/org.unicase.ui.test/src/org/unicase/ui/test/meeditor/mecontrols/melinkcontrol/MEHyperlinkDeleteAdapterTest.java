@@ -18,6 +18,7 @@ import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
@@ -47,7 +48,8 @@ public class MEHyperlinkDeleteAdapterTest extends MEEditorTest {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
-				Project project = actionItem.getProject();
+
+				Project project = ModelUtil.getProject(actionItem);
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("Joker");
 				project.addModelElement(user1);
@@ -127,7 +129,7 @@ public class MEHyperlinkDeleteAdapterTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user2 = OrganizationFactory.eINSTANCE.createUser();
 				user2.setName("James");
 				project.addModelElement(user2);
