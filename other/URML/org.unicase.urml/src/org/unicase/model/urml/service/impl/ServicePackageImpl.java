@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.DangerPackage;
@@ -231,8 +230,6 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 		DangerPackage theDangerPackage = (DangerPackage) EPackage.Registry.INSTANCE.getEPackage(DangerPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 			.getEPackage(RequirementPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -247,15 +244,12 @@ public class ServicePackageImpl extends EPackageImpl implements ServicePackage {
 			theRequirementPackage.getRequirement_ImplementingServices(), "satisfiedRequirements", null, 0, -1,
 			Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getService_SatisfiedRequirements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getService_ParentService(), this.getService(), this.getService_SubServices(), "parentService",
 			null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getService_ParentService().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getService_SubServices(), this.getService(), this.getService_ParentService(), "subServices",
 			null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getService_SubServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // ServicePackageImpl

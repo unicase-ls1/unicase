@@ -66,7 +66,7 @@ public class GoalReferenceItemProvider extends UrmlModelElementItemProvider impl
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_GoalReference_source_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_GoalReference_source_feature", "_UI_GoalReference_type"),
-			GoalPackage.Literals.GOAL_REFERENCE__SOURCE, true, false, true, null, null, null));
+			GoalPackage.Literals.GOAL_REFERENCE__SOURCE, false, false, true, null, null, null));
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class GoalReferenceItemProvider extends UrmlModelElementItemProvider impl
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_GoalReference_target_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_GoalReference_target_feature", "_UI_GoalReference_type"),
-			GoalPackage.Literals.GOAL_REFERENCE__TARGET, true, false, true, null, null, null));
+			GoalPackage.Literals.GOAL_REFERENCE__TARGET, false, false, true, null, null, null));
 	}
 
 	/**

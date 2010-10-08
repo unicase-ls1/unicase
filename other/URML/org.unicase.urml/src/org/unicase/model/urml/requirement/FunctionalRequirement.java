@@ -39,7 +39,7 @@ public interface FunctionalRequirement extends Requirement {
 	 * @return the value of the '<em>Detailed Features</em>' reference list.
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getFunctionalRequirement_DetailedFeatures()
 	 * @see org.unicase.model.urml.feature.AbstractFeature#getDetailingFunctionalRequirements
-	 * @model opposite="detailingFunctionalRequirements" keys="identifier"
+	 * @model opposite="detailingFunctionalRequirements"
 	 * @generated
 	 */
 	EList<AbstractFeature> getDetailedFeatures();
@@ -58,7 +58,7 @@ public interface FunctionalRequirement extends Requirement {
 	 * @return the value of the '<em>Sub Functional Requirements</em>' containment reference list.
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getFunctionalRequirement_SubFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.FunctionalRequirement#getParentFunctionalRequirement
-	 * @model opposite="parentFunctionalRequirement" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="parentFunctionalRequirement" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getSubFunctionalRequirements();
@@ -78,7 +78,7 @@ public interface FunctionalRequirement extends Requirement {
 	 * @see #setParentFunctionalRequirement(FunctionalRequirement)
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getFunctionalRequirement_ParentFunctionalRequirement()
 	 * @see org.unicase.model.urml.requirement.FunctionalRequirement#getSubFunctionalRequirements
-	 * @model opposite="subFunctionalRequirements" keys="identifier" transient="false"
+	 * @model opposite="subFunctionalRequirements" transient="false"
 	 * @generated
 	 */
 	FunctionalRequirement getParentFunctionalRequirement();

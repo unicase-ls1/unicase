@@ -33,7 +33,7 @@ public interface Feature extends AbstractFeature {
 	 * @return the value of the '<em>Products</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getFeature_Products()
 	 * @see org.unicase.model.urml.feature.Product#getFeatures
-	 * @model opposite="features" keys="identifier"
+	 * @model opposite="features"
 	 * @generated
 	 */
 	EList<Product> getProducts();

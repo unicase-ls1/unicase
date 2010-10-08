@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.urml.hypergraph.layout.GraphEClassFilter;
 import org.unicase.ui.urml.hypergraph.layout.GraphEObjectLayouted;
 import org.unicase.ui.urml.hypergraph.layout.GraphEReferenceFilter;
@@ -52,9 +52,9 @@ public class UnicaseEntityContentProvider implements IGraphEntityContentProvider
 		}
 		if (edgeFilter.isVisible(EdgeType.PARENT)) {
 			EObject parent = eObject.eContainer();
-			if (parent == null && eObject instanceof ModelElement) {
+			if (parent == null) {
 				// the highest composite sections have no parents - manually get the project as parent
-				parent = ((ModelElement) eObject).getProject();
+				parent = ModelUtil.getProject(parent);
 			}
 			if (this.elements.containsKey(parent)) {
 				result.add(elements.get(parent));
@@ -122,8 +122,8 @@ public class UnicaseEntityContentProvider implements IGraphEntityContentProvider
 			}
 			if (edgeFilter.isVisible(EdgeType.PARENT)) {
 				EObject parent = thisToVisitObject.object.eContainer();
-				if (parent == null && thisToVisitObject.object instanceof ModelElement) {
-					parent = ((ModelElement) thisToVisitObject.object).getProject();
+				if (parent == null) {
+					parent = ModelUtil.getProject(thisToVisitObject.object);
 				}
 				if (parent != null) {
 					elementsCount += handleObject(parent, toVisit, thisToVisitObject.depth);

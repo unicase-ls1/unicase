@@ -64,30 +64,6 @@ public interface GoalPackage extends EPackage {
 	int GOAL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -166,6 +142,22 @@ public interface GoalPackage extends EPackage {
 	int GOAL__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Soft</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -236,8 +228,8 @@ public interface GoalPackage extends EPackage {
 	int GOAL__INFLUENCING_GOALS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Influenced Goals</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>Influenced Goals</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -261,30 +253,6 @@ public interface GoalPackage extends EPackage {
 	 * @generated
 	 */
 	int GOAL_REFERENCE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_REFERENCE__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_REFERENCE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_REFERENCE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -365,7 +333,24 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL_REFERENCE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL_REFERENCE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -516,10 +501,11 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_InfluencingGoals();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getInfluencedGoals
-	 * <em>Influenced Goals</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference list '<em>Influenced Goals</em>'.
+	 * @return the meta object for the containment reference list '<em>Influenced Goals</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getInfluencedGoals()
 	 * @see #getGoal()
 	 * @generated
@@ -537,10 +523,10 @@ public interface GoalPackage extends EPackage {
 	EClass getGoalReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.urml.goal.GoalReference#getSource
+	 * Returns the meta object for the container reference '{@link org.unicase.model.urml.goal.GoalReference#getSource
 	 * <em>Source</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @return the meta object for the container reference '<em>Source</em>'.
 	 * @see org.unicase.model.urml.goal.GoalReference#getSource()
 	 * @see #getGoalReference()
 	 * @generated
@@ -703,8 +689,8 @@ public interface GoalPackage extends EPackage {
 		EClass GOAL_REFERENCE = eINSTANCE.getGoalReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */

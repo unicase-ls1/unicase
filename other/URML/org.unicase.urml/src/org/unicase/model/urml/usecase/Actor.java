@@ -33,7 +33,7 @@ public interface Actor extends Asset {
 	 * @return the value of the '<em>Use Cases</em>' reference list.
 	 * @see org.unicase.model.urml.usecase.UsecasePackage#getActor_UseCases()
 	 * @see org.unicase.model.urml.usecase.UseCase#getActors
-	 * @model opposite="actors" keys="identifier"
+	 * @model opposite="actors"
 	 * @generated
 	 */
 	EList<UseCase> getUseCases();

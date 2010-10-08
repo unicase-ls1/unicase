@@ -3,11 +3,17 @@
  */
 package org.unicase.model.urml.goal.impl;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.urml.goal.Goal;
 import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.model.urml.goal.GoalReference;
@@ -28,16 +34,6 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * @generated
  */
 public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalReference {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Goal source;
-
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -93,16 +89,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	 * @generated
 	 */
 	public Goal getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject) source;
-			source = (Goal) eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GoalPackage.GOAL_REFERENCE__SOURCE,
-						oldSource, source));
-			}
-		}
-		return source;
+		if (eContainerFeatureID() != GoalPackage.GOAL_REFERENCE__SOURCE)
+			return null;
+		return (Goal) eContainer();
 	}
 
 	/**
@@ -111,7 +100,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	 * @generated
 	 */
 	public Goal basicGetSource() {
-		return source;
+		if (eContainerFeatureID() != GoalPackage.GOAL_REFERENCE__SOURCE)
+			return null;
+		return (Goal) eInternalContainer();
 	}
 
 	/**
@@ -120,16 +111,7 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(Goal newSource, NotificationChain msgs) {
-		Goal oldSource = source;
-		source = newSource;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				GoalPackage.GOAL_REFERENCE__SOURCE, oldSource, newSource);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject) newSource, GoalPackage.GOAL_REFERENCE__SOURCE, msgs);
 		return msgs;
 	}
 
@@ -139,11 +121,13 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	 * @generated
 	 */
 	public void setSource(Goal newSource) {
-		if (newSource != source) {
+		if (newSource != eInternalContainer()
+			|| (eContainerFeatureID() != GoalPackage.GOAL_REFERENCE__SOURCE && newSource != null)) {
+			if (EcoreUtil.isAncestor(this, newSource))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class,
-					msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSource != null)
 				msgs = ((InternalEObject) newSource).eInverseAdd(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class,
 					msgs);
@@ -253,9 +237,8 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GoalPackage.GOAL_REFERENCE__SOURCE:
-			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class,
-					msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetSource((Goal) otherEnd, msgs);
 		case GoalPackage.GOAL_REFERENCE__TARGET:
 			if (target != null)
@@ -280,6 +263,20 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 			return basicSetTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case GoalPackage.GOAL_REFERENCE__SOURCE:
+			return eInternalContainer().eInverseRemove(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -355,7 +352,7 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case GoalPackage.GOAL_REFERENCE__SOURCE:
-			return source != null;
+			return basicGetSource() != null;
 		case GoalPackage.GOAL_REFERENCE__TARGET:
 			return target != null;
 		case GoalPackage.GOAL_REFERENCE__WEIGHT:
@@ -379,6 +376,21 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 		result.append(weight);
 		result.append(')');
 		return result.toString();
+	}
+
+	public List<EStructuralFeature> getAssociationFeatures() {
+		LinkedList<EStructuralFeature> result = new LinkedList<EStructuralFeature>();
+		result.add(GoalPackage.eINSTANCE.getGoalReference_Weight());
+		result.add(null);
+		return result;
+	}
+
+	public EReference getSourceFeature() {
+		return GoalPackage.eINSTANCE.getGoalReference_Source();
+	}
+
+	public EReference getTargetFeature() {
+		return GoalPackage.eINSTANCE.getGoalReference_Target();
 	}
 
 } // GoalReferenceImpl

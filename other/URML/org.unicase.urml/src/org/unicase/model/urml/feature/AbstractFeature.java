@@ -52,7 +52,7 @@ public interface AbstractFeature extends UrmlModelElement {
 	 * @return the value of the '<em>Goals</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_Goals()
 	 * @see org.unicase.model.urml.goal.Goal#getRealizedFeatures
-	 * @model opposite="realizedFeatures" keys="identifier"
+	 * @model opposite="realizedFeatures"
 	 * @generated
 	 */
 	EList<Goal> getGoals();
@@ -71,7 +71,7 @@ public interface AbstractFeature extends UrmlModelElement {
 	 * @return the value of the '<em>Detailing Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_DetailingFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.FunctionalRequirement#getDetailedFeatures
-	 * @model opposite="detailedFeatures" keys="identifier"
+	 * @model opposite="detailedFeatures"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getDetailingFunctionalRequirements();
@@ -90,7 +90,7 @@ public interface AbstractFeature extends UrmlModelElement {
 	 * @return the value of the '<em>Constraining Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_ConstrainingNonFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.NonFunctionalRequirement#getConstrainedFeatures
-	 * @model opposite="constrainedFeatures" keys="identifier"
+	 * @model opposite="constrainedFeatures"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getConstrainingNonFunctionalRequirements();
@@ -252,7 +252,7 @@ public interface AbstractFeature extends UrmlModelElement {
 	 * @see #setOptionalParentVariationPoint(VariationPoint)
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_OptionalParentVariationPoint()
 	 * @see org.unicase.model.urml.feature.VariationPoint#getOptionalSubFeatures
-	 * @model opposite="optionalSubFeatures" keys="identifier" transient="false"
+	 * @model opposite="optionalSubFeatures" transient="false"
 	 * @generated
 	 */
 	VariationPoint getOptionalParentVariationPoint();
@@ -281,7 +281,7 @@ public interface AbstractFeature extends UrmlModelElement {
 	 * @return the value of the '<em>Variation Point Instances</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_VariationPointInstances()
 	 * @see org.unicase.model.urml.feature.VariationPointInstance#getSelectedFeatures
-	 * @model opposite="selectedFeatures" keys="identifier"
+	 * @model opposite="selectedFeatures"
 	 * @generated
 	 */
 	EList<VariationPointInstance> getVariationPointInstances();

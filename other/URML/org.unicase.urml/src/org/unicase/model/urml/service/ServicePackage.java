@@ -62,30 +62,6 @@ public interface ServicePackage extends EPackage {
 	int SERVICE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE__IDENTIFIER = DangerPackage.ASSET__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE__CREATOR = DangerPackage.ASSET__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE__CREATION_DATE = DangerPackage.ASSET__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -162,6 +138,22 @@ public interface ServicePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE__COMMENTS = DangerPackage.ASSET__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CREATION_DATE = DangerPackage.ASSET__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CREATOR = DangerPackage.ASSET__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Triggered Dangers</b></em>' reference list. <!-- begin-user-doc --> <!--

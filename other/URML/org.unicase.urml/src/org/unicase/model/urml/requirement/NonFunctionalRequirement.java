@@ -40,7 +40,7 @@ public interface NonFunctionalRequirement extends Requirement {
 	 * @return the value of the '<em>Constrained Features</em>' reference list.
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getNonFunctionalRequirement_ConstrainedFeatures()
 	 * @see org.unicase.model.urml.feature.AbstractFeature#getConstrainingNonFunctionalRequirements
-	 * @model opposite="constrainingNonFunctionalRequirements" keys="identifier"
+	 * @model opposite="constrainingNonFunctionalRequirements"
 	 * @generated
 	 */
 	EList<AbstractFeature> getConstrainedFeatures();
@@ -60,7 +60,7 @@ public interface NonFunctionalRequirement extends Requirement {
 	 * @return the value of the '<em>Sub Non Functional Requirements</em>' containment reference list.
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getNonFunctionalRequirement_SubNonFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.NonFunctionalRequirement#getParentNonFunctionalRequirement
-	 * @model opposite="parentNonFunctionalRequirement" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="parentNonFunctionalRequirement" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getSubNonFunctionalRequirements();
@@ -80,7 +80,7 @@ public interface NonFunctionalRequirement extends Requirement {
 	 * @see #setParentNonFunctionalRequirement(NonFunctionalRequirement)
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getNonFunctionalRequirement_ParentNonFunctionalRequirement()
 	 * @see org.unicase.model.urml.requirement.NonFunctionalRequirement#getSubNonFunctionalRequirements
-	 * @model opposite="subNonFunctionalRequirements" keys="identifier" transient="false"
+	 * @model opposite="subNonFunctionalRequirements" transient="false"
 	 * @generated
 	 */
 	NonFunctionalRequirement getParentNonFunctionalRequirement();

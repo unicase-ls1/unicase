@@ -35,7 +35,7 @@ public interface Product extends UrmlModelElement {
 	 * @return the value of the '<em>Variation Point Instances</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getProduct_VariationPointInstances()
 	 * @see org.unicase.model.urml.feature.VariationPointInstance#getProducts
-	 * @model opposite="products" keys="identifier"
+	 * @model opposite="products"
 	 * @generated
 	 */
 	EList<VariationPointInstance> getVariationPointInstances();
@@ -53,7 +53,7 @@ public interface Product extends UrmlModelElement {
 	 * @return the value of the '<em>Features</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getProduct_Features()
 	 * @see org.unicase.model.urml.feature.Feature#getProducts
-	 * @model opposite="products" keys="identifier"
+	 * @model opposite="products"
 	 * @generated
 	 */
 	EList<Feature> getFeatures();

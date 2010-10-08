@@ -63,30 +63,6 @@ public interface RequirementPackage extends EPackage {
 	int REQUIREMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__IDENTIFIER = DangerPackage.MITIGATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__CREATOR = DangerPackage.MITIGATION__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__CREATION_DATE = DangerPackage.MITIGATION__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -165,6 +141,22 @@ public interface RequirementPackage extends EPackage {
 	int REQUIREMENT__COMMENTS = DangerPackage.MITIGATION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__CREATION_DATE = DangerPackage.MITIGATION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__CREATOR = DangerPackage.MITIGATION__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Mitigated Dangers</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -208,30 +200,6 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	int FUNCTIONAL_REQUIREMENT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__IDENTIFIER = REQUIREMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__CREATOR = REQUIREMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__CREATION_DATE = REQUIREMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -312,6 +280,22 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__COMMENTS = REQUIREMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__CREATION_DATE = REQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__CREATOR = REQUIREMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Mitigated Dangers</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -382,30 +366,6 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	int NON_FUNCTIONAL_REQUIREMENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__IDENTIFIER = REQUIREMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__CREATOR = REQUIREMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__CREATION_DATE = REQUIREMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -484,6 +444,22 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int NON_FUNCTIONAL_REQUIREMENT__COMMENTS = REQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__CREATION_DATE = REQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__CREATOR = REQUIREMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Mitigated Dangers</b></em>' reference list. <!-- begin-user-doc --> <!--

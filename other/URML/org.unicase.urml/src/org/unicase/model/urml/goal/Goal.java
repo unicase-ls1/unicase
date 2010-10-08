@@ -98,7 +98,7 @@ public interface Goal extends UrmlModelElement {
 	 * @return the value of the '<em>Stakeholders</em>' reference list.
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_Stakeholders()
 	 * @see org.unicase.model.urml.Stakeholder#getGoals
-	 * @model opposite="goals" keys="identifier"
+	 * @model opposite="goals"
 	 * @generated
 	 */
 	EList<Stakeholder> getStakeholders();
@@ -116,7 +116,7 @@ public interface Goal extends UrmlModelElement {
 	 * @return the value of the '<em>Realized Features</em>' reference list.
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_RealizedFeatures()
 	 * @see org.unicase.model.urml.feature.AbstractFeature#getGoals
-	 * @model opposite="goals" keys="identifier"
+	 * @model opposite="goals"
 	 * @generated
 	 */
 	EList<AbstractFeature> getRealizedFeatures();
@@ -163,7 +163,7 @@ public interface Goal extends UrmlModelElement {
 	 * @return the value of the '<em>Sub Goals</em>' containment reference list.
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_SubGoals()
 	 * @see org.unicase.model.urml.goal.Goal#getParentGoal
-	 * @model opposite="parentGoal" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="parentGoal" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Goal> getSubGoals();
@@ -181,7 +181,7 @@ public interface Goal extends UrmlModelElement {
 	 * @see #setParentGoal(Goal)
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_ParentGoal()
 	 * @see org.unicase.model.urml.goal.Goal#getSubGoals
-	 * @model opposite="subGoals" keys="identifier" transient="false"
+	 * @model opposite="subGoals" transient="false"
 	 * @generated
 	 */
 	Goal getParentGoal();
@@ -209,14 +209,14 @@ public interface Goal extends UrmlModelElement {
 	 * @return the value of the '<em>Influencing Goals</em>' reference list.
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_InfluencingGoals()
 	 * @see org.unicase.model.urml.goal.GoalReference#getTarget
-	 * @model opposite="target" keys="identifier"
+	 * @model opposite="target"
 	 * @generated
 	 */
 	EList<GoalReference> getInfluencingGoals();
 
 	/**
-	 * Returns the value of the '<em><b>Influenced Goals</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.urml.goal.GoalReference}. It is bidirectional and its opposite is '
+	 * Returns the value of the '<em><b>Influenced Goals</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.model.urml.goal.GoalReference}. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.urml.goal.GoalReference#getSource <em>Source</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Influenced Goals</em>' reference list isn't clear, there really should be more of a
@@ -224,10 +224,10 @@ public interface Goal extends UrmlModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Influenced Goals</em>' reference list.
+	 * @return the value of the '<em>Influenced Goals</em>' containment reference list.
 	 * @see org.unicase.model.urml.goal.GoalPackage#getGoal_InfluencedGoals()
 	 * @see org.unicase.model.urml.goal.GoalReference#getSource
-	 * @model opposite="source" keys="identifier"
+	 * @model opposite="source" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<GoalReference> getInfluencedGoals();

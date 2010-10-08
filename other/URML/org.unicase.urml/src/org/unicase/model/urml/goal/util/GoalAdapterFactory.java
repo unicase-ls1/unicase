@@ -7,9 +7,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.metamodel.NonDomainElement;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.goal.Goal;
@@ -78,16 +76,6 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElement(ModelElement object) {
-			return createModelElementAdapter();
-		}
-
-		@Override
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
 		}
@@ -98,8 +86,8 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNonDomainElement(NonDomainElement object) {
-			return createNonDomainElementAdapter();
+		public Adapter caseAssociationClassElement(AssociationClassElement object) {
+			return createAssociationClassElementAdapter();
 		}
 
 		@Override
@@ -148,33 +136,6 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement
-	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.IdentifiableElement
-	 * @generated
-	 */
-	public Adapter createIdentifiableElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
-	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.ModelElement
-	 * @generated
-	 */
-	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement
 	 * <em>Unicase Model Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -203,16 +164,16 @@ public class GoalAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.NonDomainElement
-	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.AssociationClassElement
+	 * <em>Association Class Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.unicase.metamodel.NonDomainElement
+	 * @see org.unicase.metamodel.AssociationClassElement
 	 * @generated
 	 */
-	public Adapter createNonDomainElementAdapter() {
+	public Adapter createAssociationClassElementAdapter() {
 		return null;
 	}
 

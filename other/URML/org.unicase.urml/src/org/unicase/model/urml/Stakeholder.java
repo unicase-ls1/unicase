@@ -33,7 +33,7 @@ public interface Stakeholder extends UrmlModelElement {
 	 * @return the value of the '<em>Goals</em>' reference list.
 	 * @see org.unicase.model.urml.UrmlPackage#getStakeholder_Goals()
 	 * @see org.unicase.model.urml.goal.Goal#getStakeholders
-	 * @model opposite="stakeholders" keys="identifier"
+	 * @model opposite="stakeholders"
 	 * @generated
 	 */
 	EList<Goal> getGoals();

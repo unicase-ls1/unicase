@@ -63,30 +63,6 @@ public interface UsecasePackage extends EPackage {
 	int USE_CASE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__IDENTIFIER = UrmlPackage.URML_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -165,6 +141,22 @@ public interface UsecasePackage extends EPackage {
 	int USE_CASE__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -198,30 +190,6 @@ public interface UsecasePackage extends EPackage {
 	 * @generated
 	 */
 	int APPLICATION_DOMAIN_USE_CASE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION_DOMAIN_USE_CASE__IDENTIFIER = USE_CASE__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION_DOMAIN_USE_CASE__CREATOR = USE_CASE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION_DOMAIN_USE_CASE__CREATION_DATE = USE_CASE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -302,6 +270,22 @@ public interface UsecasePackage extends EPackage {
 	int APPLICATION_DOMAIN_USE_CASE__COMMENTS = USE_CASE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DOMAIN_USE_CASE__CREATION_DATE = USE_CASE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DOMAIN_USE_CASE__CREATOR = USE_CASE__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -345,30 +329,6 @@ public interface UsecasePackage extends EPackage {
 	 * @generated
 	 */
 	int SOLUTION_DOMAIN_USE_CASE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION_DOMAIN_USE_CASE__IDENTIFIER = USE_CASE__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION_DOMAIN_USE_CASE__CREATOR = USE_CASE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION_DOMAIN_USE_CASE__CREATION_DATE = USE_CASE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -449,6 +409,22 @@ public interface UsecasePackage extends EPackage {
 	int SOLUTION_DOMAIN_USE_CASE__COMMENTS = USE_CASE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_DOMAIN_USE_CASE__CREATION_DATE = USE_CASE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_DOMAIN_USE_CASE__CREATOR = USE_CASE__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -492,30 +468,6 @@ public interface UsecasePackage extends EPackage {
 	 * @generated
 	 */
 	int ACTOR = 3;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__IDENTIFIER = DangerPackage.ASSET__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__CREATOR = DangerPackage.ASSET__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__CREATION_DATE = DangerPackage.ASSET__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -594,6 +546,22 @@ public interface UsecasePackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTOR__COMMENTS = DangerPackage.ASSET__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__CREATION_DATE = DangerPackage.ASSET__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__CREATOR = DangerPackage.ASSET__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Triggered Dangers</b></em>' reference list. <!-- begin-user-doc --> <!--

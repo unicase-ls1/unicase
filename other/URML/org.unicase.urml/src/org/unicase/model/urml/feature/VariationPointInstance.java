@@ -36,7 +36,7 @@ public interface VariationPointInstance extends UrmlModelElement {
 	 * @see #setVariationPoint(VariationPoint)
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPointInstance_VariationPoint()
 	 * @see org.unicase.model.urml.feature.VariationPoint#getInstances
-	 * @model opposite="instances" keys="identifier"
+	 * @model opposite="instances"
 	 * @generated
 	 */
 	VariationPoint getVariationPoint();
@@ -65,7 +65,7 @@ public interface VariationPointInstance extends UrmlModelElement {
 	 * @return the value of the '<em>Products</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPointInstance_Products()
 	 * @see org.unicase.model.urml.feature.Product#getVariationPointInstances
-	 * @model opposite="variationPointInstances" keys="identifier"
+	 * @model opposite="variationPointInstances"
 	 * @generated
 	 */
 	EList<Product> getProducts();
@@ -84,7 +84,7 @@ public interface VariationPointInstance extends UrmlModelElement {
 	 * @return the value of the '<em>Selected Features</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getVariationPointInstance_SelectedFeatures()
 	 * @see org.unicase.model.urml.feature.AbstractFeature#getVariationPointInstances
-	 * @model opposite="variationPointInstances" keys="identifier"
+	 * @model opposite="variationPointInstances"
 	 * @generated
 	 */
 	EList<AbstractFeature> getSelectedFeatures();
