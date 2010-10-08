@@ -24,6 +24,7 @@ import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
@@ -55,7 +56,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 				actionItem = TaskFactory.eINSTANCE.createActionItem();
 				actionItem.setName("My ActionItem");
 				getLeafSection().getModelElements().add(actionItem);
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("Joker");
 				project.addModelElement(user1);
@@ -122,7 +123,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("BOND");
 				project.addModelElement(user);
@@ -155,7 +156,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
 				if (users != null) {
@@ -232,7 +233,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
 				if (users != null) {
@@ -247,7 +248,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("BOND");
 				project.addModelElement(user1);
@@ -298,7 +299,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
 				if (users != null) {
@@ -367,7 +368,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
 				if (users != null) {
@@ -381,7 +382,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("BOND");
 				project.addModelElement(user);
@@ -470,7 +471,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand unicaseCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("BOND");
 				project.addModelElement(user1);
@@ -520,7 +521,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand someCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				User user = OrganizationFactory.eINSTANCE.createUser();
 				user.setName("James");
 				project.addModelElement(user);
@@ -545,7 +546,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				EList<User> user = actionItem.getProject().getModelElementsByClass(
+				EList<User> user = ModelUtil.getProject(actionItem).getModelElementsByClass(
 					OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 				for (User u : user) {
 					if (u.getName().equals("James")) {
@@ -576,7 +577,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 		UnicaseCommand someCommand = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				Project project = actionItem.getProject();
+				Project project = ModelUtil.getProject(actionItem);
 				EList<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
 				if (users != null) {
@@ -606,7 +607,7 @@ public class MEMultiLinkControlTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				EList<User> user = actionItem.getProject().getModelElementsByClass(
+				EList<User> user = ModelUtil.getProject(actionItem).getModelElementsByClass(
 					OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 				for (User u : user) {
 					if (u.getName().equals("James")) {

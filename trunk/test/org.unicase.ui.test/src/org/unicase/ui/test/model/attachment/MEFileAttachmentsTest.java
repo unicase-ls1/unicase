@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Attachment;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -88,7 +89,7 @@ public class MEFileAttachmentsTest extends MEEditorTest {
 				}
 				fileAttachment = AttachmentFactory.eINSTANCE.createFileAttachment();
 				fileAttachment.setName("Test the file attachment");
-				actionItem.getProject().addModelElement(fileAttachment);
+				ModelUtil.getProject(actionItem).addModelElement(fileAttachment);
 			}
 		}.run();
 
@@ -114,7 +115,7 @@ public class MEFileAttachmentsTest extends MEEditorTest {
 		UnicaseCommand addFileAttachment = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				EList<Attachment> listOfAttachments = actionItem.getProject().getModelElementsByClass(
+				EList<Attachment> listOfAttachments = ModelUtil.getProject(actionItem).getModelElementsByClass(
 					AttachmentPackage.eINSTANCE.getFileAttachment(), new BasicEList<Attachment>());
 				for (Attachment l : listOfAttachments) {
 					if (l.getName().equals(attachment)) {
@@ -162,7 +163,7 @@ public class MEFileAttachmentsTest extends MEEditorTest {
 				FileInformation something = new FileInformation();
 				something.setFileVersion(-1);
 				something.setFileName(testFile.getName());
-				something.setFileAttachmentId((fileAttachment).getIdentifier());
+				something.setFileAttachmentId((fileAttachment).getFileID());
 				// adding a pending file request!
 				try {
 					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(something, testFile, true, true);

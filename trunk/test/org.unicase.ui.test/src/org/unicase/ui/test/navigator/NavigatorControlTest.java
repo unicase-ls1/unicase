@@ -7,12 +7,12 @@ package org.unicase.ui.test.navigator;
 
 import java.io.IOException;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
@@ -66,7 +66,7 @@ public class NavigatorControlTest {
 		WorkspaceManager.getInstance();
 	}
 
-	protected void openModelElement(final ModelElement element) {
+	protected void openModelElement(final EObject element) {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			public void run() {

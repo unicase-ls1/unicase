@@ -9,6 +9,7 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.junit.After;
@@ -16,7 +17,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
@@ -160,7 +160,7 @@ public class MEEditorTest {
 	 * 
 	 * @param element modelelement to be opened.
 	 */
-	protected void openModelElement(final ModelElement element) {
+	protected void openModelElement(final EObject element) {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@SuppressWarnings("deprecation")

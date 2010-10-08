@@ -23,6 +23,7 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Attachment;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -57,7 +58,7 @@ public class MEURLAttachmentsTest extends MEEditorTest {
 				urlAttachment = AttachmentFactory.eINSTANCE.createUrlAttachment();
 				urlAttachment.setName("Mr.Web");
 				urlAttachment.setUrl("http://code.google.com/p/unicase/");
-				actionItem.getProject().addModelElement(urlAttachment);
+				ModelUtil.getProject(actionItem).addModelElement(urlAttachment);
 
 			}
 		}.run();
@@ -193,7 +194,7 @@ public class MEURLAttachmentsTest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				EList<Attachment> listOfAttachments = actionItem.getProject().getModelElementsByClass(
+				EList<Attachment> listOfAttachments = ModelUtil.getProject(actionItem).getModelElementsByClass(
 					AttachmentPackage.eINSTANCE.getUrlAttachment(), new BasicEList<Attachment>());
 				for (Attachment l : listOfAttachments) {
 					if (l.getName().equals(attachment)) {
@@ -240,7 +241,7 @@ public class MEURLAttachmentsTest extends MEEditorTest {
 		UnicaseCommand addURLAttachment = new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				EList<Attachment> listOfAttachments = actionItem.getProject().getModelElementsByClass(
+				EList<Attachment> listOfAttachments = ModelUtil.getProject(actionItem).getModelElementsByClass(
 					AttachmentPackage.eINSTANCE.getUrlAttachment(), new BasicEList<Attachment>());
 				for (Attachment l : listOfAttachments) {
 					if (l.getName().equals(attachment)) {
