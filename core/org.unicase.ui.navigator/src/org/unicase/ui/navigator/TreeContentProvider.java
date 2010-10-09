@@ -8,14 +8,17 @@ package org.unicase.ui.navigator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.unicase.ui.common.ECPModelelementContext;
 
 /**
  * Transactional and composed content provider with all registered label providers.
@@ -35,10 +38,68 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 	public Object[] getChildren(Object object) {
 		String className = object.getClass().getCanonicalName();
 		ContentProvider replaceContentProvider = contentProviders.get(className);
+		Object[] preResult;
 		if (replaceContentProvider != null) {
-			return replaceContentProvider.getChildren((EObject) object).toArray();
+			preResult = replaceContentProvider.getChildren((EObject) object).toArray();
+		} else {
+			preResult = super.getChildren(object);
 		}
-		return super.getChildren(object);
+		ECPModelelementContext context;
+		try {
+			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			if (context == null) {
+				return preResult;
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			return preResult;
+		}
+
+		// this removes all AssociationClass's from the result
+		LinkedList<Object> result = new LinkedList<Object>();
+		for (Object item : preResult) {
+			if (!(item instanceof EObject && context.isAssociationClassElement((EObject) item))
+				&& !(item instanceof DelegatingWrapperItemProvider && context
+					.isAssociationClassElement((EObject) ((DelegatingWrapperItemProvider) item).getValue()))) {
+				result.add(item);
+			}
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#hasChildren(java.lang.Object)
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		ECPModelelementContext context;
+		try {
+			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			if (context == null) {
+				return super.hasChildren(object);
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			// if an exception is caught return the not modified result
+			return super.hasChildren(object);
+		}
+		EObject eObject = null;
+		if (object instanceof DelegatingWrapperItemProvider) {
+			eObject = (EObject) ((DelegatingWrapperItemProvider) object).getValue();
+		} else if (object instanceof EObject) {
+			eObject = (EObject) object;
+		}
+		if (eObject == null || eObject.eContents().isEmpty()) {
+			return super.hasChildren(object);
+		}
+		for (EObject child : eObject.eContents()) {
+			if (!context.isAssociationClassElement(child)) {
+				return super.hasChildren(object);
+			}
+		}
+		return false;
 	}
 
 	/**
