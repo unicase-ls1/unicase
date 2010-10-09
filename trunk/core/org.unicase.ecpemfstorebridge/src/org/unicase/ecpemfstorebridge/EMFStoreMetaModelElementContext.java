@@ -23,10 +23,10 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.MetaModelElementContext#getAllModelElementEClasses()
+	 * @see org.unicase.ui.common.MetaModelElementContext#getAllModelElementEClassesImpl()
 	 */
 	@Override
-	public Set<EClass> getAllModelElementEClasses() {
+	public Set<EClass> getAllModelElementEClassesImpl() {
 		return ModelUtil.getAllModelElementEClasses();
 	}
 

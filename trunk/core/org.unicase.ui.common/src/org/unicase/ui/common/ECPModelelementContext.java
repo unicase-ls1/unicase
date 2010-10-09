@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.metamodel.AssociationClassElement;
 
 /**
  * Context for a modelelement.
@@ -30,4 +31,28 @@ public interface ECPModelelementContext {
 	 */
 	EditingDomain getEditingDomain();
 
+	/**
+	 * Whether a {@link EObject} is a association class. Association classes are not displayed as dedicated elements. A
+	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
+	 * widgets allows to trace transparently without seeing the association class.
+	 * 
+	 * @param eObject the {@link EObject}
+	 * @return if it is an association
+	 */
+	boolean isAssociationClassElement(EObject eObject);
+
+	/**
+	 * Returns an {@link AssociationClassElement} wrapper for a {@link EObject}.
+	 * 
+	 * @param eObject the {@link EObject}
+	 * @return the wrapper, {@code null} if {@link EObject} not exists
+	 */
+	ECPAssociationClassElement getAssociationClassElement(EObject eObject);
+
+	/**
+	 * Returns the {@link MetaModelElementContext}.
+	 * 
+	 * @return the {@link MetaModelElementContext}.
+	 */
+	MetaModelElementContext getMetaModelElementContext();
 }

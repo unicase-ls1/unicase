@@ -123,7 +123,6 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 * 
 	 * @see org.unicase.ui.common.ModelElementContext#getMetaModelElementContext()
 	 */
-	@Override
 	public MetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
 	}
@@ -186,20 +185,14 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
 	 */
-	@Override
 	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
 	 */
-	@Override
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
 		if (isAssociationClassElement(eObject)) {
 			AssociationClassElement ace = (AssociationClassElement) eObject;

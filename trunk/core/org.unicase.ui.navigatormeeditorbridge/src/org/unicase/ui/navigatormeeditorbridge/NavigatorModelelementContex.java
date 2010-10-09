@@ -101,7 +101,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public MetaModelElementContext getMetaModelElementContext() {
 		return project.getMetaModelElementContext();
 	}
@@ -142,7 +141,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public boolean isAssociationClassElement(EObject eObject) {
 		return project.isAssociationClassElement(eObject);
 	}
@@ -150,7 +148,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
 		return project.getAssociationClassElement(eObject);
 	}
