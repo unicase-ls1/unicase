@@ -7,8 +7,8 @@ package org.unicase.ui.unicasecommon.diagram.part;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
@@ -31,11 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DropTarget;
@@ -55,8 +50,11 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
+import org.unicase.ui.common.ECPModelelementContext;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
+import org.unicase.ui.common.util.AssociationClassHelper;
 import org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramAction;
+import org.unicase.ui.unicasecommon.common.util.DNDHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -90,6 +88,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
 				try {
+					// add association if they are not on the diagram
+					syncAssociationViews((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
 					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
 					// do nothing
@@ -108,6 +108,33 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			}
 		};
 
+	}
+
+	private void syncAssociationViews(final MEDiagram diagram) {
+		final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
+		if (context == null) {
+			return;
+		}
+		final LinkedList<EObject> elements = new LinkedList<EObject>();
+		elements.addAll(diagram.getElements());
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
+					context)) {
+					// add reference to the element
+					diagram.getElements().add((UnicaseModelElement) association);
+					// create the View for the element
+					CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(association),
+						getDiagramEditPart(), null, getPreferencesHint());
+					try {
+						command.execute(getProgressMonitor(), null);
+					} catch (ExecutionException e) {
+						ModelUtil.logException("Could not create a view for the droped content.", e);
+					}
+				}
+			}
+		}.run();
 	}
 
 	// dengler: document
@@ -171,47 +198,12 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		public boolean isEnabled(DropTargetEvent event) {
 			setEnablementDeterminedByCommand(false);
 			if (super.isEnabled(event)) {
-				if (!mesDrop.isEmpty()) {
-					MEDiagram diagram = (MEDiagram) getDiagram().getElement();
-					mesAdd = new ArrayList<EObject>();
-					for (EObject me : mesDrop) {
-						// do not add elements that are already added and check if they are allowed for the diagram
-						if (!diagram.getElements().contains(me) && isAllowedType(diagram, me)) {
-							mesAdd.add(me);
-						}
-					}
-					if (!mesAdd.isEmpty()) {
-						DropTarget target = (DropTarget) event.widget;
-						org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
-						x = location.x;
-						y = location.y;
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-
-		@SuppressWarnings("unchecked")
-		private boolean isAllowedType(MEDiagram diagram, EObject dropee) {
-			// get all registered contexts
-			Set<IClientContext> clientContexts = ClientContextManager.getInstance().getClientContexts();
-			for (IClientContext clientContext : clientContexts) {
-				IElementType[] containedTypes = ElementTypeRegistry.getInstance().getElementTypes(clientContext);
-				IElementType diagramType = ElementTypeRegistry.getInstance().getElementType(diagram, clientContext);
-				IElementType dropeeType = ElementTypeRegistry.getInstance().getElementType(dropee, clientContext);
-				boolean containedDropee = false;
-				boolean containedDiagram = false;
-				// checks all types in a given context if they contain the diagram and the dropped element
-				for (IElementType containedType : containedTypes) {
-					if (containedType.equals(diagramType)) {
-						containedDiagram = true;
-					}
-					if (containedType.equals(dropeeType)) {
-						containedDropee = true;
-					}
-				}
-				if (containedDiagram && containedDropee) {
+				mesAdd = new LinkedList<EObject>();
+				if (DNDHelper.canDrop(mesDrop, (MEDiagram) getDiagram().getElement(), mesAdd)) {
+					DropTarget target = (DropTarget) event.widget;
+					org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
+					x = location.x;
+					y = location.y;
 					return true;
 				}
 			}
@@ -223,7 +215,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			TransferData data = getCurrentEvent().currentDataType;
 			Object transferedObject = getJavaObject(data);
 			mesDrop = new ArrayList<EObject>();
-			if (transferedObject instanceof List) {
+			if (transferedObject instanceof List<?>) {
 				List<?> selection = (List<?>) transferedObject;
 				for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
@@ -237,17 +229,15 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		@Override
 		protected void handleDrop() {
-			int messageResult;
-			if (mesAdd.size() != mesDrop.size()) {
-				// if not all elements could be added
-				MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Only " + mesAdd.size() + " of "
-					+ mesDrop.size() + " item(s) could be added. Add item(s)?", MessageDialog.QUESTION, new String[] {
-					"Yes", "No" }, 0);
-				messageResult = dialog.open();
-			} else {
-				messageResult = MessageDialog.OK;
-			}
-			if (messageResult == MessageDialog.OK) {
+			if (DNDHelper.dropMessageCheck(mesDrop, mesAdd)) {
+				final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
+				final MEDiagram diagram = (MEDiagram) getDiagram().getElement();
+				if (context == null) {
+					return;
+				}
+				LinkedList<EObject> elements = new LinkedList<EObject>();
+				elements.addAll(diagram.getElements());
+				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context));
 				new UnicaseCommand() {
 
 					@Override
@@ -255,7 +245,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 						int counter = 0;
 						for (EObject me : mesAdd) {
 							// add reference to the element
-							((MEDiagram) getDiagram().getElement()).getElements().add((UnicaseModelElement) me);
+							diagram.getElements().add((UnicaseModelElement) me);
 							// create the View for the element
 							CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me),
 								getDiagramEditPart(), new Point(x + counter * 20, y + counter * 20),
@@ -265,7 +255,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 							} catch (ExecutionException e) {
 								ModelUtil.logException("Could not create a view for the droped content.", e);
 							}
-							counter++;
+							if (!context.isAssociationClassElement(me)) {
+								counter++;
+							}
 						}
 					}
 				}.run();
