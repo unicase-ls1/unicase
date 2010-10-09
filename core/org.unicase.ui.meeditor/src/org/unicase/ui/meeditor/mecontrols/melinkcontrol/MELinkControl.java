@@ -53,6 +53,14 @@ public class MELinkControl {
 	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
 	private ModelElementContext context;
 
+	public ModelElementContext getContext() {
+		return context;
+	}
+
+	public void setContext(ModelElementContext context) {
+		this.context = context;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

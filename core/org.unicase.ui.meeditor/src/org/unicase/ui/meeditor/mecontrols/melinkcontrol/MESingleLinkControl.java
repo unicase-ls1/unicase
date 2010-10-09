@@ -146,7 +146,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (opposite != null) {
 			MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
 			meControl = meLinkControlFactory.createMELinkControl(getItemPropertyDescriptor(), opposite,
-				getModelElement());
+				getModelElement(), getContext());
 			meControl.createControl(linkArea, style, getItemPropertyDescriptor(), opposite, getModelElement(),
 				getToolkit(), getContext());
 		} else {

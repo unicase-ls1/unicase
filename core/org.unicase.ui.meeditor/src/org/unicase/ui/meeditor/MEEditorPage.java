@@ -259,7 +259,8 @@ public class MEEditorPage extends FormPage {
 		ControlFactory controlFactory = new ControlFactory();
 
 		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
-			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor, modelElement);
+			AbstractMEControl meControl = controlFactory.createControl(itemPropertyDescriptor, modelElement,
+				modelElementContext);
 			if (meControl == null) {
 				continue;
 			}
