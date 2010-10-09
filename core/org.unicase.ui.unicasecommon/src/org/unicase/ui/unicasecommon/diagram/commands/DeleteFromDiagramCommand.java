@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.unicasecommon.diagram.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -14,6 +16,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.ECPModelelementContext;
+import org.unicase.ui.common.util.AssociationClassHelper;
+import org.unicase.ui.unicasecommon.common.util.DNDHelper;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
 // dengler: refactor use of edit part request and variables
@@ -48,10 +53,19 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 		EObject destructee = null;
 		destructee = this.getElementToDestroy();
+		ECPModelelementContext context = DNDHelper.getECPModelelementContext();
+		if (context == null) {
+			return CommandResult.newErrorCommandResult("Could not compute association classes to delete.");
+		}
+		List<EObject> additionalMEs = AssociationClassHelper.getRelatedAssociationClassToDelete(destructee, context);
 		EditPart diagramEditPart = EditPartUtility.getDiagramEditPart(this.editPart);
 		MEDiagram diag = (MEDiagram) EditPartUtility.getElement(diagramEditPart);
 		diag.getElements().remove(destructee);
+		for (EObject additionalME : additionalMEs) {
+			diag.getElements().remove(additionalME);
+		}
 		// tear down references
+		// TODO:remove this if all association classes inherit from UnicaseLink
 		tearDownReferences(destructee, diag);
 
 		return CommandResult.newOKCommandResult();
@@ -60,9 +74,11 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	/**
 	 * Remove references (e.g. associations in class diagram) from the element to other diagram elements.
 	 * 
+	 * @deprecated Depreciated since we added AssociationClassElement.
 	 * @param destructee the object being destroyed
 	 * @param diag the MEDiagram
 	 */
+	@Deprecated
 	protected void tearDownReferences(EObject destructee, MEDiagram diag) {
 		/*
 		 * Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements(); for (ModelElement
