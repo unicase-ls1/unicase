@@ -105,33 +105,8 @@ public abstract class ModelElementContext implements ECPModelelementContext {
 	public abstract boolean isNonDomainElement(EObject eObject);
 
 	/**
-	 * Whether a {@link EObject} is a association class. Association classes are not displayed as dedicated elements. A
-	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
-	 * widgets allows to trace transparently without seeing the association class.
-	 * 
-	 * @param eObject the {@link EObject}
-	 * @return if it is an association
-	 */
-	public abstract boolean isAssociationClassElement(EObject eObject);
-
-	/**
-	 * Returns an {@link AssociationClassElement} wrapper for a {@link EObject}.
-	 * 
-	 * @param eObject the {@link EObject}
-	 * @return the wrapper, {@code null} if {@link EObject} not exists
-	 */
-	public abstract ECPAssociationClassElement getAssociationClassElement(EObject eObject);
-
-	/**
-	 * Returns the {@link MetaModelElementContext}.
-	 * 
-	 * @return the {@link MetaModelElementContext}.
-	 */
-	public abstract MetaModelElementContext getMetaModelElementContext();
-
-	/**
-	 * If a {@link EObject} is contained in this context and can be therefore referenced by the {@link EObject} defining
-	 * the context.
+	 * If a {@link EObject} is contained in this context and can be therefore referenced by the
+	 * {@link EObject} defining the context.
 	 * 
 	 * @param eObject the {@link EObject}
 	 * @return if the {@link EObject} is contained in the context

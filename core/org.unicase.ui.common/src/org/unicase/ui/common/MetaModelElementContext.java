@@ -42,18 +42,14 @@ public abstract class MetaModelElementContext {
 	 * @return a set of EClasses
 	 */
 	public Set<EClass> getAllSubEClasses(EClass eClass, boolean association) {
-		Set<EClass> allEClasses = getAllModelElementEClasses();
+		Set<EClass> allEClasses = getAllModelElementEClasses(association);
 		Set<EClass> result = new HashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-
-			if (association || !isAssociationClassElement(subClass)) {
-				if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass.isSuperTypeOf(subClass))
-					&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
-					result.add(subClass);
-				}
+			if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass.isSuperTypeOf(subClass))
+				&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
+				result.add(subClass);
 			}
 		}
-
 		return result;
 	}
 
@@ -62,7 +58,32 @@ public abstract class MetaModelElementContext {
 	 * 
 	 * @return a set of eclasses
 	 */
-	public abstract Set<EClass> getAllModelElementEClasses();
+	public Set<EClass> getAllModelElementEClasses() {
+		return getAllModelElementEClasses(true);
+	}
+
+	/**
+	 * Returns all types of model elements in this context. Could exclude {@link AssociationClassElement}'s.
+	 * 
+	 * @param association whether to include {@link AssociationClassElement}
+	 * @return a set of eclasses
+	 */
+	public Set<EClass> getAllModelElementEClasses(boolean association) {
+		Set<EClass> result = new HashSet<EClass>();
+		for (EClass subClass : getAllModelElementEClassesImpl()) {
+			if (association || !isAssociationClassElement(subClass)) {
+				result.add(subClass);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns all types of model elements in this context.
+	 * 
+	 * @return a set of eclasses
+	 */
+	protected abstract Set<EClass> getAllModelElementEClassesImpl();
 
 	/**
 	 * Whether a {@link EClass} is a association class. Association classes are not displayed as dedicated elements. A
