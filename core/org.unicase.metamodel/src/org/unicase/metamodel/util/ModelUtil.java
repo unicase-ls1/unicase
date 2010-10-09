@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.osgi.framework.Bundle;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -580,22 +579,10 @@ public final class ModelUtil {
 	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
 	 * @throws LoggedException
 	 */
-	public static void log(String message, Throwable exception, int statusInt) throws LoggedException {
+	public static void log(String message, Throwable exception, int statusInt) {
 		Status status = new Status(statusInt, Platform.getBundle("org.unicase.metamodel").getSymbolicName(), statusInt,
 			message, exception);
 		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).log(status);
-
-		// find out version
-		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
-		if (emfStoreBundle != null) {
-			String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
-				org.osgi.framework.Constants.BUNDLE_VERSION);
-
-			// rethrow exception in case this ain't an external/internal release
-			if (emfStoreVersionString.endsWith("qualifier") && exception != null) {
-				throw new LoggedException(exception, exception.getMessage());
-			}
-		}
 	}
 
 	/**
