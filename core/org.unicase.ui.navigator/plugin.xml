@@ -12,7 +12,7 @@
             class="org.unicase.ui.navigator.TreeView"
             icon="icons/unicase.png"
             id="org.unicase.ui.navigator.viewer"
-            name="Unicase Navigator"
+            name="Navigator"
             restorable="true">
       </view>
    </extension>
