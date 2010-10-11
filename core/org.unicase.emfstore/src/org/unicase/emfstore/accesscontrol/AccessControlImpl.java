@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
@@ -58,7 +61,23 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	}
 
 	private AuthenticationControlFactory getAuthenticationFactory() {
-		// TODO: OW create extension point
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.emfstore.authenticationfactory");
+
+		// get all providers from the extension points
+		for (IConfigurationElement e : config) {
+			try {
+				Object o = e.createExecutableExtension("class");
+				if (o instanceof AuthenticationControlFactory) {
+					return (AuthenticationControlFactory) o;
+				}
+			} catch (CoreException e1) {
+				// fail silently
+				// e1.printStackTrace();
+			}
+		}
+
+		// fallback in case that no factory was registered
 		return new AuthenticationControlFactoryImpl();
 	}
 
