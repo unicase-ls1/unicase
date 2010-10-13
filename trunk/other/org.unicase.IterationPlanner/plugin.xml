@@ -34,7 +34,7 @@
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.unicase.ui.common.unicase"
-            class="org.unicase.iterationplanner.preferences.AssigneeRecommenderPreferencesPage"
+            class="org.unicase.iterationplanner.ui.preferences.AssigneeRecommenderPreferencesPage"
             id="org.unicase.ui.IterationPlanner.AssigneeRecommender"
             name="Assignee Recommender">
       </page>
