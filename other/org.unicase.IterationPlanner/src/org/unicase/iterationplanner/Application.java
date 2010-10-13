@@ -10,9 +10,8 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommender;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -73,17 +72,17 @@ public class Application implements IApplication {
 			new BasicEList<WorkPackage>());
 		WorkPackage backLog = null;
 		for (WorkPackage wp : workPackages) {
-			if (wp.getName().equalsIgnoreCase("backlog") && wp.getAllContainedModelElements().size() > 50) {
+			if (wp.getName().equalsIgnoreCase("backlog") && wp.getAllContainedWorkItems().size() > 50) {
 				// it looks we have multiple back logs :)
 				backLog = wp;
 			}
 		}
 
 		List<WorkItem> workItems = new ArrayList<WorkItem>();
-		for (ModelElement me : backLog.getAllContainedModelElements()) {
-			if (me instanceof Checkable && me instanceof WorkItem) {
+		for (WorkItem me : backLog.getAllContainedWorkItems()) {
+			if (me instanceof Checkable) {
 				try {
-					workItems.add((WorkItem) me);
+					workItems.add(me);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

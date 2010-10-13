@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.planner;
 
+import java.util.List;
+
 /**
  * An IterationPlan consists of multiple Iterations. The user defines number of iterations to plan before the planner
  * algorithm begins. An iteration has also a form like IterationPlan, i.e {(task, assignee, iteration)}. The difference
@@ -10,5 +12,20 @@ package org.unicase.iterationplanner.planner;
  * @author zardosht
  */
 public class Iteration {
+
+	private final int iterationNumber;
+	private List<TaskAssignee> taskAssignees;
+
+	public Iteration(int iterationNumber) {
+		this.iterationNumber = iterationNumber;
+	}
+
+	public int getIterationNumber() {
+		return iterationNumber;
+	}
+
+	public List<TaskAssignee> getTaskAssignees() {
+		return taskAssignees;
+	}
 
 }
