@@ -101,7 +101,7 @@ public class ServerTests {
 	private static HashMap<Class<?>, Object> arguments;
 
 	/**
-	 * Start server and gain sessionid
+	 * Start server and gain sessionid.
 	 * 
 	 * @throws EmfStoreException in case of failure
 	 */
@@ -117,6 +117,12 @@ public class ServerTests {
 		projectsOnServerBeforeTest = 1;
 		initArguments();
 	}
+
+	/**
+	 * sets users on server.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
 
 	public static void setupUsers() throws EmfStoreException {
 		try {

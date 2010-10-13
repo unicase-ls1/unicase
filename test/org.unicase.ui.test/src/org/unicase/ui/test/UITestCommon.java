@@ -53,12 +53,20 @@ public class UITestCommon {
 
 	}
 
-	public static Usersession createUsersession(User user) {
+	/**
+	 * Method to create a user session and related to a specific workspace.
+	 * 
+	 * @param user contains the user's properties
+	 * @param password contains the user's password
+	 * @return Usersession
+	 */
+
+	public static Usersession createUsersession(User user, String password) {
 		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
 		WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 		session.setServerInfo(SetupHelper.getServerInfo());
 		session.setUsername(user.getName());
-		session.setPassword("super");
+		session.setPassword(password);
 		return session;
 	}
 
