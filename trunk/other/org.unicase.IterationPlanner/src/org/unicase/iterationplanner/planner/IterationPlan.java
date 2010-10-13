@@ -13,6 +13,17 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	private final int numOfIterations;
 	private double score;
 
+	@Override
+	public IterationPlan clone() {
+		IterationPlan clone = new IterationPlan(this.numOfIterations);
+		for (int i = 0; i < this.iterations.length; i++) {
+			Iteration iteration = this.iterations[i];
+			clone.iterations[i] = iteration.clone();
+		}
+
+		return clone;
+	}
+
 	public IterationPlan(int numOfIterations) {
 		this.numOfIterations = numOfIterations;
 		iterations = new Iteration[numOfIterations];

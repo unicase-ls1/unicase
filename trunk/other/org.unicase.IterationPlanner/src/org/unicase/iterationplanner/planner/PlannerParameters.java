@@ -6,7 +6,7 @@ public final class PlannerParameters {
 
 	private final int populationSize;
 	private final int resultSize;
-	private final int maxNumOfIterations;
+	private final int maxNumOfGenerations;
 	private final int percentOfCrossOverChildren;
 	private final int precentOfMutants;
 	private final int percentOfClones;
@@ -18,7 +18,7 @@ public final class PlannerParameters {
 	/**
 	 * @param populationSize
 	 * @param resultSize
-	 * @param maxNumOfIterations
+	 * @param upperBoundOfRun
 	 * @param percentOfCrossOverChildren
 	 * @param precentOfMutants
 	 * @param percentOfClones
@@ -26,12 +26,12 @@ public final class PlannerParameters {
 	 * @param percentOfMutationCandidates
 	 * @param percentOfCloneCandidates
 	 */
-	public PlannerParameters(int populationSize, int resultSize, int maxNumOfIterations,
+	public PlannerParameters(int populationSize, int resultSize, int maxNumOfGenerations,
 		int percentOfCrossOverChildren, int precentOfMutants, int percentOfClones, int percentOfCrossOverParents,
 		int percentOfMutationCandidates, int percentOfCloneCandidates, Random random) {
 
 		this.populationSize = populationSize;
-		this.maxNumOfIterations = maxNumOfIterations;
+		this.maxNumOfGenerations = maxNumOfGenerations;
 		this.resultSize = resultSize;
 		this.percentOfCrossOverChildren = percentOfCrossOverChildren;
 		this.precentOfMutants = precentOfMutants;
@@ -46,8 +46,8 @@ public final class PlannerParameters {
 		return populationSize;
 	}
 
-	public int getMaxNumOfIterations() {
-		return maxNumOfIterations;
+	public int getMaxNumOfGenerations() {
+		return maxNumOfGenerations;
 	}
 
 	/**

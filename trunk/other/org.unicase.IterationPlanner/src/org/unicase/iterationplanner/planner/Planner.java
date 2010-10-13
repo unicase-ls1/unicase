@@ -7,25 +7,33 @@ import java.util.Map;
 
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 
-public class Planner {
+public abstract class Planner {
 
 	private final int numOfIterations;
-	private final List<TaskPotentialAssigneeList> taskAssignees;
+	private final List<TaskPotentialAssigneeList> taskPotentialAssigneeLists;
 	private final Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities;
-	private Evaluator evaluator;
-	private Selector selector;
-	private PlannerParameters parameters;
+	private final Evaluator evaluator;
+	private final Selector selector;
+	private final PlannerParameters plannerParameters;
 	private List<IterationPlan> population;
 
-	public Planner(int numOfIterations, List<TaskPotentialAssigneeList> taskAssignees,
+	/**
+	 * @param numOfIterations
+	 * @param taskAssignees
+	 * @param assigneeAvailabilities
+	 * @param iterationPlanEvaluator
+	 * @param selector
+	 * @param plannerParameters
+	 */
+	public Planner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
 		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities, Evaluator iterationPlanEvaluator,
-		Selector selector, PlannerParameters parameters) {
+		Selector selector, PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
-		this.taskAssignees = taskAssignees;
+		this.taskPotentialAssigneeLists = taskPotentialAssigneeLists;
 		this.assigneeAvailabilities = assigneeAvailabilities;
 		this.evaluator = iterationPlanEvaluator;
 		this.selector = selector;
-		this.setParameters(parameters);
+		this.plannerParameters = plannerParameters;
 
 	}
 
@@ -40,7 +48,7 @@ public class Planner {
 		evalutate();
 		Collections.sort(population);
 
-		for (int i = 0; i < parameters.getMaxNumOfIterations(); i++) {
+		for (int i = 0; i < plannerParameters.getMaxNumOfGenerations(); i++) {
 			if (isBreakCretieriaMet()) {
 				break;
 			}
@@ -51,7 +59,7 @@ public class Planner {
 		}
 
 		List<IterationPlan> result = new ArrayList<IterationPlan>();
-		result.addAll(population.subList(0, parameters.getResultSize() - 1));
+		result.addAll(population.subList(0, plannerParameters.getResultSize() - 1));
 
 		return result;
 	}
@@ -61,86 +69,77 @@ public class Planner {
 	 * 
 	 * @return
 	 */
-	private boolean isBreakCretieriaMet() {
-		return false;
-	}
+	protected abstract boolean isBreakCretieriaMet();
 
 	private void createNextGeneration() {
 		List<IterationPlan> nextGeneration = new ArrayList<IterationPlan>();
 
-		List<IterationPlan> parents = selector
-			.selectForCrossover(population, parameters.getPercentOfCrossOverParents());
-		List<IterationPlan> mutationCandidates = selector.selectForMutation(population, parameters
+		List<IterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
+			.getPercentOfCrossOverParents());
+		List<IterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
 			.getPercentOfMutationCandidates());
-		List<IterationPlan> clones = selector.selectForCloning(population, parameters.getPercentOfCloneCandidates());
+		List<IterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
+			.getPercentOfCloneCandidates());
 
-		crosOverInto(nextGeneration, parents);
+		crossoverInto(nextGeneration, crossoverParents);
 		mutateInto(nextGeneration, mutationCandidates);
-		copyInto(nextGeneration, clones);
+		copyInto(nextGeneration, cloneCandidates);
+
+		if (nextGeneration.size() < plannerParameters.getPopulationSize()) {
+			completeNextGeneration(nextGeneration);
+		} else if (nextGeneration.size() > plannerParameters.getPopulationSize()) {
+			trimNextGeneration(nextGeneration);
+		}
 
 		population.clear();
 		population.addAll(nextGeneration);
 
 	}
 
-	private void copyInto(List<IterationPlan> nextGeneration, List<IterationPlan> clones) {
+	protected abstract void trimNextGeneration(List<IterationPlan> nextGeneration);
 
-	}
+	protected abstract void completeNextGeneration(List<IterationPlan> nextGeneration);
 
-	private void mutateInto(List<IterationPlan> nextGeneration, List<IterationPlan> mutationCandidates) {
-		// TODO Auto-generated method stub
+	protected abstract void copyInto(List<IterationPlan> nextGeneration, List<IterationPlan> cloneCandidates);
 
-	}
+	protected abstract void mutateInto(List<IterationPlan> nextGeneration, List<IterationPlan> mutationCandidates);
 
-	private void crosOverInto(List<IterationPlan> nextGeneration, List<IterationPlan> parents) {
-		// TODO Auto-generated method stub
+	protected abstract void crossoverInto(List<IterationPlan> nextGeneration, List<IterationPlan> parentCandidates);
 
-	}
-
+	/**
+	 * evaluate each iteration plan in population, and give it a score; so that population can be sorted.
+	 */
 	private void evalutate() {
 		for (IterationPlan iterationPlan : population) {
-			evaluator.evaluate(iterationPlan);
+			double score = evaluator.evaluate(iterationPlan);
+			iterationPlan.setScore(score);
 		}
 	}
 
-	private void createInitialPopulation() {
-		population = new ArrayList<IterationPlan>();
-	}
+	protected abstract void createInitialPopulation();
 
 	public int getNumOfIterations() {
 		return numOfIterations;
-	}
-
-	public List<TaskPotentialAssigneeList> getTaskAssignees() {
-		return taskAssignees;
 	}
 
 	public Map<Integer, List<AssigneeAvailability>> getAssigneeAvailabilities() {
 		return assigneeAvailabilities;
 	}
 
-	public void setIterationPlanEvaluator(Evaluator iterationPlanEvaluator) {
-		this.evaluator = iterationPlanEvaluator;
-	}
-
 	public Evaluator getIterationPlanEvaluator() {
 		return evaluator;
 	}
 
-	public PlannerParameters getParameters() {
-		return parameters;
-	}
-
-	public void setParameters(PlannerParameters parameters) {
-		this.parameters = parameters;
-	}
-
-	public void setSelector(Selector selector) {
-		this.selector = selector;
+	public PlannerParameters getPlannerParameters() {
+		return plannerParameters;
 	}
 
 	public Selector getSelector() {
 		return selector;
+	}
+
+	protected List<TaskPotentialAssigneeList> getTaskPotentialAssigneeLists() {
+		return taskPotentialAssigneeLists;
 	}
 
 }

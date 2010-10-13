@@ -1,12 +1,18 @@
 package org.unicase.iterationplanner.planner;
 
+/**
+ * The evaluator evaluates an IterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
+ * an overall score for IterationPlan.
+ * 
+ * @author zardosht
+ */
 public abstract class Evaluator {
 
-	private final EvaluatorParameters parameters;
+	private final EvaluatorParameters evaluationParameters;
 	private IterationPlan iterationPlan;
 
-	public Evaluator(EvaluatorParameters parameters) {
-		this.parameters = parameters;
+	public Evaluator(EvaluatorParameters evaluationParameters) {
+		this.evaluationParameters = evaluationParameters;
 	}
 
 	public double evaluate(final IterationPlan iterationPlan) {
@@ -26,11 +32,11 @@ public abstract class Evaluator {
 
 	protected abstract double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore);
 
-	public EvaluatorParameters getParameters() {
-		return parameters;
+	public EvaluatorParameters getEvaluationParameters() {
+		return evaluationParameters;
 	}
 
-	public IterationPlan getIterationPlan() {
+	protected IterationPlan getIterationPlan() {
 		return iterationPlan;
 	}
 
