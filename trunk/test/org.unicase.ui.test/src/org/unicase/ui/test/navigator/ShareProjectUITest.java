@@ -64,7 +64,7 @@ public class ShareProjectUITest extends MEEditorTest {
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("super");
 				project.addModelElement(user1);
-				Usersession usersession = UITestCommon.createUsersession(user1);
+				Usersession usersession = UITestCommon.createUsersession(user1, "super");
 				try {
 					usersession.logIn();
 					projectSpace.shareProject(usersession); // the project has been shared programaticaly using the
