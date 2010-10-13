@@ -10,12 +10,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -28,6 +26,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author Hodaie
  */
+// TODO RAP
 public class ErrorReportDialog extends MessageDialog {
 
 	private IStatus status;
@@ -49,11 +48,9 @@ public class ErrorReportDialog extends MessageDialog {
 	 * @param status status
 	 */
 	public ErrorReportDialog(Shell parentShell, IStatus status) {
-		super(parentShell, "Error", null, status.getMessage(), MessageDialog.ERROR,
-			new String[] { IDialogConstants.OK_LABEL }, 0);
+		super(parentShell, "Error", null, status.getMessage(), MessageDialog.ERROR, new String[] {}, 0);
 		this.status = status;
 		if (status.getException() != null) {
-			setButtonLabels(new String[] { IDialogConstants.OK_LABEL, "Report", IDialogConstants.SHOW_DETAILS_LABEL });
 			reportButtonID = 1;
 			detailButtonID = 2;
 			extractDetailText();
@@ -114,10 +111,9 @@ public class ErrorReportDialog extends MessageDialog {
 		if (txtDetails != null) {
 			txtDetails.dispose();
 			txtDetails = null;
-			getButton(detailButtonID).setText(IDialogConstants.SHOW_DETAILS_LABEL);
 		} else {
 			createDropDownText((Composite) getContents());
-			getButton(detailButtonID).setText(IDialogConstants.HIDE_DETAILS_LABEL);
+			;
 		}
 
 		Point newSize = getContents().computeSize(SWT.DEFAULT, SWT.DEFAULT);
@@ -156,8 +152,6 @@ public class ErrorReportDialog extends MessageDialog {
 		String message = sb.toString();
 
 		boolean successful = false;
-
-		successful = Program.launch(message);
 
 		if (!successful) {
 			MessageDialog

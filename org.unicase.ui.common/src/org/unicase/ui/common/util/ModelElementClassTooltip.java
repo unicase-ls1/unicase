@@ -6,8 +6,6 @@
 package org.unicase.ui.common.util;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.jface.window.DefaultToolTip;
-import org.eclipse.jface.window.ToolTip;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 
@@ -16,7 +14,8 @@ import org.eclipse.swt.widgets.Event;
  * 
  * @author Shterev
  */
-public class ModelElementClassTooltip extends DefaultToolTip {
+// TODO RAP
+public class ModelElementClassTooltip {
 
 	/**
 	 * Default constructor.
@@ -24,13 +23,11 @@ public class ModelElementClassTooltip extends DefaultToolTip {
 	 * @param control the control that should receive the tooltip
 	 */
 	public ModelElementClassTooltip(Control control) {
-		super(control, ToolTip.NO_RECREATE, false);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected String getText(Event event) {
 		Object o = getElement(event);
 		return ((EClass) o).getName();
@@ -39,10 +36,9 @@ public class ModelElementClassTooltip extends DefaultToolTip {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected boolean shouldCreateToolTip(Event event) {
 		final Object element = getElement(event);
-		return (element != null && element instanceof EClass && super.shouldCreateToolTip(event));
+		return false;
 	}
 
 	private Object getElement(Event event) {

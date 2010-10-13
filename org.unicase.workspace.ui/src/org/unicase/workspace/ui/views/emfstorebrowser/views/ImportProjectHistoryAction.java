@@ -6,7 +6,6 @@
 
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,12 +16,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -31,15 +27,14 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * Action to import project history to server.
  * 
  * @author hodaie
- * 
  */
+// TODO RAP
 public class ImportProjectHistoryAction extends Action {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project History Files (*.uph)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project History Files (*.uph)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -52,7 +47,6 @@ public class ImportProjectHistoryAction extends Action {
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 */
 	@Override
 	public void run() {
@@ -61,12 +55,11 @@ public class ImportProjectHistoryAction extends Action {
 			return;
 		}
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(
-				"Import project history...", 100);
+		progressDialog.getProgressMonitor().beginTask("Import project history...", 100);
 		progressDialog.getProgressMonitor().worked(10);
 
 		ProjectHistory projectHistory = null;
@@ -74,11 +67,9 @@ public class ImportProjectHistoryAction extends Action {
 			projectHistory = getProjectHistory(absoluteFileName);
 			if (usersession != null && projectHistory != null) {
 				WorkspaceManager.getInstance().getConnectionManager()
-						.importProjectHistoryToServer(
-								usersession.getSessionId(), projectHistory);
-				MessageDialog.openInformation(null, "Import",
-						"Imported project history from file: "
-								+ absoluteFileName);
+					.importProjectHistoryToServer(usersession.getSessionId(), projectHistory);
+				MessageDialog
+					.openInformation(null, "Import", "Imported project history from file: " + absoluteFileName);
 			}
 
 		} catch (EmfStoreException e) {
@@ -93,18 +84,14 @@ public class ImportProjectHistoryAction extends Action {
 
 	}
 
-	private ProjectHistory getProjectHistory(String absoluteFileName)
-			throws IOException {
+	private ProjectHistory getProjectHistory(String absoluteFileName) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI
-				.createFileURI(absoluteFileName), true);
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1
-				&& (!(directContents.get(0) instanceof ProjectHistory))) {
-			throw new IOException(
-					"File is corrupt, does not contain a ProjectHistory.");
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectHistory))) {
+			throw new IOException("File is corrupt, does not contain a ProjectHistory.");
 		}
 
 		ProjectHistory projectHistory = (ProjectHistory) directContents.get(0);
@@ -115,36 +102,13 @@ public class ImportProjectHistoryAction extends Action {
 	}
 
 	private String showOpenFileDialog() {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
-		dialog.setFilterNames(FILTER_NAMES);
-		dialog.setFilterExtensions(FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(
-				IMPORT_PROJECT_HISTORY_PATH, System.getProperty("user.home"));
-		dialog.setFilterPath(initialPath);
-		String fn = dialog.open();
-		if (fn == null) {
-			return null;
-		}
-		PreferenceHelper.setPreference(IMPORT_PROJECT_HISTORY_PATH, dialog
-				.getFilterPath());
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-
-		stringBuilder.append(fileName);
-		String absoluteFileName = stringBuilder.toString();
-		return absoluteFileName;
+		return "";
 	}
 
 	/**
 	 * Sets the usersession.
 	 * 
-	 * @param session
-	 *            user session
+	 * @param session user session
 	 */
 	public void setUsersession(Usersession session) {
 		this.usersession = session;

@@ -7,8 +7,6 @@ package org.unicase.ui.common.util;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.window.DefaultToolTip;
-import org.eclipse.jface.window.ToolTip;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 
@@ -17,7 +15,8 @@ import org.eclipse.swt.widgets.Event;
  * 
  * @author Shterev
  */
-public class ModelElementTooltip extends DefaultToolTip {
+// TODO RAP
+public class ModelElementTooltip {
 
 	private AdapterFactoryLabelProvider labelProvider;
 
@@ -27,7 +26,6 @@ public class ModelElementTooltip extends DefaultToolTip {
 	 * @param control the control that should receive the tooltip
 	 */
 	public ModelElementTooltip(Control control) {
-		super(control, ToolTip.NO_RECREATE, false);
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
@@ -35,7 +33,6 @@ public class ModelElementTooltip extends DefaultToolTip {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected String getText(Event event) {
 		Object o = getElement(event);
 		return labelProvider.getText(o);
@@ -45,9 +42,8 @@ public class ModelElementTooltip extends DefaultToolTip {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected boolean shouldCreateToolTip(Event event) {
-		return (getElement(event) != null && super.shouldCreateToolTip(event));
+		return false;
 	}
 
 	private Object getElement(Event event) {

@@ -7,7 +7,11 @@ Bundle-Activator: org.unicase.ui.navigator.Activator
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.unicase.ui.meeditor;visibility:=reexport
+Require-Bundle: org.unicase.ui.meeditor;visibility:=reexport,
+ org.eclipse.rap.jface,
+ org.eclipse.rap.ui.workbench,
+ org.eclipse.emf.rap.edit.ui,
+ org.eclipse.rap.ui.views;bundle-version="1.4.0"
 Export-Package: org.unicase.ui.navigator,
  org.unicase.ui.navigator.commands,
  org.unicase.ui.navigator.handler,
@@ -16,4 +20,5 @@ Export-Package: org.unicase.ui.navigator,
  org.unicase.ui.navigator.workSpaceModel.impl,
  org.unicase.ui.navigator.workSpaceModel.provider,
  org.unicase.ui.navigator.workSpaceModel.util
+Import-Package: org.eclipse.emf.transaction.ui.provider
 

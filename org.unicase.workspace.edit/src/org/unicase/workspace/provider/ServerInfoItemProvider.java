@@ -25,16 +25,16 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.workspace.ServerInfo} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.workspace.ServerInfo} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ServerInfoItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServerInfoItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +42,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,86 +62,95 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Url feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Url feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_url_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_url_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Port feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Port feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_port_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_port_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__PORT, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Infos feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Project Infos feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProjectInfosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_projectInfos_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_projectInfos_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_projectInfos_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__PROJECT_INFOS, true, false, true, null,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Usersession feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Last Usersession feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLastUsersessionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_lastUsersession_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_lastUsersession_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_lastUsersession_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__LAST_USERSESSION, true, false, true,
 			null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Certificate Alias feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Certificate Alias feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCertificateAliasPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_certificateAlias_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_certificateAlias_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_certificateAlias_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns ServerInfo.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ServerInfo.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,8 +159,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -184,9 +193,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -195,8 +204,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

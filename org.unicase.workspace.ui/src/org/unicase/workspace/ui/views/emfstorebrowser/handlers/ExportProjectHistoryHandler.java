@@ -6,7 +6,6 @@
 
 package org.unicase.workspace.ui.views.emfstorebrowser.handlers;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -21,18 +20,14 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.commands.ExportProjectHandler;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -40,13 +35,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author hodaie
  */
+// TODO RAP
 public class ExportProjectHistoryHandler extends AbstractHandler {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.uph)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.uph)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -60,14 +55,11 @@ public class ExportProjectHistoryHandler extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 
 		if (!(obj instanceof TreeNode)) {
@@ -83,27 +75,21 @@ public class ExportProjectHistoryHandler extends AbstractHandler {
 			return null;
 		}
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(
-				"Export project history...", 100);
+		progressDialog.getProgressMonitor().beginTask("Export project history...", 100);
 		progressDialog.getProgressMonitor().worked(10);
 
 		ProjectHistory projectHistory = null;
 		try {
 			if (usersession != null) {
-				projectHistory = WorkspaceManager.getInstance()
-						.getConnectionManager().exportProjectHistoryFromServer(
-								usersession.getSessionId(),
-								projectInfo.getProjectId());
+				projectHistory = WorkspaceManager.getInstance().getConnectionManager()
+					.exportProjectHistoryFromServer(usersession.getSessionId(), projectInfo.getProjectId());
 				saveProjectHistory(projectHistory, absoluteFileName);
 
-				MessageDialog
-						.openInformation(null, "Import",
-								"Exported project history to file: "
-										+ absoluteFileName);
+				MessageDialog.openInformation(null, "Import", "Exported project history to file: " + absoluteFileName);
 			}
 
 		} catch (EmfStoreException e) {
@@ -119,47 +105,22 @@ public class ExportProjectHistoryHandler extends AbstractHandler {
 
 	}
 
-	private void saveProjectHistory(ProjectHistory projectHistory,
-			String absoluteFileName) throws IOException {
+	private void saveProjectHistory(ProjectHistory projectHistory, String absoluteFileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(absoluteFileName));
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		resource.getContents().add(projectHistory);
 		resource.save(null);
 
 	}
 
 	private String showSaveFileDialog() {
-
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
-		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
-		dialog.setOverwrite(true);
-		String initialPath = PreferenceHelper.getPreference(
-				EXPORT_PROJECT_HISTORY_PATH, System.getProperty("user.home"));
-		dialog.setFilterPath(initialPath);
-		String initialFileName = projectInfo.getName() + ".uph";
-		dialog.setFileName(initialFileName);
-
-		// dialog
-		String fn = dialog.open();
-		if (fn == null) {
-			return null;
-		}
-
-		final File file = new File(fn);
-		PreferenceHelper.setPreference(EXPORT_PROJECT_HISTORY_PATH, dialog
-				.getFilterPath());
-
-		return file.getAbsolutePath();
+		return "";
 	}
 
 	/**
 	 * Sets the user sesssion.
 	 * 
-	 * @param session
-	 *            user session
+	 * @param session user session
 	 */
 	public void setUsersession(Usersession session) {
 		this.usersession = session;
@@ -168,8 +129,7 @@ public class ExportProjectHistoryHandler extends AbstractHandler {
 	/**
 	 * Sets the project info, whose history will be exported.
 	 * 
-	 * @param projectInfo
-	 *            project info
+	 * @param projectInfo project info
 	 */
 	public void setProjectInfo(ProjectInfo projectInfo) {
 		this.projectInfo = projectInfo;
