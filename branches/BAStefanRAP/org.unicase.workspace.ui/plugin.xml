@@ -1096,39 +1096,6 @@
  
      
      <extension
-           point="org.eclipse.ui.bindings">
-        <key
-              commandId="org.unicase.workspace.ui.commitProject"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+C">
-        </key>
-        <key
-              commandId="org.unicase.workspace.ui.updateProject"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+P">
-        </key>
-        <key
-              commandId="org.unicase.workspace.ui.deleteProject"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+Delete">
-        </key>
-        <key
-              commandId="org.unicase.workspace.ui.projectProperties"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+E">
-        </key>
-        <key
-              commandId="org.unicase.workspace.ui.validate"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+V">
-        </key>
-     </extension>
-     <extension
            point="org.eclipse.core.expressions.propertyTesters">
         <propertyTester
               class="org.unicase.workspace.ui.commands.ProjectIsSharedTester"

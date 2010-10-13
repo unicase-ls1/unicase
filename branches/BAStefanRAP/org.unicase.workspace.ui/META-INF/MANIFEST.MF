@@ -5,7 +5,13 @@ Bundle-SymbolicName: org.unicase.workspace.ui; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.workspace.ui.Activator
 Require-Bundle: org.unicase.workspace.edit;visibility:=reexport,
- org.unicase.ui.common;visibility:=reexport
+ org.unicase.ui.common;visibility:=reexport,
+ org.eclipse.emf.rap.edit.ui,
+ org.eclipse.rap.jface,
+ org.eclipse.rap.ui.workbench,
+ org.eclipse.rap.ui.views;bundle-version="1.4.0",
+ org.eclipse.rap.ui.forms,
+ org.eclipse.core.resources
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: diff.match.patch,

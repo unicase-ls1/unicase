@@ -61,10 +61,12 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UniqueIdentifier_id_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
-			MetamodelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UniqueIdentifier_id_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature",
+				"_UI_UniqueIdentifier_type"), MetamodelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

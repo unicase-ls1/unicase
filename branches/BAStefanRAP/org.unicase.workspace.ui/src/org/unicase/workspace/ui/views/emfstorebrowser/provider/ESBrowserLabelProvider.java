@@ -6,7 +6,6 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
@@ -19,6 +18,7 @@ import org.unicase.workspace.ui.Activator;
  * 
  * @author shterev
  */
+// TODO RAP
 public class ESBrowserLabelProvider extends ColumnLabelProvider {
 
 	/**
@@ -70,19 +70,11 @@ public class ESBrowserLabelProvider extends ColumnLabelProvider {
 			Object element = ((TreeNode) obj).getValue();
 			if (element instanceof ServerInfo) {
 				ServerInfo serverInfo = (ServerInfo) element;
-				StyledString styledString = new StyledString(serverInfo.getName());
 				String url = serverInfo.getUrl();
-				styledString.append(" [" + url + "]", StyledString.DECORATIONS_STYLER);
-
-				cell.setText(styledString.toString());
-				cell.setStyleRanges(styledString.getStyleRanges());
 
 				cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif").createImage());
 			} else if (element instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) element;
-				StyledString styledString = new StyledString(projectInfo.getName());
-				cell.setText(styledString.toString());
-				cell.setStyleRanges(styledString.getStyleRanges());
 
 				cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif").createImage());
 			}

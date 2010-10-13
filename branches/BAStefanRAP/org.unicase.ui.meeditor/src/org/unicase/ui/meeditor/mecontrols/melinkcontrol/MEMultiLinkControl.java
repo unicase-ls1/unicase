@@ -41,6 +41,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author helming
  */
+// TODO RAP
 public class MEMultiLinkControl extends AbstractMEControl {
 
 	/**
@@ -68,7 +69,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 					linkArea.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 				} else {
 
-					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.TRANSPARENT);
+					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL | SWT.H_SCROLL);
 					scrollClient = new Composite(scrollPane, style);
 					scrollPane.setContent(scrollClient);
 					getToolkit().getColors().createColor("white", 255, 255, 255);

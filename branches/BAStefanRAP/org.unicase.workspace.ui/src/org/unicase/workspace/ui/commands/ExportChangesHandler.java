@@ -13,8 +13,6 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
@@ -26,13 +24,13 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Hodaie
  */
+// TODO RAP
 public class ExportChangesHandler extends AbstractHandler {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase change package (*.ucc)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase change package (*.ucc)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -44,29 +42,18 @@ public class ExportChangesHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
-		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
-		dialog.setOverwrite(true);
-		String fn = dialog.open();
-		if (fn == null) {
-			return null;
-		}
-
-		final File file = new File(fn);
+		final File file = new File("");
 
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Export changs...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export changs...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportLocalChanges(file.getAbsolutePath());
 				} catch (IOException e) {
@@ -77,8 +64,7 @@ public class ExportChangesHandler extends AbstractHandler {
 				}
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Export",
-				"Exported changes to file " + file.getName());
+		MessageDialog.openInformation(null, "Export", "Exported changes to file " + file.getName());
 		return null;
 	}
 

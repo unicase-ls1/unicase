@@ -61,8 +61,10 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	 * @generated
 	 */
 	protected void addReleaseNumberPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelVersion_releaseNumber_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ModelVersion_releaseNumber_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ModelVersion_releaseNumber_feature",
 				"_UI_ModelVersion_type"), MetamodelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));

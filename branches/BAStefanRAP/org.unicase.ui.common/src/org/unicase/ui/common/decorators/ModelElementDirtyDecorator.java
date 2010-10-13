@@ -15,7 +15,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -25,6 +24,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author Helming
  */
+// TODO RAP
 public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 
 	private String dirtyPath = "icons/dirty.jpg";
@@ -49,7 +49,7 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 		if (element instanceof EObject) {
 
 			EObject modelElement = (EObject) element;
-			if(ModelUtil.getProject(modelElement) == null) {
+			if (ModelUtil.getProject(modelElement) == null) {
 				return;
 			}
 

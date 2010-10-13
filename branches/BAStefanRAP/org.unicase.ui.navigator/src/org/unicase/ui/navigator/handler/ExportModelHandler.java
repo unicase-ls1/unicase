@@ -19,8 +19,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.util.ModelUtil;
@@ -32,6 +30,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 /**
  * Handles the export of ModelElements from a project.
  */
+// TODO RAP
 public class ExportModelHandler extends AbstractHandler {
 
 	/**
@@ -127,26 +126,8 @@ public class ExportModelHandler extends AbstractHandler {
 	}
 
 	private String getFilePathByFileDialog(String modelElementName) {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(FILTER_NAMES);
-		dialog.setFilterExtensions(FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(EXPORT_MODEL_PATH, System.getProperty("user.home"));
-		dialog.setFilterPath(initialPath);
-		dialog.setOverwrite(true);
 
-		try {
-			// String initialFileName = projectSpace.getProjectName() + "@"
-			// + projectSpace.getBaseVersion().getIdentifier() + ".ucp";
-			String initialFileName = "ModelElement_" + modelElementName + ".ucm";
-			dialog.setFileName(initialFileName);
-
-		} catch (NullPointerException e) {
-			// do nothing
-		}
-
-		String filePath = dialog.open();
-
-		return filePath;
+		return "";
 	}
 
 }

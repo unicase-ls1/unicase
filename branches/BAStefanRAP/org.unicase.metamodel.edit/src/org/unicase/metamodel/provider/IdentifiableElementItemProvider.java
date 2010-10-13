@@ -61,8 +61,10 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_IdentifiableElement_identifier_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_IdentifiableElement_identifier_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_IdentifiableElement_identifier_feature",
 				"_UI_IdentifiableElement_type"), MetamodelPackage.Literals.IDENTIFIABLE_ELEMENT__IDENTIFIER, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

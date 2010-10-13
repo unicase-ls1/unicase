@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.navigator.handler;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,19 +20,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handles the import of ModelElements into a project.
  */
+// TODO RAP
 public class ImportModelHandler extends AbstractHandler {
 
 	/**
@@ -166,24 +163,7 @@ public class ImportModelHandler extends AbstractHandler {
 	}
 
 	private String getFileName() {
-
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
-		dialog.setFilterNames(FILTER_NAMES);
-		dialog.setFilterExtensions(FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(IMPORT_MODEL_PATH, System.getProperty("user.home"));
-		dialog.setFilterPath(initialPath);
-
-		String fileName = dialog.open();
-
-		if (fileName == null) {
-			return null;
-		}
-
-		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
-
-		PreferenceHelper.setPreference(IMPORT_MODEL_PATH, file.getParent());
-
-		return file.getAbsolutePath();
+		return "";
 	}
 
 	/**

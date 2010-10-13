@@ -31,7 +31,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -51,7 +50,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -92,6 +90,7 @@ import org.unicase.workspace.util.ProjectSpaceContainer;
  * @author Wesendonk
  * @author Shterev
  */
+// TODO RAP
 public class HistoryBrowserView extends ViewPart implements ProjectSpaceContainer {
 
 	/**
@@ -182,7 +181,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 						&& (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)) {
 						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
 						try {
-							helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
+							helper.checkProjectAdminAccess(EcoreUtil.copy(projectSpace.getProjectId()));
 							manager.add(addTagAction);
 							manager.add(removeTagAction);
 							manager.add(new Separator());
@@ -196,7 +195,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 					manager.add(checkoutAction);
 					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
 					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
+						helper.checkProjectAdminAccess(EcoreUtil.copy(projectSpace.getProjectId()));
 						manager.add(revertAction);
 						manager.add(forceRevertAction);
 					} catch (AccessControlException e) {
@@ -313,7 +312,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		getSite().setSelectionProvider(viewer);
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
-		ColumnViewerToolTipSupport.enableFor(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
@@ -747,8 +745,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(projectSpace.getUsersession(),
-					projectSpace.getProjectInfo(), versionSpec);
+				WorkspaceManager.getInstance().getCurrentWorkspace()
+					.checkout(projectSpace.getUsersession(), projectSpace.getProjectInfo(), versionSpec);
 				return null;
 			}
 
@@ -832,11 +830,14 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(),
-			projectSpace.getProjectInfo(),
-			connectionManager.resolveVersionSpec(projectSpace.getUsersession().getSessionId(), projectSpace
-				.getProjectId(), VersionSpec.HEAD_VERSION));
+		ProjectSpace revertSpace = WorkspaceManager
+			.getInstance()
+			.getCurrentWorkspace()
+			.checkout(
+				projectSpace.getUsersession(),
+				projectSpace.getProjectInfo(),
+				connectionManager.resolveVersionSpec(projectSpace.getUsersession().getSessionId(),
+					projectSpace.getProjectId(), VersionSpec.HEAD_VERSION));
 		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
 		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
 		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
@@ -849,8 +850,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec) throws EmfStoreException {
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(), projectSpace.getProjectInfo(), versionSpec);
+		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.checkout(projectSpace.getUsersession(), projectSpace.getProjectInfo(), versionSpec);
 		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
 		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
 		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
@@ -914,7 +915,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				PrimaryVersionSpec versionSpec = EcoreUtil.copy(historyInfo.getPrimerySpec());
 				checkout(versionSpec);
 			}
 		};
@@ -927,7 +928,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				PrimaryVersionSpec versionSpec = EcoreUtil.copy(historyInfo.getPrimerySpec());
 				revertCommit(versionSpec);
 			}
 		};
@@ -941,7 +942,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				PrimaryVersionSpec versionSpec = EcoreUtil.copy(historyInfo.getPrimerySpec());
 				forceRevertCommit(versionSpec);
 			}
 		};
@@ -955,7 +956,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				PrimaryVersionSpec versionSpec = EcoreUtil.copy(historyInfo.getPrimerySpec());
 				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Add tag",
 					"Please enter the tag's name.", "", null);
 				inputDialog.open();

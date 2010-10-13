@@ -6,8 +6,6 @@
 package org.unicase.ui.meeditor.mecontrols;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.jface.window.DefaultToolTip;
-import org.eclipse.jface.window.ToolTip;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 
@@ -16,7 +14,8 @@ import org.eclipse.swt.widgets.Event;
  * 
  * @author Shterev
  */
-public class FeatureHintTooltipSupport extends DefaultToolTip {
+// TODO RAP
+public class FeatureHintTooltipSupport {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
@@ -27,14 +26,12 @@ public class FeatureHintTooltipSupport extends DefaultToolTip {
 	 * @param itemPropertyDescriptor the feature's property descriptor.
 	 */
 	public FeatureHintTooltipSupport(Control control, IItemPropertyDescriptor itemPropertyDescriptor) {
-		super(control, ToolTip.NO_RECREATE, false);
 		this.itemPropertyDescriptor = itemPropertyDescriptor;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected String getText(Event event) {
 		Object o = getElement(event);
 		String description = itemPropertyDescriptor.getDescription(o);
@@ -45,9 +42,8 @@ public class FeatureHintTooltipSupport extends DefaultToolTip {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected boolean shouldCreateToolTip(Event event) {
-		return (getElement(event) != null && super.shouldCreateToolTip(event));
+		return true;
 	}
 
 	private Object getElement(Event event) {

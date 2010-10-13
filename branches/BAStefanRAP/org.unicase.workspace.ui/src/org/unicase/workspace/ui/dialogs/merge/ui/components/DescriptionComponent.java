@@ -11,8 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyleRange;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,6 +29,7 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
  * 
  * @author wesendon
  */
+// TODO RAP
 public class DescriptionComponent extends Composite {
 
 	/**
@@ -52,11 +51,9 @@ public class DescriptionComponent extends Composite {
 		image.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
 		image.setBackground(parent.getBackground());
 
-		ArrayList<StyleRange> styleRanges = new ArrayList<StyleRange>();
 		String description = "";
 		for (String tmp : splitText(parent, conflict.getConflictDescription())) {
 			if (tmp.startsWith("::")) {
-				styleRanges.add(createStyleRange(description.length(), tmp.length() - 2));
 				description += tmp.substring(2);
 			} else {
 				description += tmp;
@@ -71,22 +68,6 @@ public class DescriptionComponent extends Composite {
 		group.setLayout(groupLayout);
 		group.setBackground(parent.getBackground());
 		group.setText("Conflict Description:");
-
-		StyledText styledDescription = new StyledText(group, SWT.WRAP | SWT.MULTI | SWT.READ_ONLY);
-		styledDescription.setEditable(false);
-		styledDescription.setEnabled(false);
-		styledDescription.setText(description + "\n");
-		styledDescription.setWordWrap(true);
-		styledDescription.setStyleRanges(styleRanges.toArray(new StyleRange[styleRanges.size()]));
-		styledDescription.setBackground(parent.getBackground());
-	}
-
-	private StyleRange createStyleRange(int start, int length) {
-		StyleRange styleRange = new StyleRange();
-		styleRange.start = start;
-		styleRange.length = length;
-		styleRange.fontStyle = SWT.BOLD;
-		return styleRange;
 	}
 
 	private List<String> splitText(DecisionBox box, ConflictDescription conflict) {

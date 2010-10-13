@@ -11,9 +11,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -27,6 +24,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author Shterev
  */
+// TODO RAP
 public final class URLHelper {
 
 	/**
@@ -160,12 +158,6 @@ public final class URLHelper {
 
 		final Composite icon = new Composite(c, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(16, 16).applyTo(icon);
-		icon.addPaintListener(new PaintListener() {
-			public void paintControl(PaintEvent e) {
-				Rectangle area = icon.getClientArea();
-				e.gc.drawImage(labelProvider.getImage(modelElement), area.x, area.y);
-			}
-		});
 
 		Link link = new Link(c, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(link);

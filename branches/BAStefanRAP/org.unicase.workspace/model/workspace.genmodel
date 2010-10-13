@@ -5,7 +5,8 @@
     modelDirectory="/org.unicase.workspace/src" modelPluginID="org.unicase.workspace"
     modelName="Workspace" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
     containmentProxies="true" complianceLevel="5.0" copyrightFields="false" language=""
-    usedGenPackages="../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
+    usedGenPackages="../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel"
+    runtimePlatform="RAP">
   <foreignModel>workspace.ecore</foreignModel>
   <genPackages prefix="Workspace" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="workspace.ecore#/">

@@ -6,7 +6,7 @@
     editorDirectory="/org.unicase.metamodel.editor/src" modelPluginID="org.unicase.metamodel"
     modelName="Metamodel" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
     containmentProxies="true" complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="org.unicase.metamodel.provider.RootElementItemProvider"
-    editorPluginID="org.unicase.metamodel.editor" language="">
+    editorPluginID="org.unicase.metamodel.editor" language="" runtimePlatform="RAP">
   <foreignModel>metamodel.ecore</foreignModel>
   <genPackages prefix="Metamodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="metamodel.ecore#/">
