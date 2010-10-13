@@ -1,12 +1,26 @@
 package org.unicase.iterationplanner.planner;
 
 import java.util.List;
+import java.util.Random;
 
-public interface Selector {
+public abstract class Selector {
 
-	List<IterationPlan> selectForCrossover(final List<IterationPlan> population, int percentOfCrossOverParents);
+	private final Random random;
 
-	List<IterationPlan> selectForMutation(final List<IterationPlan> population, int percentOfMutationsCandidates);
+	public Selector(Random random) {
+		this.random = random;
+	}
 
-	List<IterationPlan> selectForCloning(final List<IterationPlan> population, int percentOfCloneCandidates);
+	protected abstract List<IterationPlan> selectForCrossover(final List<IterationPlan> population,
+		int percentOfCrossOverParents);
+
+	protected abstract List<IterationPlan> selectForMutation(final List<IterationPlan> population,
+		int percentOfMutationsCandidates);
+
+	protected abstract List<IterationPlan> selectForCloning(final List<IterationPlan> population,
+		int percentOfCloneCandidates);
+
+	public Random getRandom() {
+		return random;
+	}
 }

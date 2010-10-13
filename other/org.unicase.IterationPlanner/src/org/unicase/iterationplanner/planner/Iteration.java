@@ -1,5 +1,6 @@
 package org.unicase.iterationplanner.planner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,11 +21,23 @@ public class Iteration {
 		this.iterationNumber = iterationNumber;
 	}
 
+	@Override
+	public Iteration clone() {
+		Iteration clone = new Iteration(this.iterationNumber);
+		for (TaskAssignee taskAssignee : this.taskAssignees) {
+			clone.getTaskAssignees().add(taskAssignee.clone());
+		}
+		return clone;
+	}
+
 	public int getIterationNumber() {
 		return iterationNumber;
 	}
 
 	public List<TaskAssignee> getTaskAssignees() {
+		if (taskAssignees == null) {
+			taskAssignees = new ArrayList<TaskAssignee>();
+		}
 		return taskAssignees;
 	}
 

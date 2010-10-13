@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
@@ -133,10 +134,10 @@ public class TaskPool {
 
 	private List<Task> getTasks(WorkPackage wp) {
 		List<Task> result = new ArrayList<Task>();
-		for (WorkItem me : wp.getAllContainedWorkItems()) {
-			if (me instanceof Checkable) {
+		for (ModelElement me : wp.getAllContainedModelElements()) {
+			if (me instanceof WorkItem && me instanceof Checkable) {
 				try {
-					result.add(new Task(me));
+					result.add(new Task((WorkItem) me));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

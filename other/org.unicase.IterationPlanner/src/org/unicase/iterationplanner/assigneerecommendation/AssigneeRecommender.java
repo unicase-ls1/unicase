@@ -19,7 +19,7 @@ public class AssigneeRecommender {
 		return recommendationStrategy;
 	}
 
-	public List<TaskPotentialAssigneeList> getTaskAssignees() {
+	public List<TaskPotentialAssigneeList> getTaskPotenialAssigneeLists() {
 
 		List<TaskPotentialAssigneeList> result = new ArrayList<TaskPotentialAssigneeList>();
 		for (Task task : TaskPool.getInstance().getTasksToPlan()) {

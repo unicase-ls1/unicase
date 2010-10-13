@@ -18,6 +18,13 @@ public class TaskAssignee {
 		this.task = task;
 	}
 
+	@Override
+	public TaskAssignee clone() {
+		TaskAssignee clone = new TaskAssignee(this.task);
+		clone.setAssignee(this.assignee);
+		return clone;
+	}
+
 	public Task getTask() {
 		return task;
 	}
