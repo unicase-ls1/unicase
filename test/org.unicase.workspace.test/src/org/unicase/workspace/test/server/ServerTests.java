@@ -101,7 +101,7 @@ public class ServerTests {
 	private static HashMap<Class<?>, Object> arguments;
 
 	/**
-	 * Start server and gain sessionid.
+	 * Start server and gain sessionid
 	 * 
 	 * @throws EmfStoreException in case of failure
 	 */
@@ -118,7 +118,7 @@ public class ServerTests {
 		initArguments();
 	}
 
-	private static void setupUsers() throws EmfStoreException {
+	public static void setupUsers() throws EmfStoreException {
 		try {
 			ACOrgUnitId orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "reader");
 			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getReaderRole(),
