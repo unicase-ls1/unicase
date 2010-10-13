@@ -8,14 +8,16 @@ package org.unicase.ui.test.navigator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.unicase.metamodel.Project;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.ConnectionException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.document.LeafSection;
 import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.SetupHelper;
+import org.unicase.workspace.test.server.ServerTests;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -24,16 +26,45 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class UpdateProjectUITest extends MEEditorTest {
 
-	private ProjectSpace projectSpace;
-	private LeafSection leafSection;
+	private static ProjectSpace projectSpace;
+	private static LeafSection leafSection;
+	private static SessionId sessionId;
 
 	/**
-	 * Setup the environment for testing by starting the server.
+	 * Setup the environment for testing by starting the server, loging with the admin.
 	 */
 	@BeforeClass
 	public static void beforeClass() {
 
 		SetupHelper.startSever();
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				// Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+				// projectSpace = currentWorkspace.getActiveProjectSpace();
+				// Project project = projectSpace.getProject();
+				try {
+					sessionId = ServerTests.login(SetupHelper.getServerInfo(), "super", "super");
+				} catch (EmfStoreException e1) {
+					// Exception
+				}
+				try {
+					WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(
+						SetupHelper.getServerInfo(), sessionId);
+				} catch (ConnectionException e1) {
+
+					// Exception
+				}
+				try {
+					ServerTests.setupUsers();
+				} catch (EmfStoreException e) {
+
+				}
+
+			}
+		}.run();
+
 	}
 
 	/**
@@ -45,16 +76,6 @@ public class UpdateProjectUITest extends MEEditorTest {
 	@Test
 	public void updateProjectUpdate() {
 		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-				projectSpace = currentWorkspace.getActiveProjectSpace();
-				Project project = projectSpace.getProject();
-
-			}
-		}.run();
 
 		getBot().sleep(30000);
 	}
@@ -65,6 +86,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void updateProjectChange() {
+
 	}
 
 	/**
@@ -77,4 +99,5 @@ public class UpdateProjectUITest extends MEEditorTest {
 		SetupHelper.stopServer();
 
 	}
+
 }
