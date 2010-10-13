@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="org.unicase.rap.ui.start.Perspective"
+            id="org.unicase.rap.ui.example.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.ui.navigator.TreeView"
+            id="org.unicase.ui.navigator.viewer"
+            name="Navigator"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            class="org.unicase.rap.ui.start.Application"
+            id="unicase"
+            parameter="unicase">
+      </entrypoint>
+   </extension>
+
+</plugin>
