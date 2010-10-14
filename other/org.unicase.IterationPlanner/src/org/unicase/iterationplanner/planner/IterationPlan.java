@@ -71,4 +71,20 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return plannedTasks;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof IterationPlan)) {
+			return false;
+		}
+		IterationPlan incomming = (IterationPlan) obj;
+		if (this.iterations.length != incomming.iterations.length) {
+			return false;
+		}
+		for (int i = 0; i < this.iterations.length; i++) {
+			if (!(this.iterations[i].equals(incomming.iterations[i]))) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

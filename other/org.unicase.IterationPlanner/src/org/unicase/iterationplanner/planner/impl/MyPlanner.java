@@ -76,7 +76,8 @@ public class MyPlanner extends Planner {
 
 			// set its assignee and put it into an iteration
 			PlannedTask plannedTask = new PlannedTask(taskPotentialAssigneeList.getTask());
-			plannedTask.setAssigneeExpertise(taskPotentialAssigneeList.getRecommendedAssignees().get(0));
+			plannedTask.setAssigneeExpertise(taskPotentialAssigneeList.getRecommendedAssignees().get(
+				random.nextInt(taskPotentialAssigneeList.getRecommendedAssignees().size())));
 			int iterationNumber = random.nextInt(iterPlan.getNumOfIterations());
 			plannedTask.setIterationNumber(iterationNumber);
 			iterPlan.getIterations()[iterationNumber].getPlannedTasks().add(plannedTask);

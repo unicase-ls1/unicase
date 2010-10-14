@@ -35,6 +35,14 @@ public class PlannedTask {
 		this.assigneeExpertise = assigneeExpertise;
 	}
 
+	@Override
+	public String toString() {
+		String result = "Iteration: " + iterationNumber + " ---> "
+			+ assigneeExpertise.getAssignee().getOrgUnit().getName() + " ---> " + task.getWorkItem().getName()
+			+ " (Obejct: " + super.toString() + ")";
+		return result;
+	}
+
 	public AssigneeExpertise getAssigneeExpertise() {
 		return assigneeExpertise;
 	}
@@ -45,6 +53,24 @@ public class PlannedTask {
 
 	public int getIterationNumber() {
 		return iterationNumber;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof PlannedTask)) {
+			return false;
+		}
+		PlannedTask incomming = (PlannedTask) obj;
+		if (!this.assigneeExpertise.equals(incomming.assigneeExpertise)) {
+			return false;
+		}
+		if (!this.task.equals(incomming.task)) {
+			return false;
+		}
+		if (this.iterationNumber != incomming.iterationNumber) {
+			return false;
+		}
+		return true;
 	}
 
 }

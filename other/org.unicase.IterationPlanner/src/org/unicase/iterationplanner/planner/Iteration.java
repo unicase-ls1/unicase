@@ -1,7 +1,7 @@
 package org.unicase.iterationplanner.planner;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An IterationPlan consists of multiple Iterations. The user defines number of iterations to plan before the planner
@@ -15,7 +15,7 @@ import java.util.List;
 public class Iteration {
 
 	private final int iterationNumber;
-	private List<PlannedTask> plannedTask;
+	private Set<PlannedTask> plannedTasks;
 
 	public Iteration(int iterationNumber) {
 		this.iterationNumber = iterationNumber;
@@ -24,21 +24,33 @@ public class Iteration {
 	@Override
 	public Iteration clone() {
 		Iteration clone = new Iteration(this.iterationNumber);
-		for (PlannedTask plannedTask : this.plannedTask) {
+		for (PlannedTask plannedTask : this.plannedTasks) {
 			clone.getPlannedTasks().add(plannedTask.clone());
 		}
 		return clone;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Iteration)) {
+			return false;
+		}
+		Iteration incomming = (Iteration) obj;
+		if (!this.plannedTasks.equals(incomming.plannedTasks)) {
+			return false;
+		}
+		return true;
 	}
 
 	public int getIterationNumber() {
 		return iterationNumber;
 	}
 
-	public List<PlannedTask> getPlannedTasks() {
-		if (plannedTask == null) {
-			plannedTask = new ArrayList<PlannedTask>();
+	public Set<PlannedTask> getPlannedTasks() {
+		if (plannedTasks == null) {
+			plannedTasks = new HashSet<PlannedTask>();
 		}
-		return plannedTask;
+		return plannedTasks;
 	}
 
 }
