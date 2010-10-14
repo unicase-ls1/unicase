@@ -469,14 +469,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private void addModelElementAndChildrenToCache(EObject eObject) {
 
+		List<ModelElementId> removableIds = new ArrayList<ModelElementId>();
+
 		// first check whether ID should be reassigned
 		ModelElementId id = newEObjectToIdMap.get(eObject);
 
-		if (id != null) {
-			newEObjectToIdMap.values().remove(id);
-		} else {
+		if (id == null) {
 			// if not, create a new ID
 			id = MetamodelFactory.eINSTANCE.createModelElementId();
+		} else {
+			removableIds.add(id);
 		}
 
 		if (isCacheInitialized()) {
@@ -484,8 +486,23 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
-			addModelElementAndChildrenToCache(child);
+			// first check whether ID should be reassigned
+			ModelElementId childId = newEObjectToIdMap.get(child);
+
+			if (childId == null) {
+				// if not, create a new ID
+				childId = MetamodelFactory.eINSTANCE.createModelElementId();
+			} else {
+				removableIds.add(childId);
+			}
+
+			if (isCacheInitialized()) {
+				putIntoCaches(child, childId);
+			}
 		}
+
+		// remove all IDs that are in use now
+		newEObjectToIdMap.values().removeAll(removableIds);
 	}
 
 	/**
@@ -757,7 +774,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		ModelElementId id = eObjectToIdCache.get(eObject);
-
+		
 		return ModelUtil.clone(id);
 	}
 
