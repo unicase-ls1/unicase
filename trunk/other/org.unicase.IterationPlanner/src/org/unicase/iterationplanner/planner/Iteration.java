@@ -15,7 +15,7 @@ import java.util.List;
 public class Iteration {
 
 	private final int iterationNumber;
-	private List<TaskAssignee> taskAssignees;
+	private List<PlannedTask> plannedTask;
 
 	public Iteration(int iterationNumber) {
 		this.iterationNumber = iterationNumber;
@@ -24,8 +24,8 @@ public class Iteration {
 	@Override
 	public Iteration clone() {
 		Iteration clone = new Iteration(this.iterationNumber);
-		for (TaskAssignee taskAssignee : this.taskAssignees) {
-			clone.getTaskAssignees().add(taskAssignee.clone());
+		for (PlannedTask plannedTask : this.plannedTask) {
+			clone.getPlannedTasks().add(plannedTask.clone());
 		}
 		return clone;
 	}
@@ -34,11 +34,11 @@ public class Iteration {
 		return iterationNumber;
 	}
 
-	public List<TaskAssignee> getTaskAssignees() {
-		if (taskAssignees == null) {
-			taskAssignees = new ArrayList<TaskAssignee>();
+	public List<PlannedTask> getPlannedTasks() {
+		if (plannedTask == null) {
+			plannedTask = new ArrayList<PlannedTask>();
 		}
-		return taskAssignees;
+		return plannedTask;
 	}
 
 }
