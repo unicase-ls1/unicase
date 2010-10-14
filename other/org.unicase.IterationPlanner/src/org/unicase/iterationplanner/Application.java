@@ -21,10 +21,10 @@ import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
 import org.unicase.iterationplanner.planner.Iteration;
 import org.unicase.iterationplanner.planner.IterationPlan;
+import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.iterationplanner.planner.Selector;
-import org.unicase.iterationplanner.planner.TaskAssignee;
 import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 import org.unicase.iterationplanner.planner.impl.MySelector;
@@ -104,8 +104,9 @@ public class Application implements IApplication {
 	private void outputIterationPlannerResults(List<IterationPlan> result) {
 		for (int i = 0; i < result.size(); i++) {
 			IterationPlan iterPlan = result.get(i);
+			System.out.println("\n");
 			System.out.println("======================================================");
-			System.out.println("=================== Iteration Plan " + i + " ==================");
+			System.out.println("=================== Iteration Plan " + i + " =================");
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
 
@@ -118,11 +119,16 @@ public class Application implements IApplication {
 	}
 
 	private void outputIteration(Iteration iter) {
-		System.out.println("********* Iteration " + iter.getIterationNumber() + " **********");
+		System.out.println();
+		System.out.println("\t************************* Iteration " + iter.getIterationNumber()
+			+ " *********************");
+		System.out.println("\t***********************************************************");
 		int i = 1;
-		for (TaskAssignee taskAssignee : iter.getTaskAssignees()) {
-			System.out.println(i + ". " + taskAssignee.getAssignee().getAssignee().getOrgUnit().getName() + " ---> "
-				+ taskAssignee.getTask().getWorkItem().getName());
+		for (PlannedTask plannedTask : iter.getPlannedTasks()) {
+			System.out.println("\t" + i + ". "
+				+ plannedTask.getAssigneeExpertise().getAssignee().getOrgUnit().getName() + " ---> "
+				+ plannedTask.getTask().getWorkItem().getName());
+			i++;
 		}
 	}
 

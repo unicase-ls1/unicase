@@ -19,7 +19,7 @@ public abstract class Planner {
 
 	/**
 	 * @param numOfIterations
-	 * @param taskAssignees
+	 * @param taskPotentialAssigneeLists
 	 * @param assigneeAvailabilities
 	 * @param iterationPlanEvaluator
 	 * @param selector
@@ -44,7 +44,7 @@ public abstract class Planner {
 	 */
 	public List<IterationPlan> start() {
 
-		createInitialPopulation();
+		population = createInitialPopulation();
 		evalutate();
 		Collections.sort(population);
 
@@ -59,7 +59,7 @@ public abstract class Planner {
 		}
 
 		List<IterationPlan> result = new ArrayList<IterationPlan>();
-		result.addAll(population.subList(0, plannerParameters.getResultSize() - 1));
+		result.addAll(population.subList(0, plannerParameters.getResultSize()));
 
 		return result;
 	}
@@ -116,7 +116,7 @@ public abstract class Planner {
 		}
 	}
 
-	protected abstract void createInitialPopulation();
+	protected abstract List<IterationPlan> createInitialPopulation();
 
 	public int getNumOfIterations() {
 		return numOfIterations;

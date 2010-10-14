@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.planner.impl;
 
+import java.util.Random;
+
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
 
@@ -26,7 +28,7 @@ public class MyEvaluator extends Evaluator {
 
 	@Override
 	protected double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore) {
-		return 0;
+		return new Random().nextDouble() * 10;
 	}
 
 }
