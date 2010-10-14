@@ -63,7 +63,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				projectSpace = currentWorkspace.getActiveProjectSpace();
 				try {
-					sessionId = connectionManager.logIn("hodie", "foo", SetupHelper.getServerInfo(), Configuration
+					sessionId = connectionManager.logIn("super", "super", SetupHelper.getServerInfo(), Configuration
 						.getClientVersion());
 				} catch (EmfStoreException e1) {
 
