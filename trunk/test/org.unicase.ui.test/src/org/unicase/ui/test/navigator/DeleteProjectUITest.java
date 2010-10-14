@@ -20,7 +20,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class to test if a project is deleted correctly in UNICASE repository. Also it tests if the deleted project dosen't
- * appear on the UNICASE Navigator.
+ * appear on the Navigator.
  */
 public class DeleteProjectUITest extends MEEditorTest {
 	private Project newproject;
@@ -48,7 +48,7 @@ public class DeleteProjectUITest extends MEEditorTest {
 			}
 		}.run();
 
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		SWTBotTreeItem[] treenode = getBot().activeView().bot().tree().getAllItems();
 		testcondition = treenode.length == 0;
@@ -64,7 +64,7 @@ public class DeleteProjectUITest extends MEEditorTest {
 	@Test
 	public void deleteProjectChange() {
 
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 		SWTBotTreeItem[] treenode = getBot().activeView().bot().tree().getAllItems();
 		treenode[0].select().contextMenu("Delete Project").click();
 		getBot().button("Yes").click();

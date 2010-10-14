@@ -69,7 +69,7 @@ public class CreateProjectUITest extends MEEditorTest {
 			}
 		}.run();
 
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		SWTBotTreeItem[] text = getBot().activeView().bot().tree().getAllItems();
 		assertTrue(text[0].getText().startsWith("CreateProjectTest"));
@@ -84,7 +84,7 @@ public class CreateProjectUITest extends MEEditorTest {
 	@Test
 	public void createProjectChange() {
 
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		getBot().sleep(4000);
 
