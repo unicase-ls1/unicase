@@ -10,7 +10,6 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.SetupHelper;
 
 /**
@@ -63,7 +62,7 @@ public class UITestCommon {
 
 	public static Usersession createUsersession(User user, String password) {
 		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
-		WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+		// WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 		session.setServerInfo(SetupHelper.getServerInfo());
 		session.setUsername(user.getName());
 		session.setPassword(password);

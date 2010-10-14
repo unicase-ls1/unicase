@@ -8,8 +8,20 @@ package org.unicase.ui.test.navigator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.metamodel.Project;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
+import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.SetupHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class to test if a project is is updated correctly in a way that the project is successfully synchronized between the
@@ -17,7 +29,7 @@ import org.unicase.workspace.test.SetupHelper;
  */
 public class UpdateProjectUITest extends MEEditorTest {
 
-	// private static ProjectSpace projectSpace;
+	private static ProjectSpace projectSpace;
 
 	// private static LeafSection leafSection;
 	// private static SessionId sessionId;
@@ -40,6 +52,49 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void updateProjectUpdate() {
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+				projectSpace = currentWorkspace.getActiveProjectSpace();
+				Project project = projectSpace.getProject();
+				// User user1 = OrganizationFactory.eINSTANCE.createUser();
+				// user1.setName("super");
+				// project.addModelElement(user1);
+				// Usersession usersession1 = UITestCommon.createUsersession(user1, "super");
+				User user2 = OrganizationFactory.eINSTANCE.createUser();
+				user2.setName("hodaie");
+				project.addModelElement(user2);
+				Usersession usersession2 = UITestCommon.createUsersession(user2, "foo");
+
+				ACOrgUnitId orgUnitId;
+				try {
+
+					orgUnitId = SetupHelper.createUserOnServer(usersession2.getSessionId(), "writer");
+					SetupHelper.setUsersRole(usersession2.getSessionId(), orgUnitId, RolesPackage.eINSTANCE
+						.getWriterRole(), projectSpace.getProjectId());
+					usersession2.logIn();
+					// usersession1.logIn();
+				} catch (EmfStoreException e) {
+
+				}
+
+				// try {
+				// usersession1.logIn();
+				// projectSpace.shareProject(usersession1);
+
+				// ServerTests.setupUsers();// the project has been shared programaticaly using the
+				// command shareProject();
+				// } catch (AccessControlException e1) {
+				//
+				// } catch (EmfStoreException e1) {
+				//
+				// }
+
+			}
+		}.run();
 
 		getBot().sleep(30000);
 	}
