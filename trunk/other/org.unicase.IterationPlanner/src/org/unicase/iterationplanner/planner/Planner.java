@@ -59,8 +59,15 @@ public abstract class Planner {
 		}
 
 		List<IterationPlan> result = new ArrayList<IterationPlan>();
-		result.addAll(population.subList(0, plannerParameters.getResultSize()));
-
+		result.add(population.get(0));
+		for (int i = 1; i < population.size(); i++) {
+			if (result.size() == plannerParameters.getResultSize()) {
+				return result;
+			}
+			if (!result.contains(population.get(i))) {
+				result.add(population.get(i));
+			}
+		}
 		return result;
 	}
 

@@ -74,9 +74,9 @@ public class Application implements IApplication {
 			developerLoadWeight);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 50;
+		int populationSize = 1000;
 		int resultSize = 5;
-		int maxNumOfGenerations = 100;
+		int maxNumOfGenerations = 10;
 		int percentOfCrossOverChildren = 60;
 		int precentOfMutants = 20;
 		int percentOfClones = 20;
