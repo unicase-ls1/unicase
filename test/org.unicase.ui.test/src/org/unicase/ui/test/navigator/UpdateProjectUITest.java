@@ -63,17 +63,17 @@ public class UpdateProjectUITest extends MEEditorTest {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				projectSpace = currentWorkspace.getActiveProjectSpace();
 				try {
-					connectionManager.logIn("hodie", "foo", projectSpace.getUsersession().getServerInfo(),
-						Configuration.getClientVersion());
+					sessionId = connectionManager.logIn("hodie", "foo", SetupHelper.getServerInfo(), Configuration
+						.getClientVersion());
 				} catch (EmfStoreException e1) {
 
 				}
 
 				ACOrgUnitId orgUnitId;
 				try {
-					orgUnitId = SetupHelper.createUserOnServer(projectSpace.getUsersession().getSessionId(), "writer");
-					SetupHelper.setUsersRole(projectSpace.getUsersession().getSessionId(), orgUnitId,
-						RolesPackage.eINSTANCE.getWriterRole(), projectSpace.getProjectId());
+					orgUnitId = SetupHelper.createUserOnServer(sessionId, "writer");
+					SetupHelper.setUsersRole(sessionId, orgUnitId, RolesPackage.eINSTANCE.getWriterRole(), projectSpace
+						.getProjectId());
 
 				} catch (EmfStoreException e) {
 
