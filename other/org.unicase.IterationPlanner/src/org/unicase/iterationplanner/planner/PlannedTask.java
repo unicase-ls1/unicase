@@ -13,7 +13,7 @@ import org.unicase.iterationplanner.assigneerecommendation.Task;
 public class PlannedTask {
 	private final Task task;
 	private AssigneeExpertise assigneeExpertise;
-	private int iterationNumber;
+	private int iterationNumber = -1;
 
 	public PlannedTask(Task task) {
 		this.task = task;
@@ -47,7 +47,7 @@ public class PlannedTask {
 		return assigneeExpertise;
 	}
 
-	public void setIterationNumber(int iterationNumber) {
+	protected void setIterationNumber(int iterationNumber) {
 		this.iterationNumber = iterationNumber;
 	}
 

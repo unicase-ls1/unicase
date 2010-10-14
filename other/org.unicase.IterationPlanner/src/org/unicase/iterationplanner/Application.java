@@ -19,7 +19,6 @@ import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssignee
 import org.unicase.iterationplanner.planner.AssigneeAvailability;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
-import org.unicase.iterationplanner.planner.Iteration;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
@@ -38,10 +37,14 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 public class Application implements IApplication {
 
 	public Object start(IApplicationContext context) throws Exception {
+
+		// createTestData();
+
 		System.out.println("Iteration Planner started!");
 
 		Project project = getProject();
@@ -101,6 +104,19 @@ public class Application implements IApplication {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
+	private void createTestData() {
+		WorkspaceManager.init();
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				new TestDataGenerator();
+			}
+		}.run();
+		System.out.println("done!");
+	}
+
 	private void outputIterationPlannerResults(List<IterationPlan> result) {
 		for (int i = 0; i < result.size(); i++) {
 			IterationPlan iterPlan = result.get(i);
@@ -110,21 +126,19 @@ public class Application implements IApplication {
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
 
-			for (int j = 0; j < iterPlan.getIterations().length; j++) {
-				Iteration iter = iterPlan.getIterations()[j];
-				outputIteration(iter);
+			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {
+				outputIteration(j, iterPlan.getAllPlannedTasksForIteration(j));
 			}
 		}
 
 	}
 
-	private void outputIteration(Iteration iter) {
+	private void outputIteration(int iterationNumber, List<PlannedTask> plannedTasks) {
 		System.out.println();
-		System.out.println("\t************************* Iteration " + iter.getIterationNumber()
-			+ " *********************");
+		System.out.println("\t************************* Iteration " + iterationNumber + " *********************");
 		System.out.println("\t***********************************************************");
 		int i = 1;
-		for (PlannedTask plannedTask : iter.getPlannedTasks()) {
+		for (PlannedTask plannedTask : plannedTasks) {
 			System.out.println("\t" + i + ". "
 				+ plannedTask.getAssigneeExpertise().getAssignee().getOrgUnit().getName() + " ---> "
 				+ plannedTask.getTask().getWorkItem().getName());
