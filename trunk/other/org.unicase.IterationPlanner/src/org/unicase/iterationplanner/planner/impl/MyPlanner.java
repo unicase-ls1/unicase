@@ -8,7 +8,6 @@ import java.util.Random;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.AssigneeAvailability;
 import org.unicase.iterationplanner.planner.Evaluator;
-import org.unicase.iterationplanner.planner.Iteration;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
@@ -61,29 +60,17 @@ public class MyPlanner extends Planner {
 
 	private IterationPlan createIterationPlan() {
 		Random random = getPlannerParameters().getRandom();
-		IterationPlan iterPlan = new IterationPlan(getNumOfIterations(), new ArrayList<TaskPotentialAssigneeList>(
-			getTaskPotentialAssigneeLists()));
+		IterationPlan iterPlan = new IterationPlan(getNumOfIterations());
 
-		// init iterations
-		for (int i = 0; i < iterPlan.getNumOfIterations(); i++) {
-			iterPlan.getIterations()[i] = new Iteration(new Integer(i));
-		}
-
-		while (iterPlan.getTasksToPlan().size() > 0) {
-			// pick an unplanned task from iteration plan
-			TaskPotentialAssigneeList taskPotentialAssigneeList = iterPlan.getTasksToPlan().get(
-				random.nextInt(iterPlan.getTasksToPlan().size()));
-
-			// set its assignee and put it into an iteration
-			PlannedTask plannedTask = new PlannedTask(taskPotentialAssigneeList.getTask());
-			plannedTask.setAssigneeExpertise(taskPotentialAssigneeList.getRecommendedAssignees().get(
-				random.nextInt(taskPotentialAssigneeList.getRecommendedAssignees().size())));
+		for (TaskPotentialAssigneeList taskToPlan : getTaskPotentialAssigneeLists()) {
+			// set assignee and put it into an iteration
+			PlannedTask plannedTask = new PlannedTask(taskToPlan.getTask());
+			plannedTask.setAssigneeExpertise(taskToPlan.getRecommendedAssignees().get(
+				random.nextInt(taskToPlan.getRecommendedAssignees().size())));
 			int iterationNumber = random.nextInt(iterPlan.getNumOfIterations());
-			plannedTask.setIterationNumber(iterationNumber);
-			iterPlan.getIterations()[iterationNumber].getPlannedTasks().add(plannedTask);
+			iterPlan.setIterationNumberFor(plannedTask, iterationNumber);
 
 			// remove it from task to plan, and put in planned tasks.
-			iterPlan.getTasksToPlan().remove(taskPotentialAssigneeList);
 			iterPlan.getPlannedTasks().add(plannedTask);
 		}
 

@@ -1,9 +1,9 @@
 package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
+import java.util.Set;
 
 /**
  * This represents single individuals in population. Hence, this is the representation of our genome. Our genome is a
@@ -17,28 +17,25 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	private final Iteration[] iterations;
 	private final int numOfIterations;
 	private double score;
-	private final List<TaskPotentialAssigneeList> tasksToPlan;
 	private List<PlannedTask> plannedTasks;
 
 	@Override
 	public IterationPlan clone() {
-		IterationPlan clone = new IterationPlan(this.numOfIterations, this.tasksToPlan);
+		IterationPlan clone = new IterationPlan(this.numOfIterations);
+		clone.plannedTasks = this.plannedTasks; // is it really possible? plannedTasks is private!
 		for (int i = 0; i < this.iterations.length; i++) {
 			Iteration iteration = this.iterations[i];
 			clone.iterations[i] = iteration.clone();
 		}
-
 		return clone;
 	}
 
-	public IterationPlan(int numOfIterations, List<TaskPotentialAssigneeList> taskToPlan) {
+	public IterationPlan(int numOfIterations) {
 		this.numOfIterations = numOfIterations;
 		iterations = new Iteration[numOfIterations];
-		this.tasksToPlan = taskToPlan;
-	}
-
-	public Iteration[] getIterations() {
-		return iterations;
+		for (int i = 0; i < numOfIterations; i++) {
+			iterations[i] = new Iteration(new Integer(i));
+		}
 	}
 
 	public int getNumOfIterations() {
@@ -51,10 +48,6 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	public double getScore() {
 		return score;
-	}
-
-	public List<TaskPotentialAssigneeList> getTasksToPlan() {
-		return this.tasksToPlan;
 	}
 
 	public int compareTo(IterationPlan otherPlan) {
@@ -86,5 +79,59 @@ public class IterationPlan implements Comparable<IterationPlan> {
 			}
 		}
 		return true;
+	}
+
+	public void setIterationNumberFor(PlannedTask plannedTask, int newIterationNumber) {
+		int oldIterationNumber = plannedTask.getIterationNumber();
+		if (oldIterationNumber == -1) {
+			// this is the first time putting this task in an iteration
+			iterations[newIterationNumber].plannedTasksInIteration.add(plannedTask);
+		} else {
+			iterations[oldIterationNumber].plannedTasksInIteration.remove(plannedTask);
+			iterations[newIterationNumber].plannedTasksInIteration.add(plannedTask);
+		}
+		plannedTask.setIterationNumber(newIterationNumber);
+	}
+
+	public List<PlannedTask> getAllPlannedTasksForIteration(int iterationNumber) {
+		List<PlannedTask> result = new ArrayList<PlannedTask>();
+		for (PlannedTask pt : getPlannedTasks()) {
+			if (pt.getIterationNumber() == iterationNumber) {
+				result.add(pt);
+			}
+		}
+
+		return result;
+	}
+
+	private class Iteration {
+		private final int iterationNumber;
+		private final Set<PlannedTask> plannedTasksInIteration = new HashSet<PlannedTask>();
+
+		private Iteration(int iterationNumber) {
+			this.iterationNumber = iterationNumber;
+		}
+
+		@Override
+		public Iteration clone() {
+			Iteration clone = new Iteration(this.iterationNumber);
+			for (PlannedTask plannedTask : this.plannedTasksInIteration) {
+				clone.plannedTasksInIteration.add(plannedTask.clone());
+			}
+			return clone;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (!(obj instanceof Iteration)) {
+				return false;
+			}
+			Iteration incomming = (Iteration) obj;
+			if (!this.plannedTasksInIteration.equals(incomming.plannedTasksInIteration)) {
+				return false;
+			}
+			return true;
+		}
+
 	}
 }
