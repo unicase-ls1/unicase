@@ -74,6 +74,9 @@ public class UpdateProjectUITest extends MEEditorTest {
 					orgUnitId = SetupHelper.createUserOnServer(sessionId, "writer");
 					SetupHelper.setUsersRole(sessionId, orgUnitId, RolesPackage.eINSTANCE.getWriterRole(), projectSpace
 						.getProjectId());
+					orgUnitId = SetupHelper.createUserOnServer(sessionId, "projectadmin");
+					SetupHelper.setUsersRole(sessionId, orgUnitId, RolesPackage.eINSTANCE.getWriterRole(), projectSpace
+						.getProjectId());
 
 				} catch (EmfStoreException e) {
 
