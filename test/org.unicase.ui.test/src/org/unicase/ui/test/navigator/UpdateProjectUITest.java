@@ -59,7 +59,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 				try {
 					ServerTests.setupUsers();
 					usersession2.logIn();
-					projectSpace.shareProject(usersession2); // the project has been shared programaticaly using the
+					projectSpace.shareProject(usersession1); // the project has been shared programaticaly using the
 				} catch (EmfStoreException e) {
 
 				}
@@ -77,7 +77,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void updateProjectUpdate() {
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		getBot().sleep(30000);
 	}

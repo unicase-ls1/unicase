@@ -80,7 +80,7 @@ public class ShareProjectUITest extends MEEditorTest {
 
 		getBot().sleep(3000);
 
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		SWTBotTreeItem[] checktext = getBot().activeView().bot().tree().getAllItems();
 		Pattern p = Pattern.compile("@"); // this is to indicate that the project is being shared is reflected on the UI
@@ -96,7 +96,7 @@ public class ShareProjectUITest extends MEEditorTest {
 	 */
 	@Test
 	public void updateProjectChange() {
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		// The project is shared using the UI functionalities
 		SWTBotTreeItem[] checktext = getBot().activeView().bot().tree().getAllItems();
