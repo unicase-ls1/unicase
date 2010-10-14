@@ -61,6 +61,7 @@ public class ShareProjectUITest extends MEEditorTest {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				projectSpace = currentWorkspace.getActiveProjectSpace();
 				Project project = projectSpace.getProject();
+
 				User user1 = OrganizationFactory.eINSTANCE.createUser();
 				user1.setName("super");
 				project.addModelElement(user1);

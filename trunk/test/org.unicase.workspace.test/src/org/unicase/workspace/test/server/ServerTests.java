@@ -167,7 +167,7 @@ public class ServerTests {
 	 * @return sessionId
 	 * @throws EmfStoreException in case of failure
 	 */
-	public static SessionId login(ServerInfo serverInfo, String username, String password) throws EmfStoreException {
+	protected static SessionId login(ServerInfo serverInfo, String username, String password) throws EmfStoreException {
 		return connectionManager.logIn(username, KeyStoreManager.getInstance().encrypt(password, serverInfo),
 			serverInfo, Configuration.getClientVersion());
 	}
