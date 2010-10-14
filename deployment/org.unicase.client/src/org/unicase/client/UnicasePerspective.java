@@ -42,7 +42,8 @@ public class UnicasePerspective implements IPerspectiveFactory {
 				IPageLayout.LEFT, 0.25f, factory.getEditorArea());
 
 		topLeft.addView("org.unicase.ui.navigator.viewer"); // NON-NLS-1
-		topLeft.addView(IPageLayout.ID_RES_NAV);
+		// do we need this? i think not.
+		// topLeft.addView(IPageLayout.ID_RES_NAV);
 
 		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
 				IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());
@@ -51,8 +52,9 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		bottom.addView("org.unicase.ui.treeview.views.IterationPlanningView");
 		bottom.addView("org.unicase.ui.treeview.views.StatusView");
 		bottom.addView("org.unicase.ui.taskview");
-		bottom.addView("org.unicase.ui.repository.views.HistoryView");
-//		bottom.addView("org.eclipse.pde.runtime.LogView");
+		bottom.addView("org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView");
+		// do not show error log on start-up. we have not any errors so we do not need this. ;)
+		// bottom.addView("org.eclipse.pde.runtime.LogView");
 
 		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 

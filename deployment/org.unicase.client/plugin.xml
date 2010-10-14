@@ -47,16 +47,16 @@
                value="icons/alt_window_16.gif,icons/alt_window_32.gif,icons/alt_window_48.gif,icons/alt_window_64.gif,icons/alt_window_128.gif">
          </property>
          <property
-               name="startupProgressRect"
-               value="5,280,556,17">
-         </property>
-         <property
                name="startupForegroundColor"
-               value="000579">
+               value="FFFFFF">
          </property>
          <property
                name="startupMessageRect"
-               value="20,252,445,20">
+               value="20,285,460,20">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,310,490,15">
          </property>
       </product>
    </extension>
@@ -64,19 +64,20 @@
 	   <extension
 	         point="org.eclipse.ui.menus">
 	      <menuContribution
-	            locationURI="menu:org.eclipse.ui.main.menu">
-	         <menu
-	               label="Error Log">
-	            <command
-	                  commandId="org.eclipse.ui.views.showView"
-	                  label="Show Error View"
-	                  style="push">
-	               <parameter
-	                     name="org.eclipse.ui.views.showView.viewId"
-	                     value="org.eclipse.pde.runtime.LogView">
-	               </parameter>
-	            </command>
-	         </menu>
+	            locationURI="menu:helpStart?before=about">
+          <command
+                commandId="org.eclipse.ui.views.showView"
+                label="Show Error View"
+                style="push">
+             <parameter
+                   name="org.eclipse.ui.views.showView.viewId"
+                   value="org.eclipse.pde.runtime.LogView">
+             </parameter>
+          </command>
+          <separator
+                name="org.unicase.client.helpStartSeperator"
+                visible="true">
+          </separator>
 	      </menuContribution>
 	   </extension>
 
