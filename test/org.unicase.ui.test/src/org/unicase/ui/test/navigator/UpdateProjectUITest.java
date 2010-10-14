@@ -8,19 +8,8 @@ package org.unicase.ui.test.navigator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.Project;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.User;
-import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.SetupHelper;
-import org.unicase.workspace.test.server.ServerTests;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class to test if a project is is updated correctly in a way that the project is successfully synchronized between the
@@ -28,7 +17,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class UpdateProjectUITest extends MEEditorTest {
 
-	private static ProjectSpace projectSpace;
+	// private static ProjectSpace projectSpace;
 
 	// private static LeafSection leafSection;
 	// private static SessionId sessionId;
@@ -40,32 +29,6 @@ public class UpdateProjectUITest extends MEEditorTest {
 	public static void beforeClass() {
 
 		SetupHelper.startSever();
-		new UnicaseCommand() {
-
-			@Override
-			protected void doRun() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-				projectSpace = currentWorkspace.getActiveProjectSpace();
-				Project project = projectSpace.getProject();
-				User user1 = OrganizationFactory.eINSTANCE.createUser();
-				user1.setName("super");
-				project.addModelElement(user1);
-				Usersession usersession1 = UITestCommon.createUsersession(user1, "super");
-				User user2 = OrganizationFactory.eINSTANCE.createUser();
-				user2.setName("helming");
-				project.addModelElement(user2);
-				Usersession usersession2 = UITestCommon.createUsersession(user2, "foo");
-
-				try {
-					ServerTests.setupUsers();
-					usersession2.logIn();
-					projectSpace.shareProject(usersession1); // the project has been shared programaticaly using the
-				} catch (EmfStoreException e) {
-
-				}
-
-			}
-		}.run();
 
 	}
 
@@ -77,7 +40,6 @@ public class UpdateProjectUITest extends MEEditorTest {
 
 	@Test
 	public void updateProjectUpdate() {
-		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 
 		getBot().sleep(30000);
 	}

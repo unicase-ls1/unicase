@@ -53,7 +53,7 @@ public class ShareProjectUITest extends MEEditorTest {
 	 */
 	@Test
 	public void updateProjectUpdate() {
-		UITestCommon.openView(getBot(), "Unicase", "Unicase Navigator");
+		UITestCommon.openView(getBot(), "Unicase", "Navigator");
 		new UnicaseCommand() {
 
 			@Override
