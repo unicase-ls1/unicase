@@ -1,6 +1,7 @@
 package org.unicase.rap.ui.start;
 
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -18,11 +19,14 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-        //configurer.setInitialSize(new Point(400, 300));
-        configurer.setShowMenuBar(true);
-        configurer.setShowStatusLine(true);
-        configurer.setShowCoolBar(true);
-        configurer.getWorkbenchConfigurer().setExitOnLastWindowClose(true);
         configurer.setTitle("Unicase RAP Alpha");
-    }
+        getWindowConfigurer().setShellStyle(SWT.NO_TRIM);
+        getWindowConfigurer().setShowMenuBar( false );
+      }
+      
+      public void postWindowCreate() {
+        Shell shell = getWindowConfigurer().getWindow().getShell();
+        shell.setMaximized( true );
+      }
+
 }
