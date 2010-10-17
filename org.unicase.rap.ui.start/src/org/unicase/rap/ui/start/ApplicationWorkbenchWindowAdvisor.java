@@ -18,9 +18,11 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-        configurer.setInitialSize(new Point(400, 300));
-        configurer.setShowCoolBar(false);
-        configurer.setShowStatusLine(false);
-        configurer.setTitle("Unicase RAP Alpha"); //$NON-NLS-1$
+        //configurer.setInitialSize(new Point(400, 300));
+        configurer.setShowMenuBar(true);
+        configurer.setShowStatusLine(true);
+        configurer.setShowCoolBar(true);
+        configurer.getWorkbenchConfigurer().setExitOnLastWindowClose(true);
+        configurer.setTitle("Unicase RAP Alpha");
     }
 }
