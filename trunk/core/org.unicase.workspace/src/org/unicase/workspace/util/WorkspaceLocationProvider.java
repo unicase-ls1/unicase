@@ -16,17 +16,9 @@ package org.unicase.workspace.util;
 public interface WorkspaceLocationProvider {
 
 	/**
-	 * Get the path of the root user folder for the application. Root directory and workspace directory may be similar.
-	 * The distinction is made to allow multiple profiles (see {@link DefaultWorkspaceLocationProvider}).
-	 * 
-	 * @return a string representing the path
-	 */
-	String getRootDirectory();
-
-	/**
 	 * Get the path to the workspace directory, where the model data is stored to. This method is called only once on
-	 * workspace startup to retrieve path. It may be the same as the root directory (see {@link #getRootDirectory()}),
-	 * but usually returns the path of a profile.
+	 * workspace startup to retrieve path. If you want to use profilese look at {@link DefaultWorkspaceLocationProvider}
+	 * .
 	 * 
 	 * @return a string representing the path
 	 */
