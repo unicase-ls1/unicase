@@ -35,6 +35,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	private Shell shell;
 	private Usersession usersession;
 	private LogMessage logMessage;
+	private String predefinedCommitMessage;
 
 	/**
 	 * Default constructor.
@@ -62,13 +63,22 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			}
 			projectSpace = activeProjectSpace;
 		}
-
+		
+		handleCommit(projectSpace);
+		return null;
+	}
+	
+	/**
+	 * Shows the CommitDialog and handles error situations.
+	 * 
+	 * @param projectSpace ProjectSpace that will be committed.
+	 * @throws EmfStoreException if commit goes wrong.
+	 */
+	public void handleCommit(ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
-			MessageDialog
-					.openInformation(shell, null,
-							"This project is not yet shared with a server, you cannot commit.");
-			return null;
+			MessageDialog.openInformation(shell, null,
+				"This project is not yet shared with a server, you cannot commit.");
 		}
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
@@ -76,10 +86,17 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		} catch (BaseVersionOutdatedException e) {
 			handleBaseVersionException(projectSpace);
 		} catch (NoLocalChangesException e) {
-			MessageDialog.openInformation(shell, null,
-					"No local changes in your project. No need to commit.");
+			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
 		}
-		return null;
+	}
+	
+	/**
+	 * Sets a predefined messagte to the CommitDialog.
+	 * 
+	 * @param predefinedCommitMessage The message that will appear in the CommitDialog.
+	 */
+	public void setPredefinedCommitMessage(String predefinedCommitMessage) {
+		this.predefinedCommitMessage = predefinedCommitMessage;
 	}
 
 	private void handleBaseVersionException(final ProjectSpace projectSpace)
@@ -117,6 +134,11 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			return false;
 		}
 		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
+		if (predefinedCommitMessage != null) {
+			LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+			logMessage.setMessage(predefinedCommitMessage);
+			changePackage.setLogMessage(logMessage);
+		}
 		int returnCode = commitDialog.open();
 		if (returnCode == Window.OK) {
 			logMessage.setAuthor(usersession.getUsername());
