@@ -24,25 +24,35 @@ import org.eclipse.core.runtime.Platform;
 public class DefaultWorkspaceLocationProvider implements WorkspaceLocationProvider {
 
 	/**
-	 * {@inheritDoc}
+	 * Get root folder.
 	 * 
-	 * @see org.unicase.workspace.util.WorkspaceLocationProvider#getRootDirectory()
+	 * @return path as string
 	 */
-	public String getRootDirectory() {
+	protected String getRootDirectory() {
 		return addFolders(getUserHome(), ".unicase", "client");
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDoc} By default this implementation stores all workspaces in a profile, which can be selected by the
+	 * {@link #getSelectedProfile()} method. If you want to use profiles, you should use or override
+	 * {@link #getSelectedProfile()}. If you don't want profiles override this method and just return your path.
 	 * 
 	 * @see org.unicase.workspace.util.WorkspaceLocationProvider#getWorkspaceDirectory()
 	 */
 	public String getWorkspaceDirectory() {
+		return addFolders(getRootDirectory(), "profiles", getSelectedProfile());
+	}
 
+	/**
+	 * If you want to use profiles, use or override this method. By default the application argument
+	 * -profile=YourProfileName is checked, otherwise the profile names default, default_dev, default_internal and
+	 * default_test are used depending on the application's configuration.
+	 * 
+	 * @return name of profile
+	 */
+	protected String getSelectedProfile() {
 		String parameter = getStartParameter("-profile");
-
 		if (parameter == null) {
-
 			parameter = "default";
 			if (isTesting()) {
 				parameter += "_test";
@@ -53,10 +63,8 @@ public class DefaultWorkspaceLocationProvider implements WorkspaceLocationProvid
 					parameter += "_dev";
 				}
 			}
-
 		}
-
-		return addFolders(getRootDirectory(), "profiles", parameter);
+		return parameter;
 	}
 
 	/**
