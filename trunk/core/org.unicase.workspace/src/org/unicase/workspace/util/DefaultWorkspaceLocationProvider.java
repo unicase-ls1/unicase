@@ -43,7 +43,7 @@ public class DefaultWorkspaceLocationProvider implements WorkspaceLocationProvid
 
 		if (parameter == null) {
 
-			parameter = "main";
+			parameter = "default";
 			if (isTesting()) {
 				parameter += "_test";
 			} else if (!isReleaseVersion()) {
