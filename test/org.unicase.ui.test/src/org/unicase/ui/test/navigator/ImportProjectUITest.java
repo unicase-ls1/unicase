@@ -7,8 +7,8 @@
 package org.unicase.ui.test.navigator;
 
 /**
- * Class to test if a project is is updated correctly in a way that the project is successfully synchronized between the
- * UI and the UNICASE repository .
+ * Class to test if a project is is imported correctly user's workspace in a way that the project is successfully placed
+ * within the user's workspace.
  */
 public class ImportProjectUITest {
 
