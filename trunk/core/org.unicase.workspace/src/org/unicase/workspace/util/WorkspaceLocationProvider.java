@@ -7,17 +7,37 @@ package org.unicase.workspace.util;
 
 /**
  * Interface for workspace location providers. Implementing classes provide a location for the workspace files to store
- * models.
+ * models and other files. You may subclass {@link DefaultWorkspaceLocationProvider} in order to ease your
+ * implementation. By convention, every path should end with an folder seperator char.
  * 
  * @author koegel
+ * @author wesendon
  */
 public interface WorkspaceLocationProvider {
 
 	/**
+	 * Get the path of the root user folder for the application. Root directory and workspace directory may be similar.
+	 * The distinction is made to allow multiple profiles (see {@link DefaultWorkspaceLocationProvider}).
+	 * 
+	 * @return a string representing the path
+	 */
+	String getRootDirectory();
+
+	/**
 	 * Get the path to the workspace directory, where the model data is stored to. This method is called only once on
-	 * workspace startup to retrieve path.
+	 * workspace startup to retrieve path. It may be the same as the root directory (see {@link #getRootDirectory()}),
+	 * but usually returns the path of a profile.
 	 * 
 	 * @return a string representing the path
 	 */
 	String getWorkspaceDirectory();
+
+	/**
+	 * Returns the path to a folder which holds backups of the workspaces. For example this is used to backup a
+	 * workspace prior to migration.
+	 * 
+	 * @return a string representing the path
+	 */
+	String getBackupDirectory();
+
 }
