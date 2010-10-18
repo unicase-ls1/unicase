@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace;
+package org.unicase.workspace.util;
 
 import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
 import static org.unicase.workspace.Configuration.isReleaseVersion;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.exceptions.CertificateStoreException;
 
@@ -29,7 +31,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ConfigurationProvider#getDefaultServerInfos()
+	 * @see org.unicase.workspace.util.ConfigurationProvider#getDefaultServerInfos()
 	 */
 	public List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
@@ -62,7 +64,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ConfigurationProvider#initDefaultCertificates(org.unicase.workspace.connectionmanager.KeyStoreManager)
+	 * @see org.unicase.workspace.util.ConfigurationProvider#initDefaultCertificates(org.unicase.workspace.connectionmanager.KeyStoreManager)
 	 */
 	public void initDefaultCertificates(KeyStoreManager keyStoreManager) {
 		try {
