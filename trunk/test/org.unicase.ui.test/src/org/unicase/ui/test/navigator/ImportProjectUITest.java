@@ -22,6 +22,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class ImportProjectUITest extends MEEditorTest {
 
+	private static Workspace currentWorkspace;
+
 	/**
 	 * Setup the environment for testing.
 	 */
@@ -32,7 +34,7 @@ public class ImportProjectUITest extends MEEditorTest {
 
 			@Override
 			protected void doRun() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+				currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				try {
 					currentWorkspace.deleteProjectSpace(getProjectSpace());
 				} catch (IOException e) {
@@ -50,6 +52,15 @@ public class ImportProjectUITest extends MEEditorTest {
 	public void importProjectUpdate() {
 
 		UITestCommon.openView(getBot(), "Unicase", "Navigator");
+		try {
+			getProjectSpace()
+				.importLocalChanges(
+					"/user/naguib/Documents/workspaces-UItesting13oct/devloper/SampleProjects/SupermarketExampleProject.ucp");
+		} catch (IOException e) {
+
+		}
+
+		getBot().sleep(100000);
 
 	}
 }
