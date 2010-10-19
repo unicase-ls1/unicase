@@ -15,7 +15,6 @@ Video Tutorials:
 
  * [ReplaceEditor How to replace the Editor]
 
- * [PrepareModelTutorial How to prepare the model for ECP (analogously to EMFStore)] (*Please note that attributes and references have to be set to "editable" in the gen-model to be displayed in the editor.*)
 
 
 Documentation:
@@ -25,5 +24,3 @@ Documentation:
  * [ModelingGuidelines Modeling Guidelines]
 
  * [Model_API_Usage_Guidelines Model API Usage Guidelines]
-
-
