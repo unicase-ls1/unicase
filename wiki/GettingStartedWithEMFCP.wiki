@@ -1,3 +1,6 @@
 #summary Getting started with the EMF Client Platform
+This page explains, how to install the EMF Client platform as well as an example model (Library Example). If you want to use your own model, please skip the second step. Please note, that all other tutorials are using the example model.
+= Installation =
 
-= Introduction =
+= Example Model =
+
