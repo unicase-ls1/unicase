@@ -3,7 +3,7 @@
 
 The following tutorials explain step-by-step, how to use the EMF Client Platform. All tutorials are referencing the example Library model. The first step describes, how to install this model.
 
-  # [GettingStartedWithEMFCP Getting Started with the EMF Client Platform (including example model)]
+  # [GettingStartedWithEMFCP Getting Started with the EMF Client Platform]
   # [RegisterModel Register a model to be used with EMF Client Platform (not required when using example model)]
   # [CustomizeEditor Customize the Editor]
   # [CustomizeNavigator Customite the Navigator]
