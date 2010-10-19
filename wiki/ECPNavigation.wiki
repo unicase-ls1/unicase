@@ -6,6 +6,8 @@ Looking for the [ModelsTutorial Models 2010 Tutorial]?
 
    * [ECPFeatures Why should I use the ECP?]
 
+   * [GettingStartedWithEMFCP Getting Started with the EMF Client Platform]
+
    * [ECPDownloads Downloads]
 
    * [ECPDocumentation Documentation and Tutorials]
