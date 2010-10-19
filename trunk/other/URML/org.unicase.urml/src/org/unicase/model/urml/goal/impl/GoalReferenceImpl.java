@@ -19,6 +19,7 @@ import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.model.urml.goal.GoalReference;
 import org.unicase.model.urml.goal.GoalReferenceType;
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
+import org.unicase.ui.common.util.AssociationClassHelper;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
@@ -379,10 +380,7 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	}
 
 	public List<EStructuralFeature> getAssociationFeatures() {
-		LinkedList<EStructuralFeature> result = new LinkedList<EStructuralFeature>();
-		result.add(GoalPackage.eINSTANCE.getGoalReference_Weight());
-		result.add(null);
-		return result;
+		return AssociationClassHelper.getAssociationFeatures(GoalPackage.eINSTANCE.getGoalReference(), getSourceFeature(), getTargetFeature());
 	}
 
 	public EReference getSourceFeature() {

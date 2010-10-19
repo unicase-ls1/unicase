@@ -38,6 +38,7 @@ import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 /**
  * @author schroech
  */
+// TODO: AssociationClassElement migration
 public class AddRelatedElementsCommand extends Command {
 
 	private final EditPart editPartToAdd;
