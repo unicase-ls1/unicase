@@ -65,7 +65,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 			diag.getElements().remove(additionalME);
 		}
 		// tear down references
-		// TODO:remove this if all association classes inherit from UnicaseLink
+		// TODO: AssociationClassElement migration
 		tearDownReferences(destructee, diag);
 
 		return CommandResult.newOKCommandResult();

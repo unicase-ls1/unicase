@@ -44,6 +44,7 @@ import org.unicase.ui.unicasecommon.diagram.util.ViewAdapter;
 /**
  * @author schroech
  */
+// TODO: AssociationClassElement migration
 public class ShowRelatedElementsCommand extends Command {
 
 	private final Map<EObject, ViewDescriptor> objectViewDescriptorMap = new HashMap<EObject, ViewDescriptor>();
