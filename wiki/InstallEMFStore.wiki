@@ -5,3 +5,4 @@
 Links to required resources:
   * [http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition Download]
   * [EMFStoreDownloads EMFStore Update Site]
+  * [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/exampleModel.zip Example Model Plugins for ECP]
