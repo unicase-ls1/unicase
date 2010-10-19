@@ -52,13 +52,11 @@ public class ImportProjectUITest extends MEEditorTest {
 	public void importProjectUpdate() {
 
 		UITestCommon.openView(getBot(), "Unicase", "Navigator");
-		try {
-			getProjectSpace()
-				.importLocalChanges(
-					"/user/naguib/Documents/workspaces-UItesting13oct/devloper/SampleProjects/SupermarketExampleProject.ucp");
-		} catch (IOException e) {
-
-		}
+		/*
+		 * try { //getProjectSpace().importLocalChanges(
+		 * "/user/naguib/Documents/workspaces-UItesting13oct/devloper/SampleProjects/SupermarketExampleProject.ucp"); }
+		 * catch (IOException e) { }
+		 */
 
 		getBot().sleep(100000);
 
