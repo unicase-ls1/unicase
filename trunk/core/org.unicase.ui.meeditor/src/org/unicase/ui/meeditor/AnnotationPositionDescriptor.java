@@ -25,7 +25,7 @@ public class AnnotationPositionDescriptor implements IAttributeDescriptor<String
 	public String getValue(IItemPropertyDescriptor propertyDescriptor, EObject modelElement) {
 		EAnnotation priority = ((EStructuralFeature) propertyDescriptor.getFeature(modelElement))
 			.getEAnnotation("org.unicase.ui.meeditor");
-		if (priority == null || priority.getDetails() == null) {
+		if (priority == null || priority.getDetails() == null || priority.getDetails().get("position") == null) {
 			return defaultValue;
 		}
 		String s = priority.getDetails().get("position");

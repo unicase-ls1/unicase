@@ -6,22 +6,23 @@
 package org.unicase.ui.common.dnd;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * Default Drag and Drop Adapter for all Model elements.
+ * 
  * @author koegel
- *
  */
 public class DefaultMEDropAdapter extends MEDropAdapter {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.common.dnd.MEDropAdapter#isDropAdapterfor()
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		return MetamodelPackage.eINSTANCE.eClass();
+		return EcorePackage.eINSTANCE.getEObject();
 	}
 
 }

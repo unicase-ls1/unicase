@@ -86,35 +86,6 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			}
 		}
 
-		// // MEDropAdapter
-		// dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
-		//
-		// // LeafSectionDropAdapter
-		// dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
-		//
-		// // CompositeSectionDropAdapter
-		// dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
-		// viewer));
-		//
-		// // WorkPackageDropAdapter
-		// dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
-		//
-		// // MeetingDropAdpater
-		// dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
-		//
-		// // WorkItemMeetingSectionDropAdapter
-		// dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
-		// domain, viewer));
-		//
-		// // MEDiagramDropAdapter
-		// dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
-		//
-		// // AnnotationDropAdapter
-		// dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
-		//
-		// // ProjectDropAdapter
-		// dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
-
 	}
 
 	/**
@@ -215,6 +186,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		} else {
 			targetDropAdapter = getTargetDropAdapter(target.eClass());
+
 		}
 		if (targetDropAdapter == null) {
 			event.detail = DND.DROP_NONE;
@@ -260,7 +232,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		EClass ret = null;
 		if (superClazz.size() == 0) {
-			return ret;
+			return EcorePackage.eINSTANCE.getEObject();
 		}
 
 		Set<EClass> intersection = new HashSet<EClass>(dropAdapters.keySet());
