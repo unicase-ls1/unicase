@@ -26,11 +26,10 @@ import org.unicase.workspace.ui.dialogs.CommitDialog;
 
 /**
  * @author Hodaie
- * @author Shterev This handler handles CommitWorkspace command. This command is
- *         shown in UC View context menu only for Projects
+ * @author Shterev This handler handles CommitWorkspace command. This command is shown in UC View context menu only for
+ *         Projects
  */
-public class CommitProjectHandler extends ServerRequestCommandHandler implements
-		CommitObserver {
+public class CommitProjectHandler extends ServerRequestCommandHandler implements CommitObserver {
 
 	private Shell shell;
 	private Usersession usersession;
@@ -54,20 +53,19 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information",
-						"You must select the Project");
+				MessageDialog.openInformation(shell, "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
 		}
-		
+
 		handleCommit(projectSpace);
 		return null;
 	}
-	
+
 	/**
 	 * Shows the CommitDialog and handles error situations.
 	 * 
@@ -89,7 +87,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
 		}
 	}
-	
+
 	/**
 	 * Sets a predefined messagte to the CommitDialog.
 	 * 
@@ -99,14 +97,10 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		this.predefinedCommitMessage = predefinedCommitMessage;
 	}
 
-	private void handleBaseVersionException(final ProjectSpace projectSpace)
-			throws EmfStoreException {
-		MessageDialog dialog = new MessageDialog(
-				null,
-				"Confirmation",
-				null,
-				"Your project is outdated, you need to update before commit. Do you want to update now?",
-				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+	private void handleBaseVersionException(final ProjectSpace projectSpace) throws EmfStoreException {
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
+			"Your project is outdated, you need to update before commit. Do you want to update now?",
+			MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
 		if (result == 0) {
 			new UpdateProjectHandler().update(projectSpace);
@@ -114,8 +108,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		}
 	}
 
-	private void commit(final ProjectSpace projectSpace)
-			throws EmfStoreException, BaseVersionOutdatedException {
+	private void commit(final ProjectSpace projectSpace) throws EmfStoreException, BaseVersionOutdatedException {
 		logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		projectSpace.commit(logMessage, CommitProjectHandler.this);
 	}
@@ -123,17 +116,13 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean inspectChanges(ProjectSpace projectSpace,
-			ChangePackage changePackage) {
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		if (changePackage.getOperations().isEmpty()) {
-			MessageDialog
-					.openInformation(
-							shell,
-							"No local changes",
-							"Your local changes were mutually exclusive.\nThe are no changes pending for commit.");
+			MessageDialog.openInformation(shell, "No local changes",
+				"Your local changes were mutually exclusive.\nThe are no changes pending for commit.");
 			return false;
 		}
-		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
+		CommitDialog commitDialog = new CommitDialog(shell, changePackage, projectSpace);
 		if (predefinedCommitMessage != null) {
 			LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 			logMessage.setMessage(predefinedCommitMessage);
@@ -154,8 +143,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * 
 	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted()
 	 */
-	public void commitCompleted(ProjectSpace projectSpace,
-			PrimaryVersionSpec versionSpec) {
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 	}
 
 }
