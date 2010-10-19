@@ -1,7 +1,7 @@
 #summary Documentation of ECP
 [ModelsTutorial Models 2010 Tutorial]
 
-GettingStartedWithEMFCP Getting Started with the EMF Client Platform]
+[GettingStartedWithEMFCP Getting Started with the EMF Client Platform]
 
 Tutorials
 
