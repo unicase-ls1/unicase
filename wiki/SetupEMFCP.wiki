@@ -1,6 +1,6 @@
 #summary Tutorial how to install the EMF Client Platform
 
-===1. Install an [http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition]===
+===1. Download and install an [http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition]===
 ===2. Install the current release of the EMF Client Platform:===
   * Add Update Site to your Eclipse: Help => Install new Software => Add Update Site
   * Enter EMF Client Platform Update Site: [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
