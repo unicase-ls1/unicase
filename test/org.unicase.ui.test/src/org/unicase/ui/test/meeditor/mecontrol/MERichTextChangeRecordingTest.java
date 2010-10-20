@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -21,7 +21,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Nitesh
  */
-public class MERichTextChangeRecordingTest extends MEEditorTest {
+public class MERichTextChangeRecordingTest extends UITestSetup {
 	private ActionItem actionItem;
 
 	/**

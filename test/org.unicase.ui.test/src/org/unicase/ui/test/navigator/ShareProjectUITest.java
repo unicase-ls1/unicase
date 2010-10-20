@@ -22,7 +22,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.User;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -35,7 +35,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * not. Also it tests if the created project appears on the UNICASE Navigator as shared or not.
  */
 
-public class ShareProjectUITest extends MEEditorTest {
+public class ShareProjectUITest extends UITestSetup {
 
 	private ProjectSpace projectSpace;
 

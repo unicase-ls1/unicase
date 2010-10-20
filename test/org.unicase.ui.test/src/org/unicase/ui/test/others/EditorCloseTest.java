@@ -18,7 +18,7 @@ import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -28,7 +28,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Nitesh
  */
-public class EditorCloseTest extends MEEditorTest {
+public class EditorCloseTest extends UITestSetup {
 
 	private ActionItem actionItem;
 	private BugReport bugReport;

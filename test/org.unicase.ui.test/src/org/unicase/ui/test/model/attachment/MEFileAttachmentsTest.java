@@ -37,7 +37,7 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -51,7 +51,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * 
  * @author Nitesh
  */
-public class MEFileAttachmentsTest extends MEEditorTest {
+public class MEFileAttachmentsTest extends UITestSetup {
 	private ActionItem actionItem;
 	private FileAttachment fileAttachment;
 	private File testFile;

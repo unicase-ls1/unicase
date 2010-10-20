@@ -27,7 +27,7 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -36,7 +36,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * 
  * @author Nitesh
  */
-public class AssessmentControlTest extends MEEditorTest {
+public class AssessmentControlTest extends UITestSetup {
 	private Issue issue;
 
 	/**
