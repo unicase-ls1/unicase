@@ -6,7 +6,7 @@
   * Enter EMF Client Platform Update Site: [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
   * Important: Uncheck "Group Items by Category" and "Contact all update sites ..."
   * Select all Features from the update site and install
-===3. Import example modell===
+===3. Import example model===
   * Download the [http://unicase.googlecode.com/svn/trunk/documentation/tutorials/emfcp/exampleModel.zip Example Model Plugins for ECP]
   * Select File => Import
   * Select "Existing projects into workspace"
