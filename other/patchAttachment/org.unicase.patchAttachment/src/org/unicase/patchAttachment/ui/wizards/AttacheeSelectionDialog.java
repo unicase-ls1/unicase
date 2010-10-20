@@ -3,7 +3,6 @@ package org.unicase.patchAttachment.ui.wizards;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -15,8 +14,8 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 		super(false);
 		EList<UnicaseModelElement> e = root.getAllModelElementsbyClass(ModelPackage.Literals.UNICASE_MODEL_ELEMENT,new BasicEList<UnicaseModelElement>());
 		//new patch>
-		//BasicEList<EObject> el = new BasicEList<EObject>();
-		BasicEList<ModelElement> el = new BasicEList<ModelElement>();
+		BasicEList<EObject> el = new BasicEList<EObject>();
+		//BasicEList<ModelElement> el = new BasicEList<ModelElement>();
 		for(UnicaseModelElement elem: e){
 			el.add(elem);
 		}

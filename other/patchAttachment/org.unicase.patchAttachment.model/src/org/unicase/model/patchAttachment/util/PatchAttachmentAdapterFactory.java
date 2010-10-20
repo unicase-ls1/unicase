@@ -9,20 +9,13 @@ package org.unicase.model.patchAttachment.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
-
 import org.unicase.model.attachment.FileAttachment;
-
-import org.unicase.model.patchAttachment.*;
+import org.unicase.model.patchAttachment.PatchAttachment;
+import org.unicase.model.patchAttachment.PatchAttachmentPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,16 +85,6 @@ public class PatchAttachmentAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElement(ModelElement object) {
-			return createModelElementAdapter();
-		}
-
-		@Override
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
 		}
@@ -146,34 +129,6 @@ public class PatchAttachmentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPatchAttachmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.IdentifiableElement
-	 * @generated
-	 */
-	public Adapter createIdentifiableElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.ModelElement
-	 * @generated
-	 */
-	public Adapter createModelElementAdapter() {
 		return null;
 	}
 

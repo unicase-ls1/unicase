@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.patchAttachment.PatchAttachment;
 import org.unicase.patchAttachment.applyPatch.BasicApplyPatchMethod;
@@ -100,7 +101,7 @@ public class ApplyPatchCommand extends UnicaseCommand{
 		}
 		// set information needed for transfer
 		FileInformation fileInfo = new FileInformation();
-		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
 		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 		fileInfo.setFileName(fileAttachment.getFileName());
 		return fileInfo;

@@ -15,7 +15,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.patchAttachment.PatchAttachment;
 import org.unicase.patchAttachment.commands.ApplyPatchCommand;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
@@ -47,15 +46,6 @@ public class MEPatchLinkControl  extends MELinkControl {
 			return -1;
 		}
 	}
-
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link,
-			ModelElement contextModelElement) {
-			if (link instanceof PatchAttachment) {
-				return PRIORITY;
-			} else {
-				return -1;
-			}
-		}
 
 	private static final int PRIORITY = 2;
 

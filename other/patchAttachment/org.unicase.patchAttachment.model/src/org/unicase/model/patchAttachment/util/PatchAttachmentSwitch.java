@@ -11,16 +11,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElement;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
-
 import org.unicase.model.attachment.FileAttachment;
-
-import org.unicase.model.patchAttachment.*;
+import org.unicase.model.patchAttachment.PatchAttachment;
+import org.unicase.model.patchAttachment.PatchAttachmentPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,10 +105,6 @@ public class PatchAttachmentSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(patchAttachment);
 			if (result == null)
-				result = caseModelElement(patchAttachment);
-			if (result == null)
-				result = caseIdentifiableElement(patchAttachment);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -134,36 +125,6 @@ public class PatchAttachmentSwitch<T> {
 	 * @generated
 	 */
 	public T casePatchAttachment(PatchAttachment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

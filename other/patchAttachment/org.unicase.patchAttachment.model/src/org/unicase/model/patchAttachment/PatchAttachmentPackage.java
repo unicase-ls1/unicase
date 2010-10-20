@@ -79,33 +79,6 @@ public interface PatchAttachmentPackage extends EPackage {
 	int PATCH_ATTACHMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__IDENTIFIER = AttachmentPackage.FILE_ATTACHMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__CREATOR = AttachmentPackage.FILE_ATTACHMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__CREATION_DATE = AttachmentPackage.FILE_ATTACHMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +158,24 @@ public interface PatchAttachmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int PATCH_ATTACHMENT__COMMENTS = AttachmentPackage.FILE_ATTACHMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__CREATION_DATE = AttachmentPackage.FILE_ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__CREATOR = AttachmentPackage.FILE_ATTACHMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.

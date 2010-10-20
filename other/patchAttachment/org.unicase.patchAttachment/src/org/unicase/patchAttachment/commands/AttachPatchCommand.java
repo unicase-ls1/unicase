@@ -12,6 +12,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -75,8 +76,8 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 		//2) **** Create the model element for the patch, add it to the project and link it ****
 			PatchAttachment f = (PatchAttachment) PatchAttachmentFactory.eINSTANCE.create(PatchAttachmentPackage.Literals.PATCH_ATTACHMENT);
-			Project p = attachTo.getProject();
-
+			Project p = ModelUtil.getProject(attachTo);
+			
 			final ProjectSpace projectSpace = WorkspaceManager
 					.getProjectSpace(p);
 
@@ -97,7 +98,7 @@ public class AttachPatchCommand extends UnicaseCommand{
 				final FileInformation fileInformation = new FileInformation();
 				fileInformation.setFileVersion(-1);
 				fileInformation.setFileName("patch.txt");
-				fileInformation.setFileAttachmentId(f.getIdentifier());
+				fileInformation.setFileAttachmentId(p.getModelElementId(f).getId());
 				try {
 					// adds a pending file upload request
 					WorkspaceManager.getProjectSpace(f).addFileTransfer(fileInformation,
@@ -109,7 +110,7 @@ public class AttachPatchCommand extends UnicaseCommand{
 			//<<< End composite operation
 			try {
 				operationHandle.end("Attached patch",
-						"Attached a patch to " + attachTo.getName() + ".", attachTo.getModelElementId());
+						"Attached a patch to " + attachTo.getName() + ".", p.getModelElementId(attachTo));
 			} catch (InvalidHandleException e) {
 				throw new PatchAttachmentException("Composite Operation failed!", e);
 			}
