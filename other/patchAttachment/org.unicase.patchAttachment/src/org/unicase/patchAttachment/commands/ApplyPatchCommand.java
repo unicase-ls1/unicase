@@ -37,7 +37,7 @@ public class ApplyPatchCommand extends UnicaseCommand{
 	@Override
 	protected void doRun() {
 		new DownloadRunnable().run();
-//		try {
+//		try {d
 //			FileRequestHandler f = WorkspaceManager.getProjectSpace(attachment).getFile(attachment.getFileID());
 ////			while(!f.isDownloadFinished()){
 ////				try {
