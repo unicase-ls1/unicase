@@ -16,7 +16,9 @@ import org.unicase.ui.test.UITestCommon;
 import org.unicase.ui.test.meeditor.MEEditorTest;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
@@ -32,6 +34,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 	private static ProjectSpace projectSpace;
 	private static ConnectionManager connectionManager;
 	private static SessionId sessionId;
+	private static Usersession usersessionsuper;
 
 	// private static LeafSection leafSection;
 	// private static SessionId sessionId;
@@ -56,6 +59,12 @@ public class UpdateProjectUITest extends MEEditorTest {
 	@Test
 	public void updateProjectUpdate() {
 		UITestCommon.openView(getBot(), "Unicase", "Navigator");
+
+		usersessionsuper = WorkspaceFactory.eINSTANCE.createUsersession();
+		usersessionsuper.setServerInfo(SetupHelper.getServerInfo());
+		usersessionsuper.setUsername("super");
+		usersessionsuper.setPassword("super");
+
 		new UnicaseCommand() {
 
 			@Override
@@ -68,6 +77,8 @@ public class UpdateProjectUITest extends MEEditorTest {
 						SetupHelper.getServerInfo()), SetupHelper.getServerInfo(), Configuration.getClientVersion());
 					WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(
 						SetupHelper.getServerInfo(), sessionId);
+					usersessionsuper.setSessionId(sessionId);
+					projectSpace.shareProject(usersessionsuper);
 
 				} catch (EmfStoreException e1) {
 					e1.printStackTrace();
