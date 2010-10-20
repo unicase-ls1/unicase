@@ -25,7 +25,7 @@ Getting started as developer in 7 easy steps:
 
 2. Download [http://phoenix.eclipse.org/packages/ Eclipse] and install the required plugins (see above).
 
-3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout) into your Eclipse workspace using Subclipse.
+3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout) into your Eclipse workspace using Subclipse. Please see also this [CheckoutTutorial Tutorial]
 
 4. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
