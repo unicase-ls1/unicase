@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EMFStore Model Edit Plug-in
 Bundle-SymbolicName: org.unicase.emfstore.esmodel.edit;singleton:=true
-Bundle-Version: 0.4.6.internal
+Bundle-Version: 0.4.5
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin$Implementation
 Bundle-Vendor: unicase.org
@@ -18,6 +18,6 @@ Export-Package: org.unicase.emfstore.esmodel.accesscontrol.provider,
  org.unicase.emfstore.esmodel.versioning.operations.provider,
  org.unicase.emfstore.esmodel.versioning.operations.semantic.provider,
  org.unicase.emfstore.esmodel.versioning.provider
-Require-Bundle: org.unicase.emfstore.esmodel;bundle-version="0.4.6.internal";visibility:=reexport,
- org.unicase.metamodel.edit;bundle-version="0.4.6.internal";visibility:=reexport
+Require-Bundle: org.unicase.emfstore.esmodel;bundle-version="0.4.5";visibility:=reexport,
+ org.unicase.metamodel.edit;bundle-version="0.4.5";visibility:=reexport
 Bundle-ActivationPolicy: lazy
