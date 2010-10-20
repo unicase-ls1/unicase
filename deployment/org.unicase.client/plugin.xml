@@ -36,7 +36,7 @@
          </property>
          <property
                name="aboutText"
-               value="UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. The project is open-source and released under the Eclipse Public License v 1.0 (EPL).&#x0A;&#x0A;More details can be found at the project home-page : &#x0A;http://www.unicase.org">
+               value="Version: 0.4.5&#x0A;&#x0A;(c) Copyright 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved.&#x0A;This program and the accompanying materials are made available&#x0A;under the terms of the Eclipse Public License v1.0 which accompanies this&#x0A;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#x0A;&#x0A;UNICASE client - a unified CASE-Tool.&#x0A;Visit http://www.unicase.org">
          </property>
          <property
                name="aboutImage"
@@ -48,7 +48,7 @@
          </property>
          <property
                name="startupProgressRect"
-               value="5,280,556,17">
+               value="5,280,527,17">
          </property>
          <property
                name="startupForegroundColor"
