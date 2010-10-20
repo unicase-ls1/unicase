@@ -11,6 +11,7 @@ Sub-projects:
  * [ECPNavigation EMF Client Platform (ECP)]
    * [ECP What is the ECP?]
    * [ECPFeatures Why should I use the ECP?]
+   * [GettingStartedWithEMFCP Getting Started with EMF Client Platform]
    * [ECPDownloads Downloads]
    * [ECPDocumentation Documentation and Tutorials]
    * [http://twitter.com/emfcp ECP Twitter].
