@@ -13,6 +13,7 @@
   * Select "Archive" and the downloaded zip file
   * Import
 ===4. Start EMF Client Platform===
+  * Launch a default debug configuration including all plugins in your workspace
 
 Links to required resources:
   * [http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition Download]
