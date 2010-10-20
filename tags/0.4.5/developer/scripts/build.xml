@@ -1,0 +1,47 @@
+<project name="unicase developer toolkit" default="" basedir="." xmlns:artifact="urn:maven-artifact-ant">
+	<description>
+        An ant file for development support tasks
+    </description>
+
+	<!-- set global properties for this build -->
+
+	<property name="db_user" value="root" />
+	<property name="db_pass" value="pass" />
+	<property name="db_name" value="model" />
+	<property name="unicaseWorkspaceDir" value="${user.home}/.unicase.dev" />
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="../lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+
+	<osfamily property="os.family" />
+
+	<target name="cleanWorkspace" description="delete the unicase workspace and all its projectspaces">
+		<echo message="Deleting workspace..." />
+		<delete file="${unicaseWorkspaceDir}/workspace" />
+		<delete file="${unicaseWorkspaceDir}/workspace.ucw" />
+		<delete includeemptydirs="yes">
+			<fileset dir="${unicaseWorkspaceDir}" defaultexcludes="no">
+				<include name="**/ps-*/**" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="cleanServer" description="delete the unicase serverspace">
+		<echo message="Deleting serverspace..." />
+		<delete file="${unicaseWorkspaceDir}/emfstore/storage" />
+		<delete includeemptydirs="yes">
+			<fileset dir="${unicaseWorkspaceDir}/emfstore" defaultexcludes="no">
+				<include name="**/project-*/**" />
+			</fileset>
+		</delete>
+	</target>
+
+
+	<target name="cleanAllUnicaseData" description="clean up workspace and db">
+		<ant target="cleanWorkspace" />
+		<ant target="cleanServer" />
+	</target>
+</project>
