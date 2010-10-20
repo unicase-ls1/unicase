@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -25,7 +25,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * on the UNICASE Navigator.
  */
 
-public class CreateProjectUITest extends MEEditorTest {
+public class CreateProjectUITest extends UITestSetup {
 	private Project newproject;
 
 	/**

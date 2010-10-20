@@ -13,7 +13,7 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.Test;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -22,7 +22,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * Class to test if a project is deleted correctly in UNICASE repository. Also it tests if the deleted project dosen't
  * appear on the Navigator.
  */
-public class DeleteProjectUITest extends MEEditorTest {
+public class DeleteProjectUITest extends UITestSetup {
 	private Project newproject;
 	private boolean testcondition = true;
 

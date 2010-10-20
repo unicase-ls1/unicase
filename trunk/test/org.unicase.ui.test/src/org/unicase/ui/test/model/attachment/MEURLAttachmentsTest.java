@@ -30,7 +30,7 @@ import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -39,7 +39,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * 
  * @author Nitesh
  */
-public class MEURLAttachmentsTest extends MEEditorTest {
+public class MEURLAttachmentsTest extends UITestSetup {
 	private ActionItem actionItem;
 	private UrlAttachment urlAttachment;
 

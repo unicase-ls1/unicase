@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -20,7 +20,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Nitesh
  */
-public class METextControlTest extends MEEditorTest {
+public class METextControlTest extends UITestSetup {
 
 	private ActionItem actionItem;
 	private ActionItem newactionItem;

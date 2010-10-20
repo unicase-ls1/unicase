@@ -13,7 +13,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -29,7 +29,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * Class to test if a project is is updated correctly in a way that the project is successfully synchronized between the
  * UI and the UNICASE repository .
  */
-public class UpdateProjectUITest extends MEEditorTest {
+public class UpdateProjectUITest extends UITestSetup {
 
 	private static ProjectSpace projectSpace;
 	private static ConnectionManager connectionManager;

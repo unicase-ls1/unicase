@@ -25,13 +25,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 /**
  * Class to test the MEDateControl.
  */
-public class MEDateControlTest extends MEEditorTest {
+public class MEDateControlTest extends UITestSetup {
 
 	private ActionItem actionItem;
 /**

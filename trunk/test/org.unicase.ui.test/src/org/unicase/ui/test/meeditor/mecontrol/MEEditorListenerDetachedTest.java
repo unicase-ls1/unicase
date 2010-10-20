@@ -14,7 +14,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.test.UITestCommon;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -22,7 +22,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author Nitesh
  */
-public class MEEditorListenerDetachedTest extends MEEditorTest {
+public class MEEditorListenerDetachedTest extends UITestSetup {
 	private ActionItem actionItem;
 	private User user;
 

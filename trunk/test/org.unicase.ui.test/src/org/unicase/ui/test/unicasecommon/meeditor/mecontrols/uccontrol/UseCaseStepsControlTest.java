@@ -21,14 +21,14 @@ import org.junit.Test;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.ui.test.meeditor.MEEditorTest;
+import org.unicase.ui.test.UITestSetup;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Tests the UseCase Step widget.
  */
-public class UseCaseStepsControlTest extends MEEditorTest {
+public class UseCaseStepsControlTest extends UITestSetup {
 
 	private UseCase usecase;
 
