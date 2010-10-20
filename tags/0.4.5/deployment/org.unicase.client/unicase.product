@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="UNICASE" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.4" useFeatures="false" includeLaunchers="true">
+<product name="UNICASE" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.5" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
