@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.task.TaskPackage;
@@ -145,7 +146,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
 			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
@@ -159,7 +160,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	/**
 	 * {@inheritDoc}
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (notification.isTouch()) {
 			return;
 		}
@@ -176,7 +177,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
 			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
@@ -184,6 +185,14 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 				treeViewer.refresh(backlog, true);
 			}
 		}
+	}
+
+	/**
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 *      {@inheritDoc}
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		// nothing to do
 	}
 
 	/**

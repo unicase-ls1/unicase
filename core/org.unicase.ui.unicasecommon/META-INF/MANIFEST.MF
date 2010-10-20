@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Unicasecommon
 Bundle-SymbolicName: org.unicase.ui.unicasecommon;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.6.internal
 Bundle-Activator: org.unicase.ui.unicasecommon.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -13,13 +13,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.core;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.ui.providers;visibility:=reexport,
- org.unicase.ecpemfstorebridge;visibility:=reexport,
- org.unicase.ui.navigatormeeditorbridge
+ org.eclipse.gmf.runtime.diagram.ui.providers;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.unicase.ui.unicasecommon,
- org.unicase.ui.unicasecommon.common,
+Export-Package: org.unicase.ui.unicasecommon.common,
  org.unicase.ui.unicasecommon.common.diagram,
  org.unicase.ui.unicasecommon.common.dialogs,
  org.unicase.ui.unicasecommon.common.filter,

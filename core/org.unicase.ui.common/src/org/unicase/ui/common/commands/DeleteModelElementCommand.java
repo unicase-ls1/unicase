@@ -5,17 +5,13 @@
  */
 package org.unicase.ui.common.commands;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.common.util.AssociationClassHelper;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Command to delete a modelelement.
@@ -23,55 +19,47 @@ import org.unicase.ui.common.util.AssociationClassHelper;
  * @author helming
  * @author shterev
  */
-public final class DeleteModelElementCommand {
-	private final EObject me;
-	private final List<EObject> additionalMEs;
-	private final ECPModelelementContext context;
+public final class DeleteModelElementCommand extends UnicaseCommand {
+	private final ModelElement me;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param opposite the model element to be deleted.
-	 * @param context the model element context
+	 * @param me the {@link ModelElement} to be deleted.
 	 */
-	public DeleteModelElementCommand(EObject opposite, ECPModelelementContext context) {
-		this.me = opposite;
-		this.context = context;
-		additionalMEs = AssociationClassHelper.getRelatedAssociationClassToDelete(me, context);
+	public DeleteModelElementCommand(ModelElement me) {
+		this.me = me;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void run() {
+	@Override
+	protected void doRun() {
+		
+			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			String modelElementName = adapterFactoryLabelProvider.getText(me);
+			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
+				+ modelElementName + "?", MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+			int result = dialog.open();
+			if (result == MessageDialog.OK) {
+				ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell());
+				progressDialog.open();
+				progressDialog.getProgressMonitor().beginTask("Deleting " + modelElementName + "...", 100);
+				progressDialog.getProgressMonitor().worked(20);
 
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		String modelElementName = adapterFactoryLabelProvider.getText(me);
-		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
-			+ modelElementName + "?", MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-		int result = dialog.open();
-		if (result == MessageDialog.OK) {
-			ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell());
-			progressDialog.open();
-			progressDialog.getProgressMonitor().beginTask("Deleting " + modelElementName + "...", 100);
-			progressDialog.getProgressMonitor().worked(20);
-
-			try {
-				for (EObject additionalME : additionalMEs) {
-					context.getEditingDomain().getCommandStack().execute(
-						DeleteCommand.create(context.getEditingDomain(), additionalME));
+				try {
+					me.delete();
+				} finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 				}
-				context.getEditingDomain().getCommandStack().execute(
-					DeleteCommand.create(context.getEditingDomain(), me));
-			} finally {
-				progressDialog.getProgressMonitor().done();
-				progressDialog.close();
+
 			}
-
-		}
-
+		
 	}
 
+	
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -87,6 +89,10 @@ public class MeetingSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(meeting);
 			if (result == null)
+				result = caseModelElement(meeting);
+			if (result == null)
+				result = caseIdentifiableElement(meeting);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -95,6 +101,10 @@ public class MeetingSwitch<T> {
 			T result = caseMeetingSection(meetingSection);
 			if (result == null)
 				result = caseUnicaseModelElement(meetingSection);
+			if (result == null)
+				result = caseModelElement(meetingSection);
+			if (result == null)
+				result = caseIdentifiableElement(meetingSection);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -107,6 +117,10 @@ public class MeetingSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(compositeMeetingSection);
 			if (result == null)
+				result = caseModelElement(compositeMeetingSection);
+			if (result == null)
+				result = caseIdentifiableElement(compositeMeetingSection);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -118,6 +132,10 @@ public class MeetingSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(issueMeetingSection);
 			if (result == null)
+				result = caseModelElement(issueMeetingSection);
+			if (result == null)
+				result = caseIdentifiableElement(issueMeetingSection);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -128,6 +146,10 @@ public class MeetingSwitch<T> {
 				result = caseMeetingSection(workItemMeetingSection);
 			if (result == null)
 				result = caseUnicaseModelElement(workItemMeetingSection);
+			if (result == null)
+				result = caseModelElement(workItemMeetingSection);
+			if (result == null)
+				result = caseIdentifiableElement(workItemMeetingSection);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -202,6 +224,33 @@ public class MeetingSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkItemMeetingSection(WorkItemMeetingSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

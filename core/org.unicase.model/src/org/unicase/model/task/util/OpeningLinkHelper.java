@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.organization.User;
@@ -59,15 +58,15 @@ public final class OpeningLinkHelper {
 			}
 			// Create path
 			ModelElementPath path = UtilFactory.eINSTANCE.createModelElementPath();
-			path.setSource(ModelUtil.getProject(list.get(0)).getModelElementId(list.get(0)));
-			path.setTarget(ModelUtil.getProject(opened).getModelElementId(opened));
+			path.setSource(list.get(0).getModelElementId());
+			path.setTarget(opened.getModelElementId());
 			if (list.size() > 1) {
 				for (int i = 1; i < list.size(); i++) {
-					path.getPath().add(ModelUtil.getProject(list.get(i)).getModelElementId(list.get(i)));
+					path.getPath().add(list.get(i).getModelElementId());
 				}
 			}
-			if (!ret.containsKey(ModelUtil.getProject(opened).getModelElementId(opened))) {
-				ret.put(ModelUtil.getProject(opened).getModelElementId(opened), path);
+			if (!ret.containsKey(opened.getModelElementId())) {
+				ret.put(opened.getModelElementId(), path);
 
 				ArrayList<UnicaseModelElement> newList = new ArrayList<UnicaseModelElement>();
 				newList.addAll(list);

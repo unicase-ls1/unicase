@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -27,6 +26,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
@@ -165,14 +165,14 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 	 *      org.eclipse.emf.edit.domain.EditingDomain, org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
+	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, ModelElement modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {
 			this.modelElement = (UnicaseModelElement) modelElement;
 		} else {
 			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
 		}
 		try {
-			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(this.modelElement));
+			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement));
 		} catch (NoCurrentUserException e1) {
 			// Do nothing
 		} catch (CannotMatchUserInProjectException e1) {

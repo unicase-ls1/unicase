@@ -34,7 +34,7 @@ public interface Attachment extends UnicaseModelElement {
 	 * @return the value of the '<em>Referring Model Elements</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getAttachment_ReferringModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getAttachments
-	 * @model opposite="attachments"
+	 * @model opposite="attachments" keys="identifier"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getReferringModelElements();

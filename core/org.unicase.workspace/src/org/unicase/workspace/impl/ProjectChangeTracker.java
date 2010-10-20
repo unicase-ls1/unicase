@@ -6,50 +6,35 @@
 package org.unicase.workspace.impl;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
-import org.unicase.workspace.changeTracking.commands.CommandObserver;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
+import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
+import org.unicase.workspace.changeTracking.notification.recording.NotificationRecordingHint;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -57,34 +42,19 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author koegel
  */
-public class ProjectChangeTracker implements ProjectChangeObserver, CommandObserver {
+public class ProjectChangeTracker implements ProjectChangeObserver {
 
 	private final ProjectSpaceImpl projectSpace;
 	private boolean isRecording;
 	private NotificationRecorder notificationRecorder;
+	private CreateDeleteOperation deleteOperation;
 	private CompositeOperation compositeOperation;
-	private boolean autoSave;
 
 	/**
 	 * Name of unknown creator.
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
 	private DirtyResourceSet dirtyResourceSet;
-	private EMFStoreTransactionalCommandStack emfStoreTransactionalCommandStack;
-	private int currentOperationListSize;
-	private TransactionalEditingDomain editingDomain;
-	private Set<EObject> currentClipboard;
-	private List<AbstractOperation> operations;
-	private List<EObject> removedElements;
-
-	private NotificationToOperationConverter converter;
-
-	/**
-	 * @return the removedElements
-	 */
-	public List<EObject> getRemovedElements() {
-		return removedElements;
-	}
 
 	/**
 	 * Constructor.
@@ -94,24 +64,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public ProjectChangeTracker(ProjectSpaceImpl projectSpace) {
 		this.projectSpace = projectSpace;
 		this.isRecording = false;
-		this.autoSave = true;
 		dirtyResourceSet = new DirtyResourceSet();
-
-		if (!projectSpace.isTransient()) {
-			editingDomain = Configuration.getEditingDomain();
-
-			CommandStack commandStack = editingDomain.getCommandStack();
-
-			if (!(commandStack instanceof EMFStoreTransactionalCommandStack)) {
-				throw new IllegalStateException(
-					"Setup of ResourceSet is invalid, there is no EMFStoreTransactionalCommandStack!");
-			}
-			emfStoreTransactionalCommandStack = (EMFStoreTransactionalCommandStack) commandStack;
-			emfStoreTransactionalCommandStack.addCommandStackObserver(this);
-		}
-		operations = projectSpace.getOperations();
-		removedElements = new ArrayList<EObject>();
-		converter = new NotificationToOperationConverter(projectSpace.getProject());
 	}
 
 	/**
@@ -120,16 +73,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
-		// if element was just pasted from clipboard then do nothing
-		if (this.getModelElementsFromClipboard().contains(modelElement)) {
-			return;
-		}
-
+	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
 		if (isRecording) {
-			// TODO: PlainEObjectMode, appendCreator
-			// appendCreator(modelElement);
+			appendCreator(modelElement);
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(createDeleteOperation);
@@ -145,18 +92,20 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @param modelElement the model element
 	 * @generated NOT
 	 */
-	void addToResource(final EObject modelElement) {
+	void addToResource(final ModelElement modelElement) {
 		if (projectSpace.isTransient()) {
 			return;
 		}
-		addElementToResouce(modelElement);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				addElementToResouce(modelElement);
+			}
+		}.run();
 	}
 
-	private void addElementToResouce(final EObject modelElement) {
-		XMIResource oldResource = (XMIResource) modelElement.eResource();
-		// assign model element to a fixed resource
-		oldResource.getContents().add(modelElement);
-		setModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
+	private void addElementToResouce(final ModelElement modelElement) {
+		Resource oldResource = modelElement.eResource();
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
@@ -171,36 +120,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			projectSpace.saveProjectSpaceOnly();
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
-			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
-			// unset ID on old resource
-			unsetModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
+			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
 			newResource.getContents().add(modelElement);
-			// set ID on created resource again
-			setModelElementIdAndChildrenIdOnResource(modelElement, newResource);
-			// newResource.setID(modelElement, modelElementId);
-		}
-		save(modelElement);
-	}
-
-	private void setModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
-		String modelElementId = projectSpace.getProject().getModelElementId(modelElement).getId();
-		resource.setID(modelElement, modelElementId);
-
-		TreeIterator<EObject> it = modelElement.eAllContents();
-		while (it.hasNext()) {
-			EObject child = it.next();
-			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			resource.setID(child, childId.getId());
-		}
-	}
-
-	private void unsetModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
-		resource.setID(modelElement, null);
-
-		TreeIterator<EObject> it = modelElement.eAllContents();
-		while (it.hasNext()) {
-			EObject child = it.next();
-			resource.setID(child, null);
+			save(modelElement);
 		}
 	}
 
@@ -208,6 +130,65 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (new File(newfileName).exists()) {
 			throw new IllegalStateException("File fragment \"" + newfileName
 				+ "\" already exists - ProjectSpace corrupted.");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
+	 */
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		if (isRecording) {
+
+			notificationRecorder.stopRecording();
+			recordingFinished();
+
+			if (deleteOperation == null) {
+				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
+			}
+			deleteOperation.setDelete(true);
+			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
+			deleteOperation.setModelElementId(modelElement.getModelElementId());
+
+			if (this.compositeOperation != null) {
+				this.compositeOperation.getSubOperations().add(deleteOperation);
+				projectSpace.saveResource(compositeOperation.eResource());
+			} else {
+				projectSpace.addOperation(deleteOperation);
+			}
+
+			deleteOperation = null;
+
+			Resource resource = modelElement.eResource();
+			if (resource != null) {
+				resource.getContents().remove(modelElement);
+				dirtyResourceSet.addDirtyResource(resource);
+			}
+			for (ModelElement child : modelElement.getAllContainedModelElements()) {
+				Resource childResource = child.eResource();
+				if (childResource != null) {
+					childResource.getContents().remove(child);
+					dirtyResourceSet.addDirtyResource(childResource);
+				}
+			}
+
+		}
+		dirtyResourceSet.save();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		if (isRecording) {
+			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
+			deleteOperation.setClientDate(new Date());
+			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 		}
 	}
 
@@ -229,18 +210,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (notificationRecorder == null) {
 			notificationRecorder = new NotificationRecorder();
 		}
-		this.removedElements.clear();
 		// notificationRecorder;
 		isRecording = true;
-	}
-
-	/**
-	 * Save all dirty resources to disk now if autosave is active.
-	 */
-	public void saveDirtyResources() {
-		if (autoSave) {
-			dirtyResourceSet.save();
-		}
 	}
 
 	/**
@@ -249,20 +220,14 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
-
-		// filter unwanted notifications
-		if (FilterStack.DEFAULT.check(new NotificationInfo(notification))) {
-			return;
-		}
-
-		save(modelElement);
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		notificationRecorder.record(notification);
+		save(modelElement);
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
 			}
-			saveDirtyResources();
+			dirtyResourceSet.save();
 		}
 	}
 
@@ -276,7 +241,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 				WorkspaceUtil.log("INVALID NOTIFICATION MESSAGE DETECTED: " + n.getValidationMessage(), null, 0);
 				continue;
 			} else {
-				AbstractOperation op = converter.convert(n);
+				AbstractOperation op = NotificationToOperationConverter.convert(n);
 				if (op != null) {
 					ops.add(op);
 				} else {
@@ -289,8 +254,20 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			}
 		}
 
-		// add resulting operations as suboperations to composite or top-level operations
-		if (compositeOperation != null) {
+		// add resulting operations as suboperations to composite, delete or top-level operations
+		// handle delete, verify reference operations only
+		if (deleteOperation != null) {
+			// check, that all ops are reference ops
+			for (AbstractOperation op : ops) {
+				if (op instanceof ReferenceOperation) {
+					deleteOperation.getSubOperations().add((ReferenceOperation) op);
+				} else {
+					WorkspaceUtil.log("NON-REFERNCE OP AS SUBOP OF A DELETE OPERATION DETECTED: "
+						+ op.getClass().getCanonicalName(), null, 0);
+				}
+			}
+
+		} else if (compositeOperation != null) {
 			compositeOperation.getSubOperations().addAll(ops);
 			projectSpace.saveResource(compositeOperation.eResource());
 		} else {
@@ -312,10 +289,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * Aborts the current composite operation.
 	 */
 	public void abortCompositeOperation() {
+		recordingFinished();
 		projectSpace.undoLastOperation();
 		this.compositeOperation = null;
-		currentOperationListSize = operations.size();
-		removedElements.clear();
 	}
 
 	/**
@@ -327,12 +303,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		return notificationRecorder;
 	}
 
-	/**
-	 * Save the given model elements resource.
-	 * 
-	 * @param modelElement the model elements
-	 */
-	private void save(EObject modelElement) {
+	private void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 
 		if (projectSpace.isTransient()) {
@@ -348,23 +319,22 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * 
 	 * @param modelElement the model element.
 	 */
-	// TODO: PlainEObjectMode, appendCreater
-	private void appendCreator(EObject modelElement) {
+	private void appendCreator(ModelElement modelElement) {
 		stopChangeRecording();
-		// if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
-		// Usersession usersession = projectSpace.getUsersession();
-		// // used when the project has not been shared yet
-		// // and there is practically no possible way of
-		// // knowing who the creator was...
-		// String creator = UNKOWN_CREATOR;
-		// if (usersession != null) {
-		// creator = usersession.getACUser().getName();
-		// }
-		// modelElement.setCreator(creator);
-		// }
-		// if (modelElement.getCreationDate() == null) {
-		// modelElement.setCreationDate(new Date());
-		// }
+		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
+			Usersession usersession = projectSpace.getUsersession();
+			// used when the project has not been shared yet
+			// and there is practically no possible way of
+			// knowing who the creator was...
+			String creator = UNKOWN_CREATOR;
+			if (usersession != null) {
+				creator = usersession.getACUser().getName();
+			}
+			modelElement.setCreator(creator);
+		}
+		if (modelElement.getCreationDate() == null) {
+			modelElement.setCreationDate(new Date());
+		}
 		startChangeRecording();
 	}
 
@@ -375,28 +345,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @param delete whether the element is deleted or created
 	 * @return the operation
 	 */
-	private CreateDeleteOperation createCreateDeleteOperation(EObject modelElement, boolean delete) {
+	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
 		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		createDeleteOperation.setDelete(delete);
-		EObject element = modelElement;
-
-		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
-		allContainedModelElements.add(element);
-		EObject copiedElement = EcoreUtil.copy(element);
-		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
-			false);
-		copiedAllContainedModelElements.add(copiedElement);
-
-		for (int i = 0; i < allContainedModelElements.size(); i++) {
-			EObject child = allContainedModelElements.get(i);
-			EObject copiedChild = copiedAllContainedModelElements.get(i);
-			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
-			((CreateDeleteOperationImpl) createDeleteOperation).getEObjectToIdMap().put(copiedChild, childId);
-		}
-
-		createDeleteOperation.setModelElement(copiedElement);
-		createDeleteOperation.setModelElementId(projectSpace.getProject().getModelElementId(modelElement));
-
+		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
+		createDeleteOperation.setModelElementId(modelElement.getModelElementId());
 		createDeleteOperation.setClientDate(new Date());
 		return createDeleteOperation;
 	}
@@ -428,8 +381,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
-
-		// notificationRecorder.newRecording();
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
 		}
@@ -445,262 +396,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
 	public void projectDeleted(Project project) {
-		emfStoreTransactionalCommandStack.removeCommandStackObserver(this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
-	 *      org.unicase.metamodel.ModelElement)
-	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
-		removedElements.add(modelElement);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
-	 */
-	public void commandCompleted(Command command) {
-		// means that we have not seen a command start yet
-		if (currentClipboard == null) {
-			return;
-		}
-
-		List<EObject> deletedElements = new ArrayList<EObject>();
-		for (int i = removedElements.size() - 1; i >= 0; i--) {
-			EObject removedElement = removedElements.get(i);
-			if (!projectSpace.getProject().containsInstance(removedElement)) {
-				if (!deletedElements.contains(removedElement)) {
-					deletedElements.add(0, removedElement);
-				}
-			}
-
-		}
-		removedElements.clear();
-
-		Set<EObject> newElementsOnClipboardAfterCommand = getModelElementsFromClipboard();
-		newElementsOnClipboardAfterCommand.removeAll(currentClipboard);
-
-		// handle deleted elements => cut command
-		for (EObject deletedElement : deletedElements) {
-			if (newElementsOnClipboardAfterCommand.contains(deletedElement)) {
-				// element was cut
-				projectSpace.getProject().getCutElements().add(deletedElement);
-			} else {
-				// element was deleted
-				handleElementDelete(deletedElement);
-				cleanResources(deletedElement);
-			}
-		}
-
-		// remove all deleted elements
-		newElementsOnClipboardAfterCommand.removeAll(deletedElements);
-
-		if (projectSpace.getProject() != null) {
-			saveDirtyResources();
-		} else {
-			saveDirtyResources();
-		}
-	}
-
-	private void cleanResources(EObject deletedElement) {
-		Resource resource = deletedElement.eResource();
-		if (resource != null) {
-			resource.getContents().remove(deletedElement);
-			dirtyResourceSet.addDirtyResource(resource);
-		}
-		for (EObject child : ModelUtil.getAllContainedModelElements(deletedElement, false)) {
-			Resource childResource = child.eResource();
-			if (childResource != null) {
-				childResource.getContents().remove(child);
-				dirtyResourceSet.addDirtyResource(childResource);
-			}
-		}
-	}
-
-	private void deleteOutgoingCrossReferencesOfContainmentTree(EObject modelElement) {
-		deleteOutgoingCrossReferences(modelElement);
-		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
-			deleteOutgoingCrossReferences(child);
-		}
-	}
-
-	private void deleteOutgoingCrossReferences(EObject modelElement) {
-		// delete all non containment cross references to other elments
-		for (EReference reference : modelElement.eClass().getEAllReferences()) {
-			EClassifier eType = reference.getEType();
-			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
-				continue;
-			}
-
-			if (eType instanceof EClass) {
-				modelElement.eUnset(reference);
-			}
-		}
-	}
-
-	private void handleElementDelete(EObject deletedElement) {
-		deleteOutgoingCrossReferencesOfContainmentTree(deletedElement);
-
-		if (!ModelUtil.isSelfContained(deletedElement, true)) {
-			throw new IllegalStateException(
-				"Element was removed from containment of project but still has cross references!: "
-					+ ModelUtil.getProject(deletedElement).getModelElementId(deletedElement).getId());
-		}
-
-		if (!isRecording) {
-			return;
-		}
-
-		CreateDeleteOperation deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-		deleteOperation.setClientDate(new Date());
-
-		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(deletedElement, false);
-		allContainedModelElements.add(deletedElement);
-		EObject copiedElement = EcoreUtil.copy(deletedElement);
-		deleteOperation.setModelElement(copiedElement);
-		deleteOperation.setModelElementId(((ProjectImpl) projectSpace.getProject())
-			.getDeletedModelElementId(deletedElement));
-		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
-			false);
-		copiedAllContainedModelElements.add(copiedElement);
-
-		for (int i = 0; i < allContainedModelElements.size(); i++) {
-			EObject child = allContainedModelElements.get(i);
-			EObject copiedChild = copiedAllContainedModelElements.get(i);
-			ModelElementId childId = ((ProjectImpl) projectSpace.getProject()).getDeletedModelElementId(child);
-			((CreateDeleteOperationImpl) deleteOperation).getEObjectToIdMap().put(copiedChild, childId);
-		}
-
-		deleteOperation.setDelete(true);
-
-		List<CompositeOperation> compositeOperationsToDelete = new ArrayList<CompositeOperation>();
-		deleteOperation.getSubOperations().addAll(
-			extractReferenceOperationsForDelete(deletedElement, compositeOperationsToDelete));
-		operations.removeAll(compositeOperationsToDelete);
-
-		if (this.compositeOperation != null) {
-			this.compositeOperation.getSubOperations().add(deleteOperation);
-			projectSpace.saveResource(compositeOperation.eResource());
-		} else {
-			projectSpace.addOperation(deleteOperation);
-		}
-
-		// remove deleted model element and children from resource
-		ModelUtil.removeModelElementAndChildrenFromResource(deletedElement);
-	}
-
-	@SuppressWarnings("unchecked")
-	private List<ReferenceOperation> extractReferenceOperationsForDelete(EObject deletedElement,
-		List<CompositeOperation> compositeOperationsToDelete) {
-		Set<ModelElementId> allDeletedElementsIds = new HashSet<ModelElementId>();
-		for (EObject child : ModelUtil.getAllContainedModelElements(deletedElement, false)) {
-			ModelElementId childId = ((ProjectImpl) projectSpace.getProject()).getDeletedModelElementId(child);
-			allDeletedElementsIds.add(childId);
-		}
-		allDeletedElementsIds.add(((ProjectImpl) projectSpace.getProject()).getDeletedModelElementId(deletedElement));
-
-		List<AbstractOperation> newOperations = operations.subList(currentOperationListSize, operations.size());
-		List<ReferenceOperation> referenceOperationsForDelete = new ArrayList<ReferenceOperation>();
-		for (int i = newOperations.size() - 1; i >= 0; i--) {
-			AbstractOperation operation = newOperations.get(i);
-			if (belongsToDelete(operation, allDeletedElementsIds)) {
-				referenceOperationsForDelete.add(0, (ReferenceOperation) operation);
-				continue;
-			}
-			if (operation instanceof CompositeOperation && ((CompositeOperation) operation).getMainOperation() != null) {
-				CompositeOperation compositeOperation = (CompositeOperation) operation;
-				boolean doesNotBelongToDelete = false;
-				for (AbstractOperation subOperation : compositeOperation.getSubOperations()) {
-					if (!belongsToDelete(subOperation, allDeletedElementsIds)) {
-						doesNotBelongToDelete = true;
-						break;
-					}
-				}
-				if (!doesNotBelongToDelete) {
-					referenceOperationsForDelete.addAll(0,
-						(Collection<? extends ReferenceOperation>) compositeOperation.getSubOperations());
-					compositeOperationsToDelete.add(compositeOperation);
-				}
-				continue;
-			}
-			break;
-		}
-
-		return referenceOperationsForDelete;
-	}
-
-	private boolean belongsToDelete(AbstractOperation operation, Set<ModelElementId> allDeletedElementsIds) {
-		if (operation instanceof ReferenceOperation) {
-			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-			Set<ModelElementId> allInvolvedModelElements = referenceOperation.getAllInvolvedModelElements();
-			if (allInvolvedModelElements.removeAll(allDeletedElementsIds)) {
-				return isDestructorReferenceOperation(referenceOperation);
-			}
-		}
-		return false;
-	}
-
-	private boolean isDestructorReferenceOperation(ReferenceOperation referenceOperation) {
-		if (referenceOperation instanceof MultiReferenceOperation) {
-			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) referenceOperation;
-			return !multiReferenceOperation.isAdd();
-		} else if (referenceOperation instanceof SingleReferenceOperation) {
-			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) referenceOperation;
-			return singleReferenceOperation.getOldValue() != null && singleReferenceOperation.getNewValue() == null;
-		}
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
-	 *      org.eclipse.core.runtime.OperationCanceledException)
-	 */
-	public void commandFailed(Command command, OperationCanceledException exception) {
-		// do nothing
-		// TODO: rollback operations?
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
-	 */
-	public void commandStarted(Command command) {
-		currentOperationListSize = projectSpace.getOperations().size();
-		currentClipboard = getModelElementsFromClipboard();
+		// TODO Auto-generated method stub
 
 	}
-
-	private Set<EObject> getModelElementsFromClipboard() {
-		Set<EObject> result = new HashSet<EObject>();
-		if (editingDomain == null) {
-			return result;
-		}
-		Collection<Object> clipboard = editingDomain.getClipboard();
-		if (clipboard == null) {
-			return result;
-		}
-		for (Object element : clipboard) {
-			if (element instanceof EObject) {
-				result.add((EObject) element);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Enable or disable save. I save is disabled, dirty resources will not bes saved.
-	 * 
-	 * @param newValue true if auto save should be enabled
-	 */
-	public void setAutoSave(boolean newValue) {
-		autoSave = newValue;
-	}
-
 }

@@ -8,7 +8,6 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -26,8 +25,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
@@ -35,7 +35,6 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -44,33 +43,35 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class MECommentsLinkControl extends AbstractUnicaseMEControl {
+public class MECommentsLinkControl extends AbstractMEControl {
 	/**
 	 * Project Changeobserever for comment thread.
 	 * 
 	 * @author helming
 	 */
 	private final class ProjectChangeObserverImplementation implements ProjectChangeObserver {
-		public void modelElementAdded(Project project, EObject modelElement) {
+		public void modelElementAdded(Project project, ModelElement modelElement) {
 			if (modelElement instanceof Comment) {
 				Comment newComment = (Comment) modelElement;
 				UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
-				if (ModelUtil.getAllContainedModelElements(currentModelElement, false).contains(newComment)) {
+				if (currentModelElement.getAllContainedModelElements().contains(newComment)) {
 					update();
 				}
 			}
 		}
 
-		public void notify(Notification notification, Project project, EObject modelElement) {
-			// nothing to do
+		public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		}
+
+		public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		}
+
+		public void notify(Notification notification, Project project, ModelElement modelElement) {
 		}
 
 		public void projectDeleted(Project project) {
-			// nothing to do
-		}
+			// TODO Auto-generated method stub
 
-		public void modelElementRemoved(Project project, EObject modelElement) {
-			// nothing to do
 		}
 	}
 
@@ -95,7 +96,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
-		if (getModelElement() instanceof UnicaseModelElement) {
+		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(getModelElement())) {
 			UnicaseModelElement me = (UnicaseModelElement) getModelElement();
 			project = WorkspaceManager.getProjectSpace(me).getProject();
 			project.addProjectChangeObserver(observerImpl);
@@ -182,7 +183,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (!(feature instanceof EReference)) {
 			return AbstractMEControl.DO_NOT_RENDER;

@@ -8,7 +8,7 @@ package org.unicase.metamodel.recommendation;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * @author Henning Femmer
@@ -23,7 +23,7 @@ public interface RecommendationStrategy {
 	 * @param elements The potential elements linked to the base, also referred as candidates.
 	 * @return a Map (ModelElement,Double)
 	 */
-	Map<EObject, Double> getMatchingMap(EObject base, Collection<EObject> elements);
+	Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements);
 
 	/**
 	 * Returns the name of this strategy for output reasons.

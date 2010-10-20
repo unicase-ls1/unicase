@@ -12,19 +12,18 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -34,45 +33,6 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author Hodaie
  */
 public class AddAnnotationHandler extends AbstractHandler {
-	/**
-	 * Adds a annotation to the next possible containment.
-	 * 
-	 * @author helming
-	 */
-	private final class AddAnnotationCommand extends UnicaseCommand {
-		private final int i;
-		private final Object object;
-		private final Annotation result;
-
-		private AddAnnotationCommand(int i, Object object, Annotation result) {
-			this.i = i;
-			this.object = object;
-			this.result = result;
-		}
-
-		@SuppressWarnings("unchecked")
-		@Override
-		protected void doRun() {
-			if (i == 1) {
-				((LeafSection) object).getModelElements().add(result);
-			} else if (i == 2) {
-
-				EObject parent = ((EObject) object).eContainer();
-				while (!(parent instanceof Project) && result.eContainer() == null && !(object instanceof LeafSection)) {
-					EReference reference = getStructuralFeature(result, parent);
-					if (reference != null && reference.isMany()) {
-						Object object = parent.eGet(reference);
-						EList<EObject> eList = (EList<EObject>) object;
-						eList.add(result);
-					}
-
-				}
-
-			} else if (i == 3) {
-				((Project) object).getModelElements().add(result);
-			}
-		}
-	}
 
 	private static final String ADD_ACTIONITEM_COMMAND_ID = "org.unicase.ui.common.commands.annotateActionItem";
 	private static final String ADD_ISSUE_COMMAND_ID = "org.unicase.ui.common.commands.annotateIssue";
@@ -91,7 +51,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// see ActionHelper.getModelElement()
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
-		Project project = ModelUtil.getProject(me);
+		Project project = me.getProject();
 		if (!(me.getLeafSection() == null)) {
 			annotation = createAnnotation(me.getLeafSection(), 1);
 		} else if (me.eContainer() instanceof WorkPackage) {
@@ -132,7 +92,32 @@ public class AddAnnotationHandler extends AbstractHandler {
 		} else {
 			result = null;
 		}
-		new AddAnnotationCommand(i, object, result).run();
+
+		new UnicaseCommand() {
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void doRun() {
+				if (i == 1) {
+					((LeafSection) object).getModelElements().add(result);
+				} else if (i == 2) {
+
+					EObject parent = ((EObject) object).eContainer();
+					while (!(parent instanceof Project) && result.eContainer() == null && !(object instanceof LeafSection)) {
+						EReference reference = getStructuralFeature(result, parent);
+						if (reference != null && reference.isMany()) {
+							Object object = parent.eGet(reference);
+							EList<EObject> eList = (EList<EObject>) object;
+							eList.add(result);
+						}
+
+					}
+
+				} else if (i == 3) {
+					((Project) object).getModelElements().add(result);
+				}
+			}
+
+		}.run();
 
 		return result;
 	}
@@ -159,23 +144,22 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 */
 	private void openAnnotation(Annotation annotation) {
 
-		org.unicase.ui.unicasecommon.UnicaseActionHelper.openModelElement(annotation, this.getClass().getName());
+		ActionHelper.openModelElement(annotation, this.getClass().getName());
 
 	}
 
-	private EReference getStructuralFeature(final EObject newMEInstance, EObject parent) {
+	private EReference getStructuralFeature(final ModelElement newMEInstance, EObject parent) {
 		// the value of the 'EAll Containments' reference list.
 		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
-			EClass eReferenceType = containmentitem.getEReferenceType();
-			if (eReferenceType.equals(newMEInstance)) {
+			if (containmentitem.getEReferenceType().equals(newMEInstance)) {
 				reference = containmentitem;
 
 				break;
-			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
-				|| (eReferenceType.isSuperTypeOf(newMEInstance.eClass()))) {
+			} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+
 				reference = containmentitem;
 				break;
 			}

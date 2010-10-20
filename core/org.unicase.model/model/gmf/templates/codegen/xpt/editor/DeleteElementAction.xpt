@@ -10,46 +10,46 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  */
 
-Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
 
-Â«DEFINE DeleteElementAction FOR gmfgen::GenDiagram-Â»
-Â«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-Â»
-package Â«editorGen.editor.packageNameÂ»;
+«DEFINE DeleteElementAction FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «editorGen.editor.packageName»;
 
-Â«EXPAND xpt::Common::generatedClassCommentÂ»
-public class Â«EXPAND classNameÂ» extends org.eclipse.gmf.runtime.diagram.ui.actions.AbstractDeleteFromAction {
+«EXPAND xpt::Common::generatedClassComment»
+public class «EXPAND className» extends org.eclipse.gmf.runtime.diagram.ui.actions.AbstractDeleteFromAction {
 
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
-	public Â«EXPAND classNameÂ»(org.eclipse.ui.IWorkbenchPart part) {
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «EXPAND className»(org.eclipse.ui.IWorkbenchPart part) {
 		super(part);
 	}
 
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
-	public Â«EXPAND classNameÂ»(org.eclipse.ui.IWorkbenchPage workbenchPage) {
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «EXPAND className»(org.eclipse.ui.IWorkbenchPage workbenchPage) {
 		super(workbenchPage);
 	}	
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
-	Â«REMÂ»modifiedÂ«ENDREMÂ»
+	«EXPAND xpt::Common::generatedMemberComment»
+	«REM»modified«ENDREM»
 	public void init() {
 		super.init();
 		setId(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.ACTION_DELETE_FROM_MODEL);
 		setText(org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages.DiagramEditor_Delete_from_Model);
 		setToolTipText(org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages.DiagramEditor_Delete_from_ModelToolTip);
 		String path = "icons/delete.gif";
-		java.net.URL url = org.eclipse.core.runtime.FileLocator.find(org.eclipse.core.runtime.Platform.getBundle("org.unicase.ui.unicasecommon"), new org.eclipse.core.runtime.Path(path), null);
+		java.net.URL url = org.eclipse.core.runtime.FileLocator.find(org.eclipse.core.runtime.Platform.getBundle("org.unicase.ui.common"), new org.eclipse.core.runtime.Path(path), null);
 		org.eclipse.jface.resource.ImageDescriptor id = org.eclipse.jface.resource.ImageDescriptor.createFromURL(url);
 		setHoverImageDescriptor(id);
 		setImageDescriptor(id);
 		setDisabledImageDescriptor(id);
 	}
-	Â«REMÂ»END modifiedÂ«ENDREMÂ»
+	«REM»END modified«ENDREM»
 
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	«EXPAND xpt::Common::generatedMemberComment»
 	protected String getCommandLabel() {
 		return org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages.DiagramEditor_Delete_from_Model;
 	}
 
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.commands.Command getCommand(org.eclipse.gef.Request request) {
 		java.util.List operationSet = getOperationSet();
 		if (operationSet.isEmpty()) {
@@ -70,6 +70,6 @@ public class Â«EXPAND classNameÂ» extends org.eclipse.gmf.runtime.diagram.ui.act
 		}
 		return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(command);
 	}
-	Â«EXPAND additions-Â»
+	«EXPAND additions-»
 }
-Â«ENDDEFINEÂ»
+«ENDDEFINE»

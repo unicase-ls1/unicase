@@ -9,7 +9,6 @@ import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -32,14 +31,13 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -52,7 +50,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author shterev
  * @author nagel
  */
-public class MEURLControl extends AbstractUnicaseMEControl {
+public class MEURLControl extends AbstractMEControl {
 	private static final int PRIORITY = 2;
 
 	/**
@@ -95,7 +93,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 		observer = new ModelElementChangeObserver() {
 
 			@Override
-			protected void onNotify(Notification notification, EObject element) {
+			protected void onNotify(Notification notification, ModelElement element) {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
@@ -113,12 +111,12 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 			}
 
 			@Override
-			protected void onElementDeleted(EObject element) {
+			protected void onElementDeleted(ModelElement element) {
 				// nothing to do
 			}
 		};
 
-		ModelUtil.getProject(getModelElement()).addProjectChangeObserver(observer);
+		getModelElement().getProject().addProjectChangeObserver(observer);
 		observer.observeElement(getModelElement());
 
 		String url = urlattachement.getUrl();
@@ -140,10 +138,9 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 					box.setMessage(url + " is not a valid URL, browser couldn't be started!");
 					box.open();
 				}
-				EObject modelElement = getModelElement();
-				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-				logEvent(modelElementId, modelElementId, WorkspaceManager.getProjectSpace(modelElement),
-					"org.unicase.ui.meeditor");
+				ModelElement modelElement = getModelElement();
+				logEvent(modelElement.getModelElementId(), modelElement.getModelElementId(), WorkspaceManager
+					.getProjectSpace(modelElement), "org.unicase.ui.meeditor");
 				super.linkActivated(event);
 
 			}
@@ -209,7 +206,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			Project project = ModelUtil.getProject(getModelElement());
+			Project project = (getModelElement().getProject());
 			if (project != null) {
 				project.removeProjectChangeObserver(observer);
 			}
@@ -226,7 +223,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (modelElement instanceof UrlAttachment && feature instanceof EAttribute) {
 			if (((EAttribute) feature).getName().equalsIgnoreCase("url")) {
@@ -244,6 +241,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	private class URLValidator implements IInputValidator {
 
 		public String isValid(String newText) {
+
 			if (newText.matches("(((https?|ftp)://)?(www\\.)?(\\w+\\.){1,}+\\w+){1}(/.*)*")) {
 				return null;
 			} else {

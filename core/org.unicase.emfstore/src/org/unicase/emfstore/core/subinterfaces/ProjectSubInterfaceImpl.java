@@ -32,7 +32,6 @@ import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This subinterfaces implements all project related functionality for the
@@ -81,7 +80,6 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * {@inheritDoc}
 	 */
 	public Project getProject(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
-
 		synchronized (getMonitor()) {
 			PrimaryVersionSpec resolvedVersion = getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(
 				projectId, versionSpec);
@@ -96,14 +94,15 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					// the xml files were inconsistent.
 					throw new EmfStoreException("Couldn't find project state.");
 				}
-				Project projectState = ModelUtil.clone(version.getProjectState());
+				Project projectState = (Project) EcoreUtil.copy(version.getProjectState());
 				for (Version next = version.getNextVersion(); next != null
 					&& next.getPrimarySpec().compareTo(resolvedVersion) < 1; next = next.getNextVersion()) {
 					next.getChanges().apply(projectState);
 				}
 				return projectState;
+			} else {
+				return version.getProjectState();
 			}
-			return version.getProjectState();
 		}
 	}
 
@@ -158,7 +157,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				lastVersion.setProjectState(project);
 				getResourceHelper().createResourceForProject(project, lastVersion.getPrimarySpec(),
 					projectHistory.getProjectId());
-				saveWithProject(lastVersion, project);// lastVersion.getProjectState());
+				save(lastVersion);
 			} catch (FatalEmfStoreException e) {
 				throw new StorageException(StorageException.NOSAVE);
 			}

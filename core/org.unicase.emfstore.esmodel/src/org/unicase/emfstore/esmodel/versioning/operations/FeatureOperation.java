@@ -5,8 +5,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -42,8 +42,9 @@ public interface FeatureOperation extends AbstractOperation {
 	String getFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName
+	 * <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Feature Name</em>' attribute.
 	 * @see #getFeatureName()
 	 * @generated
@@ -66,6 +67,6 @@ public interface FeatureOperation extends AbstractOperation {
 	 * @return the feature
 	 * @throws UnkownFeatureException if the feature can not be found in the eclass of the corresponding model element
 	 */
-	EStructuralFeature getFeature(EObject modelElement) throws UnkownFeatureException;
+	EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException;
 
 } // FeatureOperation

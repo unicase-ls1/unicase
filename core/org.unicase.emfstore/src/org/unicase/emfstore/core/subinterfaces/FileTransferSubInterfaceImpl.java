@@ -98,8 +98,8 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			// if the data is null, this is treated as a request for assigning a file version
 			FileInformation fileInfo = fileChunk.getFileInformation();
 			if (fileChunk.getData() == null) {
-				fileInfo
-					.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo.getFileIdentifier()));
+				fileInfo.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo
+					.getFileIdentifier()));
 				try {
 					// create emtpy file in tmp folder so that the version is reserved
 					new File(constructTempFileLocation(fileInfo, projectId)).createNewFile();

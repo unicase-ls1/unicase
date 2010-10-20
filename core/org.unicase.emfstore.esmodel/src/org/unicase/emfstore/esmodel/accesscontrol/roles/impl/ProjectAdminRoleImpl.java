@@ -6,22 +6,23 @@
 package org.unicase.emfstore.esmodel.accesscontrol.roles.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Admin Role</b></em>'. <!--
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectAdminRoleImpl() {
@@ -30,6 +31,7 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -43,22 +45,22 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	}
 
 	@Override
-	public boolean canCreate(ProjectId projectId, EObject modelElement) {
+	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
 		return isMyProject(projectId);
 	}
 
 	@Override
-	public boolean canDelete(ProjectId projectId, EObject modelElement) {
+	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
 		return isMyProject(projectId);
 	}
 
 	@Override
-	public boolean canModify(ProjectId projectId, EObject modelElement) {
+	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
 		return isMyProject(projectId);
 	}
 
 	@Override
-	public boolean canRead(ProjectId projectId, EObject modelElement) {
+	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		return isMyProject(projectId);
 	}
 

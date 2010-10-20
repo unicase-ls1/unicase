@@ -8,10 +8,9 @@ package org.unicase.ui.unicasecommon.common.util;
 
 import java.util.Calendar;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -32,10 +31,10 @@ public final class UnicaseEventUtil {
 	 * @param me The annotated model element
 	 * @param annotation the new annoation
 	 */
-	public static void logAnnotationEvent(EObject me, Annotation annotation) {
+	public static void logAnnotationEvent(ModelElement me, Annotation annotation) {
 		final AnnotationEvent annotationEvent = EventsFactory.eINSTANCE.createAnnotationEvent();
-		annotationEvent.setAnnotatedElement(ModelUtil.getProject(me).getModelElementId(me));
-		annotationEvent.setAnnotation(ModelUtil.getProject(annotation).getModelElementId(annotation));
+		annotationEvent.setAnnotatedElement(me.getModelElementId());
+		annotationEvent.setAnnotation(annotation.getModelElementId());
 		annotationEvent.setTimestamp(Calendar.getInstance().getTime());
 		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();

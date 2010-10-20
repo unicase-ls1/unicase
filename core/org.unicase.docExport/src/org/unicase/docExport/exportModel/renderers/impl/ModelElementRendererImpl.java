@@ -53,8 +53,6 @@ import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
@@ -314,8 +312,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		 */
 		if (!DocumentExport.hasAlreadyBeenRendered(modelElement)) {
 			DocumentExport.addRenderedModelElement(modelElement);
-			ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-			parent.add(new URef(modelElementId.getId()));
+			parent.add(new URef(modelElement.getModelElementId().getId()));
 		} else {
 			return;
 		}
@@ -632,9 +629,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 				if (modelElement.eGet(feature) instanceof UnicaseModelElement) {
 					UnicaseModelElement featureModelElement = (UnicaseModelElement) modelElement.eGet(feature);
-					ModelElementId featureModelElementId = ModelUtil.getProject(featureModelElement).getModelElementId(
-						featureModelElement);
-					ULink link = new ULink(featureModelElement.getName(), featureModelElementId.getId());
+					ULink link = new ULink(featureModelElement.getName(), featureModelElement.getModelElementId()
+						.getId());
 					link.setOption(template.getLayoutOptions().getDefaultTextOption());
 					UParagraph par = new UParagraph("");
 					par.add(link);
@@ -664,8 +660,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 						entryContainer.getBoxModel().setBorderBottom(0.5);
 						entryContainer.getBoxModel().setBorderStyle(UBorderStyle.DOTTED);
 						par.add(entryContainer);
-						ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
-						ULink entry = new ULink(me.getName(), meId.getId());
+						ULink entry = new ULink(me.getName(), me.getModelElementId().getId());
 						// register the ModelElement as a link, so that it can be rendered in the
 						// appendix if wanted and neccessary
 						DocumentExport.addLinkedModelElement(me);

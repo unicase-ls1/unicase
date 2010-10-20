@@ -18,9 +18,6 @@ import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.util.ConfigurationProvider;
-import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
 import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
@@ -39,10 +36,23 @@ public final class Configuration {
 	private static final String UPF = ".upf";
 	private static final String PLUGIN_BASEDIR = "pluginData";
 	private static boolean testing;
-	private static WorkspaceLocationProvider locationProvider;
 
 	private Configuration() {
 		// nothing to do
+	}
+
+	// private static Map<Object, Object> resourceSaveOptions;
+
+	/**
+	 * Return the user home folder.
+	 * 
+	 * @return the full path as string
+	 */
+	public static String getUserHome() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(System.getProperty("user.home"));
+		sb.append(File.separatorChar);
+		return sb.toString();
 	}
 
 	/**
@@ -51,44 +61,56 @@ public final class Configuration {
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
-		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
-		File workspace = new File(workspaceDirectory);
-		if (!workspace.exists()) {
-			workspace.mkdirs();
-		}
-		if (!workspaceDirectory.endsWith(File.separator)) {
-			return workspaceDirectory + File.separatorChar;
-		}
-		return workspaceDirectory;
-	}
 
-	/**
-	 * Returns the registered {@link WorkspaceLocationProvider} or if not existent, the
-	 * {@link DefaultWorkspaceLocationProvider}.
-	 * 
-	 * @return workspace location provider
-	 */
-	public static WorkspaceLocationProvider getLocationProvider() {
-		if (locationProvider == null) {
-			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.workspace.workspaceLocationProvider");
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.workspaceLocationProvider");
+		if (rawExtensions.length > 0) {
+			if (rawExtensions.length > 1) {
+				String message = "More than one workspace location provider extension detected, defaulting to first preovider";
+				ModelUtil.logWarning(message, new IllegalStateException(message));
+			}
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
 					Object executableExtension = extension.createExecutableExtension("providerClass");
 					if (executableExtension instanceof WorkspaceLocationProvider) {
-						locationProvider = (WorkspaceLocationProvider) executableExtension;
+						WorkspaceLocationProvider provider = (WorkspaceLocationProvider) executableExtension;
+						String workspaceDirectory = provider.getWorkspaceDirectory();
+						File workspace = new File(workspaceDirectory);
+						if (!workspace.exists()) {
+							workspace.mkdir();
+						}
+						if (!workspaceDirectory.endsWith(File.separator)) {
+							return workspaceDirectory + File.separatorChar;
+						}
+						return workspaceDirectory;
 					}
 				} catch (CoreException e) {
 					String message = "Error while instantiating location provider, switching to default location!";
 					ModelUtil.logWarning(message, e);
 				}
 			}
-			if (locationProvider == null) {
-				locationProvider = new DefaultWorkspaceLocationProvider();
+		}
+
+		// no valid extension registered, switching to default
+		StringBuffer sb = new StringBuffer();
+		sb.append(getUserHome());
+		sb.append(".unicase");
+		if (testing) {
+			sb.append(".test");
+		} else if (!isReleaseVersion()) {
+			if (isInternalReleaseVersion()) {
+				sb.append(".internal");
+			} else {
+				sb.append(".dev");
 			}
 		}
 
-		return locationProvider;
+		sb.append(File.separatorChar);
+		File workspace = new File(sb.toString());
+		if (!workspace.exists()) {
+			workspace.mkdir();
+		}
+		return sb.toString();
 	}
 
 	/**
@@ -97,7 +119,8 @@ public final class Configuration {
 	 * @return the workspace file path string
 	 */
 	public static String getWorkspacePath() {
-		return getWorkspaceDirectory() + "workspace.ucw";
+		String workSpacePath = getWorkspaceDirectory() + "workspace.ucw";
+		return workSpacePath;
 	}
 
 	/**
@@ -122,24 +145,34 @@ public final class Configuration {
 	 * @return server info
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.defaultConfigurationProvider");
-		for (IConfigurationElement extension : rawExtensions) {
-			try {
-				ConfigurationProvider provider = (ConfigurationProvider) extension
-					.createExecutableExtension("providerClass");
-				List<ServerInfo> defaultServerInfos = provider.getDefaultServerInfos();
-				if (defaultServerInfos != null) {
-					return defaultServerInfos;
-				}
-			} catch (CoreException e) {
-				// fail silently
-			}
-		}
+		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		ArrayList<ServerInfo> result = new ArrayList<ServerInfo>();
-		result.add(getLocalhostServerInfo());
-		return result;
+		if (isReleaseVersion()) {
+			serverInfos.add(getReleaseServerInfo());
+		}
+		if (isInternalReleaseVersion()) {
+			serverInfos.add(getInternalServerInfo());
+		}
+		if (isDeveloperVersion()) {
+			serverInfos.add(getLocalhostServerInfo());
+		}
+		return serverInfos;
+	}
+
+	private static ServerInfo getReleaseServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("unicase Server");
+		serverInfo.setPort(443);
+		serverInfo.setUrl("unicase.in.tum.de");
+		return serverInfo;
+	}
+
+	private static ServerInfo getInternalServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setName("unicase Developer Server");
+		serverInfo.setPort(443);
+		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
+		return serverInfo;
 	}
 
 	private static ServerInfo getLocalhostServerInfo() {
@@ -147,7 +180,6 @@ public final class Configuration {
 		serverInfo.setName("Localhost Server");
 		serverInfo.setPort(8080);
 		serverInfo.setUrl("localhost");
-		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_DEV_CERTIFICATE);
 
 		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
 		superUsersession.setServerInfo(serverInfo);

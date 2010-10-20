@@ -69,7 +69,7 @@ public interface StereotypeInstance extends UnicaseModelElement {
 	 * @see #setModelElement(UnicaseModelElement)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeInstance_ModelElement()
 	 * @see org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances
-	 * @model opposite="appliedStereotypeInstances" transient="false"
+	 * @model opposite="appliedStereotypeInstances" keys="identifier" transient="false"
 	 * @generated
 	 */
 	UnicaseModelElement getModelElement();
@@ -98,7 +98,7 @@ public interface StereotypeInstance extends UnicaseModelElement {
 	 * @return the value of the '<em>Stereotype Attribute Instances</em>' containment reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeInstance_StereotypeAttributeInstances()
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance
-	 * @model opposite="stereotypeInstance" containment="true" resolveProxies="true"
+	 * @model opposite="stereotypeInstance" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<StereotypeAttributeInstance> getStereotypeAttributeInstances();

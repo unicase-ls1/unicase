@@ -39,8 +39,6 @@ import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
@@ -137,8 +135,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 		final MEDiagram diagram = (MEDiagram) modelElement;
 
 		try {
-			ModelElementId diagramId = ModelUtil.getProject(diagram).getModelElementId(diagram);
-			final File tmpImage = File.createTempFile(diagramId.getId(), ".jpeg");
+			final File tmpImage = File.createTempFile(diagram.getModelElementId().getId(), ".jpeg");
 
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {

@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -21,6 +20,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.recommendation.ConstantThresholdSelection;
+import org.unicase.metamodel.recommendation.RecommendationManager;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 
 /**
@@ -32,11 +34,11 @@ import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 
 	// maps modelElement.hashCode() to the similarity factor of the element
-	private Map<EObject, Double> relevanceMap;
+	private Map<ModelElement, Double> relevanceMap;
 
 	// private RelevanceWrappedLabelProvider labelProvider;
 
-	// private RecommendationManager recMan;
+	private RecommendationManager recMan;
 
 	private Label label;
 	private boolean warning;
@@ -51,8 +53,8 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
 	 */
-	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen, EObject baseElement,
-		EReference reference, Collection<EObject> elements) {
+	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen, ModelElement baseElement,
+		EReference reference, Collection<ModelElement> elements) {
 
 		super(reference.isMany());
 
@@ -60,16 +62,15 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 		setMessage(message);
 		setBlockOnOpen(blockOnOpen);
 
-		relevanceMap = new HashMap<EObject, Double>(elements.size());
+		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
 		setModelElements(elements);
-		// TODO: Reactivate
-		// recMan = RecommendationManager.getInstance();
-		//
-		// if (recMan != null) {
-		// relevanceMap = recMan.getMatchMap(baseElement, reference, elements, new ConstantThresholdSelection(0));
-		// } else {
-		relevanceMap = new HashMap<EObject, Double>();
-		// }
+		recMan = RecommendationManager.getInstance();
+
+		if (recMan != null) {
+			relevanceMap = recMan.getMatchMap(baseElement, reference, elements, new ConstantThresholdSelection(0));
+		} else {
+			relevanceMap = new HashMap<ModelElement, Double>();
+		}
 
 		setLabelProvider(new RelevanceWrappedLabelProvider(relevanceMap));
 		setListLabelProvider(getLabelProvider());
@@ -103,7 +104,7 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#getItemsComparator()
 	 */
 	@Override
-	protected Comparator<EObject> getItemsComparator() {
+	protected Comparator<ModelElement> getItemsComparator() {
 		return new RelevanceMapComparator();
 	}
 
@@ -112,14 +113,14 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 	 * 
 	 * @author henning femmer
 	 */
-	class RelevanceMapComparator implements Comparator<EObject> {
+	class RelevanceMapComparator implements Comparator<ModelElement> {
 		/**
 		 * If both elements got a suggestion their suggestion values are compared, the higher, the better. if just one
 		 * got a suggestion, it is preferred. if none, alphabetical comparison is used. {@inheritDoc}
 		 * 
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
-		public int compare(EObject o1, EObject o2) {
+		public int compare(ModelElement o1, ModelElement o2) {
 			Double val1, val2;
 			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -155,7 +156,7 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 	 * 
 	 * @author henning femmer
 	 */
-	class RelevanceDetailsLabelProvider extends LabelProvider {
+	class RelevanceDetailsLabelProvider extends DateDetailsLabelProvider {
 		/**
 		 * Creates the details.
 		 * 
@@ -165,7 +166,7 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 		 */
 		@Override
 		public String getText(Object element) {
-			if (element instanceof EObject) {
+			if (element instanceof ModelElement) {
 				String text = super.getText(element);
 				Double sim = relevanceMap.get(element);
 				if (sim != null) {
@@ -180,4 +181,31 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 		}
 	}
 
+	/**
+	 * This label-provider returns the elements date with certain details.
+	 * 
+	 * @author henning femmer
+	 */
+	class DateDetailsLabelProvider extends LabelProvider {
+
+		/**
+		 * @param element the element
+		 * @return a string containing the DateDetails of the element
+		 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+		 */
+		@Override
+		public String getText(Object element) {
+			if (element instanceof ModelElement) {
+				if (((ModelElement) element).getCreationDate() == null) {
+					return "No creation data available.";
+				} else {
+					return "Created at " + ((ModelElement) element).getCreationDate().toString();
+				}
+			} else if (element == null) {
+				return "No item selected.";
+			} else {
+				return "Multiple elements selected.";
+			}
+		}
+	}
 }

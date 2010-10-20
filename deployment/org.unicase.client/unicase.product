@@ -6,10 +6,7 @@
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
       <text>
-         UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. The project is open-source and released under the Eclipse Public License v 1.0 (EPL).
-
-More details can be found at the project home-page : 
-http://www.unicase.org
+         UNICASE is a CASE-Tool integrating models from the different development acitivities, such as requirements, use cases, UML models, schedules, bug and feature models into a unified model. The project is open-source and released under the Eclipse Public License v 1.0 (EPL).More details can be found at the project home-page : http://www.unicase.org
       </text>
    </aboutInfo>
 
@@ -24,23 +21,20 @@ http://www.unicase.org
 
    <splash
       location="org.unicase.client"
-      startupProgressRect="5,310,490,15"
-      startupMessageRect="20,285,460,20"
-      startupForegroundColor="FFFFFF" />
+      startupProgressRect="5,280,556,17"
+      startupMessageRect="20,252,445,20"
+      startupForegroundColor="000579" />
    <launcher name="unicase">
       <macosx icon="/org.unicase.client/icons/unicase.icns"/>
       <solaris/>
-      <win useIco="true">
-         <ico path="/org.unicase.client/icons/alt_launcher.ico"/>
+      <win useIco="false">
          <bmp
             winSmallHigh="/org.unicase.client/icons/alt_window_16.bmp"
-            winSmallLow="/org.unicase.client/icons/alt_window_16_8.bmp"
             winMediumHigh="/org.unicase.client/icons/alt_window_32.bmp"
-            winMediumLow="/org.unicase.client/icons/alt_window_32_8.bmp"
-            winLargeHigh="/org.unicase.client/icons/alt_window_48.bmp"
-            winLargeLow="/org.unicase.client/icons/alt_window_48_8.bmp"/>
+            winLargeHigh="/org.unicase.client/icons/alt_window_48.bmp"/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>

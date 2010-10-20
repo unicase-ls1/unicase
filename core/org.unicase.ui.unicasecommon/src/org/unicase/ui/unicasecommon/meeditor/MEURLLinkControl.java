@@ -6,7 +6,6 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
@@ -16,8 +15,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.workspace.WorkspaceManager;
@@ -37,7 +36,8 @@ public class MEURLLinkControl extends MELinkControl {
 	 *      org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement link2,
+		ModelElement contextModelElement2) {
 		if (link2 instanceof UrlAttachment) {
 			return PRIORITY;
 		} else {
@@ -48,8 +48,7 @@ public class MEURLLinkControl extends MELinkControl {
 	private ImageHyperlink urlHyperlink;
 
 	private static final int PRIORITY = 2;
-
-	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener2;
+	private ModelElementChangeListener listener;
 
 	/**
 	 * {@inheritDoc}
@@ -76,15 +75,20 @@ public class MEURLLinkControl extends MELinkControl {
 			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
 				.createImage();
 			urlHyperlink.setImage(launchImage);
+			listener = new ModelElementChangeListener() {
 
-			modelElementChangeListener2 = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
+				public void onRuntimeExceptionInListener(RuntimeException exception) {
+					link.removeModelElementChangeListener(listener);
 
-				@Override
+				}
+
 				public void onChange(Notification notification) {
 					updateAdditionalControlComponents();
 
 				}
 			};
+			link.addModelElementChangeListener(listener);
+
 			String url = ((UrlAttachment) link).getUrl();
 			if (url == null) {
 				url = "";
@@ -98,13 +102,10 @@ public class MEURLLinkControl extends MELinkControl {
 						return;
 					}
 					Program.launch(url);
-					EObject urlAttachement = link;
-					ModelElementId contextModelElementId = ModelUtil.getProject(contextModelElement).getModelElementId(
-						contextModelElement);
-					ModelElementId urlModelElementId = ModelUtil.getProject(urlAttachement).getModelElementId(
-						urlAttachement);
-					MEURLControl.logEvent(contextModelElementId, urlModelElementId, WorkspaceManager
-						.getProjectSpace(urlAttachement), "org.unicase.ui.meeditor");
+					ModelElement urlAttachement = link;
+					MEURLControl.logEvent((contextModelElement).getModelElementId(),
+						urlAttachement.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
+						"org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
 				}
@@ -131,7 +132,8 @@ public class MEURLLinkControl extends MELinkControl {
 	@Override
 	public void dispose() {
 		super.dispose();
-		modelElementChangeListener2.remove();
+		link.removeModelElementChangeListener(listener);
+
 	}
 
 }

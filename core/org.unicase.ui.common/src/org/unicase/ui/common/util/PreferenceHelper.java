@@ -18,11 +18,8 @@ import org.unicase.metamodel.util.ModelUtil;
  *
  */
 public final class PreferenceHelper {
-	
-	private PreferenceHelper() {
-		// nothing to do here
-	}
-	
+
+
 	private static final String PREFERENCE_NODE = "ecp";
 
 	/**

@@ -7,14 +7,15 @@ package org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
+import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictContext;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictDescription;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
@@ -30,12 +31,16 @@ public class SingleReferenceConflict extends Conflict {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param myOperations list of my operations
-	 * @param theirOperations list of their operations
-	 * @param decisionManager decisionmanager
+	 * @param myOperations
+	 *            list of my operations
+	 * @param theirOperations
+	 *            list of their operations
+	 * @param decisionManager
+	 *            decisionmanager
 	 */
-	public SingleReferenceConflict(List<AbstractOperation> myOperations, List<AbstractOperation> theirOperations,
-		DecisionManager decisionManager) {
+	public SingleReferenceConflict(List<AbstractOperation> myOperations,
+			List<AbstractOperation> theirOperations,
+			DecisionManager decisionManager) {
 		super(myOperations, theirOperations, decisionManager);
 	}
 
@@ -43,35 +48,54 @@ public class SingleReferenceConflict extends Conflict {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription(ConflictDescription description) {
-		String descriptionTxt = "";
+	protected ConflictContext initConflictContext() {
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId()), getMyOperation()
+				.getFeatureName(), getDecisionManager().getAuthorForOperation(
+				getTheirOperation()));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ConflictDescription initConflictDescription() {
+		String description = "";
 		if (isContainmentFeature()) {
-			descriptionTxt = "You have moved the [modelelement] to the [myvalue]."
-				+ "This element was moved to [theirvalue] on the repository. Please decide.";
+			description = "You have moved the [modelelement] to the [myvalue]."
+					+ "This element was moved to [theirvalue] on the repository. Please decide.";
 		} else {
-			descriptionTxt = "You have changed the reference [feature] of [modelelement] to [myvalue]."
-				+ "This reference was set to [theirvalue] on the repository. Please decide.";
+			description = "You have changed the reference [reference] of [modelelement] to [myvalue]."
+					+ "This reference was set to [theirvalue] on the repository. Please decide.";
 		}
-		description.setDescription(descriptionTxt);
-		EObject myNewValue = getDecisionManager().getModelElement(
-			getMyOperation(SingleReferenceOperation.class).getNewValue());
-		description.add("myvalue", (myNewValue == null) ? "(unset)" : myNewValue);
-		EObject theirNewValue = getDecisionManager().getModelElement(
-			getTheirOperation(SingleReferenceOperation.class).getNewValue());
-		description.add("theirvalue", (theirNewValue == null) ? "(unset)" : theirNewValue);
+		ConflictDescription conflictDescription = new ConflictDescription(
+				description);
+		conflictDescription.add("reference", getMyOperation().getFeatureName());
+		conflictDescription.add("modelelement", getDecisionManager()
+				.getModelElement(getMyOperation().getModelElementId()));
+		ModelElement myNewValue = getDecisionManager().getModelElement(
+				getMyOperation().getNewValue());
+		conflictDescription.add("myvalue", (myNewValue == null) ? "(unset)"
+				: myNewValue);
+		ModelElement theirNewValue = getDecisionManager().getModelElement(
+				getTheirOperation().getNewValue());
+		conflictDescription.add("theirvalue",
+				(theirNewValue == null) ? "(unset)" : theirNewValue);
 
-		description.setImage("singleref.gif");
+		conflictDescription.setImage("singleref.gif");
 
-		return description;
+		return conflictDescription;
 	}
 
 	private boolean isContainmentFeature() {
-		EObject modelElement = getDecisionManager().getModelElement(getMyOperation().getModelElementId());
+		ModelElement modelElement = getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId());
 		if (modelElement == null) {
 			return false;
 		}
 		try {
-			if (((EReference) getMyOperation(SingleReferenceOperation.class).getFeature(modelElement)).isContainer()) {
+			if (((EReference) getMyOperation().getFeature(modelElement))
+					.isContainer()) {
 				return true;
 			}
 		} catch (UnkownFeatureException e) {
@@ -86,19 +110,31 @@ public class SingleReferenceConflict extends Conflict {
 	protected void initConflictOptions(List<ConflictOption> options) {
 
 		// My Option
-		ModelElementId newValue = getMyOperation(SingleReferenceOperation.class).getNewValue();
-		ConflictOption myOption = new ConflictOption((newValue == null) ? "(unset)" : DecisionUtil
-			.getClassAndName(getDecisionManager().getModelElement(newValue)), OptionType.MyOperation);
-		myOption.addOperations(getMyOperations());
+		ModelElementId newValue = getMyOperation().getNewValue();
+		ConflictOption myOption = new ConflictOption(
+				(newValue == null) ? "(unset)" : DecisionUtil
+						.getClassAndName(getDecisionManager().getModelElement(
+								newValue)), OptionType.MyOperation);
+		myOption.addOperations(operationsA);
 
 		// Their Option
-		ModelElementId theirNewValue = getTheirOperation(SingleReferenceOperation.class).getNewValue();
-		ConflictOption theirOption = new ConflictOption(DecisionUtil.getLabel(DecisionUtil
-			.getClassAndName(getDecisionManager().getModelElement(theirNewValue)), "(unset)"),
-			OptionType.TheirOperation);
-		theirOption.addOperations(getTheirOperations());
+		ModelElementId theirNewValue = getTheirOperation().getNewValue();
+		ConflictOption theirOption = new ConflictOption(
+				(theirNewValue == null) ? "(unset)" : DecisionUtil
+						.getClassAndName(getDecisionManager().getModelElement(
+								theirNewValue)), OptionType.TheirOperation);
+		theirOption.addOperations(operationsB);
 
 		options.add(myOption);
 		options.add(theirOption);
 	}
+
+	private SingleReferenceOperation getMyOperation() {
+		return (SingleReferenceOperation) operationsA.get(0);
+	}
+
+	private SingleReferenceOperation getTheirOperation() {
+		return (SingleReferenceOperation) operationsB.get(0);
+	}
+
 }

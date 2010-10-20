@@ -7,7 +7,7 @@ package org.unicase.metamodel.recommendation;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * This is an interface for the operation known as link selection, where a couple of links are chosen from a bigger
@@ -24,7 +24,7 @@ public interface LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	Map<EObject, Double> selectCandidates(final Map<EObject, Double> selectionMap);
+	Map<ModelElement, Double> selectCandidates(final Map<ModelElement, Double> selectionMap);
 
 	/**
 	 * Returns a short name for this selection.

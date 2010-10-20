@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Bridge from ECP to an XMIResource
 Bundle-SymbolicName: org.unicase.ecpxmibridge;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.6.internal
 Bundle-Activator: org.unicase.ecpxmibridge.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.core.runtime,

@@ -409,7 +409,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		if (userExists(name)) {
-			throw new InvalidInputException("username '" + name + "' already exists.");
+			throw new InvalidInputException("username already exists.");
 		}
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
 		// acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());

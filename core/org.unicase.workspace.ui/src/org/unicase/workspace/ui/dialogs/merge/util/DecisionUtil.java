@@ -7,7 +7,6 @@ package org.unicase.workspace.ui.dialogs.merge.util;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
@@ -15,6 +14,15 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
@@ -35,7 +43,8 @@ public final class DecisionUtil {
 	/**
 	 * Fetches image by path.
 	 * 
-	 * @param path path
+	 * @param path
+	 *            path
 	 * @return image
 	 */
 	public static Image getImage(String path) {
@@ -45,12 +54,14 @@ public final class DecisionUtil {
 	/**
 	 * Fetches image descriptor by path.
 	 * 
-	 * @param path path
+	 * @param path
+	 *            path
 	 * @return {@link ImageDescriptor}
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		final String key = path;
-		ImageDescriptor regImage = JFaceResources.getImageRegistry().getDescriptor(key);
+		ImageDescriptor regImage = JFaceResources.getImageRegistry()
+				.getDescriptor(key);
 		if (regImage == null) {
 			regImage = Activator.getImageDescriptor("icons/merge/" + path);
 			JFaceResources.getImageRegistry().put(key, regImage);
@@ -61,9 +72,12 @@ public final class DecisionUtil {
 	/**
 	 * Cuts a text to certain length and adds "..." at the end if needed.
 	 * 
-	 * @param str text
-	 * @param length length
-	 * @param addPoints true, if ending dotts
+	 * @param str
+	 *            text
+	 * @param length
+	 *            length
+	 * @param addPoints
+	 *            true, if ending dotts
 	 * @return shortened string
 	 */
 	public static String cutString(String str, int length, boolean addPoints) {
@@ -84,7 +98,8 @@ public final class DecisionUtil {
 	/**
 	 * Strips line breaking characters from text.
 	 * 
-	 * @param text text
+	 * @param text
+	 *            text
 	 * @return linf of text
 	 */
 	public static String stripNewLine(String text) {
@@ -100,8 +115,9 @@ public final class DecisionUtil {
 	 * @return provider
 	 */
 	public static AdapterFactoryLabelProvider getLabelProvider() {
-		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
 	}
 
@@ -121,11 +137,14 @@ public final class DecisionUtil {
 	/**
 	 * Get Option by is type.
 	 * 
-	 * @param options list of options
-	 * @param type type
+	 * @param options
+	 *            list of options
+	 * @param type
+	 *            type
 	 * @return resulting option or null
 	 */
-	public static ConflictOption getConflictOptionByType(List<ConflictOption> options, OptionType type) {
+	public static ConflictOption getConflictOptionByType(
+			List<ConflictOption> options, OptionType type) {
 		for (ConflictOption option : options) {
 			if (option.getType().equals(type)) {
 				return option;
@@ -135,9 +154,136 @@ public final class DecisionUtil {
 	}
 
 	/**
+	 * Checks whether given operation is a composite op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isComposite(AbstractOperation operation) {
+		return operation instanceof CompositeOperation
+				&& ((CompositeOperation) operation).getMainOperation() == null;
+	}
+
+	/**
+	 * Checks whether given operation is a reference op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isReference(AbstractOperation operation) {
+		return isSingleRef(operation) || isMultiRef(operation)
+				|| isCompositeRef(operation);
+	}
+
+	/**
+	 * Checks whether given operation is a reference composite.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isCompositeRef(AbstractOperation operation) {
+		return operation instanceof CompositeOperation
+				&& ((CompositeOperation) operation).getMainOperation() != null;
+	}
+
+	/**
+	 * Checks whether given operation is singleref op .
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isSingleRef(AbstractOperation operation) {
+		return operation instanceof SingleReferenceOperation;
+	}
+
+	/**
+	 * Checks whether given operation is a multiref op .
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiRef(AbstractOperation operation) {
+		return operation instanceof MultiReferenceOperation;
+	}
+
+	/**
+	 * Checks whether given operation is multimove op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isMultiMoveRef(AbstractOperation operation) {
+		return operation instanceof MultiReferenceMoveOperation;
+	}
+
+	/**
+	 * Checks whether given operation is attribute op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isAttribute(AbstractOperation operation) {
+		return operation instanceof AttributeOperation;
+	}
+
+	/**
+	 * Checks whether given operation is diagram op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isDiagramLayout(AbstractOperation operation) {
+		return operation instanceof DiagramLayoutOperation;
+	}
+
+	/**
+	 * Checks whether given operation is a creating op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isCreate(AbstractOperation operation) {
+		return isCreateDelete(operation)
+				&& !((CreateDeleteOperation) operation).isDelete();
+	}
+
+	/**
+	 * Checks whether given operation is a deleting op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isDelete(AbstractOperation operation) {
+		return isCreateDelete(operation)
+				&& ((CreateDeleteOperation) operation).isDelete();
+	}
+
+	/**
+	 * Checks whether given operation is a createDelete op.
+	 * 
+	 * @param operation
+	 *            operation
+	 * @return true if correct
+	 */
+	public static boolean isCreateDelete(AbstractOperation operation) {
+		return operation instanceof CreateDeleteOperation;
+	}
+
+	/**
 	 * Checks whether a conflict needs details.
 	 * 
-	 * @param conflict conflict
+	 * @param conflict
+	 *            conflict
 	 * @return true, if so
 	 */
 	public static boolean detailsNeeded(Conflict conflict) {
@@ -148,7 +294,8 @@ public final class DecisionUtil {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
-			if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_MULTILINE)) {
+			if (option.getDetailProvider().startsWith(
+					DecisionConfig.WIDGET_MULTILINE)) {
 				if (option.getOptionLabel().length() > DecisionConfig.OPTION_LENGTH) {
 					return true;
 				}
@@ -160,23 +307,13 @@ public final class DecisionUtil {
 	}
 
 	/**
-	 * Uses the object's toString method or returns unset string.
+	 * Returns Class and Name of {@link ModelElement}.
 	 * 
-	 * @param obj obj to string
-	 * @param unset unset string
-	 * @return obj.toString or unset
-	 */
-	public static String getLabel(Object obj, String unset) {
-		return (obj != null && obj.toString().length() > 1) ? obj.toString() : unset;
-	}
-
-	/**
-	 * Returns Class and Name of {@link EObject}.
-	 * 
-	 * @param modelElement modelelement
+	 * @param modelElement
+	 *            modelelement
 	 * @return string
 	 */
-	public static String getClassAndName(EObject modelElement) {
+	public static String getClassAndName(ModelElement modelElement) {
 		if (modelElement == null) {
 			return "";
 		}
@@ -191,7 +328,8 @@ public final class DecisionUtil {
 	 */
 	public static AdapterFactoryLabelProvider getAdapterFactory() {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider;
 	}
 }

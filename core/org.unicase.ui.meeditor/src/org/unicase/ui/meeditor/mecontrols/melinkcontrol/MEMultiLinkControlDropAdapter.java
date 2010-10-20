@@ -8,10 +8,8 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -19,35 +17,37 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
-import org.unicase.ui.common.ModelElementContext;
+import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
+import org.unicase.ui.common.util.UiUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author Hodaie
  */
 public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 
-	private List<EObject> source;
-	private EObject dropee;
-	private EObject target;
+	private List<ModelElement> source;
+	private ModelElement dropee;
+	private ModelElement target;
 	private EReference reference;
 	private EditingDomain editingDomain;
-	private final ModelElementContext modelElementContext;
 
 	/**
 	 * @param editingDomain editing domain
 	 * @param me MEEditor input
 	 * @param reference EReference being shown in the section
-	 * @param modelElementContext the {@link ModelElementContext}
 	 */
-	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference,
-		ModelElementContext modelElementContext) {
+	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference) {
 
 		this.reference = reference;
 		this.editingDomain = editingDomain;
-
-		target = me;
-		this.modelElementContext = modelElementContext;
+		if (me instanceof ModelElement) {
+			target = (ModelElement) me;
+		}
 
 	}
 
@@ -90,7 +90,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
 			// reference.
 			EReference oppositeRef = reference.getEOpposite();
-			for (EObject me : source) {
+			for (ModelElement me : source) {
 				Object object = me.eGet(oppositeRef);
 				if (oppositeRef.isMany()) {
 					EList<EObject> eList = (EList<EObject>) object;
@@ -188,23 +188,20 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		// only project admins are allowed to change document structure
-		// TODO: Check if we need this
-		// ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
-		// Usersession userSession = projectSpace.getUsersession();
-		// if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
-		// return false;
-		// }
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
+		Usersession userSession = projectSpace.getUsersession();
+		if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
+			return false;
+		}
 
-		// for the case of multi selection (not implemented yet) only allow drop, if all dropees come from the same
+		// for the case of multi selection (not implemented yet) only allow drop, if all droppees come from the same
 		// container
 		if (!haveSameEContainer(source)) {
 			return false;
 		}
 
 		// drop only allowed elements
-		EClass eReferenceType = reference.getEReferenceType();
-		if (!eReferenceType.isSuperTypeOf(dropee.eClass())
-			&& !eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())) {
+		if (!reference.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
 			return false;
 		}
 
@@ -217,9 +214,9 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @param source source
 	 * @return true or false
 	 */
-	protected boolean haveSameEContainer(List<EObject> source) {
-		EObject first = source.get(0);
-		for (EObject me : source) {
+	protected boolean haveSameEContainer(List<ModelElement> source) {
+		ModelElement first = source.get(0);
+		for (ModelElement me : source) {
 			if (!first.eContainer().equals(me.eContainer())) {
 				return false;
 			}
@@ -245,12 +242,12 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof EObject)) {
+			if (!(obj instanceof ModelElement)) {
 				result = false;
 			}
 		}
 
-		source = (List<EObject>) DragSourcePlaceHolder.getDragSource();
+		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
@@ -258,7 +255,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			if (modelElementContext.contains(dropee)) {
+			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
 			}
 		}

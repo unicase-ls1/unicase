@@ -12,9 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
@@ -25,11 +23,12 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
@@ -43,7 +42,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
-	private EObject selectedME;
+	private ModelElement selectedME;
 
 	/**
 	 * . {@inheritDoc}
@@ -54,10 +53,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		selectedME = ActionHelper.getSelectedModelElement();
 		if (selectedME == null || selectedME instanceof MEDiagram) {
 			return new IContributionItem[0];
-		} else if (selectedME instanceof ProjectSpace) {
-			selectedME = ((ProjectSpace) selectedME).getProject();
 		}
-
 		// 2. get its containments
 		List<EReference> containments = selectedME.eClass().getEAllContainments();
 
@@ -127,7 +123,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
+		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;
@@ -142,7 +138,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	private void addCommandsForSubTypes(EClass refClass, List<IContributionItem> commands) {
 
 		// do not create commands for subclasses of ModelElement
-		if (refClass.equals(EcoreFactory.eINSTANCE.createEObject())) {
+		if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
 			return;
 		}
 

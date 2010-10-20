@@ -6,20 +6,14 @@
 package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -64,27 +58,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			// remove classes that do not inherit ModelElement
 			// or are abstract.
 			Object[] children = removeNonModelElements(super.getChildren(object));
-
-			ECPModelelementContext context;
-			try {
-				context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
-				if (context == null) {
-					return children;
-				}
-			} catch (NoWorkspaceException e) {
-				Activator.logException(e);
-				return children;
-			}
-			// removes all AssociationClassElements
-			LinkedList<Object> result = new LinkedList<Object>();
-			for (Object item : children) {
-				if (!(item instanceof EObject && context.getMetaModelElementContext().isAssociationClassElement(
-					(EClass) item))) {
-					result.add(item);
-				}
-			}
-
-			return result.toArray();
+			return children;
 
 		} else {
 			// for Children that are EClass, show nothing
@@ -147,9 +121,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// if argument is instance of EClass and
 		// it inherits ModelElement and it is not abstract
 		// return true
-		// TODO: any additional criteria?
 		return object instanceof EClass
-		// && ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
+			&& ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
 			&& !((EClass) object).isAbstract();
 	}
 

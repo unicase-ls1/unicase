@@ -13,7 +13,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @author denglerm serves as a superclass for the specific class of each diagram
@@ -39,7 +40,8 @@ public abstract class ModelingAssistantProvider extends
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
 		Collection elements = new HashSet();
-		for (Iterator it = ModelUtil.getProject(diagram.getElement()).getAllModelElements().iterator(); it.hasNext();) {
+		for (Iterator it = ((MEDiagram) diagram.getElement()).getProject().getAllModelElements().iterator(); it
+			.hasNext();) {
 			EObject element = (EObject) it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
@@ -48,7 +50,7 @@ public abstract class ModelingAssistantProvider extends
 		if (elements.isEmpty()) {
 			return null;
 		}
-		EObject me = selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
+		ModelElement me = (ModelElement) selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
 
 		return me;
 	}

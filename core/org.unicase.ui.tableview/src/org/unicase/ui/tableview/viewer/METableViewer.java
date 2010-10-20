@@ -33,6 +33,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
@@ -106,7 +107,7 @@ public class METableViewer {
 			|| feature.getEType().equals(OrganizationPackage.Literals.USER)) {
 			style = SWT.CENTER;
 			width = 100;
-		} else if (feature.equals(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR)) {
+		} else if (feature.equals(MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR)) {
 			style = SWT.CENTER;
 			width = 100;
 		}

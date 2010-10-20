@@ -83,7 +83,6 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 				commandParam.icon = getImage((EClass) contentTypes[i]);
 			}
 			// set the DiagramType Parameter if the object is a MEiagram
-
 			if (contentTypes[i] instanceof MEDiagram) {
 				DiagramType type = (DiagramType) contentTypes[i];
 				// map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
@@ -118,9 +117,9 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		for (UnicaseModelElement me : leafSection.getModelElements()) {
 			Object key = null;
-
 			// Same for diagrams and other model elements.
 			key = me.eClass();
+
 			if (meCounts.containsKey(key)) {
 				// if Count for this ME is already added to the map,
 				// increment its count.

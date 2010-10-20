@@ -7,27 +7,26 @@
 package org.unicase.ui.validation;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.ListSelectionDialog;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 /**
  * The list of the validation filters.
  * 
  * @author pfeifferc
+ *
  */
-public class ValidationFilterList extends ListSelectionDialog {
+public class ValidationFilterList extends ElementListSelectionDialog {
 
 	/**
-	 * @param parentShell the
-	 * @param input the
-	 * @param contentProvider the
-	 * @param labelProvider the
-	 * @param message the
+	 * The default constructor.
+	 * @param parent the
+	 * @param renderer the
 	 */
-	public ValidationFilterList(Shell parentShell, Object input, IStructuredContentProvider contentProvider,
-		ILabelProvider labelProvider, String message) {
-		super(parentShell, input, contentProvider, labelProvider, message);
+	public ValidationFilterList(Shell parent, ILabelProvider renderer) {
+		super(parent, renderer);
 	}
 
+	
+	
 }

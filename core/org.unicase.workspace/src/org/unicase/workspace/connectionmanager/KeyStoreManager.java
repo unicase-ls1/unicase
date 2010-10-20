@@ -36,15 +36,11 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
 
 import org.apache.commons.codec.binary.Base64;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.exceptions.CertificateStoreException;
 import org.unicase.workspace.exceptions.InvalidCertificateException;
-import org.unicase.workspace.util.ConfigurationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -58,10 +54,7 @@ public final class KeyStoreManager {
 
 	private static KeyStoreManager instance;
 
-	/**
-	 * Name of keyStore file.
-	 */
-	public static final String KEYSTORENAME = "unicaseClient.keystore";
+	private static final String KEYSTORENAME = "unicaseClient.keystore";
 
 	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
 
@@ -76,32 +69,9 @@ public final class KeyStoreManager {
 	 */
 	public static final String DEFAULT_DEV_CERTIFICATE = "unicase.org test test(!!!) certificate";
 
-	private String defaultCertificate;
-
 	private KeyStore keyStore;
 
 	private KeyStoreManager() {
-		defaultCertificate = null;
-		setupKeys();
-		loadConfiguration();
-	}
-
-	private void loadConfiguration() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.defaultConfigurationProvider");
-		ConfigurationProvider provider = null;
-		for (IConfigurationElement extension : rawExtensions) {
-			try {
-				provider = (ConfigurationProvider) extension.createExecutableExtension("providerClass");
-			} catch (CoreException e) {
-				// fail silently
-			}
-		}
-		if (provider == null) {
-			return;
-		}
-		provider.initDefaultCertificates(this);
-
 	}
 
 	/**
@@ -137,6 +107,21 @@ public final class KeyStoreManager {
 				// TODO OW: exception? - now the user will be alerted to the
 				// problem as soon as he tries to connect.
 				// throw new ConnectionException("Couldn't find keystore.");
+			}
+		} else {
+			try {
+				// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
+				// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
+				// be nicer to add the default certificate to the given keystore.
+				if (getCertificate(getDefaultCertificate()) == null) {
+					File clientKeyTarget = new File(getPathToKeyStore());
+					clientKeyTarget.delete();
+					InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
+					FileUtil.copyFile(inputStream, clientKeyTarget);
+					keyStore = null;
+				}
+			} catch (CertificateStoreException e) {
+			} catch (IOException e) {
 			}
 		}
 
@@ -215,8 +200,7 @@ public final class KeyStoreManager {
 	 * Adds a certificate to the KeyStore.
 	 * 
 	 * @param alias alias for the certificate
-	 * @param certificate inputstream delivering the certificate. Stream is used by
-	 *            {@link CertificateFactory#generateCertificate(InputStream)}.
+	 * @param certificate inputstream delivering the certificate
 	 * @throws InvalidCertificateException certificate cannot be found, accessed or identified
 	 * @throws CertificateStoreException is thrown when problems occur with the CertificateStore, i.e. illegal
 	 *             operations
@@ -266,16 +250,6 @@ public final class KeyStoreManager {
 			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		}
-	}
-
-	/**
-	 * Reloads the keystore.
-	 * 
-	 * @throws CertificateStoreException in case of failure
-	 */
-	public void reloadKeyStore() throws CertificateStoreException {
-		keyStore = null;
-		loadKeyStore();
 	}
 
 	private void loadKeyStore() throws CertificateStoreException {
@@ -417,25 +391,12 @@ public final class KeyStoreManager {
 		return publicKey;
 	}
 
-	/**
-	 * Test whether a given alias is the default certificate alias.
-	 * 
-	 * @param alias alias under test
-	 * @return true if default, false else
-	 */
-	public boolean isDefaultCertificate(String alias) {
-		return getDefaultCertificate().equals(alias);
+	private boolean isDefaultCertificate(String alias) {
+		return alias.equals(DEFAULT_DEV_CERTIFICATE) || alias.equals(DEFAULT_UNICASE_CERTIFICATE);
 	}
 
-	/**
-	 * Returns the default certificate alias.
-	 * 
-	 * @return alias
-	 */
-	public String getDefaultCertificate() {
-		if (defaultCertificate != null) {
-			return defaultCertificate;
-		} else if (Configuration.isDeveloperVersion()) {
+	private String getDefaultCertificate() {
+		if (Configuration.isDeveloperVersion()) {
 			return DEFAULT_DEV_CERTIFICATE;
 		} else {
 			return DEFAULT_UNICASE_CERTIFICATE;
@@ -458,15 +419,6 @@ public final class KeyStoreManager {
 	}
 
 	/**
-	 * Sets the alias for the default certificate.
-	 * 
-	 * @param defaultCertificate certificate alias, use null to unset
-	 */
-	public void setDefaultCertificate(String defaultCertificate) {
-		this.defaultCertificate = defaultCertificate;
-	}
-
-	/**
 	 * Returns the certificate mapped by the given alias. Returns null if no such certificate exists.
 	 * 
 	 * @param alias String
@@ -484,23 +436,5 @@ public final class KeyStoreManager {
 		} catch (KeyStoreException e) {
 			throw new CertificateStoreException("Loading certificate failed!");
 		}
-	}
-
-	/**
-	 * Checks whether a certificate for a given alias exists.
-	 * 
-	 * @param alias to check
-	 * @return true if exists
-	 * @throws CertificateStoreException in case of failure
-	 */
-	public boolean certificateExists(String alias) throws CertificateStoreException {
-		try {
-			return getCertificate(alias) != null;
-		} catch (CertificateStoreException e) {
-			if (!(e.getCause() instanceof FileNotFoundException)) {
-				throw e;
-			}
-		}
-		return false;
 	}
 }

@@ -7,7 +7,6 @@ package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -25,11 +24,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
@@ -38,7 +39,6 @@ import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelPro
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -114,8 +114,8 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 				if (sel.getFirstElement() instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer
-						.getClass().getName());
+					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+						.getName());
 				}
 			}
 
@@ -238,17 +238,27 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(Project project, ModelElement modelElement) {
 		treeViewer.refresh();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		// nothing to do
 
 	}
 
@@ -258,7 +268,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		treeViewer.refresh();
 	}
 

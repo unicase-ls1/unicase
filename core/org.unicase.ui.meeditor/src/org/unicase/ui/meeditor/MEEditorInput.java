@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.meeditor;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -20,7 +19,7 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
@@ -31,25 +30,22 @@ import org.unicase.ui.common.ModelElementContext;
  */
 public class MEEditorInput implements IEditorInput {
 
-	private EObject modelElement;
+	private ModelElement modelElement;
 	private EStructuralFeature problemFeature;
 	private DecoratingLabelProvider labelProvider;
-	private ModelElementContext modelElementContext;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param me the modelElement
-	 * @param context context of the modelelement
 	 */
-	public MEEditorInput(EObject me, ModelElementContext context) {
+	public MEEditorInput(ModelElement me) {
 		super();
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager.getLabelDecorator());
 		this.modelElement = me;
-		this.modelElementContext = context;
 		if (labelProvider.getLabelProvider().getText(modelElement) == null) {
 			final Shell activeShell = Display.getCurrent().getActiveShell();
 			boolean doSetName = MessageDialog
@@ -71,24 +67,23 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	/**
-	 * Constructor to add a probleFeature.
-	 * 
-	 * @param me the model lement to open
-	 * @param context context of the model element
-	 * @param problemFeature the problem feature
-	 */
-	public MEEditorInput(EObject me, ModelElementContext context, EStructuralFeature problemFeature) {
-		this(me, context);
-		this.problemFeature = problemFeature;
-	}
-
-	/**
 	 * Getter for the label provider.
 	 * 
 	 * @return the label provider
 	 */
 	public DecoratingLabelProvider getLabelProvider() {
 		return labelProvider;
+	}
+
+	/**
+	 * Constructor marking a feature as having a problem.
+	 * 
+	 * @param me the modelElement
+	 * @param problemFeature the feature having a problem
+	 */
+	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
+		this(me);
+		this.problemFeature = problemFeature;
 	}
 
 	/**
@@ -134,7 +129,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @return the modelElement
 	 */
-	public EObject getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
@@ -143,7 +138,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param modelElement the modelElement
 	 */
-	public void setModelElement(EObject modelElement) {
+	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 
@@ -191,19 +186,10 @@ public class MEEditorInput implements IEditorInput {
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class clazz) {
 
-		if (clazz.equals(EObject.class)) {
+		if (clazz.equals(ModelElement.class)) {
 			return getModelElement();
 		}
 		return null;
-	}
-
-	/**
-	 * Returns the {@link ModelElementContext}.
-	 * 
-	 * @return {@link ModelElementContext}
-	 */
-	public ModelElementContext getModelElementContext() {
-		return modelElementContext;
 	}
 
 }

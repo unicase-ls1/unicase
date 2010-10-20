@@ -11,13 +11,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -41,7 +41,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 		if (!super.canApply(project)) {
 			return false;
 		}
-		EObject element = project.getModelElement(getModelElementId());
+		ModelElement element = project.getModelElement(getModelElementId());
 		try {
 			getFeature(element);
 		} catch (UnkownFeatureException e) {
@@ -66,18 +66,18 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	}
 
 	/**
-	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String FEATURE_NAME_EDEFAULT = "";
 	/**
-	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -86,6 +86,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureOperationImpl() {
@@ -94,6 +95,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +105,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getFeatureName() {
@@ -111,76 +114,84 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFeatureName(String newFeatureName) {
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.FEATURE_OPERATION__FEATURE_NAME, oldFeatureName, featureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.FEATURE_OPERATION__FEATURE_NAME,
+				oldFeatureName, featureName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-				return getFeatureName();
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			return getFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-				setFeatureName((String)newValue);
-				return;
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			setFeatureName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-				setFeatureName(FEATURE_NAME_EDEFAULT);
-				return;
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			setFeatureName(FEATURE_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
+		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+			return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");
@@ -196,7 +207,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @generated NOT
 	 */
 	public EStructuralFeature getFeature(Project project) throws UnkownFeatureException {
-		EObject modelElement = project.getModelElement(getModelElementId());
+		ModelElement modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
 			throw new IllegalArgumentException("Model Element is not in the given project");
 		}
@@ -254,7 +265,10 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @generated NOT
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.ModelElement)
 	 */
-	public EStructuralFeature getFeature(EObject modelElement) throws UnkownFeatureException {
+	public EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException {
+		if (!modelElement.getIdentifier().equals(this.getModelElementId().getId())) {
+			throw new IllegalArgumentException("model element id does not match id of operations model element");
+		}
 		EList<EStructuralFeature> features = modelElement.eClass().getEAllStructuralFeatures();
 		for (EStructuralFeature feature : features) {
 			if (feature.getName().equals(this.getFeatureName())) {

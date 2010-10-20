@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -20,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
@@ -29,11 +29,11 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
+import org.unicase.ui.common.util.URLHelper;
+import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.util.URLSelectionListener;
 import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
@@ -71,8 +71,9 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 			groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
 			workItems = new ArrayList<WorkItem>();
 
-			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-				new BasicEList<WorkItem>());
+			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(
+					TaskPackage.eINSTANCE.getWorkItem(),
+					new BasicEList<WorkItem>());
 
 			for (WorkItem wi : allWI) {
 				if (applies(wi)) {
@@ -82,7 +83,7 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
 			Set<FunctionalRequirement> frs = new HashSet<FunctionalRequirement>();
 			for (WorkItem wi : workItems) {
-				for (EObject me : wi.getAnnotatedModelElements()) {
+				for (ModelElement me : wi.getAnnotatedModelElements()) {
 					if (me instanceof FunctionalRequirement) {
 						frs.add((FunctionalRequirement) me);
 					}
@@ -91,7 +92,7 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
 			allWI.removeAll(workItems);
 			for (WorkItem wi : allWI) {
-				for (EObject me : wi.getAnnotatedModelElements()) {
+				for (ModelElement me : wi.getAnnotatedModelElements()) {
 					if (me instanceof FunctionalRequirement && frs.contains(me)) {
 						relatedTasks.add(wi);
 					}
@@ -106,8 +107,8 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
 	private boolean applies(WorkItem wi) {
 		return applies(TaskPackage.eINSTANCE.getWorkItem_Assignee(), wi)
-			|| applies(TaskPackage.eINSTANCE.getWorkItem_Participants(), wi)
-			|| applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(), wi);
+				|| applies(TaskPackage.eINSTANCE.getWorkItem_Participants(), wi)
+				|| applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(), wi);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -148,7 +149,8 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 		super.createContentPanel();
 
 		Composite panel = getContentPanel();
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 2).applyTo(panel);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.spacing(3, 2).applyTo(panel);
 
 		if (relatedTasks.size() > 0) {
 			WorkItem[] items = relatedTasks.toArray(new WorkItem[0]);
@@ -158,17 +160,20 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 				image.setImage(getLabelProvider().getImage(wi));
 				image.setData(wi.eClass());
 				ModelElementClassTooltip.enableFor(image);
-				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(image);
+				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING)
+						.applyTo(image);
 				Link link = new Link(panel, SWT.WRAP | SWT.MULTI);
 				link.setData(wi);
 				ModelElementTooltip.enableFor(link);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi, getDashboard().getProjectSpace(), 20));
+				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi,
+						getDashboard().getProjectSpace(), 20));
 				link.setText(stringBuilder.toString());
-				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
-				GridDataFactory.fillDefaults()
-					.hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, SWT.DEFAULT).grab(true, false)
-					.applyTo(link);
+				link.addSelectionListener(URLSelectionListener
+						.getInstance(getDashboard().getProjectSpace()));
+				GridDataFactory.fillDefaults().hint(
+						getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x,
+						SWT.DEFAULT).grab(true, false).applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);

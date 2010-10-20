@@ -62,7 +62,7 @@
                   The Implementation
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.ui.meeditor.mecontrols.AbstractMEControl:"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.ui.meeditor.mecontrols.MEControl"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -111,6 +111,7 @@
           type=&quot;java.lang.String&quot;&gt;
     &lt;/widget&gt;
 &lt;/extension&gt;
+
       </documentation>
    </annotation>
 

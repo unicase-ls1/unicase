@@ -94,25 +94,6 @@ public final class OrgUnitHelper {
 	}
 
 	/**
-	 * Returns the User in the project of the given projectSpace and username.
-	 * 
-	 * @param projectSpace the project space
-	 * @param username the user name for that the user model element should match
-	 * @return the user model element
-	 * @throws CannotMatchUserInProjectException if the user cannot be found in the project
-	 */
-	public static User getUser(ProjectSpace projectSpace, String username) throws CannotMatchUserInProjectException {
-		EList<User> projectUsers = projectSpace.getProject().getAllModelElementsbyClass(
-			OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
-		for (User user : projectUsers) {
-			if (user.getName().equals(username)) {
-				return user;
-			}
-		}
-		throw new CannotMatchUserInProjectException();
-	}
-
-	/**
 	 * Gets the team of the user. Includes all groups he is member of, all members of this groups and himself.
 	 * 
 	 * @param user the user

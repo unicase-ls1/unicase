@@ -22,12 +22,9 @@ import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
-import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -117,15 +114,14 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 			stepDescription.getBoxModel().setKeepWithPrevious(true);
 			content.add(stepDescription);
 
-			UseCase useCase = step.getIncludedUseCase();
-			if (useCase != null) {
+			if (step.getIncludedUseCase() != null) {
 				UParagraph includedUseCase = new UParagraph("Included Usecase:", template.getLayoutOptions()
 					.getDefaultTextOption());
 				includedUseCase.getBoxModel().setKeepWithPrevious(true);
 				content.add(includedUseCase);
 				includedUseCase.getOption().setUnderline(true);
-				ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
-				ULink link = new ULink(useCase.getName(), useCaseId.getId());
+				ULink link = new ULink(step.getIncludedUseCase().getName(), step.getIncludedUseCase()
+					.getModelElementId().getId());
 				content.add(link);
 				link.getBoxModel().setKeepWithPrevious(true);
 				link.setOption(template.getLayoutOptions().getDefaultTextOption());

@@ -46,10 +46,12 @@ public class MergeTextWidget implements Observer {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param decisionBox container
-	 * @param detailsComponent details component
+	 * @param decisionBox
+	 *            container
+	 * @param detailsComponent
 	 */
-	public MergeTextWidget(DecisionBox decisionBox, DetailsComponent detailsComponent) {
+	public MergeTextWidget(DecisionBox decisionBox,
+			DetailsComponent detailsComponent) {
 		this.decisionBox = decisionBox;
 		this.detailsComponent = detailsComponent;
 		options = new ArrayList<ConflictOption>();
@@ -59,7 +61,8 @@ public class MergeTextWidget implements Observer {
 	/**
 	 * Add involved ConflictOptions.
 	 * 
-	 * @param option option
+	 * @param option
+	 *            option
 	 */
 	public void addOption(ConflictOption option) {
 		options.add(option);
@@ -68,7 +71,8 @@ public class MergeTextWidget implements Observer {
 	/**
 	 * Called by container in order to build gui.
 	 * 
-	 * @param parent container
+	 * @param parent
+	 *            container
 	 */
 	public void createContent(Composite parent) {
 		tabFolder = new TabFolder(parent, SWT.NONE);
@@ -103,11 +107,13 @@ public class MergeTextWidget implements Observer {
 		}
 	}
 
-	private void handleMergeTextOption(ConflictOption option, final StyledText styledText) {
+	private void handleMergeTextOption(ConflictOption option,
+			final StyledText styledText) {
 		final MergeTextOption mergeOption = (MergeTextOption) option;
 		diff_match_patch dmp = new diff_match_patch();
 		dmp.Diff_EditCost = 10;
-		LinkedList<Diff> diffMain = dmp.diff_main(mergeOption.getMyText(), mergeOption.getTheirString());
+		LinkedList<Diff> diffMain = dmp.diff_main(mergeOption.getMyText(),
+				mergeOption.getTheirString());
 		dmp.diff_cleanupEfficiency(diffMain);
 
 		String description = "";
@@ -121,16 +127,19 @@ public class MergeTextWidget implements Observer {
 				styleRange.length = text.length();
 
 				if (diff.operation.equals(Operation.DELETE)) {
-					styleRange.foreground = Display.getDefault().getSystemColor(SWT.COLOR_RED);
+					styleRange.foreground = Display.getDefault()
+							.getSystemColor(SWT.COLOR_RED);
 				} else if (diff.operation.equals(Operation.INSERT)) {
-					styleRange.foreground = Display.getDefault().getSystemColor(SWT.COLOR_DARK_GREEN);
+					styleRange.foreground = Display.getDefault()
+							.getSystemColor(SWT.COLOR_DARK_GREEN);
 				}
 				styleRanges.add(styleRange);
 			}
 			description += text;
 		}
 		styledText.setText(description);
-		styledText.setStyleRanges(styleRanges.toArray(new StyleRange[styleRanges.size()]));
+		styledText.setStyleRanges(styleRanges
+				.toArray(new StyleRange[styleRanges.size()]));
 		styledText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				String newText = styledText.getText();
@@ -161,11 +170,6 @@ public class MergeTextWidget implements Observer {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
 	public void update(Observable o, Object arg) {
 		Conflict conflict = decisionBox.getConflict();
 		if (conflict != null && conflict == o) {

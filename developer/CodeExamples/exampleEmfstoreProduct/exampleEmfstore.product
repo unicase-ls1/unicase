@@ -42,9 +42,9 @@
       <plugin id="edu.tum.cs.cope.declaration.registry"/>
       <plugin id="edu.tum.cs.cope.migration"/>
       <plugin id="edu.tum.cs.cope.migration.execution"/>
-      <plugin id="exampleEmfstoreProduct" version="1.0.0"/>
-      <plugin id="exampleModel" version="1.0.0"/>
-      <plugin id="exampleModel.edit" version="1.0.0"/>
+      <plugin id="exampleEmfstoreProduct" version="0.4.6.internal"/>
+      <plugin id="exampleModel" version="0.4.6.internal"/>
+      <plugin id="exampleModel.edit" version="0.4.6.internal"/>
       <plugin id="javax.servlet"/>
       <plugin id="javax.transaction" fragment="true"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>

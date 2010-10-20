@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
@@ -20,16 +19,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
  * @author hamid Control for an email attribute. Includes a button to send an email.
  */
-public class MEEmailControl extends AbstractUnicaseMEControl {
+public class MEEmailControl extends AbstractMEControl {
 	private METextControl meAreaControl;
 
 	/**
@@ -44,7 +42,7 @@ public class MEEmailControl extends AbstractUnicaseMEControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 		meAreaControl = new METextControl();
 		final Text txtEmail = (Text) meAreaControl.createControl(composite, style, getItemPropertyDescriptor(),
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+			getModelElement(), getEditingDomain(), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(txtEmail);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 
@@ -76,7 +74,7 @@ public class MEEmailControl extends AbstractUnicaseMEControl {
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		EStructuralFeature structuralFeature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (structuralFeature.getName().equalsIgnoreCase("email")) {
 			return 2;

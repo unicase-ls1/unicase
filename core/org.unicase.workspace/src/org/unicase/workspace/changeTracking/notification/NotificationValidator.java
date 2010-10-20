@@ -9,7 +9,7 @@ package org.unicase.workspace.changeTracking.notification;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Validates an EMF notification. Optionally generates a status message, describing potential problems.
@@ -94,12 +94,12 @@ final class NotificationValidator {
 
 	private void handleMoveNotification(NotificationInfo n) {
 
-		// if (n.isAttributeNotification()) {
-		// n.setValid(false);
-		// n.setValidationMessage("MOVE notification on attribute feature with multiplicty"
-		// + "greater 1 not supported yet!");
-		// return;
-		// }
+		if (n.isAttributeNotification()) {
+			n.setValid(false);
+			n.setValidationMessage("MOVE notification on attribute feature with multiplicty"
+				+ "greater 1 not supported yet!");
+			return;
+		}
 
 		if (n.isReferenceNotification()) {
 			// sanity checks
@@ -110,11 +110,11 @@ final class NotificationValidator {
 				return;
 			}
 
-			if (!(n.getNewValue() instanceof EObject)) {
+			if (!(n.getNewValue() instanceof ModelElement)) {
 				// non model element references must be marked transient
 
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
+				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 			}
@@ -136,13 +136,13 @@ final class NotificationValidator {
 
 	private void handleRemoveManyNotification(NotificationInfo n) {
 
-		// // attributes not allowed for REMOVE_MANY (yet)
-		// if (n.isAttributeNotification()) {
-		// n.setValid(false);
-		// n.setValidationMessage("REMOVE_MANY on attribute feature with multiplicity greater"
-		// + "than 1 not yet supported.");
-		// return;
-		// }
+		// attributes not allowed for REMOVE_MANY (yet)
+		if (n.isAttributeNotification()) {
+			n.setValid(false);
+			n.setValidationMessage("REMOVE_MANY on attribute feature with multiplicity greater"
+				+ "than 1 not yet supported.");
+			return;
+		}
 
 		// reference validation
 		if (n.isReferenceNotification()) {
@@ -152,6 +152,14 @@ final class NotificationValidator {
 				n.setValid(false);
 				n.setValidationMessage("Non-List oldValue argument for REMOVE_MANY notification on: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
+				return;
+			}
+
+			// new values must always be model elements
+			if (!checkModelElementList((List<?>) n.getOldValue())) {
+				n.setValid(false);
+				n.setValidationMessage(n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName()
+					+ " reference feature contains a non-model element.");
 				return;
 			}
 
@@ -168,13 +176,12 @@ final class NotificationValidator {
 
 	private void handleAddManyNotification(NotificationInfo n) {
 
-		// TODO add validation
-		// // attributes not allowed for ADD_MANY (yet)
-		// if (n.isAttributeNotification()) {
-		// n.setValid(false);
-		// n.setValidationMessage("ADD_MANY on attribute feature with multiplicity greater than 1 not yet supported.");
-		// return;
-		// }
+		// attributes not allowed for ADD_MANY (yet)
+		if (n.isAttributeNotification()) {
+			n.setValid(false);
+			n.setValidationMessage("ADD_MANY on attribute feature with multiplicity greater than 1 not yet supported.");
+			return;
+		}
 
 		// reference validation
 		if (n.isReferenceNotification()) {
@@ -184,6 +191,14 @@ final class NotificationValidator {
 				n.setValid(false);
 				n.setValidationMessage("Non-List newValue argument for ADD_MANY notification on: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
+				return;
+			}
+
+			// new values must always be model elements
+			if (!checkModelElementList((List<?>) n.getNewValue())) {
+				n.setValid(false);
+				n.setValidationMessage(n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName()
+					+ " reference feature contains a non-model element.");
 				return;
 			}
 
@@ -205,9 +220,9 @@ final class NotificationValidator {
 		if (n.isReferenceNotification()) {
 
 			// non model element references must be marked transient
-			if (!(n.getOldValue() instanceof EObject)) {
+			if (!(n.getOldValue() instanceof ModelElement)) {
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
+				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 
@@ -232,9 +247,9 @@ final class NotificationValidator {
 		if (n.isReferenceNotification()) {
 
 			// non model element references must be marked transient
-			if (!(n.getNewValue() instanceof EObject)) {
+			if (!(n.getNewValue() instanceof ModelElement)) {
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
+				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 
@@ -263,12 +278,12 @@ final class NotificationValidator {
 			Object newValueObject = n.getNewValue();
 			Object oldValueObject = n.getOldValue();
 
-			boolean newValIsNoME = newValueObject != null && !(newValueObject instanceof EObject);
-			boolean oldValIsNoME = oldValueObject != null && !(oldValueObject instanceof EObject);
+			boolean newValIsNoME = newValueObject != null && !(newValueObject instanceof ModelElement);
+			boolean oldValIsNoME = oldValueObject != null && !(oldValueObject instanceof ModelElement);
 			if (newValIsNoME || oldValIsNoME) {
 				// non model element references must be marked transient
 				n.setValid(false);
-				n.setValidationMessage("Non-transient non-EObject reference feature detected: "
+				n.setValidationMessage("Non-transient non-modelElement reference feature detected: "
 					+ n.getNotifier().getClass().getCanonicalName() + "-" + n.getReference().getName());
 				return;
 			}
@@ -276,5 +291,19 @@ final class NotificationValidator {
 		}
 
 		// no validation for SET attribute
+
 	}
+
+	private boolean checkModelElementList(List<?> aList) {
+
+		for (Object value : aList) {
+			if (!(value instanceof ModelElement)) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
 }

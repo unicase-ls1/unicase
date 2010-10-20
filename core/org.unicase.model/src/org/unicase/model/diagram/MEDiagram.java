@@ -40,7 +40,7 @@ public interface MEDiagram extends Attachment {
 	 * 
 	 * @return the value of the '<em>Elements</em>' reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_Elements()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getElements();
@@ -82,10 +82,22 @@ public interface MEDiagram extends Attachment {
 	 * 
 	 * @return the value of the '<em>New Elements</em>' containment reference list.
 	 * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram_NewElements()
-	 * @model containment="true" resolveProxies="true" transient="true"
+	 * @model containment="true" resolveProxies="true" keys="identifier" transient="true"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getNewElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @model kind="operation"
+	 * @generated
+	 */
+	String getType();
 
 	/**
 	 * Returns the value of the '<em><b>Diagram Layout</b></em>' attribute. <!-- begin-user-doc -->
@@ -116,7 +128,5 @@ public interface MEDiagram extends Attachment {
 	void saveDiagramLayout() throws DiagramStoreException;
 
 	void loadDiagramLayout() throws DiagramLoadException;
-
-	String getType();
 
 } // MEDiagram

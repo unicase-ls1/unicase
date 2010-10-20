@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -212,9 +211,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
-			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
 	}
 
 	/**

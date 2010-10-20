@@ -8,8 +8,8 @@ package org.unicase.ui.unicasecommon.dnd.dropadapters;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelPackage;
 
@@ -27,8 +27,8 @@ public class AnnotationDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<EObject> source, EObject target,
-		EObject dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
+		ModelElement dropee) {
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (dropee instanceof Annotation) {
 			result = false;

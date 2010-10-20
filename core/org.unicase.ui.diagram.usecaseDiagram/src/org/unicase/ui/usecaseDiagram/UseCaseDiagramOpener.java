@@ -5,7 +5,8 @@
  */
 package org.unicase.ui.usecaseDiagram;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.ui.common.ModelElementOpener;
@@ -13,35 +14,33 @@ import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
 
 /**
  * Opener for use case diagrams.
- * 
  * @author koegel
+ *
  */
-public class UseCaseDiagramOpener extends DiagramOpener implements ModelElementOpener {
+public class UseCaseDiagramOpener extends DiagramOpener  implements ModelElementOpener  {
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
-	public int canOpen(EObject me) {
-		if (me instanceof UseCaseDiagram) {
-			// MEDiagram diagram = (MEDiagram) me;
-			// if (diagram.getGmfdiagram().equals(DiagramType.USECASE_DIAGRAM)){
-			return 1;
-			// }
+	public int canOpen(ModelElement me) {
+		if (me instanceof UseCaseDiagram){
+//			MEDiagram diagram = (MEDiagram) me;
+//			if (diagram.getGmfdiagram().equals(DiagramType.USECASE_DIAGRAM)){
+				return 1;
+//			}
 		}
-		return DONOTOPEN;
+		return 0;
 	}
 
-	/**
+	/** 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
-	public void openModelElement(EObject modelElement) {
-		if (modelElement instanceof MEDiagram) {
+	public void openModelElement(ModelElement modelElement) {
+		if(modelElement instanceof MEDiagram){
 			MEDiagram diagram = (MEDiagram) modelElement;
-			super.openDiagram(diagram, "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID");
+		super.openDiagram(diagram, "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID");
 		} else {
 			throw new IllegalArgumentException("Opener only applicable for MEDiagrams");
 		}

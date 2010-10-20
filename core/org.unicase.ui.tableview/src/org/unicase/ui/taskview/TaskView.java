@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
@@ -31,6 +30,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
@@ -49,7 +50,6 @@ import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.filter.TeamFilter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -364,7 +364,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
@@ -381,9 +381,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, null));
+			MetamodelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, null));
+			MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
@@ -462,7 +462,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -476,10 +476,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
+	}
+
+	/**
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 *      {@inheritDoc}
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 	}
 
 	/**
@@ -492,7 +499,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}

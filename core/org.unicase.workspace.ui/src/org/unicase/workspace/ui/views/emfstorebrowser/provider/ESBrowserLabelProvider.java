@@ -21,9 +21,6 @@ import org.unicase.workspace.ui.Activator;
  */
 public class ESBrowserLabelProvider extends ColumnLabelProvider {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getText(Object obj) {
 		if (obj instanceof TreeNode) {
@@ -44,17 +41,16 @@ public class ESBrowserLabelProvider extends ColumnLabelProvider {
 		return super.getText(obj);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Image getImage(Object obj) {
 		if (obj instanceof TreeNode) {
 			Object element = ((TreeNode) obj).getValue();
 			if (element instanceof ServerInfo) {
-				return Activator.getImageDescriptor("icons/ServerInfo.gif").createImage();
+				return Activator.getImageDescriptor("icons/ServerInfo.gif")
+						.createImage();
 			} else if (element instanceof ProjectInfo) {
-				return Activator.getImageDescriptor("icons/prj_obj.gif").createImage();
+				return Activator.getImageDescriptor("icons/prj_obj.gif")
+						.createImage();
 			}
 		}
 		return super.getImage(obj);
@@ -70,21 +66,26 @@ public class ESBrowserLabelProvider extends ColumnLabelProvider {
 			Object element = ((TreeNode) obj).getValue();
 			if (element instanceof ServerInfo) {
 				ServerInfo serverInfo = (ServerInfo) element;
-				StyledString styledString = new StyledString(serverInfo.getName());
+				StyledString styledString = new StyledString(serverInfo
+						.getName());
 				String url = serverInfo.getUrl();
-				styledString.append(" [" + url + "]", StyledString.DECORATIONS_STYLER);
+				styledString.append(" [" + url + "]",
+						StyledString.DECORATIONS_STYLER);
 
 				cell.setText(styledString.toString());
 				cell.setStyleRanges(styledString.getStyleRanges());
 
-				cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif").createImage());
+				cell.setImage(Activator.getImageDescriptor(
+						"icons/ServerInfo.gif").createImage());
 			} else if (element instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) element;
-				StyledString styledString = new StyledString(projectInfo.getName());
+				StyledString styledString = new StyledString(projectInfo
+						.getName());
 				cell.setText(styledString.toString());
 				cell.setStyleRanges(styledString.getStyleRanges());
 
-				cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif").createImage());
+				cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
+						.createImage());
 			}
 		}
 		super.update(cell);

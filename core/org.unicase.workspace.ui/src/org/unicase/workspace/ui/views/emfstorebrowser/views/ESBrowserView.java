@@ -52,7 +52,8 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	 * The constructor.
 	 */
 	public ESBrowserView() {
-		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
 		for (Usersession u : currentWorkspace.getUsersessions()) {
 			u.addLoginObserver(this);
 		}
@@ -61,12 +62,14 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 				@Override
 				public void notifyChanged(final Notification msg) {
 					if (msg.getFeature() != null
-						&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getServerInfo_ProjectInfos())) {
+							&& msg.getFeature().equals(
+									WorkspacePackage.eINSTANCE
+											.getServerInfo_ProjectInfos())) {
 						Display.getCurrent().asyncExec(new Runnable() {
 							public void run() {
 								TreeNode element = new TreeNode(serverInfo);
 								if (msg.getEventType() == Notification.REMOVE_MANY
-									|| msg.getEventType() == Notification.REMOVE) {
+										|| msg.getEventType() == Notification.REMOVE) {
 									viewer.collapseToLevel(element, 0);
 								}
 								viewer.refresh(element, true);
@@ -84,13 +87,11 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 					ServerInfo serverInfo = (ServerInfo) msg.getNewValue();
 					serverInfo.eAdapters().add(serverInfoAdapter);
 					viewer.refresh();
-				} else if (msg.getOldValue() instanceof ServerInfo) {
-					ServerInfo serverInfo = (ServerInfo) msg.getOldValue();
-					serverInfo.eAdapters().remove(serverInfoAdapter);
-					viewer.refresh();
 				}
 				if (msg.getFeature() != null
-					&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
+						&& msg.getFeature().equals(
+								WorkspacePackage.eINSTANCE
+										.getWorkspace_Usersessions())) {
 					if (msg.getEventType() == Notification.ADD) {
 						Usersession session = (Usersession) msg.getNewValue();
 						session.addLoginObserver(ESBrowserView.this);
@@ -110,18 +111,22 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer = new TreeViewer(parent, SWT.SINGLE | SWT.H_SCROLL
+				| SWT.V_SCROLL);
 
 		contentProvider = new ESBrowserContentProvider();
 		viewer.setContentProvider(contentProvider);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new ESBrowserLabelProvider(), decoratorManager
-			.getLabelDecorator()));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
+		viewer.setLabelProvider(new DecoratingLabelProvider(
+				new ESBrowserLabelProvider(), decoratorManager
+						.getLabelDecorator()));
 		viewer.setSorter(new ESBrowserViewerSorter());
 
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
 
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
+				"org.unicase.repositoryview.viewer");
 
 		menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
@@ -138,7 +143,8 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	private void hookDoubleClickAction() {
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				Object firstElement = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
+				Object firstElement = ((IStructuredSelection) viewer
+						.getSelection()).getFirstElement();
 				viewer.refresh(firstElement);
 				viewer.expandToLevel(firstElement, 1);
 			}
@@ -161,9 +167,6 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 		return viewer;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void loginCompleted(Usersession session) {
 		final TreeNode node = new TreeNode(session.getServerInfo());
 		getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -173,13 +176,11 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 		});
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void dispose() {
 		super.dispose();
-		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
 		currentWorkspace.eAdapters().remove(workspaceAdapter);
 		for (Usersession u : currentWorkspace.getUsersessions()) {
 			u.removeLoginObserver(this);

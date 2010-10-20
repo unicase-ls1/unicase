@@ -5,13 +5,12 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Abstract class for the ME controls.
@@ -32,7 +31,7 @@ public abstract class AbstractMEControl {
 	/**
 	 * the modelElement.
 	 */
-	private EObject modelElement;
+	private ModelElement modelElement;
 	/**
 	 * the editingDomain.
 	 */
@@ -42,8 +41,6 @@ public abstract class AbstractMEControl {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
-	private ModelElementContext context;
-
 	/**
 	 * @return the toolkit
 	 */
@@ -51,14 +48,7 @@ public abstract class AbstractMEControl {
 		return toolkit;
 	}
 
-	/**
-	 * If a control can render a feature of a modelelement.
-	 * 
-	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
-	 * @param modelElement the modelelement
-	 * @return the priority
-	 */
-	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement);
+	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement);
 
 	/**
 	 * @param toolkit the toolkit to set
@@ -70,14 +60,14 @@ public abstract class AbstractMEControl {
 	/**
 	 * @return the modelElement
 	 */
-	public EObject getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
 	/**
 	 * @param modelElement the modelElement to set
 	 */
-	public void setModelElement(EObject modelElement) {
+	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 
@@ -119,18 +109,13 @@ public abstract class AbstractMEControl {
 	/**
 	 * Creates the widget for this control.
 	 * 
-	 * @param parent the parent composite
-	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
-	 * @param modelElement the modelelement
-	 * @param context the context of the modelelement
-	 * @param toolkit the {@link FormToolkit}
+	 * @param attributeComposite the parent composite
 	 * @param style the style
 	 * @return the widget
 	 */
 	public Control createControl(Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		EObject modelElement, ModelElementContext context, FormToolkit toolkit) {
-		this.setContext(context);
-		this.editingDomain = context.getEditingDomain();
+		ModelElement modelElement, EditingDomain editingDomain, FormToolkit toolkit) {
+		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
 		this.setItemPropertyDescriptor(itemPropertyDescriptor);
@@ -138,13 +123,6 @@ public abstract class AbstractMEControl {
 
 	}
 
-	/**
-	 * Shall be overriden to create the control.
-	 * 
-	 * @param parent the paren composite
-	 * @param style the SWT style
-	 * @return the create Control
-	 */
 	protected abstract Control createControl(Composite parent, int style);
 
 	/**
@@ -156,47 +134,17 @@ public abstract class AbstractMEControl {
 
 	/**
 	 * Sets if the label should be shown.
-	 * 
-	 * @param show if the Label should be shown
 	 */
 	public void setShowLabel(boolean show) {
 		this.showLabel = show;
 	}
 
-	/**
-	 * Setter for the {@link IItemPropertyDescriptor}.
-	 * 
-	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
-	 */
 	public void setItemPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
 		this.itemPropertyDescriptor = itemPropertyDescriptor;
 	}
 
-	/**
-	 * Getter for the {@link IItemPropertyDescriptor}.
-	 * 
-	 * @return the {@link IItemPropertyDescriptor}
-	 */
 	public IItemPropertyDescriptor getItemPropertyDescriptor() {
 		return itemPropertyDescriptor;
-	}
-
-	/**
-	 * Setter for the {@link ModelElementContext}.
-	 * 
-	 * @param context the {@link ModelElementContext}
-	 */
-	public void setContext(ModelElementContext context) {
-		this.context = context;
-	}
-
-	/**
-	 * Getter for the {@link ModelElementContext}.
-	 * 
-	 * @return the {@link ModelElementContext}
-	 */
-	public ModelElementContext getContext() {
-		return context;
 	}
 
 }

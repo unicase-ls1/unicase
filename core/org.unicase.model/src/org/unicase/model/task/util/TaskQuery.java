@@ -11,7 +11,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
@@ -36,7 +35,7 @@ public final class TaskQuery {
 	 */
 	public static Set<WorkItem> getWorkItemsOfUser(User user) {
 		Set<WorkItem> ret = new HashSet<WorkItem>();
-		Project project = ModelUtil.getProject(user);
+		Project project = user.getProject();
 		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
 			.getWorkItem(), new BasicEList<WorkItem>(), true);
 		for (WorkItem workItem : allModelElementsbyClass) {

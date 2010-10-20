@@ -71,6 +71,8 @@ public class XmlRpcAdminConnectionManager extends AbstractConnectionManager<XmlR
 		getConnectionProxy(sessionId).call("changeRole", sessionId, projectId, orgUnit, role);
 	}
 
+	// TODO
+
 	/**
 	 * {@inheritDoc}
 	 */
