@@ -34,3 +34,4 @@ Export-Package: org.unicase.ui.unicasecommon.common,
  org.unicase.ui.unicasecommon.meeditor,
  org.unicase.ui.unicasecommon.navigator.wizards
 Import-Package: org.unicase.ui.unicasecommon.common
+Bundle-Vendor: unicase.org
