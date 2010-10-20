@@ -6,6 +6,7 @@
   * Enter EMF Client Platform Update Site: [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
   * Important: Uncheck "Group Items by Category" and "Contact all update sites ..."
   * Select all Features from the update site and install
+  # Import example modell
 
 Links to required resources:
   * [http://phoenix.eclipse.org/packages/ Eclipse Modeling Edition Download]
