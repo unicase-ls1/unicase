@@ -112,6 +112,7 @@ public class MEEditorTest {
 		}
 		WorkspaceUtil.deleteTestWorkspace();
 		Configuration.setTesting(true);
+		WorkspaceManager.getInstance().getConnectionManager();
 		WorkspaceManager.getInstance();
 	}
 

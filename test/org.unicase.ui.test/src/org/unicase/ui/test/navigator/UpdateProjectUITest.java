@@ -19,6 +19,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -40,9 +41,8 @@ public class UpdateProjectUITest extends MEEditorTest {
 	 */
 	@BeforeClass
 	public static void beforeClass() {
-
+		SetupHelper.addUserFileToServer(true);
 		SetupHelper.startSever();
-		SetupHelper.addUserFileToServer(false);
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
 	}
@@ -62,15 +62,20 @@ public class UpdateProjectUITest extends MEEditorTest {
 			protected void doRun() {
 				Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 				projectSpace = currentWorkspace.getActiveProjectSpace();
-				try {
-					sessionId = connectionManager.logIn("super", "super", SetupHelper.getServerInfo(), Configuration
-						.getClientVersion());
-				} catch (EmfStoreException e1) {
 
+				try {
+					sessionId = connectionManager.logIn("super", KeyStoreManager.getInstance().encrypt("super",
+						SetupHelper.getServerInfo()), SetupHelper.getServerInfo(), Configuration.getClientVersion());
+					WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(
+						SetupHelper.getServerInfo(), sessionId);
+
+				} catch (EmfStoreException e1) {
+					e1.printStackTrace();
 				}
 
 				ACOrgUnitId orgUnitId;
 				try {
+
 					orgUnitId = SetupHelper.createUserOnServer(sessionId, "writer");
 					SetupHelper.setUsersRole(sessionId, orgUnitId, RolesPackage.eINSTANCE.getWriterRole(), projectSpace
 						.getProjectId());
@@ -79,6 +84,7 @@ public class UpdateProjectUITest extends MEEditorTest {
 						.getProjectId());
 
 				} catch (EmfStoreException e) {
+					e.printStackTrace();
 
 				}
 
