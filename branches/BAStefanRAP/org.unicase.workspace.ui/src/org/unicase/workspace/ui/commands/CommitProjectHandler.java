@@ -26,15 +26,15 @@ import org.unicase.workspace.ui.dialogs.CommitDialog;
 
 /**
  * @author Hodaie
- * @author Shterev This handler handles CommitWorkspace command. This command is
- *         shown in UC View context menu only for Projects
+ * @author Shterev This handler handles CommitWorkspace command. This command is shown in UC View context menu only for
+ *         Projects
  */
-public class CommitProjectHandler extends ServerRequestCommandHandler implements
-		CommitObserver {
+public class CommitProjectHandler extends ServerRequestCommandHandler implements CommitObserver {
 
 	private Shell shell;
 	private Usersession usersession;
 	private LogMessage logMessage;
+	private String predefinedCommitMessage;
 
 	/**
 	 * Default constructor.
@@ -53,22 +53,30 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = getProjectSpace();
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information",
-						"You must select the Project");
+				MessageDialog.openInformation(shell, "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
 		}
 
+		handleCommit(projectSpace);
+		return null;
+	}
+
+	/**
+	 * Shows the CommitDialog and handles error situations.
+	 * 
+	 * @param projectSpace ProjectSpace that will be committed.
+	 * @throws EmfStoreException if commit goes wrong.
+	 */
+	public void handleCommit(ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
-			MessageDialog
-					.openInformation(shell, null,
-							"This project is not yet shared with a server, you cannot commit.");
-			return null;
+			MessageDialog.openInformation(shell, null,
+				"This project is not yet shared with a server, you cannot commit.");
 		}
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
@@ -76,20 +84,23 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		} catch (BaseVersionOutdatedException e) {
 			handleBaseVersionException(projectSpace);
 		} catch (NoLocalChangesException e) {
-			MessageDialog.openInformation(shell, null,
-					"No local changes in your project. No need to commit.");
+			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
 		}
-		return null;
 	}
 
-	private void handleBaseVersionException(final ProjectSpace projectSpace)
-			throws EmfStoreException {
-		MessageDialog dialog = new MessageDialog(
-				null,
-				"Confirmation",
-				null,
-				"Your project is outdated, you need to update before commit. Do you want to update now?",
-				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+	/**
+	 * Sets a predefined messagte to the CommitDialog.
+	 * 
+	 * @param predefinedCommitMessage The message that will appear in the CommitDialog.
+	 */
+	public void setPredefinedCommitMessage(String predefinedCommitMessage) {
+		this.predefinedCommitMessage = predefinedCommitMessage;
+	}
+
+	private void handleBaseVersionException(final ProjectSpace projectSpace) throws EmfStoreException {
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
+			"Your project is outdated, you need to update before commit. Do you want to update now?",
+			MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
 		if (result == 0) {
 			new UpdateProjectHandler().update(projectSpace);
@@ -97,8 +108,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		}
 	}
 
-	private void commit(final ProjectSpace projectSpace)
-			throws EmfStoreException, BaseVersionOutdatedException {
+	private void commit(final ProjectSpace projectSpace) throws EmfStoreException, BaseVersionOutdatedException {
 		logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		projectSpace.commit(logMessage, CommitProjectHandler.this);
 	}
@@ -106,17 +116,18 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean inspectChanges(ProjectSpace projectSpace,
-			ChangePackage changePackage) {
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		if (changePackage.getOperations().isEmpty()) {
-			MessageDialog
-					.openInformation(
-							shell,
-							"No local changes",
-							"Your local changes were mutually exclusive.\nThe are no changes pending for commit.");
+			MessageDialog.openInformation(shell, "No local changes",
+				"Your local changes were mutually exclusive.\nThe are no changes pending for commit.");
 			return false;
 		}
-		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
+		CommitDialog commitDialog = new CommitDialog(shell, changePackage, projectSpace);
+		if (predefinedCommitMessage != null) {
+			LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+			logMessage.setMessage(predefinedCommitMessage);
+			changePackage.setLogMessage(logMessage);
+		}
 		int returnCode = commitDialog.open();
 		if (returnCode == Window.OK) {
 			logMessage.setAuthor(usersession.getUsername());
@@ -132,8 +143,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * 
 	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted()
 	 */
-	public void commitCompleted(ProjectSpace projectSpace,
-			PrimaryVersionSpec versionSpec) {
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 	}
 
 }

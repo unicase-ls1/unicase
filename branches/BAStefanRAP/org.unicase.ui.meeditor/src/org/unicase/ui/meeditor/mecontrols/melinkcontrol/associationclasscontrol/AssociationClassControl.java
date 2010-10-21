@@ -71,6 +71,7 @@ public class AssociationClassControl extends AbstractMEControl {
 				linkArea.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			} else {
 				scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL | SWT.H_SCROLL);
+				scrollPane.setBackgroundMode(SWT.INHERIT_FORCE);
 				scrollClient = new Composite(scrollPane, style);
 				scrollPane.setContent(scrollClient);
 				getToolkit().getColors().createColor("white", 255, 255, 255);

@@ -151,8 +151,6 @@ public class MEEditorPage extends FormPage {
 		createAttributes(leftColumnComposite, leftColumnAttributes);
 		createAttributes(rightColumnComposite, rightColumnAttributes);
 		createAttributes(bottomComposite, bottomAttributes);
-		// Create special ME Control
-		// createSpecificMEControls();
 		createToolbar();
 		form.pack();
 		updateSectionTitle();
@@ -227,6 +225,8 @@ public class MEEditorPage extends FormPage {
 					rightColumnAttributes.add(itemPropertyDescriptor);
 				} else if (value.equals("bottom")) {
 					bottomAttributes.add(itemPropertyDescriptor);
+				} else {
+					leftColumnAttributes.add(itemPropertyDescriptor);
 				}
 			}
 

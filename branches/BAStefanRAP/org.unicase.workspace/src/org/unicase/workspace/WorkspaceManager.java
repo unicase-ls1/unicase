@@ -289,11 +289,14 @@ public final class WorkspaceManager {
 	private void backupWorkspace(boolean move) {
 		String workspaceDirectory = Configuration.getWorkspaceDirectory();
 		File workspacePath = new File(workspaceDirectory);
+
 		// String newWorkspaceDirectory = Configuration.getUserHome() + "unicase_backup_" + System.currentTimeMillis()
 		// + "_" + new Date();
 		// TODO: if you want the date included in the backup folder you should change the format. the default format
 		// does not work with every os due to : and other characters.
-		String newWorkspaceDirectory = Configuration.getUserHome() + "unicase_backup_" + System.currentTimeMillis();
+		String newWorkspaceDirectory = Configuration.getLocationProvider().getBackupDirectory() + "unicase_backup_"
+			+ System.currentTimeMillis();
+
 		File workspacebackupPath = new File(newWorkspaceDirectory);
 		if (move) {
 			workspacePath.renameTo(workspacebackupPath);
@@ -398,7 +401,7 @@ public final class WorkspaceManager {
 	/**
 	 * Retrieve the project space for a model element.
 	 * 
-	 * @param eObject the model element
+	 * @param modelElement the model element
 	 * @return the project space
 	 */
 	public static ProjectSpace getProjectSpace(EObject modelElement) {
