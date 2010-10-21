@@ -44,6 +44,9 @@ public class ModelBasedAssigneeRecommendation extends AssigneeRecommendationStra
 	 * @return
 	 */
 	private double getExperties(Assignee assignee, List<Task> relatedTasks) {
+		if (relatedTasks.size() == 0) {
+			return 0.0;
+		}
 		int done = 0;
 		for (Task task : relatedTasks) {
 			WorkItem workItem = task.getWorkItem();
