@@ -3,22 +3,22 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.util;
+package org.unicase.emfstore;
 
 /**
- * Interface for workspace location providers. Implementing classes provide a location for the workspace files to store
- * models and other files. You may subclass {@link DefaultWorkspaceLocationProvider} in order to ease your
- * implementation. By convention, every path should end with an folder seperator char.
+ * Interface for workspace location providers. Implementing classes provide a location for the workspace - or server
+ * workspace - files to store models and other files. You may subclass {@link DefaultServerWorkspaceLocationProvider} in
+ * order to ease your implementation. By convention, every path should end with an folder seperator char.
  * 
  * @author koegel
  * @author wesendon
  */
-public interface WorkspaceLocationProvider {
+public interface LocationProvider {
 
 	/**
 	 * Get the path to the workspace directory, where the model data is stored to. This method is called only once on
-	 * workspace startup to retrieve path. If you want to use profilese look at {@link DefaultWorkspaceLocationProvider}
-	 * .
+	 * workspace startup to retrieve path. If you want to use profilese look at
+	 * {@link DefaultServerWorkspaceLocationProvider} and it's subclasses .
 	 * 
 	 * @return a string representing the path
 	 */

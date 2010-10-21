@@ -9,7 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 import org.unicase.metamodel.util.ModelUtil;
@@ -396,7 +397,7 @@ public final class ServerConfiguration {
 		return getConfDirectory() + "es.properties";
 	}
 
-	private static String serverHome;
+	private static LocationProvider locationProvider;
 
 	/**
 	 * Return the server home directory location.
@@ -404,68 +405,45 @@ public final class ServerConfiguration {
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
-		if (serverHome != null) {
-			return serverHome;
+		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
+		File workspace = new File(workspaceDirectory);
+		if (!workspace.exists()) {
+			workspace.mkdirs();
 		}
-		String[] applicationArgs = Platform.getApplicationArgs();
-		for (String arg : applicationArgs) {
-			if (arg.startsWith(EMFSTORE_HOME) && arg.length() > EMFSTORE_HOME.length()) {
-				String path = arg.substring(arg.indexOf("=") + 1, arg.length());
-				if (!path.endsWith(File.separator)) {
-					path = path + File.separator;
-				}
-				File file = new File(path);
-				if (file.exists() && file.isDirectory()) {
-					serverHome = path;
-					return serverHome;
-				} else if (file.exists() && !file.isDirectory()) {
-					String errorMessage = "Illegal EMFStore home path received:" + path;
-					ModelUtil.log(errorMessage, new IllegalStateException("The path exists as file already."),
-						IStatus.ERROR);
-					System.err.println(errorMessage);
-				}
-				boolean created = file.mkdir();
-				if (!created) {
-					// log and switch to default
-					String errorMessage = "Illegal EMFStore home path received:" + path;
-					ModelUtil.log(errorMessage, new IllegalStateException("The path can not be created."),
-						IStatus.ERROR);
-					System.err.println(errorMessage);
-					break;
-				}
-				serverHome = path;
-				return serverHome;
-			}
+		if (!workspaceDirectory.endsWith(File.separator)) {
+			return workspaceDirectory + File.separatorChar;
 		}
-		StringBuffer sb = new StringBuffer(getUserHome());
-		sb.append(".unicase");
-		if (testing) {
-			sb.append(".test");
-		} else if (!isReleaseVersion()) {
-			if (isInternalReleaseVersion()) {
-				sb.append(".internal");
-			} else {
-				sb.append(".dev");
-			}
-		}
-		sb.append(File.separatorChar);
-		sb.append("emfstore");
-		sb.append(File.separatorChar);
-		System.out.println("Using default path for EMFStore home:" + sb.toString());
-		serverHome = sb.toString();
-		return serverHome;
+
+		return workspaceDirectory;
 	}
 
 	/**
-	 * Return the user home directory location.
+	 * Returns the registered {@link LocationProvider} or if not existent, the {@link DefaultWorkspaceLocationProvider}.
 	 * 
-	 * @return the dir path string
+	 * @return workspace location provider
 	 */
-	public static String getUserHome() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separatorChar);
-		return sb.toString();
+	public static LocationProvider getLocationProvider() {
+		if (locationProvider == null) {
+			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.emfstore.locationprovider");
+			for (IConfigurationElement extension : rawExtensions) {
+				try {
+					Object executableExtension = extension.createExecutableExtension("providerClass");
+					if (executableExtension instanceof LocationProvider) {
+						locationProvider = (LocationProvider) executableExtension;
+					}
+				} catch (CoreException e) {
+					String message = "Error while instantiating location provider, switching to default location!";
+					ModelUtil.logWarning(message, e);
+				}
+			}
+			if (locationProvider == null) {
+				locationProvider = new DefaultServerWorkspaceLocationProvider();
+			}
+			ModelUtil.logInfo("Using default path for EMFStore home:" + locationProvider.getWorkspaceDirectory());
+		}
+
+		return locationProvider;
 	}
 
 	/**
