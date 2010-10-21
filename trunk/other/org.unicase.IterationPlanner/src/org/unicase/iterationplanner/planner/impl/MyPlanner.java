@@ -1,10 +1,13 @@
 package org.unicase.iterationplanner.planner.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneerecommendation.Task;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.AssigneeAvailability;
 import org.unicase.iterationplanner.planner.Evaluator;
@@ -62,11 +65,12 @@ public class MyPlanner extends Planner {
 		Random random = getPlannerParameters().getRandom();
 		IterationPlan iterPlan = new IterationPlan(getNumOfIterations());
 
-		for (TaskPotentialAssigneeList taskToPlan : getTaskPotentialAssigneeLists()) {
+		for (Task taskToPlan : getTaskPotentialAssigneeListMap().keySet()) {
 			// set assignee and put it into an iteration
-			PlannedTask plannedTask = new PlannedTask(taskToPlan.getTask());
-			plannedTask.setAssigneeExpertise(taskToPlan.getRecommendedAssignees().get(
-				random.nextInt(taskToPlan.getRecommendedAssignees().size())));
+			PlannedTask plannedTask = new PlannedTask(taskToPlan);
+			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
+			plannedTask.setAssigneeExpertise(potentialAssignees.get(random.nextInt(potentialAssignees.size())));
+			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
 			int iterationNumber = random.nextInt(iterPlan.getNumOfIterations());
 			iterPlan.setIterationNumberFor(plannedTask, iterationNumber);
 
@@ -124,8 +128,35 @@ public class MyPlanner extends Planner {
 	}
 
 	private IterationPlan mutate(IterationPlan mutationCandidate) {
-		// for now just return a clone of the element
-		return mutationCandidate.clone();
+		// mutation possibilities: 1. change iteration of a task, change assignee of a task
+		// well question is, for how many tasks should we do these changes?
+		// another question is, how to choose the tasks to mutate? random?
+		// another question is how to mutate tasks?
+		IterationPlan mutantIterationPlan = mutationCandidate.clone();
+		int percentOfTasksToMutate = getPlannerParameters().getPercentOfTasksToMutate();
+
+		Collection<PlannedTask> tasksToMutate = PlannerUtil.getInstance(getPlannerParameters().getRandom())
+			.selectRandomElementsFromSet(mutationCandidate.getPlannedTasks(), percentOfTasksToMutate);
+		mutantIterationPlan.getPlannedTasks().removeAll(tasksToMutate);
+
+		for (PlannedTask taskToMutate : tasksToMutate) {
+			PlannedTask mutatedTask = mutateTask(taskToMutate, taskToMutate.getIterationNumber(), mutantIterationPlan);
+			mutantIterationPlan.getPlannedTasks().add(mutatedTask);
+		}
+
+		return mutantIterationPlan;
+	}
+
+	private PlannedTask mutateTask(PlannedTask taskToMutate, int oldIterationNumber, IterationPlan mutantIterationPlan) {
+		// mutation possibilities: 1. change iteration of a task, change assignee of a task
+		PlannedTask mutatedTask = new PlannedTask(taskToMutate.getTask());
+		List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToMutate.getTask());
+		// how to select assignee for mutated task? the best? random?
+		mutatedTask.setAssigneeExpertise(potentialAssignees.get(0));
+		mutantIterationPlan.setIterationNumberFor(mutatedTask, (oldIterationNumber + 1)
+			% mutantIterationPlan.getNumOfIterations());
+
+		return mutatedTask;
 	}
 
 	@Override

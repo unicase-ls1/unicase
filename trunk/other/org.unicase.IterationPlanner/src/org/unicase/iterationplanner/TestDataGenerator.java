@@ -1,5 +1,6 @@
 package org.unicase.iterationplanner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.unicase.metamodel.Project;
@@ -13,6 +14,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.UnkownProjectException;
 
 public class TestDataGenerator {
 
@@ -36,6 +38,17 @@ public class TestDataGenerator {
 
 		for (int i = 0; i < 4; i++) {
 			createRootReqs("requirement" + i);
+		}
+
+		try {
+			WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpace(project).exportProject(
+				"C:\\users\\zardosht\\Desktop\\testProj.ucp");
+		} catch (UnkownProjectException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -94,10 +107,10 @@ public class TestDataGenerator {
 			FunctionalRequirement leafReq = subReq.getRefiningRequirements().get(k);
 			ActionItem task = (ActionItem) leafReq.getAnnotations().get(0);
 			task.setDone(true);
-			if (k == subReq.getRefiningRequirements().size() - 3) {
+			if (k == subReq.getRefiningRequirements().size() - 4) {
 				task.setAssignee(developers.get((subReqId + 1) % 4));
-			} else if (k == subReq.getRefiningRequirements().size() - 4) {
-				task.setAssignee(developers.get((subReqId - 1) % 4));
+			} else if (k == subReq.getRefiningRequirements().size() - 3) {
+				task.setAssignee(developers.get((subReqId + 2) % 4));
 			} else {
 				task.setAssignee(developers.get(subReqId));
 			}
