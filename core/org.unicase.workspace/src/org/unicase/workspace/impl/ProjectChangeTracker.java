@@ -14,7 +14,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
@@ -50,6 +53,7 @@ import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalComman
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
+import org.unicase.workspace.observers.PostCreationListener;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -64,6 +68,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private NotificationRecorder notificationRecorder;
 	private CompositeOperation compositeOperation;
 	private boolean autoSave;
+	// TODO: EM
+	// private boolean splitResource;
 
 	/**
 	 * Name of unknown creator.
@@ -78,6 +84,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private List<EObject> removedElements;
 
 	private NotificationToOperationConverter converter;
+	private List<PostCreationListener> postCreationListeners;
 
 	/**
 	 * @return the removedElements
@@ -112,6 +119,22 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		operations = projectSpace.getOperations();
 		removedElements = new ArrayList<EObject>();
 		converter = new NotificationToOperationConverter(projectSpace.getProject());
+		postCreationListeners = new ArrayList<PostCreationListener>();
+
+		// BEGIN SUPRESS CATCH EXCEPTION
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.notify.postcreationlistener");
+		for (IConfigurationElement e : config) {
+			try {
+				PostCreationListener l = (PostCreationListener) e.createExecutableExtension("class");
+				postCreationListeners.add(l);
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException("Cannot instantiate extension!", e1);
+			} catch (RuntimeException e2) {
+				WorkspaceUtil.logException("Severe runtime exception occured", e2);
+			}
+		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	/**
@@ -128,14 +151,17 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 		addToResource(modelElement);
 		if (isRecording) {
-			// TODO: PlainEObjectMode, appendCreator
-			// appendCreator(modelElement);
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(createDeleteOperation);
 			} else {
 				projectSpace.addOperation(createDeleteOperation);
 			}
+		}
+
+		// notify post creation listeners
+		for (PostCreationListener l : postCreationListeners) {
+			l.onCreation(projectSpace, modelElement);
 		}
 	}
 
@@ -154,15 +180,26 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 	private void addElementToResouce(final EObject modelElement) {
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
-		// assign model element to a fixed resource
 		oldResource.getContents().add(modelElement);
+		// TODO: EM
+		// EObject parent = modelElement.eContainer();
+		// if (splitResource) {
+		// // try to pin resource
+		// oldResource.getContents().add(modelElement);
+		// if (!parent.eContents().contains(modelElement)) {
+		// // model element lost its parent, reverse
+		// oldResource.getContents().remove(modelElement);
+		// splitResource = false;
+		// }
+		// }
 		setModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
 		}
 		String oldFileName = oldUri.toFileString();
-		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+		// TODO: EM
+		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) { // && splitResource) {
 			String newfileName = Configuration.getWorkspaceDirectory() + Configuration.getProjectSpaceDirectoryPrefix()
 				+ projectSpace.getIdentifier() + File.separatorChar + Configuration.getProjectFolderName()
 				+ File.separatorChar + projectSpace.getResourceCount()
@@ -174,10 +211,19 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
 			// unset ID on old resource
 			unsetModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
+			// try to pin modelelement on new resourcemai
 			newResource.getContents().add(modelElement);
+
+			// TODO: EM
+			// check whether
+			// if (!parent.eContents().contains(modelElement)) {
+			// // model element lost its parent, reverse
+			// newResource.getContents().remove(modelElement);
+			// splitResource = false;
+			// }
+
 			// set ID on created resource again
 			setModelElementIdAndChildrenIdOnResource(modelElement, newResource);
-			// newResource.setID(modelElement, modelElementId);
 		}
 		save(modelElement);
 	}
@@ -341,31 +387,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		if (resource != null) {
 			dirtyResourceSet.addDirtyResource(resource);
 		}
-	}
-
-	/**
-	 * Appends the creator's name and the creation date.
-	 * 
-	 * @param modelElement the model element.
-	 */
-	// TODO: PlainEObjectMode, appendCreater
-	private void appendCreator(EObject modelElement) {
-		stopChangeRecording();
-		// if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
-		// Usersession usersession = projectSpace.getUsersession();
-		// // used when the project has not been shared yet
-		// // and there is practically no possible way of
-		// // knowing who the creator was...
-		// String creator = UNKOWN_CREATOR;
-		// if (usersession != null) {
-		// creator = usersession.getACUser().getName();
-		// }
-		// modelElement.setCreator(creator);
-		// }
-		// if (modelElement.getCreationDate() == null) {
-		// modelElement.setCreationDate(new Date());
-		// }
-		startChangeRecording();
 	}
 
 	/**
@@ -702,5 +723,14 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public void setAutoSave(boolean newValue) {
 		autoSave = newValue;
 	}
+
+	// TODO: EM
+	// public void setSplitResource(boolean splitResource) {
+	// this.splitResource = splitResource;
+	// }
+	//
+	// public boolean isSplitResource() {
+	// return splitResource;
+	// }
 
 }
