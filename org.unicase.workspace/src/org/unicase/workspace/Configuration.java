@@ -19,6 +19,8 @@ import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
+import org.unicase.workspace.util.ConfigurationProvider;
+import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
 import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
@@ -37,23 +39,10 @@ public final class Configuration {
 	private static final String UPF = ".upf";
 	private static final String PLUGIN_BASEDIR = "pluginData";
 	private static boolean testing;
+	private static WorkspaceLocationProvider locationProvider;
 
 	private Configuration() {
 		// nothing to do
-	}
-
-	// private static Map<Object, Object> resourceSaveOptions;
-
-	/**
-	 * Return the user home folder.
-	 * 
-	 * @return the full path as string
-	 */
-	public static String getUserHome() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separatorChar);
-		return sb.toString();
 	}
 
 	/**
@@ -62,56 +51,44 @@ public final class Configuration {
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
+		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
+		File workspace = new File(workspaceDirectory);
+		if (!workspace.exists()) {
+			workspace.mkdirs();
+		}
+		if (!workspaceDirectory.endsWith(File.separator)) {
+			return workspaceDirectory + File.separatorChar;
+		}
+		return workspaceDirectory;
+	}
 
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.workspaceLocationProvider");
-		if (rawExtensions.length > 0) {
-			if (rawExtensions.length > 1) {
-				String message = "More than one workspace location provider extension detected, defaulting to first preovider";
-				ModelUtil.logWarning(message, new IllegalStateException(message));
-			}
+	/**
+	 * Returns the registered {@link WorkspaceLocationProvider} or if not existent, the
+	 * {@link DefaultWorkspaceLocationProvider}.
+	 * 
+	 * @return workspace location provider
+	 */
+	public static WorkspaceLocationProvider getLocationProvider() {
+		if (locationProvider == null) {
+			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.workspace.workspaceLocationProvider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
 					Object executableExtension = extension.createExecutableExtension("providerClass");
 					if (executableExtension instanceof WorkspaceLocationProvider) {
-						WorkspaceLocationProvider provider = (WorkspaceLocationProvider) executableExtension;
-						String workspaceDirectory = provider.getWorkspaceDirectory();
-						File workspace = new File(workspaceDirectory);
-						if (!workspace.exists()) {
-							workspace.mkdir();
-						}
-						if (!workspaceDirectory.endsWith(File.separator)) {
-							return workspaceDirectory + File.separatorChar;
-						}
-						return workspaceDirectory;
+						locationProvider = (WorkspaceLocationProvider) executableExtension;
 					}
 				} catch (CoreException e) {
 					String message = "Error while instantiating location provider, switching to default location!";
 					ModelUtil.logWarning(message, e);
 				}
 			}
-		}
-
-		// no valid extension registered, switching to default
-		StringBuffer sb = new StringBuffer();
-		sb.append(getUserHome());
-		sb.append(".unicase");
-		if (testing) {
-			sb.append(".test");
-		} else if (!isReleaseVersion()) {
-			if (isInternalReleaseVersion()) {
-				sb.append(".internal");
-			} else {
-				sb.append(".dev");
+			if (locationProvider == null) {
+				locationProvider = new DefaultWorkspaceLocationProvider();
 			}
 		}
 
-		sb.append(File.separatorChar);
-		File workspace = new File(sb.toString());
-		if (!workspace.exists()) {
-			workspace.mkdir();
-		}
-		return sb.toString();
+		return locationProvider;
 	}
 
 	/**
@@ -120,8 +97,7 @@ public final class Configuration {
 	 * @return the workspace file path string
 	 */
 	public static String getWorkspacePath() {
-		String workSpacePath = getWorkspaceDirectory() + "workspace.ucw";
-		return workSpacePath;
+		return getWorkspaceDirectory() + "workspace.ucw";
 	}
 
 	/**

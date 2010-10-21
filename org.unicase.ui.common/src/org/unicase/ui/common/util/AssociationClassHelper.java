@@ -191,4 +191,21 @@ public final class AssociationClassHelper {
 			association.eSet(ecpAssociation.getTargetFeature(), modelElement);
 		}
 	}
+
+	/**
+	 * This methods computes the association features for an association. Use this for standard implementation.
+	 * 
+	 * @param eClazz the eclass
+	 * @param source the source feature
+	 * @param target the target feature
+	 * @return all association features without source and target
+	 */
+	public static List<EStructuralFeature> getAssociationFeatures(EClass eClazz, EReference source, EReference target) {
+		LinkedList<EStructuralFeature> result = new LinkedList<EStructuralFeature>();
+		result.addAll(eClazz.getEStructuralFeatures());
+		result.remove(source);
+		result.remove(target);
+		return result;
+
+	}
 }

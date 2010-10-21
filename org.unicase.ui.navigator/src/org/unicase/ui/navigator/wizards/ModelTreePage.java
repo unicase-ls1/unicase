@@ -25,6 +25,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.ui.common.MEClassLabelProvider;
+import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.ui.navigator.Activator;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only
@@ -66,6 +70,21 @@ public class ModelTreePage extends WizardPage implements Listener {
 		final Text filterInput = new Text(composite, SWT.SEARCH);
 		filterInput.setMessage("Model Element class");
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(filterInput);
+		try {
+			MetaModelElementContext metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject()
+				.getMetaModelElementContext();
+			if (metaContext.isGuessed()) {
+				Label label = new Label(composite, SWT.None);
+				label.setText("No registered Package found. EMF Client Platform has tried to guess your model package."
+					+ "\n" + "Please register your package explicitly.");
+				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(label);
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+		} catch (NullPointerException e) {
+			Activator.logException(e);
+		}
+
 		Tree tree = new Tree(composite, SWT.SINGLE);
 		final ModelClassFilter filter = new ModelClassFilter();
 		filterInput.addModifyListener(new ModifyListener() {
@@ -81,7 +100,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 		});
 
 		treeViewer = new TreeViewer(tree);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(0, 150).span(2, 1).applyTo(
 			treeViewer.getControl());
 		treeViewer.setContentProvider(new ModelTreeContentProvider(selected));
 		treeViewer.setLabelProvider(new MEClassLabelProvider());

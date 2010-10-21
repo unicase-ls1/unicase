@@ -41,10 +41,10 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ConfigurationProvider;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.exceptions.CertificateStoreException;
 import org.unicase.workspace.exceptions.InvalidCertificateException;
+import org.unicase.workspace.util.ConfigurationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
