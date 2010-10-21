@@ -4,42 +4,40 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.refactoring.strategies;
+package org.unicase.ui.refactoring.templates;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.metamodel.ModelElement;
-import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.validation.refactoring.RefactoringResult;
 import org.unicase.ui.validation.refactoring.RefactoringStrategy;
 import org.unicase.workspace.CompositeOperationHandle;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author pfeifferc
  */
-public abstract class AbstractRefactoringStrategy implements RefactoringStrategy {
+public abstract class UnicaseRefactoringStrategy implements RefactoringStrategy {
 
 	// VALIDATION data objects
 
 	/**
 	 * The validation constraint status.
 	 */
-	private IConstraintStatus constraintStatus;
-
-	/**
-	 * The validation constraint status.
-	 */
-	private EStructuralFeature invalidStructuralFeature;
+	private Set<IConstraintStatus> constraintStati;
 
 	// REFACTORING data objects
 
@@ -57,7 +55,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * Name of the {@link RefactoringStrategy}.
 	 */
 	private String name;
-	
+
 	/**
 	 * Child model elements created.
 	 */
@@ -85,6 +83,10 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 */
 	private Shell shell;
 
+	private EObject invalidEObject;
+
+	private ProjectSpace projectSpace;
+
 	// OPERATION objects
 
 	/**
@@ -98,43 +100,53 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * @see org.unicase.ui.refactoring.strategies.RefactoringStrategy#startRefactoring()
 	 */
 	public RefactoringResult startRefactoring() {
-		RefactoringResult refactoringResult = RefactoringResult.ABORT;
-		if (((ModelElement) getInvalidEObject()).getProject() == null) {
-			WorkspaceUtil.logException("Exception occured while refactoring the project: "
-				+ "invalid model element has no project", new UnkownProjectException());
-			return refactoringResult;
-		}
-		// storage
-		childModelElementsCreated = new ArrayList<EObject>();
-		childModelElementsReferenced = new ArrayList<EObject>();
-		parentModelElementsCreated = new ArrayList<EObject>();
-		parentModelElementsReferenced = new ArrayList<EObject>();
-		// key, value storage
-		// start the operations
-		startOperations();
-		try {
-			if(operationHandle == null) {
-				throw new OperationCanceledException("Operation handle null, aborting...");
-			}
-			refactoringResult = performRefactoring();
-		} catch (Exception e) {
-			WorkspaceUtil.logException("Exception occured while refactoring the project", e);
-		} finally {
-			if(operationHandle == null) {
+		return new UnicaseCommandWithResult<RefactoringResult>() { 
+
+			@Override
+			public RefactoringResult doRun() {
+				RefactoringResult refactoringResult = RefactoringResult.ABORT;
+				projectSpace = null;
+				if(getInvalidEObject() instanceof ProjectSpace) {
+					projectSpace = ((ProjectSpace) getInvalidEObject());
+				} else if (getInvalidEObject() instanceof UnicaseModelElement) {
+					projectSpace = WorkspaceManager.getProjectSpace((UnicaseModelElement) getInvalidEObject());
+				} else if (getInvalidEObject() instanceof Project) {
+					projectSpace = WorkspaceManager.getProjectSpace((Project) getInvalidEObject());
+				}
+				if (projectSpace == null) {
+					WorkspaceUtil.logException("Exception occured while refactoring the project: "
+							+ "invalid model element has no project", new UnkownProjectException());
+					return refactoringResult;
+				}
+				// storage
+				childModelElementsCreated = new ArrayList<EObject>();
+				childModelElementsReferenced = new ArrayList<EObject>();
+				parentModelElementsCreated = new ArrayList<EObject>();
+				parentModelElementsReferenced = new ArrayList<EObject>();
+				try {
+					// start the operations
+					startOperations();
+					if(operationHandle == null) {
+						throw new OperationCanceledException("Operation handle null, aborting...");
+					}
+					refactoringResult = performRefactoring();
+				} catch (Exception e) {
+					WorkspaceUtil.logException("Exception occured while refactoring the project", e);
+				} finally {
+					if(operationHandle == null || !operationHandle.isValid()) {
+						return refactoringResult;
+					}
+					if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
+						// end operations composite
+						endOperations();
+					} else {
+						// abort operations composite
+						abortOperations();
+					}
+				}
 				return refactoringResult;
 			}
-			if (refactoringResult == RefactoringResult.SUCCESS_CREATE) {
-				// end operations composite
-				endOperations();
-			} else if (refactoringResult == RefactoringResult.NO_VIOLATION) {
-				// TODO: implement preference save
-				abortOperations();
-			} else {
-				// abort operations composite
-				abortOperations();
-			}
-		}
-		return refactoringResult;
+		}.run();
 	}
 
 	// END SUPRESS CATCH EXCEPTION
@@ -150,57 +162,33 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 * Start the operations composite.
 	 */
 	private void startOperations() {
-		new ECPCommand(getInvalidEObject()) {
-
-			@Override
-			protected void doRun() {
-				operationHandle = WorkspaceManager.getProjectSpace((ModelElement) getConstraintStatus().getTarget())
-					.beginCompositeOperation();
-			}
-		}.run();
+		operationHandle = projectSpace.beginCompositeOperation();
 	}
 
 	/**
 	 * Aborts the refactoring operation.
 	 */
 	private void abortOperations() {
-		new ECPCommand(getInvalidEObject()) {
-
-			@Override
-			protected void doRun() {
-				try {
-					operationHandle.abort();
-				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException("Aborting composite operation failed during refactoring.", e);
-				}
-			}
-
-		}.run();
+		try {
+			operationHandle.abort();
+		} catch (InvalidHandleException e) {
+			WorkspaceUtil.logException("Aborting composite operation failed during refactoring.", e);
+		}
 	}
 
 	/**
 	 * Ends the refactoring operation.
+	 * @return 
 	 */
-	private void endOperations() {
-		new ECPCommand(getInvalidEObject()) {
-
-			@Override
-			protected void doRun() {
-				try {
-					operationHandle.end(getId(), "Refactored the project: "
-						+ AbstractRefactoringStrategy.this.getDescription(), ((ModelElement) getConstraintStatus()
-						.getTarget()).getModelElementId());
-				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
-				}
-			}
-
-			private String getId() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-		}.run();
+	private boolean endOperations() {
+		try {
+			operationHandle.end(getId(), "Refactored the project: "
+					+ UnicaseRefactoringStrategy.this.getDescription(), null);
+			return true;
+		} catch (InvalidHandleException e) {
+			WorkspaceUtil.logException("Ending composite operation failed during refactoring.", e);
+			return false;
+		}
 	}
 
 	/**
@@ -209,7 +197,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	public List<EObject> getChildModelElements() {
 		return childModelElementsReferenced;
 	}
-	
+
 	/**
 	 * 
 	 * @return getParentModelElements
@@ -217,7 +205,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	public List<EObject> getParentModelElements() {
 		return parentModelElementsReferenced;
 	}
-	
+
 	/**
 	 * @return getChildModelElementsCreated
 	 */
@@ -246,40 +234,32 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	public Shell getShell() {
 		return shell;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setInvalidEObject(EObject invalidEObject) {
+		this.invalidEObject = invalidEObject;
+	}
 
 	/**
-	 * @return getInvalidEObject
+	 * {@inheritDoc}
 	 */
 	public EObject getInvalidEObject() {
-		return (ModelElement) getConstraintStatus().getTarget();
-	}
-
-	/**
-	 * @return getConstraintStatus
-	 */
-	public IConstraintStatus getConstraintStatus() {
-		return constraintStatus;
-	}
-
-	/**
-	 * @param constraintStatus {@link IConstraintStatus}
-	 */
-	public void setConstraintStatus(IConstraintStatus constraintStatus) {
-		this.constraintStatus = constraintStatus;
-	}
-
-	/**
-	 * @param invalidStructuralFeature {@link EStructuralFeature}
-	 */
-	public void setInvalidStructuralFeature(EStructuralFeature invalidStructuralFeature) {
-		this.invalidStructuralFeature = invalidStructuralFeature;
+		return invalidEObject;
 	}
 
 	/**
 	 * @return getInvalidStructuralFeature
 	 */
-	public EStructuralFeature getInvalidStructuralFeature() {
-		return invalidStructuralFeature;
+	public EStructuralFeature getFirstInvalidStructuralFeature() {
+		IConstraintStatus constraintStatus = getConstraintStati().iterator().next();
+		for(EObject eObject: constraintStatus.getResultLocus()) {
+			if(eObject instanceof EStructuralFeature) {
+				return (EStructuralFeature) eObject;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -302,7 +282,7 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	/**
 	 * @return getDescription
 	 */
@@ -322,5 +302,26 @@ public abstract class AbstractRefactoringStrategy implements RefactoringStrategy
 	 */
 	public String getId() {
 		return id;
+	}
+
+	/**
+	 * @return projectSpace
+	 */
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Set<IConstraintStatus> getConstraintStati() {
+		return constraintStati;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setConstraintStati(Set<IConstraintStatus> constraintStati) {
+		this.constraintStati = constraintStati;
 	}
 }
