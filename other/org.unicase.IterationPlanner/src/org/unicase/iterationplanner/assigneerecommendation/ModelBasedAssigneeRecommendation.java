@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
@@ -45,19 +44,16 @@ public class ModelBasedAssigneeRecommendation extends AssigneeRecommendationStra
 	 * @return
 	 */
 	private double getExperties(Assignee assignee, List<Task> relatedTasks) {
-		double result = 0;
+		int done = 0;
 		for (Task task : relatedTasks) {
 			WorkItem workItem = task.getWorkItem();
 			OrgUnit orgUnit = assignee.getOrgUnit();
 			if (orgUnit.equals(workItem.getAssignee())) {
-				result += 3;
-			} else if (workItem.getAssignee() != null && workItem.getAssignee() instanceof Group
-				&& ((Group) workItem.getAssignee()).getOrgUnits().contains(orgUnit)) {
-				result += 2;
-			} else if (workItem.getParticipants().contains(orgUnit)) {
-				result += 1;
+				done += 1;
 			}
 		}
+		// normalize between 0.0 and 1.0
+		double result = (double) done / relatedTasks.size();
 		return result;
 	}
 }

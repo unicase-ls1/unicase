@@ -14,6 +14,7 @@ public class PlannedTask {
 	private final Task task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
+	private boolean evaluateExperties = true;
 
 	public PlannedTask(Task task) {
 		this.task = task;
@@ -71,6 +72,26 @@ public class PlannedTask {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * if all potential assignees for this task have the same expertise value, then this task should not be considered
+	 * in evaluation of expertise for an iteration plan.
+	 * 
+	 * @param evaluateExperties
+	 */
+	public void setEvaluateExperties(boolean evaluateExperties) {
+		this.evaluateExperties = evaluateExperties;
+	}
+
+	/**
+	 * if all potential assignees for this task have the same expertise value, then this task should not be considered
+	 * in evaluation of expertise for an iteration plan.
+	 * 
+	 * @return
+	 */
+	public boolean isEvaluateExperties() {
+		return evaluateExperties;
 	}
 
 }

@@ -2,15 +2,18 @@ package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneerecommendation.Task;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
 
 public abstract class Planner {
 
 	private final int numOfIterations;
-	private final List<TaskPotentialAssigneeList> taskPotentialAssigneeLists;
+	private final Map<Task, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
 	private final Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities;
 	private final Evaluator evaluator;
 	private final Selector selector;
@@ -29,12 +32,22 @@ public abstract class Planner {
 		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities, Evaluator iterationPlanEvaluator,
 		Selector selector, PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
-		this.taskPotentialAssigneeLists = taskPotentialAssigneeLists;
+		this.taskPotentialAssigneeListMap = initTaskPotenitalAssigneeListMap(taskPotentialAssigneeLists);
 		this.assigneeAvailabilities = assigneeAvailabilities;
 		this.evaluator = iterationPlanEvaluator;
 		this.selector = selector;
 		this.plannerParameters = plannerParameters;
 
+	}
+
+	private Map<Task, List<AssigneeExpertise>> initTaskPotenitalAssigneeListMap(
+		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists) {
+
+		Map<Task, List<AssigneeExpertise>> result = new HashMap<Task, List<AssigneeExpertise>>();
+		for (TaskPotentialAssigneeList tpal : taskPotentialAssigneeLists) {
+			result.put(tpal.getTask(), tpal.getRecommendedAssignees());
+		}
+		return result;
 	}
 
 	/**
@@ -71,13 +84,6 @@ public abstract class Planner {
 		return result;
 	}
 
-	/**
-	 * if other creteria is met, and we don't need to go further with the run.
-	 * 
-	 * @return
-	 */
-	protected abstract boolean isBreakCretieriaMet();
-
 	private void createNextGeneration() {
 		List<IterationPlan> nextGeneration = new ArrayList<IterationPlan>();
 
@@ -103,6 +109,15 @@ public abstract class Planner {
 
 	}
 
+	/**
+	 * if other creteria is met, and we don't need to go further with the run.
+	 * 
+	 * @return
+	 */
+	protected abstract boolean isBreakCretieriaMet();
+
+	protected abstract List<IterationPlan> createInitialPopulation();
+
 	protected abstract void trimNextGeneration(List<IterationPlan> nextGeneration);
 
 	protected abstract void completeNextGeneration(List<IterationPlan> nextGeneration);
@@ -118,12 +133,10 @@ public abstract class Planner {
 	 */
 	private void evalutate() {
 		for (IterationPlan iterationPlan : population) {
-			double score = evaluator.evaluate(iterationPlan);
+			double score = evaluator.evaluate(iterationPlan, assigneeAvailabilities);
 			iterationPlan.setScore(score);
 		}
 	}
-
-	protected abstract List<IterationPlan> createInitialPopulation();
 
 	public int getNumOfIterations() {
 		return numOfIterations;
@@ -145,8 +158,27 @@ public abstract class Planner {
 		return selector;
 	}
 
-	protected List<TaskPotentialAssigneeList> getTaskPotentialAssigneeLists() {
-		return taskPotentialAssigneeLists;
+	protected Map<Task, List<AssigneeExpertise>> getTaskPotentialAssigneeListMap() {
+		return taskPotentialAssigneeListMap;
 	}
 
+	/**
+	 * if all potential assignees for this task have the same expertise value, then this task should not be considered
+	 * in evaluation of expertise for an iteration plan.
+	 * 
+	 * @param taskToPlan
+	 * @return
+	 */
+	protected boolean isEvaluateExperties(Task taskToPlan) {
+		// if all potential assignees for this task have the same expertise value, then this task should not be
+		// considered in evaluation of expertise for an iteration plan.
+		List<AssigneeExpertise> potentialAssigneeList = taskPotentialAssigneeListMap.get(taskToPlan);
+		double firstExpertise = potentialAssigneeList.get(0).getExpertise();
+		for (AssigneeExpertise ae : potentialAssigneeList) {
+			if (ae.getExpertise() != firstExpertise) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

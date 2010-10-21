@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -43,8 +44,15 @@ public class Application implements IApplication {
 
 	public Object start(IApplicationContext context) throws Exception {
 
-		// createTestData();
+		createTestData();
 
+		// startPlanning();
+
+		return null;
+	}
+
+	@SuppressWarnings("unused")
+	private void startPlanning() throws Exception {
 		System.out.println("Iteration Planner started!");
 
 		Project project = getProject();
@@ -70,9 +78,9 @@ public class Application implements IApplication {
 		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities = getAssigneeAvailabilities(numOfIterations,
 			assignees);
 
-		double expertiesWeight = 10.0;
-		double priorityWeight = 10.0;
-		double developerLoadWeight = 10.0;
+		double expertiesWeight = 0.1;
+		double priorityWeight = 0.5;
+		double developerLoadWeight = 0.9;
 		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
 			developerLoadWeight);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
@@ -86,10 +94,11 @@ public class Application implements IApplication {
 		int percentOfCrossOverParents = 30;
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
+		int percentOfTasksToMutate = 10;
 		Random random = new Random(1L);
 		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
 			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
-			percentOfMutationCandidates, percentOfCloneCandidates, random);
+			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random);
 
 		Selector selector = new MySelector(plannerParameters.getRandom());
 
@@ -100,8 +109,6 @@ public class Application implements IApplication {
 
 		// output result
 		outputIterationPlannerResults(result);
-
-		return null;
 	}
 
 	@SuppressWarnings("unused")
@@ -111,7 +118,11 @@ public class Application implements IApplication {
 
 			@Override
 			protected void doRun() {
-				new TestDataGenerator();
+				try {
+					new TestDataGenerator();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}.run();
 		System.out.println("done!");
@@ -133,7 +144,7 @@ public class Application implements IApplication {
 
 	}
 
-	private void outputIteration(int iterationNumber, List<PlannedTask> plannedTasks) {
+	private void outputIteration(int iterationNumber, Set<PlannedTask> plannedTasks) {
 		System.out.println();
 		System.out.println("\t************************* Iteration " + iterationNumber + " *********************");
 		System.out.println("\t***********************************************************");

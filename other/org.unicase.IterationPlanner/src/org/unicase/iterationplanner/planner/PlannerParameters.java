@@ -13,6 +13,7 @@ public final class PlannerParameters {
 	private final int percentOfCrossOverParents;
 	private final int percentOfMutationCandidates;
 	private final int percentOfCloneCandidates;
+	private final int percentOfTasksToMutate;
 	private final Random random;
 
 	/**
@@ -28,7 +29,7 @@ public final class PlannerParameters {
 	 */
 	public PlannerParameters(int populationSize, int resultSize, int maxNumOfGenerations,
 		int percentOfCrossOverChildren, int precentOfMutants, int percentOfClones, int percentOfCrossOverParents,
-		int percentOfMutationCandidates, int percentOfCloneCandidates, Random random) {
+		int percentOfMutationCandidates, int percentOfCloneCandidates, int percentOfTasksToMutate, Random random) {
 
 		this.populationSize = populationSize;
 		this.maxNumOfGenerations = maxNumOfGenerations;
@@ -39,6 +40,7 @@ public final class PlannerParameters {
 		this.percentOfCrossOverParents = percentOfCrossOverParents;
 		this.percentOfMutationCandidates = percentOfMutationCandidates;
 		this.percentOfCloneCandidates = percentOfCloneCandidates;
+		this.percentOfTasksToMutate = percentOfTasksToMutate;
 		this.random = random;
 	}
 
@@ -85,6 +87,10 @@ public final class PlannerParameters {
 
 	public Random getRandom() {
 		return random;
+	}
+
+	public int getPercentOfTasksToMutate() {
+		return percentOfTasksToMutate;
 	}
 
 }
