@@ -6,30 +6,29 @@
 
 package org.unicase.ui.refactoring.filters;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.refactoring.Activator;
 import org.unicase.ui.validation.view.filters.ValidationFilter;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
-/**
- * A filter to filter workitems lists to a certain ACUser.
- * 
- * @author helming
- */
-public class ACUserFilter extends ValidationFilter {
 
-	private ACUser acUser;
+/**
+ * The severity filter.
+ * 
+ * @author pfeifferc
+ */
+public class CreatorFilter extends ValidationFilter {
 
 	/**
 	 * default constructor.
 	 */
-	public ACUserFilter() {
+	public CreatorFilter() {
 	}
 
 	/**
@@ -37,7 +36,7 @@ public class ACUserFilter extends ValidationFilter {
 	 */
 	@Override
 	public String getDescription() {
-		return "The access control user filter";
+		return "Shows only items created by you";
 	}
 
 	/**
@@ -45,7 +44,7 @@ public class ACUserFilter extends ValidationFilter {
 	 */
 	@Override
 	public Image getImage() {
-		return Activator.getImageDescriptor("icons/validation.png").createImage();
+		return Activator.getImageDescriptor("icons/user_filter.png").createImage();
 	}
 
 	/**
@@ -62,14 +61,13 @@ public class ACUserFilter extends ValidationFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		IConstraintStatus constraintStatus = (IConstraintStatus) element;
-		EObject target = constraintStatus.getTarget();
-		if (target instanceof ModelElement) {
-			ModelElement modelElement = (ModelElement) target;
-			if (modelElement.getCreator().equals(acUser.getName())) {
-				return true;
-			}
-		}
-		return false;
+		UnicaseModelElement target = (UnicaseModelElement) constraintStatus.getTarget();
+		String creator = target.getCreator();
+		Workspace workspace =  WorkspaceManager.getInstance().getCurrentWorkspace();
+		ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
+		Usersession usersession = activeProjectSpace.getUsersession();
+		String username = usersession.getUsername();
+		return creator.equals(username);
 	}
 
 	/**
@@ -77,12 +75,6 @@ public class ACUserFilter extends ValidationFilter {
 	 */
 	@Override
 	public boolean init() {
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		if (activeProjectSpace.getUsersession() != null) {
-			this.acUser = activeProjectSpace.getUsersession().getACUser();
-			return true;
-		}
-		return false;
+		return true;
 	}
-
 }
