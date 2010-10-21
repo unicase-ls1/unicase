@@ -44,9 +44,9 @@ public class Application implements IApplication {
 
 	public Object start(IApplicationContext context) throws Exception {
 
-		createTestData();
+		// createTestData();
 
-		// startPlanning();
+		startPlanning();
 
 		return null;
 	}
@@ -78,14 +78,14 @@ public class Application implements IApplication {
 		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities = getAssigneeAvailabilities(numOfIterations,
 			assignees);
 
-		double expertiesWeight = 0.1;
-		double priorityWeight = 0.5;
-		double developerLoadWeight = 0.9;
+		double expertiesWeight = 1.0;
+		double priorityWeight = 1.0;
+		double developerLoadWeight = 1.0;
 		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
 			developerLoadWeight);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 1000;
+		int populationSize = 50;
 		int resultSize = 5;
 		int maxNumOfGenerations = 10;
 		int percentOfCrossOverChildren = 60;
