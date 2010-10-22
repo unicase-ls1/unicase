@@ -1,3 +1,1 @@
 #summary This tutorial describes how to customize the ECP navigator.
-
-<wiki:video url="http://www.youtube.com/watch?v=LZX7kaArN1s"/> 
