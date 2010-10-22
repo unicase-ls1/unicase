@@ -1,3 +1,1 @@
 #summary This page contains a tutorial how to customize the ECP editor
-
-<wiki:video url="http://www.youtube.com/watch?v=LZX7kaArN1s"/> 
