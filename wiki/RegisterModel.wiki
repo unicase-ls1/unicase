@@ -8,3 +8,5 @@ The only information required by the EMF Client Platform, is which model shall b
       </modelPackage>
 <extension>
 }}}
+
+<wiki:video url="http://www.youtube.com/watch?v=LZX7kaArN1s"/> 
