@@ -1,11 +1,3 @@
-#summary This page describes how to customize the editor
+#summary This page contains a tutorial how to customize the ECP editor
 
-
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<wiki:video url="http://www.youtube.com/watch?v=LZX7kaArN1s"/> 
