@@ -1,8 +1,8 @@
 #summary This page describes how to add new widgets to the editor
 
-The editor allows to register new widgets to display specific attributes. In the example model, the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension points *org.unicase.ui.meeditor.attributecontrols* for attributes and *org.unicase.ui.meeditor.referencecontrols* for references.
+The editor allows to register new widgets to display specific attributes. In the [SetupEMFCP example model], the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension points *org.unicase.ui.meeditor.attributecontrols* for attributes and *org.unicase.ui.meeditor.referencecontrols* for references.
 
-The following example registers the E-Mail control included in the example plugins.
+The following example registers the E-Mail control included in the example plugins. Besides the control itself, one have to specify the type of the attribute and whether the editor shows a label with the name of the attribute next to the widget.
 
 {{{
    <extension
