@@ -1,0 +1,1 @@
+#summary This page describes how to add new widgets to the editor
