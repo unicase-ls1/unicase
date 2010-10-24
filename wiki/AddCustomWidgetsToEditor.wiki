@@ -16,7 +16,7 @@ The following example registers the E-Mail control included in the example plugi
    </extension>
 }}}
 
-A widget implements two methods. 
+A widget implements two methods. 'canRender()' determines, whether the widget will render a specific attribute.
 
 {{{
 @Override
