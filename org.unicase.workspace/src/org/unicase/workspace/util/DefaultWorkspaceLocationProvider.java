@@ -9,9 +9,8 @@ import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
 import static org.unicase.workspace.Configuration.isReleaseVersion;
 import static org.unicase.workspace.Configuration.isTesting;
 
-import java.io.File;
-
-import org.eclipse.core.runtime.Platform;
+import org.unicase.emfstore.DefaultServerWorkspaceLocationProvider;
+import org.unicase.emfstore.LocationProvider;
 
 /**
  * This is the default workspace location provider. If no other location provider is registered, this provider is used.
@@ -21,35 +20,25 @@ import org.eclipse.core.runtime.Platform;
  * 
  * @author wesendon
  */
-public class DefaultWorkspaceLocationProvider implements WorkspaceLocationProvider {
+public class DefaultWorkspaceLocationProvider extends DefaultServerWorkspaceLocationProvider implements
+	LocationProvider {
 
 	/**
-	 * Get root folder.
+	 * {@inheritDoc}
 	 * 
-	 * @return path as string
+	 * @see org.unicase.emfstore.DefaultServerWorkspaceLocationProvider#getRootDirectory()
 	 */
+	@Override
 	protected String getRootDirectory() {
 		return addFolders(getUserHome(), ".unicase", "client");
 	}
 
 	/**
-	 * {@inheritDoc} By default this implementation stores all workspaces in a profile, which can be selected by the
-	 * {@link #getSelectedProfile()} method. If you want to use profiles, you should use or override
-	 * {@link #getSelectedProfile()}. If you don't want profiles override this method and just return your path.
+	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.util.WorkspaceLocationProvider#getWorkspaceDirectory()
+	 * @see org.unicase.emfstore.DefaultServerWorkspaceLocationProvider#getSelectedProfile()
 	 */
-	public String getWorkspaceDirectory() {
-		return addFolders(getRootDirectory(), "profiles", getSelectedProfile());
-	}
-
-	/**
-	 * If you want to use profiles, use or override this method. By default the application argument
-	 * -profile=YourProfileName is checked, otherwise the profile names default, default_dev, default_internal and
-	 * default_test are used depending on the application's configuration.
-	 * 
-	 * @return name of profile
-	 */
+	@Override
 	protected String getSelectedProfile() {
 		String parameter = getStartParameter("-profile");
 		if (parameter == null) {
@@ -66,64 +55,4 @@ public class DefaultWorkspaceLocationProvider implements WorkspaceLocationProvid
 		}
 		return parameter;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.util.WorkspaceLocationProvider#getBackupDirectory()
-	 */
-	public String getBackupDirectory() {
-		return addFolders(getRootDirectory(), "backup");
-	}
-
-	/**
-	 * Extracts parameter from application startup arguments. It uses following pattern: parameter+"="+valueOfParameter
-	 * 
-	 * @param parameter name of parameter
-	 * @return value of parameter as string or null
-	 */
-	protected String getStartParameter(String parameter) {
-		String[] applicationArgs = Platform.getApplicationArgs();
-		for (String arg : applicationArgs) {
-			arg = arg.trim();
-			if (arg.startsWith(parameter) && arg.length() > parameter.length() && arg.charAt(parameter.length()) == '=') {
-				return arg.substring(parameter.length() + 1, arg.length());
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Convenience method to add folders to a string path.
-	 * 
-	 * @param path the path
-	 * @param folders folder to add
-	 * @return new path as string
-	 */
-	protected static String addFolders(String path, String... folders) {
-		StringBuffer result = new StringBuffer(path);
-		if (!path.endsWith(File.separator)) {
-			result.append(File.separatorChar);
-		}
-		for (String folder : folders) {
-			result.append(folder);
-			if (!folder.endsWith(File.separator)) {
-				result.append(File.separatorChar);
-			}
-		}
-		return result.toString();
-	}
-
-	/**
-	 * Return the user home folder.
-	 * 
-	 * @return the full path as string
-	 */
-	protected static String getUserHome() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separatorChar);
-		return sb.toString();
-	}
-
 }
