@@ -1,6 +1,8 @@
 #summary This page describes how to add new widgets to the editor
 
-The editor allows to register new widgets to display specific attributes. In the example model, the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension points *org.unicase.ui.meeditor.attributecontrols* for attributes and *org.unicase.ui.meeditor.referencecontrols*.
+The editor allows to register new widgets to display specific attributes. In the example model, the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension points *org.unicase.ui.meeditor.attributecontrols* for attributes and *org.unicase.ui.meeditor.referencecontrols* for references.
+
+The following example registers the E-Mail control included in the example plugins.
 
 {{{
    <extension
@@ -12,4 +14,25 @@ The editor allows to register new widgets to display specific attributes. In the
             type="java.lang.String">
       </widget>
    </extension>
+}}}
+
+A widget implements two methods. 
+
+{{{
+@Override
+	public int canRender(IItemPropertyDescriptor arg0, EObject arg1) {
+		Object feature = arg0.getFeature(arg1);
+		if (feature.equals(LibraryPackage.eINSTANCE.getWriter_EMail())) {
+			return 2;
+		}
+		return DO_NOT_RENDER;
+	}
+
+	@Override
+	public Control createControl(Composite parent, int style) {
+
+		//Create controls here
+
+		return composite;
+	}
 }}}
