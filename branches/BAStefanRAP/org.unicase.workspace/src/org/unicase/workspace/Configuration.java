@@ -15,13 +15,13 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.osgi.framework.Bundle;
+import org.unicase.emfstore.LocationProvider;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.util.ConfigurationProvider;
 import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
-import org.unicase.workspace.util.WorkspaceLocationProvider;
 
 /**
  * Represents the current Workspace Configuration.
@@ -39,7 +39,7 @@ public final class Configuration {
 	private static final String UPF = ".upf";
 	private static final String PLUGIN_BASEDIR = "pluginData";
 	private static boolean testing;
-	private static WorkspaceLocationProvider locationProvider;
+	private static LocationProvider locationProvider;
 
 	private Configuration() {
 		// nothing to do
@@ -63,20 +63,20 @@ public final class Configuration {
 	}
 
 	/**
-	 * Returns the registered {@link WorkspaceLocationProvider} or if not existent, the
+	 * Returns the registered {@link LocationProvider} or if not existent, the
 	 * {@link DefaultWorkspaceLocationProvider}.
 	 * 
 	 * @return workspace location provider
 	 */
-	public static WorkspaceLocationProvider getLocationProvider() {
+	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
 			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 				"org.unicase.workspace.workspaceLocationProvider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
 					Object executableExtension = extension.createExecutableExtension("providerClass");
-					if (executableExtension instanceof WorkspaceLocationProvider) {
-						locationProvider = (WorkspaceLocationProvider) executableExtension;
+					if (executableExtension instanceof LocationProvider) {
+						locationProvider = (LocationProvider) executableExtension;
 					}
 				} catch (CoreException e) {
 					String message = "Error while instantiating location provider, switching to default location!";
