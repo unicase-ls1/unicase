@@ -2,5 +2,6 @@
 
 The editor can be customized in the following ways:
 
-[AddCustomWidgetsToEditor Add custom widgets to the editor]
-[AddTabsToEditor Add new tabs to the editor]
+  * [AddCustomWidgetsToEditor Add custom widgets to the editor]
+
+  * [AddTabsToEditor Add new tabs to the editor]
