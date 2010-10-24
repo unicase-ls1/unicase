@@ -1,1 +1,6 @@
 #summary This page contains a tutorial how to customize the ECP editor
+
+The editor can be customized in the following ways:
+
+[AddCustomWidgetsToEditor Add custom widgets to the editor]
+[AddTabsToEditor Add new tabs to the editor]
