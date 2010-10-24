@@ -16,7 +16,7 @@ The following example registers the E-Mail control included in the example plugi
    </extension>
 }}}
 
-A widget implements two methods. 'canRender()' determines, whether the widget will render a specific attribute.
+A widget implements two methods. 'canRender()' determines, whether the widget will render a specific attribute. The widget with the highest priority will be rendered in the editor. A return of DO_NOT_RENDER will affect the editor to ignore the widget. The second method actually creates the custom widget. There is a code example for a E-Mail widget in the example plugins.
 
 {{{
 @Override
