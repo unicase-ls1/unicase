@@ -1,6 +1,6 @@
 #summary This page describes how to add new widgets to the editor
 
-The editor allows to register new widgets to display specific attributes. In the example model, the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension point *.
+The editor allows to register new widgets to display specific attributes. In the example model, the E-Mail attribute could be rendered by an E-Mail widget, which offers an additional button to send mails. New widgets are registered via the extension points *org.unicase.ui.meeditor.attributecontrols* for attributes and *org.unicase.ui.meeditor.referencecontrols*.
 
 {{{
    <extension
