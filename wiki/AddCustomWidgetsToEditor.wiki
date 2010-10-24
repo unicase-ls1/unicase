@@ -31,7 +31,7 @@ A widget implements two methods. 'canRender()' determines, whether the widget wi
 	@Override
 	public Control createControl(Composite parent, int style) {
 
-		//Create controls here
+		//Create control here
 
 		return composite;
 	}
