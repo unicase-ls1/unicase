@@ -1,0 +1,4 @@
+#summary This page describes how to arrange attributes in the editor
+
+By default the editor renders all attributes of an EObject in the same order, as the are specified in the Ecore file. This order can be modified using annotations
+
