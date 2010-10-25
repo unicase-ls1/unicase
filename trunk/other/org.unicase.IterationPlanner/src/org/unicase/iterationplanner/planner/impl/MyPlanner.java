@@ -61,6 +61,7 @@ public class MyPlanner extends Planner {
 		return initPopulation;
 	}
 
+	@SuppressWarnings("unchecked")
 	private IterationPlan createIterationPlan() {
 		Random random = getPlannerParameters().getRandom();
 		IterationPlan iterPlan = new IterationPlan(getNumOfIterations());
@@ -68,17 +69,25 @@ public class MyPlanner extends Planner {
 		for (Task taskToPlan : getTaskPotentialAssigneeListMap().keySet()) {
 			// set assignee and put it into an iteration
 			PlannedTask plannedTask = new PlannedTask(taskToPlan);
-			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
-			plannedTask.setAssigneeExpertise(potentialAssignees.get(random.nextInt(potentialAssignees.size())));
-			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
-			int iterationNumber = random.nextInt(iterPlan.getNumOfIterations());
+			int iterationNumber = PlannerUtil.getInstance(random).getIterationNumberProbabilistic(taskToPlan,
+				getNumOfIterations());
 			iterPlan.setIterationNumberFor(plannedTask, iterationNumber);
+
+			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
+
+			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
+			plannedTask.setAssigneeExpertise(findAssignee(potentialAssignees, iterPlan));
 
 			// remove it from task to plan, and put in planned tasks.
 			iterPlan.getPlannedTasks().add(plannedTask);
 		}
 
 		return iterPlan;
+	}
+
+	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees, IterationPlan iterPlan) {
+
+		return null;
 	}
 
 	@Override

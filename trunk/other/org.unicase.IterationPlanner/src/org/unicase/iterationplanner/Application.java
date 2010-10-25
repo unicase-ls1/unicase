@@ -28,6 +28,7 @@ import org.unicase.iterationplanner.planner.Selector;
 import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 import org.unicase.iterationplanner.planner.impl.MySelector;
+import org.unicase.iterationplanner.planner.impl.PlannerUtil;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
@@ -46,7 +47,9 @@ public class Application implements IApplication {
 
 		// createTestData();
 
-		startPlanning();
+		// startPlanning();
+
+		PlannerUtil.getInstance(new Random()).testIterProbs(1, 2);
 
 		return null;
 	}
