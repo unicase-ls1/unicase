@@ -23,20 +23,20 @@ public abstract class Evaluator {
 		final Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities) {
 		this.iterationPlan = iterationPlan;
 		this.assigneeAvailabilities = assigneeAvailabilities;
-		double expertiseScore = evaluateExpertise();
-		double taskPriorityScore = evaluteTaskPriorities();
-		double devLoadScore = evaluateAssigneeLoad();
+		double expertiseScore = evaluateExpertise(getIterationPlan());
+		double taskPriorityScore = evaluteTaskPriorities(getIterationPlan());
+		double devLoadScore = evaluateAssigneeLoad(getIterationPlan());
 		double overallScore = getOverallScore(expertiseScore, taskPriorityScore, devLoadScore);
 		return overallScore;
 	}
 
-	protected abstract double evaluateExpertise();
+	public abstract double evaluateExpertise(IterationPlan iterPlan);
 
-	protected abstract double evaluteTaskPriorities();
+	public abstract double evaluteTaskPriorities(IterationPlan iterPlan);
 
-	protected abstract double evaluateAssigneeLoad();
+	public abstract double evaluateAssigneeLoad(IterationPlan iterPlan);
 
-	protected abstract double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore);
+	public abstract double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore);
 
 	public EvaluatorParameters getEvaluationParameters() {
 		return evaluationParameters;
