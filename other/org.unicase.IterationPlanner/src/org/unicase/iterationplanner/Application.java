@@ -47,11 +47,59 @@ public class Application implements IApplication {
 
 		// createTestData();
 
-		// startPlanning();
+		startPlanning();
 
-		PlannerUtil.getInstance(new Random()).testIterProbs(1, 2);
+		// testGetIterationNumberProbabilistic();
+
+		// testGetAssigneeProbabilistic();
 
 		return null;
+	}
+
+	@SuppressWarnings("unused")
+	private void testGetAssigneeProbabilistic() {
+		Random random = new Random();
+		System.out.println("Iteration Planner started!");
+
+		Project project = getProject();
+		System.out.println("retrieved project: " + WorkspaceManager.getProjectSpace(project).getProjectName());
+		// init task pool
+		TaskPool.getInstance().setTasksToPlan(getTasksToPlan(project));
+		System.out.println("retrieved tasks: " + TaskPool.getInstance().getTasksToPlan().size() + " tasks.");
+
+		// init assignee pool
+		List<User> assignees = getAssignees(project);
+		AssigneePool.getInstance().setAssignees(assignees);
+		System.out.println("retrieved users: " + AssigneePool.getInstance().getAssignees().size() + " assignees.");
+
+		// start assignee recommender
+		AssigneeRecommender assigneeRecommender = new AssigneeRecommender();
+		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists = assigneeRecommender.getTaskPotenialAssigneeLists();
+
+		// print assignee recommandation results
+		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
+
+		for (TaskPotentialAssigneeList tpal : taskPotentialAssigneeLists) {
+			System.out.println();
+			System.out.println("========================================================================");
+			System.out.println(tpal.getTask().getWorkItem().getName());
+			PlannerUtil.getInstance(random).getAssigneeProbabilistic(tpal.getRecommendedAssignees(),
+				new ArrayList<AssigneeExpertise>());
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private void testGetIterationNumberProbabilistic() {
+		Random random = new Random();
+
+		for (int i = 0; i < 10; i++) {
+			int numOfIterations = 4; // random.nextInt(5) + 1;
+			int prio = random.nextInt(11);
+			int iter = PlannerUtil.getInstance(random).testGetIterationNumberProbabilistic(prio, numOfIterations);
+			System.out.println("prio: " + prio + "; num of iter: " + numOfIterations + "; iter: "
+				+ (iter == numOfIterations ? "B" : iter));
+
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -111,7 +159,7 @@ public class Application implements IApplication {
 		List<IterationPlan> result = myPlanner.start();
 
 		// output result
-		outputIterationPlannerResults(result);
+		outputIterationPlannerResults(result, myPlanner);
 	}
 
 	@SuppressWarnings("unused")
@@ -131,7 +179,7 @@ public class Application implements IApplication {
 		System.out.println("done!");
 	}
 
-	private void outputIterationPlannerResults(List<IterationPlan> result) {
+	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
 			IterationPlan iterPlan = result.get(i);
 			System.out.println("\n");
@@ -139,6 +187,12 @@ public class Application implements IApplication {
 			System.out.println("=================== Iteration Plan " + i + " =================");
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
+			System.out.println("expertise score: " + myPlanner.getIterationPlanEvaluator().evaluateExpertise(iterPlan));
+			System.out.println("task prio score: "
+				+ myPlanner.getIterationPlanEvaluator().evaluteTaskPriorities(iterPlan));
+			System.out.println("dev load score: "
+				+ myPlanner.getIterationPlanEvaluator().evaluateAssigneeLoad(iterPlan));
+			System.out.println();
 
 			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {
 				outputIteration(j, iterPlan.getAllPlannedTasksForIteration(j));

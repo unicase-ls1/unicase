@@ -6,6 +6,7 @@ import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.planner.AssigneeAvailability;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
+import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 
 public class MyEvaluator extends Evaluator {
@@ -15,7 +16,7 @@ public class MyEvaluator extends Evaluator {
 	}
 
 	@Override
-	protected double evaluateAssigneeLoad() {
+	public double evaluateAssigneeLoad(IterationPlan iterPlan) {
 		// for assignee wie viele tasks in iter? sum(estimate for tasks for assignee)
 		// compare estimate sum with avail. of dev.
 		int numOfIterations = getIterationPlan().getNumOfIterations();
@@ -66,7 +67,7 @@ public class MyEvaluator extends Evaluator {
 	}
 
 	@Override
-	protected double evaluateExpertise() {
+	public double evaluateExpertise(IterationPlan iterPlan) {
 		// avg(all experties)
 		double sum = 0.0;
 		for (PlannedTask pt : getIterationPlan().getPlannedTasks()) {
@@ -82,7 +83,7 @@ public class MyEvaluator extends Evaluator {
 	}
 
 	@Override
-	protected double evaluteTaskPriorities() {
+	public double evaluteTaskPriorities(IterationPlan iterPlan) {
 		// t1.priority > t2.priority ==> t1.iterationNumber < t2.iterationNumber
 		// for every breaking this rule, give a -1
 		int violations = 0;
@@ -100,7 +101,7 @@ public class MyEvaluator extends Evaluator {
 	}
 
 	@Override
-	protected double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore) {
+	public double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore) {
 
 		// max value would be (1.0 * 1.0 + 1.0 * 1.0 + 1.0 * 1.0) = 3.0
 		return (expertiseScore * getEvaluationParameters().getExpertiesWeight() + taskPriorityScore

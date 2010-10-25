@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.Task;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
@@ -61,7 +62,6 @@ public class MyPlanner extends Planner {
 		return initPopulation;
 	}
 
-	@SuppressWarnings("unchecked")
 	private IterationPlan createIterationPlan() {
 		Random random = getPlannerParameters().getRandom();
 		IterationPlan iterPlan = new IterationPlan(getNumOfIterations());
@@ -74,9 +74,9 @@ public class MyPlanner extends Planner {
 			iterPlan.setIterationNumberFor(plannedTask, iterationNumber);
 
 			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
-
 			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
-			plannedTask.setAssigneeExpertise(findAssignee(potentialAssignees, iterPlan));
+			plannedTask.setAssigneeExpertise(findAssignee(potentialAssignees, iterPlan, plannedTask
+				.getIterationNumber()));
 
 			// remove it from task to plan, and put in planned tasks.
 			iterPlan.getPlannedTasks().add(plannedTask);
@@ -85,9 +85,41 @@ public class MyPlanner extends Planner {
 		return iterPlan;
 	}
 
-	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees, IterationPlan iterPlan) {
+	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees, IterationPlan iterPlan,
+		int iterationNumber) {
 
-		return null;
+		List<AssigneeExpertise> excludes = new ArrayList<AssigneeExpertise>();
+		if (iterationNumber != iterPlan.getBacklogNumber()) {
+			for (AssigneeExpertise ae : potentialAssignees) {
+				List<PlannedTask> allPlannedTasksForIterationAndAssignee = iterPlan
+					.getAllPlannedTasksForIterationAndAssignee(iterationNumber, ae.getAssignee());
+				int sumOfEstimate = getSumOfEstimate(allPlannedTasksForIterationAndAssignee);
+				int availability = getAvailabilityForIteration(ae.getAssignee(), iterationNumber);
+				if (sumOfEstimate > availability) {
+					excludes.add(ae);
+				}
+			}
+		}
+		return PlannerUtil.getInstance(getPlannerParameters().getRandom()).getAssigneeProbabilistic(potentialAssignees,
+			excludes);
+	}
+
+	private int getAvailabilityForIteration(Assignee assignee, int iterationNumber) {
+		List<AssigneeAvailability> assigneeAvailabilities = getAssigneeAvailabilities().get(iterationNumber);
+		for (AssigneeAvailability aa : assigneeAvailabilities) {
+			if (aa.getAssignee().equals(assignee)) {
+				return aa.getAvailability();
+			}
+		}
+		return 0;
+	}
+
+	private int getSumOfEstimate(List<PlannedTask> allPlannedTasksForIterationAndAssignee) {
+		int sumOfEstimate = 0;
+		for (PlannedTask pt : allPlannedTasksForIterationAndAssignee) {
+			sumOfEstimate += pt.getTask().getEstimate();
+		}
+		return sumOfEstimate;
 	}
 
 	@Override

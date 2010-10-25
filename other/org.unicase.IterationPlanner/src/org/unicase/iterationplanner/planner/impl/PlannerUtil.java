@@ -1,6 +1,5 @@
 package org.unicase.iterationplanner.planner.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -65,81 +64,206 @@ public class PlannerUtil {
 		if (task.getPriority() > 10) {
 			throw new RuntimeException("Task priority must be between 0 and 10.");
 		}
+		// we consider backlog too. Therefore this method returns an array of length numOfIterations + 1
+		double[] p = getIteratioinProbabilities(task.getPriority(), numOfIterations);
+		double measure = getRandom().nextDouble();
 
-		// we want also consider backlog, hence numOfIterations + 1
-		int k = numOfIterations + 1;
-		double[] p = new double[k];
-		double maxPrio = 10.0;
-		// no task is allowed to have max priority, otherwise p0 = 1, and the method does not work.
-		double taskPrio = task.getPriority();
-		if (taskPrio == 10) {
-			taskPrio -= 0.5;
-		}
-		p[0] = task.getPriority() / maxPrio;
-		double pNtoK = 1 - p[0]; // 1 to k
-		double pNMinus1toK = 1.0; // 0 to k
-		for (int i = 1; i < p.length; i++) {
-			p[i] = p[0] * pNtoK;
-			if (i == p.length - 1) {
-				// this is the last one; pNtoK is now pK-1ToK, and p[i-1] is pK-1
-				p[i] = pNtoK - p[i - 1];
+		double sum = 0.0;
+		for (int i = 0; i < p.length; i++) {
+			if (measure >= sum && measure < sum + p[i]) {
+				return i;
 			}
-			pNtoK = pNMinus1toK - p[i - 1];
-			pNMinus1toK = pNtoK;
-
+			sum += p[i];
 		}
 
-		// we got the priorites for each iteration.
-		// now return one of them.
-		getRandom().nextDouble();
-		return 0;
+		// return backlog
+		return numOfIterations + 1;
 	}
 
-	public void testIterProbs(int prio, int numOfIters) {
-		if (prio > 10) {
+	public int testGetIterationNumberProbabilistic(int priority, int numOfIterations) {
+		if (priority > 10) {
 			throw new RuntimeException("Task priority must be between 0 and 10.");
 		}
+		// we consider backlog too. Therefore this method returns an array of length numOfIterations + 1
+		double[] p = getIteratioinProbabilities(priority, numOfIterations);
+		double measure = getRandom().nextDouble();
 
-		// we want also consider backlog, hence numOfIterations + 1
-		int k = numOfIters + 1;
-		double[] p = new double[k];
-		double maxPrio = 10.0;
-		// no task is allowed to have max priority, otherwise p0 = 1, and the method does not work.
-		double taskPrio = prio;
-		if (taskPrio == 10) {
-			taskPrio -= 1;
-		}
-		p[0] = taskPrio / maxPrio;
-		double pNtoK = 1 - p[0]; // 1 to k
-		double pNMinus1toK = 1.0; // 0 to k
-		for (int i = 1; i < p.length; i++) {
-			p[i] = p[0] * pNtoK;
-			if (i == p.length - 1) {
-				// this is the last one; pNtoK is now pK-1ToK, and p[i-1] is pK-1
-				p[i] = pNtoK;
+		double sum = 0.0;
+		for (int i = 0; i < p.length; i++) {
+			if (measure >= sum && measure < sum + p[i]) {
+				return i;
 			}
-			pNMinus1toK = pNtoK;
-			pNtoK = pNMinus1toK - p[i];
+			sum += p[i];
 		}
 
-		for (int j = 0; j < p.length; j++) {
-			System.out.println("Iteration" + j + " -----> " + round(p[j], 3));
-		}
+		// return backlog
+		return numOfIterations + 1;
 	}
 
-	public double round(double d, int decimalPlace) {
-		// see the Javadoc about why we use a String in the constructor
-		// http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigDecimal.html#BigDecimal(double)
-		BigDecimal bd = new BigDecimal(Double.toString(d));
-		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
-		return bd.doubleValue();
+	private double[] getIteratioinProbabilities(int priority, int numOfIterations) {
+		// we consider backlog too. Therefore numOfIterations + 1
+		double[] p = new double[numOfIterations + 1];
+		switch (numOfIterations) {
+		case 1: {
+			if (priority >= 7) {
+				p[0] = 0.85;
+				p[1] = 0.15;
+			} else if (priority >= 4 && priority < 7) {
+				p[0] = 0.7;
+				p[1] = 0.3;
+
+			} else {
+				p[0] = 0.6;
+				p[1] = 0.4;
+
+			}
+		}
+			break;
+		case 2: {
+			if (priority >= 7) {
+				p[0] = 0.75;
+				p[1] = 0.2;
+				p[2] = 0.05;
+
+			} else if (priority >= 4 && priority < 7) {
+				p[0] = 0.4;
+				p[1] = 0.4;
+				p[2] = 0.2;
+
+			} else {
+				p[0] = 0.2;
+				p[1] = 0.5;
+				p[2] = 0.3;
+
+			}
+
+		}
+			break;
+		case 3: {
+			if (priority >= 7) {
+				p[0] = 0.7;
+				p[1] = 0.15;
+				p[2] = 0.1;
+				p[3] = 0.05;
+
+			} else if (priority >= 4 && priority < 7) {
+				p[0] = 0.4;
+				p[1] = 0.3;
+				p[2] = 0.2;
+				p[3] = 0.1;
+
+			} else {
+				p[0] = 0.15;
+				p[1] = 0.4;
+				p[2] = 0.3;
+				p[3] = 0.15;
+
+			}
+
+		}
+			break;
+		case 4: {
+			if (priority >= 7) {
+				p[0] = 0.65;
+				p[1] = 0.25;
+				p[2] = 0.07;
+				p[3] = 0.03;
+				p[4] = 0.0;
+
+			} else if (priority >= 4 && priority < 7) {
+				p[0] = 0.2;
+				p[1] = 0.25;
+				p[2] = 0.30;
+				p[3] = 0.15;
+				p[4] = 0.1;
+
+			} else {
+				p[0] = 0.05;
+				p[1] = 0.2;
+				p[2] = 0.25;
+				p[3] = 0.4;
+				p[4] = 0.1;
+
+			}
+
+		}
+			break;
+		case 5: {
+			if (priority >= 7) {
+				p[0] = 0.5;
+				p[1] = 0.3;
+				p[2] = 0.15;
+				p[3] = 0.05;
+				p[4] = 0.0;
+				p[5] = 0.0;
+
+			} else if (priority >= 4 && priority < 7) {
+				p[0] = 0.05;
+				p[1] = 0.15;
+				p[2] = 0.25;
+				p[3] = 0.25;
+				p[4] = 0.20;
+				p[5] = 0.10;
+
+			} else {
+				p[0] = 0.0;
+				p[1] = 0.05;
+				p[2] = 0.15;
+				p[3] = 0.30;
+				p[4] = 0.40;
+				p[5] = 0.10;
+
+			}
+
+		}
+			break;
+		default: {
+			throw new RuntimeException(
+				"Number of iterations invalid. -Planning more than 5 iterations is not supported. Number of iterations:"
+					+ numOfIterations);
+		}
+		}
+		return p;
 	}
 
 	/**
 	 * @return
 	 */
-	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees) {
-		return null;
+	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees,
+		List<AssigneeExpertise> excludes) {
+
+		List<AssigneeExpertise> assignees = new ArrayList<AssigneeExpertise>();
+		assignees.addAll(potentialAssignees);
+		assignees.removeAll(excludes);
+
+		double p[] = new double[assignees.size()];
+		double sumExpertise = 0.0;
+		for (AssigneeExpertise ae : assignees) {
+			sumExpertise += ae.getExpertise();
+		}
+		if (sumExpertise == 0.0) {
+			// nobody is expert! everybody has expertise == 0
+			return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
+		}
+		if (assignees.size() == 0) {
+
+			return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
+		}
+		for (int i = 0; i < assignees.size(); i++) {
+			AssigneeExpertise ae = assignees.get(i);
+			p[i] = ae.getExpertise() / sumExpertise;
+		}
+
+		double measure = getRandom().nextDouble();
+		double sum = 0.0;
+		for (int i = 0; i < p.length; i++) {
+			if (measure >= sum && measure < sumExpertise + p[i]) {
+				return assignees.get(i);
+			}
+			sumExpertise += p[i];
+		}
+
+		return assignees.get(getRandom().nextInt(potentialAssignees.size()));
 	}
 
 	private void setRandom(Random random) {
