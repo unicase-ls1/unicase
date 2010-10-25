@@ -83,7 +83,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	public int getBacklogNumber() {
-		return numOfIterations + 1;
+		// if numOfIteration == 3, then we have Iter0, Iter1, Iter2, hence Backlog will be Iter3
+		return numOfIterations;
 	}
 
 	public List<PlannedTask> getAllPlannedTasksForIterationAndAssignee(int iterationNumber, Assignee assignee) {
