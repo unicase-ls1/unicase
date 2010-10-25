@@ -40,7 +40,7 @@ public class SerializationException extends Exception {
 	 * 
 	 * @param msg exception message
 	 */
-	public SerializationException(String string) {
-		super(DE_SERIALIZATION_FAILED + ": " + string);
+	public SerializationException(String msg) {
+		super(DE_SERIALIZATION_FAILED + ": " + msg);
 	}
 }
