@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.ProfileFactory;
@@ -248,6 +249,11 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 */
 	@Override
 	public String getText(Object object) {
+		if (object instanceof AssociationClassElement) {
+			AssociationClassElement association = (AssociationClassElement) object;
+			return ((UnicaseModelElement) association.eGet(association.getSourceFeature())).getName() + " - "
+				+ ((UnicaseModelElement) association.eGet(association.getTargetFeature())).getName() + " Association";
+		}
 		String label = ((UnicaseModelElement) object).getName();
 		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
 	}

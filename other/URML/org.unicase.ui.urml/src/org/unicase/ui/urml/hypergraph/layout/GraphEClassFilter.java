@@ -51,7 +51,7 @@ public class GraphEClassFilter {
 		this(graph);
 		this.classes.addAll(classes);
 	}
-
+	
 	/**
 	 * Creates a filter with the classes extracted from the given projects.
 	 * 
@@ -82,7 +82,8 @@ public class GraphEClassFilter {
 		for (EClass eClass : classes) {
 			TableItem item = new TableItem(table, SWT.NONE);
 			item.setText(labelProvider.getText(eClass));
-			item.setImage(labelProvider.getImage(eClass));
+			// removed because throws exception due to not supported classes in labelProvider
+//			item.setImage(labelProvider.getImage(eClass));
 			item.setChecked(true);
 			visible.put(eClass, item);
 		}
