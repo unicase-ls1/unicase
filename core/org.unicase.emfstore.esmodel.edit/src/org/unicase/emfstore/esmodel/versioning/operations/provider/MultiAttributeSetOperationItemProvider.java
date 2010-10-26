@@ -64,8 +64,10 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiAttributeSetOperation_index_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiAttributeSetOperation_index_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_index_feature",
 				"_UI_MultiAttributeSetOperation_type"),
 			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__INDEX, true, false, false,
@@ -78,10 +80,11 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_MultiAttributeSetOperation_oldValue_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_oldValue_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiAttributeSetOperation_oldValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_oldValue_feature",
 				"_UI_MultiAttributeSetOperation_type"),
 			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__OLD_VALUE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -93,10 +96,11 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_MultiAttributeSetOperation_newValue_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_newValue_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiAttributeSetOperation_newValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_newValue_feature",
 				"_UI_MultiAttributeSetOperation_type"),
 			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__NEW_VALUE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

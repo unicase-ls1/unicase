@@ -64,8 +64,10 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiReferenceSetOperation_index_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiReferenceSetOperation_index_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceSetOperation_index_feature",
 				"_UI_MultiReferenceSetOperation_type"),
 			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__INDEX, true, false, false,
@@ -159,12 +161,12 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

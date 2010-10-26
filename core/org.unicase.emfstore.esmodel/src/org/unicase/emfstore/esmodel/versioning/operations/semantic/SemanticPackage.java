@@ -18,42 +18,46 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticFactory
  * @model kind="package"
  * @generated
  */
 public interface SemanticPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "semantic";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/esmodel/versioning/operations/semantic";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.emfstore.esmodel.versioning.operations.semantic";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	SemanticPackage eINSTANCE = org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl.init();
+	SemanticPackage eINSTANCE = org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl
+		.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl <em>Composite Operation</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+	 * <em>Composite Operation</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl#getSemanticCompositeOperation()
 	 * @generated
@@ -61,108 +65,110 @@ public interface SemanticPackage extends EPackage {
 	int SEMANTIC_COMPOSITE_OPERATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__IDENTIFIER = OperationsPackage.COMPOSITE_OPERATION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__NAME = OperationsPackage.COMPOSITE_OPERATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__DESCRIPTION = OperationsPackage.COMPOSITE_OPERATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__MODEL_ELEMENT_ID = OperationsPackage.COMPOSITE_OPERATION__MODEL_ELEMENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Accepted</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Accepted</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__ACCEPTED = OperationsPackage.COMPOSITE_OPERATION__ACCEPTED;
 
 	/**
-	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__CLIENT_DATE = OperationsPackage.COMPOSITE_OPERATION__CLIENT_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__SUB_OPERATIONS = OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Main Operation</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Main Operation</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__MAIN_OPERATION = OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION;
 
 	/**
-	 * The feature id for the '<em><b>Composite Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Composite Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_NAME = OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Composite Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Composite Description</b></em>' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION__REVERSED = OperationsPackage.COMPOSITE_OPERATION__REVERSED;
 
 	/**
-	 * The number of structural features of the '<em>Composite Operation</em>' class.
-	 * <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Composite Operation</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_COMPOSITE_OPERATION_FEATURE_COUNT = OperationsPackage.COMPOSITE_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation <em>Composite Operation</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation
+	 * <em>Composite Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Composite Operation</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation
 	 * @generated
@@ -170,8 +176,8 @@ public interface SemanticPackage extends EPackage {
 	EClass getSemanticCompositeOperation();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -186,12 +192,15 @@ public interface SemanticPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl <em>Composite Operation</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+		 * <em>Composite Operation</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticPackageImpl#getSemanticCompositeOperation()
 		 * @generated

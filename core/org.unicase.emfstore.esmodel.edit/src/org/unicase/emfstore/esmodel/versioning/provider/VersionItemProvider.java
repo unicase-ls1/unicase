@@ -66,9 +66,10 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addNextVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Version_nextVersion_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Version_nextVersion_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
 			VersioningPackage.Literals.VERSION__NEXT_VERSION, true, false, true, null, null, null));
 	}
 
@@ -78,8 +79,9 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addPreviousVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Version_previousVersion_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Version_previousVersion_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Version_previousVersion_feature", "_UI_Version_type"),
 			VersioningPackage.Literals.VERSION__PREVIOUS_VERSION, true, false, true, null, null, null));
 	}

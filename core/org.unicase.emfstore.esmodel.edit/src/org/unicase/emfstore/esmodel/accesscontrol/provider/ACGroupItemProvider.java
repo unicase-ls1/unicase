@@ -58,9 +58,10 @@ public class ACGroupItemProvider extends ACOrgUnitItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addMembersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACGroup_members_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ACGroup_members_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
 			AccesscontrolPackage.Literals.AC_GROUP__MEMBERS, true, false, true, null, null, null));
 	}
 

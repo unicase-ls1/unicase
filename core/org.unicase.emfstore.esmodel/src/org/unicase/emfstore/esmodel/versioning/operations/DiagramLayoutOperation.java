@@ -8,8 +8,7 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Diagram Layout Operation</b></em>'. <!--
  * end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getDiagramLayoutOperation()
  * @model
  * @generated

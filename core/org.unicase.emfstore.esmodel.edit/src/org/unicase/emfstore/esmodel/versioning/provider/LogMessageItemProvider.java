@@ -66,9 +66,10 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LogMessage_message_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LogMessage_message_feature", "_UI_LogMessage_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_LogMessage_message_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_message_feature", "_UI_LogMessage_type"),
 			VersioningPackage.Literals.LOG_MESSAGE__MESSAGE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -79,9 +80,10 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LogMessage_date_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LogMessage_date_feature", "_UI_LogMessage_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_LogMessage_date_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_date_feature", "_UI_LogMessage_type"),
 			VersioningPackage.Literals.LOG_MESSAGE__DATE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -92,11 +94,14 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addClientDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LogMessage_clientDate_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LogMessage_clientDate_feature", "_UI_LogMessage_type"),
-			VersioningPackage.Literals.LOG_MESSAGE__CLIENT_DATE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_LogMessage_clientDate_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_clientDate_feature",
+					"_UI_LogMessage_type"), VersioningPackage.Literals.LOG_MESSAGE__CLIENT_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -105,9 +110,10 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addAuthorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LogMessage_author_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LogMessage_author_feature", "_UI_LogMessage_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_LogMessage_author_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_LogMessage_author_feature", "_UI_LogMessage_type"),
 			VersioningPackage.Literals.LOG_MESSAGE__AUTHOR, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

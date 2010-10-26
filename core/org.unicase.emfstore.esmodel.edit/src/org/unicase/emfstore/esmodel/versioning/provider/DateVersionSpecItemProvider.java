@@ -64,10 +64,12 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	 * @generated
 	 */
 	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DateVersionSpec_date_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature", "_UI_DateVersionSpec_type"),
-			VersioningPackage.Literals.DATE_VERSION_SPEC__DATE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DateVersionSpec_date_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature",
+				"_UI_DateVersionSpec_type"), VersioningPackage.Literals.DATE_VERSION_SPEC__DATE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

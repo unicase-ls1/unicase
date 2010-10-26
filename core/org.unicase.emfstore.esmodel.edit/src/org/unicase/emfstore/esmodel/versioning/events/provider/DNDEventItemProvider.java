@@ -64,9 +64,10 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_sourceView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_DNDEvent_sourceView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
 			EventsPackage.Literals.DND_EVENT__SOURCE_VIEW, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -77,9 +78,10 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addTargetViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_targetView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_DNDEvent_targetView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
 			EventsPackage.Literals.DND_EVENT__TARGET_VIEW, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -91,8 +93,10 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDragSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_dragSourceElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DNDEvent_dragSourceElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dragSourceElement_feature",
 				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DRAG_SOURCE_ELEMENT, true, false, true, null,
 			null, null));
@@ -105,8 +109,10 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDropTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_dropTargetElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DNDEvent_dropTargetElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dropTargetElement_feature",
 				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DROP_TARGET_ELEMENT, true, false, true, null,
 			null, null));

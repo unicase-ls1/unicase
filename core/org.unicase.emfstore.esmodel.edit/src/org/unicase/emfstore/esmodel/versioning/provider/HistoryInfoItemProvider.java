@@ -84,8 +84,10 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addPrimerySpecPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_primerySpec_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_HistoryInfo_primerySpec_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature",
 				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC, true, false, true,
 			null, null, null));
@@ -97,10 +99,13 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addLogMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_logMessage_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
-			VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_HistoryInfo_logMessage_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature",
+				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE, true, false, true, null,
+			null, null));
 	}
 
 	/**

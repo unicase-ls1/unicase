@@ -62,8 +62,10 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addPluginIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginFocusEvent_pluginId_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PluginFocusEvent_pluginId_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_pluginId_feature",
 				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__PLUGIN_ID, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -75,8 +77,10 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginFocusEvent_startDate_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PluginFocusEvent_startDate_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_startDate_feature",
 				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__START_DATE, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

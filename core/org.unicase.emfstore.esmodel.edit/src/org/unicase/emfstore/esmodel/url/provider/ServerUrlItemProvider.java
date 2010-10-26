@@ -64,9 +64,10 @@ public class ServerUrlItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addHostNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerUrl_hostName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerUrl_hostName_feature", "_UI_ServerUrl_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerUrl_hostName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerUrl_hostName_feature", "_UI_ServerUrl_type"),
 			UrlPackage.Literals.SERVER_URL__HOST_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -77,9 +78,10 @@ public class ServerUrlItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addPortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerUrl_port_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerUrl_port_feature", "_UI_ServerUrl_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerUrl_port_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerUrl_port_feature", "_UI_ServerUrl_type"),
 			UrlPackage.Literals.SERVER_URL__PORT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}

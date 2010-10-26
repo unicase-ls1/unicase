@@ -62,10 +62,11 @@ public class NotificationIgnoreEventItemProvider extends EventItemProvider imple
 	 * @generated
 	 */
 	protected void addNotificationIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NotificationIgnoreEvent_notificationId_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NotificationIgnoreEvent_notificationId_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NotificationIgnoreEvent_notificationId_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NotificationIgnoreEvent_notificationId_feature",
 				"_UI_NotificationIgnoreEvent_type"), EventsPackage.Literals.NOTIFICATION_IGNORE_EVENT__NOTIFICATION_ID,
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

@@ -62,8 +62,10 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_sourceElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_TraceEvent_sourceElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_sourceElement_feature",
 				"_UI_TraceEvent_type"), EventsPackage.Literals.TRACE_EVENT__SOURCE_ELEMENT, true, false, true, null,
 			null, null));
@@ -75,8 +77,10 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_targetElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_TraceEvent_targetElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_targetElement_feature",
 				"_UI_TraceEvent_type"), EventsPackage.Literals.TRACE_EVENT__TARGET_ELEMENT, true, false, true, null,
 			null, null));
@@ -88,11 +92,14 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_featureName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TraceEvent_featureName_feature", "_UI_TraceEvent_type"),
-			EventsPackage.Literals.TRACE_EVENT__FEATURE_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TraceEvent_featureName_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_featureName_feature",
+					"_UI_TraceEvent_type"), EventsPackage.Literals.TRACE_EVENT__FEATURE_NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**

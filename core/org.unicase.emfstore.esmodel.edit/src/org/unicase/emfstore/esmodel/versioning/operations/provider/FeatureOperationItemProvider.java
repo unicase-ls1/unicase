@@ -60,8 +60,10 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	 * @generated
 	 */
 	protected void addFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FeatureOperation_featureName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FeatureOperation_featureName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FeatureOperation_featureName_feature",
 				"_UI_FeatureOperation_type"), OperationsPackage.Literals.FEATURE_OPERATION__FEATURE_NAME, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

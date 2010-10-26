@@ -233,6 +233,29 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.FileIdentifier} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected FileIdentifierItemProvider fileIdentifierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.FileIdentifier}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileIdentifierAdapter() {
+		if (fileIdentifierItemProvider == null) {
+			fileIdentifierItemProvider = new FileIdentifierItemProvider(this);
+		}
+
+		return fileIdentifierItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -340,6 +363,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 			versionInfoItemProvider.dispose();
 		if (clientVersionInfoItemProvider != null)
 			clientVersionInfoItemProvider.dispose();
+		if (fileIdentifierItemProvider != null)
+			fileIdentifierItemProvider.dispose();
 	}
 
 }

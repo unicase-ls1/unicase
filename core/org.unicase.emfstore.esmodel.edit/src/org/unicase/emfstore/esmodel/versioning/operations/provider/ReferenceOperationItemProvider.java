@@ -62,8 +62,10 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 * @generated
 	 */
 	protected void addBidirectionalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ReferenceOperation_bidirectional_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ReferenceOperation_bidirectional_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_bidirectional_feature",
 				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__BIDIRECTIONAL, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -76,10 +78,11 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 * @generated
 	 */
 	protected void addOppositeFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ReferenceOperation_oppositeFeatureName_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_oppositeFeatureName_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ReferenceOperation_oppositeFeatureName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_oppositeFeatureName_feature",
 				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME,
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -90,10 +93,11 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 * @generated
 	 */
 	protected void addContainmentTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ReferenceOperation_containmentType_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_containmentType_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ReferenceOperation_containmentType_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_containmentType_feature",
 				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__CONTAINMENT_TYPE, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

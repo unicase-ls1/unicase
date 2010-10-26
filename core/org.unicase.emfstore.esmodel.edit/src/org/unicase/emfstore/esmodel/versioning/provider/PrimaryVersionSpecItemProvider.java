@@ -63,8 +63,10 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PrimaryVersionSpec_identifier_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PrimaryVersionSpec_identifier_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PrimaryVersionSpec_identifier_feature",
 				"_UI_PrimaryVersionSpec_type"), VersioningPackage.Literals.PRIMARY_VERSION_SPEC__IDENTIFIER, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));

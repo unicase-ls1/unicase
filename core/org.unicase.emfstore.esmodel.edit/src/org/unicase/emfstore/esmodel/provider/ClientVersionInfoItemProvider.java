@@ -63,8 +63,10 @@ public class ClientVersionInfoItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ClientVersionInfo_version_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ClientVersionInfo_version_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ClientVersionInfo_version_feature",
 				"_UI_ClientVersionInfo_type"), EsmodelPackage.Literals.CLIENT_VERSION_INFO__VERSION, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -76,10 +78,12 @@ public class ClientVersionInfoItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ClientVersionInfo_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ClientVersionInfo_name_feature", "_UI_ClientVersionInfo_type"),
-			EsmodelPackage.Literals.CLIENT_VERSION_INFO__NAME, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ClientVersionInfo_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ClientVersionInfo_name_feature",
+				"_UI_ClientVersionInfo_type"), EsmodelPackage.Literals.CLIENT_VERSION_INFO__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
