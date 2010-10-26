@@ -67,10 +67,14 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryQuery_source_feature", "_UI_HistoryQuery_type"),
-			VersioningPackage.Literals.HISTORY_QUERY__SOURCE, true, false, true, null, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_HistoryQuery_source_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_source_feature",
+					"_UI_HistoryQuery_type"), VersioningPackage.Literals.HISTORY_QUERY__SOURCE, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -79,10 +83,14 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryQuery_target_feature", "_UI_HistoryQuery_type"),
-			VersioningPackage.Literals.HISTORY_QUERY__TARGET, true, false, true, null, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_HistoryQuery_target_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_target_feature",
+					"_UI_HistoryQuery_type"), VersioningPackage.Literals.HISTORY_QUERY__TARGET, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -92,8 +100,10 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addIncludeChangePackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_includeChangePackage_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_HistoryQuery_includeChangePackage_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_includeChangePackage_feature",
 				"_UI_HistoryQuery_type"), VersioningPackage.Literals.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));

@@ -42,20 +42,21 @@ import org.unicase.emfstore.esmodel.versioning.events.Validate;
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage
  * @generated
  */
 public class EventsSwitch<T> {
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static EventsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsSwitch() {
@@ -65,8 +66,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -75,222 +77,273 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EventsPackage.EVENT: {
-				Event event = (Event)theEObject;
-				T result = caseEvent(event);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.READ_EVENT: {
-				ReadEvent readEvent = (ReadEvent)theEObject;
-				T result = caseReadEvent(readEvent);
-				if (result == null) result = caseEvent(readEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.MERGE_EVENT: {
-				MergeEvent mergeEvent = (MergeEvent)theEObject;
-				T result = caseMergeEvent(mergeEvent);
-				if (result == null) result = caseEvent(mergeEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.CHECKOUT_EVENT: {
-				CheckoutEvent checkoutEvent = (CheckoutEvent)theEObject;
-				T result = caseCheckoutEvent(checkoutEvent);
-				if (result == null) result = caseEvent(checkoutEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.EXCEPTION_EVENT: {
-				ExceptionEvent exceptionEvent = (ExceptionEvent)theEObject;
-				T result = caseExceptionEvent(exceptionEvent);
-				if (result == null) result = caseEvent(exceptionEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.PLUGIN_START_EVENT: {
-				PluginStartEvent pluginStartEvent = (PluginStartEvent)theEObject;
-				T result = casePluginStartEvent(pluginStartEvent);
-				if (result == null) result = caseEvent(pluginStartEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.UPDATE_EVENT: {
-				UpdateEvent updateEvent = (UpdateEvent)theEObject;
-				T result = caseUpdateEvent(updateEvent);
-				if (result == null) result = caseEvent(updateEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.ANNOTATION_EVENT: {
-				AnnotationEvent annotationEvent = (AnnotationEvent)theEObject;
-				T result = caseAnnotationEvent(annotationEvent);
-				if (result == null) result = caseEvent(annotationEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.REVERT_EVENT: {
-				RevertEvent revertEvent = (RevertEvent)theEObject;
-				T result = caseRevertEvent(revertEvent);
-				if (result == null) result = caseEvent(revertEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.SHOW_HISTORY_EVENT: {
-				ShowHistoryEvent showHistoryEvent = (ShowHistoryEvent)theEObject;
-				T result = caseShowHistoryEvent(showHistoryEvent);
-				if (result == null) result = caseEvent(showHistoryEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.PERSPECTIVE_EVENT: {
-				PerspectiveEvent perspectiveEvent = (PerspectiveEvent)theEObject;
-				T result = casePerspectiveEvent(perspectiveEvent);
-				if (result == null) result = caseEvent(perspectiveEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.DND_EVENT: {
-				DNDEvent dndEvent = (DNDEvent)theEObject;
-				T result = caseDNDEvent(dndEvent);
-				if (result == null) result = caseEvent(dndEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.LINK_EVENT: {
-				LinkEvent linkEvent = (LinkEvent)theEObject;
-				T result = caseLinkEvent(linkEvent);
-				if (result == null) result = caseEvent(linkEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.TRACE_EVENT: {
-				TraceEvent traceEvent = (TraceEvent)theEObject;
-				T result = caseTraceEvent(traceEvent);
-				if (result == null) result = caseEvent(traceEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.NAVIGATOR_CREATE_EVENT: {
-				NavigatorCreateEvent navigatorCreateEvent = (NavigatorCreateEvent)theEObject;
-				T result = caseNavigatorCreateEvent(navigatorCreateEvent);
-				if (result == null) result = caseEvent(navigatorCreateEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.PLUGIN_FOCUS_EVENT: {
-				PluginFocusEvent pluginFocusEvent = (PluginFocusEvent)theEObject;
-				T result = casePluginFocusEvent(pluginFocusEvent);
-				if (result == null) result = caseEvent(pluginFocusEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.PRESENTATION_SWITCH_EVENT: {
-				PresentationSwitchEvent presentationSwitchEvent = (PresentationSwitchEvent)theEObject;
-				T result = casePresentationSwitchEvent(presentationSwitchEvent);
-				if (result == null) result = caseEvent(presentationSwitchEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.UNDO_EVENT: {
-				UndoEvent undoEvent = (UndoEvent)theEObject;
-				T result = caseUndoEvent(undoEvent);
-				if (result == null) result = caseEvent(undoEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.VALIDATE: {
-				Validate validate = (Validate)theEObject;
-				T result = caseValidate(validate);
-				if (result == null) result = caseEvent(validate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.SHOW_CHANGES_EVENT: {
-				ShowChangesEvent showChangesEvent = (ShowChangesEvent)theEObject;
-				T result = caseShowChangesEvent(showChangesEvent);
-				if (result == null) result = caseEvent(showChangesEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.NOTIFICATION_READ_EVENT: {
-				NotificationReadEvent notificationReadEvent = (NotificationReadEvent)theEObject;
-				T result = caseNotificationReadEvent(notificationReadEvent);
-				if (result == null) result = caseReadEvent(notificationReadEvent);
-				if (result == null) result = caseEvent(notificationReadEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.NOTIFICATION_GENERATION_EVENT: {
-				NotificationGenerationEvent notificationGenerationEvent = (NotificationGenerationEvent)theEObject;
-				T result = caseNotificationGenerationEvent(notificationGenerationEvent);
-				if (result == null) result = caseEvent(notificationGenerationEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.NOTIFICATION_IGNORE_EVENT: {
-				NotificationIgnoreEvent notificationIgnoreEvent = (NotificationIgnoreEvent)theEObject;
-				T result = caseNotificationIgnoreEvent(notificationIgnoreEvent);
-				if (result == null) result = caseEvent(notificationIgnoreEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.URL_EVENT: {
-				URLEvent urlEvent = (URLEvent)theEObject;
-				T result = caseURLEvent(urlEvent);
-				if (result == null) result = caseEvent(urlEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.MERGE_CHOICE_EVENT: {
-				MergeChoiceEvent mergeChoiceEvent = (MergeChoiceEvent)theEObject;
-				T result = caseMergeChoiceEvent(mergeChoiceEvent);
-				if (result == null) result = caseEvent(mergeChoiceEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventsPackage.MERGE_GLOBAL_CHOICE_EVENT: {
-				MergeGlobalChoiceEvent mergeGlobalChoiceEvent = (MergeGlobalChoiceEvent)theEObject;
-				T result = caseMergeGlobalChoiceEvent(mergeGlobalChoiceEvent);
-				if (result == null) result = caseEvent(mergeGlobalChoiceEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case EventsPackage.EVENT: {
+			Event event = (Event) theEObject;
+			T result = caseEvent(event);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.READ_EVENT: {
+			ReadEvent readEvent = (ReadEvent) theEObject;
+			T result = caseReadEvent(readEvent);
+			if (result == null)
+				result = caseEvent(readEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.MERGE_EVENT: {
+			MergeEvent mergeEvent = (MergeEvent) theEObject;
+			T result = caseMergeEvent(mergeEvent);
+			if (result == null)
+				result = caseEvent(mergeEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.CHECKOUT_EVENT: {
+			CheckoutEvent checkoutEvent = (CheckoutEvent) theEObject;
+			T result = caseCheckoutEvent(checkoutEvent);
+			if (result == null)
+				result = caseEvent(checkoutEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.EXCEPTION_EVENT: {
+			ExceptionEvent exceptionEvent = (ExceptionEvent) theEObject;
+			T result = caseExceptionEvent(exceptionEvent);
+			if (result == null)
+				result = caseEvent(exceptionEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PLUGIN_START_EVENT: {
+			PluginStartEvent pluginStartEvent = (PluginStartEvent) theEObject;
+			T result = casePluginStartEvent(pluginStartEvent);
+			if (result == null)
+				result = caseEvent(pluginStartEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.UPDATE_EVENT: {
+			UpdateEvent updateEvent = (UpdateEvent) theEObject;
+			T result = caseUpdateEvent(updateEvent);
+			if (result == null)
+				result = caseEvent(updateEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.ANNOTATION_EVENT: {
+			AnnotationEvent annotationEvent = (AnnotationEvent) theEObject;
+			T result = caseAnnotationEvent(annotationEvent);
+			if (result == null)
+				result = caseEvent(annotationEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.REVERT_EVENT: {
+			RevertEvent revertEvent = (RevertEvent) theEObject;
+			T result = caseRevertEvent(revertEvent);
+			if (result == null)
+				result = caseEvent(revertEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.SHOW_HISTORY_EVENT: {
+			ShowHistoryEvent showHistoryEvent = (ShowHistoryEvent) theEObject;
+			T result = caseShowHistoryEvent(showHistoryEvent);
+			if (result == null)
+				result = caseEvent(showHistoryEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PERSPECTIVE_EVENT: {
+			PerspectiveEvent perspectiveEvent = (PerspectiveEvent) theEObject;
+			T result = casePerspectiveEvent(perspectiveEvent);
+			if (result == null)
+				result = caseEvent(perspectiveEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.DND_EVENT: {
+			DNDEvent dndEvent = (DNDEvent) theEObject;
+			T result = caseDNDEvent(dndEvent);
+			if (result == null)
+				result = caseEvent(dndEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.LINK_EVENT: {
+			LinkEvent linkEvent = (LinkEvent) theEObject;
+			T result = caseLinkEvent(linkEvent);
+			if (result == null)
+				result = caseEvent(linkEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.TRACE_EVENT: {
+			TraceEvent traceEvent = (TraceEvent) theEObject;
+			T result = caseTraceEvent(traceEvent);
+			if (result == null)
+				result = caseEvent(traceEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.NAVIGATOR_CREATE_EVENT: {
+			NavigatorCreateEvent navigatorCreateEvent = (NavigatorCreateEvent) theEObject;
+			T result = caseNavigatorCreateEvent(navigatorCreateEvent);
+			if (result == null)
+				result = caseEvent(navigatorCreateEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PLUGIN_FOCUS_EVENT: {
+			PluginFocusEvent pluginFocusEvent = (PluginFocusEvent) theEObject;
+			T result = casePluginFocusEvent(pluginFocusEvent);
+			if (result == null)
+				result = caseEvent(pluginFocusEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PRESENTATION_SWITCH_EVENT: {
+			PresentationSwitchEvent presentationSwitchEvent = (PresentationSwitchEvent) theEObject;
+			T result = casePresentationSwitchEvent(presentationSwitchEvent);
+			if (result == null)
+				result = caseEvent(presentationSwitchEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.UNDO_EVENT: {
+			UndoEvent undoEvent = (UndoEvent) theEObject;
+			T result = caseUndoEvent(undoEvent);
+			if (result == null)
+				result = caseEvent(undoEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.VALIDATE: {
+			Validate validate = (Validate) theEObject;
+			T result = caseValidate(validate);
+			if (result == null)
+				result = caseEvent(validate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.SHOW_CHANGES_EVENT: {
+			ShowChangesEvent showChangesEvent = (ShowChangesEvent) theEObject;
+			T result = caseShowChangesEvent(showChangesEvent);
+			if (result == null)
+				result = caseEvent(showChangesEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.NOTIFICATION_READ_EVENT: {
+			NotificationReadEvent notificationReadEvent = (NotificationReadEvent) theEObject;
+			T result = caseNotificationReadEvent(notificationReadEvent);
+			if (result == null)
+				result = caseReadEvent(notificationReadEvent);
+			if (result == null)
+				result = caseEvent(notificationReadEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.NOTIFICATION_GENERATION_EVENT: {
+			NotificationGenerationEvent notificationGenerationEvent = (NotificationGenerationEvent) theEObject;
+			T result = caseNotificationGenerationEvent(notificationGenerationEvent);
+			if (result == null)
+				result = caseEvent(notificationGenerationEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.NOTIFICATION_IGNORE_EVENT: {
+			NotificationIgnoreEvent notificationIgnoreEvent = (NotificationIgnoreEvent) theEObject;
+			T result = caseNotificationIgnoreEvent(notificationIgnoreEvent);
+			if (result == null)
+				result = caseEvent(notificationIgnoreEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.URL_EVENT: {
+			URLEvent urlEvent = (URLEvent) theEObject;
+			T result = caseURLEvent(urlEvent);
+			if (result == null)
+				result = caseEvent(urlEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.MERGE_CHOICE_EVENT: {
+			MergeChoiceEvent mergeChoiceEvent = (MergeChoiceEvent) theEObject;
+			T result = caseMergeChoiceEvent(mergeChoiceEvent);
+			if (result == null)
+				result = caseEvent(mergeChoiceEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.MERGE_GLOBAL_CHOICE_EVENT: {
+			MergeGlobalChoiceEvent mergeGlobalChoiceEvent = (MergeGlobalChoiceEvent) theEObject;
+			T result = caseMergeGlobalChoiceEvent(mergeGlobalChoiceEvent);
+			if (result == null)
+				result = caseEvent(mergeGlobalChoiceEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event</em>'.
-	 * <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Event</em>'. <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -301,9 +354,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Read Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Read Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Read Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -314,9 +367,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Merge Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Merge Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Merge Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -369,9 +422,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Update Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Update Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Update Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -396,9 +449,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Revert Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Revert Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Revert Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -437,9 +490,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>DND Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>DND Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>DND Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -450,9 +503,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Link Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Link Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -463,9 +516,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Trace Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Trace Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Trace Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -518,9 +571,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Undo Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Undo Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Undo Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -531,9 +584,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Validate</em>'.
-	 * <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Validate</em>'. <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Validate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -600,9 +653,9 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>URL Event</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>URL Event</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>URL Event</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -641,10 +694,10 @@ public class EventsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

@@ -73,8 +73,10 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 * @generated
 	 */
 	protected void addDeletePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CreateDeleteOperation_delete_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CreateDeleteOperation_delete_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CreateDeleteOperation_delete_feature",
 				"_UI_CreateDeleteOperation_type"), OperationsPackage.Literals.CREATE_DELETE_OPERATION__DELETE, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -233,6 +235,9 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			EsmodelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			EsmodelFactory.eINSTANCE.createFileIdentifier()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			VersioningFactory.eINSTANCE.createTagVersionSpec()));
@@ -397,20 +402,20 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			MetamodelFactory.eINSTANCE.createModelVersion()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createSingleReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createMultiReferenceSetOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createMultiReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP, OperationsFactory.eINSTANCE
-				.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 	}
 
 	/**

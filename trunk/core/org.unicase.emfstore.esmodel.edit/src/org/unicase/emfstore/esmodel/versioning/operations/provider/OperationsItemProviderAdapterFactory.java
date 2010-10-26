@@ -545,8 +545,6 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 			multiReferenceSetOperationItemProvider.dispose();
 		if (multiReferenceOperationItemProvider != null)
 			multiReferenceOperationItemProvider.dispose();
-		if (multiReferenceSetOperationItemProvider != null)
-			multiReferenceSetOperationItemProvider.dispose();
 		if (multiReferenceMoveOperationItemProvider != null)
 			multiReferenceMoveOperationItemProvider.dispose();
 		if (diagramLayoutOperationItemProvider != null)

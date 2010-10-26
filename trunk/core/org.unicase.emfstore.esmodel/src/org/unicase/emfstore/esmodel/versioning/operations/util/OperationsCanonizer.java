@@ -123,8 +123,8 @@ public final class OperationsCanonizer {
 					AttributeOperation attOp = (AttributeOperation) opRight;
 					// found an attribute change for the new object
 					// now merge it into the created object and discard the attribute operation
-					EStructuralFeature feature = createOp.getModelElement().eClass().getEStructuralFeature(
-						attOp.getFeatureName());
+					EStructuralFeature feature = createOp.getModelElement().eClass()
+						.getEStructuralFeature(attOp.getFeatureName());
 					createOp.getModelElement().eSet(feature, attOp.getNewValue());
 
 					operations.remove(j); // remove attribute operation
@@ -174,8 +174,8 @@ public final class OperationsCanonizer {
 					AttributeOperation attOp = (AttributeOperation) opLeft;
 					// found an attribute change for the object, that is deleted
 					// now merge it into the deleted object and discard the attribute operation
-					EStructuralFeature feature = deleteOp.getModelElement().eClass().getEStructuralFeature(
-						attOp.getFeatureName());
+					EStructuralFeature feature = deleteOp.getModelElement().eClass()
+						.getEStructuralFeature(attOp.getFeatureName());
 					deleteOp.getModelElement().eSet(feature, attOp.getOldValue());
 
 					operations.remove(j); // remove attribute operation

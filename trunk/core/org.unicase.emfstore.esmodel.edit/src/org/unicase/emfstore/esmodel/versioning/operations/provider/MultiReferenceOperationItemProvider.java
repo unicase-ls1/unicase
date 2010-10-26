@@ -66,8 +66,10 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 * @generated
 	 */
 	protected void addAddPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiReferenceOperation_add_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiReferenceOperation_add_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_add_feature",
 				"_UI_MultiReferenceOperation_type"), OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__ADD, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -79,8 +81,10 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MultiReferenceOperation_index_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiReferenceOperation_index_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_index_feature",
 				"_UI_MultiReferenceOperation_type"), OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__INDEX, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -197,8 +201,8 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+			OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS,
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }

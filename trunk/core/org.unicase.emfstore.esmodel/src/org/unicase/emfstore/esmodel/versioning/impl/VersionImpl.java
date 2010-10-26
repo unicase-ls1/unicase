@@ -185,8 +185,8 @@ public class VersionImpl extends EObjectImpl implements Version {
 				EMap<EObject, ModelElementId> eObjectToIdMap = loadIdsFromResource((XMIResource) resource);
 
 				// create reverse mapping
-				Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>(eObjectToIdMap
-					.size());
+				Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>(
+					eObjectToIdMap.size());
 
 				for (Map.Entry<EObject, ModelElementId> entry : eObjectToIdMap.entrySet()) {
 					idToEObjectMap.put(entry.getValue(), entry.getKey());

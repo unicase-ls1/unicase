@@ -99,8 +99,10 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addMainOperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_mainOperation_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CompositeOperation_mainOperation_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_mainOperation_feature",
 				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__MAIN_OPERATION, true,
 			false, true, null, null, null));
@@ -112,8 +114,10 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addCompositeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_compositeName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CompositeOperation_compositeName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeName_feature",
 				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_NAME, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -126,10 +130,11 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addCompositeDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_CompositeOperation_compositeDescription_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CompositeOperation_compositeDescription_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature",
 				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -140,8 +145,10 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addReversedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_reversed_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CompositeOperation_reversed_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_reversed_feature",
 				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__REVERSED, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -264,9 +271,6 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));

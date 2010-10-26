@@ -61,9 +61,10 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACUser_firstName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ACUser_firstName_feature", "_UI_ACUser_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ACUser_firstName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ACUser_firstName_feature", "_UI_ACUser_type"),
 			AccesscontrolPackage.Literals.AC_USER__FIRST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -74,9 +75,10 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACUser_lastName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ACUser_lastName_feature", "_UI_ACUser_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ACUser_lastName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ACUser_lastName_feature", "_UI_ACUser_type"),
 			AccesscontrolPackage.Literals.AC_USER__LAST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

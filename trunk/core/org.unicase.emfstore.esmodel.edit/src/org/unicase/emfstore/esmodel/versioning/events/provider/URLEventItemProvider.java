@@ -63,9 +63,10 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_URLEvent_sourceView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_URLEvent_sourceView_feature", "_UI_URLEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_URLEvent_sourceView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_URLEvent_sourceView_feature", "_UI_URLEvent_type"),
 			EventsPackage.Literals.URL_EVENT__SOURCE_VIEW, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

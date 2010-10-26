@@ -60,8 +60,10 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	 * @generated
 	 */
 	protected void addAnnotatedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AnnotationEvent_annotatedElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_AnnotationEvent_annotatedElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotatedElement_feature",
 				"_UI_AnnotationEvent_type"), EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATED_ELEMENT, true, false,
 			true, null, null, null));
@@ -73,8 +75,10 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	 * @generated
 	 */
 	protected void addAnnotationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AnnotationEvent_annotation_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_AnnotationEvent_annotation_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotation_feature",
 				"_UI_AnnotationEvent_type"), EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATION, true, false, true,
 			null, null, null));

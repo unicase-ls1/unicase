@@ -63,10 +63,12 @@ public class TagVersionSpecItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TagVersionSpec_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TagVersionSpec_name_feature", "_UI_TagVersionSpec_type"),
-			VersioningPackage.Literals.TAG_VERSION_SPEC__NAME, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_TagVersionSpec_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_TagVersionSpec_name_feature",
+				"_UI_TagVersionSpec_type"), VersioningPackage.Literals.TAG_VERSION_SPEC__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
