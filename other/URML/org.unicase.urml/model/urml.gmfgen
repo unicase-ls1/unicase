@@ -2724,25 +2724,6 @@
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
-  <propertySheet>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="appearance"/>
-    <tabs
-        xsi:type="gmfgen:GenStandardPropertyTab"
-        iD="diagram"/>
-    <tabs
-        xsi:type="gmfgen:GenCustomPropertyTab"
-        iD="domain"
-        label="Core">
-      <filter
-          xsi:type="gmfgen:TypeTabFilter">
-        <types>org.eclipse.gmf.runtime.notation.View</types>
-        <types>org.eclipse.gef.EditPart</types>
-        <generatedTypes>abstractNavigatorItem</generatedTypes>
-      </filter>
-    </tabs>
-  </propertySheet>
   <domainGenModel
       href="urml.genmodel#/"/>
   <expressionProviders>
@@ -2779,11 +2760,6 @@
         xsi:type="gmfgen:ExternalParser"
         uses="//@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet //@diagram/@links.5/@labels.0/@modelFacet //@diagram/@links.6/@labels.0/@modelFacet //@diagram/@links.7/@labels.0/@modelFacet //@diagram/@links.8/@labels.1/@modelFacet //@diagram/@links.9/@labels.1/@modelFacet //@diagram/@links.10/@labels.1/@modelFacet //@diagram/@links.11/@labels.1/@modelFacet //@diagram/@links.12/@labels.0/@modelFacet //@diagram/@links.13/@labels.0/@modelFacet //@diagram/@links.14/@labels.0/@modelFacet //@diagram/@links.15/@labels.0/@modelFacet //@diagram/@links.16/@labels.0/@modelFacet //@diagram/@links.17/@labels.0/@modelFacet //@diagram/@links.18/@labels.0/@modelFacet //@diagram/@links.19/@labels.0/@modelFacet //@diagram/@links.20/@labels.0/@modelFacet //@diagram/@links.21/@labels.0/@modelFacet //@diagram/@links.22/@labels.0/@modelFacet //@diagram/@links.23/@labels.0/@modelFacet"/>
   </labelParsers>
-  <contextMenus
-      context="//@diagram">
-    <items
-        xsi:type="gmfgen:LoadResourceAction"/>
-  </contextMenus>
   <contextMenus
       context="//@diagram">
     <items

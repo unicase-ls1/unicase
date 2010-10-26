@@ -705,5 +705,5 @@ public class Messages extends NLS {
 	 */
 	public static String UrmlModelingAssistantProviderMessage;
 
-	// TODO: put accessor fields manually
+	//TODO: put accessor fields manually	
 }

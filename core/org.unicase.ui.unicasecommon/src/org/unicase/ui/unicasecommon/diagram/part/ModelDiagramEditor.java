@@ -24,6 +24,7 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DiagramGraphicalViewerKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DirectEditKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
@@ -89,7 +90,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			public void focusGained(FocusEvent event) {
 				try {
 					// add association if they are not on the diagram
-					syncAssociationViews((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
+					syncDiagramView((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
 					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
 					// do nothing
@@ -110,7 +111,12 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 	}
 
-	private void syncAssociationViews(final MEDiagram diagram) {
+	/**
+	 * Adds missing AssciationClassElements and refresh the hole view in case a reference has changed.
+	 * 
+	 * @param diagram The diagram to update.
+	 */
+	private void syncDiagramView(final MEDiagram diagram) {
 		final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
 		if (context == null) {
 			return;
@@ -135,6 +141,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				}
 			}
 		}.run();
+		// refresh all views to reorientate associations
+		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(diagram);
+		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it.hasNext();) {
+			it.next().refresh();
+		}
 	}
 
 	// dengler: document
