@@ -29,7 +29,6 @@ public class ProductCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
-	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {

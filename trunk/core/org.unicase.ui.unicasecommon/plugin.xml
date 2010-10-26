@@ -33,22 +33,6 @@
             restorable="true">
       </view>
    </extension>
-   	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-		<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
-				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
-				<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-			</popupContribution>
-		</contributionItemProvider>
-				<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
-				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
-				<popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-			</popupContribution>
-		</contributionItemProvider>
-</extension>
    <extension
          point="org.eclipse.help.contexts">
       <contexts
@@ -727,7 +711,8 @@
                enablesFor="1"
                icon="icons/delete_edit.gif"
                id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               label="Delete from Diagram">
+               label="Delete from Diagram"
+               menubarPath="editGroup">
          </action>
       </objectContribution>
        <objectContribution
@@ -745,18 +730,59 @@
 	</extension>
 	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
 		<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
+			<Priority name="Highest"/>
 				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
+					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart"/>
 				<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+    <popupPredefinedItem
+          id="deleteFromModelAction"
+          remove="true">
+    </popupPredefinedItem>
+    <popupPredefinedItem
+          id="showPropertiesViewAction"
+          remove="true">
+    </popupPredefinedItem>
+    <popupPredefinedItem
+          id="properties"
+          remove="true">
+    </popupPredefinedItem>
 			</popupContribution>
-		</contributionItemProvider>
-				<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-			<Priority name="Low"/>
-				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
-				<popupPredefinedItem id="deleteFromModelAction" remove="true"/>
-			</popupContribution>
+    <popupContribution
+          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+       <popupStructuredContributionCriteria
+             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+       </popupStructuredContributionCriteria>
+       <popupPredefinedItem
+             id="showPropertiesViewAction"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="properties"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="deleteFromDiagramAction"
+             remove="true">
+       </popupPredefinedItem>
+    </popupContribution>
+    <popupContribution
+          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+       <popupStructuredContributionCriteria
+             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart">
+       </popupStructuredContributionCriteria>
+       <popupPredefinedItem
+             id="showPropertiesViewAction"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="properties"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="deleteFromDiagramAction"
+             remove="true">
+       </popupPredefinedItem>
+    </popupContribution>
 		</contributionItemProvider>
 </extension>
 
