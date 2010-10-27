@@ -8,49 +8,112 @@
           description="The activity has not been set"
           id="org.unicase.refactoring.strategies.ActivityNotSetRefactoringStrategy"
           name="The activity has not been set"
-          strategy="org.unicase.ui.refactoring.ui.strategies.ActivityNotSetRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.generic.strategies.EnumViolationRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
           description="The action item resembles a requirement that should be formalized"
           id="org.unicase.refactoring.strategies.AIEmbodiesFRRefactoringStrategy"
           name="Action item resembles functional requirement"
-          strategy="org.unicase.ui.refactoring.ui.strategies.AIEmbodiesFRRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.specific.strategies.AIEmbodiesFRRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemMissingAssigneeConstraint"
           description="The action item does not have an assignee set"
-          id="org.unicase.refactoring.strategies.AssigneMissingRefactoringStrategy"
+          id="org.unicase.refactoring.strategies.ActionItemMissingAssigneeRefactoringStrategy"
           name="Action item assignee not set"
-          strategy="org.unicase.ui.refactoring.ui.strategies.AssigneMissingRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.generic.strategies.AnyFeatureViolationRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.task.validation.ActionItemMissingReviewerConstraint"
+          description="The action item does not have a reviewer set"
+          id="org.unicase.refactoring.strategies.ActionItemMissingReviewerRefactoringStrategy"
+          name="Action item reviewer not set"
+          strategy="org.unicase.ui.refactoring.generic.strategies.AnyFeatureViolationRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemMissingWorkpackageConstraint"
           description="The action item is missing a container work package"
           id="org.unicase.refactoring.strategies.ActionItemNotInWorkPackageRefactoringStrategy"
           name="Action item missing work package"
-          strategy="org.unicase.ui.refactoring.ui.strategies.ActionItemNotInWorkPackageRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.specific.strategies.ActionItemMissingWorkPackageRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.rationale.validation.DiscussionShouldBeIssueConstraint"
           description="The discussion in the model element could actually be an issue and therefore require to be moved to one"
           id="org.unicase.refactoring.strategies.DiscussionIntoIssueRefactoringStrategy"
           name="Discussion could be issue"
-          strategy="org.unicase.ui.refactoring.ui.strategies.DiscussionIntoIssueRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.specific.strategies.DiscussionIntoIssueRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.validation.ModelElementNewNameConstraint"
           description="The model element has a default name which does not explain what it is about"
           id="org.unicase.refactoring.strategies.MENewNameRefactoringStrategy"
           name="Model element has a default name"
-          strategy="org.unicase.ui.refactoring.ui.strategies.MENewNameRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.specific.strategies.MENewNameRefactoringStrategy">
     </refactoringStrategy>
     <refactoringStrategy
           applicableFor="org.unicase.model.task.validation.ActionItemMissingFunctionalRequirementConstraint"
           description="The action item is not annotated to a functional requirement"
           id="org.unicase.refactoring.strategies.ActionItemNotAnnotatedRefactoringStrategy"
           name="Action item missing functional requirement"
-          strategy="org.unicase.ui.refactoring.ui.strategies.ActionItemNotAnnotatedRefactoringStrategy">
+          strategy="org.unicase.ui.refactoring.specific.strategies.ActionItemMissingFunctionalRequirementRefactoringStrategy">
     </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.bug.validation.BugReportMissingAssigneeConstraint"
+          description="Bug report does not have an assignee set"
+          id="org.unicase.refactoring.strategies.BugReportMissingAssigneeRefactoringStrategy"
+          name="Bug report assignee not set"
+          strategy="org.unicase.ui.refactoring.generic.strategies.SingleLinkViolationRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.model.bug.validation.BugReportMissingReviewerConstraint"
+          description="Bug report does not have a reviewer set"
+          id="org.unicase.refactoring.strategies.BugReportMissingReviewerRefactoringStrategy"
+          name="Bug report reviewer not set"
+          strategy="org.unicase.ui.refactoring.generic.strategies.SingleLinkViolationRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.constraint.generic.all"
+          description="Generic set new value or reference dialog"
+          id="org.unicase.refactoring.generic.strategies.AnyFeatureViolationRefactoringStrategy"
+          name="Generic set new value or reference dialog"
+          strategy="org.unicase.ui.refactoring.generic.strategies.AnyFeatureViolationRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.constraint.group"
+          description="Delete all model elements with default name"
+          id="org.unicase.refactoring.group.strategies.DeleteDefaultNameElementsRefactoringStrategy"
+          name="Delete all model elements with default name"
+          strategy="org.unicase.ui.refactoring.group.strategies.DeleteDefaultNameElementsRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.constraint.group"
+          description="Delete all invalid elements"
+          id="org.unicase.refactoring.group.strategies.DeleteAllInvalidElementsRefactoringStrategy"
+          name="Delete all invalid elements"
+          strategy="org.unicase.ui.refactoring.group.strategies.DeleteAllInvalidElementsRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.constraint.group"
+          description="Assign all unassigned work items to a specific user"
+          id="org.unicase.refactoring.group.strategies.AssignWorkItemToUserRefactoringStrategy"
+          name="Assign all unassigned work items to a specific user"
+          strategy="org.unicase.ui.refactoring.group.strategies.AssignWorkItemToUserRefactoringStrategy">
+    </refactoringStrategy>
+    <refactoringStrategy
+          applicableFor="org.unicase.constraint.group"
+          description="Review all unassigned work items by a specific user"
+          id="org.unicase.refactoring.group.strategies.ReviewWorkItemByUserRefactoringStrategy"
+          name="Review all unassigned work items by a specific user"
+          strategy="org.unicase.ui.refactoring.group.strategies.ReviewWorkItemByUserRefactoringStrategy">
+    </refactoringStrategy>
+ </extension>
+ <extension
+       point="org.unicase.ui.validation.filters">
+    <filter
+          filter="org.unicase.ui.refactoring.filters.CreatorFilter"
+          name="org.unicase.ui.refactoring.filters.CreatorFilter">
+    </filter>
  </extension>
 </plugin>
