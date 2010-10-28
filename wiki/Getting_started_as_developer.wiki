@@ -9,11 +9,11 @@ We currently use the following development tools:
           o Ecore Tools <br>
 
     * Eclipse Plugins (install via Update Manager)
+          o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
+            o If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL <br>
           o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
           o COPE: http://cope.in.tum.de/update-site/site.xml<br>
             o NOTE: If you have already installed the runtime feature from the UNICASE update site, you will be notified.<br>
-          o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
-            o If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL <br>
           o Checkstyle (use version 4.4.x - check the *version* number): - http://eclipse-cs.sourceforge.net/update<br>
           o Findbugs (for static code checking): http://findbugs.cs.umd.edu/eclipse<br>
           o SWTBOT (for UI testing): Please find [http://www.eclipse.org/swtbot/downloads.php here] the update site that is compatible with your eclipse version<br>
