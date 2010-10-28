@@ -1,9 +1,6 @@
 package org.unicase.iterationplanner.planner.impl;
 
-import java.util.List;
-
 import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.planner.AssigneeAvailability;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
 import org.unicase.iterationplanner.planner.IterationPlan;
@@ -20,15 +17,10 @@ public class MyEvaluator extends Evaluator {
 		// for assignee wie viele tasks in iter? sum(estimate for tasks for assignee)
 		// compare estimate sum with avail. of dev.
 		int numOfIterations = getIterationPlan().getNumOfIterations();
-		if (numOfIterations != getAssigneeAvailabilities().keySet().size()) {
-			throw new RuntimeException(
-				"Number of iterations in iteration plan, and number of iterations in assignee availabilites map do not match.");
-		}
-
 		double sum = 0.0;
 		int count = 0;
-		for (Integer i : getAssigneeAvailabilities().keySet()) {
-			for (AssigneeAvailability av : getAssigneeAvailabilities().get(i)) {
+		for (int i = 0; i < numOfIterations; i++) {
+			for (Assignee assignee : iterPlan.getAssignees()) {
 				// get an average for on all scores for all assignees in all iterations. (normalize: 1.0 *
 				// numOfIterations * numOfAssignees)
 				// iteration, assignee
@@ -38,12 +30,14 @@ public class MyEvaluator extends Evaluator {
 				// to get you out
 				// else score = estimate / availability
 				// sum += score
-				int estimateForAssigneeInIteration = getEstimateForAssigneeInIteration(i.intValue(), av.getAssignee());
-				int availability = av.getAvailability();
+				int estimateForAssigneeInIteration = iterPlan.getSumOfEstimateForIterationAndAssignee(i, assignee);
+				int availability = getAssigneeAvailabilityManager().getAvailability(i, assignee);
 				if (estimateForAssigneeInIteration > availability) {
+					System.out.println("dev load delta: " + (availability - estimateForAssigneeInIteration));
 					return 0.0;
 				} else {
-					double scoreForAssigneeInIteration = estimateForAssigneeInIteration / availability;
+					double scoreForAssigneeInIteration = (double) estimateForAssigneeInIteration
+						/ (double) availability;
 					sum += scoreForAssigneeInIteration;
 				}
 				count++;
@@ -54,16 +48,6 @@ public class MyEvaluator extends Evaluator {
 		// avg is already between 0 and 1. Because max scoreForAssigneeInIteration is 1.0, then the
 		// highest possible value of sum would be 1.0 * count
 		return avg;
-	}
-
-	private int getEstimateForAssigneeInIteration(int iterNumber, Assignee assignee) {
-		int result = 0;
-		List<PlannedTask> tasksForIterationAndAssignee = getIterationPlan().getAllPlannedTasksForIterationAndAssignee(
-			iterNumber, assignee);
-		for (PlannedTask pt : tasksForIterationAndAssignee) {
-			result += pt.getTask().getEstimate();
-		}
-		return result;
 	}
 
 	@Override

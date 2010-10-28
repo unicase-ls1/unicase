@@ -32,15 +32,14 @@ public class PlannedTask {
 		return task;
 	}
 
-	public void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
+	protected void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
 		this.assigneeExpertise = assigneeExpertise;
 	}
 
 	@Override
 	public String toString() {
-		String result = "Iteration: " + iterationNumber + " ---> "
-			+ assigneeExpertise.getAssignee().getOrgUnit().getName() + " ---> " + task.getWorkItem().getName()
-			+ " (Obejct: " + super.toString() + ")";
+		String result = "Iteration: " + iterationNumber + " ---> " + assigneeExpertise.getAssignee().toString()
+			+ " ---> " + task.getWorkItem().getName() + " (Obejct: " + super.toString() + ")";
 		return result;
 	}
 

@@ -106,8 +106,8 @@ public class PlannerUtil {
 		switch (numOfIterations) {
 		case 1: {
 			if (priority >= 7) {
-				p[0] = 0.85;
-				p[1] = 0.15;
+				p[0] = 0.9;
+				p[1] = 0.1;
 			} else if (priority >= 4 && priority < 7) {
 				p[0] = 0.7;
 				p[1] = 0.3;
@@ -229,28 +229,18 @@ public class PlannerUtil {
 	/**
 	 * @return
 	 */
-	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees,
-		List<AssigneeExpertise> excludes) {
-
-		List<AssigneeExpertise> assignees = new ArrayList<AssigneeExpertise>();
-		assignees.addAll(potentialAssignees);
-		assignees.removeAll(excludes);
-
-		double p[] = new double[assignees.size()];
+	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees) {
+		double p[] = new double[potentialAssignees.size()];
 		double sumExpertise = 0.0;
-		for (AssigneeExpertise ae : assignees) {
+		for (AssigneeExpertise ae : potentialAssignees) {
 			sumExpertise += ae.getExpertise();
 		}
 		if (sumExpertise == 0.0) {
 			// nobody is expert! everybody has expertise == 0
 			return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
 		}
-		if (assignees.size() == 0) {
-
-			return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
-		}
-		for (int i = 0; i < assignees.size(); i++) {
-			AssigneeExpertise ae = assignees.get(i);
+		for (int i = 0; i < potentialAssignees.size(); i++) {
+			AssigneeExpertise ae = potentialAssignees.get(i);
 			p[i] = ae.getExpertise() / sumExpertise;
 		}
 
@@ -258,12 +248,12 @@ public class PlannerUtil {
 		double sum = 0.0;
 		for (int i = 0; i < p.length; i++) {
 			if (measure >= sum && measure < sumExpertise + p[i]) {
-				return assignees.get(i);
+				return potentialAssignees.get(i);
 			}
 			sumExpertise += p[i];
 		}
 
-		return assignees.get(getRandom().nextInt(potentialAssignees.size()));
+		return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
 	}
 
 	private void setRandom(Random random) {

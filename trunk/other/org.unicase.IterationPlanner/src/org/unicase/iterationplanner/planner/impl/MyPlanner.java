@@ -3,14 +3,12 @@ package org.unicase.iterationplanner.planner.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.Task;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.AssigneeAvailability;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
@@ -21,10 +19,10 @@ import org.unicase.iterationplanner.planner.Selector;
 public class MyPlanner extends Planner {
 
 	public MyPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
-		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities, Evaluator iterationPlanEvaluator,
-		Selector selector, PlannerParameters plannerParameters) {
-		super(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilities, iterationPlanEvaluator, selector,
-			plannerParameters);
+		AssigneeAvailabilityManager assigneeAvailabilityManager, Evaluator iterationPlanEvaluator, Selector selector,
+		PlannerParameters plannerParameters) {
+		super(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, iterationPlanEvaluator,
+			selector, plannerParameters);
 	}
 
 	@Override
@@ -64,62 +62,31 @@ public class MyPlanner extends Planner {
 
 	private IterationPlan createIterationPlan() {
 		Random random = getPlannerParameters().getRandom();
-		IterationPlan iterPlan = new IterationPlan(getNumOfIterations());
+		IterationPlan iterPlan = new IterationPlan(getNumOfIterations(), getAssigneeAvailabilityManager());
 
 		for (Task taskToPlan : getTaskPotentialAssigneeListMap().keySet()) {
 			// set assignee and put it into an iteration
 			PlannedTask plannedTask = new PlannedTask(taskToPlan);
+			// we must first add this task to planned tasks, so that it is considered for computing total estimate for
+			// an assignee in an iteration
+			iterPlan.getPlannedTasks().add(plannedTask);
 			int iterationNumber = PlannerUtil.getInstance(random).getIterationNumberProbabilistic(taskToPlan,
 				getNumOfIterations());
 			iterPlan.setIterationNumberFor(plannedTask, iterationNumber);
 
 			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
 			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
-			plannedTask.setAssigneeExpertise(findAssignee(potentialAssignees, iterPlan, plannedTask
-				.getIterationNumber()));
+			AssigneeExpertise assignee = findAssignee(potentialAssignees);
+			iterPlan.setAssigneeFor(plannedTask, assignee);
 
-			// remove it from task to plan, and put in planned tasks.
-			iterPlan.getPlannedTasks().add(plannedTask);
 		}
 
 		return iterPlan;
 	}
 
-	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees, IterationPlan iterPlan,
-		int iterationNumber) {
+	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees) {
 
-		List<AssigneeExpertise> excludes = new ArrayList<AssigneeExpertise>();
-		if (iterationNumber != iterPlan.getBacklogNumber()) {
-			for (AssigneeExpertise ae : potentialAssignees) {
-				List<PlannedTask> allPlannedTasksForIterationAndAssignee = iterPlan
-					.getAllPlannedTasksForIterationAndAssignee(iterationNumber, ae.getAssignee());
-				int sumOfEstimate = getSumOfEstimate(allPlannedTasksForIterationAndAssignee);
-				int availability = getAvailabilityForIteration(ae.getAssignee(), iterationNumber);
-				if (sumOfEstimate > availability) {
-					excludes.add(ae);
-				}
-			}
-		}
-		return PlannerUtil.getInstance(getPlannerParameters().getRandom()).getAssigneeProbabilistic(potentialAssignees,
-			excludes);
-	}
-
-	private int getAvailabilityForIteration(Assignee assignee, int iterationNumber) {
-		List<AssigneeAvailability> assigneeAvailabilities = getAssigneeAvailabilities().get(iterationNumber);
-		for (AssigneeAvailability aa : assigneeAvailabilities) {
-			if (aa.getAssignee().equals(assignee)) {
-				return aa.getAvailability();
-			}
-		}
-		return 0;
-	}
-
-	private int getSumOfEstimate(List<PlannedTask> allPlannedTasksForIterationAndAssignee) {
-		int sumOfEstimate = 0;
-		for (PlannedTask pt : allPlannedTasksForIterationAndAssignee) {
-			sumOfEstimate += pt.getTask().getEstimate();
-		}
-		return sumOfEstimate;
+		return PlannerUtil.getInstance(getPlannerParameters().getRandom()).getAssigneeProbabilistic(potentialAssignees);
 	}
 
 	@Override
@@ -193,9 +160,11 @@ public class MyPlanner extends Planner {
 		PlannedTask mutatedTask = new PlannedTask(taskToMutate.getTask());
 		List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToMutate.getTask());
 		// how to select assignee for mutated task? the best? random?
-		mutatedTask.setAssigneeExpertise(potentialAssignees.get(0));
-		mutantIterationPlan.setIterationNumberFor(mutatedTask, (oldIterationNumber + 1)
-			% mutantIterationPlan.getNumOfIterations());
+		AssigneeExpertise assigneeExpertise = findAssignee(potentialAssignees);
+		int iterationNumber = PlannerUtil.getInstance(getPlannerParameters().getRandom())
+			.getIterationNumberProbabilistic(mutatedTask.getTask(), getNumOfIterations());
+		mutantIterationPlan.setIterationNumberFor(mutatedTask, iterationNumber);
+		mutantIterationPlan.setAssigneeFor(mutatedTask, assigneeExpertise);
 
 		return mutatedTask;
 	}

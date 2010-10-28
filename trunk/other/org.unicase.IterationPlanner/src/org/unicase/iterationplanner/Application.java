@@ -1,9 +1,7 @@
 package org.unicase.iterationplanner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -17,7 +15,7 @@ import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommender;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
 import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.AssigneeAvailability;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
 import org.unicase.iterationplanner.planner.IterationPlan;
@@ -58,7 +56,7 @@ public class Application implements IApplication {
 
 	@SuppressWarnings("unused")
 	private void testGetAssigneeProbabilistic() {
-		Random random = new Random();
+		Random random = new Random(1);
 		System.out.println("Iteration Planner started!");
 
 		Project project = getProject();
@@ -83,14 +81,13 @@ public class Application implements IApplication {
 			System.out.println();
 			System.out.println("========================================================================");
 			System.out.println(tpal.getTask().getWorkItem().getName());
-			PlannerUtil.getInstance(random).getAssigneeProbabilistic(tpal.getRecommendedAssignees(),
-				new ArrayList<AssigneeExpertise>());
+			PlannerUtil.getInstance(random).getAssigneeProbabilistic(tpal.getRecommendedAssignees());
 		}
 	}
 
 	@SuppressWarnings("unused")
 	private void testGetIterationNumberProbabilistic() {
-		Random random = new Random();
+		Random random = new Random(1);
 
 		for (int i = 0; i < 10; i++) {
 			int numOfIterations = 4; // random.nextInt(5) + 1;
@@ -113,8 +110,8 @@ public class Application implements IApplication {
 		System.out.println("retrieved tasks: " + TaskPool.getInstance().getTasksToPlan().size() + " tasks.");
 
 		// init assignee pool
-		List<User> assignees = getAssignees(project);
-		AssigneePool.getInstance().setAssignees(assignees);
+		List<User> users = getAssignees(project);
+		AssigneePool.getInstance().setAssignees(users);
 		System.out.println("retrieved users: " + AssigneePool.getInstance().getAssignees().size() + " assignees.");
 
 		// start assignee recommender
@@ -125,9 +122,9 @@ public class Application implements IApplication {
 		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
 		// prepare parameters for iteration planner
-		int numOfIterations = 3;
-		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities = getAssigneeAvailabilities(numOfIterations,
-			assignees);
+		int numOfIterations = 2;
+		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
+			AssigneePool.getInstance().getAssignees());
 
 		double expertiesWeight = 1.0;
 		double priorityWeight = 1.0;
@@ -136,9 +133,9 @@ public class Application implements IApplication {
 			developerLoadWeight);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 50;
+		int populationSize = 5;
 		int resultSize = 5;
-		int maxNumOfGenerations = 10;
+		int maxNumOfGenerations = 0;
 		int percentOfCrossOverChildren = 60;
 		int precentOfMutants = 20;
 		int percentOfClones = 20;
@@ -154,7 +151,7 @@ public class Application implements IApplication {
 		Selector selector = new MySelector(plannerParameters.getRandom());
 
 		// start planner
-		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilities,
+		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager,
 			iterationPlanEvaluator, selector, plannerParameters);
 		List<IterationPlan> result = myPlanner.start();
 
@@ -195,39 +192,39 @@ public class Application implements IApplication {
 			System.out.println();
 
 			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {
-				outputIteration(j, iterPlan.getAllPlannedTasksForIteration(j));
+				outputIteration(j, iterPlan.getAllPlannedTasksForIteration(j), "\t************************* Iteration "
+					+ j + " *********************");
 			}
+			outputIteration(iterPlan.getBacklogNumber(), iterPlan.getAllPlannedTasksForIteration(iterPlan
+				.getBacklogNumber()), "\t************************** Backlog ************************");
 		}
 
 	}
 
-	private void outputIteration(int iterationNumber, Set<PlannedTask> plannedTasks) {
+	private void outputIteration(int iterationNumber, Set<PlannedTask> plannedTasks, String title) {
 		System.out.println();
-		System.out.println("\t************************* Iteration " + iterationNumber + " *********************");
+
+		System.out.println(title);
 		System.out.println("\t***********************************************************");
 		int i = 1;
 		for (PlannedTask plannedTask : plannedTasks) {
-			System.out.println("\t" + i + ". "
-				+ plannedTask.getAssigneeExpertise().getAssignee().getOrgUnit().getName() + " ---> "
-				+ plannedTask.getTask().getWorkItem().getName());
+			System.out.println("\t" + i + ". " + plannedTask.getAssigneeExpertise().getAssignee() + " ---> "
+				+ plannedTask.getTask().getWorkItem().getName() + " (prio: " + plannedTask.getTask().getPriority()
+				+ ")");
 			i++;
 		}
 	}
 
-	private Map<Integer, List<AssigneeAvailability>> getAssigneeAvailabilities(int numOfIterations, List<User> assignees)
-		throws Exception {
-		Map<Integer, List<AssigneeAvailability>> result = new HashMap<Integer, List<AssigneeAvailability>>();
+	private AssigneeAvailabilityManager createAssigneeAvailabilityManager(int numOfIterations, List<Assignee> assignees) {
+		AssigneeAvailabilityManager assigneeAvailabilityManager = new AssigneeAvailabilityManager(numOfIterations);
 		for (int i = 0; i < numOfIterations; i++) {
-			List<AssigneeAvailability> assigneeAvailabilities = new ArrayList<AssigneeAvailability>();
 			// assume every assignee is 40 hours available in an iteration.
-			for (User user : assignees) {
-				assigneeAvailabilities.add(new AssigneeAvailability(new Assignee(user), 40));
+			for (Assignee assignee : assignees) {
+				assigneeAvailabilityManager.setAvailability(i, assignee, 40);
 			}
-
-			result.put(new Integer(i), assigneeAvailabilities);
 		}
 
-		return result;
+		return assigneeAvailabilityManager;
 	}
 
 	private void outputAssigneeRecommendationResults(List<TaskPotentialAssigneeList> taskPotentialAssigneeLists) {
@@ -238,8 +235,7 @@ public class Application implements IApplication {
 			for (AssigneeExpertise ae : tpaList.getRecommendedAssignees()) {
 				// System.out.println("\t\t\t" + i + ". " + ae.getAssignee().getOrgUnit().getName() + "\t\t%8"
 				// + ae.getExpertise());
-				System.out.printf("\t\t\t %d. %-20s \t %f \n", i, ae.getAssignee().getOrgUnit().getName(), ae
-					.getExpertise());
+				System.out.printf("\t\t\t %d. %-20s \t %f \n", i, ae.getAssignee(), ae.getExpertise());
 				i++;
 			}
 			j++;
@@ -278,6 +274,26 @@ public class Application implements IApplication {
 				}
 			}
 		}
+
+		// final Random random = new Random(1);
+		// final List<WorkItem> result = new ArrayList<WorkItem>();
+		// for (int i = 0; i < 150; i++) {
+		// int index = random.nextInt(workItems.size());
+		// result.add(workItems.get(index));
+		// workItems.remove(index);
+		// }
+		// new UnicaseCommand() {
+		//
+		// @Override
+		// protected void doRun() {
+		// for (int j = 0; j < result.size(); j++) {
+		// result.get(j).setEstimate(random.nextInt(11)); //
+		// result.get(j).setPriority(random.nextInt(11));
+		// }
+		// }
+		// }.run();
+		//
+		// return result;
 		return workItems;
 	}
 

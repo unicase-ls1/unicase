@@ -5,19 +5,33 @@ import org.unicase.model.organization.User;
 
 public class Assignee {
 
-	private OrgUnit assignee;
+	private OrgUnit orgUnit;
 
-	public Assignee(OrgUnit assignee) throws Exception {
-		if (assignee instanceof User) {
-			this.assignee = assignee;
+	public Assignee(OrgUnit orgUnit) throws Exception {
+		if (orgUnit instanceof User) {
+			this.orgUnit = orgUnit;
 		} else {
 			throw new Exception("Assignee must be an instance of User class");
 		}
 
 	}
 
-	public OrgUnit getOrgUnit() {
-		return assignee;
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Assignee)) {
+			return false;
+		}
+
+		return ((Assignee) obj).getOrgUnit().equals(this.orgUnit);
+	}
+
+	protected OrgUnit getOrgUnit() {
+		return orgUnit;
+	}
+
+	@Override
+	public String toString() {
+		return getOrgUnit().getName();
 	}
 
 }
