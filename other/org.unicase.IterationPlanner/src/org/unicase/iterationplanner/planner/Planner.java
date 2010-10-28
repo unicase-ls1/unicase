@@ -14,7 +14,7 @@ public abstract class Planner {
 
 	private final int numOfIterations;
 	private final Map<Task, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
-	private final Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities;
+	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
 	private final Evaluator evaluator;
 	private final Selector selector;
 	private final PlannerParameters plannerParameters;
@@ -29,11 +29,11 @@ public abstract class Planner {
 	 * @param plannerParameters
 	 */
 	public Planner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
-		Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities, Evaluator iterationPlanEvaluator,
-		Selector selector, PlannerParameters plannerParameters) {
+		AssigneeAvailabilityManager assigneeAvailabilityManager, Evaluator iterationPlanEvaluator, Selector selector,
+		PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
 		this.taskPotentialAssigneeListMap = initTaskPotenitalAssigneeListMap(taskPotentialAssigneeLists);
-		this.assigneeAvailabilities = assigneeAvailabilities;
+		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
 		this.evaluator = iterationPlanEvaluator;
 		this.selector = selector;
 		this.plannerParameters = plannerParameters;
@@ -133,7 +133,7 @@ public abstract class Planner {
 	 */
 	private void evalutate() {
 		for (IterationPlan iterationPlan : population) {
-			double score = evaluator.evaluate(iterationPlan, assigneeAvailabilities);
+			double score = evaluator.evaluate(iterationPlan, assigneeAvailabilityManager);
 			iterationPlan.setScore(score);
 		}
 	}
@@ -142,8 +142,8 @@ public abstract class Planner {
 		return numOfIterations;
 	}
 
-	public Map<Integer, List<AssigneeAvailability>> getAssigneeAvailabilities() {
-		return assigneeAvailabilities;
+	public AssigneeAvailabilityManager getAssigneeAvailabilityManager() {
+		return assigneeAvailabilityManager;
 	}
 
 	public Evaluator getIterationPlanEvaluator() {

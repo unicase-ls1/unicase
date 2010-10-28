@@ -1,8 +1,5 @@
 package org.unicase.iterationplanner.planner;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * The evaluator evaluates an IterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
  * an overall score for IterationPlan.
@@ -13,16 +10,17 @@ public abstract class Evaluator {
 
 	private final EvaluatorParameters evaluationParameters;
 	private IterationPlan iterationPlan;
-	private Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities;
+	private AssigneeAvailabilityManager assigneeAvailabilityManager;
 
 	public Evaluator(EvaluatorParameters evaluationParameters) {
 		this.evaluationParameters = evaluationParameters;
 	}
 
 	public double evaluate(final IterationPlan iterationPlan,
-		final Map<Integer, List<AssigneeAvailability>> assigneeAvailabilities) {
+		final AssigneeAvailabilityManager assigneeAvailabilityManager) {
+
 		this.iterationPlan = iterationPlan;
-		this.assigneeAvailabilities = assigneeAvailabilities;
+		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
 		double expertiseScore = evaluateExpertise(getIterationPlan());
 		double taskPriorityScore = evaluteTaskPriorities(getIterationPlan());
 		double devLoadScore = evaluateAssigneeLoad(getIterationPlan());
@@ -46,8 +44,8 @@ public abstract class Evaluator {
 		return iterationPlan;
 	}
 
-	protected Map<Integer, List<AssigneeAvailability>> getAssigneeAvailabilities() {
-		return assigneeAvailabilities;
+	protected AssigneeAvailabilityManager getAssigneeAvailabilityManager() {
+		return assigneeAvailabilityManager;
 	}
 
 }
