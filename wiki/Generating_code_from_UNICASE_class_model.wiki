@@ -16,7 +16,7 @@ http://unicase.googlecode.com/files/0.Select_Empty_Emf_Project_Wizard.png
 
 <br> 
 
-*  2. * Open UNICASE perspective and right click on the package you want to generate ecore model from and select *Generate Ecore*.
+*  2. * Open UNICASE perspective and right click on the package you want to generate ecore model from and select *Generate Ecore*. (Package from the example: Analysis and Design Document/Subsystems/Model/codeTrace)
 
 <br>
 
