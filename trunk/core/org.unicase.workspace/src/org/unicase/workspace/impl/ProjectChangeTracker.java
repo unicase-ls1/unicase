@@ -8,6 +8,7 @@ package org.unicase.workspace.impl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -27,6 +28,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -68,8 +71,16 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private NotificationRecorder notificationRecorder;
 	private CompositeOperation compositeOperation;
 	private boolean autoSave;
-	// TODO: EM
-	// private boolean splitResource;
+
+	/**
+	 * Indicates whether a resource may be split when a model element has been added.
+	 */
+	private boolean splitResource;
+
+	/**
+	 * Used for recognizing notifications that result from reversing an operation.
+	 */
+	private boolean isReverseNotification;
 
 	/**
 	 * Name of unknown creator.
@@ -102,6 +113,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		this.projectSpace = projectSpace;
 		this.isRecording = false;
 		this.autoSave = true;
+		this.splitResource = true;
+		this.isReverseNotification = false;
 		dirtyResourceSet = new DirtyResourceSet();
 
 		if (!projectSpace.isTransient()) {
@@ -178,27 +191,50 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		addElementToResouce(modelElement);
 	}
 
+	/**
+	 * Tries to add the given model element to the resource of the parent. If it hereby loses its parent, the split is
+	 * reversed.
+	 * 
+	 * @param modelElement the model element to be added to the resource
+	 * @return true, is a split occurred successfully, else false
+	 */
+	private boolean addToParentResourceIfPossible(XMIResource resource, EObject modelElement) {
+
+		if (!splitResource) {
+			return false;
+		}
+
+		EObject parent = modelElement.eContainer();
+		ChangeRecorder changeRecorder = new ChangeRecorder();
+		changeRecorder.beginRecording(Collections.singleton(parent));
+		// try to pin resource
+		resource.getContents().add(modelElement);
+		ChangeDescription changeDesc = changeRecorder.endRecording();
+
+		if (modelElement.eContainer() != parent) {
+			splitResource = false;
+			isReverseNotification = true;
+			// model element lost its parent, revert changes
+			changeDesc.apply();
+			isReverseNotification = false;
+			return false;
+		}
+
+		setModelElementIdAndChildrenIdOnResource(resource, modelElement);
+
+		return true;
+	}
+
 	private void addElementToResouce(final EObject modelElement) {
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
-		oldResource.getContents().add(modelElement);
-		// TODO: EM
-		// EObject parent = modelElement.eContainer();
-		// if (splitResource) {
-		// // try to pin resource
-		// oldResource.getContents().add(modelElement);
-		// if (!parent.eContents().contains(modelElement)) {
-		// // model element lost its parent, reverse
-		// oldResource.getContents().remove(modelElement);
-		// splitResource = false;
-		// }
-		// }
-		setModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
+		addToParentResourceIfPossible(oldResource, modelElement);
 		URI oldUri = oldResource.getURI();
+		String oldFileName = oldUri.toFileString();
+
 		if (!oldUri.isFile()) {
 			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
 		}
-		String oldFileName = oldUri.toFileString();
-		// TODO: EM
+
 		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) { // && splitResource) {
 			String newfileName = Configuration.getWorkspaceDirectory() + Configuration.getProjectSpaceDirectoryPrefix()
 				+ projectSpace.getIdentifier() + File.separatorChar + Configuration.getProjectFolderName()
@@ -209,26 +245,16 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
 			XMIResource newResource = (XMIResource) oldResource.getResourceSet().createResource(fileURI);
-			// unset ID on old resource
-			unsetModelElementIdAndChildrenIdOnResource(modelElement, oldResource);
-			// try to pin modelelement on new resourcemai
-			newResource.getContents().add(modelElement);
 
-			// TODO: EM
-			// check whether
-			// if (!parent.eContents().contains(modelElement)) {
-			// // model element lost its parent, reverse
-			// newResource.getContents().remove(modelElement);
-			// splitResource = false;
-			// }
-
-			// set ID on created resource again
-			setModelElementIdAndChildrenIdOnResource(modelElement, newResource);
+			if (addToParentResourceIfPossible(newResource, modelElement)) {
+				// if resource has been successfully, remove IDs of model element on old resource
+				unsetModelElementIdAndChildrenIdOnResource(oldResource, modelElement);
+			}
 		}
 		save(modelElement);
 	}
 
-	private void setModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
+	private void setModelElementIdAndChildrenIdOnResource(XMIResource resource, EObject modelElement) {
 		String modelElementId = projectSpace.getProject().getModelElementId(modelElement).getId();
 		resource.setID(modelElement, modelElementId);
 
@@ -240,7 +266,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 	}
 
-	private void unsetModelElementIdAndChildrenIdOnResource(EObject modelElement, XMIResource resource) {
+	private void unsetModelElementIdAndChildrenIdOnResource(XMIResource resource, EObject modelElement) {
 		resource.setID(modelElement, null);
 
 		TreeIterator<EObject> it = modelElement.eAllContents();
@@ -296,6 +322,12 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
+
+		// ignore notifications from reversing an operation in case
+		// resource splitting failed
+		if (isReverseNotification) {
+			return;
+		}
 
 		// filter unwanted notifications
 		if (FilterStack.DEFAULT.check(new NotificationInfo(notification))) {
@@ -724,13 +756,22 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		autoSave = newValue;
 	}
 
-	// TODO: EM
-	// public void setSplitResource(boolean splitResource) {
-	// this.splitResource = splitResource;
-	// }
-	//
-	// public boolean isSplitResource() {
-	// return splitResource;
-	// }
+	/**
+	 * Sets whether a resource split may occur when a model element is added.
+	 * 
+	 * @param splitResource whether resource splitting should occur
+	 */
+	public void setSplitResource(boolean splitResource) {
+		this.splitResource = splitResource;
+	}
+
+	/**
+	 * Determines whether resource splitting is enabled.
+	 * 
+	 * @return true, if resource splitting may occur
+	 */
+	public boolean isSplitResource() {
+		return splitResource;
+	}
 
 }
