@@ -119,7 +119,11 @@ public abstract class AbstractRefactoringWizardPage extends WizardPage {
 		// create creator icon
 		createIconLabel(composite, "filtertouser.png");
 		// create affected model element creator text
-		createText(composite, "Creator: " + getRefactoringWizard().getInvalidModelElement().getCreator(), true);
+		String creator = getRefactoringWizard().getInvalidModelElement().getCreator();
+		if(creator == null) {
+			creator = "unknown";
+		}
+		createText(composite, "Creator: " + creator, true);
 		// create date icon
 		createIconLabel(composite, "date.png");
 		// create affected model element created text

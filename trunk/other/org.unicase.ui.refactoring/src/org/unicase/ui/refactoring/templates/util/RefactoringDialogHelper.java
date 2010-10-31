@@ -94,7 +94,11 @@ public class RefactoringDialogHelper {
 		// create creator icon
 		createIconLabel(composite, "filtertouser.png");
 		// create affected model element creator text
-		createText(composite, "Creator: " + unicaseModelElement.getCreator(), true);
+		String creator = unicaseModelElement.getCreator();
+		if(creator == null) {
+			creator = "unknown";
+		}
+		createText(composite, "Creator: " + creator, true);
 		// create date icon
 		createIconLabel(composite, "date.png");
 		// create affected model element created text
@@ -113,7 +117,7 @@ public class RefactoringDialogHelper {
 		// create date icon
 		createIconLabel(composite, "pencil.png");
 		// create affected model element description
-		createText(composite, "Description: "+ unicaseModelElement.getDescriptionPlainText(), true);
+		createText(composite, "Description: "+ unicaseModelElement.getDescriptionPlainText(), false);
 	}
 
 	/**
