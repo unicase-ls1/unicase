@@ -2,8 +2,9 @@
 <feature
       id="org.unicase.openUrl.feature"
       label="UNICASE OpenUrl Feature"
-      version="1.0.0.qualifier"
-      provider-name="unicase.org">
+      version="0.4.5"
+      provider-name="unicase.org"
+      plugin="org.unicase.client.branding">
    <install-handler handler=""/>
 
    <description url="http://www.unicase.org">
@@ -230,27 +231,13 @@ litigation.
       <import plugin="org.unicase.workspace.ui" version="0.3.44" match="greaterOrEqual"/>
       <import plugin="org.unicase.model"/>
       <import feature="org.unicase.client" version="0.3.43.internal"/>
-      <import plugin="org.eclipse.equinox.common" version="3.5.0" match="compatible"/>
-      <import plugin="org.eclipse.osgi"/>
-      <import plugin="org.eclipse.equinox.preferences"/>
-      <import plugin="org.eclipse.equinox.p2.core"/>
-      <import plugin="org.eclipse.equinox.p2.engine"/>
-      <import plugin="org.eclipse.equinox.p2.garbagecollector"/>
-      <import plugin="org.eclipse.equinox.frameworkadmin"/>
-      <import plugin="org.eclipse.equinox.p2.artifact.repository"/>
-      <import plugin="org.eclipse.equinox.p2.metadata"/>
-      <import plugin="org.eclipse.equinox.p2.metadata.repository"/>
-      <import plugin="org.eclipse.equinox.p2.repository"/>
-      <import plugin="org.eclipse.equinox.simpleconfigurator.manipulator"/>
-      <import plugin="org.eclipse.equinox.p2.publisher"/>
-      <import plugin="org.eclipse.equinox.p2.director"/>
    </requires>
 
    <plugin
          id="org.unicase.openUrl"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.4.5"
          unpack="false"/>
 
    <data
