@@ -75,7 +75,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * @param parent the parent
 	 * @return null
 	 */
-	@Override
+	
 	protected Control createExtendedContentArea(Composite parent) {
 		return null;
 	}
@@ -84,7 +84,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * Returns a new instance of class UserFilter.
 	 * @return new instance of class UserFilter
 	 */
-	@Override
+	
 	protected ItemsFilter createFilter() {
 		return new UserFilter();
 	}
@@ -95,7 +95,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * @param itemsFilter the used items filter
 	 * @param progressMonitor a progress monitor stating the progress
 	 */
-	@Override
+	
 	protected void fillContentProvider(AbstractContentProvider contentProvider,
 			ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
 
@@ -112,7 +112,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * Gets the dialog settings.
 	 * @return the dialog settings
 	 */
-	@Override
+	
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
 		if (settings == null) {
@@ -126,7 +126,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * @return the name as provided by the labelProvider
 	 * @param item the element to get the name from
 	 */
-	@Override
+	
 	public String getElementName(Object item) {
 		if (item instanceof UnicaseModelElement) {
 			return labelProvider.getText(item);
@@ -139,7 +139,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * Returns an alphabetical comparator.
 	 * @return an alphabetical comparator
 	 */
-	@Override
+	
 	protected Comparator<Object> getItemsComparator() {
 	    return new Comparator<Object>() {
 	         public int compare(Object arg0, Object arg1) {
@@ -154,7 +154,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 * @return Status.OK_STATUS
 	 * @param item an item
 	 */
-	@Override
+	
 	protected IStatus validateItem(Object item) {
 		return Status.OK_STATUS;
 	}
@@ -172,7 +172,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 		 * @return a bool
 		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#matchItem(java.lang.Object)
 		 */
-		@Override
+		
 		public boolean matchItem(Object item) {
 			String pattern = this.getPattern();
 			String label = labelProvider.getText(item);
@@ -188,7 +188,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 		 * @return true
 		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#isConsistentItem(java.lang.Object)
 		 */
-		@Override
+		
 		public boolean isConsistentItem(Object item) {
 			return true;
 		}

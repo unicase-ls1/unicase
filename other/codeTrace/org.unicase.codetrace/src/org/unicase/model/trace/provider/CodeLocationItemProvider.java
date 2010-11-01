@@ -7,6 +7,7 @@ package org.unicase.model.trace.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -55,7 +56,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
@@ -72,7 +73,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(
 			Object object) {
 		if (childrenFeatures == null) {
@@ -90,7 +91,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
@@ -104,7 +105,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"CodeLocation.png"));
@@ -116,7 +117,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String getText(Object object) {
 		String label = ((CodeLocation) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_CodeLocation_type")
@@ -130,7 +131,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
@@ -157,7 +158,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
@@ -177,7 +178,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String getCreateChildText(Object owner, Object feature,
 			Object child, Collection<?> selection) {
 		Object childFeature = feature;
@@ -200,7 +201,7 @@ public class CodeLocationItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public ResourceLocator getResourceLocator() {
 		return TracemodelEditPlugin.INSTANCE;
 	}

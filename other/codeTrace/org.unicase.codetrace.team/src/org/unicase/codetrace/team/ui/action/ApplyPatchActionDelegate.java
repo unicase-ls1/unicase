@@ -13,7 +13,6 @@ import org.unicase.codetrace.team.applyPatch.BasicApplyPatchMethod;
 public class ApplyPatchActionDelegate extends TeamAction{
 
 	@SuppressWarnings("restriction")
-	@Override
 	protected void execute(IAction action) throws InvocationTargetException,
 			InterruptedException {
 		//Get selected resources

@@ -67,7 +67,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected EClass eStaticClass() {
 		return TracePackage.Literals.LINE_HASH;
 	}
@@ -99,7 +99,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -113,7 +113,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -128,7 +128,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -143,7 +143,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -157,7 +157,7 @@ public class LineHashImpl extends ModelElementImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();

@@ -6,19 +6,12 @@
 package org.unicase.model.trace.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
-
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -70,7 +63,7 @@ public final class TracemodelEditPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	@Override
+	
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}

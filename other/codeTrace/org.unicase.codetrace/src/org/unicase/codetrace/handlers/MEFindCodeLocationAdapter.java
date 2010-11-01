@@ -33,7 +33,7 @@ public class MEFindCodeLocationAdapter  extends MouseAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	
 	public void mouseUp(MouseEvent e) {
 		CodetraceUtil.findCodeLocation((CodeLocation) link);
 	}

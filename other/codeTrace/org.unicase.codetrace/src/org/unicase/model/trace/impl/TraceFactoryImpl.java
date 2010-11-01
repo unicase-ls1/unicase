@@ -63,7 +63,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 		case TracePackage.CODE_LOCATION:

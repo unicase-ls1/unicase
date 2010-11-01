@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Masterarbeit
+Bundle-Name: unicase code trace team
 Bundle-SymbolicName: org.unicase.codetrace.team;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.5
 Bundle-Activator: org.unicase.codetrace.team.Activator
 Require-Bundle: org.unicase.ui.common,
  org.eclipse.ui,
@@ -22,4 +22,5 @@ Import-Package: org.eclipse.team.core,
  org.unicase.workspace.util
 Export-Package: 
  org.unicase.codetrace.team.exported
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: unicase.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

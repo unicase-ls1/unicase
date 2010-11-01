@@ -15,7 +15,7 @@ public class ApplyPatchCommand extends UnicaseCommand{
 		this.attachment = attachment;
 	}
 
-	@Override
+	
 	protected void doRun() {
 		try {
 			FileRequestHandler f = WorkspaceManager.getProjectSpace(attachment).getFile(attachment.getFileID());
