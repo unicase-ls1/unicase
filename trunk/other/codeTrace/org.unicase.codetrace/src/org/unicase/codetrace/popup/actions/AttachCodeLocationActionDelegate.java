@@ -19,7 +19,7 @@ public class AttachCodeLocationActionDelegate extends AbstractRulerActionDelegat
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	
 	protected IAction createAction(ITextEditor editor, IVerticalRulerInfo rulerInfo) {
 		return new AttachLocationAction(editor, rulerInfo);
 	}

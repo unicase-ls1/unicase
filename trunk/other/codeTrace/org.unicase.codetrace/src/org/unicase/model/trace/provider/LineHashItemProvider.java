@@ -54,7 +54,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
@@ -70,7 +70,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * @generated NOT
 	 * @param object object
 	 */
-	@Override
+	
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"LineHash.png"));
@@ -82,7 +82,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String getText(Object object) {
 		String label = ((LineHash) object).getIdentifier();
 		return label == null || label.length() == 0 ? getString("_UI_LineHash_type")
@@ -96,7 +96,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
@@ -116,7 +116,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
@@ -128,7 +128,7 @@ public class LineHashItemProvider extends ModelElementItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public ResourceLocator getResourceLocator() {
 		return TracemodelEditPlugin.INSTANCE;
 	}

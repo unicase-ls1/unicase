@@ -23,7 +23,7 @@ import org.eclipse.ui.texteditor.IUpdate;
 import org.eclipse.ui.texteditor.SimpleMarkerAnnotation;
 import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.model.trace.CodeLocation;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * Action executed when the user rightclicks on a code location marker and
@@ -125,7 +125,7 @@ public class JumpToCodeLocationAction extends Action implements IUpdate{
 			}
 			
 			//Jump to the location in ME-Editor
-			UnicaseActionHelper.openModelElement(cl, "org.unicase.codetrace");
+		    ActionHelper.openModelElement(cl, "org.unicase.codetrace");
 		}
 	}
 

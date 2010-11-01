@@ -139,7 +139,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected EClass eStaticClass() {
 		return TracePackage.Literals.CODE_LOCATION;
 	}
@@ -246,7 +246,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -265,7 +265,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -288,7 +288,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+	
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -317,7 +317,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -344,7 +344,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -369,7 +369,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();

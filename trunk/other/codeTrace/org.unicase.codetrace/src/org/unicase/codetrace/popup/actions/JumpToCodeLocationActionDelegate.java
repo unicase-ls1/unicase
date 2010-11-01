@@ -19,7 +19,7 @@ public class JumpToCodeLocationActionDelegate extends AbstractRulerActionDelegat
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	
 	protected IAction createAction(ITextEditor editor, IVerticalRulerInfo rulerInfo) {
 		return new JumpToCodeLocationAction(editor, rulerInfo);
 	}

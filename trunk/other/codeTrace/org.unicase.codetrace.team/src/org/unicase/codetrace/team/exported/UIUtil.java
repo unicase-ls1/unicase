@@ -2,7 +2,6 @@ package org.unicase.codetrace.team.exported;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.compare.internal.patch.WorkspaceFileDiffResult;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;

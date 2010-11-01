@@ -5,8 +5,6 @@ import java.util.HashMap;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.ui.WorkbenchException;
-import org.eclipse.ui.statushandlers.WorkbenchErrorHandler;
 import org.unicase.codetrace.team.exported.AbstractTeamAdapter;
 
 public class TeamAdapterFactory {

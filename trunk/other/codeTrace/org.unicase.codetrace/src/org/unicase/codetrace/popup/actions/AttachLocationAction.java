@@ -25,7 +25,7 @@ import org.unicase.codetrace.CodetraceUtil;
 import org.unicase.codetrace.tracer.LocationFinder;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -69,7 +69,7 @@ public class AttachLocationAction extends Action {
 	 * 6.) Open the Code Location in MEEditor
 	 * 7.) Create a marker for the code location
 	 */
-	@Override
+	
 	public void run() {
 		
 		//Is the editor dirty? If so, save it first
@@ -119,7 +119,7 @@ public class AttachLocationAction extends Action {
 		new AttachLocationCommand(m,tl).run();
 		
 		//Open meeditor
-			UnicaseActionHelper.openModelElement(tl, "org.unicase.codetrace");
+		ActionHelper.openModelElement(tl, "org.unicase.codetrace");
 		
 		
 		//Create a marker

@@ -13,17 +13,15 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.codetrace.team.adapter.TeamAdapterFactory;
 import org.unicase.codetrace.team.commands.AttachPatchCommand;
 import org.unicase.codetrace.team.exported.AbstractTeamAdapter;
-import org.unicase.codetrace.team.exported.CodetraceTeamException;
 import org.unicase.codetrace.team.exported.UIUtil;
 import org.unicase.codetrace.team.ui.wizards.AttacheeSelectionDialog;
-
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 
 public class SendPatchActionDelegate extends TeamAction{
 
 	@SuppressWarnings("restriction")
-	@Override
+	
 	protected void execute(IAction action) throws InvocationTargetException,
 			InterruptedException {
 		//Get selected projects

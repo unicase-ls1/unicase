@@ -3,25 +3,16 @@ package org.unicase.codetrace.team.commands;
 import java.io.File;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IStorage;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.team.core.RepositoryProvider;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.codetrace.team.adapter.TeamAdapterFactory;
 import org.unicase.codetrace.team.exported.AbstractTeamAdapter;
 import org.unicase.codetrace.team.exported.CodetraceTeamException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -51,7 +42,7 @@ public class AttachPatchCommand extends UnicaseCommand{
 	}
 
 
-	@Override
+	
 	protected void doRun() {
 
 		try {
@@ -110,7 +101,7 @@ public class AttachPatchCommand extends UnicaseCommand{
 			}
 			
 		//4) **** Open the model element ****
-			UnicaseActionHelper.openModelElement(attachTo, this.getClass().getName());
+			ActionHelper.openModelElement(attachTo, this.getClass().getName());
 		
 		} catch (CodetraceTeamException e) {
 			handleException(e);

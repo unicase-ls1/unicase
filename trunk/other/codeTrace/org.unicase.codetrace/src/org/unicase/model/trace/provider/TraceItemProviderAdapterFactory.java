@@ -12,15 +12,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -33,29 +28,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsSwitch;
-
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
-
 import org.unicase.metamodel.util.MetamodelSwitch;
-
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-
 import org.unicase.model.diagram.util.DiagramSwitch;
-
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
-
 import org.unicase.model.document.util.DocumentSwitch;
-
 import org.unicase.model.trace.TraceFactory;
-
 import org.unicase.model.trace.util.TraceAdapterFactory;
 
 /**
@@ -128,7 +113,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter createCodeLocationAdapter() {
 		if (codeLocationItemProvider == null) {
 			codeLocationItemProvider = new CodeLocationItemProvider(this);
@@ -151,7 +136,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter createLineHashAdapter() {
 		if (lineHashItemProvider == null) {
 			lineHashItemProvider = new LineHashItemProvider(this);
@@ -187,7 +172,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -198,7 +183,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -208,7 +193,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
@@ -316,7 +301,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseCreateDeleteOperation(CreateDeleteOperation object) {
 				newChildDescriptors
 						.add(createChildParameter(
@@ -414,7 +399,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseProject(Project object) {
 				newChildDescriptors.add(createChildParameter(
 						MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -510,7 +495,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseMEDiagram(MEDiagram object) {
 				newChildDescriptors.add(createChildParameter(
 						DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
@@ -602,7 +587,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseLeafSection(LeafSection object) {
 				newChildDescriptors.add(createChildParameter(
 						DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
