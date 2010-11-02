@@ -21,7 +21,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -37,6 +36,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
+import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
@@ -133,7 +133,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				if (url == null) {
 					return;
 				}
-				boolean isLaunched = Program.launch(url);
+				boolean isLaunched = ExtProgramFactoryFacade.launchURL(url);
 				if (!isLaunched) {
 					MessageBox box = new MessageBox(parent.getShell(), SWT.OK | SWT.ICON_ERROR);
 					box.setText("Invalid URL");
