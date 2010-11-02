@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
@@ -19,6 +18,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
+import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -97,14 +97,14 @@ public class MEURLLinkControl extends MELinkControl {
 					if (url == null) {
 						return;
 					}
-					Program.launch(url);
+					ExtProgramFactoryFacade.launchURL(url);
 					EObject urlAttachement = link;
 					ModelElementId contextModelElementId = ModelUtil.getProject(contextModelElement).getModelElementId(
 						contextModelElement);
 					ModelElementId urlModelElementId = ModelUtil.getProject(urlAttachement).getModelElementId(
 						urlAttachement);
-					MEURLControl.logEvent(contextModelElementId, urlModelElementId, WorkspaceManager
-						.getProjectSpace(urlAttachement), "org.unicase.ui.meeditor");
+					MEURLControl.logEvent(contextModelElementId, urlModelElementId,
+						WorkspaceManager.getProjectSpace(urlAttachement), "org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
 				}

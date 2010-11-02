@@ -15,11 +15,11 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
@@ -51,7 +51,7 @@ public class MEEmailControl extends AbstractUnicaseMEControl {
 			@Override
 			public void run() {
 				String email = txtEmail.getText();
-				Program.launch("mailto:" + email);
+				ExtProgramFactoryFacade.useEmail("mailto:" + email);
 			}
 
 		};
