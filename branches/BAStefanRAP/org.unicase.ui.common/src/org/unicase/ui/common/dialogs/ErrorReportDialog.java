@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 
 /**
  * This dialog takes a status object and shows its message. The dialog has details button that if an exception is also
@@ -26,7 +27,6 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author Hodaie
  */
-// TODO RAP
 public class ErrorReportDialog extends MessageDialog {
 
 	private IStatus status;
@@ -48,9 +48,10 @@ public class ErrorReportDialog extends MessageDialog {
 	 * @param status status
 	 */
 	public ErrorReportDialog(Shell parentShell, IStatus status) {
-		super(parentShell, "Error", null, status.getMessage(), MessageDialog.ERROR, new String[] {}, 0);
+		super(parentShell, "Error", null, status.getMessage(), MessageDialog.ERROR, new String[] { "OK" }, 0);
 		this.status = status;
 		if (status.getException() != null) {
+			setButtonLabels(new String[] { "OK", "Report", "&Details >>" });
 			reportButtonID = 1;
 			detailButtonID = 2;
 			extractDetailText();
@@ -111,9 +112,10 @@ public class ErrorReportDialog extends MessageDialog {
 		if (txtDetails != null) {
 			txtDetails.dispose();
 			txtDetails = null;
+			getButton(detailButtonID).setText("&Details >>");
 		} else {
 			createDropDownText((Composite) getContents());
-			;
+			getButton(detailButtonID).setText("&Details >>");
 		}
 
 		Point newSize = getContents().computeSize(SWT.DEFAULT, SWT.DEFAULT);
@@ -152,6 +154,8 @@ public class ErrorReportDialog extends MessageDialog {
 		String message = sb.toString();
 
 		boolean successful = false;
+
+		successful = ExtProgramFactoryFacade.useEmail(message);
 
 		if (!successful) {
 			MessageDialog
