@@ -960,9 +960,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
 			// migration code: existing notifications in the notification feature are added to the composite
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
+				".nff");
 			this.setNotificationComposite(notificationComposite);
 			if (getNotifications().size() > 0) {
 				notificationList.addAll(getNotifications());
@@ -971,9 +971,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (notificationList == null) {
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
+				".nff");
 		}
 		return notificationList;
 	}
@@ -1229,12 +1229,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
+			AbstractOperation copy = EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 		// copy events from projectspace
 		for (Event event : getEventsFromComposite()) {
-			Event copy = (Event) EcoreUtil.copy(event);
+			Event copy = EcoreUtil.copy(event);
 			changePackage.getEvents().add(copy);
 		}
 
@@ -1285,9 +1285,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (operationsList == null) {
 			operationsList = new AutoSplitAndSaveResourceContainmentList<AbstractOperation>(operationComposite,
-				operationComposite.getOperations(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "operations", ".off");
+				operationComposite.getOperations(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "operations",
+				".off");
 		}
 		return operationsList;
 	}
@@ -1363,7 +1363,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		// notify updateObserver if there is one
-		if (observer != null && !observer.inspectChanges(changes)) {
+		if (observer != null && !observer.inspectChanges(this, changes)) {
 			return getBaseVersion();
 		}
 
@@ -1585,7 +1585,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		setResourceCount(getResourceCount() + 1);
 		List<EObject> modelElements = this.getProject().getModelElements();
 
-		int counter = Configuration.getMaxMECountPerResource() + 1;
+		// int counter = Configuration.getMaxMECountPerResource() + 1;
+		int counter = 0;
 		for (EObject modelElement : modelElements) {
 
 			if (counter > Configuration.getMaxMECountPerResource() && splitResource) {
@@ -1966,9 +1967,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changeTracker.saveDirtyResources();
 		startChangeRecording();
 
-		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
-			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
-			this.getProject());
+		createdProject = WorkspaceManager
+			.getInstance()
+			.getConnectionManager()
+			.createProject(usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
+				this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
@@ -2473,7 +2476,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setProperty(OrgUnitProperty property) {
 		// sanity checks
@@ -2524,8 +2527,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ListIterator<OrgUnitProperty> iterator = temp.listIterator();
 		while (iterator.hasNext()) {
 			try {
-				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
-					iterator.next(), getUsersession().getACUser(), getProjectId());
+				WorkspaceManager
+					.getInstance()
+					.getConnectionManager()
+					.transmitProperty(getUsersession().getSessionId(), iterator.next(), getUsersession().getACUser(),
+						getProjectId());
 				iterator.remove();
 			} catch (EmfStoreException e) {
 				WorkspaceUtil.logException("Transmission of properties failed with exception", e);
@@ -2534,7 +2540,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void removePendingFileUpload(String fileAttachmentId) {
 		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
@@ -2612,8 +2618,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		} catch (FileNotFoundException e) {
 			addFileTransfer(tmpTransfer, null, true);
 		}
-		FileRequestHandler fHandler = new FileRequestHandler(FileTransferUtil
-			.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
+		FileRequestHandler fHandler = new FileRequestHandler(
+			FileTransferUtil.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
 		return fHandler;
 	}
 
