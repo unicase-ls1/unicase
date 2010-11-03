@@ -142,8 +142,8 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean inspectChanges(List<ChangePackage> changePackages) {
-		UpdateDialog updateDialog = new UpdateDialog(shell, changePackages);
+	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
+		UpdateDialog updateDialog = new UpdateDialog(shell, projectSpace, changePackages);
 		int returnCode = updateDialog.open();
 		if (returnCode == Window.OK) {
 			return true;

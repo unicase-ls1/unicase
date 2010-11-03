@@ -8,6 +8,7 @@ package org.unicase.workspace.observers;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * Notifies the UI that a list of changes will be automatically merged with the current model state.
@@ -17,10 +18,11 @@ public interface UpdateObserver {
 	/**
 	 * Called to notify the observer about the changes that will be merged into the project space.
 	 * 
+	 * @param projectSpace the project ppace that should be updated
 	 * @param changePackages a list of change packages
 	 * @return false if the observer wants to cancel the update
 	 */
-	boolean inspectChanges(List<ChangePackage> changePackages);
+	boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages);
 
 	/**
 	 * Called after the changes have been applied to the project and the update is completed.
