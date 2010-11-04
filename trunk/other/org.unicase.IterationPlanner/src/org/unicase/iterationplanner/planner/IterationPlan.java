@@ -85,23 +85,10 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	public void setIterationNumberFor(PlannedTask plannedTask, int newIterationNumber) {
-		if(isCrossover()){
-			plannedTask.setIterationNumber(newIterationNumber);
-			return;
-		}
 		
 		plannedTask.setIterationNumber(newIterationNumber);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
-		if (plannedTask.getAssigneeExpertise() == null) {
-			// this task doesn't still have an assignee
-			return;
-		}
-		if (newIterationNumber == getBacklogNumber()) {
-			// in backlog every assignee is infinite available ==> invariant true
-			return;
-		}
-
 		// find the the lowest priority task in this iteration for this assignee and move it one iteration downward.
 		doInvariantCorrection();
 
@@ -127,7 +114,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		Set<PlannedTask> ptsForIteration = getAllPlannedTasksForIteration(iterationNumber);
 		List<PlannedTask> ptsForIterAndAssignee = new ArrayList<PlannedTask>();
 		for (PlannedTask pt : ptsForIteration) {
-			if (pt.getAssigneeExpertise().getAssignee().equals(assignee)) {
+			if (pt.getAssigneeExpertise() != null && assignee.equals(pt.getAssigneeExpertise().getAssignee())) {
 				ptsForIterAndAssignee.add(pt);
 			}
 		}
@@ -136,18 +123,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	public void setAssigneeFor(PlannedTask plannedTask, AssigneeExpertise assignee) {
 		plannedTask.setAssigneeExpertise(assignee);
-		if(isCrossover()) {
-			//during crossover we do nothing. after crossover an invarian correction will be run on iteration plan.
-			return;
-		}
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
-		int iterationNumber = plannedTask.getIterationNumber();
-		if (iterationNumber == getBacklogNumber()) {
-			// in backlog every assignee is infinite available ==> invariant true
-			return;
-		}
-
 		doInvariantCorrection();
 
 	}
@@ -184,7 +161,9 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	public List<Assignee> getAssignees() {
 		List<Assignee> assignees = new ArrayList<Assignee>();
 		for (PlannedTask pt : plannedTasks) {
-			assignees.add(pt.getAssigneeExpertise().getAssignee());
+			if(pt.getAssigneeExpertise() != null){
+				assignees.add(pt.getAssigneeExpertise().getAssignee());
+			}
 		}
 
 		return assignees;
@@ -212,7 +191,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		this.crossover = crossover;
 		if(crossover == false){
 			doInvariantCorrection();
-			assert(plannedTasks.size() == numOfTasks);
+			checkAllInvariants();
 		}
 	}
 
@@ -240,9 +219,22 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		checkDevLoadInvariantForAllAssignees();
 		// also do some other checks to ensure that iteration plan is not corrupted.
 		// check number of tasks
-		assert(plannedTasks.size() == numOfTasks);
+		checkNumOfTasks();
 		
 		//check for duplicate tasks 
+		checkForDuplicateTasks();
+		
+		checkForTasksWithOutAssignee();
+	
+	}
+
+	private void checkForTasksWithOutAssignee() {
+		for(PlannedTask pt : plannedTasks){
+			assert pt.getAssigneeExpertise() != null;
+		}
+	}
+
+	private void checkForDuplicateTasks() {
 		for(PlannedTask pt1 : plannedTasks){
 			for(PlannedTask pt2 : plannedTasks){
 				if(!pt1.equals(pt2)){
@@ -250,7 +242,10 @@ public class IterationPlan implements Comparable<IterationPlan> {
 				}
 			}
 		}
-	
+	}
+
+	private void checkNumOfTasks() {
+		assert(plannedTasks.size() == numOfTasks);
 	}
 
 	private void checkDevLoadInvariantForAllAssignees() {
