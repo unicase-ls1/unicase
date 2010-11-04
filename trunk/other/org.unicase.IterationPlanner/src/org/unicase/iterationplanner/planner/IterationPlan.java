@@ -158,8 +158,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return sumOfEstimate;
 	}
 
-	public List<Assignee> getAssignees() {
-		List<Assignee> assignees = new ArrayList<Assignee>();
+	public Set<Assignee> getAssignees() {
+		Set<Assignee> assignees = new HashSet<Assignee>();
 		for (PlannedTask pt : plannedTasks) {
 			if(pt.getAssigneeExpertise() != null){
 				assignees.add(pt.getAssigneeExpertise().getAssignee());
@@ -200,7 +200,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	 * If needed the lowest priority task for this assignee is shifted down one iteration.
 	 */
 	private void doInvariantCorrection() {
-		List<Assignee> assignees = getAssignees();
+		Set<Assignee> assignees = getAssignees();
 		for(int i = 0; i < numOfIterations; i++){
 			for(Assignee assignee : assignees){
 				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
@@ -249,7 +249,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	private void checkDevLoadInvariantForAllAssignees() {
-		List<Assignee> assignees = getAssignees();
+		Set<Assignee> assignees = getAssignees();
 		for(Assignee assignee : assignees){
 			checkDevLoadInvariant(assignee);
 		}
