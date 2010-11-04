@@ -171,6 +171,10 @@ public class MyPlanner extends Planner {
 		
 		children.add(c1);
 		children.add(c2);
+
+//		children.add(p1.clone());
+//		children.add(p2.clone());
+		
 		return children;
 	}
 

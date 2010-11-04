@@ -103,14 +103,17 @@ public abstract class Planner {
 
 		List<IterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
 			.getPercentOfCrossOverParents());
+		checkInvariants(crossoverParents);
 		List<IterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
 			.getPercentOfMutationCandidates());
+		checkInvariants(mutationCandidates);
 		List<IterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
 			.getPercentOfCloneCandidates());
+		checkInvariants(cloneCandidates);
 
-		crossoverInto(nextGeneration, crossoverParents);
-		mutateInto(nextGeneration, mutationCandidates);
 		copyInto(nextGeneration, cloneCandidates);
+		mutateInto(nextGeneration, mutationCandidates);
+		crossoverInto(nextGeneration, crossoverParents);
 
 		if (nextGeneration.size() < plannerParameters.getPopulationSize()) {
 			completeNextGeneration(nextGeneration);
