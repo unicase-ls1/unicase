@@ -34,7 +34,9 @@ public class MyPlanner extends Planner {
 		Random random = getPlannerParameters().getRandom();
 		for (int i = 0; i < numOfIndividualsToAdd; i++) {
 			IterationPlan cloneCandidate = nextGeneration.get(random.nextInt(nextGeneration.size()));
-			nextGeneration.add(cloneCandidate.clone());
+			IterationPlan clone = cloneCandidate.clone();
+			clone.checkAllInvariants();
+			nextGeneration.add(clone);
 		}
 	}
 
@@ -45,6 +47,7 @@ public class MyPlanner extends Planner {
 			.getPopulationSize());
 		for (int i = 0; i < numOfClones; i++) {
 			IterationPlan clone = cloneCandidates.get(random.nextInt(cloneCandidates.size()));
+			clone.checkAllInvariants();
 			// we don't need to clone the object here.
 			nextGeneration.add(clone);
 		}
@@ -56,6 +59,7 @@ public class MyPlanner extends Planner {
 		int populationSize = getPlannerParameters().getPopulationSize();
 		for (int i = 0; i < populationSize; i++) {
 			IterationPlan iterPlan = createIterationPlan();
+			iterPlan.checkAllInvariants();
 			initPopulation.add(iterPlan);
 		}
 
@@ -110,7 +114,7 @@ public class MyPlanner extends Planner {
 		}
 	}
 
-	/*
+	/**
 	 * P1 x P2 ==> C1 & C2 
 	 * 1. merge first iteration of both parents and set it as first iteration (I1) of both children. Obviously task 
 	 * that are common in first iteration of parents will not be duplicated.
@@ -125,38 +129,45 @@ public class MyPlanner extends Planner {
 	 */
 	private List<IterationPlan> crossover(IterationPlan p1, IterationPlan p2) {
 		List<IterationPlan> children = new ArrayList<IterationPlan>();
+		PlannerUtil plannerUtil = PlannerUtil.getInstance(getPlannerParameters().getRandom());
 		
-		Set<PlannedTask> tasksInP1I0 = new HashSet<PlannedTask>(); 
-		tasksInP1I0.addAll(p1.getAllPlannedTasksForIteration(0));
-		Set<PlannedTask> allTasksInP1 = new HashSet<PlannedTask>(); 
-		allTasksInP1.addAll(PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(p1));
+		Set<PlannedTask> plannedTasksInP1I0 = new HashSet<PlannedTask>(); 
+		plannedTasksInP1I0.addAll(p1.getAllPlannedTasksForIteration(0));
+		Set<PlannedTask> allPlannedTasksInP1 = new HashSet<PlannedTask>(); 
+		allPlannedTasksInP1.addAll(plannerUtil.getPlannedTasks(p1));
 		
-		Set<PlannedTask> tasksInP2I0 = new HashSet<PlannedTask>(); 
-		tasksInP2I0.addAll(p2.getAllPlannedTasksForIteration(0));
-		Set<PlannedTask> allTasksInP2 = new HashSet<PlannedTask>(); 
-		allTasksInP2.addAll(PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(p2));
+		Set<PlannedTask> plannedTasksInP2I0 = new HashSet<PlannedTask>(); 
+		plannedTasksInP2I0.addAll(p2.getAllPlannedTasksForIteration(0));
+		Set<PlannedTask> allPlannedTasksInP2 = new HashSet<PlannedTask>(); 
+		allPlannedTasksInP2.addAll(plannerUtil.getPlannedTasks(p2));
 		
-		Set<PlannedTask> tasksForI0 = new HashSet<PlannedTask>();
-		tasksForI0.addAll(tasksInP1I0);
-		tasksForI0.addAll(tasksInP2I0);
+		Set<PlannedTask> plannedTasksForI0 = plannerUtil.unionOnTasks(plannedTasksInP1I0, plannedTasksInP2I0);
 
 		IterationPlan c1 = new IterationPlan(p1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		IterationPlan c2 = new IterationPlan(p1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		c1.setCrossover(true);
 		c2.setCrossover(true);
-		c1.addAll(tasksForI0);
-		c2.addAll(tasksForI0);
+		c1.addAll(plannedTasksForI0);
+		c2.addAll(plannedTasksForI0);
 		
 		//remove from all tasks of p1 and p2 those that are in tasksForI0. 
 		//then add all remaining tasks of p1 to c1 and p2 to c2.
 		//Because tasksForI0 is union of I0 of both parents and we don't want these to be other iterations in children.
-		allTasksInP1.removeAll(tasksForI0);
-		allTasksInP2.removeAll(tasksForI0);
-		c1.addAll(allTasksInP1);
-		c2.addAll(allTasksInP2);
+		Set<PlannedTask> restTasksForC1 = plannerUtil.subtractOnTasks(allPlannedTasksInP1, plannedTasksForI0);
+		Set<PlannedTask> restTasksForC2 = plannerUtil.subtractOnTasks(allPlannedTasksInP2, plannedTasksForI0);
+		c1.addAll(restTasksForC1);
+		c2.addAll(restTasksForC2);
 		
+		assert(plannerUtil.getPlannedTasks(c1).size() == getTaskPotentialAssigneeListMap().keySet().size());
+		assert(plannerUtil.getPlannedTasks(c2).size() == getTaskPotentialAssigneeListMap().keySet().size());
+		assert(plannerUtil.subtractOnTasks(plannerUtil.getPlannedTasks(c1), allPlannedTasksInP1).size() == 0);
+		assert(plannerUtil.subtractOnTasks(plannerUtil.getPlannedTasks(c2), allPlannedTasksInP2).size() == 0);
+	
 		c1.setCrossover(false);
 		c2.setCrossover(false);
+		
+		c1.checkAllInvariants();
+		c2.checkAllInvariants();
 		
 		children.add(c1);
 		children.add(c2);
@@ -176,7 +187,9 @@ public class MyPlanner extends Planner {
 
 		for (int i = 0; i < numOfMutants; i++) {
 			IterationPlan mutationCandidate = mutationCandidates.get(random.nextInt(mutationCandidates.size()));
+			mutationCandidate.checkAllInvariants();
 			IterationPlan mutant = mutate(mutationCandidate);
+			mutant.checkAllInvariants();
 			nextGeneration.add(mutant);
 		}
 	}
@@ -203,7 +216,6 @@ public class MyPlanner extends Planner {
 			mutantIterationPlan.setIterationNumberFor(taskToMutate, iterationNumber);
 			mutantIterationPlan.setAssigneeFor(taskToMutate, assigneeExpertise);
 		}
-
 		return mutantIterationPlan;
 	}
 
