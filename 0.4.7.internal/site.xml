@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Unicase update site" url="http://unicase.googlecode.com/svn/updatesite/internal/">
+      Unicase case tool.
+   </description>
+   <feature url="features/org.unicase.client_0.4.7.internal.jar" id="org.unicase.client" version="0.4.7.internal">
+      <category name="UNICASE"/>
+   </feature>
+   <feature url="features/org.unicase.patchAttachment.feature_0.4.7.internal.jar" id="org.unicase.patchAttachment.feature" version="0.4.7.internal">
+      <category name="UNICASE patchAttachment"/>
+   </feature>
+   <category-def name="UNICASE" label="UNICASE">
+      <description>
+         unicase CASE Tool
+      </description>
+   </category-def>
+   <category-def name="UNICASE patchAttachment" label="UNICASE patchAttachment">
+      <description>
+         UNICASE patchAttachment feature. Installation optional.
+      </description>
+   </category-def>
+</site>
