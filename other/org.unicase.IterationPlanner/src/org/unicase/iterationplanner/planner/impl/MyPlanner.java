@@ -41,15 +41,15 @@ public class MyPlanner extends Planner {
 	}
 
 	@Override
-	protected void copyInto(List<IterationPlan> nextGeneration, List<IterationPlan> cloneCandidates) {
+	protected void copyIntoNextGeneration(List<IterationPlan> cloneCandidates) {
 		Random random = getPlannerParameters().getRandom();
 		int numOfClones = (int) ((getPlannerParameters().getPercentOfClones() / 100.0) * getPlannerParameters()
 			.getPopulationSize());
 		for (int i = 0; i < numOfClones; i++) {
-			IterationPlan clone = cloneCandidates.get(random.nextInt(cloneCandidates.size()));
+			IterationPlan clone = cloneCandidates.get(random.nextInt(cloneCandidates.size())).clone();
 			clone.checkAllInvariants();
 			// we don't need to clone the object here.
-			nextGeneration.add(clone);
+			addToNextGeneration(clone);
 		}
 	}
 
@@ -96,7 +96,7 @@ public class MyPlanner extends Planner {
 	}
 
 	@Override
-	protected void crossoverInto(List<IterationPlan> nextGeneration, List<IterationPlan> parentCandidates) {
+	protected void crossoverIntoNextGeneration(List<IterationPlan> parentCandidates) {
 		// do for numOfChildren
 		// get two parents
 		// child = crossOver(parent1, parent2);
@@ -110,7 +110,8 @@ public class MyPlanner extends Planner {
 			IterationPlan parent1 = parentCandidates.get(random.nextInt(parentCandidates.size()));
 			IterationPlan parent2 = parentCandidates.get(random.nextInt(parentCandidates.size()));
 			List<IterationPlan> children = crossover(parent1, parent2);
-			nextGeneration.addAll(children);
+			addToNextGeneration(children.get(0));
+			addToNextGeneration(children.get(1));
 		}
 	}
 
@@ -130,25 +131,30 @@ public class MyPlanner extends Planner {
 	private List<IterationPlan> crossover(IterationPlan p1, IterationPlan p2) {
 		List<IterationPlan> children = new ArrayList<IterationPlan>();
 		PlannerUtil plannerUtil = PlannerUtil.getInstance(getPlannerParameters().getRandom());
+		IterationPlan clone1 = p1.clone();
+		IterationPlan clone2 = p2.clone();
 		
 		Set<PlannedTask> plannedTasksInP1I0 = new HashSet<PlannedTask>(); 
-		plannedTasksInP1I0.addAll(p1.getAllPlannedTasksForIteration(0));
+		plannedTasksInP1I0.addAll(clone1.getAllPlannedTasksForIteration(0));
 		Set<PlannedTask> allPlannedTasksInP1 = new HashSet<PlannedTask>(); 
-		allPlannedTasksInP1.addAll(plannerUtil.getPlannedTasks(p1));
+		allPlannedTasksInP1.addAll(plannerUtil.getPlannedTasks(clone1));
 		
 		Set<PlannedTask> plannedTasksInP2I0 = new HashSet<PlannedTask>(); 
-		plannedTasksInP2I0.addAll(p2.getAllPlannedTasksForIteration(0));
+		plannedTasksInP2I0.addAll(clone2.getAllPlannedTasksForIteration(0));
 		Set<PlannedTask> allPlannedTasksInP2 = new HashSet<PlannedTask>(); 
-		allPlannedTasksInP2.addAll(plannerUtil.getPlannedTasks(p2));
+		allPlannedTasksInP2.addAll(plannerUtil.getPlannedTasks(clone2));
 		
 		Set<PlannedTask> plannedTasksForI0 = plannerUtil.unionOnTasks(plannedTasksInP1I0, plannedTasksInP2I0);
 
-		IterationPlan c1 = new IterationPlan(p1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
-		IterationPlan c2 = new IterationPlan(p1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
+		IterationPlan c1 = new IterationPlan(clone1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
+		IterationPlan c2 = new IterationPlan(clone2.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		c1.setCrossover(true);
 		c2.setCrossover(true);
-		c1.addAll(plannedTasksForI0);
-		c2.addAll(plannedTasksForI0);
+		for(PlannedTask pt : plannedTasksForI0){
+			c1.addPlannedTask(pt.clone());
+			c2.addPlannedTask(pt.clone());
+		}
+		
 		
 		//remove from all tasks of p1 and p2 those that are in tasksForI0. 
 		//then add all remaining tasks of p1 to c1 and p2 to c2.
@@ -184,7 +190,7 @@ public class MyPlanner extends Planner {
 	}
 
 	@Override
-	protected void mutateInto(List<IterationPlan> nextGeneration, List<IterationPlan> mutationCandidates) {
+	protected void mutateIntoNextGeneration(List<IterationPlan> mutationCandidates) {
 		Random random = getPlannerParameters().getRandom();
 		int numOfMutants = (int) ((getPlannerParameters().getPrecentOfMutants() / 100.0) * getPlannerParameters()
 			.getPopulationSize());
@@ -194,7 +200,7 @@ public class MyPlanner extends Planner {
 			mutationCandidate.checkAllInvariants();
 			IterationPlan mutant = mutate(mutationCandidate);
 			mutant.checkAllInvariants();
-			nextGeneration.add(mutant);
+			addToNextGeneration(mutant);
 		}
 	}
 

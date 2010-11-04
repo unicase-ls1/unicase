@@ -126,7 +126,7 @@ public class Application implements IApplication {
 		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
 			AssigneePool.getInstance().getAssignees());
 
-		Random random = new Random(10L);
+		Random random = new Random(1234567256L);
 		double expertiesWeight = 1.0;
 		double priorityWeight = 1.0;
 		double developerLoadWeight = 1.0;
@@ -134,12 +134,12 @@ public class Application implements IApplication {
 			developerLoadWeight, random);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 10;
+		int populationSize = 50;
 		int resultSize = 5;
-		int maxNumOfGenerations = 20;
-		int percentOfCrossOverChildren = 60;
+		int maxNumOfGenerations = 50;
+		int percentOfCrossOverChildren = 70;
 		int precentOfMutants = 20;
-		int percentOfClones = 20;
+		int percentOfClones = 10;
 		int percentOfCrossOverParents = 30;
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;

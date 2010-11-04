@@ -19,6 +19,7 @@ public abstract class Planner {
 	private final Selector selector;
 	private final PlannerParameters plannerParameters;
 	private List<IterationPlan> population;
+	private List<IterationPlan> nextGeneration;
 
 	/**
 	 * @param numOfIterations
@@ -90,6 +91,12 @@ public abstract class Planner {
 		}
 		return result;
 	}
+	
+	protected void addToNextGeneration(IterationPlan iterPlan){
+		iterPlan.checkAllInvariants();
+		nextGeneration.add(iterPlan);
+		checkInvariants(nextGeneration);
+	}
 
 	private void checkInvariants(List<IterationPlan> iterPlans) {
 		for(IterationPlan iterPlan : iterPlans){
@@ -99,7 +106,7 @@ public abstract class Planner {
 	}
 
 	private void createNextGeneration() {
-		List<IterationPlan> nextGeneration = new ArrayList<IterationPlan>();
+		nextGeneration = new ArrayList<IterationPlan>();
 
 		List<IterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
 			.getPercentOfCrossOverParents());
@@ -111,9 +118,9 @@ public abstract class Planner {
 			.getPercentOfCloneCandidates());
 		checkInvariants(cloneCandidates);
 
-		copyInto(nextGeneration, cloneCandidates);
-		mutateInto(nextGeneration, mutationCandidates);
-		crossoverInto(nextGeneration, crossoverParents);
+		copyIntoNextGeneration(cloneCandidates);
+		mutateIntoNextGeneration(mutationCandidates);
+		crossoverIntoNextGeneration(crossoverParents);
 
 		if (nextGeneration.size() < plannerParameters.getPopulationSize()) {
 			completeNextGeneration(nextGeneration);
@@ -139,11 +146,11 @@ public abstract class Planner {
 
 	protected abstract void completeNextGeneration(List<IterationPlan> nextGeneration);
 
-	protected abstract void copyInto(List<IterationPlan> nextGeneration, List<IterationPlan> cloneCandidates);
+	protected abstract void copyIntoNextGeneration(List<IterationPlan> cloneCandidates);
 
-	protected abstract void mutateInto(List<IterationPlan> nextGeneration, List<IterationPlan> mutationCandidates);
+	protected abstract void mutateIntoNextGeneration(List<IterationPlan> mutationCandidates);
 
-	protected abstract void crossoverInto(List<IterationPlan> nextGeneration, List<IterationPlan> parentCandidates);
+	protected abstract void crossoverIntoNextGeneration(List<IterationPlan> parentCandidates);
 
 	/**
 	 * evaluate each iteration plan in population, and give it a score; so that population can be sorted.

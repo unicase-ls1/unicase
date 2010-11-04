@@ -289,47 +289,81 @@ public class PlannerUtil {
 		return result;
 	}
 
+	/**
+	 * Unions the PlannedTasks in plannedTasks1 and plannedTasks2 based on their their Task.
+	 * That is, if two instances of PlannedTask have the same instance of Task only one of them will be in union.
+	 * The PlannedTask instance that survives is the one whose AssigneeExpertise have a less value of Expertise.
+	 * This decision is made to add more variety in resulting sets of PlannedTasks and 
+	 * helps avoiding early convergence of populations.
+	 * @param plannedTasks1
+	 * @param plannedTasks2
+	 * @return
+	 */
 	public Set<PlannedTask> unionOnTasks(Set<PlannedTask> plannedTasks1, Set<PlannedTask> plannedTasks2) {
 		Set<PlannedTask> union = new HashSet<PlannedTask>();
-		Set<PlannedTask> difference = new HashSet<PlannedTask>();
+		Set<PlannedTask> duplicates = new HashSet<PlannedTask>();
 		union.addAll(plannedTasks1);
-		for(PlannedTask pt2 : plannedTasks2){
-			boolean alreadyExists = false;
-			for(PlannedTask ptInUnion : union){
-				if(pt2.equalsTask(ptInUnion)){
-					alreadyExists = true;
+		union.addAll(plannedTasks2);
+		for(PlannedTask pt1 : union){
+			for(PlannedTask pt2 : union){
+				if(pt1.getTask().equals(pt2.getTask())){
+					// set the PlannedTask with higher AssigneeExpertise for deletion
+					if(pt1.getAssigneeExpertise().getExpertise() > pt2.getAssigneeExpertise().getExpertise()){
+						duplicates.add(pt1);
+					}else{
+						duplicates.add(pt2);
+					}
 				}
 			}
-			if(!alreadyExists){
-				difference.add(pt2);
-			}
+			
 		}
-		union.addAll(difference);
+		union.removeAll(duplicates);
 		return union;
 	}
 
+	/**
+	 * Removes from fromSet those PlannedTasks in subtractSet that have the same Task instance. 
+	 * 
+	 * @param fromSet
+	 * @param subtractSet
+	 * @return
+	 */
 	public Set<PlannedTask> subtractOnTasks(Set<PlannedTask> fromSet, Set<PlannedTask> subtractSet) {
 		Set<PlannedTask> result = new HashSet<PlannedTask>();
 		result.addAll(fromSet);
+		
 		//remove from fromSet the intersection of fromSet and subtractSet
-		Set<PlannedTask> intersectOnTasks = intersectOnTasks(fromSet, subtractSet);
-		for(PlannedTask pt : intersectOnTasks){
-			for(PlannedTask ptInResult : fromSet){
-				if(pt.equalsTask(ptInResult)){
-					result.remove(ptInResult);
+		for(PlannedTask ptInFromSet : fromSet){
+			for(PlannedTask ptInSubtractSet : subtractSet){
+				if(ptInFromSet.equalsTask(ptInSubtractSet)){
+					result.remove(ptInFromSet);
 				}
 			}
 		}
 		return result;
 	}
 	
+	/**
+	 * Returns the intersection of two PlannedTasks in set1 and set2.
+	 * The PlannedTask instance that is added to result is the one whose AssigneeExpertise have a less 
+	 * value of Expertise. This decision is made to add more variety in resulting sets of PlannedTasks and 
+	 * helps avoiding early convergence of populations.
+	 * 
+	 * @param set1
+	 * @param set2
+	 * @return
+	 */
 	public Set<PlannedTask> intersectOnTasks(Set<PlannedTask> set1, Set<PlannedTask> set2){
 		Set<PlannedTask> intersection = new HashSet<PlannedTask>();
 		// find those planned tasks that have equal tasks
 		for(PlannedTask pt1 : set1){
 			for(PlannedTask pt2 : set2){
 				if(pt1.equalsTask(pt2)){
-					intersection.add(pt1);
+					if(pt1.getAssigneeExpertise().getExpertise() < pt2.getAssigneeExpertise().getExpertise()){
+						intersection.add(pt1);
+					}else{
+						intersection.add(pt2);
+					}
 				}
 			}
 		}
