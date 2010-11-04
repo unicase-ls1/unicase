@@ -15,6 +15,8 @@ public class PlannedTask {
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
 	private boolean evaluateExperties = true;
+	private IterationPlan iterationPlan;
+	private boolean clonning;
 
 	public PlannedTask(Task task) {
 		this.task = task;
@@ -23,9 +25,19 @@ public class PlannedTask {
 	@Override
 	public PlannedTask clone() {
 		PlannedTask clone = new PlannedTask(this.task);
+		clone.setClonning(true);
 		clone.setAssigneeExpertise(this.assigneeExpertise);
 		clone.setIterationNumber(this.iterationNumber);
+		clone.setClonning(false);
 		return clone;
+	}
+
+	private void setClonning(boolean clonning) {
+		this.clonning = clonning;
+	}
+	
+	private boolean isClonning() {
+		return this.clonning;
 	}
 
 	public Task getTask() {
@@ -33,7 +45,14 @@ public class PlannedTask {
 	}
 
 	protected void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
+		checkIteartionPlann();
 		this.assigneeExpertise = assigneeExpertise;
+	}
+
+	private void checkIteartionPlann() {
+		if(!isClonning() && iterationPlan == null){
+			throw new IllegalStateException("This planned task is not added to an iteration plan yet.");
+		}
 	}
 
 	@Override
@@ -48,6 +67,7 @@ public class PlannedTask {
 	}
 
 	protected void setIterationNumber(int iterationNumber) {
+		checkIteartionPlann();
 		this.iterationNumber = iterationNumber;
 	}
 
@@ -91,6 +111,10 @@ public class PlannedTask {
 	 */
 	public boolean isEvaluateExperties() {
 		return evaluateExperties;
+	}
+
+	protected void setIterationPlan(IterationPlan iterationPlan) {
+		this.iterationPlan = iterationPlan;
 	}
 
 }

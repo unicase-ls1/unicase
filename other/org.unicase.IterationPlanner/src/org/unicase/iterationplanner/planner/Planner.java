@@ -58,6 +58,7 @@ public abstract class Planner {
 	public List<IterationPlan> start() {
 
 		population = createInitialPopulation();
+		checkInvariants(population);
 		evalutate();
 		Collections.sort(population);
 
@@ -66,6 +67,7 @@ public abstract class Planner {
 				break;
 			}
 			createNextGeneration();
+			checkInvariants(population);
 			evalutate();
 			Collections.sort(population);
 
@@ -82,6 +84,13 @@ public abstract class Planner {
 			}
 		}
 		return result;
+	}
+
+	private void checkInvariants(List<IterationPlan> iterPlans) {
+		for(IterationPlan iterPlan : iterPlans){
+			iterPlan.checkAllInvariants();
+		}
+		
 	}
 
 	private void createNextGeneration() {

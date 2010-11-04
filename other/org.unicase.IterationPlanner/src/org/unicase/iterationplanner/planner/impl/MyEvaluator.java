@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.planner.impl;
 
+import java.util.Set;
+
 import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
@@ -54,25 +56,29 @@ public class MyEvaluator extends Evaluator {
 	public double evaluateExpertise(IterationPlan iterPlan) {
 		// avg(all experties)
 		double sum = 0.0;
-		for (PlannedTask pt : getIterationPlan().getPlannedTasks()) {
+		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getEvaluationParameters().getRandom()).getPlannedTasks(iterPlan);
+		for (PlannedTask pt : plannedTasks) {
 			if (pt.isEvaluateExperties()) {
 				sum += pt.getAssigneeExpertise().getExpertise();
 			}
 		}
-		int size = getIterationPlan().getPlannedTasks().size();
+		int size = plannedTasks.size();
 		double avg = sum / size;
 		// avg is already between 0 and 1. Because max expertise is 1.0, then the
 		// highest possible value of sum would be 1.0 * size
 		return avg;
 	}
 
+	
+
 	@Override
 	public double evaluteTaskPriorities(IterationPlan iterPlan) {
+		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getEvaluationParameters().getRandom()).getPlannedTasks(iterPlan);
 		// t1.priority > t2.priority ==> t1.iterationNumber < t2.iterationNumber
 		// for every breaking this rule, give a -1
 		int violations = 0;
-		for (PlannedTask pt1 : getIterationPlan().getPlannedTasks()) {
-			for (PlannedTask pt2 : getIterationPlan().getPlannedTasks()) {
+		for (PlannedTask pt1 : plannedTasks) {
+			for (PlannedTask pt2 : plannedTasks) {
 				if (pt1.getTask().getPriority() > pt2.getTask().getPriority()) {
 					if (pt1.getIterationNumber() > pt2.getIterationNumber()) {
 						violations += 1;

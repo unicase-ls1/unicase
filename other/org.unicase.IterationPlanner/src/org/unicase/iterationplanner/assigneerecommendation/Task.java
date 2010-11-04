@@ -4,6 +4,7 @@ import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
 public class Task implements Comparable<Task> {
+	
 	private final WorkItem workItem;
 
 	public Task(WorkItem workItem) throws Exception {
@@ -31,4 +32,17 @@ public class Task implements Comparable<Task> {
 	public int getEstimate() {
 		return workItem.getEstimate();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Task)) {
+			return false;
+		}
+
+		return ((Task) obj).getWorkItem().equals(this.workItem);
+		
+	}
+
+	
+	
 }

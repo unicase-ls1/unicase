@@ -1,6 +1,7 @@
 package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,16 +23,27 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
 	private double score;
 	private Set<PlannedTask> plannedTasks;
+	private boolean crossover = false;
+	private int numOfTasks;
 
 	@Override
 	public IterationPlan clone() {
-		IterationPlan clone = new IterationPlan(this.numOfIterations, this.assigneeAvailabilityManager);
-		clone.plannedTasks = this.plannedTasks; // is it really possible? plannedTasks is private!
+		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
+		for(PlannedTask plannedTask : this.plannedTasks){
+			clone.addPlannedTask(plannedTask.clone());
+		}
 		return clone;
 	}
 
-	public IterationPlan(int numOfIterations, AssigneeAvailabilityManager assigneeAvailabilityManager) {
+	/**
+	 * 
+	 * @param numOfIterations
+	 * @param numOfTasks is used just for checking invariants
+	 * @param assigneeAvailabilityManager
+	 */
+	public IterationPlan(int numOfIterations, int numOfTasks, AssigneeAvailabilityManager assigneeAvailabilityManager) {
 		this.numOfIterations = numOfIterations;
+		this.numOfTasks = numOfTasks;
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
 	}
 
@@ -54,7 +66,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return -1;
 	}
 
-	public Set<PlannedTask> getPlannedTasks() {
+	private Set<PlannedTask> getPlannedTasks() {
 		if (plannedTasks == null) {
 			plannedTasks = new HashSet<PlannedTask>();
 		}
@@ -71,6 +83,11 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	public void setIterationNumberFor(PlannedTask plannedTask, int newIterationNumber) {
+		if(isCrossover()){
+			plannedTask.setIterationNumber(newIterationNumber);
+			return;
+		}
+		
 		plannedTask.setIterationNumber(newIterationNumber);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
@@ -89,17 +106,14 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 		int sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(newIterationNumber, assignee);
 		while (sumOfEstimateForIterationAndAssignee > availabilityForIteration) {
-			PlannedTask lowestPrioTask = findLowestPriorityTaskInThisIterationForThisAssignee(newIterationNumber,
-				assignee);
+			PlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(newIterationNumber, assignee);
 			// put this task in a later iteration or eventually in backlog.
-			lowestPrioTask.setIterationNumber(lowestPrioTask.getIterationNumber() + 1);
+			setIterationNumberFor(lowestPrioTask, lowestPrioTask.getIterationNumber() + 1);
 			sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(newIterationNumber, assignee);
 		}
 
 		// check the invariant
-		for (int i = 0; i < numOfIterations; i++) {
-			assert (getSumOfEstimateForIterationAndAssignee(i, assignee) <= availabilityForIteration);
-		}
+		checkInvariant(assignee);
 
 	}
 
@@ -132,6 +146,10 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	public void setAssigneeFor(PlannedTask plannedTask, AssigneeExpertise assignee) {
 		plannedTask.setAssigneeExpertise(assignee);
+		if(isCrossover()) {
+			//during crossover we do nothing. after crossover an invarian correction will be run on iteration plan.
+			return;
+		}
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		int iterationNumber = plannedTask.getIterationNumber();
@@ -140,27 +158,28 @@ public class IterationPlan implements Comparable<IterationPlan> {
 			return;
 		}
 
-		int availabilityForIteration = assigneeAvailabilityManager.getAvailability(iterationNumber, assignee
-			.getAssignee());
+		int availabilityForIteration = assigneeAvailabilityManager.getAvailability(iterationNumber, assignee.getAssignee());
 
-		int sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(iterationNumber, assignee
-			.getAssignee());
+		int sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(iterationNumber, assignee.getAssignee());
 		while (sumOfEstimateForIterationAndAssignee > availabilityForIteration) {
-			PlannedTask lowestPrioTask = findLowestPriorityTaskInThisIterationForThisAssignee(iterationNumber, assignee
-				.getAssignee());
+			PlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(iterationNumber, assignee.getAssignee());
 			// put this task in a later iteration or eventually in backlog.
-			lowestPrioTask.setIterationNumber(lowestPrioTask.getIterationNumber() + 1);
-			sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(iterationNumber, assignee
-				.getAssignee());
+			setIterationNumberFor(lowestPrioTask, lowestPrioTask.getIterationNumber() + 1);
+			sumOfEstimateForIterationAndAssignee = getSumOfEstimateForIterationAndAssignee(iterationNumber, assignee.getAssignee());
 		}
 		// check the invariant
-		for (int i = 0; i < numOfIterations; i++) {
-			assert (getSumOfEstimateForIterationAndAssignee(i, assignee.getAssignee()) <= availabilityForIteration);
-		}
+		checkInvariant(assignee.getAssignee());
 
 	}
 
-	private PlannedTask findLowestPriorityTaskInThisIterationForThisAssignee(int iterationNumber, Assignee assignee) {
+	private void checkInvariant(Assignee assignee) {
+		for (int i = 0; i < numOfIterations; i++) {
+			assert (getSumOfEstimateForIterationAndAssignee(i, assignee) <= assigneeAvailabilityManager
+				.getAvailability(i, assignee));
+		}
+	}
+
+	private PlannedTask findLowestPriorityTaskInIterationForAssignee(int iterationNumber, Assignee assignee) {
 		List<PlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(
 			iterationNumber, assignee);
 		PlannedTask lowestPrioTask = allPlannedTasksForIterationAndAssignee.get(0);
@@ -190,4 +209,77 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return assignees;
 	}
 
+	public void addPlannedTask(PlannedTask mutatedTask) {
+		getPlannedTasks().add(mutatedTask);
+		mutatedTask.setIterationPlan(this);
+	}
+	
+	public void addAll(Collection<PlannedTask> plannedTasks) {
+		for(PlannedTask pt : plannedTasks){
+			getPlannedTasks().add(pt);
+			pt.setIterationPlan(this);
+		}
+	}
+
+	/*
+	 * If crossover is true, this instance of iteration plan is being created through crossover.
+	 * In this state the invariants are not checked when setting iteration number and assignee for a task.
+	 * Calling setCrossover(false) triggers an invariant correction on iteration plan.
+	 * For Invariant see setAssigneeFor() and setIterationNumberFor() methods. 
+	 */
+	public void setCrossover(boolean crossover) {
+		this.crossover = crossover;
+		if(crossover == false){
+			doInvariantCorrection();
+		}
+	}
+
+	/*
+	 * This goes through all tasks, and all assignees, and checks the invariant for this assignee. 
+	 * If needed the lowest priority task for this assignee is shifted down one iteration.
+	 */
+	private void doInvariantCorrection() {
+		List<Assignee> assignees = getAssignees();
+		for(int i = 0; i < numOfIterations; i++){
+			for(Assignee assignee : assignees){
+				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
+					.getAvailability(i, assignee)) {
+					PlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
+					lowestPrioTask.setIterationNumber(i + 1);
+				}
+			}
+		}
+		
+		checkAllInvariants();
+	}
+
+	public void checkAllInvariants() {
+		List<Assignee> assignees = getAssignees();
+		for(Assignee assignee : assignees){
+			checkInvariant(assignee);
+		}
+		// also do some other checks to ensure that iteration plan is not corrupted.
+		// check number of tasks
+		assert(plannedTasks.size() == numOfTasks);
+		
+		//check for duplicate tasks 
+		for(PlannedTask pt1 : plannedTasks){
+			for(PlannedTask pt2 : plannedTasks){
+				if(!pt1.equals(pt2)){
+					assert(!pt1.getTask().equals(pt2));
+				}
+			}
+		}
+	
+	}
+
+	/*
+	 * returns if this iteration plan is in the state of bing created through crossover.
+	 * In this state the invariants are not checked when setting iteration number and assignee for a task.
+	 */
+	public boolean isCrossover() {
+		return crossover;
+	}
+	
+	
 }
