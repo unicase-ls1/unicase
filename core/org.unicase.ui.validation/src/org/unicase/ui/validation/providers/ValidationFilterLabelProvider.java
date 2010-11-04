@@ -23,12 +23,11 @@ public class ValidationFilterLabelProvider extends LabelProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public Image getImage(Object element) {
-		if (element instanceof ValidationFilter) {
+		if(element instanceof ValidationFilter) {
 			ValidationFilter validationFilter = (ValidationFilter) element;
 			Image image = validationFilter.getImage();
-			if (image != null) {
+			if(image != null) {
 				return image;
 			}
 		}
@@ -38,12 +37,11 @@ public class ValidationFilterLabelProvider extends LabelProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public String getText(Object element) {
-		if (element instanceof ValidationFilter) {
+		if(element instanceof ValidationFilter) {
 			ValidationFilter validationFilter = (ValidationFilter) element;
-			String description = validationFilter.getName();
-			if (description != null && !description.equals("")) {
+			String description = validationFilter.getDescription();
+			if(description != null && !description.equals("")) {
 				return description;
 			}
 		}

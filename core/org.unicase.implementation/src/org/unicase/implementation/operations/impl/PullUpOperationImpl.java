@@ -204,10 +204,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	public EList<Attribute> getAttributes(Project project) {
 		return OperationHelper.getElements(project, getAttributes());
 	}
-
+	
 	// begin of custom code
 	/**
-	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -221,7 +222,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	/**
 	 * Retrieve all attributes that could be pulled up.
-	 * 
 	 * @param attributes the attributes
 	 * @param subClasses the subclasses of the target super class
 	 * @return a list of attributes a list of candidate attributes
@@ -258,7 +258,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	// end of custom code
-
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -270,7 +270,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -284,7 +285,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	/**
 	 * Retrieve all {@link Association}s that could be pulled up.
-	 * 
 	 * @param associations the {@link Association}
 	 * @param subClasses the subclasses of the target super class
 	 * @return a list of associations
@@ -334,7 +334,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	// begin of custom code
 	/**
-	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -348,7 +349,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	/**
 	 * Retrieve all {@link Association}s that could be pulled up.
-	 * 
 	 * @param associations the {@link Association}
 	 * @param subClasses the subclasses of the target super class
 	 * @return a list of associations
@@ -387,7 +387,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	/**
-	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -398,9 +399,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 		return attributes.size() + outgoingAssociations.size() + incomingAssociations.size() > 0;
 	}
-
 	// end of custom code
-
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -413,7 +413,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	// begin of custom code
 	// BEGIN COMPLEX CODE
 	/**
-	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -470,7 +471,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 		return possibleSuperClasses;
 	}
-
 	// END COMPLEX CODE
 	// end of custom code
 
@@ -599,15 +599,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 
 	public static void pullUpAttributes(List<Attribute> attributes, Class superClass) {
 		for (Attribute attribute : attributes) {
-			Attribute superAttribute = ModelUtil.clone(attribute);
+			Attribute superAttribute = (Attribute) ModelUtil.copy(attribute);
 			superClass.getAttributes().add(superAttribute);
 			for (Class subClass : superClass.getSubClasses()) {
 				if (subClass != attribute.getDefiningClass()) {
 					Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(subClass, attribute);
-					ModelUtil.getProject(sameAttribute).deleteModelElement(sameAttribute);
+					sameAttribute.delete();
 				}
 			}
-			ModelUtil.getProject(attribute).deleteModelElement(attribute);
+			attribute.delete();
 		}
 	}
 
@@ -618,15 +618,14 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				if (subClass != association.getSource()) {
 					Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(subClass,
 						association);
-					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
+					sameAssociation.delete();
 				}
 			}
-			Association superAssociation = ModelUtil.clone(association);
-			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
-				.add(superAssociation);
+			Association superAssociation = (Association) ModelUtil.copy(association);
+			((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(superClass);
 			superAssociation.setTarget(association.getTarget());
-			ModelUtil.getProject(association).deleteModelElement(association);
+			association.delete();
 		}
 	}
 
@@ -637,15 +636,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 				if (subClass != association.getSource()) {
 					Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(subClass,
 						association);
-					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
+					sameAssociation.delete();
 				}
 			}
-			Association superAssociation = ModelUtil.clone(association);
-			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
-				.add(superAssociation);
+			Association superAssociation = (Association) ModelUtil.copy(association);
+			((List<Association>) association.eContainer().eGet(association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(association.getSource());
 			superAssociation.setTarget(superClass);
-			ModelUtil.getProject(association).deleteModelElement(association);
+			association.delete();
 		}
 	}
+
 } // PullUpAttributeOperationImpl

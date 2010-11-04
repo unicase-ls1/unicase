@@ -63,11 +63,10 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addCreatedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NavigatorCreateEvent_createdElement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_createdElement_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NavigatorCreateEvent_createdElement_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_createdElement_feature",
 				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, true,
 			false, true, null, null, null));
 	}
@@ -78,11 +77,10 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addSourceSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NavigatorCreateEvent_sourceSection_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_sourceSection_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NavigatorCreateEvent_sourceSection_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_sourceSection_feature",
 				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, true,
 			false, true, null, null, null));
 	}
@@ -93,10 +91,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addDynamicPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NavigatorCreateEvent_dynamic_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_NavigatorCreateEvent_dynamic_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_dynamic_feature",
 				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__DYNAMIC, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));

@@ -12,7 +12,8 @@ import java.util.Collections;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 
@@ -21,19 +22,13 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author helming
  */
-public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.ContentProvider {
+public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.ProjectSpaceContentProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.unicase.ui.navigator.ProjectSpaceContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
 	 */
-	public Collection<?> getChildren(EObject rootObject) {
-		ProjectSpace projectSpace;
-		if (rootObject instanceof ProjectSpace) {
-			projectSpace = (ProjectSpace) rootObject;
-		} else {
-			return Collections.EMPTY_LIST;
-		}
+	public Collection<?> getChildren(ProjectSpace projectSpace) {
 
 		final Project project = projectSpace.getProject();
 		if (project == null) {
@@ -41,10 +36,10 @@ public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.Con
 		}
 
 		Collection<EObject> ret = new ArrayList<EObject>();
-		EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-			new BasicEList<EObject>());
+		EList<ModelElement> modelElements = project.getModelElementsByClass(MetamodelPackage.eINSTANCE
+			.getModelElement(), new BasicEList<ModelElement>());
 		// FIXME: ugly hack to avoid dependency to model
-		for (EObject modelElement : modelElements) {
+		for (ModelElement modelElement : modelElements) {
 			EObject econtainer = modelElement.eContainer();
 			if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
 				ret.add(modelElement);
@@ -58,9 +53,9 @@ public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.Con
 	/**
 	 * Always true since thre is the orphasn folder. {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#hasChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.unicase.ui.navigator.ProjectSpaceContentProvider#hasChildren(org.unicase.workspace.ProjectSpace)
 	 */
-	public boolean hasChildren(EObject rootObject) {
+	public boolean hasChildren(ProjectSpace projectSpace) {
 		return true;
 	}
 

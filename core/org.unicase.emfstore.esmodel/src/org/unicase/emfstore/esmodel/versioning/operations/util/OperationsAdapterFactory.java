@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.util;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -18,19 +16,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.UniqueIdentifier;
 
 /**
@@ -110,28 +103,8 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMultiAttributeOperation(MultiAttributeOperation object) {
-			return createMultiAttributeOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseMultiAttributeSetOperation(MultiAttributeSetOperation object) {
-			return createMultiAttributeSetOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
-			return createMultiAttributeMoveOperationAdapter();
-		}
-
-		@Override
 		public Adapter caseSingleReferenceOperation(SingleReferenceOperation object) {
 			return createSingleReferenceOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseMultiReferenceSetOperation(MultiReferenceSetOperation object) {
-			return createMultiReferenceSetOperationAdapter();
 		}
 
 		@Override
@@ -167,11 +140,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseModelElementGroup(ModelElementGroup object) {
 			return createModelElementGroupAdapter();
-		}
-
-		@Override
-		public Adapter caseEObjectToModelElementIdMap(Map.Entry<EObject, ModelElementId> object) {
-			return createEObjectToModelElementIdMapAdapter();
 		}
 
 		@Override
@@ -274,51 +242,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
-	 * <em>Multi Attribute Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
-	 * @generated
-	 */
-	public Adapter createMultiAttributeOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation
-	 * <em>Multi Attribute Set Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation
-	 * @generated
-	 */
-	public Adapter createMultiAttributeSetOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation
-	 * <em>Multi Attribute Move Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation
-	 * @generated
-	 */
-	public Adapter createMultiAttributeMoveOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation
 	 * <em>Single Reference Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -344,21 +267,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMultiReferenceOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation
-	 * <em>Multi Reference Set Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation
-	 * @generated
-	 */
-	public Adapter createMultiReferenceSetOperationAdapter() {
 		return null;
 	}
 
@@ -445,20 +353,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementGroupAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry
-	 * <em>EObject To Model Element Id Map</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEObjectToModelElementIdMapAdapter() {
 		return null;
 	}
 

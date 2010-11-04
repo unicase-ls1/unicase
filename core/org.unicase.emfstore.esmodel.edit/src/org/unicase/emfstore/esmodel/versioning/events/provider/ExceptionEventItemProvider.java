@@ -64,10 +64,8 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionTitle_feature",
 				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_TITLE, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -80,11 +78,10 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature",
 				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -96,11 +93,10 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionCauseTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature",
 				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -112,11 +108,10 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionCauseStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature",
 				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

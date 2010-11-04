@@ -10,7 +10,6 @@ import java.util.Comparator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -24,13 +23,14 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -148,7 +148,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 			table.addDoubleClickListener(new IDoubleClickListener() {
 				public void doubleClick(DoubleClickEvent event) {
 					IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), table.getClass()
+					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), table.getClass()
 						.getName());
 				}
 
@@ -175,7 +175,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(Project project, ModelElement modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
@@ -186,8 +186,18 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		// nothing to do
 
 	}
 
@@ -197,7 +207,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}

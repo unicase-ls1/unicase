@@ -66,10 +66,8 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ProjectHistory_projectName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectHistory_projectName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature",
 				"_UI_ProjectHistory_type"), EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -82,10 +80,8 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ProjectHistory_projectDescription_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectHistory_projectDescription_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature",
 				"_UI_ProjectHistory_type"), EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

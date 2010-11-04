@@ -5,10 +5,7 @@
  */
 package org.unicase.workspace.ui.dialogs.merge.conflict;
 
-import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Holding the data for the context of an conflict.
@@ -17,18 +14,22 @@ import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
  */
 public class ConflictContext {
 
-	private final EObject modelElement;
+	private final ModelElement modelElement;
 	private final String attribute;
 	private final String opponent;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement element
-	 * @param attribute attribute
-	 * @param opponent opponent
+	 * @param modelElement
+	 *            element
+	 * @param attribute
+	 *            attribute
+	 * @param opponent
+	 *            opponent
 	 */
-	public ConflictContext(EObject modelElement, String attribute, String opponent) {
+	public ConflictContext(ModelElement modelElement, String attribute,
+			String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = attribute;
 		this.opponent = opponent;
@@ -37,26 +38,15 @@ public class ConflictContext {
 	/**
 	 * Alternative constructor.
 	 * 
-	 * @param modelElement element
-	 * @param opponent opponent
+	 * @param modelElement
+	 *            element
+	 * @param opponent
+	 *            opponent
 	 */
-	public ConflictContext(EObject modelElement, String opponent) {
+	public ConflictContext(ModelElement modelElement, String opponent) {
 		this.modelElement = modelElement;
 		this.attribute = null;
 		this.opponent = opponent;
-	}
-
-	/**
-	 * Alternative constructor.
-	 * 
-	 * @param manager decisionmanager
-	 * @param myOperation my op
-	 * @param theirOperation their op
-	 */
-	public ConflictContext(DecisionManager manager, AbstractOperation myOperation, AbstractOperation theirOperation) {
-		this(manager.getModelElement(myOperation.getModelElementId()),
-			(myOperation instanceof FeatureOperation) ? ((FeatureOperation) myOperation).getFeatureName() : "", manager
-				.getAuthorForOperation(theirOperation));
 	}
 
 	/**
@@ -64,7 +54,7 @@ public class ConflictContext {
 	 * 
 	 * @return element
 	 */
-	public EObject getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 

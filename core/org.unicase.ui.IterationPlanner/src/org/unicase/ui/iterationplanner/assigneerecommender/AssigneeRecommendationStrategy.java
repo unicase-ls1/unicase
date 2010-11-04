@@ -6,24 +6,23 @@
 
 package org.unicase.ui.iterationplanner.assigneerecommender;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.recommendation.RecommendationStrategy;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 public class AssigneeRecommendationStrategy implements RecommendationStrategy {
 
 	private static final boolean SIMPLE_RECOMMENDER = true;
 
-	public AssigneeRecommendationStrategy() {
-	}
+	public AssigneeRecommendationStrategy() {}
 
 	public Map<UnicaseModelElement, Double> getMatchingMap(UnicaseModelElement base,
 		Collection<UnicaseModelElement> elements) {
@@ -53,7 +52,8 @@ public class AssigneeRecommendationStrategy implements RecommendationStrategy {
 		}
 	}
 
-	public Map<EObject, Double> getMatchingMap(EObject base, Collection<EObject> elements) {
+	public Map<ModelElement, Double> getMatchingMap(ModelElement base,
+			Collection<ModelElement> elements) {
 		// TODO Auto-generated method stub
 		return null;
 	}

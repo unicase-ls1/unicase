@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.meeditor;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the category property in the genmodel.
@@ -18,7 +18,7 @@ public class CategoryDescriptor implements IAttributeDescriptor<Double> {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Double getValue(IItemPropertyDescriptor propertyDescriptor, EObject modelElement) {
+	public Double getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement) {
 		String s = propertyDescriptor.getCategory(modelElement);
 		if (s == null) {
 			s = "100.0";

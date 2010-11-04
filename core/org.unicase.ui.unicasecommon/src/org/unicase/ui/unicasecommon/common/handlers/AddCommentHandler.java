@@ -9,7 +9,7 @@ package org.unicase.ui.unicasecommon.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -23,7 +23,8 @@ public class AddCommentHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		EObject me = ActionHelper.getModelElement(event);
+
+		ModelElement me = ActionHelper.getModelElement(event);
 		ActionHelper.openDiscussion(me, true);
 
 		return null;

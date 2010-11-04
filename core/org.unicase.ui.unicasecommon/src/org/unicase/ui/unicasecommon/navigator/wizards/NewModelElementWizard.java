@@ -14,13 +14,14 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -42,6 +43,12 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 * element is and not a package.
 	 */
 	private boolean treePageCompleted;
+
+	/**
+	 * Through this field, the ModelTreePage tells the wizard, which diagram type should be created e.g. a Class Diagram
+	 * or Usecase Diagram
+	 */
+	private DiagramType newDiagramType;
 
 	/**
 	 * . ({@inheritDoc})
@@ -106,7 +113,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				});
 			}
 			// 3.open the newly created ME
-			UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 		return true;
@@ -201,6 +208,15 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setTreePageCompleted(boolean treePageCompleted) {
 		this.treePageCompleted = treePageCompleted;
+	}
+
+	/**
+	 * @see newDiagramType
+	 * @param type the type of the diagram, to be created.
+	 */
+	public void setNewDiagramType(DiagramType type) {
+		this.newDiagramType = type;
+
 	}
 
 }

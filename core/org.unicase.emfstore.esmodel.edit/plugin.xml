@@ -9,7 +9,6 @@
 -->
 
 <plugin>
-   <extension-point id="customOperationLabelProvider" name="customOperationLabelProvider" schema="schema/customOperationLabelProvider.exsd"/>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory

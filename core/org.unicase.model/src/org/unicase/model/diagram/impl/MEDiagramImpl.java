@@ -27,13 +27,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -253,14 +250,12 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * 
-	 * @generated NOT
-	 * @return the type
+	 * @generated
 	 */
 	public String getType() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-			"getType is not implemented. Must be implmented in any subtype of MEDiagram");
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -268,7 +263,6 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	 * 
 	 * @generated
 	 */
-
 	public String getDiagramLayout() {
 		return diagramLayout;
 	}
@@ -529,13 +523,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		diagramResource.getContents().remove(gmfdiagram);
 		elementsResource.getContents().removeAll(elements);
 		for (UnicaseModelElement modelElement : resourceMap.keySet()) {
-			Resource resource = resourceMap.get(modelElement);
-			resource.getContents().add(modelElement);
-			if (resource instanceof XMIResource) {
-				XMIResource xmiResource = (XMIResource) resource;
-				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-				xmiResource.setID(modelElement, modelElementId.getId());
-			}
+			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 	}
 

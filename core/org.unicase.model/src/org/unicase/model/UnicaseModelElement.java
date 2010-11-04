@@ -5,11 +5,8 @@
  */
 package org.unicase.model;
 
-import java.util.Date;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.rationale.Comment;
@@ -32,8 +29,6 @@ import org.unicase.model.task.util.MEState;
  * <li>{@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}
  * </li>
  * <li>{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}</li>
- * <li>{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.model.UnicaseModelElement#getCreationDate <em>Creation Date</em>}</li>
  * </ul>
  * </p>
  * 
@@ -41,7 +36,7 @@ import org.unicase.model.task.util.MEState;
  * @model abstract="true"
  * @generated
  */
-public interface UnicaseModelElement extends EObject {
+public interface UnicaseModelElement extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -142,7 +137,8 @@ public interface UnicaseModelElement extends EObject {
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements" annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 * @model opposite="referencedModelElements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -161,7 +157,7 @@ public interface UnicaseModelElement extends EObject {
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_LeafSection()
 	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" transient="false"
+	 * @model opposite="modelElements" keys="identifier" transient="false"
 	 * @generated
 	 */
 	LeafSection getLeafSection();
@@ -225,63 +221,11 @@ public interface UnicaseModelElement extends EObject {
 	 * @return the value of the '<em>Comments</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
 	 * @generated
 	 */
 	EList<Comment> getComments();
-
-	/**
-	 * Returns the value of the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Creator</em>' attribute isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Creator</em>' attribute.
-	 * @see #setCreator(String)
-	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Creator()
-	 * @model
-	 * @generated
-	 */
-	String getCreator();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Creator</em>' attribute.
-	 * @see #getCreator()
-	 * @generated
-	 */
-	void setCreator(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #setCreationDate(Date)
-	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_CreationDate()
-	 * @model
-	 * @generated
-	 */
-	Date getCreationDate();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getCreationDate <em>Creation Date</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Creation Date</em>' attribute.
-	 * @see #getCreationDate()
-	 * @generated
-	 */
-	void setCreationDate(Date value);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -303,20 +247,6 @@ public interface UnicaseModelElement extends EObject {
 	 * @generated NOT
 	 */
 	String getDescriptionPlainText();
-
-	/**
-	 * Add a model element change listener.
-	 * 
-	 * @param listener listener to add.
-	 */
-	void addModelElementChangeListener(ModelElementChangeListener listener);
-
-	/**
-	 * Remove a model element change listener.
-	 * 
-	 * @param listener the listener to remove
-	 */
-	void removeModelElementChangeListener(ModelElementChangeListener listener);
 
 	// end custom code
 

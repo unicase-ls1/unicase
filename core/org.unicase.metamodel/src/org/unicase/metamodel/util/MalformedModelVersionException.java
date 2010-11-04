@@ -9,13 +9,13 @@ package org.unicase.metamodel.util;
  * Represents an exception of a malformed version or non existing model version.
  * 
  * @author koegel
+ *
  */
 @SuppressWarnings("serial")
 public class MalformedModelVersionException extends Exception {
 
 	/**
 	 * Constructor.
-	 * 
 	 * @param message the message
 	 * @param cause the cause
 	 */
@@ -25,7 +25,6 @@ public class MalformedModelVersionException extends Exception {
 
 	/**
 	 * Constructor.
-	 * 
 	 * @param message the message
 	 */
 	public MalformedModelVersionException(String message) {

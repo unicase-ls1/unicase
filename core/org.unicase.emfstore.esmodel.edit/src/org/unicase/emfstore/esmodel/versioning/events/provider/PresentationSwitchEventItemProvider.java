@@ -63,10 +63,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PresentationSwitchEvent_readView_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PresentationSwitchEvent_readView_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_readView_feature",
 				"_UI_PresentationSwitchEvent_type"), EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -78,11 +76,10 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 * @generated
 	 */
 	protected void addNewPresentationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PresentationSwitchEvent_newPresentation_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_PresentationSwitchEvent_newPresentation_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature",
 				"_UI_PresentationSwitchEvent_type"),
 			EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

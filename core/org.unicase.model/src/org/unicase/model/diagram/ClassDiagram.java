@@ -14,4 +14,3 @@ package org.unicase.model.diagram;
  */
 public interface ClassDiagram extends MEDiagram {
 } // ClassDiagram
-

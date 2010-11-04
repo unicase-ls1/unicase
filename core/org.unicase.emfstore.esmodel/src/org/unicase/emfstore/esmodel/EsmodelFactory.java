@@ -79,14 +79,6 @@ public interface EsmodelFactory extends EFactory {
 	ClientVersionInfo createClientVersionInfo();
 
 	/**
-	 * Returns a new object of class '<em>File Identifier</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>File Identifier</em>'.
-	 * @generated
-	 */
-	FileIdentifier createFileIdentifier();
-
-	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

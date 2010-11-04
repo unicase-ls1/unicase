@@ -6,10 +6,7 @@
 package org.unicase.workspace;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.metamodel.ModelElementId;
@@ -24,9 +21,8 @@ import org.unicase.workspace.impl.ProjectChangeTracker;
 public class CompositeOperationHandle {
 
 	private boolean isValid;
-	private CompositeOperation compositeOperation;
-	private ProjectChangeTracker changeTracker;
-	private Set<EObject> removedElements;
+	private final CompositeOperation compositeOperation;
+	private final ProjectChangeTracker changeTracker;
 
 	/**
 	 * Default constructor.
@@ -36,8 +32,6 @@ public class CompositeOperationHandle {
 	 */
 	public CompositeOperationHandle(ProjectChangeTracker changeTracker, CompositeOperation compositeOperation) {
 		this.changeTracker = changeTracker;
-		removedElements = new HashSet<EObject>();
-		removedElements.addAll(changeTracker.getRemovedElements());
 		this.compositeOperation = compositeOperation;
 		isValid = true;
 	}
@@ -58,16 +52,7 @@ public class CompositeOperationHandle {
 	 */
 	public void abort() throws InvalidHandleException {
 		checkAndCloseHandle();
-		changeTracker.getRemovedElements().retainAll(removedElements);
 		changeTracker.abortCompositeOperation();
-		dropAllReferences();
-	}
-
-	private void dropAllReferences() {
-		compositeOperation = null;
-		changeTracker = null;
-		removedElements = null;
-
 	}
 
 	private void checkAndCloseHandle() throws InvalidHandleException {
@@ -93,7 +78,6 @@ public class CompositeOperationHandle {
 		compositeOperation.setReversed(false);
 		compositeOperation.setModelElementId(modelElementId);
 		changeTracker.endCompositeOperation();
-		dropAllReferences();
 	}
 
 	/**

@@ -118,7 +118,7 @@
     <domainModel
         href="../../model.ecore#//diagram"/>
     <domainMetaElement
-        href="../../model.ecore#//diagram/ActivityDiagram"/>
+        href="../../model.ecore#//diagram/MEDiagram"/>
     <palette
         href="activityDiagram.gmftool#//@palette"/>
   </diagram>

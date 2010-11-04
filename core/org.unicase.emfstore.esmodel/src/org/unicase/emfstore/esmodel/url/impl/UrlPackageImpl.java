@@ -112,7 +112,8 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 
 		// Obtain or create and register package
 		UrlPackageImpl theUrlPackage = (UrlPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UrlPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new UrlPackageImpl());
+			.get(eNS_URI)
+			: new UrlPackageImpl());
 
 		isInited = true;
 

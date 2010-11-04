@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -96,13 +95,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	private EClass clientVersionInfoEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass fileIdentifierEClass = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
 	 * EPackage.Registry} by the package package URI value.
 	 * <p>
@@ -144,7 +136,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		// Obtain or create and register package
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new EsmodelPackageImpl());
+			.get(eNS_URI)
+			: new EsmodelPackageImpl());
 
 		isInited = true;
 
@@ -177,7 +170,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
 		UrlPackageImpl theUrlPackage = (UrlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) instanceof UrlPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UrlPackage.eNS_URI) : UrlPackage.eINSTANCE);
+			.getEPackage(UrlPackage.eNS_URI)
+			: UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
@@ -414,15 +408,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getFileIdentifier() {
-		return fileIdentifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EsmodelFactory getEsmodelFactory() {
 		return (EsmodelFactory) getEFactoryInstance();
 	}
@@ -474,8 +459,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		clientVersionInfoEClass = createEClass(CLIENT_VERSION_INFO);
 		createEAttribute(clientVersionInfoEClass, CLIENT_VERSION_INFO__VERSION);
 		createEAttribute(clientVersionInfoEClass, CLIENT_VERSION_INFO__NAME);
-
-		fileIdentifierEClass = createEClass(FILE_IDENTIFIER);
 	}
 
 	/**
@@ -525,7 +508,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Add supertypes to classes
 		sessionIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
 		projectIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
-		fileIdentifierEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE,
@@ -592,9 +574,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		initEAttribute(getClientVersionInfo_Name(), ecorePackage.getEString(), "name", null, 0, 1,
 			ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-
-		initEClass(fileIdentifierEClass, FileIdentifier.class, "FileIdentifier", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

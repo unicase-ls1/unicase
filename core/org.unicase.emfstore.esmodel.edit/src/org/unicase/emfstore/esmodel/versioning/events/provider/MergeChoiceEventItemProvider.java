@@ -65,10 +65,8 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addSelectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MergeChoiceEvent_selection_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_selection_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_selection_feature",
 				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__SELECTION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -80,10 +78,8 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addContextFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MergeChoiceEvent_contextFeature_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_contextFeature_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_contextFeature_feature",
 				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__CONTEXT_FEATURE, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -95,10 +91,8 @@ public class MergeChoiceEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addCreatedIssueNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MergeChoiceEvent_createdIssueName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeChoiceEvent_createdIssueName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MergeChoiceEvent_createdIssueName_feature",
 				"_UI_MergeChoiceEvent_type"), EventsPackage.Literals.MERGE_CHOICE_EVENT__CREATED_ISSUE_NAME, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

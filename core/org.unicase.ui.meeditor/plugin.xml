@@ -5,7 +5,6 @@
    <extension-point id="org.unicase.ui.meeditor.referencecontrols" name="org.unicase.ui.meeditor.referencecontrols" schema="schema/org.unicase.ui.meeditor.referencecontrol.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.pages" name="org.unicase.ui.meeditor.pages" schema="schema/org.unicase.ui.meeditor.pages.exsd"/>
    <extension-point id="org.unicase.ui.meeditor.melinkcontrols" name="org.unicase.ui.meeditor.melinkcontrols" schema="schema/org.unicase.ui.meeditor.melinkcontrol.exsd"/>
-   <extension-point id="org.unicase.ui.meeditor.statusmessage" name="Status Message" schema="schema/org.unicase.ui.meeditor.statusmessage.exsd"/>
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
@@ -68,43 +67,19 @@
             class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
             name="org.unicase.ui.meeditor.mesinglelinkcontrol"
             showLabel="true"
-            type="org.eclipse.emf.ecore.EObject">
+            type="org.unicase.metamodel.ModelElement">
       </widget>
       <widget
             class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl"
             name="org.unicase.ui.meeditor.memultilinkcontrol"
             showLabel="false"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
-      <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControl"
-            name="org.unicase.ui.meeditor.associationclasscontrol"
-            showLabel="false"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
-      <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControlNoNew"
-            name="org.unicase.ui.meeditor.associationclasscontrolnonew"
-            showLabel="true"
-            type="org.eclipse.emf.ecore.EObject">
+            type="org.unicase.metamodel.ModelElement">
       </widget>
    </extension>
    <extension
-         point="org.unicase.ui.meeditor.melinkcontrols">
-      <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLink"
-            name="org.unicase.ui.meeditor.associationclasslink"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
-      <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNoDelete"
-            name="org.unicase.ui.meeditor.associationclasslinknodelete"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
-      <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNotShow"
-            name="org.unicase.ui.meeditor.associationclasslinknotshow"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
+         point="org.unicase.workspace.notify.deleteprojectspace">
+      <observer
+            class="org.unicase.ui.meeditor.MEEditorDeleteProjectObserver">
+      </observer>
    </extension>
 </plugin>

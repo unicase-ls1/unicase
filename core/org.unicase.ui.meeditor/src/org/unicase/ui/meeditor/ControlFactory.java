@@ -14,12 +14,14 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ui.common.ModelElementContext;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Factory for generating {@link AbstractMEControl}'s according to a {@link IItemPropertyDescriptor}.
@@ -31,8 +33,11 @@ public class ControlFactory {
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param editingDomain the editing domain
+	 * @param toolkit the gui toolkit
 	 */
-	public ControlFactory() {
+	public ControlFactory(EditingDomain editingDomain, FormToolkit toolkit) {
 		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractMEControl>>();
 		initializeMEControls();
 	}
@@ -60,9 +65,9 @@ public class ControlFactory {
 				controlRegistry.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
-				Activator.logException(e1);
+				WorkspaceUtil.logException(e1.getMessage(), e1);
 			} catch (CoreException e2) {
-				Activator.logException(e2);
+				WorkspaceUtil.logException(e2.getMessage(), e2);
 			}
 		}
 
@@ -75,33 +80,20 @@ public class ControlFactory {
 	 * @param modelElement model element
 	 * @return the {@link AbstractMEControl}
 	 */
-	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		return createControl(itemPropertyDescriptor, modelElement, null);
-	}
-
-	/**
-	 * Creates a {@link AbstractMEControl} according to the {@link IItemPropertyDescriptor}.
-	 * 
-	 * @param itemPropertyDescriptor the descriptor
-	 * @param modelElement model element
-	 * @param context model element context
-	 * @return the {@link AbstractMEControl}
-	 */
-	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement,
-		ModelElementContext context) {
+	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
-			return createAttribute(itemPropertyDescriptor, feature, modelElement, context);
+			return createAttribute(itemPropertyDescriptor, feature, modelElement);
 		} else if (feature instanceof EReference) {
-			return createReferenceControl(itemPropertyDescriptor, (EReference) feature, modelElement, context);
+			return createReferenceControl(itemPropertyDescriptor, (EReference) feature, modelElement);
 		}
 
 		return null;
 	}
 
 	private AbstractMEControl createReferenceControl(IItemPropertyDescriptor itemPropertyDescriptor,
-		EReference feature, EObject modelElement, ModelElementContext context) {
+		EReference feature, ModelElement modelElement) {
 		Class<?> instanceClass = feature.getEType().getInstanceClass();
 		Set<Class<?>> keySet = controlRegistry.keySet();
 		ArrayList<AbstractMEControl> candidates = new ArrayList<AbstractMEControl>();
@@ -110,7 +102,7 @@ public class ControlFactory {
 				candidates.addAll(controlRegistry.get(clazz));
 			}
 		}
-		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement, context);
+		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
 		AbstractMEControl ret = null;
 		if (control == null) {
 			return null;
@@ -127,7 +119,7 @@ public class ControlFactory {
 	}
 
 	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor,
-		EStructuralFeature feature, EObject modelElement, ModelElementContext context) {
+		EStructuralFeature feature, ModelElement modelElement) {
 		Class<?> instanceClass = ((EAttribute) feature).getEAttributeType().getInstanceClass();
 		// Test which controls have a fitting type
 		// TODO: could be chached?
@@ -155,7 +147,7 @@ public class ControlFactory {
 				candidates.addAll(controlRegistry.get(clazz));
 			}
 		}
-		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement, context);
+		AbstractMEControl control = getBestCandidate(candidates, itemPropertyDescriptor, feature, modelElement);
 		AbstractMEControl ret = null;
 		if (control == null) {
 			return null;
@@ -173,12 +165,11 @@ public class ControlFactory {
 	}
 
 	private AbstractMEControl getBestCandidate(ArrayList<AbstractMEControl> candidates,
-		IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature, EObject modelElement,
-		ModelElementContext context) {
+		IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature, ModelElement modelElement) {
 		int bestValue = 0;
 		AbstractMEControl bestCandidate = null;
 		for (AbstractMEControl abstractMEControl : candidates) {
-			abstractMEControl.setContext(context);
+
 			int newValue = abstractMEControl.canRender(itemPropertyDescriptor, modelElement);
 			if (newValue > bestValue) {
 				bestCandidate = abstractMEControl;

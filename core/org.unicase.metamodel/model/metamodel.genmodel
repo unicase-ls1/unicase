@@ -11,18 +11,17 @@
   <genPackages prefix="Metamodel" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="metamodel.ecore#/">
     <genClasses image="false" ecoreClass="metamodel.ecore#//ModelElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creationDate"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creator"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ModelElement/creationDate"/>
     </genClasses>
     <genClasses ecoreClass="metamodel.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/cutElements"/>
     </genClasses>
     <genClasses image="false" ecoreClass="metamodel.ecore#//UniqueIdentifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//UniqueIdentifier/id"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//UniqueIdentifier/id"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="metamodel.ecore#//IdentifiableElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//IdentifiableElement/identifier"/>
+    <genClasses ecoreClass="metamodel.ecore#//IdentifiableElement">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//IdentifiableElement/identifier"/>
     </genClasses>
     <genClasses ecoreClass="metamodel.ecore#//ModelElementId"/>
     <genClasses ecoreClass="metamodel.ecore#//ModelVersion">

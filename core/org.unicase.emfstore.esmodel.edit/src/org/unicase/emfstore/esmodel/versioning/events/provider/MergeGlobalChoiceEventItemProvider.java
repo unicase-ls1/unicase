@@ -61,10 +61,8 @@ public class MergeGlobalChoiceEventItemProvider extends EventItemProvider implem
 	 * @generated
 	 */
 	protected void addSelectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MergeGlobalChoiceEvent_selection_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeGlobalChoiceEvent_selection_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MergeGlobalChoiceEvent_selection_feature",
 				"_UI_MergeGlobalChoiceEvent_type"), EventsPackage.Literals.MERGE_GLOBAL_CHOICE_EVENT__SELECTION, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

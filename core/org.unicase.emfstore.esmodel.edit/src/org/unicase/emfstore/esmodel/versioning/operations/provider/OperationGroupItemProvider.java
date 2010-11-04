@@ -75,12 +75,10 @@ public class OperationGroupItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_OperationGroup_name_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_OperationGroup_name_feature",
-				"_UI_OperationGroup_type"), OperationsPackage.Literals.OPERATION_GROUP__NAME, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OperationGroup_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_OperationGroup_name_feature", "_UI_OperationGroup_type"),
+			OperationsPackage.Literals.OPERATION_GROUP__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -90,10 +88,8 @@ public class OperationGroupItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addOperationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_OperationGroup_operations_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OperationGroup_operations_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_OperationGroup_operations_feature",
 				"_UI_OperationGroup_type"), OperationsPackage.Literals.OPERATION_GROUP__OPERATIONS, true, false, true,
 			null, null, null));

@@ -146,21 +146,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 */
 	public abstract String getDescription();
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
-	 */
-	public boolean canApply(Project project) {
-		if (getModelElementId() == null) {
-			return true;
-		}
-		if (!project.contains(getModelElementId())) {
-			return false;
-		}
-		return true;
-	}
-
 	// end of custom code
 
 	/**
@@ -284,20 +269,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 				oldClientDate, clientDate));
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			return basicSetModelElementId(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
 	// begin of custom code
 	/**
 	 * {@inheritDoc}
@@ -316,7 +287,36 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 		abstractOperation.setClientDate(new Date());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	public boolean canApply(Project project) {
+		if (getModelElementId() == null) {
+			return true;
+		}
+		if (!project.contains(getModelElementId())) {
+			return false;
+		}
+		return true;
+	}
+
 	// end of custom code
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+			return basicSetModelElementId(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -428,6 +428,8 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.ModelElement#getModelElementId()
 	 */
 	public OperationId getOperationId() {
 		if (this.identifier == null) {

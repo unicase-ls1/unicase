@@ -12,7 +12,6 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -20,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.task.TaskPackage;
@@ -27,10 +27,10 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
+import org.unicase.ui.common.util.URLHelper;
+import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.util.URLSelectionListener;
 
 /**
  * A dashboard widget displaying the upcoming events.
@@ -55,22 +55,24 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 	@Override
 	protected void createContentPanel() {
 		super.createContentPanel();
-		EList<EObject> items = initItems();
+		EList<ModelElement> items = initItems();
 
 		Composite panel = getContentPanel();
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 2).applyTo(panel);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.spacing(3, 2).applyTo(panel);
 		final int count = items.size();
 
 		SimpleDateFormat day = new SimpleDateFormat("EEE, d MMM");
 		SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 		if (count > 0) {
 			for (int i = 0; i < Math.min(10, count); i++) {
-				EObject modelElement = items.get(i);
+				ModelElement modelElement = items.get(i);
 				ImageHyperlink image = new ImageHyperlink(panel, SWT.TOP);
 				image.setImage(getLabelProvider().getImage(modelElement));
 				image.setData(modelElement.eClass());
 				ModelElementClassTooltip.enableFor(image);
-				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(image);
+				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING)
+						.applyTo(image);
 				Link link = new Link(panel, SWT.WRAP | SWT.MULTI);
 				link.setData(modelElement);
 				ModelElementTooltip.enableFor(link);
@@ -82,17 +84,20 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				}
 				Date date = getDate(modelElement);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElement, getDashboard()
-					.getProjectSpace(), 20));
+				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(
+						modelElement, getDashboard().getProjectSpace(), 20));
 				stringBuilder.append(msg);
 				stringBuilder.append(day.format(date));
 				stringBuilder.append(" at ");
 				stringBuilder.append(time.format(date));
 				link.setText(stringBuilder.toString());
-				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
+				link.addSelectionListener(URLSelectionListener
+						.getInstance(getDashboard().getProjectSpace()));
 				int height = Activator.getDefault().fixHeightForCocoa(link.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-				GridDataFactory.fillDefaults().hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, height)
-					.grab(true, false).applyTo(link);
+				GridDataFactory.fillDefaults().hint(
+						getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x,
+						height).
+						grab(true, false).applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);
@@ -100,7 +105,7 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		}
 	}
 
-	private Date getDate(EObject modelElement) {
+	private Date getDate(ModelElement modelElement) {
 		Date date = null;
 		if (modelElement instanceof WorkItem) {
 			date = ((WorkItem) modelElement).getDueDate();
@@ -112,23 +117,25 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		return date;
 	}
 
-	private EList<EObject> initItems() {
+	private EList<ModelElement> initItems() {
 		ProjectSpace projectSpace = getDashboard().getProjectSpace();
 
-		EList<EObject> total = new BasicEList<EObject>();
+		EList<ModelElement> total = new BasicEList<ModelElement>();
 
 		EList<WorkItem> workItems = new BasicEList<WorkItem>();
 		EList<Meeting> meetings = new BasicEList<Meeting>();
 
-		projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), workItems, true);
-		projectSpace.getProject().getAllModelElementsbyClass(MeetingPackage.eINSTANCE.getMeeting(), meetings);
+		projectSpace.getProject().getAllModelElementsbyClass(
+				TaskPackage.eINSTANCE.getWorkItem(), workItems, true);
+		projectSpace.getProject().getAllModelElementsbyClass(
+				MeetingPackage.eINSTANCE.getMeeting(), meetings);
 
 		final Date now = new Date();
 		addUpcomingEvents(total, workItems, now);
 		addUpcomingEvents(total, meetings, now);
 
-		Collections.sort(total, new Comparator<EObject>() {
-			public int compare(EObject o1, EObject o2) {
+		Collections.sort(total, new Comparator<ModelElement>() {
+			public int compare(ModelElement o1, ModelElement o2) {
 				Date d1 = getDate(o1);
 				Date d2 = getDate(o2);
 				if (d1 != null && d2 == null) {
@@ -145,8 +152,9 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		return total;
 	}
 
-	private void addUpcomingEvents(EList<EObject> target, EList<? extends EObject> source, Date now) {
-		for (EObject modelElement : source) {
+	private void addUpcomingEvents(EList<ModelElement> target,
+			EList<? extends ModelElement> source, Date now) {
+		for (ModelElement modelElement : source) {
 			Date date = getDate(modelElement);
 			if (date != null && date.after(now)) {
 				target.add(modelElement);

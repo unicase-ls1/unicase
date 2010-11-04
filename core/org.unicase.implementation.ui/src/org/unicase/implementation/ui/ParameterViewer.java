@@ -15,7 +15,6 @@ import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
@@ -42,6 +41,7 @@ import org.eclipse.swt.widgets.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.provider.OperationsEditPlugin;
 import org.unicase.implementation.operations.util.OperationHelper;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -60,8 +60,8 @@ public class ParameterViewer extends TableViewer {
 	private final class ValueEditingSupport extends EditingSupport {
 		/**
 		 * Overrides handling of return key in combo boxes.
-		 * 
 		 * @author herrmi
+		 *
 		 */
 		private final class ExtendedComboBoxCellEditorExtension extends ExtendedComboBoxCellEditor {
 			private ExtendedComboBoxCellEditorExtension(Composite composite, List<?> list,
@@ -71,9 +71,9 @@ public class ParameterViewer extends TableViewer {
 
 			public void pressEnter() {
 				Event e = new Event();
-				e.widget = this.getControl();
+				e.widget=this.getControl();
 				KeyEvent keyEvent = new KeyEvent(e);
-				keyEvent.character = '\t';
+				keyEvent.character='\t';
 				keyReleaseOccured(keyEvent);
 			}
 		}
@@ -120,8 +120,8 @@ public class ParameterViewer extends TableViewer {
 
 				};
 			}
-			final ExtendedComboBoxCellEditorExtension extendedComboBoxCellEditor = new ExtendedComboBoxCellEditorExtension(
-				getTable(), OperationHelper.getPossibleValues(operation, reference, project), valueLabelProvider, true);
+			final ExtendedComboBoxCellEditorExtension extendedComboBoxCellEditor = new ExtendedComboBoxCellEditorExtension(getTable(), OperationHelper.getPossibleValues(operation, reference,
+				project), valueLabelProvider, true);
 			final CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
 			combo.addSelectionListener(new SelectionAdapter() {
 
@@ -154,8 +154,8 @@ public class ParameterViewer extends TableViewer {
 			}
 			EDataType dataType = (EDataType) attribute.getEType();
 			if (dataType.getInstanceClass() == Boolean.class || dataType.getInstanceClass() == Boolean.TYPE) {
-				ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(),
-					Arrays.asList(new Object[] { Boolean.FALSE, Boolean.TRUE }), valueLabelProvider, false);
+				ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(), Arrays.asList(new Object[] { Boolean.FALSE,
+					Boolean.TRUE }), valueLabelProvider, false);
 				CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
 				combo.addSelectionListener(new SelectionAdapter() {
 
@@ -287,7 +287,8 @@ public class ParameterViewer extends TableViewer {
 			@Override
 			public String getText(Object element) {
 				EStructuralFeature feature = (EStructuralFeature) element;
-				String key = "_UI_" + feature.getEContainingClass().getName() + "_" + feature.getName() + "_feature";
+				String key = "_UI_" + feature.getEContainingClass().getName() + "_" + feature.getName()
+					+ "_feature";
 				return OperationsEditPlugin.getPlugin().getString(key);
 			}
 		});
@@ -341,9 +342,9 @@ public class ParameterViewer extends TableViewer {
 	private void setFeatureValue(EStructuralFeature feature, Object value) {
 		if (feature instanceof EReference) {
 			if (feature.isMany()) {
-				value = OperationHelper.getIds((List<? extends EObject>) value);
+				value = OperationHelper.getIds((List<? extends ModelElement>) value);
 			} else {
-				value = OperationHelper.getId((EObject) value);
+				value = OperationHelper.getId((ModelElement) value);
 			}
 		}
 		operation.eSet(feature, value);

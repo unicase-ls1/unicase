@@ -11,58 +11,55 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
 
-Â«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"Â»
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
 
-Â«DEFINE Main FOR gmfgen::GenDiagram-Â»
-Â«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-Â»
-package Â«editPartsPackageNameÂ»;
+«DEFINE Main FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «editPartsPackageName»;
 
-Â«EXPAND xpt::Common::generatedClassCommentÂ»
-public class Â«editPartClassNameÂ» Â«EXPAND extendsListÂ» Â«EXPAND implementsListÂ» {
+«EXPAND xpt::Common::generatedClassComment»
+public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsList» {
 
-	Â«EXPAND attributes-Â»
-Â«EXPAND xpt::Common::generatedClassCommentÂ»
-	public Â«editPartClassNameÂ»(org.eclipse.gmf.runtime.notation.View view) {
-		super(view);
-	}
-
+	«EXPAND attributes-»
 	
-	Â«EXPAND createDefaultEditPolicies-Â»
+	«EXPAND impl::diagram::editparts::DiagramEditPart::constructor-»
 	
-	Â«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-Â»
+	«EXPAND createDefaultEditPolicies-»
+	
+	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»
 
-	Â«EXPAND additions-Â»
+	«EXPAND additions-»
 }
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE extendsList FOR gmfgen::GenDiagramÂ»extends org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPartÂ«ENDDEFINEÂ»
+«DEFINE extendsList FOR gmfgen::GenDiagram»extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart«ENDDEFINE»
 
-Â«DEFINE implementsList FOR gmfgen::GenDiagramÂ»Â«ENDDEFINEÂ»
+«DEFINE implementsList FOR gmfgen::GenDiagram»«ENDDEFINE»
 
-Â«DEFINE attributes FOR gmfgen::GenDiagram-Â»
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
-	public final static String MODEL_ID = "Â«editorGen.modelIDÂ»"; Â«EXPAND xpt::Common::nonNLSÂ»
+«DEFINE attributes FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public final static String MODEL_ID = "«editorGen.modelID»"; «EXPAND xpt::Common::nonNLS»
 	
-	Â«EXPAND xpt::diagram::editparts::Common::visualIDConstant-Â»
-Â«ENDDEFINEÂ»
+	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR this-»
+«ENDDEFINE»
 
-Â«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-Â»
-	Â«EXPAND xpt::Common::generatedMemberCommentÂ»
+«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
 	protected void createDefaultEditPolicies() {
-		Â«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-Â»
+		«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-»
 	}
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
-Â«ENDDEFINEÂ»
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
 
-Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
-Â«ENDDEFINEÂ»
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
 
-Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
-Â«ENDDEFINEÂ»
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
 
-Â«DEFINE definionName FOR gmfgen::GenDiagram-Â»
-Â«ENDDEFINEÂ»
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
 
-Â«DEFINE additions FOR gmfgen::GenDiagramÂ»Â«ENDDEFINEÂ»
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»

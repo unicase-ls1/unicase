@@ -65,6 +65,30 @@ public interface ProfilePackage extends EPackage {
 	int PROFILE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -143,22 +167,6 @@ public interface ProfilePackage extends EPackage {
 	int PROFILE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Affected Containers</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -193,6 +201,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -273,22 +305,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -341,6 +357,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_INSTANCE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -421,22 +461,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -480,6 +504,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_ATTRIBUTE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -560,22 +608,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -611,6 +643,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_SIMPLE__IDENTIFIER = STEREOTYPE_ATTRIBUTE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATOR = STEREOTYPE_ATTRIBUTE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATION_DATE = STEREOTYPE_ATTRIBUTE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -691,22 +747,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__COMMENTS = STEREOTYPE_ATTRIBUTE__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATOR = STEREOTYPE_ATTRIBUTE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATION_DATE = STEREOTYPE_ATTRIBUTE__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -750,6 +790,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -830,22 +894,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
-
-	/**
 	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -881,6 +929,30 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING = 6;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__IDENTIFIER = STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATOR = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATION_DATE = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -959,22 +1031,6 @@ public interface ProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__COMMENTS = STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATOR = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATION_DATE = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference. <!-- begin-user-doc --> <!--

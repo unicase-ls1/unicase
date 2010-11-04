@@ -66,10 +66,8 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addNumberOfConflictsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MergeEvent_numberOfConflicts_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeEvent_numberOfConflicts_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MergeEvent_numberOfConflicts_feature",
 				"_UI_MergeEvent_type"), EventsPackage.Literals.MERGE_EVENT__NUMBER_OF_CONFLICTS, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -81,10 +79,9 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addTotalTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_MergeEvent_totalTime_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MergeEvent_totalTime_feature", "_UI_MergeEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeEvent_totalTime_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_MergeEvent_totalTime_feature", "_UI_MergeEvent_type"),
 			EventsPackage.Literals.MERGE_EVENT__TOTAL_TIME, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
@@ -195,19 +192,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));

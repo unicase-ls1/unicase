@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
 
 /**
@@ -28,20 +29,22 @@ import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
 public class UpdateDialog extends TitleAreaDialog {
 
 	private List<ChangePackage> changes;
-	private ProjectSpace projectSpace;
+	private ProjectSpace activeProjectSpace;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param projectSpace the project space that should be updated
-	 * @param changes the list of changes
+	 * @param parentShell
+	 *            the parent shell
+	 * @param changes
+	 *            the list of changes
 	 */
-	public UpdateDialog(Shell parentShell, ProjectSpace projectSpace, List<ChangePackage> changes) {
+	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
-		this.projectSpace = projectSpace;
+		activeProjectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
 	}
 
 	/**
@@ -56,7 +59,8 @@ public class UpdateDialog extends TitleAreaDialog {
 		// changes tree
 		if (changes != null) {
 			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
-					contents, SWT.BORDER, changes, projectSpace.getProject());
+					contents, SWT.BORDER, changes, activeProjectSpace
+							.getProject());
 			changesComposite.setReverseNodes(false);
 			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
 					true, true, 2, 1));

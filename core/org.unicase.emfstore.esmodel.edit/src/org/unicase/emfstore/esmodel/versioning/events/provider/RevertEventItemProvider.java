@@ -62,10 +62,8 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addRevertedChangesCountPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_RevertEvent_revertedChangesCount_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RevertEvent_revertedChangesCount_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_RevertEvent_revertedChangesCount_feature",
 				"_UI_RevertEvent_type"), EventsPackage.Literals.REVERT_EVENT__REVERTED_CHANGES_COUNT, true, false,
 			false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));

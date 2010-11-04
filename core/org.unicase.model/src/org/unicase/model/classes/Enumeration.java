@@ -35,7 +35,7 @@ public interface Enumeration extends PackageElement {
 	 * @return the value of the '<em>Literals</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getEnumeration_Literals()
 	 * @see org.unicase.model.classes.Literal#getEnumeration
-	 * @model opposite="enumeration" containment="true" resolveProxies="true"
+	 * @model opposite="enumeration" containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Literal> getLiterals();
@@ -54,7 +54,7 @@ public interface Enumeration extends PackageElement {
 	 * @return the value of the '<em>Attributes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getEnumeration_Attributes()
 	 * @see org.unicase.model.classes.Attribute#getImplementationEnumeration
-	 * @model opposite="implementationEnumeration"
+	 * @model opposite="implementationEnumeration" keys="identifier"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();

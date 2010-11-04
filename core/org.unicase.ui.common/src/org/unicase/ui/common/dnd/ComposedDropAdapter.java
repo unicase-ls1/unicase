@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
@@ -27,8 +26,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -42,10 +40,10 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 	private StructuredViewer viewer;
 
-	private List<EObject> source;
-	private EObject target;
+	private List<ModelElement> source;
+	private ModelElement target;
 	private EObject targetConatiner;
-	private EObject dropee;
+	private ModelElement dropee;
 
 	private Map<EClass, MEDropAdapter> dropAdapters;
 
@@ -85,6 +83,35 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 				WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}
+
+		// // MEDropAdapter
+		// dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
+		//
+		// // LeafSectionDropAdapter
+		// dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
+		//
+		// // CompositeSectionDropAdapter
+		// dropAdapters.put(DocumentPackage.eINSTANCE.getCompositeSection(), new CompositeSectionDropAdapter(domain,
+		// viewer));
+		//
+		// // WorkPackageDropAdapter
+		// dropAdapters.put(TaskPackage.eINSTANCE.getWorkPackage(), new WorkPackageDropAdapter(domain, viewer));
+		//
+		// // MeetingDropAdpater
+		// dropAdapters.put(MeetingPackage.eINSTANCE.getMeeting(), new MeetingDropAdapter(domain, viewer));
+		//
+		// // WorkItemMeetingSectionDropAdapter
+		// dropAdapters.put(MeetingPackage.eINSTANCE.getWorkItemMeetingSection(), new WorkItemMeetingSectionDropAdapter(
+		// domain, viewer));
+		//
+		// // MEDiagramDropAdapter
+		// dropAdapters.put(DiagramPackage.eINSTANCE.getMEDiagram(), new MEDiagramDropAdapter(domain, viewer));
+		//
+		// // AnnotationDropAdapter
+		// dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
+		//
+		// // ProjectDropAdapter
+		// dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
 
 	}
 
@@ -129,29 +156,27 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof EObject)) {
+			if (!(obj instanceof ModelElement)) {
 				result = false;
 			}
 		}
 
-		source = (List<EObject>) DragSourcePlaceHolder.getDragSource();
+		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof EObject)) {
+		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof ModelElement)) {
 			result = false;
 		}
 
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			target = (EObject) event.item.getData();
-			Project targetProject = ModelUtil.getProject(target);
-			Project dropeeProject = ModelUtil.getProject(dropee);
-			if (!targetProject.equals(dropeeProject)) {
+			target = (ModelElement) event.item.getData();
+			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
 			}
 		}
@@ -186,7 +211,6 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		} else {
 			targetDropAdapter = getTargetDropAdapter(target.eClass());
-
 		}
 		if (targetDropAdapter == null) {
 			event.detail = DND.DROP_NONE;
@@ -232,7 +256,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		EClass ret = null;
 		if (superClazz.size() == 0) {
-			return EcorePackage.eINSTANCE.getEObject();
+			return ret;
 		}
 
 		Set<EClass> intersection = new HashSet<EClass>(dropAdapters.keySet());
@@ -246,8 +270,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			Set<EClass> toBeRemoved = new HashSet<EClass>();
 			for (EClass eClass1 : intersection) {
 				for (EClass eClass2 : intersection) {
-					if (!eClass2.equals(eClass1)
-						&& (eClass2.isSuperTypeOf(eClass1) || eClass2.equals(EcorePackage.eINSTANCE.getEObject()))) {
+					if (!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)) {
 						toBeRemoved.add(eClass2);
 					}
 				}

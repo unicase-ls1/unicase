@@ -26,6 +26,9 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param usersession
+	 *            the usersession used for logging in
 	 */
 	public ESBrowserContentProvider() {
 		super(new WorkspaceItemProviderAdapterFactory());
@@ -63,8 +66,10 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	private Object[] getChildren(ServerInfo serverInfo) {
-		if (serverInfo.getLastUsersession() == null || !serverInfo.getLastUsersession().isLoggedIn()) {
-			LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), serverInfo);
+		if (serverInfo.getLastUsersession() == null
+				|| !serverInfo.getLastUsersession().isLoggedIn()) {
+			LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
+					.getDisplay().getActiveShell(), serverInfo);
 			dialog.open();
 
 			// the login has been canceled and the project list should be

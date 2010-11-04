@@ -11,14 +11,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.VersionInfo;
-import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.UniqueIdentifier;
 
 /**
@@ -108,18 +106,8 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseFileIdentifier(FileIdentifier object) {
-			return createFileIdentifierAdapter();
-		}
-
-		@Override
 		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
 			return createUniqueIdentifierAdapter();
-		}
-
-		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
 		}
 
 		@Override
@@ -237,20 +225,6 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.FileIdentifier
-	 * <em>File Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.FileIdentifier
-	 * @generated
-	 */
-	public Adapter createFileIdentifierAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.UniqueIdentifier
 	 * <em>Unique Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -261,20 +235,6 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUniqueIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement
-	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.IdentifiableElement
-	 * @generated
-	 */
-	public Adapter createIdentifiableElementAdapter() {
 		return null;
 	}
 

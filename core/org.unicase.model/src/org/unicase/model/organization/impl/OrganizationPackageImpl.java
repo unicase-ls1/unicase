@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -400,6 +401,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain other dependent packages
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
@@ -423,6 +426,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 			theTaskPackage.getWorkItem_Reviewer(), "workItemsToReview", null, 0, -1, User.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
+		getUser_WorkItemsToReview().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOrgUnit_AcOrgId(), ecorePackage.getEString(), "acOrgId", null, 0, 1, OrgUnit.class,
@@ -430,17 +434,21 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this.getGroup_OrgUnits(), "groupMemberships",
 			null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_GroupMemberships().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getOrgUnit_Assignments(), theTaskPackage.getWorkItem(), theTaskPackage.getWorkItem_Assignee(),
 			"assignments", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Assignments().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getOrgUnit_Participations(), theTaskPackage.getWorkItem(), theTaskPackage
 			.getWorkItem_Participants(), "participations", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Participations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this.getOrgUnit_GroupMemberships(), "orgUnits", null, 0,
 			-1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGroup_OrgUnits().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

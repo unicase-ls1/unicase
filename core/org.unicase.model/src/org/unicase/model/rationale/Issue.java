@@ -42,7 +42,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @return the value of the '<em>Proposals</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
 	 * @see org.unicase.model.rationale.Proposal#getIssue
-	 * @model opposite="issue" containment="true" resolveProxies="true"
+	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @see #setSolution(Solution)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
 	 * @see org.unicase.model.rationale.Solution#getIssue
-	 * @model opposite="issue" containment="true" resolveProxies="true"
+	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
@@ -88,7 +88,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * 
 	 * @return the value of the '<em>Criteria</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Criteria()
-	 * @model annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();

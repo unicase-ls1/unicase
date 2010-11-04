@@ -57,13 +57,13 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.dialogs.CommitDialog;
 import org.unicase.workspace.ui.dialogs.CommitDialogTray;
-import org.unicase.workspace.ui.util.URLHelper;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.util.NoCurrentUserException;
 

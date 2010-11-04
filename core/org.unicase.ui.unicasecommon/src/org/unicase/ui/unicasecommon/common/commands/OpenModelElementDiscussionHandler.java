@@ -8,12 +8,11 @@ package org.unicase.ui.unicasecommon.common.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
@@ -50,13 +49,13 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		} catch (ExecutionException e) {
 			// if not set
 		}
-		EObject me = (EObject) o;
+		ModelElement me = (ModelElement) o;
 
 		if (o == null) {
 			return null;
 		}
 		MEEditorInput input;
-		input = new MEEditorInput(me, new EMFStoreModelelementContext(me));
+		input = new MEEditorInput(me);
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
 				"org.unicase.ui.meeditor", true);

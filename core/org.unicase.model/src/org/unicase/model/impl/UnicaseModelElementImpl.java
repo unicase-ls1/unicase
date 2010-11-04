@@ -5,30 +5,26 @@
  */
 package org.unicase.model.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.metamodel.impl.ModelElementImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
@@ -60,22 +56,12 @@ import org.unicase.model.task.util.MEStateImpl;
  * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype
  * Instances</em>}</li>
  * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public abstract class UnicaseModelElementImpl extends EObjectImpl implements UnicaseModelElement {
-
-	private AdapterImpl internalChangeListener;
-
-	private List<ModelElementChangeListener> changeListeners;
-
-	private boolean isNotifying;
-
-	private Set<ModelElementChangeListener> listenersToBeRemoved;
+public abstract class UnicaseModelElementImpl extends ModelElementImpl implements UnicaseModelElement {
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -177,46 +163,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 */
 	protected EList<Comment> comments;
 
-	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getCreator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CREATOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getCreator()
-	 * @generated
-	 * @ordered
-	 */
-	protected String creator = CREATOR_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getCreationDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date CREATION_DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getCreationDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date creationDate = CREATION_DATE_EDEFAULT;
-
 	private boolean calculatingState;
 
 	private org.unicase.model.task.util.MEState meState;
@@ -230,9 +176,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected UnicaseModelElementImpl() {
 		super();
 		name = "new " + eClass().getName();
-		changeListeners = new ArrayList<ModelElementChangeListener>();
-		isNotifying = false;
-		listenersToBeRemoved = new HashSet<ModelElementChangeListener>();
 	}
 
 	// end of custom code
@@ -432,55 +375,12 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getCreator() {
-		return creator;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setCreator(String newCreator) {
-		String oldCreator = creator;
-		creator = newCreator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR,
-				oldCreator, creator));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setCreationDate(Date newCreationDate) {
-		Date oldCreationDate = creationDate;
-		creationDate = newCreationDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE,
-				oldCreationDate, creationDate));
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
 	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
+	@Override
 	public Project getProject() {
 
 		Set<UnicaseModelElement> seenModelElements = new HashSet<UnicaseModelElement>();
@@ -549,8 +449,14 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * 
 	 * @see org.unicase.model.UnicaseModelElement#getModelElementId()
 	 */
+	@Override
 	public ModelElementId getModelElementId() {
-		return ModelUtil.getProject(this).getModelElementId(this);
+		if (this.identifier == null) {
+			throw new IllegalStateException("Model element does not have an identifier");
+		}
+		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		modelElementId.setId(this.identifier);
+		return modelElementId;
 	}
 
 	/**
@@ -665,10 +571,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return getAppliedStereotypeInstances();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			return getComments();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			return getCreator();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			return getCreationDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -711,12 +613,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			getComments().clear();
 			getComments().addAll((Collection<? extends Comment>) newValue);
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator((String) newValue);
-			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			setCreationDate((Date) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -753,12 +649,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			getComments().clear();
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator(CREATOR_EDEFAULT);
-			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			setCreationDate(CREATION_DATE_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -789,10 +679,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return appliedStereotypeInstances != null && !appliedStereotypeInstances.isEmpty();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			return comments != null && !comments.isEmpty();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			return CREATOR_EDEFAULT == null ? creator != null : !CREATOR_EDEFAULT.equals(creator);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			return CREATION_DATE_EDEFAULT == null ? creationDate != null : !CREATION_DATE_EDEFAULT.equals(creationDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -812,70 +698,8 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", creator: ");
-		result.append(creator);
-		result.append(", creationDate: ");
-		result.append(creationDate);
 		result.append(')');
 		return result.toString();
-	}
-
-	public void addModelElementChangeListener(ModelElementChangeListener listener) {
-		if (this.changeListeners.size() == 0) {
-			internalChangeListener = new AdapterImpl() {
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				public void notifyChanged(Notification notification) {
-					notifyListenersAboutChange(notification);
-				}
-			};
-			this.eAdapters().add(internalChangeListener);
-		}
-		this.changeListeners.add(listener);
-	}
-
-	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
-		// if we are notifying listeners at the moment than just add listener for later removal
-		if (isNotifying) {
-			listenersToBeRemoved.add(listener);
-			return;
-		}
-
-		this.changeListeners.remove(listener);
-		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
-			this.eAdapters().remove(internalChangeListener);
-			internalChangeListener = null;
-		}
-	}
-
-	private void notifyListenersAboutChange(Notification notification) {
-		isNotifying = true;
-		for (ModelElementChangeListener listener : changeListeners) {
-			try {
-				listener.onChange(notification);
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-			catch (RuntimeException exception) {
-				ModelUtil.logWarning("ModelElementChangeListener threw RuntimeException on Change Notification " + ""
-					+ "(exception was caught and forwarded to listener for handling)", exception);
-				try {
-					listener.onRuntimeExceptionInListener(exception);
-				} catch (RuntimeException runtimeException) {
-					ModelUtil.logException(
-						"Notifying listener about change in a model element failed, UI may not update properly now.",
-						runtimeException);
-					listenersToBeRemoved.add(listener);
-				}
-			}
-			// END SUPRESS CATCH EXCEPTION
-		}
-		isNotifying = false;
-		for (ModelElementChangeListener listener : listenersToBeRemoved) {
-			removeModelElementChangeListener(listener);
-		}
-		listenersToBeRemoved.clear();
 	}
 
 } // ModelElementImpl

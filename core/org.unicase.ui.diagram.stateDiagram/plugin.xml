@@ -323,7 +323,7 @@
             id=" org.unicase.ui.diagram.stateDiagram.part.DiagramTypeTester"
             namespace=" org.unicase.ui.diagram.stateDiagram"
             properties="isDiagramType"
-            type="org.eclipse.emf.ecore.EObject">
+            type="org.unicase.metamodel.ModelElement">
       </propertyTester>
    </extension> 
    

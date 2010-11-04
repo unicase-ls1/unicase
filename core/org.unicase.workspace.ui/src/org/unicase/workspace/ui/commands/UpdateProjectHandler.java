@@ -130,8 +130,8 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		UpdateDialog updateDialog = new UpdateDialog(shell, projectSpace, changePackages);
+	public boolean inspectChanges(List<ChangePackage> changePackages) {
+		UpdateDialog updateDialog = new UpdateDialog(shell, changePackages);
 		int returnCode = updateDialog.open();
 
 		// IWorkbenchPage page =

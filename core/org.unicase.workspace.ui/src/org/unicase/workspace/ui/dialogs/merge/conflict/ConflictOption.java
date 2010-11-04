@@ -12,7 +12,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
 
 /**
- * This class represents an option/solution for a conflict. A conflict may have several options.
+ * This class represents an option/solution for a conflict. A conflict may have
+ * several options.
  * 
  * @author wesendon
  */
@@ -38,23 +39,15 @@ public class ConflictOption {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param option name of option
-	 * @param type type
+	 * @param option
+	 *            name of option
+	 * @param type
+	 *            type
 	 */
 	public ConflictOption(String option, OptionType type) {
-		setOptionLabel(option);
+		this.option = option;
 		this.type = type;
 		operations = new ArrayList<AbstractOperation>();
-	}
-
-	/**
-	 * Alternative contstrutor which will toString the input object.
-	 * 
-	 * @param obj object
-	 * @param type option type
-	 */
-	public ConflictOption(Object obj, OptionType type) {
-		this(DecisionUtil.getLabel(obj, ("unset")), type);
 	}
 
 	/**
@@ -69,10 +62,11 @@ public class ConflictOption {
 	/**
 	 * Sets the option's label.
 	 * 
-	 * @param option text
+	 * @param option
+	 *            text
 	 */
 	public void setOptionLabel(String option) {
-		this.option = (option == null) ? "" : option;
+		this.option = option;
 	}
 
 	/**
@@ -103,9 +97,11 @@ public class ConflictOption {
 	}
 
 	/**
-	 * Adds the change operations, which will be applied in case, that this option is selected as solution.
+	 * Adds the change operations, which will be applied in case, that this
+	 * option is selected as solution.
 	 * 
-	 * @param ops operations
+	 * @param ops
+	 *            operations
 	 */
 	public void addOperations(List<AbstractOperation> ops) {
 		operations.addAll(ops);
@@ -133,7 +129,9 @@ public class ConflictOption {
 	 * Sets a detailprovider.
 	 * 
 	 * @see org.unicase.workspace.ui.dialogs.merge.ui.components.DetailsComponent
-	 * @param detailProvider identifying string
+	 * 
+	 * @param detailProvider
+	 *            identifying string
 	 */
 	public void setDetailProvider(String detailProvider) {
 		this.detailProvider = detailProvider;
@@ -149,7 +147,8 @@ public class ConflictOption {
 	}
 
 	/**
-	 * Returns whether option should be called ({@link #optionChosen()}), if selected.
+	 * Returns whether option should be called ({@link #optionChosen()}), if
+	 * selected.
 	 * 
 	 * @return true or false
 	 */

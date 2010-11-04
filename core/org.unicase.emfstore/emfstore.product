@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="EMFStore Server" uid="org.unicase.emfstore.server" id="org.unicase.emfstore.server" application="org.unicase.emfstore.server" version="1.0.4" useFeatures="true" includeLaunchers="true">
+<product name="EMFStore Server" uid="org.unicase.emfstore.server" id="org.unicase.emfstore.server" application="org.unicase.emfstore.server" version="1.0.4" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -23,10 +23,65 @@
    </vm>
 
    <plugins>
+      <plugin id="com.ibm.icu"/>
+      <plugin id="edu.tum.cs.cope.common"/>
+      <plugin id="edu.tum.cs.cope.declaration"/>
+      <plugin id="edu.tum.cs.cope.declaration.registry"/>
+      <plugin id="edu.tum.cs.cope.migration"/>
+      <plugin id="edu.tum.cs.cope.migration.execution"/>
+      <plugin id="javax.servlet"/>
+      <plugin id="javax.transaction" fragment="true"/>
+      <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
+      <plugin id="org.apache.ant"/>
+      <plugin id="org.apache.commons.codec"/>
+      <plugin id="org.apache.commons.logging"/>
+      <plugin id="org.codehaus.groovy"/>
+      <plugin id="org.eclipse.ant.core"/>
+      <plugin id="org.eclipse.core.contenttype"/>
+      <plugin id="org.eclipse.core.expressions"/>
+      <plugin id="org.eclipse.core.filesystem"/>
+      <plugin id="org.eclipse.core.filesystem.macosx" fragment="true"/>
+      <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.resources"/>
+      <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
+      <plugin id="org.eclipse.core.runtime"/>
+      <plugin id="org.eclipse.core.runtime.compatibility"/>
+      <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
+      <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
+      <plugin id="org.eclipse.core.variables"/>
+      <plugin id="org.eclipse.emf.common"/>
+      <plugin id="org.eclipse.emf.ecore"/>
+      <plugin id="org.eclipse.emf.ecore.change"/>
+      <plugin id="org.eclipse.emf.ecore.xmi"/>
+      <plugin id="org.eclipse.emf.edit"/>
+      <plugin id="org.eclipse.emf.transaction"/>
+      <plugin id="org.eclipse.emf.validation"/>
+      <plugin id="org.eclipse.equinox.app"/>
+      <plugin id="org.eclipse.equinox.common"/>
+      <plugin id="org.eclipse.equinox.preferences"/>
+      <plugin id="org.eclipse.equinox.registry"/>
+      <plugin id="org.eclipse.gmf.runtime.notation"/>
+      <plugin id="org.eclipse.ocl"/>
+      <plugin id="org.eclipse.ocl.ecore"/>
+      <plugin id="org.eclipse.osgi"/>
+      <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.persistence.jpa.equinox.weaving" fragment="true"/>
+      <plugin id="org.eclipse.swtbot.ant.optional.junit3" fragment="true"/>
+      <plugin id="org.eclipse.swtbot.ant.optional.junit4" fragment="true"/>
+      <plugin id="org.eclipse.update.configurator"/>
+      <plugin id="org.hamcrest.core"/>
+      <plugin id="org.junit"/>
+      <plugin id="org.junit4"/>
+      <plugin id="org.unicase.emfstore"/>
+      <plugin id="org.unicase.emfstore.esmodel"/>
+      <plugin id="org.unicase.implementation"/>
+      <plugin id="org.unicase.metamodel"/>
+      <plugin id="org.unicase.metamodel.edit"/>
+      <plugin id="org.unicase.model"/>
    </plugins>
 
    <features>
-      <feature id="org.unicase.emfstore.server" version="1.0.4"/>
+      <feature id="org.unicase.emfstore.server"/>
    </features>
 
 

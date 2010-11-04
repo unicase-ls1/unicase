@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,7 +18,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.change.MergingIssue;
@@ -54,7 +53,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		if (!(modelElement instanceof MergingIssue)) {
 			return DO_NOT_RENDER;
 		}
@@ -107,9 +106,9 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			}.run();
 		}
 
-		private void check(EObject element) {
+		private void check(ModelElement element) {
 			if (element.eContainer() == null) {
-				ModelUtil.getProject(mergingIssue).getModelElements().add(element);
+				mergingIssue.getProject().getModelElements().add(element);
 			}
 		}
 
@@ -155,7 +154,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 					CompositeOperationHandle compositeOperation = projectSpace.beginCompositeOperation();
 					MergingProposal proposal = (MergingProposal) result;
 					MergingSolution solution = ChangeFactory.eINSTANCE.createMergingSolution();
-					ModelUtil.getProject(proposal).addModelElement(solution);
+					proposal.getProject().addModelElement(solution);
 					mergingIssue.setSolution(solution);
 					solution.getUnderlyingProposals().add(proposal);
 					solution.setDescription(proposal.getDescription());
@@ -164,8 +163,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 						true);
 					try {
 						compositeOperation.end("Created Solution for MergeIssue", "A Solution for the MergingIssue \""
-							+ mergingIssue.getName() + "\" was created.", ModelUtil.getProject(mergingIssue)
-							.getModelElementId(mergingIssue));
+							+ mergingIssue.getName() + "\" was created.", mergingIssue.getModelElementId());
 					} catch (InvalidHandleException e) {
 						WorkspaceUtil.log("Couldn't create MergingSolution", e, IStatus.ERROR);
 					}

@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,13 +20,10 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -36,7 +32,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -54,12 +49,12 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
@@ -367,11 +362,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private ArrayList<ShareObserver> shareObservers;
 
-	/**
-	 * Indicates whether a resource may be split when a model element has been added.
-	 */
-	private boolean splitResource;
-
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -387,9 +377,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		modifiedModelElementsCache = new ModifiedModelElementsCache(this);
 		this.addOperationListener(modifiedModelElementsCache);
 		this.addCommitObserver(modifiedModelElementsCache);
-		this.splitResource = true;
 		shareObservers.add(modifiedModelElementsCache);
-
 	}
 
 	// end of custom code
@@ -960,9 +948,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
 			// migration code: existing notifications in the notification feature are added to the composite
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
-				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
-				".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
+					.getWorkspaceDirectory()
+					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
 			this.setNotificationComposite(notificationComposite);
 			if (getNotifications().size() > 0) {
 				notificationList.addAll(getNotifications());
@@ -971,9 +959,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (notificationList == null) {
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
-				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
-				".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
+					.getWorkspaceDirectory()
+					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
 		}
 		return notificationList;
 	}
@@ -1171,8 +1159,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			throw new NoLocalChangesException();
 		}
 
-		cleanCutElements();
-
 		// check if we need to update first
 		PrimaryVersionSpec resolvedVersion;
 		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
@@ -1229,12 +1215,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = EcoreUtil.copy(abstractOperation);
+			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 		// copy events from projectspace
 		for (Event event : getEventsFromComposite()) {
-			Event copy = EcoreUtil.copy(event);
+			Event copy = (Event) EcoreUtil.copy(event);
 			changePackage.getEvents().add(copy);
 		}
 
@@ -1285,9 +1271,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (operationsList == null) {
 			operationsList = new AutoSplitAndSaveResourceContainmentList<AbstractOperation>(operationComposite,
-				operationComposite.getOperations(), this.eResource().getResourceSet(),
-				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "operations",
-				".off");
+				operationComposite.getOperations(), this.eResource().getResourceSet(), Configuration
+					.getWorkspaceDirectory()
+					+ "ps-" + getIdentifier() + File.separatorChar + "operations", ".off");
 		}
 		return operationsList;
 	}
@@ -1353,32 +1339,23 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changes = connectionManager
 			.getChanges(getUsersession().getSessionId(), projectId, baseVersion, resolvedVersion);
 
-		ChangePackage localchanges = getLocalChangePackage(false);
-
 		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
-			if (conflictDetector.doConflict(change, localchanges)) {
+			ChangePackage changePackage = getLocalChangePackage(false);
+			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes, this, conflictDetector);
 			}
 		}
 
 		// notify updateObserver if there is one
-		if (observer != null && !observer.inspectChanges(this, changes)) {
+		if (observer != null && !observer.inspectChanges(changes)) {
 			return getBaseVersion();
 		}
 
 		final List<ChangePackage> cps = changes;
-
-		// revert
-		this.revert();
-
-		// apply changes from repo
 		for (ChangePackage change : cps) {
 			applyOperations(change.getCopyOfOperations(), false);
 		}
-
-		// reapply local changes
-		applyOperations(localchanges.getCopyOfOperations(), true);
 
 		setBaseVersion(resolvedVersion);
 		saveProjectSpaceOnly();
@@ -1514,14 +1491,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		modifiedModelElementsCache.initializeCache();
 		startChangeRecording();
-		cleanCutElements();
-
-	}
-
-	private void cleanCutElements() {
-		for (EObject cutElement : getProject().getCutElements()) {
-			project.deleteModelElement(cutElement);
-		}
 
 	}
 
@@ -1578,55 +1547,24 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
-		// if resource splitting fails, we need a reference to the old resource
-		Resource oldResource = resource;
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<EObject> modelElements = this.getProject().getModelElements();
-
-		// int counter = Configuration.getMaxMECountPerResource() + 1;
-		int counter = 0;
-		for (EObject modelElement : modelElements) {
-
-			if (counter > Configuration.getMaxMECountPerResource() && splitResource) {
+		List<ModelElement> modelElements = getProject().getAllModelElements();
+		int counter = Configuration.getMaxMECountPerResource() + 1;
+		for (ModelElement modelElement : modelElements) {
+			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
-				oldResource = resource;
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
 				resources.add(resource);
 				counter = 0;
 			}
 			counter++;
-
-			if (splitResource) {
-				EObject parent = modelElement.eContainer();
-				ChangeRecorder changeRecorder = new ChangeRecorder();
-				changeRecorder.beginRecording(Collections.singleton(parent));
-				// try to pin resource
-				resource.getContents().add(modelElement);
-				ChangeDescription changeDesc = changeRecorder.endRecording();
-				if (modelElement.eContainer() != parent) {
-					splitResource = false;
-					resource = oldResource;
-					// model element lost its parent, revert changes
-					changeDesc.apply();
-				}
-			}
-
-			TreeIterator<EObject> it = modelElement.eAllContents();
-			while (it.hasNext()) {
-				EObject child = it.next();
-				counter++;
-				((XMIResource) resource).setID(child, getProject().getModelElementId(child).getId());
-
-			}
-
-			((XMIResource) resource).setID(modelElement, getProject().getModelElementId(modelElement).getId());
+			resource.getContents().add(modelElement);
 		}
-
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
 		if (this.getLocalOperations() == null) {
 			this.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
@@ -1952,26 +1890,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setMessage("Initial commit");
 		ProjectInfo createdProject;
 
-		stopChangeRecording();
-		changeTracker.setAutoSave(false);
-
-		// TODO: PlainEObjectMode: Set user as creator when sharing a project
-		for (EObject me : this.getProject().getAllModelElements()) {
-			// if (me.getCreator() == null || me.getCreator().equals("")
-			// || me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
-			// me.setCreator(usersession.getUsername());
-			// changeTracker.save(me);
-			// }
+		// Set user as creator when sharing a project
+		for (ModelElement me : this.getProject().getAllModelElements()) {
+			if (me.getCreator() == null || me.getCreator().equals("")
+				|| me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
+				me.setCreator(usersession.getUsername());
+			}
 		}
-		changeTracker.setAutoSave(true);
-		changeTracker.saveDirtyResources();
-		startChangeRecording();
 
-		createdProject = WorkspaceManager
-			.getInstance()
-			.getConnectionManager()
-			.createProject(usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
-				this.getProject());
+		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
+			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
+			this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
@@ -2040,7 +1969,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#exportLocalChanges(java.lang.String)
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
-		ResourceHelper.putElementIntoNewResourceWithProject(fileName, getLocalChangePackage(false), this.project);
+
+		ResourceHelper.putElementIntoNewResource(fileName, getLocalChangePackage(false));
 	}
 
 	/**
@@ -2118,9 +2048,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
 	 */
-	public EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
+	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
-		EObject modelElement = getProject().getModelElement(modelElementId);
+		ModelElement modelElement = getProject().getModelElement(modelElementId);
 		if (modelElement == null) {
 			throw new MEUrlResolutionException();
 		}
@@ -2400,10 +2330,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Applies a list of operations to the project. The change tracking is stopped and the operations are added to the
-	 * projectspace.
+	 * Apply a list of operations to the project.
 	 * 
-	 * @see #applyOperationsWithRecording(List, boolean)
 	 * @param operations list of operations
 	 * @param addOperation true if operation should be saved in project space.
 	 */
@@ -2419,39 +2347,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Applies a list of operations to the project. It is possible to force import operations. Changetracking isn't
-	 * deactivated while applying changes.
+	 * Apply a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. It is
+	 * possible to force import operations.
 	 * 
 	 * @param operations list of operations
 	 * @param force if true, no exception is thrown if operation.apply failes
-	 * @param semanticApply when true, does a semanticApply if possible (see {@link SemanticCompositeOperation})
 	 */
-	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force, boolean semanticApply) {
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
 		for (AbstractOperation operation : operations) {
 			try {
-				if (semanticApply && operation instanceof SemanticCompositeOperation) {
-					((SemanticCompositeOperation) operation).semanticApply(getProject());
-				} else {
-					operation.apply(getProject());
-				}
+				operation.apply(getProject());
 			} catch (IllegalStateException e) {
 				if (!force) {
 					throw e;
 				}
 			}
 		}
-	}
-
-	/**
-	 * Applies a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. This
-	 * method redirects to {@link #applyOperationsWithRecording(List, boolean, boolean)}, using false for semantic
-	 * apply.
-	 * 
-	 * @param operations list of operations
-	 * @param force if true, no exception is thrown if operation.apply failes
-	 */
-	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
-		applyOperationsWithRecording(operations, force, false);
 	}
 
 	/**
@@ -2476,7 +2387,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * {@inheritDoc}
+	 *{@inheritDoc}
 	 */
 	public void setProperty(OrgUnitProperty property) {
 		// sanity checks
@@ -2527,11 +2438,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ListIterator<OrgUnitProperty> iterator = temp.listIterator();
 		while (iterator.hasNext()) {
 			try {
-				WorkspaceManager
-					.getInstance()
-					.getConnectionManager()
-					.transmitProperty(getUsersession().getSessionId(), iterator.next(), getUsersession().getACUser(),
-						getProjectId());
+				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
+					iterator.next(), getUsersession().getACUser(), getProjectId());
 				iterator.remove();
 			} catch (EmfStoreException e) {
 				WorkspaceUtil.logException("Transmission of properties failed with exception", e);
@@ -2540,7 +2448,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * {@inheritDoc}
+	 *{@inheritDoc}
 	 */
 	public void removePendingFileUpload(String fileAttachmentId) {
 		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
@@ -2618,8 +2526,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		} catch (FileNotFoundException e) {
 			addFileTransfer(tmpTransfer, null, true);
 		}
-		FileRequestHandler fHandler = new FileRequestHandler(
-			FileTransferUtil.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
+		FileRequestHandler fHandler = new FileRequestHandler(FileTransferUtil
+			.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
 		return fHandler;
 	}
 
@@ -2638,14 +2546,5 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		logMessage.setClientDate(new Date());
 		logMessage.setMessage("");
 		return commit(logMessage);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ProjectSpace#removeCommitObserver(org.unicase.workspace.observers.CommitObserver)
-	 */
-	public void removeCommitObserver(CommitObserver observer) {
-		this.commitObservers.remove(observer);
 	}
 } // ProjectContainerImpl

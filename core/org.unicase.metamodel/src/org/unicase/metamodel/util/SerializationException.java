@@ -15,24 +15,22 @@ import org.eclipse.emf.ecore.EObject;
 @SuppressWarnings("serial")
 public class SerializationException extends Exception {
 
-	private static final String DE_SERIALIZATION_FAILED = "(De-)Serialization failed";
-
 	/**
 	 * Default constructor.
 	 * 
 	 * @param cause the cause
 	 */
 	public SerializationException(Throwable cause) {
-		super(DE_SERIALIZATION_FAILED + ".", cause);
+		super("(De-)Serialization failed.", cause);
 	}
-
+	
 	/**
 	 * Default constructor.
 	 * 
 	 * @param eObject the eObject that failed to serialize
 	 */
 	public SerializationException(EObject eObject) {
-		super(DE_SERIALIZATION_FAILED + ": " + eObject.toString());
+		super("(De-)Serialization failed: " + eObject.toString());
 	}
 
 	/**
@@ -41,6 +39,6 @@ public class SerializationException extends Exception {
 	 * @param msg exception message
 	 */
 	public SerializationException(String msg) {
-		super(DE_SERIALIZATION_FAILED + ": " + msg);
+		super(msg);
 	}
 }

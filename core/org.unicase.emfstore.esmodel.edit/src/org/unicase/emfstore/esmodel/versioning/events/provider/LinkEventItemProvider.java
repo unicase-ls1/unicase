@@ -64,10 +64,9 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_LinkEvent_sourceView_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LinkEvent_sourceView_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
 			EventsPackage.Literals.LINK_EVENT__SOURCE_VIEW, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -79,13 +78,10 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	protected void addSourceElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_LinkEvent_sourceElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature",
-					"_UI_LinkEvent_type"), EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT, true, false, true, null,
-				null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LinkEvent_sourceElement_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature", "_UI_LinkEvent_type"),
+				EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -95,13 +91,10 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	protected void addTargetElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_LinkEvent_targetElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature",
-					"_UI_LinkEvent_type"), EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT, true, false, true, null,
-				null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_LinkEvent_targetElement_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature", "_UI_LinkEvent_type"),
+				EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -110,10 +103,9 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addCreatedNewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_LinkEvent_createdNew_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LinkEvent_createdNew_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
 			EventsPackage.Literals.LINK_EVENT__CREATED_NEW, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}

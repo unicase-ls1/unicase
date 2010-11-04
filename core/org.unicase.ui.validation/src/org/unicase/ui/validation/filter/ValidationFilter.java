@@ -3,26 +3,18 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.validation.filter;
 
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * The validation filter.
+ * Filter Validations to Team.
  * 
  * @author helming
  */
 public abstract class ValidationFilter extends ViewerFilter {
 
-	/**
-	 * Initialization method.
-	 * 
-	 * @return true if successful
-	 */
-	public abstract boolean init();
-	
 	/**
 	 * A description of the filter.
 	 * 

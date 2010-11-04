@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
@@ -34,6 +30,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.SessionTimedOutException;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * A simple implementation of Authentication and Authorization Control.
@@ -61,23 +58,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	}
 
 	private AuthenticationControlFactory getAuthenticationFactory() {
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.authenticationfactory");
-
-		// get all providers from the extension points
-		for (IConfigurationElement e : config) {
-			try {
-				Object o = e.createExecutableExtension("class");
-				if (o instanceof AuthenticationControlFactory) {
-					return (AuthenticationControlFactory) o;
-				}
-			} catch (CoreException e1) {
-				// fail silently
-				// e1.printStackTrace();
-			}
-		}
-
-		// fallback in case that no factory was registered
+		// TODO: OW create extension point
 		return new AuthenticationControlFactoryImpl();
 	}
 
@@ -146,7 +127,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId
 	 *      , � � �org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
-	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
+	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = getUser(sessionId);
@@ -172,7 +153,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * @return true if one of the roles can write
 	 * @throws AccessControlException
 	 */
-	private boolean canWrite(List<Role> roles, ProjectId projectId, EObject modelElement) throws AccessControlException {
+	private boolean canWrite(List<Role> roles, ProjectId projectId, ModelElement modelElement)
+		throws AccessControlException {
 		for (Role role : roles) {
 			if (role.canModify(projectId, modelElement) || role.canCreate(projectId, modelElement)
 				|| role.canDelete(projectId, modelElement)) {
@@ -191,7 +173,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * @return true if one of the roles can read
 	 * @throws AccessControlException
 	 */
-	private boolean canRead(List<Role> roles, ProjectId projectId, EObject modelElement) throws AccessControlException {
+	private boolean canRead(List<Role> roles, ProjectId projectId, ModelElement modelElement)
+		throws AccessControlException {
 		for (Role role : roles) {
 			if (role.canRead(projectId, modelElement)) {
 				return true;
@@ -239,7 +222,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId
 	 *      , � � �org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
-	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
+	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = getUser(sessionId);
