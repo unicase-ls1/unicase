@@ -202,9 +202,9 @@ public final class ModelUtil {
 			throw new SerializationException(e);
 		}
 		String result = out.toString();
-		if (!overrideHrefCheck) {
-			hrefCheck(result);
-		}
+		//if (!overrideHrefCheck) {
+		//	hrefCheck(result);
+		//}
 		return result;
 	}
 
