@@ -31,6 +31,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -41,9 +42,11 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class Application implements IApplication {
 
+	private boolean unicase; 
+	
 	public Object start(IApplicationContext context) throws Exception {
 
-		// createTestData();
+		 //createTestData();
 
 		startPlanning();
 
@@ -103,6 +106,7 @@ public class Application implements IApplication {
 	private void startPlanning() throws Exception {
 		System.out.println("Iteration Planner started!");
 
+		unicase = false;
 		Project project = getProject();
 		System.out.println("retrieved project: " + WorkspaceManager.getProjectSpace(project).getProjectName());
 		// init task pool
@@ -118,7 +122,7 @@ public class Application implements IApplication {
 		AssigneeRecommender assigneeRecommender = new AssigneeRecommender();
 		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists = assigneeRecommender.getTaskPotenialAssigneeLists();
 
-		// print assignee recommandation results
+		// print assignee recommendation results
 		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
 		// prepare parameters for iteration planner
@@ -134,12 +138,12 @@ public class Application implements IApplication {
 			developerLoadWeight, random);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 100;
+		int populationSize = 10;
 		int resultSize = 5;
 		int maxNumOfGenerations = 10;
-		int percentOfCrossOverChildren = 90;
-		int precentOfMutants = 5;
-		int percentOfClones = 5;
+		int percentOfCrossOverChildren = 30;
+		int precentOfMutants = 60;
+		int percentOfClones = 10;
 		int percentOfCrossOverParents = 30;
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
@@ -209,9 +213,12 @@ public class Application implements IApplication {
 		System.out.println("\t***********************************************************");
 		int i = 1;
 		for (PlannedTask plannedTask : plannedTasks) {
-			System.out.println("\t" + i + ". " + plannedTask.getAssigneeExpertise().getAssignee() + " ---> "
-				+ plannedTask.getTask().getWorkItem().getName() + " (prio: " + plannedTask.getTask().getPriority()
-				+ ")");
+			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", 
+								i, plannedTask.getAssigneeExpertise().getAssignee(), 
+								plannedTask.getAssigneeExpertise().getExpertise(), 
+								plannedTask.getTask().getWorkItem().getName(), 
+								plannedTask.getTask().getPriority(), 
+								plannedTask.getTask().getEstimate());
 			i++;
 		}
 	}
@@ -221,7 +228,7 @@ public class Application implements IApplication {
 		for (int i = 0; i < numOfIterations; i++) {
 			// assume every assignee is 40 hours available in an iteration.
 			for (Assignee assignee : assignees) {
-				assigneeAvailabilityManager.setAvailability(i, assignee, 40);
+				assigneeAvailabilityManager.setAvailability(i, assignee, 20);
 			}
 		}
 
@@ -245,7 +252,11 @@ public class Application implements IApplication {
 
 	private Project getProject() {
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
-		return projectSpaces.get(0).getProject();
+		if(unicase){
+			return projectSpaces.get(0).getProject();
+		}else{
+			return projectSpaces.get(1).getProject();
+		}
 	}
 
 	private List<User> getAssignees(Project project) {
@@ -255,46 +266,41 @@ public class Application implements IApplication {
 	}
 
 	private List<WorkItem> getTasksToPlan(Project project) {
-		List<WorkPackage> workPackages = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(),
-			new BasicEList<WorkPackage>());
-		WorkPackage backLog = null;
-		for (WorkPackage wp : workPackages) {
-			if (wp.getName().equalsIgnoreCase("backlog") && wp.getAllContainedWorkItems().size() > 50) {
-				// it looks we have multiple back logs :)
-				backLog = wp;
-			}
-		}
-
 		List<WorkItem> workItems = new ArrayList<WorkItem>();
-		for (ModelElement me : backLog.getAllContainedModelElements()) {
-			if (me instanceof Checkable && me instanceof WorkItem) {
+		if(unicase){
+			List<WorkPackage> workPackages = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(),
+				new BasicEList<WorkPackage>());
+			WorkPackage backLog = null;
+			for (WorkPackage wp : workPackages) {
+				if (wp.getName().equalsIgnoreCase("backlog") && wp.getAllContainedWorkItems().size() > 50) {
+					// it looks we have multiple back logs :)
+					backLog = wp;
+				}
+			}
+
+			workItems = new ArrayList<WorkItem>();
+			for (ModelElement me : backLog.getAllContainedModelElements()) {
+				if (me instanceof Checkable && me instanceof WorkItem) {
+					try {
+						workItems.add((WorkItem) me);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return workItems;
+		}
+		
+		List<WorkItem> wis = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>());
+		for (WorkItem wi : wis) {
+			if (wi instanceof Checkable && !((ActionItem)wi).isDone()) {
 				try {
-					workItems.add((WorkItem) me);
+					workItems.add(wi);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-
-		// final Random random = new Random(1);
-		// final List<WorkItem> result = new ArrayList<WorkItem>();
-		// for (int i = 0; i < 150; i++) {
-		// int index = random.nextInt(workItems.size());
-		// result.add(workItems.get(index));
-		// workItems.remove(index);
-		// }
-		// new UnicaseCommand() {
-		//
-		// @Override
-		// protected void doRun() {
-		// for (int j = 0; j < result.size(); j++) {
-		// result.get(j).setEstimate(random.nextInt(11)); //
-		// result.get(j).setPriority(random.nextInt(11));
-		// }
-		// }
-		// }.run();
-		//
-		// return result;
 		return workItems;
 	}
 
