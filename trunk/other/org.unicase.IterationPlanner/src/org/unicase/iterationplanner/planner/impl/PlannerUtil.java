@@ -266,7 +266,7 @@ public class PlannerUtil {
 		return random;
 	}
 	
-	/*
+	/**
 	 * returns all planned tasks in this iteration including those set to backlog.
 	 * @param iterPlan
 	 * @return
@@ -278,6 +278,62 @@ public class PlannerUtil {
 			plannedTasks.addAll(iterPlan.getAllPlannedTasksForIteration(i));
 		}
 		return plannedTasks;
+	}
+
+	public Set<Task> getTasks(Set<PlannedTask> plannedTasks) {
+		Set<Task> result = new HashSet<Task>();
+		for(PlannedTask pt : plannedTasks){
+			result.add(pt.getTask());
+		}
+		
+		return result;
+	}
+
+	public Set<PlannedTask> unionOnTasks(Set<PlannedTask> plannedTasks1, Set<PlannedTask> plannedTasks2) {
+		Set<PlannedTask> union = new HashSet<PlannedTask>();
+		Set<PlannedTask> difference = new HashSet<PlannedTask>();
+		union.addAll(plannedTasks1);
+		for(PlannedTask pt2 : plannedTasks2){
+			boolean alreadyExists = false;
+			for(PlannedTask ptInUnion : union){
+				if(pt2.equalsTask(ptInUnion)){
+					alreadyExists = true;
+				}
+			}
+			if(!alreadyExists){
+				difference.add(pt2);
+			}
+		}
+		union.addAll(difference);
+		return union;
+	}
+
+	public Set<PlannedTask> subtractOnTasks(Set<PlannedTask> fromSet, Set<PlannedTask> subtractSet) {
+		Set<PlannedTask> result = new HashSet<PlannedTask>();
+		result.addAll(fromSet);
+		//remove from fromSet the intersection of fromSet and subtractSet
+		Set<PlannedTask> intersectOnTasks = intersectOnTasks(fromSet, subtractSet);
+		for(PlannedTask pt : intersectOnTasks){
+			for(PlannedTask ptInResult : fromSet){
+				if(pt.equalsTask(ptInResult)){
+					result.remove(ptInResult);
+				}
+			}
+		}
+		return result;
+	}
+	
+	public Set<PlannedTask> intersectOnTasks(Set<PlannedTask> set1, Set<PlannedTask> set2){
+		Set<PlannedTask> intersection = new HashSet<PlannedTask>();
+		// find those planned tasks that have equal tasks
+		for(PlannedTask pt1 : set1){
+			for(PlannedTask pt2 : set2){
+				if(pt1.equalsTask(pt2)){
+					intersection.add(pt1);
+				}
+			}
+		}
+		return intersection;
 	}
 
 }

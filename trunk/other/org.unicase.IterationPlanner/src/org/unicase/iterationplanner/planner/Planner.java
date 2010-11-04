@@ -60,16 +60,21 @@ public abstract class Planner {
 		population = createInitialPopulation();
 		checkInvariants(population);
 		evalutate();
+		checkInvariants(population);
 		Collections.sort(population);
+		checkInvariants(population);
 
 		for (int i = 0; i < plannerParameters.getMaxNumOfGenerations(); i++) {
 			if (isBreakCretieriaMet()) {
 				break;
 			}
+			checkInvariants(population);
 			createNextGeneration();
 			checkInvariants(population);
 			evalutate();
+			checkInvariants(population);
 			Collections.sort(population);
+			checkInvariants(population);
 
 		}
 

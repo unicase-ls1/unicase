@@ -75,6 +75,10 @@ public class PlannedTask {
 		return iterationNumber;
 	}
 
+	/**
+	 * true if Task, AssigneeExpertise, and iterationNumber are equal.
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof PlannedTask)) {
@@ -93,6 +97,21 @@ public class PlannedTask {
 		return true;
 	}
 
+	
+	/**
+	 * true if Tasks in both instances are equal.
+	 */
+	public boolean equalsTask(Object obj) {
+		if (!(obj instanceof PlannedTask)) {
+			return false;
+		}
+		PlannedTask incomming = (PlannedTask) obj;
+		if (!this.task.equals(incomming.task)) {
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * if all potential assignees for this task have the same expertise value, then this task should not be considered
 	 * in evaluation of expertise for an iteration plan.
