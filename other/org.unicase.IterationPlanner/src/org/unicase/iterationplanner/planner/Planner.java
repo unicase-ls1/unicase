@@ -2,6 +2,7 @@ package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,26 +58,25 @@ public abstract class Planner {
 	 * @return
 	 */
 	public List<IterationPlan> start() {
-
+		
+		System.out.println("Starting GA: " + new Date().toString());
 		population = createInitialPopulation();
-		checkInvariants(population);
+		System.out.println("Initial Population created: " + new Date().toString());
 		evalutate();
-		checkInvariants(population);
 		Collections.sort(population);
 		checkInvariants(population);
 
 		for (int i = 0; i < plannerParameters.getMaxNumOfGenerations(); i++) {
+			System.out.println("Started Generation" + i + ": " + new Date().toString());
 			if (isBreakCretieriaMet()) {
 				break;
 			}
-			checkInvariants(population);
 			createNextGeneration();
-			checkInvariants(population);
 			evalutate();
-			checkInvariants(population);
 			Collections.sort(population);
 			checkInvariants(population);
 
+			System.out.println("Finished Generation" + i + ": " + new Date().toString());
 		}
 
 		List<IterationPlan> result = new ArrayList<IterationPlan>();
@@ -95,7 +95,6 @@ public abstract class Planner {
 	protected void addToNextGeneration(IterationPlan iterPlan){
 		iterPlan.checkAllInvariants();
 		nextGeneration.add(iterPlan);
-		checkInvariants(nextGeneration);
 	}
 
 	private void checkInvariants(List<IterationPlan> iterPlans) {
@@ -110,13 +109,10 @@ public abstract class Planner {
 
 		List<IterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
 			.getPercentOfCrossOverParents());
-		checkInvariants(crossoverParents);
 		List<IterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
 			.getPercentOfMutationCandidates());
-		checkInvariants(mutationCandidates);
 		List<IterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
 			.getPercentOfCloneCandidates());
-		checkInvariants(cloneCandidates);
 
 		copyIntoNextGeneration(cloneCandidates);
 		mutateIntoNextGeneration(mutationCandidates);
