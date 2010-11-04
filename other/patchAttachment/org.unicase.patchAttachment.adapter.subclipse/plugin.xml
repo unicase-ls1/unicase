@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.patchAttachment.teamAdapters">
+      <teamAdapter
+            class="org.unicase.patchAttachment.adapter.subclipse.SubclipseTeamAdapter"
+            repoProviderId="org.tigris.subversion.subclipse.core.svnnature">
+      </teamAdapter>
+   </extension>
+
+</plugin>
