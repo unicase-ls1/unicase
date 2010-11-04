@@ -35,7 +35,6 @@ public class MyPlanner extends Planner {
 		for (int i = 0; i < numOfIndividualsToAdd; i++) {
 			IterationPlan cloneCandidate = nextGeneration.get(random.nextInt(nextGeneration.size()));
 			IterationPlan clone = cloneCandidate.clone();
-			clone.checkAllInvariants();
 			nextGeneration.add(clone);
 		}
 	}
@@ -47,7 +46,6 @@ public class MyPlanner extends Planner {
 			.getPopulationSize());
 		for (int i = 0; i < numOfClones; i++) {
 			IterationPlan clone = cloneCandidates.get(random.nextInt(cloneCandidates.size())).clone();
-			clone.checkAllInvariants();
 			// we don't need to clone the object here.
 			addToNextGeneration(clone);
 		}
@@ -59,7 +57,6 @@ public class MyPlanner extends Planner {
 		int populationSize = getPlannerParameters().getPopulationSize();
 		for (int i = 0; i < populationSize; i++) {
 			IterationPlan iterPlan = createIterationPlan();
-			iterPlan.checkAllInvariants();
 			initPopulation.add(iterPlan);
 		}
 
@@ -172,9 +169,6 @@ public class MyPlanner extends Planner {
 		c1.setCrossover(false);
 		c2.setCrossover(false);
 		
-		c1.checkAllInvariants();
-		c2.checkAllInvariants();
-		
 		children.add(c1);
 		children.add(c2);
 
@@ -197,9 +191,7 @@ public class MyPlanner extends Planner {
 
 		for (int i = 0; i < numOfMutants; i++) {
 			IterationPlan mutationCandidate = mutationCandidates.get(random.nextInt(mutationCandidates.size()));
-			mutationCandidate.checkAllInvariants();
 			IterationPlan mutant = mutate(mutationCandidate);
-			mutant.checkAllInvariants();
 			addToNextGeneration(mutant);
 		}
 	}
