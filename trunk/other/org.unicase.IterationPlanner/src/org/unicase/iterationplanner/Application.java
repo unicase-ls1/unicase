@@ -122,20 +122,21 @@ public class Application implements IApplication {
 		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
 		// prepare parameters for iteration planner
-		int numOfIterations = 2;
+		int numOfIterations = 3;
 		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
 			AssigneePool.getInstance().getAssignees());
 
+		Random random = new Random(10L);
 		double expertiesWeight = 1.0;
 		double priorityWeight = 1.0;
 		double developerLoadWeight = 1.0;
 		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
-			developerLoadWeight);
+			developerLoadWeight, random);
 		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
 
-		int populationSize = 5;
+		int populationSize = 10;
 		int resultSize = 5;
-		int maxNumOfGenerations = 0;
+		int maxNumOfGenerations = 20;
 		int percentOfCrossOverChildren = 60;
 		int precentOfMutants = 20;
 		int percentOfClones = 20;
@@ -143,7 +144,7 @@ public class Application implements IApplication {
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
 		int percentOfTasksToMutate = 10;
-		Random random = new Random(1L);
+	
 		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
 			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
 			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random);

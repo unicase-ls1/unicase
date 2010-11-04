@@ -8,6 +8,8 @@ import java.util.Set;
 
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.Task;
+import org.unicase.iterationplanner.planner.IterationPlan;
+import org.unicase.iterationplanner.planner.PlannedTask;
 
 public class PlannerUtil {
 
@@ -262,6 +264,20 @@ public class PlannerUtil {
 
 	public Random getRandom() {
 		return random;
+	}
+	
+	/*
+	 * returns all planned tasks in this iteration including those set to backlog.
+	 * @param iterPlan
+	 * @return
+	 */
+	public Set<PlannedTask> getPlannedTasks(IterationPlan iterPlan) {
+		Set<PlannedTask> plannedTasks = new HashSet<PlannedTask>();
+		//we consider the tasks in backlog too; therefore iterPlan.getNumOfIterations() + 1
+		for(int i = 0; i < iterPlan.getNumOfIterations() + 1; i++){
+			plannedTasks.addAll(iterPlan.getAllPlannedTasksForIteration(i));
+		}
+		return plannedTasks;
 	}
 
 }
