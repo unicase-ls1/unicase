@@ -33,7 +33,11 @@ public class ModelBasedAssigneeRecommendation extends AssigneeRecommendationStra
 			recommendedAssignees.add(new AssigneeExpertise(assignee, expertise));
 		}
 		Collections.sort(recommendedAssignees);
-		return recommendedAssignees.subList(0, getMaxNumOfAssignees());
+		if(recommendedAssignees.size() > getMaxNumOfAssignees()){
+			return recommendedAssignees.subList(0, getMaxNumOfAssignees());
+		}else{
+			return recommendedAssignees;
+		}
 	}
 
 	/**

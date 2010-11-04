@@ -2,6 +2,7 @@ package org.unicase.iterationplanner;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationFactory;
@@ -95,12 +96,15 @@ public class TestDataGenerator {
 	}
 
 	private void createTasks(FunctionalRequirement subReq, int subReqId) {
-
+		Random random = new Random();
+		
 		for (int j = 0; j < subReq.getRefiningRequirements().size(); j++) {
 			FunctionalRequirement leafReq = subReq.getRefiningRequirements().get(j);
 			ActionItem task = TaskFactory.eINSTANCE.createActionItem();
 			project.addModelElement(task);
 			task.setName("do " + leafReq.getName());
+			task.setEstimate(random.nextInt(11));
+			task.setPriority(random.nextInt(11));
 			leafReq.getAnnotations().add(task);
 		}
 		for (int k = 0; k < subReq.getRefiningRequirements().size() - 2; k++) {
