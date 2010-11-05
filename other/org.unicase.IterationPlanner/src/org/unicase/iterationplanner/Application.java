@@ -106,7 +106,7 @@ public class Application implements IApplication {
 	private void startPlanning() throws Exception {
 		System.out.println("Iteration Planner started!");
 
-		unicase = false;
+		unicase = true;
 		Project project = getProject();
 		System.out.println("retrieved project: " + WorkspaceManager.getProjectSpace(project).getProjectName());
 		// init task pool
@@ -126,7 +126,7 @@ public class Application implements IApplication {
 		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
 		// prepare parameters for iteration planner
-		int numOfIterations = 2;
+		int numOfIterations = 4;
 		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
 			AssigneePool.getInstance().getAssignees());
 
