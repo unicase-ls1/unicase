@@ -12,7 +12,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.unicase.ui.navigator.viewer?after=additions">
+            locationURI="toolbar:org.unicase.ui.navigator.viewer?after=SearchElementButon">
          <command
                commandId="org.unicase.ui.IterationPlanner.ShowIterationPlanningWizard"
                icon="icons/wizard.png"
