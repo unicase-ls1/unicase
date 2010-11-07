@@ -15,9 +15,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
@@ -30,10 +30,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -62,6 +62,11 @@ public final class ModelUtil {
 	 * URI used to serialize EObject with the model util.
 	 */
 	public static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
+
+	/**
+	 * Contains the canonical names of classes which will be ignored.
+	 */
+	private static Set<String> ignoredDataTypes;
 
 	/**
 	 * Private constructor.
@@ -124,7 +129,7 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Compares two EObject by checking whether the string representations of the EObjects are equal
+	 * Compares two EObject by checking whether the string representations of the EObjects are equal.
 	 * 
 	 * @param eobjectA the first EObject
 	 * @param eobjectB the second EObject
@@ -259,14 +264,22 @@ public final class ModelUtil {
 			return result;
 		}
 		for (EReference reference : object.eClass().getEAllReferences()) {
-			if (!reference.isTransient()) {
+			if (!reference.isTransient() && !reference.isContainment()) {
 				Object referenceObject = object.eGet(reference, true);
 				if (reference.isMany()) {
 					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
 					result.addAll(referencesList);
+					for (EObject ref : referencesList) {
+						if (ModelUtil.isSingletonEObject(ref)) {
+							continue;
+						}
+
+						result.add(ref);
+					}
+
 				} else {
 					EObject crossReference = (EObject) referenceObject;
-					if (crossReference == null) {
+					if (crossReference == null || ModelUtil.isSingletonEObject(crossReference)) {
 						continue;
 					}
 					result.add(crossReference);
@@ -274,6 +287,39 @@ public final class ModelUtil {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Determines whether an EObject is a singleton object. All EObjects being children of ECorePackage are considered
+	 * as singletons.
+	 */
+	public static boolean isSingletonEObject(EObject eObject) {
+		if (eObject.eContainer() != null && eObject.eContainer().equals(EcorePackage.eINSTANCE)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Determines whether the type of an EObject is an ignored one.
+	 * 
+	 * @param eObject the EObject which is to be checked
+	 * @return true, if the EObject will be ignored, false otherwise
+	 */
+	public static boolean isIgnoredDatatype(EObject eObject) {
+
+		if (ignoredDataTypes == null) {
+			ignoredDataTypes = new HashSet<String>();
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.metamodel.ignoredatatype");
+			for (IConfigurationElement extension : config) {
+				String className = extension.getAttribute("type");
+				ignoredDataTypes.add(className);
+			}
+		}
+
+		return ignoredDataTypes.contains(eObject.eClass().getInstanceClassName());
 	}
 
 	/**
@@ -288,12 +334,12 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
-	 * does not have references to eobjects outside the tree.
+	 * Check an EObject and its containment tree whether it is self-contained. A containment tree is self contained if
+	 * it does not have references to EObjects outside the tree.
 	 * 
 	 * @param object the eObject
 	 * @param ignoreContainer true if references of object to its container should be ignored in the check.
-	 * @return true if it is selfcontained
+	 * @return true if it is self0contained
 	 */
 	public static boolean isSelfContained(EObject object, boolean ignoreContainer) {
 		Set<EObject> allChildEObjects = getNonTransientContents(object);
@@ -308,12 +354,13 @@ public final class ModelUtil {
 			return false;
 		}
 
+		// TOOD: EM, handle ignored data types here
 		// check if only cross references to known elements exist
-		for (EObject content : allChildEObjects) {
-			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
-				return false;
-			}
-		}
+		// for (EObject content : allChildEObjects) {
+		// if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
+		// return false;
+		// }
+		// }
 		return true;
 	}
 
@@ -347,7 +394,15 @@ public final class ModelUtil {
 			TreeIterator<EObject> it = ((Project) result).eAllContents();
 			while (it.hasNext()) {
 				EObject me = it.next();
-				String id = xmiRes.getID(me);
+				String id;
+
+				if (ModelUtil.isIgnoredDatatype(me)) {
+					// create random ID for generic types, won't get serialized anyway
+					id = MetamodelFactory.eINSTANCE.createModelElementId().getId();
+				} else {
+					id = xmiRes.getID(me);
+				}
+
 				if (id == null) {
 					throw new SerializationException("Failed to retrieve ID for EObject contained in project: " + me);
 				}
