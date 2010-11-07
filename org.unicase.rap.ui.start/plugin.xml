@@ -5,14 +5,15 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="RCP Perspective"
+            name="RAP Perspective"
             class="org.unicase.rap.ui.start.Perspective"
-            id="org.unicase.rap.ui.example.perspective">
+            id="org.unicase.rap.ui.start.perspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
+            allowMultiple="true"
             class="org.unicase.ui.navigator.TreeView"
             id="org.unicase.ui.navigator.viewer"
             name="Navigator"
@@ -26,6 +27,50 @@
             id="unicase"
             parameter="unicase">
       </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="Show View"
+               label="Show View"
+               tooltip="Show View">
+            <command
+                  commandId="org.eclipse.ui.views.showView"
+                  id="Navigator"
+                  label="Navigator"
+                  style="push"
+                  tooltip="Navigator">
+               <parameter
+                     name="org.eclipse.ui.views.showView.viewId"
+                     value="org.unicase.ui.navigator.viewer">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.views.showView"
+                  id="Repository View"
+                  label="Repository View"
+                  style="push"
+                  tooltip="Repository View">
+               <parameter
+                     name="org.eclipse.ui.views.showView.viewId"
+                     value="org.unicase.ui.repository.views.RepositoryView">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.views.showView"
+                  id="History Browser"
+                  label="History Browser"
+                  style="push"
+                  tooltip="History Browser">
+               <parameter
+                     name="org.eclipse.ui.views.showView.viewId"
+                     value="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView">
+               </parameter>
+            </command>
+         </menu>
+      </menuContribution>
    </extension>
 
 </plugin>

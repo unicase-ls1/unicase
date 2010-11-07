@@ -5,11 +5,6 @@
  */
 package org.unicase.ui.navigator;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
@@ -19,7 +14,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -30,7 +24,6 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -48,13 +41,6 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.accesscontrol.AuthenticationControl;
-import org.unicase.emfstore.accesscontrol.authentication.SimplePropertyFileVerifier;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.impl.EsmodelFactoryImpl;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
@@ -86,51 +72,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * Constructor.
 	 */
 	public TreeView() {
-		String username = "";
-		// AuthenticationControl auth = new SimpleAuth();
-		AuthenticationControl auth = null;
-		ClientVersionInfo clientVersionInfo = EsmodelFactoryImpl.init().createClientVersionInfo();
-		clientVersionInfo.setName("unicase.org eclipse rap client");
-		clientVersionInfo.setVersion("1.0.0.qualifier");
-		Properties serverProps = new Properties();
-		try {
-			serverProps.load(new FileInputStream(System.getProperty("user.home")
-				+ "/.unicase.dev/emfstore/conf/es.properties"));
-		} catch (FileNotFoundException e) {
-			Activator.logException(e);
-			return;
-		} catch (IOException e) {
-			Activator.logException(e);
-			return;
-		}
-		// serverProps.put(ServerConfiguration.ACCEPTED_VERSIONS, "any");
-		// serverProps.put(ServerConfiguration.KEYSTORE_CIPHER_ALGORITHM, "none");
-		ServerConfiguration.setProperties(serverProps);
-
-		try {
-			auth = new SimplePropertyFileVerifier(System.getProperty("user.home")
-				+ "/.unicase.dev/emfstore/conf/user.properties");
-		} catch (FatalEmfStoreException e) {
-			Activator.logException(e);
-			return;
-		}
-
-		LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell());
-		while (username.isEmpty()) {
-			try {
-				if (loginDialog.open() == Window.OK
-					&& auth.logIn(loginDialog.getUsername(), loginDialog.getEncryptedPassword(), clientVersionInfo) != null) {
-					username = loginDialog.getUsername();
-					MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Welcome",
-						"Welcome to the Unicase RAP Alpha, " + username + "!");
-				} else {
-					MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", "Wrong Username/Password!");
-				}
-			} catch (AccessControlException e) {
-				Activator.logException(e);
-			}
-		}
-
 		createOperationListener();
 		try {
 			currentWorkspace = WorkspaceManager.getInstance().getWorkSpace();
