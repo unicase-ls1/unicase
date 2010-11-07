@@ -221,7 +221,7 @@ public class MultiAttributeControl extends AbstractMEControl {
 
 						int idx = listCtrl.getSelectionIndex();
 						String defaultVal = listCtrl.getItem(idx);						
-						String input = InputDialog("Edit value...", "Please insert new value.", defaultVal, null);
+						String input = InputDialog("Edit value...", "Please insert new value.", defaultVal, FactoryInputValidator(feature));
 						if (!input.equals("")) {
 							Object obj = null;
 							if (modelAttrIsInteger(feature)) obj = Integer.parseInt(input);
