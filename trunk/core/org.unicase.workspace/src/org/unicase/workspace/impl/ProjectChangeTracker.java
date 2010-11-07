@@ -78,11 +78,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private boolean splitResource;
 
 	/**
-	 * Used for recognizing notifications that result from reversing an operation.
-	 */
-	private boolean isReverseNotification;
-
-	/**
 	 * Name of unknown creator.
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
@@ -114,7 +109,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		this.isRecording = false;
 		this.autoSave = true;
 		this.splitResource = true;
-		this.isReverseNotification = false;
 		dirtyResourceSet = new DirtyResourceSet();
 
 		if (!projectSpace.isTransient()) {
@@ -212,11 +206,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		ChangeDescription changeDesc = changeRecorder.endRecording();
 
 		if (modelElement.eContainer() != parent) {
+			stopChangeRecording();
 			splitResource = false;
-			isReverseNotification = true;
 			// model element lost its parent, revert changes
 			changeDesc.apply();
-			isReverseNotification = false;
+			startChangeRecording();
 			return false;
 		}
 
@@ -322,12 +316,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
-
-		// ignore notifications from reversing an operation in case
-		// resource splitting failed
-		if (isReverseNotification) {
-			return;
-		}
 
 		// filter unwanted notifications
 		if (FilterStack.DEFAULT.check(new NotificationInfo(notification))) {
