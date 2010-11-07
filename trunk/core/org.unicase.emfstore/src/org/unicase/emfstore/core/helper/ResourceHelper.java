@@ -7,6 +7,8 @@ package org.unicase.emfstore.core.helper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -27,7 +29,6 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -99,8 +100,8 @@ public class ResourceHelper {
 	public void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
 		ProjectId projectId) throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
+		List<Map.Entry<EObject, ModelElementId>> ignoredDatatypes = new ArrayList<Map.Entry<EObject, ModelElementId>>();
 
-		// TODO: set IDs of each operation on resource to be saved
 		for (AbstractOperation op : changePackage.getOperations()) {
 			if (op instanceof CreateDeleteOperation) {
 				CreateDeleteOperation createDeleteOp = (CreateDeleteOperation) op;
@@ -108,10 +109,21 @@ public class ResourceHelper {
 				for (Map.Entry<EObject, ModelElementId> e : ((CreateDeleteOperationImpl) createDeleteOp)
 					.getEObjectToIdMap().entrySet()) {
 					XMIResource res = (XMIResource) e.getKey().eResource();
+
+					EObject modelElement = e.getKey();
+
+					if (ModelUtil.isIgnoredDatatype(modelElement)) {
+						ignoredDatatypes.add(e);
+						continue;
+					}
+
 					if (res != null) {
 						res.setID(e.getKey(), e.getValue().getId());
 					}
 				}
+
+				// remove types to be ignored from mapping
+				createDeleteOp.getEObjectToIdMap().removeAll(ignoredDatatypes);
 			}
 		}
 
@@ -205,24 +217,13 @@ public class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			// TODO: PlainEObjectMode
-			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
-				xmiResource.setID(e.getKey(), e.getValue().getId());
+			for (EObject modelElement : project.getAllModelElements()) {
+				ModelElementId modelElementId = project.getModelElementId(modelElement);
+				xmiResource.setID(modelElement, modelElementId.getId());
 			}
-			// for (EObject modelElement : project.getAllModelElements()) {
-			// ModelElementId modelElementId = project.getModelElementId(modelElement);
-			// xmiResource.setID(modelElement, modelElementId.getId());
-			// }
 		}
 
 		save(obj);
-	}
-
-	private void setXmiIdsOnResource(Project project, XMIResource xmiResource) {
-		for (EObject modelElement : project.getAllModelElements()) {
-			ModelElementId modelElementId = project.getModelElementId(modelElement);
-			xmiResource.setID(modelElement, modelElementId.getId());
-		}
 	}
 
 	/**
@@ -237,8 +238,9 @@ public class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			for (Map.Entry<EObject, ModelElementId> e : ((ProjectImpl) project).getEObjectToIdCache().entrySet()) {
-				xmiResource.setID(e.getKey(), e.getValue().getId());
+			for (EObject modelElement : project.getAllModelElements()) {
+				ModelElementId modelElementId = project.getModelElementId(modelElement);
+				xmiResource.setID(modelElement, modelElementId.getId());
 			}
 		}
 
