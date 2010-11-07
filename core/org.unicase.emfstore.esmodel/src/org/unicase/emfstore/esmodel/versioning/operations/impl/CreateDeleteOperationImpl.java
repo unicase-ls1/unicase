@@ -88,6 +88,11 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 				EObject child = allContainedModelElements.get(i);
 				EObject copiedChild = copiedAllContainedModelElements.get(i);
 				ModelElementId childId = ModelUtil.clone(getEObjectToIdMap().get(child));
+
+				if (ModelUtil.isIgnoredDatatype(child)) {
+					continue;
+				}
+
 				if (childId.equals(clone.getModelElementId())) {
 					clone.setModelElement(copiedChild);
 				}
