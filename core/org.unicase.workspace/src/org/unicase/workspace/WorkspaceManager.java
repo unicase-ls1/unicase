@@ -17,18 +17,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryImpl;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
@@ -63,20 +60,16 @@ public final class WorkspaceManager {
 	 * @return the workspace manager singleton
 	 * @generated NOT
 	 */
-	public static synchronized WorkspaceManager getInstance() {
+	public static WorkspaceManager getInstance() {
 		if (instance == null) {
 			try {
 				instance = new WorkspaceManager();
-
-				// BEGIN SUPRESS CATCH EXCEPTION
+				// BEGIN SURPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
-				// END SURPRESS CATCH EXCEPTION
 				ModelUtil.logException("Workspace Initialization failed, shutting down", e);
 				throw e;
 			}
-
-			// init ecore packages
-			ModelUtil.getAllModelElementEClasses();
+			// END SURPRESS CATCH EXCEPTION
 		}
 		return instance;
 	}
@@ -84,7 +77,7 @@ public final class WorkspaceManager {
 	/**
 	 * Initialize the Workspace Manager singleton.
 	 */
-	public static synchronized void init() {
+	public static void init() {
 		getInstance();
 	}
 
@@ -97,6 +90,8 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
+		// init ecore packages
+		ModelUtil.getAllModelElementEClasses();
 	}
 
 	/**
@@ -135,9 +130,8 @@ public final class WorkspaceManager {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the ressource
-		final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreTransactionalCommandStack(), resourceSet);
-		((FactoryImpl) TransactionalEditingDomain.Factory.INSTANCE).mapResourceSet(domain);
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+			.createEditingDomain(resourceSet);
 		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
 		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
 
@@ -197,8 +191,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -219,9 +213,8 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
-				e);
+			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 	}
 
@@ -292,14 +285,11 @@ public final class WorkspaceManager {
 	private void backupWorkspace(boolean move) {
 		String workspaceDirectory = Configuration.getWorkspaceDirectory();
 		File workspacePath = new File(workspaceDirectory);
-
 		// String newWorkspaceDirectory = Configuration.getUserHome() + "unicase_backup_" + System.currentTimeMillis()
 		// + "_" + new Date();
 		// TODO: if you want the date included in the backup folder you should change the format. the default format
 		// does not work with every os due to : and other characters.
-		String newWorkspaceDirectory = Configuration.getLocationProvider().getBackupDirectory() + "unicase_backup_"
-			+ System.currentTimeMillis();
-
+		String newWorkspaceDirectory = Configuration.getUserHome() + "unicase_backup_" + System.currentTimeMillis();
 		File workspacebackupPath = new File(newWorkspaceDirectory);
 		if (move) {
 			workspacePath.renameTo(workspacebackupPath);
@@ -407,18 +397,14 @@ public final class WorkspaceManager {
 	 * @param modelElement the model element
 	 * @return the project space
 	 */
-	public static ProjectSpace getProjectSpace(EObject modelElement) {
-
+	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
 		if (modelElement == null) {
 			throw new IllegalArgumentException("The model element is null");
-		} else if (modelElement instanceof ProjectSpace) {
-			return (ProjectSpace) modelElement;
 		}
-
-		Project project = ModelUtil.getProject(modelElement);
-
+		Project project = modelElement.getProject();
 		if (project == null) {
-			throw new IllegalArgumentException("The model element " + modelElement + " has no project");
+			throw new IllegalArgumentException("The model element with ID " + modelElement.getIdentifier()
+				+ " has no project");
 		}
 		return getProjectSpace(project);
 	}

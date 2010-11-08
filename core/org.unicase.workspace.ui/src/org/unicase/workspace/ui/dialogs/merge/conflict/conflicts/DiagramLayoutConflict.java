@@ -14,8 +14,9 @@ import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
 import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 
 /**
- * Conflict between two {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation} . Special case
- * of {@link AttributeConflict}.
+ * Conflict between two
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation}
+ * . Special case of {@link AttributeConflict}.
  * 
  * @author wesendon
  */
@@ -24,12 +25,16 @@ public class DiagramLayoutConflict extends AttributeConflict {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param myOperations list of my operations
-	 * @param theirOperations list of their operations
-	 * @param decisionManager decisionmanager
+	 * @param myOperations
+	 *            list of my operations
+	 * @param theirOperations
+	 *            list of their operations
+	 * @param decisionManager
+	 *            decisionmanager
 	 */
-	public DiagramLayoutConflict(List<AbstractOperation> myOperations, List<AbstractOperation> theirOperations,
-		DecisionManager decisionManager) {
+	public DiagramLayoutConflict(List<AbstractOperation> myOperations,
+			List<AbstractOperation> theirOperations,
+			DecisionManager decisionManager) {
 		super(myOperations, theirOperations, decisionManager);
 	}
 
@@ -37,10 +42,10 @@ public class DiagramLayoutConflict extends AttributeConflict {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription(ConflictDescription description) {
-		description = super.initConflictDescription(description);
+	protected ConflictDescription initConflictDescription() {
+		ConflictDescription description = super.initConflictDescription();
 		description
-			.setDescription("The diagram layout of [modelelement], which you have edited, was edited on the repository as well.");
+				.setDescription("The diagram layout of [modelelement], which you have edited, was edited on the repository as well.");
 		return description;
 	}
 

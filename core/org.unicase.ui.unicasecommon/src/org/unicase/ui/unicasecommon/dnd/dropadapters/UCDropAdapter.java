@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
@@ -34,7 +34,7 @@ public class UCDropAdapter extends MEDropAdapter {
 	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
 	 */
 	@Override
-	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
+	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
 		if (source.get(0) instanceof Annotation && target instanceof UnicaseModelElement) {
 			annotateME(source, (UnicaseModelElement) target);
 		} else {
@@ -42,7 +42,7 @@ public class UCDropAdapter extends MEDropAdapter {
 		}
 	}
 
-	private void annotateME(List<EObject> source, final UnicaseModelElement target) {
+	private void annotateME(List<ModelElement> source, final UnicaseModelElement target) {
 		Annotation[] arr = source.toArray(new Annotation[source.size()]);
 		List<Annotation> newAnnotations = Arrays.asList(arr);
 		target.getAnnotations().addAll(newAnnotations);
@@ -54,8 +54,8 @@ public class UCDropAdapter extends MEDropAdapter {
 	 * @see org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter#isDropAdapterfor()
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<EObject> source, EObject target,
-		EObject dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
+		ModelElement dropee) {
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
 		if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
@@ -81,8 +81,7 @@ public class UCDropAdapter extends MEDropAdapter {
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		// TODO: PlainEObjectMode, any criteria to filter for?
-		return EcoreFactory.eINSTANCE.getEcorePackage().getEObject().eClass();
+		return MetamodelPackage.eINSTANCE.getModelElement();
 	}
 
 }

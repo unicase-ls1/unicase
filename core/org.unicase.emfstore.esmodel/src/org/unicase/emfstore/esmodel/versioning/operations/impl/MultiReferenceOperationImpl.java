@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -26,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -287,15 +287,15 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	}
 
 	public void apply(Project project) {
-		EObject modelElement = project.getModelElement(getModelElementId());
+		ModelElement modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
 			// fail silently
 			return;
 		}
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
-		List<EObject> referencedModelElements = new ArrayList<EObject>();
+		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
 		for (ModelElementId refrencedModelElementId : referencedModelElementIds) {
-			EObject referencedME = project.getModelElement(refrencedModelElementId);
+			ModelElement referencedME = project.getModelElement(refrencedModelElementId);
 			if (referencedME != null) {
 				referencedModelElements.add(referencedME);
 			}
@@ -309,11 +309,11 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		}
 		Object object = modelElement.eGet(reference);
 		@SuppressWarnings("unchecked")
-		EList<EObject> list = (EList<EObject>) object;
+		EList<ModelElement> list = (EList<ModelElement>) object;
 		if (isAdd()) {
 			if (index < list.size() && index > -1) {
 				int i = index;
-				for (EObject m : referencedModelElements) {
+				for (ModelElement m : referencedModelElements) {
 
 					if (i < list.size()) {
 						if (list.contains(m)) {
@@ -334,13 +334,13 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				list.addAll(referencedModelElements);
 			}
 		} else {
-			for (EObject me : referencedModelElements) {
+			for (ModelElement me : referencedModelElements) {
 				if (list.contains(me)) {
 					list.remove(me);
 				}
 			}
-			for (EObject currentElement : referencedModelElements) {
-				if (reference.isContainment()) {
+			for (ModelElement currentElement : referencedModelElements) {
+				if (currentElement.getProject() == null) {
 					project.addModelElement(currentElement);
 				}
 			}

@@ -38,7 +38,8 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @return the value of the '<em>Initiated Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InitiatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getInitiatingActorInstance
-	 * @model opposite="initiatingActorInstance" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="initiatingActorInstance" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getInitiatedScenarios();
@@ -57,7 +58,7 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @return the value of the '<em>Participated Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_ParticipatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getParticipatingActorInstances
-	 * @model opposite="participatingActorInstances"
+	 * @model opposite="participatingActorInstances" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
@@ -76,7 +77,8 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @see #setInstantiatedActor(Actor)
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InstantiatedActor()
 	 * @see org.unicase.model.requirement.Actor#getInstances
-	 * @model opposite="instances" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model opposite="instances" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Actor getInstantiatedActor();

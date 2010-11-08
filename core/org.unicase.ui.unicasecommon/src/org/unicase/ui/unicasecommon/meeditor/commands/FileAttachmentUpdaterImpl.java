@@ -5,9 +5,9 @@
  */
 package org.unicase.ui.unicasecommon.meeditor.commands;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.impl.FileAttachmentImpl;
@@ -44,7 +44,7 @@ public final class FileAttachmentUpdaterImpl implements FileTransferOnDone {
 	public void setFileInformation(final FileInformation fileInformation) {
 		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(fileInformation.getFileIdentifier());
-		final EObject modelElement = projectSpace.getProject().getModelElement(modelElementId);
+		final ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
 		if (modelElement != null && modelElement instanceof FileAttachmentImpl) {
 			new UnicaseCommand() {
 

@@ -61,10 +61,8 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addPluginIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PluginStartEvent_pluginId_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginStartEvent_pluginId_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PluginStartEvent_pluginId_feature",
 				"_UI_PluginStartEvent_type"), EventsPackage.Literals.PLUGIN_START_EVENT__PLUGIN_ID, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

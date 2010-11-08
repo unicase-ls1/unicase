@@ -61,11 +61,10 @@ public class NotificationReadEventItemProvider extends ReadEventItemProvider imp
 	 * @generated
 	 */
 	protected void addNotificationIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NotificationReadEvent_notificationId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NotificationReadEvent_notificationId_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NotificationReadEvent_notificationId_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NotificationReadEvent_notificationId_feature",
 				"_UI_NotificationReadEvent_type"), EventsPackage.Literals.NOTIFICATION_READ_EVENT__NOTIFICATION_ID,
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

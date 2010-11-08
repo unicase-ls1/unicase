@@ -14,7 +14,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.sprintstatus.SprintStatusView;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
  * This is the handler to open the sprint status view.

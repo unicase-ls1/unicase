@@ -15,6 +15,7 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
@@ -27,7 +28,8 @@ import org.unicase.workspace.preferences.PreferenceManager;
  * 
  * @author shterev
  */
-public class SubscriptionNotificationProvider extends AbstractNotificationProvider {
+public class SubscriptionNotificationProvider extends
+		AbstractNotificationProvider {
 
 	private ArrayList<ESNotification> result;
 	private List<EObject> subscriptionIds;
@@ -59,17 +61,19 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	 *      java.util.List, java.lang.String)
 	 */
 	@Override
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername) {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
+			List<ChangePackage> changePackages, String currentUsername) {
 		result = new ArrayList<ESNotification>();
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-
+		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.SUBSCRIPTIONS);
+		
 		subscriptionIds = property.getEObjectListProperty(new ArrayList<EObject>());
-
+			
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}
-		return super.provideNotifications(projectSpace, changePackages, currentUsername);
+		return super.provideNotifications(projectSpace, changePackages,
+				currentUsername);
 	}
 
 	/**
@@ -93,21 +97,26 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	}
 
 	private void createOperation(ModelElementId mid, AbstractOperation op) {
-		EObject modelElement = getProjectSpace().getProject().getModelElement(mid);
-		if (modelElement == null || !(modelElement instanceof UnicaseModelElement)) {
+		ModelElement modelElement = getProjectSpace().getProject()
+				.getModelElement(mid);
+		if (modelElement == null
+				|| !(modelElement instanceof UnicaseModelElement)) {
 			return;
 		}
 		UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 		getExcludedOperations().add(op.getOperationId());
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE
+				.createESNotification();
 		notification.setName("Subscriptions");
-		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace()
+				.getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(unicaseModelElement, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
+				unicaseModelElement, getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());

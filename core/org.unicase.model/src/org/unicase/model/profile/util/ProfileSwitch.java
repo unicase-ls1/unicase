@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfilePackage;
@@ -89,6 +91,10 @@ public class ProfileSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(profile);
 			if (result == null)
+				result = caseModelElement(profile);
+			if (result == null)
+				result = caseIdentifiableElement(profile);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -97,6 +103,10 @@ public class ProfileSwitch<T> {
 			T result = caseStereotype(stereotype);
 			if (result == null)
 				result = caseUnicaseModelElement(stereotype);
+			if (result == null)
+				result = caseModelElement(stereotype);
+			if (result == null)
+				result = caseIdentifiableElement(stereotype);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -107,6 +117,10 @@ public class ProfileSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(stereotypeInstance);
 			if (result == null)
+				result = caseModelElement(stereotypeInstance);
+			if (result == null)
+				result = caseIdentifiableElement(stereotypeInstance);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -115,6 +129,10 @@ public class ProfileSwitch<T> {
 			T result = caseStereotypeAttribute(stereotypeAttribute);
 			if (result == null)
 				result = caseUnicaseModelElement(stereotypeAttribute);
+			if (result == null)
+				result = caseModelElement(stereotypeAttribute);
+			if (result == null)
+				result = caseIdentifiableElement(stereotypeAttribute);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -127,6 +145,10 @@ public class ProfileSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(stereotypeAttributeSimple);
 			if (result == null)
+				result = caseModelElement(stereotypeAttributeSimple);
+			if (result == null)
+				result = caseIdentifiableElement(stereotypeAttributeSimple);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -135,6 +157,10 @@ public class ProfileSwitch<T> {
 			T result = caseStereotypeAttributeInstance(stereotypeAttributeInstance);
 			if (result == null)
 				result = caseUnicaseModelElement(stereotypeAttributeInstance);
+			if (result == null)
+				result = caseModelElement(stereotypeAttributeInstance);
+			if (result == null)
+				result = caseIdentifiableElement(stereotypeAttributeInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -146,6 +172,10 @@ public class ProfileSwitch<T> {
 				result = caseStereotypeAttributeInstance(stereotypeAttributeInstanceString);
 			if (result == null)
 				result = caseUnicaseModelElement(stereotypeAttributeInstanceString);
+			if (result == null)
+				result = caseModelElement(stereotypeAttributeInstanceString);
+			if (result == null)
+				result = caseIdentifiableElement(stereotypeAttributeInstanceString);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -248,6 +278,33 @@ public class ProfileSwitch<T> {
 	 * @generated
 	 */
 	public T caseStereotypeAttributeInstanceString(StereotypeAttributeInstanceString object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

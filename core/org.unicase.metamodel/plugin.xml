@@ -11,8 +11,6 @@
 <plugin>
    <extension-point id="recommendationstrategy" name="Recommendation Strategy" schema="schema/recommendationstrategy.exsd"/>
    <extension-point id="modelversion" name="ModelVersion" schema="schema/modelversion.exsd"/>
-   <extension-point id="ignoredatatype" name="Ignore Datatype" schema="schema/ignoredatatype.exsd"/>
-   <extension-point id="singletonidresolver" name="Singleton ID Resolver" schema="schema/singletonidresolver.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

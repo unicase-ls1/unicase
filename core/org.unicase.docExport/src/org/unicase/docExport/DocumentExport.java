@@ -15,8 +15,6 @@ import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -116,8 +114,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * @param me the ModelElement which has been rendered to the Document
 	 */
 	public static void addRenderedModelElement(UnicaseModelElement me) {
-		ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
-		renderedModelElements.add(meId.getId());
+		renderedModelElements.add(me.getModelElementId().getId());
 	}
 
 	/**
@@ -125,8 +122,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * @return true, if the ModelElement has been rendered yet
 	 */
 	public static boolean hasAlreadyBeenRendered(UnicaseModelElement me) {
-		ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
-		return renderedModelElements.contains(meId.getId());
+		return renderedModelElements.contains(me.getModelElementId().getId());
 	}
 
 	/**

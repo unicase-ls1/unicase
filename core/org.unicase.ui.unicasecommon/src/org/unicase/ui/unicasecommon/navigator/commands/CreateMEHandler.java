@@ -20,7 +20,6 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -58,7 +57,6 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// if model element if MEDiagram, set the diagram type
-
 			// if (newMEInstance instanceof MEDiagram) {
 			// Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
 			// Diagram newDiagramType = (Diagram) p;
@@ -94,7 +92,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 						}
 					});
 				}
-				UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+				ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 			}
 		}
 		return null;

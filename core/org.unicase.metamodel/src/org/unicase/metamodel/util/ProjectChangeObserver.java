@@ -7,7 +7,7 @@
 package org.unicase.metamodel.util;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 
 /**
@@ -26,7 +26,7 @@ public interface ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element the notification originates from
 	 */
-	void notify(Notification notification, Project project, EObject modelElement);
+	void notify(Notification notification, Project project, ModelElement modelElement);
 
 	/**
 	 * The given model element was added to the project. This means it is now in the projects containment tree.
@@ -34,16 +34,23 @@ public interface ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the modelElement
 	 */
-	void modelElementAdded(Project project, EObject modelElement);
+	void modelElementAdded(Project project, ModelElement modelElement);
 
 	/**
-	 * The given model element and its siblings have been removed from the project. Note that you will NOT receive a
-	 * separate notification for each sibling.
+	 * The given model element and its siblings is starting to be deleted now. Note that you will NOT receive a separate notification for each sibling.
 	 * 
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	void modelElementRemoved(Project project, EObject modelElement);
+	void modelElementDeleteStarted(Project project, ModelElement modelElement);
+
+	/**
+	 * The given model element has been completely deleted. Note that you will NOT receive a separate notification for each sibling.
+	 * 
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	void modelElementDeleteCompleted(Project project, ModelElement modelElement);
 
 	/**
 	 * The project of has been deleted including all contained model elements.

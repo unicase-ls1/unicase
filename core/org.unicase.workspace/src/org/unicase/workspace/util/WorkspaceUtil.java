@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.ModelUtil;
@@ -225,11 +226,12 @@ public final class WorkspaceUtil {
 	 * @param uri reference on object
 	 * @return ModelElement or null
 	 */
-	public static EObject getModelElementByUri(URI uri) {
+	public static ModelElement getModelElementByUri(URI uri) {
 		EObject objectByUri = getEObjectByUri(uri);
-		// if (objectByUri instanceof ModelElement) {
-		return objectByUri;
-		// }
+		if (objectByUri instanceof ModelElement) {
+			return (ModelElement) objectByUri;
+		}
+		return null;
 	}
 
 	/**

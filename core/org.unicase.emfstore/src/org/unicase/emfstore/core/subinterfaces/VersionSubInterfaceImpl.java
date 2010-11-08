@@ -35,7 +35,6 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
@@ -146,80 +145,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 			Version previousHeadVersion = versions.get(versions.size() - 1);
 
-			Project newProjectState = ((ProjectImpl) previousHeadVersion.getProjectState()).copy();
-			changePackage.apply(newProjectState);
-
-			newVersion.setProjectState(newProjectState);
-			newVersion.setChanges(changePackage);
-			logMessage.setDate(new Date());
-			newVersion.setLogMessage(logMessage);
-			newVersion.setPrimarySpec(newVersionSpec);
-			newVersion.setNextVersion(null);
-			newVersion.setPreviousVersion(previousHeadVersion);
-
-			versions.add(newVersion);
-
-			// try to save
-			try {
-				try {
-					getResourceHelper().createResourceForProject(newProjectState, newVersion.getPrimarySpec(),
-						projectHistory.getProjectId());
-					getResourceHelper().createResourceForChangePackage(changePackage, newVersion.getPrimarySpec(),
-						projectId);
-					getResourceHelper().createResourceForVersion(newVersion, projectHistory.getProjectId());
-				} catch (FatalEmfStoreException e) {
-					// try to roll back
-					previousHeadVersion.setNextVersion(null);
-					versions.remove(newVersion);
-					// OW: why do we need to save here, can we remove? do test!!
-					save(previousHeadVersion);
-					save(projectHistory);
-					throw new StorageException(StorageException.NOSAVE);
-				}
-
-				// delete projectstate from last revision depending on persistence
-				// policy
-				handleOldProjectState(projectId, previousHeadVersion);
-
-				save(previousHeadVersion);
-				save(projectHistory);
-
-				// update history cache
-				historyCache.addVersionToCache(projectId, newVersion);
-			} catch (FatalEmfStoreException e) {
-				// roll back failed
-				EmfStoreController.getInstance().shutdown(e);
-				throw new EmfStoreException("Shutting down server.");
-			}
-
-			ModelUtil.logInfo("Total time for commit: " + (System.currentTimeMillis() - currentTimeMillis));
-			return newVersionSpec;
-		}
-	}
-
-	public PrimaryVersionSpec createVersionForProject(ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
-		ChangePackage changePackage, LogMessage logMessage) throws EmfStoreException {
-		synchronized (getMonitor()) {
-
-			long currentTimeMillis = System.currentTimeMillis();
-
-			ProjectHistory projectHistory = getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId);
-			List<Version> versions = projectHistory.getVersions();
-
-			// OW: check here if base version is valid at all
-
-			if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
-				throw new BaseVersionOutdatedException();
-			}
-
-			PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-			newVersionSpec.setIdentifier(baseVersionSpec.getIdentifier() + 1);
-
-			Version newVersion = VersioningFactory.eINSTANCE.createVersion();
-
-			Version previousHeadVersion = versions.get(versions.size() - 1);
-
-			Project newProjectState = ModelUtil.clone(previousHeadVersion.getProjectState());
+			Project newProjectState = (Project) EcoreUtil.copy(previousHeadVersion.getProjectState());
 
 			changePackage.apply(newProjectState);
 
@@ -314,7 +240,6 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			if (resolvedSource.getIdentifier() == resolvedTarget.getIdentifier()) {
 				return new ArrayList<ChangePackage>();
 			}
-			boolean updateForward = resolvedTarget.getIdentifier() > resolvedSource.getIdentifier();
 
 			// Example: if you want the changes to get from version 5 to 7, you need the changes contained in version 6
 			// and 7. The reason is that each version holds the changes which occurred from the predecessor to the
@@ -334,16 +259,9 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			}
 
 			// if source is after target in time
-			if (!updateForward) {
+			if (resolvedSource.compareTo(resolvedTarget) > 0) {
 				// reverse list and change packages
-				List<ChangePackage> resultReverse = new ArrayList<ChangePackage>();
-				for (ChangePackage changePackage : result) {
-					ChangePackage changePackageReverse = changePackage.reverse();
-					resultReverse.add(changePackageReverse);
-				}
-
-				Collections.reverse(resultReverse);
-				result = resultReverse;
+				Collections.reverse(result);
 			}
 
 			return result;

@@ -248,7 +248,6 @@ public class Preview extends ViewPart implements ISelectionListener {
 		if (namelabel != null) {
 			namelabel.setText(labelprovider.getText(me));
 		}
-
 		if (creatorAndDatelabel != null) {
 			String creator = me.getCreator();
 			Date creationdate = me.getCreationDate();
@@ -261,7 +260,6 @@ public class Preview extends ViewPart implements ISelectionListener {
 			}
 			creatorAndDatelabel.setText(" " + creator + " " + creationdateStr);
 		}
-
 		if (textwidget != null) {
 			String name = me.getDescriptionPlainText();
 			if (name == null) {

@@ -328,7 +328,7 @@
                      id="org.unicase.ui.diagram.usecaseDiagram.part.DiagramTypeTester"
                      namespace="org.unicase.ui.diagram.usecaseDiagram"
                      properties="isDiagramType"
-                     type="org.eclipse.emf.ecore.EObject">
+                     type="org.unicase.metamodel.ModelElement">
                </propertyTester>
             </extension>
    <extension id="UseCaseApplication" point="org.eclipse.core.runtime.applications">

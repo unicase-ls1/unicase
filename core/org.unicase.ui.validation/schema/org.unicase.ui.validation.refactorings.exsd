@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="refactoringStrategy"/>
+            <element ref="refactoring"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,8 +47,15 @@
       </complexType>
    </element>
 
-   <element name="refactoringStrategy">
+   <element name="refactoring">
       <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="applicableFor" type="string" use="required">
             <annotation>
                <documentation>

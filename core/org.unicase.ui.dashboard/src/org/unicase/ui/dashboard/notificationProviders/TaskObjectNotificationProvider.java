@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
@@ -20,6 +19,7 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
@@ -34,7 +34,8 @@ import org.unicase.workspace.preferences.DashboardKey;
  * @author helming
  * @author shterev
  */
-public class TaskObjectNotificationProvider extends AbstractNotificationProvider {
+public class TaskObjectNotificationProvider extends
+		AbstractNotificationProvider {
 
 	/**
 	 * The name.
@@ -91,8 +92,9 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 	protected List<ESNotification> createNotifications() {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 		for (ModelElementId meId : changes.keySet()) {
-			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
-				getProjectSpace());
+			ESNotification createNotification = createNotification(meId,
+					changes.get(meId), objectsOfWork.get(meId),
+					getProjectSpace());
 			result.add(createNotification);
 		}
 
@@ -113,22 +115,26 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 	}
 
 	private boolean filter(AbstractOperation operation) {
-		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
+		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(
+				operation)) {
 			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
+			String featureName = TaskPackage.eINSTANCE
+					.getWorkPackage_ContainedWorkItems().getName();
 			if (referenceOperation.getFeatureName().equals(featureName)
-				|| (referenceOperation.getOppositeFeatureName() != null && referenceOperation.getOppositeFeatureName()
-					.equals(featureName))) {
+					|| (referenceOperation.getOppositeFeatureName() != null && referenceOperation
+							.getOppositeFeatureName().equals(featureName))) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
-		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
+	private ESNotification createNotification(ModelElementId meId,
+			List<AbstractOperation> list, ModelElementPath modelElementPath,
+			ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE
+				.createESNotification();
 		notification.setCreationDate(NotificationHelper.getLastDate(list));
 		Set<ModelElementId> relatedElementSet = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : list) {
@@ -136,25 +142,30 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 			notification.getRelatedOperations().add(operation.getOperationId());
 		}
 		notification.getRelatedModelElements().addAll(relatedElementSet);
-		EObject modelElement = project.getModelElement(meId);
+		ModelElement modelElement = project.getModelElement(meId);
 		StringBuilder message = new StringBuilder();
 		message.append(modelElement.eClass().getName());
 		message.append(" ");
-		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(meId,
+				projectSpace));
 		message.append(" has been modified.");
 		message.append("\n");
 
 		message.append("Trace to the changed element: ");
 
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), projectSpace));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(
+				modelElementPath.getSource(), projectSpace));
 		message.append(" => ");
 		for (ModelElementId traceId : modelElementPath.getPath()) {
-			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, projectSpace));
+			message.append(NotificationHelper.getHTMLLinkForModelElement(
+					traceId, projectSpace));
 			message.append(" => ");
 		}
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(
+				modelElementPath.getTarget(), projectSpace));
 		notification.setMessage(message.toString());
-		notification.setProject((ProjectId) EcoreUtil.copy(getProjectSpace().getProjectId()));
+		notification.setProject((ProjectId) EcoreUtil.copy(getProjectSpace()
+				.getProjectId()));
 		notification.setName("Task Object Change");
 		notification.setRecipient(getUser().getName());
 		notification.setProvider(getName());

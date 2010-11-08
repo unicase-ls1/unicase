@@ -3,14 +3,21 @@
 <plugin>
    <extension-point id="org.unicase.ui.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.common.ui.modelelementopener.exsd"/>
    <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
-   <extension-point id="org.unicase.ui.common.tracelistener" name="Trace Listener" schema="schema/org.unicase.ui.common.tracelistener.exsd"/>
-   <extension-point id="org.unicase.ui.common.modelelementopenlistener" name="Modelelement Open Listener" schema="schema/org.unicase.ui.common.modelelementopenlistener.exsd"/>
-   <extension-point id="org.unicase.ui.common.ecpModelPackage" name="ECP Model Package" schema="schema/org.unicase.ui.common.ecppackage.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
      
-   
-   
+        <command
+            categoryId="org.unicase.ui.common"
+            defaultHandler="org.unicase.ui.common.handler.DeleteModelelementHandler"
+            id="org.unicase.ui.common.deleteModelelement"
+            name="Delete Modelelement">
+      </command>
+        <command
+            categoryId="org.unicase.ui.common"
+            defaultHandler="org.unicase.ui.common.handler.OpenMEShortcutHandler"
+            id="org.unicase.ui.common.handlers.open_me_ID"
+            name="Search for Modelelement">
+      </command>
         <category
               id="org.unicase.ui.common"
               name="org.unicase.ui.common">
@@ -24,6 +31,15 @@
         <separator
               name="org.unicase.ui.common.commands.modifyCommands">
         </separator>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+        </command>
      </menuContribution>
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
@@ -42,15 +58,9 @@
                  <iterate
                        ifEmpty="false"
                        operator="and">
-                       <and>
-          				 <instanceof value="org.eclipse.emf.ecore.EObject" />
-          				 <not>
-          				 	<instanceof value="org.unicase.workspace.ProjectSpace" />
-          				 </not>
-           				 <not>
-           					<instanceof value="org.unicase.metamodel.Project"/>
-              			 </not>
-        			   </and>     
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
                  </iterate>
                  <count
                        value="1">
@@ -95,21 +105,9 @@
                  <iterate
                        ifEmpty="false"
                        operator="and">
-                    <and>
-                  <instanceof
-                        value="org.eclipse.emf.ecore.EObject">
-                  </instanceof>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.metamodel.Project">
-                  	</instanceof>
-                  </not>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.workspace.ProjectSpace">
-                  	</instanceof>
-                  </not>
-	            </and>
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
                  </iterate>
                  <count
                        value="1">
@@ -124,24 +122,24 @@
   </extension>
   <extension
         point="org.eclipse.core.expressions.definitions">
-        <definition
+     <definition
            id="org.unicase.ui.common.commands.modelElement">
-        <and>
-           <instanceof
-                 value="org.eclipse.emf.ecore.EObject">
-           </instanceof>
-           <not>
-              <instanceof
-                    value="org.unicase.workspace.ProjectSpace">
-              </instanceof>
-           </not>
-           <not>
-              <instanceof
-                    value="org.unicase.metamodel.Project">
-              </instanceof>
-           </not>
-        </and>     </definition>
+        <instanceof
+              value="org.unicase.metamodel.ModelElement">
+        </instanceof>
+     </definition>
   </extension>
+   
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.ui.common.commands.SubscriptionTester"
+              id="org.unicase.ui.common.commands.subscriptionTester"
+              namespace="org.unicase.ui.common.commands"
+              properties="isSubscribed,isNotSubscribed"
+              type="org.unicase.metamodel.ModelElement">
+        </propertyTester>
+ </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
     <page
@@ -232,11 +230,11 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.eclipse.emf.ecore.EObject">
+                 name="org.unicase.metamodel.ModelElement">
            </objectClass>
         </enablement>
         <description>
-           If the project has local changes.
+           If the porject has local changes.
         </description>
      </decorator>
      <decorator

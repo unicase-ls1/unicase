@@ -16,10 +16,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -38,18 +34,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	public ModelTreeContentProvider(EClass selected) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		Set<EClass> eClasses;
-		try {
-			MetaModelElementContext metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-				.getMetaModelElementContext();
-			eClasses = metaContext.getAllModelElementEClasses(false);
-		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
-			eClasses = new HashSet<EClass>();
-		} catch (NullPointerException e) {
-			Activator.logException(e);
-			eClasses = new HashSet<EClass>();
-		}
+		Set<EClass> eClasses = ModelUtil.getAllModelElementEClasses();
 		modelElementClasses = new HashSet<EClass>();
 		rootPackages = new HashSet<EPackage>();
 		for (EClass eClass : eClasses) {

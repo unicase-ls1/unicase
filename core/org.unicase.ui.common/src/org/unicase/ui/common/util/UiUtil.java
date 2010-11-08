@@ -12,7 +12,6 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
@@ -21,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.dialogs.ErrorReportDialog;
 import org.unicase.workspace.ProjectSpace;
@@ -77,7 +77,8 @@ public final class UiUtil {
 	 * @return selected elements
 	 */
 	public static Object[] showMESelectionDialog(Shell shell, EClass meType, Project project, boolean multiSelection) {
-		List<? extends EObject> elements = project.getAllModelElementsbyClass(meType, new BasicEList<EObject>());
+		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType,
+			new BasicEList<ModelElement>());
 		return showMESelectionDialog(shell, elements, "Select " + meType.getName(), multiSelection);
 	}
 
@@ -113,17 +114,16 @@ public final class UiUtil {
 	}
 
 	private static AdapterFactoryLabelProvider labelProvider;
-
 	/**
 	 * Get the name of a model element.
 	 * 
 	 * @param modelElement the model element
 	 * @return the name for the model element
 	 */
-	public static String getNameForModelElement(EObject modelElement) {
-		if (labelProvider == null) {
+	public static String getNameForModelElement(ModelElement modelElement) {
+		if (labelProvider==null) {
 			labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 		return labelProvider.getText(modelElement);
 	}

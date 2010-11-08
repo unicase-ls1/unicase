@@ -333,33 +333,6 @@ public interface EsmodelPackage extends EPackage {
 	int CLIENT_VERSION_INFO_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.FileIdentifierImpl <em>File Identifier</em>}
-	 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.emfstore.esmodel.impl.FileIdentifierImpl
-	 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getFileIdentifier()
-	 * @generated
-	 */
-	int FILE_IDENTIFIER = 7;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IDENTIFIER__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The number of structural features of the '<em>File Identifier</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IDENTIFIER_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.ProjectHistory <em>Project History</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -604,16 +577,6 @@ public interface EsmodelPackage extends EPackage {
 	EAttribute getClientVersionInfo_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.FileIdentifier <em>File Identifier</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>File Identifier</em>'.
-	 * @see org.unicase.emfstore.esmodel.FileIdentifier
-	 * @generated
-	 */
-	EClass getFileIdentifier();
-
-	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -823,16 +786,6 @@ public interface EsmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CLIENT_VERSION_INFO__NAME = eINSTANCE.getClientVersionInfo_Name();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.impl.FileIdentifierImpl
-		 * <em>File Identifier</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.emfstore.esmodel.impl.FileIdentifierImpl
-		 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getFileIdentifier()
-		 * @generated
-		 */
-		EClass FILE_IDENTIFIER = eINSTANCE.getFileIdentifier();
 
 	}
 

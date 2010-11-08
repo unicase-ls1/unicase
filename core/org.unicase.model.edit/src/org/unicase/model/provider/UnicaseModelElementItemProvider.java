@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.AssociationClassElement;
+import org.unicase.metamodel.provider.ModelElementItemProvider;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.ProfileFactory;
@@ -33,7 +33,7 @@ import org.unicase.model.rationale.RationaleFactory;
  * 
  * @generated
  */
-public class UnicaseModelElementItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
+public class UnicaseModelElementItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -59,8 +59,6 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
 			addCommentsPropertyDescriptor(object);
-			addCreatorPropertyDescriptor(object);
-			addCreationDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -131,32 +129,6 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Creator feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addCreatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creator_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creator_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Creation Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addCreationDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creationDate_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creationDate_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
@@ -202,8 +174,6 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		case ModelPackage.UNICASE_MODEL_ELEMENT__NAME:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
@@ -249,11 +219,6 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof AssociationClassElement) {
-			AssociationClassElement association = (AssociationClassElement) object;
-			return ((UnicaseModelElement) association.eGet(association.getSourceFeature())).getName() + " - "
-				+ ((UnicaseModelElement) association.eGet(association.getTargetFeature())).getName() + " Association";
-		}
 		String label = ((UnicaseModelElement) object).getName();
 		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
 	}

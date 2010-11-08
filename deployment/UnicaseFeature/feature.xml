@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.unicase.client"
-      label="UNICASE Client"
-      version="0.3.24.internal"
+      label="Unicase Client"
+      version="0.4.6.internal"
       provider-name="unicase.org"
       plugin="org.unicase.client.branding">
 
    <description url="http://www.unicase.org">
-      This feature contains the UNICASE client.
+      This feature contains the unicase client.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -104,7 +104,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="UNICASE update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
+      <update label="Unicase update site" url="http://www.bruegge.in.tum.de/static/unicase/"/>
    </url>
 
    <includes
@@ -113,209 +113,231 @@ This Agreement is governed by the laws of the State of New York and the intellec
          search-location="both"/>
 
    <requires>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.emf.transaction"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf"/>
-      <import plugin="org.eclipse.emf.common"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.ui.forms" version="3.3.100" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.databinding.edit"/>
-      <import plugin="org.eclipse.jface.databinding"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.transaction" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.change"/>
-      <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
-      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.change.edit"/>
-      <import plugin="org.eclipse.ui.console"/>
-      <import plugin="org.eclipse.jdt.ui"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
-      <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.eclipse.gmf.runtime.common.ui"/>
-      <import plugin="org.eclipse.gmf.runtime.common.ui.services"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ui.views"/>
-      <import plugin="org.eclipse.ui.navigator"/>
-      <import plugin="org.eclipse.ui.navigator.resources"/>
-      <import plugin="org.eclipse.gmf.runtime.emf.core"/>
-      <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
-      <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers.ide"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
-      <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi" version="2.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.unicase.model"
+         id="org.unicase.client.branding"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.model.edit"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.common"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.esbrowser"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.meeditor"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.navigator"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.tableview"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace.edit"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.stem"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.classDiagram"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.componentDiagram"
-         download-size="0"
-         install-size="0"
-         version="1.0.0.qualifier"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.usecaseDiagram"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel.edit"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.docExport"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.ui.stateDiagram"
+         id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.4.6.internal"/>
+
+   <plugin
+         id="org.unicase.emfstore.esmodel"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.esmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.implementation"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.implementation.edit"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.implementation.ui"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.metamodel"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.metamodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.model"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.migrator"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.workspace.ui"
+         id="org.unicase.ui.IterationPlanner"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.common"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.dashboard"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.activityDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.classDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.componentDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.stateDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.usecaseDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.meeditor"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
          id="org.unicase.ui.multiaction"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.4.6.internal"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.client.branding"
+         id="org.unicase.ui.navigator"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.stem"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.tableview"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.unicasecommon"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.validation"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.workpackagetransfer"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace.edit"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace.ui"
+         download-size="0"
+         install-size="0"
+         version="0.4.6.internal"
          unpack="false"/>
 
 </feature>

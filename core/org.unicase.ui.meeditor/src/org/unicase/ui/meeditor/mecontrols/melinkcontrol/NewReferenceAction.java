@@ -23,8 +23,10 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
@@ -54,7 +56,7 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			Set<EClass> subclasses = modelElementContext.getMetaModelElementContext().getAllSubEClasses(clazz, false);
+			Set<EClass> subclasses = ModelUtil.getAllSubEClasses(clazz);
 			if (subclasses.size() == 1) {
 				newClass = subclasses.iterator().next();
 			} else {
@@ -73,17 +75,16 @@ public class NewReferenceAction extends Action {
 					newClass = (EClass) result;
 				}
 			}
-			final EObject newMEInstance;
+			final ModelElement newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = ePackage.getEFactoryInstance().create(newClass);
+			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
 
 			if (!eReference.isContainer()) {
 				// Returns the value of the Container
 				EObject parent = modelElement.eContainer();
-				while (!(parent == null) && newMEInstance.eContainer() == null) {
-					EReference reference = modelElementContext.getMetaModelElementContext()
-						.getPossibleContainingReference(newMEInstance, parent);
+				while (!(parent instanceof Project) && newMEInstance.eContainer() == null) {
+					EReference reference = ModelUtil.getPossibleContainingReference(newMEInstance, parent);
 					if (reference != null && reference.isMany()) {
 						Object object = parent.eGet(reference);
 						EList<EObject> eList = (EList<EObject>) object;
@@ -93,7 +94,7 @@ public class NewReferenceAction extends Action {
 				}
 
 				if (newMEInstance.eContainer() == null) {
-					throw new RuntimeException("No matching container for model element found");
+					modelElement.getProject().addModelElement(newMEInstance);
 				}
 
 			}
@@ -107,14 +108,13 @@ public class NewReferenceAction extends Action {
 				modelElement.eSet(eReference, newMEInstance);
 			}
 
-			ActionHelper.openModelElement(newMEInstance, this.getClass().getName(), modelElementContext);
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 	}
 
 	private EReference eReference;
-	private EObject modelElement;
-	private final ModelElementContext modelElementContext;
+	private ModelElement modelElement;
 
 	/**
 	 * Default constructor.
@@ -122,13 +122,10 @@ public class NewReferenceAction extends Action {
 	 * @param modelElement the source model element
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
-	 * @param modelElementContext
 	 */
-	public NewReferenceAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext modelElementContext) {
+	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
-		this.modelElementContext = modelElementContext;
 
 		Object obj = null;
 		// Only create a temporary object in order to get the correct icon from the label provider

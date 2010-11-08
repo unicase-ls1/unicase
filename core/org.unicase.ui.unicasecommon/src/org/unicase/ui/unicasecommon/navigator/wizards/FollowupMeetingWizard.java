@@ -11,7 +11,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -19,7 +18,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -120,7 +119,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
 	private void createFollowupMeeting() {
 		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(leafSection));
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(leafSection.getProject());
 
 		new UnicaseCommand() {
 			@Override
@@ -139,15 +138,15 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				addMeetingStatusItems(followupMeeting, statusItems);
 				try {
 					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
-						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", ModelUtil.getProject(
-						followupMeeting).getModelElementId(followupMeeting));
+						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", followupMeeting
+						.getModelElementId());
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Composite Operation failed!", e);
 				}
 			}
 		}.run();
 
-		UnicaseActionHelper.openModelElement(followupMeeting, this.getClass().getName());
+		ActionHelper.openModelElement(followupMeeting, this.getClass().getName());
 	}
 
 	private void addMeetingStatusItems(Meeting meeting, List<WorkItem> statusItems) {

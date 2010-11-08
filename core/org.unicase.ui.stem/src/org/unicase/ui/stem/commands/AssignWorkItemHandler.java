@@ -10,12 +10,12 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -32,7 +32,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		UnicaseModelElement me = org.unicase.ui.unicasecommon.UnicaseActionHelper.getModelElement(event);
+		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if (!(me instanceof OrgUnit)) {
 			return null;
 		}
@@ -42,13 +42,13 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 			.getActivePart();
 		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
-		final Project project = ModelUtil.getProject(currentOpenME);
+		final Project project = currentOpenME.getProject();
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				WorkItem workItem = assignWorkItem(currentOpenME, user, project);
-				UnicaseActionHelper.openModelElement(workItem, statusView.getSite().getId());
+				ActionHelper.openModelElement(workItem, statusView.getSite().getId());
 			}
 		}.run();
 

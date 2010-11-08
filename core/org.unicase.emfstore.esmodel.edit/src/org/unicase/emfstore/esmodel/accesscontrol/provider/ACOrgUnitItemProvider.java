@@ -67,10 +67,9 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_name_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_name_feature", "_UI_ACOrgUnit_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACOrgUnit_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_name_feature", "_UI_ACOrgUnit_type"),
 			AccesscontrolPackage.Literals.AC_ORG_UNIT__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -81,10 +80,9 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	 * @generated
 	 */
 	protected void addRolesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_roles_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_roles_feature", "_UI_ACOrgUnit_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACOrgUnit_roles_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_roles_feature", "_UI_ACOrgUnit_type"),
 			AccesscontrolPackage.Literals.AC_ORG_UNIT__ROLES, true, false, true, null, null, null));
 	}
 
@@ -94,10 +92,9 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_description_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_description_feature", "_UI_ACOrgUnit_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACOrgUnit_description_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_description_feature", "_UI_ACOrgUnit_type"),
 			AccesscontrolPackage.Literals.AC_ORG_UNIT__DESCRIPTION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

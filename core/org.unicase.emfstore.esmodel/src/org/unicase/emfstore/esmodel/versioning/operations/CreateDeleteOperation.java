@@ -6,8 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -22,8 +21,6 @@ import org.unicase.metamodel.Project;
  * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
  * Operations</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation#getEObjectToIdMap <em>EObject To
- * Id Map</em>}</li>
  * </ul>
  * </p>
  * 
@@ -67,12 +64,12 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Model Element</em>' containment reference.
-	 * @see #setModelElement(EObject)
+	 * @see #setModelElement(ModelElement)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_ModelElement()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EObject getModelElement();
+	ModelElement getModelElement();
 
 	/**
 	 * Sets the value of the '
@@ -83,7 +80,7 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @see #getModelElement()
 	 * @generated
 	 */
-	void setModelElement(EObject value);
+	void setModelElement(ModelElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list. The list contents are of
@@ -102,24 +99,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	EList<ReferenceOperation> getSubOperations();
 
 	/**
-	 * Returns the value of the '<em><b>EObject To Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>EObject To Id Map</em>' map isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>EObject To Id Map</em>' map.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCreateDeleteOperation_EObjectToIdMap()
-	 * @model mapType=
-	 *        "org.unicase.emfstore.esmodel.versioning.operations.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
-	 * @generated
-	 */
-	EMap<EObject, ModelElementId> getEObjectToIdMap();
-
-	/**
 	 * Get the id of the previous parent of the deleted element. Returns null if the deleted element did not have a
 	 * parent at the time of deletion or the parent cannot be determined anymore since it has also been removed from the
 	 * given project.
@@ -130,10 +109,4 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 */
 	ModelElementId getParentofDeletedElement(Project project);
 
-	// /**
-	// * Get all deleted model elements.
-	// *
-	// * @return a set of the ids of the deleted elements.
-	// */
-	// Set<ModelElementId> getAllDeletedModelElements();
 } // CreateDeleteOperation

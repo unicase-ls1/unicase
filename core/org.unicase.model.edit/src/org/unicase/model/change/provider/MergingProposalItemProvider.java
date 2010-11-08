@@ -147,25 +147,10 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_PROPOSAL__PENDING_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));

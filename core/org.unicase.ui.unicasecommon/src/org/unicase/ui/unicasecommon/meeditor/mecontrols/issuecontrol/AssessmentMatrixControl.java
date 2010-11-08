@@ -12,7 +12,6 @@ import java.util.HashMap;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -25,6 +24,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
@@ -36,8 +36,6 @@ import org.unicase.model.rationale.impl.RationaleFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -45,7 +43,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author lars
  */
-public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
+public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private static final int MAX_LENGTH_CRITERIA_NAME = 20;
 	private static final int PRIORITY = 2;
@@ -97,6 +95,8 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 		assessmentListener = new AssessmentListener();
 		proposalListener = new ProposalListener();
 
+		// add listeners
+
 		issue.addModelElementChangeListener(issueListener);
 		for (Criterion criterion : issue.getCriteria()) {
 			criterion.addModelElementChangeListener(criterionListener);
@@ -146,7 +146,10 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	public void dispose() {
 
 		// dispose controls
+
 		disposeControls();
+
+		// dispose listeners
 
 		if (issue != null) {
 			for (Proposal proposal : issue.getProposals()) {
@@ -163,7 +166,6 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 				}
 			}
 		}
-
 		issue.removeModelElementChangeListener(issueListener);
 	}
 
@@ -203,7 +205,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 			hyperlink.setLayoutData(hyperLinkGridData);
 			hyperlink.layout();
 			IHyperlinkListener listener = new MEHyperLinkAdapter(criteria.get(i), issue, RationalePackage.eINSTANCE
-				.getIssue_Criteria().getName(), UnicaseActionHelper.getContext(issue));
+				.getIssue_Criteria().getName());
 			hyperlink.addHyperlinkListener(listener);
 		}
 
@@ -217,13 +219,13 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 			final Hyperlink hyperlink = getToolkit().createHyperlink(matrixSection, currentProposal.getName(),
 				parentStyle);
 			IHyperlinkListener listener = new MEHyperLinkAdapter(currentProposal, issue, RationalePackage.eINSTANCE
-				.getIssue_Proposals().getName(), UnicaseActionHelper.getContext(issue));
+				.getIssue_Proposals().getName());
 			hyperlink.addHyperlinkListener(listener);
 			getToolkit().createLabel(matrixSection, "     ");
 			for (int i = 0; i < criteria.size(); i++) {
 				Criterion criterion = criteria.get(i);
 				Assessment assessment = getAssessment(currentProposal, criterion);
-				ControlFactory cFactory = new ControlFactory();
+				ControlFactory cFactory = new ControlFactory(getEditingDomain(), getToolkit());
 				final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator
 					.getPropertyDescriptor(assessment, "value");
 				AbstractMEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue,
@@ -232,7 +234,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 
 				Composite comp = getToolkit().createComposite(matrixSection);
 				assessmentControlDescription.createControl(comp, parentStyle, pDescriptorAssessmentValue, assessment,
-					UnicaseActionHelper.getContext(issue), getToolkit());
+					getEditingDomain(), getToolkit());
 				comp.setLayout(new GridLayout(1, true));
 				GridData gridData = new GridData();
 				gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
@@ -374,7 +376,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, ModelElement modelElement) {
 		if (!(modelElement instanceof Issue)) {
 			return DO_NOT_RENDER;
 		}

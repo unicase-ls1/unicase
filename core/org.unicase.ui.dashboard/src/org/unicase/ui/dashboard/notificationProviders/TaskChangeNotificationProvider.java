@@ -12,11 +12,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.task.TaskPackage;
@@ -29,7 +29,8 @@ import org.unicase.workspace.preferences.DashboardKey;
  * 
  * @author shterev
  */
-public class TaskChangeNotificationProvider extends AbstractNotificationProvider {
+public class TaskChangeNotificationProvider extends
+		AbstractNotificationProvider {
 
 	/**
 	 * The name.
@@ -64,25 +65,29 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 		if (workItemsSet.isEmpty()) {
 			return notifications;
 		}
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		ESNotification notification = NotificationFactory.eINSTANCE
+				.createESNotification();
 		notification.setName("Changed work items");
-		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace()
+				.getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		if (workItemsSet.size() == 1) {
 			stringBuilder.append("Your task ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItemsSet.iterator().next(),
-				getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
+					workItemsSet.iterator().next(), getProjectSpace()));
 			stringBuilder.append(" has changed.");
 
 		} else if (workItemsSet.size() == 2) {
 			stringBuilder.append("Your tasks ");
 			Iterator<WorkItem> iterator = workItemsSet.iterator();
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
+					iterator.next(), getProjectSpace()));
 			stringBuilder.append(" and ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
+					iterator.next(), getProjectSpace()));
 			stringBuilder.append(" have changed.");
 		} else {
 			stringBuilder.append("<a href=\"more\">");
@@ -95,15 +100,15 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 		notification.setMessage(message);
 		Date date = workItemsSet.iterator().next().getCreationDate();
 		for (WorkItem workItem : workItemsSet) {
-			ModelElementId workItemId = ModelUtil.getProject(workItem).getModelElementId(workItem);
-			notification.getRelatedOperations().add(workItems.get(workItem).getOperationId());
-			notification.getRelatedModelElements().add(workItemId);
+			notification.getRelatedOperations().add(
+					workItems.get(workItem).getOperationId());
+			notification.getRelatedModelElements().add(
+					workItem.getModelElementId());
 			Date newDate = workItems.get(workItem).getClientDate();
-			if (newDate != null && date != null && newDate.after(date)) {
+			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}
 		}
-
 		if (date == null) {
 			date = new Date();
 		}
@@ -125,7 +130,8 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 	@Override
 	protected void handleOperation(AbstractOperation operation) {
 		ModelElementId modelElementId = operation.getModelElementId();
-		EObject modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
+		ModelElement modelElement = getProjectSpace().getProject()
+				.getModelElement(modelElementId);
 		if (modelElement == null) {
 			return;
 		}
@@ -133,13 +139,13 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 			return;
 		}
 		if (operation instanceof MultiReferenceOperation
-			&& ((MultiReferenceOperation) operation).getFeatureName().equalsIgnoreCase("comments")) {
+				&& ((MultiReferenceOperation) operation).getFeatureName()
+						.equalsIgnoreCase("comments")) {
 			// FIXME AS: think of a more generic solution
 			return;
 		}
 		for (WorkItem workItem : workItemsOfUser) {
-			ModelElementId workItemId = ModelUtil.getProject(workItem).getModelElementId(workItem);
-			if (workItemId.equals(modelElementId)) {
+			if (workItem.getModelElementId().equals(modelElementId)) {
 				workItems.put(workItem, operation);
 				getExcludedOperations().add(operation.getOperationId());
 			}

@@ -60,6 +60,7 @@ public class DiagramTypeTester extends PropertyTester {
 		if (expectedType.equals(diagramType)) {
 			return true;
 		}
+
 		return false;
 	}
 

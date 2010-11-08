@@ -8,10 +8,10 @@ package org.unicase.ui.unicasecommon.dnd.dropadapters;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingPackage;
@@ -32,7 +32,7 @@ public class MeetingDropAdapter extends UCDropAdapter {
 	 *      org.unicase.metamodel.UnicaseModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
+	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
 
 		UnicaseModelElement dropee = (UnicaseModelElement) source.get(0);
 		if (dropee instanceof WorkPackage) {

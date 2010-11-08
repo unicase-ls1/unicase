@@ -10,7 +10,6 @@ import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.helper.ResourceHelper;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.metamodel.Project;
 
 /**
  * This is the super class for all subinterfaces of emfstore. Main interfaces, such as {@link EmfStoreImpl}, check and
@@ -65,17 +64,6 @@ public abstract class AbstractSubEmfstoreInterface {
 	 */
 	protected void save(EObject object) throws FatalEmfStoreException {
 		resourceHelper.save(object);
-	}
-
-	/**
-	 * Saves an eObject together with all model element IDs of the given project.
-	 * 
-	 * @param object the object
-	 * @param project the project, that contains the model element IDs to be saved
-	 * @throws FatalEmfStoreException in case of failure
-	 */
-	protected void saveWithProject(EObject object, Project project) throws FatalEmfStoreException {
-		resourceHelper.saveWithProject(object, project);
 	}
 
 	/**

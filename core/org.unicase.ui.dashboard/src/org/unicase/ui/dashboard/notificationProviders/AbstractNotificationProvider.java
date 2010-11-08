@@ -46,40 +46,6 @@ public abstract class AbstractNotificationProvider implements
 	public AbstractNotificationProvider() {
 		excludedList = new HashSet<OperationId>();
 	}
-	
-	/**
-	 * Implements the common sanity checks and delegates to
-	 * {@link #createNotifications(List, String)} and
-	 * {@link #handleOperation(AbstractOperation)}.<br>
-	 * <br>
-	 * All subclasses should mainly implement two methods:<br>
-	 * {@link #handleOperation(AbstractOperation)} - to process a single
-	 * operation and acquire information and
-	 * {@link #createNotifications(List, String)} - to create notification from
-	 * the gathered data. <br>
-	 * <br>
-	 * These methods are separated in order to introduce flexibility in each
-	 * provider's implementation. Instead of feeding a single list with elements
-	 * and returning it as a value, {@link #handleOperation(AbstractOperation)}
-	 * can divide the elements in groups which can later on be used to generate
-	 * different types of notifications.<br>
-	 * As an example - the task notification provider gathers data and saves it
-	 * in 3 categories, which will be responsible for 3 different notification
-	 * types. {@inheritDoc}
-	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
-		
-		try {
-			User currentUser = OrgUnitHelper.getUser(projectSpace);
-			return provideNotifications(projectSpace, changePackages, currentUser.getName());
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
-		}
-	}
 
 	/**
 	 * Implements the common sanity checks and delegates to
@@ -102,20 +68,22 @@ public abstract class AbstractNotificationProvider implements
 	 * types. {@inheritDoc}
 	 */
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String username) {
+			List<ChangePackage> changePackages, String currentUsername) {
 		// sanity checks
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		if (projectSpace == null || username == null) {
-			return result;
-		}
-		this.projectSpace = projectSpace;
-		
 		try {
-			user = OrgUnitHelper.getUser(projectSpace, username);
+			user = OrgUnitHelper.getUser(projectSpace);
+		} catch (NoCurrentUserException e) {
+			return result;
 		} catch (CannotMatchUserInProjectException e) {
 			return result;
 		}
-		
+
+		if (projectSpace == null || user == null) {
+			return result;
+		}
+		this.projectSpace = projectSpace;
+
 		init();
 		for (ChangePackage changePackage : changePackages) {
 			if (changePackage == null) {

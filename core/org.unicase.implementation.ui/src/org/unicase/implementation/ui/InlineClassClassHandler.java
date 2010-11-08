@@ -12,8 +12,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompo
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.util.OperationHelper;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.classes.Association;
 
 /**
@@ -32,8 +30,7 @@ public class InlineClassClassHandler extends OperationHandlerBase {
 
 		InlineClassOperation operation = OperationsFactory.eINSTANCE.createInlineClassOperation();
 		operation.setInlineClass(OperationHelper.getId(inlineClass));
-		Project p = ModelUtil.getProject(inlineClass);
-		List<Association> associations = operation.getPossibleAssociation(p);
+		List<Association> associations = operation.getPossibleAssociation(inlineClass.getProject());
 		if (!associations.isEmpty()) {
 			Association association = associations.get(0);
 			operation.setAssociation(OperationHelper.getId(association));

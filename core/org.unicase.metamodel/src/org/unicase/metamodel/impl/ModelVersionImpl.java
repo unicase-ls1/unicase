@@ -17,17 +17,17 @@ import org.unicase.metamodel.ModelVersion;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.metamodel.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
+ * <li>{@link org.unicase.metamodel.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	/**
-	 * The default value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReleaseNumber()
 	 * @generated
 	 * @ordered
@@ -35,9 +35,9 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	protected static final int RELEASE_NUMBER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReleaseNumber()
 	 * @generated
 	 * @ordered
@@ -46,6 +46,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelVersionImpl() {
@@ -54,6 +55,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +65,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getReleaseNumber() {
@@ -71,6 +74,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReleaseNumber(int newReleaseNumber) {
@@ -83,6 +87,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,6 +101,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,6 +116,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +131,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,6 +145,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -25,17 +25,26 @@ import org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil;
  */
 public class CompositeConflict extends Conflict {
 
+	private final boolean meCausing;
+
 	/**
 	 * Default constructor.
 	 * 
-	 * @param composite list of operations, with leading conflicting {@link CompositeOperation}
-	 * @param other list operations which conflict with composite
-	 * @param decisionManager decisionmanager
-	 * @param meCausing true, if composite caused by merging user
+	 * @param composite
+	 *            list of operations, with leading conflicting
+	 *            {@link CompositeOperation}
+	 * @param other
+	 *            list operations which conflict with composite
+	 * @param decisionManager
+	 *            decisionmanager
+	 * @param meCausing
+	 *            true, if composite caused by merging user
 	 */
-	public CompositeConflict(List<AbstractOperation> composite, List<AbstractOperation> other,
-		DecisionManager decisionManager, boolean meCausing) {
-		super(composite, other, decisionManager, meCausing, false);
+	public CompositeConflict(List<AbstractOperation> composite,
+			List<AbstractOperation> other, DecisionManager decisionManager,
+			boolean meCausing) {
+		super(composite, other, decisionManager, false);
+		this.meCausing = meCausing;
 		init();
 	}
 
@@ -44,28 +53,30 @@ public class CompositeConflict extends Conflict {
 	 */
 	@Override
 	protected ConflictContext initConflictContext() {
-		return new ConflictContext(getDecisionManager(), getLeftOperation(), getTheirOperation());
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getCompositeOperation().getModelElementId()), "",
+				getDecisionManager().getAuthorForOperation(getTheirOperation()));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ConflictDescription initConflictDescription(ConflictDescription description) {
-		String descriptionTxt = "";
-		if (isLeftMy()) {
-			descriptionTxt = "A change on the [opposite] from the repository conflicts with your operation \"[compdescription]\".";
+	protected ConflictDescription initConflictDescription() {
+		String description = "";
+		if (meCausing) {
+			description = "A change on the [opposite] from the repository conflicts with your operation \"[compdescription]\".";
 		} else {
-			descriptionTxt = "Your change on the [opposite] conflicts with the operation \"[compdescription]\" from the repository.";
+			description = "Your change on the [opposite] conflicts with the operation \"[compdescription]\" from the repository.";
 		}
-		description.setDescription(descriptionTxt);
+		ConflictDescription desc = new ConflictDescription(description);
+		desc.add("compdescription", getCompositeOperation());
+		desc.add("opposite", getDecisionManager().getModelElement(
+				getOtherOperation().getModelElementId()));
 
-		description.add("compdescription", getLeftOperation());
-		description.add("opposite", getDecisionManager().getModelElement(getRightOperation().getModelElementId()));
+		desc.setImage("composite.gif");
 
-		description.setImage("composite.gif");
-
-		return description;
+		return desc;
 	}
 
 	/**
@@ -73,28 +84,49 @@ public class CompositeConflict extends Conflict {
 	 */
 	@Override
 	protected void initConflictOptions(List<ConflictOption> options) {
-		ConflictOption myOption = new ConflictOption("", OptionType.MyOperation);
-		myOption.addOperations(getMyOperations());
-		ConflictOption theirOption = new ConflictOption("", OptionType.TheirOperation);
-		theirOption.addOperations(getTheirOperations());
+		ConflictOption myOption = null;
+		ConflictOption theirOption = null;
+		if (meCausing) {
+			String compName = getCompositeOperation().getCompositeName();
+			myOption = new ConflictOption((compName == null) ? "" : compName,
+					OptionType.MyOperation);
+			myOption.addOperations(operationsA);
 
-		String composite = ((CompositeOperation) getLeftOperation()).getCompositeName();
-		String other = "Change related to "
-			+ DecisionUtil.getClassAndName(getDecisionManager()
-				.getModelElement(getRightOperation().getModelElementId()));
-
-		if (isLeftMy()) {
-			myOption.setOptionLabel(composite);
-
-			theirOption.setOptionLabel(other);
+			theirOption = new ConflictOption("Change related to "
+					+ DecisionUtil.getClassAndName(getDecisionManager()
+							.getModelElement(
+									getOtherOperation().getModelElementId())),
+					OptionType.TheirOperation);
+			theirOption.addOperations(operationsB);
 			theirOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 		} else {
-			myOption.setOptionLabel(other);
+			myOption = new ConflictOption("Change related to "
+					+ DecisionUtil.getClassAndName(getDecisionManager()
+							.getModelElement(
+									getOtherOperation().getModelElementId())),
+					OptionType.MyOperation);
+			myOption.addOperations(operationsB);
 			myOption.setDetailProvider(DecisionConfig.WIDGET_OTHERINVOLVED);
 
-			theirOption.setOptionLabel(composite);
+			String compName = getCompositeOperation().getCompositeName();
+			theirOption = new ConflictOption(
+					(compName == null) ? "" : compName,
+					OptionType.TheirOperation);
+			theirOption.addOperations(operationsA);
 		}
 		options.add(myOption);
 		options.add(theirOption);
+	}
+
+	private CompositeOperation getCompositeOperation() {
+		return (CompositeOperation) operationsA.get(0);
+	}
+
+	private AbstractOperation getTheirOperation() {
+		return (!meCausing) ? operationsA.get(0) : operationsB.get(0);
+	}
+
+	private AbstractOperation getOtherOperation() {
+		return operationsB.get(0);
 	}
 }

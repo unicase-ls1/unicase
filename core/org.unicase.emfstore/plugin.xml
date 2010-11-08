@@ -3,8 +3,6 @@
 <plugin>
    <extension-point id="org.unicase.emfstore.startuplistener" name="StartupListener" schema="schema/startuplistener.exsd"/>
    <extension-point id="org.unicase.emfstore.poststartuplistener" name="PostStartupListener" schema="schema/poststartuplistener.exsd"/>
-   <extension-point id="org.unicase.emfstore.authenticationfactory" name="Authentication Factory" schema="schema/authenticationfactory.exsd"/>
-   <extension-point id="locationprovider" name="Location Provider" schema="schema/locationprovider.exsd"/>
    <extension
          id="server"
          name="EMFStore server"

@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
@@ -100,6 +102,10 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseUnicaseModelElement(mergingIssue);
 			if (result == null)
+				result = caseModelElement(mergingIssue);
+			if (result == null)
+				result = caseIdentifiableElement(mergingIssue);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -113,6 +119,10 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseNonDomainElement(mergingProposal);
 			if (result == null)
+				result = caseModelElement(mergingProposal);
+			if (result == null)
+				result = caseIdentifiableElement(mergingProposal);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -125,6 +135,10 @@ public class ChangeSwitch<T> {
 				result = caseUnicaseModelElement(mergingSolution);
 			if (result == null)
 				result = caseNonDomainElement(mergingSolution);
+			if (result == null)
+				result = caseModelElement(mergingSolution);
+			if (result == null)
+				result = caseIdentifiableElement(mergingSolution);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -172,6 +186,33 @@ public class ChangeSwitch<T> {
 	 * @generated
 	 */
 	public T caseMergingSolution(MergingSolution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 

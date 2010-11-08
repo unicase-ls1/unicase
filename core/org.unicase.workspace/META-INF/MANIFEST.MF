@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Workspace Plug-in
 Bundle-SymbolicName: org.unicase.workspace; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.6.internal
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace,
  org.unicase.workspace.accesscontrol,
  org.unicase.workspace.changeTracking,
- org.unicase.workspace.changeTracking.commands,
  org.unicase.workspace.changeTracking.notification,
  org.unicase.workspace.changeTracking.notification.filter,
  org.unicase.workspace.changeTracking.notification.recording,

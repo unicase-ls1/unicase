@@ -58,7 +58,7 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UseCaseDiagram"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UsecaseDiagram.gif"));
 	}
 
 	/**

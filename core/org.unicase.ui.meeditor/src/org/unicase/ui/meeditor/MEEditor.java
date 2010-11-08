@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.meeditor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -14,8 +14,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.SWTException;
@@ -26,9 +25,12 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.ModelElementContextListener;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ShortLabelProvider;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * GUI view for editing MEs.
@@ -43,19 +45,17 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 
-	private EObject modelElement;
-	private EditingDomain editingDomain;
+	private ModelElement modelElement;
+	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
+
+	private String creatorHint;
 
 	private ILabelProviderListener labelProviderListener;
 
-	private StatusMessageProvider statusMessageProvider;
+	private ModelElementChangeObserver modelelementChangeObserver;
 
-	private ModelElementChangeListener modelElementChangeListener;
-
-	private ModelElementContext modelElementContext;
-
-	private ModelElementContextListener modelElementContextListener;
+	private Project project;
 
 	/**
 	 * Default constructor.
@@ -70,17 +70,17 @@ public class MEEditor extends SharedHeaderFormEditor {
 	protected void addPages() {
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
 		if (editorInput.getProblemFeature() != null) {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement, editorInput
+			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement, editorInput
 				.getProblemFeature());
 		} else {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement);
+			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
 		}
 
 		try {
 			addPage(mePage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
-			Activator.logException(e);
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 
 		// Add the pages from the extension point
@@ -98,7 +98,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					addPage(createPage);
 				}
 			} catch (CoreException e1) {
-				Activator.logException(e1);
+				WorkspaceUtil.logException("Unable to create a page for MEEditor", e1);
 			}
 		}
 		// commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
@@ -145,28 +145,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 			modelElement = meInput.getModelElement();
 			setPartName((new ShortLabelProvider()).getText(modelElement));
 			setTitleImage(input.getImageDescriptor().createImage());
-			modelElementContext = meInput.getModelElementContext();
+
 			initializeEditingDomain();
-
-			modelElementContextListener = new ModelElementContextListener() {
-
-				@Override
-				public void onModelElementDeleted() {
-					close(false);
-
-				}
+			project = modelElement.getProject();
+			modelelementChangeObserver = new ModelElementChangeObserver() {
 
 				@Override
-				public void onContextDeleted() {
-					onModelElementDeleted();
+				protected void onNotify(Notification notification, ModelElement element) {
 
-				}
-			};
-			modelElementContext.addModelElementContextListener(modelElementContextListener);
-			modelElementChangeListener = new ModelElementChangeListener(modelElement) {
-
-				@Override
-				public void onChange(Notification notification) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
 							updateIcon(input);
@@ -179,9 +165,33 @@ public class MEEditor extends SharedHeaderFormEditor {
 					});
 
 				}
-			};
 
-			initStatusProvider();
+				@Override
+				protected void onElementDeleted(ModelElement element) {
+					if (element == modelElement) {
+						close(false);
+						project.removeProjectChangeObserver(modelelementChangeObserver);
+					}
+
+				}
+			};
+			modelelementChangeObserver.observeElement(modelElement);
+			this.modelElement.getProject().addProjectChangeObserver(modelelementChangeObserver);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+			StringBuffer stringBuffer = new StringBuffer();
+			Date creationDate = modelElement.getCreationDate();
+			creatorHint = "";
+			if (creationDate != null) {
+				creationDate = modelElement.getCreationDate();
+				stringBuffer.append("Created on ");
+				stringBuffer.append(dateFormat.format(creationDate));
+				stringBuffer.append(" at ");
+				stringBuffer.append(timeFormat.format(creationDate));
+				stringBuffer.append(" by ");
+				stringBuffer.append(modelElement.getCreator());
+				creatorHint = stringBuffer.toString();
+			}
 			updateCreatorHint();
 
 			labelProviderListener = new ILabelProviderListener() {
@@ -196,32 +206,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 	}
 
-	private void initStatusProvider() {
-		IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.statusmessage");
-		ArrayList<IConfigurationElement> provider = new ArrayList<IConfigurationElement>();
-		provider.addAll(Arrays.asList(configurationElements));
-		int priority = 0;
-		for (IConfigurationElement e : provider) {
-			try {
-				StatusMessageProvider statusMessageProvider = (StatusMessageProvider) e
-					.createExecutableExtension("class");
-				int newpriority = statusMessageProvider.canRender(modelElement);
-				if (newpriority > priority) {
-					priority = newpriority;
-					this.statusMessageProvider = statusMessageProvider;
-				}
-			} catch (CoreException e1) {
-				Activator.logException(e1);
-			}
-		}
-	}
-
 	private void updateCreatorHint() {
-		if (statusMessageProvider != null) {
-			getEditorSite().getActionBars().getStatusLineManager().setMessage(
-				statusMessageProvider.getMessage(modelElement));
-		}
+		getEditorSite().getActionBars().getStatusLineManager().setMessage(creatorHint);
 	}
 
 	/**
@@ -229,7 +215,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	protected void initializeEditingDomain() {
 
-		this.editingDomain = modelElementContext.getEditingDomain();
+		this.editingDomain = Configuration.getEditingDomain();
 
 	}
 
@@ -259,10 +245,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
+		if (modelElement != null && modelElement.getProject() != null) {
+			modelElement.getProject().removeProjectChangeObserver(modelelementChangeObserver);
+		}
 
-		modelElementChangeListener.remove();
-		modelElementContext.removeModelElementContextListener(modelElementContextListener);
-		modelElementContext.dispose();
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		super.dispose();
 	}

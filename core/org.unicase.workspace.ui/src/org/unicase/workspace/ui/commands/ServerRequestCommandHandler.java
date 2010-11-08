@@ -7,7 +7,7 @@ package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -15,13 +15,14 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * A super class to handle all requests made to the server that require a RecordingCommand.
+ * A super class to handle all requests made to the server that require a
+ * RecordingCommand.
  * 
  * @author Shterev
  */
 public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 
-	private EObject modelElement;
+	private ModelElement modelElement;
 	private ProjectSpace projectSpace;
 
 	/**
@@ -57,27 +58,30 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 	}
 
 	/**
-	 * @return the modelelement that is in the context of the handler's execution event. It's a cached value in case the
-	 *         event gets modified.
+	 * @return the modelelement that is in the context of the handler's
+	 *         execution event. It's a cached value in case the event gets
+	 *         modified.
 	 */
 	public ProjectSpace getProjectSpace() {
 		return projectSpace;
 	}
 
 	/**
-	 * @return the modelelement that is in the context of the handler's execution event. It's a cached value in case the
-	 *         event gets modified.
+	 * @return the modelelement that is in the context of the handler's
+	 *         execution event. It's a cached value in case the event gets
+	 *         modified.
 	 */
-	public EObject getModelElement() {
+	public ModelElement getModelElement() {
 		return modelElement;
 	}
 
 	/**
 	 * Setter for the modelElement.
 	 * 
-	 * @param modelElement the modelElement.
+	 * @param modelElement
+	 *            the modelElement.
 	 */
-	private void setModelElement(EObject modelElement) {
+	private void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 }

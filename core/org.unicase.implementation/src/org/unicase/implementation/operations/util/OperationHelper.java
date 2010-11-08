@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.OperationsPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Helper class for Operations.
@@ -78,18 +78,11 @@ public final class OperationHelper {
 	 * @param element the element
 	 * @return the id or null if the element is null
 	 */
-	public static ModelElementId getId(EObject element) {
+	public static ModelElementId getId(ModelElement element) {
 		if (element == null) {
 			return null;
 		}
-
-		Project p = ModelUtil.getProject(element);
-
-		if (p == null) {
-			return null;
-		}
-
-		return p.getModelElementId(element);
+		return element.getModelElementId();
 	}
 
 	/**
@@ -98,9 +91,9 @@ public final class OperationHelper {
 	 * @param elements the elements
 	 * @return a list of ids
 	 */
-	public static List<ModelElementId> getIds(List<? extends EObject> elements) {
+	public static List<ModelElementId> getIds(List<? extends ModelElement> elements) {
 		List<ModelElementId> ids = new ArrayList<ModelElementId>();
-		for (EObject element : elements) {
+		for (ModelElement element : elements) {
 			ids.add(getId(element));
 		}
 		return ids;
@@ -257,7 +250,6 @@ public final class OperationHelper {
 
 	/**
 	 * Get the annotation for an operation from the ecore.
-	 * 
 	 * @param operation the operation
 	 * @param key the annotation key
 	 * @return the annotation content
@@ -272,7 +264,6 @@ public final class OperationHelper {
 
 	/**
 	 * Make the first char lowercase.
-	 * 
 	 * @param name the input string
 	 * @return a transformed string
 	 */

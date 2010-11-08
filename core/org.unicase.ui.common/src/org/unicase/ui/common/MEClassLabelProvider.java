@@ -6,11 +6,12 @@
 package org.unicase.ui.common;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * @author Hodaie LabelProvider for TreeViewer that is shown on ModelTreePage
@@ -26,17 +27,28 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 	}
 
 	/**
-	 * . ({@inheritDoc}) If argument is instance of EClass then return its display name.
+	 * . ({@inheritDoc}) If argument is instance of EClass and it inherits ModelElement then return its display name.
 	 */
 	@Override
 	public String getText(Object object) {
-		if (object instanceof EPackage) {
-			return super.getText(object);
-		}
+		String text = "";
+		// if argument is instance of EClass and
+		// it inherits ModelElement then return its name.
 		if (object instanceof EClass) {
-			return ((EClass) object).getName();
+			EClass eclass = (EClass) object;
+			if (eclass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
+				text = eclass.getName();
+			}
+			if (eclass.getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())) {
+				text = eclass.getName();
+			}
+
+		} else {
+			// argument is an EPackage
+			text = super.getText(object);
 		}
-		return "";
+
+		return text;
 	}
 
 	/**
@@ -48,7 +60,7 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 			EClass eClass = (EClass) object;
 			EPackage ePackage = eClass.getEPackage();
 			if (!eClass.isAbstract() && !eClass.isInterface()) {
-				EObject newMEInstance = ePackage.getEFactoryInstance().create(eClass);
+				ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
 				return super.getImage(newMEInstance);
 			} else {
 				return super.getImage(object);

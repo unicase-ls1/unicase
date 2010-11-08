@@ -138,8 +138,8 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			EventsPackage.Literals.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS,
-			NotificationFactory.eINSTANCE.createESNotification()));
+			EventsPackage.Literals.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS, NotificationFactory.eINSTANCE
+				.createESNotification()));
 	}
 
 }

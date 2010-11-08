@@ -65,10 +65,8 @@ public class ModelElementUrlFragmentItemProvider extends ItemProviderAdapter imp
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ModelElementUrlFragment_name_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElementUrlFragment_name_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ModelElementUrlFragment_name_feature",
 				"_UI_ModelElementUrlFragment_type"), UrlPackage.Literals.MODEL_ELEMENT_URL_FRAGMENT__NAME, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

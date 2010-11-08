@@ -10,7 +10,6 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
 /**
  * Util class for EMFStore clients to ease connecting to the server.
@@ -79,8 +78,7 @@ public final class EMFStoreClientUtil {
 			ServerInfo existingServerInfo = usersession.getServerInfo();
 			if (existingServerInfo != null && existingServerInfo.getName().equals(LOCALHOST_GENERATED_ENTRY_NAME)
 				&& existingServerInfo.getUrl().equals(serverUrl) && existingServerInfo.getPort() == serverPort) {
-				String encPassword = KeyStoreManager.getInstance().encrypt(password, existingServerInfo);
-				if (username.equals(usersession.getUsername()) && encPassword.equals(usersession.getPassword())) {
+				if (username.equals(usersession.getUsername()) && password.equals(usersession.getPassword())) {
 					return usersession;
 				}
 			}
