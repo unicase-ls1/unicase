@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.unicase.metamodel" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.unicase.metamodel" id="recommendationstrategy" name="RecommendationStrategy"/>
+      </appInfo>
+      <documentation>
+         This extension point is created for offering developers to create their own recommendation strategies.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="strategy"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="strategy">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="strategyClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the strategy
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="eReferenceName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  This value determines for which references this recommendation should be used. (e.g only for annotatedModelElements). Write ALL if you want to use it with all references.  Specialised references will be prefered before generalised references. Take care that only one strategy is registred for each reference.
+For special references enter the result from the eReference.getName() method.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="baseElementClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  This class determines for which base classes this strategy is used.
+The combination of base class type and reference determines which strategy is used for recommendation. Use class &apos;org.unicase.model.ModelElement&apos; for no restriction.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.unicase.model.ModelElement"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>
