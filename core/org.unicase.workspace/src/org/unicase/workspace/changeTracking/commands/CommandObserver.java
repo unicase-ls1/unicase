@@ -5,7 +5,6 @@
  */
 package org.unicase.workspace.changeTracking.commands;
 
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 
 /**
@@ -35,6 +34,6 @@ public interface CommandObserver {
 	 * @param command the command
 	 * @param exception the exception that occured
 	 */
-	void commandFailed(Command command, OperationCanceledException exception);
+	void commandFailed(Command command, Exception exception);
 
 }
