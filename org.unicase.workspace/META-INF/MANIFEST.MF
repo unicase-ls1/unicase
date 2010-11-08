@@ -10,6 +10,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace,
  org.unicase.workspace.accesscontrol,
  org.unicase.workspace.changeTracking,
+ org.unicase.workspace.changeTracking.commands,
  org.unicase.workspace.changeTracking.notification,
  org.unicase.workspace.changeTracking.notification.filter,
  org.unicase.workspace.changeTracking.notification.recording,

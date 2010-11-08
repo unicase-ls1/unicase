@@ -63,16 +63,20 @@ public final class WorkspaceManager {
 	 * @return the workspace manager singleton
 	 * @generated NOT
 	 */
-	public static WorkspaceManager getInstance() {
+	public static synchronized WorkspaceManager getInstance() {
 		if (instance == null) {
 			try {
 				instance = new WorkspaceManager();
-				// BEGIN SURPRESS CATCH EXCEPTION
+
+				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
+				// END SURPRESS CATCH EXCEPTION
 				ModelUtil.logException("Workspace Initialization failed, shutting down", e);
 				throw e;
 			}
-			// END SURPRESS CATCH EXCEPTION
+
+			// init ecore packages
+			ModelUtil.getAllModelElementEClasses();
 		}
 		return instance;
 	}
@@ -80,7 +84,7 @@ public final class WorkspaceManager {
 	/**
 	 * Initialize the Workspace Manager singleton.
 	 */
-	public static void init() {
+	public static synchronized void init() {
 		getInstance();
 	}
 
@@ -93,8 +97,6 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
-		// init ecore packages
-		ModelUtil.getAllModelElementEClasses();
 	}
 
 	/**
@@ -195,8 +197,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
-				+ Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException(
+				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -217,8 +219,9 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
-				+ Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException(
+				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
+				e);
 		}
 	}
 
