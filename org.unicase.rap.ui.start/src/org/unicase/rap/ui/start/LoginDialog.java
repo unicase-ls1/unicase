@@ -6,6 +6,7 @@
 package org.unicase.rap.ui.start;
 
 import java.io.FileInputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -18,6 +19,17 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -27,7 +39,15 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.AccessControlException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.CertificateStoreException;
 import org.unicase.workspace.util.WorkspaceUtil;
 
