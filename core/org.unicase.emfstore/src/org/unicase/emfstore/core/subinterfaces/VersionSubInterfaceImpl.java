@@ -314,6 +314,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			if (resolvedSource.getIdentifier() == resolvedTarget.getIdentifier()) {
 				return new ArrayList<ChangePackage>();
 			}
+			boolean updateForward = resolvedTarget.getIdentifier() > resolvedSource.getIdentifier();
 
 			// Example: if you want the changes to get from version 5 to 7, you need the changes contained in version 6
 			// and 7. The reason is that each version holds the changes which occurred from the predecessor to the
@@ -333,9 +334,16 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			}
 
 			// if source is after target in time
-			if (resolvedSource.compareTo(resolvedTarget) > 0) {
+			if (!updateForward) {
 				// reverse list and change packages
-				Collections.reverse(result);
+				List<ChangePackage> resultReverse = new ArrayList<ChangePackage>();
+				for (ChangePackage changePackage : result) {
+					ChangePackage changePackageReverse = changePackage.reverse();
+					resultReverse.add(changePackageReverse);
+				}
+
+				Collections.reverse(resultReverse);
+				result = resultReverse;
 			}
 
 			return result;

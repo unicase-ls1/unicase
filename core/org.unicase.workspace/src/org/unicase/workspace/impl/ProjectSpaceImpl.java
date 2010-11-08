@@ -1342,11 +1342,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (resolvedVersion.compareTo(baseVersion) == 0) {
 			throw new NoChangesOnServerException();
 		}
-		if (resolvedVersion.compareTo(getBaseVersion()) < 0) {
-			throw new IllegalProjectSpaceStateException("The base revision of this project space is "
-				+ getBaseVersion().getIdentifier() + ", but the server version of this project is "
-				+ resolvedVersion.getIdentifier() + "!");
-		}
 
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 
