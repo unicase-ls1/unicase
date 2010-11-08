@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,6 +26,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -364,6 +367,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private ArrayList<ShareObserver> shareObservers;
 
+	/**
+	 * Indicates whether a resource may be split when a model element has been added.
+	 */
+	private boolean splitResource;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -379,6 +387,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		modifiedModelElementsCache = new ModifiedModelElementsCache(this);
 		this.addOperationListener(modifiedModelElementsCache);
 		this.addCommitObserver(modifiedModelElementsCache);
+		this.splitResource = true;
 		shareObservers.add(modifiedModelElementsCache);
 
 	}
@@ -1354,7 +1363,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		// notify updateObserver if there is one
-		if (observer != null && !observer.inspectChanges(changes)) {
+		if (observer != null && !observer.inspectChanges(this, changes)) {
 			return getBaseVersion();
 		}
 
@@ -1569,25 +1578,43 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
+		// if resource splitting fails, we need a reference to the old resource
+		Resource oldResource = resource;
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<EObject> modelElements = this.getProject().getModelElements();
-		// TODO: PlainEObjectMode, test if resource split works as expected
-		int counter = Configuration.getMaxMECountPerResource() + 1;
+
+		// int counter = Configuration.getMaxMECountPerResource() + 1;
+		int counter = 0;
 		for (EObject modelElement : modelElements) {
 
-			if (counter > Configuration.getMaxMECountPerResource()) {
+			if (counter > Configuration.getMaxMECountPerResource() && splitResource) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 					+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
+				oldResource = resource;
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
 				resources.add(resource);
 				counter = 0;
 			}
 			counter++;
-			resource.getContents().add(modelElement);
+
+			if (splitResource) {
+				EObject parent = modelElement.eContainer();
+				ChangeRecorder changeRecorder = new ChangeRecorder();
+				changeRecorder.beginRecording(Collections.singleton(parent));
+				// try to pin resource
+				resource.getContents().add(modelElement);
+				ChangeDescription changeDesc = changeRecorder.endRecording();
+				if (modelElement.eContainer() != parent) {
+					splitResource = false;
+					resource = oldResource;
+					// model element lost its parent, revert changes
+					changeDesc.apply();
+				}
+			}
 
 			TreeIterator<EObject> it = modelElement.eAllContents();
 			while (it.hasNext()) {
@@ -2447,7 +2474,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setProperty(OrgUnitProperty property) {
 		// sanity checks
@@ -2508,7 +2535,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void removePendingFileUpload(String fileAttachmentId) {
 		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();

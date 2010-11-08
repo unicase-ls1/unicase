@@ -154,7 +154,14 @@ public interface Project extends EObject, IAdaptable {
 	 */
 	void addModelElement(EObject newModelElement);
 
-	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map);
+	/**
+	 * Adds the given model element to the project. The map hereby contains the IDs of the model element itself as well
+	 * as those of the model element's children.
+	 * 
+	 * @param newModelElement the model element to be added to the project
+	 * @param idMap a map containing the ID of the model element and its children
+	 */
+	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> idMap);
 
 	/**
 	 * Returns whether the project contains a model element with the same id.
@@ -172,7 +179,7 @@ public interface Project extends EObject, IAdaptable {
 	Set<EObject> getAllModelElements();
 
 	/**
-	 * Get all model element ID of this project
+	 * Get all model element IDs of this project.
 	 * 
 	 * @return a set of model element IDs
 	 */
@@ -184,10 +191,10 @@ public interface Project extends EObject, IAdaptable {
 	void delete();
 
 	/**
-	 * Retrieve the ModelELement wrapper for an EObject.
+	 * Retrieve the {@link ModelElementId} for an EObject.
 	 * 
 	 * @param eObject the eObject
-	 * @return the wrapper
+	 * @return the {@link ModelElementId}
 	 */
 	ModelElementId getModelElementId(EObject eObject);
 } // Project

@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -35,6 +37,7 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.SingletonIdResolver;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeNotifier;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -87,6 +90,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private ProjectChangeNotifier changeNotifier;
 
+	private Set<SingletonIdResolver> singletonIdResolvers;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -105,6 +110,20 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		newEObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		eObjectsCache = new HashSet<EObject>();
 		idToEObjectCache = new HashMap<ModelElementId, EObject>();
+
+		// collect singleton ID resolvers
+		singletonIdResolvers = new HashSet<SingletonIdResolver>();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.metamodel.singletonidresolver");
+		for (IConfigurationElement extension : config) {
+			SingletonIdResolver resolver;
+			try {
+				resolver = (SingletonIdResolver) extension.createExecutableExtension("class");
+				singletonIdResolvers.add(resolver);
+			} catch (CoreException e) {
+				ModelUtil.logWarning("Couldn't instantiate Singleton ID resolver:" + e.getMessage());
+			}
+		}
 	}
 
 	// end of custom code
@@ -163,6 +182,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectsCache;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.Project#getAllModelElementIds()
+	 */
 	public Set<ModelElementId> getAllModelElementIds() {
 		if (!isCacheInitialized()) {
 			initCaches();
@@ -370,6 +394,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return eObjectsCache;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.Project#initCaches()
+	 */
 	public void initCaches() {
 
 		if (isCacheInitialized()) {
@@ -401,10 +430,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	/**
-	 * Initializes the caches with the given mappings.
+	 * {@inheritDoc}
 	 * 
-	 * @param eObjectToIdMap
-	 * @param idToEObjectMap
+	 * @see org.unicase.metamodel.Project#initCaches(java.util.Map, java.util.Map)
 	 */
 	public void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap) {
 		// 1. maps setzen
@@ -505,13 +533,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		newEObjectToIdMap.values().removeAll(removableIds);
 	}
 
-	/**
-	 * @return
-	 */
-	public Map<EObject, ModelElementId> getEObjectToIdCache() {
-		return eObjectToIdCache;
-	}
-
 	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
 		eObjectToIdCache.put(modelElement, modelElementId);
 		idToEObjectCache.put(modelElementId, modelElement);
@@ -528,14 +549,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		newEObjectToIdMap.put(modelElement, id);
 
 		removeFromCaches(modelElement);
-		getEObjectToIdCache().remove(modelElement);
+		eObjectToIdCache.remove(modelElement);
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			ModelElementId childId = getModelElementId(child);
 			deletedEObjectToIdMap.put(child, childId);
 			newEObjectToIdMap.put(child, childId);
 			removeFromCaches(child);
-			getEObjectToIdCache().remove(child);
+			eObjectToIdCache.remove(child);
 		}
 	}
 
@@ -579,7 +600,22 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			initCaches();
 		}
 
-		return getIdToEObjectCache().get(modelElementId);
+		EObject eObject = getIdToEObjectCache().get(modelElementId);
+
+		if (eObject != null) {
+			return eObject;
+		}
+
+		// lookup singleton ID resolvers
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			eObject = resolver.getSingleton(modelElementId);
+
+			if (eObject != null) {
+				return eObject;
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -741,6 +777,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		notifyProjectChangeObservers(command);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.Project#getModelElementId(org.eclipse.emf.ecore.EObject)
+	 */
 	public ModelElementId getModelElementId(EObject eObject) {
 
 		if (!eObjectToIdCache.containsKey(eObject) && !isCacheInitialized()) {
@@ -758,12 +799,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 						if (id != null) {
 							// change ID
 							modelElementId.setId(id);
-							getEObjectToIdCache().put(eObject, modelElementId);
+							eObjectToIdCache.put(eObject, modelElementId);
 							return ModelUtil.clone(modelElementId);
 						}
 
 						// return new ID
-						getEObjectToIdCache().put(eObject, modelElementId);
+						eObjectToIdCache.put(eObject, modelElementId);
 						return ModelUtil.clone(modelElementId);
 					}
 				} catch (IOException e) {
@@ -774,18 +815,63 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		ModelElementId id = eObjectToIdCache.get(eObject);
-		
-		return ModelUtil.clone(id);
+
+		if (id != null) {
+			return ModelUtil.clone(id);
+		}
+
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			ModelElementId singletonId = resolver.getSingletonModelElementId(eObject);
+			if (singletonId != null) {
+				return ModelUtil.clone(singletonId);
+			}
+		}
+
+		return null;
 	}
 
+	/**
+	 * Retrieve the {@link ModelElementId} for an EObject.
+	 * 
+	 * @param deletedModelElement the deleted EObject
+	 * @return the {@link ModelElementId}
+	 */
 	public ModelElementId getDeletedModelElementId(EObject deletedModelElement) {
-		return ModelUtil.clone(deletedEObjectToIdMap.get(deletedModelElement));
+		ModelElementId id = deletedEObjectToIdMap.get(deletedModelElement);
+
+		if (id != null) {
+			return ModelUtil.clone(id);
+		}
+
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			id = resolver.getSingletonModelElementId(deletedModelElement);
+			if (id != null) {
+				return ModelUtil.clone(id);
+			}
+		}
+
+		return null;
 	}
 
+	/**
+	 * Get the deleted model element with the given id from the project.
+	 * 
+	 * @param modelElementId the model element id
+	 * @return the deleted model element or null if it is not in the project
+	 */
 	public EObject getDeletedModelElement(ModelElementId modelElementId) {
 		for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap.entrySet()) {
 			if (entry.getValue().equals(modelElementId)) {
 				return entry.getKey();
+			}
+		}
+
+		// lookup singleton ID resolvers
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			EObject eObject = resolver.getSingleton(modelElementId);
+
+			if (eObject != null) {
+				return eObject;
 			}
 		}
 
@@ -846,37 +932,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return MetamodelFactory.eINSTANCE.createModelElementId();
 	}
 
+	/**
+	 * Copies the current project.
+	 * 
+	 * @return the copied project
+	 */
 	public Project copy() {
-
 		Copier copier = new ProjectCopier();
 		ProjectImpl result = (ProjectImpl) copier.copy(this);
 		result.cachesInitialized = true;
 		copier.copyReferences();
 		return result;
-
-		// long currentTimeMillis = System.currentTimeMillis();
-		// ProjectImpl copiedProject = (ProjectImpl) EcoreUtil.copy(this);
-		// List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(this, false);
-		// ModelUtil.logInfo("Total time for commit point 0: " + (System.currentTimeMillis() - currentTimeMillis));
-		// List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedProject,
-		// false);
-		// copiedProject.cachesInitialized = true;
-		//
-		// ModelUtil.logInfo("Total time for commit point 1: " + (System.currentTimeMillis() - currentTimeMillis));
-		//
-		// for (int i = 0; i < allContainedModelElements.size(); i++) {
-		// EObject child = allContainedModelElements.get(i);
-		// EObject copiedChild = copiedAllContainedModelElements.get(i);
-		// ModelElementId childId = getModelElementId(child);
-		// if (childId == null) {
-		// throw new IllegalStateException("Model element '" + child + "' has no ID.");
-		// }
-		//
-		// copiedProject.putIntoCaches(copiedChild, childId);
-		// }
-		//
-		// ModelUtil.logInfo("Total time for commit point 2: " + (System.currentTimeMillis() - currentTimeMillis));
-		//
-		// return copiedProject;
 	}
 }

@@ -26,9 +26,9 @@ public final class FilterStack implements NotificationFilter {
 		//
 		new TransientFilter(),
 		//
-		new EmptyRemovalsFilter()
-
-	};
+		new EmptyRemovalsFilter(),
+		//
+		new IgnoreDatatypeFilter() };
 
 	/**
 	 * The default filter stack.
