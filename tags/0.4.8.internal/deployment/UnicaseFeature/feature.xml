@@ -104,7 +104,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="Unicase update site" url="http://www.bruegge.in.tum.de/static/unicase/"/>
+      <update label="Unicase update site" url="http://unicase.googlecode.com/svn/updatesite/internal/"/>
    </url>
 
    <includes
@@ -202,13 +202,6 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugin
          id="org.unicase.model.migrator"
-         download-size="0"
-         install-size="0"
-         version="0.4.8.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.IterationPlanner"
          download-size="0"
          install-size="0"
          version="0.4.8.internal"
