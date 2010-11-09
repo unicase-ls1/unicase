@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: implementation
 Bundle-SymbolicName: org.unicase.implementation;singleton:=true
-Bundle-Version: 0.4.6.internal
+Bundle-Version: 0.4.8.internal
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin

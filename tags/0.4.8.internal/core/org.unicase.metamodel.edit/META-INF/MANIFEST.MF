@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: UNICASE metamodel edit plugin
 Bundle-SymbolicName: org.unicase.metamodel.edit;singleton:=true
-Bundle-Version: 0.4.6.internal
+Bundle-Version: 0.4.8.internal
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.metamodel.provider.MetamodelEditPlugin$Implementation
 Bundle-Vendor: unicase.org
