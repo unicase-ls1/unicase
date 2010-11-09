@@ -6,9 +6,17 @@
    <feature url="features/org.unicase.client_0.4.8.internal.jar" id="org.unicase.client" version="0.4.8.internal">
       <category name="unicase"/>
    </feature>
+   <feature url="features/org.unicase.patchAttachment.feature_0.4.8.internal.jar" id="org.unicase.patchAttachment.feature" version="0.4.8.internal">
+      <category name="Unicase patch Attachment"/>
+   </feature>
    <category-def name="unicase" label="unicase">
       <description>
          unicase CASE Tool
+      </description>
+   </category-def>
+   <category-def name="Unicase patch Attachment" label="Unicase patch Attachment">
+      <description>
+         Unicase patch Attachment feature
       </description>
    </category-def>
 </site>
