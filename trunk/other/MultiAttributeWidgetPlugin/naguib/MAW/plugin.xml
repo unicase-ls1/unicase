@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="multiattributewidget_naguib.MultiAttributeControl"
+            name="MultiAttributeWidget_naguib.widget1"
+            type="java.lang.String">
+      </widget>
+   </extension>
+
+</plugin>
