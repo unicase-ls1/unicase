@@ -2,7 +2,8 @@
 <feature
       id="org.unicase.patchAttachment.feature"
       label="Unicase Patch Attachment Plugin"
-      version="1.0.0.qualifier">
+      version="0.4.8.internal"
+      provider-name="unicase.org">
 
    <description url="http://www.example.com/description">
       This feature allows to attach workspace patches directly to model elements and then quickly apply that patch.
