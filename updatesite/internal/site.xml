@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://wwwbruegge.in.tum.de/static/unicase/">
+      Unicase update site
+   </description>
+   <feature url="features/org.unicase.client_0.4.8.internal.jar" id="org.unicase.client" version="0.4.8.internal">
+      <category name="unicase"/>
+   </feature>
+   <feature url="features/org.unicase.patchAttachment.feature_0.4.8.internal.jar" id="org.unicase.patchAttachment.feature" version="0.4.8.internal">
+      <category name="unicase patch Attachment"/>
+   </feature>
+   <category-def name="unicase" label="unicase">
+      <description>
+         unicase CASE Tool
+      </description>
+   </category-def>
+   <category-def name="unicase patch Attachment" label="unicase patch Attachment">
+      <description>
+         Unicase patch Attachment feature
+      </description>
+   </category-def>
+</site>
