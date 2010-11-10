@@ -10,7 +10,7 @@
    <extension
          point="org.unicase.metamodel.singletonidresolver">
       <singletonidresolver
-            class="EDatatypeIdResolver">
+            class="org.unicase.emfstore.ecore.EDatatypeIdResolver">
       </singletonidresolver>
    </extension>
 

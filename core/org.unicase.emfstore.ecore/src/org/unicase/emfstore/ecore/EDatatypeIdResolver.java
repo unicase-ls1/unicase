@@ -1,3 +1,4 @@
+package org.unicase.emfstore.ecore;
 import java.util.HashMap;
 import java.util.Map;
 
