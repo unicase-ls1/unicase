@@ -81,6 +81,7 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
+import org.unicase.workspace.exceptions.CommitCanceledException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
@@ -1161,10 +1162,28 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @see org.unicase.workspace.ProjectSpace#commit(org.unicase.emfstore.esmodel.versioning.LogMessage,
+	 *      org.unicase.workspace.observers.CommitObserver)
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
-		throws EmfStoreException {
+	public PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver) throws EmfStoreException {
+		ChangePackage changePackage;
+		try {
+			changePackage = prepareCommit(commitObserver);
+			return finalizeCommit(changePackage, logMessage, commitObserver);
+
+		} catch (CommitCanceledException e) {
+			return this.getBaseVersion();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#prepareCommit(org.unicase.workspace.observers.CommitObserver)
+	 * @generated NOT
+	 */
+	public ChangePackage prepareCommit(CommitObserver commitObserver) throws EmfStoreException {
 
 		// check if there are any changes
 		if (!this.isDirty()) {
@@ -1174,17 +1193,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		cleanCutElements();
 
 		// check if we need to update first
-		PrimaryVersionSpec resolvedVersion;
-		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
-
+		PrimaryVersionSpec resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		if ((!getBaseVersion().equals(resolvedVersion))) {
 			throw new BaseVersionOutdatedException();
 		}
 
-		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
-
 		ChangePackage changePackage = getLocalChangePackage(true);
-
 		if (changePackage.getOperations().isEmpty()) {
 			for (AbstractOperation operation : getOperations()) {
 				notifyOperationUndone(operation);
@@ -1197,12 +1211,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		notifyPreCommitObservers(changePackage);
 
 		if (commitObserver != null && !commitObserver.inspectChanges(this, changePackage)) {
-			return this.getBaseVersion();
+			throw new CommitCanceledException("Changes have been canceld by the user.");
 		}
 
-		PrimaryVersionSpec newBaseVersion;
-		newBaseVersion = connectionManager.createVersion(getUsersession().getSessionId(), getProjectId(),
-			getBaseVersion(), changePackage, logMessage);
+		return changePackage;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#finalizeCommit(org.unicase.emfstore.esmodel.versioning.ChangePackage,
+	 *      org.unicase.emfstore.esmodel.versioning.LogMessage, org.unicase.workspace.observers.CommitObserver)
+	 * @generated NOT
+	 */
+	public PrimaryVersionSpec finalizeCommit(ChangePackage changePackage, LogMessage logMessage,
+		CommitObserver commitObserver) throws EmfStoreException {
+
+		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+
+		PrimaryVersionSpec newBaseVersion = connectionManager.createVersion(getUsersession().getSessionId(),
+			getProjectId(), getBaseVersion(), changePackage, logMessage);
 
 		setBaseVersion(newBaseVersion);
 		getOperations().clear();

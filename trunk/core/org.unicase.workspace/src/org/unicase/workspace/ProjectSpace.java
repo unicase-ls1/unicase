@@ -438,10 +438,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return new base version
 	 * @throws EmfStoreException if commit fails <!-- end-user-doc -->
 	 * @model
-	 * @param logMessage the {@link LogMessage} for this commit.
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException;
+	PrimaryVersionSpec commit() throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -449,9 +448,45 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return new base version
 	 * @throws EmfStoreException if commit fails <!-- end-user-doc -->
 	 * @model
+	 * @param logMessage the {@link LogMessage} for this commit.
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec commit() throws EmfStoreException;
+	PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException;
+
+	/**
+	 * Commit local changes to the server.
+	 * 
+	 * @param logMessage the log message
+	 * @param commitObserver an observer that is notified about the changes being send to the server
+	 * @return the new base version
+	 * @throws EmfStoreException if the commit fails
+	 * @throws BaseVersionOutdatedException if the project space is not up to date, that is its base version is lower
+	 *             then the projects head revision
+	 */
+	PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver) throws EmfStoreException,
+		BaseVersionOutdatedException;
+
+	/**
+	 * Preparation phase of the commit. The user has to deal with eventual conflicts, that the user has to solve. The
+	 * result is the conflict solved change package.
+	 * 
+	 * @param commitObserver an observer that is notified about the changes being send to the server
+	 * @return a conflict solved change package
+	 * @throws EmfStoreException if the commit fails
+	 */
+	ChangePackage prepareCommit(CommitObserver commitObserver) throws EmfStoreException;
+
+	/**
+	 * A change package will be finally send to the server and a new revision will be created.
+	 * 
+	 * @param changePackage the change package that should be committed
+	 * @param logMessage a log message that is associated with this commit
+	 * @param commitObserver an observer that is notified about the changes being send to the server
+	 * @return the new base version
+	 * @throws EmfStoreException if any error in the EmfStore occurs
+	 */
+	PrimaryVersionSpec finalizeCommit(ChangePackage changePackage, LogMessage logMessage, CommitObserver commitObserver)
+		throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Update the project to the head version.
@@ -473,6 +508,18 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec update(VersionSpec version) throws EmfStoreException;
+
+	/**
+	 * Update the workspace to the given revision.
+	 * 
+	 * @param version the version to update to
+	 * @param observer an observer that is notified of the changes performed by the update, maybe null
+	 * @return the new base version
+	 * @throws EmfStoreException if the update fails
+	 * @throws ChangeConflictException if a conflict with local changes is detected
+	 */
+	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer) throws EmfStoreException,
+		ChangeConflictException;
 
 	/**
 	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
@@ -507,31 +554,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws IOException if writing to the given file fails
 	 */
 	void exportProject(String fileName) throws IOException;
-
-	/**
-	 * Update the workspace to the given revision.
-	 * 
-	 * @param version the version to update to
-	 * @param observer an observer that is notified of the changes performed by the update, maybe null
-	 * @return the new base version
-	 * @throws EmfStoreException if the update fails
-	 * @throws ChangeConflictException if a conflict with local changes is detected
-	 */
-	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer) throws EmfStoreException,
-		ChangeConflictException;
-
-	/**
-	 * Commit local changes to the server.
-	 * 
-	 * @param logMessage the log message
-	 * @param commitObserver an observer that is notified about the changes being send to the server
-	 * @return the new base version
-	 * @throws EmfStoreException if the commit fails
-	 * @throws BaseVersionOutdatedException if the project space is not up to date, that is its base version is lower
-	 *             then the projects head revision
-	 */
-	PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver) throws EmfStoreException,
-		BaseVersionOutdatedException;
 
 	/**
 	 * Export all local changes to a file with the given name.
