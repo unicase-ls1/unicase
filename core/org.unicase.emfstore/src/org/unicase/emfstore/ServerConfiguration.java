@@ -447,6 +447,37 @@ public final class ServerConfiguration {
 	}
 
 	/**
+	 * Gets startup parameter from {@link Platform#getApplicationArgs()} which are in the form of
+	 * -[parameterkey]=[parametervalue].
+	 * 
+	 * @param parameter name of parameter key
+	 * @return parameter as string or null
+	 */
+	public static String getStartArgument(String parameter) {
+		for (String arg : Platform.getApplicationArgs()) {
+			if (arg.startsWith(parameter) && arg.length() > parameter.length() && arg.charAt(parameter.length()) == '=') {
+				return arg.substring(parameter.length() + 1, arg.length());
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Checks whether a parameter is set.
+	 * 
+	 * @param parameter checks existence of parameter
+	 * @return boolean
+	 */
+	public static boolean isStartArgSet(String parameter) {
+		for (String arg : Platform.getApplicationArgs()) {
+			if (arg.equals(parameter)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Default filepath for spfv authentication.
 	 * 
 	 * @return path as string
