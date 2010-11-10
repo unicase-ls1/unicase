@@ -75,17 +75,18 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
+		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
+			EReference eReference = (EReference) currentNotification.getFeature();
+			if (eReference.isContainment() && eReference.getEOpposite() != null
+				&& !eReference.getEOpposite().isTransient()) {
+				return;
+			}
+		}
+
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
 			if (!isInProject(modelElement) && projectImpl.containsInstance(modelElement)) {
 				removedModelElement = modelElement;
-			}
-		}
-
-		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
-			EReference eReference = (EReference) currentNotification.getFeature();
-			if (eReference.isContainment() && eReference.getEOpposite() != null) {
-				return;
 			}
 		}
 
