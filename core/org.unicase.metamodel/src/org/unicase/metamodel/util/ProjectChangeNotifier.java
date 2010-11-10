@@ -74,12 +74,6 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		if (isInitializing) {
 			return;
 		}
-		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
-			EReference eReference = (EReference) currentNotification.getFeature();
-			if (eReference.isContainment() && eReference.getEOpposite() != null) {
-				return;
-			}
-		}
 
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
@@ -87,6 +81,14 @@ public class ProjectChangeNotifier extends EContentAdapter {
 				removedModelElement = modelElement;
 			}
 		}
+
+		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
+			EReference eReference = (EReference) currentNotification.getFeature();
+			if (eReference.isContainment() && eReference.getEOpposite() != null) {
+				return;
+			}
+		}
+
 	}
 
 	private boolean isInProject(EObject modelElement) {

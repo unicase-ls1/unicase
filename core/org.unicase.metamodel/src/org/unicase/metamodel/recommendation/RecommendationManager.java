@@ -29,7 +29,7 @@ import org.unicase.metamodel.util.ModelUtil;
  */
 public class RecommendationManager {
 
-	private static final String BASE_CLASS = "org.unicase.metamodel.ModelElement";
+	private static final String BASE_CLASS = "org.eclipse.emf.ecore.EObject";
 
 	private static RecommendationManager singleton = new RecommendationManager();
 	private List<StrategyExtension> extensions;

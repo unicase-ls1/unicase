@@ -81,7 +81,7 @@ For special references enter the result from the eReference.getName() method.
 The combination of base class type and reference determines which strategy is used for recommendation. Use class &apos;org.unicase.model.ModelElement&apos; for no restriction.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.model.ModelElement"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
                </appInfo>
             </annotation>
          </attribute>
