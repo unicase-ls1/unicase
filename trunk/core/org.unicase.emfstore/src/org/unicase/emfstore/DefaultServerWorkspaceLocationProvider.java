@@ -12,8 +12,6 @@ import static org.unicase.emfstore.ServerConfiguration.isTesting;
 
 import java.io.File;
 
-import org.eclipse.core.runtime.Platform;
-
 /**
  * This is the default workspace location provider. If no other location provider is registered, this provider is used.
  * The default location provider offers profiles, which allows to have multiple workspaces within one root folder.
@@ -86,14 +84,7 @@ public class DefaultServerWorkspaceLocationProvider implements LocationProvider 
 	 * @return value of parameter as string or null
 	 */
 	protected String getStartParameter(String parameter) {
-		String[] applicationArgs = Platform.getApplicationArgs();
-		for (String arg : applicationArgs) {
-			arg = arg.trim();
-			if (arg.startsWith(parameter) && arg.length() > parameter.length() && arg.charAt(parameter.length()) == '=') {
-				return arg.substring(parameter.length() + 1, arg.length());
-			}
-		}
-		return null;
+		return ServerConfiguration.getStartArgument(parameter);
 	}
 
 	/**
@@ -128,5 +119,4 @@ public class DefaultServerWorkspaceLocationProvider implements LocationProvider 
 		sb.append(File.separatorChar);
 		return sb.toString();
 	}
-
 }
