@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -44,30 +45,30 @@ public class MultiAttributeControl extends AbstractMEControl {
 
 	@Override
 	protected Control createControl(Composite parent, int style) {
-		final Composite composite = new Composite(parent, style);
-		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
-		GridLayout gridLayout = new GridLayout(3, false);
+	final	Composite composite = getToolkit().createComposite(parent, style);
+		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
-		// getting model elemets properties and data (feature= Model element's properties and data= data values of the Model element)
-		final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement());
+		// getting model elements properties and data (feature= Model element's properties and data= data values of the Model element)
+		//final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement());
 		//final EDataTypeEList<String> data = (EDataTypeEList<String>) getModelElement().eGet(feature);
-		Label middleLabel = new Label(composite, SWT.LEFT);
-		middleLabel.setText(feature.getName());
 		final Text attText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		attText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		btnAdd = new Button(composite, SWT.PUSH);
 		btnAdd.setText("+");
 		btnAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				createTextField(btnAdd.getParent());
-				btnAdd.getParent().layout();
+				GridDataFactory.fillDefaults().hint(10,20).applyTo(createTextField(composite));
+				composite.layout();
 				
 			}
 		});
-		/*final Text attText2 = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		attText2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		*/
+		GridDataFactory.fillDefaults().hint(10,20).applyTo(attText);
+		GridDataFactory.fillDefaults().applyTo(btnAdd);
+		
+		//final Text attText2 = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		//GridDataFactory.fillDefaults().hint(400,20).applyTo(attText2);
+		
+		//composite.getParent().layout();
 		return composite;			
 	
 	}
@@ -93,7 +94,7 @@ private int getUpperBound(Object feature) {
 private Text createTextField (Composite parent)
 {
 	Text tempText= new Text(parent, SWT.SINGLE | SWT.BORDER);
- tempText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+	System.out.print("its created :(");
 			return tempText;
 }
 
