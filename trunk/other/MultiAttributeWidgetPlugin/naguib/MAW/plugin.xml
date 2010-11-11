@@ -6,6 +6,7 @@
       <widget
             class="multiattributewidget_naguib.MultiAttributeControl"
             name="MultiAttributeWidget_naguib.widget1"
+            showLabel="true"
             type="java.lang.String">
       </widget>
    </extension>
