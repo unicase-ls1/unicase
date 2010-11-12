@@ -10,7 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.iterationplanner.ui.wizard.IterationPlanningWizard;
+import org.unicase.iterationplanner.ui.wizard.input.IterationPlanningInputWizard;
 
 /**
  * This handler shows iteration planning wizard.
@@ -25,7 +25,7 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IterationPlanningWizard wizard = new IterationPlanningWizard();
+		IterationPlanningInputWizard wizard = new IterationPlanningInputWizard();
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 		dialog.open();
 		return null;
