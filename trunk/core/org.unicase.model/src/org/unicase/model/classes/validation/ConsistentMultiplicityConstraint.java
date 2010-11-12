@@ -40,11 +40,9 @@ public class ConsistentMultiplicityConstraint extends AbstractModelConstraint {
 				MultiplicityParseResult sourceMultiplicity = ClassesHelper.parseMultiplicity(sourceMultiplicityString);
 				MultiplicityParseResult targetMultiplicity = ClassesHelper.parseMultiplicity(targetMultiplicityString);
 				boolean sourceValid = sourceMultiplicity.getMinimumMultiplicity() <= sourceMultiplicity
-					.getMaximumMultiplicity()
-					|| sourceMultiplicity.getMaximumMultiplicity() == -1;
+					.getMaximumMultiplicity() || sourceMultiplicity.getMaximumMultiplicity() == -1;
 				boolean targetValid = targetMultiplicity.getMinimumMultiplicity() <= targetMultiplicity
-					.getMaximumMultiplicity()
-					|| sourceMultiplicity.getMaximumMultiplicity() == -1;
+					.getMaximumMultiplicity() || sourceMultiplicity.getMaximumMultiplicity() == -1;
 				if (!sourceValid) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						association, "sourceMultiplicity");

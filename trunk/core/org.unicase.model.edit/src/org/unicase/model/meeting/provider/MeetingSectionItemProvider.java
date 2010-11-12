@@ -63,8 +63,10 @@ public class MeetingSectionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addAllocatedTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MeetingSection_allocatedTime_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MeetingSection_allocatedTime_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MeetingSection_allocatedTime_feature",
 				"_UI_MeetingSection_type"), MeetingPackage.Literals.MEETING_SECTION__ALLOCATED_TIME, true, false,
 			false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));

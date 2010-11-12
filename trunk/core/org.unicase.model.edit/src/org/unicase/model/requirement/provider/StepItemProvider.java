@@ -65,9 +65,10 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addUserStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_userStep_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Step_userStep_feature", "_UI_Step_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Step_userStep_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Step_userStep_feature", "_UI_Step_type"),
 			RequirementPackage.Literals.STEP__USER_STEP, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
@@ -78,9 +79,10 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIncludedUseCasePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_includedUseCase_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Step_includedUseCase_feature", "_UI_Step_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Step_includedUseCase_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Step_includedUseCase_feature", "_UI_Step_type"),
 			RequirementPackage.Literals.STEP__INCLUDED_USE_CASE, true, false, true, null, null, null));
 	}
 
@@ -92,10 +94,13 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	 */
 	protected void addIncludedSystemFunctionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Step_includedSystemFunction_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Step_includedSystemFunction_feature", "_UI_Step_type"),
-				RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Step_includedSystemFunction_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Step_includedSystemFunction_feature",
+					"_UI_Step_type"), RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION, true, false, true,
+				null, null, null));
 	}
 
 	/**

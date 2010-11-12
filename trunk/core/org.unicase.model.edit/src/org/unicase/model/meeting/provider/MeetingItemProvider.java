@@ -77,9 +77,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addLocationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_location_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_location_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_location_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_location_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__LOCATION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -90,9 +91,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addStarttimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_starttime_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_starttime_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_starttime_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_starttime_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__STARTTIME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -103,9 +105,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addEndtimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_endtime_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_endtime_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_endtime_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_endtime_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__ENDTIME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -116,9 +119,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addFacilitatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_facilitator_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_facilitator_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_facilitator_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_facilitator_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__FACILITATOR, true, false, true, null, null, null));
 	}
 
@@ -128,9 +132,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addMinutetakerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_minutetaker_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_minutetaker_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_minutetaker_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_minutetaker_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__MINUTETAKER, true, false, true, null, null, null));
 	}
 
@@ -140,9 +145,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addTimekeeperPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_timekeeper_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_timekeeper_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_timekeeper_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_timekeeper_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__TIMEKEEPER, true, false, true, null, null, null));
 	}
 
@@ -152,9 +158,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_participants_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_participants_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_participants_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_participants_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__PARTICIPANTS, true, false, true, null, null, null));
 	}
 
@@ -164,9 +171,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addSectionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_sections_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Meeting_sections_feature", "_UI_Meeting_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Meeting_sections_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_sections_feature", "_UI_Meeting_type"),
 			MeetingPackage.Literals.MEETING__SECTIONS, true, false, false, null, null, null));
 	}
 
@@ -177,8 +185,10 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addIdentifiedIssuesSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Meeting_identifiedIssuesSection_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Meeting_identifiedIssuesSection_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_identifiedIssuesSection_feature",
 				"_UI_Meeting_type"), MeetingPackage.Literals.MEETING__IDENTIFIED_ISSUES_SECTION, true, false, true,
 			null, null, null));
@@ -191,10 +201,11 @@ public class MeetingItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addIdentifiedWorkItemsSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Meeting_identifiedWorkItemsSection_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Meeting_identifiedWorkItemsSection_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Meeting_identifiedWorkItemsSection_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Meeting_identifiedWorkItemsSection_feature",
 				"_UI_Meeting_type"), MeetingPackage.Literals.MEETING__IDENTIFIED_WORK_ITEMS_SECTION, true, false, true,
 			null, null, null));
 	}

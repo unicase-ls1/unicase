@@ -55,6 +55,8 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
+import org.unicase.model.release.ReleasePackage;
+import org.unicase.model.release.impl.ReleasePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
@@ -222,8 +224,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Obtain or create and register package
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
-			: new ClassesPackageImpl());
+			.get(eNS_URI) : new ClassesPackageImpl());
 
 		isInited = true;
 
@@ -239,8 +240,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI)
-			: TaskPackage.eINSTANCE);
+			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
@@ -257,8 +257,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI)
-			: BugPackage.eINSTANCE);
+			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
@@ -275,11 +274,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI)
-			: UtilPackage.eINSTANCE);
+			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
@@ -299,6 +300,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theReleasePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
@@ -318,6 +320,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theReleasePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theClassesPackage.freeze();
@@ -1148,8 +1151,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEAttribute(getClass_InstantiationType(), this.getInstantiationType(), "instantiationType", null, 0, 1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_ParticipatedUseCases(), theRequirementPackage.getUseCase(), theRequirementPackage
-			.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1,
+		initEReference(getClass_ParticipatedUseCases(), theRequirementPackage.getUseCase(),
+			theRequirementPackage.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_SuperClasses(), this.getClass_(), this.getClass_SubClasses(), "superClasses", null, 0,
@@ -1170,15 +1173,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getClass_Methods(), this.getMethod(), this.getMethod_DefiningClass(), "methods", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
-			.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
+		initEReference(getClass_DemoParticipations(), theRequirementPackage.getScenario(),
+			theRequirementPackage.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackage_ContainedPackageElements(), this.getPackageElement(), this
-			.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1,
+		initEReference(getPackage_ContainedPackageElements(), this.getPackageElement(),
+			this.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1,
 			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_FacadeClass(), this.getClass_(), null, "facadeClass", null, 0, 1,
@@ -1249,8 +1252,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEAttribute(getAttribute_ImplementationType(), this.getPrimitiveType(), "implementationType", null, 0, 1,
 			Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getAttribute_ImplementationEnumeration(), this.getEnumeration(), this
-			.getEnumeration_Attributes(), "implementationEnumeration", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+		initEReference(getAttribute_ImplementationEnumeration(), this.getEnumeration(),
+			this.getEnumeration_Attributes(), "implementationEnumeration", null, 0, 1, Attribute.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		initEAttribute(getAttribute_Transient(), ecorePackage.getEBoolean(), "transient", null, 0, 1, Attribute.class,
@@ -1283,10 +1286,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethod_CallingMethods(), this.getMethod(), this.getMethod_CalledMethods(), "callingMethods",
 			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
-			.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(),
+			theRequirementPackage.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(methodArgumentEClass, MethodArgument.class, "MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

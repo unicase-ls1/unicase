@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.Release;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Work Item</b></em>'. <!-- end-user-doc -->
@@ -28,6 +29,7 @@ import org.unicase.model.organization.User;
  * <li>{@link org.unicase.model.task.WorkItem#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.task.WorkItem#getIncludingReleases <em>Including Releases</em>}</li>
  * </ul>
  * </p>
  * 
@@ -308,5 +310,24 @@ public interface WorkItem extends Annotation {
 	 * @generated
 	 */
 	void setResolved(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Including Releases</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.release.Release}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}'. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Including Releases</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Including Releases</em>' reference list.
+	 * @see org.unicase.model.task.TaskPackage#getWorkItem_IncludingReleases()
+	 * @see org.unicase.model.release.Release#getIncludedWorkItems
+	 * @model opposite="includedWorkItems"
+	 * @generated
+	 */
+	EList<Release> getIncludingReleases();
 
 } // WorkItem

@@ -61,9 +61,11 @@ public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvid
 	 */
 	protected void addIncludedWorkItemsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_WorkItemMeetingSection_includedWorkItems_feature",
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WorkItemMeetingSection_includedWorkItems_feature",
 					"_UI_WorkItemMeetingSection_type"),
 				MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS, true, false, true, null, null,
 				null));

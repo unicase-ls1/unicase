@@ -59,8 +59,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
 			addCommentsPropertyDescriptor(object);
-			addCreatorPropertyDescriptor(object);
 			addCreationDatePropertyDescriptor(object);
+			addCreatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,8 +71,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_name_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_name_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_name_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -84,8 +86,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_description_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_description_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_description_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__DESCRIPTION, true, true,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -97,8 +101,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_annotations_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_annotations_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_annotations_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ANNOTATIONS, true, false,
 			true, null, null, null));
@@ -110,8 +116,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_attachments_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_attachments_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_attachments_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ATTACHMENTS, true, false,
 			true, null, null, null));
@@ -123,8 +131,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addCommentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_comments_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_comments_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_comments_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS, true, false,
 			false, null, null, null));
@@ -136,8 +146,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addCreatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creator_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_creator_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creator_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATOR, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -149,8 +161,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addCreationDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UnicaseModelElement_creationDate_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UnicaseModelElement_creationDate_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_creationDate_feature",
 				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__CREATION_DATE, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -202,8 +216,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		case ModelPackage.UNICASE_MODEL_ELEMENT__NAME:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
@@ -225,8 +239,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, ProfileFactory.eINSTANCE
-				.createStereotypeInstance()));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+			ProfileFactory.eINSTANCE.createStereotypeInstance()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS,
 			RationaleFactory.eINSTANCE.createComment()));

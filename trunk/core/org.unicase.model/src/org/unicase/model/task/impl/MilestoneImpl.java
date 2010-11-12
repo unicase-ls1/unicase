@@ -23,6 +23,8 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.Release;
+import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -44,6 +46,7 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getIncludingReleases <em>Including Releases</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>
@@ -186,6 +189,15 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @ordered
 	 */
 	protected boolean resolved = RESOLVED_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getIncludingReleases() <em>Including Releases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getIncludingReleases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Release> includingReleases;
 	/**
 	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -560,6 +572,19 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * 
 	 * @generated
 	 */
+	public EList<Release> getIncludingReleases() {
+		if (includingReleases == null) {
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
+				TaskPackage.MILESTONE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+		}
+		return includingReleases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EList<UnicaseModelElement> getContainedModelElements() {
 		if (containedModelElements == null) {
 			containedModelElements = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this,
@@ -597,6 +622,9 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return basicSetReviewer((User) otherEnd, msgs);
 		case TaskPackage.MILESTONE__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingReleases())
+				.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -621,6 +649,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return basicSetReviewer(null, msgs);
 		case TaskPackage.MILESTONE__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			return ((InternalEList<?>) getIncludingReleases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -676,6 +706,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return getPriority();
 		case TaskPackage.MILESTONE__RESOLVED:
 			return isResolved();
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			return getIncludingReleases();
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			return getContainedModelElements();
 		}
@@ -727,6 +759,10 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__RESOLVED:
 			setResolved((Boolean) newValue);
 			return;
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();
 			getContainedModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
@@ -776,6 +812,9 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__RESOLVED:
 			setResolved(RESOLVED_EDEFAULT);
 			return;
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();
 			return;
@@ -813,6 +852,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return priority != PRIORITY_EDEFAULT;
 		case TaskPackage.MILESTONE__RESOLVED:
 			return resolved != RESOLVED_EDEFAULT;
+		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
+			return includingReleases != null && !includingReleases.isEmpty();
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			return containedModelElements != null && !containedModelElements.isEmpty();
 		}

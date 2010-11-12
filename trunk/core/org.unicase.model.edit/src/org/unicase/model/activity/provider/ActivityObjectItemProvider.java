@@ -63,10 +63,11 @@ public class ActivityObjectItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addIncomingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ActivityObject_incomingTransitions_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ActivityObject_incomingTransitions_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ActivityObject_incomingTransitions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ActivityObject_incomingTransitions_feature",
 				"_UI_ActivityObject_type"), ActivityPackage.Literals.ACTIVITY_OBJECT__INCOMING_TRANSITIONS, true,
 			false, true, null, null, null));
 	}
@@ -78,10 +79,11 @@ public class ActivityObjectItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addOutgoingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ActivityObject_outgoingTransitions_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ActivityObject_outgoingTransitions_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ActivityObject_outgoingTransitions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ActivityObject_outgoingTransitions_feature",
 				"_UI_ActivityObject_type"), ActivityPackage.Literals.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS, true,
 			false, true, null, null, null));
 	}

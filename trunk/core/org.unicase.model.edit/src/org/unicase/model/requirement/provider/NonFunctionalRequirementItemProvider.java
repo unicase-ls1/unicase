@@ -64,10 +64,11 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addRestrictedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedScenarios_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedScenarios_feature",
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS, true, false, true, null,
 			null, null));
@@ -80,10 +81,11 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addRestrictedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedUseCases_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedUseCases_feature",
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES, true, false, true, null,
 			null, null));
@@ -95,10 +97,11 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_systemFunctions_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_systemFunctions_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_systemFunctions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_systemFunctions_feature",
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, true, false, true, null, null,
 			null));
@@ -110,10 +113,11 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addUserTasksPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_userTasks_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_userTasks_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_userTasks_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_userTasks_feature",
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS, true, false, true, null, null, null));
 	}

@@ -40,6 +40,8 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
+import org.unicase.model.release.ReleasePackage;
+import org.unicase.model.release.impl.ReleasePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
@@ -116,8 +118,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 
 		// Obtain or create and register package
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
-			: new DocumentPackageImpl());
+			.get(eNS_URI) : new DocumentPackageImpl());
 
 		isInited = true;
 
@@ -133,8 +134,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI)
-			: TaskPackage.eINSTANCE);
+			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
@@ -151,8 +151,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI)
-			: BugPackage.eINSTANCE);
+			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
@@ -169,11 +168,13 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI)
-			: UtilPackage.eINSTANCE);
+			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDocumentPackage.createPackageContents();
@@ -193,6 +194,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theReleasePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDocumentPackage.initializePackageContents();
@@ -212,6 +214,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theReleasePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDocumentPackage.freeze();
@@ -361,10 +364,10 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		// Initialize classes and features; add operations and parameters
 		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeafSection_ModelElements(), theModelPackage.getUnicaseModelElement(), theModelPackage
-			.getUnicaseModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getLeafSection_ModelElements(), theModelPackage.getUnicaseModelElement(),
+			theModelPackage.getUnicaseModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getUnicaseModelElement(),
 			theModelPackage.getUnicaseModelElement_IncomingDocumentReferences(), "referencedModelElements", null, 0,
 			-1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,

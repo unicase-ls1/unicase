@@ -67,9 +67,10 @@ public class StereotypeItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addRequiredPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Stereotype_required_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Stereotype_required_feature", "_UI_Stereotype_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Stereotype_required_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Stereotype_required_feature", "_UI_Stereotype_type"),
 			ProfilePackage.Literals.STEREOTYPE__REQUIRED, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
@@ -80,9 +81,10 @@ public class StereotypeItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addProfilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Stereotype_profile_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Stereotype_profile_feature", "_UI_Stereotype_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Stereotype_profile_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Stereotype_profile_feature", "_UI_Stereotype_type"),
 			ProfilePackage.Literals.STEREOTYPE__PROFILE, true, false, false, null, null, null));
 	}
 
@@ -93,8 +95,10 @@ public class StereotypeItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addStereotypeAttributesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Stereotype_stereotypeAttributes_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Stereotype_stereotypeAttributes_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Stereotype_stereotypeAttributes_feature",
 				"_UI_Stereotype_type"), ProfilePackage.Literals.STEREOTYPE__STEREOTYPE_ATTRIBUTES, true, false, false,
 			null, null, null));

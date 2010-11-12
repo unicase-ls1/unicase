@@ -62,9 +62,10 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	 * @generated
 	 */
 	protected void addEmailPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_email_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_email_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__EMAIL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -75,9 +76,10 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_firstName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_firstName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__FIRST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -88,9 +90,10 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_lastName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_lastName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__LAST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

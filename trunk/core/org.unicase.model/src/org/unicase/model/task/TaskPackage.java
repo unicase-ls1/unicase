@@ -144,20 +144,20 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__COMMENTS = ModelPackage.ANNOTATION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__CREATOR = ModelPackage.ANNOTATION__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__CREATOR = ModelPackage.ANNOTATION__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -260,13 +260,22 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__INCLUDING_RELEASES = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class. <!--
@@ -357,20 +366,20 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__CREATOR = WORK_ITEM__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -471,6 +480,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__RESOLVED = WORK_ITEM__RESOLVED;
+
+	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -594,20 +612,20 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__CREATOR = WORK_ITEM__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -708,6 +726,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__RESOLVED = WORK_ITEM__RESOLVED;
+
+	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
 	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list. <!-- begin-user-doc -->
@@ -832,20 +859,20 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MILESTONE__CREATOR = WORK_ITEM__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -946,6 +973,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__RESOLVED = WORK_ITEM__RESOLVED;
+
+	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
 	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1054,20 +1090,20 @@ public interface TaskPackage extends EPackage {
 	int CHECKABLE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CHECKABLE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKABLE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1305,6 +1341,17 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkItem_Resolved();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getIncludingReleases
+	 * <em>Including Releases</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Including Releases</em>'.
+	 * @see org.unicase.model.task.WorkItem#getIncludingReleases()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EReference getWorkItem_IncludingReleases();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Milestone <em>Milestone</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1535,6 +1582,14 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__RESOLVED = eINSTANCE.getWorkItem_Resolved();
+
+		/**
+		 * The meta object literal for the '<em><b>Including Releases</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference WORK_ITEM__INCLUDING_RELEASES = eINSTANCE.getWorkItem_IncludingReleases();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.

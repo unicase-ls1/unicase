@@ -60,9 +60,10 @@ public class CriterionItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addAssessmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Criterion_assessments_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Criterion_assessments_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
 			RationalePackage.Literals.CRITERION__ASSESSMENTS, true, false, true, null, null, null));
 	}
 

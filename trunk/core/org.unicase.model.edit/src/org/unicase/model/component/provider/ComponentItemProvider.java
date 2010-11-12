@@ -67,9 +67,10 @@ public class ComponentItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addPackagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Component_packages_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Component_packages_feature", "_UI_Component_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Component_packages_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Component_packages_feature", "_UI_Component_type"),
 			ComponentPackage.Literals.COMPONENT__PACKAGES, true, false, true, null, null, null));
 	}
 
@@ -79,8 +80,10 @@ public class ComponentItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addOfferedServicesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Component_offeredServices_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Component_offeredServices_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Component_offeredServices_feature",
 				"_UI_Component_type"), ComponentPackage.Literals.COMPONENT__OFFERED_SERVICES, true, false, false, null,
 			null, null));
@@ -92,8 +95,10 @@ public class ComponentItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addConsumedServicesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Component_consumedServices_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Component_consumedServices_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Component_consumedServices_feature",
 				"_UI_Component_type"), ComponentPackage.Literals.COMPONENT__CONSUMED_SERVICES, true, false, true, null,
 			null, null));
@@ -105,9 +110,10 @@ public class ComponentItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addSubsystemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Component_subsystems_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Component_subsystems_feature", "_UI_Component_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Component_subsystems_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Component_subsystems_feature", "_UI_Component_type"),
 			ComponentPackage.Literals.COMPONENT__SUBSYSTEMS, true, false, true, null, null, null));
 	}
 

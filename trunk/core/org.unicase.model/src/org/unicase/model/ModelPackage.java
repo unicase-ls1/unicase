@@ -143,20 +143,20 @@ public interface ModelPackage extends EPackage {
 	int UNICASE_MODEL_ELEMENT__COMMENTS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int UNICASE_MODEL_ELEMENT__CREATOR = 9;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__CREATION_DATE = 10;
+	int UNICASE_MODEL_ELEMENT__CREATION_DATE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_MODEL_ELEMENT__CREATOR = 10;
 
 	/**
 	 * The number of structural features of the '<em>Unicase Model Element</em>' class. <!-- begin-user-doc --> <!--
@@ -256,20 +256,20 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ANNOTATION__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -378,20 +378,20 @@ public interface ModelPackage extends EPackage {
 	int ATTACHMENT__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ATTACHMENT__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--

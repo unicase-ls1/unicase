@@ -62,9 +62,10 @@ public class DependencyItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dependency_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Dependency_source_feature", "_UI_Dependency_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Dependency_source_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Dependency_source_feature", "_UI_Dependency_type"),
 			ClassesPackage.Literals.DEPENDENCY__SOURCE, true, false, true, null, null, null));
 	}
 
@@ -74,9 +75,10 @@ public class DependencyItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dependency_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Dependency_target_feature", "_UI_Dependency_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Dependency_target_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Dependency_target_feature", "_UI_Dependency_type"),
 			ClassesPackage.Literals.DEPENDENCY__TARGET, true, false, true, null, null, null));
 	}
 

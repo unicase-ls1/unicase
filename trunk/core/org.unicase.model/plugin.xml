@@ -837,4 +837,12 @@
            context="context">
      </binding>
   </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.release.ReleasePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/release">
+     </package>
+  </extension>
 </plugin>

@@ -17,7 +17,7 @@ import org.unicase.model.requirement.Scenario;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
- *Checks whether a scenario has a initial actor instance.
+ * Checks whether a scenario has a initial actor instance.
  * 
  * @author wesendonk
  * @author naughton

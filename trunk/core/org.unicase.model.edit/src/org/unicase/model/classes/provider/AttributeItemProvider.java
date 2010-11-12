@@ -74,10 +74,13 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Attribute_definingClass_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Attribute_definingClass_feature", "_UI_Attribute_type"),
-				ClassesPackage.Literals.ATTRIBUTE__DEFINING_CLASS, true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Attribute_definingClass_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Attribute_definingClass_feature",
+					"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__DEFINING_CLASS, true, false, false, null,
+				null, null));
 	}
 
 	/**
@@ -86,9 +89,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_visibility_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_visibility_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_visibility_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_visibility_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__VISIBILITY, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -99,9 +103,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_scope_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_scope_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_scope_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_scope_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__SCOPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -112,9 +117,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_type_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_type_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_type_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_type_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -125,11 +131,14 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_defaultValue_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_defaultValue_feature", "_UI_Attribute_type"),
-			ClassesPackage.Literals.ATTRIBUTE__DEFAULT_VALUE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Attribute_defaultValue_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Attribute_defaultValue_feature",
+					"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__DEFAULT_VALUE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -138,9 +147,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_properties_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_properties_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_properties_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_properties_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__PROPERTIES, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -151,9 +161,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_label_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_label_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_label_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_label_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__LABEL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -164,9 +175,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_id_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_id_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_id_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_id_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__ID, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 			null, null));
 	}
@@ -178,8 +190,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addImplementationTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_implementationType_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Attribute_implementationType_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_implementationType_feature",
 				"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__IMPLEMENTATION_TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -192,10 +206,11 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addImplementationEnumerationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Attribute_implementationEnumeration_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Attribute_implementationEnumeration_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Attribute_implementationEnumeration_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_implementationEnumeration_feature",
 				"_UI_Attribute_type"), ClassesPackage.Literals.ATTRIBUTE__IMPLEMENTATION_ENUMERATION, true, false,
 			true, null, null, null));
 	}
@@ -206,9 +221,10 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addTransientPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attribute_transient_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Attribute_transient_feature", "_UI_Attribute_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Attribute_transient_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Attribute_transient_feature", "_UI_Attribute_type"),
 			ClassesPackage.Literals.ATTRIBUTE__TRANSIENT, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}

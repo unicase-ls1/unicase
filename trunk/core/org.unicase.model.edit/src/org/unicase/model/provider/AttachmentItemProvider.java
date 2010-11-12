@@ -58,8 +58,10 @@ public class AttachmentItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addReferringModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attachment_referringModelElements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Attachment_referringModelElements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Attachment_referringModelElements_feature",
 				"_UI_Attachment_type"), ModelPackage.Literals.ATTACHMENT__REFERRING_MODEL_ELEMENTS, true, false, true,
 			null, null, null));

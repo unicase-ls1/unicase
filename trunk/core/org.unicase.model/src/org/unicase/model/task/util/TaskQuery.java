@@ -37,8 +37,8 @@ public final class TaskQuery {
 	public static Set<WorkItem> getWorkItemsOfUser(User user) {
 		Set<WorkItem> ret = new HashSet<WorkItem>();
 		Project project = ModelUtil.getProject(user);
-		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-			.getWorkItem(), new BasicEList<WorkItem>(), true);
+		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(
+			TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>(), true);
 		for (WorkItem workItem : allModelElementsbyClass) {
 			OrgUnit assignee = workItem.getAssignee();
 			if (assignee != null && assignee.equals(user)) {

@@ -64,10 +64,13 @@ public class OrgUnitItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addGroupMembershipsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_OrgUnit_groupMemberships_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_OrgUnit_groupMemberships_feature", "_UI_OrgUnit_type"),
-				OrganizationPackage.Literals.ORG_UNIT__GROUP_MEMBERSHIPS, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OrgUnit_groupMemberships_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_OrgUnit_groupMemberships_feature",
+					"_UI_OrgUnit_type"), OrganizationPackage.Literals.ORG_UNIT__GROUP_MEMBERSHIPS, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -76,9 +79,10 @@ public class OrgUnitItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addAssignmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnit_assignments_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_OrgUnit_assignments_feature", "_UI_OrgUnit_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_OrgUnit_assignments_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_OrgUnit_assignments_feature", "_UI_OrgUnit_type"),
 			OrganizationPackage.Literals.ORG_UNIT__ASSIGNMENTS, true, false, true, null, null, null));
 	}
 

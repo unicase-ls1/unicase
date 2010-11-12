@@ -57,9 +57,10 @@ public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDo
 	 * @generated
 	 */
 	protected void addOrgUnitsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Group_orgUnits_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Group_orgUnits_feature", "_UI_Group_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Group_orgUnits_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Group_orgUnits_feature", "_UI_Group_type"),
 			OrganizationPackage.Literals.GROUP__ORG_UNITS, true, false, true, null, null, null));
 	}
 
