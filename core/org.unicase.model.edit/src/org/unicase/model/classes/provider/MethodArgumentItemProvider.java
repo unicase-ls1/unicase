@@ -66,10 +66,12 @@ public class MethodArgumentItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_type_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_MethodArgument_type_feature", "_UI_MethodArgument_type"),
-			ClassesPackage.Literals.METHOD_ARGUMENT__TYPE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MethodArgument_type_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MethodArgument_type_feature",
+				"_UI_MethodArgument_type"), ClassesPackage.Literals.METHOD_ARGUMENT__TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -79,8 +81,10 @@ public class MethodArgumentItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_direction_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MethodArgument_direction_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MethodArgument_direction_feature",
 				"_UI_MethodArgument_type"), ClassesPackage.Literals.METHOD_ARGUMENT__DIRECTION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -92,8 +96,10 @@ public class MethodArgumentItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_defaultValue_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MethodArgument_defaultValue_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_MethodArgument_defaultValue_feature",
 				"_UI_MethodArgument_type"), ClassesPackage.Literals.METHOD_ARGUMENT__DEFAULT_VALUE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -105,10 +111,12 @@ public class MethodArgumentItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_label_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_MethodArgument_label_feature", "_UI_MethodArgument_type"),
-			ClassesPackage.Literals.METHOD_ARGUMENT__LABEL, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MethodArgument_label_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MethodArgument_label_feature",
+				"_UI_MethodArgument_type"), ClassesPackage.Literals.METHOD_ARGUMENT__LABEL, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

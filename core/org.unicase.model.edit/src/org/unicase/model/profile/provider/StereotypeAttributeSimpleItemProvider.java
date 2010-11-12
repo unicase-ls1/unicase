@@ -61,8 +61,10 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StereotypeAttributeSimple_type_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeSimple_type_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeSimple_type_feature",
 				"_UI_StereotypeAttributeSimple_type"), ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

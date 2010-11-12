@@ -25,6 +25,8 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.Release;
+import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -47,6 +49,7 @@ import org.unicase.model.task.util.MEState;
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getIncludingReleases <em>Including Releases</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li>
  * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li>
@@ -191,6 +194,15 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @ordered
 	 */
 	protected boolean resolved = RESOLVED_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getIncludingReleases() <em>Including Releases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getIncludingReleases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Release> includingReleases;
 	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -659,6 +671,19 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * 
 	 * @generated
 	 */
+	public EList<Release> getIncludingReleases() {
+		if (includingReleases == null) {
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
+				TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+		}
+		return includingReleases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -683,6 +708,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return basicSetReviewer((User) otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingReleases())
+				.basicAdd(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedWorkItems()).basicAdd(otherEnd,
 				msgs);
@@ -710,6 +738,8 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return basicSetReviewer(null, msgs);
 		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			return ((InternalEList<?>) getIncludingReleases()).basicRemove(otherEnd, msgs);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return ((InternalEList<?>) getContainedWorkItems()).basicRemove(otherEnd, msgs);
 		}
@@ -767,6 +797,8 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return getPriority();
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
 			return isResolved();
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			return getIncludingReleases();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -821,6 +853,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return;
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
 			setResolved((Boolean) newValue);
+			return;
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
@@ -877,6 +913,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
 			setResolved(RESOLVED_EDEFAULT);
 			return;
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			return;
@@ -920,6 +959,8 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return priority != PRIORITY_EDEFAULT;
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
 			return resolved != RESOLVED_EDEFAULT;
+		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
+			return includingReleases != null && !includingReleases.isEmpty();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return containedWorkItems != null && !containedWorkItems.isEmpty();
 		case TaskPackage.WORK_PACKAGE__START_DATE:

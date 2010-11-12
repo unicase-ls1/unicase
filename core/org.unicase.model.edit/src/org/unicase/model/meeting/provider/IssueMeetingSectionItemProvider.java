@@ -58,10 +58,11 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	 * @generated
 	 */
 	protected void addIncludedIssuesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_IssueMeetingSection_includedIssues_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_IssueMeetingSection_includedIssues_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_IssueMeetingSection_includedIssues_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_IssueMeetingSection_includedIssues_feature",
 				"_UI_IssueMeetingSection_type"), MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES, true,
 			false, true, null, null, null));
 	}

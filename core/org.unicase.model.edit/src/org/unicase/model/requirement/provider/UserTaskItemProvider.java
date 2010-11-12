@@ -64,10 +64,13 @@ public class UserTaskItemProvider extends UnicaseModelElementItemProvider implem
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UserTask_initiatingActor_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UserTask_initiatingActor_feature", "_UI_UserTask_type"),
-				RequirementPackage.Literals.USER_TASK__INITIATING_ACTOR, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UserTask_initiatingActor_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_UserTask_initiatingActor_feature",
+					"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__INITIATING_ACTOR, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -77,8 +80,10 @@ public class UserTaskItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingActorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_participatingActors_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UserTask_participatingActors_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UserTask_participatingActors_feature",
 				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__PARTICIPATING_ACTORS, true, false, true,
 			null, null, null));
@@ -91,8 +96,10 @@ public class UserTaskItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addRealizingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_realizingUseCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UserTask_realizingUseCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UserTask_realizingUseCases_feature",
 				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__REALIZING_USE_CASES, true, false, true,
 			null, null, null));
@@ -105,10 +112,11 @@ public class UserTaskItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_UserTask_nonFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_UserTask_nonFunctionalRequirements_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UserTask_nonFunctionalRequirements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UserTask_nonFunctionalRequirements_feature",
 				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS, true, false,
 			true, null, null, null));
 	}

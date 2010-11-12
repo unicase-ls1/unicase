@@ -68,10 +68,12 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addInputPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_input_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_SystemFunction_input_feature", "_UI_SystemFunction_type"),
-			RequirementPackage.Literals.SYSTEM_FUNCTION__INPUT, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_input_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_input_feature",
+				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__INPUT, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -81,10 +83,12 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addOutputPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_output_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_SystemFunction_output_feature", "_UI_SystemFunction_type"),
-			RequirementPackage.Literals.SYSTEM_FUNCTION__OUTPUT, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_output_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_output_feature",
+				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__OUTPUT, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -94,8 +98,10 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addExceptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_exception_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_exception_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_exception_feature",
 				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__EXCEPTION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -107,8 +113,10 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addWorkspacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_workspace_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_workspace_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_workspace_feature",
 				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__WORKSPACE, true, false, true,
 			null, null, null));
@@ -120,8 +128,10 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addUsecasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_usecases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_usecases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_usecases_feature",
 				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__USECASES, true, false, true,
 			null, null, null));
@@ -134,10 +144,11 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_SystemFunction_nonFunctionalRequirement_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_SystemFunction_nonFunctionalRequirement_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_SystemFunction_nonFunctionalRequirement_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_nonFunctionalRequirement_feature",
 				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT,
 			true, false, true, null, null, null));
 	}

@@ -66,8 +66,10 @@ public class ProfileItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addAffectedContainersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Profile_affectedContainers_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Profile_affectedContainers_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Profile_affectedContainers_feature",
 				"_UI_Profile_type"), ProfilePackage.Literals.PROFILE__AFFECTED_CONTAINERS, true, false, true, null,
 			null, null));
@@ -79,9 +81,10 @@ public class ProfileItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addStereotypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Profile_stereotypes_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Profile_stereotypes_feature", "_UI_Profile_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Profile_stereotypes_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Profile_stereotypes_feature", "_UI_Profile_type"),
 			ProfilePackage.Literals.PROFILE__STEREOTYPES, true, false, false, null, null, null));
 	}
 

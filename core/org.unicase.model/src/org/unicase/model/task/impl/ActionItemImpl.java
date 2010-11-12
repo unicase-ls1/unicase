@@ -21,6 +21,8 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.Release;
+import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
@@ -44,6 +46,7 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getIncludingReleases <em>Including Releases</em>}</li>
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
  * <li>{@link org.unicase.model.task.impl.ActionItemImpl#getActivity <em>Activity</em>}</li>
@@ -202,6 +205,16 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected boolean resolved = RESOLVED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getIncludingReleases() <em>Including Releases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getIncludingReleases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Release> includingReleases;
 
 	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -662,6 +675,19 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * 
 	 * @generated
 	 */
+	public EList<Release> getIncludingReleases() {
+		if (includingReleases == null) {
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
+				TaskPackage.ACTION_ITEM__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+		}
+		return includingReleases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public ActivityType getActivity() {
 		return activity;
 	}
@@ -708,6 +734,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return basicSetReviewer((User) otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingReleases())
+				.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -732,6 +761,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return basicSetReviewer(null, msgs);
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			return ((InternalEList<?>) getIncludingReleases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -787,6 +818,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return getPriority();
 		case TaskPackage.ACTION_ITEM__RESOLVED:
 			return isResolved();
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			return getIncludingReleases();
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked();
 		case TaskPackage.ACTION_ITEM__DONE:
@@ -842,6 +875,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__RESOLVED:
 			setResolved((Boolean) newValue);
 			return;
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			setChecked((Boolean) newValue);
 			return;
@@ -896,6 +933,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__RESOLVED:
 			setResolved(RESOLVED_EDEFAULT);
 			return;
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			setChecked(CHECKED_EDEFAULT);
 			return;
@@ -939,6 +979,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return priority != PRIORITY_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__RESOLVED:
 			return resolved != RESOLVED_EDEFAULT;
+		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
+			return includingReleases != null && !includingReleases.isEmpty();
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__DONE:

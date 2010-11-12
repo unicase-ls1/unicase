@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -143,20 +144,20 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT__COMMENTS = ModelPackage.ATTACHMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int URL_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int URL_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -273,20 +274,20 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__COMMENTS = ModelPackage.ATTACHMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FILE_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -372,6 +373,33 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.attachment.impl.PatchAttachmentImpl
+	 * <em>Patch Attachment</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.attachment.impl.PatchAttachmentImpl
+	 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getPatchAttachment()
+	 * @generated
+	 */
+	int PATCH_ATTACHMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Applied To</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__APPLIED_TO = 0;
+
+	/**
+	 * The number of structural features of the '<em>Patch Attachment</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}
 	 * ' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -379,7 +407,7 @@ public interface AttachmentPackage extends EPackage {
 	 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getFileAttachmentType()
 	 * @generated
 	 */
-	int FILE_ATTACHMENT_TYPE = 2;
+	int FILE_ATTACHMENT_TYPE = 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.attachment.UrlAttachment <em>Url Attachment</em>}'.
@@ -488,6 +516,27 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFileAttachment_Downloading();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.attachment.PatchAttachment <em>Patch Attachment</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Patch Attachment</em>'.
+	 * @see org.unicase.model.attachment.PatchAttachment
+	 * @generated
+	 */
+	EClass getPatchAttachment();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.attachment.PatchAttachment#getAppliedTo
+	 * <em>Applied To</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Applied To</em>'.
+	 * @see org.unicase.model.attachment.PatchAttachment#getAppliedTo()
+	 * @see #getPatchAttachment()
+	 * @generated
+	 */
+	EReference getPatchAttachment_AppliedTo();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isUploading
@@ -614,6 +663,24 @@ public interface AttachmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILE_ATTACHMENT__DOWNLOADING = eINSTANCE.getFileAttachment_Downloading();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.attachment.impl.PatchAttachmentImpl
+		 * <em>Patch Attachment</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.attachment.impl.PatchAttachmentImpl
+		 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getPatchAttachment()
+		 * @generated
+		 */
+		EClass PATCH_ATTACHMENT = eINSTANCE.getPatchAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Applied To</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PATCH_ATTACHMENT__APPLIED_TO = eINSTANCE.getPatchAttachment_AppliedTo();
 
 		/**
 		 * The meta object literal for the '<em><b>Uploading</b></em>' attribute feature. <!-- begin-user-doc --> <!--

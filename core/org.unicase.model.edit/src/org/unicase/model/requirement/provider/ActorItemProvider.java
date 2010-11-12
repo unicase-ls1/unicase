@@ -65,8 +65,9 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 * @generated
 	 */
 	protected void addInitiatedUserTaskPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_initiatedUserTask_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Actor_initiatedUserTask_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUserTask_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INITIATED_USER_TASK, true, false, true, null, null, null));
 	}
@@ -79,10 +80,13 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 */
 	protected void addParticipatedUserTasksPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Actor_participatedUserTasks_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Actor_participatedUserTasks_feature", "_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__PARTICIPATED_USER_TASKS, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Actor_participatedUserTasks_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUserTasks_feature",
+					"_UI_Actor_type"), RequirementPackage.Literals.ACTOR__PARTICIPATED_USER_TASKS, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -92,8 +96,9 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 * @generated
 	 */
 	protected void addInitiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_initiatedUseCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Actor_initiatedUseCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUseCases_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES, true, false, true, null, null, null));
 	}
@@ -106,10 +111,13 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Actor_participatedUseCases_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature", "_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Actor_participatedUseCases_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature",
+					"_UI_Actor_type"), RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -118,9 +126,10 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_instances_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Actor_instances_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INSTANCES, true, false, true, null, null, null));
 	}
 

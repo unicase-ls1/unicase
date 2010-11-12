@@ -72,8 +72,8 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveBlockers() {
 		effectiveBlocker.clear();
-		Set<UnicaseModelElement> blockers = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlockers(
-			modelElement);
+		Set<UnicaseModelElement> blockers = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy()
+			.getBlockers(modelElement);
 
 		for (UnicaseModelElement blocker : blockers) {
 			try {
@@ -89,8 +89,8 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveOpeners() {
 		effectiveOpeners.clear();
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(
-			modelElement);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getOpeners(modelElement);
 
 		for (UnicaseModelElement opener : openers) {
 			try {
@@ -250,10 +250,10 @@ public class MEStateImpl implements MEState {
 
 		modelElement.eNotify(notificationImpl);
 
-		ArrayList<UnicaseModelElement> opened = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpened(
-			modelElement);
-		ArrayList<UnicaseModelElement> blocked = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlocked(
-			modelElement);
+		ArrayList<UnicaseModelElement> opened = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getOpened(modelElement);
+		ArrayList<UnicaseModelElement> blocked = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy()
+			.getBlocked(modelElement);
 		try {
 			if (status.equals(OPEN) || status.equals(BLOCKED)) {
 				for (UnicaseModelElement open : opened) {

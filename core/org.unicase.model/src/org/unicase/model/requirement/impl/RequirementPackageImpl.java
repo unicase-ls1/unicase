@@ -39,6 +39,8 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
+import org.unicase.model.release.ReleasePackage;
+import org.unicase.model.release.impl.ReleasePackageImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -193,8 +195,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI)
-			: TaskPackage.eINSTANCE);
+			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
@@ -211,8 +212,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI)
-			: BugPackage.eINSTANCE);
+			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
@@ -229,11 +229,13 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI)
-			: UtilPackage.eINSTANCE);
+			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
@@ -253,6 +255,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theReleasePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementPackage.initializePackageContents();
@@ -272,6 +275,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theReleasePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementPackage.freeze();
@@ -1064,27 +1068,27 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		// Initialize classes and features; add operations and parameters
 		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNonFunctionalRequirement_RestrictedScenarios(), this.getScenario(), this
-			.getScenario_NonFunctionalRequirements(), "restrictedScenarios", null, 0, -1,
+		initEReference(getNonFunctionalRequirement_RestrictedScenarios(), this.getScenario(),
+			this.getScenario_NonFunctionalRequirements(), "restrictedScenarios", null, 0, -1,
 			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNonFunctionalRequirement_RestrictedUseCases(), this.getUseCase(), this
-			.getUseCase_NonFunctionalRequirements(), "restrictedUseCases", null, 0, -1, NonFunctionalRequirement.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getNonFunctionalRequirement_SystemFunctions(), this.getSystemFunction(), this
-			.getSystemFunction_NonFunctionalRequirement(), "systemFunctions", null, 0, -1,
+		initEReference(getNonFunctionalRequirement_RestrictedUseCases(), this.getUseCase(),
+			this.getUseCase_NonFunctionalRequirements(), "restrictedUseCases", null, 0, -1,
 			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNonFunctionalRequirement_UserTasks(), this.getUserTask(), this
-			.getUserTask_NonFunctionalRequirements(), "userTasks", null, 0, -1, NonFunctionalRequirement.class,
+		initEReference(getNonFunctionalRequirement_SystemFunctions(), this.getSystemFunction(),
+			this.getSystemFunction_NonFunctionalRequirement(), "systemFunctions", null, 0, -1,
+			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNonFunctionalRequirement_UserTasks(), this.getUserTask(),
+			this.getUserTask_NonFunctionalRequirements(), "userTasks", null, 0, -1, NonFunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionalRequirement_RefinedRequirement(), this.getFunctionalRequirement(), this
-			.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1,
+		initEReference(getFunctionalRequirement_RefinedRequirement(), this.getFunctionalRequirement(),
+			this.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionalRequirement_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1,
@@ -1093,16 +1097,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEAttribute(getFunctionalRequirement_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionalRequirement_RefiningRequirements(), this.getFunctionalRequirement(), this
-			.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1,
+		initEReference(getFunctionalRequirement_RefiningRequirements(), this.getFunctionalRequirement(),
+			this.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_UseCases(), this.getUseCase(),
 			this.getUseCase_FunctionalRequirements(), "useCases", null, 0, -1, FunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionalRequirement_Scenarios(), this.getScenario(), this
-			.getScenario_FunctionalRequirements(), "scenarios", null, 0, -1, FunctionalRequirement.class,
+		initEReference(getFunctionalRequirement_Scenarios(), this.getScenario(),
+			this.getScenario_FunctionalRequirements(), "scenarios", null, 0, -1, FunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionalRequirement_Reviewed(), ecorePackage.getEBoolean(), "reviewed", null, 0, 1,
@@ -1140,18 +1144,18 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getUseCase_Scenarios(), this.getScenario(), this.getScenario_InstantiatedUseCases(),
 			"scenarios", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_FunctionalRequirements(), this.getFunctionalRequirement(), this
-			.getFunctionalRequirement_UseCases(), "functionalRequirements", null, 0, -1, UseCase.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		initEReference(getUseCase_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
-			.getNonFunctionalRequirement_RestrictedUseCases(), "nonFunctionalRequirements", null, 0, -1, UseCase.class,
+		initEReference(getUseCase_FunctionalRequirements(), this.getFunctionalRequirement(),
+			this.getFunctionalRequirement_UseCases(), "functionalRequirements", null, 0, -1, UseCase.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getUseCase_IdentifiedClasses(), theClassesPackage.getClass_(), theClassesPackage
-			.getClass_ParticipatedUseCases(), "identifiedClasses", null, 0, -1, UseCase.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getUseCase_NonFunctionalRequirements(), this.getNonFunctionalRequirement(),
+			this.getNonFunctionalRequirement_RestrictedUseCases(), "nonFunctionalRequirements", null, 0, -1,
+			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_IdentifiedClasses(), theClassesPackage.getClass_(),
+			theClassesPackage.getClass_ParticipatedUseCases(), "identifiedClasses", null, 0, -1, UseCase.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 		initEReference(getUseCase_IncludedUseCases(), this.getUseCase(), null, "includedUseCases", null, 0, -1,
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1166,33 +1170,33 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getScenario_Steps(), this.getStep(), null, "steps", null, 0, -1, Scenario.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		initEReference(getScenario_InitiatingActorInstance(), this.getActorInstance(), this
-			.getActorInstance_InitiatedScenarios(), "initiatingActorInstance", null, 0, 1, Scenario.class,
+		initEReference(getScenario_InitiatingActorInstance(), this.getActorInstance(),
+			this.getActorInstance_InitiatedScenarios(), "initiatingActorInstance", null, 0, 1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getScenario_ParticipatingActorInstances(), this.getActorInstance(), this
-			.getActorInstance_ParticipatedScenarios(), "participatingActorInstances", null, 0, -1, Scenario.class,
+		initEReference(getScenario_ParticipatingActorInstances(), this.getActorInstance(),
+			this.getActorInstance_ParticipatedScenarios(), "participatingActorInstances", null, 0, -1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEReference(getScenario_InstantiatedUseCases(), this.getUseCase(), this.getUseCase_Scenarios(),
 			"instantiatedUseCases", null, 0, -1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getScenario_FunctionalRequirements(), this.getFunctionalRequirement(), this
-			.getFunctionalRequirement_Scenarios(), "functionalRequirements", null, 0, -1, Scenario.class,
+		initEReference(getScenario_FunctionalRequirements(), this.getFunctionalRequirement(),
+			this.getFunctionalRequirement_Scenarios(), "functionalRequirements", null, 0, -1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getScenario_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
-			.getNonFunctionalRequirement_RestrictedScenarios(), "nonFunctionalRequirements", null, 0, -1,
+		initEReference(getScenario_NonFunctionalRequirements(), this.getNonFunctionalRequirement(),
+			this.getNonFunctionalRequirement_RestrictedScenarios(), "nonFunctionalRequirements", null, 0, -1,
 			Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getScenario_ParticipatingMethods(), theClassesPackage.getMethod(), theClassesPackage
-			.getMethod_DemoParticipations(), "participatingMethods", null, 0, -1, Scenario.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		initEReference(getScenario_ParticipatingClasses(), theClassesPackage.getClass_(), theClassesPackage
-			.getClass_DemoParticipations(), "participatingClasses", null, 0, -1, Scenario.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getScenario_ParticipatingMethods(), theClassesPackage.getMethod(),
+			theClassesPackage.getMethod_DemoParticipations(), "participatingMethods", null, 0, -1, Scenario.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getScenario_ParticipatingClasses(), theClassesPackage.getClass_(),
+			theClassesPackage.getClass_DemoParticipations(), "participatingClasses", null, 0, -1, Scenario.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActor_InitiatedUserTask(), this.getUserTask(), this.getUserTask_InitiatingActor(),
@@ -1213,12 +1217,12 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		initEClass(actorInstanceEClass, ActorInstance.class, "ActorInstance", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActorInstance_InitiatedScenarios(), this.getScenario(), this
-			.getScenario_InitiatingActorInstance(), "initiatedScenarios", null, 0, -1, ActorInstance.class,
+		initEReference(getActorInstance_InitiatedScenarios(), this.getScenario(),
+			this.getScenario_InitiatingActorInstance(), "initiatedScenarios", null, 0, -1, ActorInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getActorInstance_ParticipatedScenarios(), this.getScenario(), this
-			.getScenario_ParticipatingActorInstances(), "participatedScenarios", null, 0, -1, ActorInstance.class,
+		initEReference(getActorInstance_ParticipatedScenarios(), this.getScenario(),
+			this.getScenario_ParticipatingActorInstances(), "participatedScenarios", null, 0, -1, ActorInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEReference(getActorInstance_InstantiatedActor(), this.getActor(), this.getActor_Instances(),
@@ -1248,8 +1252,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEAttribute(getSystemFunction_Exception(), ecorePackage.getEString(), "exception", null, 0, 1,
 			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getSystemFunction_NonFunctionalRequirement(), this.getNonFunctionalRequirement(), this
-			.getNonFunctionalRequirement_SystemFunctions(), "nonFunctionalRequirement", null, 0, 1,
+		initEReference(getSystemFunction_NonFunctionalRequirement(), this.getNonFunctionalRequirement(),
+			this.getNonFunctionalRequirement_SystemFunctions(), "nonFunctionalRequirement", null, 0, 1,
 			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemFunction_Usecases(), this.getUseCase(), this.getUseCase_SystemFunctions(), "usecases",
@@ -1269,8 +1273,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getUserTask_RealizingUseCases(), this.getUseCase(), this.getUseCase_RealizedUserTask(),
 			"realizingUseCases", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserTask_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
-			.getNonFunctionalRequirement_UserTasks(), "nonFunctionalRequirements", null, 0, -1, UserTask.class,
+		initEReference(getUserTask_NonFunctionalRequirements(), this.getNonFunctionalRequirement(),
+			this.getNonFunctionalRequirement_UserTasks(), "nonFunctionalRequirements", null, 0, -1, UserTask.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 

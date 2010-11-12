@@ -58,8 +58,10 @@ public class AnnotationItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addAnnotatedModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Annotation_annotatedModelElements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Annotation_annotatedModelElements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Annotation_annotatedModelElements_feature",
 				"_UI_Annotation_type"), ModelPackage.Literals.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, true, false, true,
 			null, null, null));

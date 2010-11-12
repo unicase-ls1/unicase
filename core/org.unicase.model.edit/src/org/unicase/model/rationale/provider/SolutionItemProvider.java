@@ -63,8 +63,10 @@ public class SolutionItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addUnderlyingProposalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Solution_underlyingProposals_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Solution_underlyingProposals_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Solution_underlyingProposals_feature",
 				"_UI_Solution_type"), RationalePackage.Literals.SOLUTION__UNDERLYING_PROPOSALS, true, false, true,
 			null, null, null));
@@ -76,9 +78,10 @@ public class SolutionItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addIssuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Solution_issue_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Solution_issue_feature", "_UI_Solution_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Solution_issue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Solution_issue_feature", "_UI_Solution_type"),
 			RationalePackage.Literals.SOLUTION__ISSUE, true, false, false, null, null, null));
 	}
 

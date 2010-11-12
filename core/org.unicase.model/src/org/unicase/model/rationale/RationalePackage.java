@@ -143,20 +143,20 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__COMMENTS = ModelPackage.ANNOTATION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE__CREATOR = ModelPackage.ANNOTATION__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ISSUE__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__CREATOR = ModelPackage.ANNOTATION__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -267,13 +267,22 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__INCLUDING_RELEASES = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
+	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Solution</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -282,7 +291,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 13;
+	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Criteria</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -290,7 +299,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 14;
+	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -298,7 +307,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 15;
+	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -307,7 +316,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ASSESSMENTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 16;
+	int ISSUE__ASSESSMENTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -315,7 +324,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 17;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 18;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class. <!--
@@ -406,20 +415,20 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROPOSAL__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROPOSAL__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROPOSAL__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -535,20 +544,20 @@ public interface RationalePackage extends EPackage {
 	int SOLUTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SOLUTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -664,20 +673,20 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CRITERION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CRITERION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CRITERION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -786,20 +795,20 @@ public interface RationalePackage extends EPackage {
 	int ASSESSMENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASSESSMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ASSESSMENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASSESSMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Proposal</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -924,20 +933,20 @@ public interface RationalePackage extends EPackage {
 	int COMMENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Sender</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->

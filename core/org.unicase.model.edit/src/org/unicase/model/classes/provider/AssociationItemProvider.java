@@ -72,9 +72,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_source_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__SOURCE, true, false, true, null, null, null));
 	}
 
@@ -84,9 +85,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_target_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__TARGET, true, false, true, null, null, null));
 	}
 
@@ -96,9 +98,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_type_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_type_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_type_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_type_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -110,8 +113,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addSourceMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_sourceMultiplicity_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_sourceMultiplicity_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Association_sourceMultiplicity_feature",
 				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__SOURCE_MULTIPLICITY, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -124,8 +129,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTargetMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetMultiplicity_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_targetMultiplicity_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Association_targetMultiplicity_feature",
 				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TARGET_MULTIPLICITY, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -137,10 +144,12 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addSourceRolePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_sourceRole_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_sourceRole_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_sourceRole_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_sourceRole_feature",
+				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -150,10 +159,12 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTargetRolePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetRole_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_targetRole_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_targetRole_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_targetRole_feature",
+				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -163,11 +174,14 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTransientPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_transient_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_transient_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__TRANSIENT, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Association_transient_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Association_transient_feature",
+					"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TRANSIENT, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**

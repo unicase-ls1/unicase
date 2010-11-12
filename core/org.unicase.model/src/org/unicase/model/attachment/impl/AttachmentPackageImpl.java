@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
@@ -19,6 +20,7 @@ import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
+import org.unicase.model.attachment.PatchAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -41,6 +43,8 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
+import org.unicase.model.release.ReleasePackage;
+import org.unicase.model.release.impl.ReleasePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
@@ -69,6 +73,13 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	private EClass fileAttachmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass patchAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -119,8 +130,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Obtain or create and register package
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
-			: new AttachmentPackageImpl());
+			.get(eNS_URI) : new AttachmentPackageImpl());
 
 		isInited = true;
 
@@ -136,8 +146,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI)
-			: TaskPackage.eINSTANCE);
+			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
@@ -157,8 +166,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
 		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI)
-			: BugPackage.eINSTANCE);
+			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
@@ -172,11 +180,13 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI)
-			: UtilPackage.eINSTANCE);
+			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAttachmentPackage.createPackageContents();
@@ -196,6 +206,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		theProfilePackage.createPackageContents();
 		theUtilPackage.createPackageContents();
 		theActivityPackage.createPackageContents();
+		theReleasePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAttachmentPackage.initializePackageContents();
@@ -215,6 +226,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		theProfilePackage.initializePackageContents();
 		theUtilPackage.initializePackageContents();
 		theActivityPackage.initializePackageContents();
+		theReleasePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theAttachmentPackage.freeze();
@@ -319,6 +331,24 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * 
 	 * @generated
 	 */
+	public EClass getPatchAttachment() {
+		return patchAttachmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getPatchAttachment_AppliedTo() {
+		return (EReference) patchAttachmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EAttribute getFileAttachment_Uploading() {
 		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(6);
 	}
@@ -373,6 +403,9 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__UPLOADING);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__DOWNLOADING);
 
+		patchAttachmentEClass = createEClass(PATCH_ATTACHMENT);
+		createEReference(patchAttachmentEClass, PATCH_ATTACHMENT__APPLIED_TO);
+
 		// Create enums
 		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
 	}
@@ -402,6 +435,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
+			.getEPackage(ReleasePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -442,6 +477,13 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileAttachment_Downloading(), ecorePackage.getEBoolean(), "downloading", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+
+		initEClass(patchAttachmentEClass, PatchAttachment.class, "PatchAttachment", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPatchAttachment_AppliedTo(), theReleasePackage.getRelease(),
+			theReleasePackage.getRelease_AppliedPatches(), "appliedTo", null, 0, -1, PatchAttachment.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

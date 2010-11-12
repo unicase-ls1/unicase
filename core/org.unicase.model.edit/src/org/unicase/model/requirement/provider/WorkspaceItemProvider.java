@@ -60,8 +60,10 @@ public class WorkspaceItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Workspace_systemFunctions_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Workspace_systemFunctions_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Workspace_systemFunctions_feature",
 				"_UI_Workspace_type"), RequirementPackage.Literals.WORKSPACE__SYSTEM_FUNCTIONS, true, false, true,
 			null, null, null));

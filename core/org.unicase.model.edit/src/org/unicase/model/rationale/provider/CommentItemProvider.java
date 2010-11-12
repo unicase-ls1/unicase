@@ -63,9 +63,10 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addSenderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_sender_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_sender_feature", "_UI_Comment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Comment_sender_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Comment_sender_feature", "_UI_Comment_type"),
 			RationalePackage.Literals.COMMENT__SENDER, false, false, true, null, null, null));
 	}
 
@@ -75,9 +76,10 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addRecipientsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipients_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Comment_recipients_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
 			RationalePackage.Literals.COMMENT__RECIPIENTS, false, false, true, null, null, null));
 	}
 
@@ -88,10 +90,13 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addCommentedElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Comment_commentedElement_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Comment_commentedElement_feature", "_UI_Comment_type"),
-				RationalePackage.Literals.COMMENT__COMMENTED_ELEMENT, true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Comment_commentedElement_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Comment_commentedElement_feature",
+					"_UI_Comment_type"), RationalePackage.Literals.COMMENT__COMMENTED_ELEMENT, true, false, false,
+				null, null, null));
 	}
 
 	/**

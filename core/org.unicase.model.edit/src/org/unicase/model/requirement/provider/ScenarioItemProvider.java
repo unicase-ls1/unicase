@@ -71,8 +71,10 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addInitiatingActorInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_initiatingActorInstance_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_initiatingActorInstance_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_initiatingActorInstance_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__INITIATING_ACTOR_INSTANCE, true, false,
 			true, null, null, null));
@@ -85,10 +87,11 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingActorInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Scenario_participatingActorInstances_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Scenario_participatingActorInstances_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_participatingActorInstances_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingActorInstances_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_ACTOR_INSTANCES, true, false,
 			true, null, null, null));
 	}
@@ -100,8 +103,10 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addInstantiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_instantiatedUseCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_instantiatedUseCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_instantiatedUseCases_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__INSTANTIATED_USE_CASES, true, false, true,
 			null, null, null));
@@ -114,8 +119,10 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_functionalRequirements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_functionalRequirements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_functionalRequirements_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__FUNCTIONAL_REQUIREMENTS, true, false, true,
 			null, null, null));
@@ -128,10 +135,11 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Scenario_nonFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_nonFunctionalRequirements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS, true, false,
 			true, null, null, null));
 	}
@@ -143,8 +151,10 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingMethods_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_participatingMethods_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingMethods_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_METHODS, true, false, true,
 			null, null, null));
@@ -157,8 +167,10 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingClasses_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Scenario_participatingClasses_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingClasses_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_CLASSES, true, false, true,
 			null, null, null));

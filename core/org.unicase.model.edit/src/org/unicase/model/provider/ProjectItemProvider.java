@@ -45,6 +45,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.release.ReleaseFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
@@ -297,6 +298,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AttachmentFactory.eINSTANCE.createPatchAttachment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -333,7 +337,10 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			ActivityFactory.eINSTANCE.createActivityEnd()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			EcoreFactory.eINSTANCE.createEObject()));
+			ReleaseFactory.eINSTANCE.createStream()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ReleaseFactory.eINSTANCE.createRelease()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEAttribute()));
@@ -355,6 +362,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEOperation()));
@@ -397,6 +407,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			EsmodelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createFileIdentifier()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			VersioningFactory.eINSTANCE.createTagVersionSpec()));
@@ -634,6 +647,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			NotationFactory.eINSTANCE.createIdentityAnchor()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			NotationFactory.eINSTANCE.createRoundedCornersStyle()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			NotationFactory.eINSTANCE.createRoutingStyle()));
@@ -957,6 +973,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			AttachmentFactory.eINSTANCE.createPatchAttachment()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
@@ -993,7 +1012,10 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			ActivityFactory.eINSTANCE.createActivityEnd()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			EcoreFactory.eINSTANCE.createEObject()));
+			ReleaseFactory.eINSTANCE.createStream()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			ReleaseFactory.eINSTANCE.createRelease()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEAttribute()));
@@ -1015,6 +1037,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			EcoreFactory.eINSTANCE.createEOperation()));
@@ -1057,6 +1082,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			EsmodelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			EsmodelFactory.eINSTANCE.createFileIdentifier()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			VersioningFactory.eINSTANCE.createTagVersionSpec()));
@@ -1294,6 +1322,9 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			NotationFactory.eINSTANCE.createIdentityAnchor()));
+
+		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
+			NotationFactory.eINSTANCE.createRoundedCornersStyle()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			NotationFactory.eINSTANCE.createRoutingStyle()));

@@ -63,8 +63,10 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	 * @generated
 	 */
 	protected void addInitiatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_initiatedScenarios_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ActorInstance_initiatedScenarios_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_initiatedScenarios_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS, true,
 			false, true, null, null, null));
@@ -77,10 +79,11 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	 * @generated
 	 */
 	protected void addParticipatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ActorInstance_participatedScenarios_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ActorInstance_participatedScenarios_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS, true,
 			false, true, null, null, null));
 	}
@@ -91,8 +94,10 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	 * @generated
 	 */
 	protected void addInstantiatedActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_instantiatedActor_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ActorInstance_instantiatedActor_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_instantiatedActor_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR, true, false,
 			true, null, null, null));

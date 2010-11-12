@@ -32,8 +32,8 @@ import org.unicase.model.task.util.MEState;
  * <li>{@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}
  * </li>
  * <li>{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}</li>
- * <li>{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}</li>
  * <li>{@link org.unicase.model.UnicaseModelElement#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}</li>
  * </ul>
  * </p>
  * 

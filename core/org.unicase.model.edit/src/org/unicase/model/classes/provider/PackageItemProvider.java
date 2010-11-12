@@ -62,8 +62,10 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	 * @generated
 	 */
 	protected void addContainedPackageElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Package_containedPackageElements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Package_containedPackageElements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Package_containedPackageElements_feature",
 				"_UI_Package_type"), ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, true, false, false,
 			null, null, null));
@@ -75,9 +77,10 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	 * @generated
 	 */
 	protected void addFacadeClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Package_facadeClass_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Package_facadeClass_feature", "_UI_Package_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Package_facadeClass_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Package_facadeClass_feature", "_UI_Package_type"),
 			ClassesPackage.Literals.PACKAGE__FACADE_CLASS, true, false, true, null, null, null));
 	}
 

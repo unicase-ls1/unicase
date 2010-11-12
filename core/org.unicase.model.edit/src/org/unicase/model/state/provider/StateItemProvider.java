@@ -62,9 +62,10 @@ public class StateItemProvider extends StateNodeItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addExitConditionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_State_exitConditions_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_State_exitConditions_feature", "_UI_State_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_State_exitConditions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_State_exitConditions_feature", "_UI_State_type"),
 			StatePackage.Literals.STATE__EXIT_CONDITIONS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -75,9 +76,10 @@ public class StateItemProvider extends StateNodeItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addActivitiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_State_activities_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_State_activities_feature", "_UI_State_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_State_activities_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_State_activities_feature", "_UI_State_type"),
 			StatePackage.Literals.STATE__ACTIVITIES, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -88,9 +90,10 @@ public class StateItemProvider extends StateNodeItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addEntryConditionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_State_entryConditions_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_State_entryConditions_feature", "_UI_State_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_State_entryConditions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_State_entryConditions_feature", "_UI_State_type"),
 			StatePackage.Literals.STATE__ENTRY_CONDITIONS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

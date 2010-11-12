@@ -63,9 +63,10 @@ public class LiteralItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addLiteralPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Literal_literal_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Literal_literal_feature", "_UI_Literal_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Literal_literal_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Literal_literal_feature", "_UI_Literal_type"),
 			ClassesPackage.Literals.LITERAL__LITERAL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}

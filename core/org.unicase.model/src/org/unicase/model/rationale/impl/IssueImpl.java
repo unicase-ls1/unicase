@@ -30,6 +30,8 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.release.Release;
+import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
@@ -53,6 +55,7 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getIncludingReleases <em>Including Releases</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
@@ -223,6 +226,16 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @ordered
 	 */
 	protected boolean resolved = RESOLVED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getIncludingReleases() <em>Including Releases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getIncludingReleases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Release> includingReleases;
 
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list. <!--
@@ -798,6 +811,19 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * 
 	 * @generated
 	 */
+	public EList<Release> getIncludingReleases() {
+		if (includingReleases == null) {
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
+				RationalePackage.ISSUE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+		}
+		return includingReleases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -822,6 +848,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return basicSetReviewer((User) otherEnd, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingReleases())
+				.basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProposals()).basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__SOLUTION:
@@ -853,6 +882,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return basicSetReviewer(null, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			return ((InternalEList<?>) getIncludingReleases()).basicRemove(otherEnd, msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
 			return ((InternalEList<?>) getProposals()).basicRemove(otherEnd, msgs);
 		case RationalePackage.ISSUE__SOLUTION:
@@ -914,6 +945,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return getPriority();
 		case RationalePackage.ISSUE__RESOLVED:
 			return isResolved();
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			return getIncludingReleases();
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -978,6 +1011,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__RESOLVED:
 			setResolved((Boolean) newValue);
 			return;
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			getProposals().addAll((Collection<? extends Proposal>) newValue);
@@ -1040,6 +1077,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__RESOLVED:
 			setResolved(RESOLVED_EDEFAULT);
 			return;
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			return;
@@ -1088,6 +1128,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return priority != PRIORITY_EDEFAULT;
 		case RationalePackage.ISSUE__RESOLVED:
 			return resolved != RESOLVED_EDEFAULT;
+		case RationalePackage.ISSUE__INCLUDING_RELEASES:
+			return includingReleases != null && !includingReleases.isEmpty();
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -1141,6 +1183,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return TaskPackage.WORK_ITEM__PRIORITY;
 			case RationalePackage.ISSUE__RESOLVED:
 				return TaskPackage.WORK_ITEM__RESOLVED;
+			case RationalePackage.ISSUE__INCLUDING_RELEASES:
+				return TaskPackage.WORK_ITEM__INCLUDING_RELEASES;
 			default:
 				return -1;
 			}
@@ -1187,6 +1231,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return RationalePackage.ISSUE__PRIORITY;
 			case TaskPackage.WORK_ITEM__RESOLVED:
 				return RationalePackage.ISSUE__RESOLVED;
+			case TaskPackage.WORK_ITEM__INCLUDING_RELEASES:
+				return RationalePackage.ISSUE__INCLUDING_RELEASES;
 			default:
 				return -1;
 			}

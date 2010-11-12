@@ -79,9 +79,10 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MEDiagram_elements_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_MEDiagram_elements_feature", "_UI_MEDiagram_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_MEDiagram_elements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MEDiagram_elements_feature", "_UI_MEDiagram_type"),
 			DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS, true, false, true, null, null, null));
 	}
 
@@ -294,8 +295,8 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS, BugFactory.eINSTANCE
-			.createBugReport()));
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			BugFactory.eINSTANCE.createBugReport()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ComponentFactory.eINSTANCE.createComponent()));

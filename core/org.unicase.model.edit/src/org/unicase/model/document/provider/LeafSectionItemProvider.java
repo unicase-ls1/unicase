@@ -80,8 +80,10 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LeafSection_modelElements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_LeafSection_modelElements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_modelElements_feature",
 				"_UI_LeafSection_type"), DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, true, false, false,
 			null, null, null));
@@ -94,10 +96,11 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addReferencedModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_LeafSection_referencedModelElements_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_LeafSection_referencedModelElements_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_LeafSection_referencedModelElements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_referencedModelElements_feature",
 				"_UI_LeafSection_type"), DocumentPackage.Literals.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS, true, false,
 			true, null, null, null));
 	}

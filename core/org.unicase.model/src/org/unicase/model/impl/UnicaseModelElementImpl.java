@@ -60,8 +60,8 @@ import org.unicase.model.task.util.MEStateImpl;
  * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype
  * Instances</em>}</li>
  * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
- * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
  * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
  * </ul>
  * </p>
  * 
@@ -178,26 +178,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected EList<Comment> comments;
 
 	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getCreator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CREATOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getCreator()
-	 * @generated
-	 * @ordered
-	 */
-	protected String creator = CREATOR_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -216,6 +196,26 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @ordered
 	 */
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getCreator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CREATOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getCreator()
+	 * @generated
+	 * @ordered
+	 */
+	protected String creator = CREATOR_EDEFAULT;
 
 	private boolean calculatingState;
 
@@ -665,10 +665,10 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return getAppliedStereotypeInstances();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			return getComments();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			return getCreator();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			return getCreationDate();
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+			return getCreator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -711,11 +711,11 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			getComments().clear();
 			getComments().addAll((Collection<? extends Comment>) newValue);
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator((String) newValue);
-			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			setCreationDate((Date) newValue);
+			return;
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+			setCreator((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -753,11 +753,11 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			getComments().clear();
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator(CREATOR_EDEFAULT);
-			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			setCreationDate(CREATION_DATE_EDEFAULT);
+			return;
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+			setCreator(CREATOR_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -789,10 +789,10 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return appliedStereotypeInstances != null && !appliedStereotypeInstances.isEmpty();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			return comments != null && !comments.isEmpty();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			return CREATOR_EDEFAULT == null ? creator != null : !CREATOR_EDEFAULT.equals(creator);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 			return CREATION_DATE_EDEFAULT == null ? creationDate != null : !CREATION_DATE_EDEFAULT.equals(creationDate);
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+			return CREATOR_EDEFAULT == null ? creator != null : !CREATOR_EDEFAULT.equals(creator);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -812,10 +812,10 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", creator: ");
-		result.append(creator);
 		result.append(", creationDate: ");
 		result.append(creationDate);
+		result.append(", creator: ");
+		result.append(creator);
 		result.append(')');
 		return result.toString();
 	}

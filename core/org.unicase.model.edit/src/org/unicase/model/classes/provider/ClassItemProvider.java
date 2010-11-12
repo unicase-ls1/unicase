@@ -69,8 +69,9 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addInstantiationTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_instantiationType_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_instantiationType_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Class_instantiationType_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__INSTANTIATION_TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -84,10 +85,13 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Class_participatedUseCases_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Class_participatedUseCases_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature",
+					"_UI_Class_type"), ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -96,9 +100,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addSuperClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_superClasses_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Class_superClasses_feature", "_UI_Class_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_superClasses_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_superClasses_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__SUPER_CLASSES, true, false, true, null, null, null));
 	}
 
@@ -108,9 +113,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addSubClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_subClasses_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_subClasses_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__SUB_CLASSES, true, false, true, null, null, null));
 	}
 
@@ -122,10 +128,13 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 */
 	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Class_incomingAssociations_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Class_incomingAssociations_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature",
+					"_UI_Class_type"), ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -136,10 +145,13 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 */
 	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Class_outgoingAssociations_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Class_outgoingAssociations_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature",
+					"_UI_Class_type"), ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -148,9 +160,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addAttributesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_attributes_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Class_attributes_feature", "_UI_Class_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_attributes_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_attributes_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__ATTRIBUTES, true, false, false, null, null, null));
 	}
 
@@ -160,9 +173,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_methods_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Class_methods_feature", "_UI_Class_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_methods_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_methods_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__METHODS, true, false, false, null, null, null));
 	}
 
@@ -173,8 +187,9 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addDemoParticipationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_demoParticipations_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Class_demoParticipations_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Class_demoParticipations_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
 	}
@@ -266,8 +281,8 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.CLASS__ATTRIBUTES,
 			ClassesFactory.eINSTANCE.createAttribute()));
 
-		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.CLASS__METHODS, ClassesFactory.eINSTANCE
-			.createMethod()));
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.CLASS__METHODS,
+			ClassesFactory.eINSTANCE.createMethod()));
 	}
 
 }

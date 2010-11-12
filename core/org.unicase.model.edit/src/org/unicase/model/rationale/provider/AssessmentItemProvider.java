@@ -65,9 +65,10 @@ public class AssessmentItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addProposalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Assessment_proposal_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Assessment_proposal_feature", "_UI_Assessment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Assessment_proposal_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Assessment_proposal_feature", "_UI_Assessment_type"),
 			RationalePackage.Literals.ASSESSMENT__PROPOSAL, true, false, true, null, null, null));
 	}
 
@@ -77,9 +78,10 @@ public class AssessmentItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addCriterionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Assessment_criterion_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Assessment_criterion_feature", "_UI_Assessment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Assessment_criterion_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Assessment_criterion_feature", "_UI_Assessment_type"),
 			RationalePackage.Literals.ASSESSMENT__CRITERION, true, false, true, null, null, null));
 	}
 
@@ -89,9 +91,10 @@ public class AssessmentItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Assessment_value_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Assessment_value_feature", "_UI_Assessment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Assessment_value_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Assessment_value_feature", "_UI_Assessment_type"),
 			RationalePackage.Literals.ASSESSMENT__VALUE, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}

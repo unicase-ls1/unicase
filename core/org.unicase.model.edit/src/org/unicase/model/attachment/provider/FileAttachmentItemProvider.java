@@ -66,8 +66,10 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FileAttachment_fileName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileName_feature",
 				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_NAME, false, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -79,8 +81,10 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	 * @generated
 	 */
 	protected void addFileSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileSize_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FileAttachment_fileSize_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileSize_feature",
 				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_SIZE, false, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -92,8 +96,10 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	 * @generated
 	 */
 	protected void addRequiredOfflinePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_requiredOffline_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FileAttachment_requiredOffline_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_requiredOffline_feature",
 				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__REQUIRED_OFFLINE, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -105,8 +111,10 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	 * @generated
 	 */
 	protected void addFileTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileType_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FileAttachment_fileType_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileType_feature",
 				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

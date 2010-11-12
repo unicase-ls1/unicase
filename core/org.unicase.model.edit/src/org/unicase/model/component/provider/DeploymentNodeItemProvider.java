@@ -61,8 +61,10 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DeploymentNode_components_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DeploymentNode_components_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_DeploymentNode_components_feature",
 				"_UI_DeploymentNode_type"), ComponentPackage.Literals.DEPLOYMENT_NODE__COMPONENTS, true, false, true,
 			null, null, null));

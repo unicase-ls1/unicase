@@ -25,6 +25,8 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.Release;
+import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -46,6 +48,7 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEffort <em>Effort</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isResolved <em>Resolved</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getIncludingReleases <em>Including Releases</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
@@ -206,6 +209,16 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected boolean resolved = RESOLVED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getIncludingReleases() <em>Including Releases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getIncludingReleases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Release> includingReleases;
 
 	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -657,6 +670,19 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Release> getIncludingReleases() {
+		if (includingReleases == null) {
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
+				BugPackage.BUG_REPORT__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+		}
+		return includingReleases;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -795,6 +821,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return basicSetReviewer((User) otherEnd, msgs);
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingReleases())
+				.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -819,6 +848,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return basicSetReviewer(null, msgs);
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			return ((InternalEList<?>) getIncludingReleases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -874,6 +905,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return getPriority();
 		case BugPackage.BUG_REPORT__RESOLVED:
 			return isResolved();
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			return getIncludingReleases();
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked();
 		case BugPackage.BUG_REPORT__SEVERITY:
@@ -932,6 +965,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__RESOLVED:
 			setResolved((Boolean) newValue);
+			return;
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
 			return;
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked((Boolean) newValue);
@@ -993,6 +1030,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__RESOLVED:
 			setResolved(RESOLVED_EDEFAULT);
 			return;
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			getIncludingReleases().clear();
+			return;
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked(CHECKED_EDEFAULT);
 			return;
@@ -1042,6 +1082,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return priority != PRIORITY_EDEFAULT;
 		case BugPackage.BUG_REPORT__RESOLVED:
 			return resolved != RESOLVED_EDEFAULT;
+		case BugPackage.BUG_REPORT__INCLUDING_RELEASES:
+			return includingReleases != null && !includingReleases.isEmpty();
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
 		case BugPackage.BUG_REPORT__SEVERITY:

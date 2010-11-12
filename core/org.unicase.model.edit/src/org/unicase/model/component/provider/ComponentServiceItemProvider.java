@@ -63,10 +63,11 @@ public class ComponentServiceItemProvider extends UnicaseModelElementItemProvide
 	 * @generated
 	 */
 	protected void addOfferingComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ComponentService_offeringComponent_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ComponentService_offeringComponent_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ComponentService_offeringComponent_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ComponentService_offeringComponent_feature",
 				"_UI_ComponentService_type"), ComponentPackage.Literals.COMPONENT_SERVICE__OFFERING_COMPONENT, true,
 			false, false, null, null, null));
 	}
@@ -78,10 +79,11 @@ public class ComponentServiceItemProvider extends UnicaseModelElementItemProvide
 	 * @generated
 	 */
 	protected void addConsumingComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ComponentService_consumingComponents_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ComponentService_consumingComponents_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ComponentService_consumingComponents_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ComponentService_consumingComponents_feature",
 				"_UI_ComponentService_type"), ComponentPackage.Literals.COMPONENT_SERVICE__CONSUMING_COMPONENTS, true,
 			false, true, null, null, null));
 	}

@@ -67,8 +67,10 @@ public class StereotypeInstanceItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	protected void addStereotypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StereotypeInstance_stereotype_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeInstance_stereotype_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StereotypeInstance_stereotype_feature",
 				"_UI_StereotypeInstance_type"), ProfilePackage.Literals.STEREOTYPE_INSTANCE__STEREOTYPE, true, false,
 			true, null, null, null));
@@ -80,8 +82,10 @@ public class StereotypeInstanceItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	protected void addModelElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StereotypeInstance_modelElement_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeInstance_modelElement_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StereotypeInstance_modelElement_feature",
 				"_UI_StereotypeInstance_type"), ProfilePackage.Literals.STEREOTYPE_INSTANCE__MODEL_ELEMENT, true,
 			false, false, null, null, null));
@@ -94,11 +98,12 @@ public class StereotypeInstanceItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	protected void addStereotypeAttributeInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeInstance_stereotypeAttributeInstances_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeInstance_stereotypeAttributeInstances_feature",
-				"_UI_StereotypeInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeInstance_stereotypeAttributeInstances_feature"),
+			getString("_UI_PropertyDescriptor_description",
+				"_UI_StereotypeInstance_stereotypeAttributeInstances_feature", "_UI_StereotypeInstance_type"),
 			ProfilePackage.Literals.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES, true, false, false, null,
 			null, null));
 	}
@@ -185,8 +190,8 @@ public class StereotypeInstanceItemProvider extends UnicaseModelElementItemProvi
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			ProfilePackage.Literals.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES, ProfileFactory.eINSTANCE
-				.createStereotypeAttributeInstanceString()));
+			ProfilePackage.Literals.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES,
+			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
 	}
 
 	/**

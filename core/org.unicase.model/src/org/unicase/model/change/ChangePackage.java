@@ -142,20 +142,20 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__COMMENTS = RationalePackage.ISSUE__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__CREATOR = RationalePackage.ISSUE__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MERGING_ISSUE__CREATION_DATE = RationalePackage.ISSUE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__CREATOR = RationalePackage.ISSUE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -264,6 +264,15 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__RESOLVED = RationalePackage.ISSUE__RESOLVED;
+
+	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__INCLUDING_RELEASES = RationalePackage.ISSUE__INCLUDING_RELEASES;
 
 	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -424,20 +433,20 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__COMMENTS = RationalePackage.PROPOSAL__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__CREATOR = RationalePackage.PROPOSAL__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MERGING_PROPOSAL__CREATION_DATE = RationalePackage.PROPOSAL__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__CREATOR = RationalePackage.PROPOSAL__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -563,20 +572,20 @@ public interface ChangePackage extends EPackage {
 	int MERGING_SOLUTION__COMMENTS = RationalePackage.SOLUTION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__CREATOR = RationalePackage.SOLUTION__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MERGING_SOLUTION__CREATION_DATE = RationalePackage.SOLUTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__CREATOR = RationalePackage.SOLUTION__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list. <!-- begin-user-doc --> <!--

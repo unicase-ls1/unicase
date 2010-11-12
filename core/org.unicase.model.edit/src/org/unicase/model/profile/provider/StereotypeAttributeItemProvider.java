@@ -62,8 +62,10 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	 * @generated
 	 */
 	protected void addStereotypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StereotypeAttribute_stereotype_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttribute_stereotype_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StereotypeAttribute_stereotype_feature",
 				"_UI_StereotypeAttribute_type"), ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE__STEREOTYPE, true, false,
 			false, null, null, null));

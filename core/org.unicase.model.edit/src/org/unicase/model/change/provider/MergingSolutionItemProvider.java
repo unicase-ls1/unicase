@@ -165,9 +165,6 @@ public class MergingSolutionItemProvider extends SolutionItemProvider implements
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,

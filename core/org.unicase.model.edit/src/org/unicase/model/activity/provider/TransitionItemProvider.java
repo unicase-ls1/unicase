@@ -65,9 +65,10 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Transition_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Transition_source_feature", "_UI_Transition_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Transition_source_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Transition_source_feature", "_UI_Transition_type"),
 			ActivityPackage.Literals.TRANSITION__SOURCE, true, false, true, null, null, null));
 	}
 
@@ -77,9 +78,10 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Transition_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Transition_target_feature", "_UI_Transition_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Transition_target_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Transition_target_feature", "_UI_Transition_type"),
 			ActivityPackage.Literals.TRANSITION__TARGET, true, false, true, null, null, null));
 	}
 
@@ -89,9 +91,10 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	 * @generated
 	 */
 	protected void addConditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Transition_condition_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Transition_condition_feature", "_UI_Transition_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Transition_condition_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Transition_condition_feature", "_UI_Transition_type"),
 			ActivityPackage.Literals.TRANSITION__CONDITION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

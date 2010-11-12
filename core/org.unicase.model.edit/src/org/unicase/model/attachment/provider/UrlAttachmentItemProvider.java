@@ -63,9 +63,10 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UrlAttachment_url_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UrlAttachment_url_feature", "_UI_UrlAttachment_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UrlAttachment_url_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UrlAttachment_url_feature", "_UI_UrlAttachment_type"),
 			AttachmentPackage.Literals.URL_ATTACHMENT__URL, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}

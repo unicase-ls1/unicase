@@ -64,11 +64,12 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	 * @generated
 	 */
 	protected void addStereotypeInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeAttributeInstance_stereotypeInstance_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstance_stereotypeInstance_feature",
-				"_UI_StereotypeAttributeInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeInstance_stereotypeInstance_feature"),
+			getString("_UI_PropertyDescriptor_description",
+				"_UI_StereotypeAttributeInstance_stereotypeInstance_feature", "_UI_StereotypeAttributeInstance_type"),
 			ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE, true, false, false, null, null,
 			null));
 	}
@@ -80,11 +81,12 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	 * @generated
 	 */
 	protected void addStereotypeAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeAttributeInstance_stereotypeAttribute_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstance_stereotypeAttribute_feature",
-				"_UI_StereotypeAttributeInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeInstance_stereotypeAttribute_feature"),
+			getString("_UI_PropertyDescriptor_description",
+				"_UI_StereotypeAttributeInstance_stereotypeAttribute_feature", "_UI_StereotypeAttributeInstance_type"),
 			ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE, true, false, true, null, null,
 			null));
 	}

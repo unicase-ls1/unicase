@@ -143,20 +143,20 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__COMMENTS = TaskPackage.WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__CREATOR = TaskPackage.WORK_ITEM__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int BUG_REPORT__CREATION_DATE = TaskPackage.WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__CREATOR = TaskPackage.WORK_ITEM__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -257,6 +257,15 @@ public interface BugPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUG_REPORT__RESOLVED = TaskPackage.WORK_ITEM__RESOLVED;
+
+	/**
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__INCLUDING_RELEASES = TaskPackage.WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

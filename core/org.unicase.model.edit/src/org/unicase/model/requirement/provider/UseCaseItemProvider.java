@@ -75,8 +75,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_initiatingActor_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_initiatingActor_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_initiatingActor_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__INITIATING_ACTOR, true, false, true, null, null, null));
 	}
@@ -87,9 +88,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_scenarios_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UseCase_scenarios_feature", "_UI_UseCase_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_scenarios_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_scenarios_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__SCENARIOS, true, false, true, null, null, null));
 	}
 
@@ -100,8 +102,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_functionalRequirements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UseCase_functionalRequirements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_functionalRequirements_feature",
 				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__FUNCTIONAL_REQUIREMENTS, true, false, true,
 			null, null, null));
@@ -114,8 +118,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_nonFunctionalRequirements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UseCase_nonFunctionalRequirements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_nonFunctionalRequirements_feature",
 				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS, true, false,
 			true, null, null, null));
@@ -128,10 +134,13 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addIdentifiedClassesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UseCase_identifiedClasses_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UseCase_identifiedClasses_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UseCase_identifiedClasses_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_UseCase_identifiedClasses_feature",
+					"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -141,10 +150,13 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addIncludedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UseCase_includedUseCases_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UseCase_includedUseCases_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__INCLUDED_USE_CASES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UseCase_includedUseCases_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_UseCase_includedUseCases_feature",
+					"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__INCLUDED_USE_CASES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -154,10 +166,13 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addExtendedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UseCase_extendedUseCases_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UseCase_extendedUseCases_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__EXTENDED_USE_CASES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UseCase_extendedUseCases_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_UseCase_extendedUseCases_feature",
+					"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__EXTENDED_USE_CASES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -166,8 +181,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_systemFunctions_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_systemFunctions_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_systemFunctions_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__SYSTEM_FUNCTIONS, true, false, true, null, null, null));
 	}
@@ -179,8 +195,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addParticipatingActorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_participatingActors_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UseCase_participatingActors_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_participatingActors_feature",
 				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__PARTICIPATING_ACTORS, true, false, true,
 			null, null, null));
@@ -193,10 +211,13 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 */
 	protected void addRealizedUserTaskPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UseCase_realizedUserTask_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UseCase_realizedUserTask_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__REALIZED_USER_TASK, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UseCase_realizedUserTask_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_UseCase_realizedUserTask_feature",
+					"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__REALIZED_USER_TASK, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -205,9 +226,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addPreconditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_precondition_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UseCase_precondition_feature", "_UI_UseCase_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_precondition_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_precondition_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__PRECONDITION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -218,9 +240,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addUseCaseStepsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_useCaseSteps_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UseCase_useCaseSteps_feature", "_UI_UseCase_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_useCaseSteps_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_useCaseSteps_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__USE_CASE_STEPS, true, false, true, null, null, null));
 	}
 
@@ -230,9 +253,10 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addPostconditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_postcondition_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UseCase_postcondition_feature", "_UI_UseCase_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_postcondition_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_postcondition_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__POSTCONDITION, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
