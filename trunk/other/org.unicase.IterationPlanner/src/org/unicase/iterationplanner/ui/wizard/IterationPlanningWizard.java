@@ -6,6 +6,10 @@
 package org.unicase.iterationplanner.ui.wizard;
 
 import org.eclipse.jface.wizard.Wizard;
+import org.unicase.iterationplanner.ui.wizard.input.AbstractInputPage;
+import org.unicase.iterationplanner.ui.wizard.input.DefineAssigneesPage;
+import org.unicase.iterationplanner.ui.wizard.input.DefineRequirementsPage;
+import org.unicase.iterationplanner.ui.wizard.input.DefineTasksPage;
 
 /**
  * @author Hodaie
@@ -16,12 +20,23 @@ public class IterationPlanningWizard extends Wizard {
 	 * Constructor.
 	 */
 	public IterationPlanningWizard() {
+		setWindowTitle("Define Inputs to Iteration Planning Algorithm");
+	}
 
+	@Override
+	public void addPages() {
+		
+		AbstractInputPage defineReqsPage = new DefineRequirementsPage("defineRequirementsPage");
+		AbstractInputPage defineTasksPage = new DefineTasksPage("defineTasksPage");
+		AbstractInputPage defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage");
+		addPage(defineReqsPage);
+		addPage(defineTasksPage);
+		addPage(defineAssigneesPage);
 	}
 
 	@Override
 	public boolean performFinish() {
-		return false;
+		return true;
 	}
 
 }
