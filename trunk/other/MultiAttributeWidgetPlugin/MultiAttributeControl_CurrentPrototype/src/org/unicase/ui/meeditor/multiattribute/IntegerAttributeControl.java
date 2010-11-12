@@ -109,13 +109,30 @@ class IntegerAttributeControl extends AttributeControl {
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
-			// one will be deleted --> new empty one
-			if (parentItem.isFull()) {
-				parentItem.createSingleField();
+			if (emptyField) {
+				// add instead of delete
+				// duplicate handling
+				while (dataManipulator.contains(value)) {
+					value++;
+				}
+				widget.setSelection(value);
+				// duplicate handling till here
+				dataManipulator.add(value);
+				emptyField = false;
+				button.dispose();
+				createDeleteButton();
 			}
-			dataManipulator.remove(value);
-			
-			fieldComposite.dispose();
+			else {
+				// delete
+				// one will be deleted --> new empty one
+				if (parentItem.isFull()) {
+					parentItem.createSingleField();
+				}
+				dataManipulator.remove(value);
+				
+				fieldComposite.dispose();
+				
+			}
 		}
 		
 		parentItem.refreshWidget();

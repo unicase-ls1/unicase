@@ -41,6 +41,7 @@ class StringAttributeControl extends AttributeControl {
 		createCompositeLayout();
 		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
 		widget.addModifyListener(this);
+		widget.setMessage("Add new element...");
 		createAddButton();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
 	}
@@ -55,6 +56,7 @@ class StringAttributeControl extends AttributeControl {
 			// first edit? --> new button
 			if (emptyField) {
 				button.dispose();
+				widget.setMessage("");
 				createDeleteButton();
 			}
 			
@@ -90,13 +92,31 @@ class StringAttributeControl extends AttributeControl {
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
-			// one will be deleted --> new empty one
-			if (parentItem.isFull()) {
-				parentItem.createSingleField();
+			if (emptyField) {
+				// add instead of delete
+				// duplicate handling
+				while (dataManipulator.contains(value)) {
+					value = "_"+value;
+				}
+				widget.setText(value);
+				// duplicate handling till here
+				dataManipulator.add(value);
+				emptyField = false;
+				button.dispose();
+				widget.setMessage("");
+				createDeleteButton();
 			}
-			dataManipulator.remove(value);
-			
-			fieldComposite.dispose();
+			else {
+				// delete
+				// one will be deleted --> new empty one
+				if (parentItem.isFull()) {
+					parentItem.createSingleField();
+				}
+				dataManipulator.remove(value);
+				
+				fieldComposite.dispose();
+				
+			}
 		}
 		
 		parentItem.refreshWidget();

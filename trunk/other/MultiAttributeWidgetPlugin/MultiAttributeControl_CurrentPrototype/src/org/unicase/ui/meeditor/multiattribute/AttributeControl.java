@@ -35,7 +35,7 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	protected void createAddButton() {
 		button = new ImageHyperlink(fieldComposite, SWT.TOP);
 		button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD));
-		//button.setEnabled(false);
+		button.addMouseListener(this);
 	}
 	
 
