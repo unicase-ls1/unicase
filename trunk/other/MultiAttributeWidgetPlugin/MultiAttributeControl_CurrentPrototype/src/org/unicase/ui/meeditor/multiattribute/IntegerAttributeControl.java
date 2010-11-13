@@ -67,15 +67,18 @@ class IntegerAttributeControl extends AttributeControl {
 			final int newValue = widget.getSelection();
 			
 			// jump over duplicates
-			if (dataManipulator.contains(newValue)) {
-				if (newValue > value) {
-					widget.setSelection(newValue+1);
-				}
-				else {
-					widget.setSelection(newValue-1);
-				}
-				return;
+			if (!parentItem.allowDuplicates) {
+				if (dataManipulator.contains(newValue)) {
+					if (newValue > value) {
+						widget.setSelection(newValue+1);
+					}
+					else {
+						widget.setSelection(newValue-1);
+					}
+					return;
+				}				
 			}
+			// end of duplicate handling
 			
 			if (!emptyField) {
 				// was a regular entry before
@@ -103,12 +106,16 @@ class IntegerAttributeControl extends AttributeControl {
 		if (e.getSource().equals(button)) {
 			if (emptyField) {
 				// add instead of delete
+				
 				// duplicate handling
-				while (dataManipulator.contains(value)) {
-					value++;
+				if (!parentItem.allowDuplicates) {
+					while (dataManipulator.contains(value)) {
+						value++;
+					} 
+					widget.setSelection(value);					
 				}
-				widget.setSelection(value);
-				// duplicate handling till here
+				// end of duplicate handling
+				
 				dataManipulator.add(value);
 				emptyField = false;
 				button.dispose();
