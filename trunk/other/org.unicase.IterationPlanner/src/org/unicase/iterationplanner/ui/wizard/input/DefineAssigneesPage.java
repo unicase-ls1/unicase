@@ -1,16 +1,19 @@
 package org.unicase.iterationplanner.ui.wizard.input;
 
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 
 public class DefineAssigneesPage extends AbstractInputPage {
 
 	private static final String PAGE_TITLE = "Define Assignees";
 	private static final String PAGE_DESCRIPTION= "Define Assignees page description";
+	private ProjectBridge projectBridge;
 
-	public DefineAssigneesPage(String pageName) {
+	public DefineAssigneesPage(String pageName, ProjectBridge projectBridge) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
+		this.projectBridge = projectBridge;
 	}
 
 	@Override

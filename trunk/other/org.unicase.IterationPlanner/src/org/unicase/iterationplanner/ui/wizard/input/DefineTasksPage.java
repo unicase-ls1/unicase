@@ -6,17 +6,20 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
+import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 
 public class DefineTasksPage extends AbstractInputPage {
 	
 	private static final String PAGE_TITLE = "Define Tasks";
 	private static final String PAGE_DESCRIPTION= "Define tasks page description";
+	private ProjectBridge projectBridge;
 	
 	
-	public DefineTasksPage(String pageName) {
+	public DefineTasksPage(String pageName, ProjectBridge projectBridge) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
+		this.projectBridge = projectBridge;
 	}
 
 
