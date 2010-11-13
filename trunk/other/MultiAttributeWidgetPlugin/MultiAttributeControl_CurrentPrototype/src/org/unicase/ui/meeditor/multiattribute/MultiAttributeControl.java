@@ -76,7 +76,6 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		this.style = style;
 		isEditable = getItemPropertyDescriptor().canSetProperty(getModelElement());
 		allowDuplicates = !feature.isUnique();
-		System.out.println(allowDuplicates);
 		
 		// create composite structure
 		composite = getToolkit().createComposite(parent, style | SWT.BORDER);

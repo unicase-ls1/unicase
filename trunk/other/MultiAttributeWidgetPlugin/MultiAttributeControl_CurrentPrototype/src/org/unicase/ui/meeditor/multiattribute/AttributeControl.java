@@ -22,8 +22,13 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	protected MultiAttributeControl parentItem;
 	protected Composite fieldComposite;
 	protected ImageHyperlink button;
+	protected ImageHyperlink up;
+	protected ImageHyperlink down;
 	protected boolean emptyField = true;
 	
+	/**
+	 * Initializes the delete button.
+	 */
 	protected void createDeleteButton() {
 		button = new ImageHyperlink(fieldComposite, SWT.TOP);
 		button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
@@ -31,10 +36,48 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 		fieldComposite.layout();
 	}
 	
+	/**
+	 * Initializes the add button.
+	 */
 	protected void createAddButton() {
 		button = new ImageHyperlink(fieldComposite, SWT.TOP);
 		button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD));
 		button.addMouseListener(this);
+	}
+	
+	/**
+	 * Initializes the up/down buttons.
+	 */
+	protected void createUpDownButtons() {
+		// if invisible ones have been created
+		if (up != null)
+			up.dispose();
+		up = new ImageHyperlink(fieldComposite, SWT.TOP);
+		up.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
+		up.addMouseListener(this);
+		
+		// if invisible ones have been created
+		if (down != null)
+			down.dispose();
+		down = new ImageHyperlink(fieldComposite, SWT.TOP);
+		down.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
+		down.addMouseListener(this);
+		fieldComposite.layout();
+	}
+	
+	/**
+	 * Initializes invisible up/down buttons (needed for the layout).
+	 */
+	protected void createInvisibleUpDownButtons() {
+		up = new ImageHyperlink(fieldComposite, SWT.TOP);
+		up.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
+		up.addMouseListener(this);
+		up.setVisible(false);
+		
+		down = new ImageHyperlink(fieldComposite, SWT.TOP);
+		down.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
+		down.addMouseListener(this);
+		down.setVisible(false);
 	}
 	
 
@@ -46,7 +89,7 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 */
 	protected void createCompositeLayout() {
 		fieldComposite = parentItem.getToolkit().createComposite(parentItem.composite, parentItem.style);
-		GridLayout fieldLayout = new GridLayout(2, false);
+		GridLayout fieldLayout = new GridLayout(4, false);
 		fieldLayout.verticalSpacing = 0;
 		fieldComposite.setLayout(fieldLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(fieldComposite);

@@ -28,6 +28,7 @@ class StringAttributeControl extends AttributeControl {
 		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
 		widget.addModifyListener(this);
 		createDeleteButton();
+		createUpDownButtons();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
 	}
 	
@@ -42,6 +43,7 @@ class StringAttributeControl extends AttributeControl {
 		widget.addModifyListener(this);
 		widget.setMessage("Add new element...");
 		createAddButton();
+		createInvisibleUpDownButtons();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
 	}
 	
@@ -57,6 +59,7 @@ class StringAttributeControl extends AttributeControl {
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
+				createUpDownButtons();
 			}
 			
 			final String newValue = widget.getText();
@@ -111,6 +114,7 @@ class StringAttributeControl extends AttributeControl {
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
+				createUpDownButtons();
 			}
 			else {
 				// delete

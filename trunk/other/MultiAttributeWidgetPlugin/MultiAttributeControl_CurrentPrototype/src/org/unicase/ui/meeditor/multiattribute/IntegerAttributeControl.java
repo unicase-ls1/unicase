@@ -34,6 +34,7 @@ class IntegerAttributeControl extends AttributeControl {
 		widget.setValues(value, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
 		widget.addModifyListener(this);
 		createDeleteButton();
+		createUpDownButtons();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
 	}
 	
@@ -48,6 +49,7 @@ class IntegerAttributeControl extends AttributeControl {
 		widget.setValues(value, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
 		widget.addModifyListener(this);
 		createAddButton();
+		createInvisibleUpDownButtons();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
 	}
 	
@@ -62,6 +64,7 @@ class IntegerAttributeControl extends AttributeControl {
 			if (emptyField) {
 				button.dispose();
 				createDeleteButton();
+				createUpDownButtons();
 			}
 			
 			final int newValue = widget.getSelection();
@@ -120,6 +123,7 @@ class IntegerAttributeControl extends AttributeControl {
 				emptyField = false;
 				button.dispose();
 				createDeleteButton();
+				createUpDownButtons();
 			}
 			else {
 				// delete
