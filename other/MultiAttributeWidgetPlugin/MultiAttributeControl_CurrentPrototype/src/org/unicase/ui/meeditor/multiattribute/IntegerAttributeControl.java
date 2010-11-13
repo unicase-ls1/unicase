@@ -2,17 +2,9 @@ package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Spinner;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ui.common.commands.ECPCommand;
 
 /**
  * Represents a single Integer field for a MultiAttributeItem.
