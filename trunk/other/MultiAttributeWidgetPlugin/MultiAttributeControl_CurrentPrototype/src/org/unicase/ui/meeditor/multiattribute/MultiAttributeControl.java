@@ -42,7 +42,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	protected int style;
 	protected int upperBound;
 	protected boolean isEditable;
-	protected boolean allowDuplicates = false;
+	protected boolean allowDuplicates;
 	
 	//essential references
 	protected Composite composite;
@@ -75,7 +75,8 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		// set state
 		this.style = style;
 		isEditable = getItemPropertyDescriptor().canSetProperty(getModelElement());
-		//allowDuplicates = !isUnique?? how to implement it?
+		allowDuplicates = !feature.isUnique();
+		System.out.println(allowDuplicates);
 		
 		// create composite structure
 		composite = getToolkit().createComposite(parent, style | SWT.BORDER);
