@@ -1,5 +1,7 @@
 package org.unicase.ui.meeditor.multiattribute;
 
+import java.awt.Color;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
@@ -78,7 +80,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		//allowDuplicates = !isUnique?? how to implement it?
 		
 		// create composite structure
-		composite = getToolkit().createComposite(parent, style);
+		composite = getToolkit().createComposite(parent, style | SWT.BORDER);
 		configureGridLayout();
 		composite.setLayout(gridLayout);
 		
