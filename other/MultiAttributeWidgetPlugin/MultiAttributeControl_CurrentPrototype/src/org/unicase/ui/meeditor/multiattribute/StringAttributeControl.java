@@ -62,10 +62,13 @@ class StringAttributeControl extends AttributeControl {
 			final String newValue = widget.getText();
 			
 			// handle duplicates
-			if (dataManipulator.contains(newValue)) {
-				widget.setText("_"+newValue);
-				return;
+			if (!parentItem.allowDuplicates) {
+				if (dataManipulator.contains(newValue)) {
+					widget.setText("_"+newValue);
+					return;
+				}
 			}
+			// end of duplicate handling
 			
 			if (!emptyField) {
 				// was a regular entry before
@@ -93,12 +96,16 @@ class StringAttributeControl extends AttributeControl {
 		if (e.getSource().equals(button)) {
 			if (emptyField) {
 				// add instead of delete
+				
 				// duplicate handling
-				while (dataManipulator.contains(value)) {
-					value = "_"+value;
+				if (!parentItem.allowDuplicates) {
+					while (dataManipulator.contains(value)) {
+						value = "_"+value;
+					}			
+					widget.setText(value);		
 				}
-				widget.setText(value);
-				// duplicate handling till here
+				// end of duplicate handling
+				
 				dataManipulator.add(value);
 				emptyField = false;
 				button.dispose();

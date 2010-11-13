@@ -11,14 +11,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
-/*
- * STILL TO FIX
- * 
- * * explicit class check? ---> necessary when type is entered in xml file?
- * * layout bug ---> ask SWT experts... = general (known) bug
- * * how to avoid duplicated with types? How to implement Multi-Generics here?
- */
-
 
 /**
  * Represents a multi-attribute-item for the editor of an EMFCP model element.
@@ -50,6 +42,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	protected int style;
 	protected int upperBound;
 	protected boolean isEditable;
+	protected boolean allowDuplicates = false;
 	
 	//essential references
 	protected Composite composite;
@@ -82,6 +75,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		// set state
 		this.style = style;
 		isEditable = getItemPropertyDescriptor().canSetProperty(getModelElement());
+		//allowDuplicates = !isUnique?? how to implement it?
 		
 		// create composite structure
 		composite = getToolkit().createComposite(parent, style);
