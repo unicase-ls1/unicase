@@ -35,36 +35,17 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 		assert(contentObj instanceof Integer);
 		int content = (Integer) contentObj;
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator, content);
-		//f.fieldComposite = createCompositeLayout();	
-		//f.value = content;
-		//f.widget = new Spinner (f.fieldComposite, style | SWT.SINGLE);
-		//f.widget.setValues(content, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
-		//f.widget.addModifyListener(f);
-		//f.deleteButton = new ImageHyperlink(f.fieldComposite, SWT.TOP);
-		//f.deleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		//f.deleteButton.addMouseListener(f);
 		if (!isEditable) {
 			f.widget.setEnabled(false);
 		}
-		//GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(f.widget);
 	}
 
 	@Override
 	protected void createSingleField() {
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator);
-		//f.fieldComposite = createCompositeLayout();	
-		//f.value = EMPTY_VALUE;
-		//f.widget = new Spinner (f.fieldComposite, style | SWT.SINGLE);
-		//f.widget.setValues(EMPTY_VALUE, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
-		//f.widget.addModifyListener(f);
-		//f.deleteButton = new ImageHyperlink(f.fieldComposite, SWT.TOP);
-		//f.deleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		//f.deleteButton.addMouseListener(f);
-		//f.deleteButton.setVisible(false);
 		if (!isEditable) {
 			f.widget.setEnabled(false);
 		}
-		//GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(f.widget);
 	}
 
 	@Override
