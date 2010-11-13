@@ -34,42 +34,25 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	}
 
 	@Override
-	protected void createSingleField(Object contentObj) { // still duplicated code, but better solution?!
+	protected void createSingleField(Object contentObj) {
 		assert(contentObj instanceof String);
 		String content = (String) contentObj;
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator, content);
-		//f.fieldComposite = createCompositeLayout();	
-		//f.value = content;
-		//f.widget = getToolkit().createText(f.fieldComposite, content, style | SWT.SINGLE);
-		//f.widget.addModifyListener(f);
 		f.widget.addKeyListener(personalListener);
-		//f.button = new ImageHyperlink(f.fieldComposite, SWT.TOP);
-		//f.button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		//f.button.addMouseListener(f);
 		if (!isEditable) {
 			f.widget.setEditable(false);
 		}
-		//GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(f.widget);
 	}
 	
 
 	@Override
-	protected void createSingleField() { // still duplicated code, but better solution?!
+	protected void createSingleField() {
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator);
-		//f.fieldComposite = createCompositeLayout();	
-		//f.value = EMPTY_VALUE;
-		//f.widget = getToolkit().createText(f.fieldComposite, EMPTY_VALUE, style | SWT.SINGLE);
-		//f.widget.addModifyListener(f);
 		f.widget.addKeyListener(personalListener);
-		//f.button = new ImageHyperlink(f.fieldComposite, SWT.TOP);
-		//f.button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		//f.button.addMouseListener(f);
-		//f.button.setVisible(false);
 		if (!isEditable) {
 			f.widget.setEditable(false);
 		}
 		emptyField = f.widget;
-		//GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(f.widget);
 	}
 	
 	/**

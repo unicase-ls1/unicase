@@ -158,29 +158,14 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * 			The data to be displayed in the new field; make sure it is the right type
 	 * 			and cast it accordingly in your implementation.
 	 */
-	protected abstract void createSingleField(Object content); // still duplicated code, but better solution?!
+	protected abstract void createSingleField(Object content);
 	
 	/**
 	 * Creates one new empty field within the widget.
 	 * 
 	 * See description of createSingleField(Object content) for further information on implementation details.
 	 */
-	protected abstract void createSingleField(); // still duplicated code, but better solution?!
-	
-	/**
-	 * Creates the layout for one single field.
-	 * 
-	 * @return
-	 * 			Returns the composite.
-	 */
-	/*protected Composite createCompositeLayout() {
-		Composite fieldComposite = getToolkit().createComposite(composite, style);
-		GridLayout fieldLayout = new GridLayout(2, false);
-		fieldLayout.verticalSpacing = 0;
-		fieldComposite.setLayout(fieldLayout);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(fieldComposite);
-		return fieldComposite;
-	}*/
+	protected abstract void createSingleField();
 	
 	/**
 	 * Returns all elements of this attribute as Object array. Needed for
