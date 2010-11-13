@@ -2,12 +2,6 @@ package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Spinner;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
 /**
  * Integer implementation of a MultiAttributeItem.
