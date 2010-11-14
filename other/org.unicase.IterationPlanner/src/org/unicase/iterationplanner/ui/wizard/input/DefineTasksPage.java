@@ -14,8 +14,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Spinner;
 import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 import org.unicase.model.task.TaskPackage;
@@ -29,6 +27,7 @@ public class DefineTasksPage extends AbstractInputPage {
 
 	private TreeViewer srcWorkItemsTreeViewer;
 	private TableViewer targetWorkItemsTableViewer;
+	
 	
 	
 	public DefineTasksPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
@@ -209,26 +208,11 @@ public class DefineTasksPage extends AbstractInputPage {
 	}
 
 
-	@Override
-	protected void createExtraControls(Composite extraControlsComposite) {
-		extraControlsComposite.setLayout(new GridLayout(2, false));
-		
-		Label lblNumOfIterations = new Label(extraControlsComposite, SWT.NONE);
-		lblNumOfIterations.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false, false));
-		lblNumOfIterations.setText("Number of Iterations: ");
-		
-		Spinner spnrNumOfIterations = new Spinner(extraControlsComposite, SWT.BORDER);
-		spnrNumOfIterations.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		spnrNumOfIterations.setMaximum(5);
-		spnrNumOfIterations.setMinimum(1);
-		spnrNumOfIterations.setIncrement(1);
-
-	}
-
+	
 
 	@Override
 	protected boolean hasExtraControls() {
-		return true;
+		return false;
 	}
 
 
@@ -246,9 +230,19 @@ public class DefineTasksPage extends AbstractInputPage {
 
 	@Override
 	public IWizardPage getNextPage() {
-		// TODO Auto-generated method stub
 		return super.getNextPage();
 	}
+
+
+	@Override
+	public boolean isPageComplete() {
+		return true;
+	}
+
+
+	
+	
+	
 
 	
 }
