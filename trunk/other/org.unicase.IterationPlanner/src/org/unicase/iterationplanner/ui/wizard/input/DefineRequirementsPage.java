@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
@@ -64,10 +63,10 @@ public class DefineRequirementsPage extends AbstractInputPage {
 
 	@Override
 	protected void onAddAllClicked() {
-		List<FunctionalRequirement> allSrcReqs = ((RequirementsContentProvider)srcReqsTreeViewer.getContentProvider()).getReqs();
-		StructuredSelection structuredSelection = new StructuredSelection(allSrcReqs);
-		srcReqsTreeViewer.setSelection(structuredSelection);
-		onAddClicked();
+//		List<FunctionalRequirement> allSrcReqs = ((RequirementsContentProvider)srcReqsTreeViewer.getContentProvider()).getReqs();
+//		StructuredSelection structuredSelection = new StructuredSelection(allSrcReqs);
+//		srcReqsTreeViewer.setSelection(structuredSelection);
+//		onAddClicked();
 	
 	}
 
@@ -85,16 +84,17 @@ public class DefineRequirementsPage extends AbstractInputPage {
 		}
 		targetReqsTreeViewer.refresh();
 		srcReqsTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 	}
 
 
 
 	@Override
 	protected void onRemoveAllClicked() {
-		List<FunctionalRequirement> allTargetReqs = ((RequirementsContentProvider)targetReqsTreeViewer.getContentProvider()).getReqs();
-		StructuredSelection structuredSelection = new StructuredSelection(allTargetReqs);
-		targetReqsTreeViewer.setSelection(structuredSelection);
-		onRemoveClicked();
+//		List<FunctionalRequirement> allTargetReqs = ((RequirementsContentProvider)targetReqsTreeViewer.getContentProvider()).getReqs();
+//		StructuredSelection structuredSelection = new StructuredSelection(allTargetReqs);
+//		targetReqsTreeViewer.setSelection(structuredSelection);
+//		onRemoveClicked();
 	}
 
 
@@ -110,6 +110,7 @@ public class DefineRequirementsPage extends AbstractInputPage {
 		}	
 		targetReqsTreeViewer.refresh();
 		srcReqsTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 	}
 
 
@@ -134,12 +135,35 @@ public class DefineRequirementsPage extends AbstractInputPage {
 
 
 	@Override
-	public IWizardPage getNextPage() {
-		// TODO Auto-generated method stub
-		return super.getNextPage();
+	public boolean isPageComplete() {
+		if(isEverythingOk()){
+			return true;
+		}
+		return false;
 	}
+
+
+	private boolean isEverythingOk() {
+		return true;
+	}
+
+
+	private void saveModel() {
+		getPlannerBridge().setRequirements(((RequirementsContentProvider)targetReqsTreeViewer.getContentProvider()).getReqs());
+	}
+
+
+	@Override
+	public IWizardPage getNextPage() {
+		 if (isEverythingOk()){
+			saveModel();
+			return ((IterationPlanningInputWizard)getWizard()).getDefineTasksPage();
+		 }  
+		 return null;
+	}
+
 	
-	
+
 	
 
 }

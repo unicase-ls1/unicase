@@ -20,6 +20,8 @@ public class TasksToPlanContentProvider extends AdapterFactoryContentProvider {
 
 	private List<WorkItem> workItemsToPlan;
 
+	
+
 	@Override
 	public void dispose() {
 	}
@@ -75,5 +77,11 @@ public class TasksToPlanContentProvider extends AdapterFactoryContentProvider {
 	public void removeWorkItem(WorkItem obj) {
 		workItemsToPlan.remove(obj);
 	}
+	
+	public List<WorkItem> getWorkItemsToPlan() {
+		return workItemsToPlan;
+	}
+
+
 
 }

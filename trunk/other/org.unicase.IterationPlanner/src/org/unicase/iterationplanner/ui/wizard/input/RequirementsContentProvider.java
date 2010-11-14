@@ -11,6 +11,9 @@ import org.unicase.model.requirement.FunctionalRequirement;
 
 public class RequirementsContentProvider extends AdapterFactoryContentProvider {
 
+	/**
+	 * this is a flattened view of all requirements
+	 */
 	private List<FunctionalRequirement> allReqs;
 	
 	public RequirementsContentProvider(AdapterFactory adapterFactory) {
