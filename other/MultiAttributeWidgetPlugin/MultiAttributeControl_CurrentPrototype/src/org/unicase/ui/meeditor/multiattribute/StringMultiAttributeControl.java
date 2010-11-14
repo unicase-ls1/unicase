@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * String implementation of a MultiAttributeItem.
@@ -19,7 +18,6 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	
 	//essential references
 	private MultiAttributeController<String> dataManipulator;
-	protected Control emptyField; // or the bottom one if isFull() && isEditable()
 	private PersonalListener personalListener = new PersonalListener(); // see inner class
 	
 	@Override
@@ -52,7 +50,7 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	
 	/**
 	 * Implements specific listeners for this type's widget in general,
-	 * no single field specific listener!
+	 * no single-field-specific listener!
 	 */
 	private class PersonalListener implements KeyListener {
 

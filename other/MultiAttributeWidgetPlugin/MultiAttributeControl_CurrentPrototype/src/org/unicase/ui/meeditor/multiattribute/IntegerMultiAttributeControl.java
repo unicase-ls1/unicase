@@ -2,6 +2,8 @@ package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 
 /**
  * Integer implementation of a MultiAttributeItem.
@@ -17,6 +19,7 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	
 	// essential references
 	private MultiAttributeController<Integer> dataManipulator;
+	private PersonalListener personalListener = new PersonalListener(); // see inner class
 
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
@@ -29,6 +32,7 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 		assert(contentObj instanceof Integer);
 		int content = (Integer) contentObj;
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator, content);
+		f.widget.addKeyListener(personalListener);
 		if (!isEditable) {
 			f.widget.setEnabled(false);
 		}
@@ -37,8 +41,29 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	@Override
 	protected void createSingleField() {
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator);
+		f.widget.addKeyListener(personalListener);
 		if (!isEditable) {
 			f.widget.setEnabled(false);
+		}
+		emptyField = f.widget;
+	}
+	
+	/**
+	 * Implements specific listeners for this type's widget in general,
+	 * no single-field-specific listener!
+	 */
+	private class PersonalListener implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if (e.keyCode == 13) { //ENTER
+				emptyField.forceFocus();
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// nothing
 		}
 	}
 
