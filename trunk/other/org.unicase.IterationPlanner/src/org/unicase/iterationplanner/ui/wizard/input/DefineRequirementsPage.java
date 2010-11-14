@@ -8,10 +8,12 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 import org.unicase.model.requirement.FunctionalRequirement;
 
@@ -22,13 +24,15 @@ public class DefineRequirementsPage extends AbstractInputPage {
 	private ProjectBridge projectBridge;
 	private TreeViewer srcReqsTreeViewer;
 	private TreeViewer targetReqsTreeViewer;
+	private PlannerBridge plannerBridge;
 	
 	
-	public DefineRequirementsPage(String pageName, ProjectBridge projectBridge) {
+	public DefineRequirementsPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		this.projectBridge = projectBridge;
+		this.plannerBridge = plannerBridge;
 	}
 
 
@@ -129,6 +133,13 @@ public class DefineRequirementsPage extends AbstractInputPage {
 	@Override
 	protected String getTargetContorlDescription() {
 		return "Requirements to be planned: ";
+	}
+
+
+	@Override
+	public IWizardPage getNextPage() {
+		// TODO Auto-generated method stub
+		return super.getNextPage();
 	}
 	
 	

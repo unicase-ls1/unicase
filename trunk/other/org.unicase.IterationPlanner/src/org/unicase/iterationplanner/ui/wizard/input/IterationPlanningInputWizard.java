@@ -7,6 +7,7 @@ package org.unicase.iterationplanner.ui.wizard.input;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 import org.unicase.metamodel.Project;
 
@@ -16,6 +17,7 @@ import org.unicase.metamodel.Project;
 public class IterationPlanningInputWizard extends Wizard {
 
 	private ProjectBridge projectBridge;
+	private PlannerBridge plannerBridge;
 
 	/**
 	 * Constructor.
@@ -23,6 +25,7 @@ public class IterationPlanningInputWizard extends Wizard {
 	public IterationPlanningInputWizard(Project project) {
 		setWindowTitle("Define Inputs to Iteration Planning Algorithm");
 		this.projectBridge = new ProjectBridge(project);
+		this.plannerBridge = new PlannerBridge();
 	
 	}
 
@@ -30,10 +33,10 @@ public class IterationPlanningInputWizard extends Wizard {
 	@Override
 	public void addPages() {
 		
-		AbstractInputPage defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge);
-		AbstractInputPage defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge);
-		AbstractInputPage defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge);
-		WizardPage definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge);
+		AbstractInputPage defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
+		AbstractInputPage defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge, plannerBridge);
+		AbstractInputPage defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge, plannerBridge);
+		WizardPage definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
 		addPage(defineReqsPage);
 		addPage(defineTasksPage);
 		addPage(defineAssigneesPage);
