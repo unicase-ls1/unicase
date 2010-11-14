@@ -1,6 +1,8 @@
 package org.unicase.iterationplanner.ui.wizard.input;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 
 public class DefineAssigneesPage extends AbstractInputPage {
@@ -8,12 +10,14 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	private static final String PAGE_TITLE = "Define Assignees";
 	private static final String PAGE_DESCRIPTION= "Define Assignees page description";
 	private ProjectBridge projectBridge;
+	private PlannerBridge plannerBridge;
 
-	public DefineAssigneesPage(String pageName, ProjectBridge projectBridge) {
+	public DefineAssigneesPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		this.projectBridge = projectBridge;
+		this.plannerBridge = plannerBridge;
 	}
 
 	@Override
@@ -67,6 +71,12 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	@Override
 	protected String getTargetContorlDescription() {
 		return "Assignees for iteration planning: ";
+	}
+
+	@Override
+	public IWizardPage getNextPage() {
+		// TODO Auto-generated method stub
+		return super.getNextPage();
 	}
 
 	
