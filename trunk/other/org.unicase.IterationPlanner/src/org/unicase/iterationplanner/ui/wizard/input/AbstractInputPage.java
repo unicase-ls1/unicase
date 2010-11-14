@@ -9,13 +9,18 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
+import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 
 public abstract class AbstractInputPage extends WizardPage {
 
+	ProjectBridge proejctBridge; 
+	PlannerBridge plnnerBridge;
 	
-	
-	protected AbstractInputPage(String pageName) {
+	protected AbstractInputPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
 		super(pageName);
+		this.proejctBridge = projectBridge;
+		this.plnnerBridge = plannerBridge;
 	}
 
 	public void createControl(Composite parent) {
@@ -102,6 +107,14 @@ public abstract class AbstractInputPage extends WizardPage {
 			extraControlsComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 3, 1));
 			createExtraControls(extraControlsComposite);
 		}
+	}
+
+	public ProjectBridge getProejctBridge() {
+		return proejctBridge;
+	}
+
+	public PlannerBridge getPlnnerBridge() {
+		return plnnerBridge;
 	}
 
 	protected abstract String getTargetContorlDescription();

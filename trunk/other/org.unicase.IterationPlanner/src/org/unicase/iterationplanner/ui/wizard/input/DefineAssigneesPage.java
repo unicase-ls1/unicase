@@ -9,15 +9,12 @@ public class DefineAssigneesPage extends AbstractInputPage {
 
 	private static final String PAGE_TITLE = "Define Assignees";
 	private static final String PAGE_DESCRIPTION= "Define Assignees page description";
-	private ProjectBridge projectBridge;
-	private PlannerBridge plannerBridge;
 
 	public DefineAssigneesPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
-		super(pageName);
+		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		this.projectBridge = projectBridge;
-		this.plannerBridge = plannerBridge;
+		
 	}
 
 	@Override

@@ -26,18 +26,15 @@ public class DefineTasksPage extends AbstractInputPage {
 	
 	private static final String PAGE_TITLE = "Define Tasks";
 	private static final String PAGE_DESCRIPTION= "Define tasks page description";
-	private ProjectBridge projectBridge;
+
 	private TreeViewer srcWorkItemsTreeViewer;
 	private TableViewer targetWorkItemsTableViewer;
-	private PlannerBridge plannerBridge;
 	
 	
 	public DefineTasksPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
-		super(pageName);
+		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		this.projectBridge = projectBridge;
-		this.plannerBridge = plannerBridge;
 	}
 
 
@@ -49,7 +46,7 @@ public class DefineTasksPage extends AbstractInputPage {
 		srcWorkItemsTreeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		srcWorkItemsTreeViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		srcWorkItemsTreeViewer.setContentProvider(new SourceTasksContentProvider(projectBridge, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		srcWorkItemsTreeViewer.setContentProvider(new SourceTasksContentProvider(getProejctBridge(), new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		srcWorkItemsTreeViewer.setInput(new Object());
 		
 	}
