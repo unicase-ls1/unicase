@@ -104,21 +104,14 @@ class StringAttributeControl extends AttributeControl {
 				// add instead of delete
 				
 				// duplicate handling
-				boolean autoAdd = false;
 				if (!parentItem.allowDuplicates) {
 					while (dataManipulator.contains(value)) {
 						value = "_"+value;
 					}
-					// automatically added then (ModifyListener!)
-					autoAdd = true;		
-					widget.setText(value);
 				}
 				// end of duplicate handling
-				if (!autoAdd) {
-					dataManipulator.add(value);
-					this.index = parentItem.controlList.size();
-					parentItem.controlList.add(this);					
-				}
+				// automatically added then (ModifyListener!)
+				widget.setText(value);
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
