@@ -50,6 +50,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	//essential references
 	protected Composite composite;
 	protected GridLayout gridLayout;
+	protected Control emptyField; // or the bottom one if isFull() && isEditable()
 	
 
 	@Override
