@@ -142,7 +142,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * 			Returns true if full, false otherwise.
 	 */
 	protected boolean isFull() {
-		return ((getAllStoredElements().length >= upperBound) && upperBound!=-1);
+		return ((controlList.size() >= upperBound) && upperBound!=-1);
 	}
 
 	/**
