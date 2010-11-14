@@ -4,6 +4,7 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Spinner;
 
 /**
@@ -49,6 +50,7 @@ class IntegerAttributeControl extends AttributeControl {
 		widget = new Spinner (fieldComposite, parentItem.style | SWT.SINGLE);
 		widget.setValues(value, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
 		widget.addModifyListener(this);
+		widget.setForeground(new Color(widget.getDisplay(),100,100,100));
 		createAddButton();
 		createInvisibleUpDownButtons();
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
@@ -81,8 +83,9 @@ class IntegerAttributeControl extends AttributeControl {
 	@Override
 	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
-			// first edit? --> new button
+			// first edit? --> layout changes
 			if (index==-1) {
+				widget.setForeground(new Color(widget.getDisplay(),0,0,0));
 				button.dispose();
 				createDeleteButton();
 				createUpDownButtons();
@@ -141,6 +144,7 @@ class IntegerAttributeControl extends AttributeControl {
 				// end of duplicate handling
 				// automatically added then (ModifyListener!)
 				widget.setSelection(value);	
+				widget.setForeground(new Color(widget.getDisplay(),0,0,0));
 				button.dispose();
 				createDeleteButton();
 				createUpDownButtons();
