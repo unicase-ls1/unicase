@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.ui.wizard.input;
 
+import java.util.List;
+
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -16,7 +18,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Spinner;
 import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
@@ -99,6 +103,11 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	      usersToPlanTableViewer.getTable().getColumn(i).pack();
 	    }
 	    usersToPlanTableViewer.getTable().setLinesVisible(true);
+	    usersToPlanTableViewer.getTable().addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				getWizard().getContainer().updateButtons();
+			}
+		});
 		
 		usersToPlanTableViewer.setInput(new Object());
 	}
@@ -147,6 +156,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 		}
 		usersToPlanTableViewer.refresh();
 		srcOrgUnitTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 	}
 
 	@Override
@@ -167,6 +177,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 		}
 		usersToPlanTableViewer.refresh();
 		srcOrgUnitTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 	}
 
 	
@@ -205,6 +216,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 					}
 				}
 				usersToPlanTableViewer.refresh();
+				getWizard().getContainer().updateButtons();
 			}
 		});
 
@@ -227,12 +239,44 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	}
 
 	@Override
-	public IWizardPage getNextPage() {
-		return super.getNextPage();
+	public boolean isPageComplete() {
+		if(isEverythingOk()){
+			return true;
+		}
+		return false;
 	}
-	
-	
-	
+
+
+	private boolean isEverythingOk() {
+		List<UserAvailability> userAvailabilities = ((UsersToPlanContentProvier)usersToPlanTableViewer.getContentProvider()).getUserAvailabilities();
+		if (userAvailabilities.size() == 0){
+			return false;
+		}
+		for(UserAvailability ua : userAvailabilities){
+			if(ua.hasUndifinedAvailability()){
+				return false;
+			}
+		}
+		return true;
+	}
+
+
+	private void saveModel() {
+		getPlannerBridge().setAssignees(((UsersToPlanContentProvier)usersToPlanTableViewer.getContentProvider()).getUserAvailabilities());
+		getPlannerBridge().setNumOfIteations(Integer.valueOf(spnrNumOfIterations.getText()));
+	}
+
+
+	@Override
+	public IWizardPage getNextPage() {
+		 if (isEverythingOk()){
+			saveModel();
+			return ((IterationPlanningInputWizard)getWizard()).getDefinePlannerParametersPage();
+		 }  
+		 return null;
+	}
+
+
 
 
 	

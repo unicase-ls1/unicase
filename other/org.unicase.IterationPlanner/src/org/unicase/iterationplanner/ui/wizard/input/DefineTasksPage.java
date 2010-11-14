@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.ui.wizard.input;
 
+import java.util.List;
+
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -14,6 +16,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 import org.unicase.model.task.TaskPackage;
@@ -107,7 +111,7 @@ public class DefineTasksPage extends AbstractInputPage {
 			
 		});
 		tclPriority.setEditingSupport(new IntegerEditingSupport(targetWorkItemsTableViewer, TaskPackage.Literals.WORK_ITEM__PRIORITY));
-		
+				
 		TableViewerColumn tclEstimate = new TableViewerColumn(targetWorkItemsTableViewer, SWT.LEFT);
 		tclEstimate.getColumn().setText("Estimate");
 		tclEstimate.setLabelProvider(new ColumnLabelProvider(){
@@ -157,6 +161,11 @@ public class DefineTasksPage extends AbstractInputPage {
 	      targetWorkItemsTableViewer.getTable().getColumn(i).pack();
 	    }
 	    targetWorkItemsTableViewer.getTable().setLinesVisible(true);
+	    targetWorkItemsTableViewer.getTable().addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				getWizard().getContainer().updateButtons();
+			}
+		});
 		
 		targetWorkItemsTableViewer.setInput(new Object());
 		
@@ -182,12 +191,12 @@ public class DefineTasksPage extends AbstractInputPage {
 		}
 		targetWorkItemsTableViewer.refresh();
 		srcWorkItemsTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 	}
 
 
 	@Override
 	protected void onRemoveAllClicked() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -204,6 +213,7 @@ public class DefineTasksPage extends AbstractInputPage {
 		}	
 		targetWorkItemsTableViewer.refresh();
 		srcWorkItemsTreeViewer.refresh();
+		getWizard().getContainer().updateButtons();
 		
 	}
 
@@ -229,20 +239,45 @@ public class DefineTasksPage extends AbstractInputPage {
 
 
 	@Override
-	public IWizardPage getNextPage() {
-		return super.getNextPage();
+	public boolean isPageComplete() {
+		if(isEverythingOk()){
+			return true;
+		}
+		return false;
 	}
 
 
-	@Override
-	public boolean isPageComplete() {
+	private boolean isEverythingOk() {
+		List<WorkItem> workItemsToPlan = ((TasksToPlanContentProvider)targetWorkItemsTableViewer.getContentProvider()).getWorkItemsToPlan();
+		if (workItemsToPlan.size() == 0){
+			return false;
+		}
+		for(WorkItem wi : workItemsToPlan){
+			if(!hasPrioAndEstimateSet(wi)){
+				return false;
+			}
+		}
 		return true;
 	}
 
 
-	
-	
-	
+	private boolean hasPrioAndEstimateSet(WorkItem wi) {
+		return wi.getEstimate() != 0 && wi.getPriority() != 0;
+	}
 
+
+	private void saveModel() {
+		getPlannerBridge().setWorkItems(((TasksToPlanContentProvider)targetWorkItemsTableViewer.getContentProvider()).getWorkItemsToPlan());
+	}
+
+
+	@Override
+	public IWizardPage getNextPage() {
+		 if (isEverythingOk()){
+			saveModel();
+			return ((IterationPlanningInputWizard)getWizard()).getDefineAssigneesPage();
+		 }  
+		 return null;
+	}
 	
 }

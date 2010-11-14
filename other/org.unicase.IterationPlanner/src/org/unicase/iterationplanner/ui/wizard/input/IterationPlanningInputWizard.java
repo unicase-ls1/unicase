@@ -68,7 +68,22 @@ public class IterationPlanningInputWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
+		plannerBridge.startPlanner();
 		return true;
 	}
+
+
+	@Override
+	public boolean canFinish() {
+		boolean result = false;
+		if(getContainer().getCurrentPage().equals(getDefineAssigneesPage())){
+			result = getDefineAssigneesPage().isPageComplete();
+		}else if(getContainer().getCurrentPage().equals(getDefinePlannerParametersPage())){
+			result = getDefinePlannerParametersPage().isPageComplete();
+		}
+		
+		return result;
+	}
+	
 
 }
