@@ -26,7 +26,6 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	protected ImageHyperlink button;
 	protected ImageHyperlink up;
 	protected ImageHyperlink down;
-	//protected boolean emptyField = true;
 	
 	/**
 	 * Initializes the delete button.
@@ -96,6 +95,17 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 		fieldComposite.setLayout(fieldLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(fieldComposite);
 	}
+	
+	/**
+	 * Swaps the position of two control elements. It can also be called for moving the first
+	 * item forward or the last one backward, as nothing will change then (false will be returned).
+	 * 
+	 * @param index
+	 * 			The index of the swap partner.
+	 * @return
+	 * 			Returns true if swap was successful, false otherwise (index didn't exist).
+	 */
+	protected abstract boolean swapThisControlWith(int index);
 	
 	@Override
 	public abstract void modifyText(ModifyEvent e); // still duplicated code, but better solution?!

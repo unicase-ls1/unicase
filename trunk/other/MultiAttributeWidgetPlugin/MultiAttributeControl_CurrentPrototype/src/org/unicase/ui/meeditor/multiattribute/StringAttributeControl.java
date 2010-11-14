@@ -23,7 +23,6 @@ class StringAttributeControl extends AttributeControl {
 		this.value = value;
 		this.index = parentItem.controlList.size();
 		parentItem.controlList.add(this);
-		//emptyField = false;
 		
 		// initializeFromInt
 		createCompositeLayout();
@@ -51,6 +50,26 @@ class StringAttributeControl extends AttributeControl {
 	
 	private StringAttributeControl() {
 		// hide default constructor
+	}
+
+	@Override
+	protected boolean swapThisControlWith(int index) {
+		if (index >= parentItem.controlList.size() || index < 0) {
+			return false;
+		}
+		// create non-duplicate String
+		String random = "";
+		while (dataManipulator.contains(random)) {
+			random = ((Double) Math.random()).toString();
+		}
+		// use it for swap
+		String thisValue = value;
+		String otherValue = ((StringAttributeControl) parentItem.controlList.get(index)).value;
+		widget.setText(random);
+		((StringAttributeControl) parentItem.controlList.get(index)).widget.setText(thisValue);
+		widget.setText(otherValue);
+				
+		return true;
 	}
 	
 	@Override
@@ -133,6 +152,14 @@ class StringAttributeControl extends AttributeControl {
 				fieldComposite.dispose();
 				
 			}
+		}
+		
+		if (e.getSource().equals(up)) {
+			swapThisControlWith(index-1);
+		}
+		
+		if (e.getSource().equals(down)) {
+			swapThisControlWith(index+1);
 		}
 		
 		parentItem.refreshWidget();
