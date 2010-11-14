@@ -21,7 +21,9 @@ class StringAttributeControl extends AttributeControl {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
 		this.value = value;
-		emptyField = false;
+		this.index = parentItem.controlList.size();
+		parentItem.controlList.add(this);
+		//emptyField = false;
 		
 		// initializeFromInt
 		createCompositeLayout();
@@ -55,7 +57,7 @@ class StringAttributeControl extends AttributeControl {
 	public void modifyText(ModifyEvent e) {  // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
 			// first edit? --> new button
-			if (emptyField) {
+			if (index==-1) {
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
@@ -73,14 +75,15 @@ class StringAttributeControl extends AttributeControl {
 			}
 			// end of duplicate handling
 			
-			if (!emptyField) {
+			if (index!=-1) {
 				// was a regular entry before
-				dataManipulator.replace(value, newValue);
+				dataManipulator.replaceElementAt(index, newValue);
 				value = newValue;
 			}
 			else {
 				// was a dummy entry before
-				emptyField = false;
+				this.index = parentItem.controlList.size();
+				parentItem.controlList.add(this);
 				dataManipulator.add(newValue);
 				value = newValue;
 				button.setVisible(true);
@@ -97,20 +100,25 @@ class StringAttributeControl extends AttributeControl {
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
-			if (emptyField) {
+			if (index==-1) {
 				// add instead of delete
 				
 				// duplicate handling
+				boolean autoAdd = false;
 				if (!parentItem.allowDuplicates) {
 					while (dataManipulator.contains(value)) {
 						value = "_"+value;
-					}			
-					widget.setText(value);		
+					}
+					// automatically added then (ModifyListener!)
+					autoAdd = true;		
+					widget.setText(value);
 				}
 				// end of duplicate handling
-				
-				dataManipulator.add(value);
-				emptyField = false;
+				if (!autoAdd) {
+					dataManipulator.add(value);
+					this.index = parentItem.controlList.size();
+					parentItem.controlList.add(this);					
+				}
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
@@ -122,7 +130,12 @@ class StringAttributeControl extends AttributeControl {
 				if (parentItem.isFull()) {
 					parentItem.createSingleField();
 				}
-				dataManipulator.remove(value);
+				dataManipulator.removeElementAt(index);
+				// accordingly change all other indexes
+				for (int i=index+1; i<parentItem.controlList.size(); i++) {
+					parentItem.controlList.get(i).index--;
+				}
+				parentItem.controlList.remove(index);
 				
 				fieldComposite.dispose();
 				
