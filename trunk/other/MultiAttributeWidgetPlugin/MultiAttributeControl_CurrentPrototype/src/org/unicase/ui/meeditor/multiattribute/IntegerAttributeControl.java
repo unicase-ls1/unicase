@@ -114,27 +114,17 @@ class IntegerAttributeControl extends AttributeControl {
 				// add instead of delete
 				
 				// duplicate handling
-				boolean autoAdd = false;
 				if (!parentItem.allowDuplicates) {
 					while (dataManipulator.contains(value)) {
 						value++;
 					} 
-					// automatically added then (ModifyListener!)
-					autoAdd = true;
-					widget.setSelection(value);					
 				}
 				// end of duplicate handling
-				if (!autoAdd) {
-					dataManipulator.add(value);
-					this.index = parentItem.controlList.size();
-					parentItem.controlList.add(this);					
-				}
+				// automatically added then (ModifyListener!)
+				widget.setSelection(value);	
 				button.dispose();
 				createDeleteButton();
 				createUpDownButtons();
-				if (!parentItem.isFull()) {
-					parentItem.createSingleField();
-				}
 			}
 			else {
 				// delete
