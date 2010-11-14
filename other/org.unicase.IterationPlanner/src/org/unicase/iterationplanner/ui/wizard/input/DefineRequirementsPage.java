@@ -21,18 +21,15 @@ public class DefineRequirementsPage extends AbstractInputPage {
 
 	private static final String PAGE_TITLE = "Define Requirements";
 	private static final String PAGE_DESCRIPTION= "define requirements page description";
-	private ProjectBridge projectBridge;
+
 	private TreeViewer srcReqsTreeViewer;
 	private TreeViewer targetReqsTreeViewer;
-	private PlannerBridge plannerBridge;
 	
 	
 	public DefineRequirementsPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
-		super(pageName);
+		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		this.projectBridge = projectBridge;
-		this.plannerBridge = plannerBridge;
 	}
 
 
@@ -45,7 +42,7 @@ public class DefineRequirementsPage extends AbstractInputPage {
 		
 		srcReqsTreeViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		srcReqsTreeViewer.setContentProvider(new RequirementsContentProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		 List<FunctionalRequirement> topLevelRequirements = projectBridge.getTopLevelRequirements();
+		 List<FunctionalRequirement> topLevelRequirements = getProejctBridge().getTopLevelRequirements();
 		srcReqsTreeViewer.setInput(topLevelRequirements);
 	}
 
