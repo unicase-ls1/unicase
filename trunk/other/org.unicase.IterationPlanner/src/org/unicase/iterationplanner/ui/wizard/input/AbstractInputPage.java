@@ -113,7 +113,7 @@ public abstract class AbstractInputPage extends WizardPage {
 		return proejctBridge;
 	}
 
-	public PlannerBridge getPlnnerBridge() {
+	public PlannerBridge getPlannerBridge() {
 		return plnnerBridge;
 	}
 

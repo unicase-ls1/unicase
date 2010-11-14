@@ -17,7 +17,30 @@ import org.unicase.metamodel.Project;
 public class IterationPlanningInputWizard extends Wizard {
 
 	private ProjectBridge projectBridge;
+	public AbstractInputPage getDefineAssigneesPage() {
+		return defineAssigneesPage;
+	}
+
+
+	public AbstractInputPage getDefineTasksPage() {
+		return defineTasksPage;
+	}
+
+
+	public AbstractInputPage getDefineReqsPage() {
+		return defineReqsPage;
+	}
+
+
+	public WizardPage getDefinePlannerParametersPage() {
+		return definePlannerParametersPage;
+	}
+
 	private PlannerBridge plannerBridge;
+	private AbstractInputPage defineAssigneesPage;
+	private AbstractInputPage defineTasksPage;
+	private AbstractInputPage defineReqsPage;
+	private WizardPage definePlannerParametersPage;
 
 	/**
 	 * Constructor.
@@ -33,10 +56,10 @@ public class IterationPlanningInputWizard extends Wizard {
 	@Override
 	public void addPages() {
 		
-		AbstractInputPage defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
-		AbstractInputPage defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge, plannerBridge);
-		AbstractInputPage defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge, plannerBridge);
-		WizardPage definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
+		defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
+		defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge, plannerBridge);
+		defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge, plannerBridge);
+		definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
 		addPage(defineReqsPage);
 		addPage(defineTasksPage);
 		addPage(defineAssigneesPage);

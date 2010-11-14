@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
@@ -72,16 +72,23 @@ public class ProjectBridge {
 		return result;
 	}
 	
-	public List<OrgUnit> getAllOrgUnits(){
-		return null;
-	}
 	
-	public List<Group> getAllGroups(){
-		return null;
+	public List<Group> getTopLevelGroups(){
+		List<Group> result = new ArrayList<Group>();
+		List<Group> allGroups = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
+			new BasicEList<Group>());
+		for(Group group : allGroups){
+			if(group.getGroupMemberships().size() == 0){
+				result.add(group);
+			}
+		}
+		return result;
 	}
 	
 	public List<User> getAllUsers(){
-		return null;
+		List<User> allUsers = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+			new BasicEList<User>());
+		return allUsers;
 	}
 	
 
