@@ -28,7 +28,6 @@ class IntegerAttributeControl extends AttributeControl {
 		this.value = value;
 		this.index = parentItem.controlList.size();
 		parentItem.controlList.add(this);
-		//emptyField = false;
 		
 		// initialize
 		createCompositeLayout();
@@ -57,6 +56,26 @@ class IntegerAttributeControl extends AttributeControl {
 	
 	private IntegerAttributeControl() {
 		// hide default constructor
+	}
+
+	@Override
+	protected boolean swapThisControlWith(int index) {
+		if (index >= parentItem.controlList.size() || index < 0) {
+			return false;
+		}
+		// create non-duplicate Integer
+		int random = 0;
+		while (dataManipulator.contains(random)) {
+			random = ((int) (Math.random()*10000));
+		}
+		// use it for swap
+		int thisValue = value;
+		int otherValue = ((IntegerAttributeControl) parentItem.controlList.get(index)).value;
+		widget.setSelection(random);
+		((IntegerAttributeControl) parentItem.controlList.get(index)).widget.setSelection(thisValue);
+		widget.setSelection(otherValue);
+						
+		return true;
 	}
 	
 	@Override
@@ -142,6 +161,14 @@ class IntegerAttributeControl extends AttributeControl {
 				fieldComposite.dispose();
 				
 			}
+		}
+		
+		if (e.getSource().equals(up)) {
+			swapThisControlWith(index-1);
+		}
+		
+		if (e.getSource().equals(down)) {
+			swapThisControlWith(index+1);
 		}
 		
 		parentItem.refreshWidget();

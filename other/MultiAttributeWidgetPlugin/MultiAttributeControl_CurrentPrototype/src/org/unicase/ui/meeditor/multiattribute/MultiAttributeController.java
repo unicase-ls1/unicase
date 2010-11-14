@@ -85,10 +85,10 @@ public class MultiAttributeController<T> {
 	 * @param index
 	 * 			The index of the value to be deleted.
 	 * @return
-	 * 			Returns true if the value was removed, false otherwise (it didn't exist).
+	 * 			Returns true if the value was removed, false otherwise (index didn't exist).
 	 */
 	public boolean removeElementAt(final int index) {
-		if (index >= data.size()) {
+		if (index >= data.size() || index < 0) {
 			return false;
 		}
 		new ECPCommand(parentItem.getModelElement()) {
@@ -132,16 +132,42 @@ public class MultiAttributeController<T> {
 	 * @param newValue
 	 * 			The new value.
 	 * @return
-	 * 			Returns true if the value was replaced, false otherwise (the old value didn't exist).
+	 * 			Returns true if the value was replaced, false otherwise (index didn't exist).
 	 */
 	public boolean replaceElementAt(final int index, final T newValue) {
-		if (index >= data.size()) {
+		if (index >= data.size() || index < 0) {
 			return false;
 		}
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
 				data.set(index, newValue);
+			};
+		}.run();
+		return true;
+	}
+	
+	/**
+	 * Swaps the position of two elements within the list. (never tested!)
+	 * 
+	 * @param index1
+	 * 			The index of the first one.
+	 * @param index2
+	 * 			The index of the second one.
+	 * @return
+	 * 			Returns true if the elements have been swapped, false otherwise (at least one index didn't exist).
+	 */
+	@Deprecated
+	public boolean swapElementsAt(final int index1, final int index2) {
+		if (index1 >= data.size() || index2 >= data.size() || index1 < 0 || index2 < 0) {
+			return false;
+		}
+		new ECPCommand(parentItem.getModelElement()) {
+			@Override
+			protected void doRun() {
+				T tmp = data.get(index1);
+				data.set(index1, data.get(index2));
+				data.set(index2, tmp);
 			};
 		}.run();
 		return true;
