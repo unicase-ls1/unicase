@@ -21,10 +21,12 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 abstract class AttributeControl implements ModifyListener, MouseListener {
 	protected MultiAttributeControl parentItem;
 	protected Composite fieldComposite;
+	protected int index = -1; // -1 = value for "not stored yet" / empty control
+	
 	protected ImageHyperlink button;
 	protected ImageHyperlink up;
 	protected ImageHyperlink down;
-	protected boolean emptyField = true;
+	//protected boolean emptyField = true;
 	
 	/**
 	 * Initializes the delete button.

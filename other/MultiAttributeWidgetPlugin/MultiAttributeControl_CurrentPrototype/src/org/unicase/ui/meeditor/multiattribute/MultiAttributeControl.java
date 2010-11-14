@@ -1,6 +1,8 @@
 package org.unicase.ui.meeditor.multiattribute;
 
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
@@ -43,6 +45,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	protected int upperBound;
 	protected boolean isEditable;
 	protected boolean allowDuplicates;
+	protected ArrayList<AttributeControl> controlList = new ArrayList<AttributeControl>();
 	
 	//essential references
 	protected Composite composite;
@@ -128,7 +131,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		composite.layout(); // fields are drawn, but overall size is not always accordingly changed
 		// layout of whole editor adapts to new widget content - how??
 		composite.getParent().layout();
-		//composite.getParent().getParent().layout();
+		composite.getParent().getParent().layout();
 	}
 	
 	/**

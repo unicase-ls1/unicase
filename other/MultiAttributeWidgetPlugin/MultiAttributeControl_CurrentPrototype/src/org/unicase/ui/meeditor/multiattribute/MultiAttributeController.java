@@ -42,34 +42,30 @@ public class MultiAttributeController<T> {
 	}
 
 	/**
-	 * Adds a value to the model attribute.
+	 * Adds a value to the model attribute (nothing happens when duplicates are forbidden
+	 * and the value is already stored).
 	 * 
 	 * @param value
 	 * 			The value.
-	 * @return
-	 * 			Returns true if the value was added, false otherwise (it already existed).
 	 */
-	public boolean add(final T value) {
-		if (contains(value)) {
-			return false;
-		}
+	public void add(final T value) {
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
 				data.add(value);
 			};
 		}.run();
-		return true;
 	}
 
 	/**
-	 * Removes a value from the model attribute.
+	 * Removes a value from the model attribute. Causes trouble for duplicated entries.
 	 * 
 	 * @param value
 	 * 			The value.
 	 * @return
 	 * 			Returns true if the value was removed, false otherwise (it didn't exist).
 	 */
+	@Deprecated
 	public boolean remove(final T value) {
 		if (!contains(value)) {
 			return false;
@@ -82,9 +78,30 @@ public class MultiAttributeController<T> {
 		}.run();
 		return true;
 	}
+	
+	/**
+	 * Removes the element with a certain index from the model attribute.
+	 * 
+	 * @param index
+	 * 			The index of the value to be deleted.
+	 * @return
+	 * 			Returns true if the value was removed, false otherwise (it didn't exist).
+	 */
+	public boolean removeElementAt(final int index) {
+		if (index >= data.size()) {
+			return false;
+		}
+		new ECPCommand(parentItem.getModelElement()) {
+			@Override
+			protected void doRun() {
+				data.remove(index);
+			};
+		}.run();
+		return true;
+	}
 
 	/**
-	 * Replaces a value of the model attribute with an other one.
+	 * Replaces a value of the model attribute with an other one. Causes trouble for duplicated entries.
 	 * 
 	 * @param oldValue
 	 * 			The old value.
@@ -93,6 +110,7 @@ public class MultiAttributeController<T> {
 	 * @return
 	 * 			Returns true if the value was replaced, false otherwise (the old value didn't exist).
 	 */
+	@Deprecated
 	public boolean replace(final T oldValue, final T newValue) {
 		if (!contains(oldValue)) {
 			return false;
@@ -101,6 +119,29 @@ public class MultiAttributeController<T> {
 			@Override
 			protected void doRun() {
 				data.set(data.indexOf(oldValue), newValue);
+			};
+		}.run();
+		return true;
+	}
+
+	/**
+	 * Replaces the element with a certain index of the model attribute with an other one.
+	 * 
+	 * @param index
+	 * 			The index of the old value.
+	 * @param newValue
+	 * 			The new value.
+	 * @return
+	 * 			Returns true if the value was replaced, false otherwise (the old value didn't exist).
+	 */
+	public boolean replaceElementAt(final int index, final T newValue) {
+		if (index >= data.size()) {
+			return false;
+		}
+		new ECPCommand(parentItem.getModelElement()) {
+			@Override
+			protected void doRun() {
+				data.set(index, newValue);
 			};
 		}.run();
 		return true;
