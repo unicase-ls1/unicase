@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.DropTargetListener;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,6 +41,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 	private Text txtTaskPrioScore;
 	private Text txtExpertiseScore;
 	private Text txtDevLoad;
+	private PlannedTask dragSource;
+	private List<Iteration> iterations;
 
 	protected EditSelectedIterationPlanPage(String pageName, IterationPlan iterationPlan, Planner planner) {
 		super(pageName);
@@ -49,13 +61,75 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		//check invariants must be turned off, in order to manually change iteration plan.
 		iterationPlan.setCheckInvariants(false);
 		
-		List<Iteration> iterations = createIterations();
+		iterations = createIterations();
 		
 		iterationsTreeViewer = new TreeViewer(container);
 		iterationsTreeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		iterationsTreeViewer.setContentProvider(new IterationsContentProvider(iterationPlan.getBacklogNumber(), new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		addColumns(iterationsTreeViewer);
+		int ops = DND.DROP_MOVE;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance()};
+		iterationsTreeViewer.addDragSupport(ops, transfers, new DragSourceListener() {
+			
+			public void dragStart(DragSourceEvent event) {
+				IStructuredSelection ssel = (IStructuredSelection) iterationsTreeViewer.getSelection();
+				if(ssel.getFirstElement() instanceof PlannedTask){
+					dragSource = (PlannedTask)ssel.getFirstElement();
+				}
+			}
+			
+			public void dragSetData(DragSourceEvent event) {
+			}
+			
+			public void dragFinished(DragSourceEvent event) {
+			}
+		});
+		
+		iterationsTreeViewer.addDropSupport(ops, transfers, new DropTargetListener() {
+			
+			public void dropAccept(DropTargetEvent event) {
+			}
+			
+			public void drop(DropTargetEvent event) {
+				if(event.item.getData() instanceof Iteration){
+					Iteration targetIter = (Iteration)event.item.getData();
+					if(dragSource.getIterationNumber() != targetIter.getIterationNumber()){
+						iterations.get(dragSource.getIterationNumber()).getPlannedTasks().remove(dragSource);
+						targetIter.getPlannedTasks().add(dragSource);
+						iterationPlan.setIterationNumberFor(dragSource, targetIter.getIterationNumber());
+						
+					}
+				}
+				if(event.item.getData() instanceof PlannedTask){
+					PlannedTask pt = (PlannedTask)event.item.getData();
+					int targetIterationNumber = pt.getIterationNumber();
+					if(dragSource.getIterationNumber() != targetIterationNumber){
+						iterations.get(dragSource.getIterationNumber()).getPlannedTasks().remove(dragSource);
+						iterations.get(targetIterationNumber).getPlannedTasks().add(dragSource);
+						iterationPlan.setIterationNumberFor(dragSource, targetIterationNumber);
+					}
+				}
+				update();
+			}
+			
+			public void dragOver(DropTargetEvent event) {
+				
+			}
+			
+			public void dragOperationChanged(DropTargetEvent event) {
+				
+			}
+			
+			public void dragLeave(DropTargetEvent event) {
+				
+			}
+			
+			public void dragEnter(DropTargetEvent event) {
+				
+			}
+		});
+
 		iterationsTreeViewer.setInput(iterations);
 		
 		createIndicatorsComposite(container);
@@ -100,6 +174,24 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		txtOverallScore.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		txtOverallScore.setText(String.valueOf(planner.getEvaluator().evaluate(iterationPlan)));
 		
+		org.eclipse.swt.widgets.Button btnReset = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnReset.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnReset.setText("reset plan");
+		btnReset.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				iterationPlan = originalIterationPlan.clone();
+				iterations = createIterations();
+				iterationsTreeViewer.setInput(iterations);
+				update();
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+		});
+		
+		
 	}
 
 	private void addColumns(TreeViewer viewer) {
@@ -115,7 +207,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			@Override
 			public String getText(Object element) {
 				if(element instanceof PlannedTask){
-					return ((PlannedTask) element).getTask().getWorkItem().getName();
+					PlannedTask pt = (PlannedTask) element;
+					return pt.getTask().getWorkItem().getName() + " (priority: " + pt.getTask().getPriority() + ", estimate: " + pt.getTask().getEstimate() + ")";
 				}
 				if(element instanceof Iteration){
 					if(((Iteration) element).getIterationNumber() == iterationPlan.getBacklogNumber()){
