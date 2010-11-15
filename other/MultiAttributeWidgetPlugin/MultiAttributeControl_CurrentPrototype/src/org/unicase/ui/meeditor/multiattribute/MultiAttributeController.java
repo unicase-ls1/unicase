@@ -22,13 +22,22 @@ public class MultiAttributeController<T> {
 	private MultiAttributeControl parentItem;
 	private EDataTypeEList<T> data;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parentItem The corresponding MultiAttributeWidget.
+	 * @param data A reference to the data manipulated by this controller.
+	 */
 	MultiAttributeController(MultiAttributeControl parentItem, EDataTypeEList<T> data) {
 		this.parentItem = parentItem;
 		this.data = data;
 	}
 
+	/**
+	 * Hidden default constructor.
+	 */
 	private MultiAttributeController() {
-		// hide default constructor
+		// nothing
 	}
 
 	/**

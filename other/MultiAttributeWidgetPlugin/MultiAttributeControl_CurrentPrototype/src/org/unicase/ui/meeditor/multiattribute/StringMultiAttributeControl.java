@@ -24,12 +24,18 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	private MultiAttributeController<String> dataManipulator;
 	private PersonalListener personalListener = new PersonalListener(); // see inner class
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
 		EDataTypeEList<String> storedValues = (EDataTypeEList<String>) getModelElement().eGet(feature);
 		dataManipulator = new MultiAttributeController<String>(this, storedValues);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createSingleField(Object contentObj) {
 		assert (contentObj instanceof String);
@@ -41,6 +47,9 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createSingleField() {
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator);
@@ -67,6 +76,9 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object[] getAllStoredElements() {
 		return dataManipulator.getAllStoredElements();

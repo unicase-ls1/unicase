@@ -25,12 +25,18 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	private MultiAttributeController<Integer> dataManipulator;
 	private PersonalListener personalListener = new PersonalListener(); // see inner class
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
 		EDataTypeEList<Integer> storedValues = (EDataTypeEList<Integer>) getModelElement().eGet(feature);
 		dataManipulator = new MultiAttributeController<Integer>(this, storedValues);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createSingleField(Object contentObj) {
 		assert (contentObj instanceof Integer);
@@ -42,6 +48,9 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void createSingleField() {
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator);
@@ -68,6 +77,9 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object[] getAllStoredElements() {
 		return dataManipulator.getAllStoredElements();

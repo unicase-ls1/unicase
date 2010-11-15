@@ -27,6 +27,13 @@ class IntegerAttributeControl extends AttributeControl {
 	protected Spinner widget;
 	protected Integer value;
 
+	/**
+	 * Constructor for control with content.
+	 * 
+	 * @param parentItem The corresponding IntegerMultiAttributeWidget.
+	 * @param dataManipulator A MultiAttributeController for this widget.
+	 * @param value The initial value for this control.
+	 */
 	IntegerAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<Integer> dataManipulator,
 		int value) {
 		this.parentItem = parentItem;
@@ -45,10 +52,16 @@ class IntegerAttributeControl extends AttributeControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
 
+	/**
+	 * Constructor for control with no initial content.
+	 * 
+	 * @param parentItem The corresponding IntegerMultiAttributeWidget.
+	 * @param dataManipulator A MultiAttributeController for this widget.
+	 */
 	IntegerAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<Integer> dataManipulator) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
-		this.value = IntegerMultiAttributeControl.EMPTY_VALUE;
+		this.value = ((IntegerMultiAttributeControl) parentItem).EMPTY_VALUE;
 
 		// initialize
 		createCompositeLayout();
@@ -61,10 +74,16 @@ class IntegerAttributeControl extends AttributeControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
 
+	/**
+	 * Hidden default constructor.
+	 */
 	private IntegerAttributeControl() {
-		// hide default constructor
+		// nothing
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected boolean swapThisControlWith(int index) {
 		if (index >= parentItem.controlList.size() || index < 0) {
@@ -85,6 +104,9 @@ class IntegerAttributeControl extends AttributeControl {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
@@ -99,15 +121,13 @@ class IntegerAttributeControl extends AttributeControl {
 			final int newValue = widget.getSelection();
 
 			// jump over duplicates
-			if (!parentItem.allowDuplicates) {
-				if (dataManipulator.contains(newValue)) {
-					if (newValue > value) {
-						widget.setSelection(newValue + 1);
-					} else {
-						widget.setSelection(newValue - 1);
-					}
-					return;
+			if (!parentItem.allowDuplicates && dataManipulator.contains(newValue)) {
+				if (newValue > value) {
+					widget.setSelection(newValue + 1);
+				} else {
+					widget.setSelection(newValue - 1);
 				}
+				return;
 			}
 			// end of duplicate handling
 
@@ -132,6 +152,9 @@ class IntegerAttributeControl extends AttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
