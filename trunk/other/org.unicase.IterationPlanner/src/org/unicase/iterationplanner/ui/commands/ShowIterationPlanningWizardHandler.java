@@ -8,12 +8,11 @@ package org.unicase.iterationplanner.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.iterationplanner.ui.wizard.input.IterationPlanningInputWizard;
 import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -30,22 +29,29 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Project project = getProject();
-		IterationPlanningInputWizard wizard = new IterationPlanningInputWizard(project);
-		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
-		dialog.open();
+		if(project != null){
+			IterationPlanningInputWizard wizard = new IterationPlanningInputWizard(project);
+			WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
+			dialog.open();
+		}
 		return null;
 
 	}
 
 	private Project getProject() {
-		boolean unicase = true;
-		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
-		if(unicase){
-			return projectSpaces.get(0).getProject();
-		}else{
-			return projectSpaces.get(1).getProject();
+//		boolean unicase = true;
+//		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
+//		if(unicase){
+//			return projectSpaces.get(0).getProject();
+//		}else{
+//			return projectSpaces.get(1).getProject();
+//		}
+		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
+		if(project != null){
+			return project;
 		}
-	
+		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "No project selected", "You must select a project in navigator.");
+		return null;
 	}
 
 }
