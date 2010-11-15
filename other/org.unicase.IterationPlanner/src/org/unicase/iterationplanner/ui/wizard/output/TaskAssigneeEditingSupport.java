@@ -18,12 +18,14 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 	private Planner planner;
 	private ComboBoxCellEditor comboBoxCellEditor;
 	private IterationPlan iterationPlan;
+	private EditSelectedIterationPlanPage editingIterPlanWizardPage;
 
-	public TaskAssigneeEditingSupport(ColumnViewer viewer, Planner planner, IterationPlan iterationPlan) {
+	public TaskAssigneeEditingSupport(ColumnViewer viewer, Planner planner, IterationPlan iterationPlan, EditSelectedIterationPlanPage editSelectedIterationPlanPage) {
 		super(viewer);
 		this.planner = planner;
 		this.iterationPlan = iterationPlan;
 		this.comboBoxCellEditor = new ComboBoxCellEditor((Composite) viewer.getControl(), new String[]{"1"}, SWT.READ_ONLY);
+		this.editingIterPlanWizardPage = editSelectedIterationPlanPage;
 		
 	}
 
@@ -75,7 +77,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 		PlannedTask pt = (PlannedTask)element;
 		AssigneeExpertise ae = findAssigneeExpertise(comboBoxCellEditor.getItems()[(Integer)value], pt);
 		iterationPlan.setAssigneeFor(pt, ae);
-		getViewer().refresh();
+		editingIterPlanWizardPage.update();
 		
 	}
 

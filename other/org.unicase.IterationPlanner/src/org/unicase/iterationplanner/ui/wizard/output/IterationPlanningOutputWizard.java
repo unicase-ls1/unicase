@@ -21,7 +21,7 @@ public class IterationPlanningOutputWizard extends Wizard {
 
 	@Override
 	public void addPages() {
-		WizardPage editSelectedIterationPlanPage = new EditSelecteIterationPlanPage("editSelectedIterationPlanPage", iterationPlan, planner);
+		WizardPage editSelectedIterationPlanPage = new EditSelectedIterationPlanPage("editSelectedIterationPlanPage", iterationPlan, planner);
 		addPage(editSelectedIterationPlanPage);
 	}
 
