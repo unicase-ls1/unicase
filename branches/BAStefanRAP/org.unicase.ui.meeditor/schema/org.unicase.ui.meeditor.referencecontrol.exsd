@@ -72,7 +72,7 @@
                   The type of the opposite element of a reference.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.metamodel.ModelElement"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
                </appinfo>
             </annotation>
          </attribute>
