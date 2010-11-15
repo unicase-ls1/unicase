@@ -5,6 +5,8 @@
  */
 package org.unicase.workspace.util;
 
+import org.unicase.emfstore.exceptions.AccessControlException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -29,13 +31,14 @@ public final class EMFStoreClientUtil {
 	}
 
 	/**
-	 * Create a server info for a given port and url.
+	 * Gives a server info for a given port and url. Searches first for already existing ones. If the search fails, it
+	 * creates a new one and registers it for later lookup.
 	 * 
 	 * @param url the server url (e.g. IP address or DNS name)
 	 * @param port the server port
-	 * @return a servr info
+	 * @return a server info
 	 */
-	private static ServerInfo createServerInfo(String url, int port) {
+	private static ServerInfo giveServerInfo(String url, int port) {
 		Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		for (ServerInfo existingServerInfo : workspace.getServerInfos()) {
 			if (existingServerInfo.getName().equals(LOCALHOST_GENERATED_ENTRY_NAME)) {
@@ -44,13 +47,30 @@ public final class EMFStoreClientUtil {
 				}
 			}
 		}
+		ServerInfo serverInfo = createServerInfo(url, port, null);
+		workspace.getServerInfos().add(serverInfo);
+		workspace.save();
+		return serverInfo;
+	}
+
+	/**
+	 * Create a server info for a given port and url.
+	 * 
+	 * @param url the server url (e.g. IP address or DNS name)
+	 * @param port the server port
+	 * @param certificateAlias the certificateAlias (defaults to 'unicase.org test test(!!!) certificate' if null)
+	 * @return a server info
+	 */
+	private static ServerInfo createServerInfo(String url, int port, String certificateAlias) {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName(LOCALHOST_GENERATED_ENTRY_NAME);
 		serverInfo.setUrl(url);
 		serverInfo.setPort(port);
-		serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
-		workspace.getServerInfos().add(serverInfo);
-		workspace.save();
+		if (certificateAlias == null) {
+			serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
+		} else {
+			serverInfo.setCertificateAlias(certificateAlias);
+		}
 		return serverInfo;
 	}
 
@@ -86,11 +106,36 @@ public final class EMFStoreClientUtil {
 			}
 		}
 		Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
-		usersession.setServerInfo(createServerInfo(serverUrl, serverPort));
+		usersession.setServerInfo(giveServerInfo(serverUrl, serverPort));
 		usersession.setUsername(username);
 		usersession.setPassword(password);
 		workspace.getUsersessions().add(usersession);
 		workspace.save();
 		return usersession;
+	}
+
+	/**
+	 * Checks, if the given credentials can be authenticated at the given server.
+	 * 
+	 * @param username the username
+	 * @param password the password
+	 * @param serverUrl server url
+	 * @param serverPort server port
+	 * @param certificateAlias the certificateAlias (defaults to 'unicase.org test test(!!!) certificate' if null)
+	 * @return true, if username & password are right
+	 * @throws EmfStoreException Problem with the EMFStore Server
+	 */
+	public static boolean dryLogin(String username, String password, String serverUrl, int serverPort,
+		String certificateAlias) throws EmfStoreException {
+		Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		usersession.setServerInfo(createServerInfo(serverUrl, serverPort, certificateAlias));
+		usersession.setUsername(username);
+		usersession.setPassword(password);
+		try {
+			usersession.logIn();
+		} catch (AccessControlException e) {
+			return false;
+		}
+		return true;
 	}
 }
