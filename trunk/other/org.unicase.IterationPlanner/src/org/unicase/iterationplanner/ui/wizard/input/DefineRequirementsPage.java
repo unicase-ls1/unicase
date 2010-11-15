@@ -9,8 +9,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
@@ -118,7 +121,47 @@ public class DefineRequirementsPage extends AbstractInputPage {
 
 	@Override
 	protected boolean hasExtraControls() {
-		return false;
+		return true;
+	}
+	
+	
+
+
+	@Override
+	protected void createExtraControls(Composite extraControlsComposite) {
+		extraControlsComposite.setLayout(new GridLayout(1, false));
+		
+		final Button chkSaveSession = new Button(extraControlsComposite, SWT.CHECK);
+		chkSaveSession.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		chkSaveSession.setText("Save session ");
+		chkSaveSession.setSelection(true);
+		
+		chkSaveSession.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				((IterationPlanningInputWizard)getWizard()).setSaveSession(chkSaveSession.getSelection());
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {	}
+		});
+		
+		final Button btnLoadSession = new Button(extraControlsComposite, SWT.CHECK);
+		btnLoadSession.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnLoadSession.setText("Load previous session");
+		btnLoadSession.setSelection(true);
+		
+		btnLoadSession.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				((IterationPlanningInputWizard)getWizard()).loadPreviousSession();
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {	}
+		});
+		
+		
+		
+		
 	}
 
 
@@ -157,7 +200,9 @@ public class DefineRequirementsPage extends AbstractInputPage {
 	public IWizardPage getNextPage() {
 		 if (isEverythingOk()){
 			saveModel();
-			return ((IterationPlanningInputWizard)getWizard()).getDefineTasksPage();
+			IterationPlanningInputWizard wizard = (IterationPlanningInputWizard)getWizard();
+			wizard.saveRequirements(((RequirementsContentProvider) targetReqsTreeViewer.getContentProvider()).getReqs());
+			return wizard.getDefineTasksPage();
 		 }  
 		 return null;
 	}

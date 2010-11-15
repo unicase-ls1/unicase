@@ -5,11 +5,14 @@
  */
 package org.unicase.iterationplanner.ui.wizard.input;
 
+import java.util.List;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
 import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
 import org.unicase.metamodel.Project;
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * @author Hodaie
@@ -17,30 +20,12 @@ import org.unicase.metamodel.Project;
 public class IterationPlanningInputWizard extends Wizard {
 
 	private ProjectBridge projectBridge;
-	public AbstractInputPage getDefineAssigneesPage() {
-		return defineAssigneesPage;
-	}
-
-
-	public AbstractInputPage getDefineTasksPage() {
-		return defineTasksPage;
-	}
-
-
-	public AbstractInputPage getDefineReqsPage() {
-		return defineReqsPage;
-	}
-
-
-	public WizardPage getDefinePlannerParametersPage() {
-		return definePlannerParametersPage;
-	}
-
 	private PlannerBridge plannerBridge;
 	private AbstractInputPage defineAssigneesPage;
 	private AbstractInputPage defineTasksPage;
 	private AbstractInputPage defineReqsPage;
 	private WizardPage definePlannerParametersPage;
+	private boolean saveSession;
 
 	/**
 	 * Constructor.
@@ -48,7 +33,8 @@ public class IterationPlanningInputWizard extends Wizard {
 	public IterationPlanningInputWizard(Project project) {
 		setWindowTitle("Define Inputs to Iteration Planning Algorithm");
 		this.projectBridge = new ProjectBridge(project);
-		this.plannerBridge = new PlannerBridge();
+		this.plannerBridge = new PlannerBridge(project);
+		this.saveSession = true;
 	
 	}
 
@@ -84,6 +70,66 @@ public class IterationPlanningInputWizard extends Wizard {
 		
 		return result;
 	}
+
+
+	public void setSaveSession(boolean saveSession) {
+		this.saveSession = saveSession;
+	}
+
+
+	public boolean isSaveSession() {
+		return saveSession;
+	}
 	
+	
+	public AbstractInputPage getDefineAssigneesPage() {
+		return defineAssigneesPage;
+	}
+
+
+	public AbstractInputPage getDefineTasksPage() {
+		return defineTasksPage;
+	}
+
+
+	public AbstractInputPage getDefineReqsPage() {
+		return defineReqsPage;
+	}
+
+
+	public WizardPage getDefinePlannerParametersPage() {
+		return definePlannerParametersPage;
+	}
+
+
+	public void loadPreviousSession() {
+		//check if saved active project is still in workspace. if yes go further.
+		
+		// all the methods should check if values being set as target, 
+		// are still valid with this project state
+		// 
+		// first check if the target ME is still in project
+		// if yes, take its newest value (but how? using ME.id?)
+		
+		//get requirements 
+		//reqsPage.setTargetReqs()
+		
+		//get tasks 
+		//tasksPage.setTargetTasks()
+		
+		//get users availabilities 
+		//usersPage.setTargetUsers()
+		
+		//get parameters 
+		//paramsPage.setTargetParams()
+		
+	}
+
+
+	public void saveRequirements(List<FunctionalRequirement> list) {
+		if(isSaveSession()){
+			//saveSession
+		}
+	}
 
 }
