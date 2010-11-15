@@ -11,6 +11,7 @@ import static org.unicase.workspace.Configuration.isTesting;
 
 import org.unicase.emfstore.DefaultServerWorkspaceLocationProvider;
 import org.unicase.emfstore.LocationProvider;
+import org.unicase.rap.sessionmanagement.UserSessionInfo;
 
 /**
  * This is the default workspace location provider. If no other location provider is registered, this provider is used.
@@ -53,6 +54,7 @@ public class DefaultWorkspaceLocationProvider extends DefaultServerWorkspaceLoca
 				}
 			}
 		}
+		parameter += UserSessionInfo.getInstance().getUsername(); // TODO RAP
 		return parameter;
 	}
 }

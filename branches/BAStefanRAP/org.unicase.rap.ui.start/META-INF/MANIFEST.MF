@@ -8,6 +8,8 @@ Require-Bundle: org.eclipse.rap.ui,
  org.eclipse.core.runtime,
  org.eclipse.rap.ui.workbench,
  org.eclipse.rap.jface,
+ org.unicase.rap.sessionmanagement;bundle-version="1.0.0",
+ org.unicase.workspace;bundle-version="1.0.0",
  org.unicase.ui.navigator;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

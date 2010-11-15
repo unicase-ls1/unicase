@@ -49,7 +49,9 @@ public abstract class ECPCommand extends ChangeCommand {
 	 */
 	public void run() {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-		domain.getCommandStack().execute(this);
+		if (domain != null) {
+			domain.getCommandStack().execute(this);
+		}
 	}
 
 }

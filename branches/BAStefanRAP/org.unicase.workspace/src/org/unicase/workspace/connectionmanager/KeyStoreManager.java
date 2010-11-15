@@ -39,6 +39,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.rwt.SessionSingletonBase;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
@@ -53,10 +54,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author Wesendonk
  */
-
+// TODO RAP (SessionSingletonBase)
 public final class KeyStoreManager {
-
-	private static KeyStoreManager instance;
 
 	/**
 	 * Name of keyStore file.
@@ -110,10 +109,7 @@ public final class KeyStoreManager {
 	 * @return {@link KeyStoreManager}
 	 */
 	public static synchronized KeyStoreManager getInstance() {
-		if (instance == null) {
-			instance = new KeyStoreManager();
-		}
-		return instance;
+		return (KeyStoreManager) SessionSingletonBase.getInstance(KeyStoreManager.class);
 	}
 
 	/**

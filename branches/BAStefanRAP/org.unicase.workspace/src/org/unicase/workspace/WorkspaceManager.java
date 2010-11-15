@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryImpl;
+import org.eclipse.rwt.SessionSingletonBase;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
@@ -42,47 +43,41 @@ import edu.tum.cs.cope.migration.execution.MigratorRegistry;
 import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
- * Controller for workspaces. Workspace Manager is a singleton.
+ * Controller for workspaces. Workspace Manager is a session-singleton.
  * 
  * @author Maximilian Koegel
  * @generated NOT
  */
+// TODO RAP (SessionSingletonBase)
 public final class WorkspaceManager {
 
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 
-	private static WorkspaceManager instance;
+	private static boolean initedEcorePackages; // default: = false;
 
 	private Workspace currentWorkspace;
 	private ConnectionManager connectionManager;
 	private AdminConnectionManager adminConnectionManager;
 
 	/**
-	 * Get an instance of the workspace manager. Will create an instance if no workspace manager is present.
+	 * Get an instance of the workspace manager. Will create an instance if no workspace manager for this session is
+	 * present.
 	 * 
-	 * @return the workspace manager singleton
+	 * @return the workspace manager session-singleton
 	 * @generated NOT
 	 */
 	public static synchronized WorkspaceManager getInstance() {
-		if (instance == null) {
-			try {
-				instance = new WorkspaceManager();
-
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException e) {
-				// END SURPRESS CATCH EXCEPTION
-				ModelUtil.logException("Workspace Initialization failed, shutting down", e);
-				throw e;
-			}
-
-			// init ecore packages
-			ModelUtil.getAllModelElementEClasses();
+		try {
+			return (WorkspaceManager) SessionSingletonBase.getInstance(WorkspaceManager.class);
+		} catch (RuntimeException e) {
+			// END SURPRESS CATCH EXCEPTION
+			ModelUtil.logException("Workspace Initialization failed, shutting down", e);
+			throw e;
 		}
-		return instance;
 	}
 
 	/**
-	 * Initialize the Workspace Manager singleton.
+	 * Initialize the Workspace Manager session-singleton.
 	 */
 	public static synchronized void init() {
 		getInstance();
@@ -94,6 +89,12 @@ public final class WorkspaceManager {
 	 * @generated NOT
 	 */
 	private WorkspaceManager() {
+		// init ecore packages
+		if (!initedEcorePackages) {
+			ModelUtil.getAllModelElementEClasses();
+			initedEcorePackages = true;
+		}
+
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
@@ -134,12 +135,19 @@ public final class WorkspaceManager {
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
-		// register an editing domain on the ressource
-		final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreTransactionalCommandStack(), resourceSet);
-		((FactoryImpl) TransactionalEditingDomain.Factory.INSTANCE).mapResourceSet(domain);
-		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
-		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		final TransactionalEditingDomain domain;
+		// check if the domain is already registered (especially important for RAP):
+		if (TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID) != null) {
+			domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		} else {
+			// else: register an editing domain on the ressource
+			domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreTransactionalCommandStack(),
+				resourceSet);
+			((FactoryImpl) TransactionalEditingDomain.Factory.INSTANCE).mapResourceSet(domain);
+			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+			domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		}
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
@@ -440,4 +448,5 @@ public final class WorkspaceManager {
 			throw new IllegalStateException("Project is not contained by any project space");
 		}
 	}
+
 }

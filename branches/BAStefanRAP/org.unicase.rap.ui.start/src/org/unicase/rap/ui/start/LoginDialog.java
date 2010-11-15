@@ -5,31 +5,6 @@
  */
 package org.unicase.rap.ui.start;
 
-import java.io.FileInputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.security.InvalidKeyException;
-import java.security.KeyStore;
-import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
-import java.security.cert.Certificate;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
-import org.apache.commons.codec.binary.Base64;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -39,17 +14,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.ConnectionException;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.ConnectionManager;
-import org.unicase.workspace.exceptions.CertificateStoreException;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.rap.sessionmanagement.UserSessionInfo;
 
 /**
  * @author stefan
@@ -125,6 +90,7 @@ public class LoginDialog extends Dialog {
 	@Override
 	protected void okPressed() {
 		username = usernameText.getText();
+		UserSessionInfo.getInstance().setUsername(username);
 		password = passwordText.getText();
 		super.okPressed();
 	}
@@ -141,46 +107,6 @@ public class LoginDialog extends Dialog {
 	 */
 	public String getPassword() {
 		return password;
-	}
-
-	public String getEncryptedPassword() {
-		try {
-			Certificate publicKey = null;
-			try {
-				KeyStore keyStore = KeyStore.getInstance("JKS");
-				keyStore.load(new FileInputStream(Configuration.getWorkspaceDirectory() + "unicaseClient.keystore"),
-					"jsFTga3rGTR833329GFQEfas".toCharArray());
-				publicKey = keyStore.getCertificate("unicase.org test test(!!!) certificate");
-			} catch (Exception e) {
-			}
-			PublicKey key = publicKey.getPublicKey();
-			byte[] inpBytes;
-			inpBytes = getPassword().getBytes();
-			Cipher cipher = Cipher.getInstance("RSA");
-			cipher.init(Cipher.ENCRYPT_MODE, key);
-			byte[] encryptededByteAr = cipher.doFinal(inpBytes);
-			byte[] base64EncodedByteAr = Base64.encodeBase64(encryptededByteAr);
-			return new String(base64EncodedByteAr);
-			// TODO: OW When new login proxy object with encryption handler is implemented, handle exceptions
-		} catch (NoSuchAlgorithmException e) {
-			// nothing to do
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			// nothing to do
-			e.printStackTrace();
-		} catch (InvalidKeyException e) {
-			// nothing to do
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			// nothing to do
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// nothing to do
-			e.printStackTrace();
-		}
-		WorkspaceUtil.logException("Couldn't encrypt password.", new CertificateStoreException(
-			"Couldn't encrypt password."));
-		return "";
 	}
 
 }
