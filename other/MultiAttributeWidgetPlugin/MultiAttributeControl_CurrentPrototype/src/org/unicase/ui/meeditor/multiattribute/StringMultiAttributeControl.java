@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -9,17 +14,16 @@ import org.eclipse.swt.events.KeyListener;
  * String implementation of a MultiAttributeItem.
  * 
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
- *
  */
 public class StringMultiAttributeControl extends MultiAttributeControl {
 
 	// CONSTANTS
 	protected static String EMPTY_VALUE = new String("");
-	
-	//essential references
+
+	// essential references
 	private MultiAttributeController<String> dataManipulator;
 	private PersonalListener personalListener = new PersonalListener(); // see inner class
-	
+
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
 		EDataTypeEList<String> storedValues = (EDataTypeEList<String>) getModelElement().eGet(feature);
@@ -28,7 +32,7 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 
 	@Override
 	protected void createSingleField(Object contentObj) {
-		assert(contentObj instanceof String);
+		assert (contentObj instanceof String);
 		String content = (String) contentObj;
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator, content);
 		f.widget.addKeyListener(personalListener);
@@ -36,7 +40,6 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 			f.widget.setEditable(false);
 		}
 	}
-	
 
 	@Override
 	protected void createSingleField() {
@@ -47,16 +50,15 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 		}
 		emptyField = f.widget;
 	}
-	
+
 	/**
-	 * Implements specific listeners for this type's widget in general,
-	 * no single-field-specific listener!
+	 * Implements specific listeners for this type's widget in general, no single-field-specific listener!
 	 */
 	private class PersonalListener implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if (e.keyCode == 13) { //ENTER
+			if (e.keyCode == 13) { // ENTER
 				emptyField.setFocus();
 			}
 		}

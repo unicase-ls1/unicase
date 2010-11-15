@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.jface.layout.GridDataFactory;
@@ -11,51 +16,51 @@ import org.eclipse.swt.widgets.Spinner;
  * Represents a single Integer field for a MultiAttributeItem.
  * 
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
- *
  */
 class IntegerAttributeControl extends AttributeControl {
-	
+
 	// CONSTANTS
 	private static int SIZE_LIMIT = 10000000;
-	
+
 	// state and references
 	protected MultiAttributeController<Integer> dataManipulator;
 	protected Spinner widget;
 	protected Integer value;
-	
-	IntegerAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<Integer> dataManipulator, int value) {
+
+	IntegerAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<Integer> dataManipulator,
+		int value) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
 		this.value = value;
 		this.index = parentItem.controlList.size();
 		parentItem.controlList.add(this);
-		
+
 		// initialize
 		createCompositeLayout();
-		widget = new Spinner (fieldComposite, parentItem.style | SWT.SINGLE);
+		widget = new Spinner(fieldComposite, parentItem.style | SWT.SINGLE);
 		widget.setValues(value, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
 		widget.addModifyListener(this);
 		createDeleteButton();
 		createUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
-	
+
 	IntegerAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<Integer> dataManipulator) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
 		this.value = IntegerMultiAttributeControl.EMPTY_VALUE;
-		
+
 		// initialize
 		createCompositeLayout();
-		widget = new Spinner (fieldComposite, parentItem.style | SWT.SINGLE);
+		widget = new Spinner(fieldComposite, parentItem.style | SWT.SINGLE);
 		widget.setValues(value, -SIZE_LIMIT, SIZE_LIMIT, 0, 1, 1);
 		widget.addModifyListener(this);
-		widget.setForeground(new Color(widget.getDisplay(),100,100,100));
+		widget.setForeground(new Color(widget.getDisplay(), 100, 100, 100));
 		createAddButton();
 		createInvisibleUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
-	
+
 	private IntegerAttributeControl() {
 		// hide default constructor
 	}
@@ -68,7 +73,7 @@ class IntegerAttributeControl extends AttributeControl {
 		// create non-duplicate Integer
 		int random = 0;
 		while (dataManipulator.contains(random)) {
-			random = ((int) (Math.random()*10000));
+			random = ((int) (Math.random() * 10000));
 		}
 		// use it for swap
 		int thisValue = value;
@@ -76,43 +81,41 @@ class IntegerAttributeControl extends AttributeControl {
 		widget.setSelection(random);
 		((IntegerAttributeControl) parentItem.controlList.get(index)).widget.setSelection(thisValue);
 		widget.setSelection(otherValue);
-						
+
 		return true;
 	}
-	
+
 	@Override
 	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
 			// first edit? --> layout changes
-			if (index==-1) {
-				widget.setForeground(new Color(widget.getDisplay(),0,0,0));
+			if (index == -1) {
+				widget.setForeground(new Color(widget.getDisplay(), 0, 0, 0));
 				button.dispose();
 				createDeleteButton();
 				createUpDownButtons();
 			}
-			
+
 			final int newValue = widget.getSelection();
-			
+
 			// jump over duplicates
 			if (!parentItem.allowDuplicates) {
 				if (dataManipulator.contains(newValue)) {
 					if (newValue > value) {
-						widget.setSelection(newValue+1);
-					}
-					else {
-						widget.setSelection(newValue-1);
+						widget.setSelection(newValue + 1);
+					} else {
+						widget.setSelection(newValue - 1);
 					}
 					return;
-				}				
+				}
 			}
 			// end of duplicate handling
-			
-			if (index!=-1) {
+
+			if (index != -1) {
 				// was a regular entry before
 				dataManipulator.replaceElementAt(index, newValue);
 				value = newValue;
-			}
-			else {
+			} else {
 				// was a dummy entry before
 				this.index = parentItem.controlList.size();
 				parentItem.controlList.add(this);
@@ -124,7 +127,7 @@ class IntegerAttributeControl extends AttributeControl {
 				}
 				fieldComposite.layout();
 			}
-			
+
 			parentItem.refreshWidget();
 		}
 	}
@@ -132,24 +135,23 @@ class IntegerAttributeControl extends AttributeControl {
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
-			if (index==-1) {
+			if (index == -1) {
 				// add instead of delete
-				
+
 				// duplicate handling
 				if (!parentItem.allowDuplicates) {
 					while (dataManipulator.contains(value)) {
 						value++;
-					} 
+					}
 				}
 				// end of duplicate handling
 				// automatically added then (ModifyListener!)
-				widget.setSelection(value);	
-				widget.setForeground(new Color(widget.getDisplay(),0,0,0));
+				widget.setSelection(value);
+				widget.setForeground(new Color(widget.getDisplay(), 0, 0, 0));
 				button.dispose();
 				createDeleteButton();
 				createUpDownButtons();
-			}
-			else {
+			} else {
 				// delete
 				// one will be deleted --> new empty one
 				if (parentItem.isFull()) {
@@ -157,24 +159,24 @@ class IntegerAttributeControl extends AttributeControl {
 				}
 				dataManipulator.removeElementAt(index);
 				// accordingly change all other indexes
-				for (int i=index+1; i<parentItem.controlList.size(); i++) {
+				for (int i = index + 1; i < parentItem.controlList.size(); i++) {
 					parentItem.controlList.get(i).index--;
 				}
 				parentItem.controlList.remove(index);
-				
+
 				fieldComposite.dispose();
-				
+
 			}
 		}
-		
+
 		if (e.getSource().equals(up)) {
-			swapThisControlWith(index-1);
+			swapThisControlWith(index - 1);
 		}
-		
+
 		if (e.getSource().equals(down)) {
-			swapThisControlWith(index+1);
+			swapThisControlWith(index + 1);
 		}
-		
+
 		parentItem.refreshWidget();
 	}
 }
