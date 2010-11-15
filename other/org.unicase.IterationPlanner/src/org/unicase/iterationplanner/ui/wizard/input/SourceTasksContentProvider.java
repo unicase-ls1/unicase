@@ -119,7 +119,9 @@ public class SourceTasksContentProvider extends AdapterFactoryContentProvider {
 			}
 			if(wi instanceof Issue){
 				if(!((Issue)wi).isResolved()){
-					allUndoneWorkItems.add(wi);
+					if(((Issue)wi).getSolution() == null){
+						allUndoneWorkItems.add(wi);
+					}
 				}
 			}
 		}
