@@ -107,19 +107,15 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 */
 	protected abstract boolean swapThisControlWith(int index);
 
-	@Override
 	public abstract void modifyText(ModifyEvent e); // still duplicated code, but better solution?!
 
-	@Override
 	public void mouseDoubleClick(MouseEvent e) {
 		// nothing
 	}
 
-	@Override
 	public void mouseDown(MouseEvent e) {
 		// nothing
 	}
 
-	@Override
 	public abstract void mouseUp(MouseEvent e); // still duplicated code, but better solution?!
 }

@@ -56,14 +56,12 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	 */
 	private class PersonalListener implements KeyListener {
 
-		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.keyCode == 13) { // ENTER
 				emptyField.setFocus();
 			}
 		}
 
-		@Override
 		public void keyReleased(KeyEvent e) {
 			// nothing
 		}
