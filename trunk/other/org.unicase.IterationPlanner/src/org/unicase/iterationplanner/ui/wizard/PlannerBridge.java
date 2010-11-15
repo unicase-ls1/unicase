@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
@@ -23,6 +25,7 @@ import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 import org.unicase.iterationplanner.planner.impl.MySelector;
 import org.unicase.iterationplanner.ui.wizard.input.UserAvailability;
+import org.unicase.iterationplanner.ui.wizard.output.IterationPlanningOutputWizard;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -113,9 +116,18 @@ public class PlannerBridge {
 
 		// output result
 		outputIterationPlannerResults(result, myPlanner);
+		
+		openOutPutWizard(result.get(0));
 	
 	}
 	
+	private void openOutPutWizard(IterationPlan iterationPlan) {
+		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan);
+		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), outputWizard);
+		dialog.open();
+	}
+
+
 	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
 			IterationPlan iterPlan = result.get(i);

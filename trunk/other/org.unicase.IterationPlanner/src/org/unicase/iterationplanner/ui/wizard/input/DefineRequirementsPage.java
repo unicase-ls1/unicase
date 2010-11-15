@@ -145,7 +145,7 @@ public class DefineRequirementsPage extends AbstractInputPage {
 			public void widgetDefaultSelected(SelectionEvent e) {	}
 		});
 		
-		final Button btnLoadSession = new Button(extraControlsComposite, SWT.CHECK);
+		final Button btnLoadSession = new Button(extraControlsComposite, SWT.PUSH);
 		btnLoadSession.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 		btnLoadSession.setText("Load previous session");
 		btnLoadSession.setSelection(true);
