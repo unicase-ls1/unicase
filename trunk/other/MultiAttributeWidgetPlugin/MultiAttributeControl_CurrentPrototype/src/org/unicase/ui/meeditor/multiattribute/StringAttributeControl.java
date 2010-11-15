@@ -21,6 +21,13 @@ class StringAttributeControl extends AttributeControl {
 	protected Text widget;
 	protected String value;
 
+	/**
+	 * Constructor for control with content.
+	 * 
+	 * @param parentItem The corresponding StringMultiAttributeWidget.
+	 * @param dataManipulator A MultiAttributeController for this widget.
+	 * @param value The initial value for this control.
+	 */
 	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator,
 		String value) {
 		this.parentItem = parentItem;
@@ -38,6 +45,12 @@ class StringAttributeControl extends AttributeControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
 
+	/**
+	 * Constructor for control with no initial content.
+	 * 
+	 * @param parentItem The corresponding StringMultiAttributeWidget.
+	 * @param dataManipulator A MultiAttributeController for this widget.
+	 */
 	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
@@ -53,10 +66,16 @@ class StringAttributeControl extends AttributeControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
 
+	/**
+	 * Hidden default constructor.
+	 */
 	private StringAttributeControl() {
 		// hide default constructor
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected boolean swapThisControlWith(int index) {
 		if (index >= parentItem.controlList.size() || index < 0) {
@@ -77,6 +96,9 @@ class StringAttributeControl extends AttributeControl {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
@@ -120,6 +142,9 @@ class StringAttributeControl extends AttributeControl {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {

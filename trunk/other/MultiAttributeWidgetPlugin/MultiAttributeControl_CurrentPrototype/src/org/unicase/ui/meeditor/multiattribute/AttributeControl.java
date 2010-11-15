@@ -55,15 +55,17 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 */
 	protected void createUpDownButtons() {
 		// if invisible ones have been created
-		if (up != null)
+		if (up != null) {
 			up.dispose();
+		}
 		up = new ImageHyperlink(fieldComposite, SWT.TOP);
 		up.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
 		up.addMouseListener(this);
 
 		// if invisible ones have been created
-		if (down != null)
+		if (down != null) {
 			down.dispose();
+		}
 		down = new ImageHyperlink(fieldComposite, SWT.TOP);
 		down.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
 		down.addMouseListener(this);
@@ -87,8 +89,6 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 
 	/**
 	 * Creates the layout for one single field.
-	 * 
-	 * @return Returns the composite.
 	 */
 	protected void createCompositeLayout() {
 		fieldComposite = parentItem.getToolkit().createComposite(parentItem.composite, parentItem.style);
@@ -107,15 +107,27 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 */
 	protected abstract boolean swapThisControlWith(int index);
 
-	public abstract void modifyText(ModifyEvent e); // still duplicated code, but better solution?!
+	/**
+	 * {@inheritDoc}
+	 */
+	public abstract void modifyText(ModifyEvent e);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void mouseDoubleClick(MouseEvent e) {
 		// nothing
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void mouseDown(MouseEvent e) {
 		// nothing
 	}
 
-	public abstract void mouseUp(MouseEvent e); // still duplicated code, but better solution?!
+	/**
+	 * {@inheritDoc}
+	 */
+	public abstract void mouseUp(MouseEvent e);
 }

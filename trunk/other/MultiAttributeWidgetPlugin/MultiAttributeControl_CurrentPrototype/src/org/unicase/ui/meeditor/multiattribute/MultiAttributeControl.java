@@ -52,6 +52,9 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	protected GridLayout gridLayout;
 	protected Control emptyField; // or the bottom one if isFull() && isEditable()
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
@@ -68,6 +71,9 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		return DO_NOT_RENDER;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
 		final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(
