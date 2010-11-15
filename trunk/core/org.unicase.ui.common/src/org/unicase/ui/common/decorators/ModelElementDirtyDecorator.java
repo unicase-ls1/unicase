@@ -15,7 +15,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.eclipse.ui.internal.keys.model.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -27,7 +28,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 
-	private String dirtyPath = "icons/dirty.jpg";
+	private String dirtyPath = "icons/dirty.png";
 	private ImageDescriptor descriptor;
 
 	/**
@@ -39,38 +40,31 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 	 * @param decoration decoration
 	 */
 	public void decorate(Object element, IDecoration decoration) {
-		/**
-		 * Checks that the element is an IResource with the 'Read-only' attribute and adds the decorator based on the
-		 * specified image description and the integer representation of the placement option.
-		 */
-
 		URL url = null;
 		boolean dirty = false;
 		if (element instanceof EObject) {
-
 			EObject modelElement = (EObject) element;
-			if(ModelUtil.getProject(modelElement) == null) {
+			Project project = ModelUtil.getProject(modelElement);
+			if (project == null) {
 				return;
 			}
-
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			if (projectSpace == null) {
 				return;
 			}
-
-			// if ME is dirty show decoration
-			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(
-				ModelUtil.getProject(modelElement).getModelElementId(modelElement))) {
+			ModelElementId modelElementId = project.getModelElementId(modelElement);
+			if (modelElementId == null) {
+				return;
+			}
+			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(modelElementId)) {
 				dirty = true;
 			}
 		}
-
 		if (dirty) {
 			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
 			descriptor = ImageDescriptor.createFromURL(url);
 			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
 		}
-
 	}
 
 	/**
