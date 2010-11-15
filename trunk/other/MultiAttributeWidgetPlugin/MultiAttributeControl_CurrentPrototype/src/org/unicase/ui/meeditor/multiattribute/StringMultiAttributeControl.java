@@ -18,7 +18,7 @@ import org.eclipse.swt.events.KeyListener;
 public class StringMultiAttributeControl extends MultiAttributeControl {
 
 	// CONSTANTS
-	protected static String EMPTY_VALUE = new String("");
+	private static final String EMPTY_VALUE = new String("");
 
 	// essential references
 	private MultiAttributeController<String> dataManipulator;
@@ -27,6 +27,7 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
 		EDataTypeEList<String> storedValues = (EDataTypeEList<String>) getModelElement().eGet(feature);
@@ -41,9 +42,9 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 		assert (contentObj instanceof String);
 		String content = (String) contentObj;
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator, content);
-		f.widget.addKeyListener(personalListener);
-		if (!isEditable) {
-			f.widget.setEditable(false);
+		f.getWidget().addKeyListener(personalListener);
+		if (!isEditable()) {
+			f.getWidget().setEditable(false);
 		}
 	}
 
@@ -53,11 +54,11 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	@Override
 	protected void createSingleField() {
 		StringAttributeControl f = new StringAttributeControl(this, dataManipulator);
-		f.widget.addKeyListener(personalListener);
-		if (!isEditable) {
-			f.widget.setEditable(false);
+		f.getWidget().addKeyListener(personalListener);
+		if (!isEditable()) {
+			f.getWidget().setEditable(false);
 		}
-		emptyField = f.widget;
+		setEmptyField(f.getWidget());
 	}
 
 	/**
@@ -67,7 +68,7 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 
 		public void keyPressed(KeyEvent e) {
 			if (e.keyCode == 13) { // ENTER
-				emptyField.setFocus();
+				getEmptyField().setFocus();
 			}
 		}
 
@@ -82,6 +83,13 @@ public class StringMultiAttributeControl extends MultiAttributeControl {
 	@Override
 	public Object[] getAllStoredElements() {
 		return dataManipulator.getAllStoredElements();
+	}
+
+	/**
+	 * @return the emptyValue
+	 */
+	public static String getEmptyValue() {
+		return EMPTY_VALUE;
 	}
 
 }

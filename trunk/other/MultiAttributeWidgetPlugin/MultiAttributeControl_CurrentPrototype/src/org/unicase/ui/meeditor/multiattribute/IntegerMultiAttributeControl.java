@@ -18,8 +18,7 @@ import org.eclipse.swt.events.KeyListener;
 public class IntegerMultiAttributeControl extends MultiAttributeControl {
 
 	// CONSTANTS
-	protected static int EMPTY_VALUE = new Integer(0);
-	// private static int SIZE_LIMIT = 10000000;
+	private static final int EMPTY_VALUE = new Integer(0);
 
 	// essential references
 	private MultiAttributeController<Integer> dataManipulator;
@@ -28,6 +27,7 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void createDataStructures(EStructuralFeature feature) {
 		EDataTypeEList<Integer> storedValues = (EDataTypeEList<Integer>) getModelElement().eGet(feature);
@@ -42,9 +42,9 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 		assert (contentObj instanceof Integer);
 		int content = (Integer) contentObj;
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator, content);
-		f.widget.addKeyListener(personalListener);
-		if (!isEditable) {
-			f.widget.setEnabled(false);
+		f.getWidget().addKeyListener(personalListener);
+		if (!isEditable()) {
+			f.getWidget().setEnabled(false);
 		}
 	}
 
@@ -54,11 +54,11 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	@Override
 	protected void createSingleField() {
 		IntegerAttributeControl f = new IntegerAttributeControl(this, dataManipulator);
-		f.widget.addKeyListener(personalListener);
-		if (!isEditable) {
-			f.widget.setEnabled(false);
+		f.getWidget().addKeyListener(personalListener);
+		if (!isEditable()) {
+			f.getWidget().setEnabled(false);
 		}
-		emptyField = f.widget;
+		setEmptyField(f.getWidget());
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 
 		public void keyPressed(KeyEvent e) {
 			if (e.keyCode == 13) { // ENTER
-				emptyField.forceFocus();
+				getEmptyField().forceFocus();
 			}
 		}
 
@@ -83,6 +83,13 @@ public class IntegerMultiAttributeControl extends MultiAttributeControl {
 	@Override
 	public Object[] getAllStoredElements() {
 		return dataManipulator.getAllStoredElements();
+	}
+
+	/**
+	 * @return the EMPTY_VALUE
+	 */
+	public static int getEmptyValue() {
+		return EMPTY_VALUE;
 	}
 
 }

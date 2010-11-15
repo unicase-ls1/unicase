@@ -38,19 +38,19 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  */
 public abstract class MultiAttributeControl extends AbstractMEControl {
 	// CONSTANTS
-	protected static int PRIORITY = 2;
+	private static final int PRIORITY = 2;
 
 	// state attributes
-	protected int style;
-	protected int upperBound;
-	protected boolean isEditable;
-	protected boolean allowDuplicates;
-	protected ArrayList<AttributeControl> controlList = new ArrayList<AttributeControl>();
+	private int style;
+	private int upperBound;
+	private boolean isEditable;
+	private boolean allowDuplicates;
+	private ArrayList<AttributeControl> controlList = new ArrayList<AttributeControl>();
 
 	// essential references
-	protected Composite composite;
-	protected GridLayout gridLayout;
-	protected Control emptyField; // or the bottom one if isFull() && isEditable()
+	private Composite composite;
+	private GridLayout gridLayout;
+	private Control emptyField; // or the bottom one if isFull() && isEditable()
 
 	/**
 	 * {@inheritDoc}
@@ -81,26 +81,26 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		createDataStructures(feature);
 
 		// set state
-		this.style = style;
-		isEditable = getItemPropertyDescriptor().canSetProperty(getModelElement());
-		allowDuplicates = !feature.isUnique();
+		this.setStyle(style);
+		setEditable(getItemPropertyDescriptor().canSetProperty(getModelElement()));
+		setAllowDuplicates(!feature.isUnique());
 
 		// create composite structure
-		composite = getToolkit().createComposite(parent, style | SWT.BORDER);
+		setComposite(getToolkit().createComposite(parent, style | SWT.BORDER));
 		configureGridLayout();
-		composite.setLayout(gridLayout);
+		getComposite().setLayout(gridLayout);
 
 		// re-set upper bound... needed because canRender() was called in an other instance
 		upperBound = feature.getUpperBound();
 
 		initializeWidget();
-		return composite;
+		return getComposite();
 	}
 
 	/**
 	 * Creates the lists for stored values and fields needed.
 	 * 
-	 * @param feature Reference to the feature of this model element.
+	 * @param feature reference to the feature of this model element
 	 */
 	protected abstract void createDataStructures(EStructuralFeature feature);
 
@@ -119,7 +119,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		for (Object i : getAllStoredElements()) {
 			createSingleField(i);
 		}
-		if (!isFull() && isEditable) {
+		if (!isFull() && isEditable()) {
 			createSingleField();
 		}
 		// make sure it is drawn correctly
@@ -130,19 +130,19 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * Redraws the widget with correct layout.
 	 */
 	protected void refreshWidget() {
-		composite.layout(); // fields are drawn, but overall size is not always accordingly changed
+		getComposite().layout(); // fields are drawn, but overall size is not always accordingly changed
 		// layout of whole editor adapts to new widget content - how??
-		composite.getParent().layout();
-		composite.getParent().getParent().layout();
+		getComposite().getParent().layout();
+		getComposite().getParent().getParent().layout();
 	}
 
 	/**
 	 * Checks if this widget is full.
 	 * 
-	 * @return Returns true if full, false otherwise.
+	 * @return true if full, false otherwise
 	 */
 	protected boolean isFull() {
-		return ((controlList.size() >= upperBound) && upperBound != -1);
+		return ((getControlList().size() >= upperBound) && upperBound != -1);
 	}
 
 	/**
@@ -155,8 +155,8 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * <p>
 	 * Call this method without any parameter for an empty field!
 	 * 
-	 * @param content The data to be displayed in the new field; make sure it is the right type and cast it accordingly
-	 *            in your implementation.
+	 * @param content the data to be displayed in the new field; make sure it is the right type and cast it accordingly
+	 *            in your implementation
 	 */
 	protected abstract void createSingleField(Object content);
 
@@ -169,8 +169,92 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	/**
 	 * Returns all elements of this attribute as Object array. Needed for some superclass methods.
 	 * 
-	 * @return Returns the array.
+	 * @return the array
 	 */
 	public abstract Object[] getAllStoredElements();
+
+	/**
+	 * @param controlList the controlList to set
+	 */
+	public void setControlList(ArrayList<AttributeControl> controlList) {
+		this.controlList = controlList;
+	}
+
+	/**
+	 * @return the controlList
+	 */
+	public ArrayList<AttributeControl> getControlList() {
+		return controlList;
+	}
+
+	/**
+	 * @param style the style to set
+	 */
+	public void setStyle(int style) {
+		this.style = style;
+	}
+
+	/**
+	 * @return the style
+	 */
+	public int getStyle() {
+		return style;
+	}
+
+	/**
+	 * @param allowDuplicates the allowDuplicates to set
+	 */
+	public void setAllowDuplicates(boolean allowDuplicates) {
+		this.allowDuplicates = allowDuplicates;
+	}
+
+	/**
+	 * @return the allowDuplicates
+	 */
+	public boolean isAllowDuplicates() {
+		return allowDuplicates;
+	}
+
+	/**
+	 * @param composite the composite to set
+	 */
+	public void setComposite(Composite composite) {
+		this.composite = composite;
+	}
+
+	/**
+	 * @return the composite
+	 */
+	public Composite getComposite() {
+		return composite;
+	}
+
+	/**
+	 * @param isEditable the isEditable to set
+	 */
+	public void setEditable(boolean isEditable) {
+		this.isEditable = isEditable;
+	}
+
+	/**
+	 * @return the isEditable
+	 */
+	public boolean isEditable() {
+		return isEditable;
+	}
+
+	/**
+	 * @param emptyField the emptyField to set
+	 */
+	public void setEmptyField(Control emptyField) {
+		this.emptyField = emptyField;
+	}
+
+	/**
+	 * @return the emptyField
+	 */
+	public Control getEmptyField() {
+		return emptyField;
+	}
 
 }
