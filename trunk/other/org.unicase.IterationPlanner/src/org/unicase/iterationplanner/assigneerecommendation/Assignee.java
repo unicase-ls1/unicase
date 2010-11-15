@@ -25,7 +25,7 @@ public class Assignee {
 		return ((Assignee) obj).getOrgUnit().equals(this.orgUnit);
 	}
 
-	protected OrgUnit getOrgUnit() {
+	public OrgUnit getOrgUnit() {
 		return orgUnit;
 	}
 
