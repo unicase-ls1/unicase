@@ -8,6 +8,7 @@ package org.unicase.ui.navigator;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.rwt.SessionSingletonBase;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider;
 
@@ -16,20 +17,16 @@ import org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider;
  * 
  * @author helming
  */
+// TODO RAP (SessionSingletonBase)
 public final class WorkspaceManager {
 
-	private static WorkspaceManager instance;
-
 	/**
-	 * Singleton Pattern.
+	 * SessionSingleton
 	 * 
 	 * @return the instance
 	 */
 	public static WorkspaceManager getInstance() {
-		if (instance == null) {
-			instance = new WorkspaceManager();
-		}
-		return instance;
+		return (WorkspaceManager) SessionSingletonBase.getInstance(WorkspaceManager.class);
 	}
 
 	private ECPWorkspace workspace;

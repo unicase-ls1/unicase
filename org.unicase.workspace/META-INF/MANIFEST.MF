@@ -24,6 +24,8 @@ Export-Package: org.unicase.workspace,
  org.unicase.workspace.preferences,
  org.unicase.workspace.util
 Require-Bundle: org.unicase.emfstore;visibility:=reexport,
- org.eclipse.emf.transaction;visibility:=reexport
+ org.eclipse.emf.transaction;visibility:=reexport,
+ org.eclipse.rap.rwt;bundle-version="1.4.0",
+ org.unicase.rap.sessionmanagement;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.workspace.Activator
