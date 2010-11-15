@@ -23,6 +23,7 @@ import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 import org.unicase.iterationplanner.planner.impl.MySelector;
 import org.unicase.iterationplanner.ui.wizard.input.UserAvailability;
+import org.unicase.metamodel.Project;
 import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
@@ -32,10 +33,16 @@ public class PlannerBridge {
 	private int numOfIterations;
 	private List<FunctionalRequirement> requirements;
 	private List<WorkItem> workItems;
-	private List<UserAvailability> userAvailabilities; 
+	private List<UserAvailability> userAvailabilities;
+	private Project project; 
 	
-	public PlannerBridge(){
-		
+	public PlannerBridge(Project project){
+		this.project = project; 
+	}
+
+
+	public Project getProject() {
+		return project;
 	}
 
 
