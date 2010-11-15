@@ -23,31 +23,31 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
  */
 abstract class AttributeControl implements ModifyListener, MouseListener {
-	protected MultiAttributeControl parentItem;
-	protected Composite fieldComposite;
-	protected int index = -1; // -1 = value for "not stored yet" / empty control
+	private MultiAttributeControl parentItem;
+	private Composite fieldComposite;
+	private int index = -1; // -1 = value for "not stored yet" / empty control
 
-	protected ImageHyperlink button;
-	protected ImageHyperlink up;
-	protected ImageHyperlink down;
+	private ImageHyperlink button;
+	private ImageHyperlink up;
+	private ImageHyperlink down;
 
 	/**
 	 * Initializes the delete button.
 	 */
 	protected void createDeleteButton() {
-		button = new ImageHyperlink(fieldComposite, SWT.TOP);
-		button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		button.addMouseListener(this);
-		fieldComposite.layout();
+		setButton(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getButton().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
+		getButton().addMouseListener(this);
+		getFieldComposite().layout();
 	}
 
 	/**
 	 * Initializes the add button.
 	 */
 	protected void createAddButton() {
-		button = new ImageHyperlink(fieldComposite, SWT.TOP);
-		button.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD));
-		button.addMouseListener(this);
+		setButton(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getButton().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD));
+		getButton().addMouseListener(this);
 	}
 
 	/**
@@ -55,55 +55,56 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 */
 	protected void createUpDownButtons() {
 		// if invisible ones have been created
-		if (up != null) {
-			up.dispose();
+		if (getUp() != null) {
+			getUp().dispose();
 		}
-		up = new ImageHyperlink(fieldComposite, SWT.TOP);
-		up.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
-		up.addMouseListener(this);
+		setUp(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getUp().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
+		getUp().addMouseListener(this);
 
 		// if invisible ones have been created
-		if (down != null) {
-			down.dispose();
+		if (getDown() != null) {
+			getDown().dispose();
 		}
-		down = new ImageHyperlink(fieldComposite, SWT.TOP);
-		down.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
-		down.addMouseListener(this);
-		fieldComposite.layout();
+		setDown(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getDown().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
+		getDown().addMouseListener(this);
+		getFieldComposite().layout();
 	}
 
 	/**
 	 * Initializes invisible up/down buttons (needed for the layout).
 	 */
 	protected void createInvisibleUpDownButtons() {
-		up = new ImageHyperlink(fieldComposite, SWT.TOP);
-		up.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
-		up.addMouseListener(this);
-		up.setVisible(false);
+		setUp(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getUp().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
+		getUp().addMouseListener(this);
+		getUp().setVisible(false);
 
-		down = new ImageHyperlink(fieldComposite, SWT.TOP);
-		down.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
-		down.addMouseListener(this);
-		down.setVisible(false);
+		setDown(new ImageHyperlink(getFieldComposite(), SWT.TOP));
+		getDown().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
+		getDown().addMouseListener(this);
+		getDown().setVisible(false);
 	}
 
 	/**
 	 * Creates the layout for one single field.
 	 */
 	protected void createCompositeLayout() {
-		fieldComposite = parentItem.getToolkit().createComposite(parentItem.composite, parentItem.style);
+		setFieldComposite(getParentItem().getToolkit().createComposite(getParentItem().getComposite(),
+			getParentItem().getStyle()));
 		GridLayout fieldLayout = new GridLayout(4, false);
 		fieldLayout.verticalSpacing = 0;
-		fieldComposite.setLayout(fieldLayout);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fieldComposite);
+		getFieldComposite().setLayout(fieldLayout);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(getFieldComposite());
 	}
 
 	/**
 	 * Swaps the position of two control elements. It can also be called for moving the first item forward or the last
 	 * one backward, as nothing will change then (false will be returned).
 	 * 
-	 * @param index The index of the swap partner.
-	 * @return Returns true if swap was successful, false otherwise (index didn't exist).
+	 * @param index the index of the swap partner
+	 * @return true if swap was successful, false otherwise (index didn't exist)
 	 */
 	protected abstract boolean swapThisControlWith(int index);
 
@@ -130,4 +131,88 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 * {@inheritDoc}
 	 */
 	public abstract void mouseUp(MouseEvent e);
+
+	/**
+	 * @param parentItem the parentItem to set
+	 */
+	public void setParentItem(MultiAttributeControl parentItem) {
+		this.parentItem = parentItem;
+	}
+
+	/**
+	 * @return the parentItem
+	 */
+	public MultiAttributeControl getParentItem() {
+		return parentItem;
+	}
+
+	/**
+	 * @param index the index to set
+	 */
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	/**
+	 * @return the index
+	 */
+	public int getIndex() {
+		return index;
+	}
+
+	/**
+	 * @param fieldComposite the fieldComposite to set
+	 */
+	public void setFieldComposite(Composite fieldComposite) {
+		this.fieldComposite = fieldComposite;
+	}
+
+	/**
+	 * @return the fieldComposite
+	 */
+	public Composite getFieldComposite() {
+		return fieldComposite;
+	}
+
+	/**
+	 * @param button the button to set
+	 */
+	public void setButton(ImageHyperlink button) {
+		this.button = button;
+	}
+
+	/**
+	 * @return the button
+	 */
+	public ImageHyperlink getButton() {
+		return button;
+	}
+
+	/**
+	 * @param up the up to set
+	 */
+	public void setUp(ImageHyperlink up) {
+		this.up = up;
+	}
+
+	/**
+	 * @return the up
+	 */
+	public ImageHyperlink getUp() {
+		return up;
+	}
+
+	/**
+	 * @param down the down to set
+	 */
+	public void setDown(ImageHyperlink down) {
+		this.down = down;
+	}
+
+	/**
+	 * @return the down
+	 */
+	public ImageHyperlink getDown() {
+		return down;
+	}
 }

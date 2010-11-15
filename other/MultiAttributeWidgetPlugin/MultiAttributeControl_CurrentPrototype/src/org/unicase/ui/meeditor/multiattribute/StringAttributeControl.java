@@ -17,58 +17,59 @@ import org.eclipse.swt.widgets.Text;
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
  */
 class StringAttributeControl extends AttributeControl {
-	protected MultiAttributeController<String> dataManipulator;
-	protected Text widget;
-	protected String value;
+	private MultiAttributeController<String> dataManipulator;
+	private Text widget;
+	private String value;
 
 	/**
 	 * Constructor for control with content.
 	 * 
-	 * @param parentItem The corresponding StringMultiAttributeWidget.
-	 * @param dataManipulator A MultiAttributeController for this widget.
-	 * @param value The initial value for this control.
+	 * @param parentItem the corresponding StringMultiAttributeWidget
+	 * @param dataManipulator a MultiAttributeController for this widget
+	 * @param value the initial value for this control
 	 */
 	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator,
 		String value) {
-		this.parentItem = parentItem;
+		this.setParentItem(parentItem);
 		this.dataManipulator = dataManipulator;
 		this.value = value;
-		this.index = parentItem.controlList.size();
-		parentItem.controlList.add(this);
+		this.setIndex(parentItem.getControlList().size());
+		parentItem.getControlList().add(this);
 
 		// initializeFromInt
 		createCompositeLayout();
-		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
-		widget.addModifyListener(this);
+		setWidget(parentItem.getToolkit().createText(getFieldComposite(), value, parentItem.getStyle() | SWT.SINGLE));
+		getWidget().addModifyListener(this);
 		createDeleteButton();
 		createUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(getWidget());
 	}
 
 	/**
 	 * Constructor for control with no initial content.
 	 * 
-	 * @param parentItem The corresponding StringMultiAttributeWidget.
-	 * @param dataManipulator A MultiAttributeController for this widget.
+	 * @param parentItem the corresponding StringMultiAttributeWidget
+	 * @param dataManipulator a MultiAttributeController for this widget
 	 */
 	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator) {
-		this.parentItem = parentItem;
+		this.setParentItem(parentItem);
 		this.dataManipulator = dataManipulator;
-		this.value = StringMultiAttributeControl.EMPTY_VALUE;
+		this.value = StringMultiAttributeControl.getEmptyValue();
 
 		// initializeFromInt
 		createCompositeLayout();
-		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
-		widget.addModifyListener(this);
-		widget.setMessage("Add new element...");
+		setWidget(parentItem.getToolkit().createText(getFieldComposite(), value, parentItem.getStyle() | SWT.SINGLE));
+		getWidget().addModifyListener(this);
+		getWidget().setMessage("Add new element...");
 		createAddButton();
 		createInvisibleUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(getWidget());
 	}
 
 	/**
 	 * Hidden default constructor.
 	 */
+	@SuppressWarnings("unused")
 	private StringAttributeControl() {
 		// hide default constructor
 	}
@@ -78,7 +79,7 @@ class StringAttributeControl extends AttributeControl {
 	 */
 	@Override
 	protected boolean swapThisControlWith(int index) {
-		if (index >= parentItem.controlList.size() || index < 0) {
+		if (index >= getParentItem().getControlList().size() || index < 0) {
 			return false;
 		}
 		// create non-duplicate String
@@ -88,10 +89,10 @@ class StringAttributeControl extends AttributeControl {
 		}
 		// use it for swap
 		String thisValue = value;
-		String otherValue = ((StringAttributeControl) parentItem.controlList.get(index)).value;
-		widget.setText(random);
-		((StringAttributeControl) parentItem.controlList.get(index)).widget.setText(thisValue);
-		widget.setText(otherValue);
+		String otherValue = ((StringAttributeControl) getParentItem().getControlList().get(index)).value;
+		getWidget().setText(random);
+		((StringAttributeControl) getParentItem().getControlList().get(index)).getWidget().setText(thisValue);
+		getWidget().setText(otherValue);
 
 		return true;
 	}
@@ -101,44 +102,44 @@ class StringAttributeControl extends AttributeControl {
 	 */
 	@Override
 	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
-		if (e.getSource().equals(widget)) {
+		if (e.getSource().equals(getWidget())) {
 			// first edit? --> new button
-			if (index == -1) {
-				button.dispose();
-				widget.setMessage("");
+			if (getIndex() == -1) {
+				getButton().dispose();
+				getWidget().setMessage("");
 				createDeleteButton();
 				createUpDownButtons();
 			}
 
-			final String newValue = widget.getText();
+			final String newValue = getWidget().getText();
 
 			// handle duplicates
-			if (!parentItem.allowDuplicates) {
+			if (!getParentItem().isAllowDuplicates()) {
 				if (dataManipulator.contains(newValue)) {
-					widget.setText("_" + newValue);
+					getWidget().setText("_" + newValue);
 					return;
 				}
 			}
 			// end of duplicate handling
 
-			if (index != -1) {
+			if (getIndex() != -1) {
 				// was a regular entry before
-				dataManipulator.replaceElementAt(index, newValue);
+				dataManipulator.replaceElementAt(getIndex(), newValue);
 				value = newValue;
 			} else {
 				// was a dummy entry before
-				this.index = parentItem.controlList.size();
-				parentItem.controlList.add(this);
+				this.setIndex(getParentItem().getControlList().size());
+				getParentItem().getControlList().add(this);
 				dataManipulator.add(newValue);
 				value = newValue;
-				button.setVisible(true);
-				if (!parentItem.isFull()) {
-					parentItem.createSingleField();
+				getButton().setVisible(true);
+				if (!getParentItem().isFull()) {
+					getParentItem().createSingleField();
 				}
-				fieldComposite.layout();
+				getFieldComposite().layout();
 			}
 
-			parentItem.refreshWidget();
+			getParentItem().refreshWidget();
 		}
 	}
 
@@ -147,49 +148,64 @@ class StringAttributeControl extends AttributeControl {
 	 */
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
-		if (e.getSource().equals(button)) {
-			if (index == -1) {
+		if (e.getSource().equals(getButton())) {
+			if (getIndex() == -1) {
 				// add instead of delete
 
 				// duplicate handling
-				if (!parentItem.allowDuplicates) {
+				if (!getParentItem().isAllowDuplicates()) {
 					while (dataManipulator.contains(value)) {
 						value = "_" + value;
 					}
 				}
 				// end of duplicate handling
 				// automatically added then (ModifyListener!)
-				widget.setText(value);
-				button.dispose();
-				widget.setMessage("");
+				getWidget().setText(value);
+				getButton().dispose();
+				getWidget().setMessage("");
 				createDeleteButton();
 				createUpDownButtons();
 			} else {
 				// delete
 				// one will be deleted --> new empty one
-				if (parentItem.isFull()) {
-					parentItem.createSingleField();
+				if (getParentItem().isFull()) {
+					getParentItem().createSingleField();
 				}
-				dataManipulator.removeElementAt(index);
+				dataManipulator.removeElementAt(getIndex());
 				// accordingly change all other indexes
-				for (int i = index + 1; i < parentItem.controlList.size(); i++) {
-					parentItem.controlList.get(i).index--;
+				for (int i = getIndex() + 1; i < getParentItem().getControlList().size(); i++) {
+					getParentItem().getControlList().get(i)
+						.setIndex(getParentItem().getControlList().get(i).getIndex() - 1);
 				}
-				parentItem.controlList.remove(index);
+				getParentItem().getControlList().remove(getIndex());
 
-				fieldComposite.dispose();
+				getFieldComposite().dispose();
 
 			}
 		}
 
-		if (e.getSource().equals(up)) {
-			swapThisControlWith(index - 1);
+		if (e.getSource().equals(getUp())) {
+			swapThisControlWith(getIndex() - 1);
 		}
 
-		if (e.getSource().equals(down)) {
-			swapThisControlWith(index + 1);
+		if (e.getSource().equals(getDown())) {
+			swapThisControlWith(getIndex() + 1);
 		}
 
-		parentItem.refreshWidget();
+		getParentItem().refreshWidget();
+	}
+
+	/**
+	 * @param widget the widget to set
+	 */
+	public void setWidget(Text widget) {
+		this.widget = widget;
+	}
+
+	/**
+	 * @return the widget
+	 */
+	public Text getWidget() {
+		return widget;
 	}
 }

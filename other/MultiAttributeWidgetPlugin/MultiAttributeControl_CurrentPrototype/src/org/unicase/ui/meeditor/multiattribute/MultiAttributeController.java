@@ -14,7 +14,7 @@ import org.unicase.ui.common.commands.ECPCommand;
  * The necessary anonymous classes (ECPCommand) are provided in order to make manipulation from everywhere else easier.
  * 
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
- * @param <T> The type of the corresponding model element.
+ * @param <T> The type of the corresponding model element
  */
 public class MultiAttributeController<T> {
 
@@ -25,8 +25,8 @@ public class MultiAttributeController<T> {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentItem The corresponding MultiAttributeWidget.
-	 * @param data A reference to the data manipulated by this controller.
+	 * @param parentItem the corresponding MultiAttributeWidget
+	 * @param data a reference to the data manipulated by this controller
 	 */
 	MultiAttributeController(MultiAttributeControl parentItem, EDataTypeEList<T> data) {
 		this.parentItem = parentItem;
@@ -36,6 +36,7 @@ public class MultiAttributeController<T> {
 	/**
 	 * Hidden default constructor.
 	 */
+	@SuppressWarnings("unused")
 	private MultiAttributeController() {
 		// nothing
 	}
@@ -43,8 +44,8 @@ public class MultiAttributeController<T> {
 	/**
 	 * Checks if a value exists in the model attribute.
 	 * 
-	 * @param value The value.
-	 * @return Returns true if it exists, false otherwise.
+	 * @param value the value
+	 * @return true if it exists, false otherwise
 	 */
 	public boolean contains(T value) {
 		return data.contains(value);
@@ -54,7 +55,7 @@ public class MultiAttributeController<T> {
 	 * Adds a value to the model attribute (nothing happens when duplicates are forbidden and the value is already
 	 * stored).
 	 * 
-	 * @param value The value.
+	 * @param value the value
 	 */
 	public void add(final T value) {
 		new ECPCommand(parentItem.getModelElement()) {
@@ -68,8 +69,8 @@ public class MultiAttributeController<T> {
 	/**
 	 * Removes a value from the model attribute. Causes trouble for duplicated entries.
 	 * 
-	 * @param value The value.
-	 * @return Returns true if the value was removed, false otherwise (it didn't exist).
+	 * @param value the value
+	 * @return true if the value was removed, false otherwise (it didn't exist)
 	 */
 	@Deprecated
 	public boolean remove(final T value) {
@@ -88,8 +89,8 @@ public class MultiAttributeController<T> {
 	/**
 	 * Removes the element with a certain index from the model attribute.
 	 * 
-	 * @param index The index of the value to be deleted.
-	 * @return Returns true if the value was removed, false otherwise (index didn't exist).
+	 * @param index the index of the value to be deleted
+	 * @return true if the value was removed, false otherwise (index didn't exist)
 	 */
 	public boolean removeElementAt(final int index) {
 		if (index >= data.size() || index < 0) {
@@ -107,9 +108,9 @@ public class MultiAttributeController<T> {
 	/**
 	 * Replaces a value of the model attribute with an other one. Causes trouble for duplicated entries.
 	 * 
-	 * @param oldValue The old value.
-	 * @param newValue The new value.
-	 * @return Returns true if the value was replaced, false otherwise (the old value didn't exist).
+	 * @param oldValue the old value
+	 * @param newValue the new value
+	 * @return true if the value was replaced, false otherwise (the old value didn't exist)
 	 */
 	@Deprecated
 	public boolean replace(final T oldValue, final T newValue) {
@@ -128,9 +129,9 @@ public class MultiAttributeController<T> {
 	/**
 	 * Replaces the element with a certain index of the model attribute with an other one.
 	 * 
-	 * @param index The index of the old value.
-	 * @param newValue The new value.
-	 * @return Returns true if the value was replaced, false otherwise (index didn't exist).
+	 * @param index the index of the old value
+	 * @param newValue the new value
+	 * @return true if the value was replaced, false otherwise (index didn't exist)
 	 */
 	public boolean replaceElementAt(final int index, final T newValue) {
 		if (index >= data.size() || index < 0) {
@@ -148,9 +149,9 @@ public class MultiAttributeController<T> {
 	/**
 	 * Swaps the position of two elements within the list. (never tested!)
 	 * 
-	 * @param index1 The index of the first one.
-	 * @param index2 The index of the second one.
-	 * @return Returns true if the elements have been swapped, false otherwise (at least one index didn't exist).
+	 * @param index1 the index of the first one
+	 * @param index2 the index of the second one
+	 * @return true if the elements have been swapped, false otherwise (at least one index didn't exist)
 	 */
 	@Deprecated
 	public boolean swapElementsAt(final int index1, final int index2) {
