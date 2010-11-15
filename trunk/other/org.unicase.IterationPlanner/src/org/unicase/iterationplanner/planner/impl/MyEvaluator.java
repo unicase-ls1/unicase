@@ -3,6 +3,7 @@ package org.unicase.iterationplanner.planner.impl;
 import java.util.Set;
 
 import org.unicase.iterationplanner.assigneerecommendation.Assignee;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.Evaluator;
 import org.unicase.iterationplanner.planner.EvaluatorParameters;
 import org.unicase.iterationplanner.planner.IterationPlan;
@@ -10,8 +11,8 @@ import org.unicase.iterationplanner.planner.PlannedTask;
 
 public class MyEvaluator extends Evaluator {
 
-	public MyEvaluator(EvaluatorParameters evaluationParameters) {
-		super(evaluationParameters);
+	public MyEvaluator(EvaluatorParameters evaluationParameters, AssigneeAvailabilityManager assigneeAvailabilityManager) {
+		super(evaluationParameters, assigneeAvailabilityManager);
 	}
 
 	@Override

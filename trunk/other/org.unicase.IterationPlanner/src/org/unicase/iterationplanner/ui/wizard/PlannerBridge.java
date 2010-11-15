@@ -103,7 +103,7 @@ public class PlannerBridge {
 
 		Random random = new Random(1234567256L);
 		EvaluatorParameters evaluationParameters = getEvaluatioParameters(random);
-		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
+		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
 
 		PlannerParameters plannerParameters = getPlannerParameters(random);
 
@@ -117,12 +117,12 @@ public class PlannerBridge {
 		// output result
 		outputIterationPlannerResults(result, myPlanner);
 		
-		openOutPutWizard(result.get(0));
+		openOutPutWizard(result.get(0), myPlanner);
 	
 	}
 	
-	private void openOutPutWizard(IterationPlan iterationPlan) {
-		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan);
+	private void openOutPutWizard(IterationPlan iterationPlan, Planner planner) {
+		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan, planner);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), outputWizard);
 		dialog.open();
 	}
@@ -136,11 +136,11 @@ public class PlannerBridge {
 			System.out.println("=================== Iteration Plan " + i + " =================");
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
-			System.out.println("expertise score: " + myPlanner.getIterationPlanEvaluator().evaluateExpertise(iterPlan));
+			System.out.println("expertise score: " + myPlanner.getEvaluator().evaluateExpertise(iterPlan));
 			System.out.println("task prio score: "
-				+ myPlanner.getIterationPlanEvaluator().evaluteTaskPriorities(iterPlan));
+				+ myPlanner.getEvaluator().evaluteTaskPriorities(iterPlan));
 			System.out.println("dev load score: "
-				+ myPlanner.getIterationPlanEvaluator().evaluateAssigneeLoad(iterPlan));
+				+ myPlanner.getEvaluator().evaluateAssigneeLoad(iterPlan));
 			System.out.println();
 
 			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {
