@@ -10,6 +10,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
@@ -129,7 +130,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 				
 			}
 		});
-
+		
+		iterationsTreeViewer.setComparator(new ViewerComparator());
 		iterationsTreeViewer.setInput(iterations);
 		
 		createIndicatorsComposite(container);
