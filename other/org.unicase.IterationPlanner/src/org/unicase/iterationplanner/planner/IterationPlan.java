@@ -28,16 +28,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	private int numOfTasks;
 	private boolean checkInvariants;
 
-	@Override
-	public IterationPlan clone() {
-		this.checkAllInvariants();
-		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
-		for(PlannedTask plannedTask : this.plannedTasks){
-			clone.addPlannedTask(plannedTask.clone());
-		}
-		clone.checkAllInvariants();
-		return clone;
-	}
+	
 
 	/**
 	 * 
@@ -49,6 +40,19 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		this.numOfIterations = numOfIterations;
 		this.numOfTasks = numOfTasks;
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
+		this.checkInvariants = true;
+	}
+	
+	
+	@Override
+	public IterationPlan clone() {
+		this.checkAllInvariants();
+		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
+		for(PlannedTask plannedTask : this.plannedTasks){
+			clone.addPlannedTask(plannedTask.clone());
+		}
+		clone.checkAllInvariants();
+		return clone;
 	}
 
 	public int getNumOfIterations() {
@@ -215,7 +219,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 				}
 			}
 		}
-		checkAllInvariants();
+		checkDevLoadInvariantForAllAssignees();
+		
 	}
 	
 
@@ -267,9 +272,11 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	private void checkDevLoadInvariantForAllAssignees() {
-		Set<Assignee> assignees = getAssignees();
-		for(Assignee assignee : assignees){
-			checkDevLoadInvariant(assignee);
+		if(checkInvariants){
+			Set<Assignee> assignees = getAssignees();
+			for(Assignee assignee : assignees){
+				checkDevLoadInvariant(assignee);
+			}
 		}
 	}
 
