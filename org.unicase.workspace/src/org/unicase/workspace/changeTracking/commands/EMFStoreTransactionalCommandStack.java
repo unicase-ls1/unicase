@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -20,7 +21,7 @@ import org.unicase.metamodel.util.ModelUtil;
  */
 public class EMFStoreTransactionalCommandStack extends TransactionalCommandStackImpl {
 
-	private Object currentCommand;
+	private Command currentCommand;
 
 	private List<CommandObserver> commandObservers;
 
@@ -75,7 +76,23 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 		}
 	}
 
-	private void notifiyListenersAboutCommandFailed(Command command, OperationCanceledException exception) {
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl#handleRollback(org.eclipse.emf.common.command.Command,
+	 *      org.eclipse.emf.transaction.RollbackException)
+	 */
+	@Override
+	protected void handleRollback(Command command, RollbackException rbe) {
+		super.handleRollback(command, rbe);
+		notifiyListenersAboutCommandFailed(command, (rbe.getCause() instanceof Exception) ? (Exception) rbe.getCause()
+			: rbe);
+		if (currentCommand == command) {
+			currentCommand = null;
+		}
+	}
+
+	private void notifiyListenersAboutCommandFailed(Command command, Exception exception) {
 		for (CommandObserver commandObservers : this.commandObservers) {
 			try {
 				commandObservers.commandFailed(command, exception);

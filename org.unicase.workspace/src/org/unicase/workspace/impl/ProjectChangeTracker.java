@@ -17,7 +17,6 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -702,9 +701,14 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
 	 *      org.eclipse.core.runtime.OperationCanceledException)
 	 */
-	public void commandFailed(Command command, OperationCanceledException exception) {
-		// do nothing
-		// TODO: rollback operations?
+	public void commandFailed(Command command, Exception exception) {
+
+		// this is a backup in order to remove obsolete operations. In most (all?) cases though, the rollback of the
+		// transaction does this.
+
+		for (int i = projectSpace.getOperations().size() - 1; i >= currentOperationListSize; i--) {
+			projectSpace.getOperations().remove(i);
+		}
 	}
 
 	/**

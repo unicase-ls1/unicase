@@ -712,7 +712,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				if (otherElementOpposite == modelElement) {
 					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
 					for (EReference reference : references) {
-						if (!reference.isContainment() && !reference.isContainer()
+						if (!reference.isContainment() && !reference.isContainer() && reference.isChangeable()
 							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
 							if (reference.isMany()) {
 								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
