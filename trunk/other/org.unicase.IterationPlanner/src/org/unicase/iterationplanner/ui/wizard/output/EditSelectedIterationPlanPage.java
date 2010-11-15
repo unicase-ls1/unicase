@@ -14,18 +14,25 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 
-public class EditSelecteIterationPlanPage extends WizardPage {
+public class EditSelectedIterationPlanPage extends WizardPage {
 
 	private IterationPlan iterationPlan;
 	private Planner planner;
 	private IterationPlan originalIterationPlan;
+	private TreeViewer iterationsTreeViewer;
+	private Text txtOverallScore;
+	private Text txtTaskPrioScore;
+	private Text txtExpertiseScore;
+	private Text txtDevLoad;
 
-	protected EditSelecteIterationPlanPage(String pageName, IterationPlan iterationPlan, Planner planner) {
+	protected EditSelectedIterationPlanPage(String pageName, IterationPlan iterationPlan, Planner planner) {
 		super(pageName);
 		this.originalIterationPlan = iterationPlan;
 		this.iterationPlan = iterationPlan.clone();
@@ -39,24 +46,62 @@ public class EditSelecteIterationPlanPage extends WizardPage {
 		setControl(container);
 		container.setLayout(new GridLayout(1, false));
 		
+		//check invariants must be turned off, in order to manually change iteration plan.
 		iterationPlan.setCheckInvariants(false);
-		List<Iteration> iterations = createIterations();
-//		PlannedTask plannedTask = iterationPlan.getAllPlannedTasks().toArray(new PlannedTask[iterationPlan.getAllPlannedTasks().size()])[0];
-//		List<AssigneeExpertise> potentialAssignees = planner.getTaskPotentialAssigneeListMap().get(plannedTask.getTask());
-//		iterationPlan.setAssigneeFor(plannedTask, potentialAssignees.get(0));
-//		iterationPlan.setIterationNumberFor(plannedTask, 0);
-//		List<Iteration> iterations = createIterations();
-//		double score = planner.getEvaluator().evaluate(iterationPlan);
 		
-		TreeViewer iterationsTreeViewer = new TreeViewer(container);
+		List<Iteration> iterations = createIterations();
+		
+		iterationsTreeViewer = new TreeViewer(container);
 		iterationsTreeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		iterationsTreeViewer.setContentProvider(new IterationsContentProvider(iterationPlan.getBacklogNumber(), new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		addColumns(iterationsTreeViewer);
 		iterationsTreeViewer.setInput(iterations);
 		
+		createIndicatorsComposite(container);
+		
 	}
 	
+	private void createIndicatorsComposite(Composite container) {
+		Composite indicatorsComposite = new Composite(container, SWT.BORDER);
+		indicatorsComposite.setLayoutData(new GridData(SWT.FILL, SWT.END, true, false));
+		indicatorsComposite.setLayout(new GridLayout(4, true));
+		
+		Label lblDevLoad = new Label(indicatorsComposite, SWT.NONE);
+		lblDevLoad.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		lblDevLoad.setText("Developer Load Score: ");
+		
+		Label lblExperitseScore = new Label(indicatorsComposite, SWT.NONE);
+		lblExperitseScore.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		lblExperitseScore.setText("Expertise Score: ");
+		
+		Label lblTaskPrioScore = new Label(indicatorsComposite, SWT.NONE);
+		lblTaskPrioScore.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		lblTaskPrioScore.setText("Task Priority Score: ");
+		
+		Label lblOverallScore = new Label(indicatorsComposite, SWT.NONE);
+		lblOverallScore.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		lblOverallScore.setText("Overall Score: ");
+		
+		
+		txtDevLoad = new Text(indicatorsComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtDevLoad.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtDevLoad.setText(String.valueOf(planner.getEvaluator().evaluateAssigneeLoad(iterationPlan)));
+		
+		txtExpertiseScore = new Text(indicatorsComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtExpertiseScore.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtExpertiseScore.setText(String.valueOf(planner.getEvaluator().evaluateExpertise(iterationPlan)));
+		
+		txtTaskPrioScore = new Text(indicatorsComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtTaskPrioScore.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtTaskPrioScore.setText(String.valueOf(planner.getEvaluator().evaluteTaskPriorities(iterationPlan)));
+		
+		txtOverallScore = new Text(indicatorsComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtOverallScore.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtOverallScore.setText(String.valueOf(planner.getEvaluator().evaluate(iterationPlan)));
+		
+	}
+
 	private void addColumns(TreeViewer viewer) {
 		final AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Tree tree = viewer.getTree();
@@ -115,7 +160,7 @@ public class EditSelecteIterationPlanPage extends WizardPage {
 			}
 			
 		});
-		tclAssignee.setEditingSupport(new TaskAssigneeEditingSupport(viewer, planner, iterationPlan));
+		tclAssignee.setEditingSupport(new TaskAssigneeEditingSupport(viewer, planner, iterationPlan, this));
 
 
 	}
@@ -135,6 +180,19 @@ public class EditSelecteIterationPlanPage extends WizardPage {
 		}
 		
 		return result;
+	}
+
+	public void update() {
+		iterationsTreeViewer.refresh();
+		updateIndicatorsComposite();
+		
+	}
+
+	private void updateIndicatorsComposite() {
+		txtDevLoad.setText(String.valueOf(planner.getEvaluator().evaluateAssigneeLoad(iterationPlan)));
+		txtExpertiseScore.setText(String.valueOf(planner.getEvaluator().evaluateExpertise(iterationPlan)));
+		txtTaskPrioScore.setText(String.valueOf(planner.getEvaluator().evaluteTaskPriorities(iterationPlan)));
+		txtOverallScore.setText(String.valueOf(planner.getEvaluator().evaluate(iterationPlan)));
 	}
 
 }
