@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor.multiattribute;
 
 import org.eclipse.jface.layout.GridDataFactory;
@@ -10,34 +15,34 @@ import org.eclipse.swt.widgets.Text;
  * Represents a single String field for a MultiAttributeItem.
  * 
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
- *
  */
 class StringAttributeControl extends AttributeControl {
 	protected MultiAttributeController<String> dataManipulator;
 	protected Text widget;
 	protected String value;
-	
-	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator, String value) {
+
+	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator,
+		String value) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
 		this.value = value;
 		this.index = parentItem.controlList.size();
 		parentItem.controlList.add(this);
-		
+
 		// initializeFromInt
 		createCompositeLayout();
 		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
 		widget.addModifyListener(this);
 		createDeleteButton();
 		createUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
-	
+
 	StringAttributeControl(MultiAttributeControl parentItem, MultiAttributeController<String> dataManipulator) {
 		this.parentItem = parentItem;
 		this.dataManipulator = dataManipulator;
 		this.value = StringMultiAttributeControl.EMPTY_VALUE;
-		
+
 		// initializeFromInt
 		createCompositeLayout();
 		widget = parentItem.getToolkit().createText(fieldComposite, value, parentItem.style | SWT.SINGLE);
@@ -45,9 +50,9 @@ class StringAttributeControl extends AttributeControl {
 		widget.setMessage("Add new element...");
 		createAddButton();
 		createInvisibleUpDownButtons();
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true,true).applyTo(widget);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(widget);
 	}
-	
+
 	private StringAttributeControl() {
 		// hide default constructor
 	}
@@ -68,38 +73,37 @@ class StringAttributeControl extends AttributeControl {
 		widget.setText(random);
 		((StringAttributeControl) parentItem.controlList.get(index)).widget.setText(thisValue);
 		widget.setText(otherValue);
-				
+
 		return true;
 	}
-	
+
 	@Override
-	public void modifyText(ModifyEvent e) {  // still duplicated code, but better solution?!
+	public void modifyText(ModifyEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(widget)) {
 			// first edit? --> new button
-			if (index==-1) {
+			if (index == -1) {
 				button.dispose();
 				widget.setMessage("");
 				createDeleteButton();
 				createUpDownButtons();
 			}
-			
+
 			final String newValue = widget.getText();
-			
+
 			// handle duplicates
 			if (!parentItem.allowDuplicates) {
 				if (dataManipulator.contains(newValue)) {
-					widget.setText("_"+newValue);
+					widget.setText("_" + newValue);
 					return;
 				}
 			}
 			// end of duplicate handling
-			
-			if (index!=-1) {
+
+			if (index != -1) {
 				// was a regular entry before
 				dataManipulator.replaceElementAt(index, newValue);
 				value = newValue;
-			}
-			else {
+			} else {
 				// was a dummy entry before
 				this.index = parentItem.controlList.size();
 				parentItem.controlList.add(this);
@@ -111,7 +115,7 @@ class StringAttributeControl extends AttributeControl {
 				}
 				fieldComposite.layout();
 			}
-			
+
 			parentItem.refreshWidget();
 		}
 	}
@@ -119,13 +123,13 @@ class StringAttributeControl extends AttributeControl {
 	@Override
 	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
 		if (e.getSource().equals(button)) {
-			if (index==-1) {
+			if (index == -1) {
 				// add instead of delete
-				
+
 				// duplicate handling
 				if (!parentItem.allowDuplicates) {
 					while (dataManipulator.contains(value)) {
-						value = "_"+value;
+						value = "_" + value;
 					}
 				}
 				// end of duplicate handling
@@ -135,8 +139,7 @@ class StringAttributeControl extends AttributeControl {
 				widget.setMessage("");
 				createDeleteButton();
 				createUpDownButtons();
-			}
-			else {
+			} else {
 				// delete
 				// one will be deleted --> new empty one
 				if (parentItem.isFull()) {
@@ -144,24 +147,24 @@ class StringAttributeControl extends AttributeControl {
 				}
 				dataManipulator.removeElementAt(index);
 				// accordingly change all other indexes
-				for (int i=index+1; i<parentItem.controlList.size(); i++) {
+				for (int i = index + 1; i < parentItem.controlList.size(); i++) {
 					parentItem.controlList.get(i).index--;
 				}
 				parentItem.controlList.remove(index);
-				
+
 				fieldComposite.dispose();
-				
+
 			}
 		}
-		
+
 		if (e.getSource().equals(up)) {
-			swapThisControlWith(index-1);
+			swapThisControlWith(index - 1);
 		}
-		
+
 		if (e.getSource().equals(down)) {
-			swapThisControlWith(index+1);
+			swapThisControlWith(index + 1);
 		}
-		
+
 		parentItem.refreshWidget();
 	}
 }
