@@ -12,15 +12,14 @@ public abstract class Evaluator {
 	private IterationPlan iterationPlan;
 	private AssigneeAvailabilityManager assigneeAvailabilityManager;
 
-	public Evaluator(EvaluatorParameters evaluationParameters) {
+	public Evaluator(EvaluatorParameters evaluationParameters, AssigneeAvailabilityManager aam) {
 		this.evaluationParameters = evaluationParameters;
+		this.assigneeAvailabilityManager = aam;
 	}
 
-	public double evaluate(final IterationPlan iterationPlan,
-		final AssigneeAvailabilityManager assigneeAvailabilityManager) {
+	public double evaluate(final IterationPlan iterationPlan) {
 
 		this.iterationPlan = iterationPlan;
-		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
 		double expertiseScore = evaluateExpertise(getIterationPlan());
 		double taskPriorityScore = evaluteTaskPriorities(getIterationPlan());
 		double devLoadScore = evaluateAssigneeLoad(getIterationPlan());

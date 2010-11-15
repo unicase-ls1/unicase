@@ -153,7 +153,7 @@ public abstract class Planner {
 	 */
 	private void evalutate() {
 		for (IterationPlan iterationPlan : population) {
-			double score = evaluator.evaluate(iterationPlan, assigneeAvailabilityManager);
+			double score = evaluator.evaluate(iterationPlan);
 			iterationPlan.setScore(score);
 		}
 	}
@@ -166,7 +166,7 @@ public abstract class Planner {
 		return assigneeAvailabilityManager;
 	}
 
-	public Evaluator getIterationPlanEvaluator() {
+	public Evaluator getEvaluator() {
 		return evaluator;
 	}
 
@@ -178,7 +178,7 @@ public abstract class Planner {
 		return selector;
 	}
 
-	protected Map<Task, List<AssigneeExpertise>> getTaskPotentialAssigneeListMap() {
+	public Map<Task, List<AssigneeExpertise>> getTaskPotentialAssigneeListMap() {
 		return taskPotentialAssigneeListMap;
 	}
 

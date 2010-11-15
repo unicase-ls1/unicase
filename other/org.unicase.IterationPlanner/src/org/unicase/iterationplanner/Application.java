@@ -136,7 +136,7 @@ public class Application implements IApplication {
 		double developerLoadWeight = 1.0;
 		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
 			developerLoadWeight, random);
-		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters);
+		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
 
 		int populationSize = 10;
 		int resultSize = 5;
@@ -189,11 +189,11 @@ public class Application implements IApplication {
 			System.out.println("=================== Iteration Plan " + i + " =================");
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
-			System.out.println("expertise score: " + myPlanner.getIterationPlanEvaluator().evaluateExpertise(iterPlan));
+			System.out.println("expertise score: " + myPlanner.getEvaluator().evaluateExpertise(iterPlan));
 			System.out.println("task prio score: "
-				+ myPlanner.getIterationPlanEvaluator().evaluteTaskPriorities(iterPlan));
+				+ myPlanner.getEvaluator().evaluteTaskPriorities(iterPlan));
 			System.out.println("dev load score: "
-				+ myPlanner.getIterationPlanEvaluator().evaluateAssigneeLoad(iterPlan));
+				+ myPlanner.getEvaluator().evaluateAssigneeLoad(iterPlan));
 			System.out.println();
 
 			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {

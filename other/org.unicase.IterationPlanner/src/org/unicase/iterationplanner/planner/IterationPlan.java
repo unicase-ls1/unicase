@@ -2,6 +2,7 @@ package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	private Set<PlannedTask> plannedTasks;
 	private boolean crossover = false;
 	private int numOfTasks;
+	private boolean checkInvariants;
 
 	@Override
 	public IterationPlan clone() {
@@ -200,6 +202,9 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	 * If needed the lowest priority task for this assignee is shifted down one iteration.
 	 */
 	private void doInvariantCorrection() {
+		if(!isCheckInvariants()){
+			return;
+		}
 		Set<Assignee> assignees = getAssignees();
 		for(int i = 0; i < numOfIterations; i++){
 			for(Assignee assignee : assignees){
@@ -210,12 +215,25 @@ public class IterationPlan implements Comparable<IterationPlan> {
 				}
 			}
 		}
-		checkDevLoadInvariantForAllAssignees();
-		
+		checkAllInvariants();
 	}
 	
 
+	private boolean isCheckInvariants() {
+		return checkInvariants;
+	}
+
+	public void setCheckInvariants(boolean checkInvariants) {
+		this.checkInvariants = checkInvariants;
+		if(checkInvariants){
+			checkAllInvariants();
+		}
+	}
+
 	public void checkAllInvariants() {
+		if(!isCheckInvariants()){
+			return;
+		}
 		checkDevLoadInvariantForAllAssignees();
 		// also do some other checks to ensure that iteration plan is not corrupted.
 		// check number of tasks
@@ -261,6 +279,10 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	 */
 	public boolean isCrossover() {
 		return crossover;
+	}
+	
+	public Set<PlannedTask> getAllPlannedTasks(){
+		return Collections.unmodifiableSet(plannedTasks);
 	}
 	
 	
