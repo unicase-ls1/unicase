@@ -24,7 +24,7 @@ import org.unicase.workspace.ProjectSpace;
 public class ProjectSpaceDirtyDecorator implements ILightweightLabelDecorator {
 
 	private ImageDescriptor descriptor;
-	private String dirtyPath = "icons/dirty.jpg";
+	private String dirtyPath = "icons/dirty.png";
 
 	/**
 	 * {@inheritDoc}
@@ -39,7 +39,6 @@ public class ProjectSpaceDirtyDecorator implements ILightweightLabelDecorator {
 		 * Checks that the element is an IResource with the 'Read-only' attribute and adds the decorator based on the
 		 * specified image description and the integer representation of the placement option.
 		 */
-
 
 		if (element instanceof ProjectSpace) {
 			ProjectSpace ps = (ProjectSpace) element;

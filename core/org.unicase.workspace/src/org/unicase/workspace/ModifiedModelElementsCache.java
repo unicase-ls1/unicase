@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
@@ -30,17 +31,17 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	/**
 	 * Contains the model elements that were changed, and a list of operations that need to be remembered for undone's.
 	 */
-	private Map<ModelElementId, List<AbstractOperation>> modifiedModelElements;
+	private Map<String, List<AbstractOperation>> modifiedModelElements;
 
 	/**
 	 * Direct parents of model elements who were affected of changes.
 	 */
-	private Map<ModelElementId, Integer> modifiedModelElementParents;
+	private Map<String, Integer> modifiedModelElementParents;
 
 	/**
 	 * Maps child to parent elements to be able to retrieve hierarchies already deconstructed in the project space.
 	 */
-	private HashMap<ModelElementId, ModelElementId> childParentMapping;
+	private HashMap<String, String> childParentMapping;
 
 	/**
 	 * The project space.
@@ -54,9 +55,9 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 */
 	public ModifiedModelElementsCache(ProjectSpace projectSpace) {
 		this.projectSpace = projectSpace;
-		modifiedModelElements = new HashMap<ModelElementId, List<AbstractOperation>>();
-		modifiedModelElementParents = new HashMap<ModelElementId, Integer>();
-		childParentMapping = new HashMap<ModelElementId, ModelElementId>();
+		modifiedModelElements = new HashMap<String, List<AbstractOperation>>();
+		modifiedModelElementParents = new HashMap<String, Integer>();
+		childParentMapping = new HashMap<String, String>();
 	}
 
 	/**
@@ -77,8 +78,8 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @return If this model element has been modified.
 	 */
 	public boolean isModelElementDirty(ModelElementId modelElementId) {
-		return modifiedModelElementParents.containsKey(modelElementId)
-			|| modifiedModelElements.containsKey(modelElementId);
+		return modifiedModelElementParents.containsKey(modelElementId.getId())
+			|| modifiedModelElements.containsKey(modelElementId.getId());
 	}
 
 	/**
@@ -86,18 +87,19 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @see org.unicase.workspace.observers.OperationListener#operationExecuted(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
+	@Override
 	public void operationExecuted(AbstractOperation abstractOperation) {
 		// cache the model element and the operation, as well as the modified parents recursively
 		for (ModelElementId modelElementId : abstractOperation.getAllInvolvedModelElements()) {
-			if (modifiedModelElements.containsKey(modelElementId)) {
-				modifiedModelElements.get(modelElementId).add(abstractOperation);
+			if (modifiedModelElements.containsKey(modelElementId.getId())) {
+				modifiedModelElements.get(modelElementId.getId()).add(abstractOperation);
 			} else {
 				List<AbstractOperation> abstractOperations = new ArrayList<AbstractOperation>();
 				abstractOperations.add(abstractOperation);
-				modifiedModelElements.put(modelElementId, abstractOperations);
-				ModelElementId nextParentModelElementId = getNextParentModelElementId(modelElementId);
+				modifiedModelElements.put(modelElementId.getId(), abstractOperations);
+				ModelElementId nextParentModelElementId = getNextParentModelElementId(modelElementId.getId());
 				if (nextParentModelElementId != null) {
-					childParentMapping.put(modelElementId, nextParentModelElementId);
+					childParentMapping.put(modelElementId.getId(), nextParentModelElementId.getId());
 					addOneToParent(nextParentModelElementId);
 				}
 			}
@@ -109,14 +111,14 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @param parentModelElementId
 	 */
-	private void removeOneFromParent(ModelElementId parentModelElementId) {
+	private void removeOneFromParent(String parentModelElementId) {
 		Integer number = modifiedModelElementParents.get(parentModelElementId);
 		if (number == null || number - 1 == 0) {
 			modifiedModelElementParents.remove(parentModelElementId);
 			if (!modifiedModelElements.containsKey(parentModelElementId)) {
 				ModelElementId nextParentModelElementId = getNextParentModelElementId(parentModelElementId);
 				if (nextParentModelElementId != null) {
-					removeOneFromParent(nextParentModelElementId);
+					removeOneFromParent(nextParentModelElementId.getId());
 				}
 			}
 		} else {
@@ -128,8 +130,8 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		Integer number = modifiedModelElementParents.get(parentModelElementId);
 		if (number == null || number < 1) {
 			number = 1;
-			if (!modifiedModelElements.containsKey(parentModelElementId)) {
-				EObject nextParentModelElement = getModelElementForId(parentModelElementId).eContainer();
+			if (!modifiedModelElements.containsKey(parentModelElementId.getId())) {
+				EObject nextParentModelElement = getModelElementForId(parentModelElementId.getId()).eContainer();
 				if (nextParentModelElement != null && nextParentModelElement != this.projectSpace.getProject()) {
 					addOneToParent(this.projectSpace.getProject().getModelElementId(nextParentModelElement));
 				}
@@ -137,14 +139,14 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 		} else {
 			number++;
 		}
-		modifiedModelElementParents.put(parentModelElementId, number);
+		modifiedModelElementParents.put(parentModelElementId.getId(), number);
 	}
 
 	/**
 	 * @param childModelElementId the
 	 * @return the model element id of the parent of the model element id passed as reference, or null if there is none
 	 */
-	private ModelElementId getNextParentModelElementId(ModelElementId childModelElementId) {
+	private ModelElementId getNextParentModelElementId(String childModelElementId) {
 		EObject childModelElement = getModelElementForId(childModelElementId);
 		if (childModelElement == null) {
 			return null;
@@ -161,7 +163,9 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @param modelElementId the
 	 * @return the model element for the model element id passed as reference
 	 */
-	private EObject getModelElementForId(ModelElementId modelElementId) {
+	private EObject getModelElementForId(String modelElementIdString) {
+		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		modelElementId.setId(modelElementIdString);
 		return projectSpace.getProject().getModelElement(modelElementId);
 	}
 
@@ -170,16 +174,17 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @see org.unicase.workspace.observers.OperationListener#operationUnDone(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
+	@Override
 	public void operationUnDone(AbstractOperation operation) {
 		// remove from cache
 		Set<ModelElementId> involvedMEs = operation.getAllInvolvedModelElements();
 		for (ModelElementId childModelElementId : involvedMEs) {
 			// update the model elements directly affected by the changes to the list of modified model elements
-			if (modifiedModelElements.containsKey(childModelElementId)) {
-				modifiedModelElements.get(childModelElementId).remove(operation);
-				if (modifiedModelElements.get(childModelElementId).size() == 0) {
-					modifiedModelElements.remove(childModelElementId);
-					removeOneFromParent(childParentMapping.get(childModelElementId));
+			if (modifiedModelElements.containsKey(childModelElementId.getId())) {
+				modifiedModelElements.get(childModelElementId.getId()).remove(operation);
+				if (modifiedModelElements.get(childModelElementId.getId()).size() == 0) {
+					modifiedModelElements.remove(childModelElementId.getId());
+					removeOneFromParent(childParentMapping.get(childModelElementId.getId()));
 				}
 			}
 		}
@@ -191,6 +196,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted(org.unicase.workspace.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
 	 */
+	@Override
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
 		// do the same as when project has been shared
 		shareDone();
@@ -202,6 +208,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
 	 */
+	@Override
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		return true;
 	}
@@ -209,6 +216,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void shareDone() {
 		modifiedModelElementParents.clear();
 		modifiedModelElements.clear();
