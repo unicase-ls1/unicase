@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -68,7 +67,7 @@ public class TestProjectGenerator {
 
 	private final Random random;
 	// these two are just shortcuts in order to save typing
-	private static final EClass MODELELEMENT_ECLASS = EcoreFactory.eINSTANCE.getEcorePackage().getEObject();
+	private static final EClass MODELELEMENT_ECLASS = ModelPackage.eINSTANCE.getUnicaseModelElement();
 	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE.getSection();
 
 	// maintain a list of instances of every class. This is to avoid
@@ -610,14 +609,13 @@ public class TestProjectGenerator {
 
 		// get a list of MEs that are not contained in some other,
 		// therefore can be contained in a LeafSection
-		List<EObject> freeMEs = new ArrayList<EObject>();
+		List<UnicaseModelElement> freeMEs = new ArrayList<UnicaseModelElement>();
 		for (EObject me : allMEs) {
 			// be careful about Sections. We don't want to break the document
 			// structure, also CompositeSection is not allowed to be in a
 			// LeafSection
 			if (!(me instanceof Section) && (me.eContainer() == null || me.eContainer().equals(project))) {
-
-				freeMEs.add(me);
+				freeMEs.add((UnicaseModelElement) me);
 			}
 		}
 
@@ -627,16 +625,17 @@ public class TestProjectGenerator {
 			for (int i = 0; i < lackingFreeInstances; i++) {
 				// if required, create new instances, but take care not to
 				// create Sections
-				freeMEs.add(createInstance(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), true));
-
+				UnicaseModelElement me = (UnicaseModelElement) createInstance(ModelPackage.eINSTANCE
+					.getUnicaseModelElement(), true);
+				freeMEs.add(me);
 			}
 		}
 
 		for (int i = 0; i < numOfRefs; i++) {
 			// pick a random instance from free instances
 			int index = random.nextInt(freeMEs.size());
-			EObject referencedInstance = freeMEs.get(index);
-			referencedInstances.add((UnicaseModelElement) referencedInstance);
+			UnicaseModelElement referencedInstance = freeMEs.get(index);
+			referencedInstances.add(referencedInstance);
 			freeMEs.remove(referencedInstance);
 		}
 		ls.getModelElements().addAll(referencedInstances);
@@ -688,17 +687,18 @@ public class TestProjectGenerator {
 	 * special case for createInstance(). it works faster
 	 */
 	private EObject createSomeModelElment(boolean noSection) {
-		EObject me;
+		EObject me = null;
 		int index = random.nextInt(meNonAbstractClasses.size());
 		EClass eClass = meNonAbstractClasses.get(index);
 
 		// if noSection and eClass is a Section, pick another Class
-		while (noSection && SECTION_ECLASS.isSuperTypeOf(eClass)) {
+		while (noSection && SECTION_ECLASS.isSuperTypeOf(eClass)
+			|| (!(me instanceof UnicaseModelElement) || me == null)) {
 			index = random.nextInt(meNonAbstractClasses.size());
 			eClass = meNonAbstractClasses.get(index);
+			me = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		}
 
-		me = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		return me;
 	}
 
