@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -64,7 +65,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	public EList<ECPProject> getProjects() {
 
 		//get the projects from the xmi resource
-		if(xmires.getContents() == null) {
+		EList<EObject> xmicontent = xmires.getContents();
+		
+		if(xmicontent == null || xmicontent.isEmpty()) {
 			projects = super.getProjects();
 			
 			try {
