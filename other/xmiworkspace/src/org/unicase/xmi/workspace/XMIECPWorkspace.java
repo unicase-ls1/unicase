@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -28,7 +28,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	public static final String XMIFILENAME = "resource.xmi";
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.xmi.resource.editingDomain";
 	
-	private File xmi;
+	private File xmi; //Q0: Do I need the org.eclipse.core.internal.resources File? -> line 3
 	private XMIResource xmires;
 	private AdapterImpl workspaceListenerAdapter;
 	
@@ -41,13 +41,18 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		}
 		else {
 			// file does not exist, make new xmi resource
-			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME));
+			try {
+				xmi.createNewFile(); //Q2: Is this correct???
+			} catch (IOException e) {
+				new SWTException("Check permissions on files. Unable to write a new resource-file.");
+			}
+			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME)); //Q1: Why is no file created here?
 			if(!xmi.exists()) new SWTException("Unable to create XMI resource file.");
 		}
 		
 		// try to load xmi resource
 		try {
-			xmires.load(new FileInputStream(xmi), null);
+			xmires.load(new FileInputStream(xmi), Collections.EMPTY_MAP);
 		} catch (FileNotFoundException e) {
 			new SWTException(XMIFILENAME + " cannot be found.");
 		} catch (IOException e) {
@@ -61,10 +66,17 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		//get the projects from the xmi resource
 		if(xmires.getContents() == null) {
 			projects = super.getProjects();
+			
+			try {
+				xmires.getContents().add(WorkspaceManager.getInstance().getWorkSpace());
+			} catch (NoWorkspaceException e) {
+				new SWTException("Cannot add workspace to xmi resource.");
+			}
 		}
 		else {
 			ECPWorkspace ws = (ECPWorkspace) xmires.getContents().get(0);
 			projects = ws.getProjects();
+			xmires.getContents().add(ws);
 		}
 		
 		// make a new listener to be notified when an object changes
@@ -73,8 +85,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			public void notifyChanged(Notification msg) {
 				// save all changes into xmi resource
 				try {
-					Resource clientws = (Resource) WorkspaceManager.getInstance().getWorkSpace();
-					clientws.save(new FileOutputStream(xmi), null);
+					xmires.save(new FileOutputStream(xmi), Collections.EMPTY_MAP);
 				} catch (Exception e) {
 					new SWTException("Cannot retrieve user's workspace.");
 				}
