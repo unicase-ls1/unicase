@@ -28,7 +28,7 @@ public class ProjectGeneratorApplication implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		boolean intoWorkspace = false;
 
-		TestProjectParmeters param = new TestProjectParmeters(7, 123456789, 4, 3, 5, 20);
+		TestProjectParmeters param = new TestProjectParmeters(7, 123456789, 5, 3, 6, 512);
 		TestProjectGenerator generator = new TestProjectGenerator(param);
 
 		if (intoWorkspace) {
@@ -46,7 +46,7 @@ public class ProjectGeneratorApplication implements IApplication {
 		if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
 			path = "C:\\Dokumente und Einstellungen\\Hodaie\\Desktop\\testProj.ucp";
 		} else {
-			path = "/Network/Servers/macbruegge7.informatik.tu-muenchen.de/Volumes/raid/Users/hodaie/Desktop/testProj.ucp";
+			path = "/Users/emueller/testProj4.ucp"; // "/Network/Servers/macbruegge7.informatik.tu-muenchen.de/Volumes/raid/Users/hodaie/Desktop/testProj.ucp";
 		}
 		workspace.exportProject(projectSpace, path);
 		System.out.println(project.getAllModelElements().size());
