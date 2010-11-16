@@ -1,6 +1,9 @@
 package org.unicase.xmi.workspace;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,35 +21,36 @@ import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
 
 
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 
 	public static final String XMIFILENAME = "resource.xmi";
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.xmi.resource.editingDomain";
+	
+	private File xmi;
 	private XMIResource xmires;
 	private AdapterImpl workspaceListenerAdapter;
 	
 	public XMIECPWorkspace() {
 		// check whether file exists, then try to load it
-		File xmi = new File(XMIFILENAME);
+		xmi = new File(XMIFILENAME);
 		if(xmi.exists()) {
 			// file exists
 			xmires = new XMIResourceImpl(URI.createFileURI(XMIFILENAME));
 		}
 		else {
 			// file does not exist, make new xmi resource
-			xmires = (XMIResource) (new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME)));
-			//Q: Why is no file created?
+			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME));
+			if(!xmi.exists()) new SWTException("Unable to create XMI resource file.");
 		}
 		
 		// try to load xmi resource
 		try {
-			xmires.load(null);
-		}
-		catch(IOException e) {
+			xmires.load(new FileInputStream(xmi), null);
+		} catch (FileNotFoundException e) {
+			new SWTException(XMIFILENAME + " cannot be found.");
+		} catch (IOException e) {
 			new SWTException(XMIFILENAME + " cannot be loaded.");
 		}
 	}
@@ -54,12 +58,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	@Override
 	public EList<ECPProject> getProjects() {
 
-		// get the projects from the xmi resource
-		EList<Resource> xmicontent = xmires.getResourceSet().getResources();
-		Workspace ws = (Workspace) xmicontent.get(0);
-		EList<ProjectSpace> spaces = ws.getProjectSpaces();
-		for(ProjectSpace ps: spaces) {
-			projects.add((ECPProject) ps.getProject());
+		//get the projects from the xmi resource
+		if(xmires.getContents() == null) {
+			projects = super.getProjects();
+		}
+		else {
+			ECPWorkspace ws = (ECPWorkspace) xmires.getContents().get(0);
+			projects = ws.getProjects();
 		}
 		
 		// make a new listener to be notified when an object changes
@@ -69,8 +74,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				// save all changes into xmi resource
 				try {
 					Resource clientws = (Resource) WorkspaceManager.getInstance().getWorkSpace();
-					clientws.save(null);
-					
+					clientws.save(new FileOutputStream(xmi), null);
 				} catch (Exception e) {
 					new SWTException("Cannot retrieve user's workspace.");
 				}
@@ -90,10 +94,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		// return all projects in the persistent(!) workspace
 		return projects;
 	}
-	
 
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		return Configuration.getEditingDomain(); // note from the author: got this from the EMFCPWorkspace class
+		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 }
