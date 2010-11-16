@@ -87,7 +87,6 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @see org.unicase.workspace.observers.OperationListener#operationExecuted(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	@Override
 	public void operationExecuted(AbstractOperation abstractOperation) {
 		// cache the model element and the operation, as well as the modified parents recursively
 		for (ModelElementId modelElementId : abstractOperation.getAllInvolvedModelElements()) {
@@ -174,7 +173,6 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * 
 	 * @see org.unicase.workspace.observers.OperationListener#operationUnDone(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	@Override
 	public void operationUnDone(AbstractOperation operation) {
 		// remove from cache
 		Set<ModelElementId> involvedMEs = operation.getAllInvolvedModelElements();
@@ -196,7 +194,6 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted(org.unicase.workspace.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
 	 */
-	@Override
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
 		// do the same as when project has been shared
 		shareDone();
@@ -208,7 +205,6 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
 	 */
-	@Override
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		return true;
 	}
@@ -216,7 +212,6 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public void shareDone() {
 		modifiedModelElementParents.clear();
 		modifiedModelElements.clear();
