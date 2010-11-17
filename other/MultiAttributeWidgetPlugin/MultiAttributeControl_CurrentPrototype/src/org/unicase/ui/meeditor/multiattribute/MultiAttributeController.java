@@ -213,6 +213,12 @@ public class MultiAttributeController<T> implements IChangeListener {
 	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
 	 */
 	public void handleChange(ChangeEvent event) {
+		if (parentItem.getComposite().isDisposed()) {
+			// listener is no longer needed
+			System.out.println("Listener disposed");
+			model.removeChangeListener(this);
+			return;
+		}
 		if (event.getSource() == model && !dataEqualsLocalData()) {
 			// this should only happen for external changes!
 			parentItem.reInitializeWidget();
