@@ -215,7 +215,6 @@ public class MultiAttributeController<T> implements IChangeListener {
 	public void handleChange(ChangeEvent event) {
 		if (parentItem.getComposite().isDisposed()) {
 			// listener is no longer needed
-			System.out.println("Listener disposed");
 			model.removeChangeListener(this);
 			return;
 		}

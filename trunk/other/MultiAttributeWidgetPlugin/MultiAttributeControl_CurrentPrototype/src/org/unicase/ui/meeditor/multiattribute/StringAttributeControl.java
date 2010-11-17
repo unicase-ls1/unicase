@@ -185,11 +185,19 @@ class StringAttributeControl extends AttributeControl {
 		}
 
 		if (e.getSource().equals(getUp())) {
-			swapThisControlWith(getIndex() - 1);
+			int index = getIndex();
+			swapThisControlWith(index - 1);
+			if (index > 0) {
+				getParentItem().getControlList().get(index - 1).getUp().forceFocus();
+			}
 		}
 
 		if (e.getSource().equals(getDown())) {
-			swapThisControlWith(getIndex() + 1);
+			int index = getIndex();
+			swapThisControlWith(index + 1);
+			if (index < getParentItem().getControlList().size() - 1) {
+				getParentItem().getControlList().get(index + 1).getDown().forceFocus();
+			}
 		}
 
 		getParentItem().refreshWidget();
