@@ -89,27 +89,6 @@ public class MultiAttributeController<T> implements IChangeListener {
 	}
 
 	/**
-	 * Removes a value from the model attribute. Causes trouble for duplicated entries.
-	 * 
-	 * @param value the value
-	 * @return true if the value was removed, false otherwise (it didn't exist)
-	 */
-	@Deprecated
-	public boolean remove(final T value) {
-		if (!contains(value)) {
-			return false;
-		}
-		localData.remove(value);
-		new ECPCommand(parentItem.getModelElement()) {
-			@Override
-			protected void doRun() {
-				data.remove(value);
-			};
-		}.run();
-		return true;
-	}
-
-	/**
 	 * Removes the element with a certain index from the model attribute.
 	 * 
 	 * @param index the index of the value to be deleted
@@ -124,28 +103,6 @@ public class MultiAttributeController<T> implements IChangeListener {
 			@Override
 			protected void doRun() {
 				data.remove(index);
-			};
-		}.run();
-		return true;
-	}
-
-	/**
-	 * Replaces a value of the model attribute with an other one. Causes trouble for duplicated entries.
-	 * 
-	 * @param oldValue the old value
-	 * @param newValue the new value
-	 * @return true if the value was replaced, false otherwise (the old value didn't exist)
-	 */
-	@Deprecated
-	public boolean replace(final T oldValue, final T newValue) {
-		if (!contains(oldValue)) {
-			return false;
-		}
-		localData.set(data.indexOf(oldValue), newValue);
-		new ECPCommand(parentItem.getModelElement()) {
-			@Override
-			protected void doRun() {
-				data.set(data.indexOf(oldValue), newValue);
 			};
 		}.run();
 		return true;
@@ -167,32 +124,6 @@ public class MultiAttributeController<T> implements IChangeListener {
 			@Override
 			protected void doRun() {
 				data.set(index, newValue);
-			};
-		}.run();
-		return true;
-	}
-
-	/**
-	 * Swaps the position of two elements within the list. (never tested!)
-	 * 
-	 * @param index1 the index of the first one
-	 * @param index2 the index of the second one
-	 * @return true if the elements have been swapped, false otherwise (at least one index didn't exist)
-	 */
-	@Deprecated
-	public boolean swapElementsAt(final int index1, final int index2) {
-		if (index1 >= data.size() || index2 >= data.size() || index1 < 0 || index2 < 0) {
-			return false;
-		}
-		T tmp = localData.get(index1);
-		localData.set(index1, localData.get(index2));
-		localData.set(index2, tmp);
-		new ECPCommand(parentItem.getModelElement()) {
-			@Override
-			protected void doRun() {
-				T tmp = data.get(index1);
-				data.set(index1, data.get(index2));
-				data.set(index2, tmp);
 			};
 		}.run();
 		return true;
