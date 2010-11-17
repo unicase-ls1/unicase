@@ -808,7 +808,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 						return ModelUtil.clone(modelElementId);
 					}
 				} catch (IOException e) {
-					throw new RuntimeException("Could't load resource for model element " + eObject);
+					throw new RuntimeException("Couldn't load resource for model element " + eObject);
 				}
 
 			}
