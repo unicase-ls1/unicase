@@ -5,6 +5,13 @@
  */
 package org.unicase.ui.meeditor.multiattribute;
 
+import java.util.ArrayList;
+
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.unicase.ui.common.commands.ECPCommand;
 
@@ -16,11 +23,13 @@ import org.unicase.ui.common.commands.ECPCommand;
  * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
  * @param <T> The type of the corresponding model element
  */
-public class MultiAttributeController<T> {
+public class MultiAttributeController<T> implements IChangeListener {
 
 	// essential references
 	private MultiAttributeControl parentItem;
 	private EDataTypeEList<T> data;
+	private ArrayList<T> localData; // for identifying external changes
+	private IObservableValue model;
 
 	/**
 	 * Constructor.
@@ -31,6 +40,14 @@ public class MultiAttributeController<T> {
 	MultiAttributeController(MultiAttributeControl parentItem, EDataTypeEList<T> data) {
 		this.parentItem = parentItem;
 		this.data = data;
+		localData = new ArrayList<T>();
+		localData.addAll(this.data);
+
+		// create listener for external changes
+		Object feature = parentItem.getItemPropertyDescriptor().getFeature(parentItem.getModelElement());
+		EAttribute attribute = (EAttribute) feature;
+		model = EMFEditObservables.observeValue(parentItem.getEditingDomain(), parentItem.getModelElement(), attribute);
+		model.addChangeListener(this);
 	}
 
 	/**
@@ -58,6 +75,11 @@ public class MultiAttributeController<T> {
 	 * @param value the value
 	 */
 	public void add(final T value) {
+		/*
+		 * wrong result for forbidden duplicates when a duplicated entry is added it will be added here, but not in the
+		 * model; this should be no problem as every control should check for duplicates before adding
+		 */
+		localData.add(value);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -77,6 +99,7 @@ public class MultiAttributeController<T> {
 		if (!contains(value)) {
 			return false;
 		}
+		localData.remove(value);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -96,6 +119,7 @@ public class MultiAttributeController<T> {
 		if (index >= data.size() || index < 0) {
 			return false;
 		}
+		localData.remove(index);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -117,6 +141,7 @@ public class MultiAttributeController<T> {
 		if (!contains(oldValue)) {
 			return false;
 		}
+		localData.set(data.indexOf(oldValue), newValue);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -137,6 +162,7 @@ public class MultiAttributeController<T> {
 		if (index >= data.size() || index < 0) {
 			return false;
 		}
+		localData.set(index, newValue);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -158,6 +184,9 @@ public class MultiAttributeController<T> {
 		if (index1 >= data.size() || index2 >= data.size() || index1 < 0 || index2 < 0) {
 			return false;
 		}
+		T tmp = localData.get(index1);
+		localData.set(index1, localData.get(index2));
+		localData.set(index2, tmp);
 		new ECPCommand(parentItem.getModelElement()) {
 			@Override
 			protected void doRun() {
@@ -176,6 +205,29 @@ public class MultiAttributeController<T> {
 	 */
 	public Object[] getAllStoredElements() {
 		return data.toArray();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
+	 */
+	public void handleChange(ChangeEvent event) {
+		if (event.getSource() == model && !dataEqualsLocalData()) {
+			// this should only happen for external changes!
+			parentItem.reInitializeWidget();
+			localData.clear();
+			localData.addAll(data);
+		}
+	}
+
+	/**
+	 * Checks whether localData and data are out of sync.
+	 * 
+	 * @return true if they are in sync, false otherwise
+	 */
+	private boolean dataEqualsLocalData() {
+		return localData.equals(data);
 	}
 
 }

@@ -49,7 +49,6 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 
 	// essential references
 	private Composite composite;
-	private Composite parent;
 	private GridLayout gridLayout;
 	private Control emptyField; // or the bottom one if isFull() && isEditable()
 
@@ -76,8 +75,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Control createControl(final Composite parent, int style) {
-		this.parent = parent;
+	public Control createControl(Composite parent, int style) {
 		final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(
 			getModelElement());
 		createDataStructures(feature);
@@ -132,7 +130,6 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * Resets the widget.
 	 */
 	protected void reInitializeWidget() {
-		// TODO: Hong Khoan, please call this method whenever external changes occur --> remove this Tag when you did so
 		// remove empty control (not in controlList!)
 		if (!isFull()) {
 			emptyField.getParent().dispose();
