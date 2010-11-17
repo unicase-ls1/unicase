@@ -23,16 +23,42 @@ import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 
-
+/**
+ * XMIECPWorkspace implementation
+ * @author matti
+ *
+ */
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 
+	/**
+	 * Filename of the xmi-resource,
+	 * additionally you can set a path here
+	 */
 	public static final String XMIFILENAME = "resource.xmi";
+	
+	/**
+	 * Editing domain
+	 */
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.xmi.resource.editingDomain";
 	
+	/**
+	 * File object needed to get filesystem-access
+	 */
 	private File xmi; //Q0: Do I need the org.eclipse.core.internal.resources File? -> line 3
+	
+	/**
+	 * XMIResource object
+	 */
 	private XMIResource xmires;
+	
+	/**
+	 * Adapter that is attached to the modelelements and listens on changes
+	 */
 	private AdapterImpl workspaceListenerAdapter;
 	
+	/**
+	 * Creates a new workspace with an XMIResource in the background to persist changes locally on the harddrive.
+	 */
 	public XMIECPWorkspace() {
 		// check whether file exists, then try to load it
 		xmi = new File(XMIFILENAME);
@@ -47,7 +73,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			} catch (IOException e) {
 				new SWTException("Check permissions on files. Unable to write a new resource-file.");
 			}
-			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME)); //Q1: Why is no file created here?
+			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME)); //Q1: Why is no file created here? That's why I added the lines above
 			if(!xmi.exists()) new SWTException("Unable to create XMI resource file.");
 		}
 		
@@ -71,20 +97,23 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			projects = super.getProjects();
 			
 			try {
-				xmires.getContents().add(WorkspaceManager.getInstance().getWorkSpace());
+				xmicontent.add(WorkspaceManager.getInstance().getWorkSpace()); //Q3: Isn't this like xmicontent.add(this)?
 			} catch (NoWorkspaceException e) {
 				new SWTException("Cannot add workspace to xmi resource.");
 			}
 		}
 		else {
-			ECPWorkspace ws = (ECPWorkspace) xmires.getContents().get(0);
+			ECPWorkspace ws = (ECPWorkspace) xmicontent.get(0);
 			projects = ws.getProjects();
-			xmires.getContents().add(ws);
 		}
 		
 		// make a new listener to be notified when an object changes
 		workspaceListenerAdapter = new AdapterImpl() {
 	
+			/**
+			 * This method is being called when a modelelement has changed and therefore
+			 * persists the changes instantly into the XMIResource
+			 */
 			public void notifyChanged(Notification msg) {
 				// save all changes into xmi resource
 				try {
@@ -100,7 +129,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			
 		// attach eAdapters to the workspace manager
 		try {
-			WorkspaceManager.getInstance().getWorkSpace().eAdapters().add(workspaceListenerAdapter);
+			WorkspaceManager.getInstance().getWorkSpace().eAdapters().add(workspaceListenerAdapter); //Q4: Do we have to attach the eAdapter to this workspace?
 		} catch (NoWorkspaceException e) {
 			new SWTException("Cannot get projects from resource.");
 		}
