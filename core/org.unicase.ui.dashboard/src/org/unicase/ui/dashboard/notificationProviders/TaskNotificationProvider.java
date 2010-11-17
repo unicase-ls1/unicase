@@ -8,6 +8,7 @@ package org.unicase.ui.dashboard.notificationProviders;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -221,11 +222,10 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			stringBuilder.append("the ");
 			stringBuilder.append(clazz.getName());
 			stringBuilder.append("s ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
-				getProjectSpace()));
+			Iterator<WorkItem> it = workItems.iterator();
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(it.next(), getProjectSpace()));
 			stringBuilder.append(" and ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
-				getProjectSpace()));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(it.next(), getProjectSpace()));
 		} else {
 			stringBuilder.append("<a href=\"more\">");
 			stringBuilder.append(workItems.size());
