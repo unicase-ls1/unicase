@@ -11,6 +11,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISharedImages;
@@ -61,12 +62,15 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	 * Initializes the up/down buttons.
 	 */
 	protected void createUpDownButtons() {
+		Image up = Activator.getImageDescriptor("icons/arrow_up.png").createImage();
+		Image down = Activator.getImageDescriptor("icons/arrow_down.png").createImage();
+
 		// if invisible ones have been created
 		if (getUp() != null) {
 			getUp().dispose();
 		}
 		setUp(new ImageHyperlink(getFieldComposite(), SWT.TOP));
-		getUp().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_BACK));
+		getUp().setImage(up);
 		getUp().addMouseListener(this);
 
 		// if invisible ones have been created
@@ -74,7 +78,7 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 			getDown().dispose();
 		}
 		setDown(new ImageHyperlink(getFieldComposite(), SWT.TOP));
-		getDown().setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_FORWARD));
+		getDown().setImage(down);
 		getDown().addMouseListener(this);
 		getFieldComposite().layout();
 	}
