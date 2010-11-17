@@ -49,6 +49,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 
 	// essential references
 	private Composite composite;
+	private Composite parent;
 	private GridLayout gridLayout;
 	private Control emptyField; // or the bottom one if isFull() && isEditable()
 
@@ -76,6 +77,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style) {
+		this.parent = parent;
 		final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(
 			getModelElement());
 		createDataStructures(feature);
@@ -127,13 +129,33 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	}
 
 	/**
+	 * Resets the widget.
+	 */
+	protected void reInitializeWidget() {
+		// TODO: Hong Khoan, please call this method whenever external changes occur --> remove this Tag when you did so
+		// remove empty control (not in controlList!)
+		if (!isFull()) {
+			emptyField.getParent().dispose();
+		}
+		// remove all other controls
+		while (!controlList.isEmpty()) {
+			controlList.get(0).dispose();
+			controlList.remove(0);
+		}
+		initializeWidget();
+	}
+
+	/**
 	 * Redraws the widget with correct layout.
 	 */
 	protected void refreshWidget() {
 		getComposite().layout(); // fields are drawn, but overall size is not always accordingly changed
 		// layout of whole editor adapts to new widget content - how??
+		// getComposite().pack();
 		getComposite().getParent().layout();
-		getComposite().getParent().getParent().layout();
+		// getComposite().getParent().pack();
+		// getComposite().getParent().getParent().layout();
+		// getComposite().getParent().getParent().pack();
 	}
 
 	/**
