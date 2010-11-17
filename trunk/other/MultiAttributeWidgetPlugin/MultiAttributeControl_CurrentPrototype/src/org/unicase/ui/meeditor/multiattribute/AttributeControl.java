@@ -32,6 +32,13 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	private ImageHyperlink down;
 
 	/**
+	 * Disposes the control represented by this object.
+	 */
+	public void dispose() {
+		fieldComposite.dispose();
+	}
+
+	/**
 	 * Initializes the delete button.
 	 */
 	protected void createDeleteButton() {

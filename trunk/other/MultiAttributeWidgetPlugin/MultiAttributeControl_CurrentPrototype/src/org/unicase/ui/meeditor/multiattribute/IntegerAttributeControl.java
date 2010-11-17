@@ -184,8 +184,8 @@ class IntegerAttributeControl extends AttributeControl {
 				dataManipulator.removeElementAt(getIndex());
 				// accordingly change all other indexes
 				for (int i = getIndex() + 1; i < getParentItem().getControlList().size(); i++) {
-					getParentItem().getControlList().get(i)
-						.setIndex(getParentItem().getControlList().get(i).getIndex() - 1);
+					AttributeControl c = getParentItem().getControlList().get(i);
+					c.setIndex(c.getIndex() - 1);
 				}
 				getParentItem().getControlList().remove(getIndex());
 
