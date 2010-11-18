@@ -9,6 +9,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
@@ -318,6 +319,13 @@ public interface UnicaseModelElement extends EObject {
 	 */
 	void removeModelElementChangeListener(ModelElementChangeListener listener);
 
+	/**
+	 * Returns the ID of this model element.
+	 * 
+	 * @return the model's ID
+	 */
+	ModelElementId getModelElementId();
+
 	// end custom code
 
-} // ModelElement
+} // UnicaseModelElement

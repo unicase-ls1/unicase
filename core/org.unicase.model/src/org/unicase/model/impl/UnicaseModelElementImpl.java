@@ -548,6 +548,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.UnicaseModelElement#getModelElementId()
+	 * @generated NOT
 	 */
 	public ModelElementId getModelElementId() {
 		return ModelUtil.getProject(this).getModelElementId(this);
