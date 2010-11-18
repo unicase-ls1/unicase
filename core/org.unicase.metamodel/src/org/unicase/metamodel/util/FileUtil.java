@@ -5,11 +5,14 @@
  */
 package org.unicase.metamodel.util;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Helperclass for file system operations.
@@ -102,6 +105,48 @@ public final class FileUtil {
 			} else {
 				copyFile(file, new File(destination.getAbsolutePath() + File.separatorChar + file.getName()));
 			}
+		}
+	}
+
+	/**
+	 * This method allows you to zip a folder. *UNDER CONSTRUCTION*
+	 * 
+	 * @param source folder to zip
+	 * @param destination target zip file
+	 * @throws IOException in case of failure
+	 */
+	public static void zipFolder(File source, File destination) throws IOException {
+		if (!source.isDirectory()) {
+			throw new IOException("Source must be folder.");
+		}
+		if (destination.exists()) {
+			throw new IOException("Destination already exists.");
+		}
+		ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(
+			new FileOutputStream(destination)));
+		String path = source.getPath();
+		path += (path.endsWith(File.separator) ? "" : File.separatorChar);
+		zip(source, path, zipOutputStream, new byte[8192]);
+		zipOutputStream.close();
+	}
+
+	private static void zip(File current, String rootPath, ZipOutputStream zipStream, byte[] buffer) throws IOException {
+		if (current.isDirectory()) {
+			for (File file : current.listFiles()) {
+				if (!".".equals(file.getName()) && !"..".equals(file.getName())) {
+					zip(file, rootPath, zipStream, buffer);
+				}
+			}
+		} else if (current.isFile()) {
+			zipStream.putNextEntry(new ZipEntry(current.getPath().replace(rootPath, "")));
+			FileInputStream file = new FileInputStream(current);
+			int read;
+			while ((read = file.read(buffer)) != -1) {
+				zipStream.write(buffer, 0, read);
+			}
+			zipStream.closeEntry();
+		} else {
+			throw new IllegalStateException();
 		}
 	}
 }
