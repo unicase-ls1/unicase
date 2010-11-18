@@ -31,23 +31,22 @@ import org.unicase.model.task.WorkItem;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getStream <em>Stream</em>}</li>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getPredecessor <em>Predecessor</em>}</li>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getSuccessor <em>Successor</em>}</li>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getAppliedPatches <em>Applied Patches</em>}</li>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
- * <li>{@link org.unicase.model.release.impl.ReleaseImpl#getSourceCodeRepositoryRevision <em>Source Code Repository
- * Revision</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getStream <em>Stream</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getPredecessor <em>Predecessor</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getSuccessor <em>Successor</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getAppliedPatches <em>Applied Patches</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.ReleaseImpl#getSourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ReleaseImpl extends EObjectImpl implements Release {
 	/**
-	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPredecessor()
 	 * @generated
 	 * @ordered
@@ -55,9 +54,9 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 	protected Release predecessor;
 
 	/**
-	 * The cached value of the '{@link #getSuccessor() <em>Successor</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSuccessor() <em>Successor</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSuccessor()
 	 * @generated
 	 * @ordered
@@ -85,9 +84,8 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 	protected EList<WorkItem> includedWorkItems;
 
 	/**
-	 * The cached value of the '{@link #getSourceCodeRepositoryRevision() <em>Source Code Repository Revision</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSourceCodeRepositoryRevision() <em>Source Code Repository Revision</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSourceCodeRepositoryRevision()
 	 * @generated
 	 * @ordered
@@ -96,7 +94,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReleaseImpl() {
@@ -105,7 +102,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +111,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stream getStream() {
@@ -126,7 +121,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stream basicGetStream() {
@@ -137,7 +131,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStream(Stream newStream, NotificationChain msgs) {
@@ -147,7 +140,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStream(Stream newStream) {
@@ -170,7 +162,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Release getPredecessor() {
@@ -188,7 +179,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Release basicGetPredecessor() {
@@ -197,7 +187,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPredecessor(Release newPredecessor, NotificationChain msgs) {
@@ -216,7 +205,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPredecessor(Release newPredecessor) {
@@ -238,7 +226,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Release getSuccessor() {
@@ -256,7 +243,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Release basicGetSuccessor() {
@@ -265,7 +251,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSuccessor(Release newSuccessor, NotificationChain msgs) {
@@ -284,7 +269,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSuccessor(Release newSuccessor) {
@@ -306,7 +290,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<PatchAttachment> getAppliedPatches() {
@@ -319,7 +302,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
@@ -332,7 +314,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SourceCodeRepositoryRevision getSourceCodeRepositoryRevision() {
@@ -351,7 +332,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SourceCodeRepositoryRevision basicGetSourceCodeRepositoryRevision() {
@@ -360,7 +340,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceCodeRepositoryRevision(SourceCodeRepositoryRevision newSourceCodeRepositoryRevision) {
@@ -374,7 +353,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -406,7 +384,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -428,7 +405,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -442,7 +418,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -474,7 +449,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -507,7 +481,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -537,7 +510,6 @@ public class ReleaseImpl extends EObjectImpl implements Release {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

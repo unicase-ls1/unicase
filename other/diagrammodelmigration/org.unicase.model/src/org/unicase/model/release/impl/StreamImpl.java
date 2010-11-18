@@ -26,12 +26,11 @@ import org.unicase.model.release.Stream;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.release.impl.StreamImpl#getReleases <em>Releases</em>}</li>
- * <li>{@link org.unicase.model.release.impl.StreamImpl#getSourceCodeRepositoryStream <em>Source Code Repository Stream
- * </em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.StreamImpl#getReleases <em>Releases</em>}</li>
+ *   <li>{@link org.unicase.model.release.impl.StreamImpl#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class StreamImpl extends EObjectImpl implements Stream {
@@ -46,9 +45,8 @@ public class StreamImpl extends EObjectImpl implements Stream {
 	protected EList<Release> releases;
 
 	/**
-	 * The cached value of the '{@link #getSourceCodeRepositoryStream() <em>Source Code Repository Stream</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSourceCodeRepositoryStream() <em>Source Code Repository Stream</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSourceCodeRepositoryStream()
 	 * @generated
 	 * @ordered
@@ -57,7 +55,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StreamImpl() {
@@ -66,7 +63,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +72,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Release> getReleases() {
@@ -89,7 +84,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SourceCodeRepositoryStream getSourceCodeRepositoryStream() {
@@ -108,7 +102,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SourceCodeRepositoryStream basicGetSourceCodeRepositoryStream() {
@@ -117,7 +110,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceCodeRepositoryStream(SourceCodeRepositoryStream newSourceCodeRepositoryStream) {
@@ -130,7 +122,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -145,7 +136,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +149,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +166,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -197,7 +185,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,7 +202,6 @@ public class StreamImpl extends EObjectImpl implements Stream {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

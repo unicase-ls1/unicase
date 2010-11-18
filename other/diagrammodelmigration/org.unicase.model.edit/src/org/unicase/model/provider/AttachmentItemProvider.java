@@ -20,16 +20,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.ModelPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Attachment} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.Attachment} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class AttachmentItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttachmentItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +37,8 @@ public class AttachmentItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,16 +52,14 @@ public class AttachmentItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds a property descriptor for the Referring Model Elements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Referring Model Elements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReferringModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Attachment_referringModelElements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attachment_referringModelElements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Attachment_referringModelElements_feature",
 				"_UI_Attachment_type"), ModelPackage.Literals.ATTACHMENT__REFERRING_MODEL_ELEMENTS, true, false, true,
 			null, null, null));
@@ -91,9 +89,9 @@ public class AttachmentItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

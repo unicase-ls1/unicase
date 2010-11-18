@@ -31,8 +31,8 @@ import org.unicase.model.requirement.RequirementPackage;
 public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ActorInstanceItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,10 +63,8 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	 * @generated
 	 */
 	protected void addInitiatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ActorInstance_initiatedScenarios_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_initiatedScenarios_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_initiatedScenarios_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS, true,
 			false, true, null, null, null));
@@ -79,33 +77,30 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	 * @generated
 	 */
 	protected void addParticipatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ActorInstance_participatedScenarios_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ActorInstance_participatedScenarios_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS, true,
 			false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Instantiated Actor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Instantiated Actor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInstantiatedActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ActorInstance_instantiatedActor_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_instantiatedActor_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_instantiatedActor_feature",
 				"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR, true, false,
 			true, null, null, null));
 	}
 
 	/**
-	 * This returns ActorInstance.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ActorInstance.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,9 +132,9 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -148,8 +143,8 @@ public class ActorInstanceItemProvider extends UnicaseModelElementItemProvider i
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

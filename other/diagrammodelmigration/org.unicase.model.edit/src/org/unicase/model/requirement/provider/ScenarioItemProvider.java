@@ -27,16 +27,16 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.Scenario} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Scenario} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ScenarioItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ScenarioItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +44,8 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,33 +65,30 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	}
 
 	/**
-	 * This adds a property descriptor for the Initiating Actor Instance feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Initiating Actor Instance feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addInitiatingActorInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_initiatingActorInstance_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_initiatingActorInstance_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_initiatingActorInstance_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__INITIATING_ACTOR_INSTANCE, true, false,
 			true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Participating Actor Instances feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Participating Actor Instances feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatingActorInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_participatingActorInstances_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingActorInstances_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Scenario_participatingActorInstances_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Scenario_participatingActorInstances_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_ACTOR_INSTANCES, true, false,
 			true, null, null, null));
 	}
@@ -103,43 +100,38 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addInstantiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_instantiatedUseCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_instantiatedUseCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_instantiatedUseCases_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__INSTANTIATED_USE_CASES, true, false, true,
 			null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_functionalRequirements_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_functionalRequirements_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_functionalRequirements_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__FUNCTIONAL_REQUIREMENTS, true, false, true,
 			null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Non Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_nonFunctionalRequirements_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Scenario_nonFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS, true, false,
 			true, null, null, null));
 	}
@@ -151,10 +143,8 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_participatingMethods_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingMethods_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingMethods_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_METHODS, true, false, true,
 			null, null, null));
@@ -167,10 +157,8 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	 * @generated
 	 */
 	protected void addParticipatingClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Scenario_participatingClasses_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingClasses_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingClasses_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_CLASSES, true, false, true,
 			null, null, null));
@@ -179,9 +167,9 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,7 +183,6 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,8 +194,8 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	}
 
 	/**
-	 * This returns Scenario.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Scenario.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,9 +233,9 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -260,8 +247,8 @@ public class ScenarioItemProvider extends UnicaseModelElementItemProvider implem
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

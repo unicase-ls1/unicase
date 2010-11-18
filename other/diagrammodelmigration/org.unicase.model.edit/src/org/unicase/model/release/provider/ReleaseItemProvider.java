@@ -23,16 +23,16 @@ import org.unicase.model.provider.RootElementItemProvider;
 import org.unicase.model.release.ReleasePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.release.Release} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.release.Release} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ReleaseItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ReleaseItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,41 +59,38 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Predecessor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPredecessorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Release_predecessor_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Release_predecessor_feature", "_UI_Release_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Release_predecessor_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Release_predecessor_feature", "_UI_Release_type"),
 			ReleasePackage.Literals.RELEASE__PREDECESSOR, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Successor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Successor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSuccessorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Release_successor_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Release_successor_feature", "_UI_Release_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Release_successor_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Release_successor_feature", "_UI_Release_type"),
 			ReleasePackage.Literals.RELEASE__SUCCESSOR, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Applied Patches feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Applied Patches feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAppliedPatchesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Release_appliedPatches_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Release_appliedPatches_feature", "_UI_Release_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Release_appliedPatches_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Release_appliedPatches_feature", "_UI_Release_type"),
 			ReleasePackage.Literals.RELEASE__APPLIED_PATCHES, true, false, true, null, null, null));
 	}
 
@@ -105,34 +102,30 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	 */
 	protected void addIncludedWorkItemsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Release_includedWorkItems_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Release_includedWorkItems_feature",
-					"_UI_Release_type"), ReleasePackage.Literals.RELEASE__INCLUDED_WORK_ITEMS, true, false, true, null,
-				null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Release_includedWorkItems_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Release_includedWorkItems_feature", "_UI_Release_type"),
+				ReleasePackage.Literals.RELEASE__INCLUDED_WORK_ITEMS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Code Repository Revision feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Source Code Repository Revision feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSourceCodeRepositoryRevisionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Release_sourceCodeRepositoryRevision_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Release_sourceCodeRepositoryRevision_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Release_sourceCodeRepositoryRevision_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Release_sourceCodeRepositoryRevision_feature",
 				"_UI_Release_type"), ReleasePackage.Literals.RELEASE__SOURCE_CODE_REPOSITORY_REVISION, true, false,
 			true, null, null, null));
 	}
 
 	/**
-	 * This returns Release.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Release.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,8 +134,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,9 +157,9 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,8 +168,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

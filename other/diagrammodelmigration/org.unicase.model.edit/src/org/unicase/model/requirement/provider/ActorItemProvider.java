@@ -23,16 +23,16 @@ import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.Actor} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Actor} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ActorItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ActorItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,28 +65,24 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 * @generated
 	 */
 	protected void addInitiatedUserTaskPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Actor_initiatedUserTask_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_initiatedUserTask_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUserTask_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INITIATED_USER_TASK, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Participated User Tasks feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Participated User Tasks feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addParticipatedUserTasksPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Actor_participatedUserTasks_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUserTasks_feature",
-					"_UI_Actor_type"), RequirementPackage.Literals.ACTOR__PARTICIPATED_USER_TASKS, true, false, true,
-				null, null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Actor_participatedUserTasks_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Actor_participatedUserTasks_feature", "_UI_Actor_type"),
+				RequirementPackage.Literals.ACTOR__PARTICIPATED_USER_TASKS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -96,9 +92,8 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 * @generated
 	 */
 	protected void addInitiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Actor_initiatedUseCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_initiatedUseCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUseCases_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES, true, false, true, null, null, null));
 	}
@@ -111,31 +106,27 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Actor_participatedUseCases_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature",
-					"_UI_Actor_type"), RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES, true, false, true,
-				null, null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Actor_participatedUseCases_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature", "_UI_Actor_type"),
+				RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Instances feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Instances feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Actor_instances_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_instances_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
 			RequirementPackage.Literals.ACTOR__INSTANCES, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns Actor.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Actor.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -167,9 +158,9 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -178,8 +169,8 @@ public class ActorItemProvider extends UnicaseModelElementItemProvider implement
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

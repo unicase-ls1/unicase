@@ -28,16 +28,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Method} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Method} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class MethodItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MethodItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,138 +70,128 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Visibility feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Visibility feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_visibility_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_visibility_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_visibility_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_visibility_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__VISIBILITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Scope feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Scope feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_scope_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_scope_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_scope_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_scope_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__SCOPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Defining Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Defining Class feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_definingClass_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_definingClass_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_definingClass_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_definingClass_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__DEFINING_CLASS, true, false, false, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Return Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Return Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReturnTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_returnType_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_returnType_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_returnType_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_returnType_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__RETURN_TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Arguments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Arguments feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addArgumentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_arguments_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_arguments_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_arguments_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_arguments_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__ARGUMENTS, true, false, false, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Properties feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Properties feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_properties_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_properties_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_properties_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_properties_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__PROPERTIES, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Label feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_label_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_label_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_label_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_label_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__LABEL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Stubbed feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Stubbed feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addStubbedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_stubbed_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_stubbed_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_stubbed_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_stubbed_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__STUBBED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Called Methods feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Called Methods feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCalledMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_calledMethods_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_calledMethods_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_calledMethods_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_calledMethods_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__CALLED_METHODS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Calling Methods feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Calling Methods feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCallingMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Method_callingMethods_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Method_callingMethods_feature", "_UI_Method_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_callingMethods_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_callingMethods_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__CALLING_METHODS, true, false, true, null, null, null));
 	}
 
@@ -213,21 +203,18 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	 */
 	protected void addDemoParticipationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Method_demoParticipations_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Method_demoParticipations_feature",
-					"_UI_Method_type"), ClassesPackage.Literals.METHOD__DEMO_PARTICIPATIONS, true, false, true, null,
-				null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Method_demoParticipations_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Method_demoParticipations_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +228,6 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,8 +239,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This returns Method.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Method.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -302,9 +288,9 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -316,8 +302,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -36,8 +36,8 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public CompositeSectionItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,15 +60,13 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * This adds a property descriptor for the Subsections feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Subsections feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSubsectionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CompositeSection_subsections_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeSection_subsections_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CompositeSection_subsections_feature",
 				"_UI_CompositeSection_type"), DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS, true, false,
 			false, null, null, null));
@@ -77,9 +75,9 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,7 +91,6 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,8 +102,8 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * This returns CompositeSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns CompositeSection.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,9 +141,9 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,8 +158,8 @@ public class CompositeSectionItemProvider extends UnicaseModelElementItemProvide
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

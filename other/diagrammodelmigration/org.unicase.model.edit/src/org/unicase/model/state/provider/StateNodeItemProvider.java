@@ -24,16 +24,16 @@ import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.state.StateNode} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.state.StateNode} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StateNodeItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StateNodeItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class StateNodeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,10 +63,8 @@ public class StateNodeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addOutgoingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_StateNode_outgoingTransitions_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StateNode_outgoingTransitions_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StateNode_outgoingTransitions_feature",
 				"_UI_StateNode_type"), StatePackage.Literals.STATE_NODE__OUTGOING_TRANSITIONS, true, false, true, null,
 			null, null));
@@ -79,18 +77,16 @@ public class StateNodeItemProvider extends UnicaseModelElementItemProvider imple
 	 * @generated
 	 */
 	protected void addIncomingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_StateNode_incomingTransitions_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StateNode_incomingTransitions_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_StateNode_incomingTransitions_feature",
 				"_UI_StateNode_type"), StatePackage.Literals.STATE_NODE__INCOMING_TRANSITIONS, true, false, true, null,
 			null, null));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,9 +110,9 @@ public class StateNodeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,8 +121,8 @@ public class StateNodeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

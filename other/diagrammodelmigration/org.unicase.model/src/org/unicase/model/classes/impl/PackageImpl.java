@@ -23,19 +23,17 @@ import org.unicase.model.classes.PackageElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements <em>Contained Package Elements
- * </em>}</li>
- * <li>{@link org.unicase.model.classes.impl.PackageImpl#getFacadeClass <em>Facade Class</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements <em>Contained Package Elements</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.PackageImpl#getFacadeClass <em>Facade Class</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PackageImpl extends PackageElementImpl implements org.unicase.model.classes.Package {
 	/**
-	 * The cached value of the '{@link #getContainedPackageElements() <em>Contained Package Elements</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getContainedPackageElements() <em>Contained Package Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getContainedPackageElements()
 	 * @generated
 	 * @ordered
@@ -43,9 +41,9 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 	protected EList<PackageElement> containedPackageElements;
 
 	/**
-	 * The cached value of the '{@link #getFacadeClass() <em>Facade Class</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFacadeClass() <em>Facade Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFacadeClass()
 	 * @generated
 	 * @ordered
@@ -54,7 +52,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageImpl() {
@@ -63,7 +60,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +69,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<PackageElement> getContainedPackageElements() {
@@ -87,7 +82,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getFacadeClass() {
@@ -105,7 +99,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetFacadeClass() {
@@ -114,7 +107,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFacadeClass(org.unicase.model.classes.Class newFacadeClass) {
@@ -127,7 +119,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -143,7 +134,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,7 +147,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +164,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -195,7 +183,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,7 +200,6 @@ public class PackageImpl extends PackageElementImpl implements org.unicase.model
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

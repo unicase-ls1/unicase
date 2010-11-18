@@ -15,13 +15,12 @@ import org.unicase.model.release.SourceCodeRepositoryStream;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class SourceCodeRepositoryStreamImpl extends EObjectImpl implements SourceCodeRepositoryStream {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SourceCodeRepositoryStreamImpl() {
@@ -30,7 +29,6 @@ public abstract class SourceCodeRepositoryStreamImpl extends EObjectImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
