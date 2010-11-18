@@ -33,9 +33,9 @@ import org.unicase.model.release.ReleasePackage;
  */
 public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment {
 	/**
-	 * The cached value of the '{@link #getAppliedTo() <em>Applied To</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAppliedTo() <em>Applied To</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAppliedTo()
 	 * @generated
 	 * @ordered
@@ -44,7 +44,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PatchAttachmentImpl() {
@@ -53,7 +52,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +61,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Release> getAppliedTo() {
@@ -76,7 +73,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -91,7 +87,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +100,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +113,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -136,7 +129,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +143,6 @@ public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

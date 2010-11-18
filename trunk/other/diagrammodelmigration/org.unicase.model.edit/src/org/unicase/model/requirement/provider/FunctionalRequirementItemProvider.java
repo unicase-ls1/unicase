@@ -37,8 +37,8 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -46,8 +46,8 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -68,60 +68,52 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	}
 
 	/**
-	 * This adds a property descriptor for the Reviewed feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Reviewed feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReviewedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_reviewed_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_reviewed_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_reviewed_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Stakeholder feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Stakeholder feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addStakeholderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_stakeholder_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_stakeholder_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_stakeholder_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
 			true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Cost feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Cost feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCostPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_cost_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_cost_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_cost_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__COST, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_priority_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_priority_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_priority_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -134,11 +126,10 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	 * @generated
 	 */
 	protected void addRefiningRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_refiningRequirements_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refiningRequirements_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_FunctionalRequirement_refiningRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refiningRequirements_feature",
 				"_UI_FunctionalRequirement_type"),
 			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, true, false, false, null, null,
 			null));
@@ -151,41 +142,36 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	 * @generated
 	 */
 	protected void addRefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_refinedRequirement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refinedRequirement_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_FunctionalRequirement_refinedRequirement_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refinedRequirement_feature",
 				"_UI_FunctionalRequirement_type"),
 			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, true, false, false, null, null,
 			null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Use Cases feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_useCases_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_useCases_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_useCases_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__USE_CASES, true,
 			false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Scenarios feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FunctionalRequirement_scenarios_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_scenarios_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_scenarios_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SCENARIOS, true,
 			false, true, null, null, null));
@@ -194,9 +180,9 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,7 +196,6 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,8 +207,8 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	}
 
 	/**
-	 * This returns FunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns FunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -267,9 +252,9 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -277,13 +262,13 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, RequirementFactory.eINSTANCE
+				.createFunctionalRequirement()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

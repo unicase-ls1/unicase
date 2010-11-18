@@ -32,8 +32,8 @@ import org.unicase.model.provider.UnicaseModelElementItemProvider;
 public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DeploymentNodeItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,23 +56,21 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Components feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Components feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_DeploymentNode_components_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DeploymentNode_components_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_DeploymentNode_components_feature",
 				"_UI_DeploymentNode_type"), ComponentPackage.Literals.DEPLOYMENT_NODE__COMPONENTS, true, false, true,
 			null, null, null));
 	}
 
 	/**
-	 * This returns DeploymentNode.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns DeploymentNode.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,8 +79,8 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -106,9 +104,9 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,8 +115,8 @@ public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

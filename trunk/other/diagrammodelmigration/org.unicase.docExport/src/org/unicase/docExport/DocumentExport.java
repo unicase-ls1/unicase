@@ -10,6 +10,7 @@ import java.util.HashSet;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.docExport.docWriter.DocWriter;
 import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.Template;

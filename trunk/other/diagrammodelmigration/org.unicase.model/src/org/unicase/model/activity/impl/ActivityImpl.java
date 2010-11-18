@@ -13,13 +13,12 @@ import org.unicase.model.activity.ActivityPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Activity</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ActivityImpl extends ActivityObjectImpl implements Activity {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityImpl() {
@@ -28,7 +27,6 @@ public class ActivityImpl extends ActivityObjectImpl implements Activity {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

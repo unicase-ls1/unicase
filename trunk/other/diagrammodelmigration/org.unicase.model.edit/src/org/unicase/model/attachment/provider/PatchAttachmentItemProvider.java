@@ -31,8 +31,8 @@ import org.unicase.model.provider.RootElementItemProvider;
 public class PatchAttachmentItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PatchAttachmentItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class PatchAttachmentItemProvider extends RootElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,23 +55,21 @@ public class PatchAttachmentItemProvider extends RootElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Applied To feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Applied To feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAppliedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PatchAttachment_appliedTo_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatchAttachment_appliedTo_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PatchAttachment_appliedTo_feature",
 				"_UI_PatchAttachment_type"), AttachmentPackage.Literals.PATCH_ATTACHMENT__APPLIED_TO, true, false,
 			true, null, null, null));
 	}
 
 	/**
-	 * This returns PatchAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PatchAttachment.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -80,8 +78,8 @@ public class PatchAttachmentItemProvider extends RootElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -103,9 +101,9 @@ public class PatchAttachmentItemProvider extends RootElementItemProvider impleme
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,8 +112,8 @@ public class PatchAttachmentItemProvider extends RootElementItemProvider impleme
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
