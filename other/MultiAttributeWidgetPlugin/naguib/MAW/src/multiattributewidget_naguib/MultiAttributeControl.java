@@ -6,14 +6,15 @@ import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
@@ -46,8 +47,8 @@ public class MultiAttributeControl extends AbstractMEControl {
 	@Override
 	protected Control createControl(Composite parent, int style) {
 	final	Composite composite = getToolkit().createComposite(parent, style);
-		GridLayout gridLayout = new GridLayout(2, false);
-		composite.setLayout(gridLayout);
+	composite.setLayout(new GridLayout(2,false));
+		
 		// getting model elements properties and data (feature= Model element's properties and data= data values of the Model element)
 		//final EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement());
 		//final EDataTypeEList<String> data = (EDataTypeEList<String>) getModelElement().eGet(feature);
@@ -57,18 +58,23 @@ public class MultiAttributeControl extends AbstractMEControl {
 		btnAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GridDataFactory.fillDefaults().hint(10,20).applyTo(createTextField(composite));
+				Text tempText= new Text(composite, SWT.SINGLE | SWT.BORDER);
+				GridDataFactory.fillDefaults().hint(10,20).applyTo(tempText);
 				composite.layout();
 				
 			}
 		});
 		GridDataFactory.fillDefaults().hint(10,20).applyTo(attText);
 		GridDataFactory.fillDefaults().applyTo(btnAdd);
-		
+		composite.addControlListener(new ControlAdapter() {
+	         public void controlResized(ControlEvent e) {
+	        	   Point iExtent = composite.computeSize(SWT.DEFAULT,SWT.DEFAULT,false);
+composite.setBounds(iExtent.x + 300, 300, iExtent.x, iExtent.y);
+	          }
+	      });
 		//final Text attText2 = new Text(composite, SWT.SINGLE | SWT.BORDER);
 		//GridDataFactory.fillDefaults().hint(400,20).applyTo(attText2);
 		
-		//composite.getParent().layout();
 		return composite;			
 	
 	}
@@ -91,12 +97,12 @@ private int getUpperBound(Object feature) {
 		return attrUpperBound;
 }
 
-private Text createTextField (Composite parent)
-{
-	Text tempText= new Text(parent, SWT.SINGLE | SWT.BORDER);
-	System.out.print("its created :(");
-			return tempText;
-}
+//private Text createTextField (Composite parent)
+//{
+	//Text tempText= new Text(parent, SWT.SINGLE | SWT.BORDER);
+//	GridDataFactory.fillDefaults().hint(10,20).applyTo(tempText);
+//			return tempText;
+//}
 
 }
 
