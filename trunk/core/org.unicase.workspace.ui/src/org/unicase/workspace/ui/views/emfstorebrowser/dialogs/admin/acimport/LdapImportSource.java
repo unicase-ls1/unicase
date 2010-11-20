@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.views.emfstorebrowser.acimport;
+package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -57,7 +57,7 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#init(org.eclipse.swt.widgets.Shell)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#init(org.eclipse.swt.widgets.Shell)
 	 * @param shell
 	 *            the shell
 	 * @return whether the initialization was successful or not (e.g. pressing
@@ -73,7 +73,7 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getLabel()
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getLabel()
 	 * @return a small label which indicates that this is an import from an LDAP
 	 *         server.
 	 */
@@ -90,7 +90,7 @@ public class LdapImportSource extends ImportSource {
 	 * as otherwise displaying the items on a TreeViewer correctly would fail,
 	 * as the getParent()-method wouldn't return the right result.
 	 * 
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getChildren(java.lang.Object)
 	 * @param arg0
 	 *            the object to get the children from.
 	 * @return the children, which have the correct references to their parent
@@ -166,7 +166,7 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getElements(java.lang.Object)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getElements(java.lang.Object)
 	 * @param arg0
 	 *            object to get the basic elements from.
 	 * @return the root elements.
@@ -293,7 +293,7 @@ public class LdapImportSource extends ImportSource {
 
 	/**
 	 * @return a small description of the LDAP import source (server, base)
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getMessage()
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getMessage()
 	 */
 	@Override
 	public String getMessage() {

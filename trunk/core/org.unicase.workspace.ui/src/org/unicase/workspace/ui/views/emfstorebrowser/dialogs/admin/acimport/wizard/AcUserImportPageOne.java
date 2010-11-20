@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
+package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.wizard;
 
 import java.util.ArrayList;
 
@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.workspace.ui.Activator;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.CSVImportSource;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.LdapImportSource;
+import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.CSVImportSource;
+import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource;
+import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.LdapImportSource;
 
 /**
  * With this page the import source can be selected (via radio buttons).
