@@ -10,7 +10,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -135,6 +138,7 @@ public abstract class TabContent {
 		List<Action> actions = initActions();
 		if (actions.size() > 0) {
 			ToolBar toolBar = new ToolBar(tabContent, SWT.FLAT | SWT.RIGHT);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(toolBar);
 			ToolBarManager toolBarManager = new ToolBarManager(toolBar);
 
 			for (Action action : actions) {
@@ -150,9 +154,9 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * asd.
+	 * Use to register actions for the tab.
 	 * 
-	 * @return
+	 * @return list of actions or empty list
 	 */
 	protected abstract List<Action> initActions();
 
@@ -161,21 +165,29 @@ public abstract class TabContent {
 	 */
 	protected void initList(Composite parent) {
 
-		tableViewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
+		Composite container = new Composite(parent, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(container);
 
-		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan = 2;
-		tableViewer.getTable().setLayoutData(gridData);
+		TableColumnLayout tableColumnLayout = new TableColumnLayout();
+		container.setLayout(tableColumnLayout);
+
+		// tableColumnLayout.setColumnData(singleColumn, new ColumnWeightData(100));
+
+		tableViewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL | SWT.FULL_SELECTION);
+
+		// GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		// gridData.horizontalSpan = 2;
+		// tableViewer.getTable().setLayoutData(gridData);
 
 		Table table = tableViewer.getTable();
-		table.setHeaderVisible(true);
+		table.setHeaderVisible(false);
 		table.setLinesVisible(true);
 
 		TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.NONE);
 
-		column.getColumn().setWidth(100);
-		column.getColumn().setResizable(true);
-		column.getColumn().setMoveable(true);
+		tableColumnLayout.setColumnData(column.getColumn(), new ColumnWeightData(100));
+		column.getColumn().setResizable(false);
+		column.getColumn().setMoveable(false);
 
 		// The getContentProvider-method fetches the specific ContentProvider.
 		// Therefore this method has to be overridden in children of this class!
