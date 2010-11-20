@@ -104,10 +104,14 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				Object changedObj = notification.getNotifier();
 				if(changedObj instanceof EObject) {
 					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
+					
+					// try to save object to the attached resource
 					try {
 						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
 					} catch (IOException e) {
 						WorkspaceUtil.logException("Wasn't able to persist object to xmi resource.", e);
+					} catch (NullPointerException e) {
+						WorkspaceUtil.logException("Unable to persist object. Attached resource missing.", e);
 					}
 				}
 				
