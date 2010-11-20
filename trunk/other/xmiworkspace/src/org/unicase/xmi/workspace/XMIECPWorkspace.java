@@ -1,9 +1,9 @@
+/**
+ * 
+ */
 package org.unicase.xmi.workspace;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 
@@ -12,134 +12,119 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.swt.SWTException;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * XMIECPWorkspace implementation
- * @author matti
+ * Implements a workspace based on an XMI resource.
+ * @author maierma, kraftm
  *
  */
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 
 	/**
-	 * Filename of the xmi-resource,
-	 * additionally you can set a path here
-	 */
-	public static final String XMIFILENAME = "resource.xmi";
-	
-	/**
-	 * Editing domain
-	 */
-	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.xmi.resource.editingDomain";
-	
-	/**
-	 * File object needed to get filesystem-access
-	 */
-	private File xmi; //Q0: Do I need the org.eclipse.core.internal.resources File? -> line 3
-	
-	/**
-	 * XMIResource object
-	 */
-	private XMIResource xmires;
-	
-	/**
-	 * Adapter that is attached to the modelelements and listens on changes
+	 * ListenerAdapter that's being called when an object in the model has changed.
 	 */
 	private AdapterImpl workspaceListenerAdapter;
 	
 	/**
-	 * Creates a new workspace with an XMIResource in the background to persist changes locally on the harddrive.
+	 * Holds the path to the xmi resource file.
+	 */
+	private static final URI xmiPath = URI.createFileURI(Configuration.getWorkspacePath());
+	
+	/**
+	 * Contains the xmi resources needed to persist the workspace contents.
+	 */
+	private ResourceSet resourceSet;
+	
+	/**
+	 * Initializes an workspace with an underlying XMI file.
 	 */
 	public XMIECPWorkspace() {
-		// check whether file exists, then try to load it
-		xmi = new File(XMIFILENAME);
-		if(xmi.exists()) {
-			// file exists
-			xmires = new XMIResourceImpl(URI.createFileURI(XMIFILENAME));
-		}
-		else {
-			// file does not exist, make new xmi resource
-			try {
-				xmi.createNewFile(); //Q2: Is this correct???
-			} catch (IOException e) {
-				new SWTException("Check permissions on files. Unable to write a new resource-file.");
-			}
-			xmires = (XMIResource) new XMIResourceFactoryImpl().createResource(URI.createFileURI(XMIFILENAME)); //Q1: Why is no file created here? That's why I added the lines above
-			if(!xmi.exists()) new SWTException("Unable to create XMI resource file.");
-		}
-		
-		// try to load xmi resource
-		try {
-			xmires.load(new FileInputStream(xmi), Collections.EMPTY_MAP);
-		} catch (FileNotFoundException e) {
-			new SWTException(XMIFILENAME + " cannot be found.");
-		} catch (IOException e) {
-			new SWTException(XMIFILENAME + " cannot be loaded.");
-		}
+		resourceSet = new ResourceSetImpl();
 	}
 	
-	@Override
-	public EList<ECPProject> getProjects() {
-
-		//get the projects from the xmi resource
-		EList<EObject> xmicontent = xmires.getContents();
-		
-		if(xmicontent == null || xmicontent.isEmpty()) {
-			projects = super.getProjects();
-			
-			try {
-				xmicontent.add(WorkspaceManager.getInstance().getWorkSpace()); //Q3: Isn't this like xmicontent.add(this)?
-			} catch (NoWorkspaceException e) {
-				new SWTException("Cannot add workspace to xmi resource.");
-			}
-		}
-		else {
-			ECPWorkspace ws = (ECPWorkspace) xmicontent.get(0);
-			projects = ws.getProjects();
-		}
-		
-		// make a new listener to be notified when an object changes
-		workspaceListenerAdapter = new AdapterImpl() {
-	
-			/**
-			 * This method is being called when a modelelement has changed and therefore
-			 * persists the changes instantly into the XMIResource
-			 */
-			public void notifyChanged(Notification msg) {
-				// save all changes into xmi resource
-				try {
-					xmires.save(new FileOutputStream(xmi), Collections.EMPTY_MAP);
-				} catch (Exception e) {
-					new SWTException("Cannot retrieve user's workspace.");
-				}
-				
-				// call super notifyChanged, so the process can continue
-				super.notifyChanged(msg);
-			}
-		};
-			
-		// attach eAdapters to the workspace manager
-		try {
-			WorkspaceManager.getInstance().getWorkSpace().eAdapters().add(workspaceListenerAdapter); //Q4: Do we have to attach the eAdapter to this workspace?
-		} catch (NoWorkspaceException e) {
-			new SWTException("Cannot get projects from resource.");
-		}
-		
-		// return all projects in the persistent(!) workspace
-		return projects;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getEditingDomain()
+	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		return Configuration.getEditingDomain();
+	}
+	
+	/**
+	 * Returns the projects in the workspace with a listener on changes
+	 */
+	@Override
+	public EList<ECPProject> getProjects() {
+		// Check whether a xmi resource file exists
+		File xmiFile = new File(Configuration.getWorkspacePath());
+		Resource xmires; // automatically an XMI Resource
+		ECPWorkspace ws; // workspace that's being persisted
+		
+		if(!xmiFile.exists()) {
+			// file does not exists and therefore the workspace has to be build
+			xmires = resourceSet.createResource(xmiPath); // creates file
+			ws = WorkSpaceModelFactory.eINSTANCE.createECPWorkspace(); // creates a new workspace
+			xmires.getContents().add(ws); // adds the workspace to the (xmi)resource
+			
+			// try to persist new workspace, otherwise log failure
+			try {
+				xmires.save(Configuration.getResourceSaveOptions());
+			}
+			catch(IOException e) {
+				WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+			}
+		}
+		else {
+			xmires = resourceSet.getResource(xmiPath, false); // tries to get the resource
+			ws = (ECPWorkspace) xmires.getContents().get(0); // there is only one object in the resource and that's the workspace
+		}
+		
+		workspaceListenerAdapter = new EContentAdapter() {
+			
+			/**
+			 * This method is being called when an object in the model changes,
+			 * it persists the changes instantely to the xmi resource
+			 */
+			@Override
+			public void notifyChanged(Notification notification) {
+				// save the changed objects
+				Object changedObj = notification.getNotifier();
+				if(changedObj instanceof EObject) {
+					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
+					try {
+						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
+					} catch (IOException e) {
+						WorkspaceUtil.logException("Wasn't able to persist object to xmi resource.", e);
+					}
+				}
+				
+				// continue
+				super.notifyChanged(notification);
+			}
+		};
+		
+		// add listener to workspace
+		ws.eAdapters().add(workspaceListenerAdapter);
+		
+		// set the editing domain for the workspace
+		ws.setEditingDomain(getEditingDomain());
+		
+		// set the current projects
+		projects = ws.getProjects();
+		
+		return projects;
 	}
 }
