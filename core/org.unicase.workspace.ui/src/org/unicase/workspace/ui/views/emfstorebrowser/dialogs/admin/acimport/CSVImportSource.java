@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.views.emfstorebrowser.acimport;
+package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,7 +48,7 @@ public class CSVImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getChildren(java.lang.Object)
 	 * @param ob
 	 *            the object to get the children from
 	 * @return the children of the given object
@@ -66,7 +66,7 @@ public class CSVImportSource extends ImportSource {
 	 * @param ob
 	 *            The object to get the root elements from
 	 * @return The list of groups, which were read from the specified file.
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getElements(java.lang.Object)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getElements(java.lang.Object)
 	 */
 	@Override
 	public Object[] getElements(Object ob) {
@@ -74,7 +74,7 @@ public class CSVImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getLabel()
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getLabel()
 	 * @return String label.
 	 */
 	@Override
@@ -83,7 +83,7 @@ public class CSVImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#init()
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#init()
 	 * @param shell
 	 *            the shell, which holds the dialog for file selection
 	 * @return if a file was selected and successfully handled
@@ -184,7 +184,7 @@ public class CSVImportSource extends ImportSource {
 	}
 
 	/**
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getMessage()
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getMessage()
 	 * @return a small message which indicates from which is getting imported
 	 */
 	@Override

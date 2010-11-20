@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.views.emfstorebrowser.acimport;
+package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport;
 
 import java.util.Properties;
 
@@ -27,7 +27,7 @@ public abstract class ImportSource implements ITreeContentProvider {
 	 * @param obj
 	 *            Object from which the parent object will be returned
 	 * @return the parent object of the given object
-	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getParent(java.lang.Object)
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportSource#getParent(java.lang.Object)
 	 */
 	public Object getParent(Object obj) {
 		if (obj instanceof TreeItem) {

@@ -8,15 +8,12 @@ package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TabFolder;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -31,10 +28,8 @@ public class ProjectTabContent extends TabContent {
 	 * Project Table Provider.
 	 * 
 	 * @author koegel
-	 * 
 	 */
-	private final class ITableLabelProviderImplementation implements
-			ITableLabelProvider {
+	private final class ITableLabelProviderImplementation implements ITableLabelProvider {
 		public void addListener(ILabelProviderListener listener) {
 		}
 
@@ -53,43 +48,29 @@ public class ProjectTabContent extends TabContent {
 		}
 
 		public String getColumnText(Object element, int columnIndex) {
-			return ((ProjectInfo) element).getName() + " ["
-					+ ((ProjectInfo) element).getVersion().getIdentifier()
-					+ "]";
+			return ((ProjectInfo) element).getName() + " [" + ((ProjectInfo) element).getVersion().getIdentifier()
+				+ "]";
 		}
 	}
 
 	/**
-	 * @param string
-	 *            the name of tab.
-	 * @param adminBroker
-	 *            AdminBroker is needed to communicate with server.
-	 * @param frm
-	 *            used to set input to properties form and update its table
-	 *            viewer upon deletion of OrgUnits.
+	 * @param string the name of tab.
+	 * @param adminBroker AdminBroker is needed to communicate with server.
+	 * @param frm used to set input to properties form and update its table viewer upon deletion of OrgUnits.
 	 */
-	public ProjectTabContent(String string, AdminBroker adminBroker,
-			PropertiesForm frm) {
+	public ProjectTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
 
 	/**
-	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder
-	 *            TabFolder.
-	 * @return Composite.
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.TabContent#initActions()
 	 */
 	@Override
-	protected Composite createContents(TabFolder tabFolder) {
-		Composite tabContent = new Composite(tabFolder, SWT.NONE);
-		tabContent.setLayoutData(new org.eclipse.swt.layout.GridData(SWT.FILL,
-				SWT.FILL, true, true));
-		tabContent.setLayout(new GridLayout(2, false));
-
-		initList(tabContent);
-
-		return tabContent;
+	protected List<Action> initActions() {
+		return new ArrayList<Action>();
 	}
 
 	/**
@@ -115,15 +96,13 @@ public class ProjectTabContent extends TabContent {
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
-				return projectInfos
-						.toArray(new ProjectInfo[projectInfos.size()]);
+				return projectInfos.toArray(new ProjectInfo[projectInfos.size()]);
 			}
 
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			}
 		};
 	}
