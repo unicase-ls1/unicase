@@ -2,47 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ui.common.tracelistener">
-      <tracelistener
-            class="org.unicase.ecpemfstorebridge.TraceListener">
-      </tracelistener>
-   </extension>
-   <extension
-         point="org.unicase.ui.common.modelelementopenlistener">
-      <modelelementopenlistener
-            class="org.unicase.ecpemfstorebridge.ModelelementOpenListener">
-      </modelelementopenlistener>
-   </extension>
-   <extension
          point="org.unicase.ui.navigator.ecpWorkspaceProvider">
       <WorkspaceProvider
             class="org.unicase.xmi.workspace.XMIECPWorkspaceProvider">
       </WorkspaceProvider>
-   </extension>
-   <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="org.unicase.ecpemfstorebridge.xmiAdd"
-            nameFilter="*.library"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               class="org.unicase.ecpemfstorebridge.actions.AddXMIAction"
-               id="org.unicase.ecpemfstorebridge.addXMI"
-               label="Add to EMF Client Platform">
-         </action>
-      </objectContribution>
-      <objectContribution
-            adaptable="false"
-            id="org.unicase.ecpemfstorebridge.xmiImport"
-            nameFilter="*.library"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               class="org.unicase.ecpemfstorebridge.actions.ImportXMIAction"
-               id="org.unicase.ecpemfstorebridge.xmiImport"
-               label="Import to EMF Client Platform">
-         </action>
-      </objectContribution>
    </extension>
 
 </plugin>
