@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Model Test plugin
+Bundle-SymbolicName: org.unicase.model.test;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: unicase.org
+Require-Bundle: org.unicase.model,
+ org.junit4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
