@@ -88,7 +88,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			}
 		}
 		else {
-			xmires = resourceSet.getResource(xmiPath, false); // tries to get the resource
+			xmires = resourceSet.getResource(xmiPath, true); // tries to get the resource
 			ws = (ECPWorkspace) xmires.getContents().get(0); // there is only one object in the resource and that's the workspace
 		}
 		
