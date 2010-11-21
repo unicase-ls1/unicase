@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/Unicase_Search_1.0.0.201008311416.jar" id="Unicase_Search" version="1.0.0.201008311416">
-      <category name="unicase"/>
-   </feature>
-   <category-def name="unicase" label="unicase"/>
-</site>
