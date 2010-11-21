@@ -588,7 +588,7 @@ public class DecisionManager {
 		containedModelElements.add(modelElement);
 
 		for (EObject child : containedModelElements) {
-			ModelElementId childId = ModelUtil.getProject(child).getModelElementId(child);
+			ModelElementId childId = cdo.getEObjectToIdMap().get(child);
 			if (child != null && childId.equals(modelElementId)) {
 				return child;
 			}
