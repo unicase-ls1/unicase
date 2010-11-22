@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.ui.iterationplanner.commands.ShowIterationPlanningWizardHandler"
+            id="org.unicase.ui.IterationPlanner.ShowIterationPlanningWizard"
+            name="ShowIterationPlanningWizard">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.ui.IterationPlanner.ShowIterationPlanningWizard"
+               icon="icons/wizard.png"
+               style="push"
+               tooltip="Shows iteration planning wizard.">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="org.unicase.ui.iterationplanner.Application">
+         </run>
+      </application>
+   </extension>
+
+</plugin>
