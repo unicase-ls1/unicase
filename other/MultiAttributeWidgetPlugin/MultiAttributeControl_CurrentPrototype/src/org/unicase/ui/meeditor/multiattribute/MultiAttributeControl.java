@@ -146,13 +146,11 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 * Redraws the widget with correct layout.
 	 */
 	protected void refreshWidget() {
-		getComposite().layout(); // fields are drawn, but overall size is not always accordingly changed
-		// layout of whole editor adapts to new widget content - how??
-		// getComposite().pack();
-		getComposite().getParent().layout();
-		// getComposite().getParent().pack();
-		// getComposite().getParent().getParent().layout();
-		// getComposite().getParent().getParent().pack();
+		Composite tmp = getComposite();
+		while (tmp != null) {
+			tmp.layout();
+			tmp = tmp.getParent();
+		}
 	}
 
 	/**
