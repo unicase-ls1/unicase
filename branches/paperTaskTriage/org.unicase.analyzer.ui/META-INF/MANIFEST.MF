@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: org.unicase.analyzer.ui;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: org.unicase.analyzer.ui.Activator
+Require-Bundle: org.unicase.analyzer.edit;visibility:=reexport,
+ org.unicase.ui.common;visibility:=reexport,
+ org.unicase.workspace.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.analyzer.ui
