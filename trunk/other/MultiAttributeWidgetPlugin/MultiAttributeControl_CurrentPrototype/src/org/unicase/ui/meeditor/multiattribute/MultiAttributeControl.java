@@ -15,6 +15,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -147,9 +148,11 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	 */
 	protected void refreshWidget() {
 		Composite tmp = getComposite();
-		while (tmp != null) {
+		while (!(tmp instanceof Form)) {
+			// loop until the composite for the whole editor window is reached (doesn't work for less calls)
 			tmp.layout();
 			tmp = tmp.getParent();
+			System.out.println("iterate");
 		}
 	}
 
