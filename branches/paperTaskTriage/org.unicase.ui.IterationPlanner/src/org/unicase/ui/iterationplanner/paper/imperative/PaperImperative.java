@@ -14,8 +14,10 @@ package org.unicase.ui.iterationplanner.paper.imperative;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -42,6 +44,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.Activator;
 import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
 import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
 import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
@@ -56,7 +59,7 @@ import org.unicase.workspace.test.SetupHelper;
  */
 public class PaperImperative {
 
-	public static boolean HISTORY_BASED = true;
+	public static boolean HISTORY_BASED = false;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private List<OrgUnit> assigneesWithMoreThan10Tasks;
@@ -166,26 +169,32 @@ public class PaperImperative {
 	private void runStateBased() {
 		initAssignees(project);
 		initWorkItems(project);
-//		List<WorkItem> workItems = allWorkItemsWithAssignee;
-//		List<OrgUnit> assignees = allAssignees;
-//		IterationPlannerManager planningManager = new IterationPlannerManager();
-//
-//		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
-//		assigneeProvider.setAssignees(assignees);
-//		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
-//		for (WorkItem wi : workItems) {
-//			ExpertiseMap expertiseMap = assigneeProvider.getExpertiseMap(wi);
-//			print(expertiseMap, wi);
-//			testSet.put(wi, expertiseMap);
-//
-//		}
-//
-//		((SimpleEvaluator) planningManager.getEvaluator()).computeAccuracy(testSet);
-//		double firstPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getFirstProposalPercision();
-//		double secondPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getSecondProposalPercision();
-//
-//		System.out.printf("first percision: %f%n", firstPercision);
-//		System.out.printf("scond percision: %f%n", secondPercision);
+		List<WorkItem> workItems = allWorkItemsWithAssignee;
+		List<OrgUnit> assignees = allAssignees;
+		IterationPlannerManager planningManager = new IterationPlannerManager();
+
+		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
+		assigneeProvider.setAssignees(assignees);
+		System.out.println("Assignees");
+		System.out.println("==========");
+		for(OrgUnit assignee : assignees){
+			System.out.println(assignee.getName());
+		}
+		
+		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
+		for (WorkItem wi : workItems) {
+			ExpertiseMap expertiseMap = assigneeProvider.getExpertiseMap(wi);
+			print(expertiseMap, wi);
+			testSet.put(wi, expertiseMap);
+
+		}
+
+		((SimpleEvaluator) planningManager.getEvaluator()).computeAccuracy(testSet);
+		double firstPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getFirstProposalPercision();
+		double secondPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getSecondProposalPercision();
+
+		System.out.printf("first percision: %f%n", firstPercision);
+		System.out.printf("scond percision: %f%n", secondPercision);
 
 		System.out.println("num of work items: " + allWorkItems.size());
 		System.out.println("num of WIsWithAnnotatedMEs: " + allWorkItemsWithAnnotatedMEs.size());
