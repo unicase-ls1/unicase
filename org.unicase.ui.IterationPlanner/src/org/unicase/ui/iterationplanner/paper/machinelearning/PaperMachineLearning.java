@@ -81,6 +81,7 @@ public class PaperMachineLearning {
 		
 		if (HISTORY_BASED) {
 			runHistoryBased();
+			
 		} else {
 			runStateBased();
 		}
