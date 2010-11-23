@@ -113,16 +113,12 @@ public class XMIECPProject extends ECPProjectImpl {
 	}
 
 	//TODO check whether needed
-	@Override
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	//TODO check whether needed
-	@Override
 	public boolean isAssociationClassElement(EObject eObject) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
