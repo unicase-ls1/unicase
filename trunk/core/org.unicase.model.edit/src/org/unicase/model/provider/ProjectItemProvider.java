@@ -649,9 +649,6 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 			NotationFactory.eINSTANCE.createIdentityAnchor()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			NotationFactory.eINSTANCE.createRoundedCornersStyle()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			NotationFactory.eINSTANCE.createRoutingStyle()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -1322,9 +1319,6 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			NotationFactory.eINSTANCE.createIdentityAnchor()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			NotationFactory.eINSTANCE.createRoundedCornersStyle()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			NotationFactory.eINSTANCE.createRoutingStyle()));
