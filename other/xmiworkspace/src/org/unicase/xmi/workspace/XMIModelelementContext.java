@@ -71,30 +71,25 @@ public class XMIModelelementContext extends ModelElementContext implements Proje
 		return (eObject instanceof NonDomainElement);
 	}
 
-	@Override
 	public void modelElementAdded(Project project, EObject modelElement) {
 		// Do nothing.
 		
 	}
 
-	@Override
 	public void modelElementRemoved(Project project, EObject modelElement) {
 		if (modelElement.equals(this.modelelement)) {
 			modelElementDeleted();
 		}
 	}
 
-	@Override
 	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing.
 	}
 
-	@Override
 	public void projectDeleted(Project project) {
 		contextDeleted();
 	}
 
-	@Override
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
 		if (isAssociationClassElement(eObject)) {
 			AssociationClassElement ace = (AssociationClassElement) eObject;
@@ -104,12 +99,10 @@ public class XMIModelelementContext extends ModelElementContext implements Proje
 		return null;
 	}
 
-	@Override
 	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
 	}
 	
-	@Override
 	public MetaModelElementContext getMetaModelElementContext() {
 		return XMIMetaModelElementContext.getInstance();
 	}

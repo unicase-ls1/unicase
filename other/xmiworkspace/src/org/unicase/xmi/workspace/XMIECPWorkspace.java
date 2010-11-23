@@ -22,8 +22,7 @@ import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.WorkspaceUtil;
-
+import org.unicase.xmi.exceptions.XMIWorkspaceException;
 /**
  * Implements a workspace based on an XMI resource.
  * @author maierma, kraftm
@@ -84,7 +83,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				xmires.save(Configuration.getResourceSaveOptions());
 			}
 			catch(IOException e) {
-				WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+				new XMIWorkspaceException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 			}
 		}
 		else {
@@ -109,9 +108,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					try {
 						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
 					} catch (IOException e) {
-						WorkspaceUtil.logException("Wasn't able to persist object to xmi resource.", e);
+						new XMIWorkspaceException("Wasn't able to persist object to xmi resource.", e);
 					} catch (NullPointerException e) {
-						WorkspaceUtil.logException("Unable to persist object. Attached resource missing.", e);
+						new XMIWorkspaceException("Unable to persist object. Attached resource missing.", e);
 					}
 				}
 				
