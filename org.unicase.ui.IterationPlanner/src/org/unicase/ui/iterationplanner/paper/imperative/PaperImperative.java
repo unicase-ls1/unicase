@@ -169,7 +169,7 @@ public class PaperImperative {
 	private void runStateBased() {
 		initAssignees(project);
 		initWorkItems(project);
-		List<WorkItem> workItems = allWorkItemsWithAssignee;
+		List<WorkItem> workItems = allWorkItemsWithAnnotatedMEsAndAssignee;
 		List<OrgUnit> assignees = allAssignees;
 		IterationPlannerManager planningManager = new IterationPlannerManager();
 
