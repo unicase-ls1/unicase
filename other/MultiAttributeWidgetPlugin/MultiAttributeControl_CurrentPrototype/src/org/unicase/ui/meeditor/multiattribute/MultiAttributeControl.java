@@ -30,7 +30,7 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  * <p>
  * * Non-changeable attributes are handled correctly.
  * <p>
- * * When a duplicate is entered, this is also handled in the GUI.
+ * * When a duplicate is entered (and forbidden), this is also handled in the GUI.
  * <p>
  * Note that some of the features have to be implemented in a concrete class. See description of abstract methods for
  * further information.
@@ -150,7 +150,7 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 		Composite tmp = getComposite();
 		while (!(tmp instanceof Form)) {
 			// loop until the composite for the whole editor window is reached (doesn't work for less calls)
-			tmp.layout();
+			tmp.layout(); // are all layout calls necessary?
 			tmp = tmp.getParent();
 			System.out.println("iterate");
 		}
