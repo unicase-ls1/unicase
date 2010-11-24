@@ -152,7 +152,6 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 			// loop until the composite for the whole editor window is reached (doesn't work for less calls)
 			tmp.layout(); // are all layout calls necessary?
 			tmp = tmp.getParent();
-			System.out.println("iterate");
 		}
 	}
 
