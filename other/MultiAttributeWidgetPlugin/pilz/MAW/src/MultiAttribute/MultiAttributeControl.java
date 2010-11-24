@@ -105,7 +105,7 @@ public class MultiAttributeControl extends AbstractMEControl {
 						dlg.open();
 						String input = dlg.getValue();
 						//if pressing cancel or close to ensure that the edited entry stays in the list 
-						if (input.isEmpty()){
+						if (input == ""){
 							return;
 						}
 						else
