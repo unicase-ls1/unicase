@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.rework.MEDateControl"
+            name="org.unicase.ui.meeditor.medatecontrolrework"
+            showLabel="true"
+            type="java.util.Date">
+      </widget>
+   </extension>
+</plugin>
