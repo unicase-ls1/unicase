@@ -18,7 +18,6 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -65,7 +64,7 @@ public final class URLSelectionListener implements SelectionListener {
 				modelElement = projectSpace.resolve(modelElementUrlFragment);
 			} catch (MEUrlResolutionException e1) {
 			}
-			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName());
+			ElementOpenerHelper.openModelElement(modelElement, e.getSource().getClass().getName());
 			logEvent(modelElementUrlFragment.getModelElementId(), e.getSource().getClass().getName());
 		} catch (MalformedURLException ex) {
 			WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
