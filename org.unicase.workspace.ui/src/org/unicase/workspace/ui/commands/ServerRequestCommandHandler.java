@@ -8,8 +8,8 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.util.ActionHelper;
+import org.unicase.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -34,7 +34,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 		// caching the modelelement, because the event loses parts of its
 		// context.
 		setModelElement(ActionHelper.getModelElement(event));
-		setProjectSpace(ActionHelper.getProjectSpace(event));
+		setProjectSpace(ActionHelper.getEventElementByClass(event, ProjectSpace.class));
 		final UnicaseCommandWithResult<Object> command = new UnicaseCommandWithResult<Object>() {
 
 			@Override

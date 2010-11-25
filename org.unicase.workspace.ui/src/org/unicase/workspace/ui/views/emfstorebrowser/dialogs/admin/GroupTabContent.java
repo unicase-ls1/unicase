@@ -22,7 +22,7 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.util.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.wizard.AcUserImportAction;

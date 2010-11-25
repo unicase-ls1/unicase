@@ -70,10 +70,9 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.util.ActionHelper;
+import org.unicase.util.DialogHandler;
+import org.unicase.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
@@ -896,7 +895,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 */
 	@Override
 	public void setFocus() {
-		EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
+		// TODO: ChainSaw
+		// EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 
 	/**

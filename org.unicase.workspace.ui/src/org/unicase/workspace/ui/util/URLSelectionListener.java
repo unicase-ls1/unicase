@@ -18,7 +18,7 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.util.UnicaseCommand;

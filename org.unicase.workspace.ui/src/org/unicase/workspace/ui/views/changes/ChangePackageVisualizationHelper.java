@@ -35,7 +35,8 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.util.UiUtil;
+import org.unicase.workspace.ui.Activator;
 
 /**
  * A helper class for the visualization of change packages.
@@ -143,7 +144,8 @@ public class ChangePackageVisualizationHelper {
 			overlay = "icons/modify_overlay.png";
 		}
 
-		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator.getImageDescriptor(overlay);
+		// TODO: ChainSaw
+		ImageDescriptor overlayDescriptor = Activator.getImageDescriptor(overlay);
 		return overlayDescriptor;
 	}
 
