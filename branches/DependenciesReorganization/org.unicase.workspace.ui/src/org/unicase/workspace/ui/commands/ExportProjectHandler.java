@@ -16,9 +16,9 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.util.ActionHelper;
+import org.unicase.util.DialogHandler;
+import org.unicase.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -34,8 +34,7 @@ public class ExportProjectHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -49,19 +48,17 @@ public class ExportProjectHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
 		try {
 			String initialFileName = projectSpace.getProjectName() + "@"
-					+ projectSpace.getBaseVersion().getIdentifier() + ".ucp";
+				+ projectSpace.getBaseVersion().getIdentifier() + ".ucp";
 			dialog.setFileName(initialFileName);
-			String initialPath = PreferenceHelper.getPreference(
-					EXPORT_PROJECT_PATH, System.getProperty("user.home"));
+			String initialPath = PreferenceHelper.getPreference(EXPORT_PROJECT_PATH, System.getProperty("user.home"));
 			dialog.setFilterPath(initialPath);
 			// NPE raised when project is not shared yet, since getBaseVersion
 			// needs the project on the server already.
@@ -77,19 +74,17 @@ public class ExportProjectHandler extends AbstractHandler {
 		final File file = new File(fn);
 		PreferenceHelper.setPreference(EXPORT_PROJECT_PATH, file.getParent());
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Export project...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(file.getAbsolutePath());
-					MessageDialog.openInformation(null, "Export",
-							"Exported project to file " + file.getName());
+					MessageDialog.openInformation(null, "Export", "Exported project to file " + file.getName());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 					// BEGIN SUPRESS CATCH EXCEPTION

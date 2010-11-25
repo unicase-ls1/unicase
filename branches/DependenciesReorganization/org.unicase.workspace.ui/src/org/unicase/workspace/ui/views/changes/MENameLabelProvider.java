@@ -15,7 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.util.UiUtil;
 
 /**
  * Label provider for the model element column in the viewer.

@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.util.DialogHandler;
 import org.unicase.workspace.ui.Activator;
 
 /**

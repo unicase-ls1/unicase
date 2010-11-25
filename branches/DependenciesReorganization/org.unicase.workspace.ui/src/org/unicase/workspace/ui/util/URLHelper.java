@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.ui.common.util.ModelElementTooltip;
+import org.unicase.util.ModelElementTooltip;
 import org.unicase.workspace.ProjectSpace;
 
 /**

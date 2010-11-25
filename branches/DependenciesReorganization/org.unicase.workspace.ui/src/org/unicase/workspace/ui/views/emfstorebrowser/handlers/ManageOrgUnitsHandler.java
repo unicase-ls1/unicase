@@ -14,7 +14,7 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.util.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;

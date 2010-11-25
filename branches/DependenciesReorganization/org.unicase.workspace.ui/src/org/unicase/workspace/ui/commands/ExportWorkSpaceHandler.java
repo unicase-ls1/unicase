@@ -16,8 +16,8 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.util.DialogHandler;
+import org.unicase.util.PreferenceHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 

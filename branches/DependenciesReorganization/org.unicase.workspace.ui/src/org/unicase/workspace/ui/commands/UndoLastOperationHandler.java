@@ -8,7 +8,7 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -23,7 +23,7 @@ public class UndoLastOperationHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
