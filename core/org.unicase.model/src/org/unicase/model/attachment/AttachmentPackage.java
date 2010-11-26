@@ -383,12 +383,180 @@ public interface AttachmentPackage extends EPackage {
 	int PATCH_ATTACHMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__NAME = FILE_ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__DESCRIPTION = FILE_ATTACHMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__ANNOTATIONS = FILE_ATTACHMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__ATTACHMENTS = FILE_ATTACHMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = FILE_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__LEAF_SECTION = FILE_ATTACHMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__STATE = FILE_ATTACHMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = FILE_ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__COMMENTS = FILE_ATTACHMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__CREATION_DATE = FILE_ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__CREATOR = FILE_ATTACHMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__REFERRING_MODEL_ELEMENTS = FILE_ATTACHMENT__REFERRING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__FILE_NAME = FILE_ATTACHMENT__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>File Hash</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__FILE_HASH = FILE_ATTACHMENT__FILE_HASH;
+
+	/**
+	 * The feature id for the '<em><b>File ID</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__FILE_ID = FILE_ATTACHMENT__FILE_ID;
+
+	/**
+	 * The feature id for the '<em><b>File Size</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__FILE_SIZE = FILE_ATTACHMENT__FILE_SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__REQUIRED_OFFLINE = FILE_ATTACHMENT__REQUIRED_OFFLINE;
+
+	/**
+	 * The feature id for the '<em><b>File Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__FILE_TYPE = FILE_ATTACHMENT__FILE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__UPLOADING = FILE_ATTACHMENT__UPLOADING;
+
+	/**
+	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_ATTACHMENT__DOWNLOADING = FILE_ATTACHMENT__DOWNLOADING;
+
+	/**
 	 * The feature id for the '<em><b>Applied To</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PATCH_ATTACHMENT__APPLIED_TO = 0;
+	int PATCH_ATTACHMENT__APPLIED_TO = FILE_ATTACHMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Patch Attachment</em>' class. <!-- begin-user-doc --> <!--
@@ -397,7 +565,7 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATCH_ATTACHMENT_FEATURE_COUNT = 1;
+	int PATCH_ATTACHMENT_FEATURE_COUNT = FILE_ATTACHMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}

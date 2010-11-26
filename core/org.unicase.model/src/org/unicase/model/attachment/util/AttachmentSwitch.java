@@ -106,6 +106,12 @@ public class AttachmentSwitch<T> {
 			PatchAttachment patchAttachment = (PatchAttachment) theEObject;
 			T result = casePatchAttachment(patchAttachment);
 			if (result == null)
+				result = caseFileAttachment(patchAttachment);
+			if (result == null)
+				result = caseAttachment(patchAttachment);
+			if (result == null)
+				result = caseUnicaseModelElement(patchAttachment);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

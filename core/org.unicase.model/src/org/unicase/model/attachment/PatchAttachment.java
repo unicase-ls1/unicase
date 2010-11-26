@@ -6,7 +6,6 @@
 package org.unicase.model.attachment;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.release.Release;
 
 /**
@@ -23,7 +22,7 @@ import org.unicase.model.release.Release;
  * @model
  * @generated
  */
-public interface PatchAttachment extends EObject {
+public interface PatchAttachment extends FileAttachment {
 	/**
 	 * Returns the value of the '<em><b>Applied To</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.release.Release}. It is bidirectional and its opposite is '

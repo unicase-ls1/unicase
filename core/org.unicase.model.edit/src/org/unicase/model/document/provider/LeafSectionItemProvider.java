@@ -350,6 +350,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AttachmentFactory.eINSTANCE.createPatchAttachment()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,

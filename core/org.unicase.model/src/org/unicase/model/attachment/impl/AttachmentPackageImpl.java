@@ -445,6 +445,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Add supertypes to classes
 		urlAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
 		fileAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
+		patchAttachmentEClass.getESuperTypes().add(this.getFileAttachment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(urlAttachmentEClass, UrlAttachment.class, "UrlAttachment", !IS_ABSTRACT, !IS_INTERFACE,
