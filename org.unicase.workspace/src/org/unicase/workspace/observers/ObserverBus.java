@@ -37,9 +37,9 @@ import java.util.List;
  * 	}
  * };
  * 
- * // B is registered first
- * ObserverBus.registerObserver(b);
- * ObserverBus.registerObserver(a);
+ * // B is added first to the observerlist
+ * ObserverBus.register(b);
+ * ObserverBus.register(a);
  * 
  * // notify observers
  * ObserverBus.send(A.class).blub();
@@ -160,11 +160,11 @@ public class ObserverBus {
 	@SuppressWarnings("unchecked")
 	private static boolean getClasses(Class<?> clazz, HashSet<Class<? extends AbstractObserver>> result) {
 		for (Class<?> iface : clazz.getInterfaces()) {
-			if (iface.equals(AbstractObserver.class)) {
+			if (iface.equals(AbstractObserver.class) && clazz.isInterface()) {
 				result.add((Class<? extends AbstractObserver>) clazz);
 				return true;
 			} else {
-				if (getClasses(iface, result)) {
+				if (getClasses(iface, result) && clazz.isInterface()) {
 					result.add((Class<? extends AbstractObserver>) clazz);
 				}
 			}
