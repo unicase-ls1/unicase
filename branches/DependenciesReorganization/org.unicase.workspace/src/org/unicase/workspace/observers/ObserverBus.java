@@ -9,7 +9,6 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -110,26 +109,50 @@ public class ObserverBus {
 	}
 
 	/**
-	 * Register an observer.
+	 * Registers an observer for all observer interfaces implemented by the object or its super classes.
 	 * 
-	 * @param observer
+	 * @param observer observer object
 	 */
 	public static void register(AbstractObserver observer) {
+		register(observer, getObserverInterfaces(observer));
+	}
+
+	/**
+	 * Registers an observer for the specified observer interfaces.
+	 * 
+	 * @param observer observer object
+	 * @param classes set of classes
+	 */
+	public static void register(AbstractObserver observer, Class<? extends AbstractObserver>... classes) {
 		ObserverBus i = getInstance();
-		for (Class<? extends AbstractObserver> iface : getObserverInterfaces(observer)) {
-			i.getObserver(iface).add(observer);
+		for (Class<? extends AbstractObserver> iface : classes) {
+			if (iface.isInstance(observer)) {
+				i.getObserver(iface).add(observer);
+			}
 		}
 	}
 
 	/**
-	 * Unregister an observer.
+	 * Unregisters an observer for all observer interfaces implemented by the object or its super classes.
 	 * 
-	 * @param observer
+	 * @param observer observer object
 	 */
 	public static void unregister(AbstractObserver observer) {
+		unregister(observer, getObserverInterfaces(observer));
+	}
+
+	/**
+	 * Unregisters an observer for the specified observer interfaces.
+	 * 
+	 * @param observer observer object
+	 * @param classes set of classes
+	 */
+	public static void unregister(AbstractObserver observer, Class<? extends AbstractObserver>... classes) {
 		ObserverBus i = getInstance();
-		for (Class<? extends AbstractObserver> iface : getObserverInterfaces(observer)) {
-			i.getObserver(iface).remove(observer);
+		for (Class<? extends AbstractObserver> iface : classes) {
+			if (iface.isInstance(observer)) {
+				i.getObserver(iface).remove(observer);
+			}
 		}
 	}
 
@@ -150,10 +173,11 @@ public class ObserverBus {
 		}
 	}
 
-	private static Collection<Class<? extends AbstractObserver>> getObserverInterfaces(AbstractObserver observer) {
+	@SuppressWarnings("unchecked")
+	private static Class<? extends AbstractObserver>[] getObserverInterfaces(AbstractObserver observer) {
 		HashSet<Class<? extends AbstractObserver>> result = new HashSet<Class<? extends AbstractObserver>>();
 		getClasses(observer.getClass(), result);
-		return result;
+		return result.toArray(new Class[result.size()]);
 	}
 
 	// TODO: double check this method, i think to many interfaces are added
