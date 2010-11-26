@@ -1349,7 +1349,7 @@
       <eLiterals name="AUDIO" value="2" literal="AUDIO"/>
       <eLiterals name="VIDEO" value="3" literal="VIDEO"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PatchAttachment">
+    <eClassifiers xsi:type="ecore:EClass" name="PatchAttachment" eSuperTypes="#//attachment/FileAttachment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedTo" upperBound="-1"
           eType="#//release/Release" eOpposite="#//release/Release/appliedPatches"/>
     </eClassifiers>

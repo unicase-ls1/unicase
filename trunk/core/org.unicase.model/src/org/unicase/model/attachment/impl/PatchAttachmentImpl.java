@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -31,7 +30,7 @@ import org.unicase.model.release.ReleasePackage;
  * 
  * @generated
  */
-public class PatchAttachmentImpl extends EObjectImpl implements PatchAttachment {
+public class PatchAttachmentImpl extends FileAttachmentImpl implements PatchAttachment {
 	/**
 	 * The cached value of the '{@link #getAppliedTo() <em>Applied To</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
