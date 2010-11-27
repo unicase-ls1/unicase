@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.xmi.workspace/src"
+    modelPluginID="org.unicase.xmi.workspace" modelName="XMIWorkspaceGenerator" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>XMIWorkspace.ecore</foreignModel>
+  <genPackages prefix="XMIWorkspaceStructure" disposableProviderFactory="true" ecorePackage="XMIWorkspace.ecore#/">
+    <genClasses image="false" ecoreClass="XMIWorkspace.ecore#//XMIECPProject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPProject/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPProject/editingDomain"/>
+      <genOperations ecoreOperation="XMIWorkspace.ecore#//XMIECPProject/getAllElements"/>
+    </genClasses>
+    <genClasses ecoreClass="XMIWorkspace.ecore#//XMIECPFileProject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPFileProject/xmiFilePath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="XMIWorkspace.ecore#//XMIECPContainer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPContainer/internalProjects"/>
+      <genOperations ecoreOperation="XMIWorkspace.ecore#//XMIECPContainer/getContainedProjects"/>
+    </genClasses>
+    <genClasses ecoreClass="XMIWorkspace.ecore#//XMIECPVirtualContainer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPVirtualContainer/xmiFilePath"/>
+    </genClasses>
+    <genClasses ecoreClass="XMIWorkspace.ecore#//XMIECPFolder">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPFolder/xmiDirectoryPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPFolder/containedFiles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XMIWorkspace.ecore#//XMIECPFolder/projectResources"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
