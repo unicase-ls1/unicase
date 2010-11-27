@@ -29,12 +29,6 @@ public class XMIECPProject extends ECPProjectImpl {
 		setRootObject(root);		
 	}
 	
-	//TODO: REMOVE!!!!!!!!!!
-	public XMIECPProject(EditingDomain domain) {
-		this.domain = domain;
-		this.root = null;
-	}
-	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)

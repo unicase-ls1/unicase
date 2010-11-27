@@ -7,8 +7,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -16,12 +20,21 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryImpl;
+import org.unicase.model.document.impl.DocumentFactoryImpl;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
+import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 /**
  * Implements a workspace based on an XMI resource.
@@ -38,7 +51,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Holds the path to the xmi resource file.
 	 */
-	private static final URI xmiPath = URI.createFileURI(Configuration.getWorkspacePath());
+	private static URI xmiPath;
 	
 	/**
 	 * Contains the xmi resources needed to persist the workspace contents.
@@ -46,10 +59,16 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	private ResourceSet resourceSet;
 	
 	/**
+	 * Copied transactional domain
+	 */
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
+	
+	/**
 	 * Initializes an workspace with an underlying XMI file.
 	 */
 	public XMIECPWorkspace() {
 		resourceSet = new ResourceSetImpl();
+		xmiPath = URI.createFileURI(Platform.getLocation().toString() + "xmiworkspace.ucw");
 	}
 	
 	/**
@@ -59,6 +78,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
+		TransactionalEditingDomain editingDomain2 = Configuration.getEditingDomain();
+		if (editingDomain2 == null) {
+			final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+			domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		}		
 		return Configuration.getEditingDomain();
 	}
 	
@@ -76,15 +102,18 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			// file does not exists and therefore the workspace has to be build
 			xmires = resourceSet.createResource(xmiPath); // creates file
 			ws = WorkSpaceModelFactory.eINSTANCE.createECPWorkspace(); // creates a new workspace
+			
 			xmires.getContents().add(ws); // adds the workspace to the (xmi)resource
 			
 			// try to persist new workspace, otherwise log failure
 			try {
 				xmires.save(Configuration.getResourceSaveOptions());
-			}
+				}
 			catch(IOException e) {
 				new XMIWorkspaceException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 			}
+			
+			
 		}
 		else {
 			xmires = resourceSet.getResource(xmiPath, true); // tries to get the resource
@@ -127,6 +156,12 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		
 		// set the current projects
 		projects = ws.getProjects();
+		
+		// add projects for testing
+		ECPProject proj = new XMIECPProject(getEditingDomain(), DocumentFactoryImpl.init().createCompositeSection());
+		FunctionalRequirement freq = RequirementFactoryImpl.init().createFunctionalRequirement();
+		proj.getAllModelElement().add(freq);
+		projects.add(proj);
 		
 		return projects;
 	}
