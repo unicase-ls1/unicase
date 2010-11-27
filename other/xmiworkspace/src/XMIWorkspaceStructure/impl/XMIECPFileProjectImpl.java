@@ -6,17 +6,26 @@
  */
 package XMIWorkspaceStructure.impl;
 
+import java.util.Collection;
+
 import XMIWorkspaceStructure.XMIECPFileProject;
 import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.ui.common.ECPAssociationClassElement;
+import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -122,15 +131,6 @@ public class XMIECPFileProjectImpl extends EObjectImpl implements XMIECPFileProj
 		elements = newElements;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XMIWorkspaceStructurePackage.XMIECP_FILE_PROJECT__ELEMENTS, oldElements, elements));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getEditingDomain() {
-		return editingDomain;
 	}
 
 	/**
@@ -273,6 +273,101 @@ public class XMIECPFileProjectImpl extends EObjectImpl implements XMIECPFileProj
 		result.append(xmiFilePath);
 		result.append(')');
 		return result.toString();
+	}
+
+	public void addECPProjectListener(ECPProjectListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean contains(EObject eObject) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Collection<EObject> getAllModelElement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EObject getRootObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ECPWorkspace getWorkspace() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isNonDomainElement(EObject eObject) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void modelelementDeleted(EObject eobject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void projectChanged() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void projectDeleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeECPProjectListener(ECPProjectListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setRootObject(EObject value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setWorkspace(ECPWorkspace value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Collection<EObject> getAllModelElements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EditingDomain getEditingDomain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MetaModelElementContext getMetaModelElementContext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isAssociationClassElement(EObject eObject) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 } //XMIECPFileProjectImpl

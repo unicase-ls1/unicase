@@ -9,6 +9,7 @@ package XMIWorkspaceStructure;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface XMIECPProject extends EObject {
+public interface XMIECPProject extends ECPProject {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,32 +54,6 @@ public interface XMIECPProject extends EObject {
 	 * @generated
 	 */
 	void setElements(EList<?> value);
-
-	/**
-	 * Returns the value of the '<em><b>Editing Domain</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Editing Domain</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Editing Domain</em>' attribute.
-	 * @see #setEditingDomain(String)
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPProject_EditingDomain()
-	 * @model
-	 * @generated
-	 */
-	String getEditingDomain();
-
-	/**
-	 * Sets the value of the '{@link XMIWorkspaceStructure.XMIECPProject#getEditingDomain <em>Editing Domain</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Editing Domain</em>' attribute.
-	 * @see #getEditingDomain()
-	 * @generated
-	 */
-	void setEditingDomain(String value);
 
 	/**
 	 * <!-- begin-user-doc -->
