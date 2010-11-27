@@ -119,15 +119,6 @@ public abstract class XMIECPContainerImpl extends EObjectImpl implements XMIECPC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEditingDomain() {
-		return editingDomain;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public void setEditingDomain(String newEditingDomain) {
 		String oldEditingDomain = editingDomain;
 		editingDomain = newEditingDomain;
