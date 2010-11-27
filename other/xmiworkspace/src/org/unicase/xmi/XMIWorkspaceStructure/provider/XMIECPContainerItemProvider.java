@@ -4,11 +4,9 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.provider;
+package org.unicase.xmi.XMIWorkspaceStructure.provider;
 
 
-import XMIWorkspaceStructure.XMIECPVirtualContainer;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +15,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,16 +25,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
- * This is the item provider adapter for a {@link XMIWorkspaceStructure.XMIECPVirtualContainer} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class XMIECPVirtualContainerItemProvider
-	extends XMIECPContainerItemProvider
+public class XMIECPContainerItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,57 +50,8 @@ public class XMIECPVirtualContainerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMIECPVirtualContainerItemProvider(AdapterFactory adapterFactory) {
+	public XMIECPContainerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-	}
-
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
-
-			addXmiFilePathPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Xmi File Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addXmiFilePathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPVirtualContainer_xmiFilePath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPVirtualContainer_xmiFilePath_feature", "_UI_XMIECPVirtualContainer_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_VIRTUAL_CONTAINER__XMI_FILE_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns XMIECPVirtualContainer.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPVirtualContainer"));
 	}
 
 	/**
@@ -109,11 +62,11 @@ public class XMIECPVirtualContainerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		EList labelValue = ((XMIECPVirtualContainer)object).getElements();
+		EList labelValue = ((XMIECPContainer)object).getElements();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_XMIECPVirtualContainer_type") :
-			getString("_UI_XMIECPVirtualContainer_type") + " " + label;
+			getString("_UI_XMIECPContainer_type") :
+			getString("_UI_XMIECPContainer_type") + " " + label;
 	}
 
 	/**
@@ -127,8 +80,10 @@ public class XMIECPVirtualContainerItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(XMIECPVirtualContainer.class)) {
-			case XMIWorkspaceStructurePackage.XMIECP_VIRTUAL_CONTAINER__XMI_FILE_PATH:
+		switch (notification.getFeatureID(XMIECPContainer.class)) {
+			case XMIWorkspaceStructurePackage.XMIECP_CONTAINER__ELEMENTS:
+			case XMIWorkspaceStructurePackage.XMIECP_CONTAINER__EDITING_DOMAIN:
+			case XMIWorkspaceStructurePackage.XMIECP_CONTAINER__INTERNAL_PROJECTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -145,6 +100,17 @@ public class XMIECPVirtualContainerItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return XMIWorkspaceGeneratorEditPlugin.INSTANCE;
 	}
 
 }

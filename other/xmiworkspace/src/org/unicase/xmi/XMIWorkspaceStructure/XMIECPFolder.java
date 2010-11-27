@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure;
+package org.unicase.xmi.XMIWorkspaceStructure;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,13 +16,13 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.XMIECPFolder#getProjectResources <em>Project Resources</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getProjectResources <em>Project Resources</em>}</li>
  * </ul>
  * </p>
  *
- * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder()
+ * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder()
  * @model
  * @generated
  */
@@ -37,14 +37,14 @@ public interface XMIECPFolder extends XMIECPContainer {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xmi Directory Path</em>' attribute.
 	 * @see #setXmiDirectoryPath(String)
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_XmiDirectoryPath()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_XmiDirectoryPath()
 	 * @model
 	 * @generated
 	 */
 	String getXmiDirectoryPath();
 
 	/**
-	 * Sets the value of the '{@link XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Xmi Directory Path</em>' attribute.
@@ -63,14 +63,14 @@ public interface XMIECPFolder extends XMIECPContainer {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained Files</em>' attribute.
 	 * @see #setContainedFiles(EList)
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_ContainedFiles()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_ContainedFiles()
 	 * @model many="false" transient="true"
 	 * @generated
 	 */
 	EList<?> getContainedFiles();
 
 	/**
-	 * Sets the value of the '{@link XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Contained Files</em>' attribute.
@@ -81,7 +81,7 @@ public interface XMIECPFolder extends XMIECPContainer {
 
 	/**
 	 * Returns the value of the '<em><b>Project Resources</b></em>' reference list.
-	 * The list contents are of type {@link XMIWorkspaceStructure.XMIECPFileProject}.
+	 * The list contents are of type {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Resources</em>' reference list isn't clear,
@@ -89,7 +89,7 @@ public interface XMIECPFolder extends XMIECPContainer {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Project Resources</em>' reference list.
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_ProjectResources()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPFolder_ProjectResources()
 	 * @model
 	 * @generated
 	 */

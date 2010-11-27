@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure;
+package org.unicase.xmi.XMIWorkspaceStructure;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,11 +16,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}</li>
  * </ul>
  * </p>
  *
- * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPContainer()
+ * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPContainer()
  * @model abstract="true"
  * @generated
  */
@@ -35,14 +35,14 @@ public interface XMIECPContainer extends XMIECPProject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Internal Projects</em>' attribute.
 	 * @see #setInternalProjects(EList)
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPContainer_InternalProjects()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#getXMIECPContainer_InternalProjects()
 	 * @model many="false" transient="true"
 	 * @generated
 	 */
 	EList<?> getInternalProjects();
 
 	/**
-	 * Sets the value of the '{@link XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Internal Projects</em>' attribute.

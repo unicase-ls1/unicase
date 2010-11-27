@@ -4,10 +4,8 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.impl;
+package org.unicase.xmi.XMIWorkspaceStructure.impl;
 
-import XMIWorkspaceStructure.XMIECPContainer;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -17,6 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPContainerImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPContainerImpl#getEditingDomain <em>Editing Domain</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPContainerImpl#getInternalProjects <em>Internal Projects</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl#getEditingDomain <em>Editing Domain</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl#getInternalProjects <em>Internal Projects</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,16 +81,6 @@ public abstract class XMIECPContainerImpl extends EObjectImpl implements XMIECPC
 	 */
 	protected XMIECPContainerImpl() {
 		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XMIWorkspaceStructurePackage.Literals.XMIECP_CONTAINER;
 	}
 
 	/**

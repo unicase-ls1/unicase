@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure;
+package org.unicase.xmi.XMIWorkspaceStructure;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see XMIWorkspaceStructure.XMIWorkspaceStructureFactory
+ * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructureFactory
  * @model kind="package"
  * @generated
  */
@@ -57,14 +57,14 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	XMIWorkspaceStructurePackage eINSTANCE = XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl.init();
+	XMIWorkspaceStructurePackage eINSTANCE = org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}' class.
+	 * The meta object id for the '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see XMIWorkspaceStructure.XMIECPProject
-	 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPProject()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPProject()
 	 * @generated
 	 */
 	int XMIECP_PROJECT = 0;
@@ -97,11 +97,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	int XMIECP_PROJECT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link XMIWorkspaceStructure.impl.XMIECPFileProjectImpl <em>XMIECP File Project</em>}' class.
+	 * The meta object id for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl <em>XMIECP File Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see XMIWorkspaceStructure.impl.XMIECPFileProjectImpl
-	 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFileProject()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFileProject()
 	 * @generated
 	 */
 	int XMIECP_FILE_PROJECT = 1;
@@ -143,11 +143,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	int XMIECP_FILE_PROJECT_FEATURE_COUNT = XMIECP_PROJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link XMIWorkspaceStructure.impl.XMIECPContainerImpl <em>XMIECP Container</em>}' class.
+	 * The meta object id for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl <em>XMIECP Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see XMIWorkspaceStructure.impl.XMIECPContainerImpl
-	 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPContainer()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPContainer()
 	 * @generated
 	 */
 	int XMIECP_CONTAINER = 2;
@@ -189,11 +189,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	int XMIECP_CONTAINER_FEATURE_COUNT = XMIECP_PROJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl <em>XMIECP Virtual Container</em>}' class.
+	 * The meta object id for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl <em>XMIECP Virtual Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl
-	 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPVirtualContainer()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPVirtualContainer()
 	 * @generated
 	 */
 	int XMIECP_VIRTUAL_CONTAINER = 3;
@@ -244,11 +244,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	int XMIECP_VIRTUAL_CONTAINER_FEATURE_COUNT = XMIECP_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link XMIWorkspaceStructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
+	 * The meta object id for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see XMIWorkspaceStructure.impl.XMIECPFolderImpl
-	 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFolder()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFolder()
 	 * @generated
 	 */
 	int XMIECP_FOLDER = 4;
@@ -318,138 +318,138 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XMIECP Project</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPProject
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject
 	 * @generated
 	 */
 	EClass getXMIECPProject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPProject#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Elements</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPProject#getElements()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject#getElements()
 	 * @see #getXMIECPProject()
 	 * @generated
 	 */
 	EAttribute getXMIECPProject_Elements();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPProject#getEditingDomain <em>Editing Domain</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject#getEditingDomain <em>Editing Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Editing Domain</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPProject#getEditingDomain()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject#getEditingDomain()
 	 * @see #getXMIECPProject()
 	 * @generated
 	 */
 	EAttribute getXMIECPProject_EditingDomain();
 
 	/**
-	 * Returns the meta object for class '{@link XMIWorkspaceStructure.XMIECPFileProject <em>XMIECP File Project</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject <em>XMIECP File Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XMIECP File Project</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFileProject
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject
 	 * @generated
 	 */
 	EClass getXMIECPFileProject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Xmi File Path</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFileProject#getXmiFilePath()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject#getXmiFilePath()
 	 * @see #getXMIECPFileProject()
 	 * @generated
 	 */
 	EAttribute getXMIECPFileProject_XmiFilePath();
 
 	/**
-	 * Returns the meta object for class '{@link XMIWorkspaceStructure.XMIECPContainer <em>XMIECP Container</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer <em>XMIECP Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XMIECP Container</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPContainer
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer
 	 * @generated
 	 */
 	EClass getXMIECPContainer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer#getInternalProjects <em>Internal Projects</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Internal Projects</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPContainer#getInternalProjects()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer#getInternalProjects()
 	 * @see #getXMIECPContainer()
 	 * @generated
 	 */
 	EAttribute getXMIECPContainer_InternalProjects();
 
 	/**
-	 * Returns the meta object for class '{@link XMIWorkspaceStructure.XMIECPVirtualContainer <em>XMIECP Virtual Container</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer <em>XMIECP Virtual Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XMIECP Virtual Container</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPVirtualContainer
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer
 	 * @generated
 	 */
 	EClass getXMIECPVirtualContainer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPVirtualContainer#getXmiFilePath <em>Xmi File Path</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer#getXmiFilePath <em>Xmi File Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Xmi File Path</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPVirtualContainer#getXmiFilePath()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer#getXmiFilePath()
 	 * @see #getXMIECPVirtualContainer()
 	 * @generated
 	 */
 	EAttribute getXMIECPVirtualContainer_XmiFilePath();
 
 	/**
-	 * Returns the meta object for class '{@link XMIWorkspaceStructure.XMIECPFolder <em>XMIECP Folder</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder <em>XMIECP Folder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XMIECP Folder</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFolder
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder
 	 * @generated
 	 */
 	EClass getXMIECPFolder();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Xmi Directory Path</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getXmiDirectoryPath()
 	 * @see #getXMIECPFolder()
 	 * @generated
 	 */
 	EAttribute getXMIECPFolder_XmiDirectoryPath();
 
 	/**
-	 * Returns the meta object for the attribute '{@link XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Contained Files</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFolder#getContainedFiles()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getContainedFiles()
 	 * @see #getXMIECPFolder()
 	 * @generated
 	 */
 	EAttribute getXMIECPFolder_ContainedFiles();
 
 	/**
-	 * Returns the meta object for the reference list '{@link XMIWorkspaceStructure.XMIECPFolder#getProjectResources <em>Project Resources</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getProjectResources <em>Project Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Project Resources</em>'.
-	 * @see XMIWorkspaceStructure.XMIECPFolder#getProjectResources()
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder#getProjectResources()
 	 * @see #getXMIECPFolder()
 	 * @generated
 	 */
@@ -478,11 +478,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see XMIWorkspaceStructure.XMIECPProject
-		 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPProject()
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPProject()
 		 * @generated
 		 */
 		EClass XMIECP_PROJECT = eINSTANCE.getXMIECPProject();
@@ -504,11 +504,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 		EAttribute XMIECP_PROJECT__EDITING_DOMAIN = eINSTANCE.getXMIECPProject_EditingDomain();
 
 		/**
-		 * The meta object literal for the '{@link XMIWorkspaceStructure.impl.XMIECPFileProjectImpl <em>XMIECP File Project</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl <em>XMIECP File Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see XMIWorkspaceStructure.impl.XMIECPFileProjectImpl
-		 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFileProject()
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFileProject()
 		 * @generated
 		 */
 		EClass XMIECP_FILE_PROJECT = eINSTANCE.getXMIECPFileProject();
@@ -522,11 +522,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 		EAttribute XMIECP_FILE_PROJECT__XMI_FILE_PATH = eINSTANCE.getXMIECPFileProject_XmiFilePath();
 
 		/**
-		 * The meta object literal for the '{@link XMIWorkspaceStructure.impl.XMIECPContainerImpl <em>XMIECP Container</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl <em>XMIECP Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see XMIWorkspaceStructure.impl.XMIECPContainerImpl
-		 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPContainer()
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPContainerImpl
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPContainer()
 		 * @generated
 		 */
 		EClass XMIECP_CONTAINER = eINSTANCE.getXMIECPContainer();
@@ -540,11 +540,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 		EAttribute XMIECP_CONTAINER__INTERNAL_PROJECTS = eINSTANCE.getXMIECPContainer_InternalProjects();
 
 		/**
-		 * The meta object literal for the '{@link XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl <em>XMIECP Virtual Container</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl <em>XMIECP Virtual Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl
-		 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPVirtualContainer()
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPVirtualContainer()
 		 * @generated
 		 */
 		EClass XMIECP_VIRTUAL_CONTAINER = eINSTANCE.getXMIECPVirtualContainer();
@@ -558,11 +558,11 @@ public interface XMIWorkspaceStructurePackage extends EPackage {
 		EAttribute XMIECP_VIRTUAL_CONTAINER__XMI_FILE_PATH = eINSTANCE.getXMIECPVirtualContainer_XmiFilePath();
 
 		/**
-		 * The meta object literal for the '{@link XMIWorkspaceStructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see XMIWorkspaceStructure.impl.XMIECPFolderImpl
-		 * @see XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFolder()
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl
+		 * @see org.unicase.xmi.XMIWorkspaceStructure.impl.XMIWorkspaceStructurePackageImpl#getXMIECPFolder()
 		 * @generated
 		 */
 		EClass XMIECP_FOLDER = eINSTANCE.getXMIECPFolder();

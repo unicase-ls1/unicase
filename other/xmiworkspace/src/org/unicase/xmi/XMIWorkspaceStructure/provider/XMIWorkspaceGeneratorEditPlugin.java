@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.provider;
+package org.unicase.xmi.XMIWorkspaceStructure.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

@@ -4,11 +4,9 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.provider;
+package org.unicase.xmi.XMIWorkspaceStructure.provider;
 
 
-import XMIWorkspaceStructure.XMIECPFileProject;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,9 +27,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
- * This is the item provider adapter for a {@link XMIWorkspaceStructure.XMIECPFileProject} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -52,90 +52,6 @@ public class XMIECPFileProjectItemProvider
 	 */
 	public XMIECPFileProjectItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-	}
-
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
-
-			addElementsPropertyDescriptor(object);
-			addEditingDomainPropertyDescriptor(object);
-			addXmiFilePathPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Elements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPProject_elements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPProject_elements_feature", "_UI_XMIECPProject_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_PROJECT__ELEMENTS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Editing Domain feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEditingDomainPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPProject_editingDomain_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPProject_editingDomain_feature", "_UI_XMIECPProject_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_PROJECT__EDITING_DOMAIN,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Xmi File Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addXmiFilePathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFileProject_xmiFilePath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFileProject_xmiFilePath_feature", "_UI_XMIECPFileProject_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_FILE_PROJECT__XMI_FILE_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
