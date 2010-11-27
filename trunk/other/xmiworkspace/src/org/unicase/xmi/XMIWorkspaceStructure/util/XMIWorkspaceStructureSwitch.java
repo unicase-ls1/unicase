@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.util;
+package org.unicase.xmi.XMIWorkspaceStructure.util;
 
-import XMIWorkspaceStructure.*;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.xmi.XMIWorkspaceStructure.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage
+ * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage
  * @generated
  */
 public class XMIWorkspaceStructureSwitch<T> {

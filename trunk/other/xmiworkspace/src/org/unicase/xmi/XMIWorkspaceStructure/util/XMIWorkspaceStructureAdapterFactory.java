@@ -4,9 +4,8 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.util;
+package org.unicase.xmi.XMIWorkspaceStructure.util;
 
-import XMIWorkspaceStructure.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -14,13 +13,14 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.xmi.XMIWorkspaceStructure.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage
+ * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage
  * @generated
  */
 public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
@@ -112,13 +112,13 @@ public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject <em>XMIECP Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see XMIWorkspaceStructure.XMIECPProject
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject
 	 * @generated
 	 */
 	public Adapter createXMIECPProjectAdapter() {
@@ -126,13 +126,13 @@ public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link XMIWorkspaceStructure.XMIECPFileProject <em>XMIECP File Project</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject <em>XMIECP File Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see XMIWorkspaceStructure.XMIECPFileProject
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject
 	 * @generated
 	 */
 	public Adapter createXMIECPFileProjectAdapter() {
@@ -140,13 +140,13 @@ public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link XMIWorkspaceStructure.XMIECPContainer <em>XMIECP Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer <em>XMIECP Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see XMIWorkspaceStructure.XMIECPContainer
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer
 	 * @generated
 	 */
 	public Adapter createXMIECPContainerAdapter() {
@@ -154,13 +154,13 @@ public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link XMIWorkspaceStructure.XMIECPVirtualContainer <em>XMIECP Virtual Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer <em>XMIECP Virtual Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see XMIWorkspaceStructure.XMIECPVirtualContainer
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer
 	 * @generated
 	 */
 	public Adapter createXMIECPVirtualContainerAdapter() {
@@ -168,13 +168,13 @@ public class XMIWorkspaceStructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link XMIWorkspaceStructure.XMIECPFolder <em>XMIECP Folder</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder <em>XMIECP Folder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see XMIWorkspaceStructure.XMIECPFolder
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder
 	 * @generated
 	 */
 	public Adapter createXMIECPFolderAdapter() {

@@ -4,11 +4,8 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.impl;
+package org.unicase.xmi.XMIWorkspaceStructure.impl;
 
-import XMIWorkspaceStructure.XMIECPFileProject;
-import XMIWorkspaceStructure.XMIECPFolder;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import java.util.Collection;
 
@@ -28,6 +25,14 @@ import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.ui.common.ECPAssociationClassElement;
+import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,9 +41,9 @@ import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFolderImpl#getXmiDirectoryPath <em>Xmi Directory Path</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFolderImpl#getContainedFiles <em>Contained Files</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFolderImpl#getProjectResources <em>Project Resources</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl#getXmiDirectoryPath <em>Xmi Directory Path</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl#getContainedFiles <em>Contained Files</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFolderImpl#getProjectResources <em>Project Resources</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,16 +97,6 @@ public class XMIECPFolderImpl extends XMIECPContainerImpl implements XMIECPFolde
 	 */
 	protected XMIECPFolderImpl() {
 		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XMIWorkspaceStructurePackage.Literals.XMIECP_FOLDER;
 	}
 
 	/**

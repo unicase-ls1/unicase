@@ -4,11 +4,9 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.provider;
+package org.unicase.xmi.XMIWorkspaceStructure.provider;
 
 
-import XMIWorkspaceStructure.XMIECPFolder;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,9 +25,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
- * This is the item provider adapter for a {@link XMIWorkspaceStructure.XMIECPFolder} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -50,90 +50,6 @@ public class XMIECPFolderItemProvider
 	 */
 	public XMIECPFolderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-	}
-
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
-
-			addXmiDirectoryPathPropertyDescriptor(object);
-			addContainedFilesPropertyDescriptor(object);
-			addProjectResourcesPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Xmi Directory Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addXmiDirectoryPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_xmiDirectoryPath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_xmiDirectoryPath_feature", "_UI_XMIECPFolder_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_FOLDER__XMI_DIRECTORY_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Contained Files feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainedFilesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_containedFiles_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_containedFiles_feature", "_UI_XMIECPFolder_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_FOLDER__CONTAINED_FILES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Project Resources feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProjectResourcesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_projectResources_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_projectResources_feature", "_UI_XMIECPFolder_type"),
-				 XMIWorkspaceStructurePackage.Literals.XMIECP_FOLDER__PROJECT_RESOURCES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

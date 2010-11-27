@@ -4,12 +4,10 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.impl;
+package org.unicase.xmi.XMIWorkspaceStructure.impl;
 
 import java.util.Collection;
 
-import XMIWorkspaceStructure.XMIECPFileProject;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -26,6 +24,8 @@ import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,9 +34,9 @@ import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getEditingDomain <em>Editing Domain</em>}</li>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getXmiFilePath <em>Xmi File Path</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getEditingDomain <em>Editing Domain</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPFileProjectImpl#getXmiFilePath <em>Xmi File Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,16 +100,6 @@ public class XMIECPFileProjectImpl extends EObjectImpl implements XMIECPFileProj
 	 */
 	protected XMIECPFileProjectImpl() {
 		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XMIWorkspaceStructurePackage.Literals.XMIECP_FILE_PROJECT;
 	}
 
 	/**

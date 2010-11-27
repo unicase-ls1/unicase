@@ -4,15 +4,8 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.impl;
+package org.unicase.xmi.XMIWorkspaceStructure.impl;
 
-import XMIWorkspaceStructure.XMIECPContainer;
-import XMIWorkspaceStructure.XMIECPFileProject;
-import XMIWorkspaceStructure.XMIECPFolder;
-import XMIWorkspaceStructure.XMIECPProject;
-import XMIWorkspaceStructure.XMIECPVirtualContainer;
-import XMIWorkspaceStructure.XMIWorkspaceStructureFactory;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +15,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPContainer;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPProject;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructureFactory;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class XMIWorkspaceStructurePackageImpl extends EPackageImpl implements XM
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see XMIWorkspaceStructure.XMIWorkspaceStructurePackage#eNS_URI
+	 * @see org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

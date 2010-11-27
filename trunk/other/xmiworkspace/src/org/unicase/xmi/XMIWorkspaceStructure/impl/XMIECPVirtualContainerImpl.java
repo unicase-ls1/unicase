@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.impl;
+package org.unicase.xmi.XMIWorkspaceStructure.impl;
 
 import java.util.Collection;
 
-import XMIWorkspaceStructure.XMIECPVirtualContainer;
-import XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer;
+import org.unicase.xmi.XMIWorkspaceStructure.XMIWorkspaceStructurePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -31,7 +31,7 @@ import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl#getXmiFilePath <em>Xmi File Path</em>}</li>
+ *   <li>{@link org.unicase.xmi.XMIWorkspaceStructure.impl.XMIECPVirtualContainerImpl#getXmiFilePath <em>Xmi File Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,16 +65,6 @@ public class XMIECPVirtualContainerImpl extends XMIECPContainerImpl implements X
 	 */
 	protected XMIECPVirtualContainerImpl() {
 		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XMIWorkspaceStructurePackage.Literals.XMIECP_VIRTUAL_CONTAINER;
 	}
 
 	/**

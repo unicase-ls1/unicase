@@ -4,9 +4,8 @@
  *
  * $Id$
  */
-package XMIWorkspaceStructure.provider;
+package org.unicase.xmi.XMIWorkspaceStructure.provider;
 
-import XMIWorkspaceStructure.util.XMIWorkspaceStructureAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.xmi.XMIWorkspaceStructure.util.XMIWorkspaceStructureAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -76,7 +76,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link XMIWorkspaceStructure.XMIECPFileProject} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	protected XMIECPFileProjectItemProvider xmiecpFileProjectItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link XMIWorkspaceStructure.XMIECPFileProject}.
+	 * This creates an adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFileProject}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +99,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link XMIWorkspaceStructure.XMIECPVirtualContainer} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +107,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	protected XMIECPVirtualContainerItemProvider xmiecpVirtualContainerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link XMIWorkspaceStructure.XMIECPVirtualContainer}.
+	 * This creates an adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPVirtualContainer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +122,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link XMIWorkspaceStructure.XMIECPFolder} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,7 +130,7 @@ public class XMIWorkspaceStructureItemProviderAdapterFactory extends XMIWorkspac
 	protected XMIECPFolderItemProvider xmiecpFolderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link XMIWorkspaceStructure.XMIECPFolder}.
+	 * This creates an adapter for a {@link org.unicase.xmi.XMIWorkspaceStructure.XMIECPFolder}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
