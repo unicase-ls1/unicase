@@ -44,13 +44,9 @@ public class MachineLearningTriageAccuracyAnalyzer extends TriageAccuracyAnalyze
 		if (meMatrix.getModelElements().size() == 1) {
 			return;
 		}
-		try {
-			classification.init(meMatrix);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		String suggestedAssignee = null;
 		try {
+			classification.init(meMatrix);
 			suggestedAssignee = classification.predictAssignee();
 		} catch (Exception e) {
 			e.printStackTrace();

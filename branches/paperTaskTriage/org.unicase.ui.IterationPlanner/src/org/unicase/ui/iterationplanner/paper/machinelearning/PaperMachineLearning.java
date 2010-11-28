@@ -57,7 +57,7 @@ import org.unicase.workspace.test.TestProjectEnum;
  * @author Hodaie
  */
 public class PaperMachineLearning {
-	public static boolean HISTORY_BASED = false;
+	public static boolean HISTORY_BASED = true;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 	
 	private EList<UnicaseModelElement> allWorkItems;
@@ -148,7 +148,7 @@ public class PaperMachineLearning {
 			projectIt.setDefault(true);
 		} else {
 			// determine start and end version
-			int startRevision = 1200;
+			int startRevision = 4500;
 			//int endRevision = 1500;
 			int endRevision = projectInfo.getVersion().getIdentifier();
 			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision,

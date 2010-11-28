@@ -18,6 +18,7 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
@@ -46,6 +47,7 @@ public abstract class TriageAccuracyAnalyzer implements DataAnalyzer {
 	protected static int nullassignee = 0;
 
 	protected Project clonedProject;
+	private int totalNumOfAssignmentOperations;
 
 	public List<String> getName() {
 		List<String> list = new ArrayList<String>();
@@ -170,18 +172,17 @@ public abstract class TriageAccuracyAnalyzer implements DataAnalyzer {
 
 	}
 
-	protected boolean isRelvant(AbstractOperation operation) {
-		if (!(operation instanceof ReferenceOperation)) {
-			return false;
+	protected synchronized boolean isRelvant(AbstractOperation operation) {
+		boolean result = false;
+		if(operation instanceof ReferenceOperation){
+			ReferenceOperation refOp = (ReferenceOperation) operation;
+			if (refOp.getFeatureName().equals(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
+				result = true;
+			}else if (refOp.getFeatureName().equals(OrganizationPackage.eINSTANCE.getOrgUnit_Assignments().getName())) {
+				result = true;
+			}
 		}
-		ReferenceOperation refOp = (ReferenceOperation) operation;
-		if (refOp.getFeatureName().equals(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
-			return true;
-		}
-		if (refOp.getFeatureName().equals(OrganizationPackage.eINSTANCE.getOrgUnit_Assignments().getName())) {
-			return true;
-		}
-		return false;
+		return result;
 	}
 
 	protected Object getAssignee(ReferenceOperation operation) {
