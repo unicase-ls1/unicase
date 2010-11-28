@@ -59,7 +59,7 @@ import org.unicase.workspace.test.SetupHelper;
  */
 public class PaperImperative {
 
-	public static boolean HISTORY_BASED = false;
+	public static boolean HISTORY_BASED = true;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private List<OrgUnit> assigneesWithMoreThan10Tasks;
@@ -143,7 +143,7 @@ public class PaperImperative {
 			projectIt.setDefault(true);
 		} else {
 			// determine start and end version
-			int startRevision = 1300;
+			int startRevision = 4500;
 			//int endRevision = 1500;
 			int endRevision = projectInfo.getVersion().getIdentifier();
 			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision, endRevision));
