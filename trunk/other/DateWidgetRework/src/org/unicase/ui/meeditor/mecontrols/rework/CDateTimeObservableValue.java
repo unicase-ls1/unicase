@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.meeditor.mecontrols.rework;
  
 import java.util.Date;
@@ -9,84 +14,84 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
  
 /**
- * An implementation of the DataBindings IObservableValue interface for the Nebula
- * CDateTime control.
+ * Implements DataBinding feature for the Nebula CDateTime control.
  * 
- * originally: package org.eclipse.nebula.jface.cdatetime;
- * 
- * @author pcentgraf
- * @since Mar 8, 2007
+ * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
  */
 public class CDateTimeObservableValue extends AbstractObservableValue {
-    
-    /**
-     * The Control being observed here.
-     */
-    protected final CDateTime dateTime;
-    
-    /**
-     * Flag to prevent infinite recursion in {@link #doSetValue(Object)}.
-     */
-    protected boolean updating = false;
-    
-    /**
-     * The "old" selection before a selection event is fired.
-     */
-    protected Date currentSelection;
+
+    private Date date;
+    private final CDateTime widget;
+    private boolean currentlyUpdatingFlag;
  
-    private SelectionListener listener = new SelectionListener() {
+    private SelectionListener widgetListener = new SelectionListener() {
         public void widgetDefaultSelected(SelectionEvent e) {
-            //Skip
+            // do nothing
         }
         public void widgetSelected(SelectionEvent e) {
-            if (!updating) {
-                Date newSelection = CDateTimeObservableValue.this.dateTime.getSelection();
-                fireValueChange(Diffs.createValueDiff(currentSelection, newSelection));
-                currentSelection = newSelection;
+            if (!currentlyUpdatingFlag) {
+            	// change from widget not handled right now
+                Date newDate = widget.getSelection();
+                fireValueChange(Diffs.createValueDiff(date, newDate));
+                date = newDate;
             }
         }
     };
     
     /**
-     * Observe the selection property of the provided CDateTime control.
-     * @param dateTime the control to observe
+     * Constructor.
+     * @param widget the control to observe
      */
-    public CDateTimeObservableValue(CDateTime dateTime) {
-        this.dateTime = dateTime;
-        currentSelection = dateTime.getSelection();
-        this.dateTime.addSelectionListener(listener);
+    public CDateTimeObservableValue(CDateTime widget) {
+        this.widget = widget;
+        date = widget.getSelection();
+        this.widget.addSelectionListener(widgetListener);
     }
  
+    /**
+	 * {@inheritDoc}
+	 */
     @Override
     public synchronized void dispose() {
-        dateTime.removeSelectionListener(listener);
+        widget.removeSelectionListener(widgetListener);
         super.dispose();
     }
  
+    /**
+	 * {@inheritDoc}
+	 */
+    @Override
     protected Object doGetValue() {
-        if(!dateTime.isDisposed()) {
-            return dateTime.getSelection();
+        if(!widget.isDisposed()) {
+            return widget.getSelection();
         }
         return null;
     }
     
+    /**
+	 * {@inheritDoc}
+	 */
+    @Override
     protected void doSetValue(Object value) {
-        if(value instanceof Date && !dateTime.isDisposed()) {
-            Date oldValue;
-            Date newValue;
+        if (value instanceof Date && !widget.isDisposed()) {
+            Date oldDate;
+            Date newDate;
             try {
-                updating = true;
-                oldValue = dateTime.getSelection();
-                newValue = (Date) value;
-                dateTime.setSelection(newValue);
-                currentSelection = newValue;
-                fireValueChange(Diffs.createValueDiff(oldValue, newValue));
+                currentlyUpdatingFlag = true;
+                oldDate = widget.getSelection();
+                newDate = (Date) value;
+                widget.setSelection(newDate);
+                date = newDate;
+                fireValueChange(Diffs.createValueDiff(oldDate, newDate));
             } finally {
-                updating = false;
+                currentlyUpdatingFlag = false;
             }
         }
     }
- 
+    
+    /**
+	 * {@inheritDoc}
+	 */
     public Object getValueType() {
         return Date.class;
     }
