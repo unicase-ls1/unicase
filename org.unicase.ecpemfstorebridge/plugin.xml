@@ -44,5 +44,88 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.VersionDecorator"
+            id="org.unicase.ecpemfstorebridge.decorators.VersionDecorator"
+            label="Version Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows version of current project.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.UsernameDecorator"
+            id="org.unicase.ui.common.decorators.UsernameDecorator"
+            label="Username Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows the username for the current session.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ProjectSpaceDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
+            label="ProjectSpaceDirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            If the porject has local changes.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ModelElementDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
+            label="ModelElement Dirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.ecore.EObject">
+            </objectClass>
+         </enablement>
+         <description>
+            If the project has local changes.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ProjectDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
+            label="Project Dirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.metamodel.Project">
+            </objectClass>
+         </enablement>
+         <description>
+            If the porject has local changes.
+         </description>
+      </decorator>
+   </extension>
 
 </plugin>
