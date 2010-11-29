@@ -8,6 +8,8 @@ package org.unicase.model.attachment.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
@@ -541,6 +543,18 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		result.append(downloading);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public FileIdentifier getFileIdentifier() {
+		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
+		fid.setIdentifier(fileID);
+		return fid;
+	}
+
+	@Override
+	public void setFileIdentifier(FileIdentifier fileId) {
+		setFileID(fileId.getIdentifier());
 	}
 
 } // FileAttachmentImpl
