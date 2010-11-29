@@ -20,9 +20,10 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.util.DialogHandler;
+import org.unicase.workspace.PostWorkspaceInitiator;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspaceObserver;
 import org.unicase.workspace.observers.CheckoutObserver;
 import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
 import org.unicase.workspace.observers.ObserverBus;
@@ -35,9 +36,9 @@ import org.unicase.workspace.observers.UpdateObserver;
  * @author wesendon
  */
 public class DashboardProjectObserver implements DeleteProjectSpaceObserver, CheckoutObserver, UpdateObserver,
-	WorkspaceObserver {
+	PostWorkspaceInitiator {
 
-	public void workspaceInitComplete() {
+	public void workspaceInitComplete(Workspace workspace) {
 		ObserverBus.register(this);
 	}
 
