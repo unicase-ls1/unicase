@@ -56,7 +56,7 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 				ProjectSpace projectSpace = serverInfo.getLastUsersession().checkout(projectInfo);
 				WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
 				ObserverBus.send(CheckoutObserver.class).checkoutDone(projectSpace);
-				// TODO: ChainSaw
+				// ChainSaw - dashboard now listens on its own.
 				// ActionHelper.openDashboard(projectSpace);
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
