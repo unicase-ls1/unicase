@@ -47,6 +47,7 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -255,9 +256,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
-		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo
-			.getProjectId(), projectInfoCopy.getVersion());
-
+		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(),
+			projectInfoCopy.getVersion());
+			
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
@@ -576,10 +577,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
-		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
-		copy.setUsersession(null);
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copy, projectSpace.getProject()); // (absoluteFileName,
-		// copy);
+		ProjectSpace copiedProjectSpace = (ProjectSpace) EcoreUtil.copy(projectSpace);
+		copiedProjectSpace.setUsersession(null);
+
+		Project clonedProject = ModelUtil.clone(projectSpace.getProject());
+		copiedProjectSpace.setProject(clonedProject);
+
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace, copiedProjectSpace
+			.getProject());
 	}
 
 	/**
@@ -588,9 +593,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#exportWorkSpace(java.lang.String)
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
-		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copy, WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getActiveProjectSpace().getProject());
+
+		Workspace copy = ModelUtil.clone(WorkspaceManager.getInstance().getCurrentWorkspace());
+
+		int i = 0;
+
+		for (ProjectSpace copiedProjectSpace : copy.getProjectSpaces()) {
+			Project orgProject = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(i++)
+				.getProject();
+			copiedProjectSpace.setProject(ModelUtil.clone(orgProject));
+		}
+
+		ResourceHelper.putWorkspaceIntoNewResource(absoluteFileName, copy);
 	}
 
 	/**
@@ -601,8 +615,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
 		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, project, project); // (absoluteFileName,
-		// project);
+		ResourceHelper.putElementIntoNewResource(absoluteFileName, project);
 	}
 
 	/**
