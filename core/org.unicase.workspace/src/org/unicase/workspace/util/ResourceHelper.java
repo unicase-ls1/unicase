@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.Project;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 
 /**
  * Helper for resource operations.
@@ -92,6 +94,38 @@ public final class ResourceHelper {
 				EObject modelElement = it.next();
 				String modelElementId = project.getModelElementId(modelElement).getId();
 				xmiResource.setID(modelElement, modelElementId);
+			}
+		}
+
+		resource.save(null);
+	}
+
+	/**
+	 * Puts an element into a new resource.
+	 * 
+	 * @param <T> element type
+	 * @param element The element to be put
+	 * @param absoluteFileName filepath of resource
+	 * @throws IOException in case of failure
+	 */
+	public static <T extends EObject> void putWorkspaceIntoNewResource(String absoluteFileName, Workspace workSpace)
+		throws IOException {
+
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		resource.getContents().add(workSpace);
+
+		if (resource instanceof XMIResource) {
+			XMIResource xmiResource = (XMIResource) resource;
+
+			for (ProjectSpace projectSpace : workSpace.getProjectSpaces()) {
+				Project project = projectSpace.getProject();
+				TreeIterator<EObject> it = project.eAllContents();
+				while (it.hasNext()) {
+					EObject modelElement = it.next();
+					String modelElementId = project.getModelElementId(modelElement).getId();
+					xmiResource.setID(modelElement, modelElementId);
+				}
 			}
 		}
 

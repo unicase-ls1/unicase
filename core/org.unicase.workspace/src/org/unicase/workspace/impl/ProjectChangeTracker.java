@@ -156,6 +156,12 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 
 		addToResource(modelElement);
+
+		// notify post creation listeners
+		for (PostCreationListener l : postCreationListeners) {
+			l.onCreation(projectSpace, modelElement);
+		}
+
 		if (isRecording) {
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
@@ -163,11 +169,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			} else {
 				projectSpace.addOperation(createDeleteOperation);
 			}
-		}
-
-		// notify post creation listeners
-		for (PostCreationListener l : postCreationListeners) {
-			l.onCreation(projectSpace, modelElement);
 		}
 	}
 
