@@ -16,7 +16,7 @@
    <extension-point id="org.unicase.workspace.workspaceLocationProvider" name="Workspace Location Provider" schema="schema/org.unicase.workspace.workspaceLocationProvider.exsd"/>
    <extension-point id="org.unicase.workspace.defaultConfigurationProvider" name="Default Configuration Provider" schema="schema/org.unicase.workspace.defaultConfigurationProvider.exsd"/>
    <extension-point id="org.unicase.workspace.notify.postcreationlistener" name="Post-Creation Listeners" schema="schema/org.unicase.workspace.notify.postcreationlistener.exsd"/>
-   <extension-point id="org.unicase.workspace.notify.workspace" name="Workspace Initiated" schema="schema/org.unicase.workspace.notify.workspace.exsd"/>
+   <extension-point id="org.unicase.workspace.notify.postinit" name="Workspace Initiated" schema="schema/org.unicase.workspace.notify.workspace.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 

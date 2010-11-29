@@ -1,6 +1,6 @@
 package org.unicase.workspace;
 
-public interface WorkspaceObserver {
+public interface PostWorkspaceInitiator {
 
 	void workspaceInitComplete();
 
