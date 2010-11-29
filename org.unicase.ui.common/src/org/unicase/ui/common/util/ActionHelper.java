@@ -31,7 +31,7 @@ import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;

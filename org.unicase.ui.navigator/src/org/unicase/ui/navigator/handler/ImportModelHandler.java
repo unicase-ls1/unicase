@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 

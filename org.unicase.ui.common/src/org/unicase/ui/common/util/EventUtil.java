@@ -8,14 +8,6 @@ package org.unicase.ui.common.util;
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
-import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Helper class to log events.
