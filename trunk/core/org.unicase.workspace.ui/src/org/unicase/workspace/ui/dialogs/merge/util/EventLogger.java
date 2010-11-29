@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -78,7 +79,15 @@ public class EventLogger {
 
 		EObject modelElement = conflict.getConflictContext().getModelElement();
 		if (modelElement != null) {
-			ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+			ModelElementId modelElementId;
+			if (ModelUtil.getProject(modelElement) != null) {
+				modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+			} else {
+				CreateDeleteOperation createDeleteOp = (CreateDeleteOperation) ModelUtil.getParent(
+					CreateDeleteOperation.class, modelElement);
+				modelElementId = ModelUtil.clone(createDeleteOp.getEObjectToIdMap().get(modelElement));
+			}
+
 			choiceEvent.setContextModelElement(modelElementId);
 		}
 
