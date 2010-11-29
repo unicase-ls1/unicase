@@ -44,6 +44,7 @@ public class MachineLearningTriageAccuracyAnalyzer extends TriageAccuracyAnalyze
 		if (meMatrix.getModelElements().size() == 1) {
 			return;
 		}
+		Runtime.getRuntime().gc();
 		String suggestedAssignee = null;
 		try {
 			classification.init(meMatrix);
