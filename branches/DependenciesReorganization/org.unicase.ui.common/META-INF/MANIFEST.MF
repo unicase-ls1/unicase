@@ -9,14 +9,10 @@ Require-Bundle: org.unicase.util;bundle-version="1.0.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
- org.sharemedia.ui.sat,
- org.sharemedia.ui.sat.effects,
- org.sharemedia.ui.sat.movement,
  org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.dialogs,
  org.unicase.ui.common.dnd,
- org.unicase.ui.common.exceptions,
  org.unicase.ui.common.preferences,
  org.unicase.ui.common.util
 Bundle-ClassPath: .,
