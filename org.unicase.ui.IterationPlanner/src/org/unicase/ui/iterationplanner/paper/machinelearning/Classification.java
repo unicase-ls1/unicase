@@ -219,7 +219,7 @@ public class Classification {
 			}
 		}
 
-		int predictedIndex = result.indexOfMax(Ret.NEW, Matrix.COLUMN)
+		int predictedIndex = result.indexOfMax(Ret.LINK, Matrix.COLUMN)
 				.intValue();
 
 		String assigneeName = "";
@@ -245,21 +245,21 @@ public class Classification {
 		}
 
 		// delete
-		m = m.deleteRows(Ret.NEW, rowsToDelete);
+		m = m.deleteRows(Ret.LINK, rowsToDelete);
 
 		// filter out unwanted characters
-		m = m.removePunctuation(Ret.NEW);
+		m = m.removePunctuation(Ret.LINK);
 
 		// use only lowercase characters
-		m = m.lowerCase(Ret.NEW);
+		m = m.lowerCase(Ret.LINK);
 
 		// remove stopwords
-		m = m.removeWords(Ret.NEW, Arrays.asList(ENGLISH_STOP_WORDS));
+		m = m.removeWords(Ret.LINK, Arrays.asList(ENGLISH_STOP_WORDS));
 
 		// use PorterStemmer on the data
 		if (USESTEMMING) {
 			System.out.println("stemming data...");
-			m = m.stem(Ret.NEW);
+			m = m.stem(Ret.LINK);
 		}
 	}
 
