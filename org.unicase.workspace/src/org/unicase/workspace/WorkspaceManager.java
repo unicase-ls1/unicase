@@ -105,17 +105,17 @@ public final class WorkspaceManager {
 		this.currentWorkspace = initWorkSpace();
 		this.observerBus = new ObserverBus();
 
-		notifyWorkspaceObservers();
+		notifyPostWorkspaceInitiators();
 	}
 
-	private void notifyWorkspaceObservers() {
+	private void notifyPostWorkspaceInitiators() {
 		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.workspace.notify.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
 				PostWorkspaceInitiator workspaceObserver = (PostWorkspaceInitiator) element
 					.createExecutableExtension("class");
-				workspaceObserver.workspaceInitComplete();
+				workspaceObserver.workspaceInitComplete(currentWorkspace);
 			} catch (CoreException e) {
 				WorkspaceUtil.logException(e.getMessage(), e);
 			}

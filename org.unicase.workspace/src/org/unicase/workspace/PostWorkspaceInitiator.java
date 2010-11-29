@@ -2,6 +2,6 @@ package org.unicase.workspace;
 
 public interface PostWorkspaceInitiator {
 
-	void workspaceInitComplete();
+	void workspaceInitComplete(Workspace currentWorkspace);
 
 }
