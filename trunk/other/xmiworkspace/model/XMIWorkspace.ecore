@@ -3,18 +3,19 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="XMIWorkspaceStructure"
     nsURI="http://unicase.org/xmiworkspace/structureModel" nsPrefix="org.unicase.xmi.structureModel">
+  <eAnnotations source="EAnnotation0"/>
   <eClassifiers xsi:type="ecore:EClass" name="XMIECPProject" abstract="true" interface="true">
     <eOperations name="getAllElements">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
         <eTypeArguments/>
       </eGenericType>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editingDomain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="elements" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editingDomain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMIECPFileProject" eSuperTypes="#//XMIECPProject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmiFilePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
