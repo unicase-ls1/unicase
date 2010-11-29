@@ -5,6 +5,7 @@
  */
 package org.unicase.model.attachment;
 
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.model.Attachment;
 
 /**
@@ -92,8 +93,10 @@ public interface FileAttachment extends Attachment {
 	 * @see #setFileID(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileID()
 	 * @model annotation="org.unicase.ui.meeditor priority='2' position='left'"
+	 * @deprecated Use getFileIdentifier instead
 	 * @generated
 	 */
+	@Deprecated
 	String getFileID();
 
 	/**
@@ -102,8 +105,10 @@ public interface FileAttachment extends Attachment {
 	 * 
 	 * @param value the new value of the '<em>File ID</em>' attribute.
 	 * @see #getFileID()
+	 * @deprecated Use setFileIdentifier instead
 	 * @generated
 	 */
+	@Deprecated
 	void setFileID(String value);
 
 	/**
@@ -238,5 +243,22 @@ public interface FileAttachment extends Attachment {
 	 * @generated
 	 */
 	void setUploading(boolean value);
+
+	/**
+	 * Returns the identifier of the file which can be used to retrieve the file itself This method is part of the new
+	 * file api and should be used instead of the old getFileID
+	 * 
+	 * @return the file identifier
+	 * @generated NOT
+	 */
+	FileIdentifier getFileIdentifier();
+
+	/**
+	 * Sets the file identifier of the attached file. This method is part of the new file API.
+	 * 
+	 * @param fileId
+	 * @generated NOT
+	 */
+	void setFileIdentifier(FileIdentifier fileId);
 
 } // FileAttachment
