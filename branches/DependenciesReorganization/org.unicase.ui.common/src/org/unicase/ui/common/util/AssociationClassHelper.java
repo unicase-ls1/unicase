@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.ECPModelelementContext;
 
@@ -55,7 +54,7 @@ public final class AssociationClassHelper {
 								result, context);
 						}
 					} // feature value is a single AssociationClassElement
-					else if (evaluatedFeatures instanceof AssociationClassElement) {
+					else if (context.isAssociationClassElement((EObject) evaluatedFeatures)) {
 						handleAssociationClass(objectToDrop, objectsToDrop, (EObject) evaluatedFeatures, elements,
 							result, context);
 					}

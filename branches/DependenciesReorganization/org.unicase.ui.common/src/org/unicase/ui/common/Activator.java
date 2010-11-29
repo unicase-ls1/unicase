@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.util.UiUtil;
 
 /**
  * . The activator class controls the plug-in life cycle

@@ -9,7 +9,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.metamodel.AssociationClassElement;
 
 /**
  * Context for a modelelement.

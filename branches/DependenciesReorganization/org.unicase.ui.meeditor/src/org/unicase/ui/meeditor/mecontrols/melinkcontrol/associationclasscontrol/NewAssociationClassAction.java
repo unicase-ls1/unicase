@@ -25,9 +25,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.AssociationClassHelper;
+import org.unicase.util.OverlayImageDescriptor;
 import org.unicase.workspace.Configuration;
 
 /**

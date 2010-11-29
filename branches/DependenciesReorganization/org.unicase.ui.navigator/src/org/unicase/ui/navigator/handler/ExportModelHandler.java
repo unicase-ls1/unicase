@@ -24,9 +24,9 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.PreferenceHelper;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.util.DialogHandler;
+import org.unicase.util.PreferenceHelper;
+import org.unicase.util.UiUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
