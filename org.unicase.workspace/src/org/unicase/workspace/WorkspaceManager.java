@@ -110,10 +110,11 @@ public final class WorkspaceManager {
 
 	private void notifyWorkspaceObservers() {
 		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notify.workspace");
+			"org.unicase.workspace.notify.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
-				WorkspaceObserver workspaceObserver = (WorkspaceObserver) element.createExecutableExtension("class");
+				PostWorkspaceInitiator workspaceObserver = (PostWorkspaceInitiator) element
+					.createExecutableExtension("class");
 				workspaceObserver.workspaceInitComplete();
 			} catch (CoreException e) {
 				WorkspaceUtil.logException(e.getMessage(), e);
