@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -101,6 +104,21 @@ public final class WorkspaceManager {
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
 		this.observerBus = new ObserverBus();
+
+		notifyWorkspaceObservers();
+	}
+
+	private void notifyWorkspaceObservers() {
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.notify.workspace");
+		for (IConfigurationElement element : workspaceObservers) {
+			try {
+				WorkspaceObserver workspaceObserver = (WorkspaceObserver) element.createExecutableExtension("class");
+				workspaceObserver.workspaceInitComplete();
+			} catch (CoreException e) {
+				WorkspaceUtil.logException(e.getMessage(), e);
+			}
+		}
 	}
 
 	/**
