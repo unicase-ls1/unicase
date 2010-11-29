@@ -205,6 +205,7 @@ public final class ModelUtil {
 			throw new SerializationException(e);
 		}
 		String result = out.toString();
+		// TODO: EM
 		// if (!overrideHrefCheck) {
 		// hrefCheck(result);
 		// }
@@ -1016,32 +1017,36 @@ public final class ModelUtil {
 	public static Project getProject(EObject modelElement) {
 		Set<EObject> seenModelElements = new HashSet<EObject>();
 		seenModelElements.add(modelElement);
-		return getProject(modelElement, seenModelElements);
+		return (Project) getParent(Project.class, modelElement, seenModelElements);
 	}
 
-	private static Project getProject(EObject eObject, Set<EObject> seenModelElements) {
+	/**
+	 * Get the EContainer that contains the given model element and whose EContainer is null.
+	 * 
+	 * @param parent the Class of the parent
+	 * @param child the model element whose container should get returned
+	 * @return the container
+	 */
+	public static EObject getParent(Class<? extends EObject> parent, EObject child) {
+		Set<EObject> seenModelElements = new HashSet<EObject>();
+		seenModelElements.add(child);
+		return getParent(parent, child, seenModelElements);
+	}
 
-		EObject container = eObject.eContainer();
-
-		if (eObject instanceof Project) {
-			return (Project) eObject;
-		}
-
-		if (container == null) {
+	private static EObject getParent(Class<? extends EObject> parent, EObject child, Set<EObject> seenModelElements) {
+		if (child == null) {
 			return null;
 		}
 
-		if (seenModelElements.contains(container)) {
+		if (seenModelElements.contains(child.eContainer())) {
 			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
-		// check if my container is a project
-		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
-			return (Project) container;
-		}
-		// check if my container is a model element
-		else {
-			seenModelElements.add(container);
-			return getProject(container, seenModelElements);
+
+		if (parent.isInstance(child)) {
+			return child;
+		} else {
+			seenModelElements.add(child);
+			return getParent(parent, child.eContainer(), seenModelElements);
 		}
 	}
 

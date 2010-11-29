@@ -194,7 +194,7 @@ public interface Project extends EObject, IAdaptable {
 	 * Retrieve the {@link ModelElementId} for an EObject.
 	 * 
 	 * @param eObject the eObject
-	 * @return the {@link ModelElementId}
+	 * @return the {@link ModelElementId} or null if the model element isn't contained in the project
 	 */
 	ModelElementId getModelElementId(EObject eObject);
 } // Project

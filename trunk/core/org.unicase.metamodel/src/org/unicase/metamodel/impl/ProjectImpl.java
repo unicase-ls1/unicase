@@ -92,6 +92,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private Set<SingletonIdResolver> singletonIdResolvers;
 
+	/**
+	 * Will be used to cache all model elements of a project in order to avoid fetching those multiple times when trying
+	 * to retrieve a model element ID.
+	 * 
+	 * @see ProjectImpl#getModelElementId(EObject)
+	 */
+	private Set<EObject> containedModelElements;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -785,32 +793,42 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public ModelElementId getModelElementId(EObject eObject) {
 
 		if (!eObjectToIdCache.containsKey(eObject) && !isCacheInitialized()) {
-			// id not yet loaded
-			if (ModelUtil.getAllContainedModelElementsAsList(this, false).contains(eObject)) {
-				// eobject contained in project, load resource
-				try {
-					Resource resource = eObject.eResource();
-					if (resource instanceof XMIResource) {
-						XMIResource xmiResource = (XMIResource) resource;
-						xmiResource.load(null);
-						ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 
-						String id = xmiResource.getID(eObject);
-						if (id != null) {
-							// change ID
-							modelElementId.setId(id);
-							eObjectToIdCache.put(eObject, modelElementId);
-							return ModelUtil.clone(modelElementId);
-						}
+			if (containedModelElements == null) {
+				containedModelElements = ModelUtil.getAllContainedModelElements(this, false);
+			}
 
-						// return new ID
-						eObjectToIdCache.put(eObject, modelElementId);
-						return ModelUtil.clone(modelElementId);
-					}
-				} catch (IOException e) {
-					throw new RuntimeException("Couldn't load resource for model element " + eObject);
+			if (!containedModelElements.contains(eObject)) {
+				return null;
+			}
+
+			// EObject contained in project, load ID from resource
+			try {
+				Resource resource = eObject.eResource();
+
+				// EM: is this a potential error case we have to consider?
+				if (!(resource instanceof XMIResource)) {
+					return null;
 				}
 
+				XMIResource xmiResource = (XMIResource) resource;
+				xmiResource.load(null);
+				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+
+				String id = xmiResource.getID(eObject);
+				if (id != null) {
+					// change ID
+					modelElementId.setId(id);
+					eObjectToIdCache.put(eObject, modelElementId);
+					return ModelUtil.clone(modelElementId);
+				}
+
+				// return new ID
+				eObjectToIdCache.put(eObject, modelElementId);
+				return ModelUtil.clone(modelElementId);
+
+			} catch (IOException e) {
+				throw new RuntimeException("Couldn't load resource for model element " + eObject);
 			}
 		}
 
