@@ -6,14 +6,23 @@
 package org.unicase.ui.unicasecommon;
 
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.util.DialogHandler;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Helper Class for the UNICASE Client.
@@ -85,6 +94,82 @@ public final class UnicaseActionHelper {
 		}
 
 		return me;
+	}
+
+	/**
+	 * Constant for the modelelement to be opened.
+	 */
+	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
+	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.unicase.ui.meeditor.openModelElementDiscussion";
+
+	/**
+	 * Opens the discussion page for the meeditor.
+	 * 
+	 * @param me the modelElement
+	 * @param toggleReply if a reply widget should be automatically shown.
+	 */
+	public static void openDiscussion(EObject me, boolean toggleReply) {
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+		if (toggleReply) {
+			context.addVariable(TOGGLE_ADD_COMMENT_VARIABLE, "toggle");
+		}
+
+		try {
+			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+	}
+
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
+	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
+
+	/**
+	 * Opens the dashboard for the currently selected projectspace.
+	 */
+	public static void openDashboard() {
+		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		openDashboard(projectSpace);
+	}
+
+	/**
+	 * Opens the dashboard for the given project.
+	 * 
+	 * @param projectSpace the project space.
+	 */
+	public static void openDashboard(ProjectSpace projectSpace) {
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
+
+		try {
+			handlerService.executeCommand(DASHBOARD_COMMAND, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			// DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 }

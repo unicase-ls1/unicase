@@ -7,23 +7,16 @@ package org.unicase.ui.dashboard;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.NotEnabledException;
-import org.eclipse.core.commands.NotHandledException;
-import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.PostWorkspaceInitiator;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.observers.CheckoutObserver;
 import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
 import org.unicase.workspace.observers.ObserverBus;
@@ -66,62 +59,12 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	}
 
 	public void checkoutDone(ProjectSpace projectSpace) {
-		openDashboard(projectSpace);
+		UnicaseActionHelper.openDashboard(projectSpace);
+
 	}
 
 	public void updateCompleted(ProjectSpace projectSpace) {
-		openDashboard(projectSpace);
-	}
-
-	/**
-	 * TODO Chainsaw . The following code has been copied from ActionHelper to here and hasn't been refactored yet. This
-	 * move was necessary to divide EMFStore, ECP and UNICASE.
-	 */
-
-	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
-	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
-
-	/**
-	 * TODO Chainsaw . The following code has been copied from ActionHelper to here and hasn't been refactored yet. This
-	 * move was necessary to divide EMFStore, ECP and UNICASE.<br>
-	 * <br>
-	 * Opens the dashboard for the currently selected projectspace.
-	 */
-	public static void openDashboard() {
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		openDashboard(projectSpace);
-	}
-
-	/**
-	 * TODO Chainsaw . The following code has been copied from ActionHelper to here and hasn't been refactored yet. This
-	 * move was necessary to divide EMFStore, ECP and UNICASE. <br>
-	 * <br>
-	 * Opens the dashboard for the given project.
-	 * 
-	 * @param projectSpace the project space.
-	 */
-	public static void openDashboard(ProjectSpace projectSpace) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
-
-		try {
-			handlerService.executeCommand(DASHBOARD_COMMAND, null);
-
-		} catch (ExecutionException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotDefinedException e) {
-			// DialogHandler.showExceptionDialog(e);
-		} catch (NotEnabledException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotHandledException e) {
-			DialogHandler.showExceptionDialog(e);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-		// END SUPRESS CATCH EXCEPTION
+		UnicaseActionHelper.openDashboard(projectSpace);
 	}
 
 	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
