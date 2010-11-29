@@ -96,6 +96,7 @@ import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.LoginObserver;
+import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.ShareObserver;
 import org.unicase.workspace.observers.UpdateObserver;
@@ -1408,9 +1409,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		generateNotifications(changes);
 
+		// TODO Chainsaw. Do we need this anymore?
 		if (observer != null) {
-			observer.updateCompleted();
+			observer.updateCompleted(this);
 		}
+		ObserverBus.send(UpdateObserver.class).updateCompleted(this);
 
 		// check for operations on file attachments: if version has been increased and file is required offline, add to
 		// pending file transfers

@@ -19,7 +19,7 @@ import org.unicase.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.DeleteProjectSpaceObserver;
+import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
