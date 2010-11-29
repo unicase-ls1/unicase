@@ -34,6 +34,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
+import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
@@ -56,6 +57,8 @@ public final class WorkspaceManager {
 	private Workspace currentWorkspace;
 	private ConnectionManager connectionManager;
 	private AdminConnectionManager adminConnectionManager;
+
+	private ObserverBus observerBus;
 
 	/**
 	 * Get an instance of the workspace manager. Will create an instance if no workspace manager is present.
@@ -97,6 +100,7 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
+		this.observerBus = new ObserverBus();
 	}
 
 	/**
@@ -197,8 +201,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -219,9 +223,8 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
-				e);
+			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 	}
 
@@ -439,5 +442,14 @@ public final class WorkspaceManager {
 		} else {
 			throw new IllegalStateException("Project is not contained by any project space");
 		}
+	}
+
+	/**
+	 * Returns the {@link ObserverBus}.
+	 * 
+	 * @return observer bus
+	 */
+	public ObserverBus getObserverBus() {
+		return observerBus;
 	}
 }

@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import org.unicase.workspace.WorkspaceManager;
+
 /**
  * This is a universal observer bus. Better documentation will follow...
  * 
@@ -62,18 +64,17 @@ import java.util.List;
  */
 public class ObserverBus {
 
-	private static ObserverBus instance;
 	private HashMap<Class<? extends AbstractObserver>, ProxyHandler> observerProxies;
 
-	private ObserverBus() {
+	/**
+	 * Default constructor.
+	 */
+	public ObserverBus() {
 		observerProxies = new HashMap<Class<? extends AbstractObserver>, ProxyHandler>();
 	}
 
 	private static ObserverBus getInstance() {
-		if (instance == null) {
-			instance = new ObserverBus();
-		}
-		return instance;
+		return WorkspaceManager.getInstance().getObserverBus();
 	}
 
 	/**
