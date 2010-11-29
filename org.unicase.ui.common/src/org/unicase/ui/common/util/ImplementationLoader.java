@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.common.util;
 
-import org.unicase.metamodel.util.ModelUtil;
-
 /**
  * This class is used for loading the implementation of classes in fragments.
  * 
@@ -28,13 +26,16 @@ public final class ImplementationLoader {
 		try {
 			result = type.getClassLoader().loadClass(name + "Impl").newInstance();
 		} catch (ClassNotFoundException e) {
-			ModelUtil.logException("Class " + name + "Impl not found.", e);
+			// TODO: ChainSaw logging
+			// ModelUtil.logException("Class " + name + "Impl not found.", e);
 			throw new RuntimeException("Class " + name + "Impl not found.", e);
 		} catch (InstantiationException e) {
-			ModelUtil.logException("Could not instantiate class " + name + "Impl.", e);
+			// TODO: ChainSaw logging
+			// ModelUtil.logException("Could not instantiate class " + name + "Impl.", e);
 			throw new RuntimeException("Could not instantiate class " + name + "Impl.", e);
 		} catch (IllegalAccessException e) {
-			ModelUtil.logException("Could not access class " + name + "Impl.", e);
+			// TODO: ChainSaw logging
+			// ModelUtil.logException("Could not access class " + name + "Impl.", e);
 			throw new RuntimeException("Could not access class " + name + "Impl.", e);
 		}
 		return result;
