@@ -247,7 +247,15 @@ public class TestProjectGenerator {
 		List<EClass> allNonAbstractClasses = new ArrayList<EClass>();
 		allNonAbstractClasses.addAll(meNonAbstractClasses);
 		allNonAbstractClasses.addAll(nonMEnonAbstractClasses);
+		Project p = MetamodelFactory.eINSTANCE.createProject();
 		for (EClass eClass : allNonAbstractClasses) {
+
+			// TODO: EM
+			// intention: do not create projects since these aren't valid instances
+			if (eClass.getName().equals(p.eClass().getName())) {
+				continue;
+			}
+
 			createInstances(eClass);
 		}
 	}
@@ -277,6 +285,12 @@ public class TestProjectGenerator {
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
+
+			// projects aren't valid model elements
+			while (obj instanceof Project) {
+				obj = createInstance(eClass, false);
+			}
+
 			if (obj instanceof EObject) {
 				project.addModelElement(obj);
 			}
