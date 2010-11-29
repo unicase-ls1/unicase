@@ -104,12 +104,14 @@ public final class AssociationClassHelper {
 				// feature value is a list
 				if (evaluatedFeatures instanceof List<?>) {
 					for (Object evaluatedFeature : (List<?>) evaluatedFeatures) {
-						result.add((AssociationClassElement) evaluatedFeature);
+						// TODO: ChainSaw
+						// result.add((AssociationClassElement) evaluatedFeature);
 					}
 				} // feature value is a single AssociationClassElement
-				else if (evaluatedFeatures instanceof AssociationClassElement) {
-					result.add((AssociationClassElement) evaluatedFeatures);
-				}
+				// TODO: ChainSaw
+				// else if (evaluatedFeatures instanceof AssociationClassElement) {
+				// result.add((AssociationClassElement) evaluatedFeatures);
+				// }
 			}
 		}
 		return result;
