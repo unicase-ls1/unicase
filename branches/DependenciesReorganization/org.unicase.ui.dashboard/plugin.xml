@@ -156,16 +156,16 @@
       </widget>
    </extension>
    <extension
-         point="org.unicase.workspace.notify.deleteprojectspace">
-      <observer
-            class="org.unicase.ui.dashboard.DashboardDeleteProjectObserver">
-      </observer>
-   </extension>
-   <extension
          point="org.unicase.ui.common.modelelementopener">
       <ModelElementOpener
             class="org.unicase.ui.dashboard.ModelElementOpener"
             name="org.unicase.ui.dashboard.ModelElementOpener">
       </ModelElementOpener>
+   </extension>
+   <extension
+         point="org.unicase.workspace.notify.workspace">
+      <observer
+            class="org.unicase.ui.dashboard.DashboardProjectObserver">
+      </observer>
    </extension>
 </plugin>

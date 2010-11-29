@@ -32,9 +32,6 @@ import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
 import org.unicase.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -156,43 +153,6 @@ public final class ActionHelper {
 		}
 		// END SUPRESS CATCH EXCEPTION
 
-	}
-
-	/**
-	 * Opens the dashboard for the currently selected projectspace.
-	 */
-	public static void openDashboard() {
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		openDashboard(projectSpace);
-	}
-
-	/**
-	 * Opens the dashboard for the given project.
-	 * 
-	 * @param projectSpace the project space.
-	 */
-	public static void openDashboard(ProjectSpace projectSpace) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
-
-		try {
-			handlerService.executeCommand(DASHBOARD_COMMAND, null);
-
-		} catch (ExecutionException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotDefinedException e) {
-			// DialogHandler.showExceptionDialog(e);
-		} catch (NotEnabledException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotHandledException e) {
-			DialogHandler.showExceptionDialog(e);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-		// END SUPRESS CATCH EXCEPTION
 	}
 
 	/**

@@ -16,9 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -60,7 +57,8 @@ import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
-import org.unicase.workspace.util.DeleteProjectSpaceObserver;
+import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
+import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.util.ResourceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -677,21 +675,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
 		FileUtil.deleteFolder(new File(pathToProject));
 
-		// BEGIN SUPRESS CATCH EXCEPTION
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notify.deleteprojectspace");
-		for (IConfigurationElement e : config) {
-			try {
-				DeleteProjectSpaceObserver o = (DeleteProjectSpaceObserver) e.createExecutableExtension("class");
-				o.projectDeleted(projectSpace);
-			} catch (CoreException e1) {
-				WorkspaceUtil.logException("Cannot instantiate extension!", e1);
-			} catch (RuntimeException e2) {
-				WorkspaceUtil.logException("Severe runtime exception occured", e2);
-			}
-		}
-		// END SUPRESS CATCH EXCEPTION
-
+		ObserverBus.send(DeleteProjectSpaceObserver.class).projectDeleted(projectSpace);
 	}
 
 	/**

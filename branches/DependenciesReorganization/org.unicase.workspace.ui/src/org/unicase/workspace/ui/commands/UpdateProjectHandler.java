@@ -142,7 +142,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	 * 
 	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
 	 */
-	public void updateCompleted() {
+	public void updateCompleted(ProjectSpace projectSpace) {
 		// TODO: ChainSaw
 		// ActionHelper.openDashboard();
 	}
