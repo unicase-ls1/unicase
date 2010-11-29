@@ -33,6 +33,12 @@ public class UnicasePostModelElementCreationListener implements PostCreationList
 	public void onCreation(ProjectSpace projectSpace, EObject modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {
 			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
+
+			// if model element already has a creation date, leave it as is
+			if (unicaseModelElement.getCreationDate() != null) {
+				return;
+			}
+
 			unicaseModelElement.setCreationDate(new Date());
 			User user;
 			try {
