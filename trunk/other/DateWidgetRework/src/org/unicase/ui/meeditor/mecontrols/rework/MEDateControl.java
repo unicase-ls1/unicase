@@ -70,6 +70,7 @@ public class MEDateControl extends AbstractMEControl {
 		cDateWidget = new CDateTime(dateComposite, CDT.BORDER);
 		cDateWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		cDateWidget.setPattern("dd.MM.yyyy HH:mm");
+		cDateWidget.setSelection(null);
 		dateDeleteButton = new ImageHyperlink(dateComposite, SWT.TOP);
 		dateDeleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
