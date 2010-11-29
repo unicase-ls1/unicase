@@ -10,6 +10,7 @@ import java.util.Collections;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -90,7 +91,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	@Override
 	public EList<ECPProject> getProjects() {
 		// Check whether a xmi resource file exists
-		File xmiFile = new File(Configuration.getWorkspacePath());
+		File xmiFile = new File(xmiPath.toFileString());
 		Resource xmires; // automatically an XMI Resource
 		ECPWorkspace ws; // workspace that's being persisted
 		
@@ -98,6 +99,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			// file does not exists and therefore the workspace has to be build
 			xmires = resourceSet.createResource(xmiPath); // creates file
 			ws = WorkSpaceModelFactory.eINSTANCE.createECPWorkspace(); // creates a new workspace
+			
+			// add projects for testing
+			ECPProject proj = new XMIECPProject(getEditingDomain(), DocumentFactoryImpl.init().createCompositeSection());
+			FunctionalRequirement freq = RequirementFactoryImpl.init().createFunctionalRequirement();
+			proj.getAllModelElement().add(freq);
+			projects = new BasicEList<ECPProject>();
+			projects.add(proj);
 			
 			xmires.getContents().add(ws); // adds the workspace to the (xmi)resource
 			
@@ -108,12 +116,11 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			catch(IOException e) {
 				new XMIWorkspaceException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 			}
-			
-			
 		}
 		else {
 			xmires = resourceSet.getResource(xmiPath, true); // tries to get the resource
 			ws = (ECPWorkspace) xmires.getContents().get(0); // there is only one object in the resource and that's the workspace
+			projects = ws.getProjects();
 		}
 		
 		workspaceListenerAdapter = new EContentAdapter() {
@@ -149,15 +156,6 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		
 		// set the editing domain for the workspace
 		ws.setEditingDomain(getEditingDomain());
-		
-		// set the current projects
-		projects = ws.getProjects();
-		
-		// add projects for testing
-		ECPProject proj = new XMIECPProject(getEditingDomain(), DocumentFactoryImpl.init().createCompositeSection());
-		FunctionalRequirement freq = RequirementFactoryImpl.init().createFunctionalRequirement();
-		proj.getAllModelElement().add(freq);
-		projects.add(proj);
 		
 		return projects;
 	}
