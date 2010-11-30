@@ -545,14 +545,12 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		return result.toString();
 	}
 
-	@Override
 	public FileIdentifier getFileIdentifier() {
 		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
 		fid.setIdentifier(fileID);
 		return fid;
 	}
 
-	@Override
 	public void setFileIdentifier(FileIdentifier fileId) {
 		setFileID(fileId.getIdentifier());
 	}
