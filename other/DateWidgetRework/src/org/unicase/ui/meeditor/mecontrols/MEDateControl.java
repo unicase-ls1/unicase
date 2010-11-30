@@ -3,8 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.meeditor.mecontrols.rework;
+package org.unicase.ui.meeditor.mecontrols;
 
+import java.util.Date;
+
+import org.eclipse.core.databinding.observable.Diffs;
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -14,6 +18,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.GridData;
@@ -25,7 +31,6 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * Standard widgets to edit a date attribute.
@@ -37,12 +42,10 @@ public class MEDateControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 	private Composite dateComposite;
-
-	//private DateTime dateWidget;
 	private CDateTime cDateWidget;
 	private ImageHyperlink dateDeleteButton;
 
-	private static final int PRIORITY = 10; // high for testing against existing one
+	private static final int PRIORITY = 0;
 
 	/**
 	 * {@inheritDoc}
@@ -105,5 +108,90 @@ public class MEDateControl extends AbstractMEControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		return PRIORITY;
+	}
+	
+	/**
+	 * Implements DataBinding feature for the Nebula CDateTime control.
+	 * 
+	 * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
+	 */
+	private class CDateTimeObservableValue extends AbstractObservableValue {
+
+	    private Date date;
+	    private final CDateTime widget;
+	    private boolean currentlyUpdatingFlag;
+	 
+	    private ModifyListener widgetListener = new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				if (!currentlyUpdatingFlag) {
+		        	// change from widget not handled right now
+		            Date newDate = widget.getSelection();
+		            fireValueChange(Diffs.createValueDiff(date, newDate));
+		            date = newDate;
+		        }
+			}
+	    };
+	    
+	    /**
+	     * Constructor.
+	     * @param widget the control to observe
+	     */
+	    public CDateTimeObservableValue(CDateTime widget) {
+	        this.widget = widget;
+	        date = widget.getSelection();
+	        this.widget.addModifyListener(widgetListener);
+	    }
+	 
+	    /**
+		 * {@inheritDoc}
+		 */
+	    @Override
+	    public synchronized void dispose() {
+	        widget.removeModifyListener(widgetListener);
+	        super.dispose();
+	    }
+	 
+	    /**
+		 * {@inheritDoc}
+		 */
+	    @Override
+	    protected Object doGetValue() {
+	        if(!widget.isDisposed()) {
+	            return widget.getSelection();
+	        }
+	        return null;
+	    }
+	    
+	    /**
+		 * {@inheritDoc}
+		 */
+	    @Override
+	    protected void doSetValue(Object value) {
+	    	if (value == null) {
+	    		widget.setSelection(null);
+	    	}
+	    	else if (value instanceof Date && !widget.isDisposed()) {
+	            Date oldDate;
+	            Date newDate;
+	            try {
+	                currentlyUpdatingFlag = true;
+	                oldDate = widget.getSelection();
+	                newDate = (Date) value;
+	                widget.setSelection(newDate);
+	                date = newDate;
+	                fireValueChange(Diffs.createValueDiff(oldDate, newDate));
+	            } finally {
+	                currentlyUpdatingFlag = false;
+	            }
+	        }
+	    }
+	    
+	    /**
+		 * {@inheritDoc}
+		 */
+	    public Object getValueType() {
+	        return Date.class;
+	    }
+	    
 	}
 }
