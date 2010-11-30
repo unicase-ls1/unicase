@@ -35,7 +35,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class UpdateProjectVersionHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
-	private Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	private Shell shell;
+	private boolean openDashboard;
 	private Usersession usersession;
 
 	/**
@@ -43,7 +44,7 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	 */
 	public UpdateProjectVersionHandler() {
 		setTaskTitle("Update project...");
-
+		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 	}
 
 	/**
@@ -95,7 +96,12 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 
 		PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		targetVersionSpec.setIdentifier(version);
-
+		
+		// backward update, so do not show dashboard
+		if (targetVersionSpec.compareTo(projectSpace.getBaseVersion()) == 1) {
+			openDashboard = false;
+		}
+		
 		update(projectSpace, targetVersionSpec);
 	}
 
@@ -153,7 +159,9 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
 	 */
 	public void updateCompleted() {
-		ActionHelper.openDashboard();
+		if (openDashboard) {
+			ActionHelper.openDashboard();
+		}
 	}
 
 }
