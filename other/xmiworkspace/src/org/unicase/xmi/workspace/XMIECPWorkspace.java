@@ -21,17 +21,20 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.unicase.model.Project;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.impl.BugFactoryImpl;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.impl.DocumentFactoryImpl;
+import org.unicase.model.impl.ModelFactoryImpl;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 /**
  * Implements a workspace based on an XMI resource.
@@ -101,11 +104,28 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			ws = WorkSpaceModelFactory.eINSTANCE.createECPWorkspace(); // creates a new workspace
 			
 			// add projects for testing
-			ECPProject proj = new XMIECPProject(getEditingDomain(), DocumentFactoryImpl.init().createCompositeSection());
+			CompositeSection composite1 = DocumentFactoryImpl.init().createCompositeSection();
+			CompositeSection composite2 = DocumentFactoryImpl.init().createCompositeSection();
+			LeafSection leaf1 = DocumentFactoryImpl.init().createLeafSection();
+			
 			FunctionalRequirement freq = RequirementFactoryImpl.init().createFunctionalRequirement();
-			proj.getAllModelElement().add(freq);
+			BugReport bug1 = BugFactoryImpl.init().createBugReport();
+			
+			leaf1.getModelElements().add(bug1);
+			leaf1.getModelElements().add(freq);
+			
+			composite1.setLeafSection(leaf1);
+			composite1.getIncomingDocumentReferences().add(leaf1);
+			composite2.getIncomingDocumentReferences().add(leaf1);
+			
+			Project projectNode = ModelFactoryImpl.init().createProject();
+			projectNode.addModelElement(composite1);
+			projectNode.addModelElement(composite2);
+			
+			ECPProject proj = new XMIECPProject(getEditingDomain(), projectNode);
 			projects = new BasicEList<ECPProject>();
-			projects.add(proj);
+			ws.getProjects().add(proj);
+			// test end
 			
 			xmires.getContents().add(ws); // adds the workspace to the (xmi)resource
 			
@@ -114,13 +134,21 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				xmires.save(Configuration.getResourceSaveOptions());
 				}
 			catch(IOException e) {
-				new XMIWorkspaceException("Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+				new XMIWorkspaceException("Creating new workspace failed! Delete workspace-file: " + Configuration.getWorkspaceDirectory(), e);
 			}
 		}
 		else {
 			xmires = resourceSet.getResource(xmiPath, true); // tries to get the resource
+			
+			// try to load resource
+			try {
+				xmires.load(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				new XMIWorkspaceException("Failed to load workspace-file.", e);
+			}
+			
 			ws = (ECPWorkspace) xmires.getContents().get(0); // there is only one object in the resource and that's the workspace
-			projects = ws.getProjects();
+			projects = ws.getProjects(); // get the projects from the xmi-file-workspace
 		}
 		
 		workspaceListenerAdapter = new EContentAdapter() {
