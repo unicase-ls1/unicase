@@ -5,20 +5,24 @@
  */
 package org.unicase.emfstore.esmodel.impl;
 
+import java.io.Serializable;
+
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Identifier</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * </p>
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Identifier</b></em>'.
  * 
+ * @implements Serializable <!-- end-user-doc -->
+ *             <p>
+ *             </p>
  * @generated
  */
-public class FileIdentifierImpl extends IdentifiableElementImpl implements FileIdentifier {
+public class FileIdentifierImpl extends IdentifiableElementImpl implements FileIdentifier, Serializable {
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

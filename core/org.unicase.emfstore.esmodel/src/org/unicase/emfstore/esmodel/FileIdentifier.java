@@ -13,6 +13,7 @@ import org.unicase.metamodel.IdentifiableElement;
  * @see org.unicase.emfstore.esmodel.EsmodelPackage#getFileIdentifier()
  * @model
  * @generated
+ * @implements Serializable
  */
 public interface FileIdentifier extends IdentifiableElement {
 } // FileIdentifier
