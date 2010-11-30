@@ -339,6 +339,9 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				List<ChangePackage> resultReverse = new ArrayList<ChangePackage>();
 				for (ChangePackage changePackage : result) {
 					ChangePackage changePackageReverse = changePackage.reverse();
+					// copy again log message
+					// reverse() created a new change package without copying existent attributes
+					changePackageReverse.setLogMessage( (LogMessage) EcoreUtil.copy(changePackage.getLogMessage()) );
 					resultReverse.add(changePackageReverse);
 				}
 

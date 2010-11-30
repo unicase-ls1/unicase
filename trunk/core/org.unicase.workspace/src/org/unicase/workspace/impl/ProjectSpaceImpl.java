@@ -1406,7 +1406,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		setBaseVersion(resolvedVersion);
 		saveProjectSpaceOnly();
 
-		generateNotifications(changes);
+		// create notifications only if the project is updated to a newer version
+		if (resolvedVersion.compareTo(baseVersion) == 1) {
+			generateNotifications(changes);
+		}
 
 		if (observer != null) {
 			observer.updateCompleted();
