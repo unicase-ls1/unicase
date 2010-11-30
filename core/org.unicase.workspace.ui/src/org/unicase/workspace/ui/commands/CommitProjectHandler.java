@@ -129,7 +129,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	}
 	
 	/**
-	 * Sets a predefined messagte to the CommitDialog.
+	 * Sets a predefined message to the CommitDialog.
 	 * 
 	 * @param predefinedCommitMessage The message that will appear in the CommitDialog.
 	 */
@@ -146,7 +146,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			new UpdateProjectHandler().update(projectSpace);
 			return projectSpace.prepareCommit(CommitProjectHandler.this);
 		}
-		throw new CommitCanceledException("Changes have been canceld by the user.");
+		throw new CommitCanceledException("Changes have been canceled by the user.");
 	}
 
 	/**
