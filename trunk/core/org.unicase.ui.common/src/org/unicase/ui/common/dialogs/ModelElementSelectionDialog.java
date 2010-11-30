@@ -67,6 +67,16 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	}
 
 	/**
+	 * Creates a new label provider to be used for this dialog.
+	 * 
+	 * @return a label provider for the dialog
+	 */
+	protected ILabelProvider createLabelProvider() {
+		return new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	}
+
+	/**
 	 * Main-Constructor, here will be done the main work.
 	 * 
 	 * @param context The context from where the modelelements come from, is null if no context is set an the
@@ -80,8 +90,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 			modelElements = context.getAllModelElements();
 		}
 
-		setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		setLabelProvider(createLabelProvider());
 		this.setListLabelProvider(getLabelProvider());
 		this.setDetailsLabelProvider(getLabelProvider());
 
