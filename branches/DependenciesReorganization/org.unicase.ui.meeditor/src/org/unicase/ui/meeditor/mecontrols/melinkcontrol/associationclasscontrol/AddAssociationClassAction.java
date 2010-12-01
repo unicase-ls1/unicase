@@ -12,17 +12,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.AssociationClassHelper;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
 import org.unicase.util.OverlayImageDescriptor;
-import org.unicase.workspace.Configuration;
 
 /**
  * This class provides the icon and command to link to a existing object over an AssociationClassElement.
@@ -37,13 +35,14 @@ public class AddAssociationClassAction extends Action {
 	 * 
 	 * @author Michael Haeger
 	 */
-	private final class AddAssociationClassCommand extends RecordingCommand {
-		private AddAssociationClassCommand(TransactionalEditingDomain domain) {
-			super(domain);
+	private final class AddAssociationClassCommand extends ECPCommand {
+
+		public AddAssociationClassCommand(EObject eObject) {
+			super(eObject);
 		}
 
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			Collection<EObject> allElements = context.getAllModelElementsbyClass(modelElement.eClass(), false);
 			MESuggestedSelectionDialog dlg = new MESuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
 				modelElement, eReference, allElements);
@@ -103,7 +102,6 @@ public class AddAssociationClassAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		domain.getCommandStack().execute(new AddAssociationClassCommand(domain));
+		new AddAssociationClassCommand(modelElement).run();
 	}
 }
