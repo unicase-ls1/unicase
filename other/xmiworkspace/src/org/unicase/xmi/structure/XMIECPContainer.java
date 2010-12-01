@@ -1,220 +1,138 @@
 package org.unicase.xmi.structure;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 
 /**
  * This class represents a container for multiple projects
  * @author Markus, Matti
  *
  */
-public abstract class XMIECPContainer implements XMIECPProject {
+public abstract class XMIECPContainer extends EObjectImpl implements XMIECPProject {
 
-	public ECPWorkspace getWorkspace() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Constructor simply calling super().
+	 */
+	public XMIECPContainer() {
+		super();
 	}
-
-	public void setWorkspace(ECPWorkspace value) {
-		// TODO Auto-generated method stub
-
+	
+	/**
+	 * Contains projects managed by the container.
+	 */
+	protected EList<XMIECPProject> internalProjects = new BasicEList<XMIECPProject>();
+	
+	/**
+	 * Gives access to all projects in the container.
+	 * @return All projects contained in the container.
+	 */
+	public EList<XMIECPProject> getContainedProjects() {
+		return this.internalProjects;
 	}
-
-	public boolean contains(EObject eObject) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Collection<EObject> getAllModelElement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean isNonDomainElement(EObject eObject) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void dispose() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	/**
+	 * Listener for project changes
+	 */
+	protected List<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
+	
 	public void addECPProjectListener(ECPProjectListener listener) {
-		// TODO Auto-generated method stub
-
+		this.listeners.add(listener);
 	}
-
+	
 	public void removeECPProjectListener(ECPProjectListener listener) {
-		// TODO Auto-generated method stub
-
+		this.listeners.remove(listener);
 	}
-
-	public void projectChanged() {
-		// TODO Auto-generated method stub
-
+	
+	/**
+	 * Workspace the container is in.
+	 */
+	protected ECPWorkspace workspace;
+	
+	public void setWorkspace(ECPWorkspace value) {
+		this.workspace = value;
 	}
-
-	public void projectDeleted() {
-		// TODO Auto-generated method stub
-
+	
+	public ECPWorkspace getWorkspace() {
+		return workspace;
 	}
-
-	public void modelelementDeleted(EObject eobject) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public EObject getRootObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setRootObject(EObject value) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public TreeIterator<EObject> eAllContents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EClass eClass() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EObject eContainer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EStructuralFeature eContainingFeature() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EReference eContainmentFeature() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EList<EObject> eContents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EList<EObject> eCrossReferences() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object eGet(EStructuralFeature arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object eGet(EStructuralFeature arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean eIsProxy() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean eIsSet(EStructuralFeature arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Resource eResource() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void eSet(EStructuralFeature arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void eUnset(EStructuralFeature arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public EList<Adapter> eAdapters() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean eDeliver() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void eNotify(Notification arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void eSetDeliver(boolean arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public Collection<EObject> getAllModelElements() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public EditingDomain getEditingDomain() {
-		// TODO Auto-generated method stub
-		return null;
+		return workspace.getEditingDomain();
 	}
-
-	public boolean isAssociationClassElement(EObject eObject) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	/**
+	 * Root object of the project-container
+	 */
+	protected EObject root;
+	protected EContentAdapter contentAdapter;
+	
+	public EObject getRootObject() {
+		return root;
 	}
-
-	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void setRootObject(EObject value) {
+		this.root = value;
+		
+		root.eAdapters().add(contentAdapter);
 	}
-
+	
+	/**
+	 * Implements the contentAdapter which is added to the root-node by setting it.
+	 */
+	protected abstract void setContentAdapter();
+	
+	// this method is the same in all subclasses and therefore in this class
+	public Collection<EObject> getAllModelElement() {
+		return getAllModelElements();
+	}
+	
+	// same implementation for all subclasses
+	public Collection<EObject> getAllModelElements() {
+		Set<EObject> result = new HashSet<EObject>();
+		
+		for(XMIECPProject proj : internalProjects) {
+			result.addAll(proj.getAllModelElements());
+		}
+		
+		return result;
+	}
+	
+	// this method is the same in all subclasses and therefore in this class
 	public MetaModelElementContext getMetaModelElementContext() {
-		// TODO Auto-generated method stub
-		return null;
+		return new XMIMetaModelElementContext();
 	}
-
+	
+	public void dispose() {
+		// do nothing
+	}
+	
+	/**
+	 * Filters the basicEList for objects with the given EClass.
+	 * @return Returns only objects with the given EClass.
+	 */
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
+		EList<EObject> list = new BasicEList<EObject>();
+		for(EObject obj: basicEList) {
+			if(obj.eClass() == clazz) {
+				list.add(obj);
+			}
+		}
+		return list;
+	}
+	
 }
