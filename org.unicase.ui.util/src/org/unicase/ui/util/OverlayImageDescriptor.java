@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.util;
+package org.unicase.ui.util;
 
 import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
