@@ -23,11 +23,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.ui.util.UiUtil;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handles the export of ModelElements from a project.

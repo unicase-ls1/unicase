@@ -70,8 +70,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				new ECPCommand(selectedEObject) {
 					@Override
 					protected void doRun() {
+						// TODO: ChainSaw
 						((ECPProject) selectedEObject).getAllModelElement().add(newMEInstance);// .getProject().addModelElement(newMEInstance);
-
 					}
 				}.run();
 
