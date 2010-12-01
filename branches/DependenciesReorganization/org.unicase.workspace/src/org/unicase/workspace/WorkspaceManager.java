@@ -82,7 +82,7 @@ public final class WorkspaceManager {
 			}
 
 			// init ecore packages
-			ModelUtil.getAllModelElementEClasses();
+			UnicaseUtil.getAllModelElementEClasses();
 		}
 		return instance;
 	}
