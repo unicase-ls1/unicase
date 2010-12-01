@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
-import org.unicase.util.OverlayImageDescriptor;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}

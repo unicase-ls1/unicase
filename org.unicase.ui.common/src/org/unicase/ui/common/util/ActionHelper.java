@@ -31,7 +31,7 @@ import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.

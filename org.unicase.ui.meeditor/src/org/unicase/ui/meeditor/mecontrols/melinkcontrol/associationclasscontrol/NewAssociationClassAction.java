@@ -26,7 +26,7 @@ import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.AssociationClassHelper;
-import org.unicase.util.OverlayImageDescriptor;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * This class provides the icon and command to create a new object and link it with a given object over an

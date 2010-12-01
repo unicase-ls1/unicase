@@ -12,6 +12,7 @@ import java.util.Set;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.internal.resources.Project;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -24,12 +25,10 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.util.PreferenceHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.util.PreferenceHelper;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * Handles the import of ModelElements into a project.
@@ -55,11 +54,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
-		Project p = ModelUtil.getProject(selectedModelElement);
-		if (selectedModelElement instanceof ProjectSpace) {
-			p = ((ProjectSpace) selectedModelElement).getProject();
-		}
-		final Project project = p;
+		ECPProject project = (ECPProject) UnicaseUtil.getParent(ECPProject.class, selectedModelElement);
 
 		if (project == null && selectedModelElement == null) {
 			return null;
@@ -91,7 +86,7 @@ public class ImportModelHandler extends AbstractHandler {
 		return null;
 	}
 
-	private void importFile(Project project, final URI fileURI, final Resource resource,
+	private void importFile(ECPProject project, final URI fileURI, final Resource resource,
 		final ProgressMonitorDialog progressDialog) {
 
 		try {
@@ -111,7 +106,8 @@ public class ImportModelHandler extends AbstractHandler {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
-			ModelUtil.logException(e);
+			// TODO: ChainSaw
+			// ModelUtil.logException(e);
 			// END SUPRESS CATCH EXCEPTION
 		} finally {
 			progressDialog.getProgressMonitor().done();

@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.unicase.ui.common;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.common.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.util;bundle-version="1.0.0";visibility:=reexport
+Require-Bundle: org.unicase.ui.util;bundle-version="1.0.0";visibility:=reexport,
+ org.unicase.util;bundle-version="1.0.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
