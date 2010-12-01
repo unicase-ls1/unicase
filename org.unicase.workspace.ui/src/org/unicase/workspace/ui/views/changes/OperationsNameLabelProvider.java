@@ -13,7 +13,7 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.util.OverlayImageDescriptor;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * Label provider for the operation column in the viewer.

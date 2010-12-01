@@ -18,7 +18,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 

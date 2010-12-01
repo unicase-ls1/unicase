@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
