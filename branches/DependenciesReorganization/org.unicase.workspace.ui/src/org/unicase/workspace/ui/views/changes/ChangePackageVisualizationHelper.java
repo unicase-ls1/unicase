@@ -35,7 +35,7 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.util.UiUtil;
+import org.unicase.ui.util.UiUtil;
 import org.unicase.workspace.ui.Activator;
 
 /**

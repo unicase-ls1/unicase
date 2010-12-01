@@ -22,8 +22,8 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.util.DialogHandler;
-import org.unicase.util.PreferenceHelper;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

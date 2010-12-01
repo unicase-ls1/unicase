@@ -15,7 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;

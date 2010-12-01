@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.util.OverlayImageDescriptor;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * Label provider for the operation column in the viewer.
