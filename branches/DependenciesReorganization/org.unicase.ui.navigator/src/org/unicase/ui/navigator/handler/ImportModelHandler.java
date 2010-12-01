@@ -12,7 +12,6 @@ import java.util.Set;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.internal.resources.Project;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -151,7 +150,7 @@ public class ImportModelHandler extends AbstractHandler {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!ModelUtil.isSelfContained(rootNode)) {
+			if (!UnicaseUtil.isSelfContained(rootNode)) {
 				// TODO: Report to Console //System.out.println(rootNode + " is not selfcontained");
 				notSelfContained.add(rootNode);
 			}
@@ -190,7 +189,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @param element - the modelElement to import.
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
-	private void runImport(final Project project, final org.eclipse.emf.common.util.URI uri, final EObject element,
+	private void runImport(final ECPProject project, final org.eclipse.emf.common.util.URI uri, final EObject element,
 		final int resourceIndex) {
 
 		// TODO: PlainEObjectMode, test import
@@ -205,6 +204,8 @@ public class ImportModelHandler extends AbstractHandler {
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		project.addModelElement(element);
+
+		// TODO: ChainSaw
+		// project.addModelElement(element);
 	}
 }
