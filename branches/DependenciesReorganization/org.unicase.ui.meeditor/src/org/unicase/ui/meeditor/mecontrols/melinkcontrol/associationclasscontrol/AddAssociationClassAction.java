@@ -20,7 +20,7 @@ import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.AssociationClassHelper;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
-import org.unicase.util.OverlayImageDescriptor;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * This class provides the icon and command to link to a existing object over an AssociationClassElement.
