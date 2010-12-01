@@ -18,7 +18,6 @@ import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -28,6 +27,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	private Set<EPackage> packages = new HashSet<EPackage>();
 	private HashSet<EClass> modelElementClasses;
 	private Set<EPackage> rootPackages;
+	private MetaModelElementContext metaContext;
 
 	/**
 	 * Constructor.
@@ -38,8 +38,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Set<EClass> eClasses;
 		try {
-			MetaModelElementContext metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-				.getMetaModelElementContext();
+			metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject().getMetaModelElementContext();
 			eClasses = metaContext.getAllModelElementEClasses(false);
 		} catch (NoWorkspaceException e) {
 			Activator.logException(e);
@@ -56,10 +55,6 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			}
 		}
 
-		if (!(selected.equals(WorkspacePackage.eINSTANCE.getProjectSpace()))) {
-			Set<EClass> allEContainments = UnicaseUtil.getAllEContainments(selected);
-			modelElementClasses.retainAll(allEContainments);
-		}
 		extractRootPackages(modelElementClasses);
 	}
 
@@ -133,10 +128,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 * @param object EClass to be checked.
 	 * @return
 	 */
-	private boolean isNonDomainElement(Object object) {
-
-		return object instanceof EClass
-			&& MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
+	private boolean isNonDomainElement(EClass eClass) {
+		return metaContext.isNonDomainElement(eClass);
 	}
 
 	/**

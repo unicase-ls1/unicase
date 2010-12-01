@@ -41,6 +41,12 @@ public abstract class MetaModelElementContext {
 		return getAllSubEClasses(eClass, true);
 	}
 
+	public abstract boolean isNonDomainElement(EClass eClass);
+
+	public boolean isNonDomainElement(EObject eObject) {
+		return isNonDomainElement(eObject.eClass());
+	}
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
 	 * abstract classes or interfaces. Could exclude {@link AssociationClassElement}'s.
