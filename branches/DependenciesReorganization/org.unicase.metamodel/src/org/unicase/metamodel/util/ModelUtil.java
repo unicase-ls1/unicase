@@ -44,6 +44,7 @@ import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * Utility class for ModelElements.

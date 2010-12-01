@@ -14,5 +14,5 @@ Export-Package: org.unicase.metamodel,
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.unicase.util;bundle-version="1.0.0"
+ org.unicase.util;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
