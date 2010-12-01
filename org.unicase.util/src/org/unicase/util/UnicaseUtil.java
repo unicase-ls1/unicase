@@ -3,13 +3,19 @@ package org.unicase.util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 
 public class UnicaseUtil {
+	
+	private static Set<EClass> modelElementEClasses;
 
 	/**
 	 * @param newMEInstance {@link EObject} the new modelElement instance.
@@ -34,6 +40,94 @@ public class UnicaseUtil {
 			}
 		}
 		return reference;
+	}
+	
+	/**
+	 * Gives all eClasses which can be contained in a given eClass.
+	 * 
+	 * @param eClass the EClass
+	 * @return all Classes which can be contained
+	 */
+	public static Set<EClass> getAllEContainments(EClass eClass) {
+		List<EReference> containments = eClass.getEAllContainments();
+		Set<EClass> eClazz = new HashSet<EClass>();
+		for (EReference ref : containments) {
+			EClass eReferenceType = ref.getEReferenceType();
+			eClazz.addAll(getAllSubEClasses(eReferenceType));
+		}
+		return eClazz;
+	}
+	
+	/**
+	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
+	 * abstract classes or interfaces.
+	 * 
+	 * @param eClass the superClass of the subClasses to retrieve
+	 * @return a set of EClasses
+	 */
+	public static Set<EClass> getAllSubEClasses(EClass eClass) {
+		Set<EClass> allEClasses = getAllModelElementEClasses();
+		if (EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
+			return allEClasses;
+		}
+		Set<EClass> result = new HashSet<EClass>();
+		for (EClass subClass : allEClasses) {
+			boolean isSuperTypeOf = eClass.isSuperTypeOf(subClass)
+				|| eClass.equals(EcorePackage.eINSTANCE.getEObject());
+			if (isSuperTypeOf && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+				result.add(subClass);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
+	 * 
+	 * @return a set of EClasses
+	 */
+	public static Set<EClass> getAllModelElementEClasses() {
+		if (modelElementEClasses != null) {
+			return new HashSet<EClass>(modelElementEClasses);
+		}
+		Set<EClass> result = new HashSet<EClass>();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
+			try {
+				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				result.addAll(getAllModelElementEClasses(ePackage));
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				// TODO: ChainSaw
+				// END SUPRESS CATCH EXCEPTION
+//				logException("Failed to load model package " + entry.getKey(), exception);
+			}
+
+		}
+		modelElementEClasses = result;
+		return result;
+	}
+	
+	/**
+	 * Retrieve all EClasses from the Ecore package that are model element subclasses.
+	 * 
+	 * @param ePackage the package to get the classes from
+	 * @return a set of EClasses
+	 */
+	private static Set<EClass> getAllModelElementEClasses(EPackage ePackage) {
+		Set<EClass> result = new HashSet<EClass>();
+		for (EPackage subPackage : ePackage.getESubpackages()) {
+			result.addAll(getAllModelElementEClasses(subPackage));
+		}
+		for (EClassifier classifier : ePackage.getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				EClass subEClass = (EClass) classifier;
+				result.add(subEClass);
+			}
+		}
+		return result;
 	}
 		
 	/**

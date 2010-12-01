@@ -15,14 +15,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * @author Hodaie This is implementation of New Model Element wizard. This wizard is show through
@@ -76,8 +74,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				}.run();
 
 			} else {
-				final EReference possibleContainingReference = ModelUtil.getPossibleContainingReference(newMEInstance,
-					selectedEObject);
+				final EReference possibleContainingReference = UnicaseUtil.getPossibleContainingReference(
+					newMEInstance, selectedEObject);
 				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
 					ECPWorkspace workSpace;
 					try {
