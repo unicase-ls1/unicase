@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.internal.resources.Project;
+import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -54,8 +56,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
@@ -70,12 +70,6 @@ import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
 import org.unicase.ui.validation.providers.ValidationLabelProvider;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Validation view.
@@ -254,7 +248,8 @@ public class ValidationView extends ViewPart {
 					refactoringStrategies.add(strategy);
 				}
 			} catch (CoreException e) {
-				WorkspaceUtil.logWarning("Exception loading refactoring strategies from the extension point", e);
+				// TODO: ChainSaw
+				// WorkspaceUtil.logWarning("Exception loading refactoring strategies from the extension point", e);
 			}
 
 		}
