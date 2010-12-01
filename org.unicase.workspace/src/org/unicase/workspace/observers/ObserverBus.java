@@ -181,7 +181,6 @@ public class ObserverBus {
 			return proxy;
 		}
 
-		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			for (AbstractObserver observer : observers) {
 				method.invoke(observer, args);
