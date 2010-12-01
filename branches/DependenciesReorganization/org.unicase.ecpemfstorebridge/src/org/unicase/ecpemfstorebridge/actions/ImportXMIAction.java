@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.util.UnicaseUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -165,7 +166,7 @@ public class ImportXMIAction implements IActionDelegate {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!ModelUtil.isSelfContained(rootNode)) {
+			if (!UnicaseUtil.isSelfContained(rootNode)) {
 				// TODO: Report to Console //System.out.println(rootNode + " is not selfcontained");
 				notSelfContained.add(rootNode);
 			}
