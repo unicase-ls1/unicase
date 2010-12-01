@@ -141,13 +141,14 @@ public class UnicaseUtil {
 	 * @param child the model element whose container should get returned
 	 * @return the container
 	 */
-	public static EObject getParent(Class<? extends EObject> parent, EObject child) {
+	public static <T extends EObject>  T getParent(Class<T> parent, EObject child) {
 		Set<EObject> seenModelElements = new HashSet<EObject>();
 		seenModelElements.add(child);
 		return getParent(parent, child, seenModelElements);
 	}
 
-	private static EObject getParent(Class<? extends EObject> parent, EObject child, Set<EObject> seenModelElements) {
+	@SuppressWarnings("unchecked")
+	private static <T extends EObject> T getParent(Class<T> parent, EObject child, Set<EObject> seenModelElements) {
 		if (child == null) {
 			return null;
 		}
@@ -157,7 +158,7 @@ public class UnicaseUtil {
 		}
 
 		if (parent.isInstance(child)) {
-			return child;
+			return (T) child;
 		} else {
 			seenModelElements.add(child);
 			return getParent(parent, child.eContainer(), seenModelElements);
