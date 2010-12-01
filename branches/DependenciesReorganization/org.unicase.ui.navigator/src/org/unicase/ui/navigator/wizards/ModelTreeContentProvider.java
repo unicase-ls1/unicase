@@ -14,13 +14,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -59,7 +57,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		}
 
 		if (!(selected.equals(WorkspacePackage.eINSTANCE.getProjectSpace()))) {
-			Set<EClass> allEContainments = ModelUtil.getAllEContainments(selected);
+			Set<EClass> allEContainments = UnicaseUtil.getAllEContainments(selected);
 			modelElementClasses.retainAll(allEContainments);
 		}
 		extractRootPackages(modelElementClasses);
