@@ -8,6 +8,7 @@ package org.unicase.ecpemfstorebridge;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.util.UnicaseUtil;
@@ -51,5 +52,15 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
 		return ModelUtil.isAssociationClassElement(eClazz);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.common.MetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
+	 */
+	@Override
+	public boolean isNonDomainElement(EClass eClass) {
+		return eClass instanceof NonDomainElement;
 	}
 }
