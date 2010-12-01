@@ -1,4 +1,4 @@
-package org.unicase.util;
+package org.unicase.ui.util;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

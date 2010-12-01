@@ -1,4 +1,4 @@
-package org.unicase.util;
+package org.unicase.ui.util;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
