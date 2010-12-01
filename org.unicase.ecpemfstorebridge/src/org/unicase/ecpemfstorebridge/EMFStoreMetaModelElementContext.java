@@ -10,6 +10,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * {@link MetaModelElementContext} for the EMFStore.
@@ -27,7 +28,7 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 	 */
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
-		return ModelUtil.getAllModelElementEClasses();
+		return UnicaseUtil.getAllModelElementEClasses();
 	}
 
 	/**
