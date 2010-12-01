@@ -20,7 +20,7 @@ import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.util.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
