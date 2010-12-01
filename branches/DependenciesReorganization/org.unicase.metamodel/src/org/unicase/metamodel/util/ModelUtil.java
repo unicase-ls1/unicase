@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
@@ -137,7 +136,7 @@ public final class ModelUtil {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		if (!overrideContainmentCheck && !(object instanceof EClass)) {
-			if (!isSelfContained(object)) {
+			if (!UnicaseUtil.isSelfContained(object)) {
 				throw new SerializationException(object);
 			}
 		}
@@ -188,78 +187,6 @@ public final class ModelUtil {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private static Set<EObject> getNonTransientContents(EObject object) {
-		Set<EObject> result = new HashSet<EObject>();
-		if (object == null) {
-			return result;
-		}
-		for (EReference containmentReference : object.eClass().getEAllContainments()) {
-			if (!containmentReference.isTransient()) {
-				Object contentObject = object.eGet(containmentReference, true);
-				if (containmentReference.isMany()) {
-					EList<? extends EObject> contentList = (EList<? extends EObject>) contentObject;
-					for (EObject content : contentList) {
-						result.add(content);
-						result.addAll(getNonTransientContents(content));
-					}
-				} else {
-					EObject content = (EObject) contentObject;
-					if (content == null) {
-						continue;
-					}
-					result.add(content);
-					result.addAll(getNonTransientContents(content));
-				}
-			}
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	private static Set<EObject> getNonTransientCrossReferences(EObject object) {
-		Set<EObject> result = new HashSet<EObject>();
-		if (object == null) {
-			return result;
-		}
-		for (EReference reference : object.eClass().getEAllReferences()) {
-			if (!reference.isTransient() && !reference.isContainment()) {
-				Object referenceObject = object.eGet(reference, true);
-				if (reference.isMany()) {
-					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
-					result.addAll(referencesList);
-					for (EObject ref : referencesList) {
-						if (ModelUtil.isSingletonEObject(ref)) {
-							continue;
-						}
-
-						result.add(ref);
-					}
-
-				} else {
-					EObject crossReference = (EObject) referenceObject;
-					if (crossReference == null || ModelUtil.isSingletonEObject(crossReference)) {
-						continue;
-					}
-					result.add(crossReference);
-				}
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Determines whether an EObject is a singleton object. All EObjects being children of ECorePackage are considered
-	 * as singletons.
-	 */
-	public static boolean isSingletonEObject(EObject eObject) {
-		if (eObject.eContainer() != null && eObject.eContainer().equals(EcorePackage.eINSTANCE)) {
-			return true;
-		}
-
-		return false;
-	}
-
 	/**
 	 * Determines whether the type of an EObject is an ignored one.
 	 * 
@@ -279,48 +206,6 @@ public final class ModelUtil {
 		}
 
 		return ignoredDataTypes.contains(eObject.eClass().getInstanceClassName());
-	}
-
-	/**
-	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
-	 * does not have references to eobjects outside the tree.
-	 * 
-	 * @param object the eObject
-	 * @return true if it is selfcontained
-	 */
-	public static boolean isSelfContained(EObject object) {
-		return isSelfContained(object, false);
-	}
-
-	/**
-	 * Check an EObject and its containment tree whether it is self-contained. A containment tree is self contained if
-	 * it does not have references to EObjects outside the tree.
-	 * 
-	 * @param object the eObject
-	 * @param ignoreContainer true if references of object to its container should be ignored in the check.
-	 * @return true if it is self0contained
-	 */
-	public static boolean isSelfContained(EObject object, boolean ignoreContainer) {
-		Set<EObject> allChildEObjects = getNonTransientContents(object);
-		Set<EObject> allEObjects = new HashSet<EObject>(allChildEObjects);
-		allEObjects.add(object);
-
-		Set<EObject> nonTransientCrossReferences = getNonTransientCrossReferences(object);
-		if (ignoreContainer && object.eContainer() != null) {
-			nonTransientCrossReferences.remove(object.eContainer());
-		}
-		if (!allEObjects.containsAll(nonTransientCrossReferences)) {
-			return false;
-		}
-
-		// TOOD: EM, handle ignored data types here
-		// check if only cross references to known elements exist
-		// for (EObject content : allChildEObjects) {
-		// if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
-		// return false;
-		// }
-		// }
-		return true;
 	}
 
 	/**
@@ -810,61 +695,6 @@ public final class ModelUtil {
 		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(eObject);
 		saveEObjectToResource(list, resourceURI);
-	}
-
-	/**
-	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a error string which will
-	 * be added to the errorStrings list. After the return from the method to the caller the return value contains the
-	 * loaded EObjects.
-	 * 
-	 * @param resource contains the items which should be loaded.
-	 * @param errorStrings contains all messages about items which couldn't be loaded by the method.
-	 * @return Set with the loaded an valid EObjects
-	 */
-	public static Set<EObject> loadFromResource(Resource resource, List<String> errorStrings) {
-		Set<EObject> result = new HashSet<EObject>();
-
-		result = validation(resource, errorStrings);
-
-		return result;
-	}
-
-	// Validates if the EObjects can be imported
-	private static Set<EObject> validation(Resource resource, List<String> errorStrings) {
-		Set<EObject> childrenSet = new HashSet<EObject>();
-		Set<EObject> rootNodes = new HashSet<EObject>();
-
-		TreeIterator<EObject> contents = resource.getAllContents();
-
-		// 1. Run: Put all children in set
-		while (contents.hasNext()) {
-			EObject content = contents.next();
-			childrenSet.addAll(content.eContents());
-		}
-
-		contents = resource.getAllContents();
-
-		// 2. Run: Check if RootNodes are children -> set.contains(RootNode) -- no: RootNode in rootNode-Set -- yes:
-		// Drop RootNode, will be imported as a child
-		while (contents.hasNext()) {
-			EObject content = contents.next();
-
-			if (!childrenSet.contains(content)) {
-				rootNodes.add(content);
-			}
-		}
-
-		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
-		Set<EObject> notSelfContained = new HashSet<EObject>();
-		for (EObject rootNode : rootNodes) {
-			if (!ModelUtil.isSelfContained(rootNode)) {
-				errorStrings.add(rootNode + " is not self contained\n");
-				notSelfContained.add(rootNode);
-			}
-		}
-		rootNodes.removeAll(notSelfContained);
-
-		return rootNodes;
 	}
 
 	/**
