@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -33,8 +31,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI Control for the ME reference multilinks.
@@ -48,17 +46,17 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 * 
 	 * @author helming
 	 */
-	private final class RebuildLinksCommand extends RecordingCommand {
+	private final class RebuildLinksCommand extends ECPCommand {
 		private final int sizeLimit;
 
-		private RebuildLinksCommand(TransactionalEditingDomain domain, int sizeLimit) {
-			super(domain);
+		public RebuildLinksCommand(EObject modelElement, int sizeLimit) {
+			super(modelElement);
 			this.sizeLimit = sizeLimit;
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			Object objectList = getModelElement().eGet(eReference);
 			if (objectList instanceof EList) {
 				EList<EObject> eList = (EList<EObject>) objectList;
@@ -220,9 +218,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			linkArea.dispose();
 		}
 		linkControls.clear();
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		// JH: TransactionUtil.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RebuildLinksCommand(domain, sizeLimit));
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
 	}
 
 	/**

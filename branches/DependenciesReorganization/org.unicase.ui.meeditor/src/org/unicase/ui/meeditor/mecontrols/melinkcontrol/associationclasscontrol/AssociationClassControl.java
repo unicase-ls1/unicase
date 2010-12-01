@@ -13,8 +13,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -215,8 +213,6 @@ public class AssociationClassControl extends AbstractMEControl {
 			linkArea.dispose();
 		}
 		linkControls.clear();
-		new RebuildLinksCommand(eObject)
-//		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-//		domain.getCommandStack().execute(new RebuildLinksCommand(domain, sizeLimit));
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
 	}
 }
