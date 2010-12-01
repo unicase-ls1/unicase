@@ -1,8 +1,6 @@
 package org.unicase.xmi.exceptions;
 
-import java.io.IOException;
-
-public class XMIWorkspaceException extends Exception {
+public class XMIWorkspaceException extends Throwable {
 
 	/**
 	 * Generated ID for serialization

@@ -5,7 +5,7 @@ import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 /**
  * This interface encapsulates all ecpprojects that
  * use xmi-file resources.
- * @author Markus
+ * @author Markus, Matti
  *
  */
 public interface XMIECPProject extends ECPProject {
