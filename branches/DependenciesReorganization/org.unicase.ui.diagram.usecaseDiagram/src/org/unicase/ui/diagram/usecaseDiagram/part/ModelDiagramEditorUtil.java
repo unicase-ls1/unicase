@@ -55,7 +55,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.PreferenceHelper;
 
 /**
  * @generated
