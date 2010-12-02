@@ -388,6 +388,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		int height = Activator.getDefault().fixHeightForCocoa(entryMessage.computeSize(400, SWT.DEFAULT).y);
 		GridDataFactory.fillDefaults().hint(400, height).grab(true, false).applyTo(entryMessage);
 		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
+		entryMessage.setToolTipText("Click to get to the item."); // Text can be changed.
+		ModelElementClassTooltip.enableFor(entryMessage);
 
 		// the toolbar
 		createToolbar(notificationEntry);
