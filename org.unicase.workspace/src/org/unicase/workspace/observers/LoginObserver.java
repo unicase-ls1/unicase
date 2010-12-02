@@ -13,6 +13,7 @@ import org.unicase.workspace.Usersession;
  * @author pfeifferc
  * @author shterev
  */
+// TODO Chain use ObserverBus and extends IObserver
 public interface LoginObserver {
 
 	/**

@@ -12,7 +12,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author Shterev
  */
-public interface DeleteProjectSpaceObserver extends AbstractObserver {
+public interface DeleteProjectSpaceObserver extends IObserver {
 
 	/**
 	 * Notifies that the project space has been deleted. This is a <b>PRE-DELETE</b> event.
