@@ -24,7 +24,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * This is the label provider for status column on user tab of status view.
