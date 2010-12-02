@@ -79,7 +79,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 				dropAdapters.put(dropAdapter.isDropAdapterfor(), dropAdapter);
 
 			} catch (CoreException e) {
-				// TODO: ChainSaw
+				// TODO: ChainSaw logging
 				// WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}
@@ -92,8 +92,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
-		// TODO: ChainSaw
-		// On which EditingDomain do we perform the changes.
+		// TODO: ChainSaw - On which EditingDomain do we perform the changes.
 		new ECPCommand(targetConatiner) {
 
 			@Override
@@ -144,8 +143,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
-		// TODO: ChainSaw
-		// How to retrieve the ECPProject of target and dropee?
+		// TODO: ChainSaw - How to retrieve the ECPProject of target and dropee?
 		// check if source and target are in the same project
 		// if (result) {
 		// dropee = source.get(0);

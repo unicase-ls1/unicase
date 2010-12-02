@@ -120,7 +120,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 					continue;
 				}
 			} catch (NoWorkspaceException e) {
-				// TODO: ChainSaw
+				// TODO: ChainSaw exception handling
 				// Do NOT catch all Exceptions ("catch (Exception e)")
 				// Log AND handle Exceptions if possible
 				//

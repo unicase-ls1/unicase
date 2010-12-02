@@ -70,7 +70,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				new ECPCommand(selectedEObject) {
 					@Override
 					protected void doRun() {
-						// TODO: ChainSaw
+						// TODO: ChainSaw add element to project
 						// extend inteface to add model element
 
 					}

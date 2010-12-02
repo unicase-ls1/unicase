@@ -85,7 +85,7 @@ public class ExportModelHandler extends AbstractHandler {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Export modelelement...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					// TODO: ChainSaw
+					// TODO: ChainSaw export
 					// write XMI IDs into resource
 					// ModelUtil.saveEObjectToResource(exportModelElements, uri);
 					MessageDialog.openInformation(null, "Export", "Exported modelelement to file " + file.getName());
@@ -109,8 +109,7 @@ public class ExportModelHandler extends AbstractHandler {
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof EObject) {
 
-				// TODO: ChainSaw
-				// check whether specific clone functionality of ModelUtil is needed here
+				// TODO: ChainSaw - check whether specific clone functionality of ModelUtil is needed here
 				copyModelElement = EcoreUtil.copy((EObject) firstElement);
 				// copyModelElement = ModelUtil.clone((EObject) firstElement);
 

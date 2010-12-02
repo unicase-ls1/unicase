@@ -138,7 +138,7 @@ public final class ActionHelper {
 					name = element.getAttribute("name");
 				}
 			} catch (CoreException e) {
-				// TODO: ChainSaw
+				// TODO: ChainSaw logging
 				// WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}

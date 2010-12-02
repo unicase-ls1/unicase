@@ -150,7 +150,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		// TODO: ChainSaw
+		// TODO: ChainSaw event
 		// EventUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
 	}
 

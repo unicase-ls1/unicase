@@ -23,7 +23,7 @@ public abstract class EventUtil {
 	 * @param viewId The ID of the focused view.
 	 */
 	public static void logFocusEvent(String viewId) {
-		// TODO: ChainSaw
+		// TODO: ChainSaw logging / event
 		// final PluginFocusEvent pluginFocusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
 		// pluginFocusEvent.setPluginId(viewId);
 		// pluginFocusEvent.setStartDate(Calendar.getInstance().getTime());
@@ -46,7 +46,7 @@ public abstract class EventUtil {
 	 * @param presentationID The ID of the new presentation.
 	 */
 	public static void logPresentationSwitchEvent(String viewID, String presentationID) {
-		// TODO: ChainSaw
+		// TODO: ChainSaw logging / event
 		// final PresentationSwitchEvent presentationSwitchEvent =
 		// EventsFactory.eINSTANCE.createPresentationSwitchEvent();
 		// presentationSwitchEvent.setNewPresentation(presentationID);
@@ -76,7 +76,7 @@ public abstract class EventUtil {
 	 * @param tab the tab
 	 */
 	public static void logStatusViewDropEvent(EObject open, EObject dragged, String source, String tab) {
-		// TODO: ChainSaw
+		// TODO: ChainSaw logging / event
 		// final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
 		// dndEvent.setDropTargetElement(ModelUtil.getProject(open).getModelElementId(open));
 		// dndEvent.setDragSourceElement(ModelUtil.getProject(dragged).getModelElementId(dragged));
