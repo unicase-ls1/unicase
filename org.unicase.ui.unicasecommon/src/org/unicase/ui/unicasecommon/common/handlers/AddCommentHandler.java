@@ -11,6 +11,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
  * This is handler to add a comment to a ModelElement.
@@ -24,7 +25,7 @@ public class AddCommentHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		EObject me = ActionHelper.getModelElement(event);
-		ActionHelper.openDiscussion(me, true);
+		UnicaseActionHelper.openDiscussion(me, true);
 
 		return null;
 	}
