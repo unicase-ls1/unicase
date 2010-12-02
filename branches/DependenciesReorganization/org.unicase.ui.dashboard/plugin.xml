@@ -163,9 +163,9 @@
       </ModelElementOpener>
    </extension>
    <extension
-         point="org.unicase.workspace.notify.workspace">
-      <observer
+         point="org.unicase.workspace.notify.postinit">
+      <initiator
             class="org.unicase.ui.dashboard.DashboardProjectObserver">
-      </observer>
+      </initiator>
    </extension>
 </plugin>
