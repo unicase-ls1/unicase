@@ -74,7 +74,6 @@ public final class WorkspaceManager {
 		if (instance == null) {
 			try {
 				instance = new WorkspaceManager();
-				instance.notifyPostWorkspaceInitiators();
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SURPRESS CATCH EXCEPTION
@@ -84,6 +83,9 @@ public final class WorkspaceManager {
 
 			// init ecore packages
 			UnicaseUtil.getAllModelElementEClasses();
+
+			// notify post workspace observers
+			instance.notifyPostWorkspaceInitiators();
 		}
 		return instance;
 	}
