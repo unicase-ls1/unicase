@@ -17,9 +17,9 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.statusview.StatusView;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * This is the handler for ShowInStatusView command.

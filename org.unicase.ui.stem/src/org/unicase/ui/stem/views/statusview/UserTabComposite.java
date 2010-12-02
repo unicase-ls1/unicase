@@ -38,8 +38,8 @@ import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelPro
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
