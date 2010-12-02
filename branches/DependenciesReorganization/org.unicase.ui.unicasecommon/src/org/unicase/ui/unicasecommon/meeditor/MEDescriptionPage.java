@@ -24,7 +24,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.AbstractMEEditorPage;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
  * The editor page for the description feature.
