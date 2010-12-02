@@ -106,7 +106,7 @@ public class ImportModelHandler extends AbstractHandler {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
-			// TODO: ChainSaw
+			// TODO: ChainSaw logging
 			// ModelUtil.logException(e);
 			// END SUPRESS CATCH EXCEPTION
 		} finally {
@@ -206,7 +206,7 @@ public class ImportModelHandler extends AbstractHandler {
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
 
-		// TODO: ChainSaw
+		// TODO: ChainSaw add element to project
 		// project.addModelElement(element);
 	}
 }

@@ -58,7 +58,7 @@ public final class DialogHandler {
 		}
 		String string = stringBuilder.toString();
 		MessageDialog.openError(shell, title, string);
-		// TODO: ChainSaw
+		// TODO: ChainSaw logging
 //		WorkspaceUtil.logWarning("An unexpected error in a unicase plugin occured.", cause);
 	}
 

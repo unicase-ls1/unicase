@@ -895,7 +895,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 */
 	@Override
 	public void setFocus() {
-		// TODO: ChainSaw
+		// TODO: ChainSaw event
 		// EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 

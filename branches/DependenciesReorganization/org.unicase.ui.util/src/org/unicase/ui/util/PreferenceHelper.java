@@ -22,7 +22,7 @@ public final class PreferenceHelper {
 		// nothing to do here
 	}
 	
-	// TODO: ChainSaw
+	// TODO: ChainSaw namespace?
 	private static final String PREFERENCE_NODE = "ecp";
 
 	/**
@@ -49,7 +49,7 @@ public final class PreferenceHelper {
 			try {
 				Platform.getPreferencesService().getRootNode().node(ConfigurationScope.SCOPE).node(PREFERENCE_NODE).flush();
 			} catch (BackingStoreException e) {
-				// TODO: ChainSaw
+				// TODO: ChainSaw logging
 //				ModelUtil.logException("Could not persist the preference change: {" + key + ", " + value + "}", e);
 			}
 		}
