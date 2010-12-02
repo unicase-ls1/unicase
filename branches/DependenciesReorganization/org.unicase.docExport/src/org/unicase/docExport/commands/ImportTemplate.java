@@ -34,7 +34,7 @@ import org.unicase.docExport.exceptions.TemplateImportException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
