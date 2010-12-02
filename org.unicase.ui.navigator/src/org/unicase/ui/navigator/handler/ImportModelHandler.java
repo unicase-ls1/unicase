@@ -24,6 +24,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.util.PreferenceHelper;
@@ -53,7 +54,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
-		ECPProject project = (ECPProject) UnicaseUtil.getParent(ECPProject.class, selectedModelElement);
+		final ECPProject project = UnicaseUtil.getParent(ECPProject.class, selectedModelElement);
 
 		if (project == null && selectedModelElement == null) {
 			return null;
@@ -74,7 +75,7 @@ public class ImportModelHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new UnicaseCommand() {
+		new ECPCommand(project) {
 			@Override
 			protected void doRun() {
 				importFile(project, fileURI, resource, progressDialog);
