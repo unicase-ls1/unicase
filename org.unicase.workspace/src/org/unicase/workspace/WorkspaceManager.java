@@ -74,7 +74,7 @@ public final class WorkspaceManager {
 		if (instance == null) {
 			try {
 				instance = new WorkspaceManager();
-
+				instance.notifyPostWorkspaceInitiators();
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SURPRESS CATCH EXCEPTION
@@ -105,8 +105,6 @@ public final class WorkspaceManager {
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
 		this.observerBus = new ObserverBus();
-
-		notifyPostWorkspaceInitiators();
 	}
 
 	private void notifyPostWorkspaceInitiators() {
