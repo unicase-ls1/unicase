@@ -14,6 +14,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author shterev
  */
+// TODO Chain use ObserverBus and extends IObserver
 public interface CommitObserver {
 
 	/**

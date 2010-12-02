@@ -10,5 +10,5 @@ package org.unicase.workspace.observers;
  * 
  * @author wesendon
  */
-public interface AbstractObserver {
+public interface IObserver {
 }

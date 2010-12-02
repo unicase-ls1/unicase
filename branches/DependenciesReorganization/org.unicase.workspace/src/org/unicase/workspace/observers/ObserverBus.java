@@ -64,13 +64,13 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class ObserverBus {
 
-	private HashMap<Class<? extends AbstractObserver>, ProxyHandler> observerProxies;
+	private HashMap<Class<? extends IObserver>, ProxyHandler> observerProxies;
 
 	/**
 	 * Default constructor.
 	 */
 	public ObserverBus() {
-		observerProxies = new HashMap<Class<? extends AbstractObserver>, ProxyHandler>();
+		observerProxies = new HashMap<Class<? extends IObserver>, ProxyHandler>();
 	}
 
 	private static ObserverBus getInstance() {
@@ -85,7 +85,7 @@ public class ObserverBus {
 	 * @return call object
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends AbstractObserver> T send(Class<T> clazz) {
+	public static <T extends IObserver> T send(Class<T> clazz) {
 		if (clazz == null) {
 			return null;
 		}
@@ -93,7 +93,7 @@ public class ObserverBus {
 		return (T) i.getProxyHandler(clazz, true).getProxy();
 	}
 
-	private List<AbstractObserver> getObserver(Class<? extends AbstractObserver> clazz, boolean force) {
+	private List<IObserver> getObserver(Class<? extends IObserver> clazz, boolean force) {
 		return getProxyHandler(clazz, force).getObservers();
 	}
 
@@ -102,7 +102,7 @@ public class ObserverBus {
 	 * 
 	 * @param observer observer object
 	 */
-	public static void register(AbstractObserver observer) {
+	public static void register(IObserver observer) {
 		register(observer, getObserverInterfaces(observer));
 	}
 
@@ -112,9 +112,9 @@ public class ObserverBus {
 	 * @param observer observer object
 	 * @param classes set of classes
 	 */
-	public static void register(AbstractObserver observer, Class<? extends AbstractObserver>... classes) {
+	public static void register(IObserver observer, Class<? extends IObserver>... classes) {
 		ObserverBus i = getInstance();
-		for (Class<? extends AbstractObserver> iface : classes) {
+		for (Class<? extends IObserver> iface : classes) {
 			if (iface.isInstance(observer)) {
 				i.getObserver(iface, true).add(observer);
 			}
@@ -126,7 +126,7 @@ public class ObserverBus {
 	 * 
 	 * @param observer observer object
 	 */
-	public static void unregister(AbstractObserver observer) {
+	public static void unregister(IObserver observer) {
 		unregister(observer, getObserverInterfaces(observer));
 	}
 
@@ -136,11 +136,11 @@ public class ObserverBus {
 	 * @param observer observer object
 	 * @param classes set of classes
 	 */
-	public static void unregister(AbstractObserver observer, Class<? extends AbstractObserver>... classes) {
+	public static void unregister(IObserver observer, Class<? extends IObserver>... classes) {
 		ObserverBus i = getInstance();
-		for (Class<? extends AbstractObserver> iface : classes) {
+		for (Class<? extends IObserver> iface : classes) {
 			if (iface.isInstance(observer)) {
-				List<AbstractObserver> observers = i.getObserver(iface, false);
+				List<IObserver> observers = i.getObserver(iface, false);
 				if (observers != null) {
 					observers.remove(observer);
 				}
@@ -148,7 +148,7 @@ public class ObserverBus {
 		}
 	}
 
-	private ProxyHandler getProxyHandler(Class<? extends AbstractObserver> clazz, boolean force) {
+	private ProxyHandler getProxyHandler(Class<? extends IObserver> clazz, boolean force) {
 		ProxyHandler handler = observerProxies.get(clazz);
 		if (handler == null && force) {
 			handler = new ProxyHandler();
@@ -163,13 +163,13 @@ public class ObserverBus {
 	private final class ProxyHandler implements InvocationHandler {
 
 		private Object proxy;
-		private ArrayList<AbstractObserver> observers;
+		private ArrayList<IObserver> observers;
 
 		public ProxyHandler() {
-			observers = new ArrayList<AbstractObserver>();
+			observers = new ArrayList<IObserver>();
 		}
 
-		public List<AbstractObserver> getObservers() {
+		public List<IObserver> getObservers() {
 			return observers;
 		}
 
@@ -182,7 +182,7 @@ public class ObserverBus {
 		}
 
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-			for (AbstractObserver observer : observers) {
+			for (IObserver observer : observers) {
 				method.invoke(observer, args);
 			}
 			// TODO: handle return values
@@ -191,22 +191,22 @@ public class ObserverBus {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static Class<? extends AbstractObserver>[] getObserverInterfaces(AbstractObserver observer) {
-		HashSet<Class<? extends AbstractObserver>> result = new HashSet<Class<? extends AbstractObserver>>();
+	private static Class<? extends IObserver>[] getObserverInterfaces(IObserver observer) {
+		HashSet<Class<? extends IObserver>> result = new HashSet<Class<? extends IObserver>>();
 		getClasses(observer.getClass(), result);
 		return result.toArray(new Class[result.size()]);
 	}
 
 	// TODO: double check this method, i think to many interfaces are added
 	@SuppressWarnings("unchecked")
-	private static boolean getClasses(Class<?> clazz, HashSet<Class<? extends AbstractObserver>> result) {
+	private static boolean getClasses(Class<?> clazz, HashSet<Class<? extends IObserver>> result) {
 		for (Class<?> iface : clazz.getInterfaces()) {
-			if (iface.equals(AbstractObserver.class) && clazz.isInterface()) {
-				result.add((Class<? extends AbstractObserver>) clazz);
+			if (iface.equals(IObserver.class) && clazz.isInterface()) {
+				result.add((Class<? extends IObserver>) clazz);
 				return true;
 			} else {
 				if (getClasses(iface, result) && clazz.isInterface()) {
-					result.add((Class<? extends AbstractObserver>) clazz);
+					result.add((Class<? extends IObserver>) clazz);
 				}
 			}
 		}
