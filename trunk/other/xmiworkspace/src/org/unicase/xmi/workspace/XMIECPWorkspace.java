@@ -136,16 +136,18 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			Writer writer = factory.createWriter();
 			writer.setName("him");
 			library.getWriters().add(writer);
-			XMIECPProject xmiecpProject = new XMIECPProject(getEditingDomain(), library);
 			
-			xmiecpProject.eAdapters().add(workspaceListenerAdapter);
-			xmires.getContents().add(xmiecpProject);
-			projects.add(xmiecpProject);
+			XMIECPProject project = new XMIECPProject(getEditingDomain(), library);
+			
+			library.eAdapters().add(workspaceListenerAdapter);
+			xmires.getContents().add(library);
+			projects.add(project);
+			
 			// test end
 			
 			// try to persist new workspace, otherwise log failure
 			try {
-				xmires.save(Configuration.getResourceSaveOptions());
+				xmires.save(Collections.EMPTY_MAP);
 				}
 			catch(IOException e) {
 				new XMIWorkspaceException("Creating new workspace failed! Delete workspace-file: " + Configuration.getWorkspaceDirectory(), e);
@@ -165,10 +167,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			projects = new BasicEList<ECPProject>();
 			
 			for(EObject eo: xmicontents) {
-				if(eo instanceof XMIECPProject) {
-					XMIECPProject ecpp = (XMIECPProject) eo;
+				if(eo instanceof Library) {
+					XMIECPProject ecpp = new XMIECPProject(getEditingDomain(), (Library) eo);
 					projects.add(ecpp);
-					ecpp.eAdapters().add(workspaceListenerAdapter);
 					super.setActiveProject(ecpp);
 				}
 			}

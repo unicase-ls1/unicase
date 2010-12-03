@@ -111,8 +111,9 @@ public class XMIECPProject extends ECPProjectImpl {
 		return null;
 	}
 
-	//TODO check whether needed
+	// checks whether an eobject is associated with this project 
 	public boolean isAssociationClassElement(EObject eObject) {
+		//return getAllModelElements().contains(eObject);
 		return false;
 	}
 
