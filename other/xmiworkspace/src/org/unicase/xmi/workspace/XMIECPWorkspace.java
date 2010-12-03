@@ -61,118 +61,11 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	public XMIECPWorkspace() {
 		resourceSet = new ResourceSetImpl();
 		xmiPath = URI.createFileURI(Platform.getLocation().toString() + "xmiworkspace.ucw");
+		
+		buildEContentAdapter();
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getEditingDomain()
-	 */
-	@Override
-	public TransactionalEditingDomain getEditingDomain() {
-		TransactionalEditingDomain editingDomain2 = Configuration.getEditingDomain();
-		if (editingDomain2 == null) {
-			final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
-			domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
-		}		
-		return Configuration.getEditingDomain();
-	}
-	
-	/**
-	 * Returns the projects in the workspace with a listener on changes
-	 */
-	@Override
-	public EList<ECPProject> getProjects() {
-		// Check whether a xmi resource file exists
-		File xmiFile = new File(xmiPath.toFileString());
-		Resource xmires; // automatically an XMI Resource
-		//ECPWorkspace ws; // workspace that's being persisted
-		
-		if(!xmiFile.exists()) {
-			// file does not exists and therefore the workspace has to be build
-			xmires = resourceSet.createResource(xmiPath); // creates file
-			//ws = WorkSpaceModelFactory.eINSTANCE.createECPWorkspace(); // creates a new workspace
-			
-			// add projects for testing -> library model
-			projects = new BasicEList<ECPProject>();
-			
-			LibraryFactory factory = LibraryFactory.eINSTANCE;
-			Library library = factory.createLibrary();			
-			Book book = factory.createBook();
-			book.setTitle("bla");
-			library.getBooks().add(book);
-			Writer writer = factory.createWriter();
-			writer.setName("him");
-			library.getWriters().add(writer);
-			XMIECPProject xmiecpProject = new XMIECPProject(getEditingDomain(), library);
-			
-			xmires.getContents().add(library);
-			
-			//TODO: Remove, because it's duplicated code from below
-			xmiecpProject.eAdapters().add(new EContentAdapter() {
-				@Override
-				public void notifyChanged(Notification notification) {
-					// save the changed objects
-					Object changedObj = notification.getNotifier();
-					if(changedObj instanceof EObject) {
-						EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
-						
-						// try to save object to the attached resource
-						try {
-							changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
-						} catch (IOException e) {
-							new XMIWorkspaceException("Wasn't able to persist object to xmi resource.", e);
-						} catch (NullPointerException e) {
-							new XMIWorkspaceException("Unable to persist object. Attached resource missing.", e);
-						}
-					}
-					
-					// continue
-					super.notifyChanged(notification);
-				}
-			});
-			
-			//ws.getProjects().add(xmiecpProject);
-			projects.add(xmiecpProject);
-			// test end
-			
-			//xmires.getContents().add(ws); // adds the workspace to the (xmi)resource
-			
-			// try to persist new workspace, otherwise log failure
-			try {
-				xmires.save(Configuration.getResourceSaveOptions());
-				}
-			catch(IOException e) {
-				new XMIWorkspaceException("Creating new workspace failed! Delete workspace-file: " + Configuration.getWorkspaceDirectory(), e);
-			}
-		}
-		else {
-			xmires = resourceSet.getResource(xmiPath, true); //TODO tries to get the resource -> fails...
-			
-			// try to load resource
-			try {
-				xmires.load(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				new XMIWorkspaceException("Failed to load workspace-file.", e);
-			}
-			
-			//ws = (ECPWorkspace) xmires.getContents().get(0); // there is only one object in the resource and that's the workspace
-			//ECPProject ecpp = (XMIECPProject) xmires.getContents().get(0);
-			
-			EList<EObject> xmicontents = xmires.getContents();
-			projects = new BasicEList<ECPProject>();
-			
-			for(EObject eo: xmicontents) {
-				ECPProject ecpp = new XMIECPProject(getEditingDomain(), (Library) eo); //TODO: make the cast generic
-				projects.add(ecpp);
-				super.setActiveProject(ecpp);
-			}
-			
-			//projects = ws.getProjects(); // get the projects from the xmi-file-workspace
-		}
-		
+	private void buildEContentAdapter() {
 		workspaceListenerAdapter = new EContentAdapter() {
 			
 			/**
@@ -200,12 +93,86 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				super.notifyChanged(notification);
 			}
 		};
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getEditingDomain()
+	 */
+	@Override
+	public TransactionalEditingDomain getEditingDomain() {
+		TransactionalEditingDomain editingDomain2 = Configuration.getEditingDomain();
+		if (editingDomain2 == null) {
+			final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+			domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
+		}		
+		return Configuration.getEditingDomain();
+	}
+	
+	/**
+	 * Returns the projects in the workspace with a listener on changes
+	 */
+	@Override
+	public EList<ECPProject> getProjects() {
+		// Check whether a xmi resource file exists
+		File xmiFile = new File(xmiPath.toFileString());
+		Resource xmires; // automatically an XMI Resource
 		
-		// add listener to workspace
-		//ws.eAdapters().add(workspaceListenerAdapter);
-		
-		// set the editing domain for the workspace
-		//ws.setEditingDomain(getEditingDomain());
+		if(!xmiFile.exists()) {
+			// file does not exists and therefore the workspace has to be build
+			xmires = resourceSet.createResource(xmiPath); // creates file
+			
+			// add projects for testing -> library model
+			projects = new BasicEList<ECPProject>();
+			
+			LibraryFactory factory = LibraryFactory.eINSTANCE;
+			Library library = factory.createLibrary();			
+			Book book = factory.createBook();
+			book.setTitle("bla");
+			library.getBooks().add(book);
+			Writer writer = factory.createWriter();
+			writer.setName("him");
+			library.getWriters().add(writer);
+			XMIECPProject xmiecpProject = new XMIECPProject(getEditingDomain(), library);
+			
+			xmires.getContents().add(library);
+			
+			xmiecpProject.eAdapters().add(workspaceListenerAdapter);
+			
+			//ws.getProjects().add(xmiecpProject);
+			projects.add(xmiecpProject);
+			// test end
+			
+			// try to persist new workspace, otherwise log failure
+			try {
+				xmires.save(Configuration.getResourceSaveOptions());
+				}
+			catch(IOException e) {
+				new XMIWorkspaceException("Creating new workspace failed! Delete workspace-file: " + Configuration.getWorkspaceDirectory(), e);
+			}
+		}
+		else {
+			xmires = resourceSet.getResource(xmiPath, true);
+			
+			// try to load resource
+			try {
+				xmires.load(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				new XMIWorkspaceException("Failed to load workspace-file.", e);
+			}
+			
+			EList<EObject> xmicontents = xmires.getContents();
+			projects = new BasicEList<ECPProject>();
+			
+			for(EObject eo: xmicontents) {
+				ECPProject ecpp = new XMIECPProject(getEditingDomain(), (Library) eo);
+				projects.add(ecpp);
+				super.setActiveProject(ecpp);
+			}
+		}
 		
 		return projects;
 	}
