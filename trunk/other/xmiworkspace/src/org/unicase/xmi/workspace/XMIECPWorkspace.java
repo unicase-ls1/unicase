@@ -138,11 +138,8 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			library.getWriters().add(writer);
 			XMIECPProject xmiecpProject = new XMIECPProject(getEditingDomain(), library);
 			
-			xmires.getContents().add(library);
-			
 			xmiecpProject.eAdapters().add(workspaceListenerAdapter);
-			
-			//ws.getProjects().add(xmiecpProject);
+			xmires.getContents().add(xmiecpProject);
 			projects.add(xmiecpProject);
 			// test end
 			
@@ -168,9 +165,12 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			projects = new BasicEList<ECPProject>();
 			
 			for(EObject eo: xmicontents) {
-				ECPProject ecpp = new XMIECPProject(getEditingDomain(), (Library) eo);
-				projects.add(ecpp);
-				super.setActiveProject(ecpp);
+				if(eo instanceof XMIECPProject) {
+					XMIECPProject ecpp = (XMIECPProject) eo;
+					projects.add(ecpp);
+					ecpp.eAdapters().add(workspaceListenerAdapter);
+					super.setActiveProject(ecpp);
+				}
 			}
 		}
 		
