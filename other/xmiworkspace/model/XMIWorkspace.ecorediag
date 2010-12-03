@@ -126,7 +126,7 @@
     <styles xmi:type="notation:TextStyle" xmi:id="_uvhd4fvREd-sBcVr1IW04A"/>
     <styles xmi:type="notation:LineTypeStyle" xmi:id="_uvhd4vvREd-sBcVr1IW04A"/>
     <element xsi:nil="true"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uvhd4_vREd-sBcVr1IW04A" x="425" y="35"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uvhd4_vREd-sBcVr1IW04A" x="450" y="35"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_097g4PvREd-sBcVr1IW04A" type="Note" fontName="Segoe UI" description="This class represents a container for multiple projects" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
     <children xmi:type="notation:BasicDecorationNode" xmi:id="_098vAPvREd-sBcVr1IW04A" type="DiagramName">
@@ -138,7 +138,7 @@
     <styles xmi:type="notation:TextStyle" xmi:id="_097g4fvREd-sBcVr1IW04A"/>
     <styles xmi:type="notation:LineTypeStyle" xmi:id="_097g4vvREd-sBcVr1IW04A"/>
     <element xsi:nil="true"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_097g4_vREd-sBcVr1IW04A" x="635" y="165"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_097g4_vREd-sBcVr1IW04A" x="660" y="165"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_3xOH4PvREd-sBcVr1IW04A" type="Note" fontName="Segoe UI" description="This class represents one project as one xmi-file" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
     <children xmi:type="notation:BasicDecorationNode" xmi:id="_3xPWAPvREd-sBcVr1IW04A" type="DiagramName">
@@ -150,7 +150,7 @@
     <styles xmi:type="notation:TextStyle" xmi:id="_3xOH4fvREd-sBcVr1IW04A"/>
     <styles xmi:type="notation:LineTypeStyle" xmi:id="_3xOH4vvREd-sBcVr1IW04A"/>
     <element xsi:nil="true"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3xOH4_vREd-sBcVr1IW04A" x="20" y="110" width="136"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3xOH4_vREd-sBcVr1IW04A" x="20" y="85" width="136"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_-t8pcPvREd-sBcVr1IW04A" type="Note" fontName="Segoe UI" description="This class represents a &quot;real&quot; folder on the filesystem containing xmi-files" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
     <children xmi:type="notation:BasicDecorationNode" xmi:id="_-t9QgPvREd-sBcVr1IW04A" type="DiagramName">
