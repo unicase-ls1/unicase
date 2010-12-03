@@ -15,9 +15,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -27,12 +25,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelFactory;
-import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 /**
  * Implements a workspace based on an XMI resource.
@@ -40,19 +34,6 @@ import org.unicase.xmi.exceptions.XMIWorkspaceException;
  *
  */
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
-
-	@Override
-	public void setActiveModelelement(EObject eobject) {
-		if (eobject == null) {
-			return;
-		}
-		while(eobject.eContainer() != null){
-			eobject = eobject.eContainer();
-		}
-		
-		super.setActiveModelelement(eobject);
-		
-	}
 
 	/**
 	 * ListenerAdapter that's being called when an object in the model has changed.
@@ -186,6 +167,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			for(EObject eo: xmicontents) {
 				ECPProject ecpp = new XMIECPProject(getEditingDomain(), (Library) eo); //TODO: make the cast generic
 				projects.add(ecpp);
+				super.setActiveProject(ecpp);
 			}
 			
 			//projects = ws.getProjects(); // get the projects from the xmi-file-workspace
