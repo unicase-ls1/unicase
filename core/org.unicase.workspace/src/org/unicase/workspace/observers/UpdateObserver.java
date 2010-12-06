@@ -8,6 +8,7 @@ package org.unicase.workspace.observers;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.util.observer.IObserver;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -27,7 +28,7 @@ public interface UpdateObserver extends IObserver {
 	/**
 	 * Called after the changes have been applied to the project and the update is completed.
 	 * 
-	 * @param projectSpace
+	 * @param projectSpace project space
 	 */
 	void updateCompleted(ProjectSpace projectSpace);
 

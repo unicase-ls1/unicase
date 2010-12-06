@@ -17,9 +17,9 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.PostWorkspaceInitiator;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.observers.CheckoutObserver;
 import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
-import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.observers.UpdateObserver;
 
 /**
@@ -31,8 +31,13 @@ import org.unicase.workspace.observers.UpdateObserver;
 public class DashboardProjectObserver implements DeleteProjectSpaceObserver, CheckoutObserver, UpdateObserver,
 	PostWorkspaceInitiator {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.PostWorkspaceInitiator#workspaceInitComplete(org.unicase.workspace.Workspace)
+	 */
 	public void workspaceInitComplete(Workspace workspace) {
-		ObserverBus.register(this);
+		WorkspaceManager.getObserverBus().register(this);
 	}
 
 	/**
@@ -58,15 +63,31 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.CheckoutObserver#checkoutDone(org.unicase.workspace.ProjectSpace)
+	 */
 	public void checkoutDone(ProjectSpace projectSpace) {
 		UnicaseActionHelper.openDashboard(projectSpace);
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted(org.unicase.workspace.ProjectSpace)
+	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
 		UnicaseActionHelper.openDashboard(projectSpace);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.UpdateObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 *      java.util.List)
+	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
 		return true;
 	}
