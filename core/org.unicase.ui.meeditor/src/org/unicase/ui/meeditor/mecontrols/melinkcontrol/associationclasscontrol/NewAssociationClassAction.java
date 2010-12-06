@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
@@ -25,10 +23,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.AssociationClassHelper;
-import org.unicase.workspace.Configuration;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * This class provides the icon and command to create a new object and link it with a given object over an
@@ -44,14 +42,15 @@ public class NewAssociationClassAction extends Action {
 	 * 
 	 * @author Michael Haeger
 	 */
-	private final class NewAssociationClassCommand extends RecordingCommand {
-		private NewAssociationClassCommand(TransactionalEditingDomain domain) {
-			super(domain);
+	private final class NewAssociationClassCommand extends ECPCommand {
+
+		public NewAssociationClassCommand(EObject eObject) {
+			super(eObject);
 		}
 
 		@SuppressWarnings( { "unchecked", "deprecation" })
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			EClass relatedModelElementClass = null;
 			Set<EClass> subclasses = context.getMetaModelElementContext().getAllSubEClasses(modelElement.eClass(),
 				false);
@@ -141,7 +140,6 @@ public class NewAssociationClassAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		domain.getCommandStack().execute(new NewAssociationClassCommand(domain));
+		new NewAssociationClassCommand(modelElement).run();
 	}
 }

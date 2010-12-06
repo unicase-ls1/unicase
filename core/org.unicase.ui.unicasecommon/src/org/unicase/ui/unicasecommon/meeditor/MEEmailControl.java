@@ -23,7 +23,7 @@ import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**

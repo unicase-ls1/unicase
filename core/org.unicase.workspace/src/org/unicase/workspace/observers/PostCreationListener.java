@@ -14,6 +14,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author emueller
  */
+// TODO Chain use ObserverBus and extends IObserver
 public interface PostCreationListener {
 
 	/**

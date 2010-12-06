@@ -3,33 +3,21 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common.decorators;
+package org.unicase.workspace.ui.decorators;
 
-import java.net.URL;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The decorator to show dirty state of an element shown in viewers.
  * 
  * @author Helming
  */
-public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
+public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 
-	private String dirtyPath = "icons/dirty.png";
-	private ImageDescriptor descriptor;
+	//	private String dirtyPath = "icons/dirty.jpg";
+	//	private ImageDescriptor descriptor;
 
 	/**
 	 * {@inheritDoc}
@@ -40,31 +28,25 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 	 * @param decoration decoration
 	 */
 	public void decorate(Object element, IDecoration decoration) {
-		URL url = null;
-		boolean dirty = false;
-		if (element instanceof EObject) {
-			EObject modelElement = (EObject) element;
-			Project project = ModelUtil.getProject(modelElement);
-			if (project == null) {
-				return;
-			}
-			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
-			if (projectSpace == null) {
-				return;
-			}
-			ModelElementId modelElementId = project.getModelElementId(modelElement);
-			if (modelElementId == null) {
-				return;
-			}
-			if (projectSpace.getModifiedModelElementsCache().isModelElementDirty(modelElementId)) {
-				dirty = true;
-			}
-		}
-		if (dirty) {
-			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
-			descriptor = ImageDescriptor.createFromURL(url);
-			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
-		}
+		/**
+		 * Checks that the element is an IResource with the 'Read-only' attribute and adds the decorator based on the
+		 * specified image description and the integer representation of the placement option.
+		 */
+
+		//		URL url = null;
+		//		boolean dirty = false;
+		//		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		//		if (activeProjectSpace == null) {
+		//			return;
+		//		}
+		//		if (element instanceof Project) {
+		//			return;
+		//		}
+		//		if (dirty) {
+		//			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+		//			descriptor = ImageDescriptor.createFromURL(url);
+		//			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
+		//		}
 	}
 
 	/**

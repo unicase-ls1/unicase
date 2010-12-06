@@ -13,8 +13,8 @@ import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * Openeer for the meeditor.

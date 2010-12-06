@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -28,12 +31,14 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.util.UnicaseUtil;
 import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
+import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
@@ -57,6 +62,8 @@ public final class WorkspaceManager {
 	private ConnectionManager connectionManager;
 	private AdminConnectionManager adminConnectionManager;
 
+	private ObserverBus observerBus;
+
 	/**
 	 * Get an instance of the workspace manager. Will create an instance if no workspace manager is present.
 	 * 
@@ -67,7 +74,6 @@ public final class WorkspaceManager {
 		if (instance == null) {
 			try {
 				instance = new WorkspaceManager();
-
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SURPRESS CATCH EXCEPTION
@@ -76,7 +82,10 @@ public final class WorkspaceManager {
 			}
 
 			// init ecore packages
-			ModelUtil.getAllModelElementEClasses();
+			UnicaseUtil.getAllModelElementEClasses();
+
+			// notify post workspace observers
+			instance.notifyPostWorkspaceInitiators();
 		}
 		return instance;
 	}
@@ -97,6 +106,21 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
+		this.observerBus = new ObserverBus();
+	}
+
+	private void notifyPostWorkspaceInitiators() {
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.notify.postinit");
+		for (IConfigurationElement element : workspaceObservers) {
+			try {
+				PostWorkspaceInitiator workspaceObserver = (PostWorkspaceInitiator) element
+					.createExecutableExtension("class");
+				workspaceObserver.workspaceInitComplete(currentWorkspace);
+			} catch (CoreException e) {
+				WorkspaceUtil.logException(e.getMessage(), e);
+			}
+		}
 	}
 
 	/**
@@ -197,8 +221,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -219,9 +243,8 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException(
-				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
-				e);
+			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 	}
 
@@ -439,5 +462,14 @@ public final class WorkspaceManager {
 		} else {
 			throw new IllegalStateException("Project is not contained by any project space");
 		}
+	}
+
+	/**
+	 * Returns the {@link ObserverBus}.
+	 * 
+	 * @return observer bus
+	 */
+	public ObserverBus getObserverBus() {
+		return observerBus;
 	}
 }

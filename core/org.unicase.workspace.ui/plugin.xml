@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="org.unicase.workspace.ui.merge.customoption" name="customoption" schema="schema/customoption.exsd"/>
   <extension-point id="org.unicase.workspace.ui.commitdialog.tray" name="org.unicase.workspace.ui.commitdialog.tray" schema="schema/org.unicase.workspace.ui.commitdialog.tray.exsd"/>
+  <extension-point id="org.unicase.workspace.ui.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.workspace.ui.modelelementopener.exsd"/>
   <extension
         point="org.eclipse.ui.handlers">
       <handler

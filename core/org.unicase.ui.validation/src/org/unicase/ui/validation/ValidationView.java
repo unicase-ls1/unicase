@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -53,12 +55,16 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.TableViewerColumnSorter;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.navigator.NoWorkspaceException;
+import org.unicase.ui.navigator.WorkspaceManager;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 import org.unicase.ui.validation.filter.FilterTableViewer;
 import org.unicase.ui.validation.filter.ValidationFilter;
 import org.unicase.ui.validation.providers.ConstraintLabelProvider;
@@ -70,12 +76,7 @@ import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
 import org.unicase.ui.validation.providers.ValidationLabelProvider;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * Validation view.
@@ -93,8 +94,6 @@ public class ValidationView extends ViewPart {
 
 	private final String viewId = getClass().getName();
 
-	private Workspace workspace;
-
 	private AdapterImpl workspaceListenerAdapter;
 
 	private Shell shell;
@@ -104,6 +103,8 @@ public class ValidationView extends ViewPart {
 	private ArrayList<ValidationFilter> validationFilters;
 
 	private TableItem tableItem;
+
+	private ECPWorkspace workspace;
 
 	/**
 	 * Default constructor.
@@ -117,14 +118,20 @@ public class ValidationView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+
+		try {
+			workspace = WorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			// TODO Chainsaw.
+		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+				// TODO Chainsaw check rewrite
+				if ((msg.getFeatureID(Workspace.class)) == WorkSpaceModelPackage.ECP_PROJECT) {
 					if (msg.getOldValue() != null
-						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ProjectSpace)) {
+						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ECPProject)) {
 						tableViewer.setInput(new ArrayList<IConstraintStatus>());
 					}
 
@@ -231,7 +238,9 @@ public class ValidationView extends ViewPart {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						ActionHelper.openModelElement(me, errorLocation, viewId, new EMFStoreModelelementContext(me));
+						// TODO: Chainsaw cast ok?
+						ActionHelper.openModelElement(me, errorLocation, viewId, (ModelElementContext) UnicaseUtil
+							.getParent(ECPProject.class, me));
 					} else {
 						ActionHelper.openModelElement(me, viewId);
 					}
@@ -254,7 +263,8 @@ public class ValidationView extends ViewPart {
 					refactoringStrategies.add(strategy);
 				}
 			} catch (CoreException e) {
-				WorkspaceUtil.logWarning("Exception loading refactoring strategies from the extension point", e);
+				// TODO: ChainSaw logging
+				// WorkspaceUtil.logWarning("Exception loading refactoring strategies from the extension point", e);
 			}
 
 		}
@@ -410,13 +420,12 @@ public class ValidationView extends ViewPart {
 				public void widgetSelected(SelectionEvent e) {
 					if (MessageDialog.openQuestion(shell, "Confirm deletion", "Do you really wish to delete "
 						+ status.getTarget().getClass().getSimpleName() + "?")) {
-						new UnicaseCommand() {
+						new ECPCommand(status.getTarget()) {
 
 							@Override
 							protected void doRun() {
 								EObject target = status.getTarget();
-								Project project = ModelUtil.getProject(target);
-								project.deleteModelElement(target);
+								EcoreUtil.delete(target);
 							}
 						}.run();
 					}

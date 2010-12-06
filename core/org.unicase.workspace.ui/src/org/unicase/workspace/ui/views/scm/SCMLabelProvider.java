@@ -31,7 +31,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.ui.util.UiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;

@@ -16,9 +16,9 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.ActionHelper;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -35,12 +35,10 @@ public class ImportChangesHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(
-				IMPORT_CHANGES_PATH, System.getProperty("user.home"));
+		String initialPath = PreferenceHelper.getPreference(IMPORT_CHANGES_PATH, System.getProperty("user.home"));
 		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
@@ -50,17 +48,16 @@ public class ImportChangesHandler extends AbstractHandler {
 		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
 		PreferenceHelper.setPreference(IMPORT_CHANGES_PATH, file.getParent());
 
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Import changes...", 100);
+					progressDialog.getProgressMonitor().beginTask("Import changes...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.importLocalChanges(file.getAbsolutePath());
 				} catch (IOException e) {
@@ -72,8 +69,7 @@ public class ImportChangesHandler extends AbstractHandler {
 
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Import",
-				"Imported changes from file " + file.getAbsolutePath());
+		MessageDialog.openInformation(null, "Import", "Imported changes from file " + file.getAbsolutePath());
 		return null;
 	}
 

@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.PreferenceHelper;
 
 /**
  * @generated

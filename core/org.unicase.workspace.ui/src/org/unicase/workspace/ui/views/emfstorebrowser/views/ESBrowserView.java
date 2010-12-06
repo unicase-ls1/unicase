@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -151,7 +150,8 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		EventUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
+		// TODO: ChainSaw event
+		// EventUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
 	}
 
 	/**

@@ -31,10 +31,7 @@ import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.NotificationManager;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -49,20 +46,17 @@ public final class ActionHelper {
 	 * Constant for the open model element command.
 	 */
 	public static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
-	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.unicase.ui.meeditor.openModelElementDiscussion";
-	/**
-	 * Constant for the modelelement to be opened.
-	 */
-	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
-	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
-	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
+
 	/**
 	 * Constant for the modelelement context.
 	 */
 	public static final String MECONTEXT_EVALUATIONCONTEXT_VARIABLE = "meContext";
 
-	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
-	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
+	/**
+	 * Constant for the modelelement to be opened.
+	 */
+	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 
 	private ActionHelper() {
 
@@ -144,7 +138,8 @@ public final class ActionHelper {
 					name = element.getAttribute("name");
 				}
 			} catch (CoreException e) {
-				WorkspaceUtil.logException(e.getMessage(), e);
+				// TODO: ChainSaw logging
+				// WorkspaceUtil.logException(e.getMessage(), e);
 			}
 		}
 		NotificationManager.getInstance().onOpen(me, sourceView, name);
@@ -156,43 +151,6 @@ public final class ActionHelper {
 		}
 		// END SUPRESS CATCH EXCEPTION
 
-	}
-
-	/**
-	 * Opens the dashboard for the currently selected projectspace.
-	 */
-	public static void openDashboard() {
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		openDashboard(projectSpace);
-	}
-
-	/**
-	 * Opens the dashboard for the given project.
-	 * 
-	 * @param projectSpace the project space.
-	 */
-	public static void openDashboard(ProjectSpace projectSpace) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
-
-		try {
-			handlerService.executeCommand(DASHBOARD_COMMAND, null);
-
-		} catch (ExecutionException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotDefinedException e) {
-			// DialogHandler.showExceptionDialog(e);
-		} catch (NotEnabledException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotHandledException e) {
-			DialogHandler.showExceptionDialog(e);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-		// END SUPRESS CATCH EXCEPTION
 	}
 
 	/**
@@ -354,62 +312,4 @@ public final class ActionHelper {
 			return null;
 		}
 	}
-
-	/**
-	 * Get the project space from the event.
-	 * 
-	 * @param event the event
-	 * @return the project space
-	 */
-	public static ProjectSpace getProjectSpace(ExecutionEvent event) {
-
-		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if (sel == null) {
-			sel = HandlerUtil.getActiveMenuSelection(event);
-		}
-		if (!(sel instanceof IStructuredSelection)) {
-			return null;
-		}
-
-		IStructuredSelection structuredSelection = (IStructuredSelection) sel;
-		if (structuredSelection.isEmpty()) {
-			return null;
-		}
-
-		Object selectedElement = structuredSelection.getFirstElement();
-		if (!(selectedElement instanceof ProjectSpace)) {
-			return null;
-		}
-		return (ProjectSpace) selectedElement;
-	}
-
-	/**
-	 * Opens the discussion page for the meeditor.
-	 * 
-	 * @param me the modelElement
-	 * @param toggleReply if a reply widget should be automatically shown.
-	 */
-	public static void openDiscussion(EObject me, boolean toggleReply) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
-
-		IEvaluationContext context = handlerService.getCurrentState();
-		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
-		if (toggleReply) {
-			context.addVariable(TOGGLE_ADD_COMMENT_VARIABLE, "toggle");
-		}
-
-		try {
-			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID, null);
-
-		} catch (ExecutionException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotDefinedException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotEnabledException e) {
-			DialogHandler.showExceptionDialog(e);
-		} catch (NotHandledException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-	}
-
 }

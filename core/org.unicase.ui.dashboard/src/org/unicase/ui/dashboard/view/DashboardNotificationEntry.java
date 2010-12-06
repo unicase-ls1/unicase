@@ -50,15 +50,14 @@ import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -427,7 +426,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				@Override
 				public void mouseUp(MouseEvent e) {
 					EObject modelElement = comments.get(0).getFirstParent();
-					ActionHelper.openDiscussion(modelElement, false);
+					UnicaseActionHelper.openDiscussion(modelElement, false);
 				}
 			});
 		}

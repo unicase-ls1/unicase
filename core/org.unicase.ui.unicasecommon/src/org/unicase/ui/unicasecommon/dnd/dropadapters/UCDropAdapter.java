@@ -13,14 +13,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
 import org.unicase.ui.common.dnd.MEDropAdapter;
-import org.unicase.ui.common.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.accesscontrol.AccessControlHelper;
 
 /**
  * Parent class for all UNICASE drop adapters.
@@ -58,9 +59,15 @@ public class UCDropAdapter extends MEDropAdapter {
 		EObject dropee) {
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
-		if (dropee instanceof Section && !UiUtil.isProjectAdmin(userSession, projectSpace)) {
-			event.detail = DND.DROP_NONE;
-			return false;
+		AccessControlHelper accessHelper = new AccessControlHelper(userSession);
+
+		try {
+			accessHelper.checkProjectAdminAccess(projectSpace.getProjectId());
+		} catch (AccessControlException e) {
+			if (dropee instanceof Section) {
+				event.detail = DND.DROP_NONE;
+				return false;
+			}
 		}
 
 		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER

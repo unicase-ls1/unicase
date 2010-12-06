@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.unicase.metamodel.AssociationClassElement;
 
 /**
  * MetaModelContext used by the editor to determine which model elements belong to the model.
@@ -40,6 +39,12 @@ public abstract class MetaModelElementContext {
 	 */
 	public Set<EClass> getAllSubEClasses(EClass eClass) {
 		return getAllSubEClasses(eClass, true);
+	}
+
+	public abstract boolean isNonDomainElement(EClass eClass);
+
+	public boolean isNonDomainElement(EObject eObject) {
+		return isNonDomainElement(eObject.eClass());
 	}
 
 	/**

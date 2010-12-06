@@ -24,7 +24,7 @@ import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -158,9 +158,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void openAnnotation(Annotation annotation) {
-
-		org.unicase.ui.unicasecommon.UnicaseActionHelper.openModelElement(annotation, this.getClass().getName());
-
+		UnicaseActionHelper.openModelElement(annotation, this.getClass().getName());
 	}
 
 	private EReference getStructuralFeature(final EObject newMEInstance, EObject parent) {

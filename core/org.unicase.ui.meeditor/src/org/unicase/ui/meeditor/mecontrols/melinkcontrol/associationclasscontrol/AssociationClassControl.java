@@ -13,8 +13,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -30,10 +28,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControlFactory;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The GUI control for AssociationClassElements.
@@ -47,16 +45,21 @@ public class AssociationClassControl extends AbstractMEControl {
 	 * 
 	 * @author Michael Haeger
 	 */
-	private final class RebuildLinksCommand extends RecordingCommand {
-		private final int sizeLimit;
+	private final class RebuildLinksCommand extends ECPCommand {
 
-		private RebuildLinksCommand(TransactionalEditingDomain domain, int sizeLimit) {
-			super(domain);
+		private int sizeLimit;
+
+		public RebuildLinksCommand(EObject eObject) {
+			super(eObject);
+		}
+
+		public RebuildLinksCommand(EObject eObject, int sizeLimit) {
+			this(eObject);
 			this.sizeLimit = sizeLimit;
 		}
 
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			Object evaluatedFeature = getModelElement().eGet(eReference);
 			LinkedList<Object> associations = new LinkedList<Object>();
 			if (eReference.isMany()) {
@@ -210,7 +213,6 @@ public class AssociationClassControl extends AbstractMEControl {
 			linkArea.dispose();
 		}
 		linkControls.clear();
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RebuildLinksCommand(domain, sizeLimit));
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
 	}
 }

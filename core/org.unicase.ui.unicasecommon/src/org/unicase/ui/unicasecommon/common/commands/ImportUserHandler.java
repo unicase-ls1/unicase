@@ -9,9 +9,9 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -26,7 +26,7 @@ public class ImportUserHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+		final ProjectSpace projectSpace = UnicaseActionHelper.getProjectSpace(event);
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {

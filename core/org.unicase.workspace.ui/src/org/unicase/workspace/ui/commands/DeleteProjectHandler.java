@@ -14,12 +14,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.util.ActionHelper;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.DeleteProjectSpaceObserver;
+import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -36,7 +36,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
 		if (projectSpace == null) {
 			return null;
 		}
@@ -51,8 +51,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 
 	private void deleteProjectSpace(final ProjectSpace projectSpace) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder
-				.append("Do you really want to delete your local copy of project \"");
+		stringBuilder.append("Do you really want to delete your local copy of project \"");
 		stringBuilder.append(projectSpace.getProjectName());
 		stringBuilder.append("\"");
 		if (projectSpace.getBaseVersion() != null) {
@@ -62,37 +61,31 @@ public class DeleteProjectHandler extends AbstractHandler {
 		stringBuilder.append("?");
 		String message = stringBuilder.toString();
 
-		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-				message, MessageDialog.QUESTION, new String[] { "Yes", "No" },
-				0);
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, message, MessageDialog.QUESTION,
+			new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
 		if (result == 0) {
 
-			Workspace currentWorkspace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace();
+			Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 			// notify all registered listeners
 
-			IConfigurationElement[] config = Platform.getExtensionRegistry()
-					.getConfigurationElementsFor(
-							"org.unicase.ui.common.notify.deleteprojectspace");
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.ui.common.notify.deleteprojectspace");
 
 			for (IConfigurationElement e : config) {
 				try {
-					DeleteProjectSpaceObserver o = (DeleteProjectSpaceObserver) e
-							.createExecutableExtension("class");
+					DeleteProjectSpaceObserver o = (DeleteProjectSpaceObserver) e.createExecutableExtension("class");
 					o.projectDeleted(projectSpace);
 				} catch (CoreException e1) {
-					WorkspaceUtil.logException("Cannot instantiate extension!",
-							e1);
+					WorkspaceUtil.logException("Cannot instantiate extension!", e1);
 				}
 			}
 
 			try {
 				currentWorkspace.deleteProjectSpace(projectSpace);
 			} catch (IOException e) {
-				DialogHandler.showExceptionDialog(
-						"Couldn't delete project files in file system.", e);
+				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
 			}
 
 		}

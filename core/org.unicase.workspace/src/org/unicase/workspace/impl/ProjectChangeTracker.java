@@ -47,6 +47,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.unicase.util.UnicaseUtil;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
@@ -586,7 +587,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private void handleElementDelete(EObject deletedElement) {
 		deleteOutgoingCrossReferencesOfContainmentTree(deletedElement);
 
-		if (!ModelUtil.isSelfContained(deletedElement, true)) {
+		if (!UnicaseUtil.isSelfContained(deletedElement, true)) {
 			throw new IllegalStateException(
 				"Element was removed from containment of project but still has cross references!: "
 					+ ModelUtil.getProject(deletedElement).getModelElementId(deletedElement).getId());

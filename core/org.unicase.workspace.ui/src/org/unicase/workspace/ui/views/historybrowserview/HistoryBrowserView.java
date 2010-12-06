@@ -70,16 +70,15 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.EventUtil;
-import org.unicase.ui.common.util.UiUtil;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
+import org.unicase.workspace.ui.util.ElementOpenerHelper;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
@@ -320,7 +319,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				if (event.getSelection() instanceof IStructuredSelection) {
 					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					if (node.getValue() instanceof EObject) {
-						ActionHelper.openModelElement((EObject) node.getValue(), VIEW_ID);
+						ElementOpenerHelper.openModelElement((EObject) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -896,7 +895,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 */
 	@Override
 	public void setFocus() {
-		EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
+		// TODO: ChainSaw event
+		// EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 
 	/**

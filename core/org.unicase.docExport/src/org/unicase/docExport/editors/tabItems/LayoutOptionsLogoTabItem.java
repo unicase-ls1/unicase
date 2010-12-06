@@ -32,7 +32,7 @@ import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorTabItem;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

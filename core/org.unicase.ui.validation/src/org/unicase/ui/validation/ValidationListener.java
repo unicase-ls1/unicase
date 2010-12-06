@@ -10,7 +10,7 @@ import org.eclipse.emf.validation.service.ValidationEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * Validation listener for the table.
