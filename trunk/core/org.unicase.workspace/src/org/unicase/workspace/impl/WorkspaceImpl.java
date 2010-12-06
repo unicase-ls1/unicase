@@ -59,7 +59,6 @@ import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
-import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.util.ResourceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -256,7 +255,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// get Project from server
 		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(),
 			projectInfoCopy.getVersion());
-			
+
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
@@ -688,7 +687,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
 		FileUtil.deleteFolder(new File(pathToProject));
 
-		ObserverBus.send(DeleteProjectSpaceObserver.class).projectDeleted(projectSpace);
+		WorkspaceManager.getObserverBus().notify(DeleteProjectSpaceObserver.class).projectDeleted(projectSpace);
 	}
 
 	/**

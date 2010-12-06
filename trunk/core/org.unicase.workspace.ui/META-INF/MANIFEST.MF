@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.workspace.ui; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.workspace.ui.Activator
 Require-Bundle: org.unicase.workspace.edit;visibility:=reexport,
- org.unicase.ui.util;bundle-version="1.0.0"
+ org.unicase.ui.util
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: diff.match.patch,

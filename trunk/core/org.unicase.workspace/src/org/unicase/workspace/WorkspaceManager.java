@@ -32,13 +32,13 @@ import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.util.UnicaseUtil;
+import org.unicase.util.observer.ObserverBus;
 import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
-import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
@@ -469,7 +469,7 @@ public final class WorkspaceManager {
 	 * 
 	 * @return observer bus
 	 */
-	public ObserverBus getObserverBus() {
-		return observerBus;
+	public static ObserverBus getObserverBus() {
+		return getInstance().observerBus;
 	}
 }
