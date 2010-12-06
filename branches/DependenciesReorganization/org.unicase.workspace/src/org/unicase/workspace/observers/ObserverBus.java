@@ -16,25 +16,25 @@ import java.util.List;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This is a universal observer bus. Better documentation will follow...
+ * This is a universal observer bus. Better documentation will follow... Example code:
  * 
  * <pre>
- * // A is AbstractObserver
+ * // A is IObserver
  * A a = new A() {
  * 
- * 	public void blub() {
+ * 	public void foo() {
  * 		System.out.println(&quot;A says: go!&quot;);
  * 	}
  * };
  * 
- * // B extends A and is abstractObserver
+ * // B extends A and is IObserver
  * B b = new B() {
  * 
  * 	public void say(String ja) {
  * 		System.out.println(&quot;B says: &quot; + ja);
  * 	}
  * 
- * 	public void blub() {
+ * 	public void foo() {
  * 		System.out.println(&quot;B says: hö?&quot;);
  * 	}
  * };
@@ -43,9 +43,7 @@ import org.unicase.workspace.WorkspaceManager;
  * ObserverBus.register(b);
  * ObserverBus.register(a);
  * 
- * ObserverBus.send(A.class).blub();
- * 
- * System.out.println(&quot;\n === \n&quot;);
+ * ObserverBus.send(A.class).foo();
  * 
  * ObserverBus.send(B.class).say(&quot;w00t&quot;);
  * 
@@ -53,8 +51,6 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * // B says: hö?
  * // A says: go!
- * //
- * // ===
  * //
  * // B says: w00t
  * 
