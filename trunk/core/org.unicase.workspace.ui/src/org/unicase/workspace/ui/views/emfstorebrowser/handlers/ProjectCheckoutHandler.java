@@ -19,10 +19,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.observers.CheckoutObserver;
+import org.unicase.workspace.observers.ObserverBus;
 import org.unicase.workspace.ui.views.emfstorebrowser.views.ESBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -54,7 +55,9 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 				progressDialog.getProgressMonitor().beginTask("Checkout project...", IProgressMonitor.UNKNOWN);
 				ProjectSpace projectSpace = serverInfo.getLastUsersession().checkout(projectInfo);
 				WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
-				ActionHelper.openDashboard(projectSpace);
+				ObserverBus.send(CheckoutObserver.class).checkoutDone(projectSpace);
+				// ChainSaw - dashboard now listens on its own.
+				// ActionHelper.openDashboard(projectSpace);
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 				// BEGIN SUPRESS CATCH EXCEPTION

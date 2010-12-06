@@ -26,7 +26,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.stem.views.TaskTableUtil;
 import org.unicase.ui.stem.views.statusview.dnd.ActivityTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;

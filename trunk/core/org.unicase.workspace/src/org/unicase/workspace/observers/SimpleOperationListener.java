@@ -16,6 +16,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author hodaie
  */
+// TODO Chain use ObserverBus and extends IObserver
 public abstract class SimpleOperationListener implements OperationListener, CommitObserver {
 
 	/**

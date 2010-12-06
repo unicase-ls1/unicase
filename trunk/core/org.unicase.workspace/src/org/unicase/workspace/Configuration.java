@@ -63,8 +63,7 @@ public final class Configuration {
 	}
 
 	/**
-	 * Returns the registered {@link LocationProvider} or if not existent, the
-	 * {@link DefaultWorkspaceLocationProvider}.
+	 * Returns the registered {@link LocationProvider} or if not existent, the {@link DefaultWorkspaceLocationProvider}.
 	 * 
 	 * @return workspace location provider
 	 */

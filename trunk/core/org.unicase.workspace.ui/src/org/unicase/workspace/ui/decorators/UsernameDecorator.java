@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.common.decorators;
+package org.unicase.workspace.ui.decorators;
 
 import java.util.ArrayList;
 

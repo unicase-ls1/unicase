@@ -7,6 +7,11 @@
 package org.unicase.ui.unicasecommon.common.util;
 
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,6 +25,8 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.handlers.IHandlerService;
+import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
@@ -28,7 +35,11 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.diagram.WorkItemDiagram;
+import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -88,12 +99,9 @@ public final class UnicaseActionHelper {
 	 * 
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
-	 * @deprecated
 	 */
-	@Deprecated
 	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
 
-		// TODO: redundant, see ActionHelper
 		final String meeditorId = "org.unicase.ui.meeditor";
 		UnicaseModelElement me = null;
 
@@ -166,5 +174,130 @@ public final class UnicaseActionHelper {
 			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
 				.getMessage(), e.getStatus());
 		}
+	}
+
+	/**
+	 * Opens a model element in ECP with a Context.
+	 * 
+	 * @param me modelelement to open.
+	 * @param sourceView the source view
+	 */
+	public static void openModelElement(EObject me, String sourceView) {
+		ActionHelper.openModelElement(me, sourceView, getContext(me));
+
+	}
+
+	/**
+	 * Gives a context for the given ME.
+	 * 
+	 * @param me the model lement
+	 * @return the context
+	 */
+	public static ModelElementContext getContext(EObject me) {
+		return new EMFStoreModelelementContext(me);
+	}
+
+	/**
+	 * Constant for the modelelement to be opened.
+	 */
+	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
+	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.unicase.ui.meeditor.openModelElementDiscussion";
+
+	/**
+	 * Opens the discussion page for the meeditor.
+	 * 
+	 * @param me the modelElement
+	 * @param toggleReply if a reply widget should be automatically shown.
+	 */
+	public static void openDiscussion(EObject me, boolean toggleReply) {
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+		if (toggleReply) {
+			context.addVariable(TOGGLE_ADD_COMMENT_VARIABLE, "toggle");
+		}
+
+		try {
+			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+	}
+
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
+	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
+
+	/**
+	 * Opens the dashboard for the currently selected projectspace.
+	 */
+	public static void openDashboard() {
+		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		openDashboard(projectSpace);
+	}
+
+	/**
+	 * Opens the dashboard for the given project.
+	 * 
+	 * @param projectSpace the project space.
+	 */
+	public static void openDashboard(ProjectSpace projectSpace) {
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
+
+		try {
+			handlerService.executeCommand(DASHBOARD_COMMAND, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			// DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		// END SUPRESS CATCH EXCEPTION
+	}
+
+	/**
+	 * Get the project space from the event.
+	 * 
+	 * @param event the event
+	 * @return the project space
+	 */
+	public static ProjectSpace getProjectSpace(ExecutionEvent event) {
+
+		ISelection sel = HandlerUtil.getCurrentSelection(event);
+		if (sel == null) {
+			sel = HandlerUtil.getActiveMenuSelection(event);
+		}
+		if (!(sel instanceof IStructuredSelection)) {
+			return null;
+		}
+
+		IStructuredSelection structuredSelection = (IStructuredSelection) sel;
+		if (structuredSelection.isEmpty()) {
+			return null;
+		}
+
+		Object selectedElement = structuredSelection.getFirstElement();
+		if (!(selectedElement instanceof ProjectSpace)) {
+			return null;
+		}
+		return (ProjectSpace) selectedElement;
 	}
 }

@@ -23,14 +23,13 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
 import org.unicase.ui.navigator.handler.NewModelElementWizardHandler;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
@@ -65,7 +64,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		}
 
 		// 2. get its containments
-		Set<EClass> eClazz = ModelUtil.getAllEContainments(selectedME.eClass());
+		Set<EClass> eClazz = UnicaseUtil.getAllEContainments(selectedME.eClass());
 		if (eClazz.size() > 5) {
 			return createNewWizard(selectedME.eClass());
 		}
@@ -115,9 +114,25 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				continue;
 			}
 
-			// do not create any command for NonDomainElement types
-			if (MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(containment.getEReferenceType())) {
-				continue;
+			try {
+				if (WorkspaceManager.getInstance().getWorkSpace().getProject(selectedME).getMetaModelElementContext()
+					.isNonDomainElement(containment.getEReferenceType())) {
+					continue;
+				}
+			} catch (NoWorkspaceException e) {
+				// TODO: ChainSaw exception handling
+				// Do NOT catch all Exceptions ("catch (Exception e)")
+				// Log AND handle Exceptions if possible
+				//
+				// You can just uncomment one of the lines below to log an exception:
+				// logException will show the logged excpetion to the user
+				// ModelUtil.logException(e);
+				// ModelUtil.logException("YOUR MESSAGE HERE", e);
+				// logWarning will only add the message to the error log
+				// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+				// ModelUtil.logWarning("YOUR MESSAGE HERE");
+				//			
+				// If handling is not possible declare and rethrow Exception
 			}
 
 			// if containment type is abstract, create a list of
@@ -171,7 +186,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		// return;
 		// }
 
-		Set<EClass> eClazz = ModelUtil.getAllSubEClasses(refClass);
+		Set<EClass> eClazz = UnicaseUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);
 		for (EClass eClass : eClazz) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI

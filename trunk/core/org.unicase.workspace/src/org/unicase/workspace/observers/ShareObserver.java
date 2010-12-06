@@ -10,6 +10,7 @@ package org.unicase.workspace.observers;
  * 
  * @author pfeifferc
  */
+// TODO Chain use ObserverBus and extends IObserver
 public interface ShareObserver {
 
 	/**

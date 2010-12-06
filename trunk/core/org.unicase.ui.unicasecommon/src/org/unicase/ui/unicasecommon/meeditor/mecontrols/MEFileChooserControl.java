@@ -42,9 +42,9 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.ui.meeditor.Activator;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.filetransfer.FileTransferUtil;
 

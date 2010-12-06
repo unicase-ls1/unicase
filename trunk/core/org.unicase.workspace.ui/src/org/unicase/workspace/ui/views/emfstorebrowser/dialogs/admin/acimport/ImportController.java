@@ -14,7 +14,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.util.WorkspaceUtil;
 

@@ -6,7 +6,7 @@
 package org.unicase.ui.dashboard;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -42,7 +42,7 @@ public class ModelElementOpener implements org.unicase.ui.common.ModelElementOpe
 	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) modelElement;
-			ActionHelper.openDashboard(projectSpace);
+			UnicaseActionHelper.openDashboard(projectSpace);
 			return;
 		}
 

@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -27,9 +25,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
-import org.unicase.workspace.Configuration;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
@@ -45,14 +43,15 @@ public class AddReferenceAction extends Action {
 	 * 
 	 * @author helming
 	 */
-	private final class AddReferenceCommand extends RecordingCommand {
-		private AddReferenceCommand(TransactionalEditingDomain domain) {
-			super(domain);
+	private final class AddReferenceCommand extends ECPCommand {
+
+		public AddReferenceCommand(EObject eObject) {
+			super(eObject);
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			EClass clazz = eReference.getEReferenceType();
 			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, true);
 			allElements.remove(modelElement);
@@ -170,9 +169,7 @@ public class AddReferenceAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		domain.getCommandStack().execute(new AddReferenceCommand(domain));
-
+		new AddReferenceCommand(this.modelElement).run();
 	}
 
 }

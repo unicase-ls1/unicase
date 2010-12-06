@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
@@ -25,10 +23,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.decorators.OverlayImageDescriptor;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.Configuration;
+import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
@@ -44,14 +42,15 @@ public class NewReferenceAction extends Action {
 	 * 
 	 * @author helming
 	 */
-	private final class NewReferenceCommand extends RecordingCommand {
-		private NewReferenceCommand(TransactionalEditingDomain domain) {
-			super(domain);
+	private final class NewReferenceCommand extends ECPCommand {
+
+		public NewReferenceCommand(EObject eObject) {
+			super(eObject);
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
 			Set<EClass> subclasses = modelElementContext.getMetaModelElementContext().getAllSubEClasses(clazz, false);
@@ -166,8 +165,7 @@ public class NewReferenceAction extends Action {
 			DialogHandler.showErrorDialog("Operation not permitted for container references!");
 			return;
 		}
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		domain.getCommandStack().execute(new NewReferenceCommand(domain));
+		new NewReferenceCommand(modelElement).run();
 
 	}
 

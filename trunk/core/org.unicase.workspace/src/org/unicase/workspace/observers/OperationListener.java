@@ -12,6 +12,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  * 
  * @author hodaie
  */
+// TODO Chain use ObserverBus and extends IObserver
 public interface OperationListener {
 
 	/**

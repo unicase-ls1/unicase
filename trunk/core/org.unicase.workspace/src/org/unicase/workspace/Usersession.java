@@ -24,34 +24,33 @@ import org.unicase.workspace.observers.LoginObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.workspace.WorkspacePackage#getUsersession()
  * @model
  * @generated
  */
 public interface Usersession extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Username</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Username</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Username</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Username</em>' attribute.
 	 * @see #setUsername(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_Username()
@@ -71,13 +70,13 @@ public interface Usersession extends EObject {
 	void setUsername(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Password</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_Password()
@@ -97,13 +96,13 @@ public interface Usersession extends EObject {
 	void setPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Session Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Session Id</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Session Id</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Session Id</em>' reference.
 	 * @see #setSessionId(SessionId)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_SessionId()
@@ -115,6 +114,7 @@ public interface Usersession extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
 	 * @generated
@@ -122,13 +122,13 @@ public interface Usersession extends EObject {
 	void setSessionId(SessionId value);
 
 	/**
-	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Persistent Password</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Persistent Password</em>' attribute.
 	 * @see #setPersistentPassword(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_PersistentPassword()
@@ -138,8 +138,9 @@ public interface Usersession extends EObject {
 	String getPersistentPassword();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword
+	 * <em>Persistent Password</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
 	 * @see #getPersistentPassword()
 	 * @generated
@@ -147,13 +148,13 @@ public interface Usersession extends EObject {
 	void setPersistentPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Server Info</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Info</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Info</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Server Info</em>' reference.
 	 * @see #setServerInfo(ServerInfo)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ServerInfo()
@@ -165,6 +166,7 @@ public interface Usersession extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
 	 * @generated
@@ -172,13 +174,13 @@ public interface Usersession extends EObject {
 	void setServerInfo(ServerInfo value);
 
 	/**
-	 * Returns the value of the '<em><b>Save Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Save Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Save Password</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Save Password</em>' attribute.
 	 * @see #setSavePassword(boolean)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_SavePassword()
@@ -188,8 +190,9 @@ public interface Usersession extends EObject {
 	boolean isSavePassword();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
 	 * @generated
@@ -197,13 +200,13 @@ public interface Usersession extends EObject {
 	void setSavePassword(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>AC User</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>AC User</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>AC User</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>AC User</em>' containment reference.
 	 * @see #setACUser(ACUser)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ACUser()
@@ -213,8 +216,9 @@ public interface Usersession extends EObject {
 	ACUser getACUser();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>AC User</em>' containment reference.
 	 * @see #getACUser()
 	 * @generated
@@ -222,14 +226,14 @@ public interface Usersession extends EObject {
 	void setACUser(ACUser value);
 
 	/**
-	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Changed Properties</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Changed Properties</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ChangedProperties()
 	 * @model containment="true" resolveProxies="true"

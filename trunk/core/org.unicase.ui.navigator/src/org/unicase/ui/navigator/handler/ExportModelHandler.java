@@ -6,7 +6,6 @@
 package org.unicase.ui.navigator.handler;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,11 +23,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.PreferenceHelper;
-import org.unicase.ui.common.util.UiUtil;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.ui.util.PreferenceHelper;
+import org.unicase.ui.util.UiUtil;
 
 /**
  * Handles the export of ModelElements from a project.
@@ -80,17 +78,17 @@ public class ExportModelHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new UnicaseCommand() {
+		new ECPCommand(exportModelElements.get(0)) {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Export modelelement...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					ModelUtil.saveEObjectToResource(exportModelElements, uri);
+					// TODO: ChainSaw export
+					// write XMI IDs into resource
+					// ModelUtil.saveEObjectToResource(exportModelElements, uri);
 					MessageDialog.openInformation(null, "Export", "Exported modelelement to file " + file.getName());
-				} catch (IOException e) {
-					DialogHandler.showExceptionDialog(e);
 				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
@@ -111,7 +109,9 @@ public class ExportModelHandler extends AbstractHandler {
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof EObject) {
 
-				copyModelElement = ModelUtil.clone((EObject) firstElement);
+				// TODO: ChainSaw - check whether specific clone functionality of ModelUtil is needed here
+				copyModelElement = EcoreUtil.copy((EObject) firstElement);
+				// copyModelElement = ModelUtil.clone((EObject) firstElement);
 
 				// only export the rootnode makes xml with references, otherwise (see (commented) line two) the children
 				// will be "real" nested as containments of the node (is not necessary)

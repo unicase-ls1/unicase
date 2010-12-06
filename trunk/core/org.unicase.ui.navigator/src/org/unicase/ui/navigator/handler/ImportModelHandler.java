@@ -24,13 +24,11 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.PreferenceHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.ModelElementWrapperDescriptor;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ui.util.PreferenceHelper;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * Handles the import of ModelElements into a project.
@@ -56,11 +54,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
-		Project p = ModelUtil.getProject(selectedModelElement);
-		if (selectedModelElement instanceof ProjectSpace) {
-			p = ((ProjectSpace) selectedModelElement).getProject();
-		}
-		final Project project = p;
+		final ECPProject project = UnicaseUtil.getParent(ECPProject.class, selectedModelElement);
 
 		if (project == null && selectedModelElement == null) {
 			return null;
@@ -81,7 +75,7 @@ public class ImportModelHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new UnicaseCommand() {
+		new ECPCommand(project) {
 			@Override
 			protected void doRun() {
 				importFile(project, fileURI, resource, progressDialog);
@@ -92,7 +86,7 @@ public class ImportModelHandler extends AbstractHandler {
 		return null;
 	}
 
-	private void importFile(Project project, final URI fileURI, final Resource resource,
+	private void importFile(ECPProject project, final URI fileURI, final Resource resource,
 		final ProgressMonitorDialog progressDialog) {
 
 		try {
@@ -112,7 +106,8 @@ public class ImportModelHandler extends AbstractHandler {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
-			ModelUtil.logException(e);
+			// TODO: ChainSaw logging
+			// ModelUtil.logException(e);
 			// END SUPRESS CATCH EXCEPTION
 		} finally {
 			progressDialog.getProgressMonitor().done();
@@ -156,7 +151,7 @@ public class ImportModelHandler extends AbstractHandler {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!ModelUtil.isSelfContained(rootNode)) {
+			if (!UnicaseUtil.isSelfContained(rootNode)) {
 				// TODO: Report to Console //System.out.println(rootNode + " is not selfcontained");
 				notSelfContained.add(rootNode);
 			}
@@ -195,20 +190,23 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @param element - the modelElement to import.
 	 * @param resourceIndex - the index of the element inside the eResource.
 	 */
-	private void runImport(final Project project, final org.eclipse.emf.common.util.URI uri, final EObject element,
+	private void runImport(final ECPProject project, final org.eclipse.emf.common.util.URI uri, final EObject element,
 		final int resourceIndex) {
 
+		// TODO: PlainEObjectMode, test import
 		// try to find a wrapper for the element which will be added to the project
-		EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(project, element, uri,
-			resourceIndex);
-
-		// if no wrapper could be created, use the element itself to add it to the project
-		if (wrapper == null) {
-			wrapper = element;
-		}
+		// EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
+		// element, uri, resourceIndex);
+		//
+		// // if no wrapper could be created, use the element itself to add it to the project
+		// if (wrapper == null) {
+		// wrapper = element;
+		// }
 
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
-		project.addModelElement(element);
+
+		// TODO: ChainSaw add element to project
+		// project.addModelElement(element);
 	}
 }

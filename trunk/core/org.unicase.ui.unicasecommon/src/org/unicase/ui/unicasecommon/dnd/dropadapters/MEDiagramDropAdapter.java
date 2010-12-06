@@ -25,8 +25,8 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.ECPModelelementContext;
 import org.unicase.ui.common.dnd.MEDropAdapter;
 import org.unicase.ui.common.util.AssociationClassHelper;
-import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.DNDHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
 import org.unicase.workspace.util.UnicaseCommand;
 

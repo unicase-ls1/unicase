@@ -17,7 +17,6 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -96,12 +95,12 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 
 		PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		targetVersionSpec.setIdentifier(version);
-		
+
 		// backward update, so do not show dashboard
 		if (targetVersionSpec.compareTo(projectSpace.getBaseVersion()) == 1) {
 			openDashboard = false;
 		}
-		
+
 		update(projectSpace, targetVersionSpec);
 	}
 
@@ -124,8 +123,8 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 			// (as opposed to committing where the dirty property is being set)
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager()
-						.update("org.unicase.ui.common.decorators.VersionDecorator");
+					PlatformUI.getWorkbench().getDecoratorManager().update(
+						"org.unicase.ui.common.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {
@@ -158,10 +157,10 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	 * 
 	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
 	 */
-	public void updateCompleted() {
+	public void updateCompleted(ProjectSpace projectSpace) {
 		if (openDashboard) {
-			ActionHelper.openDashboard();
+			// TODO: ChainSaw
+			// ActionHelper.openDashboard();
 		}
 	}
-
 }

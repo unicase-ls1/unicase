@@ -13,7 +13,7 @@ import org.unicase.workspace.ProjectSpace;
 /**
  * Notifies the UI that a list of changes will be automatically merged with the current model state.
  */
-public interface UpdateObserver {
+public interface UpdateObserver extends IObserver {
 
 	/**
 	 * Called to notify the observer about the changes that will be merged into the project space.
@@ -26,7 +26,9 @@ public interface UpdateObserver {
 
 	/**
 	 * Called after the changes have been applied to the project and the update is completed.
+	 * 
+	 * @param projectSpace
 	 */
-	void updateCompleted();
+	void updateCompleted(ProjectSpace projectSpace);
 
 }

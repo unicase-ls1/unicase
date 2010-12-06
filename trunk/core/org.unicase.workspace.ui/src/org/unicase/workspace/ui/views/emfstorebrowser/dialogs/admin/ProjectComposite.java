@@ -32,7 +32,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
 /**

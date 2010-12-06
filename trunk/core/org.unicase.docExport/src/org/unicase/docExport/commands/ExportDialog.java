@@ -47,7 +47,7 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.common.util.PreferenceHelper;
+import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

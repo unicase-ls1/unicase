@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.ValidationClientSelector;
+import org.unicase.ui.util.ActionHelper;
+import org.unicase.ui.util.ValidationClientSelector;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -44,7 +44,7 @@ public class ValidateHandler extends AbstractHandler {
 		EObject toValidate = ActionHelper.getModelElement(event);
 		// check if null, in which case the project will be used instead
 		if (toValidate == null) {
-			ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+			ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
 			// check null for project space, when triggering validation run too
 			// many times too quickly in a row, there might be an NPE otherwise.
 			if (projectSpace != null && projectSpace.getProject() != null) {
@@ -69,13 +69,12 @@ public class ValidateHandler extends AbstractHandler {
 	/**
 	 * Perform validation run.
 	 * 
-	 * @param object
-	 *            the
+	 * @param object the
 	 */
 	private void validateWithoutCommand(EObject object) {
 		ValidationClientSelector.setRunning(true);
-		IBatchValidator validator = (IBatchValidator) ModelValidationService
-				.getInstance().newValidator(EvaluationMode.BATCH);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
+			EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 		IStatus status = validator.validate(object);
 		ValidationClientSelector.setRunning(false);
@@ -84,20 +83,16 @@ public class ValidateHandler extends AbstractHandler {
 		try {
 			resource.deleteMarkers(markerType, true, 5);
 		} catch (CoreException e) {
-			WorkspaceUtil.logException(
-					"Validate handler encountered an exception", e);
+			WorkspaceUtil.logException("Validate handler encountered an exception", e);
 		}
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
 				try {
 					IMarker marker = resource.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: "
-							+ stat.getMessage());
-					marker.setAttribute(IMarker.SEVERITY,
-							IMarker.SEVERITY_WARNING);
+					marker.setAttribute(IMarker.MESSAGE, "unicase: " + stat.getMessage());
+					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
-					WorkspaceUtil.logException(
-							"Validate handler encountered an exception", e);
+					WorkspaceUtil.logException("Validate handler encountered an exception", e);
 				}
 			}
 		}
