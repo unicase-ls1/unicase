@@ -9,20 +9,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import library.Book;
+import library.Library;
+import library.LibraryFactory;
+import library.Writer;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
@@ -32,15 +39,16 @@ import org.unicase.xmi.workspace.XMIMetaModelElementContext;
  * @author Markus, Matti
  *
  */
-public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
+public class XMIECPFileProject extends ECPProjectImpl implements XMIECPProject {
 
+	private static final boolean TEST_RUN = true; // set whether you run in test-mode with library model or not.
+	
 	private EditingDomain editingDomain;
-	private ECPWorkspace workspace;
 	private URI xmiFilePath;
 	private Resource resource;
 	List<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
 	
-	private EObject root;
+	private EContentAdapter listenerAdapter;
 	
 	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
@@ -51,9 +59,9 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 		super();
 		
 		this.xmiFilePath = URI.createFileURI(filePath);
-		this.workspace = ws;
 		this.editingDomain = ws.getEditingDomain();
 		
+		buildEContentAdapter();
 		init();
 	}
 	
@@ -65,6 +73,33 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 		if(!xmiFile.exists()) {
 			// create the resource
 			this.resource = new ResourceSetImpl().createResource(xmiFilePath);
+			
+			// TEST
+			if(TEST_RUN) {
+				// build a library with a book and a writer
+				LibraryFactory factory = LibraryFactory.eINSTANCE;
+				Library library = factory.createLibrary();
+				Book book = factory.createBook();
+				book.setTitle("bla");
+				Writer writer = factory.createWriter();
+				writer.setName("him");
+				library.getBooks().add(book);
+				library.getWriters().add(writer);
+				
+				// set library as root
+				setRootObject(library);
+				this.resource.getContents().add(library);
+				
+				try {
+					this.resource.save(Collections.EMPTY_MAP);
+				}
+				catch(IOException e) {
+					new XMIWorkspaceException("Cannot create empty project-file.", e);
+				}
+			}
+			// END TEST
+			
+			//TODO create new project root node with icon
 		}
 		else {
 			// get the resource
@@ -79,18 +114,45 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 			new XMIWorkspaceException("Creating new project failed! Delete project-file: " + Configuration.getWorkspaceDirectory(), e);
 		}
 		
-		// set the root if the resource contains objects
+		// set the root if the resource contains objects, otherwise build new root
 		if(!this.resource.getContents().isEmpty()) {
-			this.root = this.resource.getContents().get(0); // first object must be root
+			setRootObject(this.resource.getContents().get(0)); // first object must be root
 		}
+		getRootObject().eAdapters().add(listenerAdapter);
 	}
-
-	public ECPWorkspace getWorkspace() {
-		return this.workspace;
-	}
-
-	public void setWorkspace(ECPWorkspace value) {
-		this.workspace = value;
+	
+	/**
+	 * Implements listenerAdapter to save resources when they change.
+	 */
+	private void buildEContentAdapter() {
+		listenerAdapter = new EContentAdapter() {
+			
+			/**
+			 * This method is being called when an object in the model changes,
+			 * it persists the changes instantely to the xmi resource
+			 */
+			@Override
+			public void notifyChanged(Notification notification) {
+				// save the changed objects
+				Object changedObj = notification.getNotifier();
+				
+				if(changedObj instanceof EObject) {
+					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
+					
+					// try to save object to the attached resource
+					try {
+						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
+					} catch (IOException e) {
+						new XMIWorkspaceException("Wasn't able to persist object to xmi resource.", e);
+					} catch (NullPointerException e) {
+						new XMIWorkspaceException("Unable to persist object. Attached resource missing.", e);
+					}
+				}
+				
+				// continue
+				super.notifyChanged(notification);
+			}
+		};
 	}
 
 	public boolean contains(EObject eObject) {
@@ -101,22 +163,21 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 		return getAllModelElements();
 	}
 
-	public EObject getRootObject() {
-		return root;
-	}
-
-	public void setRootObject(EObject value) {
-		this.root = value;
-	}
-
 	public void addECPProjectListener(ECPProjectListener listener) {
 		this.listeners.add(listener);
 	}
 
+	//TODO check whether needed to call finalize() !!!
 	public void dispose() {
-		// TODO What is this method supposed to do? Set all references to "null" so it can be collected from the garbage collector?
+		// remove all references, method similar to destructor
+		try {
+			this.finalize();
+		} catch (Throwable e) {
+			new XMIWorkspaceException("Cannot dispose XMIFileProject.", new Exception("Cannot dispose."));
+		}
 	}
 
+	
 	/**
 	 * Filters the basicEList for objects with the given EClass.
 	 * @return Returns only objects with the given EClass.
@@ -137,8 +198,8 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 	}
 
 	public void modelelementDeleted(EObject eobject) {
-		// TODO Remove model element from xmi-file
-		projectChanged();
+		// Remove model element from xmi-file -> just save it.
+		saveResource();
 		
 		for(ECPProjectListener listener : listeners) {
 			listener.modelelementDeleted(eobject);
@@ -146,24 +207,31 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 	}
 
 	public void projectChanged() {
-		// TODO Save all objects into the xmi-file
-		try {
-			this.resource.save(Configuration.getResourceSaveOptions());
-		} catch (IOException e) {
-			new XMIWorkspaceException("Cannot save changes to xmi-project-file.", e);
-		}
+		// Save all objects into the xmi-file
+		saveResource();
 		
 		for(ECPProjectListener listener : listeners) {
 			listener.projectChanged();
 		}
 	}
+	
+	/**
+	 * Calls save on the resource of this project.
+	 */
+	private void saveResource() {
+		try {
+			this.resource.save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			new XMIWorkspaceException("Cannot save changes to xmi-project-file.", e);
+		}
+	}
 
 	public void projectDeleted() {
-		// TODO Delete xmi-file?!
-		
 		for(ECPProjectListener listener : listeners) {
 			listener.projectDeleted();
 		}
+		
+		dispose();
 	}
 
 	public void removeECPProjectListener(ECPProjectListener listener) {
@@ -172,7 +240,7 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 
 	public Collection<EObject> getAllModelElements() {
 		Set<EObject> result = new HashSet<EObject>();
-		TreeIterator<EObject> eAllContents = root.eAllContents();
+		TreeIterator<EObject> eAllContents = getRootObject().eAllContents();
 		while (eAllContents.hasNext()) {
 			result.add(eAllContents.next());
 		}
@@ -197,4 +265,7 @@ public class XMIECPFileProject extends EObjectImpl implements XMIECPProject {
 		return false;
 	}
 
+	public String getFilePath() {
+		return xmiFilePath.toFileString();
+	}
 }
