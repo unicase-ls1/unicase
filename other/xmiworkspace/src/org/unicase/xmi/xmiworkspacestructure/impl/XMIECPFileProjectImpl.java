@@ -22,6 +22,7 @@ import org.unicase.ui.common.ECPAssociationClassElement;
 import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
+import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
@@ -39,7 +40,7 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
  *
  * @generated
  */
-public class XMIECPFileProjectImpl extends EObjectImpl implements XMIECPFileProject {
+public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileProject {
 	/**
 	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
