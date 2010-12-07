@@ -32,13 +32,14 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
+import org.unicase.ui.common.observer.FocusEventObserver;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
@@ -358,7 +359,8 @@ public class IterationPlanningView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getTree().setFocus();
-		EventUtil.logFocusEvent("org.unicase.ui.treeview.views.IterationPlanningView");
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(
+			"org.unicase.ui.treeview.views.IterationPlanningView");
 	}
 
 	private void addDNDSupport() {

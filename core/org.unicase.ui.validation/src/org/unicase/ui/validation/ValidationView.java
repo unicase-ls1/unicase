@@ -55,16 +55,16 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.ui.common.observer.FocusEventObserver;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.validation.filter.FilterTableViewer;
 import org.unicase.ui.validation.filter.ValidationFilter;
 import org.unicase.ui.validation.providers.ConstraintLabelProvider;
@@ -288,7 +288,7 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		EventUtil.logFocusEvent(viewId);
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(viewId);
 	}
 
 	/**

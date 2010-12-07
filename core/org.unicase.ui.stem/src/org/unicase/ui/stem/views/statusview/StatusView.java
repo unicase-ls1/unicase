@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -56,7 +57,8 @@ import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.observer.FocusEventObserver;
+import org.unicase.ui.common.observer.PresentationSwitchObserver;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.workspace.Workspace;
@@ -519,7 +521,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 				Widget item = e.item;
 				TabItem tabItem = (TabItem) item;
 				String text = tabItem.getText();
-				EventUtil.logPresentationSwitchEvent("org.unicase.ui.treeview.views.StatusView", text);
+				ECPWorkspaceManager.getObserverBus().notify(PresentationSwitchObserver.class)
+					.onPresentationSwitchEvent("org.unicase.ui.treeview.views.StatusView", text);
 				super.widgetSelected(e);
 			}
 
@@ -578,7 +581,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void setFocus() {
-		EventUtil.logFocusEvent("org.unicase.ui.treeview.views.StatusView");
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(
+			"org.unicase.ui.treeview.views.StatusView");
 	}
 
 	/**

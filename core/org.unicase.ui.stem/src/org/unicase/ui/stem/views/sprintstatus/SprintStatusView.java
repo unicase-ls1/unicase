@@ -19,12 +19,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.observer.FocusEventObserver;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -222,7 +223,7 @@ public class SprintStatusView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		EventUtil.logFocusEvent(ID);
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(ID);
 		// getViewSite().getPart().setFocus();
 	}
 

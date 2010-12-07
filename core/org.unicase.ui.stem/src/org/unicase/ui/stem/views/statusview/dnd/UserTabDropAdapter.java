@@ -9,9 +9,10 @@ package org.unicase.ui.stem.views.statusview.dnd;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.observer.StatusViewDropEventObserver;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -62,7 +63,8 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				EventUtil.logStatusViewDropEvent(getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
+					getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
 				if (!(getDropTarget() instanceof OrgUnit)) {
 					// target is NotAssigned
 					unassignWorkItem((WorkItem) getDragSource());

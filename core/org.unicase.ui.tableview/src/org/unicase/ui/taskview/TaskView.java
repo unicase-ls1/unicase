@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
@@ -39,9 +40,9 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.ui.common.observer.FocusEventObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.viewer.METableViewer;
@@ -522,7 +523,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void setFocus() {
 		viewer.getTableViewer().getTable().setFocus();
-		EventUtil.logFocusEvent("org.unicase.ui.taskview");
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent("org.unicase.ui.taskview");
 	}
 
 	/**

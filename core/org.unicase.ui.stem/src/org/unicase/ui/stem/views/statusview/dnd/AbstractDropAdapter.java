@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
@@ -24,7 +25,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaskUtil;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.observer.StatusViewDropEventObserver;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -50,7 +51,8 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 			@Override
 			protected void doRun() {
 				// TODO: Log source view.
-				EventUtil.logStatusViewDropEvent(currentOpenME, dragSource, "Unknown", "FlatTab");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
+					currentOpenME, dragSource, "Unknown", "FlatTab");
 				if (currentOpenME instanceof WorkPackage) {
 					if (dragSource instanceof WorkItem) {
 						dropWorkItemOnWorkPackage();
