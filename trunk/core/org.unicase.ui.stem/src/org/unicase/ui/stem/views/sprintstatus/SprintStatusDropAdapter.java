@@ -11,11 +11,12 @@ import java.util.List;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.observer.StatusViewDropEventObserver;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -59,7 +60,8 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				EventUtil.logStatusViewDropEvent(target, source, "Unknown", "Sprint status view");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
+					target, source, "Unknown", "Sprint status view");
 				reassignWorkItem(target, (OrgUnit) source);
 			}
 		}.run();
