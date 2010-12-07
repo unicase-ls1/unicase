@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.ui.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.unicase.ecp.model" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.navigator" id="org.unicase.ui.navigator.ecpWorkspaceProvider" name="ECP Workspace Provider"/>
+         <meta.schema plugin="org.unicase.ecp.model" id="org.unicase.ecp.model.ecpWorkspaceProvider" name="ECP Workspace Provider"/>
       </appinfo>
       <documentation>
          Provides a workspace for the ECP navigator
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider"/>
                </appinfo>
             </annotation>
          </attribute>
