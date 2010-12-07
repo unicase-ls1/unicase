@@ -16,7 +16,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -81,7 +81,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
 					ECPWorkspace workSpace;
 					try {
-						workSpace = WorkspaceManager.getInstance().getWorkSpace();
+						workSpace = ECPWorkspaceManager.getInstance().getWorkSpace();
 						Command create = AddCommand.create(workSpace.getProject(selectedEObject).getEditingDomain(),
 							selectedEObject, possibleContainingReference, newMEInstance);
 						workSpace.getProject(selectedEObject).getEditingDomain().getCommandStack().execute(create);

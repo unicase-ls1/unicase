@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.unicasecommon.Activator;
@@ -67,7 +67,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 			ECPModelelementContext context;
 			try {
-				context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+				context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 				if (context == null) {
 					return children;
 				}

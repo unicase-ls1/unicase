@@ -57,7 +57,7 @@ import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
@@ -120,7 +120,7 @@ public class ValidationView extends ViewPart {
 		}
 
 		try {
-			workspace = WorkspaceManager.getInstance().getWorkSpace();
+			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
 		} catch (NoWorkspaceException e) {
 			// TODO Chainsaw.
 		}

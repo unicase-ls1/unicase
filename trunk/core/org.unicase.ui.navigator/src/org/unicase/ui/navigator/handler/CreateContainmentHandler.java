@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 
@@ -53,7 +53,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 			if ((selectedME != null) && (!eReference.isContainer())) {
 				TransactionalEditingDomain domain;
 				try {
-					domain = WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
+					domain = ECPWorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
 				} catch (NoWorkspaceException e) {
 					Activator.getDefault().logException(e.getMessage(), e);
 					return null;

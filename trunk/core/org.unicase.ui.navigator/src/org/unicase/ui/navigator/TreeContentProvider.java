@@ -20,7 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 
 /**
  * Transactional and composed content provider with all registered label providers.
@@ -48,7 +48,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		}
 		ECPModelelementContext context;
 		try {
-			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 			if (context == null) {
 				return preResult;
 			}
@@ -78,7 +78,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 	public boolean hasChildren(Object object) {
 		ECPModelelementContext context;
 		try {
-			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 			if (context == null) {
 				return super.hasChildren(object);
 			}

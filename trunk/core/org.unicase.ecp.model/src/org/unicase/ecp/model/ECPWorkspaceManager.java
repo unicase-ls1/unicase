@@ -17,9 +17,9 @@ import org.unicase.util.observer.ObserverBus;
  * 
  * @author helming
  */
-public final class WorkspaceManager {
+public final class ECPWorkspaceManager {
 
-	private static WorkspaceManager instance;
+	private static ECPWorkspaceManager instance;
 	private static ObserverBus observerBus;
 
 	/**
@@ -27,9 +27,9 @@ public final class WorkspaceManager {
 	 * 
 	 * @return the instance
 	 */
-	public static WorkspaceManager getInstance() {
+	public static ECPWorkspaceManager getInstance() {
 		if (instance == null) {
-			instance = new WorkspaceManager();
+			instance = new ECPWorkspaceManager();
 			instance.init();
 		}
 		return instance;
@@ -41,7 +41,7 @@ public final class WorkspaceManager {
 
 	private ECPWorkspace workspace;
 
-	private WorkspaceManager() {
+	private ECPWorkspaceManager() {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.navigator.ecpWorkspaceProvider");
 		if (confs.length > 1) {

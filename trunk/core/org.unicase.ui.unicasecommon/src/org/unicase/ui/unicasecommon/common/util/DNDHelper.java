@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.diagram.MEDiagram;
 
@@ -105,7 +105,7 @@ public final class DNDHelper {
 	 */
 	public static ECPModelelementContext getECPModelelementContext() {
 		try {
-			return WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			return ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 		} catch (NoWorkspaceException e) {
 			ModelUtil.logException(e);
 			return null;

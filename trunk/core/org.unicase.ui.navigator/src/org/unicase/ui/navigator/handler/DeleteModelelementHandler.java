@@ -10,7 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
@@ -38,7 +38,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 
 	private void deleteModelElement(final EObject me) {
 		try {
-			new DeleteModelElementCommand(me, WorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
+			new DeleteModelElementCommand(me, ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
 		}
