@@ -7,13 +7,13 @@
 package org.unicase.ui.validation;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUnicaseUIPlugin {
 
 	/**
 	 * The plug-in ID.

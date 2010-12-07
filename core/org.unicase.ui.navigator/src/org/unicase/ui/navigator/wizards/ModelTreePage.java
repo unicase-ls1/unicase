@@ -80,9 +80,9 @@ public class ModelTreePage extends WizardPage implements Listener {
 				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(label);
 			}
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		} catch (NullPointerException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 
 		Tree tree = new Tree(composite, SWT.SINGLE);

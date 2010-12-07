@@ -104,9 +104,9 @@ public class UnicaseUtil {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 			catch (RuntimeException exception) {
-				// TODO: ChainSaw logging
+				// TODO: ChainSaw logging done
+				Activator.getDefault().logException("Failed to load model package " + entry.getKey(), exception);
 				// END SUPRESS CATCH EXCEPTION
-//				logException("Failed to load model package " + entry.getKey(), exception);
 			}
 
 		}

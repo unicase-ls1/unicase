@@ -49,8 +49,8 @@ public final class PreferenceHelper {
 			try {
 				Platform.getPreferencesService().getRootNode().node(ConfigurationScope.SCOPE).node(PREFERENCE_NODE).flush();
 			} catch (BackingStoreException e) {
-				// TODO: ChainSaw logging
-//				ModelUtil.logException("Could not persist the preference change: {" + key + ", " + value + "}", e);
+				// TODO: ChainSaw logging done
+				Activator.getDefault().logException("Could not persist the preference change: {" + key + ", " + value + "}", e);
 			}
 		}
 	}

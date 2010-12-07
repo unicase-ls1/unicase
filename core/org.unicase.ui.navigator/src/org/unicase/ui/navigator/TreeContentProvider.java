@@ -51,7 +51,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 				return preResult;
 			}
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 			return preResult;
 		}
 
@@ -81,7 +81,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 				return super.hasChildren(object);
 			}
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 			// if an exception is caught return the not modified result
 			return super.hasChildren(object);
 		}
@@ -116,7 +116,8 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 		for (IConfigurationElement element : list) {
 			String attribute = element.getAttribute("type");
 			if (contentProviders.get(attribute) != null) {
-				Activator.logException(new IllegalStateException("Duplicate RootObjectContent Provider registered"));
+				Exception exception = new IllegalStateException("Duplicate RootObjectContent Provider registered");
+				Activator.getDefault().logException(exception.getMessage(), exception);
 				continue;
 			}
 			try {
@@ -124,7 +125,7 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 				contentProviders.put(attribute, contentProvider);
 
 			} catch (CoreException e) {
-				Activator.logException(e);
+				Activator.getDefault().logException(e.getMessage(), e);
 			}
 
 		}

@@ -5,13 +5,13 @@
  */
 package org.unicase.ui.navigatormeeditorbridge;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUnicaseUIPlugin {
 
 	/**
 	 * Plugin ID.

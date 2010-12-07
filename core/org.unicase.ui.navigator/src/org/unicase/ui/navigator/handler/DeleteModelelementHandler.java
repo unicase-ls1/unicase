@@ -40,7 +40,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		try {
 			new DeleteModelElementCommand(me, WorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 	}
 

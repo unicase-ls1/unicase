@@ -87,9 +87,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 							selectedEObject, possibleContainingReference, newMEInstance);
 						workSpace.getProject(selectedEObject).getEditingDomain().getCommandStack().execute(create);
 					} catch (NoWorkspaceException e) {
-						Activator.logException(e);
+						Activator.getDefault().logException(e.getMessage(), e);
 					}
-
 				}
 			}
 			// 3.open the newly created ME

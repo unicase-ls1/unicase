@@ -41,10 +41,10 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 			metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject().getMetaModelElementContext();
 			eClasses = metaContext.getAllModelElementEClasses(false);
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 			eClasses = new HashSet<EClass>();
 		} catch (NullPointerException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 			eClasses = new HashSet<EClass>();
 		}
 		modelElementClasses = new HashSet<EClass>();

@@ -45,7 +45,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 		try {
 			project = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 		if (project == null) {
 			MessageDialog.openInformation(shell, "Information", "You must select the Project");

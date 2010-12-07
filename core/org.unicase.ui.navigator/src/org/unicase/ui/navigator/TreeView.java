@@ -76,7 +76,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		try {
 			currentWorkspace = WorkspaceManager.getInstance().getWorkSpace();
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 			return;
 		}
 		for (ECPProject project : currentWorkspace.getProjects()) {
@@ -373,7 +373,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			try {
 				WorkspaceManager.getInstance().getWorkSpace().setActiveModelelement((EObject) obj);
 			} catch (NoWorkspaceException e) {
-				Activator.logException(e);
+				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
 
