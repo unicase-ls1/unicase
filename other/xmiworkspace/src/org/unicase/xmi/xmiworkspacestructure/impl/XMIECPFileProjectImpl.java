@@ -15,14 +15,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
@@ -321,6 +320,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public boolean isAssociationClassElement(EObject eObject) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void addModelElementToRoot(EObject eObject) {
+		// TODO Auto-generated method stub
+		
 	}
 
 } //XMIECPFileProjectImpl

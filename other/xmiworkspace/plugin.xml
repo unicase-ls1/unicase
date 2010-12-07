@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ui.navigator.ecpWorkspaceProvider">
+         point="org.unicase.ecp.model.ecpWorkspaceProvider">
       <WorkspaceProvider
             class="org.unicase.xmi.workspace.XMIECPWorkspaceProvider">
       </WorkspaceProvider>

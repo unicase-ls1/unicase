@@ -7,14 +7,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.common.ModelElementContext;
 import org.unicase.workspace.Configuration;
 
 public class XMIModelelementContext extends ModelElementContext implements ProjectChangeObserver  {

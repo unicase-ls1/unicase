@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
@@ -267,5 +267,10 @@ public class XMIECPFileProject extends ECPProjectImpl implements XMIECPProject {
 
 	public String getFilePath() {
 		return xmiFilePath.toFileString();
+	}
+
+	public void addModelElementToRoot(EObject eObject) {
+		// TODO Auto-generated method stub
+		
 	}
 }

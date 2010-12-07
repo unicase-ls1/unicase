@@ -6,9 +6,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.structure.XMIECPFileProject;
 
