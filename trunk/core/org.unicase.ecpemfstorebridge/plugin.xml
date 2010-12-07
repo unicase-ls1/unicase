@@ -14,7 +14,7 @@
       </modelelementopenlistener>
    </extension>
    <extension
-         point="org.unicase.ui.navigator.ecpWorkspaceProvider">
+         point="org.unicase.ecp.model.ecpWorkspaceProvider">
       <WorkspaceProvider
             class="org.unicase.ecpemfstorebridge.EMFStoreECPWorkspaceProvider">
       </WorkspaceProvider>
