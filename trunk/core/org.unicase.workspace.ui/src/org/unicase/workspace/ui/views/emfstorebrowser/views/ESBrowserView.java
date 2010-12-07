@@ -32,6 +32,7 @@ import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserViewerSorter;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * View containing the remote repositories.
@@ -150,8 +151,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		// TODO: ChainSaw event
-		// EventUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
+		WorkspaceUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
 	}
 
 	/**

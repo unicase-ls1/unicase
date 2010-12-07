@@ -83,6 +83,7 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 import org.unicase.workspace.util.ProjectSpaceContainer;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This the History Browser view.
@@ -895,8 +896,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 */
 	@Override
 	public void setFocus() {
-		// TODO: ChainSaw event
-		// EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
+		WorkspaceUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 
 	/**
