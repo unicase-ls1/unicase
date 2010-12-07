@@ -8,8 +8,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.urml.hypergraph.HypergraphView;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * Extract the selected element and open the hypergraph view with that element as selected object.
