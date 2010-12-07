@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.common.util;
 
+import org.unicase.ui.common.Activator;
+
 /**
  * This class is used for loading the implementation of classes in fragments.
  * 
@@ -26,17 +28,20 @@ public final class ImplementationLoader {
 		try {
 			result = type.getClassLoader().loadClass(name + "Impl").newInstance();
 		} catch (ClassNotFoundException e) {
-			// TODO: ChainSaw logging
-			// ModelUtil.logException("Class " + name + "Impl not found.", e);
-			throw new RuntimeException("Class " + name + "Impl not found.", e);
+			// TODO: ChainSaw logging done
+			String msgException = "Class " + name + "Impl not found.";
+			Activator.getDefault().logException(msgException, e);
+			throw new RuntimeException(msgException, e);
 		} catch (InstantiationException e) {
-			// TODO: ChainSaw logging
-			// ModelUtil.logException("Could not instantiate class " + name + "Impl.", e);
-			throw new RuntimeException("Could not instantiate class " + name + "Impl.", e);
+			// TODO: ChainSaw logging done
+			String msgException = "Could not instantiate class " + name + "Impl.";
+			Activator.getDefault().logException(msgException, e);
+			throw new RuntimeException(msgException, e);
 		} catch (IllegalAccessException e) {
-			// TODO: ChainSaw logging
-			// ModelUtil.logException("Could not access class " + name + "Impl.", e);
-			throw new RuntimeException("Could not access class " + name + "Impl.", e);
+			// TODO: ChainSaw logging done
+			String msgException = "Could not access class " + name + "Impl.";
+			Activator.getDefault().logException(msgException, e);
+			throw new RuntimeException(msgException, e);
 		}
 		return result;
 	}

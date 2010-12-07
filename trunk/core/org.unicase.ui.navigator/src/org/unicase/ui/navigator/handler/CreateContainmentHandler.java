@@ -55,7 +55,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 				try {
 					domain = WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
 				} catch (NoWorkspaceException e) {
-					Activator.logException(e);
+					Activator.getDefault().logException(e.getMessage(), e);
 					return null;
 				}
 				domain.getCommandStack().execute(new RecordingCommand(domain) {

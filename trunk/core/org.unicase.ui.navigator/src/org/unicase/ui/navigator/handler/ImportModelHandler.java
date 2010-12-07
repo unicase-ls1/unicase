@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.util.UnicaseUtil;
@@ -106,8 +107,8 @@ public class ImportModelHandler extends AbstractHandler {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
-			// TODO: ChainSaw logging
-			// ModelUtil.logException(e);
+			// TODO: ChainSaw logging done
+			Activator.getDefault().logException(e.getMessage(), e);
 			// END SUPRESS CATCH EXCEPTION
 		} finally {
 			progressDialog.getProgressMonitor().done();

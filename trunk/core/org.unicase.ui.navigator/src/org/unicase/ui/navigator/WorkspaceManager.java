@@ -38,15 +38,17 @@ public final class WorkspaceManager {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.navigator.ecpWorkspaceProvider");
 		if (confs.length > 1) {
-			Activator.logException(new IllegalStateException("Duplicate Workspace registered"));
+			Exception exception = new IllegalStateException("Duplicate Workspace registered");
+			Activator.getDefault().logException(exception.getMessage(), exception);
 		}
 		if (confs.length < 1) {
-			Activator.logException(new IllegalStateException("No Workspace registered"));
+			Exception exception = new IllegalStateException("No Workspace registered");
+			Activator.getDefault().logException(exception.getMessage(), exception);
 		}
 		try {
 			workspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class")).getECPWorkspace();
 		} catch (CoreException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 	}
 

@@ -27,6 +27,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
+import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.commands.ECPCommand;
 
 /**
@@ -79,8 +80,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 				dropAdapters.put(dropAdapter.isDropAdapterfor(), dropAdapter);
 
 			} catch (CoreException e) {
-				// TODO: ChainSaw logging
-				// WorkspaceUtil.logException(e.getMessage(), e);
+				// TODO: ChainSaw logging done
+				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
 

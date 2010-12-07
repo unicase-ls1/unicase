@@ -41,7 +41,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 			project.addECPProjectListener(this);
 		} catch (NoWorkspaceException e) {
 			// TODO Add second exception for no project
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 	}
 
@@ -93,7 +93,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 		try {
 			return WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 		return null;
 	}

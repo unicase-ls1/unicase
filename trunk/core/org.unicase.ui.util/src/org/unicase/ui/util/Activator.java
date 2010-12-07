@@ -1,12 +1,11 @@
 package org.unicase.ui.util;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUnicaseUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.unicase.ui.util";

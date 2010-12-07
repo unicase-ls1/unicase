@@ -17,9 +17,9 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.NoWorkspaceException;
 import org.unicase.ui.navigator.WorkspaceManager;
+import org.unicase.ui.unicasecommon.Activator;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -72,7 +72,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 					return children;
 				}
 			} catch (NoWorkspaceException e) {
-				Activator.logException(e);
+				Activator.getDefault().logException(e.getMessage(), e);
 				return children;
 			}
 			// removes all AssociationClassElements

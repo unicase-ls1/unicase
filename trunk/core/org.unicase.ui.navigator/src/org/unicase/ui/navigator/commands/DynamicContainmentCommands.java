@@ -60,7 +60,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				return createNewWizard(selectedME.eClass());
 			}
 		} catch (NoWorkspaceException e) {
-			Activator.logException(e);
+			Activator.getDefault().logException(e.getMessage(), e);
 		}
 
 		// 2. get its containments
