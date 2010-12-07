@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
+import org.unicase.util.observer.ObserverBus;
 
 /**
  * Class to provide access to a registered Workspace.
@@ -19,6 +20,7 @@ import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
 public final class WorkspaceManager {
 
 	private static WorkspaceManager instance;
+	private static ObserverBus observerBus;
 
 	/**
 	 * Singleton Pattern.
@@ -28,8 +30,13 @@ public final class WorkspaceManager {
 	public static WorkspaceManager getInstance() {
 		if (instance == null) {
 			instance = new WorkspaceManager();
+			instance.init();
 		}
 		return instance;
+	}
+
+	private void init() {
+		observerBus = new ObserverBus();
 	}
 
 	private ECPWorkspace workspace;
@@ -63,6 +70,11 @@ public final class WorkspaceManager {
 			throw new NoWorkspaceException();
 		}
 		return workspace;
+	}
+	
+	@SuppressWarnings("static-access")
+	public static ObserverBus getObserverBus() {
+		return getInstance().observerBus;
 	}
 
 }
