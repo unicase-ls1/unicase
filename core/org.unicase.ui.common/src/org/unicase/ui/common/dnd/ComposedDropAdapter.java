@@ -93,7 +93,6 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
-		// TODO: ChainSaw - On which EditingDomain do we perform the changes.
 		new ECPCommand(targetConatiner) {
 
 			@Override

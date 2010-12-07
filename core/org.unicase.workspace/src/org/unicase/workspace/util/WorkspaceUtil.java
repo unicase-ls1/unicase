@@ -8,6 +8,7 @@ package org.unicase.workspace.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.eclipse.core.runtime.IStatus;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
@@ -143,6 +145,17 @@ public final class WorkspaceUtil {
 		traceEvent.setTimestamp(new Date());
 		traceEvent.setFeatureName(featureName);
 		projectSpace.addEvent(traceEvent);
+	}
+
+	public static void logFocusEvent(String viewId) {
+		final PluginFocusEvent pluginFocusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		pluginFocusEvent.setPluginId(viewId);
+		pluginFocusEvent.setStartDate(Calendar.getInstance().getTime());
+		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace();
+		if (activeProjectSpace != null) {
+			activeProjectSpace.addEvent(pluginFocusEvent);
+		}
 	}
 
 	/**
