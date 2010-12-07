@@ -27,10 +27,11 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.ModelElementOpener;
-import org.unicase.ui.common.NotificationManager;
+import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.util.DialogHandler;
 
 /**
@@ -142,7 +143,7 @@ public final class ActionHelper {
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
-		NotificationManager.getInstance().onOpen(me, sourceView, name);
+		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView, name);
 		// BEGIN SUPRESS CATCH EXCEPTION
 		try {
 			bestCandidate.openModelElement(me);
@@ -170,7 +171,8 @@ public final class ActionHelper {
 			openModelElement(me, sourceView, context);
 		}
 
-		NotificationManager.getInstance().onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView,
+			"org.unicase.ui.meeditor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 

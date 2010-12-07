@@ -3,21 +3,23 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.common;
+package org.unicase.ui.common.observer;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.util.observer.IObserver;
 
 /**
  * Listens of an open event of Model Element.
+ * 
  * @author helming
- *
  */
-public interface ModelElementOpenListener {
+public interface ModelElementOpenObserver extends IObserver {
 	/**
 	 * Called if a certain model element gets opened.
+	 * 
 	 * @param opened the opened model element
 	 * @param sourceView the view the model element is opened from
 	 * @param openView The view, the model element is opened with
 	 */
-	void onOpen(EObject opened, String sourceView,  String openView);
+	void onOpen(EObject opened, String sourceView, String openView);
 }

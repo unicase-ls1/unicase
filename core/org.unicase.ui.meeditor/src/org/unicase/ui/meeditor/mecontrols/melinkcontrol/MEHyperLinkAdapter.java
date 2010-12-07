@@ -9,8 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContext;
-import org.unicase.ui.common.NotificationManager;
+import org.unicase.ui.common.observer.TraceObserver;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -47,7 +48,8 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
 		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor", context);
-		NotificationManager.getInstance().onTrace(source, target, featureName, "org.unicase.ui.meeditor");
+		ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class).onTrace(source, target, featureName,
+			"org.unicase.ui.meeditor");
 
 		super.linkActivated(event);
 	}

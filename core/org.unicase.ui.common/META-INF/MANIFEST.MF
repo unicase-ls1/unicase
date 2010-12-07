@@ -13,6 +13,7 @@ Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.dialogs,
  org.unicase.ui.common.dnd,
+ org.unicase.ui.common.observer,
  org.unicase.ui.common.preferences,
  org.unicase.ui.common.util
 Bundle-ClassPath: .,
