@@ -24,7 +24,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
 import org.unicase.ui.util.OverlayImageDescriptor;

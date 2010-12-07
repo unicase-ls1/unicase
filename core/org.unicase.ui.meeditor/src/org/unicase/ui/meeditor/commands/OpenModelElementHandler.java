@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**

@@ -11,14 +11,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
 
 /**
  * Context for the meeditor derived from the ECPProject of the navigator.

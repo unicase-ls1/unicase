@@ -21,9 +21,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.common.ModelElementContext;
 
 /**
  * Abstract Dialog as pattern for all dialogs which show ModelElements for selection.

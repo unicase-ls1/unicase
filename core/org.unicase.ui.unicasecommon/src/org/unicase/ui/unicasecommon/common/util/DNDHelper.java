@@ -14,11 +14,11 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * Helper class for DND.

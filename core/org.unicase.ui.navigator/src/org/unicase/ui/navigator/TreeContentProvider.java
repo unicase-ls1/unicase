@@ -18,7 +18,9 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
-import org.unicase.ui.common.ECPModelelementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
 
 /**
  * Transactional and composed content provider with all registered label providers.

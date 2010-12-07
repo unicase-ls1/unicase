@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.NotificationManager;
 import org.unicase.ui.common.util.ActionHelper;
 

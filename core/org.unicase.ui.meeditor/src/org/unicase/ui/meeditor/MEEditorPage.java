@@ -40,7 +40,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;

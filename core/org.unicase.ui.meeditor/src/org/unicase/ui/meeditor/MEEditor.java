@@ -26,8 +26,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.ModelElementContextListener;
+import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContextListener;
 import org.unicase.ui.common.util.ShortLabelProvider;
 
 /**

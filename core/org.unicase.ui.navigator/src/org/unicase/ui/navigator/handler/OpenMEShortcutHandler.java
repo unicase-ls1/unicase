@@ -14,12 +14,12 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.navigator.dialogs.OpenMeShortcutDialog;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 
 /**
  * This is the (ShortcutCommand)-Handler to select model elements out of a list of elements.

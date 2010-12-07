@@ -20,7 +20,7 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.

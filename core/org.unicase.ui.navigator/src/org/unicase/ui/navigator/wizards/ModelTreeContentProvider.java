@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
 import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage

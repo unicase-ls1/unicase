@@ -12,8 +12,8 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPWorkspaceImpl;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -26,7 +26,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author helming
  */
-public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.navigator.workSpaceModel.ECPWorkspace {
+public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp.model.workSpaceModel.ECPWorkspace {
 
 	private HashMap<ProjectSpace, EMFStoreECPProject> mapping = new HashMap<ProjectSpace, EMFStoreECPProject>();
 	private AdapterImpl workspaceListenerAdapter;
@@ -70,7 +70,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getEditingDomain()
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getEditingDomain()
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
@@ -80,7 +80,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getProject(org.unicase.metamodel.ModelElement)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getProject(org.unicase.metamodel.ModelElement)
 	 */
 	@Override
 	public ECPProject getProject(EObject me) {
@@ -98,7 +98,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#getActiveProject()
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getActiveProject()
 	 */
 	@Override
 	public ECPProject getActiveProject() {
@@ -108,7 +108,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ui.
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPWorkspace#setActiveModelelement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#setActiveModelelement(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public void setActiveModelelement(EObject modelelement) {

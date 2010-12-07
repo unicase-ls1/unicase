@@ -29,9 +29,9 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.ModelElementContext;
-import org.unicase.ui.common.util.AssociationClassHelper;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.meeditor.ControlFactory;
@@ -94,7 +94,7 @@ public class AssociationClassLink extends MELinkControl {
 	 * @see org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl#createControl(org.eclipse.swt.widgets.Composite,
 	 *      int, org.eclipse.emf.edit.provider.IItemPropertyDescriptor, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject, org.eclipse.ui.forms.widgets.FormToolkit,
-	 *      org.unicase.ui.common.ModelElementContext)
+	 *      org.unicase.ecp.model.ModelElementContext)
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,

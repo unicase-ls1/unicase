@@ -7,8 +7,8 @@ package org.unicase.ui.navigator.dialogs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.util.UnicaseUtil;
 
 /**
