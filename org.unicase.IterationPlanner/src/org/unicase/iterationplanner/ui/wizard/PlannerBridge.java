@@ -5,8 +5,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.progress.IProgressConstants;
 import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
@@ -32,22 +38,23 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 
 public class PlannerBridge {
-	
+
+	private List<IterationPlan> result;
+	private Planner myPlanner;
+
 	private int numOfIterations;
 	private List<FunctionalRequirement> requirements;
 	private List<WorkItem> workItems;
 	private List<UserAvailability> userAvailabilities;
-	private Project project; 
-	
-	public PlannerBridge(Project project){
-		this.project = project; 
-	}
+	private Project project;
 
+	public PlannerBridge(Project project) {
+		this.project = project;
+	}
 
 	public Project getProject() {
 		return project;
 	}
-
 
 	public int getNumOfIteations() {
 		return numOfIterations == 0 ? 1 : numOfIterations;
@@ -57,76 +64,113 @@ public class PlannerBridge {
 		this.numOfIterations = numOfIterations;
 	}
 
-
 	public void setRequirements(List<FunctionalRequirement> reqs) {
 		this.requirements = new ArrayList<FunctionalRequirement>();
-		//reqs is a faltenned list of requirements
-		for(FunctionalRequirement req : reqs){
-			if(req.getRefinedRequirement() == null){
+		// reqs is a faltenned list of requirements
+		for (FunctionalRequirement req : reqs) {
+			if (req.getRefinedRequirement() == null) {
 				requirements.add(req);
 			}
 		}
 	}
 
-
 	public void setWorkItems(List<WorkItem> workItemsToPlan) {
 		this.workItems = workItemsToPlan;
 	}
-
 
 	public void setAssignees(List<UserAvailability> userAvailabilities) {
 		this.userAvailabilities = userAvailabilities;
 	}
 
-
 	public void startPlanner() {
-		System.out.println("Iteration Planner started!");
 
-		// init task pool
-		TaskPool.getInstance().setTasksToPlan(getWorkItemsToPlan());
-		System.out.println("retrieved tasks: " + TaskPool.getInstance().getTasksToPlan().size() + " tasks.");
+		final Job job = new Job("Planning Iterations") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				System.out.println("Iteration Planner started!");
 
-		// init assignee pool
-		
-		AssigneePool.getInstance().setAssignees(getAssignees());
-		System.out.println("retrieved users: " + AssigneePool.getInstance().getAssignees().size() + " assignees.");
+				// init task pool
+				TaskPool.getInstance().setTasksToPlan(getWorkItemsToPlan());
+				System.out.println("retrieved tasks: " + TaskPool.getInstance().getTasksToPlan().size() + " tasks.");
 
-		// start assignee recommender
-		AssigneeRecommender assigneeRecommender = new AssigneeRecommender();
-		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists = assigneeRecommender.getTaskPotenialAssigneeLists();
+				// init assignee pool
 
-		// print assignee recommendation results
-		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
+				AssigneePool.getInstance().setAssignees(getAssignees());
+				System.out.println("retrieved users: " + AssigneePool.getInstance().getAssignees().size()
+					+ " assignees.");
 
-		// prepare parameters for iteration planner
-		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(AssigneePool.getInstance().getAssignees());
+				// start assignee recommender
+				AssigneeRecommender assigneeRecommender = new AssigneeRecommender();
+				List<TaskPotentialAssigneeList> taskPotentialAssigneeLists = assigneeRecommender
+					.getTaskPotenialAssigneeLists();
 
-		Random random = new Random(1234567256L);
-		EvaluatorParameters evaluationParameters = getEvaluatioParameters(random);
-		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
+				// print assignee recommendation results
+				outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
-		PlannerParameters plannerParameters = getPlannerParameters(random);
+				// prepare parameters for iteration planner
+				AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(AssigneePool
+					.getInstance().getAssignees());
 
-		Selector selector = new MySelector(plannerParameters.getRandom());
+				Random random = new Random(1234567256L);
+				EvaluatorParameters evaluationParameters = getEvaluatioParameters(random);
+				Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
 
-		// start planner
-		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager,
-			iterationPlanEvaluator, selector, plannerParameters);
-		List<IterationPlan> result = myPlanner.start();
+				PlannerParameters plannerParameters = getPlannerParameters(random);
 
-		// output result
-		outputIterationPlannerResults(result, myPlanner);
-		
-		openOutPutWizard(result.get(0), myPlanner);
-	
+				Selector selector = new MySelector(plannerParameters.getRandom());
+
+				myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager,
+					iterationPlanEvaluator, selector, plannerParameters);
+				result = myPlanner.start();
+
+//				if (isModal(this)) {
+//					// The progress dialog is still open so
+//					// just open the message
+//					showResults();
+//				} else {
+					setProperty(IProgressConstants.KEEP_PROPERTY, Boolean.TRUE);
+					setProperty(IProgressConstants.ACTION_PROPERTY, getOpenOutputWizardAction());
+//				}
+				return Status.OK_STATUS;
+
+			}
+		};
+
+		job.setUser(true);
+		job.schedule(); // start as soon as possible
+
 	}
-	
+
+	protected void showResults() {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				getOpenOutputWizardAction().run();
+			}
+		});
+	}
+
+	protected Action getOpenOutputWizardAction() {
+		return new Action("View reservation status") {
+			@Override
+			public void run() {
+				openOutPutWizard(result.get(0), myPlanner);
+			}
+		};
+
+	}
+
 	private void openOutPutWizard(IterationPlan iterationPlan, Planner planner) {
 		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan, planner);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), outputWizard);
 		dialog.open();
 	}
 
+	public boolean isModal(Job job) {
+		Boolean isModal = (Boolean) job.getProperty(IProgressConstants.PROPERTY_IN_DIALOG);
+		if (isModal == null)
+			return false;
+		return isModal.booleanValue();
+	}
 
 	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
@@ -137,10 +181,8 @@ public class PlannerBridge {
 			System.out.println("======================================================");
 			System.out.println("Overall score: " + iterPlan.getScore());
 			System.out.println("expertise score: " + myPlanner.getEvaluator().evaluateExpertise(iterPlan));
-			System.out.println("task prio score: "
-				+ myPlanner.getEvaluator().evaluteTaskPriorities(iterPlan));
-			System.out.println("dev load score: "
-				+ myPlanner.getEvaluator().evaluateAssigneeLoad(iterPlan));
+			System.out.println("task prio score: " + myPlanner.getEvaluator().evaluteTaskPriorities(iterPlan));
+			System.out.println("dev load score: " + myPlanner.getEvaluator().evaluateAssigneeLoad(iterPlan));
 			System.out.println();
 
 			for (int j = 0; j < iterPlan.getNumOfIterations(); j++) {
@@ -160,16 +202,13 @@ public class PlannerBridge {
 		System.out.println("\t***********************************************************");
 		int i = 1;
 		for (PlannedTask plannedTask : plannedTasks) {
-			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", 
-								i, plannedTask.getAssigneeExpertise().getAssignee(), 
-								plannedTask.getAssigneeExpertise().getExpertise(), 
-								plannedTask.getTask().getWorkItem().getName(), 
-								plannedTask.getTask().getPriority(), 
-								plannedTask.getTask().getEstimate());
+			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", i, plannedTask
+				.getAssigneeExpertise().getAssignee(), plannedTask.getAssigneeExpertise().getExpertise(), plannedTask
+				.getTask().getWorkItem().getName(), plannedTask.getTask().getPriority(), plannedTask.getTask()
+				.getEstimate());
 			i++;
 		}
 	}
-
 
 	private PlannerParameters getPlannerParameters(Random random) {
 		int populationSize = 10;
@@ -182,13 +221,12 @@ public class PlannerBridge {
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
 		int percentOfTasksToMutate = 10;
-	
+
 		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
 			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
 			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random);
 		return plannerParameters;
 	}
-
 
 	private EvaluatorParameters getEvaluatioParameters(Random random) {
 		double expertiesWeight = 1.0;
@@ -198,7 +236,6 @@ public class PlannerBridge {
 			developerLoadWeight, random);
 		return evaluationParameters;
 	}
-
 
 	private AssigneeAvailabilityManager createAssigneeAvailabilityManager(List<Assignee> assignees) {
 		AssigneeAvailabilityManager assigneeAvailabilityManager = new AssigneeAvailabilityManager(numOfIterations);
@@ -213,28 +250,26 @@ public class PlannerBridge {
 	}
 
 	private int getAvailability(Assignee assignee, int iterNumber) {
-		for(UserAvailability ua : userAvailabilities){
-			if(ua.getUser().equals(assignee.getOrgUnit())){
+		for (UserAvailability ua : userAvailabilities) {
+			if (ua.getUser().equals(assignee.getOrgUnit())) {
 				return ua.getAvailability(iterNumber);
 			}
 		}
 		return 0;
 	}
 
-
 	private List<User> getAssignees() {
 		List<User> assignees = new ArrayList<User>();
-		for(UserAvailability ua : userAvailabilities){
+		for (UserAvailability ua : userAvailabilities) {
 			assignees.add(ua.getUser());
 		}
 		return assignees;
 	}
 
-
 	private List<WorkItem> getWorkItemsToPlan() {
 		return workItems;
 	}
-	
+
 	private void outputAssigneeRecommendationResults(List<TaskPotentialAssigneeList> taskPotentialAssigneeLists) {
 		int i, j = 0;
 		for (TaskPotentialAssigneeList tpaList : taskPotentialAssigneeLists) {
@@ -250,6 +285,4 @@ public class PlannerBridge {
 		}
 	}
 
-	
-	
 }
