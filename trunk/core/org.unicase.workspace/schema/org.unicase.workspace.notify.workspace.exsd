@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.workspace.WorkspaceObserver"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.workspace.PostWorkspaceInitiator"/>
                </appInfo>
             </annotation>
          </attribute>
