@@ -5,8 +5,8 @@
  */
 package org.unicase.ecpemfstorebridge;
 
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
 
 /**
  * Provides an ECPWorkspace based on an EMFStore Workspace.
@@ -18,7 +18,7 @@ public class EMFStoreECPWorkspaceProvider implements ECPWorkspaceProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace()
+	 * @see org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace()
 	 */
 	public ECPWorkspace getECPWorkspace() {
 		return new org.unicase.ecpemfstorebridge.EMFECPWorkspace();

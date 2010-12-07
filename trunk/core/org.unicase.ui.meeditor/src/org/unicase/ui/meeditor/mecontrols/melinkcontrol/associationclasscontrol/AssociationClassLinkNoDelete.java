@@ -7,7 +7,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ui.common.ECPAssociationClassElement;
+import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 

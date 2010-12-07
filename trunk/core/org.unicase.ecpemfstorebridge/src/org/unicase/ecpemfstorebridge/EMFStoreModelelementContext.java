@@ -12,14 +12,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.common.ModelElementContext;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -57,7 +57,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#getEditingDomain()
+	 * @see org.unicase.ecp.model.ModelElementContext#getEditingDomain()
 	 */
 	@Override
 	public EditingDomain getEditingDomain() {
@@ -67,7 +67,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#getAllModelElements()
+	 * @see org.unicase.ecp.model.ModelElementContext#getAllModelElements()
 	 */
 	@Override
 	public Collection<EObject> getAllModelElements() {
@@ -79,7 +79,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
+	 * @see org.unicase.ecp.model.ModelElementContext#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
 	 *      org.eclipse.emf.common.util.BasicEList)
 	 */
 	@Override
@@ -96,7 +96,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.ModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public boolean isNonDomainElement(EObject eObject) {
@@ -106,7 +106,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#contains(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.ModelElementContext#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public boolean contains(EObject dropee) {
@@ -121,7 +121,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#getMetaModelElementContext()
+	 * @see org.unicase.ecp.model.ModelElementContext#getMetaModelElementContext()
 	 */
 	public MetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
@@ -175,7 +175,7 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementContext#dispose()
+	 * @see org.unicase.ecp.model.ModelElementContext#dispose()
 	 */
 	@Override
 	public void dispose() {

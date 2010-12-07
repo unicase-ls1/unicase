@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
-import org.unicase.ui.common.ECPAssociationClassElement;
+import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.AddReferenceAction;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;

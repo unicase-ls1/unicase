@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 import org.unicase.ui.unicasecommon.Activator;
 
 /**

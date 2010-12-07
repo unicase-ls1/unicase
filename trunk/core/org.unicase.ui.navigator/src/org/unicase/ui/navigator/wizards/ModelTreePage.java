@@ -24,11 +24,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
 
 /**
  * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only

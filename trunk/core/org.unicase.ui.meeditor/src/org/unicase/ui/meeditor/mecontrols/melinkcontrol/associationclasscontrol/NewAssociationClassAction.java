@@ -21,11 +21,11 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.ModelElementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.AssociationClassHelper;
 import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**

@@ -41,13 +41,15 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
 import org.unicase.ui.common.dnd.ComposedDropAdapter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.ECPProjectListener;
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * The standard navigator tree view.

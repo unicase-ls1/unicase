@@ -14,16 +14,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.ui.common.ECPAssociationClassElement;
-import org.unicase.ui.common.MetaModelElementContext;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.observers.SimpleOperationListener;
@@ -67,7 +67,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ECPModelelementContext#getAllModelElements()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#getAllModelElements()
 	 */
 	public Collection<EObject> getAllModelElements() {
 		ArrayList<EObject> ret = new ArrayList<EObject>();
@@ -78,7 +78,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ECPModelelementContext#getEditingDomain()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#getEditingDomain()
 	 */
 	public EditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
@@ -87,7 +87,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean contains(EObject eObject) {
 		return ModelUtil.getProject(eObject).equals(projectSpace.getProject());
@@ -96,7 +96,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getAllModelElement()
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAllModelElement()
 	 */
 	public Collection<EObject> getAllModelElement() {
 		Collection<EObject> ret = new BasicEList<EObject>();
@@ -107,7 +107,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
 	 *      org.eclipse.emf.common.util.BasicEList)
 	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
@@ -119,7 +119,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getMetaModelElementContext()
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getMetaModelElementContext()
 	 */
 	public MetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
@@ -128,7 +128,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#isNonDomainElement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#isNonDomainElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean isNonDomainElement(EObject eObject) {
 		return (eObject instanceof NonDomainElement);
@@ -137,7 +137,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#dispose()
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#dispose()
 	 */
 	public void dispose() {
 		projectSpace.removeOperationListener(simpleOperationListener);
@@ -191,7 +191,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
@@ -200,7 +200,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
 		if (isAssociationClassElement(eObject)) {
@@ -214,7 +214,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#addModelElementToRoot(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#addModelElementToRoot(org.eclipse.emf.ecore.EObject)
 	 */
 	public void addModelElementToRoot(EObject eObject) {
 		projectSpace.getProject().getModelElements().add(eObject);

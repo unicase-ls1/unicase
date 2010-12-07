@@ -15,13 +15,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
 import org.unicase.util.UnicaseUtil;
 
 /**

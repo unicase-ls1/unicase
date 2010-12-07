@@ -14,8 +14,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.ECPModelelementContext;
-import org.unicase.ui.common.util.AssociationClassHelper;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 
 /**
  * Command to delete a modelelement.

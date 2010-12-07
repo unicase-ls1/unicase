@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.unicase.ui.common.ECPAssociationClassElement;
+import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
