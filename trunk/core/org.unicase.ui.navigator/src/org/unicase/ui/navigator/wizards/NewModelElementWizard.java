@@ -66,13 +66,12 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
-			if (selectedEObject.equals(UnicaseUtil.getParent(ECPProject.class, selectedEObject).getRootObject())) {
+			final ECPProject project = UnicaseUtil.getParent(ECPProject.class, selectedEObject);
+			if (project != null && selectedEObject.equals(project.getRootObject())) {
 				new ECPCommand(selectedEObject) {
 					@Override
 					protected void doRun() {
-						// TODO: ChainSaw add element to project
-						// extend inteface to add model element
-
+						project.addModelElementToRoot(newMEInstance);
 					}
 				}.run();
 

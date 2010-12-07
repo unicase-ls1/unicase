@@ -195,6 +195,8 @@ public class ImportModelHandler extends AbstractHandler {
 		final int resourceIndex) {
 
 		// TODO: PlainEObjectMode, test import
+		// TODO Chainsaw
+
 		// try to find a wrapper for the element which will be added to the project
 		// EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
 		// element, uri, resourceIndex);
@@ -207,7 +209,6 @@ public class ImportModelHandler extends AbstractHandler {
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
 
-		// TODO: ChainSaw add element to project
-		// project.addModelElement(element);
+		// project.addModelElementToRoot(element);
 	}
 }
