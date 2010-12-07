@@ -210,4 +210,13 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 		}
 		return null;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.navigator.workSpaceModel.ECPProject#addModelElementToRoot(org.eclipse.emf.ecore.EObject)
+	 */
+	public void addModelElementToRoot(EObject eObject) {
+		projectSpace.getProject().getModelElements().add(eObject);
+	}
 }

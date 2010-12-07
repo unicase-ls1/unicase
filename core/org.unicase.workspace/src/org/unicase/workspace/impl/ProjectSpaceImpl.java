@@ -381,6 +381,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	protected ProjectSpaceImpl() {
 		super();
+		// TODO remove observer/listeners and use observerbus
 		this.commitObservers = new ArrayList<CommitObserver>();
 		this.operationListeners = new ArrayList<OperationListener>();
 		this.shareObservers = new ArrayList<ShareObserver>();
