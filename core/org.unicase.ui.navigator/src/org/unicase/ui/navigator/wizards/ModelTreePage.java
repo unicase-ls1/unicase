@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.navigator.Activator;
 
@@ -71,7 +71,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 		filterInput.setMessage("Model Element class");
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(filterInput);
 		try {
-			MetaModelElementContext metaContext = WorkspaceManager.getInstance().getWorkSpace().getActiveProject()
+			MetaModelElementContext metaContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
 				.getMetaModelElementContext();
 			if (metaContext.isGuessed()) {
 				Label label = new Label(composite, SWT.None);

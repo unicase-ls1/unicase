@@ -42,7 +42,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -76,7 +76,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	public TreeView() {
 		createOperationListener();
 		try {
-			currentWorkspace = WorkspaceManager.getInstance().getWorkSpace();
+			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
 			return;
@@ -158,7 +158,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		viewer = new TreeViewer(parent, SWT.MULTI);
 
 		try {
-			ECPWorkspace workSpace = WorkspaceManager.getInstance().getWorkSpace();
+			ECPWorkspace workSpace = ECPWorkspaceManager.getInstance().getWorkSpace();
 			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(workSpace.getEditingDomain()),
 				decoratorManager.getLabelDecorator()));
@@ -373,7 +373,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	private void setActiveECPProject(Object obj) {
 		if (obj instanceof EObject) {
 			try {
-				WorkspaceManager.getInstance().getWorkSpace().setActiveModelelement((EObject) obj);
+				ECPWorkspaceManager.getInstance().getWorkSpace().setActiveModelelement((EObject) obj);
 			} catch (NoWorkspaceException e) {
 				Activator.getDefault().logException(e.getMessage(), e);
 			}

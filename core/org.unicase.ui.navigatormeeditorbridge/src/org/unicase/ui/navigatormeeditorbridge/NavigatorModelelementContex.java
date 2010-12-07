@@ -15,7 +15,7 @@ import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.Activator;
@@ -37,7 +37,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	public NavigatorModelelementContex(EObject modelElement) {
 		this.modelElement = modelElement;
 		try {
-			project = WorkspaceManager.getInstance().getWorkSpace().getProject(modelElement);
+			project = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(modelElement);
 			project.addECPProjectListener(this);
 		} catch (NoWorkspaceException e) {
 			// TODO Add second exception for no project
@@ -91,7 +91,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	@Override
 	public EditingDomain getEditingDomain() {
 		try {
-			return WorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
+			return ECPWorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
 		}

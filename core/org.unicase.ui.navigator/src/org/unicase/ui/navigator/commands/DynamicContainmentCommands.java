@@ -24,7 +24,7 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.WorkspaceManager;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
@@ -56,7 +56,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			return new IContributionItem[0];
 		}
 		try {
-			if (WorkspaceManager.getInstance().getWorkSpace().isRootObject(selectedME)) {
+			if (ECPWorkspaceManager.getInstance().getWorkSpace().isRootObject(selectedME)) {
 				return createNewWizard(selectedME.eClass());
 			}
 		} catch (NoWorkspaceException e) {
@@ -115,7 +115,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			}
 
 			try {
-				if (WorkspaceManager.getInstance().getWorkSpace().getProject(selectedME).getMetaModelElementContext()
+				if (ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME).getMetaModelElementContext()
 					.isNonDomainElement(containment.getEReferenceType())) {
 					continue;
 				}
