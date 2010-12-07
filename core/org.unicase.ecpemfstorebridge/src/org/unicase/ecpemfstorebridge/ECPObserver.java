@@ -1,6 +1,14 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.PostECPWorkspaceInitiator;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.observer.ModelElementOpenObserver;
@@ -10,7 +18,21 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-public class ECPObserver implements TraceObserver, ModelElementOpenObserver {
+/**
+ * @author emueller
+ * @author wesendon
+ */
+public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, ModelElementOpenObserver {
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ecp.model.PostECPWorkspaceInitiator#workspaceInitComplete(org.unicase.ecp.model.workSpaceModel.ECPWorkspace)
+	 */
+	public void workspaceInitComplete(ECPWorkspace currentWorkspace) {
+		ECPWorkspaceManager.getObserverBus().register(this);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 

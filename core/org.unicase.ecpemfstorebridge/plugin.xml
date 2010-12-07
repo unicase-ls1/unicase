@@ -115,5 +115,11 @@
          </description>
       </decorator>
    </extension>
+   <extension
+         point="org.unicase.ecp.model.postinit">
+      <initiator
+            class="org.unicase.ecpemfstorebridge.ECPObserver">
+      </initiator>
+   </extension>
 
 </plugin>
