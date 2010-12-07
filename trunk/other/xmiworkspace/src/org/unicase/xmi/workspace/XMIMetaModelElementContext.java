@@ -3,8 +3,8 @@ package org.unicase.xmi.workspace;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.MetaModelElementContext;
 import org.unicase.util.UnicaseUtil;
 
 public class XMIMetaModelElementContext extends MetaModelElementContext {

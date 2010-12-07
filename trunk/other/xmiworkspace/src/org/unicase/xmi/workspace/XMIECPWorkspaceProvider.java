@@ -1,7 +1,7 @@
 package org.unicase.xmi.workspace;
 
-import org.unicase.ui.navigator.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
 
 public class XMIECPWorkspaceProvider implements ECPWorkspaceProvider {
 

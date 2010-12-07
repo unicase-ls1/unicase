@@ -7,7 +7,7 @@
 package org.unicase.xmi.xmiworkspacestructure;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 
 /**
  * <!-- begin-user-doc -->
