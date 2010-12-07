@@ -5,6 +5,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.MetaModelElementContext;
+import org.unicase.util.UnicaseUtil;
 
 public class XMIMetaModelElementContext extends MetaModelElementContext {
 
@@ -17,7 +18,7 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
-		return ModelUtil.getAllModelElementEClasses();
+		return UnicaseUtil.getAllModelElementEClasses();
 	}
 	
 	public static MetaModelElementContext getInstance() {
@@ -25,6 +26,12 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 			instance = new XMIMetaModelElementContext();
 		}
 		return instance;
+	}
+
+	@Override
+	public boolean isNonDomainElement(EClass eClass) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
