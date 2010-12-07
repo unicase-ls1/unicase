@@ -87,8 +87,8 @@ public class XMIECPFileProject extends ECPProjectImpl implements XMIECPProject {
 				library.getWriters().add(writer);
 				
 				// set library as root
-				setRootObject(library);
-				this.resource.getContents().add(library);
+				setRootObject(this);
+				this.resource.getContents().add(this);
 				
 				try {
 					this.resource.save(Collections.EMPTY_MAP);
