@@ -19,6 +19,10 @@ public class ProjectGeneratorUtil {
 
 	private static Set<EClass> modelElementEClasses;
 
+	public static EPackage getModelPackage(String key) {
+		 return EPackage.Registry.INSTANCE.getEPackage(key);
+	}
+	
 	public static Set<EPackage> getAllModelPackages() {
 		Set<EPackage> result = new HashSet<EPackage>();
 		Registry registry = EPackage.Registry.INSTANCE;
@@ -28,6 +32,26 @@ public class ProjectGeneratorUtil {
 				System.out.println(entry.getKey());
 				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				result.add(model);
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				// END SUPRESS CATCH EXCEPTION
+				//logException("Failed to load model package " + entry.getKey(), exception);
+			}
+		}
+		return result;
+	}
+	
+	
+	
+	public static Set<EPackage> getAllRootModelPackages() {
+		Set<EPackage> result = new HashSet<EPackage>();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : registry.entrySet()) {
+			try {
+				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				if (model.getESuperPackage() == null) result.add(model);
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 			catch (RuntimeException exception) {
