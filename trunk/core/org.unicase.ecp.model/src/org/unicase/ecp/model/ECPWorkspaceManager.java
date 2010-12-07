@@ -21,6 +21,7 @@ public final class ECPWorkspaceManager {
 
 	private static ECPWorkspaceManager instance;
 	private static ObserverBus observerBus;
+	private ECPWorkspace currentWorkspace;
 
 	/**
 	 * Singleton Pattern.
@@ -31,6 +32,7 @@ public final class ECPWorkspaceManager {
 		if (instance == null) {
 			instance = new ECPWorkspaceManager();
 			instance.init();
+			instance.notifyECPPostWorkspaceInitiators();
 		}
 		return instance;
 	}
@@ -38,8 +40,6 @@ public final class ECPWorkspaceManager {
 	private void init() {
 		observerBus = new ObserverBus();
 	}
-
-	private ECPWorkspace workspace;
 
 	private ECPWorkspaceManager() {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
@@ -53,7 +53,7 @@ public final class ECPWorkspaceManager {
 			Activator.getDefault().logException(exception.getMessage(), exception);
 		}
 		try {
-			workspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class")).getECPWorkspace();
+			currentWorkspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class")).getECPWorkspace();
 		} catch (CoreException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
 		}
@@ -66,15 +66,29 @@ public final class ECPWorkspaceManager {
 	 * @throws NoWorkspaceException if there is no workspace
 	 */
 	public ECPWorkspace getWorkSpace() throws NoWorkspaceException {
-		if (workspace == null) {
+		if (currentWorkspace == null) {
 			throw new NoWorkspaceException();
 		}
-		return workspace;
+		return currentWorkspace;
 	}
 	
 	@SuppressWarnings("static-access")
 	public static ObserverBus getObserverBus() {
 		return getInstance().observerBus;
+	}
+	
+	private void notifyECPPostWorkspaceInitiators() {
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ecp.model.postinit");
+		for (IConfigurationElement element : workspaceObservers) {
+			try {
+				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element
+					.createExecutableExtension("class");
+				workspaceObserver.workspaceInitComplete(currentWorkspace);
+			} catch (CoreException e) {
+				Activator.getDefault().logException(e.getMessage(), e);
+			}
+		}
 	}
 
 }
