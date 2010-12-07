@@ -9,8 +9,9 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.NotificationManager;
+import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigatormeeditorbridge.ModelElementOpener;
 
@@ -27,8 +28,8 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		EObject me = ActionHelper.getSelectedModelElement();
 		if (me instanceof MEDiagram) {
-			NotificationManager.getInstance().onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
-				"org.unicase.ui.meeditor.MEEditor");
+			ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me,
+				"org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor", "org.unicase.ui.meeditor.MEEditor");
 			new ModelElementOpener().openModelElement(me);
 		}
 
