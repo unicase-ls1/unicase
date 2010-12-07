@@ -15,4 +15,5 @@ Import-Package: org.eclipse.emf.edit.provider,
  org.osgi.framework;version="1.3.0",
  org.unicase.workspace,
  org.unicase.workspace.util
-Export-Package: org.unicase.xmi.workspace
+Export-Package: org.unicase.xmi.workspace,
+ org.unicase.xmi.xmiworkspacestructure.provider

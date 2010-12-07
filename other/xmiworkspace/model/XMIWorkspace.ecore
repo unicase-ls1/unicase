@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="XMIWorkspaceStructure"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xmiworkspacestructure"
     nsURI="http://unicase.org/xmiworkspace/structureModel" nsPrefix="org.unicase.xmi.structureModel">
-  <eClassifiers xsi:type="ecore:EClass" name="XMIECPProject" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XMIECPProject" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMIECPFileProject" eSuperTypes="#//XMIECPProject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmiFilePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="XMIECPContainer" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="XMIECPProjectContainer" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="internalProjects" upperBound="-1"
-        eType="#//XMIECPProject"/>
+        eType="#//XMIECPProject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="XMIECPFolder" eSuperTypes="#//XMIECPContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="XMIECPFolder" eSuperTypes="#//XMIECPProjectContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmiDirectoryPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="containedFiles" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
