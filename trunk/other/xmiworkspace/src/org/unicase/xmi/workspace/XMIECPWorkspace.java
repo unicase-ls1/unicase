@@ -10,7 +10,8 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
-import org.unicase.xmi.structure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	
@@ -40,8 +41,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		TransactionalEditingDomain editingDomain2 = Configuration.getEditingDomain();
-		if (editingDomain2 == null) {
+		if (Configuration.getEditingDomain() == null) {
 			final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
@@ -56,8 +56,12 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		// test
 		if(testCounter  == 0) {
 			String testFile = Platform.getLocation().toString() + "xmiworkspace.ucw";
-			XMIECPFileProject ecpp = new XMIECPFileProject(testFile,this);
+			XMIECPFileProject ecpp = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+			ecpp.setWorkspace(this);
+			ecpp.setXmiFilePath(testFile);
+			ecpp.setProjectName("Library Test Project");
 			projects.add(ecpp);
+			
 			super.setActiveProject(ecpp);
 			testCounter++;
 		}

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.*;
 
 /**
