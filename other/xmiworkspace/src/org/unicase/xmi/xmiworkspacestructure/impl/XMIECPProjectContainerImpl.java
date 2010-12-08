@@ -6,7 +6,9 @@
  */
 package org.unicase.xmi.xmiworkspacestructure.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -19,7 +21,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -49,12 +54,27 @@ public abstract class XMIECPProjectContainerImpl extends EObjectImpl implements 
 	protected EList<XMIECPProject> internalProjects;
 
 	/**
+	 * Workspace the container is in.
+	 */
+	protected ECPWorkspace workspace;
+	
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected XMIECPProjectContainerImpl() {
 		super();
+		
+		workspace = null; // initialize with null
+	}
+	
+	public void setWorkspace(ECPWorkspace value) {
+		this.workspace = value;
+	}
+	
+	public ECPWorkspace getWorkspace() {
+		return workspace;
 	}
 
 	/**
@@ -152,5 +172,5 @@ public abstract class XMIECPProjectContainerImpl extends EObjectImpl implements 
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
 } //XMIECPProjectContainerImpl

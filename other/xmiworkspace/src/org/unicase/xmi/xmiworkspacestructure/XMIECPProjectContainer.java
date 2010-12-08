@@ -9,6 +9,7 @@ package org.unicase.xmi.xmiworkspacestructure;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,5 +43,17 @@ public interface XMIECPProjectContainer extends EObject {
 	 * @generated
 	 */
 	EList<XMIECPProject> getInternalProjects();
+	
+	/**
+	 * Set the workspace the folder is supposed to work in.
+	 * @param workspace The workspace used by the navigator.
+	 */
+	void setWorkspace(ECPWorkspace workspace);
+	
+	/**
+	 * Returns the workspace of the folder.
+	 * @return ECPWorkspace the folder is handled in.
+	 */
+	ECPWorkspace getWorkspace();
 
 } // XMIECPProjectContainer
