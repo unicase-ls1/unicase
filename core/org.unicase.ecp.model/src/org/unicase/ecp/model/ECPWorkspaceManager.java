@@ -43,7 +43,7 @@ public final class ECPWorkspaceManager {
 
 	private ECPWorkspaceManager() {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.ecpWorkspaceProvider");
+			"org.unicase.ecp.model.ecpWorkspaceProvider");
 		if (confs.length > 1) {
 			Exception exception = new IllegalStateException("Duplicate Workspace registered");
 			Activator.getDefault().logException(exception.getMessage(), exception);
