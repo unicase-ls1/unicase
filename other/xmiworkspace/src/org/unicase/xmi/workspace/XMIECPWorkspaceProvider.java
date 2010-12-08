@@ -11,8 +11,6 @@ public class XMIECPWorkspaceProvider implements ECPWorkspaceProvider {
      * @see org.unicase.ui.navigator.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace() 
      */
 	public ECPWorkspace getECPWorkspace() {
-		
-		//return new XMIECPWorkspaceDraft();
 		return new XMIECPWorkspace();
 	}
 
