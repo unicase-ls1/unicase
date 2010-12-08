@@ -19,8 +19,8 @@ public class ProjectGeneratorUtil {
 
 	private static Set<EClass> modelElementEClasses;
 
-	public static EPackage getModelPackage(String key) {
-		 return EPackage.Registry.INSTANCE.getEPackage(key);
+	public static EPackage getModelPackage(String nsURI) {
+		 return EPackage.Registry.INSTANCE.getEPackage(nsURI);
 	}
 	
 	public static Set<EPackage> getAllModelPackages() {
