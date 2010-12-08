@@ -8,4 +8,11 @@
       </WorkspaceProvider>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package"> 
+    <package 
+       uri = "http://unicase.org/xmiworkspace/structureModel" 
+       class = "org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage" 
+       genModel = "model/XMIWorkspace.genmodel" /> 
+   </extension>
+
 </plugin>

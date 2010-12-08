@@ -14,5 +14,6 @@ Require-Bundle: exampleModel;bundle-version="1.0.0",
  org.unicase.workspace;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.xmi.workspace,
+ org.unicase.xmi.xmiworkspacestructure,
  org.unicase.xmi.xmiworkspacestructure.provider
 Bundle-ActivationPolicy: lazy
