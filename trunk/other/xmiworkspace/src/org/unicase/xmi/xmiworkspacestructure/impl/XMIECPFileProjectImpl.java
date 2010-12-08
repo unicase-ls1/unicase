@@ -137,7 +137,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		this.baseElements = new BasicEList<EObject>();
 		
 		buildEContentAdapter();
-		init();
 	}
 	
 	/**
@@ -297,6 +296,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		xmiFilePath = newXmiFilePath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH, oldXmiFilePath, xmiFilePath));
+		
+		init();
 	}
 
 	/**
@@ -514,6 +515,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public EditingDomain getEditingDomain() {
+		if(workspace == null) return null;
 		return workspace.getEditingDomain();
 	}
 

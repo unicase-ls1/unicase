@@ -6,15 +6,27 @@
  */
 package org.unicase.xmi.xmiworkspacestructure.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.xmi.exceptions.XMIFileTypeException;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -60,17 +72,80 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<?> containedFiles;
+	protected EList<File> containedFiles;
 
 	/**
+	 * Path to where the folder containing the xmi-resources is.
+	 */
+	private URI xmiFolderPath = null;
+	
+	/**
+	 * Loadable xmi resources
+	 */
+	private ResourceSet resources = null;
+	
+	/**
 	 * <!-- begin-user-doc -->
+	 * Creates a folder node which represents a directory in the filesystem with xmi resources in it.
+	 * Please make sure to set the xmiFolderPath and the ECPWorkspace after creating the object.
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected XMIECPFolderImpl() {
 		super();
 	}
-
+	
+	/**
+	 * Initializing project-container
+	 * Called when the xmiFilePath is set. 
+	 */
+	private void init() {
+		// check whether xmiFolderPath was set
+		if(xmiFolderPath == null) {
+			new XMIFileTypeException("The path to the folder has not been set.");
+			return;
+		}
+		
+		// creating resources
+		File xmiFolder = new File(xmiFolderPath.toFileString());
+		resources = new ResourceSetImpl();
+		
+		// checking whether the file is really a directory
+		if(!xmiFolder.isDirectory()) {
+			new XMIFileTypeException("The given path " + xmiFolderPath.toPlatformString(false) + " is not a directory.");
+		}
+		else if(!xmiFolder.exists()) {
+			// folder does not exists and must be created
+			if(!xmiFolder.mkdir()) {
+				// unable to create folder
+				new XMIFileTypeException("Unable to create directory " + xmiFolder.getPath());
+			}
+		}
+		else {
+			// the file is a directory and therefore the files within the directory are read
+			File[] files = xmiFolder.listFiles();
+			for(int i = 0; i < files.length; i++) {
+				Resource xmiFile = resources.getResource(URI.createFileURI(files[i].getPath()), true);
+				
+				// try to load the file to see whether it's a valid resource
+				try {
+					xmiFile.load(Collections.EMPTY_MAP);
+					resources.getResources().add(xmiFile);
+					containedFiles.add(files[i]);
+				}
+				catch(IOException e) {
+					new XMIFileTypeException(files[i].getPath() + " is not a valid xmi resource and won't be loaded.", e);
+				}
+			}
+			
+			// each valid file has to be build as a XMIECPProject now and added to the internal project management
+			for(Resource res: resources.getResources()) {
+				XMIECPProject project = (XMIECPFileProject) res.getContents().get(0);
+				project.setWorkspace(getWorkspace());
+				internalProjects.add(project);
+			}
+		}
+	} // END init
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,6 +175,8 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		xmiDirectoryPath = newXmiDirectoryPath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FOLDER__XMI_DIRECTORY_PATH, oldXmiDirectoryPath, xmiDirectoryPath));
+		
+		init();
 	}
 
 	/**
@@ -107,7 +184,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<?> getContainedFiles() {
+	public EList<File> getContainedFiles() {
 		return containedFiles;
 	}
 
@@ -116,8 +193,8 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainedFiles(EList<?> newContainedFiles) {
-		EList<?> oldContainedFiles = containedFiles;
+	public void setContainedFiles(EList<File> newContainedFiles) {
+		EList<File> oldContainedFiles = containedFiles;
 		containedFiles = newContainedFiles;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES, oldContainedFiles, containedFiles));
@@ -151,7 +228,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 				setXmiDirectoryPath((String)newValue);
 				return;
 			case XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES:
-				setContainedFiles((EList<?>)newValue);
+				setContainedFiles((EList<File>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -169,7 +246,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 				setXmiDirectoryPath(XMI_DIRECTORY_PATH_EDEFAULT);
 				return;
 			case XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES:
-				setContainedFiles((EList<?>)null);
+				setContainedFiles((EList<File>)null);
 				return;
 		}
 		super.eUnset(featureID);
