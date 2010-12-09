@@ -140,7 +140,7 @@ public class ProjectGeneratorUtil {
 				result.add(subClass);
 			}
 		}
-		return null;
+		return result;
 	}
 	
 	/**
