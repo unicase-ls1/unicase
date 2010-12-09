@@ -15,8 +15,8 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.zest.core.viewers.GraphViewer;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
 import org.unicase.workspace.ProjectSpace;
 
 /**
