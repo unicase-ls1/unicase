@@ -1,11 +1,11 @@
-package org.unicase.xmi.structure;
+package org.unicase.xmi.workspace;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-public class ProjectRootNode extends EObjectImpl {
+public class ProjectRootNode extends EObjectImpl implements EObject {
 
 	/**
 	 * Elements of the first level of an xmi-project.

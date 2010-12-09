@@ -10,5 +10,7 @@ public class XMIWorkspaceException extends XMIException {
 	public XMIWorkspaceException(String msg, Exception e) {
 		message = msg;
 		exception = e;
+		
+		log();
 	}
 }

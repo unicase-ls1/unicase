@@ -21,4 +21,8 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//XMIECPProject"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>
