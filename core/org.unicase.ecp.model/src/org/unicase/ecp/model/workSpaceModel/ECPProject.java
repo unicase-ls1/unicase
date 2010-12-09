@@ -97,7 +97,7 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	Collection<EObject> getAllModelElementsbyClass(EClass clazz,
 			BasicEList<EObject> basicEList);
 
-	// TODO: 
+	// TODO: OW check comment 
 	/**
 	 * Specifies whether an element is a NonDomainElement (NDE). If the underlying layer doesn't support NDE, returns true.
 	 * NDEs are model elements that aren't meant to exist on their own, rather they have to belong a parent model element. 
