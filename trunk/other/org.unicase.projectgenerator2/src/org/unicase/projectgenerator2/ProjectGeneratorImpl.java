@@ -93,11 +93,15 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	}
 	
 	private void generateChildren(EObject parent, long currentDepth) {
+		if(parent.eClass() == null) {
+			return;
+		}
 		List<EClass> elementsToCreate = new ArrayList<EClass>(ProjectGeneratorUtil.getAllEContainments(parent.eClass()));
 		if(currentDepth < hierarchyDepth) {
-			for(int i = 0; i < noOfExampleValues && elementsToCreate.size() > i ; i++) {
+			for(int i = 0; i < noOfExampleValues && elementsToCreate.size() > i; i++) {
 				EClass currentChildClass = elementsToCreate.get(i);
 				if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
+					elementsToCreate.remove(i);
 					i--;
 					continue;
 				}
