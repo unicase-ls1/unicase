@@ -108,7 +108,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					((List<EObject>) parent.eGet(reference)).add(newObject);
 				else
 					parent.eSet(reference, newObject);
-				generateChildren(newObject, currentDepth++);
+				generateChildren(newObject, (currentDepth+1));
 			}
 		}
 	}
