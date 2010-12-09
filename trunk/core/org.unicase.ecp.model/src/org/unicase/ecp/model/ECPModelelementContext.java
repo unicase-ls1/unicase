@@ -41,7 +41,7 @@ public interface ECPModelelementContext {
 	boolean isAssociationClassElement(EObject eObject);
 
 	/**
-	 * Returns an {@link AssociationClassElement} wrapper for a {@link EObject}.
+	 * Returns an {@link ECPAssociationClassElement} wrapper for a {@link EObject}.
 	 * 
 	 * @param eObject the {@link EObject}
 	 * @return the wrapper, {@code null} if {@link EObject} not exists
