@@ -200,6 +200,35 @@ public interface XmiworkspacestructurePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.ProjectRootImpl <em>Project Root</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.xmi.xmiworkspacestructure.impl.ProjectRootImpl
+	 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getProjectRoot()
+	 * @generated
+	 */
+	int PROJECT_ROOT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ROOT__PROJECT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Project Root</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ROOT_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProject <em>XMIECP Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,6 +322,27 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getXMIECPFolder_ContainedFiles();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.xmi.xmiworkspacestructure.ProjectRoot <em>Project Root</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Root</em>'.
+	 * @see org.unicase.xmi.xmiworkspacestructure.ProjectRoot
+	 * @generated
+	 */
+	EClass getProjectRoot();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.xmi.xmiworkspacestructure.ProjectRoot#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Project</em>'.
+	 * @see org.unicase.xmi.xmiworkspacestructure.ProjectRoot#getProject()
+	 * @see #getProjectRoot()
+	 * @generated
+	 */
+	EReference getProjectRoot_Project();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -395,6 +445,24 @@ public interface XmiworkspacestructurePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute XMIECP_FOLDER__CONTAINED_FILES = eINSTANCE.getXMIECPFolder_ContainedFiles();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.ProjectRootImpl <em>Project Root</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.xmi.xmiworkspacestructure.impl.ProjectRootImpl
+		 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getProjectRoot()
+		 * @generated
+		 */
+		EClass PROJECT_ROOT = eINSTANCE.getProjectRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_ROOT__PROJECT = eINSTANCE.getProjectRoot_Project();
 
 	}
 

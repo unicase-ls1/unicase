@@ -20,5 +20,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPFolder/xmiDirectoryPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XMIWorkspace.ecore#//XMIECPFolder/containedFiles"/>
     </genClasses>
+    <genClasses ecoreClass="XMIWorkspace.ecore#//ProjectRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XMIWorkspace.ecore#//ProjectRoot/project"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

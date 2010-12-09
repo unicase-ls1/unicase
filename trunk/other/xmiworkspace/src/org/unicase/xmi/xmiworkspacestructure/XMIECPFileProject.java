@@ -6,6 +6,8 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -44,9 +46,12 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * @param filePath Complete path to the file.
 	 * @see #getXmiFilePath()
 	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPFileProject_XmiFilePath()
-	 * @model
+	 * @models
 	 * @generated
 	 */
-	void setXmiFilePath(String filePath);
+	void setXmiFilePath(String value);
+
+	
+	void setWorkspace(ECPWorkspace workspace);
 
 } // XMIECPFileProject

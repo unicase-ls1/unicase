@@ -18,7 +18,6 @@ import library.Library;
 import library.LibraryFactory;
 import library.Writer;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -43,9 +42,9 @@ import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.ProjectRootNode;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -73,7 +72,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROJECT_NAME_EDEFAULT = "Empty New Project";
+	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
@@ -89,7 +88,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String XMI_FILE_PATH_EDEFAULT = Platform.getLocation().toString() + "xmiworkspace.ucw";
+	protected static final String XMI_FILE_PATH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getXmiFilePath() <em>Xmi File Path</em>}' attribute.
@@ -153,7 +152,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 */
 	private void init() {
 		// set root object with a dummy
-		setRootObject(new ProjectRootNode());
+		setRootObject(XmiworkspacestructureFactory.eINSTANCE.createProjectRoot());
 		
 		// file resources
 		File xmiFile = new File(xmiFilePath);
@@ -291,8 +290,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		xmiFilePath = newXmiFilePath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH, oldXmiFilePath, xmiFilePath));
-		
-		init();
 	}
 
 	/**

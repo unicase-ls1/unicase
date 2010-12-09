@@ -68,7 +68,7 @@ public interface XMIECPFolder extends XMIECPProjectContainer {
 	 * @model many="false" transient="true"
 	 * @generated
 	 */
-	EList<File> getContainedFiles();
+	EList<?> getContainedFiles();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}' attribute.

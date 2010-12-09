@@ -6,9 +6,7 @@
  */
 package org.unicase.xmi.xmiworkspacestructure.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -21,9 +19,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.edit.domain.EditingDomain;
-
-import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
@@ -65,8 +60,6 @@ public abstract class XMIECPProjectContainerImpl extends EObjectImpl implements 
 	 */
 	protected XMIECPProjectContainerImpl() {
 		super();
-		
-		workspace = null; // initialize with null
 	}
 	
 	public void setWorkspace(ECPWorkspace value) {
