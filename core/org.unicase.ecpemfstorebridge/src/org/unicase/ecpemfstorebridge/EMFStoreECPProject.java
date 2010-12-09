@@ -20,7 +20,6 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -131,7 +130,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#isNonDomainElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean isNonDomainElement(EObject eObject) {
-		return (eObject instanceof NonDomainElement);
+		return getMetaModelElementContext().isNonDomainElement(eObject);
 	}
 
 	/**
