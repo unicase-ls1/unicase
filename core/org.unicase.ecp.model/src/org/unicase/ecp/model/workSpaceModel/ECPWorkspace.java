@@ -44,6 +44,7 @@ public interface ECPWorkspace extends EObject {
 	 */
 	EList<ECPProject> getProjects();
 
+	
 	public ECPProject getProject(EObject me);
 
 	public ECPProject getActiveProject();

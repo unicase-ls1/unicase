@@ -73,54 +73,107 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	 * @param eObject
 	 *            EObject
 	 * @return true if is contained
+	 * @generated not
 	 */
 	boolean contains(EObject eObject);
 
 	/**
 	 * Returns all model elements contained in the project. Don't add elements
-	 * to this collection.  Instead use {@link #addModelElementToRoot(EObject)}
+	 * to this collection. Instead use {@link #addModelElementToRoot(EObject)}
 	 * or attach it as a child of an element of this collection.
 	 * 
 	 * 
 	 * @return all model elements
+	 * @generated not
 	 */
 	Collection<EObject> getAllModelElement();
 
 	/**
-	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
+	 * Returns all elements contained in the project that have the specified
+	 * class type or one of its subtypes.
 	 * 
-	 * @param clazz specified class type
-	 * @param basicEList list containing the results
-	 * @return resulting list (is the same as the basicEList parameter, API will be changed)
+	 * @param clazz
+	 *            specified class type
+	 * @param basicEList
+	 *            list containing the results
+	 * @return resulting list (is the same as the basicEList parameter, API will
+	 *         be changed)
+	 * @generated not
 	 */
 	// TODO: encapsulate 2nd parameter in the API
 	Collection<EObject> getAllModelElementsbyClass(EClass clazz,
 			BasicEList<EObject> basicEList);
 
-	// TODO: OW check comment 
 	/**
-	 * Specifies whether an element is a NonDomainElement (NDE). If the underlying layer doesn't support NDE, returns true.
-	 * NDEs are model elements that aren't meant to exist on their own, rather they have to belong a parent model element. 
+	 * Specifies whether an element is a NonDomainElement (NDE). If the
+	 * underlying layer doesn't support NDE, returns true. NDEs are model
+	 * elements that are part of the model but shouldn't be visible to the user
+	 * via the default UI. E.g. their are faded out in the navigator or you
+	 * can't create them over the new model element dialog.F
 	 * 
-	 * @param eObject object to test
+	 * @param eObject
+	 *            object to test
 	 * @return true if is NonDomainElement, false otherwise
+	 * @generated not
 	 */
 	boolean isNonDomainElement(EObject eObject);
 
 	void dispose();
 
+	/**
+	 * Allows to add an {@link ECPProjectListener}.
+	 * 
+	 * @param listener
+	 *            listener
+	 * @generated not
+	 */
 	void addECPProjectListener(ECPProjectListener listener);
 
+	/**
+	 * Allows to remove an {@link ECPProjectListener}.
+	 * 
+	 * @param listener
+	 *            listener
+	 * @generated not
+	 */
 	void removeECPProjectListener(ECPProjectListener listener);
 
+	/**
+	 * Notifies listeners about changes in the project.
+	 * 
+	 * @generated not
+	 */
 	void projectChanged();
 
+	/**
+	 * Notifies about deletion of a project.
+	 * 
+	 * @generated not
+	 */
 	void projectDeleted();
 
+	/**
+	 * Notifies about deletion of an model element.
+	 * 
+	 * @param eobject
+	 */
 	void modelelementDeleted(EObject eobject);
 
+	/**
+	 * Lets you add an element to the RootObject. This method is necessary since
+	 * you don't know which feature of the RootObject to use.
+	 * 
+	 * @param eObject
+	 * @generated not
+	 */
 	void addModelElementToRoot(EObject eObject);
 
+	/**
+	 * Returns the root object of the model, which is visible to the user. In
+	 * general it is some sort of project.
+	 * 
+	 * @return eobject
+	 */
 	EObject getRootObject();
 
 	/**
