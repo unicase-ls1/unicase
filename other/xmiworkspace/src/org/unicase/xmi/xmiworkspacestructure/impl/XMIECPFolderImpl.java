@@ -112,6 +112,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		// checking whether the file is really a directory
 		if(!xmiFolder.isDirectory()) {
 			new XMIFileTypeException("The given path " + xmiFolderPath.toPlatformString(false) + " is not a directory.");
+			return;
 		}
 		else if(!xmiFolder.exists()) {
 			// folder does not exists and must be created

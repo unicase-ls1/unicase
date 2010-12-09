@@ -43,6 +43,7 @@ import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.ProjectRootNode;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -119,11 +120,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private EContentAdapter listenerAdapter;
 	
 	/**
-	 * Holds the first level of the elements in the project
-	 */
-	private EList<EObject> baseElements;
-	
-	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
 	 * Uses the default file path and sets the workspace to null.
 	 * Make sure to set the workspace correctly after creating the
@@ -133,8 +129,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		super();
 		
 		workspace = null;
-		
-		this.baseElements = new BasicEList<EObject>();
 		
 		buildEContentAdapter();
 	}
@@ -150,8 +144,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		this.xmiFilePath = filePath;
 		this.workspace = ws;
 		
-		this.baseElements = new BasicEList<EObject>();
-		
 		buildEContentAdapter();
 		init();
 	}
@@ -160,6 +152,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * Initializes project
 	 */
 	private void init() {
+		// set root object with a dummy
+		setRootObject(new ProjectRootNode());
+		
+		// file resources
 		File xmiFile = new File(xmiFilePath);
 		URI xmiUri = URI.createFileURI(xmiFilePath);
 		
@@ -181,9 +177,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			}
 			// END TEST
 			
-			// set root
-			setRootObject(this);
-			this.resource.getContents().add(this);
+			// persist root
+			this.resource.getContents().add(getRootObject());
 			
 			try {
 				this.resource.save(Collections.EMPTY_MAP);
@@ -494,7 +489,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
 		// go through all baseElements and add their tree to result
-		for(EObject eo: baseElements) {
+		for(EObject eo: getRootObject().eContents()) {
 			TreeIterator<EObject> eAllContents = eo.eAllContents();
 			while(eAllContents.hasNext()) {
 				result.add(eAllContents.next());
@@ -532,7 +527,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		eObject.eAdapters().add(listenerAdapter);
 		
 		// add the object to the first-level-list
-		baseElements.add(eObject);
+		getRootObject().eContents().add(eObject);
 	}
 
 } //XMIECPFileProjectImpl

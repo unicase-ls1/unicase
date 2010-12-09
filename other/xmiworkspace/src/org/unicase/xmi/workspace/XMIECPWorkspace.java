@@ -1,19 +1,8 @@
 package org.unicase.xmi.workspace;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
@@ -22,9 +11,8 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
+
 
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	
@@ -67,7 +55,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	public EList<ECPProject> getProjects() {
 		
 		// test
-		if(testCounter  == 0) {
+		if(testCounter == 0) {
 			// new test-file-project
 			String testFile = Platform.getLocation().toString() + "xmiworkspace.ucw";
 			XMIECPFileProject ecpp = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
