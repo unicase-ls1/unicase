@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -202,6 +203,13 @@ public class ProjectGeneratorUtil {
 	 */
 	public static EFactory getEFactory(EClass eClass) {
 		return eClass.getEPackage().getEFactoryInstance();	
+	}
+	
+	/**
+	 * @return the root EObject
+	 */
+	public static EObject createRoot() {
+		return null; 
 	}
 	
 }
