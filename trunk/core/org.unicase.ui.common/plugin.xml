@@ -168,7 +168,7 @@
       <clientContext
             id="context">
          <selector
-               class="org.unicase.ui.common.util.ValidationClientSelector">
+               class="org.unicase.ui.util.ValidationClientSelector">
          </selector>
       </clientContext>
    </extension>
