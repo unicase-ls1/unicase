@@ -78,7 +78,7 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 
 	/**
 	 * Returns all model elements contained in the project. Don't add elements
-	 * to this collection, instead use {@link #addModelElementToRoot(EObject)}
+	 * to this collection.  Instead use {@link #addModelElementToRoot(EObject)}
 	 * or attach it as a child of an element of this collection.
 	 * 
 	 * 
@@ -87,21 +87,23 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	Collection<EObject> getAllModelElement();
 
 	/**
-	 * Returns all elements contained in the project of the specified class type or its subtypes.
+	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
 	 * 
 	 * @param clazz specified class type
 	 * @param basicEList list containing the results
-	 * TODO
 	 * @return resulting list (is the same as the basicEList parameter, API will be changed)
 	 */
+	// TODO: encapsulate 2nd parameter in the API
 	Collection<EObject> getAllModelElementsbyClass(EClass clazz,
 			BasicEList<EObject> basicEList);
 
+	// TODO: 
 	/**
-	 * Specifies whether an element is a NonDomainElement. If the underlying layer doesn't support NDE, return true.
+	 * Specifies whether an element is a NonDomainElement (NDE). If the underlying layer doesn't support NDE, returns true.
+	 * NDEs are model elements that aren't meant to exist on their own, rather they have to belong a parent model element. 
 	 * 
-	 * @param eObject object of test
-	 * @return true if is NonDomainElement
+	 * @param eObject object to test
+	 * @return true if is NonDomainElement, false otherwise
 	 */
 	boolean isNonDomainElement(EObject eObject);
 
