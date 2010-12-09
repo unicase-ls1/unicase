@@ -32,9 +32,9 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.layouts.LayoutStyles;
-import org.unicase.ui.navigator.NoWorkspaceException;
-import org.unicase.ui.navigator.WorkspaceManager;
-import org.unicase.ui.navigator.workSpaceModel.ECPProject;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.urml.hypergraph.layout.GraphEClassFilter;
 import org.unicase.ui.urml.hypergraph.layout.GraphEObjectLayouted;
 import org.unicase.ui.urml.hypergraph.layout.GraphEReferenceFilter;
@@ -71,7 +71,7 @@ public class HypergraphView extends ViewPart implements ISelectionListener {
 		composite.setLayout(layout);
 		try {
 			// put all model elements of all projects into the filter
-			nodeFilter = new GraphEClassFilter(WorkspaceManager.getInstance().getWorkSpace().getProjects(), graph);
+			nodeFilter = new GraphEClassFilter(ECPWorkspaceManager.getInstance().getWorkSpace().getProjects(), graph);
 		} catch (NoWorkspaceException e) {
 			nodeFilter = new GraphEClassFilter(new LinkedList<ECPProject>(), graph);
 		}

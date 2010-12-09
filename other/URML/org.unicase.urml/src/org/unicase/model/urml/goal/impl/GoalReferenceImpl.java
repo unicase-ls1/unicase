@@ -3,7 +3,6 @@
  */
 package org.unicase.model.urml.goal.impl;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,12 +13,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.model.urml.goal.Goal;
 import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.model.urml.goal.GoalReference;
 import org.unicase.model.urml.goal.GoalReferenceType;
 import org.unicase.model.urml.impl.UrmlModelElementImpl;
-import org.unicase.ui.common.util.AssociationClassHelper;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
