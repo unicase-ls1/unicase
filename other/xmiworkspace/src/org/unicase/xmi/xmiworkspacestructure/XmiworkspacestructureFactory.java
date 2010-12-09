@@ -7,7 +7,6 @@
 package org.unicase.xmi.xmiworkspacestructure;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,6 +42,15 @@ public interface XmiworkspacestructureFactory extends EFactory {
 	 * @generated
 	 */
 	XMIECPFolder createXMIECPFolder();
+
+	/**
+	 * Returns a new object of class '<em>Project Root</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Root</em>'.
+	 * @generated
+	 */
+	ProjectRoot createProjectRoot();
 
 	/**
 	 * Returns the package supported by this factory.

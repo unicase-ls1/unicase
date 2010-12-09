@@ -22,11 +22,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.xmi.exceptions.XMIFileTypeException;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -140,7 +137,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 			
 			// each valid file has to be build as a XMIECPProject now and added to the internal project management
 			for(Resource res: resources.getResources()) {
-				XMIECPProject project = (XMIECPFileProject) res.getContents().get(0);
+				XMIECPFileProjectImpl project = (XMIECPFileProjectImpl) res.getContents().get(0);
 				project.setWorkspace(getWorkspace());
 				internalProjects.add(project);
 			}
@@ -185,7 +182,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<File> getContainedFiles() {
+	public EList<?> getContainedFiles() {
 		return containedFiles;
 	}
 
@@ -195,7 +192,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * @generated
 	 */
 	public void setContainedFiles(EList<File> newContainedFiles) {
-		EList<File> oldContainedFiles = containedFiles;
+		EList<?> oldContainedFiles = containedFiles;
 		containedFiles = newContainedFiles;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES, oldContainedFiles, containedFiles));
@@ -222,6 +219,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

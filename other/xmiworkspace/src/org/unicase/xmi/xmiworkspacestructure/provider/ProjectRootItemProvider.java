@@ -26,17 +26,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
+import org.unicase.xmi.xmiworkspacestructure.ProjectRoot;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.ProjectRoot} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class XMIECPProjectContainerItemProvider
+public class ProjectRootItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +50,7 @@ public class XMIECPProjectContainerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMIECPProjectContainerItemProvider(AdapterFactory adapterFactory) {
+	public ProjectRootItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -81,7 +81,7 @@ public class XMIECPProjectContainerItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(XmiworkspacestructurePackage.Literals.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS);
+			childrenFeatures.add(XmiworkspacestructurePackage.Literals.PROJECT_ROOT__PROJECT);
 		}
 		return childrenFeatures;
 	}
@@ -100,6 +100,17 @@ public class XMIECPProjectContainerItemProvider
 	}
 
 	/**
+	 * This returns ProjectRoot.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectRoot"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +118,7 @@ public class XMIECPProjectContainerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_XMIECPProjectContainer_type");
+		return getString("_UI_ProjectRoot_type");
 	}
 
 	/**
@@ -121,8 +132,8 @@ public class XMIECPProjectContainerItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(XMIECPProjectContainer.class)) {
-			case XmiworkspacestructurePackage.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS:
+		switch (notification.getFeatureID(ProjectRoot.class)) {
+			case XmiworkspacestructurePackage.PROJECT_ROOT__PROJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -142,7 +153,7 @@ public class XMIECPProjectContainerItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(XmiworkspacestructurePackage.Literals.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS,
+				(XmiworkspacestructurePackage.Literals.PROJECT_ROOT__PROJECT,
 				 XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject()));
 	}
 

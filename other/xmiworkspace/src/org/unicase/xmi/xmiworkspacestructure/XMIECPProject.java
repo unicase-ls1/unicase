@@ -6,7 +6,6 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 
 /**
