@@ -6,15 +6,22 @@
 package org.unicase.ui.navigator.handler;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -24,6 +31,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ui.common.commands.ECPCommand;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.ui.util.UiUtil;
 
@@ -43,6 +51,8 @@ public class ExportModelHandler extends AbstractHandler {
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
 
 	private static final String EXPORT_MODEL_PATH = "org.unicase.workspace.ui.exportModelPath";
+
+	private EditingDomain domain;
 
 	/**
 	 * {@inheritDoc}
@@ -78,17 +88,17 @@ public class ExportModelHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new ECPCommand(exportModelElements.get(0)) {
+		new ECPCommand(domain, exportModelElements.get(0)) {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Export modelelement...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					// TODO: ChainSaw export
-					// write XMI IDs into resource
-					// ModelUtil.saveEObjectToResource(exportModelElements, uri);
+					saveEObjectToResource(exportModelElements, uri);
 					MessageDialog.openInformation(null, "Export", "Exported modelelement to file " + file.getName());
+				} catch (IOException e) {
+					DialogHandler.showExceptionDialog(e.getMessage(), e);
 				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
@@ -108,7 +118,7 @@ public class ExportModelHandler extends AbstractHandler {
 			strucSel = (IStructuredSelection) selection;
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof EObject) {
-
+				domain = AdapterFactoryEditingDomain.getEditingDomainFor(firstElement);
 				// TODO: ChainSaw - check whether specific clone functionality of ModelUtil is needed here
 				copyModelElement = EcoreUtil.copy((EObject) firstElement);
 				// copyModelElement = ModelUtil.clone((EObject) firstElement);
@@ -149,4 +159,36 @@ public class ExportModelHandler extends AbstractHandler {
 		return filePath;
 	}
 
+	/**
+	 * Save a list of EObjects to the resource with the given URI.
+	 * 
+	 * @param eObjects the EObjects to be saved
+	 * @param resourceURI the URI of the resource, which should be used to save the EObjects
+	 * @throws IOException if saving to the resource fails
+	 */
+	public void saveEObjectToResource(List<? extends EObject> eObjects, URI resourceURI) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(resourceURI);
+		EList<EObject> contents = resource.getContents();
+
+		for (EObject eObject : eObjects) {
+			contents.add(eObject);
+		}
+
+		contents.addAll(eObjects);
+		resource.save(null);
+	}
+
+	/**
+	 * Save an EObject to a resource.
+	 * 
+	 * @param eObject the object
+	 * @param resourceURI the resources URI
+	 * @throws IOException if saving to the resource fails.
+	 */
+	public void saveEObjectToResource(EObject eObject, URI resourceURI) throws IOException {
+		ArrayList<EObject> list = new ArrayList<EObject>();
+		list.add(eObject);
+		saveEObjectToResource(list, resourceURI);
+	}
 }
