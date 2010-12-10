@@ -154,7 +154,14 @@ public final class WorkspaceUtil {
 		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
-			activeProjectSpace.addEvent(pluginFocusEvent);
+			// TODO: ChainSaw: check use of UnicaseCommand here
+			new UnicaseCommand() {
+
+				@Override
+				protected void doRun() {
+					activeProjectSpace.addEvent(pluginFocusEvent);
+				}
+			};
 		}
 	}
 
