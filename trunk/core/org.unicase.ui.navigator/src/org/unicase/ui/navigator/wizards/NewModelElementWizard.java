@@ -15,8 +15,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -66,7 +66,14 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
-			final ECPProject project = UnicaseUtil.getParent(ECPProject.class, selectedEObject);
+			ECPProject tryProject = null;
+			try {
+				tryProject = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedEObject);
+			} catch (NoWorkspaceException e1) {
+				Activator.getDefault().logException(e1.getMessage(), e1);
+				return false;
+			}
+			final ECPProject project = tryProject;
 			if (project != null && selectedEObject.equals(project.getRootObject())) {
 				new ECPCommand(selectedEObject) {
 					@Override
