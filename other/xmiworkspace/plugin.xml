@@ -17,10 +17,9 @@
    
    <extension point="org.unicase.ui.common.ecpModelPackage">
       <modelPackage
-       uri = "http://unicase.org/xmiworkspace/structureModel" 
-       class = "org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage" 
-       genModel = "model/XMIWorkspace.genmodel" />
-      />
+            modelPackage="XmiworkspacestructurePackage">
+      
+      </modelPackage>
    </extension>
 
 </plugin>
