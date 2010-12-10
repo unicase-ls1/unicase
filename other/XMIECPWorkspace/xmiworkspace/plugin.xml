@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ecp.model.ecpWorkspaceProvider">
+      <WorkspaceProvider
+            class="org.unicase.xmi.workspace.XMIECPWorkspaceProvider">
+      </WorkspaceProvider>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package"> 
+    <package 
+       uri = "http://unicase.org/xmiworkspace/structureModel" 
+       class = "org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage" 
+       genModel = "model/XMIWorkspace.genmodel" /> 
+   </extension>
+   
+   <extension point="org.unicase.ui.common.ecpModelPackage">
+      <modelPackage
+            modelPackage="XmiworkspacestructurePackage">
+      
+      </modelPackage>
+   </extension>
+
+</plugin>
