@@ -19,6 +19,7 @@ public abstract class ECPCommand extends ChangeCommand {
 
 	private EObject eObject;
 	private RuntimeException runtimeException;
+	private EditingDomain domain;
 
 	/**
 	 * Constructor.
@@ -28,6 +29,16 @@ public abstract class ECPCommand extends ChangeCommand {
 	public ECPCommand(EObject eObject) {
 		super(eObject);
 		this.eObject = eObject;
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param eObject the model element whose changes one is interested in
+	 */
+	public ECPCommand(EditingDomain domain, EObject eObject) {
+		super(eObject);
+		this.domain = domain;
 	}
 
 	/**
@@ -60,8 +71,12 @@ public abstract class ECPCommand extends ChangeCommand {
 	public void run(boolean ignoreExceptions) {
 		runtimeException = null;
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-		domain.getCommandStack().execute(this);
+		if (domain == null) {
+			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+			domain.getCommandStack().execute(this);
+		} else {
+			domain.getCommandStack().execute(this);
+		}
 
 		if (!ignoreExceptions && runtimeException != null) {
 			throw runtimeException;
