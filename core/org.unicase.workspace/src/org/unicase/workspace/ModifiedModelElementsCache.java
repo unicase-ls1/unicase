@@ -182,7 +182,9 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 				modifiedModelElements.get(childModelElementId.getId()).remove(operation);
 				if (modifiedModelElements.get(childModelElementId.getId()).size() == 0) {
 					modifiedModelElements.remove(childModelElementId.getId());
-					removeOneFromParent(childParentMapping.get(childModelElementId.getId()));
+					if (childParentMapping.get(childModelElementId.getId()) != null) {
+						removeOneFromParent(childParentMapping.get(childModelElementId.getId()));
+					}
 				}
 			}
 		}
