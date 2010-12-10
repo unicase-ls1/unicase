@@ -4,6 +4,7 @@
 
    <extension-point id="org.unicase.ecp.model.ecpWorkspaceProvider" name="ECP Workspace" schema="schema/ecpWorkspaceProvider.exsd"/>
    <extension-point id="org.unicase.ecp.model.postinit" name="ECP Workspace Init Complete" schema="schema/org.unicase.ecp.model.postinit.exsd"/>
+   <extension-point id="org.unicase.ecp.model.ecpModelPackage" name="ECP Model Package" schema="schema/ecppackage.exsd"/>
    
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
