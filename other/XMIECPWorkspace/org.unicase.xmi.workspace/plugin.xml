@@ -21,5 +21,39 @@
       
       </modelPackage>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.unicase.xmi.workspace"
+            defaultHandler="org.unicase.xmi.commands.NewLocalProjectHandler"
+            description="create new local xmi-file-project"
+            id="org.unicase.xmi.workspace.NewLocalProject"
+            name="NewLocalProject">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+         <command
+               commandId="org.unicase.xmi.workspace.NewLocalProject"
+               icon="icons/add.png"
+               label="New Project..."
+               style="push"
+               tooltip="Click here to make love.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

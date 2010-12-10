@@ -45,7 +45,6 @@ import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -120,6 +119,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private EContentAdapter listenerAdapter;
 	
 	/**
+	 * Holds the elements of the first level in the TreeView.
+	 */
+	private List<EObject> baseElements;
+	
+	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
 	 * Uses the default file path and sets the workspace to null.
 	 * Make sure to set the workspace correctly after creating the
@@ -152,10 +156,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * Initializes project
 	 */
 	private void init() {
+		//TODO remove following 2 lines !
 		// set root object with a dummy
-		setRootObject(XmiworkspacestructureFactory.eINSTANCE.createProjectRoot());
+		//setRootObject(XmiworkspacestructureFactory.eINSTANCE.createProjectRoot());
 		//alternative (delete exising file!):
-		//setRootObject(this);
+		setRootObject(this);
+		
+		baseElements = new BasicEList<EObject>();
 		
 		// file resources
 		File xmiFile = new File(xmiFilePath);
@@ -176,6 +183,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 				writer.setName("him");
 				library.getBooks().add(book);
 				library.getWriters().add(writer);
+				
+				addModelElementToRoot(library);
 			}
 			// END TEST
 			
@@ -404,17 +413,32 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * Filters the basicEList for objects with the given EClass.
+	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
 	 * @return Returns only objects with the given EClass.
 	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
-		EList<EObject> list = new BasicEList<EObject>();
-		for(EObject obj: basicEList) {
-			if(obj.eClass() == clazz) {
-				list.add(obj);
-			}
+		EList<EObject> result;
+		
+		// initialize result-list
+		if(basicEList.isEmpty()) {
+			result = basicEList;
 		}
-		return list;
+		else {
+			result = new BasicEList<EObject>();
+			result.addAll(basicEList);
+		}
+		
+		// get contained elements
+		Collection<EObject> allElements = getAllModelElements();
+
+		// filter the elements and add them to the result if they fit
+		for(EObject eo: allElements) {
+			if(eo.eClass().equals(clazz)) result.add(eo);
+			//TODO check for subclasses
+		}
+		
+		return result;
+		
 	}
 
 	public EObject getRootObject() {
@@ -491,7 +515,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
 		// go through all baseElements and add their tree to result
-		for(EObject eo: getRootObject().eContents()) {
+		for(EObject eo: baseElements) {
 			TreeIterator<EObject> eAllContents = eo.eAllContents();
 			while(eAllContents.hasNext()) {
 				result.add(eAllContents.next());
@@ -523,13 +547,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public boolean isAssociationClassElement(EObject eObject) {
 		return (eObject instanceof AssociationClassElement);
 	}
-
+	
 	public void addModelElementToRoot(EObject eObject) {
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
 		
 		// add the object to the first-level-list
-		getRootObject().eContents().add(eObject);
+		baseElements.add(eObject);
 	}
 
 } //XMIECPFileProjectImpl

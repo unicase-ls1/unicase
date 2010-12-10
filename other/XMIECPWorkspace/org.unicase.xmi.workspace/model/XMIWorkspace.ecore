@@ -8,6 +8,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMIECPFileProject" eSuperTypes="#//XMIECPProject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmiFilePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseElements" upperBound="-1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMIECPProjectContainer" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="internalProjects" upperBound="-1"
@@ -20,9 +25,5 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectRoot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//XMIECPProject"
-        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
