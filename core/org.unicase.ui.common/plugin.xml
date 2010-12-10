@@ -3,7 +3,6 @@
 <plugin>
    <extension-point id="org.unicase.ui.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.common.ui.modelelementopener.exsd"/>
    <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
-   <extension-point id="org.unicase.ui.common.ecpModelPackage" name="ECP Model Package" schema="schema/org.unicase.ui.common.ecppackage.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
      

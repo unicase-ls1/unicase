@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
+import org.unicase.util.observer.ObserverBus;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -106,6 +107,15 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 	}
 
 	/**
+	 * Preliminary way to pass ObserverBus to ECP.
+	 * 
+	 * @return observerbus
+	 */
+	public ObserverBus getObserverBus() {
+		return org.unicase.workspace.WorkspaceManager.getObserverBus();
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#setActiveModelelement(org.eclipse.emf.ecore.EObject)
@@ -117,7 +127,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 		}
 		final ProjectSpace projectSpace;
 		if (modelelement instanceof EObject) {
-			EObject me = (EObject) modelelement;
+			EObject me = modelelement;
 			projectSpace = org.unicase.workspace.WorkspaceManager.getProjectSpace(me);
 		} else if (modelelement instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) modelelement;

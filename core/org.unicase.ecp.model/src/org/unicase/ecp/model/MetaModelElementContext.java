@@ -66,8 +66,7 @@ public abstract class MetaModelElementContext {
 		for (EClass subClass : allEClasses) {
 			if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass
 					.isSuperTypeOf(subClass))
-					&& (!subClass.isAbstract())
-					&& (!subClass.isInterface())) {
+					&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
@@ -113,7 +112,7 @@ public abstract class MetaModelElementContext {
 		Set<String> registeredPackages = new HashSet<String>();
 		IConfigurationElement[] packages = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(
-						"org.unicase.ui.common.ecpModelPackage");
+						"org.unicase.ecp.model.ecpModelPackage");
 		for (IConfigurationElement element : packages) {
 			String packageName = element.getAttribute("modelPackage");
 			registeredPackages.add(packageName);
@@ -121,8 +120,8 @@ public abstract class MetaModelElementContext {
 		Set<EClass> result = new HashSet<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
 		if (registeredPackages.isEmpty()) {
-			return guessPackages(new HashSet<Entry<String, Object>>(
-					registry.entrySet()));
+			return guessPackages(new HashSet<Entry<String, Object>>(registry
+					.entrySet()));
 		}
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(
@@ -341,7 +340,7 @@ public abstract class MetaModelElementContext {
 	public boolean isGuessed() {
 		IConfigurationElement[] packages = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(
-						"org.unicase.ui.common.ecpModelPackage");
+						"org.unicase.ecp.model.ecpModelPackage");
 		return (packages.length == 0);
 	}
 }
