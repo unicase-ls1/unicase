@@ -27,6 +27,9 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.commands.ECPCommand;
 
@@ -93,7 +96,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
-		new ECPCommand(targetConatiner) {
+		new ECPCommand(target) {
 
 			@Override
 			protected void doRun() {
@@ -145,15 +148,24 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		// TODO: ChainSaw - How to retrieve the ECPProject of target and dropee?
 		// check if source and target are in the same project
-		// if (result) {
-		// dropee = source.get(0);
-		// target = (EObject) event.item.getData();
-		// Project targetProject = ModelUtil.getProject(target);
-		// Project dropeeProject = ModelUtil.getProject(dropee);
-		// if (!targetProject.equals(dropeeProject)) {
-		// result = false;
-		// }
-		// }
+
+		if (result) {
+			dropee = source.get(0);
+			target = (EObject) event.item.getData();
+			ECPProject targetProject = null;
+			ECPProject dropeeProject = null;
+			try {
+				targetProject = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(target);
+				dropeeProject = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(dropee);
+			} catch (NoWorkspaceException e) {
+				Activator.getDefault().logException(e);
+				result = false;
+			}
+
+			if (!targetProject.equals(dropeeProject)) {
+				result = false;
+			}
+		}
 
 		return result;
 	}
