@@ -108,10 +108,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
 				setEObjectAttributes(newObject);
 				EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, parent);
-				if(parent.eGet(reference) instanceof List)
+				if(parent.eGet(reference) instanceof List) {
 					((List<EObject>) parent.eGet(reference)).add(newObject);
-				else
+				}
+				else {
 					parent.eSet(reference, newObject);
+				}
 				generateChildren(newObject, (currentDepth+1));
 			}
 		}
