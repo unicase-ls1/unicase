@@ -21,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentFactory;
@@ -874,7 +873,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "DescriptionOfUseCase");
 
 		// test if the create is reversible and re-reversible
-		Project expectedProject = ((ProjectImpl) getProject()).copy(); // ModelUtil.clone(getProject());
+		Project expectedProject = ModelUtil.clone(getProject());
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
