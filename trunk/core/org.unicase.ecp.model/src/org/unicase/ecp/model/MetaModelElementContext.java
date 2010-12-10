@@ -66,7 +66,8 @@ public abstract class MetaModelElementContext {
 		for (EClass subClass : allEClasses) {
 			if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass
 					.isSuperTypeOf(subClass))
-					&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
+					&& (!subClass.isAbstract())
+					&& (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
@@ -120,8 +121,8 @@ public abstract class MetaModelElementContext {
 		Set<EClass> result = new HashSet<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
 		if (registeredPackages.isEmpty()) {
-			return guessPackages(new HashSet<Entry<String, Object>>(registry
-					.entrySet()));
+			return guessPackages(new HashSet<Entry<String, Object>>(
+					registry.entrySet()));
 		}
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(
@@ -151,8 +152,11 @@ public abstract class MetaModelElementContext {
 	private Set<EClass> guessPackages(HashSet<Entry<String, Object>> entries) {
 		Set<EClass> ret = new HashSet<EClass>();
 		for (Entry<String, Object> entry : entries) {
-			System.out.print("\"" + entry.getKey() + "\"" + ",");
+
 			if (!isKnownPackage(entry.getKey())) {
+				// This is used to discover known packages which can be added to
+				// know packages then.
+				// System.out.println("\"" + entry.getKey() + "\"" + ",");
 				EPackage ePackage = EPackage.Registry.INSTANCE
 						.getEPackage(entry.getKey());
 				ret.addAll(getAllModelElementEClasses(ePackage));
@@ -163,7 +167,37 @@ public abstract class MetaModelElementContext {
 
 	private boolean isKnownPackage(String key) {
 
-		String elements[] = { "http://www.eclipse.org/gmf/2008/mappings",
+		String elements[] = {
+				"http://www.eclipse.org/m2t/xpand/Trace",
+				"http://www.eclipse.org/emf/eef/mapping/filters/1.0.0",
+				"http://www.cs.tum.edu/cope/history/0.1.42",
+				"http://www.eclipse.org/acceleo/profiler/3.0",
+				"http://www.eclipse.org/emf/compare/epatch/0.1",
+				"http://www.eclipse.org/ocl/1.1.0/UML",
+				"http://www.eclipse.org/emf/eef/components/1.0.0",
+				"http://www.eclipse.org/amalgamation/discovery/1.0",
+				"http://www.eclipse.org/emf/compare/match/1.1",
+				"http://www.eclipse.org/emf/eef/views/1.0.0",
+				"http://www.eclipse.org/gmf/examples/runtime/1.0.0/logicsemantic",
+				"http://www.eclipse.org/acceleo/mtl/3.0",
+				"http://www.eclipse.org/acceleo/mt/2.6.0/statements",
+				"http://www.eclipse.org/acceleo/traceability/1.0",
+				"http://www.eclipse.org/acceleo/mt/2.6.0",
+				"http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0",
+				"http://www.cs.tum.edu/cope/migration/test",
+				"http://www.eclipse.org/uml2/1.1.0/GenModel",
+				"http://www.eclipse.org/acceleo/mt/2.6.0/expressions",
+				"http://www.eclipse.org/acceleo/mtl/3.0/",
+				"http://www.eclipse.org/emf/CDO/Eresource/2.0.0",
+				"http://www.eclipse.org/emf/eef/mapping/navigation/1.0.0",
+				"http://www.eclipse.org/emf/eef/views/toolkits/1.0.0",
+				"http://www.eclipse.org/acceleo/mtl/cst/3.0",
+				"http://www.eclipse.org/emf/eef/generation/1.0.0",
+				"http://www.eclipse.org/emf/2009/Validation",
+				"http://www.eclipse.org/emf/eef/mapping/1.0.0",
+				"http://www.eclipse.org/emf/compare/diff/1.1",
+				"http://www.eclipse.org/acceleo/mt/2.6.0/core",
+				"http://www.eclipse.org/gmf/2008/mappings",
 				"http://www.w3.org/XML/1998/namespace",
 				"http://www.eclipse.org/ocl/1.1.0/OCL",
 				"http://www.eclipse.org/ocl/1.1.0/OCL/Expressions",
@@ -227,7 +261,8 @@ public abstract class MetaModelElementContext {
 				"http://www.eclipse.org/gmf/2006/mappings",
 				"http://www.eclipse.org/OCL2/1.0.0/ocl",
 				"http://unicase.org/esmodel/versioning/operations/semantic",
-				"http://www.eclipse.org/OCL2/1.0.0/ocl/utilities" };
+				"http://www.eclipse.org/OCL2/1.0.0/ocl/utilities",
+				"http://www.eclipse.org/uml2/2.2.0/GenModel" };
 		Set<String> knownPackages = new HashSet<String>(Arrays.asList(elements));
 		return knownPackages.contains(key);
 	}
