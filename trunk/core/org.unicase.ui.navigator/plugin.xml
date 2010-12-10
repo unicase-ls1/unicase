@@ -48,9 +48,7 @@
                         ifEmpty="false"
                         operator="and">
                      <or>
-                        <instanceof
-                              value="org.unicase.workspace.ProjectSpace">
-                        </instanceof>
+                        
                         <instanceof
                               value="org.eclipse.emf.ecore.EObject">
                         </instanceof>
@@ -70,7 +68,7 @@
          </dynamic>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.ui.navigator.exportModel"
                icon="icons/export.gif"
@@ -83,16 +81,7 @@
                   <instanceof
                         value="org.eclipse.emf.ecore.EObject">
                   </instanceof>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.metamodel.Project">
-                  	</instanceof>
-                  </not>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.workspace.ProjectSpace">
-                  	</instanceof>
-                  </not>
+                
 	            </and>
                </iterate>
             </visibleWhen>
@@ -105,21 +94,11 @@
             <visibleWhen
                   checkEnabled="false">
                <iterate>
-               	<and>
-                  <instanceof
-                        value="org.eclipse.emf.ecore.EObject">
-                  </instanceof>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.metamodel.Project">
-                  	</instanceof>
-                  </not>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.workspace.ProjectSpace">
-                  	</instanceof>
-                  </not>
-	            </and>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
+                  </and>
                </iterate>
             </visibleWhen>
          </command>
