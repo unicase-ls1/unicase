@@ -20,6 +20,28 @@ public class ProjectGeneratorUtil {
 
 	private static Set<EClass> modelElementEClasses;
 
+	/*
+	 * Searching for EClass with elementName as name in EPackage recursively.
+	 * Returns null if Eclass is not found.
+	 */
+	public static EClass getModelElementEClasses(EPackage ePackage, String elementName) {
+		EClass result = null;
+		if(ePackage == null) return result;
+		
+		for(EClassifier classifier : ePackage.getEClassifiers()) {
+			if(classifier instanceof EClass) {
+				if (classifier.getName().equals(elementName)) return (EClass) classifier; 
+			}
+		}
+		
+		for(EPackage subPackage : ePackage.getESubpackages()) {
+			result = getModelElementEClasses(subPackage, elementName);
+			if (result != null) return result;
+		}
+		
+		return result;
+	}
+	
 	public static EPackage getModelPackage(String nsURI) {
 		 return EPackage.Registry.INSTANCE.getEPackage(nsURI);
 	}
