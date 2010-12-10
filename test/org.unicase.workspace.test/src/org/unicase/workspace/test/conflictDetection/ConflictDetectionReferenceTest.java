@@ -64,7 +64,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
 		final ModelElementId section2Id = project2.getModelElementId(section1);
 
@@ -118,9 +118,9 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
-		final ModelElementId section2Id = project2.getModelElementId(section1);
+		final ModelElementId section2Id = section1Id;
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
@@ -175,7 +175,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
 		final ModelElementId task2Id = project2.getModelElementId(task);
 
@@ -228,13 +228,12 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId issue1Id = getProject().getModelElementId(issue);
-		ModelElementId issue2Id = project2.getModelElementId(issue);
+		ModelElementId issueId = getProject().getModelElementId(issue);
 		final ModelElementId solution1Id = getProject().getModelElementId(solution1);
-		ModelElementId solution2Id = project2.getModelElementId(solution2);
+		ModelElementId solution2Id = getProject().getModelElementId(solution2);
 
-		final Issue issue1 = (Issue) getProject().getModelElement(issue1Id);
-		final Issue issue2 = (Issue) project2.getModelElement(issue2Id);
+		final Issue issue1 = (Issue) getProject().getModelElement(issueId);
+		final Issue issue2 = (Issue) project2.getModelElement(issueId);
 		final Solution solution22 = (Solution) project2.getModelElement(solution2Id);
 
 		new UnicaseCommand() {
@@ -280,15 +279,13 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId issue1Id = getProject().getModelElementId(issue);
-		ModelElementId issue2Id = project2.getModelElementId(issue);
-		ModelElementId solution1Id = project2.getModelElementId(solution);
-		ModelElementId solution2Id = project2.getModelElementId(solution);
+		ModelElementId issueId = getProject().getModelElementId(issue);
+		ModelElementId solutionId = getProject().getModelElementId(solution);
 
-		final Issue issue1 = (Issue) getProject().getModelElement(issue1Id);
-		final Issue issue2 = (Issue) project2.getModelElement(issue2Id);
-		final Solution solution2 = (Solution) project2.getModelElement(solution2Id);
-		final Solution solution1 = (Solution) getProject().getModelElement(solution1Id);
+		final Issue issue1 = (Issue) getProject().getModelElement(issueId);
+		final Issue issue2 = (Issue) project2.getModelElement(issueId);
+		final Solution solution1 = (Solution) getProject().getModelElement(solutionId);
+		final Solution solution2 = (Solution) project2.getModelElement(solutionId);
 
 		new UnicaseCommand() {
 
@@ -336,15 +333,14 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId issue1Id = getProject().getModelElementId(issue);
-		ModelElementId issue2Id = project2.getModelElementId(issue);
-		ModelElementId solution1Id = project2.getModelElementId(solution);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId issueId = getProject().getModelElementId(issue);
+		ModelElementId solution1Id = getProject().getModelElementId(solution);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final Issue issue1 = (Issue) getProject().getModelElement(issue1Id);
+		final Issue issue1 = (Issue) getProject().getModelElement(issueId);
+		final Issue issue2 = (Issue) project2.getModelElement(issueId);
 		final Solution solution1 = (Solution) getProject().getModelElement(solution1Id);
-		final Issue issue2 = (Issue) project2.getModelElement(issue2Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
 		new UnicaseCommand() {
 
@@ -392,9 +388,9 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
-		ModelElementId section2Id = project2.getModelElementId(section2);
+		ModelElementId section2Id = getProject().getModelElementId(section2);
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
@@ -447,13 +443,12 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
-		ModelElementId section12Id = project2.getModelElementId(section1);
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
-		final LeafSection section12 = (LeafSection) project2.getModelElement(section12Id);
+		final LeafSection section12 = (LeafSection) project2.getModelElement(section1Id);
 
 		new UnicaseCommand() {
 
@@ -502,20 +497,19 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actorId = getProject().getModelElementId(actor);
 		final ModelElementId section1Id = getProject().getModelElementId(section1);
-		final ModelElementId useCase2Id = project2.getModelElementId(useCase);
+		final ModelElementId useCaseId = getProject().getModelElementId(useCase);
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
-		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
+		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
+		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
 				actor1.setLeafSection((LeafSection) getProject().getModelElement(section1Id));
-				actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCase2Id)));
+				actor2.getInitiatedUseCases().add(((UseCase) project2.getModelElement(useCaseId)));
 
 			}
 		}.run(false);
@@ -556,22 +550,21 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId issue1Id = getProject().getModelElementId(issue);
-		ModelElementId issue2Id = project2.getModelElementId(issue);
-		ModelElementId solution11Id = getProject().getModelElementId(solution1);
-		ModelElementId solution22Id = project2.getModelElementId(solution2);
+		ModelElementId issueId = getProject().getModelElementId(issue);
+		ModelElementId solution1Id = getProject().getModelElementId(solution1);
+		ModelElementId solution2Id = getProject().getModelElementId(solution2);
 
-		final Issue issue1 = (Issue) getProject().getModelElement(issue1Id);
-		final Issue issue2 = (Issue) project2.getModelElement(issue2Id);
-		final Solution solution11 = (Solution) getProject().getModelElement(solution11Id);
-		final Solution solution22 = (Solution) project2.getModelElement(solution22Id);
+		final Issue issue1 = (Issue) getProject().getModelElement(issueId);
+		final Issue issue2 = (Issue) project2.getModelElement(issueId);
+		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
+		final Solution solution2inProject22 = (Solution) project2.getModelElement(solution2Id);
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				solution11.setIssue(issue1);
-				solution22.setIssue(issue2);
+				solution1inProject1.setIssue(issue1);
+				solution2inProject22.setIssue(issue2);
 
 			}
 		}.run(false);
@@ -612,22 +605,20 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId issue1Id = getProject().getModelElementId(issue);
-		ModelElementId issue2Id = project2.getModelElementId(issue);
-		ModelElementId solution11Id = getProject().getModelElementId(solution1);
-		ModelElementId solution12Id = project2.getModelElementId(solution1);
+		ModelElementId issueId = getProject().getModelElementId(issue);
+		ModelElementId solution1Id = getProject().getModelElementId(solution1);
 
-		final Issue issue1 = (Issue) getProject().getModelElement(issue1Id);
-		final Issue issue2 = (Issue) project2.getModelElement(issue2Id);
-		final Solution solution11 = (Solution) getProject().getModelElement(solution11Id);
-		final Solution solution12 = (Solution) project2.getModelElement(solution12Id);
+		final Issue issue1 = (Issue) getProject().getModelElement(issueId);
+		final Issue issue2 = (Issue) project2.getModelElement(issueId);
+		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
+		final Solution solution1inProject2 = (Solution) project2.getModelElement(solution1Id);
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				solution11.setIssue(issue1);
-				solution12.setIssue(issue2);
+				solution1inProject1.setIssue(issue1);
+				solution1inProject2.setIssue(issue2);
 
 			}
 		}.run(false);
@@ -672,20 +663,20 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 
 		ModelElementId issue11Id = getProject().getModelElementId(issue1);
 		ModelElementId issue22Id = project2.getModelElementId(issue2);
-		ModelElementId solution11Id = getProject().getModelElementId(solution1);
-		ModelElementId solution22Id = project2.getModelElementId(solution2);
+		ModelElementId solution1Id = getProject().getModelElementId(solution1);
+		ModelElementId solution2Id = getProject().getModelElementId(solution2);
 
 		final Issue issue11 = (Issue) getProject().getModelElement(issue11Id);
 		final Issue issue22 = (Issue) project2.getModelElement(issue22Id);
-		final Solution solution11 = (Solution) getProject().getModelElement(solution11Id);
-		final Solution solution22 = (Solution) project2.getModelElement(solution22Id);
+		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
+		final Solution solution2inProject2 = (Solution) project2.getModelElement(solution2Id);
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				solution11.setIssue(issue11);
-				solution22.setIssue(issue22);
+				solution1inProject1.setIssue(issue11);
+				solution2inProject2.setIssue(issue22);
 
 			}
 		}.run(false);
@@ -725,13 +716,12 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actorId = getProject().getModelElementId(actor);
 		ModelElementId section11Id = getProject().getModelElementId(section1);
-		ModelElementId section22Id = project2.getModelElementId(section2);
+		ModelElementId section22Id = getProject().getModelElementId(section2);
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
-		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
+		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
+		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 		final LeafSection section11 = (LeafSection) getProject().getModelElement(section11Id);
 		final LeafSection section22 = (LeafSection) project2.getModelElement(section22Id);
 
@@ -781,22 +771,20 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
-		ModelElementId section11Id = getProject().getModelElementId(section1);
-		ModelElementId section12Id = project2.getModelElementId(section1);
+		ModelElementId actorId = getProject().getModelElementId(actor);
+		ModelElementId section1Id = getProject().getModelElementId(section1);
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
-		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
-		final LeafSection section11 = (LeafSection) getProject().getModelElement(section11Id);
-		final LeafSection section12 = (LeafSection) project2.getModelElement(section12Id);
+		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
+		final Actor actor2 = (Actor) project2.getModelElement(actorId);
+		final LeafSection section1inProject1 = (LeafSection) getProject().getModelElement(section1Id);
+		final LeafSection section1inProject2 = (LeafSection) project2.getModelElement(section1Id);
 
 		new UnicaseCommand() {
 
 			@Override
 			protected void doRun() {
-				section11.getModelElements().add(actor1);
-				section12.getModelElements().add(actor2);
+				section1inProject1.getModelElements().add(actor1);
+				section1inProject2.getModelElements().add(actor2);
 
 			}
 		}.run(false);
@@ -838,9 +826,9 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 		ModelElementId section1Id = getProject().getModelElementId(section);
-		final ModelElementId useCaseId = project2.getModelElementId(useCase);
+		final ModelElementId useCaseId = getProject().getModelElementId(useCase);
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);

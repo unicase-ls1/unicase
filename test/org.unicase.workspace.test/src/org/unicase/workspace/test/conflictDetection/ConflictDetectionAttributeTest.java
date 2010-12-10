@@ -53,7 +53,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
@@ -100,7 +100,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
@@ -149,7 +149,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actor2Id = actor1Id;
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
