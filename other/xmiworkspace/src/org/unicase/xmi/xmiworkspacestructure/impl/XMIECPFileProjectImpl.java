@@ -18,6 +18,7 @@ import library.Library;
 import library.LibraryFactory;
 import library.Writer;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -72,7 +73,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROJECT_NAME_EDEFAULT = null;
+	protected static final String PROJECT_NAME_EDEFAULT = "New Xmi-Project";
 
 	/**
 	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
@@ -88,7 +89,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String XMI_FILE_PATH_EDEFAULT = null;
+	protected static final String XMI_FILE_PATH_EDEFAULT = Platform.getLocation().toString();
 
 	/**
 	 * The cached value of the '{@link #getXmiFilePath() <em>Xmi File Path</em>}' attribute.
@@ -153,6 +154,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private void init() {
 		// set root object with a dummy
 		setRootObject(XmiworkspacestructureFactory.eINSTANCE.createProjectRoot());
+		//alternative (delete exising file!):
+		//setRootObject(this);
 		
 		// file resources
 		File xmiFile = new File(xmiFilePath);
@@ -290,6 +293,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		xmiFilePath = newXmiFilePath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH, oldXmiFilePath, xmiFilePath));
+		
+		init();
 	}
 
 	/**
