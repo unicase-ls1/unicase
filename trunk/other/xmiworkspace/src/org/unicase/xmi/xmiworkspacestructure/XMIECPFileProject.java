@@ -51,7 +51,10 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 */
 	void setXmiFilePath(String value);
 
-	
+	/**
+	 * Set the workspace the project is contained in.
+	 * @param workspace ECPWorkspace the project is contained in.
+	 */
 	void setWorkspace(ECPWorkspace workspace);
 
 } // XMIECPFileProject
