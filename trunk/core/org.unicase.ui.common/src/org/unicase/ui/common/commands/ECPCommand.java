@@ -34,6 +34,7 @@ public abstract class ECPCommand extends ChangeCommand {
 	/**
 	 * Constructor.
 	 * 
+	 * @param domain the editing domain
 	 * @param eObject the model element whose changes one is interested in
 	 */
 	public ECPCommand(EditingDomain domain, EObject eObject) {
