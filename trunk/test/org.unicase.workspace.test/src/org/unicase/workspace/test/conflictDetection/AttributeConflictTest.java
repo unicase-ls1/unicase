@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Test conflict detection for attributes.
@@ -31,7 +32,14 @@ public class AttributeConflictTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void testAttributeWithAttributeConflict() {
-		EObject modelElement = RequirementFactory.eINSTANCE.createActor();
+		final EObject modelElement = RequirementFactory.eINSTANCE.createActor();
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(modelElement);
+			}
+		}.run(false);
 
 		String featureName = "same Feature";
 		ConflictDetectionStrategy conflictDetectionStrategy = new FineGrainedConflictDetectionStrategy();

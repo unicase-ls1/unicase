@@ -59,11 +59,10 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actorId = getProject().getModelElementId(actor);
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
-		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
+		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
+		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 
 		new UnicaseCommand() {
 
@@ -110,10 +109,10 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		Project project2 = ps2.getProject();
 
 		ModelElementId section1Id = getProject().getModelElementId(section);
-		ModelElementId actor2Id = project2.getModelElementId(actor);
+		ModelElementId actorId = getProject().getModelElementId(actor);
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
-		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
+		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 		new UnicaseCommand() {
 
 			@Override
@@ -155,11 +154,10 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		ModelElementId section1Id = getProject().getModelElementId(section);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		new UnicaseCommand() {
 
 			@Override
@@ -204,11 +202,11 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		ModelElementId actor1Id = getProject().getModelElementId(actor);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId actorId = getProject().getModelElementId(actor);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		new UnicaseCommand() {
 
 			@Override
@@ -254,13 +252,13 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		ModelElementId br1Id = getProject().getModelElementId(br);
-		ModelElementId pack1Id = getProject().getModelElementId(pack);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId brId = getProject().getModelElementId(br);
+		ModelElementId packId = getProject().getModelElementId(pack);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final BugReport br1 = (BugReport) getProject().getModelElement(br1Id);
-		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack1Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final BugReport br1 = (BugReport) getProject().getModelElement(brId);
+		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(packId);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		new UnicaseCommand() {
 
 			@Override
@@ -307,13 +305,13 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		ModelElementId mileStone1Id = getProject().getModelElementId(mileStone);
-		ModelElementId useCase1Id = getProject().getModelElementId(useCase);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId mileStoneId = getProject().getModelElementId(mileStone);
+		ModelElementId useCaseId = getProject().getModelElementId(useCase);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final Milestone mileStone1 = (Milestone) getProject().getModelElement(mileStone1Id);
-		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCase1Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final Milestone mileStone1 = (Milestone) getProject().getModelElement(mileStoneId);
+		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCaseId);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		new UnicaseCommand() {
 
 			@Override
@@ -378,11 +376,11 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		final Project project2 = ps2.getProject();
 
-		ModelElementId pack1Id = getProject().getModelElementId(pack);
-		ModelElementId section2Id = project2.getModelElementId(section);
+		ModelElementId packId = getProject().getModelElementId(pack);
+		ModelElementId sectionId = getProject().getModelElementId(section);
 
-		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(pack1Id);
-		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
+		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(packId);
+		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
 		new UnicaseCommand() {
 
