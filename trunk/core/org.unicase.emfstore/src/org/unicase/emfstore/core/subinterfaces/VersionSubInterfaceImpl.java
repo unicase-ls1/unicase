@@ -197,6 +197,9 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PrimaryVersionSpec createVersionForProject(ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
 		ChangePackage changePackage, LogMessage logMessage) throws EmfStoreException {
 		synchronized (getMonitor()) {
@@ -341,7 +344,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					ChangePackage changePackageReverse = changePackage.reverse();
 					// copy again log message
 					// reverse() created a new change package without copying existent attributes
-					changePackageReverse.setLogMessage( (LogMessage) EcoreUtil.copy(changePackage.getLogMessage()) );
+					changePackageReverse.setLogMessage((LogMessage) EcoreUtil.copy(changePackage.getLogMessage()));
 					resultReverse.add(changePackageReverse);
 				}
 
