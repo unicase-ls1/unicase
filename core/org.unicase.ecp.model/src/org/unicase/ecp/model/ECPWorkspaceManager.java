@@ -10,6 +10,8 @@ import java.lang.reflect.Method;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
 import org.unicase.util.observer.ObserverBus;
@@ -101,6 +103,21 @@ public final class ECPWorkspaceManager {
 			throw new NoWorkspaceException();
 		}
 		return currentWorkspace;
+	}
+	
+	/**
+	 * Uses the Workspace to lookup a modelement. This method delegates to {@link ECPWorkspace#getProject(EObject)}.
+	 * 
+	 * @param modelElement me
+	 * @return project or null
+	 */
+	public static ECPProject getECPProject(EObject modelElement) {
+		try {
+			return getInstance().getWorkSpace().getProject(modelElement);
+		} catch (NoWorkspaceException e) {
+			//TODO make NoWorkspaceException a runtime exception?
+			throw new RuntimeException(e);
+		}
 	}
 
 	@SuppressWarnings("static-access")
