@@ -35,7 +35,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class UpdateProjectVersionHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
 	private Shell shell;
-	private boolean openDashboard;
 	private Usersession usersession;
 
 	/**
@@ -95,11 +94,6 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 
 		PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		targetVersionSpec.setIdentifier(version);
-
-		// backward update, so do not show dashboard
-		if (targetVersionSpec.compareTo(projectSpace.getBaseVersion()) == 1) {
-			openDashboard = false;
-		}
 
 		update(projectSpace, targetVersionSpec);
 	}

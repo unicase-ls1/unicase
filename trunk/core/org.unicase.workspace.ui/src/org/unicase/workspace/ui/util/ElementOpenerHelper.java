@@ -17,7 +17,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author emueller
  * @author wesendon
  */
-public class ElementOpenerHelper {
+public final class ElementOpenerHelper {
+
+	private ElementOpenerHelper() {
+	}
 
 	/**
 	 * Opens model element from worspace.ui.
