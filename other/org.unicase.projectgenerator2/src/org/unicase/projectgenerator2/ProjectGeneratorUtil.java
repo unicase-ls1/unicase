@@ -1,6 +1,6 @@
 package org.unicase.projectgenerator2;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -47,7 +46,7 @@ public class ProjectGeneratorUtil {
 	}
 	
 	public static Set<EPackage> getAllModelPackages() {
-		Set<EPackage> result = new HashSet<EPackage>();
+		Set<EPackage> result = new LinkedHashSet<EPackage>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
@@ -68,7 +67,7 @@ public class ProjectGeneratorUtil {
 	
 	
 	public static Set<EPackage> getAllRootModelPackages() {
-		Set<EPackage> result = new HashSet<EPackage>();
+		Set<EPackage> result = new LinkedHashSet<EPackage>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
@@ -92,7 +91,7 @@ public class ProjectGeneratorUtil {
 	 * @return a set of model element subclasses in the given package
 	 */
 	public static Set<EClass> getAllModelElementEClasses(EPackage ePackage) {
-		Set<EClass> result = new HashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		if(ePackage == null)
 			return result;
 		for(EPackage subPackage : ePackage.getESubpackages()) {
@@ -112,12 +111,12 @@ public class ProjectGeneratorUtil {
 	 */
 	public static Set<EClass> getAllModelElementEClasses() {
 		if (modelElementEClasses != null) {
-			return new HashSet<EClass>(modelElementEClasses);
+			return new LinkedHashSet<EClass>(modelElementEClasses);
 		}
-		Set<EClass> result = new HashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
-		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
+		for (Entry<String, Object> entry : new LinkedHashSet<Entry<String, Object>>(registry.entrySet())) {
 			try {
 				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				result.addAll(getAllModelElementEClasses(ePackage));
@@ -138,7 +137,7 @@ public class ProjectGeneratorUtil {
 	 * @return all classes that can be contained in eClass
 	 */
 	public static Set<EClass> getAllEContainments(EClass eClass) {
-		Set<EClass> result = new HashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		for(EReference reference : eClass.getEAllContainments()) {
 			EClass referenceType = reference.getEReferenceType();
 			result.addAll(getAllSubEClasses(referenceType));
@@ -156,7 +155,7 @@ public class ProjectGeneratorUtil {
 		Set<EClass> allEClasses = getAllModelElementEClasses();
 		if(EcorePackage.eINSTANCE.getEObject().equals(eClass))
 			return allEClasses;
-		Set<EClass> result = new HashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		for (EClass subClass : allEClasses) {
 			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
@@ -194,7 +193,7 @@ public class ProjectGeneratorUtil {
 	 */
 	public static Set<EReference> getAllPossibleContainingReferences(EObject newObject, EObject parent) {
 		List<EReference> allReferences = parent.eClass().getEAllContainments();
-		Set<EReference> result = new HashSet<EReference>();
+		Set<EReference> result = new LinkedHashSet<EReference>();
 		for(EReference reference : allReferences) {
 			EClass referenceType = reference.getEReferenceType();
 			if(referenceType.equals(newObject)) {
@@ -212,7 +211,7 @@ public class ProjectGeneratorUtil {
 	 * @return all available attributes for the class
 	 */
 	public static Set<EAttribute> getEAttributes(EClass eClass) {
-		Set<EAttribute> result = new HashSet<EAttribute>();
+		Set<EAttribute> result = new LinkedHashSet<EAttribute>();
 		for(EAttribute attribute : eClass.getEAllAttributes()) {
 			result.add(attribute);
 		}
