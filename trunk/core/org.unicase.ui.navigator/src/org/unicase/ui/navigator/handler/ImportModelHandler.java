@@ -194,13 +194,11 @@ public class ImportModelHandler extends AbstractHandler {
 	private void runImport(final ECPProject project, final org.eclipse.emf.common.util.URI uri, final EObject element,
 		final int resourceIndex) {
 
-		// TODO: PlainEObjectMode, test import
-		// TODO Chainsaw
-
+		// TODO: ChainSaw: ModelElementWrapperDescriptor ain't in scope here
 		// try to find a wrapper for the element which will be added to the project
-		// EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(projectSpace.getProject(),
-		// element, uri, resourceIndex);
-		//
+		// EObject wrapper = ModelElementWrapperDescriptor.getInstance().wrapForImport(project, element, uri,
+		// resourceIndex);
+
 		// // if no wrapper could be created, use the element itself to add it to the project
 		// if (wrapper == null) {
 		// wrapper = element;
@@ -209,6 +207,6 @@ public class ImportModelHandler extends AbstractHandler {
 		// add the wrapper or the element itself to the project
 		// copy wrapper to reset model element ids
 
-		// project.addModelElementToRoot(element);
+		project.addModelElementToRoot(element);
 	}
 }
