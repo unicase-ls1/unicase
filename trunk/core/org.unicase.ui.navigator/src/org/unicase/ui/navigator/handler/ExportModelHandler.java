@@ -30,7 +30,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.ui.util.UiUtil;
@@ -88,23 +87,19 @@ public class ExportModelHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new ECPCommand(domain, exportModelElements.get(0)) {
-			@Override
-			protected void doRun() {
-				try {
-					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Export modelelement...", 100);
-					progressDialog.getProgressMonitor().worked(10);
-					saveEObjectToResource(exportModelElements, uri);
-					MessageDialog.openInformation(null, "Export", "Exported modelelement to file " + file.getName());
-				} catch (IOException e) {
-					DialogHandler.showExceptionDialog(e.getMessage(), e);
-				} finally {
-					progressDialog.getProgressMonitor().done();
-					progressDialog.close();
-				}
-			}
-		}.run();
+		progressDialog.open();
+		progressDialog.getProgressMonitor().beginTask("Export modelelement...", 100);
+		progressDialog.getProgressMonitor().worked(10);
+
+		try {
+			saveEObjectToResource(exportModelElements, uri);
+		} catch (IOException e) {
+			DialogHandler.showExceptionDialog(e.getMessage(), e);
+		}
+		progressDialog.getProgressMonitor().done();
+		progressDialog.close();
+
+		MessageDialog.openInformation(null, "Export", "Exported modelelement to file " + file.getName());
 	}
 
 	private List<EObject> getSelfContainedModelElementTree(ExecutionEvent event) {
