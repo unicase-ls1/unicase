@@ -76,7 +76,6 @@ import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
 import org.unicase.ui.validation.providers.ValidationLabelProvider;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
 import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * Validation view.
@@ -239,8 +238,8 @@ public class ValidationView extends ViewPart {
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
 						// TODO: Chainsaw cast ok?
-						ActionHelper.openModelElement(me, errorLocation, viewId, (ModelElementContext) UnicaseUtil
-							.getParent(ECPProject.class, me));
+						ActionHelper.openModelElement(me, errorLocation, viewId, (ModelElementContext) workspace
+							.getProject(me));
 					} else {
 						ActionHelper.openModelElement(me, viewId);
 					}

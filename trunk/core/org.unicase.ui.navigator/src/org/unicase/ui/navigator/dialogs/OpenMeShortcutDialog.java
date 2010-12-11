@@ -7,9 +7,9 @@ package org.unicase.ui.navigator.dialogs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * Dialog to select model elements.
@@ -40,7 +40,7 @@ public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
 
 		progressMonitor.beginTask("Searching", getModelElements().size());
 		for (EObject modelElement : getModelElements()) {
-			ECPProject project = UnicaseUtil.getParent(ECPProject.class, modelElement);
+			ECPProject project = ECPWorkspaceManager.getECPProject(modelElement);
 			if (!(project.isNonDomainElement(modelElement))) {
 				contentProvider.add(modelElement, itemsFilter);
 				progressMonitor.worked(1);
