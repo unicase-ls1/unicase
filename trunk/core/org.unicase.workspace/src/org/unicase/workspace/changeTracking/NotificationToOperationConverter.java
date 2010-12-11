@@ -39,6 +39,11 @@ public final class NotificationToOperationConverter {
 
 	private Project project;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param project project
+	 */
 	public NotificationToOperationConverter(Project project) {
 		this.project = project;
 	}
