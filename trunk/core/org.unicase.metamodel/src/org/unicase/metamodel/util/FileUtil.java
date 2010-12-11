@@ -19,6 +19,7 @@ import java.util.zip.ZipOutputStream;
  * 
  * @author wesendonk
  */
+// TODO: ChainSaw Move this to util package
 public final class FileUtil {
 
 	/**
