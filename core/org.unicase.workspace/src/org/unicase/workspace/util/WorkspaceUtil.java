@@ -147,6 +147,11 @@ public final class WorkspaceUtil {
 		projectSpace.addEvent(traceEvent);
 	}
 
+	/**
+	 * Log a focus event for the view with the given ID.
+	 * 
+	 * @param viewId the ID of the view
+	 */
 	public static void logFocusEvent(String viewId) {
 		final PluginFocusEvent pluginFocusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
 		pluginFocusEvent.setPluginId(viewId);
