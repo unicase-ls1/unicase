@@ -194,7 +194,6 @@ public class ObserverBus {
 		return result.toArray(new Class[result.size()]);
 	}
 
-	// TODO: double check this method, i think to many interfaces are added
 	@SuppressWarnings("unchecked")
 	private boolean getClasses(Class<?> clazz, HashSet<Class<? extends IObserver>> result) {
 		for (Class<?> iface : clazz.getInterfaces()) {
