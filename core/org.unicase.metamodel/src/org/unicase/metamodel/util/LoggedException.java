@@ -15,15 +15,15 @@ public class LoggedException extends RuntimeException {
 	private static final long serialVersionUID = 2575497213330248095L;
 
 	/**
-	 * @param exception
+	 * @param exception cause
 	 */
 	public LoggedException(Throwable exception) {
 		super(exception);
 	}
 
 	/**
-	 * @param exception
-	 * @param stackTrace
+	 * @param exception cause
+	 * @param message message
 	 */
 	public LoggedException(Throwable exception, String message) {
 		super(message, exception);
