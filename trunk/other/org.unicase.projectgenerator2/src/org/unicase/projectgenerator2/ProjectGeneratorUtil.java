@@ -229,8 +229,8 @@ public class ProjectGeneratorUtil {
 	/**
 	 * @return the root EObject
 	 */
-	public static EObject createRoot() {
-		return null; 
+	public static EObject createEObject(EClass clazz) {
+		return clazz.getEPackage().getEFactoryInstance().create(clazz);
 	}
 	
 }
