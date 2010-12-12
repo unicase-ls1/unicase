@@ -1,9 +1,13 @@
 package org.unicase.projectgenerator2;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 public interface IProjectGenerator {
 
+	public EObject getRootObject ();
+	public abstract void setRootObject(EObject root);
+	
 	public abstract EPackage getRootPackage();
 
 	public abstract void setRootPackage(EPackage rootPackage);

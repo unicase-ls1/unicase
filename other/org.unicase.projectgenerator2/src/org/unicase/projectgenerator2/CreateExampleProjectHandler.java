@@ -32,7 +32,7 @@ public class CreateExampleProjectHandler  extends AbstractHandler implements IHa
 				EClass clazz = ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection");
 				EObject rootElement = clazz.getEPackage().getEFactoryInstance().create(clazz);
 				ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, 2, 5, 5);
-				impl.setRoot(rootElement);
+				impl.setRootObject(rootElement);
 				impl.generateValues();
 				project.addModelElement(impl.getRootObject());
 			}

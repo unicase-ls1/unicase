@@ -24,7 +24,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		return rootObject;
 	}
 	
-	public void setRoot(EObject root) {
+	public void setRootObject(EObject root) {
 		rootObject = root;
 	}
 
