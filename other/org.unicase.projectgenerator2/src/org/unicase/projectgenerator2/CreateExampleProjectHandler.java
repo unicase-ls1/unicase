@@ -29,8 +29,8 @@ public class CreateExampleProjectHandler  extends AbstractHandler implements IHa
 			@Override
 			protected void doRun() {
 				final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-				EClass clazz = ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection");
-				EObject rootElement = clazz.getEPackage().getEFactoryInstance().create(clazz);
+				
+				EObject rootElement = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection"));
 				ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, 2, 5, 5);
 				impl.setRootObject(rootElement);
 				impl.generateValues();
