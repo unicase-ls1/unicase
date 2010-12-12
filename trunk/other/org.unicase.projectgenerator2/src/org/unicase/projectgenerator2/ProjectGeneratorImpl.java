@@ -33,7 +33,15 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.seed = seed;
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
-		rootObject = ProjectGeneratorUtil.createRoot();
+		rootObject = null;
+	}
+	
+	protected ProjectGeneratorImpl(EPackage rootPackage, String rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
+		this.rootPackage = rootPackage;
+		this.seed = seed;
+		this.noOfExampleValues = noOfExampleValues;
+		this.hierarchyDepth = hierachyDepth;
+		this.rootObject = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(rootPackage, rootObject));
 	}
 	
 	/* (non-Javadoc)
