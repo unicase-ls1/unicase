@@ -9,9 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 public class CreateExampleProjectHandler  extends AbstractHandler implements IHandler {
 
@@ -25,19 +22,11 @@ public class CreateExampleProjectHandler  extends AbstractHandler implements IHa
 		
 		final EPackage pckge = ProjectGeneratorUtil.getModelPackage(unicaseKey);
 		
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-				
-				EObject rootElement = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection"));
-				ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, 2, 5, 5);
-				impl.setRootObject(rootElement);
-				impl.generateValues();
-				project.addModelElement(impl.getRootObject());
-			}
-
-		}.run();
+		EObject rootElement = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection"));
+		ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, 2, 5, 5);
+		ProjectGeneratorAdapter adapter = new ProjectGeneratorAdapter(impl);
+		adapter.setRootObject(rootElement);
+		adapter.generateValues();
 		return null;
 	}
 }
