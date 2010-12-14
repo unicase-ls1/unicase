@@ -15,7 +15,7 @@
        genModel = "model/XMIWorkspace.genmodel" /> 
    </extension>
    
-   <extension point="org.unicase.ui.common.ecpModelPackage">
+   <extension point="org.unicase.ecp.model.ecpModelPackage">
       <modelPackage
             modelPackage="XmiworkspacestructurePackage">
       
@@ -30,6 +30,13 @@
             id="org.unicase.xmi.workspace.NewLocalProject"
             name="NewLocalProject">
       </command>
+      <command
+            categoryId="org.unicase.xmi.workspace"
+            defaultHandler="org.unicase.xmi.commands.ImportLocalProjectHandler"
+            description="import xmi-file-project"
+            id="org.unicase.xmi.workspace.ImportLocalProject"
+            name="ImportLocalProject">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -41,6 +48,24 @@
                label="New Project..."
                style="push"
                tooltip="Click here to make love.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.ImportLocalProject"
+               icon="icons/import.png"
+               label="Import Project-File..."
+               style="push"
+               tooltip="Click here to import love.">
             <visibleWhen
                   checkEnabled="false">
                <or>

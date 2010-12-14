@@ -213,7 +213,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		
 		// set the root if the resource contains objects, otherwise build new root
 		if(!this.resource.getContents().isEmpty()) {
-			setRootObject(this.resource.getContents().get(0)); // first object must be root
+			setRootObject(this.resource.getContents().get(0)); // the root object is the project itself ?!
+			//TODO set Name
 		}
 		getRootObject().eAdapters().add(listenerAdapter);
 	}
