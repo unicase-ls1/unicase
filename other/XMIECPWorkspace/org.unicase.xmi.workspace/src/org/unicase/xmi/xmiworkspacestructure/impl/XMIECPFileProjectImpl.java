@@ -19,6 +19,7 @@ import library.LibraryFactory;
 import library.Writer;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -30,9 +31,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 
 import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.MetaModelElementContext;
@@ -168,9 +171,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		File xmiFile = new File(xmiFilePath);
 		URI xmiUri = URI.createFileURI(xmiFilePath);
 		
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		BasicCommandStack commandStack = new BasicCommandStack();
+		AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(composedAdapterFactory, commandStack);
+		ResourceSet resourceSetImpl = editingDomain.getResourceSet();
 		if(!xmiFile.exists()) {
 			// create the resource
-			this.resource = new ResourceSetImpl().createResource(xmiUri);
+			this.resource = resourceSetImpl.createResource(xmiUri);
 			
 			// TEST
 			if(TEST_RUN) {
@@ -200,7 +207,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		}
 		else {
 			// get the resource
-			this.resource = new ResourceSetImpl().getResource(xmiUri, true);
+			this.resource = resourceSetImpl.getResource(xmiUri, true);
 		}
 		
 		// try to load the resource
@@ -552,7 +559,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public void addModelElementToRoot(EObject eObject) {
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
-		
 		// add the object to the first-level-list
 		baseElements.add(eObject);
 	}

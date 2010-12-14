@@ -1,11 +1,14 @@
 package org.unicase.xmi.views;
 
+
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -24,6 +27,7 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	private Text txtProjectLocation;
 	private Usersession session;
 
+	
 	/**
 	 * Default constructor.
 	 * 
@@ -52,9 +56,13 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		location.setText("Location:");
 		txtProjectLocation = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectLocation.setSize(150, 20);
-
+		
+		Button browse = new Button(contents, SWT.PUSH);
+		browse.setText("Browse");
+		// TODO add selectionListener
+		
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(
+		GridLayoutFactory.fillDefaults().numColumns(3).margins(
 				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
