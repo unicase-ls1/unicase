@@ -182,4 +182,15 @@ public class XMIECPFileProjectItemProvider
 		return XMIWorkspaceEditPlugin.INSTANCE;
 	}
 
+	@Override
+	public Collection<?> getChildren(Object object) {
+		
+		if(object instanceof XMIECPFileProject) {
+			XMIECPFileProject project = (XMIECPFileProject) object;
+			return project.getAllModelElements();
+		}
+		
+		return super.getChildren(object);
+	}
+
 }

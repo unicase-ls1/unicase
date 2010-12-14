@@ -405,6 +405,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public boolean contains(EObject eObject) {
+		if(eObject == this) return true;
 		return getAllModelElements().contains(eObject);
 	}
 
@@ -522,11 +523,12 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		// make new result list that no pointer is returned
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
-		// go through all baseElements and add their tree to result
+		// go through all baseElements and add their tree to result		
 		for(EObject eo: baseElements) {
-			TreeIterator<EObject> eAllContents = eo.eAllContents();
-			while(eAllContents.hasNext()) {
-				result.add(eAllContents.next());
+			result.add(eo);
+			TreeIterator<EObject> contents = eo.eAllContents();
+			while(contents.hasNext()) {
+				result.add(contents.next());
 			}
 		}
 		

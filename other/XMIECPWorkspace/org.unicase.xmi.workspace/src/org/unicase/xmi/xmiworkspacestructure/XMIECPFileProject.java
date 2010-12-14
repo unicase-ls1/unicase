@@ -6,6 +6,9 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 
@@ -56,5 +59,10 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * @param workspace ECPWorkspace the project is contained in.
 	 */
 	void setWorkspace(ECPWorkspace workspace);
+	
+	/**
+	 * Returns all model elements of the project.
+	 */
+	public Collection<EObject> getAllModelElements();
 
 } // XMIECPFileProject
