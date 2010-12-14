@@ -303,7 +303,28 @@ public final class WorkspaceManager {
 				}
 			}
 		}
+
 		stampCurrentVersionNumber(modelVersionNumber);
+	}
+
+	public void migrate(String absoluteFilename) {
+		URI projectURI = URI.createFileURI(absoluteFilename);
+		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
+		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+		if (migrator == null) {
+			return;
+		}
+		List<URI> modelURIs = new ArrayList<URI>();
+		modelURIs.add(projectURI);
+		// MK: build in progress monitor for migration here
+		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
+
+		try {
+			migrator.migrate(modelURIs, workspaceModelVersion.getReleaseNumber() - 1, Integer.MAX_VALUE,
+				new NullProgressMonitor());
+		} catch (MigrationException e) {
+			WorkspaceUtil.logException("The migration of the project in the file " + absoluteFilename + " failed!", e);
+		}
 	}
 
 	private void backupAndRecreateWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {

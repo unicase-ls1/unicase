@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.metamodel.util.FileUtil;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -38,8 +39,7 @@ public class ImportProjectHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -62,50 +62,65 @@ public class ImportProjectHandler extends AbstractHandler {
 		}
 
 		projectName = showProjectNameDialog(absoluteFileName
-				.substring(absoluteFileName.lastIndexOf(File.separator) + 1));
+			.substring(absoluteFileName.lastIndexOf(File.separator) + 1));
 		if (projectName == null) {
 			return null;
 		}
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				try {
-					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Import project...", 100);
-					progressDialog.getProgressMonitor().worked(10);
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
-					ProjectSpace projectSpace = currentWorkspace
-							.importProject(absoluteFileName);
+		try {
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					try {
+						progressDialog.open();
+						progressDialog.getProgressMonitor().beginTask("Import project...", 100);
+						progressDialog.getProgressMonitor().worked(10);
+						Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+						ProjectSpace projectSpace = currentWorkspace.importProject(absoluteFileName);
 
-					projectSpace.setProjectName(projectName);
+						projectSpace.setProjectName(projectName);
 
-				} catch (IOException e) {
-					DialogHandler.showExceptionDialog(e);
-				} finally {
-					progressDialog.getProgressMonitor().done();
-					progressDialog.close();
+					} catch (IOException e) {
+						DialogHandler.showExceptionDialog(e);
+					} finally {
+						progressDialog.getProgressMonitor().done();
+						progressDialog.close();
+					}
 				}
-			}
-		}.run();
+			}.run(false);
+			// TODO: EM
+		} catch (Throwable t) {
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					File projectFile = new File(absoluteFileName);
+					File tempFile;
+					try {
+						tempFile = File.createTempFile("migrateProject", ".tmp");
+						FileUtil.copyFile(projectFile, tempFile);
+						WorkspaceManager.getInstance().migrate(tempFile.getAbsolutePath());
+						Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+						ProjectSpace projectSpace = currentWorkspace.importProject(tempFile.getAbsolutePath());
+						projectSpace.setProjectName(projectName);
+					} catch (IOException e) {
+						DialogHandler.showExceptionDialog(e);
+					}
+				}
+			}.run();
+		}
 
-		MessageDialog.openInformation(null, "Import",
-				"Imported project from file: " + absoluteFileName);
+		MessageDialog.openInformation(null, "Import", "Imported project from file: " + absoluteFileName);
 		return null;
 	}
 
 	private String showOpenFileDialog() {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(
-				IMPORT_PROJECT_PATH, System.getProperty("user.home"));
+		String initialPath = PreferenceHelper.getPreference(IMPORT_PROJECT_PATH, System.getProperty("user.home"));
 		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
@@ -119,8 +134,7 @@ public class ImportProjectHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Shows a dialog so that user can provide a name for imported project.
-	 * Suggests a default name.
+	 * Shows a dialog so that user can provide a name for imported project. Suggests a default name.
 	 * 
 	 * @param initialValue
 	 * @return
@@ -138,18 +152,15 @@ public class ImportProjectHandler extends AbstractHandler {
 
 		IInputValidator inputValidator = new IInputValidator() {
 			public String isValid(String newText) {
-				if (newText == null || newText.equals("")
-						|| newText.matches("\\s*")) {
+				if (newText == null || newText.equals("") || newText.matches("\\s*")) {
 					return "No project name provided!";
 				}
 				return null;
 			}
 
 		};
-		InputDialog inputDialog = new InputDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), "Project Name",
-				"Please enter a name for the imported project:", initialValue,
-				inputValidator);
+		InputDialog inputDialog = new InputDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+			"Project Name", "Please enter a name for the imported project:", initialValue, inputValidator);
 
 		if (inputDialog.open() == Dialog.OK) {
 			return inputDialog.getValue();
