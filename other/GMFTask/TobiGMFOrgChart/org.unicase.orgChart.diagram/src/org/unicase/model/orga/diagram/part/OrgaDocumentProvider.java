@@ -740,14 +740,14 @@ public class OrgaDocumentProvider extends ModelDocumentProvider implements
 		 * @generated
 		 */
 		public void dispose() {
-			stopResourceListening();
-			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource resource = (Resource) it.next();
-				resource.unload();
-			}
-			getEditingDomain().dispose();
+//			stopResourceListening();
+//			getResourceSet().eAdapters().remove(myResourceSetListener);
+//			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+//					.hasNext();) {
+//				Resource resource = (Resource) it.next();
+//				resource.unload();
+//			}
+//			getEditingDomain().dispose();
 		}
 
 		/**
