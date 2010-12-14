@@ -7,6 +7,13 @@ public class XMIWorkspaceException extends XMIException {
 	 */
 	private static final long serialVersionUID = -4325765045128940221L;
 	
+	public XMIWorkspaceException(String msg) {
+		message = msg;
+		exception = new Exception(msg);
+		
+		log();
+	}
+	
 	public XMIWorkspaceException(String msg, Exception e) {
 		message = msg;
 		exception = e;
