@@ -5,7 +5,6 @@
  */
 package org.unicase.anaylzer.test;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -25,38 +24,36 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.test.TestProjectEnum;
 
-
 /**
  * Superclass for Analyzer Test.
+ * 
  * @author liya
- *
  */
 public class AnalyzersTest {
-	
+
 	private static SetupHelper setupHelper;
-	
+
 	private Usersession userSession;
 	private ConnectionManager connectionManager;
 	private List<ProjectInfo> projectList;
-
-
 
 	/**
 	 * Set up the server.
 	 */
 	@BeforeClass
-	public static void init()  {
-		
-	  //SetupHelper.startSever();
-	  setupHelper = new SetupHelper(TestProjectEnum.NONE);
-	  SetupHelper.setupServerSpace();
-	  
-	  setupHelper.equals(null);
-		  
+	public static void init() {
+
+		// SetupHelper.startSever();
+		setupHelper = new SetupHelper(TestProjectEnum.SUPERMARKET);
+		SetupHelper.setupServerSpace();
+
+		setupHelper.equals(null);
+
 	}
 
 	/**
 	 * Get the project list on the test server.
+	 * 
 	 * @throws EmfStoreException problems occur when connecting to the server.
 	 */
 	@Before
@@ -65,28 +62,29 @@ public class AnalyzersTest {
 		userSession = setupHelper.getUsersession();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-
 		projectList = connectionManager.getProjectList(userSession.getSessionId());
 		if (projectList.size() == 0) {
 			System.out.println("no projects on server.");
 		}
 	}
-	
+
 	/**
 	 * Compare the list of {@link ChangePackage}.
+	 * 
 	 * @param projectId ProjectId
 	 * @param data ProjectAnalysisData
-	 * @param startPoint the version number to start with 
+	 * @param startPoint the version number to start with
 	 * @param endPoint the version number to end with
 	 * @param isForward true if iterate forwardly
-	 * @return true if the list of ChangePackage from the {@link ProjectAnalysisData} and the one got from {@link ConnectionManager}
-	 * are the equal.
+	 * @return true if the list of ChangePackage from the {@link ProjectAnalysisData} and the one got from
+	 *         {@link ConnectionManager} are the equal.
 	 * @throws EmfStoreException problems occur when connecting to the server.
 	 */
-	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward) throws EmfStoreException{
+	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint,
+		boolean isForward) throws EmfStoreException {
 		List<ChangePackage> changePackageA = data.getChangePackages();
 		List<ChangePackage> changePackageB = null;
-		if(isForward){
+		if (isForward) {
 			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 			start.setIdentifier(startPoint);
 			PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
@@ -94,26 +92,25 @@ public class AnalyzersTest {
 
 			changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
 
-		}
-		else{
+		} else {
 			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-			start.setIdentifier(startPoint-1);
+			start.setIdentifier(startPoint - 1);
 			PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-			if(endPoint > 0){
-				end.setIdentifier(endPoint-1);
-			}else{
+			if (endPoint > 0) {
+				end.setIdentifier(endPoint - 1);
+			} else {
 				end.setIdentifier(0);
 			}
 
 			changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
 
 		}
-		if(changePackageA.size() != changePackageB.size()){
+		if (changePackageA.size() != changePackageB.size()) {
 			return false;
-		}else{
+		} else {
 			int i = 0;
 			boolean dateIsEqual = true;
-			while(i<changePackageA.size() && dateIsEqual){
+			while (i < changePackageA.size() && dateIsEqual) {
 				Date dateA = changePackageA.get(i).getLogMessage().getDate();
 				Date dateB = changePackageB.get(i).getLogMessage().getDate();
 				dateIsEqual = dateA.equals(dateB);
@@ -128,9 +125,9 @@ public class AnalyzersTest {
 	 */
 	@After
 	public void cleanUp() {
-		
+
 		// here the code that must be run after every test case
-	
+
 	}
 
 	/**
@@ -139,7 +136,6 @@ public class AnalyzersTest {
 	public Usersession getUserSession() {
 		return userSession;
 	}
-	
 
 	/**
 	 * @return the connectionManager
@@ -147,7 +143,7 @@ public class AnalyzersTest {
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
 	}
-	
+
 	/**
 	 * @return the projectList
 	 */

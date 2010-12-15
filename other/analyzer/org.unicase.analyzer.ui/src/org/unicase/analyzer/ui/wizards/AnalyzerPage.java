@@ -232,4 +232,5 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		}
 		getWizard().getContainer().updateButtons();
 	}
+
 }
