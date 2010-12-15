@@ -141,7 +141,8 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 			for (int i = 1; i < 100 && elements[i][0] != null; i++) {
 				if (elements[i][1].equals("sugar")) {
 					for (int j = 0; j < project.getAllModelElements().size(); j++) {
-						ModelElementId meId = project.getAllModelElements().get(j).getModelElementId();
+						ModelElementId meId = ((UnicaseModelElement) project.getAllModelElements().toArray()[j])
+							.getModelElementId();
 						if (elements[i][0].contains(meId.getId())) {
 							// sugar only read "Check needed material"
 							return ((UnicaseModelElement) project.getModelElement(meId)).getName().equals(

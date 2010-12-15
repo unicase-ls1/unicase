@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.SimpleDataAnalyzer;
-import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 
 /**
@@ -41,7 +41,8 @@ public class CountAnalyzer extends SimpleDataAnalyzer {
 	@Override
 	public List<Object> getSimpleValues(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
-		values.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<ModelElement>()).size());
+		values
+			.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<UnicaseModelElement>()).size());
 		return values;
 	}
 

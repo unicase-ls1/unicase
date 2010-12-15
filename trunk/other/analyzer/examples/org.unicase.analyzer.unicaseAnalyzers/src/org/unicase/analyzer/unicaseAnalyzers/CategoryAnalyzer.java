@@ -23,8 +23,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Extract the characteristics of each commit.
@@ -60,8 +60,8 @@ public class CategoryAnalyzer extends SimpleDataAnalyzer {
 				} else if (operation instanceof ReferenceOperation) {
 					ReferenceOperation referenceOperation = (ReferenceOperation) operation;
 					try {
-						ModelElement modelElement = data.getProjectState().getModelElement(
-							operation.getModelElementId());
+						UnicaseModelElement modelElement = (UnicaseModelElement) data.getProjectState()
+							.getModelElement(operation.getModelElementId());
 						if (modelElement == null) {
 							continue;
 						}

@@ -15,8 +15,8 @@ import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Analyze each read event.
@@ -72,7 +72,7 @@ public class ReadEventAnalyzer implements DataAnalyzer {
 					List<Object> line = new ArrayList<Object>();
 					ReadEvent readEvent = (ReadEvent) event;
 					ModelElementId meId = readEvent.getModelElement();
-					ModelElement me = data.getProjectState().getModelElement(meId);
+					UnicaseModelElement me = (UnicaseModelElement) data.getProjectState().getModelElement(meId);
 					// add ChangePackage number
 					line.add(data.getPrimaryVersionSpec().getIdentifier() - data.getChangePackages().size()
 						+ data.getChangePackages().indexOf(change));
