@@ -564,5 +564,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		// add the object to the first-level-list
 		baseElements.add(eObject);
 	}
+	
+	public Collection<EObject> getRootLevel() {
+		ArrayList<EObject> arrayList = new ArrayList<EObject>();
+		arrayList.addAll(baseElements);
+		return arrayList;
+	}
 
 } //XMIECPFileProjectImpl
