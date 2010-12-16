@@ -13,27 +13,31 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
+import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class XMIECPFolderItemProvider
-	extends XMIECPProjectContainerItemProvider
+public class XMIECPProjectContainerItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +50,7 @@ public class XMIECPFolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMIECPFolderItemProvider(AdapterFactory adapterFactory) {
+	public XMIECPProjectContainerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,65 +65,38 @@ public class XMIECPFolderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addXmiDirectoryPathPropertyDescriptor(object);
-			addContainedFilesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Xmi Directory Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addXmiDirectoryPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_xmiDirectoryPath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_xmiDirectoryPath_feature", "_UI_XMIECPFolder_type"),
-				 XmiworkspacestructurePackage.Literals.XMIECP_FOLDER__XMI_DIRECTORY_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Contained Files feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainedFilesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_containedFiles_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_containedFiles_feature", "_UI_XMIECPFolder_type"),
-				 XmiworkspacestructurePackage.Literals.XMIECP_FOLDER__CONTAINED_FILES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns XMIECPFolder.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFolder"));
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(XmiworkspacestructurePackage.Literals.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -130,10 +107,7 @@ public class XMIECPFolderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((XMIECPFolder)object).getContainerName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_XMIECPFolder_type") :
-			getString("_UI_XMIECPFolder_type") + " " + label;
+		return getString("_UI_XMIECPProjectContainer_type");
 	}
 
 	/**
@@ -147,10 +121,9 @@ public class XMIECPFolderItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(XMIECPFolder.class)) {
-			case XmiworkspacestructurePackage.XMIECP_FOLDER__XMI_DIRECTORY_PATH:
-			case XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+		switch (notification.getFeatureID(XMIECPProjectContainer.class)) {
+			case XmiworkspacestructurePackage.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -166,6 +139,22 @@ public class XMIECPFolderItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(XmiworkspacestructurePackage.Literals.XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS,
+				 XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return XMIWorkspaceEditPlugin.INSTANCE;
 	}
 
 }

@@ -13,6 +13,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,19 +23,20 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder} object.
+ * This is the item provider adapter for a {@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class XMIECPFolderItemProvider
-	extends XMIECPProjectContainerItemProvider
+public class XMIECPFileProjectItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +49,7 @@ public class XMIECPFolderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMIECPFolderItemProvider(AdapterFactory adapterFactory) {
+	public XMIECPFileProjectItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,26 +64,26 @@ public class XMIECPFolderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addXmiDirectoryPathPropertyDescriptor(object);
-			addContainedFilesPropertyDescriptor(object);
+			addProjectNamePropertyDescriptor(object);
+			addXmiFilePathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Xmi Directory Path feature.
+	 * This adds a property descriptor for the Project Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addXmiDirectoryPathPropertyDescriptor(Object object) {
+	protected void addProjectNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_xmiDirectoryPath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_xmiDirectoryPath_feature", "_UI_XMIECPFolder_type"),
-				 XmiworkspacestructurePackage.Literals.XMIECP_FOLDER__XMI_DIRECTORY_PATH,
+				 getString("_UI_XMIECPProject_projectName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPProject_projectName_feature", "_UI_XMIECPProject_type"),
+				 XmiworkspacestructurePackage.Literals.XMIECP_PROJECT__PROJECT_NAME,
 				 true,
 				 false,
 				 false,
@@ -90,19 +93,19 @@ public class XMIECPFolderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Files feature.
+	 * This adds a property descriptor for the Xmi File Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedFilesPropertyDescriptor(Object object) {
+	protected void addXmiFilePathPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_XMIECPFolder_containedFiles_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFolder_containedFiles_feature", "_UI_XMIECPFolder_type"),
-				 XmiworkspacestructurePackage.Literals.XMIECP_FOLDER__CONTAINED_FILES,
+				 getString("_UI_XMIECPFileProject_xmiFilePath_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFileProject_xmiFilePath_feature", "_UI_XMIECPFileProject_type"),
+				 XmiworkspacestructurePackage.Literals.XMIECP_FILE_PROJECT__XMI_FILE_PATH,
 				 true,
 				 false,
 				 false,
@@ -112,14 +115,14 @@ public class XMIECPFolderItemProvider
 	}
 
 	/**
-	 * This returns XMIECPFolder.gif.
+	 * This returns XMIECPFileProject.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFolder"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProject"));
 	}
 
 	/**
@@ -130,10 +133,10 @@ public class XMIECPFolderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((XMIECPFolder)object).getContainerName();
+		String label = ((XMIECPFileProject)object).getProjectName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_XMIECPFolder_type") :
-			getString("_UI_XMIECPFolder_type") + " " + label;
+			getString("_UI_XMIECPFileProject_type") :
+			getString("_UI_XMIECPFileProject_type") + " " + label;
 	}
 
 	/**
@@ -147,9 +150,9 @@ public class XMIECPFolderItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(XMIECPFolder.class)) {
-			case XmiworkspacestructurePackage.XMIECP_FOLDER__XMI_DIRECTORY_PATH:
-			case XmiworkspacestructurePackage.XMIECP_FOLDER__CONTAINED_FILES:
+		switch (notification.getFeatureID(XMIECPFileProject.class)) {
+			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__PROJECT_NAME:
+			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -166,6 +169,28 @@ public class XMIECPFolderItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return XMIWorkspaceEditPlugin.INSTANCE;
+	}
+
+	@Override
+	public Collection<?> getChildren(Object object) {
+		
+		if(object instanceof XMIECPFileProject) {
+			XMIECPFileProject project = (XMIECPFileProject) object;
+			return project.getRootLevel();
+		}
+		
+		return super.getChildren(object);
 	}
 
 }

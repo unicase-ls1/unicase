@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.unicase.xmi.xmiworkspacestructure.ProjectRoot;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
@@ -55,6 +56,13 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 	 * @generated
 	 */
 	private EClass xmiecpFolderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectRootEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -140,15 +148,6 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getXMIECPProject_ProjectDescription() {
-		return (EAttribute)xmiecpProjectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getXMIECPFileProject() {
 		return xmiecpFileProjectEClass;
 	}
@@ -167,15 +166,6 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getXMIECPFileProject_BaseElements() {
-		return (EAttribute)xmiecpFileProjectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getXMIECPProjectContainer() {
 		return xmiecpProjectContainerEClass;
 	}
@@ -187,15 +177,6 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 	 */
 	public EReference getXMIECPProjectContainer_InternalProjects() {
 		return (EReference)xmiecpProjectContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getXMIECPProjectContainer_ContainerName() {
-		return (EAttribute)xmiecpProjectContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -230,6 +211,24 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getProjectRoot() {
+		return projectRootEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectRoot_Project() {
+		return (EReference)projectRootEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XmiworkspacestructureFactory getXmiworkspacestructureFactory() {
 		return (XmiworkspacestructureFactory)getEFactoryInstance();
 	}
@@ -255,19 +254,19 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 		// Create classes and their features
 		xmiecpProjectEClass = createEClass(XMIECP_PROJECT);
 		createEAttribute(xmiecpProjectEClass, XMIECP_PROJECT__PROJECT_NAME);
-		createEAttribute(xmiecpProjectEClass, XMIECP_PROJECT__PROJECT_DESCRIPTION);
 
 		xmiecpFileProjectEClass = createEClass(XMIECP_FILE_PROJECT);
 		createEAttribute(xmiecpFileProjectEClass, XMIECP_FILE_PROJECT__XMI_FILE_PATH);
-		createEAttribute(xmiecpFileProjectEClass, XMIECP_FILE_PROJECT__BASE_ELEMENTS);
 
 		xmiecpProjectContainerEClass = createEClass(XMIECP_PROJECT_CONTAINER);
 		createEReference(xmiecpProjectContainerEClass, XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS);
-		createEAttribute(xmiecpProjectContainerEClass, XMIECP_PROJECT_CONTAINER__CONTAINER_NAME);
 
 		xmiecpFolderEClass = createEClass(XMIECP_FOLDER);
 		createEAttribute(xmiecpFolderEClass, XMIECP_FOLDER__XMI_DIRECTORY_PATH);
 		createEAttribute(xmiecpFolderEClass, XMIECP_FOLDER__CONTAINED_FILES);
+
+		projectRootEClass = createEClass(PROJECT_ROOT);
+		createEReference(projectRootEClass, PROJECT_ROOT__PROJECT);
 	}
 
 	/**
@@ -304,25 +303,22 @@ public class XmiworkspacestructurePackageImpl extends EPackageImpl implements Xm
 		// Initialize classes and features; add operations and parameters
 		initEClass(xmiecpProjectEClass, XMIECPProject.class, "XMIECPProject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getXMIECPProject_ProjectName(), ecorePackage.getEString(), "projectName", null, 0, 1, XMIECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getXMIECPProject_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null, 0, 1, XMIECPProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xmiecpFileProjectEClass, XMIECPFileProject.class, "XMIECPFileProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getXMIECPFileProject_XmiFilePath(), ecorePackage.getEString(), "xmiFilePath", null, 0, 1, XMIECPFileProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(ecorePackage.getEObject());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getXMIECPFileProject_BaseElements(), g1, "baseElements", null, 0, -1, XMIECPFileProject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xmiecpProjectContainerEClass, XMIECPProjectContainer.class, "XMIECPProjectContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getXMIECPProjectContainer_InternalProjects(), this.getXMIECPProject(), null, "internalProjects", null, 0, -1, XMIECPProjectContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getXMIECPProjectContainer_ContainerName(), ecorePackage.getEString(), "containerName", null, 0, 1, XMIECPProjectContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xmiecpFolderEClass, XMIECPFolder.class, "XMIECPFolder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getXMIECPFolder_XmiDirectoryPath(), ecorePackage.getEString(), "xmiDirectoryPath", null, 0, 1, XMIECPFolder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(ecorePackage.getEString());
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getXMIECPFolder_ContainedFiles(), g1, "containedFiles", null, 0, 1, XMIECPFolder.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(projectRootEClass, ProjectRoot.class, "ProjectRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectRoot_Project(), this.getXMIECPProject(), null, "project", null, 0, 1, ProjectRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

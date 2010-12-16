@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.unicase.xmi.xmiworkspacestructure.*;
 
 /**
@@ -62,6 +61,7 @@ public class XmiworkspacestructureFactoryImpl extends EFactoryImpl implements Xm
 		switch (eClass.getClassifierID()) {
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT: return createXMIECPFileProject();
 			case XmiworkspacestructurePackage.XMIECP_FOLDER: return createXMIECPFolder();
+			case XmiworkspacestructurePackage.PROJECT_ROOT: return createProjectRoot();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,6 +85,16 @@ public class XmiworkspacestructureFactoryImpl extends EFactoryImpl implements Xm
 	public XMIECPFolder createXMIECPFolder() {
 		XMIECPFolderImpl xmiecpFolder = new XMIECPFolderImpl();
 		return xmiecpFolder;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectRoot createProjectRoot() {
+		ProjectRootImpl projectRoot = new ProjectRootImpl();
+		return projectRoot;
 	}
 
 	/**

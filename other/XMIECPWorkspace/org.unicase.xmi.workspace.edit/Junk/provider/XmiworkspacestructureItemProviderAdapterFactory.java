@@ -122,6 +122,29 @@ public class XmiworkspacestructureItemProviderAdapterFactory extends Xmiworkspac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.xmi.xmiworkspacestructure.ProjectRoot} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProjectRootItemProvider projectRootItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.xmi.xmiworkspacestructure.ProjectRoot}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProjectRootAdapter() {
+		if (projectRootItemProvider == null) {
+			projectRootItemProvider = new ProjectRootItemProvider(this);
+		}
+
+		return projectRootItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,6 +245,7 @@ public class XmiworkspacestructureItemProviderAdapterFactory extends Xmiworkspac
 	public void dispose() {
 		if (xmiecpFileProjectItemProvider != null) xmiecpFileProjectItemProvider.dispose();
 		if (xmiecpFolderItemProvider != null) xmiecpFolderItemProvider.dispose();
+		if (projectRootItemProvider != null) projectRootItemProvider.dispose();
 	}
 
 }

@@ -130,7 +130,7 @@ public class XMIECPFolderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((XMIECPFolder)object).getContainerName();
+		String label = ((XMIECPFolder)object).getXmiDirectoryPath();
 		return label == null || label.length() == 0 ?
 			getString("_UI_XMIECPFolder_type") :
 			getString("_UI_XMIECPFolder_type") + " " + label;
