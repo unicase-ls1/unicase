@@ -10,6 +10,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
@@ -57,7 +58,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		// test
 		if(testCounter == 0) {
 			// new test-file-project
-			String testFile = Platform.getLocation().toString() + "xmiworkspace.ucw";
+			DefaultWorkspaceLocationProvider locationProvider = new DefaultWorkspaceLocationProvider();
+			String testFile = locationProvider.getWorkspaceDirectory() + "xmiworkspace.ucw";
+			
 			XMIECPFileProject ecpp = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
 			ecpp.setWorkspace(this);
 			ecpp.setXmiFilePath(testFile);

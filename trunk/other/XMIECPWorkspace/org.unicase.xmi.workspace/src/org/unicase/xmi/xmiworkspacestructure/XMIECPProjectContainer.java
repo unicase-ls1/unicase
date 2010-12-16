@@ -9,7 +9,6 @@ package org.unicase.xmi.xmiworkspacestructure;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +19,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getInternalProjects <em>Internal Projects</em>}</li>
+ *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getContainerName <em>Container Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,17 +43,31 @@ public interface XMIECPProjectContainer extends EObject {
 	 * @generated
 	 */
 	EList<XMIECPProject> getInternalProjects();
-	
+
 	/**
-	 * Set the workspace the folder is supposed to work in.
-	 * @param workspace The workspace used by the navigator.
+	 * Returns the value of the '<em><b>Container Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Container Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Container Name</em>' attribute.
+	 * @see #setContainerName(String)
+	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPProjectContainer_ContainerName()
+	 * @model
+	 * @generated
 	 */
-	void setWorkspace(ECPWorkspace workspace);
-	
+	String getContainerName();
+
 	/**
-	 * Returns the workspace of the folder.
-	 * @return ECPWorkspace the folder is handled in.
+	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getContainerName <em>Container Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Container Name</em>' attribute.
+	 * @see #getContainerName()
+	 * @generated
 	 */
-	ECPWorkspace getWorkspace();
+	void setContainerName(String value);
 
 } // XMIECPProjectContainer

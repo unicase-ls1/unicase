@@ -6,11 +6,9 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
-import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +19,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}</li>
+ *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getBaseElements <em>Base Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +32,8 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * Returns the value of the '<em><b>Xmi File Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * The <em>Xmi File Path</em> is the complete path to the xmi-file where the project is stored.
+	 * If the meaning of the '<em>Xmi File Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xmi File Path</em>' attribute.
@@ -43,26 +43,31 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * @generated
 	 */
 	String getXmiFilePath();
-	
+
 	/**
-	 * Sets the path to the xmi file that is being loaded.
-	 * @param filePath Complete path to the file.
+	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmi File Path</em>' attribute.
 	 * @see #getXmiFilePath()
-	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPFileProject_XmiFilePath()
-	 * @models
 	 * @generated
 	 */
 	void setXmiFilePath(String value);
 
 	/**
-	 * Set the workspace the project is contained in.
-	 * @param workspace ECPWorkspace the project is contained in.
+	 * Returns the value of the '<em><b>Base Elements</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.emf.common.util.EList}&lt;org.eclipse.emf.ecore.EObject>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Base Elements</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Base Elements</em>' attribute list.
+	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPFileProject_BaseElements()
+	 * @model transient="true"
+	 * @generated
 	 */
-	void setWorkspace(ECPWorkspace workspace);
-	
-	/**
-	 * Returns all modelelements of the first level in the tree hierarchy.
-	 */
-	public Collection<EObject> getRootLevel();
+	EList<EList<EObject>> getBaseElements();
 
 } // XMIECPFileProject

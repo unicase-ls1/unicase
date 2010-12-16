@@ -65,7 +65,9 @@ public class XMIECPFileProjectItemProvider
 			super.getPropertyDescriptors(object);
 
 			addProjectNamePropertyDescriptor(object);
+			addProjectDescriptionPropertyDescriptor(object);
 			addXmiFilePathPropertyDescriptor(object);
+			addBaseElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -93,6 +95,28 @@ public class XMIECPFileProjectItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Project Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_XMIECPProject_projectDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPProject_projectDescription_feature", "_UI_XMIECPProject_type"),
+				 XmiworkspacestructurePackage.Literals.XMIECP_PROJECT__PROJECT_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Xmi File Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,6 +130,28 @@ public class XMIECPFileProjectItemProvider
 				 getString("_UI_XMIECPFileProject_xmiFilePath_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFileProject_xmiFilePath_feature", "_UI_XMIECPFileProject_type"),
 				 XmiworkspacestructurePackage.Literals.XMIECP_FILE_PROJECT__XMI_FILE_PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBaseElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_XMIECPFileProject_baseElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFileProject_baseElements_feature", "_UI_XMIECPFileProject_type"),
+				 XmiworkspacestructurePackage.Literals.XMIECP_FILE_PROJECT__BASE_ELEMENTS,
 				 true,
 				 false,
 				 false,
@@ -152,7 +198,9 @@ public class XMIECPFileProjectItemProvider
 
 		switch (notification.getFeatureID(XMIECPFileProject.class)) {
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__PROJECT_NAME:
+			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__PROJECT_DESCRIPTION:
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
+			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -180,17 +228,6 @@ public class XMIECPFileProjectItemProvider
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return XMIWorkspaceEditPlugin.INSTANCE;
-	}
-
-	@Override
-	public Collection<?> getChildren(Object object) {
-		
-		if(object instanceof XMIECPFileProject) {
-			XMIECPFileProject project = (XMIECPFileProject) object;
-			return project.getRootLevel();
-		}
-		
-		return super.getChildren(object);
 	}
 
 }

@@ -6,8 +6,6 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -68,7 +66,7 @@ public interface XMIECPFolder extends XMIECPProjectContainer {
 	 * @model many="false" transient="true"
 	 * @generated
 	 */
-	EList<?> getContainedFiles();
+	EList<String> getContainedFiles();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}' attribute.
@@ -78,6 +76,6 @@ public interface XMIECPFolder extends XMIECPProjectContainer {
 	 * @see #getContainedFiles()
 	 * @generated
 	 */
-	void setContainedFiles(EList<File> value);
+	void setContainedFiles(EList<String> value);
 
 } // XMIECPFolder

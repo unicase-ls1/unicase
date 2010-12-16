@@ -6,7 +6,7 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +17,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProject#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProject#getProjectDescription <em>Project Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,7 +25,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface XMIECPProject extends ECPProject {
+public interface XMIECPProject extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,5 +51,31 @@ public interface XMIECPProject extends ECPProject {
 	 * @generated
 	 */
 	void setProjectName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project Description</em>' attribute.
+	 * @see #setProjectDescription(String)
+	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPProject_ProjectDescription()
+	 * @model
+	 * @generated
+	 */
+	String getProjectDescription();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProject#getProjectDescription <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project Description</em>' attribute.
+	 * @see #getProjectDescription()
+	 * @generated
+	 */
+	void setProjectDescription(String value);
 
 } // XMIECPProject
