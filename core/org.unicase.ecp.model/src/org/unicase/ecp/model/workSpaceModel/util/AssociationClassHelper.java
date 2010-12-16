@@ -101,6 +101,9 @@ public final class AssociationClassHelper {
 					((EReference) feature).getEReferenceType())) {
 				// get the value of the feature
 				Object evaluatedFeatures = objectToDelete.eGet(feature);
+				if(evaluatedFeatures == null) {
+					continue;
+				}
 				// feature value is a list
 				if (evaluatedFeatures instanceof List<?>) {
 					for (Object evaluatedFeature : (List<?>) evaluatedFeatures) {
