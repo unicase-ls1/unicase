@@ -61,8 +61,8 @@ public interface XMIECPFileProject extends XMIECPProject {
 	void setWorkspace(ECPWorkspace workspace);
 	
 	/**
-	 * Returns all model elements of the project.
+	 * Returns all modelelements of the first level in the tree hierarchy.
 	 */
-	public Collection<EObject> getAllModelElements();
+	public Collection<EObject> getRootLevel();
 
 } // XMIECPFileProject

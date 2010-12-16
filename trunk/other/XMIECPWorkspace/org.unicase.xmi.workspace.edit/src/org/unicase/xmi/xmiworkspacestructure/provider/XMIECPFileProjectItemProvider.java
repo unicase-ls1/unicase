@@ -187,7 +187,7 @@ public class XMIECPFileProjectItemProvider
 		
 		if(object instanceof XMIECPFileProject) {
 			XMIECPFileProject project = (XMIECPFileProject) object;
-			return project.getAllModelElements();
+			return project.getRootLevel();
 		}
 		
 		return super.getChildren(object);
