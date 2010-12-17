@@ -170,7 +170,7 @@ public class XMIECPFolderItemProvider
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		// TODO implement again!
+		// TODO implement
 		return super.getChildren(object);
 	}
 }

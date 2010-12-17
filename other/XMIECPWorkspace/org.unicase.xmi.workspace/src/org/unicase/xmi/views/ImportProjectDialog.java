@@ -2,17 +2,16 @@ package org.unicase.xmi.views;
 
 
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -28,7 +27,7 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 public class ImportProjectDialog extends TitleAreaDialog {
 
 	private Text txtProjectName;
-	private Text txtProjectLocation;
+	private FileDialog projectLocation;
 	private Usersession session;
 
 	
@@ -61,15 +60,8 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectName.setSize(150, 20);
 		
-		Label location = new Label(contents, SWT.NULL);
-		location.setText("Location:");
-		txtProjectLocation = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		txtProjectLocation.setSize(100, 20);
-		
-		Button browse = new Button(contents, SWT.PUSH);
-		browse.setSize(50, 20);
-		browse.setText("Browse");
-		// TODO add selectionListener
+		projectLocation = new FileDialog(super.getParentShell(), SWT.OPEN);
+		projectLocation.setFilterPath(Platform.getLocation().toOSString());
 		
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(3).margins(
@@ -96,7 +88,7 @@ public class ImportProjectDialog extends TitleAreaDialog {
 						if(ws instanceof XMIECPWorkspace) {
 							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
 							project.setProjectName(txtProjectName.getText());
-							project.setXmiFilePath(txtProjectLocation.getText());
+							project.setXmiFilePath(projectLocation.open());
 							
 							// add a new XMIFileProject to the workspace
 							((XMIECPWorkspace) ws).addProject(project);

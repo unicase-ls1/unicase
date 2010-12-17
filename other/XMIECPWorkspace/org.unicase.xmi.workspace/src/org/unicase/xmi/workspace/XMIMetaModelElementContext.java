@@ -30,7 +30,7 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 
 	@Override
 	public boolean isNonDomainElement(EClass eClass) {
-		// TODO Auto-generated method stub
+		// ignore
 		return false;
 	}
 

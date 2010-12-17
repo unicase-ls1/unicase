@@ -1,13 +1,11 @@
 package org.unicase.xmi.views;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -25,8 +23,8 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 public class CreateProjectDialog extends TitleAreaDialog {
 	
 	private Text txtProjectName;
-	private Text txtProjectLocation;
 	private Text txtProjectDesc;
+	private Text txtProjectLocation;
 	private Usersession session;
 
 	/**
@@ -57,17 +55,11 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		name.setText("Name:");
 		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectName.setSize(150, 20);
-		Label dummy = new Label (contents, SWT.NULL);
-		dummy.setText("");
 		
 		Label location = new Label(contents, SWT.NULL);
 		location.setText("Location:");
 		txtProjectLocation = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectLocation.setSize(150, 20);
-		
-		Button browse = new Button(contents, SWT.PUSH);
-		browse.setText("Browse");
-		// TODO add selectionListener
 
 		Label desc = new Label(contents, SWT.NULL);
 		desc.setText("Description:");
@@ -75,7 +67,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(3).margins(
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(
 				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
@@ -99,6 +91,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 						if(ws instanceof XMIECPWorkspace) {
 							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
 							project.setProjectName(txtProjectName.getText());
+							project.setProjectDescription(txtProjectDesc.getText());
 							project.setXmiFilePath(txtProjectLocation.getText());
 							
 							// add a new XMIFileProject to the workspace
