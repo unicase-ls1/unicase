@@ -21,7 +21,7 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
 
 /**
- * This class extends simple LinkControl and adds a "go to associated code location"
+ * This class extends simple LinkControl and adds a "apply patch"
  * button.
  * @author jfinis
  *
@@ -32,7 +32,7 @@ public class MEPatchLinkControl  extends MELinkControl {
 
 	/**
 	 * This method checks the type of the link and makes the MEFindLocationControl only for
-	 * the Code Locations available. 
+	 * the PatchAttachment available. 
 	 * @param itemPropertyDescriptor - model element properties
 	 * @param link - attached link
 	 * @param contextModelElement - model element, which contains the link as attachment
@@ -67,29 +67,34 @@ public class MEPatchLinkControl  extends MELinkControl {
 	 *@param style the style
 	 */
 	protected void createFindAction(int style) {
-		ImageHyperlink findLink = toolkit.createImageHyperlink(linkComposite, style);
-		Image findImage = null;
+		ImageHyperlink applyLink = toolkit.createImageHyperlink(linkComposite, style);
+		Image applyImage = null;
 
-		findImage = org.unicase.patchAttachment.Activator.getImageDescriptor("icons/script_lightning.png")
+		applyImage = org.unicase.patchAttachment.Activator.getImageDescriptor("icons/script_lightning.png")
 		.createImage();
-		findLink.setImage(findImage);
-		findLink.setToolTipText(APPLIES_THIS_PATCH_ONTO_YOUR_WORKSPACE);
+		applyLink.setImage(applyImage);
+		applyLink.setToolTipText(APPLIES_THIS_PATCH_ONTO_YOUR_WORKSPACE);
 
-		findLink.addMouseListener(new FindButtonAdapter(link));
+		applyLink.addMouseListener(new ApplyButtonListener(link));
 	}
 	
-	private class FindButtonAdapter  extends MouseAdapter {
+	/**
+	 * Listener which handles pushing the apply patch button.
+	 * @author jfinis
+	 *
+	 */
+	private class ApplyButtonListener  extends MouseAdapter {
 
-		private EObject link; 
+		private EObject patch; 
 
 		/**
 		 * Default constructor.
 		 * 
 		 * @param link - link to the attached code location.
 		 */
-		public FindButtonAdapter (EObject link) {
+		public ApplyButtonListener (EObject link) {
 			
-			this.link = link;
+			this.patch = link;
 		}
 
 		/**
@@ -97,7 +102,7 @@ public class MEPatchLinkControl  extends MELinkControl {
 		 */
 		@Override
 		public void mouseUp(MouseEvent e) {
-			new ApplyPatchCommand((PatchAttachment)link).execute();
+			new ApplyPatchCommand((PatchAttachment)patch).execute();
 		}
 	}
 

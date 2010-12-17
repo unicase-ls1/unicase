@@ -1,5 +1,14 @@
-srename in org.unicase.patchattachment
+2 seperators?
+wie haenge ich was in den commit?
+wie der umstieg von alt auf neu?
+wie speichere ich die pending file transfers?
 
-create folder patchattachment
-create feature
-test against maintainance branch (and installed release)
+AI: Migration
+Eclipse egit
+	- commit (push)
+	- update (pull)
+	- branch (branch)
+	- merge (rebase)
+	- local / remote
+	
+build release

@@ -1,30 +1,42 @@
 package org.unicase.patchAttachment.exported;
-
+/**
+ * Exceptions occuring during attaching or creating a patch.
+ * @author jfinis
+ *
+ */
 public class PatchAttachmentException extends Exception{
 
 	/**
-	 * 
+	 * .
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PatchAttachmentException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PatchAttachmentException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PatchAttachmentException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public PatchAttachmentException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
 	}
  
 	
