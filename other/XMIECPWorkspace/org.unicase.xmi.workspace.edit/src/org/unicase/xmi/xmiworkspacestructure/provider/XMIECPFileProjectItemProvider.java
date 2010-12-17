@@ -229,5 +229,16 @@ public class XMIECPFileProjectItemProvider
 	public ResourceLocator getResourceLocator() {
 		return XMIWorkspaceEditPlugin.INSTANCE;
 	}
+	
+	@Override
+	public Collection<?> getChildren(Object object) {
+		
+		if(object instanceof XMIECPFileProject) {
+			XMIECPFileProject project = (XMIECPFileProject) object;
+			return project.getRootLevel();
+		}
+		
+		return super.getChildren(object);
+	}
 
 }

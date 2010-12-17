@@ -6,6 +6,8 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
@@ -19,11 +21,13 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
 public class ImportProjectDialog extends TitleAreaDialog {
 
+	private Text txtProjectName;
 	private Text txtProjectLocation;
 	private Usersession session;
 
@@ -50,14 +54,20 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		setTitle("Import Project");
-		setMessage("Please enter the location of your project-file.");
+		setMessage("Please enter the name of your project-file and its location.");
+		
+		Label name = new Label(contents, SWT.NULL);
+		name.setText("Name:");
+		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
+		txtProjectName.setSize(150, 20);
 		
 		Label location = new Label(contents, SWT.NULL);
 		location.setText("Location:");
 		txtProjectLocation = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		txtProjectLocation.setSize(150, 20);
+		txtProjectLocation.setSize(100, 20);
 		
 		Button browse = new Button(contents, SWT.PUSH);
+		browse.setSize(50, 20);
 		browse.setText("Browse");
 		// TODO add selectionListener
 		
@@ -83,12 +93,17 @@ public class ImportProjectDialog extends TitleAreaDialog {
 					} else {						
 						// get ECPWorkspace
 						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-						XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-						project.setXmiFilePath(txtProjectLocation.getText());
-						project.setWorkspace(ws);
-						
-						// add a new XMIFileProject to the workspace
-						ws.getProjects().add(project);
+						if(ws instanceof XMIECPWorkspace) {
+							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+							project.setProjectName(txtProjectName.getText());
+							project.setXmiFilePath(txtProjectLocation.getText());
+							
+							// add a new XMIFileProject to the workspace
+							((XMIECPWorkspace) ws).addProject(project);
+						}
+						else {
+							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
+						}
 					}
 
 				} catch (Exception e) {

@@ -18,6 +18,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
@@ -95,13 +96,17 @@ public class CreateProjectDialog extends TitleAreaDialog {
 					} else {						
 						// get ECPWorkspace
 						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-						XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-						project.setProjectName(txtProjectName.getText());
-						project.setXmiFilePath(txtProjectLocation.getText());
-						project.setWorkspace(ws);
-						
-						// add a new XMIFileProject to the workspace
-						ws.getProjects().add(project);
+						if(ws instanceof XMIECPWorkspace) {
+							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+							project.setProjectName(txtProjectName.getText());
+							project.setXmiFilePath(txtProjectLocation.getText());
+							
+							// add a new XMIFileProject to the workspace
+							((XMIECPWorkspace) ws).addProject(project);
+						}
+						else {
+							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
+						}
 					}
 
 				} catch (Exception e) {
