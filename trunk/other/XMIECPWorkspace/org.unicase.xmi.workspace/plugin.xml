@@ -37,6 +37,13 @@
             id="org.unicase.xmi.workspace.ImportLocalProject"
             name="ImportLocalProject">
       </command>
+      <command
+            categoryId="org.unicase.workspace.ui.project"
+            defaultHandler="org.unicase.xmi.commands.DeleteProjectHandler"
+            description="delete xmi-file-project"
+            id="org.unicase.xmi.workspace.deleteProject"
+            name="deleteProject">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -62,10 +69,27 @@
          </command>
          <command
                commandId="org.unicase.xmi.workspace.ImportLocalProject"
-               icon="icons/import.png"
+               icon="icons/import.gif"
                label="Import Project-File..."
                style="push"
                tooltip="Click here to import love.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.deleteProject"
+               icon="icons/delete.gif"
+               label="Delete Project"
+               style="push">
             <visibleWhen
                   checkEnabled="false">
                <or>

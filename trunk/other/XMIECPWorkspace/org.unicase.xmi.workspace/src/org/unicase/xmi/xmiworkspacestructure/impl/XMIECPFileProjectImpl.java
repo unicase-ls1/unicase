@@ -13,11 +13,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import library.Book;
-import library.Library;
-import library.LibraryFactory;
-import library.Writer;
-
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -30,7 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -213,7 +207,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			// create the resource, if it doesn't exist
 			this.resource = resourceSetImpl.createResource(xmiUri);
 			
-			// don't write anything to the resource in the beginning
+			// in the beginning just save the resource without any content
+			saveResource();
 		}
 		else {
 			// get the resource, if it exists
@@ -339,6 +334,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		xmiFilePath = newXmiFilePath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH, oldXmiFilePath, xmiFilePath));
+		
+		init();
 	}
 
 	/**
@@ -626,6 +623,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public void addModelElementToRoot(EObject eObject) {
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
+		
+		// add the element to the resource so it will be saved in the xmi-file
+		resource.getContents().add(eObject);
+		saveResource();
+		
 		// add the object to the first-level-list
 		baseElements.add(eObject);
 	}
