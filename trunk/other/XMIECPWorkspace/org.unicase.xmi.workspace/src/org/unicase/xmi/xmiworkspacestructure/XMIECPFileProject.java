@@ -6,6 +6,8 @@
  */
 package org.unicase.xmi.xmiworkspacestructure;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -68,6 +70,11 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * @model transient="true"
 	 * @generated
 	 */
-	EList<EList<EObject>> getBaseElements();
+	EList<EObject> getBaseElements();
+	
+	/**
+	 * Returns all modelelements of the first level in the tree hierarchy.
+	 */
+	public Collection<EObject> getRootLevel();
 
 } // XMIECPFileProject

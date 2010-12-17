@@ -168,4 +168,9 @@ public class XMIECPFolderItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	@Override
+	public Collection<?> getChildren(Object object) {
+		// TODO implement again!
+		return super.getChildren(object);
+	}
 }
