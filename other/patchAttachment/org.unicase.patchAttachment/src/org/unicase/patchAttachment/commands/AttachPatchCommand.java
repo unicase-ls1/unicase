@@ -9,8 +9,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.team.core.RepositoryProvider;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelFactory;
@@ -22,10 +23,11 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.patchAttachment.PatchAttachment;
 import org.unicase.model.patchAttachment.PatchAttachmentFactory;
 import org.unicase.model.patchAttachment.PatchAttachmentPackage;
-import org.unicase.patchAttachment.adapter.TeamAdapterFactory;
+import org.unicase.patchAttachment.adapter.TeamAdapterRegistry;
 import org.unicase.patchAttachment.exported.AbstractTeamAdapter;
 import org.unicase.patchAttachment.exported.PatchAttachmentException;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 //import org.unicase.ui.unicasecommon.UnicaseActionHelper;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
@@ -75,14 +77,15 @@ public class AttachPatchCommand extends UnicaseCommand{
 			if(patch==null) throw new PatchAttachmentException("Patch was not be created by team adapter (returned null)");
 			
 		//2) **** Create the model element for the patch, add it to the project and link it ****
-			PatchAttachment f = (PatchAttachment) PatchAttachmentFactory.eINSTANCE.create(PatchAttachmentPackage.Literals.PATCH_ATTACHMENT);
+			PatchAttachment f = PatchAttachmentFactory.eINSTANCE.createPatchAttachment();
+			
+			
 			Project p = ModelUtil.getProject(attachTo);
 			
 			final ProjectSpace projectSpace = WorkspaceManager
 					.getProjectSpace(p);
 
 			//<<< Begin composite operation
-			//!!! DOES NOT WORK DUE TO NULL POINTER EXCEPTION INSIDE BEGIN COMPOSITE OPERATION !!!
 			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 
 			//Add the model element and link it
@@ -93,20 +96,17 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 			
 		//3) **** Upload the patch ****
-			
-				// set information needed for this particular upload
-				final FileInformation fileInformation = new FileInformation();
-				fileInformation.setFileVersion(-1);
-				fileInformation.setFileName("patch.txt");
-				fileInformation.setFileAttachmentId(p.getModelElementId(f).getId());
-				try {
-					// adds a pending file upload request
-					WorkspaceManager.getProjectSpace(f).addFileTransfer(fileInformation,
-						patch, true, true);
-				} catch (FileTransferException e1) {
-					throw new PatchAttachmentException("File Transfer Exception:" + e1.getMessage(), e1);
-				}
-			
+			//Set the data for the patch attachment
+			f.setFileName("patch.txt");
+			f.setFileSize(patch.length());
+			FileIdentifier fid;
+			try {
+				fid = WorkspaceManager.getProjectSpace(f).addFile(patch);
+			} catch (FileTransferException e1) {
+				throw new PatchAttachmentException("File Transfer Exception:" + e1.getMessage(), e1);
+			}
+			f.setFileIdentifier(fid);
+	
 			//<<< End composite operation
 			try {
 				operationHandle.end("Attached patch",
@@ -117,8 +117,7 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 		//4) **** Open the model element ****
 			try{
-
-				//UnicaseActionHelper.openModelElement(attachTo, this.getClass().getName());
+				UnicaseActionHelper.openModelElement(attachTo, this.getClass().getName());
 			} catch (Throwable t){}
 			
 		} catch (Exception e) {

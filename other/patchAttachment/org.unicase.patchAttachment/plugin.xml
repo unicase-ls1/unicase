@@ -23,9 +23,10 @@
          <action
                class="org.unicase.patchAttachment.ui.action.SendPatchActionDelegate"
                definitionId="org.unicase.patchAttachment.ui.command.SendPatchCommand"
+               icon="icons/unicase.png"
                id="org.unicase.patchAttachment.ui.action.SendPatchAction"
                label="Send Patch to Unicase"
-               menubarPath="team.main"
+               menubarPath="team.main/unicase"
                tooltip="Creates a patch and sends it to a unicase project.">
          </action>
       </objectContribution>
@@ -35,7 +36,7 @@
       <widget
             class="org.unicase.patchAttachment.ui.MEPatchLinkControl"
             name="org.unicase.patchAttachment.widget1"
-            type="org.unicase.metamodel.ModelElement">
+            type="org.eclipse.emf.ecore.EObject">
       </widget>
    </extension>
 

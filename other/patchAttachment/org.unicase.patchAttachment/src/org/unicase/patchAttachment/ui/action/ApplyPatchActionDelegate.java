@@ -17,38 +17,38 @@ import org.unicase.patchAttachment.applyPatch.BasicApplyPatchMethod;
  * @author jfinis
  *
  */
-public class ApplyPatchActionDelegate extends TeamAction{
-	
-	public ApplyPatchActionDelegate(){
-	
-	}
-
-	@SuppressWarnings("restriction")
-	@Override
-	protected void execute(IAction action) throws InvocationTargetException,
-			InterruptedException {
-		//Get selected resources
-		IResource[] res = getSelectedResources();
-		
-		//None selected -> fail
-		if(res.length==0){
-			MessageDialog.openError(
-					PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().getShell(),
-					"Error",
-					"No resource selected!");
-			return;
-
-		}
-		//ResourcesPlugin.getWorkspace().getRoot();
-		
-		
-		new BasicApplyPatchMethod().applyPatch((IFile)res[0],null);
-	}
-	
-
-	protected boolean needsToSaveDirtyEditors() {
-		return true;
-	}
-
-}
+//public class ApplyPatchActionDelegate extends TeamAction{
+//	
+////	public ApplyPatchActionDelegate(){
+////	
+////	}
+////
+////	@SuppressWarnings("restriction")
+////	@Override
+////	protected void execute(IAction action) throws InvocationTargetException,
+////			InterruptedException {
+////		//Get selected resources
+////		IResource[] res = getSelectedResources();
+////		
+////		//None selected -> fail
+////		if(res.length==0){
+////			MessageDialog.openError(
+////					PlatformUI.getWorkbench().
+////					getActiveWorkbenchWindow().getShell(),
+////					"Error",
+////					"No resource selected!");
+////			return;
+////
+////		}
+////		//ResourcesPlugin.getWorkspace().getRoot();
+////		
+////		
+////		new BasicApplyPatchMethod().applyPatch((IFile)res[0],null);
+////	}
+////	
+////
+////	protected boolean needsToSaveDirtyEditors() {
+////		return true;
+////	}
+//
+//}

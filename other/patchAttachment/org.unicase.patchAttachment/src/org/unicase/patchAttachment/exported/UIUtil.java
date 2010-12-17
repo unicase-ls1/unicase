@@ -15,13 +15,36 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-public class UIUtil {
+/**
+ * Utility class for UI 
+ * @author jfinis
+ *
+ */
+public final class UIUtil {
+	
+	/**
+	 * Util class.
+	 */
+	private UIUtil(){}
 	
 	// Constants for determining the type of progress. Subclasses may
 	// pass one of these values to the run method.
+	
+	/**
+	 * Run with a progress monitor dialog
+	 */
 	public final static int PROGRESS_DIALOG = 1;
+	
+	/**
+	 * Run only with a busy cursor.
+	 */
 	public final static int PROGRESS_BUSYCURSOR = 2;
 	
+	/**
+	 * Runs a runnable either with a progress monitor or a busy cursor
+	 * @param runnable the runnable to run
+	 * @param progressKind with cursor or dialog?
+	 */
 	 public static void run(final IRunnableWithProgress runnable, int progressKind) {
 		final Exception[] exceptions = new Exception[] {null};
 		switch (progressKind) {
@@ -54,6 +77,10 @@ public class UIUtil {
 		}
 	}
 
+	 /**
+	  * Gets the default active eclipse shell.
+	  * @return the active shell
+	  */
 	private static Shell getShell() {
 		return PlatformUI.getWorkbench().
         getActiveWorkbenchWindow().getShell();
