@@ -119,7 +119,7 @@ public class XMIECPFolderItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFolder"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFolder.png"));
 	}
 
 	/**

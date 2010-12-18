@@ -69,7 +69,7 @@
          </command>
          <command
                commandId="org.unicase.xmi.workspace.ImportLocalProject"
-               icon="icons/import.gif"
+               icon="icons/import.png"
                label="Import Project-File..."
                style="push"
                tooltip="Click here to import love.">
@@ -87,9 +87,10 @@
          </command>
          <command
                commandId="org.unicase.xmi.workspace.deleteProject"
-               icon="icons/delete.gif"
-               label="Delete Project"
-               style="push">
+               icon="icons/delete.png"
+               label="Delete Project..."
+               style="push"
+               tooltip="Click here to delete love.">
             <visibleWhen
                   checkEnabled="false">
                <or>

@@ -8,6 +8,7 @@ package org.unicase.xmi.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.unicase.ui.util.ActionHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
@@ -33,15 +34,25 @@ public class DeleteProjectHandler extends AbstractHandler {
 			return null;
 		}
 		
-		//TODO Implement a window that says something like: Do you really want to delete the project?
-		
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				XMIECPWorkspace ws = (XMIECPWorkspace) project.getWorkspace();
-				ws.removeProject(project);
-			}
-		}.run();
+		// Do you really want to delete the project?
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Do you really want to delete the \"");
+		stringBuilder.append(project.getProjectName());
+		stringBuilder.append("\"-project?");
+		String message = stringBuilder.toString();
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, message, MessageDialog.QUESTION,
+			new String[] { "Yes", "No" }, 0);
+		int result = dialog.open();
+		// check whether the user clicked "yes", otherwise do nothing
+		if(result == 0) {
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					XMIECPWorkspace ws = (XMIECPWorkspace) project.getWorkspace();
+					ws.removeProject(project); // takes care of project removal
+				}
+			}.run();
+		}
 		return null;
 	}
 }

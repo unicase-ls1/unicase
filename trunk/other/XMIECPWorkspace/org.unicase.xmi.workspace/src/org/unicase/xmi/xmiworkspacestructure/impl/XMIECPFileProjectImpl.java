@@ -255,6 +255,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 					} catch (NullPointerException e) {
 						new XMIWorkspaceException("Unable to persist object. Attached resource missing.", e);
 					}
+					
+					// call changed on listeners
+					projectChanged();
 				}
 				
 				// continue
@@ -474,6 +477,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public void dispose() {
 		// remove all references to other objects
 		// so the garbage collector can remove this object
+		projectDeleted();
+		
 		workspace = null;
 		listeners = null;
 		listenerAdapter = null;
@@ -561,9 +566,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(ECPProjectListener listener : listeners) {
 			listener.projectDeleted();
 		}
-		
-		// don't remove file, just remove all references
-		dispose();
 	}
 
 	public void removeECPProjectListener(ECPProjectListener listener) {

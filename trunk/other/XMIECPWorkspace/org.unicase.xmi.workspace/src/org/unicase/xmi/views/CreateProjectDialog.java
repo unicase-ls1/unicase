@@ -1,13 +1,19 @@
 package org.unicase.xmi.views;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -51,15 +57,47 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		setTitle("Create New Project");
 		setMessage("Please enter the name, the location and a description of the project.");
 
+		// Ask for project name
 		Label name = new Label(contents, SWT.NULL);
 		name.setText("Name:");
 		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectName.setSize(150, 20);
+		//Label space = new Label(contents, SWT.NULL);
+		//space.setText("");
 		
-		Label location = new Label(contents, SWT.NULL);
-		location.setText("Location:");
-		txtProjectLocation = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		txtProjectLocation.setSize(150, 20);
+		// Determine Location
+		Label locationLabel = new Label(contents, SWT.NULL);
+		locationLabel.setText("Location:");
+		
+		Composite location = new Composite(contents, SWT.NONE);
+		location.setLayout(new FillLayout());
+		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
+		txtProjectLocation.setSize(140, 20);
+		Button browseButton = new Button(location, SWT.NONE);
+		browseButton.setText("Browse...");
+		final Shell shell = super.getParentShell();
+		browseButton.addSelectionListener(new SelectionListener() {
+
+			DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
+			String path = Platform.getLocation().toOSString();
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				path = dirDialog.open();
+				if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
+					path += "newproject.ucw";
+				}
+				else {
+					path += txtProjectName.getText() + ".ucw";
+				}
+				txtProjectLocation.setText(path);
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+			
+		});
+		browseButton.setEnabled(true);
 
 		Label desc = new Label(contents, SWT.NULL);
 		desc.setText("Description:");

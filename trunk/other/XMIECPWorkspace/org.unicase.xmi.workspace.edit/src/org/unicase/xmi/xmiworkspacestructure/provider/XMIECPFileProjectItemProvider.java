@@ -168,7 +168,7 @@ public class XMIECPFileProjectItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProject.gif"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProject.png"));
 	}
 
 	/**
