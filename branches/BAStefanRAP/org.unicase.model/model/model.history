@@ -7945,23 +7945,23 @@
           <eLiterals name="WORKITEM_DIAGRAM" value="5" literal="WORKITEM_DIAGRAM"/>
         </element>
       </changes>
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/MEDiagram" featureName="abstract"
-          dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/MEDiagram"
+          featureName="abstract" dataValue="true" oldDataValue="false"/>
       <operation name="enumerationToSubClasses">
         <parameters name="enumAttribute">
           <referenceValue element="#//@releases.6/@changes.0/@changes.6/@element"/>
         </parameters>
         <parameters name="ePackage">
-          <referenceValue element="model.ecore#//diagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element"/>
         </parameters>
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/ClassDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/ClassDiagram"
           featureName="name" dataValue="ClassDiagram" oldDataValue="CLASS_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/ClassDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/ClassDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ClassDiagram</dataValue>
@@ -7969,11 +7969,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/ComponentDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/ComponentDiagram"
           featureName="name" dataValue="ComponentDiagram" oldDataValue="COMPONENT_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/ComponentDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/ComponentDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ComponentDiagram</dataValue>
@@ -7981,11 +7981,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/StateDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/StateDiagram"
           featureName="name" dataValue="StateDiagram" oldDataValue="STATE_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/StateDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/StateDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>StateDiagram</dataValue>
@@ -7993,11 +7993,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/ActivityDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/ActivityDiagram"
           featureName="name" dataValue="ActivityDiagram" oldDataValue="ACTIVITY_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/ActivityDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/ActivityDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ActivityDiagram</dataValue>
@@ -8005,11 +8005,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/WorkItemDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/WorkItemDiagram"
           featureName="name" dataValue="WorkItemDiagram" oldDataValue="WORKITEM_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/WorkItemDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/WorkItemDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>WorkItemDiagram</dataValue>
@@ -8017,11 +8017,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="model.ecore#//diagram/UseCaseDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.11/@element/UseCaseDiagram"
           featureName="name" dataValue="UseCaseDiagram" oldDataValue="USECASE_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="model.ecore#//diagram/UseCaseDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.11/@element/UseCaseDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>UseCaseDiagram</dataValue>

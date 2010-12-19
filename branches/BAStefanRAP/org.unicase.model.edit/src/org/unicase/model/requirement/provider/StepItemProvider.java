@@ -26,16 +26,16 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.Step} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Step} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StepItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StepItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,47 +60,52 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the User Step feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the User Step feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUserStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_userStep_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Step_userStep_feature", "_UI_Step_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Step_userStep_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Step_userStep_feature", "_UI_Step_type"),
 			RequirementPackage.Literals.STEP__USER_STEP, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Use Case feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Included Use Case feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIncludedUseCasePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_includedUseCase_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Step_includedUseCase_feature", "_UI_Step_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Step_includedUseCase_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Step_includedUseCase_feature", "_UI_Step_type"),
 			RequirementPackage.Literals.STEP__INCLUDED_USE_CASE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Included System Function feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Included System Function feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIncludedSystemFunctionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Step_includedSystemFunction_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Step_includedSystemFunction_feature", "_UI_Step_type"),
-				RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Step_includedSystemFunction_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Step_includedSystemFunction_feature",
+					"_UI_Step_type"), RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION, true, false, true,
+				null, null, null));
 	}
 
 	/**
-	 * This returns Step.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Step.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +114,8 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,9 +145,9 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,8 +156,8 @@ public class StepItemProvider extends UnicaseModelElementItemProvider implements
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

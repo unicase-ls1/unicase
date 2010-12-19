@@ -10,13 +10,14 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.task.Milestone#getContainedModelElements <em>Contained Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.task.Milestone#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.task.TaskPackage#getMilestone()
  * @model
  * @generated

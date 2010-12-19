@@ -28,16 +28,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Association} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Association} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AssociationItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AssociationItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,38 +67,41 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_source_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__SOURCE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_target_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__TARGET, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_type_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_type_feature", "_UI_Association_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Association_type_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_type_feature", "_UI_Association_type"),
 			ClassesPackage.Literals.ASSOCIATION__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -110,8 +113,10 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addSourceMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_sourceMultiplicity_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_sourceMultiplicity_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Association_sourceMultiplicity_feature",
 				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__SOURCE_MULTIPLICITY, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -124,50 +129,59 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	 * @generated
 	 */
 	protected void addTargetMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetMultiplicity_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_targetMultiplicity_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Association_targetMultiplicity_feature",
 				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TARGET_MULTIPLICITY, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Role feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Source Role feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSourceRolePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_sourceRole_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_sourceRole_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_sourceRole_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_sourceRole_feature",
+				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__SOURCE_ROLE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Role feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Target Role feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetRolePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_targetRole_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_targetRole_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Association_targetRole_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Association_targetRole_feature",
+				"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TARGET_ROLE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Transient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Transient feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTransientPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Association_transient_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Association_transient_feature", "_UI_Association_type"),
-			ClassesPackage.Literals.ASSOCIATION__TRANSIENT, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Association_transient_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Association_transient_feature",
+					"_UI_Association_type"), ClassesPackage.Literals.ASSOCIATION__TRANSIENT, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -250,9 +264,9 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -261,8 +275,8 @@ public class AssociationItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

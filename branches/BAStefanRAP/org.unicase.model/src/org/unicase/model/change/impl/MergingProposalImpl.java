@@ -35,7 +35,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 	/**
 	 * The cached value of the '{@link #getPendingOperations() <em>Pending Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPendingOperations()
 	 * @generated
 	 * @ordered
@@ -44,7 +43,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergingProposalImpl() {
@@ -53,7 +51,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +60,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getPendingOperations() {
@@ -76,7 +72,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,7 +85,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +98,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -121,7 +114,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +128,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

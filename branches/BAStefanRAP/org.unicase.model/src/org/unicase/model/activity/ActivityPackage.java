@@ -20,36 +20,35 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.activity.ActivityFactory
  * @model kind="package"
  * @generated
  */
 public interface ActivityPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "activity";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/activity";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.activity";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	ActivityPackage eINSTANCE = org.unicase.model.activity.impl.ActivityPackageImpl.init();
@@ -57,7 +56,6 @@ public interface ActivityPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.activity.impl.ActivityObjectImpl <em>Object</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.activity.impl.ActivityObjectImpl
 	 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivityObject()
 	 * @generated
@@ -99,26 +97,26 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_OBJECT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_OBJECT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -187,7 +185,6 @@ public interface ActivityPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.activity.impl.TransitionImpl <em>Transition</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.activity.impl.TransitionImpl
 	 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getTransition()
 	 * @generated
@@ -229,26 +226,26 @@ public interface ActivityPackage extends EPackage {
 	int TRANSITION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TRANSITION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TRANSITION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -366,26 +363,26 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY__ATTACHMENTS = ACTIVITY_OBJECT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -496,26 +493,26 @@ public interface ActivityPackage extends EPackage {
 	int FORK__ATTACHMENTS = ACTIVITY_OBJECT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FORK__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FORK__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -626,26 +623,26 @@ public interface ActivityPackage extends EPackage {
 	int BRANCH__ATTACHMENTS = ACTIVITY_OBJECT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int BRANCH__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int BRANCH__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -714,7 +711,6 @@ public interface ActivityPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.activity.impl.ActivityInitialImpl <em>Initial</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.activity.impl.ActivityInitialImpl
 	 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivityInitial()
 	 * @generated
@@ -756,26 +752,26 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_INITIAL__ATTACHMENTS = ACTIVITY_OBJECT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_INITIAL__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_INITIAL__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -886,26 +882,26 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_END__ATTACHMENTS = ACTIVITY_OBJECT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_END__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTIVITY_END__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -1016,9 +1012,8 @@ public interface ActivityPackage extends EPackage {
 	EClass getTransition();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.activity.Transition#getSource
-	 * <em>Source</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.activity.Transition#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
 	 * @see org.unicase.model.activity.Transition#getSource()
 	 * @see #getTransition()
@@ -1027,9 +1022,8 @@ public interface ActivityPackage extends EPackage {
 	EReference getTransition_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.activity.Transition#getTarget
-	 * <em>Target</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.activity.Transition#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see org.unicase.model.activity.Transition#getTarget()
 	 * @see #getTransition()
@@ -1038,9 +1032,8 @@ public interface ActivityPackage extends EPackage {
 	EReference getTransition_Target();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.activity.Transition#getCondition
-	 * <em>Condition</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.activity.Transition#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition</em>'.
 	 * @see org.unicase.model.activity.Transition#getCondition()
 	 * @see #getTransition()
@@ -1059,9 +1052,9 @@ public interface ActivityPackage extends EPackage {
 	EClass getActivity();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.activity.Fork <em>Fork</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for class '{@link org.unicase.model.activity.Fork <em>Fork</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Fork</em>'.
 	 * @see org.unicase.model.activity.Fork
 	 * @generated
@@ -1099,8 +1092,8 @@ public interface ActivityPackage extends EPackage {
 	EClass getActivityEnd();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1115,14 +1108,12 @@ public interface ActivityPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityObjectImpl <em>Object</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityObjectImpl <em>Object</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.activity.impl.ActivityObjectImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivityObject()
 		 * @generated
@@ -1146,9 +1137,8 @@ public interface ActivityPackage extends EPackage {
 		EReference ACTIVITY_OBJECT__OUTGOING_TRANSITIONS = eINSTANCE.getActivityObject_OutgoingTransitions();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.activity.impl.TransitionImpl <em>Transition</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.activity.impl.TransitionImpl <em>Transition</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.activity.impl.TransitionImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getTransition()
 		 * @generated
@@ -1156,33 +1146,32 @@ public interface ActivityPackage extends EPackage {
 		EClass TRANSITION = eINSTANCE.getTransition();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference TRANSITION__SOURCE = eINSTANCE.getTransition_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute TRANSITION__CONDITION = eINSTANCE.getTransition_Condition();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityImpl <em>Activity</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityImpl <em>Activity</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.activity.impl.ActivityImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivity()
 		 * @generated
@@ -1202,7 +1191,6 @@ public interface ActivityPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.activity.impl.BranchImpl <em>Branch</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.activity.impl.BranchImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getBranch()
 		 * @generated
@@ -1210,9 +1198,8 @@ public interface ActivityPackage extends EPackage {
 		EClass BRANCH = eINSTANCE.getBranch();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityInitialImpl <em>Initial</em>}
-		 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityInitialImpl <em>Initial</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.activity.impl.ActivityInitialImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivityInitial()
 		 * @generated
@@ -1222,7 +1209,6 @@ public interface ActivityPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.activity.impl.ActivityEndImpl <em>End</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.activity.impl.ActivityEndImpl
 		 * @see org.unicase.model.activity.impl.ActivityPackageImpl#getActivityEnd()
 		 * @generated

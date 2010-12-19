@@ -14,35 +14,36 @@ import org.unicase.model.organization.User;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Meeting</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.meeting.Meeting#getLocation <em>Location</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getStarttime <em>Starttime</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getEndtime <em>Endtime</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getFacilitator <em>Facilitator</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getMinutetaker <em>Minutetaker</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getTimekeeper <em>Timekeeper</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getParticipants <em>Participants</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getSections <em>Sections</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
- * <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getLocation <em>Location</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getStarttime <em>Starttime</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getEndtime <em>Endtime</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getFacilitator <em>Facilitator</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getMinutetaker <em>Minutetaker</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getTimekeeper <em>Timekeeper</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.meeting.MeetingPackage#getMeeting()
  * @model
  * @generated
  */
 public interface Meeting extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Location</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Location</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Location</em>' attribute.
 	 * @see #setLocation(String)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Location()
@@ -62,13 +63,13 @@ public interface Meeting extends UnicaseModelElement {
 	void setLocation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Starttime</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Starttime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Starttime</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Starttime</em>' attribute.
 	 * @see #setStarttime(Date)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Starttime()
@@ -88,13 +89,13 @@ public interface Meeting extends UnicaseModelElement {
 	void setStarttime(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Endtime</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Endtime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Endtime</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Endtime</em>' attribute.
 	 * @see #setEndtime(Date)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Endtime()
@@ -132,7 +133,6 @@ public interface Meeting extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.meeting.Meeting#getFacilitator <em>Facilitator</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Facilitator</em>' reference.
 	 * @see #getFacilitator()
 	 * @generated
@@ -158,7 +158,6 @@ public interface Meeting extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.meeting.Meeting#getMinutetaker <em>Minutetaker</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Minutetaker</em>' reference.
 	 * @see #getMinutetaker()
 	 * @generated
@@ -184,7 +183,6 @@ public interface Meeting extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.meeting.Meeting#getTimekeeper <em>Timekeeper</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Timekeeper</em>' reference.
 	 * @see #getTimekeeper()
 	 * @generated
