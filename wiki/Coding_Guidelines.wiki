@@ -15,7 +15,7 @@ We use checkstyle to check code against our coding guidelines and for code forma
    # Select "New..."
    # Choose "Project Relative Configuration" as type.
    # Enter "unicase Style" as name. (Caution: Be sure to use exactly this name!)
-   # If you have installed a 5.x release, select developer/coding.guidelines/unicaseStyle5.x.xml, otherwise (version 4.4.x) select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above).
+   # If you have installed the 5.x release of checkstyle (default, if you just downloaded it from the update site), select developer/coding.guidelines/unicaseStyle5.x.xml, otherwise (version 4.4.x) select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above).
    # Click OK.
    # Set unicaseStyle as default checkstyle configuration.
 
