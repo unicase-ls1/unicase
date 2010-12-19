@@ -79,6 +79,7 @@ public final class ResourceHelper {
 	 * @param <T> element type
 	 * @param element The element to be put
 	 * @param absoluteFileName filepath of resource
+	 * @param project the associated project
 	 * @throws IOException in case of failure
 	 */
 	public static <T extends EObject> void putElementIntoNewResourceWithProject(String absoluteFileName, T element,
@@ -104,7 +105,7 @@ public final class ResourceHelper {
 	 * Puts an element into a new resource.
 	 * 
 	 * @param <T> element type
-	 * @param element The element to be put
+	 * @param workSpace the workspace to be put
 	 * @param absoluteFileName filepath of resource
 	 * @throws IOException in case of failure
 	 */
