@@ -58,7 +58,9 @@ public abstract class UnicaseCommandWithParameterAndResult<T, U> extends Recordi
 	 * 
 	 * @param parameter the parameter
 	 * @return the result
+	 * @deprecated Use run(boolean) instead
 	 */
+	@Deprecated
 	public T run(U parameter) {
 		return run(parameter, true);
 	}

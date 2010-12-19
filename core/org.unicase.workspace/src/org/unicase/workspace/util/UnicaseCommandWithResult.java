@@ -54,7 +54,9 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 * Executes the command on the workspaces editing domain.
 	 * 
 	 * @return the result
+	 * @deprecated Use run(boolean) instead
 	 */
+	@Deprecated
 	public T run() {
 		return run(true);
 	}

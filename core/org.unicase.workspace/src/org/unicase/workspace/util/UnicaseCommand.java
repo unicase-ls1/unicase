@@ -63,7 +63,10 @@ public abstract class UnicaseCommand extends RecordingCommand {
 
 	/**
 	 * Executes the command on the workspaces editing domain with ignoring runtime exceptions.
+	 * 
+	 * @deprecated Use run(boolean) instead
 	 */
+	@Deprecated
 	public void run() {
 		run(true);
 	}
