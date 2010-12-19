@@ -2,7 +2,9 @@ package org.unicase.projectgenerator2;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -18,6 +20,8 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	long noOfExampleValues;
 	long hierarchyDepth;
 	EObject rootObject;
+	final Random random;
+	final Date date;
 	
 	
 	public EObject getRootObject() {
@@ -34,6 +38,8 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
 		rootObject = null;
+		random = new Random(seed);
+		date = new Date();
 	}
 	
 	protected ProjectGeneratorImpl(EPackage rootPackage, String rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
@@ -42,6 +48,8 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
 		this.rootObject = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(rootPackage, rootObject));
+		random = new Random();
+		date = new Date();
 	}
 	
 	/* (non-Javadoc)
@@ -67,6 +75,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 */
 	public void setSeed(long seed) {
 		this.seed = seed;
+		random.setSeed(seed);
 	}
 	/* (non-Javadoc)
 	 * @see org.unicase.projectgenerator2.IProjectGenerator#getNoOfExampleValues()
@@ -97,29 +106,26 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 * @see org.unicase.projectgenerator2.IProjectGenerator#generateValues()
 	 */
 	public void generateValues() {
-		generateChildren(rootObject, 0);
+		generateValuesList(rootObject);
 	}
 	
 	private void generateChildren(EObject parent, long currentDepth) {
-		if(parent.eClass() == null) {
-			return;
-		}
 		List<EClass> elementsToCreate = new ArrayList<EClass>(ProjectGeneratorUtil.getAllEContainments(parent.eClass()));
 		int size = elementsToCreate.size();
 		int index = 0;
 		if(currentDepth < hierarchyDepth && size > 0) {
 			for(int i = 0; i < noOfExampleValues; i++) {
-				index = (index+1) % size;
 				EClass currentChildClass = elementsToCreate.get(index);
 				if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
-					elementsToCreate.remove(i);
+					elementsToCreate.remove(index);
 					i--;
 					continue;
 				}
+				index = (index+1) % size;
 				EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
 				setEObjectAttributes(newObject);
 				EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, parent);
-				if(parent.eGet(reference) instanceof List) {
+				if (parent.eGet(reference) instanceof List) {
 					((List<EObject>) parent.eGet(reference)).add(newObject);
 				}
 				else {
@@ -129,6 +135,49 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 			}
 		} 
 	}
+	
+	private void generateValuesList(EObject parent) {
+		List<EObject> remainingObjects = new ArrayList<EObject>();
+		remainingObjects.add(parent);
+		int currentDepth = 1;
+		long elementsInThisDepth = noOfExampleValues;
+		int count = 0;
+		while(!remainingObjects.isEmpty()) {
+			EObject currentParentObject = remainingObjects.remove(0);
+			List<EClass> elementsToCreate = new ArrayList<EClass>(ProjectGeneratorUtil.getAllEContainments(currentParentObject.eClass()));
+			int size = elementsToCreate.size();
+			int index = 0;
+			if(size > 0) {
+				for(int i=0; i<noOfExampleValues; i++) {
+					EClass currentChildClass = elementsToCreate.get(index);
+					if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
+						i--;
+						continue;
+					}
+					index = (index + 1) % size;
+					EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
+					setEObjectAttributes(newObject);
+					EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, currentParentObject);
+					if (currentParentObject.eGet(reference) instanceof List) {
+						((List<EObject>) currentParentObject.eGet(reference)).add(newObject);
+					}
+					else {
+						currentParentObject.eSet(reference, newObject);
+					}
+					if(currentDepth < hierarchyDepth) {
+						remainingObjects.add(newObject);
+					}
+					count++;
+				}
+			}
+			if(count >= elementsInThisDepth) {
+				count = 0;
+				elementsInThisDepth = (long) Math.pow(noOfExampleValues, ++currentDepth);
+				System.out.println(elementsInThisDepth);
+			}
+			
+		}
+	}
 
 	private void setEObjectAttributes(EObject newObject) {
 		for(EAttribute attribute : ProjectGeneratorUtil.getEAttributes(newObject.eClass())) {
@@ -136,17 +185,28 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 			EcorePackage ecoreInstance = EcorePackage.eINSTANCE;	
 			if(!attribute.isChangeable())
 				continue;
-			if(attributeType.getInstanceTypeName().equals(ecoreInstance.getEString().getInstanceTypeName())) {
+			if(attributeType == ecoreInstance.getEString()) {
 				newObject.eSet(attribute, "Generated");
-			} else if (attributeType == ecoreInstance.getEBoolean()) {
-				newObject.eSet(attribute, true);
+			} else if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
+				newObject.eSet(attribute, random.nextBoolean());
 			} else if (attributeType ==ecoreInstance.getEBigInteger()) {
-				newObject.eSet(attribute, new BigInteger("7"));
-			} else if (attributeType == ecoreInstance.getEChar()) {
+				newObject.eSet(attribute, new BigInteger(20, random));
+			} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
 				newObject.eSet(attribute, 'a');
 			} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
-				newObject.eSet(attribute, 7);
+				newObject.eSet(attribute, random.nextInt(Integer.parseInt(Long.toString(seed))));
+			} else if (attributeType == ecoreInstance.getEDate()) {
+				newObject.eSet(attribute, date);
+			} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
+				newObject.eSet(attribute, random.nextDouble());
+			} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
+				newObject.eSet(attribute, random.nextFloat());
+			} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
+				newObject.eSet(attribute, random.nextLong());
+			} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
+				newObject.eSet(attribute, 5);
 			}
+				
 		}
 	}
 }

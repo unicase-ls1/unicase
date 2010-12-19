@@ -174,7 +174,7 @@ public class ProjectGeneratorUtil {
 		EReference resultReference = null;
 		for(EReference reference : allReferences) {
 			EClass referenceType = reference.getEReferenceType();
-			if(referenceType.equals(newObject)) {
+			if(referenceType.equals(newObject.eClass())) {
 				resultReference = reference;
 				break;
 			} else if (referenceType.equals(EcorePackage.eINSTANCE.getEObject())
@@ -196,7 +196,7 @@ public class ProjectGeneratorUtil {
 		Set<EReference> result = new LinkedHashSet<EReference>();
 		for(EReference reference : allReferences) {
 			EClass referenceType = reference.getEReferenceType();
-			if(referenceType.equals(newObject)) {
+			if(referenceType.equals(newObject.eClass())) {
 				result.add(reference);
 			} else if (referenceType.equals(EcorePackage.eINSTANCE.getEObject())
 				|| referenceType.isSuperTypeOf(newObject.eClass())) {

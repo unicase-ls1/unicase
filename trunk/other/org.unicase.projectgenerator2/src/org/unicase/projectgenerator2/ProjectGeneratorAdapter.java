@@ -21,12 +21,6 @@ private IProjectGenerator projectGeneratorObj;
 			protected void doRun() {
 				final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
 				
-				/*
-				EObject rootElement = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection"));
-				ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, 2, 5, 5);
-				impl.setRootObject(rootElement);
-				impl.generateValues();
-				*/
 				projectGeneratorObj.generateValues();
 				project.addModelElement(projectGeneratorObj.getRootObject());
 			}
