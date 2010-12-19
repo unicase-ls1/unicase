@@ -10,6 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -20,6 +21,7 @@ import org.unicase.ui.meeditor.MEEditorInput;
  * @author Hodaie This handler handles openModelEelement command. This handler is to be executed indirectly using
  *         IHandlerService.executeCommand() method. The Command itself does not have any UI representation.
  */
+// TODO RAP (Instantiation of the shell)
 public class OpenModelElementHandler extends AbstractHandler {
 
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
@@ -62,13 +64,16 @@ public class OpenModelElementHandler extends AbstractHandler {
 				input = new MEEditorInput(me, context, problemFeature);
 			}
 			try {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-					"org.unicase.ui.meeditor", true);
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.openEditor(input, "org.unicase.ui.meeditor", true);
 			} catch (PartInitException e) {
 				// JH Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+
+		MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+			"You are opening a modelelement!", "It is a " + me.eClass().getInstanceTypeName());
 
 		return null;
 	}
