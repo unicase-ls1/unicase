@@ -33,9 +33,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author Shterev
  */
+// TODO RAP (Instantiation of the shell)
 public class UpdateProjectVersionHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
-	private Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	private Shell shell;
 	private Usersession usersession;
 
 	/**
@@ -43,7 +44,6 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	 */
 	public UpdateProjectVersionHandler() {
 		setTaskTitle("Update project...");
-
 	}
 
 	/**
@@ -68,12 +68,12 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	}
 
 	/**
-	 * Updates the project space.
+	 * Updates the projectspace.
 	 * 
 	 * @param projectSpace the target project space
 	 * @throws EmfStoreException if any.
 	 */
-	public void update(final ProjectSpace projectSpace) throws EmfStoreException {
+	protected void update(final ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
 			MessageDialog.openInformation(shell, null,
@@ -81,35 +81,25 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 			return;
 		}
 
-		InputDialog inputDialog = new InputDialog(shell, "Update to version...", "Enter the new version:", "", null);
-		if (inputDialog.open() != Window.OK) {
-			return;
-		}
-		int version = 0;
+		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
-			version = Integer.parseInt(inputDialog.getValue());
-		} catch (NumberFormatException e) {
-			MessageDialog.openError(shell, "Invalid input", "A numerical value was expected!");
-			update(projectSpace);
-		}
+			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 
-		PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		targetVersionSpec.setIdentifier(version);
+			InputDialog inputDialog = new InputDialog(shell, "Update to version...", "Enter the new version:", "", null);
+			if (inputDialog.open() != Window.OK) {
+				return;
+			}
+			int version = 0;
+			try {
+				version = Integer.parseInt(inputDialog.getValue());
+			} catch (NumberFormatException e) {
+				MessageDialog.openError(shell, "Invalid input", "A numerical value was expected!");
+				update(projectSpace);
+			}
 
-		update(projectSpace, targetVersionSpec);
-	}
+			PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			targetVersionSpec.setIdentifier(version);
 
-	/**
-	 * Updates the project space to a certain version.
-	 * 
-	 * @param projectSpace the target project space
-	 * @param targetVersionSpec the target version of the project space
-	 * @throws EmfStoreException if any.
-	 */
-	public void update(final ProjectSpace projectSpace, PrimaryVersionSpec targetVersionSpec) throws EmfStoreException {
-		PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
-
-		try {
 			PrimaryVersionSpec targetVersion = projectSpace.update(targetVersionSpec, UpdateProjectVersionHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 
