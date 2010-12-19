@@ -23,16 +23,16 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.organization.User} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.organization.User} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UserItemProvider extends OrgUnitItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UserItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,47 +57,50 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds a property descriptor for the Email feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Email feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEmailPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_email_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_email_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__EMAIL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the First Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the First Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_firstName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_firstName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__FIRST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Last Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_lastName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_User_lastName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
 			OrganizationPackage.Literals.USER__LAST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns User.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns User.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,9 +154,9 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

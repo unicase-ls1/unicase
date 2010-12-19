@@ -61,7 +61,6 @@ public interface Solution extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Issue</em>' container reference.
 	 * @see #getIssue()
 	 * @generated

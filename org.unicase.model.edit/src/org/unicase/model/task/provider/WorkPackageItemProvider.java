@@ -31,16 +31,16 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class WorkPackageItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public WorkPackageItemProvider(AdapterFactory adapterFactory) {
@@ -48,8 +48,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,34 +81,38 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_containingWorkpackage_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_WorkItem_containingWorkpackage_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_containingWorkpackage_feature",
 				"_UI_WorkItem_type"), TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true, false, false, null,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_predecessors_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_predecessors_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_successors_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_successors_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true, false, true, null, null, null));
 	}
 
@@ -119,123 +123,136 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addContainedWorkItemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkPackage_containedWorkItems_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_WorkPackage_containedWorkItems_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_WorkPackage_containedWorkItems_feature",
 				"_UI_WorkPackage_type"), TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true, false, false,
 			null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Start Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Start Date feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkPackage_startDate_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkPackage_startDate_feature", "_UI_WorkPackage_type"),
-			TaskPackage.Literals.WORK_PACKAGE__START_DATE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WorkPackage_startDate_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WorkPackage_startDate_feature",
+					"_UI_WorkPackage_type"), TaskPackage.Literals.WORK_PACKAGE__START_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_assignee_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_assignee_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Reviewer feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Reviewer feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReviewerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_reviewer_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_reviewer_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_reviewer_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_reviewer_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__REVIEWER, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_participants_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_participants_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Due Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_dueDate_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_dueDate_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Estimate feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Estimate feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_estimate_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_estimate_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_estimate_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_estimate_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__ESTIMATE, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Effort feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Effort feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEffortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_effort_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_effort_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_effort_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_effort_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__EFFORT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_priority_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_priority_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__PRIORITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolved feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Resolved feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addResolvedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_resolved_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_WorkItem_resolved_feature", "_UI_WorkItem_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_WorkItem_resolved_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_WorkItem_resolved_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__RESOLVED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 			null, null));
 	}
@@ -243,9 +260,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +276,6 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,8 +287,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	}
 
 	/**
-	 * This returns WorkPackage.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns WorkPackage.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -319,9 +335,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -348,8 +364,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

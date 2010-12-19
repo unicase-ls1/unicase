@@ -24,16 +24,16 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Enumeration;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Enumeration} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Enumeration} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class EnumerationItemProvider extends PackageElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EnumerationItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,23 +56,26 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Attributes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Attributes feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAttributesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Enumeration_attributes_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Enumeration_attributes_feature", "_UI_Enumeration_type"),
-			ClassesPackage.Literals.ENUMERATION__ATTRIBUTES, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Enumeration_attributes_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Enumeration_attributes_feature",
+				"_UI_Enumeration_type"), ClassesPackage.Literals.ENUMERATION__ATTRIBUTES, true, false, true, null,
+			null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +89,6 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,8 +100,8 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 	}
 
 	/**
-	 * This returns Enumeration.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Enumeration.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -108,8 +110,8 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,9 +141,9 @@ public class EnumerationItemProvider extends PackageElementItemProvider implemen
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

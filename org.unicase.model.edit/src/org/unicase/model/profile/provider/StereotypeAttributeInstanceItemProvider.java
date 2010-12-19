@@ -33,8 +33,8 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StereotypeAttributeInstanceItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +42,8 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -64,11 +64,12 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	 * @generated
 	 */
 	protected void addStereotypeInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeAttributeInstance_stereotypeInstance_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstance_stereotypeInstance_feature",
-				"_UI_StereotypeAttributeInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeInstance_stereotypeInstance_feature"),
+			getString("_UI_PropertyDescriptor_description",
+				"_UI_StereotypeAttributeInstance_stereotypeInstance_feature", "_UI_StereotypeAttributeInstance_type"),
 			ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE, true, false, false, null, null,
 			null));
 	}
@@ -80,18 +81,19 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	 * @generated
 	 */
 	protected void addStereotypeAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeAttributeInstance_stereotypeAttribute_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstance_stereotypeAttribute_feature",
-				"_UI_StereotypeAttributeInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeInstance_stereotypeAttribute_feature"),
+			getString("_UI_PropertyDescriptor_description",
+				"_UI_StereotypeAttributeInstance_stereotypeAttribute_feature", "_UI_StereotypeAttributeInstance_type"),
 			ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE, true, false, true, null, null,
 			null));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,9 +117,9 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,8 +128,8 @@ public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElement
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

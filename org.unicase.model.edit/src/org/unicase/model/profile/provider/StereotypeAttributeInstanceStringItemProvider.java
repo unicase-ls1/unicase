@@ -25,15 +25,14 @@ import org.unicase.model.profile.StereotypeAttributeInstanceString;
 /**
  * This is the item provider adapter for a {@link org.unicase.model.profile.StereotypeAttributeInstanceString} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StereotypeAttributeInstanceStringItemProvider extends StereotypeAttributeInstanceItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StereotypeAttributeInstanceStringItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class StereotypeAttributeInstanceStringItemProvider extends StereotypeAtt
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,23 +55,24 @@ public class StereotypeAttributeInstanceStringItemProvider extends StereotypeAtt
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_StereotypeAttributeInstanceString_value_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstanceString_value_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_StereotypeAttributeInstanceString_value_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_StereotypeAttributeInstanceString_value_feature",
 				"_UI_StereotypeAttributeInstanceString_type"),
 			ProfilePackage.Literals.STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__VALUE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns StereotypeAttributeInstanceString.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns StereotypeAttributeInstanceString.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,8 +81,8 @@ public class StereotypeAttributeInstanceStringItemProvider extends StereotypeAtt
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,9 +112,9 @@ public class StereotypeAttributeInstanceStringItemProvider extends StereotypeAtt
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
