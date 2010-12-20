@@ -23,9 +23,12 @@
         <property name="tabWidth" value="4"/>
         <module name="FileContentsHolder"/>
         <module name="JavadocMethod">
+      		<property name="allowUnknownTags" value="true"/>
             <property name="scope" value="package"/>
         </module>
-        <module name="JavadocType"/>
+        <module name="JavadocType">
+			<property name="allowUnknownTags" value="true"/>        
+        </module>
         <module name="JavadocVariable">
             <property name="scope" value="package"/>
         </module>
