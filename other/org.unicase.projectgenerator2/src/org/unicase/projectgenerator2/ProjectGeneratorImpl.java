@@ -1,5 +1,6 @@
 package org.unicase.projectgenerator2;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
@@ -147,8 +148,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 //		} 
 //	}
 	
+	/**
+	 * Generates the amount of specified EObjects using a list-algorithm
+	 * @param parent the parent EObject to start generating from
+	 */
 	private void generateValuesList(EObject parent) {
-		addGeneratedClassAndObject(parent.eClass(), parent);
+		addGeneratedClassAndObject(parent);
 		List<EObject> remainingObjects = new ArrayList<EObject>();
 		remainingObjects.add(parent);
 		int currentDepth = 1;
@@ -168,7 +173,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					}
 					index = (index + 1) % size;
 					EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
-					setEObjectAttributes(newObject, count++);
+					setEObjectAttributes(newObject);
 					for(EReference reference : ProjectGeneratorUtil.getAllPossibleContainingReferences(newObject, currentParentObject)) {
 						if(reference.isChangeable() && !reference.isUnsettable()) {
 							if (currentParentObject.eGet(reference) instanceof List) {
@@ -180,10 +185,11 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 							break;
 						}
 					}
+					count++;
 					if(currentDepth < hierarchyDepth) {
 						remainingObjects.add(newObject);
 					}
-					addGeneratedClassAndObject(currentChildClass, newObject);
+					addGeneratedClassAndObject(newObject);
 				}
 			}
 			if(count >= elementsInThisDepth) {
@@ -194,6 +200,10 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		}
 	}
 
+	/**
+	 * Adds possible references (no containment/container-references) to a given EObject
+	 * @param newObject the EObject to add references to
+	 */
 	private void addReferences(EObject newObject) {
 		for(EReference reference : newObject.eClass().getEAllReferences()) {
 			if(reference.isContainment() || reference.isContainer() || reference.isUnsettable() || !reference.isChangeable()) {
@@ -211,9 +221,13 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				if(index >=0) {
 					List<EObject> possibleReferenceObjects = generatedObjects.get(index);
 					int size = possibleReferenceObjects.size();
-					int randomIndex = random.nextInt(size) ; 
-					for(int i = (randomIndex + 1) % size; i != randomIndex; i=(i+1)%size) {
-						EObject referencedObject = possibleReferenceObjects.get(i);
+					int randomIndex = random.nextInt(size);
+					int nextIndex = randomIndex;
+					for(int i = 0; i < random.nextInt(3); i++) {
+						nextIndex = (nextIndex+1) % size;
+						if(nextIndex == randomIndex)
+							break;
+						EObject referencedObject = possibleReferenceObjects.get(nextIndex);
 						if(referencedObject == newObject)
 							continue;
 						if(newObject.eGet(reference) instanceof List) {
@@ -228,7 +242,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		}
 	}
 
-	private void addGeneratedClassAndObject(EClass eClass, EObject newObject) {
+	/**
+	 * Adds an EObject and its class (if necessary) to the specified lists for addReferences()
+	 * @param newObject the EObject which should be added 
+	 */
+	private void addGeneratedClassAndObject(EObject newObject) {
+		EClass eClass = newObject.eClass();
 		int index = alreadyGeneratedClasses.indexOf(eClass);
 		if(index > 0) {
 			generatedObjects.get(index).add(newObject);
@@ -240,34 +259,52 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		}
 	}
 
-	private void setEObjectAttributes(EObject newObject, int count) {
+	/**
+	 * Sets several attributes of a given EObject using random values
+	 * @param newObject the EObject to set attributes for
+	 */
+	private void setEObjectAttributes(EObject newObject) {
 		for(EAttribute attribute : ProjectGeneratorUtil.getEAttributes(newObject.eClass())) {
 			EClassifier attributeType = attribute.getEType();
 			EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
-			if(!attribute.isChangeable())
+			
+			if(!attribute.isChangeable() || attribute.isUnsettable())
 				continue;
-			if(attributeType == ecoreInstance.getEString()) {
-				newObject.eSet(attribute, "Generated " + count);
-			} else if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
-				newObject.eSet(attribute, random.nextBoolean());
-			} else if (attributeType ==ecoreInstance.getEBigInteger()) {
-				newObject.eSet(attribute, new BigInteger(20, random));
+			if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
+				newObject.eSet(attribute, random.nextBoolean()); 
+			} else if (attributeType == ecoreInstance.getEByteArray()){
+				byte[] bytes = new byte[random.nextInt(100)];
+				random.nextBytes(bytes);
+				newObject.eSet(attribute, bytes);
+			} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
+				byte[] singleByte = new byte[1];
+				random.nextBytes(singleByte);
+				newObject.eSet(attribute, singleByte[0]);
 			} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
-				newObject.eSet(attribute, 'a');
-			} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
-				newObject.eSet(attribute, random.nextInt(Integer.parseInt(Long.toString(seed))));
+				newObject.eSet(attribute, ((char)(random.nextInt(94) + 33)));
+			} else if(attributeType == ecoreInstance.getEString()) {
+				StringBuffer string = new StringBuffer();
+				for(int i = -5; i<random.nextInt(10); i++) {
+					string.append((char)(random.nextInt(94) + 33));
+				}
+				newObject.eSet(attribute, string.toString());
 			} else if (attributeType == ecoreInstance.getEDate()) {
 				newObject.eSet(attribute, date);
+			} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
+				newObject.eSet(attribute, random.nextInt());
 			} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
-				newObject.eSet(attribute, random.nextDouble());
+				newObject.eSet(attribute, random.nextDouble() * random.nextInt());
 			} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
-				newObject.eSet(attribute, random.nextFloat());
+				newObject.eSet(attribute, random.nextFloat() * random.nextInt());
 			} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
 				newObject.eSet(attribute, random.nextLong());
 			} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
-				newObject.eSet(attribute, 5);
-			}
-				
+				newObject.eSet(attribute, (short) random.nextInt());
+			} else if (attributeType ==ecoreInstance.getEBigInteger()) {
+				newObject.eSet(attribute, new BigInteger(20, random));
+			} else if (attributeType == ecoreInstance.getEBigDecimal()) {
+				newObject.eSet(attribute, new BigDecimal(random.nextDouble() * random.nextInt()));
+			} 			
 		}
 	}
 }
