@@ -1,0 +1,13 @@
+## TODO
+
+- Folder:
+	- Warum werden Projekte im Folder nicht angezeigt?
+
+- Warum wird der Navigator nicht "refreshed"?
+
+- Rechtsklick-Menü:
+	- Konsolidierung, Bsp. Delete Project/Folder mit Delete und je nach dem auf was man klickt
+	- New Folder/Project über Eclipse Standard-Dialog
+	- Import Project über Import-Funktion von Eclipse implementieren
+	
+- UML-Diagramm erstellen zur Übersicht! 

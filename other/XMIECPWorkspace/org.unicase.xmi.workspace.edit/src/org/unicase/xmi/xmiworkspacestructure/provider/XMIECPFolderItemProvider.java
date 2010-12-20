@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -170,7 +171,11 @@ public class XMIECPFolderItemProvider
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		// TODO implement
+		if(object instanceof XMIECPProjectContainer) {
+			XMIECPProjectContainer dir = (XMIECPProjectContainer) object;
+			return dir.getInternalProjects();
+		}
+		
 		return super.getChildren(object);
 	}
 }

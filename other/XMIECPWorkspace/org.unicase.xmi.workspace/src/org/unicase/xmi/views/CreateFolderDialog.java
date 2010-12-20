@@ -23,14 +23,13 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
-public class CreateProjectDialog extends TitleAreaDialog {
-	
-	private Text txtProjectName;
-	private Text txtProjectDesc;
-	private Text txtProjectLocation;
+public class CreateFolderDialog extends TitleAreaDialog {
+
+	private Text txtFolderName;
+	private Text txtFolderLocation;
 	private Usersession session;
 
 	/**
@@ -41,11 +40,11 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 * @param session
 	 *            the target usersession
 	 */
-	public CreateProjectDialog(Shell parent, Usersession session) {
+	public CreateFolderDialog(Shell parent, Usersession session) {
 		super(parent);
 		this.session = session;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -54,14 +53,14 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		setTitle("Create New Project");
-		setMessage("Please enter the name, the location and a description of the project.");
+		setTitle("Create New Folder");
+		setMessage("Please enter the name and location of the new folder.");
 
-		// Ask for project name
+		// Ask for folder/container name
 		Label name = new Label(contents, SWT.NULL);
 		name.setText("Name:");
-		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		txtProjectName.setSize(150, 20);
+		txtFolderName = new Text(contents, SWT.SINGLE | SWT.BORDER);
+		txtFolderName.setSize(150, 20);
 		
 		// Determine Location
 		Label locationLabel = new Label(contents, SWT.NULL);
@@ -69,8 +68,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		
 		Composite location = new Composite(contents, SWT.NONE);
 		location.setLayout(new FillLayout());
-		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
-		txtProjectLocation.setSize(140, 20);
+		txtFolderLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
+		txtFolderLocation.setSize(140, 20);
 		Button browseButton = new Button(location, SWT.NONE);
 		browseButton.setText("Browse...");
 		final Shell shell = super.getParentShell();
@@ -81,13 +80,13 @@ public class CreateProjectDialog extends TitleAreaDialog {
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
 				path = dirDialog.open();
-				if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-					path += "newproject.ucw";
+				if(txtFolderName.getText() == null || txtFolderName.getText() == "") {
+					path += "/new_folder";
 				}
 				else {
-					path += txtProjectName.getText() + ".ucw";
+					path += "/" + txtFolderName.getText();
 				}
-				txtProjectLocation.setText(path);
+				txtFolderLocation.setText(path);
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -96,11 +95,6 @@ public class CreateProjectDialog extends TitleAreaDialog {
 			
 		});
 		browseButton.setEnabled(true);
-
-		Label desc = new Label(contents, SWT.NULL);
-		desc.setText("Description:");
-		txtProjectDesc = new Text(contents, SWT.MULTI | SWT.BORDER);
-		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(
@@ -125,13 +119,12 @@ public class CreateProjectDialog extends TitleAreaDialog {
 						// get ECPWorkspace
 						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 						if(ws instanceof XMIECPWorkspace) {
-							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-							project.setProjectName(txtProjectName.getText());
-							project.setProjectDescription(txtProjectDesc.getText());
-							project.setXmiFilePath(txtProjectLocation.getText());
+							XMIECPFolder folder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
+							folder.setContainerName(txtFolderName.getText());
+							folder.setXmiDirectoryPath(txtFolderLocation.getText());
 							
 							// add a new XMIFileProject to the workspace
-							((XMIECPWorkspace) ws).addProject(project);
+							((XMIECPWorkspace) ws).addFolder(folder);
 						}
 						else {
 							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
@@ -154,5 +147,4 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	public void cancelPressed() {
 		close();
 	}
-
 }

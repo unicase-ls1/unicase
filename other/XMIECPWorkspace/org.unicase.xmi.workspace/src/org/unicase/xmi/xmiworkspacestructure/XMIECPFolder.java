@@ -7,6 +7,7 @@
 package org.unicase.xmi.xmiworkspacestructure;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,15 +68,11 @@ public interface XMIECPFolder extends XMIECPProjectContainer {
 	 * @generated
 	 */
 	EList<String> getContainedFiles();
-
+	
 	/**
-	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Contained Files</em>' attribute.
-	 * @see #getContainedFiles()
-	 * @generated
+	 * Sets the workspace for the contained projects.
+	 * @param ws ECPWorkspace that will manage the projects.
 	 */
-	void setContainedFiles(EList<String> value);
+	void setWorkspace(ECPWorkspace ws);
 
 } // XMIECPFolder
