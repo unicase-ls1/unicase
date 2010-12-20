@@ -28,7 +28,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 
 /**
@@ -104,7 +104,7 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException {
 		return getEmfStore().downloadFileChunk(sessionId, projectId, fileInformation);
 	}
@@ -190,7 +190,7 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
 		return getEmfStore().uploadFileChunk(sessionId, projectId, fileChunk);
 	}

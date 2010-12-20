@@ -14,7 +14,7 @@ import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 
 // END IGNORE UNNECCESSARY IMPORT
 /**
@@ -256,7 +256,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 * @throws RemoteException if any remote error occurs
 	 */
-	FileInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk) throws EmfStoreException,
+	FileTransferInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk) throws EmfStoreException,
 		RemoteException;
 
 	/**
@@ -267,7 +267,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 * @throws RemoteException if any remote error occurs
 	 */
-	FileChunk downloadFileChunk(String sessionId, String projectId, FileInformation fileInformation)
+	FileChunk downloadFileChunk(String sessionId, String projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException, RemoteException;
 
 	/**
