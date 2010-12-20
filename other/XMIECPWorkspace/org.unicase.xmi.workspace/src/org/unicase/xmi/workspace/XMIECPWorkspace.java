@@ -25,6 +25,7 @@ import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
 
 
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
@@ -42,7 +43,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Internal list of folders contained in the workspace.
 	 */
-	private EList<XMIECPFolder> folders;
+	private EList<XMIECPProjectContainer> folders;
 
 	/**
 	 * The xmi-file-resource storing the projects of the workspace.
@@ -64,7 +65,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 */
 	public XMIECPWorkspace() {
 		projects = new BasicEList<ECPProject>();
-		folders = new BasicEList<XMIECPFolder>();
+		folders = new BasicEList<XMIECPProjectContainer>();
 		
 		workspaceFile = new DefaultWorkspaceLocationProvider().getWorkspaceDirectory() + "xmiworkspace.ucw";
 		resource = null;
@@ -247,7 +248,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 * Adds a directory to the workspace.
 	 * @param dir XMIECPFolder-object representing a real folder on the hard-drive.
 	 */
-	public void addFolder(XMIECPFolder dir) {
+	public void addFolder(XMIECPProjectContainer dir) {
 		dir.setWorkspace(this);
 		dir.eAdapters().add(projectListener);
 		resource.getContents().add(dir);
@@ -264,7 +265,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 * Removes a directory from the workspace.
 	 * @param dir XMIECPFolder-object representing a read folder on the hard-drive.
 	 */
-	public void removeFolder(XMIECPFolder dir) {
+	public void removeFolder(XMIECPProjectContainer dir) {
 		resource.getContents().remove(dir);
 		try {
 			resource.save(Collections.EMPTY_MAP);
