@@ -34,7 +34,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		rootObject = root;
 	}
 
-	protected ProjectGeneratorImpl(EPackage rootPackage, long seed, long noOfExampleValues, long hierachyDepth) {
+	public ProjectGeneratorImpl(EPackage rootPackage, long seed, long noOfExampleValues, long hierachyDepth) {
 		this.rootPackage = rootPackage;
 		this.seed = seed;
 		this.noOfExampleValues = noOfExampleValues;
@@ -46,7 +46,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		date = new Date();
 	}
 	
-	protected ProjectGeneratorImpl(EPackage rootPackage, String rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
+	public ProjectGeneratorImpl(EPackage rootPackage, String rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
 		this.rootPackage = rootPackage;
 		this.seed = seed;
 		this.noOfExampleValues = noOfExampleValues;

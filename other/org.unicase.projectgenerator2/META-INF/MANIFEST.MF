@@ -5,5 +5,6 @@ Bundle-SymbolicName: org.unicase.projectgenerator2;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
- org.eclipse.ui;bundle-version="3.5.2",
- org.unicase.ui.common;bundle-version="0.6.4"
+ org.eclipse.core.commands;bundle-version="3.5.0",
+ org.eclipse.emf.ecore;bundle-version="2.5.0"
+Export-Package: org.unicase.projectgenerator2
