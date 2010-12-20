@@ -70,7 +70,10 @@ public abstract class ECPCommand extends ChangeCommand {
 
 	/**
 	 * Executes the command.
+	 * 
+	 * @deprecated use run(boolean) instead.
 	 */
+	@Deprecated
 	public void run() {
 		run(true);
 	}
