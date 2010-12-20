@@ -12,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -38,6 +39,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.metamodel.util.FileUtil;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.unicasecommon.Activator;
@@ -105,6 +107,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	};
 
 	private Button open;
+
+	private ModelElementChangeListener modelElementChangeListener;
 
 	/**
 	 * {@inheritDoc}
@@ -187,6 +191,17 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		// Add the commit observer which handles pending files being commited
 		getProjectSpace().addCommitObserver(commitObserver);
 
+		modelElementChangeListener = new ModelElementChangeListener() {
+
+			public void onRuntimeExceptionInListener(RuntimeException exception) {
+			}
+
+			public void onChange(Notification notification) {
+				updateStatusAsync();
+			}
+		};
+
+		fileAttachment.addModelElementChangeListener(modelElementChangeListener);
 		return parent;
 	}
 
@@ -221,6 +236,14 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
 			upload.setImage(ICON_DELETE_FILE);
 		}
+	}
+
+	private void updateStatusAsync() {
+		open.getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+			}
+		});
 	}
 
 	/**
@@ -309,6 +332,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 									} catch (FileTransferException e) {
 										registerSaveAsException(e);
 									}
+									updateStatusAsync();
 								}
 							});
 
@@ -488,6 +512,9 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		if (uploadListener != null && !upload.isDisposed()) {
 			upload.removeSelectionListener(uploadListener);
 			upload.dispose();
+		}
+		if (modelElementChangeListener != null) {
+			fileAttachment.removeModelElementChangeListener(modelElementChangeListener);
 		}
 		if (dbc != null) {
 			dbc.dispose();

@@ -2003,6 +2003,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
 		this.saveProjectSpaceOnly();
+
+		// If any files have already been added, upload them.
+		fileTransferManager.uploadQueuedFiles(new NullProgressMonitor());
+
 		notifyShareObservers();
 		getOperations().clear();
 		usersession.updateProjectInfos();
