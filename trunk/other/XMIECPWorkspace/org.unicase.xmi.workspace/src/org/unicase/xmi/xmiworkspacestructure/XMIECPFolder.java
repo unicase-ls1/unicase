@@ -71,8 +71,8 @@ public interface XMIECPFolder extends XMIECPProjectContainer {
 	
 	/**
 	 * Sets the workspace for the contained projects.
-	 * @param ws ECPWorkspace that will manage the projects.
+	 * @param workspace ECPWorkspace that will manage the projects.
 	 */
-	void setWorkspace(ECPWorkspace ws);
+	void setWorkspace(ECPWorkspace workspace);
 
 } // XMIECPFolder
