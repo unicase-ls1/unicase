@@ -199,7 +199,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 			protected void doRun() {
 				projectSpace.addEvent(urlEvent);
 			}
-		}.run();
+		}.run(false);
 
 	}
 

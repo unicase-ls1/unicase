@@ -29,7 +29,7 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class RunningFileTransfersDialog extends ElementListSelectionDialog {
 
-	private ProjectSpace projectSpace;
+	// private ProjectSpace projectSpace;
 
 	/**
 	 * The constructor.
@@ -40,7 +40,7 @@ public class RunningFileTransfersDialog extends ElementListSelectionDialog {
 	 */
 	public RunningFileTransfersDialog(Shell parent, ILabelProvider renderer, ProjectSpace projectSpace) {
 		super(parent, renderer);
-		this.projectSpace = projectSpace;
+		// this.projectSpace = projectSpace;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class RunningFileTransfersDialog extends ElementListSelectionDialog {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		setListElements(projectSpace.getPendingFileTransfers().toArray());
+		// setListElements(projectSpace.getPendingFileTransfers().toArray());
 
 		return control;
 	}
