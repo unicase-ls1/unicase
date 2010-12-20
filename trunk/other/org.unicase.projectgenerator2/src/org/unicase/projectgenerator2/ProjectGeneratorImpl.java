@@ -15,13 +15,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class ProjectGeneratorImpl implements IProjectGenerator {
-	EPackage rootPackage;
-	long seed;
-	long noOfExampleValues;
-	long hierarchyDepth;
-	EObject rootObject;
-	final Random random;
-	final Date date;
+	private EPackage rootPackage;
+	private long seed;
+	private long noOfExampleValues;
+	private long hierarchyDepth;
+	private EObject rootObject;
+	private final Random random;
+	private final Date date;
+	private List<List<EObject>> generatedObjects;
+	private List<EClass> alreadyGeneratedClasses;
 	
 	
 	public EObject getRootObject() {
@@ -38,6 +40,8 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
 		rootObject = null;
+		alreadyGeneratedClasses = new ArrayList<EClass>();
+		generatedObjects = new ArrayList<List<EObject>>();
 		random = new Random(seed);
 		date = new Date();
 	}
@@ -48,6 +52,8 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
 		this.rootObject = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(rootPackage, rootObject));
+		alreadyGeneratedClasses = new ArrayList<EClass>();
+		generatedObjects = new ArrayList<List<EObject>>();
 		random = new Random();
 		date = new Date();
 	}
@@ -107,36 +113,42 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 */
 	public void generateValues() {
 		generateValuesList(rootObject);
+		for(List<EObject> eObjectsByClass : generatedObjects) {
+			for(EObject eObject : eObjectsByClass) {
+				addReferences(eObject);
+			}
+		}
 	}
 	
-	private void generateChildren(EObject parent, long currentDepth) {
-		List<EClass> elementsToCreate = new ArrayList<EClass>(ProjectGeneratorUtil.getAllEContainments(parent.eClass()));
-		int size = elementsToCreate.size();
-		int index = 0;
-		if(currentDepth < hierarchyDepth && size > 0) {
-			for(int i = 0; i < noOfExampleValues; i++) {
-				EClass currentChildClass = elementsToCreate.get(index);
-				if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
-					elementsToCreate.remove(index);
-					i--;
-					continue;
-				}
-				index = (index+1) % size;
-				EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
-				setEObjectAttributes(newObject);
-				EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, parent);
-				if (parent.eGet(reference) instanceof List) {
-					((List<EObject>) parent.eGet(reference)).add(newObject);
-				}
-				else {
-					parent.eSet(reference, newObject);
-				}
-				generateChildren(newObject, (currentDepth+1));
-			}
-		} 
-	}
+//	private void generateChildren(EObject parent, long currentDepth) {
+//		List<EClass> elementsToCreate = new ArrayList<EClass>(ProjectGeneratorUtil.getAllEContainments(parent.eClass()));
+//		int size = elementsToCreate.size();
+//		int index = 0;
+//		if(currentDepth < hierarchyDepth && size > 0) {
+//			for(int i = 0; i < noOfExampleValues; i++) {
+//				EClass currentChildClass = elementsToCreate.get(index);
+//				if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
+//					elementsToCreate.remove(index);
+//					i--;
+//					continue;
+//				}
+//				index = (index+1) % size;
+//				EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
+//				setEObjectAttributes(newObject);
+//				EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, parent);
+//				if (parent.eGet(reference) instanceof List) {
+//					((List<EObject>) parent.eGet(reference)).add(newObject);
+//				}
+//				else {
+//					parent.eSet(reference, newObject);
+//				}
+//				generateChildren(newObject, (currentDepth+1));
+//			}
+//		} 
+//	}
 	
 	private void generateValuesList(EObject parent) {
+		addGeneratedClassAndObject(parent.eClass(), parent);
 		List<EObject> remainingObjects = new ArrayList<EObject>();
 		remainingObjects.add(parent);
 		int currentDepth = 1;
@@ -156,37 +168,86 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					}
 					index = (index + 1) % size;
 					EObject newObject = currentChildClass.getEPackage().getEFactoryInstance().create(currentChildClass);
-					setEObjectAttributes(newObject);
-					EReference reference = ProjectGeneratorUtil.getPossibleContainingReference(newObject, currentParentObject);
-					if (currentParentObject.eGet(reference) instanceof List) {
-						((List<EObject>) currentParentObject.eGet(reference)).add(newObject);
-					}
-					else {
-						currentParentObject.eSet(reference, newObject);
+					setEObjectAttributes(newObject, count++);
+					for(EReference reference : ProjectGeneratorUtil.getAllPossibleContainingReferences(newObject, currentParentObject)) {
+						if(reference.isChangeable() && !reference.isUnsettable()) {
+							if (currentParentObject.eGet(reference) instanceof List) {
+								((List<EObject>) currentParentObject.eGet(reference)).add(newObject);
+							}
+							else {
+								currentParentObject.eSet(reference, newObject);
+							}
+							break;
+						}
 					}
 					if(currentDepth < hierarchyDepth) {
 						remainingObjects.add(newObject);
 					}
-					count++;
+					addGeneratedClassAndObject(currentChildClass, newObject);
 				}
 			}
 			if(count >= elementsInThisDepth) {
 				count = 0;
 				elementsInThisDepth = (long) Math.pow(noOfExampleValues, ++currentDepth);
-				System.out.println(elementsInThisDepth);
 			}
 			
 		}
 	}
 
-	private void setEObjectAttributes(EObject newObject) {
+	private void addReferences(EObject newObject) {
+		for(EReference reference : newObject.eClass().getEAllReferences()) {
+			if(reference.isContainment() || reference.isContainer() || reference.isUnsettable() || !reference.isChangeable()) {
+				continue;
+			}
+			List<EClass> possibleReferenceClasses = new ArrayList<EClass>();
+			possibleReferenceClasses.add(reference.getEReferenceType());
+			for(EClass eClass : alreadyGeneratedClasses) {
+				if(reference.getEReferenceType().isSuperTypeOf(eClass)) {
+					possibleReferenceClasses.add(eClass);
+				}
+			}
+			for(EClass nextReferenceClass : possibleReferenceClasses) {
+				int index = alreadyGeneratedClasses.indexOf(nextReferenceClass);
+				if(index >=0) {
+					List<EObject> possibleReferenceObjects = generatedObjects.get(index);
+					int size = possibleReferenceObjects.size();
+					int randomIndex = random.nextInt(size) ; 
+					for(int i = (randomIndex + 1) % size; i != randomIndex; i=(i+1)%size) {
+						EObject referencedObject = possibleReferenceObjects.get(i);
+						if(referencedObject == newObject)
+							continue;
+						if(newObject.eGet(reference) instanceof List) {
+							((List<EObject>) newObject.eGet(reference)).add(referencedObject);
+						} else {
+							newObject.eSet(reference, referencedObject);
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void addGeneratedClassAndObject(EClass eClass, EObject newObject) {
+		int index = alreadyGeneratedClasses.indexOf(eClass);
+		if(index > 0) {
+			generatedObjects.get(index).add(newObject);
+		} else {
+			alreadyGeneratedClasses.add(eClass);
+			List<EObject> newGeneratedObjectList = new ArrayList<EObject>();
+			newGeneratedObjectList.add(newObject);
+			generatedObjects.add(newGeneratedObjectList);
+		}
+	}
+
+	private void setEObjectAttributes(EObject newObject, int count) {
 		for(EAttribute attribute : ProjectGeneratorUtil.getEAttributes(newObject.eClass())) {
 			EClassifier attributeType = attribute.getEType();
-			EcorePackage ecoreInstance = EcorePackage.eINSTANCE;	
+			EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
 			if(!attribute.isChangeable())
 				continue;
 			if(attributeType == ecoreInstance.getEString()) {
-				newObject.eSet(attribute, "Generated");
+				newObject.eSet(attribute, "Generated " + count);
 			} else if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
 				newObject.eSet(attribute, random.nextBoolean());
 			} else if (attributeType ==ecoreInstance.getEBigInteger()) {
