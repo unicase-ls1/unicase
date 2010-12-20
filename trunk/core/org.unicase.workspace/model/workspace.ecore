@@ -66,12 +66,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//notification/ESNotification"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pendingFileTransfers" upperBound="-1"
-        eType="#//PendingFileTransfer" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventComposite" eType="#//EventComposite"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="notificationComposite"
         eType="#//NotificationComposite" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="waitingUploads" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//FileIdentifier"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"

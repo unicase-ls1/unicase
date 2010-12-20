@@ -474,7 +474,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
-	public EReference getProjectSpace_PendingFileTransfers() {
+	public EReference getProjectSpace_EventComposite() {
 		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -483,7 +483,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
-	public EReference getProjectSpace_EventComposite() {
+	public EReference getProjectSpace_NotificationComposite() {
 		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -492,7 +492,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
-	public EReference getProjectSpace_NotificationComposite() {
+	public EReference getProjectSpace_WaitingUploads() {
 		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -679,9 +679,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__OLD_LOG_MESSAGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_OPERATIONS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__NOTIFICATIONS);
-		createEReference(projectSpaceEClass, PROJECT_SPACE__PENDING_FILE_TRANSFERS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__EVENT_COMPOSITE);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__NOTIFICATION_COMPOSITE);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__WAITING_UPLOADS);
 
 		operationCompositeEClass = createEClass(OPERATION_COMPOSITE);
 		createEReference(operationCompositeEClass, OPERATION_COMPOSITE__OPERATIONS);
@@ -847,15 +847,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getProjectSpace_Notifications(), theNotificationPackage.getESNotification(), null,
 			"notifications", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_PendingFileTransfers(), this.getPendingFileTransfer(), null,
-			"pendingFileTransfers", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_EventComposite(), this.getEventComposite(), null, "eventComposite", null, 0, 1,
 			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_NotificationComposite(), this.getNotificationComposite(), null,
 			"notificationComposite", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_WaitingUploads(), theEsmodelPackage.getFileIdentifier(), null, "waitingUploads",
+			null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationCompositeEClass, OperationComposite.class, "OperationComposite", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

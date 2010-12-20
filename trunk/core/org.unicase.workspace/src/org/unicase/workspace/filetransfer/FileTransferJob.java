@@ -10,13 +10,12 @@ import java.io.File;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
-import org.unicase.workspace.PendingFileTransfer;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -25,91 +24,37 @@ import org.unicase.workspace.util.UnicaseCommand;
 /**
  * Abstract class for the file transfer job encapsulating methods used for downloads and uploads.
  * 
- * @author pfeifferc
+ * @author pfeifferc, jfinis
  */
 public abstract class FileTransferJob extends Job {
 
 	private ConnectionManager connectionManager;
 	private Exception exception;
 	private File file;
-	private ProjectSpaceImpl projectSpace;
-	private FileInformation fileInformation;
-	private PendingFileTransfer transfer;
 	private ProjectId projectId;
 	private SessionId sessionId;
-	private boolean cancelled;
-	private static String extensionID = "org.unicase.workspace.filetransfer.ondone";
+	private boolean canceled;
+
+	private final ProjectSpaceImpl projectSpace;
+	private final FileTransferManager transferManager;
+	private final FileTransferCacheManager cache;
+	private final FileTransferInformation fileInformation;
+	private final FileIdentifier fileId;
 
 	/**
+	 * Constructor to be called by subclasses.
+	 * 
+	 * @param transferManager the transfer manager handling the transfer job
+	 * @param fileInfo the transfer information of the job
 	 * @param name of the transfer job
 	 */
-	public FileTransferJob(String name) {
+	protected FileTransferJob(FileTransferManager transferManager, FileTransferInformation fileInfo, String name) {
 		super(name);
-	}
-
-	/**
-	 * Update the file version.
-	 * 
-	 * @param version file version
-	 */
-	protected void updateVersion(final int version) {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				transfer.setFileVersion(version);
-				getProjectSpace().saveProjectSpaceOnly();
-
-			}
-
-		}.run();
-		getFileInformation().setFileVersion(version);
-	}
-
-	/**
-	 * @return project space
-	 */
-	protected ProjectSpaceImpl getProjectSpace() {
-		return projectSpace;
-
-	}
-
-	/**
-	 * Removes the preliminary file name from a transfer.
-	 */
-	protected void removePendingFileTransferPreliminaryFileName() {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				transfer.setPreliminaryFileName(null);
-				getProjectSpace().saveProjectSpaceOnly();
-			}
-		}.run();
-	}
-
-	/**
-	 * Sets the new chunk number.
-	 */
-	protected void setNewPendingFileTransferChunkNumber() {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				transfer.setChunkNumber(fileInformation.getChunkNumber());
-				getProjectSpace().saveProjectSpaceOnly();
-			}
-		}.run();
-	}
-
-	/**
-	 * Removes a pending file transfer from the pending file transfers. *
-	 */
-	protected void removePendingFileTransfer() {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				getProjectSpace().getPendingFileTransfers().remove(transfer);
-				getProjectSpace().saveProjectSpaceOnly();
-			}
-		}.run();
+		this.fileInformation = fileInfo;
+		this.fileId = fileInfo.getFileIdentifier();
+		this.projectSpace = transferManager.getProjectSpace();
+		this.transferManager = transferManager;
+		this.cache = transferManager.getCache();
 	}
 
 	/**
@@ -119,16 +64,16 @@ public abstract class FileTransferJob extends Job {
 	 */
 	protected void getConnectionAttributes() throws FileTransferException {
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
-		projectId = getProjectSpace().getProjectId();
-		if (getProjectSpace().getUsersession() == null) {
+		projectId = projectSpace.getProjectId();
+		if (projectSpace.getUsersession() == null) {
 			throw new FileTransferException("Session ID is unknown. Please login first!");
 		} else {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
-					sessionId = getProjectSpace().getUsersession().getSessionId();
+					sessionId = projectSpace.getUsersession().getSessionId();
 				}
-			}.run();
+			}.run(false);
 		}
 	}
 
@@ -136,7 +81,7 @@ public abstract class FileTransferJob extends Job {
 	 * @param monitor monitor
 	 */
 	protected void setTotalWork(IProgressMonitor monitor) {
-		monitor.beginTask("Transfering ", (int) (Math.ceil(getFileInformation().getFileSize()) / FilePartitionerUtil
+		monitor.beginTask("Transfering ", (int) (Math.ceil(fileInformation.getFileSize()) / FilePartitionerUtil
 			.getChunkSize()));
 	}
 
@@ -145,7 +90,7 @@ public abstract class FileTransferJob extends Job {
 	 */
 	@Override
 	protected void canceling() {
-		cancelled = true;
+		canceled = true;
 		super.canceling();
 	}
 
@@ -163,7 +108,7 @@ public abstract class FileTransferJob extends Job {
 		// set monitor total work based on file size previously retrieved
 		setTotalWork(monitor);
 		// set progress based on how many file chunks that have already been sent
-		monitor.worked(getFileInformation().getChunkNumber());
+		monitor.worked(fileInformation.getChunkNumber());
 	}
 
 	/**
@@ -174,27 +119,35 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * @param e exception thrown
-	 */
-	protected void setException(Exception e) {
-		this.exception = e;
-	}
-
-	/**
-	 * @return the connection manager.
+	 * Returns the connection manager, handling the connection to the emf store.
+	 * 
+	 * @return the connection manager
 	 */
 	protected ConnectionManager getConnectionManager() {
 		return connectionManager;
 	}
 
 	/**
-	 * @return the session id
+	 * Returns the transferred file.
+	 * 
+	 * @return the file where the file transfer is stored
 	 */
-	protected SessionId getSessionId() {
-		return sessionId;
+	protected File getFile() {
+		return file;
 	}
 
 	/**
+	 * Sets the transferred file.
+	 * 
+	 * @param file the file to store the transfer in
+	 */
+	protected void setFile(File file) {
+		this.file = file;
+	}
+
+	/**
+	 * Returns the project id of the project to which the file transfer belongs.
+	 * 
 	 * @return project id
 	 */
 	protected ProjectId getProjectId() {
@@ -202,69 +155,76 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * @return the file information data object
+	 * Returns the session id for the connection with the emf store.
+	 * 
+	 * @return session id
 	 */
-	public FileInformation getFileInformation() {
+	protected SessionId getSessionId() {
+		return sessionId;
+	}
+
+	/**
+	 * Whether the user canceled the transfer.
+	 * 
+	 * @return true iff canceled
+	 */
+	protected boolean isCanceled() {
+		return canceled;
+	}
+
+	/**
+	 * Returns the project space which is associated with the file transfer.
+	 * 
+	 * @return the associated project space
+	 */
+	protected ProjectSpaceImpl getProjectSpace() {
+		return projectSpace;
+	}
+
+	/**
+	 * Returns the file transfer manager administering the file transfer.
+	 * 
+	 * @return the file transfer manager
+	 */
+	protected FileTransferManager getTransferManager() {
+		return transferManager;
+	}
+
+	/**
+	 * Returns the cache manager associated with the project space of this file transfer.
+	 * 
+	 * @return the cache manager
+	 */
+	protected FileTransferCacheManager getCache() {
+		return cache;
+	}
+
+	/**
+	 * Returns the file transfer information of this transfer.
+	 * 
+	 * @return transfer information
+	 */
+	protected FileTransferInformation getFileInformation() {
 		return fileInformation;
 	}
 
 	/**
-		 */
-	protected void setFileInformation() {
-		this.fileInformation = FileTransferUtil.createFileInformationFromPendingFileTransfer(transfer);
+	 * Returns the file identifier of this file transfer.
+	 * 
+	 * @return the file identifier
+	 */
+	protected FileIdentifier getFileId() {
+		return fileId;
 	}
 
 	/**
-	 * @return file
+	 * Sets the exception for this transfer. Do this in case an exception occurs. This exception can later be retrieved
+	 * by get exception.
+	 * 
+	 * @param exception the exception that occurred
 	 */
-	protected File getFile() {
-		return file;
+	protected void setException(Exception exception) {
+		this.exception = exception;
 	}
 
-	/**
-	 * @param file file
-	 */
-	protected void setFile(File file) {
-		this.file = file;
-	}
-
-	/**
-	 * @param transfer transfer
-	 */
-	protected void setTransfer(PendingFileTransfer transfer) {
-		this.transfer = transfer;
-	}
-
-	/**
-	 * @return the transfer
-	 */
-	protected PendingFileTransfer getTransfer() {
-		return transfer;
-	}
-
-	/**
-	 * @throws FileTransferException if the job execution has been halted
-	 */
-	protected void checkCancelled() throws FileTransferException {
-		if (cancelled || transfer.getAttachmentId() == null) {
-			throw new FileTransferException("File transfer has been cancelled!");
-		}
-		if (!getProjectSpace().getPendingFileTransfers().contains(getTransfer())) {
-			throw new FileTransferException("File transfer has been cancelled!");
-		}
-	}
-
-	/**
-	 * @param projectSpace project space
-	 */
-	protected void setProjectSpace(ProjectSpace projectSpace) {
-		this.projectSpace = (ProjectSpaceImpl) projectSpace;
-	}
-
-	/**
-	 * @return the extension id
-	 */
-	protected String getExtensionId() {
-		return extensionID;
-	}
 }

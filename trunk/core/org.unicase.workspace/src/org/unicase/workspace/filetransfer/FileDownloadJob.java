@@ -13,30 +13,35 @@ import java.rmi.RemoteException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
-import org.unicase.workspace.PendingFileTransfer;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 
 /**
  * File Download Job class is responsible for downloading files from the server in the Eclipse Worker thread.
  * 
- * @author pfeifferc
+ * @author pfeifferc, jfinis
  */
 public class FileDownloadJob extends FileTransferJob {
 
+	private FileDownloadStatus status;
+
 	/**
-	 * @param transfer the transfer
-	 * @param projectSpace project space
+	 * Default constructor. Only used internally; only the FileTransferManager may create such jobs.
+	 * 
+	 * @param status the status to which this download job will report its progress
+	 * @param transferManager the transfer manager administering the download.
+	 * @param fileId the id of the file to be transferred
 	 * @param transferVisibleToUser progress bar yes/no
 	 */
-	public FileDownloadJob(PendingFileTransfer transfer, ProjectSpace projectSpace, boolean transferVisibleToUser) {
-		super("File Download Job for: " + transfer.getFileName() + " version: " + transfer.getFileVersion());
-		setTransfer(transfer);
-		setProjectSpace(projectSpace);
-		setFileInformation();
-		setUser(false);
+	FileDownloadJob(FileDownloadStatus status, FileTransferManager transferManager, FileIdentifier fileId,
+		boolean transferVisibleToUser) {
+		super(transferManager, new FileTransferInformation(fileId, FileTransferInformation.UNKOWN_SIZE),
+			"File Download");
+		setUser(transferVisibleToUser);
+		this.status = status;
 	}
 
 	/**
@@ -47,49 +52,66 @@ public class FileDownloadJob extends FileTransferJob {
 		try {
 			// read values from file attachment
 			getConnectionAttributes();
-			// make sure that the local cache folder exists
-			createCacheFolder();
 			// set file that is to be written to
-			setFile(FileTransferUtil.constructCachedFile(getFileInformation(), getProjectId()));
+			setFile(getCache().createTempFile(getFileId()));
 			// receive file chunks from server
-			executeTransfer(monitor);
+			if (!executeTransfer(monitor)) {
+				return Status.CANCEL_STATUS;
+			}
 		} catch (EmfStoreException e) {
-			setException(e);
-			return Status.CANCEL_STATUS;
+			return registerException(e);
 		} catch (IOException e) {
-			setException(e);
-			return Status.CANCEL_STATUS;
+			return registerException(e);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
+			return registerException(e);
 		}
 		return Status.OK_STATUS;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Registers an exception.
+	 * 
+	 * @param e the exception to register
+	 * @return CANCEL_STATUS
+	 */
+	private IStatus registerException(Exception e) {
+		status.transferFailed(e);
+		setException(e);
+		return Status.CANCEL_STATUS;
+	}
+
+	/**
+	 * . {@inheritDoc}
 	 * 
 	 * @throws EmfStoreException
 	 * @throws RemoteException
 	 */
-	private void executeTransfer(IProgressMonitor monitor) throws RemoteException, EmfStoreException {
+	private boolean executeTransfer(IProgressMonitor monitor) throws RemoteException, EmfStoreException {
+
 		// download file chunk to retrieve filesize (file chunk is discarded)
-		FileChunk fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(),
-			getFileInformation());
+		FileChunk fileChunk = null;
+		fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(), getFileInformation());
+
 		getFileInformation().setFileSize(fileChunk.getFileSize());
 		initializeMonitor(monitor);
+		status.transferStarted(fileChunk.getFileSize());
 		do {
 			fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(), getFileInformation());
 			FilePartitionerUtil.writeChunk(getFile(), fileChunk);
 			monitor.worked(1);
 			incrementChunkNumber();
-			setNewPendingFileTransferChunkNumber();
-			checkCancelled();
+			if (isCanceled()) {
+				status.transferCancelled();
+				return false;
+			}
 		} while (!fileChunk.isLast());
-		removePendingFileTransfer();
+
+		// Once the file is downloaded, it can be moved from the tmp folder to the cache
+		File result = getCache().moveTempFileToCache(getFileId());
+		status.transferFinished(result);
+		return true;
 	}
 
-	/**
-	 * Creates the clientside cache folder.
-	 */
-	private void createCacheFolder() {
-		new File(FileTransferUtil.constructCacheFolder(getProjectId())).mkdirs();
-	}
 }

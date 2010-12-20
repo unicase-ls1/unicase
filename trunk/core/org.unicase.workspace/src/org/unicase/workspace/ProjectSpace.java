@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
@@ -28,13 +30,13 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
-import org.unicase.workspace.filetransfer.FileRequestHandler;
+import org.unicase.workspace.filetransfer.FileDownloadStatus;
+import org.unicase.workspace.filetransfer.FileInformation;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.OperationListener;
@@ -376,22 +378,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<ESNotification> getNotifications();
 
 	/**
-	 * Returns the value of the '<em><b>Pending File Transfers</b></em>' containment reference list. The list contents
-	 * are of type {@link org.unicase.workspace.PendingFileTransfer}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pending File Transfers</em>' containment reference list isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Pending File Transfers</em>' containment reference list.
-	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_PendingFileTransfers()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	EList<PendingFileTransfer> getPendingFileTransfers();
-
-	/**
 	 * Returns the value of the '<em><b>Event Composite</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Event Composite</em>' containment reference isn't clear, there really should be more
@@ -442,6 +428,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void setNotificationComposite(NotificationComposite value);
+
+	/**
+	 * Returns the value of the '<em><b>Waiting Uploads</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.emfstore.esmodel.FileIdentifier}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Waiting Uploads</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Waiting Uploads</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_WaitingUploads()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<FileIdentifier> getWaitingUploads();
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -679,16 +681,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	CompositeOperationHandle beginCompositeOperation();
 
 	/**
-	 * @param fileInformation file information data object
-	 * @param selectedFile file to upload, null if there is no file to upload (in case of download)
-	 * @param upload true if upload, false if download
-	 * @param run true if transfer is to be started instantaneously
-	 * @throws FileTransferException if any error occurs adding the file transfer
-	 */
-	void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload, boolean run)
-		throws FileTransferException;
-
-	/**
 	 * Add a commit observer to the project space.
 	 * 
 	 * @param observer a project commit observer
@@ -761,13 +753,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	void removeOperationListener(OperationListener operationListner);
 
 	/**
-	 * Removes a pending file transfer.
-	 * 
-	 * @param fileAttachmentId file attachment id
-	 */
-	void removePendingFileUpload(String fileAttachmentId);
-
-	/**
 	 * Transmit the OrgUnitproperties to the server.
 	 * 
 	 * @generated NOT
@@ -791,24 +776,40 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isTransient();
 
 	/**
-	 * @param fileInformation file info
-	 * @param upload if true, download if false
-	 * @return if transfer exists
-	 */
-	boolean hasFileTransfer(FileInformation fileInformation, boolean upload);
-
-	/**
+	 * Adds a file to this project space. The file will be uploaded to the EMFStore upon commiting. As long as the file
+	 * is not committed yet, it can be removed by calling .getFileInfo(id).removePendingUpload().
+	 * 
 	 * @param file to be added to the projectspace
-	 * @return file identifier to retrieve file with
+	 * @return file identifier the file was assigned. This identifier can be used to retrieve the file later
 	 * @throws FileTransferException if any error occurs
 	 */
-	String addFile(File file) throws FileTransferException;
+	FileIdentifier addFile(File file) throws FileTransferException;
 
 	/**
-	 * @param fileIdentifier file identifier string
-	 * @return handler
+	 * Gets a file with a specific identifier. If the file is not cached locally, it is tried to download the file if a
+	 * connection to the sever exists. If the file cannot be found locally and not on the server (or the server isn't
+	 * reachable), a FileTransferException is thrown. Such an exception is also thrown if other errors occur while
+	 * trying to download the file. The method returns not the file itself, because it does not block in case of
+	 * downloading the file. Instead, it returns a status object which can be queried for the status of the download.
+	 * Once the download is finished ( status.isFinished() ), the file can be retrieved from this status object by
+	 * calling status.getTransferredFile().
+	 * 
+	 * @param fileIdentifier file identifier string.
+	 * @param monitor a progress monitor which is used to indicate the progress of the download
+	 * @return a status object that can be used to retriev various information about the file.
 	 * @throws FileTransferException if any error occurs retrieving the files
 	 */
-	FileRequestHandler getFile(String fileIdentifier) throws FileTransferException;
+	FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor) throws FileTransferException;
+
+	/**
+	 * Gets the file information for a specific file identifier. This file information can be used to access further
+	 * details of a file (if it exists, is cached, is a pending upload). It can also be used to alter the file in
+	 * limited ways (like removing a pending upload). The FileInformation class is basically a facade to keep the
+	 * interface in the project space small (only getFileInfo) while still providing a rich interface for files.
+	 * 
+	 * @param fileIdentifier the file identifier for which to get the information
+	 * @return the information for that identifier.
+	 */
+	FileInformation getFileInfo(FileIdentifier fileIdentifier);
 
 } // ProjectContainer
