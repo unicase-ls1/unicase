@@ -75,12 +75,12 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		if (element instanceof HistoryInfo) {
 			HistoryInfo historyInfo = (HistoryInfo) element;
 			return getChildren(historyInfo, treeNode);
-		} else if (element instanceof EObject) {
-			EObject me = (EObject) element;
-			return getChildren(me, treeNode);
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cp = (ChangePackage) element;
 			return getChildren(cp, treeNode);
+		} else if (element instanceof EObject) {
+			EObject me = (EObject) element;
+			return getChildren(me, treeNode);
 		}
 		return nodify(treeNode, Arrays.asList(contentProvider.getChildren(element))).toArray();
 	}

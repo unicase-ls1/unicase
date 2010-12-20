@@ -83,8 +83,6 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
 				ret = changePackageVisualizationHelper.getDescription((AbstractOperation) value);
-			} else if (value instanceof EObject) {
-				ret = UiUtil.getNameForModelElement(((EObject) value));
 			} else if (value instanceof ModelElementId) {
 				EObject modelElement = changePackageVisualizationHelper.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
@@ -96,7 +94,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				ChangePackage changePackage = (ChangePackage) value;
 				return getText(changePackage);
 			} else if (value instanceof EObject) {
-				ret = adapterFactoryLabelProvider.getText(value);
+				ret = UiUtil.getNameForModelElement(((EObject) value));
 			} else {
 				ret = value.toString();
 			}

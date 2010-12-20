@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -28,10 +30,13 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This is the item provider adapter for a
@@ -73,10 +78,8 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 * @generated
 	 */
 	protected void addDeletePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CreateDeleteOperation_delete_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CreateDeleteOperation_delete_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CreateDeleteOperation_delete_feature",
 				"_UI_CreateDeleteOperation_type"), OperationsPackage.Literals.CREATE_DELETE_OPERATION__DELETE, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -127,13 +130,43 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
+	 * @param object the object to be described
+	 * @return the description of the given object
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CreateDeleteOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CreateDeleteOperation_type")
-			: getString("_UI_CreateDeleteOperation_type") + " " + label;
+		if (object instanceof CreateDeleteOperation) {
+			CreateDeleteOperation op = (CreateDeleteOperation) object;
+			EObject modelElement = op.getModelElement();
+			int childrenCount = ModelUtil.getAllContainedModelElements(modelElement, false).size();
+			String description;
+
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(modelElement.eClass().getName());
+			stringBuilder.append(getModelElementName(op.getModelElementId()));
+			String elementClassAndName = stringBuilder.toString();
+			if (op.isDelete()) {
+				description = "Deleted " + elementClassAndName;
+			} else {
+				description = "Created " + elementClassAndName;
+			}
+			if (childrenCount > 0) {
+				description += " including " + childrenCount + " sibling(s)";
+			}
+
+			EList<ReferenceOperation> subOperations = op.getSubOperations();
+			int subOperationCount = subOperations.size();
+			if (op.isDelete() && subOperationCount > 0) {
+				ReferenceOperation referenceOperation = subOperations.get(subOperationCount - 1);
+				if (referenceOperation.getContainmentType().equals(ContainmentType.CONTAINMENT)) {
+					description += " from its parent "
+						+ getModelElementClassAndName(referenceOperation.getModelElementId());
+				}
+			}
+			return description;
+		}
+		return super.getText(object);
 	}
 
 	/**
@@ -402,20 +435,20 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			MetamodelFactory.eINSTANCE.createModelVersion()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
+				.createSingleReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
+				.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
+				.createMultiReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP,
-			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP, OperationsFactory.eINSTANCE
+				.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 	}
 
 	/**
