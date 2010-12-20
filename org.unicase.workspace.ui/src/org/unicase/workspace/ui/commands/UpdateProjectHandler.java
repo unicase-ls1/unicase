@@ -32,9 +32,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author Hodaie
  * @author Shterev
  */
+// TODO RAP (Instantiation of the shell)
 public class UpdateProjectHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
-	private Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	private Shell shell;
 	private Usersession usersession;
 
 	/**
@@ -71,7 +72,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	 * @param projectSpace the target project space
 	 * @throws EmfStoreException if any.
 	 */
-	public void update(final ProjectSpace projectSpace) throws EmfStoreException {
+	protected void update(final ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
 			MessageDialog.openInformation(shell, null,
@@ -79,6 +80,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 			return;
 		}
 
+		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
