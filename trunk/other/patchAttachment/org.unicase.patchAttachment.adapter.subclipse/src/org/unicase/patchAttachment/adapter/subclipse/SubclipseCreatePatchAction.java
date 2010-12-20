@@ -44,8 +44,6 @@ public class SubclipseCreatePatchAction {
 	private static String EOL = System.getProperty("line.separator");
 	
 
-	
-	private IResource[] modifiedResources;
 	private ArrayList<IResource> unaddedList;
 	private HashMap<IResource,SVNStatusKind> statusMap;
 	
@@ -61,7 +59,7 @@ public class SubclipseCreatePatchAction {
 		UIUtil.run(new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 				 try {
-					modifiedResources = getModifiedResources(sources, monitor);
+					getModifiedResources(sources, monitor);
 				} catch (SVNException e) {
 					e.printStackTrace();
 				}		
@@ -114,8 +112,7 @@ public class SubclipseCreatePatchAction {
 			return monitor;
 		return new SubProgressMonitor(monitor, ticks);
 	}
-	
-	@SuppressWarnings("restriction")
+
 	protected HashMap<RepositoryProvider,List<IResource>> getProviderMapping(List<IResource> resources) {
 		HashMap<RepositoryProvider,List<IResource>> result = new HashMap<RepositoryProvider, List<IResource>>();
 		for(IResource r: resources){
