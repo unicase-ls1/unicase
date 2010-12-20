@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 /*******************************************************************************
  * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -22,6 +27,7 @@ import org.eclipse.compare.internal.patch.FilePatch;
 import org.eclipse.compare.internal.patch.PatchWizard;
 import org.eclipse.compare.internal.patch.PatchWizardDialog;
 import org.eclipse.compare.internal.patch.Utilities;
+import org.eclipse.compare.patch.IFilePatch;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -30,13 +36,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.compare.patch.IFilePatch;
 
 /**
  * An operation that provides an interface to the Apply Patch Wizard. Users specify
@@ -50,6 +54,7 @@ import org.eclipse.compare.patch.IFilePatch;
  * @since 3.3
  *
  */
+@SuppressWarnings("restriction")
 public class ApplyPatchAttachmentOperation extends Thread {
 
 	private IWorkbenchPart part;
@@ -60,7 +65,7 @@ public class ApplyPatchAttachmentOperation extends Thread {
 	private CompareConfiguration configuration;
 	
 	/**
-	 * The patch to use as an input into the Apply Patch wizard
+	 * The patch to use as an input into the Apply Patch wizard.
 	 */
 	private IStorage patch;
 	
@@ -70,13 +75,13 @@ public class ApplyPatchAttachmentOperation extends Thread {
 	private IResource target;
 	
 	/**
-	 * An optional image for the patch wizard
+	 * An optional image for the patch wizard.
 	 */
 	private ImageDescriptor patchWizardImage;
 	
 	
 	/**
-	 * An optional title for the patchWizard
+	 * An optional title for the patchWizard.
 	 */
 	private String patchWizardTitle;
 
@@ -148,10 +153,12 @@ public class ApplyPatchAttachmentOperation extends Thread {
 		
 		if (saveAllEditors) {
 			PatchWizard wizard = new PatchWizard(patch, target, configuration);
-			if (patchWizardImage != null)
+			if (patchWizardImage != null){
 				wizard.setDefaultPageImageDescriptor(patchWizardImage);
-			if (patchWizardTitle != null)
+			}
+			if (patchWizardTitle != null){
 				wizard.setWindowTitle(patchWizardTitle);
+			}
 			wizard.setNeedsProgressMonitor(true);
 
 			PatchWizardDialog dialog = new PatchWizardDialog(getShell(), wizard);
@@ -170,8 +177,9 @@ public class ApplyPatchAttachmentOperation extends Thread {
 	 * @return the parent shell to be used when the wizard is opened
 	 */
 	protected Shell getShell() {
-		if (part == null)
+		if (part == null){
 			return CompareUIPlugin.getShell();
+		}
 		return part.getSite().getShell();
 	}
 	
@@ -200,14 +208,21 @@ public class ApplyPatchAttachmentOperation extends Thread {
 		this.patchWizardImage = descriptor;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Runnable#run()
+	
+	/**
+	 * Opens the wizard.
 	 */
 	public void run() {
 		openWizard();
 	}
 	
-	private boolean canceled = false;
+	
+	private boolean canceled;
+	
+	/**
+	 * Whether the dialog has been canceled.
+	 * @return canceled?
+	 */
 	public boolean wasCanceled(){
 		return canceled;
 	}

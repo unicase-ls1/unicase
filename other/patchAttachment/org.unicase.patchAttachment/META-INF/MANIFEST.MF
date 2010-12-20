@@ -24,7 +24,6 @@ Export-Package:
  org.unicase.patchAttachment.applyPatch,
  org.unicase.patchAttachment.commands,
  org.unicase.patchAttachment.exported,
- org.unicase.patchAttachment.test,
  org.unicase.patchAttachment.ui,
  org.unicase.patchAttachment.ui.action,
  org.unicase.patchAttachment.ui.wizards
