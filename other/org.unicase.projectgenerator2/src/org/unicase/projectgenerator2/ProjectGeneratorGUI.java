@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class ProjectGeneratorGUI extends JFrame{
 
@@ -46,7 +53,6 @@ public class ProjectGeneratorGUI extends JFrame{
 		firstDialog = new FirstDialog();
 		secondDialog = new SecondDialog();
 		showFirstDialog();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	
@@ -54,6 +60,7 @@ public class ProjectGeneratorGUI extends JFrame{
 		/**
 		 * 
 		 */
+		private EPackage[] models;
 		private static final long serialVersionUID = 1L;
 
 		//TODO: Hier die Models einfügen, die zur Auswahl stehen.
@@ -66,7 +73,9 @@ public class ProjectGeneratorGUI extends JFrame{
 	    
 	    private Vector<String> list = new Vector<String>();
 	    private JList modelList;
+	    private JList rootObjectList=new JList(new DefaultListModel());
 
+	    private EClass[] allModelElementEClasses;
 		
 		
 		public FirstDialog() {
@@ -77,14 +86,30 @@ public class ProjectGeneratorGUI extends JFrame{
 			container.setLayout(new BorderLayout());
 			container.add(mainPanel, BorderLayout.NORTH);
 			container.add(buttonPanel, BorderLayout.SOUTH);		
-
 			
-		    //TODO: hier brauchen wir dann die Methode getAllEPackages
-
-		    modelList = new JList(ProjectGeneratorUtil.getAllRootModelPackages().toArray(new EPackage[0]));
+			models = new EPackage[]{ProjectGeneratorUtil.getModelPackage("http://unicase.org/model")};
+			String[] modelsString = getModelNames(models);
+		    modelList = new JList(modelsString);
 		    mainPanel.add(new JScrollPane(modelList));
-		    
+		    mainPanel.add(new JScrollPane(rootObjectList));
 		    buttonPanel.add(forwardButton);
+		    
+		    modelList.addMouseListener(new MouseAdapter() {
+		    	@Override
+		    	public void mouseClicked(MouseEvent e) {
+		    		EPackage model = getSelectedPackage();
+		    		((DefaultListModel)rootObjectList.getModel()).clear();
+		    		if(model!=null){
+		    			allModelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(model).toArray(new EClass[0]);
+		    			DefaultListModel defaultModel =  (DefaultListModel)rootObjectList.getModel();
+		    			for (int i = 0; i < allModelElementEClasses.length; i++) {
+		    				EClass eClass = allModelElementEClasses[i];
+							defaultModel.addElement(eClass.getName());
+						}
+						
+		    		}
+		    	}
+			});
 		    
 
 		    
@@ -97,6 +122,22 @@ public class ProjectGeneratorGUI extends JFrame{
 			});
 			
 			this.add(container);		
+		}
+
+		private String[] getModelNames(EPackage[] models) {
+			String[] modelNames = new String[models.length];
+			for (int i = 0; i < models.length; i++) {
+				modelNames[i] = models[i].getName();
+			}
+			return modelNames;
+		}
+		
+		private EPackage getSelectedPackage(){
+			return models[modelList.getSelectedIndex()];
+		}
+		
+		private EClass getRootClass(){
+			return (allModelElementEClasses[rootObjectList.getSelectedIndex()]);
 		}
 	}
 	
@@ -153,6 +194,7 @@ public class ProjectGeneratorGUI extends JFrame{
 				
 				public void actionPerformed(ActionEvent e) {
 					callListener();
+					ProjectGeneratorGUI.this.dispose();
 				}
 
 			});
@@ -172,27 +214,29 @@ public class ProjectGeneratorGUI extends JFrame{
 		this.remove(secondDialog);
 		this.add(firstDialog);
 		this.pack();
-		this.setSize(new Dimension(400,600));
+		this.setSize(new Dimension(600,600));
 	}
 	
 	private void showSecondDialog() {
 		this.remove(firstDialog);
 		this.add(secondDialog);
 		this.pack();
-		this.setSize(new Dimension(400,600));
+		this.setSize(new Dimension(600,600));
 	}
 	
 	private void callListener() {
 		listener.setHierachyDepth(secondDialog.getProjectHeight());
 		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
-		listener.setRootPackage((EPackage)firstDialog.modelList.getSelectedValue());
+		listener.setRootPackage(firstDialog.getSelectedPackage());
+		EClass clazz = firstDialog.getRootClass();
+		listener.setRootObject(EcoreUtil.create(clazz));
 		listener.generateValues();
 	}
 
 	//just for testing
 	public static void main(String[] args) {
 		ProjectGeneratorGUI projectGeneratorGUI = new ProjectGeneratorGUI();
-		projectGeneratorGUI.setSize(new Dimension(400,600));
+		projectGeneratorGUI.setSize(new Dimension(600,600));
 		projectGeneratorGUI.setVisible(true);
 	}
 }
