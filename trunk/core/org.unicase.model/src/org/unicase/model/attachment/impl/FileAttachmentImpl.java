@@ -545,14 +545,33 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.attachment.FileAttachment#getFileIdentifier()
+	 */
+	@Override
 	public FileIdentifier getFileIdentifier() {
+		if (fileID == null) {
+			return null;
+		}
 		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
 		fid.setIdentifier(fileID);
 		return fid;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.attachment.FileAttachment#setFileIdentifier(org.unicase.emfstore.esmodel.FileIdentifier)
+	 */
+	@Override
 	public void setFileIdentifier(FileIdentifier fileId) {
-		setFileID(fileId.getIdentifier());
+		if (fileId == null) {
+			setFileID(null);
+		} else {
+			setFileID(fileId.getIdentifier());
+		}
 	}
 
 } // FileAttachmentImpl
