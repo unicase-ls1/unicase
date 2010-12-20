@@ -13,6 +13,8 @@ import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.unicase.emfstore.exceptions.FileTransferException;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * Utility methods for the file transfer interface. Important notice regarding the terminology used: construct means
@@ -48,6 +50,26 @@ public final class FileTransferUtil {
 		} catch (IOException e) {
 			throw new FileTransferException("Could not open the specified file!");
 		}
+	}
+
+	/**
+	 * Gets a file location for a file in a special folder inside the project space directory. The file can be copied to
+	 * this folder when it should be opened.
+	 * 
+	 * @param ps the project space for which to retrieve the open-file folder
+	 * @param fileName the name of the file
+	 * @return a file in the open-file folder of the project space with the specified name.
+	 */
+	public static File getOpenFileLocation(ProjectSpace ps, String fileName) {
+		if (fileName == null) {
+			return null;
+		}
+		File cacheFolder = new File(Configuration.getWorkspaceDirectory() + "ps-" + ps.getIdentifier()
+			+ File.separatorChar + "files");
+		File openCacheFolder = new File(cacheFolder, "openedFiles");
+		File openFile = new File(openCacheFolder, fileName);
+		openFile.deleteOnExit();
+		return openFile;
 	}
 
 	/**

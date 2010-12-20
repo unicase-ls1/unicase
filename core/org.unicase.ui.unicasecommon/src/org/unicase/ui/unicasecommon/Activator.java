@@ -6,6 +6,7 @@
 
 package org.unicase.ui.unicasecommon;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
 import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
@@ -57,6 +58,16 @@ public class Activator extends AbstractUnicaseUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	/**
+	 * Returns an image descriptor for the image file at the given. plug-in relative path
+	 * 
+	 * @param path the path
+	 * @return the image descriptor
+	 */
+	public static ImageDescriptor getImageDescriptor(String path) {
+		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 }

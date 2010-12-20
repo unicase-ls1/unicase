@@ -19,12 +19,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -33,21 +34,20 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.FileAttachment;
-import org.unicase.ui.meeditor.Activator;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.filetransfer.FileDownloadStatus;
 import org.unicase.workspace.filetransfer.FileInformation;
+import org.unicase.workspace.filetransfer.FileTransferUtil;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -68,9 +68,14 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private static final int PRIORITY = 2;
 
+	private static final Image ICON_ADD_FILE = Activator.getImageDescriptor("icons/page_add.png").createImage();
+	private static final Image ICON_DELETE_FILE = Activator.getImageDescriptor("icons/delete.png").createImage();
+	private static final Image ICON_SAVE_FILE = Activator.getImageDescriptor("icons/disk.png").createImage();
+	private static final Image ICON_OPEN_FILE = Activator.getImageDescriptor("icons/lrun.gif").createImage();
+
 	private FileAttachment fileAttachment;
 
-	private UploadSelectionListener uploadListener;
+	private AddFileOrCancelListener uploadListener;
 
 	private EMFDataBindingContext dbc;
 
@@ -80,7 +85,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private boolean canCancelUpload;
 
-	private Link saveAs;
+	private Button saveAs;
 
 	/**
 	 * This observer listens for commits, so it can update the button status. This is necessary because a formerly
@@ -98,6 +103,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 		}
 	};
+
+	private Button open;
 
 	/**
 	 * {@inheritDoc}
@@ -126,8 +133,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 		Composite composite = getToolkit().createComposite(parent, style);
 		// Grid layout with four columns
-		GridLayout gridLayout = new GridLayout(4, false);
-		composite.setLayout(gridLayout);
+		GridLayoutFactory.swtDefaults().equalWidth(false).numColumns(5).spacing(0, 0).applyTo(composite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
 		// ADDING WIDGETS AND SETTING LAYOUT DATA
@@ -136,14 +142,19 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		fileName = new Link(composite, SWT.NONE);
 		fileName.setLayoutData(new GridData(SWT.NONE, SWT.BEGINNING, true, true));
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
+		// GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
+
+		open = new Button(composite, SWT.RIGHT);
+		open.setImage(ICON_OPEN_FILE);
+		open.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
+		open.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		// Column 2: save as button
-		saveAs = new Link(composite, SWT.RIGHT);
-		saveAs.setText("<a>Save as...</a>");
+		saveAs = new Button(composite, SWT.RIGHT);
+		saveAs.setImage(ICON_SAVE_FILE);
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
+		// GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
 
 		// Column 3: button to open a dialog for uploading files
 
@@ -159,11 +170,12 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		// ADDING LISTENERS AND TOOLTIPS TO THE WIDGETS
 
 		// initialize listeners
-		uploadListener = new UploadSelectionListener();
+		uploadListener = new AddFileOrCancelListener();
 		upload.addSelectionListener(uploadListener);
 
-		// add listeners
-		saveAs.addSelectionListener(new SaveAsSelectionListener());
+		open.addSelectionListener(new SaveAsSelectionListener(false, true));
+
+		saveAs.addSelectionListener(new SaveAsSelectionListener(true, false));
 		saveAs.setToolTipText("As modifying of cached files is not endorsed "
 			+ "(the changes simply won't be uploaded until you do so manually), "
 			+ "\nyou can choose to save a copy of the downloaded file at another location.");
@@ -179,19 +191,6 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	public void openFile(FileTransferInformation fileInfo, ProjectId projectId) {
-		DialogHandler.showErrorDialog("File opening not yet supported");
-
-		// try {
-		// FileTransferUtil.openFile(fileInfo, projectId);
-		// } catch (FileTransferException e) {
-		// DialogHandler.showErrorDialog(e.getMessage());
-		// }
-	}
-
-	/**
 	 * Updates the status of the upload button and the file name.
 	 * 
 	 * @param uploadPending if the upload of the file is pending and thus can be canceled
@@ -200,6 +199,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		if (fileAttachment.getFileName() == null) {
 			fileName.setText("No file attached.");
 			saveAs.setVisible(false);
+			open.setVisible(false);
 		} else {
 			String suffix = "";
 			if (uploadPending) {
@@ -209,16 +209,17 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			}
 			fileName.setText(/* "<a>" + */fileAttachment.getFileName() + suffix /* + "</a>" */);
 			saveAs.setVisible(true);
+			open.setVisible(true);
 		}
 		saveAs.getParent().layout();
 
 		canCancelUpload = uploadPending;
 		if (!uploadPending) {
 			upload.setToolTipText(UPLOAD_NOTPENDING_TOOL_TIP);
-			upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
+			upload.setImage(ICON_ADD_FILE);
 		} else {
 			upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
-			upload.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
+			upload.setImage(ICON_DELETE_FILE);
 		}
 	}
 
@@ -262,34 +263,26 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	/**
 	 * @author jfinis
 	 */
-	private final class SaveAsSelectionListener implements SelectionListener {
+	private final class SaveAsSelectionListener extends SelectionAdapter {
 
 		private static final String FILE_CHOOSER_PATH = "org.unicase.ui.unicasecommon.fileChooserPath";
+		private boolean allowTargetSelection;
+		private boolean openOnFinish;
+
+		public SaveAsSelectionListener(boolean allowTargetSelection, boolean openOnFinish) {
+			this.allowTargetSelection = allowTargetSelection;
+			this.openOnFinish = openOnFinish;
+		}
 
 		/**
 		 * This method is called when the user presses the "Save as..." text. {@inheritDoc}
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 
-			// Show file dialog to save the file to
-			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
-			String initialPath = PreferenceHelper.getPreference(FILE_CHOOSER_PATH, System.getProperty("user.home"));
-			String initialName = fileAttachment.getFileName();
-			fileDialog.setFileName(initialName);
-			fileDialog.setFilterPath(initialPath);
-			fileDialog.setOverwrite(true);
-			fileDialog.setText("Save as...");
-			final String fileDestinationPath = fileDialog.open();
-
-			// If no file was selected, abort
-			if (fileDestinationPath == null || fileDestinationPath.equals("")) {
-				return;
-			}
-
-			// Set the chosen path as a preference for the next saves
-			PreferenceHelper.setPreference(FILE_CHOOSER_PATH, fileDialog.getFilterPath());
+			final File destinationFile = (allowTargetSelection) ? selectTargetFile() : getTempfile();
 
 			// Do the download, this is done in a progress monitor
 			try {
@@ -304,8 +297,13 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 							status.addTransferFinishedObserver(new Observer() {
 								public void update(Observable o, Object arg) {
 									try {
-										FileUtil.copyFile(status.getTransferredFile(), new File(fileDestinationPath));
-										openInformation("File saved successfully", "The file was saved successfully");
+										FileUtil.copyFile(status.getTransferredFile(), destinationFile);
+										if (openOnFinish) {
+											openFile(destinationFile);
+										} else {
+											openInformation("File saved successfully",
+												"The file was saved successfully");
+										}
 									} catch (IOException e1) {
 										registerSaveAsException(e1);
 									} catch (FileTransferException e) {
@@ -330,8 +328,40 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 		}
 
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// nothing to do
+		/**
+		 * {@inheritDoc}
+		 */
+		public void openFile(File file) {
+			try {
+				FileTransferUtil.openFile(file);
+			} catch (FileTransferException e) {
+				DialogHandler.showErrorDialog(e.getMessage());
+			}
+		}
+
+		private File getTempfile() {
+			return FileTransferUtil.getOpenFileLocation(getProjectSpace(), fileAttachment.getFileName());
+		}
+
+		private File selectTargetFile() {
+			// Show file dialog to save the file to
+			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
+			String initialPath = PreferenceHelper.getPreference(FILE_CHOOSER_PATH, System.getProperty("user.home"));
+			String initialName = fileAttachment.getFileName();
+			fileDialog.setFileName(initialName);
+			fileDialog.setFilterPath(initialPath);
+			fileDialog.setOverwrite(true);
+			fileDialog.setText("Save as...");
+			final String fileDestinationPath = fileDialog.open();
+
+			// If no file was selected, abort
+			if (fileDestinationPath == null || fileDestinationPath.equals("")) {
+				return null;
+			}
+
+			// Set the chosen path as a preference for the next saves
+			PreferenceHelper.setPreference(FILE_CHOOSER_PATH, fileDialog.getFilterPath());
+			return new File(fileDestinationPath);
 		}
 
 		/**
@@ -346,15 +376,11 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * The upload selection listener handles when the user presses the Add File/Cancel Upload button.
+	 * This listener handles when the user presses the Add File/Cancel Upload button.
 	 * 
 	 * @author jfinis
 	 */
-	private final class UploadSelectionListener implements SelectionListener {
-
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// nothing to do
-		}
+	private final class AddFileOrCancelListener extends SelectionAdapter {
 
 		/**
 		 * This method is called when the "Add File" or "Cancel upload" button is pressed. (This is one button that
@@ -362,6 +388,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			// do we want to cancel or to add a new file?
 			if (canCancelUpload) {
