@@ -177,13 +177,19 @@ public final class UnicaseActionHelper {
 	}
 
 	/**
-	 * Opens a model element in ECP with a Context.
+	 * Opens a model element in the ECP model editor.
+	 * <p>
+	 * The second parameter is a string which should represent a unique id for the code that opens the model element
+	 * (for example, the class name of the view opening the model element). It should stay the same for all calls of
+	 * this method from the same code. It is only used for tracking purposes, i.e. to allow tracking which code opened
+	 * which model element.
+	 * </p>
 	 * 
-	 * @param me modelelement to open.
-	 * @param sourceView the source view
+	 * @param me the model element to open.
+	 * @param identifier a unique identifier for the code opening the model element (see description above)
 	 */
-	public static void openModelElement(EObject me, String sourceView) {
-		ActionHelper.openModelElement(me, sourceView, getContext(me));
+	public static void openModelElement(EObject me, String identifier) {
+		ActionHelper.openModelElement(me, identifier, getContext(me));
 
 	}
 

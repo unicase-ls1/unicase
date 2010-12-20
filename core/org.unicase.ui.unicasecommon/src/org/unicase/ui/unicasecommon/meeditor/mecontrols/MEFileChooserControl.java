@@ -6,20 +6,16 @@
 package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Observable;
+import java.util.Observer;
 
-import org.eclipse.core.databinding.UpdateValueStrategy;
-import org.eclipse.core.databinding.conversion.IConverter;
-import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
-import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -36,27 +32,37 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
+import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.filetransfer.FileTransferUtil;
+import org.unicase.workspace.filetransfer.FileDownloadStatus;
+import org.unicase.workspace.filetransfer.FileInformation;
+import org.unicase.workspace.observers.CommitObserver;
+import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * @author pfeifferc
+ * This class handles file attachments. If the file attachment has no file attached yet, this control allows to attach a
+ * file If a file is already attached, the control allows to save that file. The file can also be replaced. If the file
+ * is not yet commited, it can be removed.
+ * 
+ * @author pfeifferc, jfinis
  */
 public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
-		+ "\nThe file attachment will be transferred when online. "
-		+ "\nYou can interrupt the file upload at any time and even "
-		+ "\nclose the program, as it will be resumed automatically.";
+		+ "\nThe file attachment will be transferred upon commiting";
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
@@ -66,13 +72,32 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private UploadSelectionListener uploadListener;
 
-	private RemoveTransferSelectionListener removeListener;
-
 	private EMFDataBindingContext dbc;
 
 	private Button upload;
 
 	private Link fileName;
+
+	private boolean canCancelUpload;
+
+	private Link saveAs;
+
+	/**
+	 * This observer listens for commits, so it can update the button status. This is necessary because a formerly
+	 * pending upload is no longer pending after a commit, because it was submitted during the commit.
+	 */
+	private CommitObserver commitObserver = new CommitObserver() {
+
+		public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
+			return true;
+		}
+
+		public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
+			// Upon commit, update the status of the button, since the file upload
+			// may no longer be pending
+			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+		}
+	};
 
 	/**
 	 * {@inheritDoc}
@@ -105,14 +130,6 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
-		// check if project is shared. if not, display label with error message
-		if (WorkspaceManager.getProjectSpace(fileAttachment).getProjectId() == null) {
-			Label label = new Label(composite, SWT.RIGHT);
-			label.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
-			label.setText("Please share your project. Otherwise the FileAttachment functionality can not be enabled.");
-			return parent;
-		}
-
 		// ADDING WIDGETS AND SETTING LAYOUT DATA
 
 		// Column 1: file name
@@ -122,7 +139,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
 
 		// Column 2: save as button
-		Link saveAs = new Link(composite, SWT.RIGHT);
+		saveAs = new Link(composite, SWT.RIGHT);
 		saveAs.setText("<a>Save as...</a>");
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -143,25 +160,20 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 		// initialize listeners
 		uploadListener = new UploadSelectionListener();
-		removeListener = new RemoveTransferSelectionListener();
-		DownloadSelectionListener downloadSelectionListener = new DownloadSelectionListener();
+		upload.addSelectionListener(uploadListener);
+
 		// add listeners
 		saveAs.addSelectionListener(new SaveAsSelectionListener());
 		saveAs.setToolTipText("As modifying of cached files is not endorsed "
 			+ "(the changes simply won't be uploaded until you do so manually), "
 			+ "\nyou can choose to save a copy of the downloaded file at another location.");
-		fileName.addSelectionListener(downloadSelectionListener);
 
-		// ECLIPSE DATABINDING: BIND WIDGETS TO ATTRIBUTES
+		// Set status of the upload button according to the file upload being pending
+		// (if the upload of the attachment is still pending, it can be removed)
+		updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 
-		// data binding context
-		dbc = new EMFDataBindingContext();
-		// file name binding
-		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
-			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_FileID());
-		UpdateValueStrategy strategy1 = new UpdateValueStrategy();
-		strategy1.setConverter(new FileIDContentConverter());
-		dbc.bindValue(SWTObservables.observeText(fix), model1, null, strategy1);
+		// Add the commit observer which handles pending files being commited
+		getProjectSpace().addCommitObserver(commitObserver);
 
 		return parent;
 	}
@@ -169,207 +181,174 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void openFile(FileInformation fileInfo, ProjectId projectId) {
-		try {
-			FileTransferUtil.openFile(fileInfo, projectId);
-		} catch (FileTransferException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
+	public void openFile(FileTransferInformation fileInfo, ProjectId projectId) {
+		DialogHandler.showErrorDialog("File opening not yet supported");
+
+		// try {
+		// FileTransferUtil.openFile(fileInfo, projectId);
+		// } catch (FileTransferException e) {
+		// DialogHandler.showErrorDialog(e.getMessage());
+		// }
 	}
 
-	private void setUploadButtonAccordingToTransferStatus(boolean uploading) {
-		if (!uploading) {
-			upload.removeSelectionListener(removeListener);
-			upload.addSelectionListener(uploadListener);
+	/**
+	 * Updates the status of the upload button and the file name.
+	 * 
+	 * @param uploadPending if the upload of the file is pending and thus can be canceled
+	 */
+	private void updateStatus(boolean uploadPending) {
+		if (fileAttachment.getFileName() == null) {
+			fileName.setText("No file attached.");
+			saveAs.setVisible(false);
+		} else {
+			String suffix = "";
+			if (uploadPending) {
+				suffix = " (not commited)";
+			} else if (getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isCached()) {
+				suffix = " (cached)";
+			}
+			fileName.setText(/* "<a>" + */fileAttachment.getFileName() + suffix /* + "</a>" */);
+			saveAs.setVisible(true);
+		}
+		saveAs.getParent().layout();
+
+		canCancelUpload = uploadPending;
+		if (!uploadPending) {
 			upload.setToolTipText(UPLOAD_NOTPENDING_TOOL_TIP);
 			upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
 		} else {
-			upload.removeSelectionListener(uploadListener);
-			upload.addSelectionListener(removeListener);
 			upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
 			upload.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
 		}
 	}
 
 	/**
-	 * Responds to changes of the file version to trigger correct UI behaviour.
+	 * Retrieves the project space of the file attachment.
 	 * 
-	 * @author pfeifferc
+	 * @return
 	 */
-	private final class FileIDContentConverter implements IConverter {
-
-		public Object convert(Object fromObject) {
-			try {
-				if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(
-					createFileInformationFromFileAttachment(fileAttachment), true)) {
-					setUploadButtonAccordingToTransferStatus(true);
-				} else {
-					setUploadButtonAccordingToTransferStatus(false);
-				}
-			} catch (FileTransferException e) {
-				setUploadButtonAccordingToTransferStatus(false);
-			}
-			if (fileAttachment.getFileName() == null) {
-				fileName.setText("No file attached.");
-			} else {
-				fileName.setText("<a>" + fileAttachment.getFileName() + "</a>");
-			}
-			return fromObject;
-		}
-
-		public Object getFromType() {
-			return String.class;
-		}
-
-		public Object getToType() {
-			return String.class;
-		}
-
+	private ProjectSpace getProjectSpace() {
+		return WorkspaceManager.getProjectSpace(fileAttachment);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Opens an information dialog.
+	 * 
+	 * @param title the title
+	 * @param message the message
 	 */
-	private final class RemoveTransferSelectionListener implements SelectionListener {
-
-		public void widgetSelected(SelectionEvent e) {
-			WorkspaceManager.getProjectSpace(fileAttachment).removePendingFileUpload(
-				ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
-			setUploadButtonAccordingToTransferStatus(false);
-		}
-
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// nothing to do
-		}
+	private void openInformation(final String title, final String message) {
+		upload.getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				MessageDialog.openInformation(upload.getShell(), title, message);
+			}
+		});
 	}
 
 	/**
-	 * @author pfeifferc
+	 * Opens an error dialog.
+	 * 
+	 * @param title the title
+	 * @param message the message
+	 */
+	private void openError(final String title, final String message) {
+		upload.getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				MessageDialog.openError(upload.getShell(), title, message);
+			}
+		});
+	}
+
+	/**
+	 * @author jfinis
 	 */
 	private final class SaveAsSelectionListener implements SelectionListener {
 
 		private static final String FILE_CHOOSER_PATH = "org.unicase.ui.unicasecommon.fileChooserPath";
 
+		/**
+		 * This method is called when the user presses the "Save as..." text. {@inheritDoc}
+		 * 
+		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+		 */
 		public void widgetSelected(SelectionEvent e) {
-			try {
-				findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
-			} catch (FileNotFoundException e2) {
-				if ((fileAttachment).getFileName() == null) {
-					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Please observe:",
-						"There is no file attached to this FileAttachment!");
-				} else {
-					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Please observe:",
-						"The cached file could not be found! It may not have been downloaded yet.");
-				}
-				return;
-			}
+
+			// Show file dialog to save the file to
 			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
 			String initialPath = PreferenceHelper.getPreference(FILE_CHOOSER_PATH, System.getProperty("user.home"));
+			String initialName = fileAttachment.getFileName();
+			fileDialog.setFileName(initialName);
 			fileDialog.setFilterPath(initialPath);
 			fileDialog.setOverwrite(true);
-			String fileDestinationPath = fileDialog.open();
 			fileDialog.setText("Save as...");
-			if (fileDestinationPath != null && !fileDestinationPath.equals("")) {
-				PreferenceHelper.setPreference(FILE_CHOOSER_PATH, fileDialog.getFilterPath());
-				copyFile(fileDestinationPath);
+			final String fileDestinationPath = fileDialog.open();
+
+			// If no file was selected, abort
+			if (fileDestinationPath == null || fileDestinationPath.equals("")) {
+				return;
 			}
-		}
 
-		private void copyFile(final String destPath) {
-			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(Display.getCurrent()
-				.getActiveShell());
+			// Set the chosen path as a preference for the next saves
+			PreferenceHelper.setPreference(FILE_CHOOSER_PATH, fileDialog.getFilterPath());
+
+			// Do the download, this is done in a progress monitor
 			try {
-				progressMonitorDialog.run(false, false, new IRunnableWithProgress() {
-
+				new ProgressMonitorDialog(upload.getShell()).run(false, true, new IRunnableWithProgress() {
 					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-						File destination = new File(destPath);
-						if (destination.isDirectory()) {
-							destination = new File(destination.getAbsolutePath() + File.separator
-								+ (fileAttachment).getFileName());
-						}
 						try {
-							FileTransferUtil.copyFileFromCacheToNewLocation(findCachedFile(fileAttachment,
-								WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()), destination, monitor);
-						} catch (FileNotFoundException e) {
-							openInformation("File could not be found:", e.getMessage());
-						} catch (IOException e) {
-							openInformation("File could not be accessed:", e.getMessage());
+							// Get the file
+							final FileDownloadStatus status = getProjectSpace().getFile(
+								fileAttachment.getFileIdentifier(), monitor);
+
+							// Add observer that copies the file once the download is finished
+							status.addTransferFinishedObserver(new Observer() {
+								public void update(Observable o, Object arg) {
+									try {
+										FileUtil.copyFile(status.getTransferredFile(), new File(fileDestinationPath));
+										openInformation("File saved successfully", "The file was saved successfully");
+									} catch (IOException e1) {
+										registerSaveAsException(e1);
+									} catch (FileTransferException e) {
+										registerSaveAsException(e);
+									}
+								}
+							});
+
+							// Add observer that registers the exception if the download fails
+							status.addDefaultFailObserver();
+						} catch (FileTransferException e1) {
+							registerSaveAsException(e1);
+							return;
 						}
 					}
 				});
-				progressMonitorDialog.open();
-				progressMonitorDialog.close();
-
 			} catch (InvocationTargetException e1) {
-				openInformation("An error occurred", e1.getMessage());
+				registerSaveAsException(e1);
 			} catch (InterruptedException e1) {
-				openInformation("An error occurred", e1.getMessage());
+				registerSaveAsException(e1);
 			}
+
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// nothing to do
-		}
-	}
-
-	/**
-	 * Transfer selection listener.
-	 * 
-	 * @author pfeifferc
-	 */
-	private final class DownloadSelectionListener implements SelectionListener {
-
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// nothing to do
-		}
-
-		public void widgetSelected(SelectionEvent e) {
-			Display.getCurrent().asyncExec(new DownloadRunnable());
 		}
 
 		/**
-		 * @author pfeifferc
+		 * Exception handling in the save as usecase.
+		 * 
+		 * @param e1 the exception to handle
 		 */
-		private final class DownloadRunnable implements Runnable {
-
-			public void run() {
-				FileInformation fileInfo;
-				try {
-					fileInfo = createFileInformationFromFileAttachment(fileAttachment);
-				} catch (FileTransferException e2) {
-					openInformation("Please observe:", e2.getMessage());
-					return;
-				}
-				try {
-					if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(fileInfo, false)) {
-						openInformation("Please observe:", "File download has not yet been fulfilled!");
-					} else {
-						// try to localize the cached file
-						if (!FileTransferUtil.findCachedFile(fileInfo,
-							WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()).exists()) {
-							throw new FileNotFoundException("File could not be localized!");
-						}
-						// open file
-						openFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
-					}
-				} catch (FileNotFoundException e) {
-					try {
-						// if file could not be found, initiate transfer
-						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false, true);
-						openInformation("Please observe:",
-							"The file will be downloaded as soon as you login, or now if you are already logged in.");
-					} catch (FileTransferException e1) {
-						openInformation("Please observe:", e1.getMessage());
-					}
-				}
-			}
+		private void registerSaveAsException(Exception e1) {
+			String fail = "Save as... failed!";
+			WorkspaceUtil.logException(fail, e1);
 		}
 	}
 
 	/**
-	 * Transfer selection listener.
+	 * The upload selection listener handles when the user presses the Add File/Cancel Upload button.
 	 * 
-	 * @author pfeifferc
+	 * @author jfinis
 	 */
 	private final class UploadSelectionListener implements SelectionListener {
 
@@ -377,33 +356,100 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			// nothing to do
 		}
 
+		/**
+		 * This method is called when the "Add File" or "Cancel upload" button is pressed. (This is one button that
+		 * switches its icon and semantics)
+		 * 
+		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+		 */
 		public void widgetSelected(SelectionEvent e) {
+			// do we want to cancel or to add a new file?
+			if (canCancelUpload) {
+				doCancelUpload();
+			} else {
+				doAddUpload();
+			}
+		}
+
+		/**
+		 * Adds a file to upload by presenting a file chooser dialog and then adding the file to the upload queue.
+		 */
+		private void doAddUpload() {
 			// open a file dialog
 			final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
 			fileDialog.open();
 			// check if user actually selected a file
-			if (!fileDialog.getFileName().equals("")) {
-				// set information needed for this particular upload
-				final FileInformation fileInformation = new FileInformation();
-				// fileInformation.setChunkNumber(0);
-				fileInformation.setFileVersion(-1);
-				fileInformation.setFileName(fileDialog.getFileName());
-				fileInformation.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(
-					fileAttachment).getId());
-				try {
-					// adds a pending file upload request
-					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation,
-						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true, true);
-					setUploadButtonAccordingToTransferStatus(true);
-				} catch (FileTransferException e1) {
-					openInformation("File Transfer Exception:", e1.getMessage());
-				}
+			if (fileDialog.getFileName().equals("")) {
+				return;
 			}
-		}
-	}
 
-	private void openInformation(String title, String message) {
-		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), title, message);
+			// Check that the selected file actually exists (this should always be the case)
+			final File uploadFile = new File(fileDialog.getFilterPath(), fileDialog.getFileName());
+			if (!uploadFile.exists()) {
+				openError("Error", "File to upload does not exist");
+				return;
+			}
+
+			// Add the file to the pending uploads and set the data in the attachment
+			// Since this modifies the project space, it has to be done in a unicase command
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					try {
+						// Add file
+						FileIdentifier ident = getProjectSpace().addFile(uploadFile);
+						// Check that if there was already a file attached
+						// If so, remove it if it was still pending
+						ProjectSpace space = getProjectSpace();
+						FileIdentifier oldId = fileAttachment.getFileIdentifier();
+						FileInformation oldInfo = space.getFileInfo(oldId);
+						if (oldInfo.isPendingUpload()) {
+							oldInfo.cancelPendingUpload();
+						}
+						fileAttachment.setFileName(fileDialog.getFileName());
+						fileAttachment.setFileIdentifier(ident);
+						fileAttachment.setFileSize(uploadFile.length());
+						// Update button status (cancel allowed)
+						updateStatus(true);
+					} catch (FileTransferException e) {
+						ModelUtil.logException("Couldn't upload file", e);
+						return;
+					}
+				}
+			}.run(false);
+
+		}
+
+		/**
+		 * Cancels the current upload if it is pending.
+		 */
+		private void doCancelUpload() {
+			// Some error catching for robustness
+			final FileIdentifier id = fileAttachment.getFileIdentifier();
+			final FileInformation fileInfo = getProjectSpace().getFileInfo(id);
+			if (id == null) {
+				openError("Error!", "Could not cancel the upload because no file identifier was set.");
+				return;
+			}
+			if (!fileInfo.isPendingUpload()) {
+				openError("Error!", "Could not cancel the upload because it is not pending.");
+				return;
+			}
+
+			// Remove the pending upload and clear the file attachment
+			new UnicaseCommand() {
+				@Override
+				protected void doRun() {
+					fileInfo.cancelPendingUpload();
+					fileAttachment.setFileName(null);
+					fileAttachment.setFileIdentifier(null);
+					fileAttachment.setFileSize(0);
+				}
+			}.run(false);
+
+			// Update button status (no more cancel allowed)
+			updateStatus(false);
+		}
 	}
 
 	/**
@@ -411,54 +457,15 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	 */
 	@Override
 	public void dispose() {
-		if (uploadListener != null && removeListener != null && !upload.isDisposed()) {
+		getProjectSpace().removeCommitObserver(commitObserver);
+		if (uploadListener != null && !upload.isDisposed()) {
 			upload.removeSelectionListener(uploadListener);
-			upload.removeSelectionListener(removeListener);
 			upload.dispose();
 		}
 		if (dbc != null) {
 			dbc.dispose();
 		}
 		super.dispose();
-	}
-
-	/**
-	 * @param fileAttachment file attachment
-	 * @return file information containing the information related to the specified file attachment
-	 * @throws FileTransferException if there is no file attached to the file attachment
-	 */
-	private FileInformation createFileInformationFromFileAttachment(FileAttachment fileAttachment)
-		throws FileTransferException {
-		// check if the file attachment attributes are set, otherwise return error dialog
-		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
-			throw new FileTransferException("There is no file attached to this file attachment!");
-		}
-		// set information needed for transfer
-		FileInformation fileInfo = new FileInformation();
-		fileInfo.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment).getId());
-		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
-		fileInfo.setFileName(fileAttachment.getFileName());
-		return fileInfo;
-	}
-
-	/**
-	 * @param fileAttachment the file Attachment
-	 * @param projectId project id
-	 * @return the cached file
-	 * @throws FileNotFoundException if the file could not be found
-	 */
-	private File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
-		FileInformation fileInformation = new FileInformation();
-		fileInformation.setFileAttachmentId(ModelUtil.getProject(fileAttachment).getModelElementId(fileAttachment)
-			.getId());
-		if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")) {
-			throw new FileNotFoundException("File does not exist!");
-		}
-		fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
-		fileInformation.setFileName(fileAttachment.getFileName());
-		return FileTransferUtil.findCachedFile(FileTransferUtil
-			.constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(FileTransferUtil
-			.constructCacheFolder(projectId)));
 	}
 
 }

@@ -84,7 +84,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 					GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
 				}
 			}
-		}.run();
+		}.run(false);
 	}
 
 	private void createToolbar() {
