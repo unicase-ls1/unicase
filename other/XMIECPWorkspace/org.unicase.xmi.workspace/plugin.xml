@@ -25,14 +25,14 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.unicase.ui.navigator.project"
-            defaultHandler="org.unicase.xmi.commands.NewLocalProjectHandler"
+            defaultHandler="org.unicase.xmi.commands.NewProjectHandler"
             description="create new local xmi-file-project"
             id="org.unicase.xmi.workspace.NewLocalProject"
             name="NewLocalProject">
       </command>
       <command
             categoryId="org.unicase.ui.navigator.project"
-            defaultHandler="org.unicase.xmi.commands.ImportLocalProjectHandler"
+            defaultHandler="org.unicase.xmi.commands.ImportProjectHandler"
             description="import xmi-file-project"
             id="org.unicase.xmi.workspace.ImportLocalProject"
             name="ImportLocalProject">
