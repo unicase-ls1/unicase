@@ -11,3 +11,11 @@
 	- Import Project über Import-Funktion von Eclipse implementieren
 	
 - UML-Diagramm erstellen zur Übersicht! 
+
+- Warum werden bei "Add new model element" alle Modelle angezeigt?
+
+- Sonstiges:
+	- Wie bekommt man den Platformabhängigen "/" bzw. "\"-Slash?
+	- Wenn xmi-Datei gelöscht, dann wird Project immernoch angezeigt (weil in xmiworkspace.xmi drin), was soll geschehen?
+	  Bsp. Meldung anzeigen? oder Project aus xmiworkspace.xmi löschen?
+	- Wie erstellt man Modelelementinstanzen in einem Folder->Project 
