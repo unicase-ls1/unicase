@@ -25,7 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 
 /**
@@ -236,7 +236,7 @@ public interface EmfStore extends EmfStoreInterface {
 	 * @return FileVersion denoting the current file version to be written to
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 */
-	FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+	FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException;
 
 	/**
@@ -248,7 +248,7 @@ public interface EmfStore extends EmfStoreInterface {
 	 * @return FileChunk
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 */
-	FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+	FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException;
 
 	/**

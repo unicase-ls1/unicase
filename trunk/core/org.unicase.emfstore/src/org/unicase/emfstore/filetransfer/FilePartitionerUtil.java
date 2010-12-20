@@ -62,7 +62,7 @@ public final class FilePartitionerUtil {
 	 * @return fileChunk
 	 * @throws FileTransferException if any error occurs reading the file
 	 */
-	public static synchronized FileChunk readChunk(File file, FileInformation fileInformation)
+	public static synchronized FileChunk readChunk(File file, FileTransferInformation fileInformation)
 		throws FileTransferException {
 		boolean end = false;
 		byte[] data;

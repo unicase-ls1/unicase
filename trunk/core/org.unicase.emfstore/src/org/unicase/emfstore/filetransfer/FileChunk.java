@@ -8,6 +8,8 @@ package org.unicase.emfstore.filetransfer;
 
 import java.io.Serializable;
 
+import org.unicase.emfstore.esmodel.FileIdentifier;
+
 /**
  * @author pfeifferc
  */
@@ -17,7 +19,7 @@ public class FileChunk implements Serializable {
 
 	private boolean end;
 	private byte[] data;
-	private FileInformation fileInformation;
+	private FileTransferInformation fileInformation;
 
 	/**
 	 * Default constructor.
@@ -26,7 +28,7 @@ public class FileChunk implements Serializable {
 	 * @param end flag reserved for last chunk
 	 * @param data the actual data
 	 */
-	public FileChunk(FileInformation fileInformation, boolean end, byte[] data) {
+	public FileChunk(FileTransferInformation fileInformation, boolean end, byte[] data) {
 		this.fileInformation = fileInformation;
 		this.end = end;
 		this.data = data;
@@ -47,13 +49,6 @@ public class FileChunk implements Serializable {
 	}
 
 	/**
-	 * @return file Name
-	 */
-	public String getFileName() {
-		return fileInformation.getFileName();
-	}
-
-	/**
 	 * @return true if last chunk
 	 */
 	public boolean isLast() {
@@ -61,30 +56,23 @@ public class FileChunk implements Serializable {
 	}
 
 	/**
-	 * @return file version
-	 */
-	public int getFileVersion() {
-		return fileInformation.getFileVersion();
-	}
-
-	/**
 	 * @return file identifier
 	 */
-	public String getFileIdentifier() {
+	public FileIdentifier getFileIdentifier() {
 		return fileInformation.getFileIdentifier();
 	}
 
 	/**
 	 * @return the file information
 	 */
-	public FileInformation getFileInformation() {
+	public FileTransferInformation getFileInformation() {
 		return fileInformation;
 	}
 
 	/**
 	 * @param fileInformation file information
 	 */
-	public void setFileInformation(FileInformation fileInformation) {
+	public void setFileInformation(FileTransferInformation fileInformation) {
 		this.fileInformation = fileInformation;
 	}
 

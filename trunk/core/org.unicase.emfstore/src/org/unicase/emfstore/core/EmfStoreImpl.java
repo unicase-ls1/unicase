@@ -36,7 +36,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 
 /**
@@ -214,7 +214,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException {
 		sanityCheckObjects(sessionId, projectId, fileInformation);
 		checkReadAccess(sessionId, projectId, null);
@@ -224,7 +224,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
 		sanityCheckObjects(sessionId, projectId, fileChunk, fileChunk.getFileInformation());
 		checkWriteAccess(sessionId, projectId, null);
