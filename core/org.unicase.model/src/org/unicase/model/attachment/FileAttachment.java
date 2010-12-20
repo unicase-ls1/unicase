@@ -206,6 +206,7 @@ public interface FileAttachment extends Attachment {
 	 * @model
 	 * @generated
 	 */
+	@Deprecated
 	boolean isDownloading();
 
 	/**
@@ -216,6 +217,7 @@ public interface FileAttachment extends Attachment {
 	 * @see #isDownloading()
 	 * @generated
 	 */
+	@Deprecated
 	void setDownloading(boolean value);
 
 	/**
@@ -232,6 +234,7 @@ public interface FileAttachment extends Attachment {
 	 * @model
 	 * @generated
 	 */
+	@Deprecated
 	boolean isUploading();
 
 	/**
@@ -242,6 +245,7 @@ public interface FileAttachment extends Attachment {
 	 * @see #isUploading()
 	 * @generated
 	 */
+	@Deprecated
 	void setUploading(boolean value);
 
 	/**
@@ -256,7 +260,7 @@ public interface FileAttachment extends Attachment {
 	/**
 	 * Sets the file identifier of the attached file. This method is part of the new file API.
 	 * 
-	 * @param fileId
+	 * @param fileId the file id of the attached file
 	 * @generated NOT
 	 */
 	void setFileIdentifier(FileIdentifier fileId);
