@@ -11,6 +11,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +72,12 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * @generated
 	 */
 	EList<EObject> getBaseElements();
+	
+	/**
+	 * Sets the workspace for the project
+	 * @param workspace where the project is contained in
+	 */
+	void setWorkspace(ECPWorkspace workspace);
 	
 	/**
 	 * Returns all modelelements of the first level in the tree hierarchy.
