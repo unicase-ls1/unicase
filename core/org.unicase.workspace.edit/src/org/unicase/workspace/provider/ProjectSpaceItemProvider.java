@@ -208,9 +208,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS);
-			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PENDING_FILE_TRANSFERS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__WAITING_UPLOADS);
 		}
 		return childrenFeatures;
 	}
@@ -292,9 +292,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -404,14 +404,14 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS,
 			WorkspaceFactory.eINSTANCE.createOperationComposite()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__PENDING_FILE_TRANSFERS,
-			WorkspaceFactory.eINSTANCE.createPendingFileTransfer()));
-
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE,
 			WorkspaceFactory.eINSTANCE.createEventComposite()));
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
 			WorkspaceFactory.eINSTANCE.createNotificationComposite()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__WAITING_UPLOADS,
+			EsmodelFactory.eINSTANCE.createFileIdentifier()));
 	}
 
 	/**
