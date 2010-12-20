@@ -6,18 +6,17 @@
 package org.unicase.workspace.impl;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -39,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
@@ -58,8 +58,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompo
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
@@ -72,7 +70,6 @@ import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.ModifiedModelElementsCache;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
-import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -87,11 +84,9 @@ import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
-import org.unicase.workspace.filetransfer.FileDownloadJob;
-import org.unicase.workspace.filetransfer.FileRequestHandler;
-import org.unicase.workspace.filetransfer.FileTransferJob;
-import org.unicase.workspace.filetransfer.FileTransferUtil;
-import org.unicase.workspace.filetransfer.FileUploadJob;
+import org.unicase.workspace.filetransfer.FileDownloadStatus;
+import org.unicase.workspace.filetransfer.FileInformation;
+import org.unicase.workspace.filetransfer.FileTransferManager;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
@@ -101,7 +96,6 @@ import org.unicase.workspace.observers.ShareObserver;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
 import org.unicase.workspace.util.ResourceHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -125,11 +119,10 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getPendingFileTransfers <em>Pending File Transfers
- *             </em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification
  *             Composite</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getWaitingUploads <em>Waiting Uploads</em>}</li>
  *             </ul>
  *             </p>
  * @generated
@@ -317,16 +310,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EList<ESNotification> notifications;
 
 	/**
-	 * The cached value of the '{@link #getPendingFileTransfers() <em>Pending File Transfers</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getPendingFileTransfers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PendingFileTransfer> pendingFileTransfers;
-
-	/**
 	 * The cached value of the '{@link #getEventComposite() <em>Event Composite</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -345,6 +328,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @ordered
 	 */
 	protected NotificationComposite notificationComposite;
+
+	/**
+	 * The cached value of the '{@link #getWaitingUploads() <em>Waiting Uploads</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getWaitingUploads()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FileIdentifier> waitingUploads;
 
 	private boolean initCompleted;
 
@@ -367,6 +360,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private AutoSplitAndSaveResourceContainmentList<ESNotification> notificationList;
 
 	private ArrayList<ShareObserver> shareObservers;
+
+	private FileTransferManager fileTransferManager;
 
 	/**
 	 * Indicates whether a resource may be split when a model element has been added.
@@ -985,19 +980,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @generated
 	 */
-	public EList<PendingFileTransfer> getPendingFileTransfers() {
-		if (pendingFileTransfers == null) {
-			pendingFileTransfers = new EObjectContainmentEList.Resolving<PendingFileTransfer>(
-				PendingFileTransfer.class, this, WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS);
-		}
-		return pendingFileTransfers;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EventComposite getEventComposite() {
 		if (eventComposite != null && eventComposite.eIsProxy()) {
 			InternalEObject oldEventComposite = (InternalEObject) eventComposite;
@@ -1152,6 +1134,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<FileIdentifier> getWaitingUploads() {
+		if (waitingUploads == null) {
+			waitingUploads = new EObjectContainmentEList.Resolving<FileIdentifier>(FileIdentifier.class, this,
+				WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS);
+		}
+		return waitingUploads;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
@@ -1243,9 +1238,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			commitObserver.commitCompleted(this, newBaseVersion);
 		}
 
+		fileTransferManager.uploadQueuedFiles(new NullProgressMonitor());
+
 		notifyPostCommitObservers(newBaseVersion);
 
 		updateDirtyState();
+
 		return newBaseVersion;
 	}
 
@@ -1525,6 +1523,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void init() {
 		initCompleted = true;
+
+		this.fileTransferManager = new FileTransferManager(this);
 		this.changeTracker = new ProjectChangeTracker(this);
 		this.getProject().addProjectChangeObserver(this.changeTracker);
 		if (project instanceof ProjectImpl) {
@@ -1700,12 +1700,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return basicSetLocalOperations(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
-			return ((InternalEList<?>) getPendingFileTransfers()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return basicSetEventComposite(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			return basicSetNotificationComposite(null, msgs);
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+			return ((InternalEList<?>) getWaitingUploads()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1754,8 +1754,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return basicGetLocalOperations();
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return getNotifications();
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
-			return getPendingFileTransfers();
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			if (resolve)
 				return getEventComposite();
@@ -1764,6 +1762,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (resolve)
 				return getNotificationComposite();
 			return basicGetNotificationComposite();
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+			return getWaitingUploads();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1819,15 +1819,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			getNotifications().clear();
 			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
-			getPendingFileTransfers().clear();
-			getPendingFileTransfers().addAll((Collection<? extends PendingFileTransfer>) newValue);
-			return;
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			setNotificationComposite((NotificationComposite) newValue);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+			getWaitingUploads().clear();
+			getWaitingUploads().addAll((Collection<? extends FileIdentifier>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1880,14 +1880,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			getNotifications().clear();
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
-			getPendingFileTransfers().clear();
-			return;
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) null);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			setNotificationComposite((NotificationComposite) null);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+			getWaitingUploads().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -1928,12 +1928,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return localOperations != null;
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return notifications != null && !notifications.isEmpty();
-		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
-			return pendingFileTransfers != null && !pendingFileTransfers.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return eventComposite != null;
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			return notificationComposite != null;
+		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+			return waitingUploads != null && !waitingUploads.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2195,110 +2195,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void loginCompleted(Usersession session) {
 		try {
-			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
-			if (stopTransfers()) {
-				resumeTransfers();
-			}
 			transmitProperties();
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			WorkspaceUtil.logException("Resuming file transfers or transmitting properties failed!", e);
 		}
-	}
-
-	private void addFileTransfer(final PendingFileTransfer tmpTransfer, File selectedFile, boolean run)
-		throws FileTransferException {
-		// in case of an upload, isUpload has to evaluate to true and a selectedFile (file to be uploaded) must be
-		// not-null
-		if (tmpTransfer.isUpload() && selectedFile != null) {
-			String uUID = EcoreUtil.generateUUID();
-			tmpTransfer.setPreliminaryFileName(uUID);
-			try {
-				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
-			} catch (IOException e) {
-				throw new FileTransferException("Could not copy the file " + selectedFile.getName()
-					+ " to the cache. Please ensure that you have the rights to do this and try again!", e);
-			}
-		} else {
-			tmpTransfer.setPreliminaryFileName(null);
-		}
-		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			if ((transfer.isUpload() == tmpTransfer.isUpload()
-				&& transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()) && transfer.getFileVersion() == tmpTransfer
-				.getFileVersion())) {
-				throw new FileTransferException("File transfer already pending!");
-			}
-		}
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				getPendingFileTransfers().add(tmpTransfer);
-			}
-		}.run();
-		if (run) {
-			startFileTransfer(tmpTransfer);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @throws FileTransferException
-	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
-	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
-	 */
-	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean isUpload, boolean run)
-		throws FileTransferException {
-		addFileTransfer(FileTransferUtil.createPendingFileTransferFromFileInformation(fileInformation, isUpload),
-			selectedFile, run);
-	}
-
-	/**
-	 * Starts a file transfer job. Checks if the FileAttachment linked to it still exists, if not, the transfer is
-	 * removed.
-	 * 
-	 * @param transfer the transfer
-	 */
-	private void startFileTransfer(PendingFileTransfer transfer) {
-		if (transfer.isUpload()) {
-			new FileUploadJob(transfer, this, true).schedule();
-		} else {
-			new FileDownloadJob(transfer, this, true).schedule();
-		}
-	}
-
-	/**
-	 * Resumes the pending file transfers.
-	 */
-	private void resumeTransfers() {
-		ArrayList<Job> jobs = new ArrayList<Job>();
-		Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
-		while (iterator.hasNext()) {
-			PendingFileTransfer transfer = iterator.next();
-			if (transfer.isUpload()) {
-				jobs.add(new FileUploadJob(transfer, this, true));
-			} else {
-				jobs.add(new FileDownloadJob(transfer, this, true));
-			}
-			for (Job job : jobs) {
-				job.schedule();
-			}
-		}
-
-	}
-
-	/**
-	 * @return true if the pending file transfers could be stopped.
-	 */
-	private boolean stopTransfers() {
-		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
-		for (Job job : jobs) {
-			if (!job.cancel()) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -2566,85 +2468,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removePendingFileUpload(String fileAttachmentId) {
-		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
-		while (iterator.hasNext()) {
-			final PendingFileTransfer transfer = iterator.next();
-			if (transfer.isUpload() && transfer.getAttachmentId().getId().equals(fileAttachmentId)) {
-				new UnicaseCommand() {
-					@Override
-					protected void doRun() {
-						transfer.setAttachmentId(null);
-						iterator.remove();
-					}
-				}.run();
-				return;
-			}
-		}
-		return;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean isTransient() {
 		return isTransient;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean hasFileTransfer(FileInformation fileInformation, boolean upload) {
-		PendingFileTransfer tmpTransfer = FileTransferUtil.createPendingFileTransferFromFileInformation(
-			fileInformation, upload);
-		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			if (transfer.isUpload() == upload && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
-				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public String addFile(File file) throws FileTransferException {
-		if (file.isDirectory()) {
-			throw new FileTransferException("Can only upload files!");
-		}
-		// String fileIdentifier = EcoreUtil.generateUUID();
-		ModelElementId identifier = MetamodelFactory.eINSTANCE.createModelElementId();
-		// create pending file transfer
-		PendingFileTransfer tmpTransfer = WorkspaceFactory.eINSTANCE.createPendingFileTransfer();
-		tmpTransfer.setAttachmentId(identifier);
-		tmpTransfer.setFileName(file.getName());
-		tmpTransfer.setUpload(true);
-		tmpTransfer.setFileVersion(-1);
-		addFileTransfer(tmpTransfer, file, true);
-		return identifier.getId();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public FileRequestHandler getFile(String fileIdentifier) throws FileTransferException {
-		// create model element id to identify file
-		ModelElementId identifier = MetamodelFactory.eINSTANCE.createModelElementId();
-		identifier.setId(fileIdentifier);
-		// create pending file transfer
-		PendingFileTransfer tmpTransfer = WorkspaceFactory.eINSTANCE.createPendingFileTransfer();
-		tmpTransfer.setAttachmentId(identifier);
-		tmpTransfer.setUpload(false);
-		tmpTransfer.setFileVersion(0);
-		try {
-			FileTransferUtil.findCachedFile(tmpTransfer, projectId);
-		} catch (FileNotFoundException e) {
-			addFileTransfer(tmpTransfer, null, true);
-		}
-		FileRequestHandler fHandler = new FileRequestHandler(FileTransferUtil
-			.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
-		return fHandler;
 	}
 
 	/**
@@ -2672,4 +2497,37 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void removeCommitObserver(CommitObserver observer) {
 		this.commitObservers.remove(observer);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#addFile(java.io.File)
+	 */
+	@Override
+	public FileIdentifier addFile(File file) throws FileTransferException {
+		return fileTransferManager.addFile(file);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#getFile(org.unicase.emfstore.esmodel.FileIdentifier,
+	 *      org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor)
+		throws FileTransferException {
+		return fileTransferManager.getFile(fileIdentifier, monitor);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#getFileInfo(org.unicase.emfstore.esmodel.FileIdentifier)
+	 */
+	@Override
+	public FileInformation getFileInfo(FileIdentifier fileIdentifier) {
+		return fileTransferManager.getFileInfo(fileIdentifier);
+	}
+
 } // ProjectContainerImpl

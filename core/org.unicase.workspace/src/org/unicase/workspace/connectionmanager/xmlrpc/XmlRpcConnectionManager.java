@@ -26,7 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.connectionmanager.AbstractConnectionManager;
@@ -106,7 +106,7 @@ public class XmlRpcConnectionManager extends AbstractConnectionManager<XmlRpcCli
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException {
 		return getConnectionProxy(sessionId).callWithResult("downloadFileChunk", FileChunk.class, sessionId, projectId,
 			fileInformation);
@@ -199,9 +199,9 @@ public class XmlRpcConnectionManager extends AbstractConnectionManager<XmlRpcCli
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
-		return getConnectionProxy(sessionId).callWithResult("uploadFileChunk", FileInformation.class, sessionId,
-			projectId, fileChunk);
+		return getConnectionProxy(sessionId).callWithResult("uploadFileChunk", FileTransferInformation.class,
+			sessionId, projectId, fileChunk);
 	}
 }

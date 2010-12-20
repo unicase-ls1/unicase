@@ -36,7 +36,7 @@ import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FileTransferInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.connectionmanager.AbstractConnectionManager;
@@ -305,7 +305,7 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
@@ -319,7 +319,7 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
 		throws EmfStoreException, ConnectionException {
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {

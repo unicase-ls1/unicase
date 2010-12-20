@@ -396,22 +396,13 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__NOTIFICATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Pending File Transfers</b></em>' containment reference list. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_SPACE__PENDING_FILE_TRANSFERS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
-
-	/**
 	 * The feature id for the '<em><b>Event Composite</b></em>' containment reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__EVENT_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
+	int PROJECT_SPACE__EVENT_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference. <!-- begin-user-doc -->
@@ -420,7 +411,16 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
+	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Waiting Uploads</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__WAITING_UPLOADS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class. <!-- begin-user-doc --> <!--
@@ -973,18 +973,6 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Notifications();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.workspace.ProjectSpace#getPendingFileTransfers <em>Pending File Transfers</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Pending File Transfers</em>'.
-	 * @see org.unicase.workspace.ProjectSpace#getPendingFileTransfers()
-	 * @see #getProjectSpace()
-	 * @generated
-	 */
-	EReference getProjectSpace_PendingFileTransfers();
-
-	/**
 	 * Returns the meta object for the containment reference '
 	 * {@link org.unicase.workspace.ProjectSpace#getEventComposite <em>Event Composite</em>}'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1007,6 +995,18 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProjectSpace_NotificationComposite();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.workspace.ProjectSpace#getWaitingUploads <em>Waiting Uploads</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Waiting Uploads</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getWaitingUploads()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_WaitingUploads();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}
@@ -1462,14 +1462,6 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__NOTIFICATIONS = eINSTANCE.getProjectSpace_Notifications();
 
 		/**
-		 * The meta object literal for the '<em><b>Pending File Transfers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference PROJECT_SPACE__PENDING_FILE_TRANSFERS = eINSTANCE.getProjectSpace_PendingFileTransfers();
-
-		/**
 		 * The meta object literal for the '<em><b>Event Composite</b></em>' containment reference feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1484,6 +1476,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__NOTIFICATION_COMPOSITE = eINSTANCE.getProjectSpace_NotificationComposite();
+
+		/**
+		 * The meta object literal for the '<em><b>Waiting Uploads</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__WAITING_UPLOADS = eINSTANCE.getProjectSpace_WaitingUploads();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
