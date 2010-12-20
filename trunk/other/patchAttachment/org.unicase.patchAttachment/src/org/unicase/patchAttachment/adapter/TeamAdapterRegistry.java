@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.patchAttachment.adapter;
 
 import java.util.HashMap;
@@ -5,8 +10,7 @@ import java.util.HashMap;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.ui.WorkbenchException;
-import org.eclipse.ui.statushandlers.WorkbenchErrorHandler;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.patchAttachment.exported.AbstractTeamAdapter;
 
 /**
@@ -17,7 +21,7 @@ import org.unicase.patchAttachment.exported.AbstractTeamAdapter;
  * @author jfinis
  *
  */
-public class TeamAdapterRegistry {
+public final class TeamAdapterRegistry {
 
 	
 	/**
@@ -26,12 +30,12 @@ public class TeamAdapterRegistry {
 	private static final String EXTENSION_POINT_ID = "org.unicase.patchAttachment.teamAdapters";
 	
 	/**
-	 * The singleton instance
+	 * The singleton instance.
 	 */
 	private static final TeamAdapterRegistry INSTANCE = new TeamAdapterRegistry();
 	
 	/**
-	 * Mapping from repository provider id to team adapter
+	 * Mapping from repository provider id to team adapter.
 	 */
 	private HashMap<String, AbstractTeamAdapter> registeredAdapters = new HashMap<String, AbstractTeamAdapter>();
 	
@@ -50,13 +54,12 @@ public class TeamAdapterRegistry {
 				}
 			}
 		} catch(CoreException e){
-			//TODO exception logging
-			e.printStackTrace();
+			ModelUtil.logException(e);
 		}
 	}
 	
 	/**
-	 * Gets the singleton instance
+	 * Gets the singleton instance.
 	 * @return the singleton
 	 */
 	public static TeamAdapterRegistry getInstance(){

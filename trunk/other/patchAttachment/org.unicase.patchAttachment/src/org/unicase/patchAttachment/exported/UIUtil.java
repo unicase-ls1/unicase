@@ -1,8 +1,12 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.patchAttachment.exported;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.compare.internal.patch.WorkspaceFileDiffResult;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -16,7 +20,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * Utility class for UI 
+ * Utility class for UI purposes.
  * @author jfinis
  *
  */
@@ -31,17 +35,17 @@ public final class UIUtil {
 	// pass one of these values to the run method.
 	
 	/**
-	 * Run with a progress monitor dialog
+	 * Run with a progress monitor dialog.
 	 */
-	public final static int PROGRESS_DIALOG = 1;
+	public static final int PROGRESS_DIALOG = 1;
 	
 	/**
 	 * Run only with a busy cursor.
 	 */
-	public final static int PROGRESS_BUSYCURSOR = 2;
+	public static final int PROGRESS_BUSYCURSOR = 2;
 	
 	/**
-	 * Runs a runnable either with a progress monitor or a busy cursor
+	 * Runs a runnable either with a progress monitor or a busy cursor.
 	 * @param runnable the runnable to run
 	 * @param progressKind with cursor or dialog?
 	 */

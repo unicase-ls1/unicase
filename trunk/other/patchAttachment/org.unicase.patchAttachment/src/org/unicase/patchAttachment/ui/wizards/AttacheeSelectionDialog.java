@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.patchAttachment.ui.wizards;
 
 import java.util.ArrayList;
@@ -27,7 +32,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
@@ -36,7 +40,6 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.patchAttachment.Activator;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
-import org.unicase.ui.common.dialogs.ModelElementSelectionDialog.ModelElementFilter;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -58,7 +61,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	
 	
 	/**
-	 * The image with which "create new xxx" entries are decorated
+	 * The image with which "create new xxx" entries are decorated.
 	 */
 	private static final ImageData DECORATION_IMAGE = Activator.getImageDescriptor("icons/cross8x8.png").getImageData();
 	
@@ -81,12 +84,12 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	private Set<EObject> createElements = new HashSet<EObject>();
 	
 	/**
-	 * The user selection combo box
+	 * The user selection combo box.
 	 */
 	private ComboBoxSet<User> userBar;
 	
 	/**
-	 * The project selection combo box
+	 * The project selection combo box.
 	 */
 	private ComboBoxSet<ProjectSpace> projectBar;
 	
@@ -255,7 +258,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	}
 	
 	/**
-	 * Populates the set of model elements to be displayed
+	 * Populates the set of model elements to be displayed.
 	 * @param projectSpace the project space for which to get the model elements
 	 * @param user 
 	 */
@@ -354,7 +357,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	}
 
 	/**
-	 * Populates the combo box that displays the users
+	 * Populates the combo box that displays the users.
 	 * 
 	 * @param selectedProject2 the selected project
 	 * @param selectedUser2 the user to be selected
@@ -385,7 +388,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	}
 
 	/**
-	 * Populates the project combo box
+	 * Populates the project combo box.
 	 * @param selectedProject2 the project to select
 	 * @param fireChangeEvents if a change event should be fired
 	 */
@@ -425,7 +428,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	
 	/**
 	 * Gets the currently selected project space.
-	 * @return
+	 * @return the selected project space
 	 */
 	public ProjectSpace getSelectedProjectSpace(){
 		return projectBar.getSelection();
@@ -442,31 +445,41 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 		
 		/**
 		 * Used for the hack. Besides that, same as super method.
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isSubFilter(ItemsFilter filter) {
-			if(isInRefreshMode) return false;
+			if(isInRefreshMode){
+				return false;
+			}
 			return super.isSubFilter(filter);
 		}
 		
 		/**
 		 * Used for the hack. Besides that, same as super method.
-		 */
+		 * 
+		 * {@inheritDoc}
+		 **/
 		@Override
 		public boolean equalsFilter(ItemsFilter filter) {
-			if(isInRefreshMode) return false;
+			if(isInRefreshMode){
+				return false;
+			}
 			return super.equalsFilter(filter);
 		}
 		
 		/**
 		 * Used to display all elements if no pattern is chosen.
 		 * Besides that, same as super method.
+		 * 
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getPattern() {
 			String pattern = super.getPattern();
-			if("".equals(pattern))
+			if("".equals(pattern)){
 				return "**";
+			}
 			return pattern;
 		}
 	
@@ -480,7 +493,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	 * 
 	 * @author jfinis
 	 */
-	private class AttacheeLabelProvider implements ILabelProvider{
+	private final class AttacheeLabelProvider implements ILabelProvider{
 		
 		private ILabelProvider wrappedProvider;
 
@@ -544,7 +557,7 @@ public class AttacheeSelectionDialog extends ModelElementSelectionDialog{
 	 * @author jfinis
 	 *
 	 */
-	private class DecorationImageDescriptor extends CompositeImageDescriptor{
+	private final class DecorationImageDescriptor extends CompositeImageDescriptor{
 		
 		private Image image;
 

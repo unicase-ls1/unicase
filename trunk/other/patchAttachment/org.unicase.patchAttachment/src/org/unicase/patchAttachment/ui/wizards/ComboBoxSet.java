@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.patchAttachment.ui.wizards;
 
 import java.util.Collection;
@@ -6,7 +11,6 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Combo;
 
 /**
@@ -25,7 +29,7 @@ import org.eclipse.swt.widgets.Combo;
 public abstract class ComboBoxSet<T extends EObject> {
 
 	/**
-	 * The SWT Combo element wrapped by this class
+	 * The SWT Combo element wrapped by this class.
 	 */
 	private final Combo combo;
 	
@@ -35,7 +39,7 @@ public abstract class ComboBoxSet<T extends EObject> {
 	private HashMap<Integer,T> map = new HashMap<Integer, T>();
 	
 	/**
-	 * The element that was selected last
+	 * The element that was selected last.
 	 */
 	private T lastSelection;
 	
@@ -43,11 +47,14 @@ public abstract class ComboBoxSet<T extends EObject> {
 	 * Selection listener for convenient selection change listening.
 	 */
 	private SelectionListener listener;
-	
-
+		
+	/**
+	 * Default constructor creating a combo box set from a SWT combo element.
+	 * @param combo the combo element wrapped by this combo box set
+	 */
 	public ComboBoxSet(Combo combo){
 		this.combo = combo;
-		combo.addSelectionListener(listener = new SelectionListener() {
+		listener = new SelectionListener() {
 			
 			/**
 			 * saves the selection and fires an onSelectionChange event.
@@ -65,7 +72,8 @@ public abstract class ComboBoxSet<T extends EObject> {
 			 */
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
-		});
+		};
+		combo.addSelectionListener(listener);
 	}
 	
 	/**
@@ -100,14 +108,18 @@ public abstract class ComboBoxSet<T extends EObject> {
 	}
 	
 	/**
-	 * Returns the currently selected element
+	 * Returns the currently selected element.
 	 * @return the current selection
 	 */
 	public T getSelection(){
 		//If the combo element is already disposed we return the last selection
-		if(combo.isDisposed()) return lastSelection;
+		if(combo.isDisposed()){
+			return lastSelection;
+		}
 		int index = combo.getSelectionIndex();
-		if(index == -1) return null;
+		if(index == -1){
+			return null;
+		}
 		return map.get(index);
 	}
 	

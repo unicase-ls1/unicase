@@ -1,14 +1,14 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.patchAttachment.ui.action;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -16,33 +16,31 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.team.core.RepositoryProvider;
 import org.eclipse.team.internal.ui.actions.TeamAction;
 import org.eclipse.ui.PlatformUI;
-
 import org.unicase.metamodel.Project;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.patchAttachment.adapter.TeamAdapterRegistry;
 import org.unicase.patchAttachment.commands.AttachPatchCommand;
 import org.unicase.patchAttachment.exported.AbstractTeamAdapter;
-import org.unicase.patchAttachment.exported.PatchAttachmentException;
-import org.unicase.patchAttachment.exported.UIUtil;
 import org.unicase.patchAttachment.ui.wizards.AttacheeSelectionDialog;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
-import org.unicase.ui.common.dialogs.ModelElementSelectionDialog.ModelElementFilter;
-import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.ui.navigatormeeditorbridge.NavigatorModelelementContex;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
+/**
+ * Action delegate that sends a patch to unicase.
+ * @author jfinis
+ *
+ */
+@SuppressWarnings("restriction")
 public class SendPatchActionDelegate extends TeamAction{
 
-	@SuppressWarnings("restriction")
+	// BEGIN COMPLEX CODE
 	@Override
 	protected void execute(IAction action) throws InvocationTargetException,
 			InterruptedException {
@@ -146,18 +144,22 @@ public class SendPatchActionDelegate extends TeamAction{
 						return;
 					}
 				}
-			}.run();
+			}.run(false);
 		
 		}
 		
 		//Do it!
-		new AttachPatchCommand(selection, res, adapter).run();
+		new AttachPatchCommand(selection, res, adapter).run(false);
 		
 		
 	
 	}
-	
+	// END COMPLEX CODE
 
+	/**
+	 * Dirty editors need to be saved before attaching a patch.
+	 * @return true
+	 */
 	protected boolean needsToSaveDirtyEditors() {
 		return true;
 	}
