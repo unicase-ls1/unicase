@@ -9,6 +9,7 @@ package org.unicase.xmi.xmiworkspacestructure;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface XMIECPProjectContainer extends EObject {
+public interface XMIECPProjectContainer extends ECPProject {
 	/**
 	 * Returns the value of the '<em><b>Internal Projects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.xmi.xmiworkspacestructure.XMIECPProject}.

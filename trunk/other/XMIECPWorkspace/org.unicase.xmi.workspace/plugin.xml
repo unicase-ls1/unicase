@@ -44,6 +44,20 @@
             id="org.unicase.xmi.workspace.deleteProject"
             name="deleteProject">
       </command>
+      <command
+            categoryId="org.unicase.ui.navigator.project"
+            defaultHandler="org.unicase.xmi.commands.NewFolderHandler"
+            description="create new folder or import it if it exists"
+            id="org.unicase.xmi.workspace.NewFolder"
+            name="NewFolder">
+      </command>
+      <command
+            categoryId="org.unicase.workspace.ui.project"
+            defaultHandler="org.unicase.xmi.commands.DeleteFolderHandler"
+            description="delete folder representation"
+            id="org.unicase.xmi.workspace.deleteFolder"
+            name="deleteFolder">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -55,6 +69,24 @@
                label="New Project..."
                style="push"
                tooltip="Click here to make love.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.NewFolder"
+               icon="icons/folder-import.png"
+               label="Import/New Folder.."
+               style="push"
+               tooltip="Click here to create love.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -89,6 +121,24 @@
                commandId="org.unicase.xmi.workspace.deleteProject"
                icon="icons/delete.png"
                label="Delete Project..."
+               style="push"
+               tooltip="Click here to delete love.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.deleteFolder"
+               icon="icons/folder-remove.png"
+               label="Delete Folder..."
                style="push"
                tooltip="Click here to delete love.">
             <visibleWhen

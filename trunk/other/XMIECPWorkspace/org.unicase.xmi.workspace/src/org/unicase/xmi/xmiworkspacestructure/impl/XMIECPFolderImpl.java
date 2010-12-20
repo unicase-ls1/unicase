@@ -6,15 +6,40 @@
  */
 package org.unicase.xmi.xmiworkspacestructure.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.metamodel.AssociationClassElement;
+import org.unicase.metamodel.NonDomainElement;
+import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
+import org.unicase.xmi.workspace.XMIMetaModelElementContext;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
+import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
 /**
@@ -63,12 +88,85 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	protected EList<String> containedFiles;
 
 	/**
+	 * The workspace the folder is contained in.
+	 */
+	protected ECPWorkspace workspace;
+	
+	/**
+	 * Listeners that need to be informed when a project changes.
+	 */
+	protected List<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
+
+	/**
+	 * Root of the "project" and actually this folder itself.
+	 */
+	private EObject rootObject;
+	
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected XMIECPFolderImpl() {
 		super();
+		
+		internalProjects = new BasicEList<XMIECPProject>();
+		containedFiles = new BasicEList<String>();
+		
+		workspace = null;
+		rootObject = this;
+	}
+
+	/**
+	 * Initializes Folder, e.g. reads files and creates projects out of them.
+	 */
+	private void init() {
+		File folder = new File(getXmiDirectoryPath());
+		
+		if(!folder.exists()) {
+			// if folder not exists, simply create it.
+			folder.mkdir();
+		}
+		else if(!folder.isDirectory()) {
+			// check whether it even is a directory
+			new XMIWorkspaceException("The given path (" + getXmiDirectoryPath() + ") is not a directory.");
+		}
+		else {
+			// read all files
+			File[] files = folder.listFiles();
+			for(int f = 0; f < files.length; f++) {
+				if(files[f].isDirectory()) {
+					XMIECPFolder newFolder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
+					newFolder.setXmiDirectoryPath(files[f].getAbsolutePath());
+					((XMIECPWorkspace) getWorkspace()).addFolder(newFolder);
+				}
+				if(files[f].isFile() && isValidXMIFile(files[f])) {
+					XMIECPFileProject fileProject = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+					fileProject.setXmiFilePath(files[f].getAbsolutePath());
+					internalProjects.add(fileProject);
+					containedFiles.add(files[f].getAbsolutePath());
+				}
+			}
+		}
+	} // END init()
+
+	/**
+	 * Checks whether the given File is a valid XMI-File.
+	 * @param file File to be checked.
+	 * @return true if file is readable, else false.
+	 */
+	private boolean isValidXMIFile(File file) {
+		Resource res = new ResourceSetImpl().getResource(URI.createFileURI(file.getAbsolutePath()), true);
+		try {
+			res.load(Collections.EMPTY_MAP);
+		}
+		catch(IOException e) {
+			// do nothing, just return false.
+			return false;
+		}
+		res.unload();
+		
+		return true;
 	}
 
 	/**
@@ -100,6 +198,8 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		xmiDirectoryPath = newXmiDirectoryPath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FOLDER__XMI_DIRECTORY_PATH, oldXmiDirectoryPath, xmiDirectoryPath));
+		
+		init();
 	}
 
 	/**
@@ -208,6 +308,138 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		result.append(containedFiles);
 		result.append(')');
 		return result.toString();
+	}
+
+	public void setWorkspace(ECPWorkspace ws) {
+		workspace = ws;
+	}
+
+	public void addECPProjectListener(ECPProjectListener listener) {
+		this.listeners.add(listener);
+	}
+
+	public void addModelElementToRoot(EObject eObject) {
+		if(eObject instanceof XMIECPFileProject) {
+			XMIECPFileProject project = (XMIECPFileProject) eObject;
+			project.setXmiFilePath(getXmiDirectoryPath() + project.hashCode() + ".ucw");
+			internalProjects.add(project);
+		}
+	}
+
+	public boolean contains(EObject eObject) {
+		if(eObject == this) return true;
+		if(eObject instanceof XMIECPFileProject) {
+			return internalProjects.contains((XMIECPFileProject) eObject);
+		}
+		return false;
+	}
+
+	public void dispose() {
+		// remove all references
+		projectDeleted();
+		
+		internalProjects = null;
+		containedFiles = null;
+		workspace = null;
+		listeners = null;
+	}
+
+	public Collection<EObject> getAllModelElement() {
+		return getAllModelElements();
+	}
+
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
+		EList<EObject> result;
+		
+		// initialize result-list
+		if(basicEList.isEmpty()) {
+			result = basicEList;
+		}
+		else {
+			result = new BasicEList<EObject>();
+			result.addAll(basicEList);
+		}
+		
+		// get contained elements
+		Collection<EObject> allElements = getAllModelElements();
+
+		// filter the elements and add them to the result if they fit
+		for(EObject eo: allElements) {
+			if(eo.eClass().equals(clazz)) result.add(eo);
+			//TODO check for subclasses
+		}
+		
+		return result;
+	}
+
+	public EObject getRootObject() {
+		return rootObject;
+	}
+
+	public ECPWorkspace getWorkspace() {
+		return workspace;
+	}
+
+	public boolean isNonDomainElement(EObject eObject) {
+		return (eObject instanceof NonDomainElement);
+	}
+
+	public void modelelementDeleted(EObject eobject) {
+		// tell listeners about the event
+		for(ECPProjectListener listener : listeners) {
+			listener.projectDeleted();
+		}
+		
+	}
+
+	public void projectChanged() {
+		// tell listeners about the event
+		for(ECPProjectListener listener : listeners) {
+			listener.projectChanged();
+		}
+	}
+
+	public void projectDeleted() {
+		// tell listeners about the event
+		for(ECPProjectListener listener : listeners) {
+			listener.projectDeleted();
+		}
+	}
+
+	public void removeECPProjectListener(ECPProjectListener listener) {
+		this.listeners.remove(listener);
+	}
+
+	public void setRootObject(EObject value) {
+		rootObject = value;
+	}
+
+	public Collection<EObject> getAllModelElements() {
+		List<EObject> result = new ArrayList<EObject>();
+		result.addAll(internalProjects);
+		return result;
+	}
+
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		if (isAssociationClassElement(eObject)) {
+			AssociationClassElement ace = (AssociationClassElement) eObject;
+			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
+				.getAssociationFeatures());
+		}
+		return null;
+	}
+
+	public EditingDomain getEditingDomain() {
+		if(workspace == null) return null;
+		return workspace.getEditingDomain();
+	}
+
+	public MetaModelElementContext getMetaModelElementContext() {
+		return new XMIMetaModelElementContext();
+	}
+
+	public boolean isAssociationClassElement(EObject eObject) {
+		return (eObject instanceof AssociationClassElement);
 	}
 
 } //XMIECPFolderImpl

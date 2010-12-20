@@ -62,8 +62,6 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		name.setText("Name:");
 		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectName.setSize(150, 20);
-		//Label space = new Label(contents, SWT.NULL);
-		//space.setText("");
 		
 		// Determine Location
 		Label locationLabel = new Label(contents, SWT.NULL);
