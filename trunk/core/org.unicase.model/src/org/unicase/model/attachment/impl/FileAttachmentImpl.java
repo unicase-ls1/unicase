@@ -550,7 +550,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @see org.unicase.model.attachment.FileAttachment#getFileIdentifier()
 	 */
-	@Override
 	public FileIdentifier getFileIdentifier() {
 		if (fileID == null) {
 			return null;
@@ -565,7 +564,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @see org.unicase.model.attachment.FileAttachment#setFileIdentifier(org.unicase.emfstore.esmodel.FileIdentifier)
 	 */
-	@Override
 	public void setFileIdentifier(FileIdentifier fileId) {
 		if (fileId == null) {
 			setFileID(null);
