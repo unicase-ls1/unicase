@@ -86,7 +86,7 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	 * @return all model elements
 	 * @generated not
 	 */
-	Collection<EObject> getAllModelElement();
+	Collection<EObject> getAllModelElements();
 
 	/**
 	 * Returns all elements contained in the project that have the specified

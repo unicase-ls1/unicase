@@ -67,8 +67,7 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	 */
 	@Override
 	public Collection<EObject> getAllModelElements() {
-		// TODO Auto-generated method stub
-		return project.getAllModelElement();
+		return project.getAllModelElements();
 	}
 
 	/**

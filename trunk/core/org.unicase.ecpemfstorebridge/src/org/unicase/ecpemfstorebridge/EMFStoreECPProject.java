@@ -95,17 +95,6 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAllModelElement()
-	 */
-	public Collection<EObject> getAllModelElement() {
-		Collection<EObject> ret = new BasicEList<EObject>();
-		ret.addAll(projectSpace.getProject().getAllModelElements());
-		return ret;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
 	 *      org.eclipse.emf.common.util.BasicEList)
 	 */
