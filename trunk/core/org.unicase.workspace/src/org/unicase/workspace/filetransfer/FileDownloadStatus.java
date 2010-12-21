@@ -136,7 +136,6 @@ public final class FileDownloadStatus {
 	public void addDefaultFailObserver() {
 		addTransferFailedObserver(new Observer() {
 
-			@Override
 			public void update(Observable arg0, Object arg1) {
 				FileDownloadStatus status = (FileDownloadStatus) arg1;
 				Exception e = status.getException();

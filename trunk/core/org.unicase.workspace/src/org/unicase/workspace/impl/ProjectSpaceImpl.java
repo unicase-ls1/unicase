@@ -2507,7 +2507,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#addFile(java.io.File)
 	 */
-	@Override
 	public FileIdentifier addFile(File file) throws FileTransferException {
 		return fileTransferManager.addFile(file);
 	}
@@ -2518,7 +2517,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#getFile(org.unicase.emfstore.esmodel.FileIdentifier,
 	 *      org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	@Override
 	public FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor)
 		throws FileTransferException {
 		return fileTransferManager.getFile(fileIdentifier, monitor);
@@ -2529,7 +2527,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#getFileInfo(org.unicase.emfstore.esmodel.FileIdentifier)
 	 */
-	@Override
 	public FileInformation getFileInfo(FileIdentifier fileIdentifier) {
 		return fileTransferManager.getFileInfo(fileIdentifier);
 	}
