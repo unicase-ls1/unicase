@@ -47,12 +47,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		date = new Date();
 	}
 	
-	public ProjectGeneratorImpl(EPackage rootPackage, String rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
+	public ProjectGeneratorImpl(EPackage rootPackage, EObject rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
 		this.rootPackage = rootPackage;
 		this.seed = seed;
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
-		this.rootObject = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(rootPackage, rootObject));
+		this.rootObject = rootObject;
 		alreadyGeneratedClasses = new ArrayList<EClass>();
 		generatedObjects = new ArrayList<List<EObject>>();
 		random = new Random();
