@@ -81,6 +81,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
 				path = dirDialog.open();
+				if(path == null) {
+					path = Platform.getLocation().toOSString();
+				}
+				
 				if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
 					path += "/newproject.ucw";
 				}

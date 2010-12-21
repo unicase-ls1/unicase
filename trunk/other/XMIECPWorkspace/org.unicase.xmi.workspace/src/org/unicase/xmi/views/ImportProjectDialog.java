@@ -30,6 +30,10 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	private FileDialog projectLocation;
 	private Usersession session;
 
+	/**
+	 * Name of the project that can be set before the dialog is opened.
+	 */
+	private String presetName;
 	
 	/**
 	 * Default constructor.
@@ -42,6 +46,7 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	public ImportProjectDialog(Shell parent, Usersession session) {
 		super(parent);
 		this.session = session;
+		presetName = "";
 	}
 
 	/**
@@ -59,9 +64,14 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		name.setText("Name:");
 		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		txtProjectName.setSize(150, 20);
+		if(presetName != "") txtProjectName.setText(presetName);
 		
 		projectLocation = new FileDialog(super.getParentShell(), SWT.OPEN);
-		projectLocation.setFilterPath(Platform.getLocation().toOSString());
+		//projectLocation.setFilterPath(Platform.getLocation().toOSString());
+		projectLocation.setFilterNames(new String[] {"XMI Project Resources (*.ucw)",
+			"XML Model Resources (*.xml)",
+			"XMI Model Resources (*.xmi)"});
+		projectLocation.setFilterExtensions(new String[] {"*.ucw", "*.xml", "*.xmi"});
 		
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(3).margins(
@@ -115,5 +125,11 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		close();
 	}
 
-	
+	/**
+	 * Sets a name for the project.
+	 * @param name Name of the new project.
+	 */
+	public void setProjectName(String name) {
+		this.presetName = name;
+	}
 }
