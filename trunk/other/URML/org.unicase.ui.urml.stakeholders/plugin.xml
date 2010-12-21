@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.stakeholders.displaycontrols" name="Display Controls for the Identify Risk View" schema="schema/org.unicase.stakeholders.displaycontrols.exsd"/>
+   <extension-point id="org.unicase.stakeholders.roles" name="Stakeholder roles" schema="schema/org.unicase.stakeholders.roles.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.ui.urml.stakeholderview.StakeholderView"
+            id="Stakeholders.view1"
+            name="StakeholderView"
+            restorable="true">
+      </view>
+      <view
+            class="org.unicase.ui.urml.reviewview.ReviewView"
+            id="ReviewView"
+            name="ReviewView"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="Stakeholders.command1"
+            name="name">
+      </command>
+   </extension>
+   <extension
+         point="org.unicase.stakeholders.displaycontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.SingleLineControl"
+            name="Stakeholders.SingleLineDisplay"
+            type="java.lang.String">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiLineControl"
+            name="Stakeholders.MultiLineControl"
+            type="java.lang.String">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.ReviewedDisplayControl"
+            name="Stakeholders.ReviewedDisplay"
+            type="java.lang.Boolean">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.stakeholders.roles">
+      <role
+            class="org.unicase.ui.urml.stakeholderview.roles.SafetyEngineerRole"
+            name="Safety Engineer">
+      </role>
+   </extension>
+
+</plugin>
