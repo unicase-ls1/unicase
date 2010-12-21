@@ -48,12 +48,8 @@ public interface XMIECPFileProject extends XMIECPProject {
 	String getXmiFilePath();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Xmi File Path</em>' attribute.
-	 * @see #getXmiFilePath()
-	 * @generated
+	 * Sets the path to the xmi-file where the project contents are stored.
+	 * @param newXmiFilePath The complete path to the xmi-file.
 	 */
 	void setXmiFilePath(String value);
 
@@ -80,7 +76,7 @@ public interface XMIECPFileProject extends XMIECPProject {
 	void setWorkspace(ECPWorkspace workspace);
 	
 	/**
-	 * Returns all modelelements of the first level in the tree hierarchy.
+	 * Returns all model elements of the first level in the tree hierarchy.
 	 */
 	public Collection<EObject> getRootLevel();
 

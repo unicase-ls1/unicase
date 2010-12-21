@@ -321,7 +321,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	public void addModelElementToRoot(EObject eObject) {
 		if(eObject instanceof XMIECPFileProject) {
 			XMIECPFileProject project = (XMIECPFileProject) eObject;
-			project.setXmiFilePath(getXmiDirectoryPath() + project.hashCode() + ".ucw");
+			project.setXmiFilePath(getXmiDirectoryPath() + "/" + project.hashCode() + ".ucw");
 			internalProjects.add(project);
 		}
 	}

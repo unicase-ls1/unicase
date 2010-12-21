@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.ui.PlatformUI;
 
 import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.MetaModelElementContext;
@@ -43,6 +44,9 @@ import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.views.DeletedObjectDialog;
+import org.unicase.xmi.views.ImportProjectDialog;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -148,7 +152,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	/**
 	 * The workspace this project is contained in.
 	 */
-	protected ECPWorkspace workspace;
+	protected XMIECPWorkspace workspace;
 	
 	/**
 	 * EContentAdapter that writes changes when a model-element of the project changes.
@@ -167,21 +171,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		workspace = null;
 		
 		buildEContentAdapter();
-	}
-	
-	/**
-	 * Creates a new XMIECPFileProject representing one xmi-file.
-	 * @param filePath the path to the file where it should be created/loaded from
-	 * @param ws the workspace the project is contained in
-	 */
-	protected XMIECPFileProjectImpl(String filePath, ECPWorkspace ws) {
-		super();
-		
-		this.xmiFilePath = filePath;
-		this.workspace = ws;
-		
-		buildEContentAdapter();
-		init();
 	}
 	
 	/**
@@ -204,7 +193,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		ResourceSet resourceSetImpl = editingDomain.getResourceSet();
 		
 		if(!xmiFile.exists()) {
-			// create the resource, if it doesn't exist
+			// create the resource
 			this.resource = resourceSetImpl.createResource(xmiUri);
 			
 			// in the beginning just save the resource without any content
@@ -328,9 +317,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Sets the path to the xmi-file where the project contents are stored.
+	 * @param newXmiFilePath The complete path to the xmi-file.
 	 */
 	public void setXmiFilePath(String newXmiFilePath) {
 		String oldXmiFilePath = xmiFilePath;
@@ -579,8 +567,12 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public void setWorkspace(ECPWorkspace value) {
-		// simply change the editing domain to the new workspace.
-		workspace = value;
+		if(value instanceof XMIECPWorkspace) {
+			workspace = (XMIECPWorkspace) value;
+		}
+		else {
+			new XMIWorkspaceException("Project can only be contained in an xmi-workspace!");
+		}
 	}
 
 	public Collection<EObject> getAllModelElements() {
