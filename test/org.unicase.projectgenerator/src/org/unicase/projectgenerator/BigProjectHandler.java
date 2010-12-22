@@ -1,9 +1,17 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.projectgenerator;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -11,15 +19,15 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class BigProjectHandler extends AbstractHandler implements IHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		projectSpace.getProject().getAllModelElements();
+		EObject modelElement = ActionHelper.getSelectedModelelement();
+		final ProjectSpace projectSpace = (ProjectSpace) ModelUtil.getParent(ProjectSpace.class, modelElement);
 
 		new UnicaseCommand() {
 			@Override
@@ -58,7 +66,7 @@ public class BigProjectHandler extends AbstractHandler implements IHandler {
 				}
 			}
 
-		}.run();
+		}.run(false);
 		return null;
 	}
 }
