@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -29,8 +28,6 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
@@ -127,7 +124,6 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 		// Initialize simple dependencies
 		EsmodelPackage.eINSTANCE.eClass();
-		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
@@ -138,9 +134,6 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
@@ -184,7 +177,6 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
-		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
@@ -204,7 +196,6 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
-		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();

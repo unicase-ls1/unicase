@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
@@ -42,8 +41,6 @@ import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
@@ -230,7 +227,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Initialize simple dependencies
 		EsmodelPackage.eINSTANCE.eClass();
-		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
@@ -241,9 +237,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
@@ -287,7 +280,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
-		theDiagramPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
@@ -307,7 +299,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
-		theDiagramPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();

@@ -26,16 +26,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Attribute} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Attribute} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AttributeItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttributeItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -68,8 +68,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Defining Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Defining Class feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
@@ -84,8 +84,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Visibility feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Visibility feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
@@ -98,8 +98,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Scope feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Scope feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
@@ -112,8 +112,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -126,8 +126,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Default Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Default Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
@@ -142,8 +142,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Properties feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Properties feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
@@ -156,8 +156,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Label feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
@@ -170,8 +170,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
@@ -200,9 +200,9 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Implementation Enumeration feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Implementation Enumeration feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addImplementationEnumerationPropertyDescriptor(Object object) {
@@ -216,8 +216,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Transient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Transient feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTransientPropertyDescriptor(Object object) {
@@ -230,8 +230,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns Attribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Attribute.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -279,9 +279,9 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -290,8 +290,8 @@ public class AttributeItemProvider extends UnicaseModelElementItemProvider imple
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

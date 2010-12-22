@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.Annotation;
@@ -31,8 +30,6 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.impl.ClassesPackageImpl;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.impl.ComponentPackageImpl;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.impl.DiagramPackageImpl;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
@@ -136,7 +133,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Initialize simple dependencies
 		EsmodelPackage.eINSTANCE.eClass();
-		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
@@ -144,9 +140,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
@@ -192,7 +185,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
-		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
@@ -212,7 +204,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
-		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
@@ -466,8 +457,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
-		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
-			.getEPackage(DiagramPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
 		DocumentPackage theDocumentPackage = (DocumentPackage) EPackage.Registry.INSTANCE
@@ -498,7 +487,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
 		getESubpackages().add(theTaskPackage);
-		getESubpackages().add(theDiagramPackage);
 		getESubpackages().add(theClassesPackage);
 		getESubpackages().add(theDocumentPackage);
 		getESubpackages().add(theRequirementPackage);

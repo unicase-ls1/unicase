@@ -36,4 +36,6 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.meeditor,
  org.unicase.ui.unicasecommon.navigator.wizards
-Import-Package: org.unicase.ui.unicasecommon.common
+Import-Package: org.unicase.model.diagram,
+ org.unicase.model.diagram.impl,
+ org.unicase.ui.unicasecommon.common

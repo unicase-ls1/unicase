@@ -18,36 +18,35 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.release.ReleaseFactory
  * @model kind="package"
  * @generated
  */
 public interface ReleasePackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "release";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/release";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.release";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	ReleasePackage eINSTANCE = org.unicase.model.release.impl.ReleasePackageImpl.init();
@@ -63,26 +62,26 @@ public interface ReleasePackage extends EPackage {
 	int STREAM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Releases</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Releases</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STREAM__RELEASES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Code Repository Stream</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Source Code Repository Stream</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STREAM__SOURCE_CODE_REPOSITORY_STREAM = 1;
 
 	/**
-	 * The number of structural features of the '<em>Stream</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Stream</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -108,60 +107,59 @@ public interface ReleasePackage extends EPackage {
 	int RELEASE__STREAM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Predecessor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE__PREDECESSOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Successor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Successor</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE__SUCCESSOR = 2;
 
 	/**
-	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE__APPLIED_PATCHES = 3;
 
 	/**
-	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE__INCLUDED_WORK_ITEMS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Source Code Repository Revision</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Source Code Repository Revision</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE__SOURCE_CODE_REPOSITORY_REVISION = 5;
 
 	/**
-	 * The number of structural features of the '<em>Release</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Release</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RELEASE_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
-	 * <em>Source Code Repository Revision</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl <em>Source Code Repository Revision</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
 	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryRevision()
 	 * @generated
@@ -169,18 +167,17 @@ public interface ReleasePackage extends EPackage {
 	int SOURCE_CODE_REPOSITORY_REVISION = 2;
 
 	/**
-	 * The number of structural features of the '<em>Source Code Repository Revision</em>' class. <!-- begin-user-doc
+	 * The number of structural features of the '<em>Source Code Repository Revision</em>' class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SOURCE_CODE_REPOSITORY_REVISION_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
-	 * <em>Source Code Repository Stream</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl <em>Source Code Repository Stream</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
 	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryStream()
 	 * @generated
@@ -188,18 +185,18 @@ public interface ReleasePackage extends EPackage {
 	int SOURCE_CODE_REPOSITORY_STREAM = 3;
 
 	/**
-	 * The number of structural features of the '<em>Source Code Repository Stream</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Source Code Repository Stream</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SOURCE_CODE_REPOSITORY_STREAM_FEATURE_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.Stream <em>Stream</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for class '{@link org.unicase.model.release.Stream <em>Stream</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Stream</em>'.
 	 * @see org.unicase.model.release.Stream
 	 * @generated
@@ -207,9 +204,8 @@ public interface ReleasePackage extends EPackage {
 	EClass getStream();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.release.Stream#getReleases
-	 * <em>Releases</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Releases</em>'.
 	 * @see org.unicase.model.release.Stream#getReleases()
 	 * @see #getStream()
@@ -218,9 +214,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getStream_Releases();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream
-	 * <em>Source Code Repository Stream</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source Code Repository Stream</em>'.
 	 * @see org.unicase.model.release.Stream#getSourceCodeRepositoryStream()
 	 * @see #getStream()
@@ -239,9 +234,8 @@ public interface ReleasePackage extends EPackage {
 	EClass getRelease();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.release.Release#getStream
-	 * <em>Stream</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.unicase.model.release.Release#getStream <em>Stream</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Stream</em>'.
 	 * @see org.unicase.model.release.Release#getStream()
 	 * @see #getRelease()
@@ -250,9 +244,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_Stream();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getPredecessor
-	 * <em>Predecessor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Predecessor</em>'.
 	 * @see org.unicase.model.release.Release#getPredecessor()
 	 * @see #getRelease()
@@ -261,9 +254,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_Predecessor();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getSuccessor
-	 * <em>Successor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Successor</em>'.
 	 * @see org.unicase.model.release.Release#getSuccessor()
 	 * @see #getRelease()
@@ -272,9 +264,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_Successor();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getAppliedPatches
-	 * <em>Applied Patches</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Applied Patches</em>'.
 	 * @see org.unicase.model.release.Release#getAppliedPatches()
 	 * @see #getRelease()
@@ -283,9 +274,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_AppliedPatches();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getIncludedWorkItems
-	 * <em>Included Work Items</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Included Work Items</em>'.
 	 * @see org.unicase.model.release.Release#getIncludedWorkItems()
 	 * @see #getRelease()
@@ -294,10 +284,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_IncludedWorkItems();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision
-	 * <em>Source Code Repository Revision</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source Code Repository Revision</em>'.
 	 * @see org.unicase.model.release.Release#getSourceCodeRepositoryRevision()
 	 * @see #getRelease()
@@ -306,9 +294,8 @@ public interface ReleasePackage extends EPackage {
 	EReference getRelease_SourceCodeRepositoryRevision();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryRevision
-	 * <em>Source Code Repository Revision</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Code Repository Revision</em>'.
 	 * @see org.unicase.model.release.SourceCodeRepositoryRevision
 	 * @generated
@@ -316,9 +303,8 @@ public interface ReleasePackage extends EPackage {
 	EClass getSourceCodeRepositoryRevision();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryStream
-	 * <em>Source Code Repository Stream</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryStream <em>Source Code Repository Stream</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Code Repository Stream</em>'.
 	 * @see org.unicase.model.release.SourceCodeRepositoryStream
 	 * @generated
@@ -326,8 +312,8 @@ public interface ReleasePackage extends EPackage {
 	EClass getSourceCodeRepositoryStream();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -342,14 +328,12 @@ public interface ReleasePackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.release.impl.StreamImpl <em>Stream</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.release.impl.StreamImpl
 		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getStream()
 		 * @generated
@@ -375,7 +359,6 @@ public interface ReleasePackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.release.impl.ReleaseImpl <em>Release</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.unicase.model.release.impl.ReleaseImpl
 		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getRelease()
 		 * @generated
@@ -383,33 +366,33 @@ public interface ReleasePackage extends EPackage {
 		EClass RELEASE = eINSTANCE.getRelease();
 
 		/**
-		 * The meta object literal for the '<em><b>Stream</b></em>' container reference feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Stream</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference RELEASE__STREAM = eINSTANCE.getRelease_Stream();
 
 		/**
-		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference RELEASE__PREDECESSOR = eINSTANCE.getRelease_Predecessor();
 
 		/**
-		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference RELEASE__SUCCESSOR = eINSTANCE.getRelease_Successor();
 
 		/**
-		 * The meta object literal for the '<em><b>Applied Patches</b></em>' reference list feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Applied Patches</b></em>' reference list feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference RELEASE__APPLIED_PATCHES = eINSTANCE.getRelease_AppliedPatches();
@@ -431,9 +414,8 @@ public interface ReleasePackage extends EPackage {
 		EReference RELEASE__SOURCE_CODE_REPOSITORY_REVISION = eINSTANCE.getRelease_SourceCodeRepositoryRevision();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
-		 * <em>Source Code Repository Revision</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl <em>Source Code Repository Revision</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
 		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryRevision()
 		 * @generated
@@ -441,9 +423,8 @@ public interface ReleasePackage extends EPackage {
 		EClass SOURCE_CODE_REPOSITORY_REVISION = eINSTANCE.getSourceCodeRepositoryRevision();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
-		 * <em>Source Code Repository Stream</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl <em>Source Code Repository Stream</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
 		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryStream()
 		 * @generated

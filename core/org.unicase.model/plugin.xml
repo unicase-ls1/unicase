@@ -713,14 +713,6 @@
   <extension
         point="org.eclipse.emf.ecore.generated_package">
      <package
-           class="org.unicase.model.diagram.DiagramPackage"
-           genModel="model/model.genmodel"
-           uri="http://unicase.org/model/diagram">
-     </package>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecore.generated_package">
-     <package
            class="org.unicase.model.classes.ClassesPackage"
            genModel="model/model.genmodel"
            uri="http://unicase.org/model/classes">

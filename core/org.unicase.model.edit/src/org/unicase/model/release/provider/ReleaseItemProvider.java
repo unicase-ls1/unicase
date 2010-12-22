@@ -23,16 +23,16 @@ import org.unicase.model.provider.RootElementItemProvider;
 import org.unicase.model.release.ReleasePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.release.Release} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.release.Release} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ReleaseItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ReleaseItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +59,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Predecessor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPredecessorPropertyDescriptor(Object object) {
@@ -72,8 +72,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Successor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Successor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSuccessorPropertyDescriptor(Object object) {
@@ -85,8 +85,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Applied Patches feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Applied Patches feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAppliedPatchesPropertyDescriptor(Object object) {
@@ -115,9 +115,9 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Code Repository Revision feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Source Code Repository Revision feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSourceCodeRepositoryRevisionPropertyDescriptor(Object object) {
@@ -131,8 +131,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns Release.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Release.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,8 +141,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,9 +164,9 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,8 +175,8 @@ public class ReleaseItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
