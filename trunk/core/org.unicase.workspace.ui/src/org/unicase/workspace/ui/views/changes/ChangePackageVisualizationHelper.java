@@ -79,7 +79,7 @@ public class ChangePackageVisualizationHelper {
 				for (Map.Entry<EObject, ModelElementId> entry : ((CreateDeleteOperation) abstractOperation)
 					.getEObjectToIdMap().map().entrySet()) {
 					ModelElementId orgModelElementId = entry.getValue();
-					EObject modelElement = entry.getValue();
+					EObject modelElement = entry.getKey();
 					modelElementMap.put(ModelUtil.clone(orgModelElementId), modelElement);
 				}
 			}
