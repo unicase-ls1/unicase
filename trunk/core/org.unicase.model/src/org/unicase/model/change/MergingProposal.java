@@ -26,14 +26,14 @@ import org.unicase.model.rationale.Proposal;
  */
 public interface MergingProposal extends Proposal {
 	/**
-	 * Returns the value of the '<em><b>Pending Operations</b></em>' containment reference list. The list contents are
-	 * of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pending Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pending Operations</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Pending Operations</em>' containment reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingOperations()
 	 * @model containment="true" resolveProxies="true"

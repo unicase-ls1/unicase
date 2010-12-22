@@ -15,13 +15,12 @@ import org.unicase.model.release.SourceCodeRepositoryRevision;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class SourceCodeRepositoryRevisionImpl extends EObjectImpl implements SourceCodeRepositoryRevision {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SourceCodeRepositoryRevisionImpl() {
@@ -30,7 +29,6 @@ public abstract class SourceCodeRepositoryRevisionImpl extends EObjectImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

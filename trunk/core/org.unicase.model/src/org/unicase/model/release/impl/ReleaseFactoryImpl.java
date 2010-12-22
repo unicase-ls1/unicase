@@ -17,13 +17,12 @@ import org.unicase.model.release.Stream;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ReleaseFactory init() {
@@ -40,8 +39,8 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ReleaseFactoryImpl() {
@@ -50,7 +49,6 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +65,6 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stream createStream() {
@@ -77,7 +74,6 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Release createRelease() {
@@ -87,7 +83,6 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReleasePackage getReleasePackage() {
@@ -96,7 +91,6 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

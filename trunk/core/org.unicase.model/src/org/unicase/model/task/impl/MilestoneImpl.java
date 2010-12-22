@@ -35,155 +35,155 @@ import org.unicase.model.task.WorkPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getReviewer <em>Reviewer</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getIncludingReleases <em>Including Releases</em>}</li>
- * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getReviewer <em>Reviewer</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getIncludingReleases <em>Including Releases</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> predecessors;
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> successors;
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
 	 */
 	protected OrgUnit assignee;
 	/**
-	 * The cached value of the '{@link #getReviewer() <em>Reviewer</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReviewer() <em>Reviewer</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReviewer()
 	 * @generated
 	 * @ordered
 	 */
 	protected User reviewer;
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date DUE_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int ESTIMATE_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected int estimate = ESTIMATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int EFFORT_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
 	protected int effort = EFFORT_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int PRIORITY_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
 	 */
 	protected int priority = PRIORITY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isResolved() <em>Resolved</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isResolved()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean RESOLVED_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isResolved() <em>Resolved</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isResolved()
 	 * @generated
 	 * @ordered
@@ -201,7 +201,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	/**
 	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getContainedModelElements()
 	 * @generated
 	 * @ordered
@@ -210,7 +209,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MilestoneImpl() {
@@ -219,7 +217,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,7 +226,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -240,7 +236,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -251,7 +246,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
@@ -262,7 +256,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -286,7 +279,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
@@ -299,7 +291,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
@@ -312,7 +303,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -330,7 +320,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -339,7 +328,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
@@ -358,7 +346,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
@@ -380,7 +367,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public User getReviewer() {
@@ -398,7 +384,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public User basicGetReviewer() {
@@ -407,7 +392,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetReviewer(User newReviewer, NotificationChain msgs) {
@@ -426,7 +410,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReviewer(User newReviewer) {
@@ -448,7 +431,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -461,7 +443,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -470,7 +451,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
@@ -482,7 +462,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -491,7 +470,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
@@ -504,7 +482,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -513,7 +490,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
@@ -525,7 +501,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getPriority() {
@@ -534,7 +509,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPriority(int newPriority) {
@@ -547,7 +521,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isResolved() {
@@ -556,7 +529,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setResolved(boolean newResolved) {
@@ -569,7 +541,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Release> getIncludingReleases() {
@@ -582,7 +553,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getContainedModelElements() {
@@ -595,7 +565,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -631,7 +600,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -657,7 +625,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -672,7 +639,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -716,7 +682,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -773,7 +738,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -824,7 +788,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -862,7 +825,6 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

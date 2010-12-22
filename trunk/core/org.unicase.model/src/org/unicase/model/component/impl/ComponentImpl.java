@@ -25,20 +25,20 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
- * <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ComponentImpl extends UnicaseModelElementImpl implements Component {
 	/**
-	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPackages()
 	 * @generated
 	 * @ordered
@@ -48,7 +48,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 	/**
 	 * The cached value of the '{@link #getOfferedServices() <em>Offered Services</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getOfferedServices()
 	 * @generated
 	 * @ordered
@@ -66,9 +65,9 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 	protected EList<ComponentService> consumedServices;
 
 	/**
-	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSubsystems()
 	 * @generated
 	 * @ordered
@@ -77,7 +76,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentImpl() {
@@ -86,7 +84,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +93,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getPackages() {
@@ -109,7 +105,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getOfferedServices() {
@@ -123,7 +118,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getConsumedServices() {
@@ -137,7 +131,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getSubsystems() {
@@ -150,7 +143,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -167,7 +159,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +174,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +193,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -232,7 +221,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +244,6 @@ public class ComponentImpl extends UnicaseModelElementImpl implements Component 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
