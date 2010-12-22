@@ -21,13 +21,12 @@ import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 
 /**
- * A composite that contains multiple tabs displaying the operation from a
- * different view - e.g. grouped by model element, or ungrouped.
+ * A composite that contains multiple tabs displaying the operation from a different view - e.g. grouped by model
+ * element, or ungrouped.
  * 
  * @author Shterev
  */
-public class TabbedChangesComposite extends Composite implements
-		ChangesComposite {
+public class TabbedChangesComposite extends Composite implements ChangesComposite {
 
 	private TabFolder folder;
 	private List<ChangePackage> changePackages;
@@ -41,43 +40,32 @@ public class TabbedChangesComposite extends Composite implements
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the composite's parent
-	 * @param style
-	 *            the style
-	 * @param changePackages
-	 *            the input of change packages as a list
-	 * @param project
-	 *            the project
+	 * @param parent the composite's parent
+	 * @param style the style
+	 * @param changePackages the input of change packages as a list
+	 * @param project the project
 	 */
-	public TabbedChangesComposite(Composite parent, int style,
-			List<ChangePackage> changePackages, Project project) {
+	public TabbedChangesComposite(Composite parent, int style, List<ChangePackage> changePackages, Project project) {
 		super(parent, style);
 
 		setLayout(new GridLayout());
 		folder = new TabFolder(this, style);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
-				true).applyTo(folder);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(folder);
 
 		// -----------------------Detailed -----------------------------
 		detailedTabComposite = new Composite(folder, SWT.NONE);
 		GridLayoutFactory.fillDefaults().applyTo(detailedTabComposite);
 
-		detailedTabTreeViewer = new TreeViewer(detailedTabComposite,
-				SWT.H_SCROLL | SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				detailedTabTreeViewer.getControl());
+		detailedTabTreeViewer = new TreeViewer(detailedTabComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(detailedTabTreeViewer.getControl());
 
-		detailedContentProvider = new SCMContentProvider.Detailed(
-				detailedTabTreeViewer);
+		detailedContentProvider = new SCMContentProvider.Detailed(detailedTabTreeViewer);
 		detailedContentProvider.setShowRootNodes(true);
 		SCMLabelProvider detailedLabelProvider = new SCMLabelProvider(project);
-		detailedLabelProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
-		detailedContentProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
+		detailedLabelProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(changePackages,
+			project));
+		detailedContentProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
+			changePackages, project));
 		detailedTabTreeViewer.setContentProvider(detailedContentProvider);
 		detailedTabTreeViewer.setLabelProvider(detailedLabelProvider);
 		detailedTabTreeViewer.setInput(changePackages);
@@ -90,23 +78,19 @@ public class TabbedChangesComposite extends Composite implements
 		// -----------------------Compact -----------------------------
 		compactTabComposite = new Composite(folder, SWT.NONE);
 		GridLayoutFactory.fillDefaults().applyTo(compactTabComposite);
-		compactTabTreeViewer = new TreeViewer(compactTabComposite, SWT.H_SCROLL
-				| SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				compactTabTreeViewer.getControl());
+		compactTabTreeViewer = new TreeViewer(compactTabComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(compactTabTreeViewer.getControl());
 
-		compactContentProvider = new SCMContentProvider.Compact(
-				compactTabTreeViewer);
+		compactContentProvider = new SCMContentProvider.Compact(compactTabTreeViewer);
 		compactContentProvider.setShowRootNodes(true);
 		SCMLabelProvider compactLabelProvider = new SCMLabelProvider(project);
-		compactLabelProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
-		compactContentProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
+		compactLabelProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(changePackages,
+			project));
+		compactContentProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(changePackages,
+			project));
 		compactTabTreeViewer.setContentProvider(compactContentProvider);
 		compactTabTreeViewer.setLabelProvider(compactLabelProvider);
+		compactTabTreeViewer.setInput(changePackages);
 		compactTabTreeViewer.expandToLevel(2);
 
 		TabItem meTab = new TabItem(folder, style);
@@ -117,8 +101,7 @@ public class TabbedChangesComposite extends Composite implements
 	/**
 	 * Sets if the root nodes should be shown.
 	 * 
-	 * @param showRootNodes
-	 *            the new value
+	 * @param showRootNodes the new value
 	 */
 	public void setShowRootNodes(boolean showRootNodes) {
 		compactContentProvider.setShowRootNodes(showRootNodes);
@@ -129,8 +112,7 @@ public class TabbedChangesComposite extends Composite implements
 	 * Sets if the root nodes should be reversed.
 	 * 
 	 * @see SCMContentProvider#setReverseNodes(boolean)
-	 * @param reverseNodes
-	 *            wheter to reverse the nodes or not
+	 * @param reverseNodes wheter to reverse the nodes or not
 	 */
 	public void setReverseNodes(boolean reverseNodes) {
 		compactContentProvider.setReverseNodes(reverseNodes);
