@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.unicase.projectgenerator2.ProjectGeneratorGUI;
 import org.unicase.projectgenerator2.ProjectGeneratorImpl;
 import org.unicase.projectgenerator2.ProjectGeneratorUtil;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.document.CompositeSection;
 
 
 
@@ -24,21 +22,21 @@ public class CreateExampleProjectHandler  extends AbstractHandler implements IHa
 		//final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		//projectSpace.getProject().getAllModelElements();
 		
-		/*)
+		
 		String unicaseKey = "http://unicase.org/model";
 		
 		final EPackage pckge = ProjectGeneratorUtil.getModelPackage(unicaseKey);
 		
 		//EObject rootElement = ProjectGeneratorUtil.createEObject(ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection"));
-		EClass clazz = (EClass) pckge.getEClassifier("CompositeSection");
+		EClass clazz = ProjectGeneratorUtil.getModelElementEClasses(pckge, "CompositeSection");
 		EObject rootElement = EcoreUtil.create(clazz);
 		ProjectGeneratorImpl impl = new ProjectGeneratorImpl(pckge, rootElement, 2, 5, 5);
 		ProjectGeneratorAdapter adapter = new ProjectGeneratorAdapter(impl);
 		adapter.generateValues();
-	*/
-		ProjectGeneratorGUI projectGeneratorGUI = new ProjectGeneratorGUI();
-		projectGeneratorGUI.setVisible(true);
-		projectGeneratorGUI.setListener(new ProjectGeneratorAdapter(new ProjectGeneratorImpl(null, 2, 0, 0)));
+	
+//		ProjectGeneratorGUI projectGeneratorGUI = new ProjectGeneratorGUI();
+//		projectGeneratorGUI.setVisible(true);
+//		projectGeneratorGUI.setListener(new ProjectGeneratorAdapter(new ProjectGeneratorImpl(null, 2, 0, 0)));
 		return null;
 	}
 }
