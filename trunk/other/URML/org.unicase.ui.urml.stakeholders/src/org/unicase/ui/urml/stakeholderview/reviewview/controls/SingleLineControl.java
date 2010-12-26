@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.reviewview.AbstractDisplayControl;
+import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
 import org.unicase.ui.urml.stakeholderview.ReviewViewUtil;
 
 /**
@@ -23,7 +23,7 @@ import org.unicase.ui.urml.stakeholderview.ReviewViewUtil;
  * @author kterzieva
  * 
  */
-public class SingleLineControl extends AbstractDisplayControl {
+public class SingleLineControl extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
 	//private EAttribute attribute;
@@ -46,7 +46,7 @@ public class SingleLineControl extends AbstractDisplayControl {
 				return PRIORITY;
 			}
 		}
-		return AbstractDisplayControl.DO_NOT_RENDER;
+		return AbstractControlBuilder.DO_NOT_RENDER;
 	}
 	
 	

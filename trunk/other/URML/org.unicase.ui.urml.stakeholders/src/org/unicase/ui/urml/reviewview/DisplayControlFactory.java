@@ -19,60 +19,44 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * Factory for generating {@link AbstractDisplayControl}'s according to a {@link IItemPropertyDescriptor}.
+ * Factory for generating {@link AbstractControlBuilder}'s according to a {@link IItemPropertyDescriptor}.
  * 
  * @author kterzieva
  */
 public class DisplayControlFactory {
 	private static final String EXTENSION_POINT_ID = "org.unicase.stakeholders.displaycontrols";
 
-	// controlRegistry mapps key to values. Key are the classes, values are the controls
-	private HashMap<Class<?>, ArrayList<AbstractDisplayControl>> controlRegistry;
+	private HashMap<Class<?>, ArrayList<AbstractControlBuilder>> controlRegistry;
 
 	/**
 	 * Default constructor.
 	 */
 	public DisplayControlFactory() {
-		// warum ArrayList?
-		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractDisplayControl>>();
+		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractControlBuilder>>();
 		initializeReviewViewControls();
 	}
 
 	private void initializeReviewViewControls() {
-		// gib mir alle extension von dem extension point (org.unicase.ui.meeditor.attributecontrols)
-		// array aus extension is IConfigurationElement[]
 		IConfigurationElement[] displayControls = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			EXTENSION_POINT_ID);
 		ArrayList<IConfigurationElement> controls = new ArrayList<IConfigurationElement>();
 		controls.addAll(Arrays.asList(displayControls));
-		// allControls.addAll(Arrays.asList(referencecontrols));
-		// sortiert die types(String, int..) mit den registrierten Controller, die type als rückgabewert
 		for (IConfigurationElement e : controls) {
 			String type = e.getAttribute("type");
 			try {
-				// type = java.lang.Boolean, liefert die klasse Boolean zurück als "resolvedType"
-				//
 				Class<?> resolvedType = Class.forName(type);
-				// new object (instance) von der Controlle.. bei uns SingeLineDispay
-				AbstractDisplayControl control = (AbstractDisplayControl) e.createExecutableExtension("class");
-				// zeigt an welcher Wert "show label" hat
+				AbstractControlBuilder control = (AbstractControlBuilder) e.createExecutableExtension("class");
 				boolean showLabel = Boolean.parseBoolean(e.getAttribute("showLabel"));
-				// kopiert den wert in die neue instance
 				control.setShowLabel(showLabel);
-				// gibt alle mit z.b String als resolvedType zurück, nur diese sind relevant
-				// hier werden die SingleLineDipslay und MultiLineDisplay in der list enthalten
-				ArrayList<AbstractDisplayControl> list = controlRegistry.get(resolvedType);
+				ArrayList<AbstractControlBuilder> list = controlRegistry.get(resolvedType);
 				if (list == null) {
-					list = new ArrayList<AbstractDisplayControl>();
+					list = new ArrayList<AbstractControlBuilder>();
 				}
 				list.add(control);
-				// alle Klassen, die der selben resolvedType haben werde in der
-				// controlRegistry eingefügt
 				controlRegistry.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
-				//
 				// WorkspaceUtil.logException("", e1);
 			} catch (CoreException e2) {
 				e2.printStackTrace();
@@ -83,18 +67,18 @@ public class DisplayControlFactory {
 	}
 
 	/**
-	 * Creates a {@link AbstractDisplayControl} according to the {@link IItemPropertyDescriptor}.
+	 * Creates a {@link AbstractControlBuilder} according to the {@link IItemPropertyDescriptor}.
 	 * 
 	 * @param itemPropertyDescriptor the descriptor
 	 * @param urmlElement the model element
-	 * @return the {@link AbstractDisplayControl}
+	 * @return the {@link AbstractControlBuilder}
 	 */
 
-	public AbstractDisplayControl createDisplayControl(IItemPropertyDescriptor itemPropertyDescriptor,
+	public AbstractControlBuilder createDisplayControl(IItemPropertyDescriptor itemPropertyDescriptor,
 		UrmlModelElement urmlElement) {
 		Object feature = itemPropertyDescriptor.getFeature(urmlElement);
 		if (feature instanceof EStructuralFeature) {
-			// name is for example feature, type is string
+			// name feature, type string
 			// instanceClass = string
 			Class<?> featureClass = null;
 			if (feature instanceof EAttribute) {
@@ -103,10 +87,9 @@ public class DisplayControlFactory {
 				// featureClass = java.lang.String
 				featureClass = ((EReference) feature).getEType().getInstanceClass();
 			}
-
-			// keySet beinhaltet alle Klassen
+			
 			Set<Class<?>> keySet = controlRegistry.keySet();
-			ArrayList<AbstractDisplayControl> candidates = new ArrayList<AbstractDisplayControl>();
+			ArrayList<AbstractControlBuilder> candidates = new ArrayList<AbstractControlBuilder>();
 			for (Class<?> candidateClass : keySet) {
 				if (featureClass.isPrimitive()) {
 					try {
@@ -125,23 +108,19 @@ public class DisplayControlFactory {
 						// Do nothing
 					}
 				}
-				// if candidateClass is superinterface or superclass of featureClass
-				// zwei mal in die liste eintragen????
+				
 				if (candidateClass.isAssignableFrom(featureClass)) {
-					// add alle Controller die instanceClass als resovedTyp haben
 					candidates.addAll(controlRegistry.get(candidateClass));
 				}
 			}
-			// best candidate should be shown with getShowLabel
-			// candidats besteht aus alle Klassen die selben resovedType haben wie der Type von der feature
-			// das angezeigt werden soll
-			AbstractDisplayControl bestCandidate = getBestCandidate(candidates, itemPropertyDescriptor, urmlElement);
-			AbstractDisplayControl displayControl = null;
+		
+			AbstractControlBuilder bestCandidate = getBestCandidate(candidates, itemPropertyDescriptor, urmlElement);
+			AbstractControlBuilder displayControl = null;
 			if (bestCandidate == null) {
 				return null;
 			}
 			try {
-				// create new one, reflection for new,
+				// create new one, reflection for new
 				displayControl = bestCandidate.getClass().newInstance();
 				displayControl.setShowLabel(bestCandidate.getShowLabel());
 			} catch (InstantiationException e) {
@@ -150,8 +129,6 @@ public class DisplayControlFactory {
 				// Do nothing
 			}
 			return displayControl;
-
-			// return createDisplayControl(itemPropertyDescriptor, feature, modelElement, context);
 		}
 		return null;
 	}
@@ -161,16 +138,11 @@ public class DisplayControlFactory {
 	// feature
 	// modelElement
 
-	private AbstractDisplayControl getBestCandidate(ArrayList<AbstractDisplayControl> candidates,
+	private AbstractControlBuilder getBestCandidate(ArrayList<AbstractControlBuilder> candidates,
 		IItemPropertyDescriptor itemPropertyDescriptor, UrmlModelElement urmlElement) {
 		int bestValue = 0;
-		AbstractDisplayControl bestCandidate = null;
-		// geht die liste aus kandidaten durch und setzt den context??
-		// ruft für jeden control dem seine canRender methode auf, das zurückgibt ob er für diesen
-		// bestimmten properties geeignete anzeige-controle anbietet, höchste wert wird als gewählt
-		for (AbstractDisplayControl displayControl : candidates) {
-			// displayControl.setContext(context);
-			// control mit höchste canRender-Methode wird ausgewählt
+		AbstractControlBuilder bestCandidate = null;
+		for (AbstractControlBuilder displayControl : candidates) {
 			int newValue = displayControl.canRender(itemPropertyDescriptor, urmlElement);
 			if (newValue > bestValue) {
 				bestCandidate = displayControl;
