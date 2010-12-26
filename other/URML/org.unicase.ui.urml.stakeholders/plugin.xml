@@ -30,17 +30,26 @@
       <widget
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.SingleLineControl"
             name="Stakeholders.SingleLineDisplay"
+            showLabel="true"
             type="java.lang.String">
       </widget>
       <widget
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiLineControl"
             name="Stakeholders.MultiLineControl"
+            showLabel="true"
             type="java.lang.String">
       </widget>
       <widget
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.ReviewedDisplayControl"
             name="Stakeholders.ReviewedDisplay"
+            showLabel="true"
             type="java.lang.Boolean">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiReferenceControl"
+            name="Stakeholders.MultiReferenceControl"
+            showLabel="false"
+            type="org.unicase.model.urml.UrmlModelElement">
       </widget>
    </extension>
    <extension

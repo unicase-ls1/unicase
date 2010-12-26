@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.reviewview.AbstractDisplayControl;
+import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
 
 /**
  * This is the control to edit boolean value of the reviewed field.
@@ -25,7 +25,7 @@ import org.unicase.ui.urml.reviewview.AbstractDisplayControl;
  * 
  */
 
-public class ReviewedDisplayControl extends AbstractDisplayControl {
+public class ReviewedDisplayControl extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
 	private Button check;
@@ -47,7 +47,7 @@ public class ReviewedDisplayControl extends AbstractDisplayControl {
 
 				return PRIORITY;
 			}
-			return AbstractDisplayControl.DO_NOT_RENDER;
+			return AbstractControlBuilder.DO_NOT_RENDER;
 	 
 	}
 

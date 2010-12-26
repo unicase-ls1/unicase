@@ -17,7 +17,7 @@ import org.unicase.model.urml.UrmlModelElement;
  * @author kterzieva
  */
 
-public abstract class AbstractDisplayControl {
+public abstract class AbstractControlBuilder implements IDisposable {
 
 	/**
 	 * The default constant in case the widgets decides it shouldn't render the attribute.
@@ -34,6 +34,8 @@ public abstract class AbstractDisplayControl {
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
 	private ModelElementContext context;
+	
+	private Control createdControl;
 
 	/**
 	 * Setter for the {@link IItemPropertyDescriptor}.
@@ -68,7 +70,8 @@ public abstract class AbstractDisplayControl {
 		this.urmlElement = urmlElement;
 		this.context = context;
 		this.setItemPropertyDescriptor(itemPropertyDescriptor);
-		return doCreateControl(parent, urmlElement);
+		createdControl = doCreateControl(parent, urmlElement);
+		return createdControl;
 	}
 
 	/**
@@ -130,6 +133,16 @@ public abstract class AbstractDisplayControl {
 	 */
 	public ModelElementContext getContext() {
 		return context;
+	}
+	
+	
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.urml.reviewview.IDisposable#dispose()
+	 */
+	public void dispose(){
+		createdControl.dispose();
 	}
 
 }

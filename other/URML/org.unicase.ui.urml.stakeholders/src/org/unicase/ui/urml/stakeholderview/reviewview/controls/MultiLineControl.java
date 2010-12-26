@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.reviewview.AbstractDisplayControl;
+import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
 import org.unicase.ui.urml.stakeholderview.ReviewViewUtil;
 
 /**
@@ -24,7 +24,7 @@ import org.unicase.ui.urml.stakeholderview.ReviewViewUtil;
  * @author kterzieva
  */
 
-public class MultiLineControl extends AbstractDisplayControl {
+public class MultiLineControl extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
 
@@ -70,7 +70,7 @@ public class MultiLineControl extends AbstractDisplayControl {
 				return PRIORITY;
 			}
 		}
-		return AbstractDisplayControl.DO_NOT_RENDER;
+		return AbstractControlBuilder.DO_NOT_RENDER;
 	}
 
 }

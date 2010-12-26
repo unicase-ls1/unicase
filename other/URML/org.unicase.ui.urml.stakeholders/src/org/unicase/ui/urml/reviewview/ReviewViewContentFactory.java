@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -26,10 +27,8 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 public class ReviewViewContentFactory {
 
-	// private TableViewerColumn viewerNameColumn;
 	private Composite editorComposite;
-	private Control c;
-	private List<Control> controls = new ArrayList<Control>();
+	private List<IDisposable> controls = new ArrayList<IDisposable>();
 
 	/**
 	 * The constructor.
@@ -48,7 +47,7 @@ public class ReviewViewContentFactory {
 	 */
 	public void createElementContent(UrmlModelElement urmlElement) {
 		while (!controls.isEmpty()) {
-			c = controls.get(controls.size() - 1);
+			IDisposable c = controls.get(controls.size() - 1);
 			c.dispose();
 			controls.remove(controls.size() - 1);
 		}
@@ -56,18 +55,17 @@ public class ReviewViewContentFactory {
 		// ComposedAdapterFactory is used for providing different elements
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-		// TODO 2 filter to element properties
-		// properties descriptor contains all the properties of the elements
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 			.getPropertyDescriptors(urmlElement);
+		for (int i = 0; i < propertyDescriptors.size(); i++){
+			System.out.println(propertyDescriptors.get(i).getDisplayName(urmlElement));
+		}
+		
 
 		DisplayControlFactory displayControlFactory = new DisplayControlFactory();
 
 		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-			// TODO abfrage ob im set drin ist
-			// create an abstract display, SingleControl or MultiLineControl
-			AbstractDisplayControl abstractDisplayControl = displayControlFactory.createDisplayControl(
+			AbstractControlBuilder abstractDisplayControl = displayControlFactory.createDisplayControl(
 				itemPropertyDescriptor, urmlElement);
 			if (abstractDisplayControl == null) {
 				continue;
@@ -76,20 +74,39 @@ public class ReviewViewContentFactory {
 			String labelText = itemPropertyDescriptor.getDisplayName(itemPropertyDescriptor);
 
 			// TODO use sets for the specific element
-			if (labelText.equals("Terminal") || labelText.equals("Creator")) {
+//			if (labelText.equals("Terminal") || labelText.equals("Creator")) {
+//				continue;
+//			}
+			if (!(labelText.equals("Mitigated Dangers")||labelText.equals("Name") ||labelText.equals("Description")|| labelText.equals("Reviewed"))) {
 				continue;
 			}
-
-			Label label = new Label(editorComposite, SWT.NULL);
-			GridData gridData = new GridData();
-			// gridData.verticalSpan = 3;
-			label.setLayoutData(gridData);
-			label.setText(labelText);
-			controls.add(label);
+			boolean showLabel = abstractDisplayControl.getShowLabel();
+			
+			if(showLabel){
+				final Label label = new Label(editorComposite, SWT.NULL);
+				GridData gridData = new GridData();
+				label.setLayoutData(gridData);
+				label.setText(labelText);
+				controls.add(new IDisposable() {
+					@Override
+					public void dispose() {
+						label.dispose();
+					}
+				});
+				
+			}
 
 			Control c1 = abstractDisplayControl.createControl(editorComposite, itemPropertyDescriptor,
 				UnicaseActionHelper.getContext(urmlElement), urmlElement);
-			controls.add(c1);
+			if(!showLabel){
+				Object layoutData = c1.getLayoutData();
+				if(layoutData == null || !(layoutData instanceof GridData)){
+					GridDataFactory.fillDefaults().grab(true, false).span(2,1).applyTo(c1);
+				} else {
+					((GridData)layoutData).horizontalSpan = 2;
+				}
+			}
+			controls.add(abstractDisplayControl);
 
 		}
 
