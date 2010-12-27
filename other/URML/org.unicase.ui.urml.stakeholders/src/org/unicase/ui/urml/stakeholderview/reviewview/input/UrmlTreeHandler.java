@@ -8,7 +8,6 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeNode;
@@ -23,17 +22,34 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 //EList<ECPProject> projects = WorkspaceManager.getInstance().getWorkSpace().getProjects();
 //this can be used to get a project, which schould be used as input for the getURMLElementsfromProject method 
 
-public class UrmlTreeHandler {
+/**
+ * Test tree handler.
+ * 
+ * @author kterzieva
+ */
 
-	
-	ECPProject project;
-	
+ public final class UrmlTreeHandler {
+
 	//TODO generic method - select some certain project
 	//test with the first project
+	
+	private UrmlTreeHandler(){
+		
+	}
+	/**
+	 *  Gets the test project.
+	 *  @return the test project
+	 *  @throws NoWorkspaceException .
+	 */
 	public static ECPProject getTestProject() throws NoWorkspaceException{
 		return  ECPWorkspaceManager.getInstance().getWorkSpace().getProjects().get(0);
 	}
 	
+	/**
+	 * Test method.
+	 * @param project 
+	 * @return the basic list
+	 */
 	public static Collection<EObject> getRequirementsAndGoalsfromProject(ECPProject project){
 		Collection<EObject> basicList = project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
 		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<EObject>());
@@ -41,6 +57,11 @@ public class UrmlTreeHandler {
 		return basicList;
 	}
 	
+	/**
+	 * Test method.
+	 * @param project .
+	 * @return the list
+	 */
 	public static Collection<UrmlModelElement> getRequirementsfromProjects(ECPProject project){
 		//	project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
 			//return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
@@ -53,6 +74,11 @@ public class UrmlTreeHandler {
 			return list;
 		}
 	
+	/**
+	 * Creates the tree.
+	 * @param collection .
+	 * @return the result tree
+	 */
 	public static TreeNode[] createTree(Collection<EObject> collection){
 		TreeNode[] result = new TreeNode[collection.size()];
 		int i = 0;

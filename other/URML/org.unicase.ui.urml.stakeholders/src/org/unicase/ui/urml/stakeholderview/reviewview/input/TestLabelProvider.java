@@ -11,12 +11,22 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.swt.graphics.Image;
 
+/**
+ * Test labelprovider.
+ * 
+ * @author kterzieva
+ * 
+ */
 public class TestLabelProvider implements ILabelProvider {
 	
 	//delegation for using the appropriate label provider for the different model elements
 	
-	AdapterFactoryLabelProvider factoryLabel;
+	private AdapterFactoryLabelProvider factoryLabel;
 	
+	/**
+	 * The construct.
+	 * @param factoryLabel the factory label provider
+	 */
 	public TestLabelProvider(AdapterFactoryLabelProvider factoryLabel){
 		this.factoryLabel = factoryLabel;
 	}

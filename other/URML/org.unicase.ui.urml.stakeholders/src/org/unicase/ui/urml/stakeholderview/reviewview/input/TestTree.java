@@ -8,22 +8,33 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.ecp.model.NoWorkspaceException;
 
-public class TestTree {
+/**
+ * Test tree for the input.
+ * @author kterzieva
+ * 
+ */
+public final class TestTree {
 
-	public static TreeNode[] createTestTree() throws NoWorkspaceException{
-//		TreeNode t1 = new TreeNode("Vater");
-//		TreeNode t2 = new TreeNode("Kind1");
-//		TreeNode t3 = new TreeNode("Kind2");
-//		
-//		t1.setChildren(new TreeNode[]{t2,t3});
-//		t2.setParent(t1);
-//		t3.setParent(t1);
-//		return new TreeNode[]{t1};
+	
+	private TestTree(){
 		
+	}
+	/**
+	 * Creates the test tree.
+	 * @return test tree
+	 * @throws NoWorkspaceException .
+	 */
+	public static TreeNode[] createTestTree() throws NoWorkspaceException{		
 		return UrmlTreeHandler.createTree(UrmlTreeHandler.getRequirementsAndGoalsfromProject(UrmlTreeHandler.getTestProject()));
 	}
-	public static void main(String[] args) throws NoWorkspaceException {
-		System.out.println(createTestTree());
-	}
+	
+	/**
+	 * The main method.
+	 * @param args the arguments
+	 * @throws NoWorkspaceException .
+	 */
+//	public static void main(String[] args) throws NoWorkspaceException {
+//		System.out.println(createTestTree());
+//	}
 
 }

@@ -8,8 +8,18 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.model.urml.UrmlModelElement;
 
+/**
+ * Test test tree node.
+ * 
+ * @author kterzieva
+ */
+
 public class UrmlTreeNode extends TreeNode {
 
+	/**
+	 * The construct.
+	 * @param value the value
+	 */
 	public UrmlTreeNode(UrmlModelElement value) {
 		super(value);
 	}
