@@ -1,6 +1,16 @@
 package org.unicase.xmi.views;
 
-import org.eclipse.core.runtime.Platform;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -17,27 +27,36 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
+import org.unicase.xmi.commands.ImportFolderHandler;
+import org.unicase.xmi.exceptions.XMIFileTypeException;
 
 public class ImportFolderDialog extends TitleAreaDialog {
 
-	private Text txtFolderName;
+	/**
+	 * Location of the folder
+	 */
 	private Text txtFolderLocation;
 
+	/**
+	 * The handler calling the dialog.
+	 */
+	private ImportFolderHandler handler;
+	
+	/**
+	 * List of resources that can be loaded.
+	 */
+	private List<String> loadableFiles;
+	
 	/**
 	 * Default constructor.
 	 * 
 	 * @param parent
 	 *            the parent shell
 	 */
-	public ImportFolderDialog(Shell parent) {
+	public ImportFolderDialog(Shell parent, ImportFolderHandler handler) {
 		super(parent);
+		this.handler = handler;
+		loadableFiles = new ArrayList<String>();
 	}
 	
 	/**
@@ -48,14 +67,8 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		setTitle("Create New Folder");
-		setMessage("Please enter the name and location of the new folder.");
-
-		// Ask for folder/container name
-		Label name = new Label(contents, SWT.NULL);
-		name.setText("Name:");
-		txtFolderName = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		txtFolderName.setSize(150, 20);
+		setTitle("Import Projects from Folder");
+		setMessage("Please enter the location of the folder containing the projects.");
 		
 		// Determine Location
 		Label locationLabel = new Label(contents, SWT.NULL);
@@ -64,24 +77,64 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		Composite location = new Composite(contents, SWT.NONE);
 		location.setLayout(new FillLayout());
 		txtFolderLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
-		txtFolderLocation.setSize(140, 20);
+		txtFolderLocation.setSize(200, 20);
 		Button browseButton = new Button(location, SWT.NONE);
 		browseButton.setText("Browse...");
 		final Shell shell = super.getParentShell();
+		
+		// add action when button pressed
 		browseButton.addSelectionListener(new SelectionListener() {
-
-			DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
-			String path = Platform.getLocation().toOSString();
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
-				path = dirDialog.open();
-				if(txtFolderName.getText() == null || txtFolderName.getText() == "") {
-					path += "/new_folder";
+				DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
+				String path = null;
+				
+				// ask for a path until the user enters one
+				while(path == null || path.equals("")) {
+					path = dirDialog.open();
+				}
+				
+				// set the path to the text field
+				txtFolderLocation.setText(path);
+				
+				// try to load contents
+				
+				try {
+					tryLoadingProjects(path);
+				} catch (PackageNotFoundException e1) { //TODO catching this exception does not work!
+					// ignore unknown packages
+				}
+			}
+
+			/**
+			 * Tries to load the resources of the folder,
+			 * if it can load a resource it adds the path of the 
+			 * resource to a global list of loadable paths. 
+			 * @param path Folder path containing the resources.
+			 */
+			private void tryLoadingProjects(String path) throws PackageNotFoundException {
+				File dir = new File(path);
+				ResourceSet resourceSet = new ResourceSetImpl();
+				
+				if(dir.isDirectory()) {
+					File[] files = dir.listFiles();
+					
+					// Go through all files of the directory and try to load them
+					for(File f: files) {
+						String fullPath = f.getAbsolutePath();
+						Resource res = resourceSet.getResource(URI.createFileURI(fullPath), true);
+						try {
+							res.load(Collections.EMPTY_MAP); // loading
+							loadableFiles.add(fullPath); // adding to list
+						}
+						catch(Exception e) {
+							// do nothing -> ignore
+						}
+					}
 				}
 				else {
-					path += "/" + txtFolderName.getText();
+					new XMIFileTypeException(path + " is not a directory.");
 				}
-				txtFolderLocation.setText(path);
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -90,6 +143,11 @@ public class ImportFolderDialog extends TitleAreaDialog {
 			
 		});
 		browseButton.setEnabled(true);
+		
+		//TODO display available projects in a new widget
+		/*
+		 * Let the user choose the projects he wants.
+		 */
 
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(
@@ -103,30 +161,8 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		//TODO continue...
-		new ECPCommand(null) {
-			@Override
-			protected void doRun() {
-				try {						
-					// get ECPWorkspace
-					ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-					if(ws instanceof XMIECPWorkspace) {
-						XMIECPFolder folder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
-						folder.setContainerName(txtFolderName.getText());
-						folder.setXmiDirectoryPath(txtFolderLocation.getText());
-						
-						// add a new XMIFileProject to the workspace
-						((XMIECPWorkspace) ws).addFolder(folder);
-					}
-					else {
-						new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-					}
-				} catch (Exception e) {
-					new XMIWorkspaceException("Could not create new model element.", e);
-				}
-			}
-
-		}.run(false);
+		// give the handler a list of project paths	
+		handler.addLoadableFiles(loadableFiles);
 		close();
 	}
 

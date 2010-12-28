@@ -20,6 +20,8 @@ public class NewProjectHandler extends AbstractHandler {
 
 		dialog.open();
 		
+		//TODO REFACTOR!!!
+		
 		return null;
 	}
 }

@@ -24,7 +24,6 @@ public class ImportProjectHandler extends AbstractHandler {
 			.getWorkbench().getDisplay().getActiveShell(), this);
 		
 		if(dialog.open() == Window.OK) {
-			//TODO ...in work...
 			try {
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 				
