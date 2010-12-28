@@ -19,30 +19,25 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
-public class CreateFolderDialog extends TitleAreaDialog {
+public class ImportFolderDialog extends TitleAreaDialog {
 
 	private Text txtFolderName;
 	private Text txtFolderLocation;
-	private Usersession session;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param parent
 	 *            the parent shell
-	 * @param session
-	 *            the target usersession
 	 */
-	public CreateFolderDialog(Shell parent, Usersession session) {
+	public ImportFolderDialog(Shell parent) {
 		super(parent);
-		this.session = session;
 	}
 	
 	/**
@@ -108,35 +103,30 @@ public class CreateFolderDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		new UnicaseCommand() {
+		//TODO continue...
+		new ECPCommand(null) {
 			@Override
 			protected void doRun() {
-				try {
-
-					if (session != null) {
-						new XMIWorkspaceException("Session not known to Workspace-Provider.");
-					} else {						
-						// get ECPWorkspace
-						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-						if(ws instanceof XMIECPWorkspace) {
-							XMIECPFolder folder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
-							folder.setContainerName(txtFolderName.getText());
-							folder.setXmiDirectoryPath(txtFolderLocation.getText());
-							
-							// add a new XMIFileProject to the workspace
-							((XMIECPWorkspace) ws).addFolder(folder);
-						}
-						else {
-							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-						}
+				try {						
+					// get ECPWorkspace
+					ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
+					if(ws instanceof XMIECPWorkspace) {
+						XMIECPFolder folder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
+						folder.setContainerName(txtFolderName.getText());
+						folder.setXmiDirectoryPath(txtFolderLocation.getText());
+						
+						// add a new XMIFileProject to the workspace
+						((XMIECPWorkspace) ws).addFolder(folder);
 					}
-
+					else {
+						new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
+					}
 				} catch (Exception e) {
 					new XMIWorkspaceException("Could not create new model element.", e);
 				}
 			}
 
-		}.run();
+		}.run(false);
 		close();
 	}
 

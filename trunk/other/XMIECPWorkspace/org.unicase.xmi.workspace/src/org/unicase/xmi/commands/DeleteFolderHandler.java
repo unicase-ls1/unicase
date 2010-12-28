@@ -4,8 +4,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.util.ActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFolderImpl;
@@ -30,13 +30,13 @@ public class DeleteFolderHandler extends AbstractHandler {
 		int result = dialog.open();
 		// check whether the user clicked "yes", otherwise do nothing
 		if(result == 0) {
-			new UnicaseCommand() {
+			new ECPCommand(null) {
 				@Override
 				protected void doRun() {
 					XMIECPWorkspace ws = (XMIECPWorkspace) dir.getWorkspace();
 					ws.removeFolder(dir); // takes care of removal
 				}
-			}.run();
+			}.run(false);
 		}
 		return null;
 	}

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 
 import org.unicase.ecp.model.ECPAssociationClassElement;
@@ -42,10 +43,8 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
-import org.unicase.workspace.Configuration;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.views.DeletedObjectDialog;
-import org.unicase.xmi.views.ImportProjectDialog;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
@@ -193,28 +192,73 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		ResourceSet resourceSetImpl = editingDomain.getResourceSet();
 		
 		if(!xmiFile.exists()) {
-			// create the resource
-			this.resource = resourceSetImpl.createResource(xmiUri);
-			
-			// in the beginning just save the resource without any content
-			saveResource();
+			// check if the file is contained in a resource, cause then it's not a new project!
+			if(eResource() != null) {
+				// ask what to do
+				DeletedObjectDialog dialog = new DeletedObjectDialog(false, xmiFilePath);
+				switch(dialog.getResult()) {
+					case 1: // remove from workspace
+						workspace.removeProject(this);
+						break;
+					case 2: // import from another location
+						final FileDialog importDialog = new FileDialog(PlatformUI
+							.getWorkbench().getDisplay().getActiveShell());
+						String importPath = importDialog.open();
+						
+						if(importPath != null) {
+							loadResource(resourceSetImpl, URI.createFileURI(importPath));
+						}
+						
+						break;
+					default: // create new file
+						createResource(resourceSetImpl, xmiUri);
+						break;
+				}
+				
+			}
+			else {
+				// there is not resource -> it can be assumed this is a new project
+				createResource(resourceSetImpl, xmiUri);
+			}
 		}
 		else {
-			// get the resource, if it exists
-			this.resource = resourceSetImpl.getResource(xmiUri, true);
-			
-			// try to load the resource
-			try {
-				this.resource.load(Collections.EMPTY_MAP);
-			}
-			catch(IOException e) {
-				new XMIWorkspaceException("Resource " + xmiFilePath + " cannot be loaded.", e);
-			}
-			
-			// add contained objects to the project
-			for(EObject rootLevelObject: resource.getContents()) {
-				addModelElementToRoot(rootLevelObject);
-			}
+			loadResource(resourceSetImpl, xmiUri);
+		}
+	}
+	
+	/**
+	 * Creates a blank resource in the given resource set and with the given URI
+	 * @param set ResourceSet where the Resource is contained in.
+	 * @param uri URI with the path to the file.
+	 */
+	private void createResource(ResourceSet set, URI uri) {
+		// create the resource
+		this.resource = set.createResource(uri);
+		
+		// in the beginning just save the resource without any content
+		saveResource();
+	}
+	
+	/**
+	 * Loads the resource with the given URI into the resource set.
+	 * @param set ResourceSet where the Resource is contained in.
+	 * @param uri URI with the path to the file.
+	 */
+	private void loadResource(ResourceSet set, URI uri) {
+		// get the resource, if it exists
+		this.resource = set.getResource(uri, true);
+		
+		// try to load the resource
+		try {
+			this.resource.load(Collections.EMPTY_MAP);
+		}
+		catch(IOException e) {
+			new XMIWorkspaceException("Resource " + xmiFilePath + " cannot be loaded.", e);
+		}
+		
+		// add contained objects to the project
+		for(EObject rootLevelObject: resource.getContents()) {
+			addModelElementToRoot(rootLevelObject);
 		}
 	}
 	
@@ -235,10 +279,12 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 				
 				if(changedObj instanceof EObject) {
 					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
-					
+
 					// try to save object to the attached resource
 					try {
-						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
+						if(changedEObj.eResource() != null) { // Prevents error messages for resources that aren't directory contained in a xmi-resource.
+							changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
+						}
 					} catch (IOException e) {
 						new XMIWorkspaceException("Wasn't able to persist object to xmi resource.", e);
 					} catch (NullPointerException e) {
@@ -477,7 +523,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
+	 * Returns all elements contained in the project that have the specified class type.
 	 * @return Returns only objects with the given EClass.
 	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
@@ -498,7 +544,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		// filter the elements and add them to the result if they fit
 		for(EObject eo: allElements) {
 			if(eo.eClass().equals(clazz)) result.add(eo);
-			//TODO check for subclasses
 		}
 		
 		return result;
@@ -523,7 +568,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private void saveResource() {
 		// simply call save on the resource
 		try {
-			this.resource.save(Configuration.getResourceSaveOptions());
+			this.resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			new XMIWorkspaceException("Cannot save changes to xmi-project-file.", e);
 		}

@@ -1,34 +1,31 @@
 package org.unicase.xmi.views;
 
-
-
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
+import org.eclipse.ui.model.WorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
+import org.unicase.xmi.commands.ImportProjectHandler;
 
 public class ImportProjectDialog extends TitleAreaDialog {
 
 	private Text txtProjectName;
-	private FileDialog projectLocation;
-	private Usersession session;
+	private Text txtProjectLocation;
 
 	/**
 	 * Name of the project that can be set before the dialog is opened.
@@ -36,17 +33,20 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	private String presetName;
 	
 	/**
+	 * The handler calling this dialog.
+	 */
+	private ImportProjectHandler handler;
+	
+	/**
 	 * Default constructor.
 	 * 
 	 * @param parent
 	 *            the parent shell
-	 * @param session
-	 *            the target usersession
 	 */
-	public ImportProjectDialog(Shell parent, Usersession session) {
+	public ImportProjectDialog(Shell parent, ImportProjectHandler handler) {
 		super(parent);
-		this.session = session;
 		presetName = "";
+		this.handler = handler;
 	}
 
 	/**
@@ -66,15 +66,74 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		txtProjectName.setSize(150, 20);
 		if(presetName != "") txtProjectName.setText(presetName);
 		
-		projectLocation = new FileDialog(super.getParentShell(), SWT.OPEN);
-		//projectLocation.setFilterPath(Platform.getLocation().toOSString());
-		projectLocation.setFilterNames(new String[] {"XMI Project Resources (*.ucw)",
-			"XML Model Resources (*.xml)",
-			"XMI Model Resources (*.xmi)"});
-		projectLocation.setFilterExtensions(new String[] {"*.ucw", "*.xml", "*.xmi"});
+		// Determine Location
+		Label locationLabel = new Label(contents, SWT.NULL);
+		locationLabel.setText("Location:");
+		
+		Composite location = new Composite(contents, SWT.NONE); // create new composite section to fit the 3 fields as it would be one
+		location.setLayout(new FillLayout());
+		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); // add text-field
+		txtProjectLocation.setSize(140, 20);
+		Button browseButton = new Button(location, SWT.NONE); // add browse-button
+		browseButton.setText("Browse Filesystem...");
+		Button wsButton = new Button(location, SWT.NONE); // add browse-workspace-button
+		wsButton.setText("Browse Workspace...");
+		
+		// open the "select directory"-dialog when you click on "Browse Filesystem..."
+		final Shell shell = super.getParentShell();
+		browseButton.addSelectionListener(new SelectionListener() {
+
+			FileDialog projectLocation = new FileDialog(shell, SWT.OPEN);
+			String path = Platform.getLocation().toOSString();
+		
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+				projectLocation.setFilterNames(new String[] {"XMI Project Resources (*.ucw)",
+					"XML Model Resources (*.xml)",
+					"XMI Model Resources (*.xmi)"});
+				projectLocation.setFilterExtensions(new String[] {"*.ucw", "*.xml", "*.xmi"});
+				
+				path = projectLocation.open();
+				if(path == null) {
+					path = Platform.getLocation().toOSString();
+					
+					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
+						path += "/" + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
+					}
+					else {
+						path += "/" + txtProjectName.getText() + ".ucw";
+					}
+				}
+				txtProjectLocation.setText(path);
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+			
+		});
+		
+		// open the "select something from workspace"-dialog when you click on "Browse Workspace..."
+		wsButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
+				workspaceDialog.setAllowMultiple(false);
+				workspaceDialog.setTitle("select a project file");
+				workspaceDialog.setMessage("Please select an XMI file with project contents.");
+				workspaceDialog.loadContents();
+				workspaceDialog.open();
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+			
+		});
+		// END Determine Location
 		
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(3).margins(
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(
 				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
@@ -85,35 +144,8 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				try {
-
-					if (session != null) {
-						new XMIWorkspaceException("Session not known to Workspace-Provider.");
-					} else {						
-						// get ECPWorkspace
-						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-						if(ws instanceof XMIECPWorkspace) {
-							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-							project.setProjectName(txtProjectName.getText());
-							project.setXmiFilePath(projectLocation.open());
-							
-							// add a new XMIFileProject to the workspace
-							((XMIECPWorkspace) ws).addProject(project);
-						}
-						else {
-							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-						}
-					}
-
-				} catch (Exception e) {
-					new XMIWorkspaceException("Could not create new model element.", e);
-				}
-			}
-
-		}.run();
+		handler.setProjectName(txtProjectName.getText());
+		handler.setProjectLocation(txtProjectLocation.getText());
 		close();
 	}
 

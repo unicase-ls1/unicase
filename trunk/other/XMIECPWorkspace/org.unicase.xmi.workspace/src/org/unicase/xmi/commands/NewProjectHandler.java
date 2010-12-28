@@ -16,7 +16,7 @@ public class NewProjectHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI
-			.getWorkbench().getDisplay().getActiveShell(), null);
+			.getWorkbench().getDisplay().getActiveShell());
 
 		dialog.open();
 		
