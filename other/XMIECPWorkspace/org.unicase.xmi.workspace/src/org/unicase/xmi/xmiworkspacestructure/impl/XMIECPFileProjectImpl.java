@@ -191,37 +191,42 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(composedAdapterFactory, commandStack);
 		ResourceSet resourceSetImpl = editingDomain.getResourceSet();
 		
+		/*
+		 * try to load the resources, if it fails (catch-block) simply ask the user what to do
+		 * in case the project is new, you still don't know whether it's imported or not.
+		 */
 		if(!xmiFile.exists()) {
-			// check if the file is contained in a resource, cause then it's not a new project!
-			if(eResource() != null) {
-				// ask what to do
-				DeletedObjectDialog dialog = new DeletedObjectDialog(false, xmiFilePath);
-				switch(dialog.getResult()) {
-					case 1: // remove from workspace
-						workspace.removeProject(this);
-						break;
-					case 2: // import from another location
-						final FileDialog importDialog = new FileDialog(PlatformUI
-							.getWorkbench().getDisplay().getActiveShell());
-						String importPath = importDialog.open();
-						
-						if(importPath != null) {
-							loadResource(resourceSetImpl, URI.createFileURI(importPath));
-						}
-						
-						break;
-					default: // create new file
-						createResource(resourceSetImpl, xmiUri);
-						break;
-				}
-				
+			//TODO implement no-file-handling
+			/*
+			 * It shows the dialog, but it can't do anything, because the project that is currently being
+			 * reinitialized can neither remove itself nor open FileDialog.
+			 * 
+			// ask the user what to do
+			DeletedObjectDialog dialog = new DeletedObjectDialog(false, xmiFilePath);
+			switch(dialog.getResult()) {
+				case 1: // remove from workspace
+					workspace.addFailedProject(this);
+					break;
+				case 2: // import from another location
+					final FileDialog importDialog = new FileDialog(PlatformUI
+						.getWorkbench().getDisplay().getActiveShell());
+					String importPath = importDialog.open();
+					
+					if(importPath != null) {
+						loadResource(resourceSetImpl, URI.createFileURI(importPath));
+					}
+					
+					break;
+				default: // create new file
+					createResource(resourceSetImpl, xmiUri);
+					break;
 			}
-			else {
-				// there is not resource -> it can be assumed this is a new project
-				createResource(resourceSetImpl, xmiUri);
-			}
+			*/
+			createResource(resourceSetImpl, xmiUri);
+			
 		}
 		else {
+			// just load the resource
 			loadResource(resourceSetImpl, xmiUri);
 		}
 	}
@@ -270,7 +275,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			
 			/**
 			 * This method is being called when an object in the model changes,
-			 * it persists the changes instantely to the xmi resource
+			 * it persists the changes instantly to the xmi resource
 			 */
 			@Override
 			public void notifyChanged(Notification notification) {

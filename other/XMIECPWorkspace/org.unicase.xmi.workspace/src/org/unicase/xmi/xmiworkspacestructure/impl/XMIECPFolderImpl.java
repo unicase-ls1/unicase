@@ -348,6 +348,11 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		return getAllModelElements();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject.#getAllModelElementsbyClass(EClass, BasicEList)
+	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
 		EList<EObject> result;
 		
@@ -366,7 +371,6 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		// filter the elements and add them to the result if they fit
 		for(EObject eo: allElements) {
 			if(eo.eClass().equals(clazz)) result.add(eo);
-			//TODO check for subclasses
 		}
 		
 		return result;

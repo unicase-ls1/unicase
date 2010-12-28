@@ -65,7 +65,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		projects = new BasicEList<ECPProject>();
 		folders = new BasicEList<XMIECPProjectContainer>();
 		
-		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw"; //TODO check whether OK
+		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw"; //TODO check whether workspace-path is ok
 		resource = null;
 		
 		buildProjectListener();
@@ -102,6 +102,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		}
 		else {
 			// workspace file does exist and therefore has to be loaded
+			
+			/*
+			 * automatically loads all projects and creates a new resource if file not found
+			 */
 			resource = resourceSetImpl.getResource(xmiUri, true);
 			
 			// try to load the resource
@@ -113,8 +117,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			}
 			
 			// read projects from resource and add them to the projects-list
-			for(EObject project: resource.getContents()) {
+			for(EObject project: resource.getContents()) {				
 				if(project instanceof XMIECPProject) {
+					// project can be added to the workspace
 					((ECPProject) project).setWorkspace(this);
 					project.eAdapters().add(projectListener);
 					projects.add((ECPProject) project);
