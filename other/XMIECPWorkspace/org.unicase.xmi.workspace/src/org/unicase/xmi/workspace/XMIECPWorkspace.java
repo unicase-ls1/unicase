@@ -3,7 +3,7 @@ package org.unicase.xmi.workspace;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -17,16 +17,10 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.views.DeletedObjectDialog;
-import org.unicase.xmi.views.ImportProjectDialog;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
@@ -71,7 +65,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		projects = new BasicEList<ECPProject>();
 		folders = new BasicEList<XMIECPProjectContainer>();
 		
-		workspaceFile = new DefaultWorkspaceLocationProvider().getWorkspaceDirectory() + "xmiworkspace.ucw";
+		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw"; //TODO check whether OK
 		resource = null;
 		
 		buildProjectListener();
@@ -108,7 +102,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		}
 		else {
 			// workspace file does exist and therefore has to be loaded
-			resource = resourceSetImpl.getResource(xmiUri, true); //TODO loads projects automatically and therefore will create file if it doesn't exist.
+			resource = resourceSetImpl.getResource(xmiUri, true);
 			
 			// try to load the resource
 			try {
@@ -121,38 +115,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			// read projects from resource and add them to the projects-list
 			for(EObject project: resource.getContents()) {
 				if(project instanceof XMIECPProject) {
-					//TODO if a file that is referenced to does not exist, ask user what to do
-					String path = ((XMIECPFileProject) project).getXmiFilePath();
-					if(!new File(path).exists()) {
-						// ask user what to do
-						DeletedObjectDialog dialog = new DeletedObjectDialog(false, path);
-						switch(dialog.getResult()) {
-							case 1: // remove project from workspace
-								removeProject((ECPProject) project);
-								break;
-							case 2: // import file
-								ImportProjectDialog importDialog = new ImportProjectDialog(PlatformUI
-									.getWorkbench().getDisplay().getActiveShell(), null);
-								importDialog.setProjectName(((XMIECPProject) project).getProjectName());
-								importDialog.open();
-								removeProject((ECPProject) project);
-								break;
-							default: // new file (same as below); it will create the file itself.
-								((ECPProject) project).setWorkspace(this);
-								project.eAdapters().add(projectListener);
-								projects.add((ECPProject) project);
-								break;
-						}
-					}
-					else {
-						// file exists -> continue...
-						((ECPProject) project).setWorkspace(this);
-						project.eAdapters().add(projectListener);
-						projects.add((ECPProject) project);
-					}
+					((ECPProject) project).setWorkspace(this);
+					project.eAdapters().add(projectListener);
+					projects.add((ECPProject) project);
 				}
 			}
 		}
+		
 	} // END loadProjects()
 	
 	/**
@@ -204,13 +173,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		if (Configuration.getEditingDomain() == null) {
+		if (TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID) == null) {
 			final TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
 			domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
 		}		
-		return Configuration.getEditingDomain();
+		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 	
 	@Override

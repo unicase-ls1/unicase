@@ -19,8 +19,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
@@ -31,7 +29,6 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	private Text txtProjectName;
 	private Text txtProjectDesc;
 	private Text txtProjectLocation;
-	private Usersession session;
 
 	/**
 	 * Default constructor.
@@ -41,9 +38,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 * @param session
 	 *            the target usersession
 	 */
-	public CreateProjectDialog(Shell parent, Usersession session) {
+	public CreateProjectDialog(Shell parent) {
 		super(parent);
-		this.session = session;
 	}
 
 	/**
@@ -72,7 +68,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
 		txtProjectLocation.setSize(140, 20);
 		Button browseButton = new Button(location, SWT.NONE);
-		browseButton.setText("Browse...");
+		browseButton.setText("Browse Filesystem...");
+		Button wsButton = new Button(location, SWT.NONE);
+		wsButton.setText("Browse Workspace...");
+		
 		final Shell shell = super.getParentShell();
 		browseButton.addSelectionListener(new SelectionListener() {
 
@@ -118,36 +117,37 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				try {
-
-					if (session != null) {
-						new XMIWorkspaceException("Session not known to Workspace-Provider.");
-					} else {						
-						// get ECPWorkspace
-						ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-						if(ws instanceof XMIECPWorkspace) {
-							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-							project.setProjectName(txtProjectName.getText());
-							project.setProjectDescription(txtProjectDesc.getText());
-							project.setXmiFilePath(txtProjectLocation.getText());
-							
-							// add a new XMIFileProject to the workspace
-							((XMIECPWorkspace) ws).addProject(project);
-						}
-						else {
-							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-						}
-					}
-
-				} catch (Exception e) {
-					new XMIWorkspaceException("Could not create new model element.", e);
-				}
+		
+		try {						
+			// get ECPWorkspace
+			ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
+			if(ws instanceof XMIECPWorkspace) {
+				XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+				project.setProjectName(txtProjectName.getText());
+				project.setProjectDescription(txtProjectDesc.getText());
+				project.setXmiFilePath(txtProjectLocation.getText());
+				
+				// add a new XMIFileProject to the workspace
+				((XMIECPWorkspace) ws).addProject(project);
+			}
+			else {
+				new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
 			}
 
-		}.run();
+		} catch (Exception e) {
+			new XMIWorkspaceException("Could not create new model element.", e);
+		}
+		
+		/*
+		new ECPCommand(null) {
+			@Override
+			protected void doRun() {
+				
+			}
+
+		}.run(false);
+		*/
+		
 		close();
 	}
 

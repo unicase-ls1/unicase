@@ -46,17 +46,10 @@
       </command>
       <command
             categoryId="org.unicase.ui.navigator.project"
-            defaultHandler="org.unicase.xmi.commands.NewFolderHandler"
-            description="create new folder or import it if it exists"
+            defaultHandler="org.unicase.xmi.commands.ImportFolderHandler"
+            description="import xmi-projects from folder"
             id="org.unicase.xmi.workspace.NewFolder"
             name="NewFolder">
-      </command>
-      <command
-            categoryId="org.unicase.workspace.ui.project"
-            defaultHandler="org.unicase.xmi.commands.DeleteFolderHandler"
-            description="delete folder representation"
-            id="org.unicase.xmi.workspace.deleteFolder"
-            name="deleteFolder">
       </command>
    </extension>
    <extension
@@ -69,24 +62,6 @@
                label="New Project..."
                style="push"
                tooltip="Click here to make love.">
-            <visibleWhen
-                  checkEnabled="false">
-               <or>
-                  <count
-                        value="0">
-                  </count>
-                  <count
-                        value="1">
-                  </count>
-               </or>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.unicase.xmi.workspace.NewFolder"
-               icon="icons/folder-import.png"
-               label="Import/New Folder.."
-               style="push"
-               tooltip="Click here to create love.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -118,11 +93,11 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.unicase.xmi.workspace.deleteProject"
-               icon="icons/delete.png"
-               label="Delete Project..."
+               commandId="org.unicase.xmi.workspace.NewFolder"
+               icon="icons/folder-import.png"
+               label="Import Projects from Folder..."
                style="push"
-               tooltip="Click here to delete love.">
+               tooltip="Click here to import projected love.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -136,9 +111,9 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.unicase.xmi.workspace.deleteFolder"
-               icon="icons/folder-remove.png"
-               label="Delete Folder..."
+               commandId="org.unicase.xmi.workspace.deleteProject"
+               icon="icons/delete.png"
+               label="Delete Project..."
                style="push"
                tooltip="Click here to delete love.">
             <visibleWhen

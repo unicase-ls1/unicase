@@ -4,15 +4,15 @@
 	- Warum werden Projekte im Folder nicht angezeigt?
 
 - Warum wird der Navigator nicht "refreshed"?
+Send an eMail
 
 - Rechtsklick-Menü:
 	- Konsolidierung, Bsp. Delete Project/Folder mit Delete und je nach dem auf was man klickt
-	- New Folder/Project über Eclipse Standard-Dialog
-	- Import Project über Import-Funktion von Eclipse implementieren
+	- New Folder/Project über Eclipse Standard-Dialog (create a feature request)
+	- Import Project über Import-Funktion von Eclipse implementieren (-"-)
 	
 - UML-Diagramm erstellen zur Übersicht!
 	- konnten nicht UML-Editor nehmen, weil keine Packages!
-	
 
 - Warum werden bei "Add new model element" alle Modelle angezeigt?
 
@@ -22,5 +22,38 @@
 	  Bsp. Meldung anzeigen? oder Project aus xmiworkspace.xmi löschen?
 	  -> analog Folder
 	- Wie erstellt man Modelelementinstanzen in einem Folder->Project
-	- Was hat es mit dem "deprected" UnicaseCommand.run() auf sich?
-	 
+	- Was hat es mit dem "deprected" UnicaseCommand.run() auf sich? -> ECPCommand
+
+---
+# 22.12.10
+
+Pointer to Jonas because of a listener to refresh the navigator -> project/workspace listener… -> Markus
+
+Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
+
+Change Design -> Refactor, make the Commands do the work, not the Dialogs!
+
+Folder shouldn’t be shown in the navigator -> the workspace should shortcut it to the projects in the folder
+
+Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
+
+26.12.	Matti	OK	Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
+
+26.12.	Matti	OK	We shouldn’t have dependencies on the workspace package -> remove dependencies (also look for other dependencies that can be removed!) -> Markus
+
+26.12.	Matti	OK	Saving the (workspace-) file to an other place for example where the runtime is…
+
+26.12.	Matti	OK	Use the ecp command instead of unicase command in the dialog
+
+
+--
+Accepted plugins:
+
+(Message extract from Nov 15, 18.35h @ XMI/MemoryLeak Group Channel)
+As your implementation is for emfcp only you can and must Close all   
+Plugins except Navigator Editor ui.Common navigatoreditor Bridge. I   
+hope i didnt forget one.
+
+--
+New Questions:
+- Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement".
