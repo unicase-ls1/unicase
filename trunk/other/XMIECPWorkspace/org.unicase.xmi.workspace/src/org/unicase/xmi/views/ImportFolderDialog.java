@@ -1,16 +1,13 @@
 package org.unicase.xmi.views;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -43,9 +40,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	private ImportFolderHandler handler;
 	
 	/**
-	 * List of resources that can be loaded.
+	 * Holding the projects to load.
 	 */
-	private List<String> loadableFiles;
+	private XmiListViewer listViewer;
 	
 	/**
 	 * Default constructor.
@@ -56,7 +53,6 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	public ImportFolderDialog(Shell parent, ImportFolderHandler handler) {
 		super(parent);
 		this.handler = handler;
-		loadableFiles = new ArrayList<String>();
 	}
 	
 	/**
@@ -82,6 +78,13 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		browseButton.setText("Browse...");
 		final Shell shell = super.getParentShell();
 		
+		// Let the user choose the projects he wants.
+		Label projectsLabel = new Label(contents, SWT.NONE);
+		projectsLabel.setText("Projekte: ");
+		final List<String> loadableFiles = new ArrayList<String>(); // the files that can be loaded as projects
+		
+		listViewer = new XmiListViewer(contents);
+		
 		// add action when button pressed
 		browseButton.addSelectionListener(new SelectionListener() {
 			
@@ -98,11 +101,11 @@ public class ImportFolderDialog extends TitleAreaDialog {
 				txtFolderLocation.setText(path);
 				
 				// try to load contents
+				tryLoadingProjects(path);
 				
-				try {
-					tryLoadingProjects(path);
-				} catch (PackageNotFoundException e1) { //TODO catching this exception does not work!
-					// ignore unknown packages
+				// add projects to viewer
+				for(String s: loadableFiles) {
+					listViewer.add(s);
 				}
 			}
 
@@ -112,7 +115,7 @@ public class ImportFolderDialog extends TitleAreaDialog {
 			 * resource to a global list of loadable paths. 
 			 * @param path Folder path containing the resources.
 			 */
-			private void tryLoadingProjects(String path) throws PackageNotFoundException {
+			private void tryLoadingProjects(String path) {
 				File dir = new File(path);
 				ResourceSet resourceSet = new ResourceSetImpl();
 				
@@ -122,13 +125,13 @@ public class ImportFolderDialog extends TitleAreaDialog {
 					// Go through all files of the directory and try to load them
 					for(File f: files) {
 						String fullPath = f.getAbsolutePath();
-						Resource res = resourceSet.getResource(URI.createFileURI(fullPath), true);
+						
 						try {
-							res.load(Collections.EMPTY_MAP); // loading
+							resourceSet.getResource(URI.createFileURI(fullPath), true);
 							loadableFiles.add(fullPath); // adding to list
 						}
-						catch(Exception e) {
-							// do nothing -> ignore
+						catch(WrappedException e) {
+							// ignore
 						}
 					}
 				}
@@ -142,12 +145,6 @@ public class ImportFolderDialog extends TitleAreaDialog {
 			}
 			
 		});
-		browseButton.setEnabled(true);
-		
-		//TODO display available projects in a new widget
-		/*
-		 * Let the user choose the projects he wants.
-		 */
 
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(
@@ -160,9 +157,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void okPressed() {
+	public void okPressed() {		
 		// give the handler a list of project paths	
-		handler.addLoadableFiles(loadableFiles);
+		handler.addLoadableFiles(listViewer.listGetSelection());
 		close();
 	}
 
