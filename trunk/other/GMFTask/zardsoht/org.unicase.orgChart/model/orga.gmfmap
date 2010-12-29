@@ -20,7 +20,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="orga.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="orga.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="orga.gmfgraph#Employee"/>
     </ownedChild>
@@ -40,7 +40,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="orga.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="orga.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="orga.gmfgraph#Team"/>
     </ownedChild>
@@ -48,7 +48,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="orga.gmftool#//@palette/@tools.0/@tools.0"/>
+        href="orga.gmftool#//@palette/@tools.0/@tools.1"/>
     <diagramLink
         href="orga.gmfgraph#TeamHasOrgUnit"/>
     <linkMetaFeature
