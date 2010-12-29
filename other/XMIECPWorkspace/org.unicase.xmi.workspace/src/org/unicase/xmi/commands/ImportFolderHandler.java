@@ -48,6 +48,7 @@ public class ImportFolderHandler extends AbstractHandler {
 							if(ws instanceof XMIECPWorkspace && ws != null) {
 								XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject(); // create the project blank
 								project.setProjectName(projectName); // set name
+								project.setProjectDescription("Imported Project"); // set description
 								project.setXmiFilePath(projectLocation); // initialize it when setting the file
 								
 								// add a new XMIFileProject to the workspace
