@@ -2,7 +2,8 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" templateDirectory="/org.unicase.model/model/gmf/templates/codegen/">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" dynamicTemplates="true"
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
   <diagram
       visualID="1000"
       editPartClassName="OrgDiagramEditPart"
@@ -135,17 +136,17 @@
             xsi:type="gmfgen:ToolEntry"
             title="Team"
             description="Create new Team"
-            genNodes="//@diagram/@topLevelNodes.0"
-            genLinks="//@diagram/@links.0"/>
+            genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="TeamHasOrgUnit"
             description="Create new TeamHasOrgUnit"
-            genNodes="//@diagram/@topLevelNodes.1"/>
+            genLinks="//@diagram/@links.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Employee"
-            description="Create new Employee"/>
+            description="Create new Employee"
+            genNodes="//@diagram/@topLevelNodes.0"/>
       </groups>
     </palette>
     <preferencePages
