@@ -17,29 +17,27 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
+import org.unicase.xmi.commands.NewProjectHandler;
 
 public class CreateProjectDialog extends TitleAreaDialog {
 	
 	private Text txtProjectName;
 	private Text txtProjectDesc;
 	private Text txtProjectLocation;
+	
+	private NewProjectHandler handler;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param parent
 	 *            the parent shell
-	 * @param session
-	 *            the target usersession
+	 * @param handler
+	 *            the NewProjectHandler calling this dialog
 	 */
-	public CreateProjectDialog(Shell parent) {
+	public CreateProjectDialog(Shell parent, NewProjectHandler handler) {
 		super(parent);
+		this.handler = handler;
 	}
 
 	/**
@@ -117,37 +115,9 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		
-		try {						
-			// get ECPWorkspace
-			ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-			if(ws instanceof XMIECPWorkspace) {
-				XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-				project.setProjectName(txtProjectName.getText());
-				project.setProjectDescription(txtProjectDesc.getText());
-				project.setXmiFilePath(txtProjectLocation.getText());
-				
-				// add a new XMIFileProject to the workspace
-				((XMIECPWorkspace) ws).addProject(project);
-			}
-			else {
-				new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-			}
-
-		} catch (Exception e) {
-			new XMIWorkspaceException("Could not create new model element.", e);
-		}
-		
-		/*
-		new ECPCommand(null) {
-			@Override
-			protected void doRun() {
-				
-			}
-
-		}.run(false);
-		*/
-		
+		handler.setProjectName(txtProjectName.getText());
+		handler.setProjectDescription(txtProjectDesc.getText());
+		handler.setProjectLocation(txtProjectLocation.getText());
 		close();
 	}
 
