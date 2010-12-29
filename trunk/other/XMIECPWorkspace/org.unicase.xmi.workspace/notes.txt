@@ -31,7 +31,7 @@ Pointer to Jonas because of a listener to refresh the navigator -> project/works
 
 29.12.	Matti	Consolidate Delete	Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
 
-Change Design -> Refactor, make the Commands do the work, not the Dialogs!
+29.12.	Matti	OK	Change Design -> Refactor, make the Commands do the work, not the Dialogs!
 
 29.12.	Matti	OK	Folder shouldn’t be shown in the navigator -> the workspace should shortcut it to the projects in the folder
 
@@ -45,6 +45,7 @@ Import dialog: there might be a dialog in eclipse to shortcut to the workspace (
 
 26.12.	Matti	OK	Use the ecp command instead of unicase command in the dialog
 
+29.12.	Matti	OK	Remove DeleteFolderHandler
 
 --
 # Accepted plugins:
@@ -55,8 +56,8 @@ Plugins except Navigator Editor ui.Common navigatoreditor Bridge. I
 hope i didnt forget one.
 
 --
-# New Questions:
+# New Questions: (committed to unicase-labcourse on Dec 29, 2010)
 - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
 - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
 - What method is called on which object when you press "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
-- Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?!
+- Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
