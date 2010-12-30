@@ -6,7 +6,11 @@
 package org.unicase.ui.urml.reviewview;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -29,6 +33,7 @@ public class ReviewViewContentFactory {
 
 	private Composite editorComposite;
 	private List<IDisposable> controls = new ArrayList<IDisposable>();
+	private Set<String> shownProperties = new HashSet<String>();
 
 	/**
 	 * The constructor.
@@ -38,7 +43,10 @@ public class ReviewViewContentFactory {
 
 	public ReviewViewContentFactory(Composite editorComposite) {
 		this.editorComposite = editorComposite;
+		
+		shownProperties.addAll(Arrays.asList("Name","Description","Mitigated Dangers","Reviewed", "Mitigations"));
 	}
+
 
 	/**
 	 * Creates the controllers which can show the properties of the urml element.
@@ -57,14 +65,12 @@ public class ReviewViewContentFactory {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 			.getPropertyDescriptors(urmlElement);
-		for (int i = 0; i < propertyDescriptors.size(); i++){
-			System.out.println(propertyDescriptors.get(i).getDisplayName(urmlElement));
-		}
-		
-
 		DisplayControlFactory displayControlFactory = new DisplayControlFactory();
-
 		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+			
+			if(!shownProperties.contains(itemPropertyDescriptor.getDisplayName(urmlElement))){
+				continue;
+			}
 			AbstractControlBuilder abstractDisplayControl = displayControlFactory.createDisplayControl(
 				itemPropertyDescriptor, urmlElement);
 			if (abstractDisplayControl == null) {
@@ -73,13 +79,6 @@ public class ReviewViewContentFactory {
 
 			String labelText = itemPropertyDescriptor.getDisplayName(itemPropertyDescriptor);
 
-			// TODO use sets for the specific element
-//			if (labelText.equals("Terminal") || labelText.equals("Creator")) {
-//				continue;
-//			}
-			if (!(labelText.equals("Mitigated Dangers")||labelText.equals("Name") ||labelText.equals("Description")|| labelText.equals("Reviewed"))) {
-				continue;
-			}
 			boolean showLabel = abstractDisplayControl.getShowLabel();
 			
 			if(showLabel){

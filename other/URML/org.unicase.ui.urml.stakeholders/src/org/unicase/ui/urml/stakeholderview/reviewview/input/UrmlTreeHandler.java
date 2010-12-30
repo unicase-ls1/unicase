@@ -8,6 +8,7 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeNode;
@@ -15,7 +16,8 @@ import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.model.urml.goal.GoalPackage;
+import org.unicase.model.urml.danger.DangerPackage;
+import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.model.urml.requirement.RequirementPackage;
 
 
@@ -29,6 +31,9 @@ import org.unicase.model.urml.requirement.RequirementPackage;
  */
 
  public final class UrmlTreeHandler {
+	 
+	 private static Collection<Requirement> newList = new ArrayList<Requirement>();
+	 
 
 	//TODO generic method - select some certain project
 	//test with the first project
@@ -50,11 +55,21 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 	 * @param project 
 	 * @return the basic list
 	 */
-	public static Collection<EObject> getRequirementsAndGoalsfromProject(ECPProject project){
-		Collection<EObject> basicList = project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
+	public static Collection<Requirement> getRequirementsFromProject(ECPProject project){
+	//	Collection<EObject> basicList = project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
 		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<EObject>());
-		basicList.addAll(basicListReq);
-		return basicList;
+		Collection<EObject> basicListNonReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getNonFunctionalRequirement(), new BasicEList<EObject>());
+		//basicList.addAll(basicListReq);
+		//return basicList;
+		basicListReq.addAll(basicListNonReq);
+		
+		
+	//	newList.addAll(basicListReq);
+		for (EObject a : basicListReq){
+			newList.add((Requirement) a);
+		}
+		
+		return newList;
 	}
 	
 	/**
@@ -62,11 +77,12 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 	 * @param project .
 	 * @return the list
 	 */
-	public static Collection<UrmlModelElement> getRequirementsfromProjects(ECPProject project){
+	public static Collection<UrmlModelElement> getStakeholderSetfromProjects(ECPProject project){
 		//	project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
 			//return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
-
+		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(), new BasicEList<EObject>());
 			Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<EObject>());
+			basicListReq.addAll(dangerListReq);
 			List<UrmlModelElement> list = new ArrayList<UrmlModelElement>();
 			for(EObject u:basicListReq){
 				list.add((UrmlModelElement) u);
@@ -79,7 +95,7 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 	 * @param collection .
 	 * @return the result tree
 	 */
-	public static TreeNode[] createTree(Collection<EObject> collection){
+	public static TreeNode[] createTree(Collection<Requirement> collection){
 		TreeNode[] result = new TreeNode[collection.size()];
 		int i = 0;
 		

@@ -19,13 +19,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.commands">
-      <command
-            id="Stakeholders.command1"
-            name="name">
-      </command>
-   </extension>
-   <extension
          point="org.unicase.stakeholders.displaycontrols">
       <widget
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.SingleLineControl"
@@ -58,6 +51,14 @@
             class="org.unicase.ui.urml.stakeholderview.roles.SafetyEngineerRole"
             name="Safety Engineer">
       </role>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.unicase.ui.urml.stakeholders.TestPreferencePage"
+            id="org.unicase.ui.urml.stakeholders.TestPreferencePage"
+            name="TestPreferencePage">
+      </page>
    </extension>
 
 </plugin>
