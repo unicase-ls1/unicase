@@ -50,6 +50,7 @@ public class ReviewView extends ViewPart {
 	private IndexHandling indexHandler;
 	private ILabelProvider reviewViewLabelProvider;
 	private TableViewerColumn viewerNameColumn;
+	//private ScrolledComposite ;
 	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, dangerComposite;
 	private Sash sash;
 	private ReviewViewContentFactory contentFactory;
@@ -79,8 +80,9 @@ public class ReviewView extends ViewPart {
 		//Test code for filling the view with elements. To be replaced later
 		try {
 			indexHandler.setInput(UrmlTreeHandler
-					.getRequirementsfromProjects(UrmlTreeHandler
+					.getStakeholderSetfromProjects(UrmlTreeHandler
 							.getTestProject()));
+			//later getStakeholderElementSet(stakeholder);
 		} catch (NoWorkspaceException e1) {
 			e1.printStackTrace();
 		}
@@ -118,7 +120,6 @@ public class ReviewView extends ViewPart {
 		GridLayout gridLay = new GridLayout(1, false);
 		rightComposite.setLayout(gridLay);
 		
-		//Create button composite
 		navigatorComposite = new Composite(rightComposite, SWT.NONE);
 		GridLayout navigatorLayout = new GridLayout(2, false);
 		navigatorComposite.setLayout(navigatorLayout);
@@ -127,6 +128,7 @@ public class ReviewView extends ViewPart {
 		navigatorComposite.setLayoutData(navigatorCompositeLayoutData);
 		navigatorComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		
+		//Create button composite
 		buttonComposite = new Composite(navigatorComposite, SWT.NONE);
 		GridLayout buttonLayout = new GridLayout(2, true);
 		buttonComposite.setLayout(buttonLayout);

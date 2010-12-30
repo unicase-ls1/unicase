@@ -25,7 +25,7 @@ public final class TestTree {
 	 * @throws NoWorkspaceException .
 	 */
 	public static TreeNode[] createTestTree() throws NoWorkspaceException{		
-		return UrmlTreeHandler.createTree(UrmlTreeHandler.getRequirementsAndGoalsfromProject(UrmlTreeHandler.getTestProject()));
+		return UrmlTreeHandler.createTree(UrmlTreeHandler.getRequirementsFromProject(UrmlTreeHandler.getTestProject()));
 	}
 	
 	/**
