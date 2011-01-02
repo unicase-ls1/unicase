@@ -89,8 +89,7 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="workItemsToReview" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/reviewer"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workItemsToReview" upperBound="-1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" abstract="true" eSuperTypes="#//UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="acOrgId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -101,15 +100,13 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/assignee">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="11.0"/>
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="participations" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/participants"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participations" upperBound="-1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//organization/OrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="orgUnits" upperBound="-1"
@@ -122,7 +119,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
-    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable">
+    <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="17.0"/>
@@ -136,9 +133,9 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage" eSuperTypes="#//task/WorkItem">
+    <eClassifiers xsi:type="ecore:EClass" name="WorkPackage">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" containment="true" eOpposite="#//task/WorkItem/containingWorkpackage">
+          containment="true">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="20.0"/>
           <details key="position" value="right"/>
@@ -157,88 +154,7 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkItem" abstract="true" interface="true"
-        eSuperTypes="#//Annotation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containingWorkpackage"
-          eType="#//task/WorkPackage" eOpposite="#//task/WorkPackage/containedWorkItems">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="10.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="predecessors" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/successors">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="11.0"/>
-          <details key="position" value="right"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="successors" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/predecessors">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="12.0"/>
-          <details key="position" value="right"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" eType="#//organization/OrgUnit"
-          eOpposite="#//organization/OrgUnit/assignments">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <eAnnotations source="org.unicase.ui.meeditor">
-            <details key="priority" value="10.0"/>
-            <details key="position" value="right"/>
-          </eAnnotations>
-          <details key="priority" value="11.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="reviewer" eType="#//organization/User"
-          eOpposite="#//organization/User/workItemsToReview">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="12.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
-          eType="#//organization/OrgUnit" eOpposite="#//organization/OrgUnit/participations">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="10.0"/>
-          <details key="position" value="right"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="12.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="18.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="19.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="12.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="13.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="includingReleases" upperBound="-1"
-          eType="#//release/Release" eOpposite="#//release/Release/includedWorkItems"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//task/WorkItem">
+    <eClassifiers xsi:type="ecore:EClass" name="Milestone">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
           upperBound="-1" eType="#//UnicaseModelElement">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -995,7 +911,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="rationale" nsURI="http://unicase.org/model/rationale" nsPrefix="org.unicase.model.rationale">
-    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation #//task/Checkable #//task/WorkItem">
+    <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposals" upperBound="-1"
           eType="#//rationale/Proposal" containment="true" eOpposite="#//rationale/Proposal/issue">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -1111,7 +1027,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
-    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
+    <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="9.5"/>
@@ -1272,8 +1188,7 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkItemMeetingSection" eSuperTypes="#//meeting/MeetingSection">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="10.0"/>
           <details key="position" value="right"/>
@@ -1449,8 +1364,7 @@
           eOpposite="#//release/Release/predecessor"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="appliedPatches" upperBound="-1"
           eType="#//attachment/PatchAttachment" eOpposite="#//attachment/PatchAttachment/appliedTo"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/includingReleases"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceCodeRepositoryRevision"
           eType="#//release/SourceCodeRepositoryRevision"/>
     </eClassifiers>
