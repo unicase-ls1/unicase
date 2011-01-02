@@ -32,7 +32,6 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 
  public final class UrmlTreeHandler {
 	 
-	 private static Collection<Requirement> newList = new ArrayList<Requirement>();
 	 
 
 	//TODO generic method - select some certain project
@@ -56,15 +55,8 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 	 * @return the basic list
 	 */
 	public static Collection<Requirement> getRequirementsFromProject(ECPProject project){
-	//	Collection<EObject> basicList = project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
-		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<EObject>());
-		Collection<EObject> basicListNonReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getNonFunctionalRequirement(), new BasicEList<EObject>());
-		//basicList.addAll(basicListReq);
-		//return basicList;
-		basicListReq.addAll(basicListNonReq);
-		
-		
-	//	newList.addAll(basicListReq);
+		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getRequirement(), new BasicEList<EObject>());
+		Collection<Requirement> newList = new ArrayList<Requirement>();
 		for (EObject a : basicListReq){
 			newList.add((Requirement) a);
 		}

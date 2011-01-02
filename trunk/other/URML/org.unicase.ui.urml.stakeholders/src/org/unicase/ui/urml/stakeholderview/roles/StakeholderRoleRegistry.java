@@ -7,6 +7,9 @@
 package org.unicase.ui.urml.stakeholderview.roles;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
@@ -14,38 +17,52 @@ import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Registry class for the stakeholder roles.
+ * 
  * @author kterzieva
- *
  */
 public class StakeholderRoleRegistry {
 
+	private static final String PARAM_REGISTERED_ROLES = "registeredRoles";
 	private static final String PARAM_ALREADY_CREATED = "already created";
 	private static final String PREFERENCE_REGISTRY_ID = null;
-	private PreferenceList roleList;
-	private Preferences preferences;
+	private PreferenceList registeredRoleNode;
+	private Preferences preferencesTree;
+	private HashMap<String, RoleDataAccessObject> roleStore;
 
 	/**
-	 * The construct. 
+	 * The construct.
 	 */
 	public StakeholderRoleRegistry() {
-		preferences = new ConfigurationScope().getNode(PREFERENCE_REGISTRY_ID);
-		if (!preferences.getBoolean(PARAM_ALREADY_CREATED, false)) {
+		preferencesTree = new ConfigurationScope().getNode(PREFERENCE_REGISTRY_ID);
+		if (!preferencesTree.getBoolean(PARAM_ALREADY_CREATED, false)) {
 			createDefautRoles();
 		}
-		roleList = new PreferenceList(preferences.node("registeredRoles"));
+		registeredRoleNode = new PreferenceList(preferencesTree.node(PARAM_REGISTERED_ROLES));
+		List<String> registeredRoleList = registeredRoleNode.getList();
+		for (String role : registeredRoleList) {
+			PreferenceBackedRole roleData = new PreferenceBackedRole(role);
+			roleData.load();
+			roleData.save();
+			if (roleStore.isEmpty()) {
+				roleStore = new HashMap<String, RoleDataAccessObject>();
+				roleStore.put(role, roleData);
+			} else {
+				roleStore.put(role, roleData);
+			}
+
+		}
 		// mit getList Rolenliste auslesen und für jede backedRole erstellen und load aufrufen
 		// und speichern HahsMap<Name,RoleDataAccessObject>
 	}
 
 	private void createDefautRoles() {
-
 		RoleDataAccessObject safetyEngineer = addRole("Safety Engineer");
 		safetyEngineer.setName("Safety Engineer");
-		safetyEngineer.setReviewSet(Arrays.asList("Danger","Requirement"));
+		safetyEngineer.setReviewSet(Arrays.asList("Danger", "Requirement"));
 		safetyEngineer.save();
-		preferences.putBoolean(PARAM_ALREADY_CREATED, true);
+		preferencesTree.putBoolean(PARAM_ALREADY_CREATED, true);
 		try {
-			preferences.flush();
+			preferencesTree.flush();
 		} catch (BackingStoreException e) {
 			ModelUtil.logException(e);
 		}
@@ -53,13 +70,14 @@ public class StakeholderRoleRegistry {
 
 	/**
 	 * Adds new role to the role list.
+	 * 
 	 * @param roleId the role id
 	 * @return .
 	 */
 	public PreferenceBackedRole addRole(String roleId) {
-		roleList.add(roleId);
+		registeredRoleNode.add(roleId);
 		try {
-			roleList.flush();
+			registeredRoleNode.flush();
 		} catch (BackingStoreException e) {
 			ModelUtil.logException(e);
 		}
@@ -68,12 +86,13 @@ public class StakeholderRoleRegistry {
 
 	/**
 	 * Gets the role.
+	 * 
 	 * @param roleId the role id
 	 */
 	public void getRole(String roleId) {
-		roleList.add(roleId);
+		registeredRoleNode.add(roleId);
 		try {
-			roleList.flush();
+			registeredRoleNode.flush();
 		} catch (BackingStoreException e) {
 			ModelUtil.logException(e);
 

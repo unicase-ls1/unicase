@@ -15,9 +15,9 @@ import java.util.List;
 public abstract class RoleDataAccessObject {
 
 	private String name;
+	private final String roleId;
 	private List<String> reviewSet;
 	private List<String> filterSet;
-	private final String roleId;
 
 	/**
 	 * The construct.
@@ -76,18 +76,7 @@ public abstract class RoleDataAccessObject {
 	public void setFilterSet(List<String> filterSet) {
 		this.filterSet = filterSet;
 	}
-
-	/**
-	 * Loads the data for a role.
-	 */
 	
-	public abstract void load();
-	
-	/**
-	 * Saves the data for a role.
-	 */
-	public abstract void save();
-
 	/**
 	 * Gets the role.
 	 * @return roleId the role
@@ -95,4 +84,16 @@ public abstract class RoleDataAccessObject {
 	public String getRoleId() {
 		return roleId;
 	}
+
+	/**
+	 * Loads the data for a role.
+	 */
+	public abstract void load();
+	
+	/**
+	 * Saves the data for a role.
+	 */
+	public abstract void save();
+
+	
 }
