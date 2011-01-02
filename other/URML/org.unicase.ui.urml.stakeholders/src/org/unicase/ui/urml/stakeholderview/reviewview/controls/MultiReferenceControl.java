@@ -40,14 +40,14 @@ import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
 public class MultiReferenceControl extends AbstractControlBuilder {
 
 	private FormToolkit toolKit;
-	
+
 	/**
-	 *  Rebuilds the links.
+	 * Rebuilds the links.
 	 * 
 	 * @author kterzieva
-	 */	
+	 */
 	private final class RebuildLinksCommand extends ECPCommand {
-		
+
 		private final int sizeLimit;
 
 		public RebuildLinksCommand(EObject modelElement, int sizeLimit) {
@@ -69,7 +69,7 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 
 					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL | SWT.H_SCROLL);
 					scrollPane.setBackgroundMode(SWT.INHERIT_FORCE);
-					
+
 					scrollClient = new Composite(scrollPane, style);
 					scrollPane.setContent(scrollClient);
 					toolKit.getColors().createColor("white", 255, 255, 255);
@@ -86,13 +86,14 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 					scrollPane.setMinSize(150, 150);
 				}
 				for (EObject object : referenceList) {
-					MELinkControl meLinkControl = new MELinkControl(){
+					MELinkControl meLinkControl = new MELinkControl() {
 						@Override
-						protected void createDeleteAction(int style) {}
+						protected void createDeleteAction(int style) {
+						}
 					};
 					meLinkControl.createControl((referenceList.size() <= sizeLimit ? linkArea : scrollClient), style,
 						getItemPropertyDescriptor(), object, getModelElement(), toolKit, getContext());
-								
+
 					linkControls.add(meLinkControl);
 				}
 				if (scrollPane != null && !scrollPane.isDisposed()) {
@@ -109,7 +110,7 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 			}
 		}
 	}
-	
+
 	private EReference eReference;
 
 	private int style;
@@ -127,7 +128,6 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 	private GridLayout tableLayout;
 
 	private Composite scrollClient;
-
 
 	private static final int PRIORITY = 1;
 
@@ -171,7 +171,7 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 			public void onChange(Notification notification) {
 				if ((notification.getEventType() != Notification.RESOLVE)
 					&& (notification.getFeature().equals(feature))) {
-					//rebuildLinkSection();
+					// rebuildLinkSection();
 				}
 
 			}
@@ -188,7 +188,6 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 		rebuildLinkSection();
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(section);
 		section.setClient(composite);
-		
 
 		return section;
 	}
@@ -212,7 +211,6 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 		// JH: TransactionUtil.getEditingDomain(modelElement);
 		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
 	}
-
 
 	/**
 	 * {@inheritDoc}

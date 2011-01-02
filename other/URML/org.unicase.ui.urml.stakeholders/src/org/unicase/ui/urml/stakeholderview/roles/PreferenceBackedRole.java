@@ -10,7 +10,7 @@ import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
 /**
- * Class for storing the role information through preference tree.
+ * Class for storing the role information through preferences tree.
  * 
  * @author kterzieva
  */
@@ -20,27 +20,29 @@ public class PreferenceBackedRole extends RoleDataAccessObject {
 	private static final String PREFERENCE_FOLDER_ID = "org.unicase.ui.urml.stakeholderview.test";
 	private static final String PARAM_REVIEW_SET = "reviewSet";
 	private static final String PARAM_NAME = "name";
+	private Preferences preferencesTree, roleNode;
 
 	/**
 	 * The construct.
-	 * 
 	 * @param roleId the role name
 	 */
 	public PreferenceBackedRole(String roleId) {
 		super(roleId);
+		preferencesTree = new ConfigurationScope().getNode(PREFERENCE_FOLDER_ID);
+		roleNode = preferencesTree.node(getRoleId());
 	}
 
 	@Override
 	public void load() {
-		Preferences preferences = new ConfigurationScope().getNode(PREFERENCE_FOLDER_ID);
+		Preferences preferencesTree = new ConfigurationScope().getNode(PREFERENCE_FOLDER_ID);
 		try {
-			if (!preferences.nodeExists(getRoleId())) {
+			if (!preferencesTree.nodeExists(getRoleId())) {
 				throw new RuntimeException("Role '" + getRoleId() + "' does not exist");
 			}
-			Preferences role = preferences.node(getRoleId());
+		//	roleNode = preferencesTree.node(getRoleId());
 
-			setName(role.get(PARAM_NAME, NAME_DEFAULT));
-			Preferences reviewSetNode = role.node(PARAM_REVIEW_SET);
+			setName(roleNode.get(PARAM_NAME, NAME_DEFAULT));
+			Preferences reviewSetNode = roleNode.node(PARAM_REVIEW_SET);
 			setReviewSet(new PreferenceList(reviewSetNode).getList());
 
 		} catch (BackingStoreException e) {
@@ -50,13 +52,15 @@ public class PreferenceBackedRole extends RoleDataAccessObject {
 
 	@Override
 	public void save() {
-		Preferences preferences = new ConfigurationScope().getNode(PREFERENCE_FOLDER_ID);
-		Preferences role = preferences.node(getRoleId());
-		role.put(PARAM_NAME, getName());
-		Preferences reviewSetNode = role.node(PARAM_REVIEW_SET);
+//		Preferences preferencesTree = new ConfigurationScope().getNode(PREFERENCE_FOLDER_ID);
+//		roleNode = preferencesTree.node(getRoleId());
+		
+		roleNode.put(PARAM_NAME, getName());
+		//funktion getNode(node){} 
+		Preferences reviewSetNode = roleNode.node(PARAM_REVIEW_SET);
 		new PreferenceList(reviewSetNode).setList(getReviewSet());
 		try {
-			preferences.flush();
+			preferencesTree.flush();
 		} catch (BackingStoreException e) {
 			throw new RuntimeException(e);
 		}

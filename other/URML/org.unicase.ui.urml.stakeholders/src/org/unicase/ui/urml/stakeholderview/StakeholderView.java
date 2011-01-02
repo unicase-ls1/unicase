@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.urml.stakeholderview;
 
-import java.util.Collection;
-
+import java.util.Observable;
+import java.util.Observer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -23,7 +23,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 import org.unicase.ui.urml.stakeholderview.roles.StakeholderRegistry;
 import org.unicase.ui.urml.stakeholderview.roles.StakeholderRole;
@@ -34,19 +33,19 @@ import org.unicase.ui.urml.stakeholderview.roles.StakeholderRole;
  * @author kterzieva
  */
 
-public class StakeholderView extends ViewPart {
+public class StakeholderView extends ViewPart implements Observer {
 
 	private static final String STATUS_VIEW_ID = "ReviewView";
 	private IWorkbenchPage page;
-
-//	private TreeViewer treeViewer;
-//	private ILabelProvider labelProvider;
 	private Action openReviewView;
 	private MenuManager createRole;
-//	private int reviewedReq;
-
 	private StakeholderRegistry registry = new StakeholderRegistry();
 	private FilterManager filterManager = new FilterManager();
+	private ECPProject activeProject;
+	private Label unreviewedReqirements;
+
+
+	private Label reviewedReqirements;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -56,14 +55,12 @@ public class StakeholderView extends ViewPart {
 		try {
 			// treeViewer.setInput(TestTree.createTestTree());
 			parent.setLayout(new GridLayout(1, false));
-			Label reviewedReqirements = new Label(parent, SWT.BORDER);
-			reviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-			reviewedReqirements.setText("Reviewed Requirements: " + getReviewedElements());
-			reviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
-			Label unreviewedReqirements = new Label(parent, SWT.BORDER);
-			unreviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-			unreviewedReqirements.setText("Unreviewed Requirements: ");
-			unreviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
+			activeProject = UrmlTreeHandler.getTestProject();
+
+			Activator.getTracker().addObserver(this);
+			reviewedRequirementSetup(parent, activeProject);
+			unreviewedRequirementsSetup(parent, activeProject);
+
 			createAction(UrmlTreeHandler.getTestProject());
 			createFilterAction(UrmlTreeHandler.getTestProject());
 
@@ -73,19 +70,20 @@ public class StakeholderView extends ViewPart {
 
 	}
 
-	private int getReviewedElements() throws NoWorkspaceException {
-		Collection<Requirement> requirements = UrmlTreeHandler.getRequirementsFromProject(UrmlTreeHandler.getTestProject());
-		int reviewed = 0;
-		for (Requirement r : requirements){
-			if (r.isReviewed()){
-				reviewed++;
-			}else{
-				continue;
-			}
-		}
-		return reviewed;
+	private void unreviewedRequirementsSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
+		unreviewedReqirements = new Label(parent, SWT.BORDER);
+		unreviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		unreviewedReqirements.setText("Unreviewed Requirements: "
+			+ Activator.getTracker().getUnreviewedElements());
+		unreviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
 	}
 
+	private void reviewedRequirementSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
+		reviewedReqirements = new Label(parent, SWT.BORDER);
+		reviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		reviewedReqirements.setText("Reviewed Requirements: " + Activator.getTracker().getReviewedElements());
+		reviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
+	}
 
 	// private void setupTreeViewer(Composite parent) {
 	// labelProvider = new TestLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -160,5 +158,13 @@ public class StakeholderView extends ViewPart {
 			a.setToolTipText("Filter to elements that are important for the " + r.getName());
 			createRole.add(a);
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		ReviewedTracker tracker = (ReviewedTracker) o;
+		reviewedReqirements.setText("Reviewed Requirements: " + tracker.getReviewedElements());
+		unreviewedReqirements.setText("Unreviewed Requirements: " + tracker.getUnreviewedElements());
+
 	}
 }

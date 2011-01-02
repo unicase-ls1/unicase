@@ -11,8 +11,8 @@ import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
 /**
- * Wrap class for the preferences tree.
- * @author kami
+ * Wrap class for the preferences tree provides new methods.
+ * @author kterzieva
  *
  */
 public class PreferenceList {
@@ -47,7 +47,7 @@ public class PreferenceList {
 	}
 
 	/**
-	 * Sets the preference list.
+	 * Sets the preferences node to the input list.
 	 * @param input the input
 	 */
 	public  void setList(List<String> input) {
