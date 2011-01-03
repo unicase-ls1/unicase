@@ -21,16 +21,17 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.UseCaseDiagram;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.diagram.UseCaseDiagram} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.diagram.UseCaseDiagram} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UseCaseDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -38,8 +39,8 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,25 +53,26 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This returns UseCaseDiagram.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns UseCaseDiagram.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UseCaseDiagram"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/UseCaseDiagram"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((UseCaseDiagram) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_UseCaseDiagram_type")
-			: getString("_UI_UseCaseDiagram_type") + " " + label;
+				: getString("_UI_UseCaseDiagram_type") + " " + label;
 	}
 
 	/**
@@ -87,34 +89,37 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
 		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
-			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS
-			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
+				|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS
+				|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
