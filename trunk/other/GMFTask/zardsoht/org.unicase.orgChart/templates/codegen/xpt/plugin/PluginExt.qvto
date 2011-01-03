@@ -1,0 +1,6 @@
+library PluginExt;
+
+query removeSquareBrackets(s1 : String) : String {
+	return s1.replace("[", "").replace("]", "");
+}
+
