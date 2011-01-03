@@ -124,15 +124,10 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 	 * end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM);
-			childrenFeatures
-					.add(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS);
+			childrenFeatures.add(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -192,6 +187,9 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
+			return;
+		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
