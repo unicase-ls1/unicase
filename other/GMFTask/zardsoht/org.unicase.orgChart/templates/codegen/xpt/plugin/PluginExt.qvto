@@ -1,6 +1,40 @@
+import gmf.EMFUtils;
+import xpt.StringOperations;
+
+modeltype genmodel uses "http://www.eclipse.org/emf/2002/GenModel";
+modeltype ecore uses "http://www.eclipse.org/emf/2002/Ecore";
+	
+
 library PluginExt;
+
+--query removeSquareBrackets(s1 : Sequence(String)) : String {
+--	return s1->at(0).replace("[", "").replace("]", "");
+--}
+
 
 query removeSquareBrackets(s1 : String) : String {
 	return s1.replace("[", "").replace("]", "");
+}
+
+helper getEcorePackageName(genPackage : genmodel::GenPackage) : EString {
+	
+--	return genPackage.ecorePackage.nsPrefix.oclAsType(ecore::EString);
+--	return genPackage.ecorePackage.nsPrefix;
+	return genPackage.ecorePackage.name;
+	
+}
+
+helper echo(s1 : Sequence(EString)) : String {
+	
+	--return s1->at(0).substring(0, s1->at(0).length());
+	return 10.oclAsType(String);
+	
+}
+
+
+helper echoFirst(s1 : Sequence(EString)) : String {
+	
+	return s1->at(0);
+	
 }
 

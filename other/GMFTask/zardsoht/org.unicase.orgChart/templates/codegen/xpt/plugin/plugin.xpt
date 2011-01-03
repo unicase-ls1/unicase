@@ -61,8 +61,13 @@
 	            namespace="org.unicase.orga"
              	namespace="«removeSquareBrackets("[aaaaaaaa]")»" // results in: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15d438e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1fe38f3 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))" 
              	namespace="«editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix»"  // results in: [org.unicase.orga]
+             	namespace=«removeSquareBrackets(editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix)»
              «ENDREM»
-             namespace=«removeSquareBrackets("[aaaaaaaa]")»
+             test=«removeSquareBrackets("[aaaaaaa]")»
+             test2=«echo(editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix)»
+             test3=«echoFirst(editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix)»
+             test4=«editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix->at(0)»
+             namespace=«getEcorePackageName(editorGen.domainGenModel.genPackages->at(0))»
              properties="isDiagramType"
              type="org.eclipse.emf.ecore.EObject">
         </propertyTester>
