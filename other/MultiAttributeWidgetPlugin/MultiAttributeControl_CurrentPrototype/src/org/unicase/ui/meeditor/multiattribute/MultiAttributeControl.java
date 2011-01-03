@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.ETypedElementImpl;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -60,8 +60,8 @@ public abstract class MultiAttributeControl extends AbstractMEControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 
-		if (feature instanceof ETypedElementImpl) {
-			ETypedElementImpl attr = (ETypedElementImpl) feature;
+		if (feature instanceof ETypedElement) {
+			ETypedElement attr = (ETypedElement) feature;
 			upperBound = attr.getUpperBound();
 			if (upperBound == -1 || upperBound > 1) {
 				return PRIORITY;
