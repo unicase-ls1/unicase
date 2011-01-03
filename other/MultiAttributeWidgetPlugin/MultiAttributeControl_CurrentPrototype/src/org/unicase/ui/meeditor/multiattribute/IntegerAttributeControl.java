@@ -8,7 +8,6 @@ package org.unicase.ui.meeditor.multiattribute;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Spinner;
 
@@ -157,52 +156,28 @@ class IntegerAttributeControl extends AttributeControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
-		if (e.getSource().equals(getButton())) {
-			if (getIndex() == -1) {
-				// add instead of delete
-
-				// duplicate handling
-				if (!getParentItem().isAllowDuplicates()) {
-					while (dataManipulator.contains(value)) {
-						value++;
-					}
-				}
-				// end of duplicate handling
-				// automatically added then (ModifyListener!)
-				getWidget().setSelection(value);
-				getWidget().setForeground(new Color(getWidget().getDisplay(), 0, 0, 0));
-				getButton().dispose();
-				createDeleteButton();
-				createUpDownButtons();
-			} else {
-				// delete
-				// one will be deleted --> new empty one
-				if (getParentItem().isFull()) {
-					getParentItem().createSingleField();
-				}
-				dataManipulator.removeElementAt(getIndex());
-				// accordingly change all other indexes
-				for (int i = getIndex() + 1; i < getParentItem().getControlList().size(); i++) {
-					AttributeControl c = getParentItem().getControlList().get(i);
-					c.setIndex(c.getIndex() - 1);
-				}
-				getParentItem().getControlList().remove(getIndex());
-
-				getFieldComposite().dispose();
-
+	protected void addButtonFunctionality() {
+		// duplicate handling
+		if (!getParentItem().isAllowDuplicates()) {
+			while (dataManipulator.contains(value)) {
+				value++;
 			}
 		}
+		// end of duplicate handling
+		// automatically added then (ModifyListener!)
+		getWidget().setSelection(value);
+		getWidget().setForeground(new Color(getWidget().getDisplay(), 0, 0, 0));
+		getButton().dispose();
+		createDeleteButton();
+		createUpDownButtons();
+	}
 
-		if (e.getSource().equals(getUp())) {
-			swapThisControlWith(getIndex() - 1);
-		}
-
-		if (e.getSource().equals(getDown())) {
-			swapThisControlWith(getIndex() + 1);
-		}
-
-		getParentItem().refreshWidget();
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean removeElementAt(int i) {
+		return dataManipulator.removeElementAt(i);
 	}
 
 	/**

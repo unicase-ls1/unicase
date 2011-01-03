@@ -141,7 +141,61 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	/**
 	 * {@inheritDoc}
 	 */
-	public abstract void mouseUp(MouseEvent e);
+	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
+		if (e.getSource().equals(getButton())) {
+			if (getIndex() == -1) {
+				// add instead of delete
+				addButtonFunctionality();
+			} else {
+				// delete
+				// one will be deleted --> new empty one
+				if (getParentItem().isFull()) {
+					getParentItem().createSingleField();
+				}
+				removeElementAt(getIndex());
+				// accordingly change all other indexes
+				for (int i = getIndex() + 1; i < getParentItem().getControlList().size(); i++) {
+					AttributeControl c = getParentItem().getControlList().get(i);
+					c.setIndex(c.getIndex() - 1);
+				}
+				getParentItem().getControlList().remove(getIndex());
+
+				getFieldComposite().dispose();
+
+			}
+		}
+
+		if (e.getSource().equals(getUp())) {
+			int index = getIndex();
+			swapThisControlWith(index - 1);
+			if (index > 0) {
+				getParentItem().getControlList().get(index - 1).getUp().forceFocus();
+			}
+		}
+
+		if (e.getSource().equals(getDown())) {
+			int index = getIndex();
+			swapThisControlWith(index + 1);
+			if (index < getParentItem().getControlList().size() - 1) {
+				getParentItem().getControlList().get(index + 1).getDown().forceFocus();
+			}
+		}
+
+		getParentItem().refreshWidget();
+	}
+
+	/**
+	 * Implements the behavior when the add button is clicked.
+	 */
+	protected abstract void addButtonFunctionality();
+
+	/**
+	 * Delegates this request to the corresponding Controller.
+	 * 
+	 * @param i the index of the value to be deleted
+	 * @return true if the value was removed, false otherwise (index didn't exist)
+	 */
+	protected abstract boolean removeElementAt(int i);
 
 	/**
 	 * @param parentItem the parentItem to set
