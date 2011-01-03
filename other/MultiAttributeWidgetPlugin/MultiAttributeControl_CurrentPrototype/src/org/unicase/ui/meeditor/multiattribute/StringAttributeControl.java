@@ -113,11 +113,9 @@ class StringAttributeControl extends AttributeControl {
 			final String newValue = getWidget().getText();
 
 			// handle duplicates
-			if (!getParentItem().isAllowDuplicates()) {
-				if (dataManipulator.contains(newValue)) {
-					getWidget().setText("_" + newValue);
-					return;
-				}
+			if (!getParentItem().isAllowDuplicates() && dataManipulator.contains(newValue)) {
+				getWidget().setText("_" + newValue);
+				return;
 			}
 			// end of duplicate handling
 
