@@ -16,15 +16,5 @@
             class="org.unicase.model.orga.OrgaPackage"
             genModel="model/orga.genmodel"/>
    </extension>
-    <extension
-        point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
-     <unit
-           name="PluginExt"
-           namespace="unicase.diagram">
-        <library
-              class="org.unicase.model.orga.diagram.codegen.util.PluginExt">
-        </library>
-     </unit>
-  </extension>
 
 </plugin>
