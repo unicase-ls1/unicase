@@ -28,12 +28,13 @@ public class DiagramOpener {
 		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
 
 		try {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.showView("org.eclipse.ui.views.PropertySheet");
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
-				"org.eclipse.ui.views.PropertySheet");
+
 		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
-				.getMessage(), e.getStatus());
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+				e.getMessage(), e.getStatus());
 		}
 
 	}
