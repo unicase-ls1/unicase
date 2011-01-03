@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" dynamicTemplates="true"
-    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
+    templateDirectory="/org.unicase.orgChart/templates/codegen">
   <diagram
       visualID="1000"
       editPartClassName="OrgDiagramEditPart"
