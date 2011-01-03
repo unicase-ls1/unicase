@@ -141,7 +141,7 @@ abstract class AttributeControl implements ModifyListener, MouseListener {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mouseUp(MouseEvent e) { // still duplicated code, but better solution?!
+	public void mouseUp(MouseEvent e) {
 		if (e.getSource().equals(getButton())) {
 			if (getIndex() == -1) {
 				// add instead of delete
