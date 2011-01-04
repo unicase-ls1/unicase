@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.urml.StakeholderRole;
 
 /**
  * Class for reading the content of the stakeholder role extension point.

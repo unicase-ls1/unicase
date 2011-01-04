@@ -6,6 +6,7 @@
 package org.unicase.ui.urml.stakeholderview.reviewview.controls;
 
 import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +31,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
+import org.unicase.ui.meeditor.mecontrols.melinkcontrol.NewReferenceAction;
 import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
 
 /**
@@ -149,6 +151,9 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 			}
 		});
 
+		
+		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor(),
+			getContext()));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
@@ -171,7 +176,7 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 			public void onChange(Notification notification) {
 				if ((notification.getEventType() != Notification.RESOLVE)
 					&& (notification.getFeature().equals(feature))) {
-					// rebuildLinkSection();
+					 rebuildLinkSection();
 				}
 
 			}
@@ -188,7 +193,12 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 		rebuildLinkSection();
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(section);
 		section.setClient(composite);
-
+		
+//		EAttribute attribute = (EAttribute) feature;
+//		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
+//		EMFDataBindingContext dbc = new EMFDataBindingContext();
+//		dbc.bindValue(SWTObservables.observeSelection(section), model, null, null);
+//		
 		return section;
 	}
 

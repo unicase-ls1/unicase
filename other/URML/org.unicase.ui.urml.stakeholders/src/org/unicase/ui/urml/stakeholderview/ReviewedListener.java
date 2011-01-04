@@ -33,6 +33,11 @@ public class ReviewedListener extends Listener {
 			&& (notification.getFeature().equals(feature))) {
 			return true;
 		}
+		Object featureNew = getUrmlElement().eClass().getEStructuralFeature("mitigated danger");
+		if((notification.getEventType() != Notification.RESOLVE)
+			&& (notification.getFeature().equals(featureNew))){
+			return true;
+		}
 		return false;
 	}
 
