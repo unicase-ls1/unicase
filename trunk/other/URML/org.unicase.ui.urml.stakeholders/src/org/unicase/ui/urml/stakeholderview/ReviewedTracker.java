@@ -17,7 +17,7 @@ import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
 /**
- * Tracks the urml model elements changes. 
+ * Tracks the urml model elements for changes. 
  * @author kterzieva
  *
  */
@@ -25,13 +25,12 @@ import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 public class ReviewedTracker extends Observable {
 
 	private ECPProject project;
-//	private List<Observer> obs;
 	private Collection<Requirement> requirements;
 	
 	
 	/**
-	 * .
-	 * @param project .
+	 * The construct.
+	 * @param project the project whose elements will be tracked
 	 */
 	public ReviewedTracker(ECPProject project){
 		this.project = project;
@@ -66,7 +65,7 @@ public class ReviewedTracker extends Observable {
 	}
 	
 	/**
-	 * .
+	 * Gets the number of the unreviewed elements.
 	 * @return the number of the elements in a project which are unreviewed.
 	 */
 	public int getUnreviewedElements() {

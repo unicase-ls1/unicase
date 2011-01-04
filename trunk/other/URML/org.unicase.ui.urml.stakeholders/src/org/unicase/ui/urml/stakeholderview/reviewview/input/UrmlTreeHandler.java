@@ -22,7 +22,7 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 
 
 //EList<ECPProject> projects = WorkspaceManager.getInstance().getWorkSpace().getProjects();
-//this can be used to get a project, which schould be used as input for the getURMLElementsfromProject method 
+//this can be used to get a project, which should be used as input for the getURMLElementsfromProject method 
 
 /**
  * Test tree handler.
