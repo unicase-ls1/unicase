@@ -47,13 +47,15 @@ public abstract class Listener implements ModelElementChangeListener {
 	 * @see org.unicase.metamodel.util.ModelElementChangeListener#onChange(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void onChange(Notification notification) {
+		if (notification.getEventType() == Notification.RESOLVE) {
+			return;
+		}
 		if (wantResetReviewed(notification) && urmlElement.isReviewed()) {
 			urmlElement.setReviewed(false);
 			tracker.recalculate();
 		}
-		 EStructuralFeature feature = getUrmlElement().eClass().getEStructuralFeature("reviewed");
-		if ((notification.getEventType() != Notification.RESOLVE)
-			&& (notification.getFeature().equals(feature))) {
+		EStructuralFeature feature = getUrmlElement().eClass().getEStructuralFeature("reviewed");
+		if ((notification.getFeature().equals(feature))) {
 			tracker.recalculate();
 		}
 	}
