@@ -31,9 +31,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
@@ -50,15 +48,12 @@ public class ReviewView extends ViewPart {
 	private IndexHandling indexHandler;
 	private ILabelProvider reviewViewLabelProvider;
 	private TableViewerColumn viewerNameColumn;
-	//private ScrolledComposite ;
-	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, dangerComposite;
+	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, referenceComposite;
 	private Sash sash;
 	private ReviewViewContentFactory contentFactory;
 	private UrmlModelElement currentlyDisplayedElement;
-	private Button openModelElement, createNewDanger;
-	private Button up;
-	private Button down;
-	
+	private Button openModelElement, up, down;
+
 	
 	@Override
 	public void createPartControl(final Composite parent) {
@@ -172,20 +167,14 @@ public class ReviewView extends ViewPart {
 		editorComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		editorComposite.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		
-		dangerComposite = new Composite(rightComposite, SWT.NONE);
+		referenceComposite = new Composite(rightComposite, SWT.NONE);
 		GridLayout dangerLayout = new GridLayout(1, true);
-		dangerComposite.setLayout(dangerLayout);
+		referenceComposite.setLayout(dangerLayout);
 		
 		GridData dangerCompositeLayoutData = new GridData(SWT.BEGINNING, SWT.DEFAULT, true, false);
-		dangerComposite.setLayoutData(dangerCompositeLayoutData);
-		dangerComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		
-		createNewDanger = new Button(dangerComposite, SWT.PUSH);
-		createNewDanger.setVisible(false);
-		GridData dataNewDanger = new GridData(SWT.BEGINNING, SWT.DEFAULT, false, false);
-		createNewDanger.setLayoutData(dataNewDanger);
-		createNewDanger.setText("Create new danger");
-		createNewDanger.setAlignment(SWT.CENTER);
+		referenceComposite.setLayoutData(dangerCompositeLayoutData);
+		referenceComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+
 	}
 
 
@@ -235,22 +224,7 @@ public class ReviewView extends ViewPart {
 	private void setupListeners(){
 
 		
-		indexHandler.createOpenListener(listViewer);
-		
-		createNewDanger.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				new ModelElementSelectionDialog(UnicaseActionHelper.getContext(currentlyDisplayedElement),DocumentPackage.eINSTANCE.getLeafSection()) {
-				}.open();
-			}
-			
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				
-			}
-		});
-		
+		indexHandler.createOpenListener(listViewer);		
 		up.addSelectionListener(indexHandler.createUpDownListener(true));
 		down.addSelectionListener(indexHandler.createUpDownListener(false));
 		
@@ -277,7 +251,6 @@ public class ReviewView extends ViewPart {
 	public void openElement(UrmlModelElement urmlElement) {
 		this.currentlyDisplayedElement = urmlElement;
 		openModelElement.setEnabled(true);
-		createNewDanger.setVisible(true);
 		contentFactory.createElementContent(urmlElement);
 	}
 

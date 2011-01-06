@@ -51,19 +51,17 @@ public class StakeholderView extends ViewPart implements Observer {
 	private ECPProject activeProject;
 	private Label unreviewedReqirements, reviewedReqirements;
 
-
 	@Override
 	public void createPartControl(Composite parent) {
 
 		try {
-			
 			parent.setLayout(new GridLayout(1, false));
 			activeProject = UrmlTreeHandler.getTestProject();
 			Activator.getTracker().addObserver(this);
 			reviewedRequirementSetup(parent, activeProject);
 			unreviewedRequirementsSetup(parent, activeProject);
 
-			createAction(UrmlTreeHandler.getTestProject());
+			createReviewAction(UrmlTreeHandler.getTestProject());
 			createFilterAction(UrmlTreeHandler.getTestProject());
 
 		} catch (NoWorkspaceException e) {
@@ -71,14 +69,13 @@ public class StakeholderView extends ViewPart implements Observer {
 		}
 
 	}
-	
+
 	private void reviewedRequirementSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
 		reviewedReqirements = new Label(parent, SWT.BORDER);
 		reviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		reviewedReqirements.setText("Reviewed Requirements: " + Activator.getTracker().getReviewedElements());
 		reviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
 	}
-	
 
 	private void unreviewedRequirementsSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
 		unreviewedReqirements = new Label(parent, SWT.BORDER);
@@ -87,9 +84,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		unreviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
 	}
 
-	
-	
-	private void createAction(final ECPProject project) {
+	private void createReviewAction(final ECPProject project) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 
@@ -123,17 +118,6 @@ public class StakeholderView extends ViewPart implements Observer {
 			"org.unicase.ui.urml.stakeholders.FilterToRole");
 		menuManager.add(chooseRole);
 
-		// Add the "remove filters" entry
-		Action resetFilters = new Action() {
-			@Override
-			public void run() {
-				filterManager.removeFilters();
-			}
-		};
-		resetFilters.setText("<< remove filters >>");
-		resetFilters.setToolTipText("Removes all filters, hence showing all elements.");
-		chooseRole.add(resetFilters);
-		
 		createDefaultRolesIfNotExist();
 		createFilterMenuItems();
 
@@ -147,23 +131,36 @@ public class StakeholderView extends ViewPart implements Observer {
 		createNewRole.setToolTipText("Creates new Role with Dialog for choosing the settings.");
 		chooseRole.add(createNewRole);
 
+		// Add the "remove filters" entry
+		Action resetFilters = new Action() {
+			@Override
+			public void run() {
+				filterManager.removeFilters();
+			}
+		};
+		resetFilters.setText("<< remove filters >>");
+		resetFilters.setToolTipText("Removes all filters, hence showing all elements.");
+		chooseRole.add(resetFilters);
+
 	}
 
 	private void createDefaultRolesIfNotExist() {
-		if(activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getStakeholderRole(), new BasicEList<EObject>()).isEmpty()){ //were not created yet for this project
+		if (activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getStakeholderRole(),
+			new BasicEList<EObject>()).isEmpty()) {
 			new DefaultStakeholderRoles().createDefaultRoles(activeProject);
 		}
 	}
 
 	private void createFilterMenuItems() {
-		Collection<EObject> defaultRoles = activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getStakeholderRole(), new BasicEList<EObject>());
-		for (EObject obj: defaultRoles){
-			final StakeholderRole role = (StakeholderRole)obj;
+		Collection<EObject> defaultRoles = activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
+			.getStakeholderRole(), new BasicEList<EObject>());
+		for (EObject obj : defaultRoles) {
+			final StakeholderRole role = (StakeholderRole) obj;
 			Action a = new Action() {
 				@Override
 				public void run() {
 					filterManager.applyFilter(new ViewerFilter() {
-	
+
 						@Override
 						public boolean select(Viewer viewer, Object parentElement, Object element) {
 							if (element instanceof UrmlModelElement) {
@@ -174,7 +171,7 @@ public class StakeholderView extends ViewPart implements Observer {
 							}
 							return true;
 						}
-	
+
 					});
 				}
 			};
@@ -191,7 +188,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		unreviewedReqirements.setText("Unreviewed Requirements: " + tracker.getUnreviewedElements());
 
 	}
-	
+
 	@Override
 	public void setFocus() {
 
