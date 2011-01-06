@@ -176,12 +176,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				for(EReference reference : validReferences) {
 					if(i>=noOfExampleValues)
 						break;
-					EObject newObject = null;
-					try {
-						newObject = EcoreUtil.create(currentChildClass);
-					} catch(NullPointerException e) {
-						EcoreUtil.create(currentChildClass);
-					}
+					EObject newObject = EcoreUtil.create(currentChildClass);
 					setEObjectAttributes(newObject);
 					if (reference.isMany()) {
 							((EList<EObject>) currentParentObject.eGet(reference)).add(newObject);
