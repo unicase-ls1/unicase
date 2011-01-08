@@ -65,6 +65,7 @@ public class ProjectChangerImpl {
 	private void generateChanges(EObject rootObject) {
 		List<EObject> allObjects = new ArrayList<EObject>();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
+		allObjects.add(rootObject);
 		while(allContents.hasNext()) {
 			allObjects.add(allContents.next());
 		}
