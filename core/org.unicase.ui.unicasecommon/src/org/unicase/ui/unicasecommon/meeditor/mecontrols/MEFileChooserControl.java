@@ -142,7 +142,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		fileName = new Link(composite, SWT.NONE);
 		fileName.setLayoutData(new GridData(SWT.NONE, SWT.BEGINNING, true, true));
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		// GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
+		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
 
 		open = new Button(composite, SWT.RIGHT);
 		open.setImage(ICON_OPEN_FILE);
