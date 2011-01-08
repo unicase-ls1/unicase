@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -795,11 +794,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * calling status.getTransferredFile().
 	 * 
 	 * @param fileIdentifier file identifier string.
-	 * @param monitor a progress monitor which is used to indicate the progress of the download
-	 * @return a status object that can be used to retriev various information about the file.
+	 * @return a status object that can be used to retrieve various information about the file.
 	 * @throws FileTransferException if any error occurs retrieving the files
 	 */
-	FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor) throws FileTransferException;
+	FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException;
 
 	/**
 	 * Gets the file information for a specific file identifier. This file information can be used to access further

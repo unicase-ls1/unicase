@@ -7,21 +7,17 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -64,7 +60,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
-		+ "\nThe file attachment will be transferred upon commiting";
+		+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
@@ -178,11 +174,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		upload.addSelectionListener(uploadListener);
 
 		open.addSelectionListener(new SaveAsSelectionListener(false, true));
+		open.setToolTipText("Opens the file.\nWorks only if your OS has registered a handler for the file's extension");
 
 		saveAs.addSelectionListener(new SaveAsSelectionListener(true, false));
-		saveAs.setToolTipText("As modifying of cached files is not endorsed "
-			+ "(the changes simply won't be uploaded until you do so manually), "
-			+ "\nyou can choose to save a copy of the downloaded file at another location.");
+		saveAs.setToolTipText("Saves the file to a user specified location");
 
 		// Set status of the upload button according to the file upload being pending
 		// (if the upload of the attachment is still pending, it can be removed)
@@ -307,47 +302,34 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 			final File destinationFile = (allowTargetSelection) ? selectTargetFile() : getTempfile();
 
-			// Do the download, this is done in a progress monitor
 			try {
-				new ProgressMonitorDialog(upload.getShell()).run(false, true, new IRunnableWithProgress() {
-					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				// Get the file
+				final FileDownloadStatus status = getProjectSpace().getFile(fileAttachment.getFileIdentifier());
+
+				// Add observer that copies the file once the download is finished
+				status.addTransferFinishedObserver(new Observer() {
+					public void update(Observable o, Object arg) {
 						try {
-							// Get the file
-							final FileDownloadStatus status = getProjectSpace().getFile(
-								fileAttachment.getFileIdentifier(), monitor);
-
-							// Add observer that copies the file once the download is finished
-							status.addTransferFinishedObserver(new Observer() {
-								public void update(Observable o, Object arg) {
-									try {
-										FileUtil.copyFile(status.getTransferredFile(), destinationFile);
-										if (openOnFinish) {
-											openFile(destinationFile);
-										} else {
-											openInformation("File saved successfully",
-												"The file was saved successfully");
-										}
-									} catch (IOException e1) {
-										registerSaveAsException(e1);
-									} catch (FileTransferException e) {
-										registerSaveAsException(e);
-									}
-									updateStatusAsync();
-								}
-							});
-
-							// Add observer that registers the exception if the download fails
-							status.addDefaultFailObserver();
-						} catch (FileTransferException e1) {
+							FileUtil.copyFile(status.getTransferredFile(), destinationFile);
+							if (openOnFinish) {
+								openFile(destinationFile);
+							} else {
+								openInformation("File saved successfully", "The file was saved successfully");
+							}
+						} catch (IOException e1) {
 							registerSaveAsException(e1);
-							return;
+						} catch (FileTransferException e) {
+							registerSaveAsException(e);
 						}
+						updateStatusAsync();
 					}
 				});
-			} catch (InvocationTargetException e1) {
+
+				// Add observer that registers the exception if the download fails
+				status.addDefaultFailObserver();
+			} catch (FileTransferException e1) {
 				registerSaveAsException(e1);
-			} catch (InterruptedException e1) {
-				registerSaveAsException(e1);
+				return;
 			}
 
 		}
