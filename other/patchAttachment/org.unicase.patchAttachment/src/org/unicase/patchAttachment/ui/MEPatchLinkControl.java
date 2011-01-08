@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.patchAttachment.PatchAttachment;
 import org.unicase.patchAttachment.commands.ApplyPatchCommand;
+import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
 
@@ -47,7 +48,7 @@ public class MEPatchLinkControl  extends MELinkControl {
 		if (link instanceof PatchAttachment) {
 			return PRIORITY;
 		} else {
-			return -1;
+			return AbstractMEControl.DO_NOT_RENDER;
 		}
 	}
 

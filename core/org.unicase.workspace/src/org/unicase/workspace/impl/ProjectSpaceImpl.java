@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -2517,9 +2516,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#getFile(org.unicase.emfstore.esmodel.FileIdentifier,
 	 *      org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor)
-		throws FileTransferException {
-		return fileTransferManager.getFile(fileIdentifier, monitor);
+	public FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException {
+		return fileTransferManager.getFile(fileIdentifier);
 	}
 
 	/**

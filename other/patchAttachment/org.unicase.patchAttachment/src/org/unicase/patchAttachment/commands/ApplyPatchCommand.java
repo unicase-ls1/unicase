@@ -109,8 +109,8 @@ public class ApplyPatchCommand extends UnicaseCommand {
 				// Get the file
 				final FileDownloadStatus status = projectSpace
 						.getFile(fileAttachment
-								.getFileIdentifier(),
-								monitor);
+								.getFileIdentifier()
+								);
 
 				// Add observer that applies the file once
 				// the download is finished

@@ -156,8 +156,7 @@ public class FileTransferManager {
 	 * 
 	 * @param monitor
 	 */
-	public FileDownloadStatus getFile(FileIdentifier fileIdentifier, IProgressMonitor monitor)
-		throws FileTransferException {
+	public FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException {
 
 		if (fileIdentifier == null) {
 			throw new FileTransferException("File identifier may not be null,");
@@ -165,13 +164,12 @@ public class FileTransferManager {
 
 		// If the file is cached locally, get it
 		if (cacheManager.hasCachedFile(fileIdentifier)) {
-			monitor.done();
 			return FileDownloadStatus.Factory.createAlreadyFinished(projectSpace, fileIdentifier, cacheManager
 				.getCachedFile(fileIdentifier));
 		}
 
 		// Otherwise, start a download
-		return startDownload(fileIdentifier, monitor);
+		return startDownload(fileIdentifier);
 	}
 
 	/**
@@ -182,7 +180,7 @@ public class FileTransferManager {
 	 * @param monitor a progress monitor for the download
 	 * @return the status
 	 */
-	private FileDownloadStatus startDownload(FileIdentifier fileIdentifier, IProgressMonitor monitor) {
+	private FileDownloadStatus startDownload(FileIdentifier fileIdentifier) {
 		FileDownloadStatus fds = FileDownloadStatus.Factory.createNew(projectSpace, fileIdentifier);
 		// TODO Check if true is correct here
 		FileDownloadJob job = new FileDownloadJob(fds, this, fileIdentifier, true);

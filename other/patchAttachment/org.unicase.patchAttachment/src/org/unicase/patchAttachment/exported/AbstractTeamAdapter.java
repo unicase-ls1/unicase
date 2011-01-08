@@ -14,7 +14,7 @@ import org.unicase.patchAttachment.applyPatch.BasicApplyPatchMethod;
 /**
  * The abstract super class for all team adapters.
  * Every team addapter must provider a createPatch method.
- * @author gex
+ * @author jfinis
  *
  */
 public abstract class AbstractTeamAdapter {
