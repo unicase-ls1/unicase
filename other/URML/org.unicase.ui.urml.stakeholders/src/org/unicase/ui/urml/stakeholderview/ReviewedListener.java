@@ -7,14 +7,15 @@ package org.unicase.ui.urml.stakeholderview;
 
 import java.util.Arrays;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
  * @author kterzieva
  */
-public class ReviewedListener extends Listener {
-
+public class ReviewedListener extends Listener {	
+	
 	/**
 	 * .
 	 * 
@@ -28,7 +29,7 @@ public class ReviewedListener extends Listener {
 
 	@Override
 	protected boolean wantResetReviewed(Notification notification) {
-		if (featureWasChanged(notification, Arrays.asList("reviewed", "creator", "creation date"))) {
+		if (featureWasChanged(notification, Arrays.asList("reviewed", "creator", "creationDate"))) {
 			return false;
 		}
 		return true;

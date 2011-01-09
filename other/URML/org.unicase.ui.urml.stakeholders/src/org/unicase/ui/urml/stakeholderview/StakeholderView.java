@@ -61,7 +61,7 @@ public class StakeholderView extends ViewPart implements Observer {
 			reviewedRequirementSetup(parent, activeProject);
 			unreviewedRequirementsSetup(parent, activeProject);
 
-			createReviewAction(UrmlTreeHandler.getTestProject());
+			createOpenReviewViewAction(UrmlTreeHandler.getTestProject());
 			createFilterAction(UrmlTreeHandler.getTestProject());
 
 		} catch (NoWorkspaceException e) {
@@ -84,7 +84,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		unreviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
 	}
 
-	private void createReviewAction(final ECPProject project) {
+	private void createOpenReviewViewAction(final ECPProject project) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 
@@ -121,15 +121,15 @@ public class StakeholderView extends ViewPart implements Observer {
 		createDefaultRolesIfNotExist();
 		createFilterMenuItems();
 
-		Action createNewRole = new Action() {
+		Action manageStakeholderRoles = new Action() {
 			@Override
 			public void run() {
 
 			}
 		};
-		createNewRole.setText("Create new Role");
-		createNewRole.setToolTipText("Creates new Role with Dialog for choosing the settings.");
-		chooseRole.add(createNewRole);
+		manageStakeholderRoles.setText("Manage stakeholder roles");
+		manageStakeholderRoles.setToolTipText("Manages the Stakeholder toles with Dialog for choosing the settings.");
+		chooseRole.add(manageStakeholderRoles);
 
 		// Add the "remove filters" entry
 		Action resetFilters = new Action() {
@@ -138,8 +138,8 @@ public class StakeholderView extends ViewPart implements Observer {
 				filterManager.removeFilters();
 			}
 		};
-		resetFilters.setText("<< remove filters >>");
-		resetFilters.setToolTipText("Removes all filters, hence showing all elements.");
+		resetFilters.setText("Reset role settings");
+		resetFilters.setToolTipText("Reset maded role settings, hence showing all elements.");
 		chooseRole.add(resetFilters);
 
 	}

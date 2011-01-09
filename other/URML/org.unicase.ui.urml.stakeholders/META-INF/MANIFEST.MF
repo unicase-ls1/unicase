@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.unicasecommon;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.unicase.ui.navigator,
- org.unicase.ecp.model.workSpaceModel
+Import-Package: org.unicase.ecp.model.workSpaceModel,
+ org.unicase.ui.navigator,
+ org.unicase.ui.tableview.viewer
 Export-Package: org.unicase.ui.urml.reviewview

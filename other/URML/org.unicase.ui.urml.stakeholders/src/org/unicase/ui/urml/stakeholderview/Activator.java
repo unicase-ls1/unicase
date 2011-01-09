@@ -20,7 +20,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "Stakeholders";
+	public static final String PLUGIN_ID = "org.unicase.ui.urml.stakeholders";
 
 	// The shared instance
 	private static Activator plugin;
