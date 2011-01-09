@@ -8,7 +8,6 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeNode;
@@ -20,81 +19,81 @@ import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.model.urml.requirement.RequirementPackage;
 
-
-//EList<ECPProject> projects = WorkspaceManager.getInstance().getWorkSpace().getProjects();
-//this can be used to get a project, which should be used as input for the getURMLElementsfromProject method 
-
 /**
  * Test tree handler.
  * 
  * @author kterzieva
  */
 
- public final class UrmlTreeHandler {
-	 
-	 
+public final class UrmlTreeHandler {
 
-	//TODO generic method - select some certain project
-	//test with the first project
-	
-	private UrmlTreeHandler(){
-		
+	// TODO generic method - select some certain project
+	// test with the first project
+
+	private UrmlTreeHandler() {
+
 	}
+
 	/**
-	 *  Gets the test project.
-	 *  @return the test project
-	 *  @throws NoWorkspaceException .
+	 * Gets the test project.
+	 * 
+	 * @return the test project
+	 * @throws NoWorkspaceException .
 	 */
-	public static ECPProject getTestProject() throws NoWorkspaceException{
-		return  ECPWorkspaceManager.getInstance().getWorkSpace().getProjects().get(0);
+	public static ECPProject getTestProject() throws NoWorkspaceException {
+		return ECPWorkspaceManager.getInstance().getWorkSpace().getProjects().get(0);
 	}
-	
+
 	/**
 	 * Test method.
-	 * @param project 
+	 * @param project the project
 	 * @return the basic list
 	 */
-	public static Collection<Requirement> getRequirementsFromProject(ECPProject project){
-		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getRequirement(), new BasicEList<EObject>());
+	public static Collection<Requirement> getRequirementsFromProject(ECPProject project) {
+		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE
+			.getRequirement(), new BasicEList<EObject>());
 		Collection<Requirement> newList = new ArrayList<Requirement>();
-		for (EObject a : basicListReq){
+		for (EObject a : basicListReq) {
 			newList.add((Requirement) a);
 		}
-		
+
 		return newList;
 	}
-	
+
 	/**
 	 * Test method.
-	 * @param project .
+	 * @param project the project.
 	 * @return the list
 	 */
-	public static Collection<UrmlModelElement> getStakeholderSetfromProjects(ECPProject project){
-		//	project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
-			//return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
-		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(), new BasicEList<EObject>());
-			Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<EObject>());
-			basicListReq.addAll(dangerListReq);
-			List<UrmlModelElement> list = new ArrayList<UrmlModelElement>();
-			for(EObject u:basicListReq){
-				list.add((UrmlModelElement) u);
-			}
-			return list;
+	public static Collection<UrmlModelElement> getStakeholderSetfromProjects(ECPProject project) {
+		// project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
+		// return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
+		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(),
+			new BasicEList<EObject>());
+		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE
+			.getFunctionalRequirement(), new BasicEList<EObject>());
+		basicListReq.addAll(dangerListReq);
+		List<UrmlModelElement> list = new ArrayList<UrmlModelElement>();
+		for (EObject urmlElment : basicListReq) {
+			list.add((UrmlModelElement) urmlElment);
 		}
-	
+		return list;
+	}
+
 	/**
 	 * Creates the tree.
+	 * 
 	 * @param collection .
 	 * @return the result tree
 	 */
-	public static TreeNode[] createTree(Collection<Requirement> collection){
+	public static TreeNode[] createTree(Collection<Requirement> collection) {
 		TreeNode[] result = new TreeNode[collection.size()];
 		int i = 0;
-		
-		for(EObject element:collection){
+
+		for (EObject element : collection) {
 			result[i] = new UrmlTreeNode((UrmlModelElement) element);
 			i = i + 1;
 		}
-		return result;			
+		return result;
 	}
 }

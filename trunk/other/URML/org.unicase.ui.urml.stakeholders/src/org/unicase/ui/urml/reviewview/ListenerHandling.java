@@ -7,45 +7,52 @@ package org.unicase.ui.urml.reviewview;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.urml.UrmlModelElement;
 
-
 /**
- *  Class for the handling the index of the elements.
+ * Class for the handling the listener.
  * 
  * @author kterzieva
  */
 
-public class IndexHandling {
+public class ListenerHandling {
 
 	private int lastModelElementIndex = -1;
 	// use set methods for changes
 	private List<UrmlModelElement> curContent = new ArrayList<UrmlModelElement>();
+	private Map<ModelElementChangeListener, UrmlModelElement> listeners = new HashMap<ModelElementChangeListener, UrmlModelElement>();
 	private TableViewer listViewer;
 	private ReviewView view;
 
 	/**
 	 * The constructor.
+	 * 
 	 * @param view the view
 	 * @param listViewer the list viewer
 	 */
-	
-	public IndexHandling(ReviewView view, TableViewer listViewer) {
+
+	public ListenerHandling(ReviewView view, TableViewer listViewer) {
 		this.listViewer = listViewer;
 		this.view = view;
 
 	}
-	
+
 	/**
 	 * Creates the listener for opening elements.
+	 * 
 	 * @param listViewer the list viewer
 	 */
 
@@ -55,13 +62,11 @@ public class IndexHandling {
 			@Override
 			// evtl own class
 			public void open(OpenEvent event) {
-				IStructuredSelection selection =
-				((IStructuredSelection)event.getSelection());
-				
+				IStructuredSelection selection = ((IStructuredSelection) event.getSelection());
+
 				Object o = selection.getFirstElement();
-				if(o instanceof UrmlModelElement){
-					//hier hat er gemekert, deswegen habe ich die umgezogene Methode static gemacht?das ging nicht :(
-					//
+				if (o instanceof UrmlModelElement) {
+
 					view.openElement((UrmlModelElement) o);
 					setLastSelectedElementIndex(getIndex((UrmlModelElement) o));
 				}
@@ -75,16 +80,18 @@ public class IndexHandling {
 
 	/**
 	 * Creates the listener for opening elements.
-	 * @param isUp 
-	 * @return the selection listener. 
+	 * 
+	 * @param isUp defines the direction for opening the elements
+	 * @return the selection listener
 	 */
-	
+
 	public SelectionListener createUpDownListener(boolean isUp) {
 		return new UpDownListener(isUp);
 	}
-	
+
 	/**
 	 * Get the index of an element.
+	 * 
 	 * @param el the urml model element
 	 * @return index the index
 	 */
@@ -103,6 +110,7 @@ public class IndexHandling {
 
 	/**
 	 * Sets the input to the list viewer.
+	 * 
 	 * @param collection the collection of the model elements
 	 */
 	public void setInput(Collection<UrmlModelElement> collection) {
@@ -112,12 +120,39 @@ public class IndexHandling {
 			curContent.add(e);
 		}
 		listViewer.setInput(collection);
+		for (final UrmlModelElement urmlElement : collection) {
+			ModelElementChangeListener listener = new ModelElementChangeListener() {
+
+				@Override
+				public void onRuntimeExceptionInListener(RuntimeException exception) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void onChange(Notification notification) {
+					Object notificationFeature = notification.getFeature();
+					if (notification.getEventType() == Notification.RESOLVE) {
+						return;
+					}
+					Object nameFeature = urmlElement.eClass().getEStructuralFeature("name");
+					Object reviewedFeature = urmlElement.eClass().getEStructuralFeature("reviewed");
+					if (notificationFeature.equals(nameFeature) || notificationFeature.equals(reviewedFeature)) {
+						listViewer.refresh();
+					} else {
+						return;
+					}
+				}
+			};
+			listeners.put(listener, urmlElement);
+			urmlElement.addModelElementChangeListener(listener);
+		}
 	}
 
 	/**
 	 * Listener for handling presses of the up or down button.
-	 * @author kami
-	 *
+	 * 
+	 * @author kterzieva
 	 */
 	private class UpDownListener implements SelectionListener {
 
@@ -147,6 +182,15 @@ public class IndexHandling {
 
 		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
+		}
+	}
+	
+	/**
+	 * Removes all model element change listeners, which are added to the urml elements.
+	 */
+	public void dispose() {
+		for(Entry<ModelElementChangeListener, UrmlModelElement> entry : listeners.entrySet()){
+			entry.getValue().removeModelElementChangeListener(entry.getKey());
 		}
 	}
 }
