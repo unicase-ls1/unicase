@@ -120,7 +120,7 @@ public class SVNCommitActionFactory implements ICommitActionFactory {
 
 		Set<IFile> emfStoreManagedFiles = new HashSet<IFile>();
 		for (IFileEntryTuple emfStoreManagedIFileEntryTuple : emfStoreManagedFETuples) {
-			emfStoreManagedFiles.add(emfStoreManagedIFileEntryTuple.file);
+			emfStoreManagedFiles.add(emfStoreManagedIFileEntryTuple.getFile());
 		}
 
 		Set<IFile> emfStoreManagedButSVNOutdatedFiles = svnCommitHelper.getOutdatedFiles(emfStoreManagedFiles);
@@ -142,7 +142,7 @@ public class SVNCommitActionFactory implements ICommitActionFactory {
 						emfStoreManagedFETuple, svnTeamSynchronizer);
 					HistoryVersionMappingEntry hvmEntry = versionMappingCreator.getExpected();
 
-					Entry entry = emfStoreManagedFETuple.entry;
+					Entry entry = emfStoreManagedFETuple.getEntry();
 					VersionMapping versionMapping = entry.getVersionMapping();
 					if (versionMapping == null || !(versionMapping instanceof HistoryVersionMapping)) {
 						HistoryVersionMapping historyVersionMapping = ConfigurationFactory.eINSTANCE
