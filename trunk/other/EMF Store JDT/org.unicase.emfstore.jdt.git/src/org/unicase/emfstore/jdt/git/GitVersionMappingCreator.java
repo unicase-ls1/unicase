@@ -42,7 +42,7 @@ public final class GitVersionMappingCreator {
 
 		boolean isEObjectDirty;
 		try {
-			StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(feTuple.entry);
+			StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(feTuple.getEntry());
 			ProjectSpace projectSpace = ProjectSpaceUtil.getProjectSpace(structuredEMFStoreURI.getProjectID());
 			try {
 				EObject eObject = ProjectSpaceUtil.getEObject(structuredEMFStoreURI);
