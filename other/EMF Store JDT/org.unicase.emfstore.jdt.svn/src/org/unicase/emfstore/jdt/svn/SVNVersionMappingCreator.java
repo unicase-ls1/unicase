@@ -52,8 +52,8 @@ public class SVNVersionMappingCreator {
 		this.teamSynchronizer = teamSynchronizer;
 
 		try {
-			isFileDirty = teamSynchronizer.isFileDirty(feTuple.file);
-			StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(feTuple.entry);
+			isFileDirty = teamSynchronizer.isFileDirty(feTuple.getFile());
+			StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(feTuple.getEntry());
 			ProjectSpace projectSpace = ProjectSpaceUtil.getProjectSpace(structuredEMFStoreURI.getProjectID());
 			try {
 				EObject eObject = ProjectSpaceUtil.getEObject(structuredEMFStoreURI);
@@ -84,7 +84,7 @@ public class SVNVersionMappingCreator {
 				.createHistoryVersionMappingEntry();
 			// set new expected team revision
 			if (!isFileDirty) {
-				String workingCopyRevision = teamSynchronizer.getWorkingCopyRevision(feTuple.file);
+				String workingCopyRevision = teamSynchronizer.getWorkingCopyRevision(feTuple.getFile());
 				if (workingCopyRevision == null) {
 					// this is the first commit for that file
 					workingCopyRevision = "1";
@@ -92,7 +92,7 @@ public class SVNVersionMappingCreator {
 				historyVersionMappingEntry.setTeamProviderRevision(workingCopyRevision);
 
 			} else {
-				String sHeadRevision = teamSynchronizer.getHeadRevision(feTuple.file);
+				String sHeadRevision = teamSynchronizer.getHeadRevision(feTuple.getFile());
 				long lHeadRevision = Long.valueOf(sHeadRevision);
 				long lHeadRevisionNext = lHeadRevision + 1;
 				String sHeadRevisionNext = String.valueOf(lHeadRevisionNext);
