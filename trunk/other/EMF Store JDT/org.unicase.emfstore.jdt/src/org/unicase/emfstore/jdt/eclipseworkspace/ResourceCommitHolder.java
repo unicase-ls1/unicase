@@ -172,7 +172,7 @@ public class ResourceCommitHolder {
 
 		// get ProjectSpaces from tuples to commit
 		for (IFileEntryTuple commitedFileEntryTuple : emfStoreManagedFETuples) {
-			IFile commitedFile = commitedFileEntryTuple.file;
+			IFile commitedFile = commitedFileEntryTuple.getFile();
 			IProject project = commitedFile.getProject();
 			try {
 				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
