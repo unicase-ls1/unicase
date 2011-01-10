@@ -121,12 +121,18 @@ public class MESuggestedSelectionDialog extends ModelElementSelectionDialog {
 		 */
 		public int compare(EObject o1, EObject o2) {
 			Double val1, val2;
+			ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+				composedAdapterFactory);
 			String name1 = adapterFactoryLabelProvider.getText(o1);
 			String name2 = adapterFactoryLabelProvider.getText(o2);
+
 			val1 = relevanceMap.get(o1);
 			val2 = relevanceMap.get(o2);
+
+			adapterFactoryLabelProvider.dispose();
+			composedAdapterFactory.dispose();
 
 			if (!isRelevant(val1) && !isRelevant(val2)) {
 
