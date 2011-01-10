@@ -220,25 +220,12 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	}
 
 	public ECPProject getProject(EObject me) {
-		EObject root = getParent(me);
 		for (ECPProject project : getProjects()) {
-			if (project.getRootObject() == root) {
+			if (project.contains(me)) {
 				return project;
 			}
 		}
 		throw new IllegalStateException("Project for element not found!");
-	}
-
-	private EObject getParent(EObject eObject) {
-		EObject parent = eObject.eContainer();
-		if (parent == null) {
-			return eObject;
-		} else if (parent instanceof Resource) {
-			return eObject;
-		} else {
-			return getParent(parent);
-		}
-
 	}
 
 	public void setActiveModelelement(EObject eobject) {
