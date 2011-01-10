@@ -16,8 +16,15 @@ import org.unicase.emfstore.jdt.configuration.Entry;
  */
 public class IFileEntryTuple {
 
-	public final IFile file;
-	public final Entry entry;
+	/**
+	 * The eclipse workspace file part.
+	 */
+	private final IFile file;
+
+	/**
+	 * The EMF Store JDT entry that corresponds to the file part.
+	 */
+	private final Entry entry;
 
 	/**
 	 * Constructor.
@@ -28,6 +35,24 @@ public class IFileEntryTuple {
 	public IFileEntryTuple(IFile file, Entry entry) {
 		this.file = file;
 		this.entry = entry;
+	}
+
+	/**
+	 * Returns the eclipse workspace file part.
+	 * 
+	 * @return The eclipse workspace file part.
+	 */
+	public IFile getFile() {
+		return file;
+	}
+
+	/**
+	 * Returns the EMF Store JDT entry part.
+	 * 
+	 * @return The EMF Store JDT entry part.
+	 */
+	public Entry getEntry() {
+		return entry;
 	}
 
 }

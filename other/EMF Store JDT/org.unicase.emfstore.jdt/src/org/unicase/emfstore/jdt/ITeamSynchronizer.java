@@ -66,13 +66,31 @@ public interface ITeamSynchronizer {
 	 * @param revision2 The second team revision.
 	 * @return 0: if revision1 == revision2, 1: if revision1 comes before revision2, -1: if revision1 comes after
 	 *         revision2
-	 * @throws TeamSynchronizerException If an error occurs.
+	 * @throws TeamSynchronizerException Will thrown if an error occurs during execution.
 	 */
 	int compare(String revision1, String revision2) throws TeamSynchronizerException;
 
+	/**
+	 * Returns the history for an file that has been created by a team provider.
+	 * 
+	 * @param file An eclipse workspace file.
+	 * @return The file history.
+	 */
 	IFileRevision[] getHistory(IFile file);
 
+	/**
+	 * Updates the local file with the latest one from the remote repository.
+	 * 
+	 * @param file An eclipse workspace file.
+	 */
 	void updateFile(IFile file);
 
+	/**
+	 * A TeamSynchronizer provides functionality how pure team provider changes should be handles. Usually the user
+	 * should get a message that there are some changes that could not be tracked and the reason why this happened.
+	 * 
+	 * @param file An eclipse workspace file.
+	 * @throws TeamSynchronizerException Will thrown if an error occurs during execution.
+	 */
 	void handlePureTeamProviderChange(IFile file) throws TeamSynchronizerException;
 }

@@ -16,6 +16,15 @@ public class TeamSynchronizerException extends Exception {
 	/**
 	 * Constructor.
 	 * 
+	 * @param string Cause why this exception has been raised.
+	 */
+	public TeamSynchronizerException(String string) {
+		super(string);
+	}
+
+	/**
+	 * Constructor.
+	 * 
 	 * @param reason Cause why this exception has been raised.
 	 */
 	public TeamSynchronizerException(Exception reason) {
