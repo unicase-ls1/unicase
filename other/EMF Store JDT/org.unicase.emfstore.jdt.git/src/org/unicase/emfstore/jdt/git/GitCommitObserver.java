@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egit.ui.CommitObserver;
 import org.eclipse.egit.ui.internal.dialogs.CommitDialog;
 import org.unicase.emfstore.jdt.CommitHelper;
+import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
@@ -56,17 +57,23 @@ public class GitCommitObserver implements CommitObserver {
 
 		Set<IProject> releatedProjects = resourceCommitHolder.getReleatedProjects();
 		if (!CommitHelper.isEMFStoreJDTInvolved(releatedProjects)) {
-			// this svn commit is independent from the EMFStoreJDT commit
+			// this commit is independent from the EMFStoreJDT commit
 			return true;
 		}
 
-		// ensure .emfstoreconf will be a part of the committed resources. Even if the file
+		// ensure that .emfstoreconf will be a part of the committed resources. Even if the file
 		// is currently unmodified, a VersionMapping will be created and at least then the .emfstoreconf file
 		// will be dirty and a commit is needed.
 		Set<IFile> allFiles = resourceCommitHolder.getAllFiles();
 		// TODO .emfstoreconf is index, is tracked ??
 		ArrayList<IFile> notIndexedFiles = commitOperation.getNotIndexedFiles();
 		ArrayList<IFile> notTrackedFiles = commitOperation.getNotTrackedFiles();
+		// commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
+		for (IProject project : resourceCommitHolder.getReleatedProjects()) {
+			IFile confFile = project.getFile(ConfigurationManager.EMFSTORECONF);
+			notIndexedFiles.add(confFile);
+			notTrackedFiles.add(confFile);
+		}
 		commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
 
 		// TODO, get outdated files
@@ -83,7 +90,7 @@ public class GitCommitObserver implements CommitObserver {
 				try {
 					SimpleVersionMapping simpleVersionMapping = GitVersionMappingCreator.getVM(emfStoreManagedFETuple);
 
-					Entry entry = emfStoreManagedFETuple.entry;
+					Entry entry = emfStoreManagedFETuple.getEntry();
 					entry.setVersionMapping(simpleVersionMapping);
 					entry.getConfiguration().save();
 

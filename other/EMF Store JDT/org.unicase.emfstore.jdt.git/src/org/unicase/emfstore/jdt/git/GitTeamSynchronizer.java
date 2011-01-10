@@ -5,14 +5,18 @@
  */
 package org.unicase.emfstore.jdt.git;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egit.core.project.RepositoryMapping;
+import org.eclipse.jgit.dircache.DirCache;
+import org.eclipse.jgit.dircache.DirCacheEntry;
 import org.eclipse.jgit.errors.NoWorkTreeException;
-import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.team.core.history.IFileRevision;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
@@ -36,30 +40,60 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	}
 
 	/**
+	 * Reads from the git index the git entry representation for the given file.
+	 * 
+	 * @param file A eclipse workspace file.
+	 * @return A git entry.
+	 * @throws TeamSynchronizerException Will be thrown if no git entry can be found.
+	 */
+	private DirCacheEntry getGitEntry(IFile file) throws TeamSynchronizerException {
+		IProject project = file.getProject();
+		RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(project);
+		Repository repository = repositoryMapping.getRepository();
+		String gitEntryPath = repositoryMapping.getRepoRelativePath(file);
+
+		// RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(file);
+		// Repository repository = repositoryMapping.getRepository();
+		try {
+			File gitDirectory = repository.getDirectory();
+			FileRepository fileRepository = new FileRepositoryBuilder().setGitDir(gitDirectory).build();
+			DirCache dirCache = fileRepository.readDirCache();
+
+			// String gitEntryPath = file.getFullPath().makeRelative().toPortableString();
+			DirCacheEntry dirCacheEntry = dirCache.getEntry(gitEntryPath);
+			if (dirCacheEntry != null) {
+				throw new TeamSynchronizerException("Git entry not found.");
+			}
+			return dirCacheEntry;
+
+			// @SuppressWarnings("deprecation")
+			// org.eclipse.jgit.lib.GitIndex.Entry entry = repository.getIndex().getEntry(
+			// file.getProjectRelativePath().toString());
+			// if (entry != null) {
+			// return true;
+			// }
+
+		} catch (NoWorkTreeException e) {
+			throw new TeamSynchronizerException(e);
+
+		} catch (IOException e) {
+			throw new TeamSynchronizerException(e);
+		}
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#isFileShared(org.eclipse.core.resources.IFile)
 	 */
 	public boolean isFileShared(IFile file) {
-		RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(file);
-		Repository repository = repositoryMapping.getRepository();
 		try {
-			@SuppressWarnings("deprecation")
-			org.eclipse.jgit.lib.GitIndex.Entry entry = repository.getIndex().getEntry(
-				file.getProjectRelativePath().toString());
-			if (entry != null) {
-				return true;
-			}
+			getGitEntry(file);
+			return true;
 
-		} catch (NoWorkTreeException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (TeamSynchronizerException e) {
+			return false;
 		}
-
-		return false;
 	}
 
 	/**
@@ -68,27 +102,8 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getWorkingCopyRevision(org.eclipse.core.resources.IFile)
 	 */
 	public String getWorkingCopyRevision(IFile file) throws TeamSynchronizerException {
-		RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(file);
-		String filePath = file.getProjectRelativePath().toString();
-
-		org.eclipse.jgit.lib.Repository repository = repositoryMapping.getRepository();
-		try {
-			@SuppressWarnings("deprecation")
-			org.eclipse.jgit.lib.GitIndex.Entry entry = repository.getIndex().getEntry(filePath);
-			if (entry == null) {
-				return null;
-			}
-			@SuppressWarnings("deprecation")
-			ObjectId objectId = entry.getObjectId();
-			return objectId.getName();
-
-		} catch (NoWorkTreeException e) {
-			throw new TeamSynchronizerException(e);
-		} catch (UnsupportedEncodingException e) {
-			throw new TeamSynchronizerException(e);
-		} catch (IOException e) {
-			throw new TeamSynchronizerException(e);
-		}
+		DirCacheEntry gitEntry = getGitEntry(file);
+		return gitEntry.getObjectId().getName();
 	}
 
 	/**
@@ -113,21 +128,8 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#isFileDirty(org.eclipse.core.resources.IFile)
 	 */
 	public boolean isFileDirty(IFile file) throws TeamSynchronizerException {
-		// try {
-		// org.eclipse.team.ui.mapping.SynchronizationStateTester tester = new
-		// org.eclipse.team.ui.mapping.SynchronizationStateTester();
-		// int stateFlags = tester.getState(file, IDiff.CHANGE, new NullProgressMonitor());
-		// if (stateFlags == 0) {
-		// return false;
-		// } else {
-		// return true;
-		// }
-		//
-		// } catch (CoreException e) {
-		// throw new TeamSynchronizerException(e);
-		// }
-
-		return false;
+		DirCacheEntry gitEntry = getGitEntry(file);
+		return gitEntry.isUpdateNeeded();
 	}
 
 	/**
@@ -151,21 +153,11 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#compare(java.lang.String, java.lang.String)
 	 */
 	public int compare(String revision1, String revision2) throws TeamSynchronizerException {
-		try {
-			long lRevision1 = Long.valueOf(revision1);
-			long lRevision2 = Long.valueOf(revision2);
-
-			if (lRevision1 == lRevision2) {
-				return 0;
-			} else if (lRevision1 < lRevision2) {
-				return 1;
-			} else {
-				return -1;
-			}
-
-		} catch (NumberFormatException e) {
-			throw new TeamSynchronizerException(e);
+		// this operation is not needed for git synchronization
+		if (revision1.equals(revision2)) {
+			return 0;
 		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -174,11 +166,8 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#updateFile(org.eclipse.core.resources.IFile)
 	 */
 	public void updateFile(IFile file) {
-		// org.eclipse.team.svn.core.operation.local.UpdateOperation updateOperation = new
-		// org.eclipse.team.svn.core.operation.local.UpdateOperation(
-		// new IFile[] { file }, true);
-		// updateOperation.run(new NullProgressMonitor());
-
+		// this operation is not needed for git synchronization
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -187,6 +176,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#handlePureTeamProviderChange(org.eclipse.core.resources.IFile)
 	 */
 	public void handlePureTeamProviderChange(final IFile file) throws TeamSynchronizerException {
+		// this operation is not yet applicable for git
 		throw new UnsupportedOperationException();
 	}
 }
