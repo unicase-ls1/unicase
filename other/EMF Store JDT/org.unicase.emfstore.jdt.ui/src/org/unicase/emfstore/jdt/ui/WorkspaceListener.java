@@ -76,10 +76,10 @@ public class WorkspaceListener implements IResourceChangeListener {
 
 			for (IFileEntryTuple tuple : emfStoreManagedIFileEntryTuplesWithStatusChanged) {
 				try {
-					ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(tuple.file
+					ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(tuple.getFile()
 						.getProject());
 					try {
-						Synchronizer.sync(tuple.file, teamSynchronizer);
+						Synchronizer.sync(tuple.getFile(), teamSynchronizer);
 
 					} catch (CannotSyncFileException e) {
 						if (!e.wasHarmless()) {
