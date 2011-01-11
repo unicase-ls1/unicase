@@ -14,7 +14,7 @@ We currently use the following development tools:
           o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
           o COPE: http://cope.in.tum.de/update-site/site.xml<br>
             o NOTE: If you have already installed the runtime feature from the UNICASE update site, you will be notified.<br>
-          o Checkstyle (the previously used version 4.4.x is no longer available at the update site. So, download the latest 5.x release.): - http://eclipse-cs.sourceforge.net/update<br>
+          o Checkstyle (the previously used version 4.4.x is no longer available at the update site. So, download the latest 5.x release.): - http://eclipse-cs.sf.net/update/<br>
           o Findbugs (for static code checking): http://findbugs.cs.umd.edu/eclipse<br>
           o SWTBOT (for UI testing): Please find [http://www.eclipse.org/swtbot/downloads.php here] the update site that is compatible with your eclipse version<br>
 
