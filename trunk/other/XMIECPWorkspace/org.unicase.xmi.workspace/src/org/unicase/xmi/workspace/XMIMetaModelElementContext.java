@@ -4,7 +4,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.util.UnicaseUtil;
 
 public class XMIMetaModelElementContext extends MetaModelElementContext {
@@ -13,7 +12,10 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
+		/*//TODO AssociationClassElement-Issue
 		return ModelUtil.isAssociationClassElement(eClazz);
+		*/
+		return false;
 	}
 	
 	@Override
