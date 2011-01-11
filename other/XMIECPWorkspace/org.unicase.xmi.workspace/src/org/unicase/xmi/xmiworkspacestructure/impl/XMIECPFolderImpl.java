@@ -31,8 +31,6 @@ import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.NonDomainElement;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
@@ -385,7 +383,8 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	}
 
 	public boolean isNonDomainElement(EObject eObject) {
-		return (eObject instanceof NonDomainElement);
+		//return (eObject instanceof NonDomainElement); //TODO NonDomainElement-Issue
+		return false;
 	}
 
 	public void modelelementDeleted(EObject eobject) {
@@ -425,11 +424,13 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	}
 
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		/*//TODO AssociationClassElement-Issue
 		if (isAssociationClassElement(eObject)) {
 			AssociationClassElement ace = (AssociationClassElement) eObject;
 			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
 				.getAssociationFeatures());
 		}
+		*/
 		return null;
 	}
 
@@ -443,7 +444,10 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	}
 
 	public boolean isAssociationClassElement(EObject eObject) {
+		/*//TODO AssociationClassElement-Issue
 		return (eObject instanceof AssociationClassElement);
+		*/
+		return false;
 	}
 
 } //XMIECPFolderImpl

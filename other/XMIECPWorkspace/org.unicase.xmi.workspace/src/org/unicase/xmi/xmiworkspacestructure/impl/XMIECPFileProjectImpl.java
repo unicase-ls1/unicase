@@ -33,18 +33,13 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.PlatformUI;
 
 import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
-import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.NonDomainElement;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.views.DeletedObjectDialog;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
@@ -564,7 +559,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public boolean isNonDomainElement(EObject eObject) {
-		return (eObject instanceof NonDomainElement);
+		//TODO NonDomainElement-Issue
+		//return (eObject instanceof NonDomainElement);
+		return false;
 	}
 	
 	/**
@@ -643,11 +640,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		/*//TODO AssociationClassElement-Issue
 		if (isAssociationClassElement(eObject)) {
 			AssociationClassElement ace = (AssociationClassElement) eObject;
 			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
 				.getAssociationFeatures());
 		}
+		*/
 		return null;
 	}
 
@@ -661,7 +660,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public boolean isAssociationClassElement(EObject eObject) {
+		/*//TODO AssociationClassElement-Issue
 		return (eObject instanceof AssociationClassElement);
+		*/
+		return false;
 	}
 	
 	public void addModelElementToRoot(EObject eObject) {
