@@ -80,7 +80,7 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		
 		// Let the user choose the projects he wants.
 		Label projectsLabel = new Label(contents, SWT.NONE);
-		projectsLabel.setText("Projekte: ");
+		projectsLabel.setText("Projects: ");
 		final List<String> loadableFiles = new ArrayList<String>(); // the files that can be loaded as projects
 		
 		listViewer = new XmiListViewer(contents);

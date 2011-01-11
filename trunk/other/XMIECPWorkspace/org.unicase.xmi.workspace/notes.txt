@@ -55,5 +55,7 @@ hope i didnt forget one.
 - The Slash is File.SEPARATOR .
 - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
 - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
+
+- Check where the "NoFileFound" Exception comes from (when project added from workspace)!
  
  
