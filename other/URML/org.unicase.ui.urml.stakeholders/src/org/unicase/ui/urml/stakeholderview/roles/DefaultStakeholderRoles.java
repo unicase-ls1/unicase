@@ -34,13 +34,22 @@ public class DefaultStakeholderRoles {
 		set.add("Danger");
 		set.add("NonFunctionalRequirement");
 		set.add("FunctionalRequirement");
-		
 		roleList.add(testEngineer);
+		
+		final org.unicase.model.urml.StakeholderRole safetyEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
+		safetyEngineer.setName("Safety Engineer");
+		final EList<String> safetySet = testEngineer.getReviewSet();
+		safetySet.add("Danger");
+		safetySet.add("FunctionalRequirement");
+		
+		
+		roleList.add(safetyEngineer);
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				project.addModelElementToRoot(testEngineer);
+				project.addModelElementToRoot(safetyEngineer);
 				
 			}
 		}.run();

@@ -17,11 +17,12 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -32,6 +33,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.ui.urml.reviewview.ReviewView;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 import org.unicase.ui.urml.stakeholderview.roles.DefaultStakeholderRoles;
 
@@ -43,13 +45,17 @@ import org.unicase.ui.urml.stakeholderview.roles.DefaultStakeholderRoles;
 
 public class StakeholderView extends ViewPart implements Observer {
 
+	private static final String MANAGE_STAKEHOLDER_ROLES = "Manage stakeholder roles";
+	private static final String CHOOSE_STAKEHOLDER_ROLE = "Choose Stakeholder Role";
+	private static final String UNREVIEWED_REQUIREMENTS = "Unreviewed Requirements:";
+	private static final String REVIEWED_REQUIREMENTS = "Reviewed Requirements:";
 	private static final String STATUS_VIEW_ID = "ReviewView";
 	private IWorkbenchPage page;
 	private Action openReviewView;
 	private MenuManager chooseRole;
 	private FilterManager filterManager = new FilterManager();
 	private ECPProject activeProject;
-	private Label unreviewedReqirements, reviewedReqirements;
+	private Link unreviewedReqirements, reviewedReqirements;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -58,8 +64,8 @@ public class StakeholderView extends ViewPart implements Observer {
 			parent.setLayout(new GridLayout(1, false));
 			activeProject = UrmlTreeHandler.getTestProject();
 			Activator.getTracker().addObserver(this);
-			reviewedRequirementSetup(parent, activeProject);
-			unreviewedRequirementsSetup(parent, activeProject);
+			reviewedReqirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_REQUIREMENTS);
+			unreviewedReqirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_REQUIREMENTS);
 
 			createOpenReviewViewAction(UrmlTreeHandler.getTestProject());
 			createFilterAction(UrmlTreeHandler.getTestProject());
@@ -70,18 +76,29 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	}
 
-	private void reviewedRequirementSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
-		reviewedReqirements = new Label(parent, SWT.BORDER);
-		reviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		reviewedReqirements.setText("Reviewed Requirements: " + Activator.getTracker().getReviewedElements());
-		reviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
-	}
+	private Link reviewedRequirementSetup(Composite parent, ECPProject project, final boolean selectReviewed,
+		String linkText) throws NoWorkspaceException {
+		Link link = new Link(parent, SWT.WRAP);
+		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
+		data.widthHint = 300;
+		link.setLayoutData(data);
+		link.setText("<a>" + linkText + "</a> " + "<a>" + Activator.getTracker().getReviewedElements(selectReviewed)
+			+ "</a>");
+		link.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
-	private void unreviewedRequirementsSetup(Composite parent, ECPProject project) throws NoWorkspaceException {
-		unreviewedReqirements = new Label(parent, SWT.BORDER);
-		unreviewedReqirements.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		unreviewedReqirements.setText("Unreviewed Requirements: " + Activator.getTracker().getUnreviewedElements());
-		unreviewedReqirements.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false));
+				try {
+					ReviewView reviewView = (ReviewView) page.showView(STATUS_VIEW_ID, null,
+						IWorkbenchPage.VIEW_ACTIVATE);
+					reviewView.showOnlyReviewedElements(selectReviewed);
+				} catch (PartInitException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		return link;
 	}
 
 	private void createOpenReviewViewAction(final ECPProject project) {
@@ -114,7 +131,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 
-		chooseRole = new MenuManager("Choose Stakeholder Role", Activator.getImageDescriptor("icons/Stakeholder.gif"),
+		chooseRole = new MenuManager(CHOOSE_STAKEHOLDER_ROLE, Activator.getImageDescriptor("icons/Stakeholder.gif"),
 			"org.unicase.ui.urml.stakeholders.FilterToRole");
 		menuManager.add(chooseRole);
 
@@ -124,10 +141,11 @@ public class StakeholderView extends ViewPart implements Observer {
 		Action manageStakeholderRoles = new Action() {
 			@Override
 			public void run() {
-
+				ManageRolesDialog t = new ManageRolesDialog(reviewedReqirements.getShell());
+				t.open();
 			}
 		};
-		manageStakeholderRoles.setText("Manage stakeholder roles");
+		manageStakeholderRoles.setText(MANAGE_STAKEHOLDER_ROLES);
 		manageStakeholderRoles.setToolTipText("Manages the Stakeholder toles with Dialog for choosing the settings.");
 		chooseRole.add(manageStakeholderRoles);
 
@@ -184,8 +202,8 @@ public class StakeholderView extends ViewPart implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		ReviewedTracker tracker = (ReviewedTracker) o;
-		reviewedReqirements.setText("Reviewed Requirements: " + tracker.getReviewedElements());
-		unreviewedReqirements.setText("Unreviewed Requirements: " + tracker.getUnreviewedElements());
+		reviewedReqirements.setText(REVIEWED_REQUIREMENTS + tracker.getReviewedElements(true));
+		unreviewedReqirements.setText(UNREVIEWED_REQUIREMENTS + tracker.getReviewedElements(false));
 
 	}
 

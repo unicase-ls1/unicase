@@ -50,13 +50,15 @@ public class ReviewedTracker extends Observable {
 	
 	/**
 	 * Gets the number of elements in a project which are reviewed.
+	 * @param selectReviewed defines which elements are get. Only if it is true, 
+	 * the number of the reviewed elements will be return.
 	 * @return the value of the elements which are reviewed.
 	 */
-	public int getReviewedElements() {
+	public int getReviewedElements(boolean selectReviewed) {
 		requirements = UrmlTreeHandler.getRequirementsFromProject(project);
 		int reviewed = 0;
 		for (Requirement r : requirements){
-			if (r.isReviewed()){
+			if (r.isReviewed()== selectReviewed){
 				reviewed++;
 				
 			}
@@ -64,20 +66,7 @@ public class ReviewedTracker extends Observable {
 		return reviewed;
 	}
 	
-	/**
-	 * Gets the number of the unreviewed elements.
-	 * @return the number of the elements in a project which are unreviewed.
-	 */
-	public int getUnreviewedElements() {
-		requirements = UrmlTreeHandler.getRequirementsFromProject(project);
-		int unreviewed = 0;
-		for (Requirement r : requirements){
-			if (!r.isReviewed()){
-				unreviewed++;
-			}
-		}
-		return unreviewed;
-	}
+
 	
 	/**
 	 * Updates the observers.
