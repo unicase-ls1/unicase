@@ -65,7 +65,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		projects = new BasicEList<ECPProject>();
 		folders = new BasicEList<XMIECPProjectContainer>();
 		
-		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw"; //TODO check whether workspace-path is ok
+		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw";
 		resource = null;
 		
 		buildProjectListener();

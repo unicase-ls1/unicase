@@ -12,10 +12,7 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
-		/*//TODO AssociationClassElement-Issue
-		return ModelUtil.isAssociationClassElement(eClazz);
-		*/
-		return false;
+		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 	
 	@Override
