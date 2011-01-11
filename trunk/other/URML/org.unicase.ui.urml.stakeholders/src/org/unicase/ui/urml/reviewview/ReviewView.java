@@ -93,7 +93,7 @@ public class ReviewView extends ViewPart {
 		// Test code for filling the view with elements. To be replaced later
 		try {
 
-			indexHandler.setInput(UrmlTreeHandler.getStakeholderSetfromProjects(UrmlTreeHandler.getTestProject()));
+			indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
 			// later getStakeholderElementSet(stakeholder);
 		} catch (NoWorkspaceException e1) {
 			e1.printStackTrace();
@@ -114,12 +114,12 @@ public class ReviewView extends ViewPart {
 		Action showReviewed = new Action() {
 			@Override
 			public void run() {
-				elementsViewer.setFilters(new ViewerFilter[]{filter, filterUnreviewed});
+				elementsViewer.setFilters(new ViewerFilter[]{filter});
 			}
 		};
 
 		showReviewed.setText("Show reviewed");
-		showReviewed.setToolTipText("Manages the Stakeholder toles with Dialog for choosing the settings.");
+		showReviewed.setToolTipText("Manages the Stakeholder roles with Dialog for choosing the settings.");
 		showReviewed.setImageDescriptor(Activator.getImageDescriptor("icons/closed.gif"));
 		menuManager.add(showReviewed);
 
@@ -324,4 +324,15 @@ public class ReviewView extends ViewPart {
 	public void setFocus() {
 
 	}
+	
+	/**
+	 * Show only the reviewed elements using an appropriate filter.
+	 * @param reviewed defines which elements should be shown. If it is false only the
+	 * unreviewed elements will be shown.
+	 */
+	public void showOnlyReviewedElements(boolean reviewed) {
+		ReviewedFilter filter = new ReviewedFilter(reviewed);
+		elementsViewer.setFilters(new ViewerFilter[]{filter});
+	}
+
 }

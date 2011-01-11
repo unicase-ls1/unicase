@@ -8,6 +8,7 @@ package org.unicase.ui.urml.stakeholderview.reviewview.input;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeNode;
@@ -15,6 +16,7 @@ import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.model.urml.requirement.RequirementPackage;
@@ -59,13 +61,30 @@ public final class UrmlTreeHandler {
 
 		return newList;
 	}
+	
+	/**
+	 * Test method.
+	 * @param project the project.
+	 * @return newList the test list
+	 */
+	public static Collection<Requirement> getRolesFromProject(ECPProject project) {
+		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
+			.getStakeholderRole(), new BasicEList<EObject>());
+		Collection<Requirement> newList = new ArrayList<Requirement>();
+		for (EObject a : basicListReq) {
+			newList.add((Requirement) a);
+		}
+
+		return newList;
+	}
+
 
 	/**
 	 * Test method.
 	 * @param project the project.
 	 * @return the list
 	 */
-	public static Collection<UrmlModelElement> getStakeholderSetfromProjects(ECPProject project) {
+	public static Collection<UrmlModelElement> getRequirementsfromProjects(ECPProject project) {
 		// project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
 		// return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
 		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(),

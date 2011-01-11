@@ -12,15 +12,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
+ * Listener for the review view, which updated the changes on some features.
  * @author kterzieva
  */
 public class ReviewedListener extends Listener {	
 	
 	/**
-	 * .
-	 * 
-	 * @param reviewedTracker .
-	 * @param urmlElement .
+	 * The construct.
+	 * @param reviewedTracker the review tracker
+	 * @param urmlElement the urml element which should be tracked
 	 */
 	public ReviewedListener(ReviewedTracker reviewedTracker, UrmlModelElement urmlElement) {
 		super(reviewedTracker, urmlElement);
