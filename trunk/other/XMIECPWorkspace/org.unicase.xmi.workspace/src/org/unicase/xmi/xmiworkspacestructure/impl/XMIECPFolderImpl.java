@@ -382,9 +382,11 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		return workspace;
 	}
 
+	/**
+	 * CAUTION: this feature is not supported by this plugin!
+	 */
 	public boolean isNonDomainElement(EObject eObject) {
-		//return (eObject instanceof NonDomainElement); //TODO NonDomainElement-Issue
-		return false;
+		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 
 	public void modelelementDeleted(EObject eobject) {
@@ -423,15 +425,11 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		return result;
 	}
 
+	/**
+	 * CAUTION: this feature is not supported by this plugin!
+	 */
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		/*//TODO AssociationClassElement-Issue
-		if (isAssociationClassElement(eObject)) {
-			AssociationClassElement ace = (AssociationClassElement) eObject;
-			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
-				.getAssociationFeatures());
-		}
-		*/
-		return null;
+		return null; // CAUTION: this feature is not supported by this plugin!
 	}
 
 	public EditingDomain getEditingDomain() {
@@ -443,11 +441,11 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 		return new XMIMetaModelElementContext();
 	}
 
+	/**
+	 *  CAUTION: this feature is not supported by this plugin!
+	 */
 	public boolean isAssociationClassElement(EObject eObject) {
-		/*//TODO AssociationClassElement-Issue
-		return (eObject instanceof AssociationClassElement);
-		*/
-		return false;
+		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 
 } //XMIECPFolderImpl

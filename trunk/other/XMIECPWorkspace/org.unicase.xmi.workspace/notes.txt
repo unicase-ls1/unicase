@@ -44,3 +44,16 @@ hope i didnt forget one.
 --
 # Todo:
 - If project-file name/location.. is empty : now only error in console but should be a message dialog
+- refactor init() in XMIFileProjectImpl to Getter methods!
+- Problem: File changed on file system or has been deleted
+	-> add a status to the project in form of an enumeration with the values LOADED, NOTLOADED, FAILEDTOLOAD
+	-> Change the ItemProvider so it asks the project for its status and changes the icon/text if FAILEDTOLOAD
+	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
+- Remove commented code where metamodel-package-usage is marked and add a comment behind the return that this plugin does not support Associations, etc.
+- Send a Patch to Jonas from the navigator-package -> Delete in Menu-Issue
+- Change the Import- and New-Project-Dialog so the emf.common...ResourceDialog with the Eclipse-Navigator-Workspace-Content can be used.
+- The Slash is File.SEPARATOR .
+- In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
+- Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
+ 
+ 
