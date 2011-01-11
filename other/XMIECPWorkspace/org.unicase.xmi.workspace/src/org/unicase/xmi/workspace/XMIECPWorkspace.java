@@ -36,7 +36,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Internal list of projects contained in the workspace.
 	 */
-	private EList<ECPProject> projects;
+	//private EList<ECPProject> projects;
 	
 	/**
 	 * Internal list of folders contained in the workspace.
@@ -62,7 +62,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 * Builds new ECPWorkspace being able to hold xmi-persistable projects.
 	 */
 	public XMIECPWorkspace() {
-		projects = new BasicEList<ECPProject>();
+		//projects = new BasicEList<ECPProject>();
 		folders = new BasicEList<XMIECPProjectContainer>();
 		
 		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw";
@@ -122,7 +122,8 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					// project can be added to the workspace
 					((ECPProject) project).setWorkspace(this);
 					project.eAdapters().add(projectListener);
-					projects.add((ECPProject) project);
+					ECPProject pro = (ECPProject) project;
+					getProjects().add(pro);
 				}
 			}
 		}
@@ -189,10 +190,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	
 	@Override
 	public EList<ECPProject> getProjects() {
-		EList<ECPProject> result = new BasicEList<ECPProject>();
-		result.addAll(projects);
-		result.addAll(folders);
-		return result;
+		if(projects == null) {
+			projects = new BasicEList<ECPProject>();
+		}
+		return projects;
 	}
 	
 	/**
@@ -210,7 +211,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			new XMIWorkspaceException("Could not add new project to workspace. Unable to write to workspace file.", e);
 		}
 		
-		projects.add(project);
+		getProjects().add(project);
 		setActiveProject(project);
 	}
 	
@@ -226,7 +227,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			new XMIWorkspaceException("Could not delete project. Error while writing workspace-file.", e);
 		}
 		
-		projects.remove(project);
+		getProjects().remove(project);
 		project.dispose();
 	}
 
@@ -237,7 +238,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		// added this to avoid errors
 		if(ap == null) {
 			// It should throw an error here, that no project is selected, but it's ignored here.
-			return projects.get(0);
+			return getProjects().get(0);
 		}
 		
 		return ap;

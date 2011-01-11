@@ -1,7 +1,11 @@
 package org.unicase.xmi.views;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -117,12 +121,17 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		wsButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
-				workspaceDialog.setAllowMultiple(false);
-				workspaceDialog.setTitle("select a project file");
-				workspaceDialog.setMessage("Please select an XMI file with project contents.");
-				workspaceDialog.loadContents();
-				workspaceDialog.open();
+//				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
+//				workspaceDialog.setAllowMultiple(false);
+//				workspaceDialog.setTitle("select a project file");
+//				workspaceDialog.setMessage("Please select an XMI file with project contents.");
+//				workspaceDialog.loadContents();
+//				workspaceDialog.open();
+				ResourceDialog resourceDialog = new ResourceDialog(shell, "Select a Resource", SWT.NONE);
+				resourceDialog.create();
+				resourceDialog.open();
+				URI uri = resourceDialog.getURIs().get(0);
+				
 			}
 
 			public void widgetSelected(SelectionEvent e) {
