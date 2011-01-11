@@ -26,7 +26,7 @@ private IProjectGenerator projectGeneratorObj;
 				projectGeneratorObj.generateValues();
 				project.addModelElement(projectGeneratorObj.getRootObject());
 			}
-		}.run();
+		}.run(false);
 	}
 
 	public long getHierachyDepth() {
