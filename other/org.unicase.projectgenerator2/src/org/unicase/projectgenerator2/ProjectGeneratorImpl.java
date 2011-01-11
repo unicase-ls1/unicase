@@ -133,7 +133,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		generateValues(rootObject);
 		for(EClass eClass : generatedObjects.keySet()) {
 			for(EObject generatedEObject : generatedObjects.get(eClass)) {
-				addReferences(generatedEObject);
+				addReferences(generatedEObject);			
 			}
 		}
 	}
@@ -178,18 +178,21 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 						break;
 					EObject newObject = EcoreUtil.create(currentChildClass);
 					setEObjectAttributes(newObject);
-					if (reference.isMany()) {
+					try {
+						if (reference.isMany()) {
 							((EList<EObject>) currentParentObject.eGet(reference)).add(newObject);
-					}
-					else {
+						}
+						else {
 							currentParentObject.eSet(reference, newObject);
+						}
+						currentElementsInThisDepth++;
+						i++;
+						if(currentDepth < hierarchyDepth) {
+							remainingObjects.add(newObject);
+						}
+						addGeneratedClassAndObject(newObject);
+					} catch(Exception e) {
 					}
-					currentElementsInThisDepth++;
-					i++;
-					if(currentDepth < hierarchyDepth) {
-						remainingObjects.add(newObject);
-					}
-					addGeneratedClassAndObject(newObject);
 				}
 			}
 			lastUsedIndex.put(currentParentObject.eClass(), index);
@@ -210,8 +213,9 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	private boolean isValidReference(EReference reference, EObject currentParentObject) {
 		if(!reference.isMany() && currentParentObject.eIsSet(reference))
 			return false;
-		if(reference.isChangeable() && !reference.isUnsettable()) 
+		if(reference.isChangeable()) {
 			return true;
+		}
 		return false;
 	}
 	
@@ -221,31 +225,32 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 */
 	private void addReferences(EObject newObject) {
 		for(EReference reference : newObject.eClass().getEAllReferences()) {
-			if(reference.isContainment() || reference.isContainer() || reference.isUnsettable() || reference.isVolatile() || reference.isTransient() || reference.isDerived() || !reference.isChangeable() || (!reference.isMany() && newObject.eIsSet(reference))) {
+			if(reference.isContainment() || reference.isContainer() || reference.isVolatile() || reference.isTransient() || reference.isDerived() || !reference.isChangeable() || (!reference.isMany() && newObject.eIsSet(reference))) {
 				continue;
 			}
 			List<EClass> possibleReferenceClasses = getPossibleReferenceClasses(reference); 
-			boolean singleIsSet = false;
 			for(EClass nextReferenceClass : possibleReferenceClasses) {
-				if(singleIsSet)
-					break;
 				if(generatedObjects.containsKey(nextReferenceClass)) {
 					List<EObject> possibleReferenceObjects = new ArrayList<EObject>(generatedObjects.get(nextReferenceClass)); 
 					possibleReferenceObjects.remove(newObject);
 					Collections.shuffle(possibleReferenceObjects, random);
-					int size = possibleReferenceObjects.size();
-					if(size > 0) {
+					if(!possibleReferenceObjects.isEmpty()) {
 						int index = 0;
-						for(int i = 0; i < random.nextInt(3); i++) {
-							EObject referencedObject = possibleReferenceObjects.get(index);
+						try {
 							if(reference.isMany()) {
-								((EList<EObject>) newObject.eGet(reference)).add(referencedObject);
-								index = (index+1) % size;
-							} else {
+								int maxObjects = random.nextInt(3) + 1;
+								if(reference.isRequired()) maxObjects++;
+								for(int i = 0; i < maxObjects; i++) {
+									EObject referencedObject = possibleReferenceObjects.get(index);
+									((EList<EObject>) newObject.eGet(reference)).add(referencedObject);
+									if(++index==possibleReferenceObjects.size()) break;
+								}
+							} else if (reference.isRequired() || random.nextBoolean()){
+								EObject referencedObject = possibleReferenceObjects.get(index);
 								newObject.eSet(reference, referencedObject);
-								singleIsSet = true;
 								break;
-							}
+							} else break;
+						} catch (Exception e) {
 						}
 					}
 				}
@@ -291,96 +296,146 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 */
 	private void setEObjectAttributes(EObject newObject) {
 		for(EAttribute attribute : newObject.eClass().getEAllAttributes()) {
-			EClassifier attributeType = attribute.getEType();
-			EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
-			if(!attribute.isChangeable() || attribute.isUnsettable() || attribute.isDerived() || attribute.isTransient() || attribute.isVolatile())
-				continue;
-			if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
-				if(attribute.isMany()) {
-					((EList<Boolean>) newObject.eGet(attribute)).add(random.nextBoolean());
-				} else {
-					newObject.eSet(attribute, random.nextBoolean());
+			try {
+				EClassifier attributeType = attribute.getEType();
+				EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
+				if(!attribute.isChangeable() || attribute.isDerived() || attribute.isTransient() || attribute.isVolatile())
+					continue;
+				if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1 + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Boolean>) newObject.eGet(attribute)).add(random.nextBoolean());
+						}
+					} else {
+						newObject.eSet(attribute, random.nextBoolean());
+					}
+				} else if (attributeType == ecoreInstance.getEByteArray()){
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							byte[] bytes = new byte[random.nextInt(100)];
+							random.nextBytes(bytes);
+							((EList) newObject.eGet(attribute)).add(bytes);
+						}
+					} else {
+						byte[] bytes = new byte[random.nextInt(100)];
+						random.nextBytes(bytes);
+						newObject.eSet(attribute, bytes);
+					}				
+				} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							byte[] singleByte = new byte[1];
+							random.nextBytes(singleByte);
+							((EList<Byte>) newObject.eGet(attribute)).add(new Byte(singleByte[0]));
+						}
+					} else {
+						byte[] singleByte = new byte[1];
+						random.nextBytes(singleByte);
+						newObject.eSet(attribute, new Byte(singleByte[0]));
+					}
+				} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Character>) newObject.eGet(attribute)).add((char) (random.nextInt(94) + 33));
+						}
+					} else {
+						newObject.eSet(attribute, (char)(random.nextInt(94) + 33));
+					}
+				} else if(attributeType == ecoreInstance.getEString()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							string.delete(0, string.length());
+							for(int j = -5; j<random.nextInt(10); j++) {
+								string.append((char)(random.nextInt(94) + 33));
+							}
+							((EList<String>) newObject.eGet(attribute)).add(string.toString());
+						}
+					} else {
+						string.delete(0, string.length());
+						for(int j = -5; j<random.nextInt(10); j++) {
+							string.append((char)(random.nextInt(94) + 33));
+						}
+						newObject.eSet(attribute, string.toString());
+					}
+				} else if (attributeType == ecoreInstance.getEDate()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Date>) newObject.eGet(attribute)).add(date);
+						}
+					} else {
+						newObject.eSet(attribute, date);
+					}
+				} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Integer>) newObject.eGet(attribute)).add(random.nextInt());
+						}
+					} else {
+						newObject.eSet(attribute, random.nextInt());
+					}
+				} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Double>) newObject.eGet(attribute)).add(random.nextDouble() * random.nextInt());
+						}
+					} else {
+						newObject.eSet(attribute, random.nextDouble() * random.nextInt());
+					}
+				} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Float>) newObject.eGet(attribute)).add(random.nextFloat() * random.nextInt());
+						}
+					} else {
+						newObject.eSet(attribute, random.nextFloat() * random.nextInt());
+					}
+				} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Long>) newObject.eGet(attribute)).add(random.nextLong());
+						}
+					} else {
+						newObject.eSet(attribute, random.nextLong());
+					}
+				} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<Short>) newObject.eGet(attribute)).add((short) random.nextInt());
+						}
+					} else {
+						newObject.eSet(attribute, (short) random.nextInt());
+					}
+				} else if (attributeType ==ecoreInstance.getEBigInteger()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<BigInteger>) newObject.eGet(attribute)).add(new BigInteger(20, random));
+						}
+					} else {
+						newObject.eSet(attribute, new BigInteger(20, random));
+					}
+				} else if (attributeType == ecoreInstance.getEBigDecimal()) {
+					if(attribute.isMany()) {
+						int maxObjects = random.nextInt(3) + 1;
+						for(int i = 0; i < maxObjects; i++) {
+							((EList<BigDecimal>) newObject.eGet(attribute)).add(new BigDecimal(random.nextDouble() * random.nextInt()));
+						}
+					} else {
+						newObject.eSet(attribute, new BigDecimal(random.nextDouble() * random.nextInt()));
+					}
 				}
-			} else if (attributeType == ecoreInstance.getEByteArray()){
-				byte[] bytes = new byte[random.nextInt(100)];
-				random.nextBytes(bytes);
-				if(attribute.isMany()) {
-					((EList) newObject.eGet(attribute)).add(bytes);
-				} else {
-					newObject.eSet(attribute, bytes);
-				}				
-			} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
-				byte[] singleByte = new byte[1];
-				random.nextBytes(singleByte);
-				if(attribute.isMany()) {
-					((EList<Byte>) newObject.eGet(attribute)).add(new Byte(singleByte[0]));
-				} else {
-					newObject.eSet(attribute, new Byte(singleByte[0]));
-				}
-			} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
-				if(attribute.isMany()) {
-					((EList<Character>) newObject.eGet(attribute)).add((char) (random.nextInt(94) + 33));
-				} else {
-					newObject.eSet(attribute, (char)(random.nextInt(94) + 33));
-				}
-			} else if(attributeType == ecoreInstance.getEString()) {
-				string.delete(0, string.length());
-				for(int i = -5; i<random.nextInt(10); i++) {
-					string.append((char)(random.nextInt(94) + 33));
-				}
-				if(attribute.isMany()) {
-					((EList<String>) newObject.eGet(attribute)).add(string.toString());
-				} else {
-					newObject.eSet(attribute, string.toString());
-				}
-			} else if (attributeType == ecoreInstance.getEDate()) {
-				if(attribute.isMany()) {
-					((EList<Date>) newObject.eGet(attribute)).add(date);
-				} else {
-					newObject.eSet(attribute, date);
-				}
-			} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
-				if(attribute.isMany()) {
-					((EList<Integer>) newObject.eGet(attribute)).add(random.nextInt());
-				} else {
-					newObject.eSet(attribute, random.nextInt());
-				}
-			} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
-				if(attribute.isMany()) {
-					((EList<Double>) newObject.eGet(attribute)).add(random.nextDouble() * random.nextInt());
-				} else {
-					newObject.eSet(attribute, random.nextDouble() * random.nextInt());
-				}
-			} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
-				if(attribute.isMany()) {
-					((EList<Float>) newObject.eGet(attribute)).add(random.nextFloat() * random.nextInt());
-				} else {
-					newObject.eSet(attribute, random.nextFloat() * random.nextInt());
-				}
-			} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
-				if(attribute.isMany()) {
-					((EList<Long>) newObject.eGet(attribute)).add(random.nextLong());
-				} else {
-					newObject.eSet(attribute, random.nextLong());
-				}
-			} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
-				if(attribute.isMany()) {
-					((EList<Short>) newObject.eGet(attribute)).add((short) random.nextInt());
-				} else {
-					newObject.eSet(attribute, (short) random.nextInt());
-				}
-			} else if (attributeType ==ecoreInstance.getEBigInteger()) {
-				if(attribute.isMany()) {
-					((EList<BigInteger>) newObject.eGet(attribute)).add(new BigInteger(20, random));
-				} else {
-					newObject.eSet(attribute, new BigInteger(20, random));
-				}
-			} else if (attributeType == ecoreInstance.getEBigDecimal()) {
-				if(attribute.isMany()) {
-					((EList<BigDecimal>) newObject.eGet(attribute)).add(new BigDecimal(random.nextDouble() * random.nextInt()));
-				} else {
-					newObject.eSet(attribute, new BigDecimal(random.nextDouble() * random.nextInt()));
-				}
+			} catch (Exception e) {
 			}
 		}
 	}
