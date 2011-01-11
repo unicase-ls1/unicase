@@ -1,41 +1,8 @@
 ## TODO
 
-- Folder:
-	- Warum werden Projekte im Folder nicht angezeigt?
-
-- Warum wird der Navigator nicht "refreshed"?
-Send an eMail
-
-- Rechtsklick-Menü:
-	- Konsolidierung, Bsp. Delete Project/Folder mit Delete und je nach dem auf was man klickt
-	- New Folder/Project über Eclipse Standard-Dialog (create a feature request)
-	- Import Project über Import-Funktion von Eclipse implementieren (-"-)
-	
-- UML-Diagramm erstellen zur Übersicht!
-	- konnten nicht UML-Editor nehmen, weil keine Packages!
-
-- Warum werden bei "Add new model element" alle Modelle angezeigt?
-
-- Sonstiges:
-	- Wie bekommt man den Platformabhängigen "/" bzw. "\"-Slash?
-	- Wenn xmi-Datei gelöscht, dann wird Project immernoch angezeigt (weil in xmiworkspace.xmi drin), was soll geschehen?
-	  Bsp. Meldung anzeigen? oder Project aus xmiworkspace.xmi löschen?
-	  -> analog Folder
-	- Wie erstellt man Modelelementinstanzen in einem Folder->Project
-	- Was hat es mit dem "deprected" UnicaseCommand.run() auf sich? -> ECPCommand
-
----
-# 22.12.10
-
-Pointer to Jonas because of a listener to refresh the navigator -> project/workspace listener… -> Markus
-
-29.12.	Matti	Consolidate Delete	Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
-
 29.12.	Matti	OK	Change Design -> Refactor, make the Commands do the work, not the Dialogs!
 
 29.12.	Matti	OK	Folder shouldn’t be shown in the navigator -> the workspace should shortcut it to the projects in the folder
-
-Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
 
 26.12.	Matti	OK	Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
 
@@ -43,7 +10,7 @@ Import dialog: there might be a dialog in eclipse to shortcut to the workspace (
 
 26.12.	Matti	OK	Saving the (workspace-) file to an other place for example where the runtime is…
 
-26.12.	Matti	OK	Use the ecp command instead of unicase command in the dialog
+26.12.	Matti	OK	Use own command instead of unicase command in the dialog
 
 29.12.	Matti	OK	Remove DeleteFolderHandler
 
@@ -56,8 +23,24 @@ Plugins except Navigator Editor ui.Common navigatoreditor Bridge. I
 hope i didnt forget one.
 
 --
-# New Questions: (committed to unicase-labcourse on Dec 29, 2010)
+# Questions:
 - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
 - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
-- What method is called on which object when you press "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
+- What method is called on which object when you press (the already implemented) "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
 - Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
+- listener to refresh the navigator -> project/workspace listener… -> Markus
+- Consolidate Delete: Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
+- Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
+
+- Usecase: delete project-file from disk without deleting it in the workspace ->
+	 resource.load automatically creates a new project-file!
+
+- where to to get a platform specific slash from?
+
+--
+- @ Project Generator Team: they save the file the wrong way, the registered model is XMI which is no valid model
+	--> How do you sav your model?
+	
+--
+# Todo:
+- If project-file name/location.. is empty : now only error in console but should be a message dialog
