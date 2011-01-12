@@ -188,13 +188,16 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 	
+	//TODO Reimplement getProjects()
 	@Override
 	public EList<ECPProject> getProjects() {
 		if(projects == null) {
 			projects = new BasicEList<ECPProject>();
+			projects.addAll(super.getProjects());
 		}
 		return projects;
 	}
+
 	
 	/**
 	 * Adds a project to the workspace.
