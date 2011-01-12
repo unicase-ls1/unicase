@@ -221,8 +221,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
-				+ Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException(
+				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -243,8 +243,9 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
-				+ Configuration.getWorkspaceDirectory(), e);
+			WorkspaceUtil.logException(
+				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
+				e);
 		}
 	}
 
@@ -320,7 +321,7 @@ public final class WorkspaceManager {
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
 
 		try {
-			migrator.migrate(modelURIs, workspaceModelVersion.getReleaseNumber() - 1, Integer.MAX_VALUE,
+			migrator.migrateAndSave(modelURIs, workspaceModelVersion.getReleaseNumber() - 1, Integer.MAX_VALUE,
 				new NullProgressMonitor());
 		} catch (MigrationException e) {
 			WorkspaceUtil.logException("The migration of the project in the file " + absoluteFilename + " failed!", e);
@@ -406,7 +407,7 @@ public final class WorkspaceManager {
 		modelURIs.add(projectURI);
 		modelURIs.add(changesURI);
 		// MK: build in progress monitor for migration here
-		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
+		migrator.migrateAndSave(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
 	}
 
 	/**

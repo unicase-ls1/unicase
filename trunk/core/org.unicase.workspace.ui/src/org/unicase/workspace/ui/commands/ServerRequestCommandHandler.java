@@ -48,7 +48,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 				}
 			}
 		};
-		return command.run();
+		return command.run(false);
 	}
 
 	private void setProjectSpace(ProjectSpace projectSpace) {
