@@ -160,7 +160,7 @@ public class MECommentWidget extends Composite {
 
 		Label userComment = new Label(commentEntry, SWT.WRAP);
 		if (comment.getDescription() != null) {
-			userComment.setText(comment.getDescription());
+			userComment.setText(comment.getDescription().replaceAll("&", "&&"));
 		}
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, false).applyTo(userComment);
 
