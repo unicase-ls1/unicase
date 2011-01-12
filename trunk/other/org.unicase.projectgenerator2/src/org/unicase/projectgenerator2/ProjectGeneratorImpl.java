@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -20,6 +19,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 public class ProjectGeneratorImpl implements IProjectGenerator {
 	private EPackage rootPackage;
@@ -27,14 +30,15 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	private long noOfExampleValues;
 	private long hierarchyDepth;
 	private EObject rootObject;
+	private TransactionalEditingDomain domain;
 	private final Random random;
 	private final Date date;
 	private final StringBuffer string;
 	private final Set<EClass> modelElementEClasses;
 	private Map<EClass, List<EClass>> elementsToCreate;
-	private Map<EClass, List<EObject>> generatedObjects;
 	private Map<EClass, Integer> lastUsedIndex;
 	private Map<EReference, List<EClass>> possibleReferenceClasses;
+	private Map<EClass, Set<EObject>> generatedObjects;
 	
 	public EObject getRootObject() {
 		return rootObject;
@@ -49,9 +53,16 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.seed = seed;
 		this.noOfExampleValues = noOfExampleValues;
 		this.hierarchyDepth = hierachyDepth;
-		rootObject = new ArrayList<EObject>(ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage)).get(0);
+		for(EClass eClass : ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage)) {
+			if(eClass.isAbstract() || eClass.isInterface())
+				continue;
+			EObject container = eClass.eContainer();
+			if(container != null && container instanceof EPackage) {
+				rootObject = eClass;
+				break;
+			}
+		}
 		modelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage);
-		generatedObjects = new LinkedHashMap<EClass, List<EObject>>();
 		elementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		lastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		possibleReferenceClasses = new LinkedHashMap<EReference, List<EClass>>();
@@ -68,7 +79,6 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 		this.rootObject = rootObject;
 		modelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage);
 		elementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
-		generatedObjects = new LinkedHashMap<EClass, List<EObject>>();
 		lastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		possibleReferenceClasses = new LinkedHashMap<EReference, List<EClass>>();
 		random = new Random();
@@ -131,6 +141,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 */
 	public void generateValues() {
 		generateValues(rootObject);
+		generatedObjects = ProjectGeneratorUtil.getAllGeneratedClassesAndObjects(rootObject);
 		for(EClass eClass : generatedObjects.keySet()) {
 			for(EObject generatedEObject : generatedObjects.get(eClass)) {
 				addReferences(generatedEObject);			
@@ -143,7 +154,13 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 * @param parent the parent EObject to start generating from
 	 */
 	private void generateValues(EObject parent) {
-		addGeneratedClassAndObject(parent);
+		if(parent == null)
+			return;
+		if(parent instanceof EClass) {
+			parent = EcoreUtil.create((EClass) parent);
+			setEObjectAttributes(parent);
+		}
+		domain = TransactionUtil.getEditingDomain(parent);
 		List<EObject> remainingObjects = new ArrayList<EObject>();
 		remainingObjects.add(parent);
 		int currentDepth = 1;
@@ -159,6 +176,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				index = 0;
 			}
 			int i = 0;
+			Map<EReference, List<EObject>> objectsPerReference = new LinkedHashMap<EReference, List<EObject>>();
 			while(i<noOfExampleValues && !elementsToCreate.isEmpty()) {
 				index = (index + 1) % elementsToCreate.size();
 				EClass currentChildClass = elementsToCreate.get(index);
@@ -178,21 +196,32 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 						break;
 					EObject newObject = EcoreUtil.create(currentChildClass);
 					setEObjectAttributes(newObject);
-					try {
-						if (reference.isMany()) {
-							((EList<EObject>) currentParentObject.eGet(reference)).add(newObject);
-						}
+					if (reference.isMany()) {
+						if(objectsPerReference.containsKey(reference))
+							objectsPerReference.get(reference).add(newObject);
 						else {
-							currentParentObject.eSet(reference, newObject);
+							List<EObject> newReferenceList = new ArrayList<EObject>();
+							newReferenceList.add(newObject);
+							objectsPerReference.put(reference, newReferenceList);
 						}
-						currentElementsInThisDepth++;
-						i++;
-						if(currentDepth < hierarchyDepth) {
-							remainingObjects.add(newObject);
-						}
-						addGeneratedClassAndObject(newObject);
-					} catch(Exception e) {
 					}
+					else {
+						try {
+							new SetCommand(domain, currentParentObject, reference, newObject).doExecute();
+						} catch(Exception e){
+						}
+					}
+					currentElementsInThisDepth++;
+					i++;
+					if(currentDepth < hierarchyDepth) {
+						remainingObjects.add(newObject);
+					}
+				}
+			}
+			for(EReference reference : objectsPerReference.keySet()) {
+				try {
+					new AddCommand(domain, currentParentObject, reference, objectsPerReference.get(reference)).doExecute();
+				} catch(Exception e) {
 				}
 			}
 			lastUsedIndex.put(currentParentObject.eClass(), index);
@@ -240,14 +269,15 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 							if(reference.isMany()) {
 								int maxObjects = random.nextInt(3) + 1;
 								if(reference.isRequired()) maxObjects++;
+								List<EObject> referencedObjects = new ArrayList<EObject>();
 								for(int i = 0; i < maxObjects; i++) {
-									EObject referencedObject = possibleReferenceObjects.get(index);
-									((EList<EObject>) newObject.eGet(reference)).add(referencedObject);
+									referencedObjects.add(possibleReferenceObjects.get(index));
 									if(++index==possibleReferenceObjects.size()) break;
 								}
+								new AddCommand(domain, newObject, reference, referencedObjects).doExecute();
 							} else if (reference.isRequired() || random.nextBoolean()){
 								EObject referencedObject = possibleReferenceObjects.get(index);
-								newObject.eSet(reference, referencedObject);
+								new SetCommand(domain, newObject, reference, referencedObject).doExecute();
 								break;
 							} else break;
 						} catch (Exception e) {
@@ -276,21 +306,6 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	}
 
 	/**
-	 * Adds an EObject and its class (if necessary) to the specified lists for addReferences()
-	 * @param newObject the EObject which should be added 
-	 */
-	private void addGeneratedClassAndObject(EObject newObject) {
-		EClass eClass = newObject.eClass();
-		if(generatedObjects.containsKey(eClass)) {
-			generatedObjects.get(eClass).add(newObject);
-		} else {
-			List<EObject> newGeneratedObjectList = new ArrayList<EObject>();
-			newGeneratedObjectList.add(newObject);
-			generatedObjects.put(eClass, newGeneratedObjectList);
-		}
-	}
-
-	/**
 	 * Sets several attributes of a given EObject using random values
 	 * @param newObject the EObject to set attributes for
 	 */
@@ -303,12 +318,14 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					continue;
 				if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
 					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1 + 1;
+						int maxObjects = random.nextInt(3) + 1;
+						List<Boolean> newAttributes = new ArrayList<Boolean>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Boolean>) newObject.eGet(attribute)).add(random.nextBoolean());
+							newAttributes.add(random.nextBoolean());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, random.nextBoolean());
+						new SetCommand(domain, newObject, attribute, random.nextBoolean()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEByteArray()){
 					if(attribute.isMany()) {
@@ -316,12 +333,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 						for(int i = 0; i < maxObjects; i++) {
 							byte[] bytes = new byte[random.nextInt(100)];
 							random.nextBytes(bytes);
-							((EList) newObject.eGet(attribute)).add(bytes);
+							new AddCommand(domain, newObject, attribute, bytes).doExecute();
 						}
 					} else {
 						byte[] bytes = new byte[random.nextInt(100)];
 						random.nextBytes(bytes);
-						newObject.eSet(attribute, bytes);
+						new SetCommand(domain, newObject, attribute, bytes).doExecute();
 					}				
 				} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
 					if(attribute.isMany()) {
@@ -329,110 +346,130 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 						for(int i = 0; i < maxObjects; i++) {
 							byte[] singleByte = new byte[1];
 							random.nextBytes(singleByte);
-							((EList<Byte>) newObject.eGet(attribute)).add(new Byte(singleByte[0]));
+							new AddCommand(domain, newObject, attribute, singleByte).doExecute();
 						}
 					} else {
 						byte[] singleByte = new byte[1];
 						random.nextBytes(singleByte);
-						newObject.eSet(attribute, new Byte(singleByte[0]));
+						new SetCommand(domain, newObject, attribute, singleByte).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Character> newAttributes = new ArrayList<Character>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Character>) newObject.eGet(attribute)).add((char) (random.nextInt(94) + 33));
+							newAttributes.add((char) (random.nextInt(94) + 33));
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, (char)(random.nextInt(94) + 33));
+						new SetCommand(domain, newObject, attribute, (char)(random.nextInt(94) + 33)).doExecute();
 					}
 				} else if(attributeType == ecoreInstance.getEString()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<String> newAttributes = new ArrayList<String>();
 						for(int i = 0; i < maxObjects; i++) {
 							string.delete(0, string.length());
 							for(int j = -5; j<random.nextInt(10); j++) {
 								string.append((char)(random.nextInt(94) + 33));
 							}
-							((EList<String>) newObject.eGet(attribute)).add(string.toString());
+							newAttributes.add(string.toString());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
 						string.delete(0, string.length());
 						for(int j = -5; j<random.nextInt(10); j++) {
 							string.append((char)(random.nextInt(94) + 33));
 						}
-						newObject.eSet(attribute, string.toString());
+						new SetCommand(domain, newObject, attribute, string.toString()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEDate()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Date> newAttributes = new ArrayList<Date>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Date>) newObject.eGet(attribute)).add(date);
+							newAttributes.add(date);
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, date);
+						new SetCommand(domain, newObject, attribute, date).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Integer> newAttributes = new ArrayList<Integer>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Integer>) newObject.eGet(attribute)).add(random.nextInt());
+							newAttributes.add(random.nextInt());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, random.nextInt());
+						new SetCommand(domain, newObject, attribute, random.nextInt()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Double> newAttributes = new ArrayList<Double>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Double>) newObject.eGet(attribute)).add(random.nextDouble() * random.nextInt());
+							newAttributes.add(random.nextDouble() * random.nextInt());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, random.nextDouble() * random.nextInt());
+						new SetCommand(domain, newObject, attribute, random.nextDouble() * random.nextInt()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Float> newAttributes = new ArrayList<Float>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Float>) newObject.eGet(attribute)).add(random.nextFloat() * random.nextInt());
+							newAttributes.add(random.nextFloat() * random.nextInt());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, random.nextFloat() * random.nextInt());
+						new SetCommand(domain, newObject, attribute, random.nextFloat() * random.nextInt()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Long> newAttributes = new ArrayList<Long>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Long>) newObject.eGet(attribute)).add(random.nextLong());
+							newAttributes.add(random.nextLong());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, random.nextLong());
+						new SetCommand(domain, newObject, attribute, random.nextLong()).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<Short> newAttributes = new ArrayList<Short>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<Short>) newObject.eGet(attribute)).add((short) random.nextInt());
+							newAttributes.add((short) random.nextInt());
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, (short) random.nextInt());
+						new SetCommand(domain, newObject, attribute, (short) random.nextInt()).doExecute();
 					}
 				} else if (attributeType ==ecoreInstance.getEBigInteger()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<BigInteger> newAttributes = new ArrayList<BigInteger>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<BigInteger>) newObject.eGet(attribute)).add(new BigInteger(20, random));
+							newAttributes.add(new BigInteger(20, random));
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, new BigInteger(20, random));
+						new SetCommand(domain, newObject, attribute, new BigInteger(20, random)).doExecute();
 					}
 				} else if (attributeType == ecoreInstance.getEBigDecimal()) {
 					if(attribute.isMany()) {
 						int maxObjects = random.nextInt(3) + 1;
+						List<BigDecimal> newAttributes = new ArrayList<BigDecimal>();
 						for(int i = 0; i < maxObjects; i++) {
-							((EList<BigDecimal>) newObject.eGet(attribute)).add(new BigDecimal(random.nextDouble() * random.nextInt()));
+							newAttributes.add(new BigDecimal(random.nextDouble() * random.nextInt()));
 						}
+						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
 					} else {
-						newObject.eSet(attribute, new BigDecimal(random.nextDouble() * random.nextInt()));
+						new SetCommand(domain, newObject, attribute, new BigDecimal(random.nextDouble() * random.nextInt())).doExecute();
 					}
 				}
 			} catch (Exception e) {

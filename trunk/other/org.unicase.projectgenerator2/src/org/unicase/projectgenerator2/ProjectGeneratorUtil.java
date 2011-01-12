@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
@@ -219,5 +221,21 @@ public class ProjectGeneratorUtil {
 			}
 		}
 		return result;
-	}	
+	}
+	
+	public static Map<EClass, Set<EObject>>getAllGeneratedClassesAndObjects(EObject rootObject) {
+		Map<EClass, Set<EObject>> result = new LinkedHashMap<EClass, Set<EObject>>();
+		TreeIterator<EObject> allContents = rootObject.eAllContents();
+		while(allContents.hasNext()) {
+			EObject eObject = allContents.next();
+			if(result.containsKey(eObject.eClass()))
+				result.get(eObject.eClass()).add(eObject);
+			else {
+				Set<EObject> newSet = new LinkedHashSet<EObject>();
+				newSet.add(eObject);
+				result.put(eObject.eClass(), newSet);
+			}
+		}
+		return result;
+	}
 }
