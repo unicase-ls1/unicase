@@ -10,5 +10,8 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.util,
+ org.eclipse.emf.edit.command,
+ org.eclipse.emf.edit.domain,
  org.eclipse.emf.transaction,
+ org.eclipse.emf.transaction.util,
  org.unicase.workspace.util
