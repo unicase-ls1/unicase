@@ -176,7 +176,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				index = 0;
 			}
 			int i = 0;
-			Map<EReference, List<EObject>> objectsPerReference = new LinkedHashMap<EReference, List<EObject>>();
+			Map<EReference, List<EObject>> objectsByReference = new LinkedHashMap<EReference, List<EObject>>();
 			while(i<noOfExampleValues && !elementsToCreate.isEmpty()) {
 				index = (index + 1) % elementsToCreate.size();
 				EClass currentChildClass = elementsToCreate.get(index);
@@ -197,12 +197,12 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					EObject newObject = EcoreUtil.create(currentChildClass);
 					setEObjectAttributes(newObject);
 					if (reference.isMany()) {
-						if(objectsPerReference.containsKey(reference))
-							objectsPerReference.get(reference).add(newObject);
+						if(objectsByReference.containsKey(reference))
+							objectsByReference.get(reference).add(newObject);
 						else {
 							List<EObject> newReferenceList = new ArrayList<EObject>();
 							newReferenceList.add(newObject);
-							objectsPerReference.put(reference, newReferenceList);
+							objectsByReference.put(reference, newReferenceList);
 						}
 					}
 					else {
@@ -218,9 +218,9 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					}
 				}
 			}
-			for(EReference reference : objectsPerReference.keySet()) {
+			for(EReference reference : objectsByReference.keySet()) {
 				try {
-					new AddCommand(domain, currentParentObject, reference, objectsPerReference.get(reference)).doExecute();
+					new AddCommand(domain, currentParentObject, reference, objectsByReference.get(reference)).doExecute();
 				} catch(Exception e) {
 				}
 			}
