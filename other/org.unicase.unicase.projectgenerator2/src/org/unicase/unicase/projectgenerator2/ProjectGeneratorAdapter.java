@@ -22,9 +22,8 @@ private IProjectGenerator projectGeneratorObj;
 			@Override
 			protected void doRun() {
 				final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-				
+				projectGeneratorObj.setRootObject(project);
 				projectGeneratorObj.generateValues();
-				project.addModelElement(projectGeneratorObj.getRootObject());
 			}
 		}.run(false);
 	}
