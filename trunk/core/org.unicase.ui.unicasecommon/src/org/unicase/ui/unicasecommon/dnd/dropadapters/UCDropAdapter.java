@@ -59,6 +59,11 @@ public class UCDropAdapter extends MEDropAdapter {
 		EObject dropee) {
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
+
+		if (userSession == null) {
+			return true;
+		}
+
 		AccessControlHelper accessHelper = new AccessControlHelper(userSession);
 
 		try {
