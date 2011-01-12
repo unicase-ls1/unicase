@@ -57,5 +57,5 @@ hope i didnt forget one.
 - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
 
 - Check where the "NoFileFound" Exception comes from (when project added from workspace)!
- 
+	-> filename not set -> see tasks. [comment @ 12.1. 23.19h]
  

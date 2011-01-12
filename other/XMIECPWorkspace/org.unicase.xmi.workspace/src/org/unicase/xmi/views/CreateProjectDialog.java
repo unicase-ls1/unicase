@@ -1,5 +1,7 @@
 package org.unicase.xmi.views;
 
+import java.io.File;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -83,10 +85,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 				}
 				
 				if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-					path += "/newproject.ucw";
+					path += File.separator + "newproject.ucw";
 				}
 				else {
-					path += "/" + txtProjectName.getText() + ".ucw";
+					path += File.separator + txtProjectName.getText() + ".ucw";
 				}
 				txtProjectLocation.setText(path);
 			}

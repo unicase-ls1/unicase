@@ -1,11 +1,10 @@
 package org.unicase.xmi.views;
 
-import java.util.List;
+import java.io.File;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -102,10 +101,10 @@ public class ImportProjectDialog extends TitleAreaDialog {
 					path = Platform.getLocation().toOSString();
 					
 					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-						path += "/" + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
+						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
 					}
 					else {
-						path += "/" + txtProjectName.getText() + ".ucw";
+						path += File.separator + txtProjectName.getText() + ".ucw";
 					}
 				}
 				txtProjectLocation.setText(path);
@@ -121,12 +120,40 @@ public class ImportProjectDialog extends TitleAreaDialog {
 		wsButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
+				// opens up a new dialog to browse the "eclipse" workspace
 				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
 				workspaceDialog.setAllowMultiple(false);
-				workspaceDialog.setTitle("select a project file");
+				workspaceDialog.setTitle("Select a Project File");
 				workspaceDialog.setMessage("Please select an XMI file with project contents.");
 				workspaceDialog.loadContents();
-				workspaceDialog.open();		
+				int dialogRes = workspaceDialog.open();
+				
+				// dialog results
+				String fileName = null;
+				if(dialogRes == WorkspaceResourceDialog.OK) {
+					IFile[] selectedFiles = workspaceDialog.getSelectedFiles();
+					if(selectedFiles.length != 0) {
+						//TODO continue...
+						//TODO toString() is the wrong method -> will not get full path!
+						fileName = selectedFiles[0].toString(); // index 0 because multi option is off and it can import only one or no files 
+					}
+				}
+				
+				if(fileName == null || fileName == "") {
+					String path = Platform.getLocation().toOSString();
+					
+					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
+						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
+					}
+					else {
+						path += File.separator + txtProjectName.getText() + ".ucw";
+					}
+					
+					fileName = path;
+				}
+				
+				// set the textfield to a fitting project name
+				txtProjectLocation.setText(fileName);
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -150,14 +177,6 @@ public class ImportProjectDialog extends TitleAreaDialog {
 	public void okPressed() {
 		handler.setProjectName(txtProjectName.getText());
 		handler.setProjectLocation(txtProjectLocation.getText());
-		close();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void cancelPressed() {
 		close();
 	}
 

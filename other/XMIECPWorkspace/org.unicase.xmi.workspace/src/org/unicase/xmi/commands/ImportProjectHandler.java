@@ -23,7 +23,8 @@ public class ImportProjectHandler extends AbstractHandler {
 		final ImportProjectDialog dialog = new ImportProjectDialog(PlatformUI
 			.getWorkbench().getDisplay().getActiveShell(), this);
 		
-		if(dialog.open() == Window.OK) {
+		int dialogResult = dialog.open();
+		if(dialogResult == Window.OK) {
 			try {
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 				
