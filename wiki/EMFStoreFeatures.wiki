@@ -2,7 +2,7 @@
 
 The EMFStore Framework delivers the following features for your application:
 
-  * A model repository supporting *offline operation*
+  * A model repository supporting *offline operation* and *interactive merging*
   * Built-in persistence for your models on client and server side
   * Client-side API for updating your model or synchronizing your model with the repository
   * Views for showing the repository, the models, the history and to commit/update and merge your models
