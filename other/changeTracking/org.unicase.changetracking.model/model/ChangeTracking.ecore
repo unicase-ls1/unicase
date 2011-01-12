@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="changetracking"
+    nsURI="http://unicase.org/changetracking" nsPrefix="org.unicase.changetracking">
+  <eClassifiers xsi:type="ecore:EClass" name="ChangeTrackingRelease" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//release/Release">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stream" eType="#//Stream"
+        eOpposite="#//Stream/releases"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="built" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="builtRevision" eType="#//RepositoryRevision"
+        eOpposite="#//RepositoryRevision/builtWithReleases"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stream" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"
+        eType="#//ChangeTrackingRelease" eOpposite="#//ChangeTrackingRelease/stream"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
+        eOpposite="#//RepositoryStream/usingStreams"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangePackage" abstract="true" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//Attachment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RepositoryRevision" abstract="true"
+      eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
+        eOpposite="#//RepositoryStream/revisions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="builtWithReleases" upperBound="-1"
+        eType="#//ChangeTrackingRelease" eOpposite="#//ChangeTrackingRelease/builtRevision"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepositoryStream" abstract="true" interface="true"
+      eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//RepositoryLocation"
+        eOpposite="#//RepositoryLocation/streams"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+        eType="#//RepositoryRevision" eOpposite="#//RepositoryRevision/repositoryStream"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usingStreams" upperBound="-1"
+        eType="#//Stream" eOpposite="#//Stream/repositoryStream"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepositoryLocation" abstract="true"
+      eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
+        eType="#//RepositoryStream" eOpposite="#//RepositoryStream/location"/>
+  </eClassifiers>
+  <eSubpackages name="git" nsURI="http://unicase.org/changetracking/git" nsPrefix="org.unicase.changetracking.git">
+    <eClassifiers xsi:type="ecore:EClass" name="GitBranchChangePackage" eSuperTypes="#//ChangePackage">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="branch" eType="#//git/GitBranch"
+          eOpposite="#//git/GitBranch/referringChangePackages"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GitBranch" eSuperTypes="#//RepositoryStream">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referringChangePackages"
+          upperBound="-1" eType="#//git/GitBranchChangePackage" eOpposite="#//git/GitBranchChangePackage/branch"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="branchName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GitRevision" eSuperTypes="#//RepositoryRevision">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hash" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GitRepository" eSuperTypes="#//RepositoryLocation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifyingCommitHash"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="patch" nsURI="http://unicase.org/changetracking/patch" nsPrefix="org.unicase.changetracking.patch">
+    <eClassifiers xsi:type="ecore:EClass" name="Patch"/>
+  </eSubpackages>
+</ecore:EPackage>
