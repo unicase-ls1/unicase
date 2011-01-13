@@ -8,8 +8,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipse.ui;bundle-version="3.5.1",
  org.unicase.ui.common;bundle-version="1.0.0",
  org.unicase.projectgenerator2;bundle-version="1.0.0",
- org.unicase.ecpemfstorebridge;bundle-version="1.0.0"
-Import-Package: org.unicase.metamodel,
- org.unicase.model.document,
- org.unicase.workspace,
- org.unicase.workspace.util
+ org.unicase.ecpemfstorebridge;bundle-version="1.0.0",
+ org.unicase.metamodel;bundle-version="1.0.0",
+ org.unicase.workspace;bundle-version="1.0.0",
+ org.unicase.model;bundle-version="1.0.0"
