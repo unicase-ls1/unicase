@@ -39,6 +39,24 @@
       <menuContribution
             locationURI="org.unicase.changetracking.ui.menuContribution2">
       </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <command
+               commandId="org.unicase.ui.common.commands.annotateActionItem"
+               icon="icons/full/obj16/ChangeTrackingRelease.gif"
+               label="Build Release"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+               <with
+                     variable="activeModelelement">
+                  <reference
+                        definitionId="org.unicase.changetracking.ui.definitions.isRelease">
+                  </reference>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.unicase.ui.meeditor.melinkcontrols">
@@ -47,6 +65,23 @@
             name="org.unicase.changetracking.ui.MEChangePackageControl"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.changetracking.ui.buildRelease.BuildReleaseHandler"
+            id="org.unicase.changetracking.ui.buildReleaseCommand"
+            name="Build Release">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.unicase.changetracking.ui.definitions.isRelease">
+         <instanceof
+               value="org.unicase.model.changetracking.ChangeTrackingRelease">
+         </instanceof>
+      </definition>
    </extension>
 
 </plugin>
