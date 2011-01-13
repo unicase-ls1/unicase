@@ -42,12 +42,12 @@
       <menuContribution
             locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
          <command
-               commandId="org.unicase.ui.common.commands.annotateActionItem"
+               commandId="org.unicase.changetracking.ui.buildReleaseCommand"
                icon="icons/full/obj16/ChangeTrackingRelease.gif"
                label="Build Release"
                style="push">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
                <with
                      variable="activeModelelement">
                   <reference
