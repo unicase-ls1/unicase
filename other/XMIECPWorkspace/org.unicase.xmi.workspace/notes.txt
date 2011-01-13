@@ -39,7 +39,7 @@ Ok - where to to get a platform specific slash from?
 
 --
 - @ Project Generator Team: they save the file the wrong way, the registered model is XMI which is no valid model
-	--> How do you sav your model?
+	--> How do you save your model?
 	
 --
 # Todo:

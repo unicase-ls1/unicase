@@ -61,7 +61,7 @@
                icon="icons/add.png"
                label="New Project..."
                style="push"
-               tooltip="Click here to make love.">
+               tooltip="Click here to create a new project.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -79,7 +79,7 @@
                icon="icons/import.png"
                label="Import Project-File..."
                style="push"
-               tooltip="Click here to import love.">
+               tooltip="Click here to import a project.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -97,7 +97,7 @@
                icon="icons/folder-import.png"
                label="Import Projects from Folder..."
                style="push"
-               tooltip="Click here to import projected love.">
+               tooltip="Click here to import projects from a folder.">
             <visibleWhen
                   checkEnabled="false">
                <or>
@@ -115,7 +115,7 @@
                icon="icons/delete.png"
                label="Delete Project..."
                style="push"
-               tooltip="Click here to delete love.">
+               tooltip="Click here to delete a project.">
             <visibleWhen
                   checkEnabled="false">
                <or>
