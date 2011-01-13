@@ -54,7 +54,6 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 
 			addFileNamePropertyDescriptor(object);
 			addFileSizePropertyDescriptor(object);
-			addRequiredOfflinePropertyDescriptor(object);
 			addFileTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -88,21 +87,6 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileSize_feature",
 				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_SIZE, false, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Required Offline feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRequiredOfflinePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_FileAttachment_requiredOffline_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_requiredOffline_feature",
-				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__REQUIRED_OFFLINE, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -159,10 +143,7 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_HASH:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
-		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

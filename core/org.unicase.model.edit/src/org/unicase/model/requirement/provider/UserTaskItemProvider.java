@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.UserTask;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.requirement.UserTask} object.

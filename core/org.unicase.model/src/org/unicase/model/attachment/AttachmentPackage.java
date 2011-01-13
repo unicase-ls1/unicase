@@ -328,37 +328,12 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__FILE_SIZE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__REQUIRED_OFFLINE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>File Type</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Uploading</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Downloading</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
+	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class.
@@ -367,7 +342,7 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 8;
+	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.attachment.impl.PatchAttachmentImpl <em>Patch Attachment</em>}' class.
@@ -514,37 +489,12 @@ public interface AttachmentPackage extends EPackage {
 	int PATCH_ATTACHMENT__FILE_SIZE = FILE_ATTACHMENT__FILE_SIZE;
 
 	/**
-	 * The feature id for the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__REQUIRED_OFFLINE = FILE_ATTACHMENT__REQUIRED_OFFLINE;
-
-	/**
 	 * The feature id for the '<em><b>File Type</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PATCH_ATTACHMENT__FILE_TYPE = FILE_ATTACHMENT__FILE_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Uploading</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__UPLOADING = FILE_ATTACHMENT__UPLOADING;
-
-	/**
-	 * The feature id for the '<em><b>Downloading</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_ATTACHMENT__DOWNLOADING = FILE_ATTACHMENT__DOWNLOADING;
 
 	/**
 	 * The feature id for the '<em><b>Applied To</b></em>' reference list.
@@ -641,16 +591,6 @@ public interface AttachmentPackage extends EPackage {
 	EAttribute getFileAttachment_FileSize();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Required Offline</em>'.
-	 * @see org.unicase.model.attachment.FileAttachment#isRequiredOffline()
-	 * @see #getFileAttachment()
-	 * @generated
-	 */
-	EAttribute getFileAttachment_RequiredOffline();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>File Type</em>'.
@@ -659,16 +599,6 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFileAttachment_FileType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Downloading</em>'.
-	 * @see org.unicase.model.attachment.FileAttachment#isDownloading()
-	 * @see #getFileAttachment()
-	 * @generated
-	 */
-	EAttribute getFileAttachment_Downloading();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.attachment.PatchAttachment <em>Patch Attachment</em>}'.
@@ -688,16 +618,6 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPatchAttachment_AppliedTo();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Uploading</em>'.
-	 * @see org.unicase.model.attachment.FileAttachment#isUploading()
-	 * @see #getFileAttachment()
-	 * @generated
-	 */
-	EAttribute getFileAttachment_Uploading();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}'.
@@ -787,28 +707,12 @@ public interface AttachmentPackage extends EPackage {
 		EAttribute FILE_ATTACHMENT__FILE_SIZE = eINSTANCE.getFileAttachment_FileSize();
 
 		/**
-		 * The meta object literal for the '<em><b>Required Offline</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FILE_ATTACHMENT__REQUIRED_OFFLINE = eINSTANCE.getFileAttachment_RequiredOffline();
-
-		/**
 		 * The meta object literal for the '<em><b>File Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
 		 */
 		EAttribute FILE_ATTACHMENT__FILE_TYPE = eINSTANCE.getFileAttachment_FileType();
-
-		/**
-		 * The meta object literal for the '<em><b>Downloading</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FILE_ATTACHMENT__DOWNLOADING = eINSTANCE.getFileAttachment_Downloading();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.attachment.impl.PatchAttachmentImpl <em>Patch Attachment</em>}' class.
@@ -826,14 +730,6 @@ public interface AttachmentPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATCH_ATTACHMENT__APPLIED_TO = eINSTANCE.getPatchAttachment_AppliedTo();
-
-		/**
-		 * The meta object literal for the '<em><b>Uploading</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FILE_ATTACHMENT__UPLOADING = eINSTANCE.getFileAttachment_Uploading();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}' enum.
