@@ -3,7 +3,6 @@ package org.unicase.xmi.views;
 import java.io.File;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -26,10 +25,39 @@ public class ImportProjectDialog extends XMIDialog {
 		super(parent, "Import Project", "Please enter the name of your project-file and its location.");
 		setHandler(handler);
 	}
+	
+	@Override
+	protected SelectionListener getBrowseFilesystemListener() {
+		return new SelectionListener() {
+
+			FileDialog projectLocation = new FileDialog(shell, SWT.OPEN);
+			String path = DEFAULT_LOCATION;
+		
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+				path = projectLocation.open();
+				if(path == null) {
+					path = DEFAULT_LOCATION;
+					
+					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
+						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
+					}
+					else {
+						path += File.separator + txtProjectName.getText() + ".ucw";
+					}
+				}
+				txtProjectLocation.setText(path);
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+			
+		};
+	}
 
 	@Override
-	protected
-	SelectionListener getBrowseWorkspaceListener() {
+	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// opens up a new dialog to browse the "eclipse" workspace
@@ -72,41 +100,4 @@ public class ImportProjectDialog extends XMIDialog {
 			
 		};
 	}
-
-	@Override
-	protected SelectionListener getBrowseFilesystemListener() {
-		return new SelectionListener() {
-
-			FileDialog projectLocation = new FileDialog(shell, SWT.OPEN);
-			String path = Platform.getLocation().toOSString();
-		
-			public void widgetDefaultSelected(SelectionEvent e) {
-				
-				projectLocation.setFilterNames(new String[] {"XMI Project Resources (*.ucw)",
-					"XML Model Resources (*.xml)",
-					"XMI Model Resources (*.xmi)"});
-				projectLocation.setFilterExtensions(new String[] {"*.ucw", "*.xml", "*.xmi"});
-				
-				path = projectLocation.open();
-				if(path == null) {
-					path = DEFAULT_LOCATION;
-					
-					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
-					}
-					else {
-						path += File.separator + txtProjectName.getText() + ".ucw";
-					}
-				}
-				txtProjectLocation.setText(path);
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				widgetDefaultSelected(e);
-			}
-			
-		};
-	}
-
-
 }

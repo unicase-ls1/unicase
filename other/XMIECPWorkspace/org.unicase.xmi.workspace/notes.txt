@@ -24,18 +24,18 @@ hope i didnt forget one.
 
 --
 # Questions:
-- Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
-- With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
-- What method is called on which object when you press (the already implemented) "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
+Ok - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
+Ok - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
+Ok - What method is called on which object when you press (the already implemented) "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
 - Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
 - listener to refresh the navigator -> project/workspace listener… -> Markus
-- Consolidate Delete: Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
-- Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
+Ok - Consolidate Delete: Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
+Ok - Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
 
 - Usecase: delete project-file from disk without deleting it in the workspace ->
 	 resource.load automatically creates a new project-file!
 
-- where to to get a platform specific slash from?
+Ok - where to to get a platform specific slash from?
 
 --
 - @ Project Generator Team: they save the file the wrong way, the registered model is XMI which is no valid model
@@ -57,5 +57,5 @@ Ok - Send a Patch to Jonas from the navigator-package -> Delete in Menu-Issue
 Ok - Change the Import- and New-Project-Dialog so the emf.common...ResourceDialog with the Eclipse-Navigator-Workspace-Content can be used.
 - The Slash is File.SEPARATOR .
 - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
-- Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
+Ok - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
  
