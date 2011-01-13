@@ -112,26 +112,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected long fileSize = FILE_SIZE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isRequiredOffline() <em>Required Offline</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @see #isRequiredOffline()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean REQUIRED_OFFLINE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isRequiredOffline() <em>Required Offline</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @see #isRequiredOffline()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean requiredOffline = REQUIRED_OFFLINE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getFileType() <em>File Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -150,46 +130,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * @ordered
 	 */
 	protected FileAttachmentType fileType = FILE_TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isUploading() <em>Uploading</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isUploading()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean UPLOADING_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isUploading() <em>Uploading</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isUploading()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean uploading = UPLOADING_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isDownloading() <em>Downloading</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isDownloading()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DOWNLOADING_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDownloading() <em>Downloading</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isDownloading()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean downloading = DOWNLOADING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -292,26 +232,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRequiredOffline() {
-		return requiredOffline;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRequiredOffline(boolean newRequiredOffline) {
-		boolean oldRequiredOffline = requiredOffline;
-		requiredOffline = newRequiredOffline;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE,
-				oldRequiredOffline, requiredOffline));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FileAttachmentType getFileType() {
 		return fileType;
 	}
@@ -332,46 +252,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDownloading() {
-		return downloading;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDownloading(boolean newDownloading) {
-		boolean oldDownloading = downloading;
-		downloading = newDownloading;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING,
-				oldDownloading, downloading));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isUploading() {
-		return uploading;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUploading(boolean newUploading) {
-		boolean oldUploading = uploading;
-		uploading = newUploading;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__UPLOADING,
-				oldUploading, uploading));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -383,14 +263,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return getFileID();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			return getFileSize();
-		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
-			return isRequiredOffline();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			return getFileType();
-		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
-			return isUploading();
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			return isDownloading();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -414,17 +288,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			setFileSize((Long) newValue);
 			return;
-		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
-			setRequiredOffline((Boolean) newValue);
-			return;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			setFileType((FileAttachmentType) newValue);
-			return;
-		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
-			setUploading((Boolean) newValue);
-			return;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			setDownloading((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -449,17 +314,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			setFileSize(FILE_SIZE_EDEFAULT);
 			return;
-		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
-			setRequiredOffline(REQUIRED_OFFLINE_EDEFAULT);
-			return;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			setFileType(FILE_TYPE_EDEFAULT);
-			return;
-		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
-			setUploading(UPLOADING_EDEFAULT);
-			return;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			setDownloading(DOWNLOADING_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -480,14 +336,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			return fileSize != FILE_SIZE_EDEFAULT;
-		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
-			return requiredOffline != REQUIRED_OFFLINE_EDEFAULT;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			return fileType != FILE_TYPE_EDEFAULT;
-		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
-			return uploading != UPLOADING_EDEFAULT;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			return downloading != DOWNLOADING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -510,14 +360,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		result.append(fileID);
 		result.append(", fileSize: ");
 		result.append(fileSize);
-		result.append(", requiredOffline: ");
-		result.append(requiredOffline);
 		result.append(", fileType: ");
 		result.append(fileType);
-		result.append(", uploading: ");
-		result.append(uploading);
-		result.append(", downloading: ");
-		result.append(downloading);
 		result.append(')');
 		return result.toString();
 	}
