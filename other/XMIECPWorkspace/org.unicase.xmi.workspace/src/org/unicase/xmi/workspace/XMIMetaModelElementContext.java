@@ -15,10 +15,11 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 	
-//	@Override
-//	public Set<EClass> getAllModelElementEClassesImpl() {
-//		return UnicaseUtil.getAllModelElementEClasses();
-//	}
+	//TODO only return the registered model
+	@Override
+	public Set<EClass> getAllModelElementEClassesImpl() {
+		return UnicaseUtil.getAllModelElementEClasses();
+	}
 	
 	public static MetaModelElementContext getInstance() {
 		if (instance == null) {

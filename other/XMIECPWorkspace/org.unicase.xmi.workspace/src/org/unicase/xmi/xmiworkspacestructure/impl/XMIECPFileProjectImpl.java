@@ -641,7 +641,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * This feature is not supported by this plugin!
+	 * CAUTION: This feature is not supported by this plugin!
 	 */
 	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
 		return null; // CAUTION: this feature is not supported by this plugin!

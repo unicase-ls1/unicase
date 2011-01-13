@@ -1,6 +1,5 @@
 package org.unicase.xmi.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
@@ -13,23 +12,7 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
-public class NewProjectHandler extends AbstractHandler {
-	
-	/**
-	 * Name of the new project.
-	 */
-	private String projectName;
-
-	/**
-	 * Description of the new project.
-	 */
-	private String projectDescription;
-	
-	/**
-	 * File location of the new project.
-	 */
-	private String projectLocation;
-	
+public class NewProjectHandler extends XmiAbstractHandler {
 	
 	/**
 	 * {@inheritDoc}
@@ -76,36 +59,4 @@ public class NewProjectHandler extends AbstractHandler {
 		
 		return null;
 	}
-	
-	// BEGIN GETTERS AND SETTERS
-	public String getProjectName() {
-		return projectName;
-	}
-
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-
-	public String getProjectDescription() {
-		return projectDescription;
-	}
-
-
-	public void setProjectDescription(String projectDescription) {
-		this.projectDescription = projectDescription;
-	}
-
-
-	public String getProjectLocation() {
-		return projectLocation;
-	}
-
-
-	public void setProjectLocation(String projectLocation) {
-		this.projectLocation = projectLocation;
-	}
-	
-	// END GETTERS AND SETTERS
 }
