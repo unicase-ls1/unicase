@@ -75,7 +75,7 @@ public class ReviewReleasePage extends WizardPage{
 				return new Object[]{release};
 			}
 		});
-		
+		treeViewer.setInput(release);
 		setControl(composite);
 	}
 
