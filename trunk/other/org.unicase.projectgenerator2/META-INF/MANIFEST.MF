@@ -6,9 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipse.core.commands;bundle-version="3.5.0",
- org.eclipse.emf.ecore;bundle-version="2.5.0"
-Export-Package: org.unicase.projectgenerator2
-Import-Package: org.eclipse.emf.edit.command,
- org.eclipse.emf.edit.domain,
- org.eclipse.emf.transaction,
- org.eclipse.emf.transaction.util
+ org.eclipse.emf.ecore;bundle-version="2.5.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0"
+Export-Package: org.unicase.projectgenerator2,
+ org.unicase.projectgenerator2.util

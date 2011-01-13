@@ -1,4 +1,4 @@
-package org.unicase.projectgenerator2;
+package org.unicase.projectgenerator2.util;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -16,14 +16,18 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class ProjectGeneratorUtil {
+public final class ProjectGeneratorUtil {
 
 	private static Set<EClass> modelElementEClasses;
 	private static Set<EPackage> modelPackages;
 	private static Set<EPackage> rootModelPackages;
 	private static Map<EPackage, Set<EClass>> packageModelElementEClasses = new LinkedHashMap<EPackage, Set<EClass>>();
 	private static Map<EClass, Set<EClass>> allEContainments = new LinkedHashMap<EClass, Set<EClass>>();
-	private static Map<EClass, Set<EClass>> subEClasses = new LinkedHashMap<EClass, Set<EClass>>();		
+	private static Map<EClass, Set<EClass>> subEClasses = new LinkedHashMap<EClass, Set<EClass>>();	
+	
+	private ProjectGeneratorUtil() {
+		
+	}
 
 	/*
 	 * Searching for EClass with elementName as name in EPackage recursively.

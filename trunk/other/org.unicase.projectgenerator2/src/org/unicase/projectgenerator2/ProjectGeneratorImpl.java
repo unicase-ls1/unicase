@@ -21,126 +21,49 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.projectgenerator2.util.ProjectGeneratorConfiguration;
+import org.unicase.projectgenerator2.util.ProjectGeneratorUtil;
 
 public class ProjectGeneratorImpl implements IProjectGenerator {
-	private EPackage rootPackage;
-	private long seed;
-	private long noOfExampleValues;
-	private long hierarchyDepth;
 	private EObject rootObject;
-	private TransactionalEditingDomain domain;
-	private final Random random;
-	private final Date date;
-	private final StringBuffer string;
-	private final Set<EClass> modelElementEClasses;
+	private int width;
+	private int depth;
+	private long seed;	
+	private boolean ignoreAndLog;
+	private EditingDomain domain;
+	private Random random;
+	private Date date;
+	private StringBuffer string;
+	private Set<EClass> modelElementEClasses;
 	private Map<EClass, List<EClass>> elementsToCreate;
 	private Map<EClass, Integer> lastUsedIndex;
 	private Map<EReference, List<EClass>> possibleReferenceClasses;
 	private Map<EClass, Set<EObject>> generatedObjects;
-	
-	public EObject getRootObject() {
-		return rootObject;
-	}
-	
-	public void setRootObject(EObject root) {
-		rootObject = root;
-	}
-
-	public ProjectGeneratorImpl(EPackage rootPackage, long seed, long noOfExampleValues, long hierachyDepth) {
-		this.rootPackage = rootPackage;
-		this.seed = seed;
-		this.noOfExampleValues = noOfExampleValues;
-		this.hierarchyDepth = hierachyDepth;
-		for(EClass eClass : ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage)) {
-			if(eClass.isAbstract() || eClass.isInterface())
-				continue;
-			EObject container = eClass.eContainer();
-			if(container != null && container instanceof EPackage) {
-				rootObject = eClass;
-				break;
-			}
-		}
-		modelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage);
-		elementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
-		lastUsedIndex = new LinkedHashMap<EClass, Integer>();
-		possibleReferenceClasses = new LinkedHashMap<EReference, List<EClass>>();
-		random = new Random(seed);
-		date = new Date();
-		string = new StringBuffer();
-	}
-	
-	public ProjectGeneratorImpl(EPackage rootPackage, EObject rootObject, long seed, long noOfExampleValues, long hierachyDepth) {
-		this.rootPackage = rootPackage;
-		this.seed = seed;
-		this.noOfExampleValues = noOfExampleValues;
-		this.hierarchyDepth = hierachyDepth;
-		this.rootObject = rootObject;
-		modelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(rootPackage);
-		elementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
-		lastUsedIndex = new LinkedHashMap<EClass, Integer>();
-		possibleReferenceClasses = new LinkedHashMap<EReference, List<EClass>>();
-		random = new Random();
-		date = new Date();
-		string = new StringBuffer();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#getRootPackage()
-	 */
-	public EPackage getRootPackage() {
-		return rootPackage;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#setRootPackage(org.eclipse.emf.ecore.EPackage)
-	 */
-	public void setRootPackage(EPackage rootPackage) {
-		this.rootPackage = rootPackage;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#getSeed()
-	 */
-	public long getSeed() {
-		return seed;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#setSeed(long)
-	 */
-	public void setSeed(long seed) {
-		this.seed = seed;
-		random.setSeed(seed);
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#getNoOfExampleValues()
-	 */
-	public long getNoOfExampleValues() {
-		return noOfExampleValues;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#setNoOfExampleValues(long)
-	 */
-	public void setNoOfExampleValues(long noOfExampleValues) {
-		this.noOfExampleValues = noOfExampleValues;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#getHierachyDepth()
-	 */
-	public long getHierachyDepth() {
-		return hierarchyDepth;
-	}
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.IProjectGenerator#setHierachyDepth(long)
-	 */
-	public void setHierachyDepth(long hierachyDepth) {
-		this.hierarchyDepth = hierachyDepth;
-	}
+	private List<RuntimeException> exceptions;
 	
 	/* (non-Javadoc)
 	 * @see org.unicase.projectgenerator2.IProjectGenerator#generateValues()
 	 */
-	public void generateValues() {
-		generateValues(rootObject);
+	public void generateModel(EPackage modelPackage, EObject rootObject) {
+		generateModel(new ProjectGeneratorConfiguration(modelPackage, rootObject));
+	}
+	
+	public void generateModel(ProjectGeneratorConfiguration config) {
+		modelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(config.getModelPackage());
+		rootObject = config.getRootObject();
+		width = config.getWidth();
+		depth = config.getDepth();
+		seed = config.getSeed();
+		ignoreAndLog = config.getIgnoreAndLog();
+		random = new Random(seed);
+		date = new Date();
+		string = new StringBuffer();
+		elementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
+		lastUsedIndex = new LinkedHashMap<EClass, Integer>();
+		possibleReferenceClasses = new LinkedHashMap<EReference, List<EClass>>();
+		generateModel(rootObject);
 		generatedObjects = ProjectGeneratorUtil.getAllGeneratedClassesAndObjects(rootObject);
 		for(EClass eClass : generatedObjects.keySet()) {
 			for(EObject generatedEObject : generatedObjects.get(eClass)) {
@@ -153,22 +76,26 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 	 * Generates the amount of specified EObjects using a list-algorithm
 	 * @param parent the parent EObject to start generating from
 	 */
-	private void generateValues(EObject parent) {
+	private void generateModel(EObject parent) {
 		if(parent == null)
 			return;
 		if(parent instanceof EClass) {
+			EClass parentClass = (EClass) parent;
+			if(parentClass.isInterface() || parentClass.isSuperTypeOf(parentClass))
+				return;
 			parent = EcoreUtil.create((EClass) parent);
 			setEObjectAttributes(parent);
 		}
-		domain = TransactionUtil.getEditingDomain(parent);
+		domain = AdapterFactoryEditingDomain.getEditingDomainFor(parent);
 		List<EObject> remainingObjects = new ArrayList<EObject>();
 		remainingObjects.add(parent);
 		int currentDepth = 1;
-		long maxElementsInThisDepth = noOfExampleValues;
+		long maxElementsInThisDepth = width;
 		long currentElementsInThisDepth = 0;
 		while(!remainingObjects.isEmpty()) {
 			EObject currentParentObject = remainingObjects.remove(0);
 			List<EClass> elementsToCreate = getElementsToCreate(currentParentObject.eClass());
+			Collections.shuffle(elementsToCreate, random);
 			int index;
 			if(lastUsedIndex.containsKey(currentParentObject.eClass())) {
 				index = lastUsedIndex.get(currentParentObject.eClass());
@@ -177,7 +104,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 			}
 			int i = 0;
 			Map<EReference, List<EObject>> objectsByReference = new LinkedHashMap<EReference, List<EObject>>();
-			while(i<noOfExampleValues && !elementsToCreate.isEmpty()) {
+			while(i<width && !elementsToCreate.isEmpty()) {
 				index = (index + 1) % elementsToCreate.size();
 				EClass currentChildClass = elementsToCreate.get(index);
 				if(currentChildClass.isInterface() || currentChildClass.isAbstract()) {
@@ -192,7 +119,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 				if(validReferences.isEmpty())
 					elementsToCreate.remove(currentChildClass);
 				for(EReference reference : validReferences) {
-					if(i>=noOfExampleValues)
+					if(i>=width)
 						break;
 					EObject newObject = EcoreUtil.create(currentChildClass);
 					setEObjectAttributes(newObject);
@@ -208,12 +135,13 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 					else {
 						try {
 							new SetCommand(domain, currentParentObject, reference, newObject).doExecute();
-						} catch(Exception e){
+						} catch(RuntimeException e){
+							handle(e);
 						}
 					}
 					currentElementsInThisDepth++;
 					i++;
-					if(currentDepth < hierarchyDepth) {
+					if(currentDepth < depth) {
 						remainingObjects.add(newObject);
 					}
 				}
@@ -221,17 +149,28 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 			for(EReference reference : objectsByReference.keySet()) {
 				try {
 					new AddCommand(domain, currentParentObject, reference, objectsByReference.get(reference)).doExecute();
-				} catch(Exception e) {
+				} catch(RuntimeException e) {
 				}
 			}
 			lastUsedIndex.put(currentParentObject.eClass(), index);
 			if(currentElementsInThisDepth >= maxElementsInThisDepth) {
 				currentElementsInThisDepth = 0;
-				maxElementsInThisDepth = (long) Math.pow(noOfExampleValues, ++currentDepth);
+				maxElementsInThisDepth = (long) Math.pow(width, ++currentDepth);
 			}
 		}
 	}
 	
+	private void handle(RuntimeException e) {
+		if(ignoreAndLog)
+			exceptions.add(e);
+		else
+			throw e;
+	}
+	
+	public List<RuntimeException> getLog() {
+		return exceptions;
+	}
+
 	/**
 	 * Returns whether the reference is valid for containment-purposes.
 	 * 
@@ -261,7 +200,6 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 			for(EClass nextReferenceClass : possibleReferenceClasses) {
 				if(generatedObjects.containsKey(nextReferenceClass)) {
 					List<EObject> possibleReferenceObjects = new ArrayList<EObject>(generatedObjects.get(nextReferenceClass)); 
-					possibleReferenceObjects.remove(newObject);
 					Collections.shuffle(possibleReferenceObjects, random);
 					if(!possibleReferenceObjects.isEmpty()) {
 						int index = 0;
@@ -280,7 +218,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 								new SetCommand(domain, newObject, reference, referencedObject).doExecute();
 								break;
 							} else break;
-						} catch (Exception e) {
+						} catch (RuntimeException e) {
 						}
 					}
 				}
@@ -472,7 +410,7 @@ public class ProjectGeneratorImpl implements IProjectGenerator {
 						new SetCommand(domain, newObject, attribute, new BigDecimal(random.nextDouble() * random.nextInt())).doExecute();
 					}
 				}
-			} catch (Exception e) {
+			} catch (RuntimeException e) {
 			}
 		}
 	}
