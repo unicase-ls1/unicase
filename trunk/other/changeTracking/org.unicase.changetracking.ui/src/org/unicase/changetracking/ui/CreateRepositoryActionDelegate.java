@@ -5,10 +5,14 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.GitUtil;
+import org.unicase.changetracking.ui.buildRelease.BuildReleaseWizard;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -42,10 +46,7 @@ public class CreateRepositoryActionDelegate extends ResourceSelectionActionDeleg
 	
 	@Override
 	public void run(IAction action) {
-		IResource[] resources = getSelectedResources();
-		if(resources.length == 0){
-			return;
-		}
+		
 		
 		errorMessage("not possible yet!");
 
