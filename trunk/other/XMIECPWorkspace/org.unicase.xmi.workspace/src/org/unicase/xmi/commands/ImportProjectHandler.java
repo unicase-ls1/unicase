@@ -1,6 +1,5 @@
 package org.unicase.xmi.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
@@ -14,10 +13,7 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
-public class ImportProjectHandler extends AbstractHandler {
-	
-	private String projectLocation;
-	private String projectName;
+public class ImportProjectHandler extends XmiAbstractHandler {
 	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ImportProjectDialog dialog = new ImportProjectDialog(PlatformUI
@@ -34,8 +30,9 @@ public class ImportProjectHandler extends AbstractHandler {
 					protected void doRun() {
 						if(ws instanceof XMIECPWorkspace && ws != null) {
 							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject(); // create the project blank
-							project.setProjectName(projectName); // set name
-							project.setXmiFilePath(projectLocation); // initialize it when setting the file
+							project.setProjectName(getProjectName()); // set name
+							project.setXmiFilePath(getProjectLocation()); // initialize it when setting the file
+							project.setProjectDescription(getProjectDescription()); // set description of the project
 							
 							// add a new XMIFileProject to the workspace
 							((XMIECPWorkspace) ws).addProject(project);
@@ -54,21 +51,5 @@ public class ImportProjectHandler extends AbstractHandler {
 		
 		return null;
 	} // END execute(event)
-	
-	/**
-	 * Sets the project's location
-	 * @param path Path to the project's resource file.
-	 */
-	public void setProjectLocation(String path) {
-		this.projectLocation = path;
-	}
-	
-	/**
-	 * Sets the project's name.
-	 * @param name Name of the project.
-	 */
-	public void setProjectName(String name) {
-		this.projectName = name;
-	}
 	
 } // END ImportProjectHandler
