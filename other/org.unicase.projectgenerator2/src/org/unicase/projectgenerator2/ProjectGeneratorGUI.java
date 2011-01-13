@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.projectgenerator2.util.ProjectGeneratorUtil;
 
 public class ProjectGeneratorGUI extends JFrame{
 
@@ -101,7 +102,7 @@ public class ProjectGeneratorGUI extends JFrame{
 		    		((DefaultListModel)rootObjectList.getModel()).clear();
 		    		if(model!=null){
 		    			allModelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(model).toArray(new EClass[0]);
-		    			DefaultListModel defaultModel =  (DefaultListModel)rootObjectList.getModel();
+		    			DefaultListModel defaultModel = (DefaultListModel)rootObjectList.getModel();
 		    			for (int i = 0; i < allModelElementEClasses.length; i++) {
 		    				EClass eClass = allModelElementEClasses[i];
 							defaultModel.addElement(eClass.getName());
@@ -225,12 +226,12 @@ public class ProjectGeneratorGUI extends JFrame{
 	}
 	
 	private void callListener() {
-		listener.setHierachyDepth(secondDialog.getProjectHeight());
-		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
-		listener.setRootPackage(firstDialog.getSelectedPackage());
-		EClass clazz = firstDialog.getRootClass();
-		listener.setRootObject(EcoreUtil.create(clazz));
-		listener.generateValues();
+//		listener.setHierachyDepth(secondDialog.getProjectHeight());
+//		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
+//		listener.setRootPackage(firstDialog.getSelectedPackage());
+//		EClass clazz = firstDialog.getRootClass();
+//		listener.setRootObject(EcoreUtil.create(clazz));
+//		listener.generateModel();
 	}
 
 	//just for testing

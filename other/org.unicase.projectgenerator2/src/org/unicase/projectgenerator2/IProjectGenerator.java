@@ -2,28 +2,12 @@ package org.unicase.projectgenerator2;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.unicase.projectgenerator2.util.ProjectGeneratorConfiguration;
 
 public interface IProjectGenerator {
 
-	public EObject getRootObject ();
-	public abstract void setRootObject(EObject root);
+	public abstract void generateModel(EPackage modelPackage, EObject rootObject);
 	
-	public abstract EPackage getRootPackage();
-
-	public abstract void setRootPackage(EPackage rootPackage);
-
-	public abstract long getSeed();
-
-	public abstract void setSeed(long seed);
-
-	public abstract long getNoOfExampleValues();
-
-	public abstract void setNoOfExampleValues(long noOfExampleValues);
-
-	public abstract long getHierachyDepth();
-
-	public abstract void setHierachyDepth(long hierachyDepth);
-
-	public abstract void generateValues();
+	public abstract void generateModel(ProjectGeneratorConfiguration config);
 
 }
