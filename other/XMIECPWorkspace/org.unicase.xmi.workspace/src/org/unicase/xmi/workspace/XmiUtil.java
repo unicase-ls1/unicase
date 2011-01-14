@@ -27,4 +27,10 @@ public class XmiUtil {
 		return !(str == null || str.equals(""));
 	}
 	
+	/**
+	 * Contains the possible status of a project
+	 */
+	public enum PROJECT_STATUS {
+		LOADED, FAILED, NOTLOADED
+	}
 }

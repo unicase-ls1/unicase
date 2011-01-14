@@ -42,6 +42,7 @@ import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
+import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
@@ -158,6 +159,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 */
 	private boolean objectInitialized = false;
 	
+	private PROJECT_STATUS projectStatus;
+	
 	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
 	 * Uses the default file path and sets the workspace to null.
@@ -170,6 +173,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		workspace = null;
 		
 		buildEContentAdapter();
+		projectStatus = PROJECT_STATUS.NOTLOADED;
 	}
 	
 	/**
@@ -178,6 +182,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private void init() {
 		// for notification for getters set initialization to false
 		objectInitialized = false;
+		projectStatus = PROJECT_STATUS.NOTLOADED;
 		
 		// set the root object to this
 		setRootObject(this);
@@ -200,7 +205,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		 */
 		if(!xmiFile.exists()) {
 			createResource(resourceSetImpl, xmiUri);
-			
 		}
 		else {
 			// just load the resource
@@ -209,6 +213,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		
 		// set the object as initialized
 		objectInitialized = true;
+		projectStatus = PROJECT_STATUS.LOADED;
 	}
 	
 	/**
@@ -238,6 +243,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			this.resource.load(Collections.EMPTY_MAP);
 		}
 		catch(IOException e) {
+			projectStatus = PROJECT_STATUS.FAILED;
 			new XMIWorkspaceException("Resource " + xmiFilePath + " cannot be loaded.", e);
 		}
 		
@@ -272,6 +278,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 						}
 					} catch (IOException e) {
 						new XMIWorkspaceException("Wasn't able to persist object to xmi resource.", e);
+						projectStatus = PROJECT_STATUS.FAILED;
 					} catch (NullPointerException e) {
 						new XMIWorkspaceException("Unable to persist object. Attached resource missing.", e);
 					}
@@ -302,6 +309,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 */
 	public String getProjectName() {
+		if(projectStatus == PROJECT_STATUS.FAILED) return "[" + projectName + "]";
 		return projectName;
 	}
 
@@ -557,6 +565,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		try {
 			this.resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
+			projectStatus = PROJECT_STATUS.FAILED;
 			new XMIWorkspaceException("Cannot save changes to xmi-project-file.", e);
 		}
 	}
@@ -667,6 +676,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		ArrayList<EObject> arrayList = new ArrayList<EObject>();
 		arrayList.addAll(baseElements);
 		return arrayList;
+	}
+	
+	public PROJECT_STATUS getProjectStatus() {
+		return projectStatus;
 	}
 
 } //XMIECPFileProjectImpl

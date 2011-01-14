@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
 
@@ -168,6 +169,11 @@ public class XMIECPFileProjectItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof XMIECPFileProject) {
+			XMIECPFileProject pro = (XMIECPFileProject) object;
+			if(pro.getProjectStatus() == PROJECT_STATUS.FAILED)
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProjectFailed.png"));
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProject.png"));
 	}
 
