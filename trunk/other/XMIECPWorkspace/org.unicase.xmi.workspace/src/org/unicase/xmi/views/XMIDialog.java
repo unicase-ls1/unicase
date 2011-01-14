@@ -156,7 +156,7 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	 * @param path Path to the directory the project resource is contained in.
 	 * @return Full path of the project's resource
 	 */
-	protected static final String getResourceLocation(String name, String path) {
+	public static final String getResourceLocation(String name, String path) {
 		String location;
 		
 		// determine whether path is ok if set
