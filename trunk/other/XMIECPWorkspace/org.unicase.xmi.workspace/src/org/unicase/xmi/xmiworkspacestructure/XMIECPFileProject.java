@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,4 +81,9 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 */
 	public Collection<EObject> getRootLevel();
 
+	/**
+	 * Returns the status of the project.
+	 */
+	public PROJECT_STATUS getProjectStatus();
+	
 } // XMIECPFileProject
