@@ -39,9 +39,11 @@ import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
+import org.unicase.ui.navigator.TreeView;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
+import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -184,7 +186,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private void init() {
 		// for notification for getters set initialization to false
 		objectInitialized = false;
-		projectStatus = PROJECT_STATUS.NOTLOADED;
 		
 		// set the root object to this
 		setRootObject(this);
@@ -206,16 +207,17 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		 * in case the project is new, you still don't know whether it's imported or not.
 		 */
 		if(!xmiFile.exists()) {
-			createResource(resourceSetImpl, xmiUri);
+			if(projectStatus != PROJECT_STATUS.FAILED)
+				createResource(resourceSetImpl, xmiUri);
 		}
 		else {
 			// just load the resource
 			loadResource(resourceSetImpl, xmiUri);
+			
+			// set the object as initialized
+			objectInitialized = true;
+			projectStatus = PROJECT_STATUS.LOADED;
 		}
-		
-		// set the object as initialized
-		objectInitialized = true;
-		projectStatus = PROJECT_STATUS.LOADED;
 	}
 	
 	/**
@@ -287,10 +289,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 					
 					// call changed on listeners
 					projectChanged();
+					
+					// continue
+					super.notifyChanged(notification);
 				}
-				
-				// continue
-				super.notifyChanged(notification);
 			}
 		};
 	}
@@ -311,7 +313,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 */
 	public String getProjectName() {
-		if(projectStatus == PROJECT_STATUS.FAILED) return "[" + projectName + "]";
 		return projectName;
 	}
 
@@ -581,6 +582,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(ECPProjectListener listener : projectListeners) {
 			listener.modelelementDeleted(eobject);
 		}
+		TreeView.getTreeViewer().refresh();
 	}
 
 	public void projectChanged() {
@@ -592,6 +594,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(ECPProjectListener listener : projectListeners) {
 			listener.projectChanged();
 		}
+		
+		TreeView.getTreeViewer().refresh();
 	}
 
 	public void projectDeleted() {
@@ -599,6 +603,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(ECPProjectListener listener : projectListeners) {
 			listener.projectDeleted();
 		}
+		TreeView.getTreeViewer().refresh();
 	}
 
 	public void removeECPProjectListener(ECPProjectListener listener) {
@@ -688,6 +693,21 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 */
 	public void loadContents() {
 		if(!objectInitialized) init();
+	}
+	
+	/**
+	 * Get the project listeners to inform them when project was deleted.
+	 */
+	public List<ECPProjectListener> getProjectListeners() {
+		return projectListeners;
+	}
+	
+	/**
+	 * Sets the project status, e.g. when a project file is corrupted or not found.
+	 * @param status Current project status.
+	 */
+	public void setProjectStatus(XmiUtil.PROJECT_STATUS status) {
+		projectStatus = status;
 	}
 
 } //XMIECPFileProjectImpl

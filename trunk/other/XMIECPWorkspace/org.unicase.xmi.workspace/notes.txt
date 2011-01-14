@@ -1,12 +1,11 @@
 #Todo:
-- Dialogs and Handlers -> Test functionality
-	???? - Command Exceptions when invoking New, Import and delete
-	
 - File changed on file system or has been deleted
 	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
 	-> Add icon to Resolve command
+	-> plugin.xml: for deleted project only one popup menu entry: "resolve"
 - Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
-- Teststrategie
+- Delete menu entry does not work for baseElements
+- Teststrategy
 
 --
 # Accepted plugins:
@@ -45,6 +44,7 @@ Ok - Usecase: delete project-file from disk without deleting it in the workspace
 Ok - where to to get a platform specific slash from?
 Ok - Dialogs and Handlers
 	 -> If project-file name/location.. is empty : now only error in console but should be a message dialog
+Ok - Command Exceptions when invoking New, Import and delete
 OK - refactor init() in XMIFileProjectImpl to Getter methods!
 Ok - File changed on file system or has been deleted
 	OK -> add a status to the project in form of an enumeration with the values LOADED, NOTLOADED, FAILEDTOLOAD
