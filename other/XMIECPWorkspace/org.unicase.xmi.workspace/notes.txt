@@ -22,6 +22,11 @@ As your implementation is for emfcp only you can and must Close all
 Plugins except Navigator Editor ui.Common navigatoreditor Bridge. I   
 hope i didnt forget one.
 
+
+# API Resources
+http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/
+http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/overview-summary.html
+
 --
 # Questions:
 Ok - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
@@ -45,7 +50,7 @@ Ok - where to to get a platform specific slash from?
 # Todo:
 - Dialogs and Handlers
 	OK -> If project-file name/location.. is empty : now only error in console but should be a message dialog
-	-> Test functionallity
+	-> Test functionality
 	OK -> see TODOs
 OK - refactor init() in XMIFileProjectImpl to Getter methods!
 - Problem: File changed on file system or has been deleted
@@ -53,10 +58,12 @@ OK - refactor init() in XMIFileProjectImpl to Getter methods!
 	OK -> Change the ItemProvider so it asks the project for its status and changes the icon/text if FAILEDTOLOAD
 		-> also changed icon added
 	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
+	-> TEST it!
 Ok - Remove commented code where metamodel-package-usage is marked and add a comment behind the return that this plugin does not support Associations, etc.
 Ok - Send a Patch to Jonas from the navigator-package -> Delete in Menu-Issue
 Ok - Change the Import- and New-Project-Dialog so the emf.common...ResourceDialog with the Eclipse-Navigator-Workspace-Content can be used.
 Ok - The Slash is File.SEPARATOR .
 - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
+	-> This does not work, listener adapters in TreeView register on us and they need to be called when changed!
 Ok - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
  
