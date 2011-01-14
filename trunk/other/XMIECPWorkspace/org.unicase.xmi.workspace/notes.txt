@@ -1,18 +1,12 @@
-## TODO
-
-29.12.	Matti	OK	Change Design -> Refactor, make the Commands do the work, not the Dialogs!
-
-29.12.	Matti	OK	Folder shouldn’t be shown in the navigator -> the workspace should shortcut it to the projects in the folder
-
-26.12.	Matti	OK	Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
-
-26.12.	Matti	OK	We shouldn’t have dependencies on the workspace package -> remove dependencies (also look for other dependencies that can be removed!) -> Markus
-
-26.12.	Matti	OK	Saving the (workspace-) file to an other place for example where the runtime is…
-
-26.12.	Matti	OK	Use own command instead of unicase command in the dialog
-
-29.12.	Matti	OK	Remove DeleteFolderHandler
+#Todo:
+- Dialogs and Handlers -> Test functionality
+	???? - Command Exceptions when invoking New, Import and delete
+	
+- File changed on file system or has been deleted
+	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
+	-> Add icon to Resolve command
+- Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
+- Teststrategie
 
 --
 # Accepted plugins:
@@ -28,42 +22,39 @@ http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/
 http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/overview-summary.html
 
 --
-# Questions:
-Ok - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
-Ok - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
-Ok - What method is called on which object when you press (the already implemented) "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
-- Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
-- listener to refresh the navigator -> project/workspace listener… -> Markus
-Ok - Consolidate Delete: Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
-Ok - Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
-
-- Usecase: delete project-file from disk without deleting it in the workspace ->
-	 resource.load automatically creates a new project-file!
-
-Ok - where to to get a platform specific slash from?
-
---
 - @ Project Generator Team: they save the file the wrong way, the registered model is XMI which is no valid model
 	--> How do you save your model?
 	
 --
-# Todo:
-- Dialogs and Handlers
-	OK -> If project-file name/location.. is empty : now only error in console but should be a message dialog
-	-> Test functionality
-	OK -> see TODOs
+# Resolved:
+29.12.	Matti	OK	Change Design -> Refactor, make the Commands do the work, not the Dialogs!
+29.12.	Matti	OK	Folder shouldn't be shown in the navigator -> the workspace should shortcut it to the projects in the folder
+26.12.	Matti	OK	Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
+26.12.	Matti	OK	We shouldn't have dependencies on the workspace package -> remove dependencies (also look for other dependencies that can be removed!) -> Markus
+26.12.	Matti	OK	Saving the (workspace-) file to an other place for example where the runtime is!
+26.12.	Matti	OK	Use own command instead of unicase command in the dialog
+OK - Remove DeleteFolderHandler
+Ok - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
+Ok - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
+Ok - What method is called on which object when you press (the already implemented) "Delete" right-clicking a project in the Navigator? Or how can I link "Delete" to the DeleteProjectHandler?
+Ok - listener to refresh the navigator -> project/workspace listeners
+Ok - Consolidate Delete: Consolidate Menu -> e.g. remove "Delete", Folder-Entries, ...
+Ok - Import dialog: there might be a dialog in eclipse to shortcut to the workspace (directly browse the workspace -> example: reload genmodel)
+Ok - Usecase: delete project-file from disk without deleting it in the workspace ->
+	 resource.load automatically creates a new project-file!
+Ok - where to to get a platform specific slash from?
+Ok - Dialogs and Handlers
+	 -> If project-file name/location.. is empty : now only error in console but should be a message dialog
 OK - refactor init() in XMIFileProjectImpl to Getter methods!
-- Problem: File changed on file system or has been deleted
+Ok - File changed on file system or has been deleted
 	OK -> add a status to the project in form of an enumeration with the values LOADED, NOTLOADED, FAILEDTOLOAD
 	OK -> Change the ItemProvider so it asks the project for its status and changes the icon/text if FAILEDTOLOAD
 		-> also changed icon added
-	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
-	-> TEST it!
 Ok - Remove commented code where metamodel-package-usage is marked and add a comment behind the return that this plugin does not support Associations, etc.
 Ok - Send a Patch to Jonas from the navigator-package -> Delete in Menu-Issue
 Ok - Change the Import- and New-Project-Dialog so the emf.common...ResourceDialog with the Eclipse-Navigator-Workspace-Content can be used.
 Ok - The Slash is File.SEPARATOR .
-- In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
+Ok - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
 	-> This does not work, listener adapters in TreeView register on us and they need to be called when changed!
 Ok - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
- 
+

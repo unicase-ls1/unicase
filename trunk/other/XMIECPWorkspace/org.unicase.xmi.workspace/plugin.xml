@@ -128,6 +128,25 @@
                </or>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.unicase.xmi.workspace.DeletedResourceHandler"
+               label="Resolve"
+               style="push"
+               tooltip="Click here to fix project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <instanceof
+                        value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                  </instanceof>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.unicase.xmi.workspace.commands.ProjectStatusTester"
+                        value="true">
+                  </test>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
 

@@ -8,7 +8,18 @@ import org.unicase.util.UnicaseUtil;
 
 public class XMIMetaModelElementContext extends MetaModelElementContext {
 
-	private static MetaModelElementContext instance;
+	private static XMIMetaModelElementContext instance;
+	
+	/**
+	 * Singleton.
+	 * @return Instance.
+	 */
+	public static XMIMetaModelElementContext getInstance() {
+		if(instance == null) {
+			instance = new XMIMetaModelElementContext();
+		}
+		return instance;
+	}
 	
 	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
@@ -19,13 +30,6 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	public Set<EClass> getAllModelElementEClassesImpl() {
 		//TODO filter all classes for the registered ones.
 		return UnicaseUtil.getAllModelElementEClasses();
-	}
-	
-	public static MetaModelElementContext getInstance() {
-		if (instance == null) {
-			instance = new XMIMetaModelElementContext();
-		}
-		return instance;
 	}
 
 	@Override
