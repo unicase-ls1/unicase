@@ -651,7 +651,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public MetaModelElementContext getMetaModelElementContext() {
-		return new XMIMetaModelElementContext();
+		return XMIMetaModelElementContext.getInstance();
 	}
 
 	/**
@@ -662,7 +662,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 	
 	public void addModelElementToRoot(EObject eObject) {
-		if(!objectInitialized) init();
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
 		

@@ -45,11 +45,6 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 	
 	/**
-	 * Internal list of projects contained in the workspace.
-	 */
-	//private EList<ECPProject> projects;
-	
-	/**
 	 * Internal list of folders contained in the workspace.
 	 */
 	@Deprecated
@@ -248,12 +243,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 	
-	//TODO Reimplement getProjects()
 	@Override
 	public EList<ECPProject> getProjects() {
 		if(projects == null) {
 			projects = new BasicEList<ECPProject>();
-			projects.addAll(super.getProjects());
 		}
 		return projects;
 	}
