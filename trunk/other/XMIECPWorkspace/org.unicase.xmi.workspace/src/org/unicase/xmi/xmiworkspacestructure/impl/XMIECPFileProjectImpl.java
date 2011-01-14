@@ -142,7 +142,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	/**
 	 * Listeners that need to be informed when the project changes.
 	 */
-	protected List<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
+	protected List<ECPProjectListener> projectListeners = new ArrayList<ECPProjectListener>();
 	
 	/**
 	 * The workspace this project is contained in.
@@ -165,7 +165,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * Creates a new XMIECPFileProject representing one xmi-file.
 	 * Uses the default file path and sets the workspace to null.
 	 * Make sure to set the workspace correctly after creating the
-	 * object. 
+	 * object.
+	 * If you add a new project, you can call loadContents() to
+	 * create the project file and load the content initially.
 	 */
 	protected XMIECPFileProjectImpl() {
 		super();
@@ -491,7 +493,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public void addECPProjectListener(ECPProjectListener listener) {
-		this.listeners.add(listener);
+		this.projectListeners.add(listener);
 	}
 
 	public boolean contains(EObject eObject) {
@@ -505,7 +507,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		projectDeleted();
 		
 		workspace = null;
-		listeners = null;
+		projectListeners = null;
 		listenerAdapter = null;
 	}
 
@@ -576,7 +578,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		saveResource();
 		
 		// tell listeners about the event
-		for(ECPProjectListener listener : listeners) {
+		for(ECPProjectListener listener : projectListeners) {
 			listener.modelelementDeleted(eobject);
 		}
 	}
@@ -587,20 +589,20 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		saveResource();
 		
 		// tell listeners about the event
-		for(ECPProjectListener listener : listeners) {
+		for(ECPProjectListener listener : projectListeners) {
 			listener.projectChanged();
 		}
 	}
 
 	public void projectDeleted() {
 		// tell listeners about the event
-		for(ECPProjectListener listener : listeners) {
+		for(ECPProjectListener listener : projectListeners) {
 			listener.projectDeleted();
 		}
 	}
 
 	public void removeECPProjectListener(ECPProjectListener listener) {
-		this.listeners.remove(listener);
+		this.projectListeners.remove(listener);
 		
 	}
 
@@ -680,6 +682,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	
 	public PROJECT_STATUS getProjectStatus() {
 		return projectStatus;
+	}
+	
+	/**
+	 * Load the projects contents.
+	 */
+	public void loadContents() {
+		if(!objectInitialized) init();
 	}
 
 } //XMIECPFileProjectImpl

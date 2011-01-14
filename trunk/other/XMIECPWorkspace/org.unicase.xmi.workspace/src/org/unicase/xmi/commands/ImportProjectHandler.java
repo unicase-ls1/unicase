@@ -33,6 +33,7 @@ public class ImportProjectHandler extends XmiAbstractHandler {
 							project.setProjectName(getProjectName()); // set name
 							project.setXmiFilePath(getProjectLocation()); // initialize it when setting the file
 							project.setProjectDescription(getProjectDescription()); // set description of the project
+							project.loadContents();
 							
 							// add a new XMIFileProject to the workspace
 							((XMIECPWorkspace) ws).addProject(project);

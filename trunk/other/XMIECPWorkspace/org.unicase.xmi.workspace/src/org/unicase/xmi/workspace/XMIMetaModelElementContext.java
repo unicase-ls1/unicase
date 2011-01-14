@@ -15,9 +15,9 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 	
-	//TODO only return the registered model
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
+		//TODO filter all classes for the registered ones.
 		return UnicaseUtil.getAllModelElementEClasses();
 	}
 	

@@ -41,6 +41,7 @@ public class NewProjectHandler extends XmiAbstractHandler {
 							project.setProjectName(getProjectName());
 							project.setProjectDescription(getProjectDescription());
 							project.setXmiFilePath(getProjectLocation());
+							project.loadContents();
 							
 							// add a new XMIFileProject to the workspace
 							((XMIECPWorkspace) ws).addProject(project);

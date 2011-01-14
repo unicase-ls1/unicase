@@ -276,6 +276,8 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		
 		getProjects().add(project);
 		setActiveProject(project);
+		
+		eAdapters().notify(); //TODO check
 	}
 	
 	/**
@@ -292,6 +294,8 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		
 		getProjects().remove(project);
 		project.dispose();
+		
+		eAdapters().notify(); //TODO check
 	}
 
 	@Override
