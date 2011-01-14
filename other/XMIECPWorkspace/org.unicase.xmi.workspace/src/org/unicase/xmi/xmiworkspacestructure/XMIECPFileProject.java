@@ -7,11 +7,14 @@
 package org.unicase.xmi.xmiworkspacestructure;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 
 /**
@@ -90,5 +93,16 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 * Returns the status of the project.
 	 */
 	public PROJECT_STATUS getProjectStatus();
+	
+	/**
+	 * Sets the project status, e.g. when a project file is corrupted or not found.
+	 * @param status Current project status.
+	 */
+	public void setProjectStatus(XmiUtil.PROJECT_STATUS status);
+	
+	/**
+	 * Returns the listeners of the project so they can be informed when the project is removed from the workspace.
+	 */
+	public List<ECPProjectListener> getProjectListeners();
 	
 } // XMIECPFileProject
