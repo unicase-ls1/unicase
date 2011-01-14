@@ -2,10 +2,14 @@ package org.unicase.xmi.workspace;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -17,10 +21,17 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.views.DeletedObjectDialog;
+import org.unicase.xmi.views.XMIDialog;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
@@ -41,6 +52,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Internal list of folders contained in the workspace.
 	 */
+	@Deprecated
 	private EList<XMIECPProjectContainer> folders;
 
 	/**
@@ -119,20 +131,68 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			// read projects from resource and add them to the projects-list
 			for(EObject project: resource.getContents()) {				
 				if(project instanceof XMIECPProject) {
-					// project can be added to the workspace
-					((ECPProject) project).setWorkspace(this);
-					project.eAdapters().add(projectListener);
-					ECPProject pro = (ECPProject) project;
-					getProjects().add(pro);
-				}
+					// try to add project to workspace
+					XMIECPFileProject pro = (XMIECPFileProject) project;
+					String path = pro.getXmiFilePath();
+					File projRes = new File(path);
+					
+					if(!projRes.exists()) { 
+						// ask the user what to do
+						DeletedObjectDialog dialog = new DeletedObjectDialog(false, path);
+						switch(dialog.getResult()) {
+							case 1: // remove/skip - just do do anything and it won't be added
+								break;
+							case 2: // import from a filesystem location
+								final FileDialog importDialog = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+								String importPath = importDialog.open();
+								pro.setWorkspace(this);
+								pro.setXmiFilePath(XMIDialog.getResourceLocation(pro.getProjectName(), importPath));
+								pro.eAdapters().add(projectListener);
+								getProjects().add(pro);
+								break;
+							case 5: // import from the "eclipse" workspace
+								Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+								String title = "Select a file";
+								String message = "Please select a valid resource file for the project contents from your workspace.";
+								
+								IFile[] fileSelection = WorkspaceResourceDialog.openFileSelection(shell, title, message, false, null, new ArrayList<ViewerFilter>());
+								if(fileSelection.length > 0) {
+									// take only the first entry of the array, because the multi is off anyways
+									String importWsPath = fileSelection[0].getLocation().toOSString();
+									pro.setWorkspace(this);
+									pro.setXmiFilePath(XMIDialog.getResourceLocation(pro.getProjectName(), importWsPath));
+									pro.eAdapters().add(projectListener);
+									getProjects().add(pro);
+								}
+								break;
+							default: // create new file
+								pro.setWorkspace(this);
+								pro.eAdapters().add(projectListener);
+								getProjects().add(pro);
+								break;
+						}
+					}
+					else {
+						pro.setWorkspace(this);
+						pro.eAdapters().add(projectListener);
+						getProjects().add(pro);
+					}
+				} // END instanceof
+			} // END FOR loop through projects of xmi workspace file
+			try {
+				this.resource.save(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				new XMIWorkspaceException("Unable to save projects to workspace xmi-file. Please clean it up.", e);
 			}
-		}
+			
+		} // END ELSE if the workspace file does exist 
 		
 	} // END loadProjects()
 	
 	/**
 	 * Initializes workspace with the folders contained in the xmi-resource.
 	 */
+	@Deprecated
 	private void loadFolders() {		
 		// read folders from resource
 		for(EObject folder: resource.getContents()) {
@@ -252,10 +312,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		super.setActiveProject(newActiveProject);
 	}
 	
+	
+	//TODO remove folder stuff from workspace
 	/**
 	 * Adds a directory to the workspace.
 	 * @param dir XMIECPFolder-object representing a real folder on the hard-drive.
 	 */
+	@Deprecated
 	public void addFolder(XMIECPProjectContainer dir) {
 		dir.setWorkspace(this);
 		dir.eAdapters().add(projectListener);
@@ -273,6 +336,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 * Removes a directory from the workspace.
 	 * @param dir XMIECPFolder-object representing a read folder on the hard-drive.
 	 */
+	@Deprecated
 	public void removeFolder(XMIECPProjectContainer dir) {
 		resource.getContents().remove(dir);
 		try {

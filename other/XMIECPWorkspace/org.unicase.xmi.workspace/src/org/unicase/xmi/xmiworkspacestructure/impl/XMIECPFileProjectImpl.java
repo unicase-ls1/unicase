@@ -154,6 +154,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private EContentAdapter listenerAdapter;
 	
 	/**
+	 * Flag whether the object has been initialized or not
+	 */
+	private boolean objectInitialized = false;
+	
+	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
 	 * Uses the default file path and sets the workspace to null.
 	 * Make sure to set the workspace correctly after creating the
@@ -171,6 +176,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * Initializes project
 	 */
 	private void init() {
+		// for notification for getters set initialization to false
+		objectInitialized = false;
+		
 		// set the root object to this
 		setRootObject(this);
 		
@@ -191,32 +199,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		 * in case the project is new, you still don't know whether it's imported or not.
 		 */
 		if(!xmiFile.exists()) {
-			//TODO implement no-file-handling
-			/*
-			 * It shows the dialog, but it can't do anything, because the project that is currently being
-			 * reinitialized can neither remove itself nor open FileDialog.
-			 * 
-			// ask the user what to do
-			DeletedObjectDialog dialog = new DeletedObjectDialog(false, xmiFilePath);
-			switch(dialog.getResult()) {
-				case 1: // remove from workspace
-					workspace.addFailedProject(this);
-					break;
-				case 2: // import from another location
-					final FileDialog importDialog = new FileDialog(PlatformUI
-						.getWorkbench().getDisplay().getActiveShell());
-					String importPath = importDialog.open();
-					
-					if(importPath != null) {
-						loadResource(resourceSetImpl, URI.createFileURI(importPath));
-					}
-					
-					break;
-				default: // create new file
-					createResource(resourceSetImpl, xmiUri);
-					break;
-			}
-			*/
 			createResource(resourceSetImpl, xmiUri);
 			
 		}
@@ -224,6 +206,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			// just load the resource
 			loadResource(resourceSetImpl, xmiUri);
 		}
+		
+		// set the object as initialized
+		objectInitialized = true;
 	}
 	
 	/**
@@ -371,8 +356,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		xmiFilePath = newXmiFilePath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH, oldXmiFilePath, xmiFilePath));
-		
-		init();
 	}
 
 	/**
@@ -551,6 +534,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public EObject getRootObject() {
+		if(!objectInitialized) init();
 		return rootObject;
 	}
 
@@ -578,6 +562,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public void modelelementDeleted(EObject eobject) {
+		if(!objectInitialized) init();
 		// Remove model element from xmi-file -> just save it.
 		saveResource();
 		
@@ -588,6 +573,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public void projectChanged() {
+		if(!objectInitialized) init();
 		// Save all objects into the xmi-file
 		saveResource();
 		
@@ -624,6 +610,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public Collection<EObject> getAllModelElements() {
+		if(!objectInitialized) init();
 		// make new result list that no pointer is returned
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
@@ -664,6 +651,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 	
 	public void addModelElementToRoot(EObject eObject) {
+		if(!objectInitialized) init();
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
 		

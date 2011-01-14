@@ -60,7 +60,7 @@ public class DeletedObjectDialog {
 		}
 		else {
 			// case FILE
-			buttons = new String[] {"Remove", "Import", "New"};
+			buttons = new String[] {"Remove", "Import from Filesystem", "Import from Workspace", "New"};
 		}
 		
 		return buttons;
@@ -70,9 +70,10 @@ public class DeletedObjectDialog {
 	 * Returns the <em>result of the message-call</em>.
 	 * @return The integer that is returned stands for one of the following results:<br />
 	 *  1 = remove object from workspace<br />
-	 *  2 = import file<br />
+	 *  2 = import file from filesystem<br />
 	 *  3 = new/import folder<br />
 	 *  4 = new file<br />
+	 *  5 = import file from workspace<br />
 	 */
 	public int getResult() {
 		// mapping
@@ -85,9 +86,11 @@ public class DeletedObjectDialog {
 			}
 		}
 		else {
+			// it's a file
 			switch(result) {
 			case 1: res = 2; break;
-			case 2: res = 4; break;
+			case 2: res = 5; break;
+			case 3: res = 4; break;
 			default: res = 1; break;
 			}
 		}

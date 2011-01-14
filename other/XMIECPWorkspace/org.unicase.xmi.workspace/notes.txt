@@ -47,7 +47,7 @@ Ok - where to to get a platform specific slash from?
 	OK -> If project-file name/location.. is empty : now only error in console but should be a message dialog
 	-> Test functionallity
 	OK -> see TODOs
-- refactor init() in XMIFileProjectImpl to Getter methods!
+OK - refactor init() in XMIFileProjectImpl to Getter methods!
 - Problem: File changed on file system or has been deleted
 	-> add a status to the project in form of an enumeration with the values LOADED, NOTLOADED, FAILEDTOLOAD
 	-> Change the ItemProvider so it asks the project for its status and changes the icon/text if FAILEDTOLOAD
@@ -55,7 +55,7 @@ Ok - where to to get a platform specific slash from?
 Ok - Remove commented code where metamodel-package-usage is marked and add a comment behind the return that this plugin does not support Associations, etc.
 Ok - Send a Patch to Jonas from the navigator-package -> Delete in Menu-Issue
 Ok - Change the Import- and New-Project-Dialog so the emf.common...ResourceDialog with the Eclipse-Navigator-Workspace-Content can be used.
-- The Slash is File.SEPARATOR .
+Ok - The Slash is File.SEPARATOR .
 - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
 Ok - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
  
