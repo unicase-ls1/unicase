@@ -1,7 +1,5 @@
 package org.unicase.xmi.views;
 
-import java.io.File;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.swt.SWT;
@@ -29,24 +27,11 @@ public class ImportProjectDialog extends XMIDialog {
 	@Override
 	protected SelectionListener getBrowseFilesystemListener() {
 		return new SelectionListener() {
-
-			FileDialog projectLocation = new FileDialog(shell, SWT.OPEN);
-			String path = DEFAULT_LOCATION;
 		
 			public void widgetDefaultSelected(SelectionEvent e) {
-				
-				path = projectLocation.open();
-				if(path == null) {
-					path = DEFAULT_LOCATION;
-					
-					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
-					}
-					else {
-						path += File.separator + txtProjectName.getText() + ".ucw";
-					}
-				}
-				txtProjectLocation.setText(path);
+				FileDialog dialog = new FileDialog(shell, SWT.OPEN);
+				String path = dialog.open();
+				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -77,21 +62,8 @@ public class ImportProjectDialog extends XMIDialog {
 					}
 				}
 				
-				if(fileName == null || fileName == "") {
-					String path = DEFAULT_LOCATION;
-					
-					if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-						path += File.separator + System.currentTimeMillis() + ".ucw"; // prevents the system from having twice the same filename or at least it's unlikely.
-					}
-					else {
-						path += File.separator + txtProjectName.getText() + ".ucw";
-					}
-					
-					fileName = path;
-				}
-				
 				// set the textfield to a fitting project name
-				txtProjectLocation.setText(fileName);
+				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), fileName));
 			}
 
 			public void widgetSelected(SelectionEvent e) {

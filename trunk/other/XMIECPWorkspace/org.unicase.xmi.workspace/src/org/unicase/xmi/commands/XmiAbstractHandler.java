@@ -1,6 +1,9 @@
 package org.unicase.xmi.commands;
 
+import java.io.File;
+
 import org.eclipse.core.commands.AbstractHandler;
+import org.unicase.xmi.workspace.XmiUtil;
 
 /**
  * Class needed to generalize dialogs
@@ -26,7 +29,13 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 	
 	// BEGIN GETTERS AND SETTERS
 	public String getProjectName() {
-		return projectName;
+		if(XmiUtil.validate(projectName)) {
+			return projectName;
+		}
+		else {
+			if(XmiUtil.validate(projectLocation)) return projectLocation;
+			else return XmiUtil.DEFAULT_LOCATION + File.separator + System.currentTimeMillis() + ".ucw";
+		}
 	}
 
 
@@ -36,6 +45,7 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 
 
 	public String getProjectDescription() {
+		if(projectDescription == null) return XmiUtil.DEFAULT_PROJECT_DESCRIPTION;
 		return projectDescription;
 	}
 
@@ -44,9 +54,13 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 		this.projectDescription = projectDescription;
 	}
 
-
+	/**
+	 * Returns the DEFAULT_LOCATION if projectLocation is invalid.
+	 * @return The location of the project.
+	 */
 	public String getProjectLocation() {
-		return projectLocation;
+		if(XmiUtil.validate(projectLocation)) return projectLocation;
+		return XmiUtil.DEFAULT_LOCATION;
 	}
 
 

@@ -1,6 +1,7 @@
 package org.unicase.xmi.views;
 
-import org.eclipse.core.runtime.Platform;
+import java.io.File;
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -16,6 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.xmi.commands.XmiAbstractHandler;
+import org.unicase.xmi.workspace.XmiUtil;
 
 /**
  * @author Markus, Matti
@@ -23,8 +25,6 @@ import org.unicase.xmi.commands.XmiAbstractHandler;
  *
  */
 public abstract class XMIDialog extends TitleAreaDialog {
-
-	protected static final String DEFAULT_LOCATION = Platform.getLocation().toOSString();
 	
 	/**
 	 * Name of the Project
@@ -149,4 +149,37 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	 * @return Listener that is called when the button is pressed.
 	 */
 	protected abstract SelectionListener getBrowseFilesystemListener();
+	
+	/**
+	 * Validates the name and path and builds the location of the project's resource.
+	 * @param name Name of the project
+	 * @param path Path to the directory the project resource is contained in.
+	 * @return Full path of the project's resource
+	 */
+	protected static final String getResourceLocation(String name, String path) {
+		String location;
+		
+		// determine whether path is ok if set
+		if(XmiUtil.validate(path)) {
+			File projRes = new File(path);
+			if(projRes.isFile() && projRes.exists()) {
+				return path;
+			}
+			else if(projRes.isDirectory() && projRes.exists()) {
+				location = path;
+			}
+			else location = XmiUtil.DEFAULT_LOCATION; 
+		}
+		else location = XmiUtil.DEFAULT_LOCATION;
+		
+		// add seperator after path
+		location += File.separator;
+		
+		// determine name
+		if(XmiUtil.validate(name)) location += name;
+		else location += System.currentTimeMillis();
+		location += ".ucw";
+		
+		return location;
+	}
 }
