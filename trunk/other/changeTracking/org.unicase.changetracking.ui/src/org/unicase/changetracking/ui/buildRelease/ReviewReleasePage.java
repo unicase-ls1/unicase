@@ -15,6 +15,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.ui.navigator.ContentProvider;
 
@@ -33,7 +34,7 @@ public class ReviewReleasePage extends WizardPage{
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(1, false));
 		TreeViewer treeViewer = new TreeViewer(composite);
-		GridDataFactory.fillDefaults().applyTo(treeViewer.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
 		
 		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));

@@ -102,8 +102,6 @@ public class ChangetrackingSwitch<T> {
 			if (result == null)
 				result = caseRelease(changeTrackingRelease);
 			if (result == null)
-				result = caseUnicaseModelElement(changeTrackingRelease);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

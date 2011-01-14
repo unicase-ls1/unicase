@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
+import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
@@ -57,7 +58,7 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	public ChangeTrackingEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
 				EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, });
+				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
 	}
 
 	/**
