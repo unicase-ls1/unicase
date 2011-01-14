@@ -1,15 +1,15 @@
 package org.unicase.xmi.views;
 
-import java.io.File;
+import java.util.ArrayList;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.model.WorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.unicase.xmi.commands.NewProjectHandler;
 
 public class CreateProjectDialog extends XMIDialog {
@@ -27,27 +27,18 @@ public class CreateProjectDialog extends XMIDialog {
 		setHandler(handler);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected SelectionListener getBrowseFilesystemListener() {
 		return new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				/**
-				 * Folder where to save the file
-				 */
+				// select the folder where to save the file
 				DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
 				
 				String path = dirDialog.open();
-				if(path == null) {
-					path = DEFAULT_LOCATION;
-				}
-				
-				if(txtProjectName.getText() == null || txtProjectName.getText() == "") {
-					path += File.separator + "newproject.ucw";
-				}
-				else {
-					path += File.separator + txtProjectName.getText() + ".ucw";
-				}
-				txtProjectLocation.setText(path);
+				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -55,21 +46,24 @@ public class CreateProjectDialog extends XMIDialog {
 			}
 			
 		};
-	} // END method
+	}
 
 	@Override
 	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
 			public void widgetSelected(SelectionEvent e) {		
-				// opens up a new dialog to browse the "eclipse" workspace
-				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
-				workspaceDialog.setAllowMultiple(false);
-				workspaceDialog.setTitle("Select a folder");
-				workspaceDialog.setMessage("Please select a folder where to save the file");
-				workspaceDialog.loadContents();
-				int dialogRes = workspaceDialog.open();
-								
-				//TODO continue... implemenet Browse Workspace for New Project Dialog
+				// opens up a new dialog to browse the "eclipse" workspace for folders
+				String title = "Select a folder";
+				String message = "Please select a folder where to save the file";
+				String path = null;
+				
+				IContainer[] selectedFolders = WorkspaceResourceDialog.openFolderSelection(shell, title, message, false, null, new ArrayList<ViewerFilter>());
+				if(selectedFolders.length > 0) {
+					// index 0 because multi option is off and it can import only one or no files
+					path = selectedFolders[0].getLocation().toOSString(); 
+				}
+				
+				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {

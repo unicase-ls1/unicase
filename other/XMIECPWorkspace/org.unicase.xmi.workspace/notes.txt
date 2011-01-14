@@ -44,9 +44,9 @@ Ok - where to to get a platform specific slash from?
 --
 # Todo:
 - Dialogs and Handlers
-	-> If project-file name/location.. is empty : now only error in console but should be a message dialog
+	OK -> If project-file name/location.. is empty : now only error in console but should be a message dialog
 	-> Test functionallity
-	-> see TODOs
+	OK -> see TODOs
 - refactor init() in XMIFileProjectImpl to Getter methods!
 - Problem: File changed on file system or has been deleted
 	-> add a status to the project in form of an enumeration with the values LOADED, NOTLOADED, FAILEDTOLOAD
