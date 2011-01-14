@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -11,6 +13,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -73,10 +76,11 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		Composite location = new Composite(contents, SWT.NONE);
 		location.setLayout(new FillLayout());
 		txtFolderLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
-		txtFolderLocation.setSize(200, 20);
+		txtFolderLocation.setSize(140, 20);
 		Button browseButton = new Button(location, SWT.NONE);
-		browseButton.setText("Browse...");
-		final Shell shell = super.getParentShell();
+		browseButton.setText("Browse Filesystem...");
+		Button wsButton = new Button(location, SWT.NONE);
+		wsButton.setText("Browse Workspace...");
 		
 		// Let the user choose the projects he wants.
 		Label projectsLabel = new Label(contents, SWT.NONE);
@@ -85,7 +89,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		
 		listViewer = new XmiListViewer(contents);
 		
-		// add action when button pressed
+		// add action when browse filesystem button pressed
+		final Shell shell = super.getParentShell();
+		
 		browseButton.addSelectionListener(new SelectionListener() {
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -101,42 +107,11 @@ public class ImportFolderDialog extends TitleAreaDialog {
 				txtFolderLocation.setText(path);
 				
 				// try to load contents
-				tryLoadingProjects(path);
+				tryLoadingProjects(loadableFiles, path);
 				
 				// add projects to viewer
 				for(String s: loadableFiles) {
 					listViewer.add(s);
-				}
-			}
-
-			/**
-			 * Tries to load the resources of the folder,
-			 * if it can load a resource it adds the path of the 
-			 * resource to a global list of loadable paths. 
-			 * @param path Folder path containing the resources.
-			 */
-			private void tryLoadingProjects(String path) {
-				File dir = new File(path);
-				ResourceSet resourceSet = new ResourceSetImpl();
-				
-				if(dir.isDirectory()) {
-					File[] files = dir.listFiles();
-					
-					// Go through all files of the directory and try to load them
-					for(File f: files) {
-						String fullPath = f.getAbsolutePath();
-						
-						try {
-							resourceSet.getResource(URI.createFileURI(fullPath), true);
-							loadableFiles.add(fullPath); // adding to list
-						}
-						catch(WrappedException e) {
-							// ignore
-						}
-					}
-				}
-				else {
-					new XMIFileTypeException(path + " is not a directory.");
 				}
 			}
 
@@ -146,6 +121,39 @@ public class ImportFolderDialog extends TitleAreaDialog {
 			
 		});
 
+		// add action when browse workspace button is pressed
+		wsButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				// open up workspace folder selection
+				String title = "Select a folder";
+				String message = "Please select a folder from the workspace";
+				IContainer[] folders = WorkspaceResourceDialog.openFolderSelection(shell, title, message, false, null, new ArrayList<ViewerFilter>());
+				String path = null;
+				if(folders.length > 0) {
+					// select first entry -> multiple false
+					path = folders[0].getLocation().toOSString();
+					
+					// set the path to the text field
+					txtFolderLocation.setText(path);
+					
+					// try to load contents
+					tryLoadingProjects(loadableFiles, path);
+					
+					// add projects to viewer
+					for(String s: loadableFiles) {
+						listViewer.add(s);
+					}
+				}
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				widgetSelected(e);				
+			}
+			
+		});
+		
+		// finaly layout
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(
 				defaultMargins.x, defaultMargins.y).generateLayout(contents);
@@ -164,10 +172,35 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Tries to load the resources of the folder,
+	 * if it can load a resource it adds the path of the 
+	 * resource to a global list of loadable paths. 
+	 * @param loadableFiles Files that can be loaded.
+	 * @param path Folder path containing the resources.
 	 */
-	@Override
-	public void cancelPressed() {
-		close();
+	private static final void tryLoadingProjects(List<String> loadableFiles, String path) {
+		File dir = new File(path);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		
+		if(dir.isDirectory()) {
+			File[] files = dir.listFiles();
+			
+			// Go through all files of the directory and try to load them
+			for(File f: files) {
+				String fullPath = f.getAbsolutePath();
+				
+				try {
+					resourceSet.getResource(URI.createFileURI(fullPath), true);
+					loadableFiles.add(fullPath); // adding to list
+				}
+				catch(WrappedException e) {
+					// ignore
+				}
+			}
+		}
+		else {
+			new XMIFileTypeException(path + " is not a directory.");
+		}
 	}
+	
 }
