@@ -56,55 +56,47 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RationalePackageImpl extends EPackageImpl implements RationalePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass issueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass proposalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass solutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass criterionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass assessmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass commentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass audioCommentEClass = null;
@@ -128,18 +120,17 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link RationalePackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link RationalePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -253,7 +244,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIssue() {
@@ -262,7 +252,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Proposals() {
@@ -271,7 +260,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Solution() {
@@ -280,7 +268,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Criteria() {
@@ -289,7 +276,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIssue_Activity() {
@@ -298,7 +284,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Assessments() {
@@ -307,7 +292,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProposal() {
@@ -316,7 +300,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProposal_Assessments() {
@@ -325,7 +308,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProposal_Issue() {
@@ -334,7 +316,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSolution() {
@@ -343,7 +324,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSolution_UnderlyingProposals() {
@@ -352,7 +332,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSolution_Issue() {
@@ -361,7 +340,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCriterion() {
@@ -370,7 +348,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCriterion_Assessments() {
@@ -379,7 +356,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAssessment() {
@@ -388,7 +364,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssessment_Proposal() {
@@ -397,7 +372,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssessment_Criterion() {
@@ -406,7 +380,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssessment_Value() {
@@ -415,7 +388,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComment() {
@@ -424,7 +396,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComment_Sender() {
@@ -433,7 +404,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComment_Recipients() {
@@ -442,7 +412,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComment_CommentedElement() {
@@ -451,7 +420,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAudioComment() {
@@ -460,7 +428,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAudioComment_AudioFile() {
@@ -469,7 +436,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RationaleFactory getRationaleFactory() {
@@ -478,15 +444,14 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -529,15 +494,14 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -652,8 +616,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
