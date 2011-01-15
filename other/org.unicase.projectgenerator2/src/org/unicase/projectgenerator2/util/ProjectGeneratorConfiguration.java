@@ -12,17 +12,17 @@ public class ProjectGeneratorConfiguration {
 	private boolean ignoreAndLog = false;
 	
 	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject) {
-		seed = System.currentTimeMillis();
 		this.modelPackage = modelPackage;
 		this.rootObject = rootObject;
+		seed = System.currentTimeMillis();
 	}
 	
 	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth) {
-		seed = System.currentTimeMillis();
 		this.modelPackage = modelPackage;
 		this.rootObject = rootObject;
 		this.depth = depth;
 		this.width = width;
+		seed = System.currentTimeMillis();
 	}
 		
 	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject, long seed, int width, int depth,
@@ -30,9 +30,9 @@ public class ProjectGeneratorConfiguration {
 		super();
 		this.modelPackage = modelPackage;
 		this.rootObject = rootObject;
-		this.seed = seed;
 		this.width = width;
 		this.depth = depth;
+		this.seed = seed;
 		this.ignoreAndLog = ignoreAndLog;
 	}
 
@@ -83,6 +83,4 @@ public class ProjectGeneratorConfiguration {
 	public boolean getIgnoreAndLog() {
 		return ignoreAndLog;
 	}
-
-
 }
