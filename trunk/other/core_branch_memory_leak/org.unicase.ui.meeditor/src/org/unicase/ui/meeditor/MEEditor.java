@@ -68,29 +68,71 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	protected void addPages() {
+		String editorID = "Edit";
+		String editorDesc = "Standard View";
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
-		if (editorInput.getProblemFeature() != null) {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement, editorInput
-				.getProblemFeature());
-		} else {
-			mePage = new MEEditorPage(this, "Edit", "Standard View", modelElementContext, modelElement);
-		}
 
-		try {
-			addPage(mePage);
-		} catch (PartInitException e) {
-			// JH Auto-generated catch block
-			Activator.logException(e);
-		}
-
-		// Add the pages from the extension point
-		IConfigurationElement[] configIn = Platform.getExtensionRegistry().getConfigurationElementsFor(
+		// add pages from the extension point
+		IConfigurationElement[] configTemp = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.meeditor.pages");
+		IConfigurationElement[] configIn = null;
+
+		boolean replaceMEEditor = false;
+		int counter = 0;
+
+		for (int i = 0; i < configTemp.length; i++) {
+			if (configTemp[i].getAttribute("replace") != null && configTemp[i].getAttribute("replace").equals(editorID)) {
+				// if a replacement is found, create this page, so it becomes the first one
+				replaceMEEditor = true;
+				AbstractMEEditorPage newPage;
+
+				try {
+					newPage = (AbstractMEEditorPage) configTemp[i].createExecutableExtension("class");
+					FormPage createPage = newPage.createPage(this, editingDomain, modelElement);
+					if (createPage != null) {
+						addPage(createPage);
+					}
+				} catch (CoreException e1) {
+					Activator.logException(e1);
+				}
+
+				// put remaining pages into the original configIn array
+				configIn = new IConfigurationElement[configTemp.length - 1];
+				for (int j = 0, k = 0; j < configTemp.length - 1; j++, k++) {
+					if (counter == j) {
+						j--;
+					} else {
+						configIn[j] = configTemp[k];
+					}
+				}
+
+				break;
+			}
+			counter++;
+		}
+
+		// create original MEEditor standard view if no replacement exists
+		// and put remaining pages into the original configIn array
+		if (!replaceMEEditor) {
+			try {
+				if (editorInput.getProblemFeature() != null) {
+					mePage = new MEEditorPage(this, editorID, editorDesc, modelElementContext, modelElement,
+						editorInput.getProblemFeature());
+				} else {
+					mePage = new MEEditorPage(this, editorID, editorDesc, modelElementContext, modelElement);
+				}
+
+				addPage(mePage);
+				configIn = configTemp;
+			} catch (PartInitException e) {
+				// JH Auto-generated catch block
+				Activator.logException(e);
+			}
+		}
 
 		// Sort the pages by the "after" attribute and omit replaced pages
 		List<IConfigurationElement> config = PageCandidate.getPages(configIn);
 		for (IConfigurationElement e : config) {
-
 			try {
 				AbstractMEEditorPage newPage = (AbstractMEEditorPage) e.createExecutableExtension("class");
 				FormPage createPage = newPage.createPage(this, editingDomain, modelElement);
@@ -101,11 +143,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 				Activator.logException(e1);
 			}
 		}
+
 		// commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
 		// descriptionPage = new MEDescriptionPage(this, "Description", "Description", editingDomain, modelElement);
 		// addPage(descriptionPage);
 		// addPage(commentsPage);
-
 	}
 
 	/**
@@ -219,8 +261,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private void updateCreatorHint() {
 		if (statusMessageProvider != null) {
-			getEditorSite().getActionBars().getStatusLineManager().setMessage(
-				statusMessageProvider.getMessage(modelElement));
+			getEditorSite().getActionBars().getStatusLineManager()
+				.setMessage(statusMessageProvider.getMessage(modelElement));
 		}
 	}
 
@@ -249,7 +291,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void setFocus() {
 
 		super.setFocus();
-		mePage.setFocus();
+		if (mePage != null) {
+			mePage.setFocus();
+		}
 		updateCreatorHint();
 
 	}
@@ -280,4 +324,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 	}
 
+	public ModelElementContext getModelElementContext() {
+		return modelElementContext;
+	}
 }

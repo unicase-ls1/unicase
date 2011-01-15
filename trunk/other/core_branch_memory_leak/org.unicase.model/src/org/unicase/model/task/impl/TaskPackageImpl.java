@@ -55,47 +55,40 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass actionItemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass workPackageEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass workItemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass checkableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum activityTypeEEnum = null;
@@ -119,18 +112,17 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link TaskPackage#eINSTANCE} when that field is accessed. Clients should not
-	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link TaskPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -245,7 +237,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getActionItem() {
@@ -254,7 +245,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getActionItem_Done() {
@@ -263,7 +253,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getActionItem_Activity() {
@@ -272,7 +261,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getWorkPackage() {
@@ -281,7 +269,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkPackage_ContainedWorkItems() {
@@ -290,7 +277,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkPackage_StartDate() {
@@ -299,7 +285,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkPackage_EndDate() {
@@ -308,7 +293,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getWorkItem() {
@@ -317,7 +301,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_ContainingWorkpackage() {
@@ -326,7 +309,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Predecessors() {
@@ -335,7 +317,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Successors() {
@@ -344,7 +325,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Assignee() {
@@ -353,7 +333,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Reviewer() {
@@ -362,7 +341,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Participants() {
@@ -371,7 +349,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_DueDate() {
@@ -380,7 +357,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Estimate() {
@@ -389,7 +365,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Effort() {
@@ -398,7 +373,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Priority() {
@@ -407,7 +381,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Resolved() {
@@ -416,7 +389,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_IncludingReleases() {
@@ -425,7 +397,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMilestone() {
@@ -434,7 +405,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMilestone_ContainedModelElements() {
@@ -443,7 +413,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCheckable() {
@@ -452,7 +421,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCheckable_Checked() {
@@ -461,7 +429,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getActivityType() {
@@ -470,7 +437,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskFactory getTaskFactory() {
@@ -479,15 +445,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -531,15 +496,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -655,8 +619,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
