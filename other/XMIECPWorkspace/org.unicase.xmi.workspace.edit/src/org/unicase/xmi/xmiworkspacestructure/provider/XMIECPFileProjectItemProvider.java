@@ -26,7 +26,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -188,7 +187,7 @@ public class XMIECPFileProjectItemProvider
 	public String getText(Object object) {
 		String label = ((XMIECPFileProject)object).getProjectName();
 		
-		if(((XMIECPFileProject)object).getProjectStatus() == XmiUtil.PROJECT_STATUS.FAILED) {
+		if(((XMIECPFileProject)object).getProjectStatus() == PROJECT_STATUS.FAILED) {
 			label = "[" + label + "]";
 		}
 		

@@ -1,11 +1,12 @@
 #Todo:
-- File changed on file system or has been deleted
-	-> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
-	-> Add icon to Resolve command
-	-> plugin.xml: for deleted project only one popup menu entry: "resolve"
+OK - File changed on file system or has been deleted
+	OK -> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
+	OK -> Add icon to Resolve command
+	OK -> plugin.xml: for deleted project only one popup menu entry: "resolve"
 - Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
 - Delete menu entry does not work for baseElements
 - Teststrategy
+- refactor workspace -> remove folder items
 
 --
 # Accepted plugins:
