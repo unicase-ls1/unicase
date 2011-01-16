@@ -60,7 +60,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.changetracking.ui.buildRelease.BuildReleaseHandler"
+            defaultHandler="org.unicase.changetracking.ui.releases.BuildReleaseHandler"
             id="org.unicase.changetracking.ui.buildReleaseCommand"
             name="Build Release">
       </command>

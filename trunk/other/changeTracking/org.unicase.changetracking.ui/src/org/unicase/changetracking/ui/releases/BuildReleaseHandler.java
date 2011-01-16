@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.buildRelease;
+package org.unicase.changetracking.ui.releases;
 
 import java.util.List;
 
