@@ -48,6 +48,15 @@
                style="push">
          </command>
       </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <command
+               commandId="org.unicase.changetracking.ui.checkReleaseCommand"
+               icon="icons/full/obj16/ChangeTrackingRelease.gif"
+               label="Check Release"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.unicase.ui.meeditor.melinkcontrols">
@@ -63,6 +72,11 @@
             defaultHandler="org.unicase.changetracking.ui.releases.BuildReleaseHandler"
             id="org.unicase.changetracking.ui.buildReleaseCommand"
             name="Build Release">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.releases.CheckReleaseHandler"
+            id="org.unicase.changetracking.ui.checkReleaseCommand"
+            name="Check Release">
       </command>
    </extension>
    <extension

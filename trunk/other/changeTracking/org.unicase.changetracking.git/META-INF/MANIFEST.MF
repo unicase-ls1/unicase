@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Git
-Bundle-SymbolicName: org.unicase.changetracking.git;singleton:=true
+Bundle-SymbolicName: org.unicase.changetracking;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.changetracking.git.Activator
 Require-Bundle: org.eclipse.ui,

@@ -1,4 +1,4 @@
-package org.unicase.changetracking.git;
+package org.unicase.changetracking.release;
 
 import java.util.ArrayList;
 import java.util.HashMap;

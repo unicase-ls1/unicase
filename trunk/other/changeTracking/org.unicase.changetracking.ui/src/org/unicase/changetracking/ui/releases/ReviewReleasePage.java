@@ -32,13 +32,7 @@ public class ReviewReleasePage extends WizardPage{
 
 	@Override
 	public void createControl(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayout(new GridLayout(1, false));
-		ReleaseTreeViewer treeViewer = new ReleaseTreeViewer(composite, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer);
-		
-		treeViewer.setInput(release);
-		treeViewer.expandAll();
+		ReleaseOverviewWidget composite = new ReleaseOverviewWidget(parent, SWT.NONE, release);
 		setControl(composite);
 	}
 
