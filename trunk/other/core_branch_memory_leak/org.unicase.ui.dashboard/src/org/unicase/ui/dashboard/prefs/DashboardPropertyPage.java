@@ -150,6 +150,7 @@ public class DashboardPropertyPage extends PropertyPage {
 			return label;
 		}
 
+		// hkq: open
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
