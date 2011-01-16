@@ -26,9 +26,7 @@ import org.unicase.ui.navigator.TreeView;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer;
 
 
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
@@ -37,12 +35,6 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 * Copied transactional domain
 	 */
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
-	
-	/**
-	 * Internal list of folders contained in the workspace.
-	 */
-	@Deprecated
-	private EList<XMIECPProjectContainer> folders;
 
 	/**
 	 * The xmi-file-resource storing the projects of the workspace.
@@ -62,16 +54,12 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Builds new ECPWorkspace being able to hold xmi-persistable projects.
 	 */
-	public XMIECPWorkspace() {
-		//projects = new BasicEList<ECPProject>();
-		folders = new BasicEList<XMIECPProjectContainer>();
-		
+	public XMIECPWorkspace() {		
 		workspaceFile = Platform.getLocation() + "/xmiworkspace.ucw";
 		resource = null;
 		
 		buildProjectListener();
 		loadProjects();
-		loadFolders();
 	}
 
 	/**
@@ -130,7 +118,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					pro.setWorkspace(this);
 					pro.eAdapters().add(projectListener);
 					getProjects().add(pro);
-				} // END instanceof
+				}
 			} // END FOR loop through projects of xmi workspace file
 			try {
 				this.resource.save(Collections.EMPTY_MAP);
@@ -140,21 +128,6 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		} // END ELSE if the workspace file does exist 
 		
 	} // END loadProjects()
-	
-	/**
-	 * Initializes workspace with the folders contained in the xmi-resource.
-	 */
-	@Deprecated
-	private void loadFolders() {		
-		// read folders from resource
-		for(EObject folder: resource.getContents()) {
-			if(folder instanceof XMIECPFolder) {
-				((XMIECPFolder) folder).setWorkspace(this);
-				folder.eAdapters().add(projectListener);
-				folders.add((XMIECPFolder) folder);
-			}
-		}
-	} // END loadFolders()
 	
 	private void buildProjectListener() {
 		projectListener = new EContentAdapter() {
@@ -265,41 +238,5 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	@Override
 	public void setActiveProject(ECPProject newActiveProject) {
 		super.setActiveProject(newActiveProject);
-	}
-	
-	
-	//TODO remove folder stuff from workspace
-	/**
-	 * Adds a directory to the workspace.
-	 * @param dir XMIECPFolder-object representing a real folder on the hard-drive.
-	 */
-	@Deprecated
-	public void addFolder(XMIECPProjectContainer dir) {
-		dir.setWorkspace(this);
-		dir.eAdapters().add(projectListener);
-		resource.getContents().add(dir);
-		try {
-			resource.save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			new XMIWorkspaceException("Could not save folder. Error while writing workspace-file.", e);
-		}
-		
-		folders.add(dir);
-	}
-	
-	/**
-	 * Removes a directory from the workspace.
-	 * @param dir XMIECPFolder-object representing a read folder on the hard-drive.
-	 */
-	@Deprecated
-	public void removeFolder(XMIECPProjectContainer dir) {
-		resource.getContents().remove(dir);
-		try {
-			resource.save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			new XMIWorkspaceException("Could not remove folder. Error while writing workspace-file.", e);
-		}
-		folders.remove(dir);
-		dir.dispose();
 	}
 }

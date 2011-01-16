@@ -32,7 +32,6 @@ import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
@@ -54,6 +53,22 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
  *
  * @generated
  */
+
+//TODO change folder implementation, read notes under this comment first
+/*
+ * NOTES
+ * -----
+ * Generally there is no concept in ECP at the moment (January 2011) of 
+ * implementing folders/containers in the ECP. Therefore all "projects"
+ * in a folder would have to hand through their elements to the
+ * root-container which acts as a proxy for all projects. Because this is
+ * not what Jonas and Max wanted, this part of the XMIWorkspace Implementation
+ * is left out.
+ * If there will be a general solution in the ECP in the future, you can
+ * implement this feature for the XMIWorkspace in this class respectively
+ * in its superclass the "XMIECPProjectContainer".  
+ */
+
 public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIECPFolder {
 	/**
 	 * The default value of the '{@link #getXmiDirectoryPath() <em>Xmi Directory Path</em>}' attribute.
@@ -136,7 +151,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 				if(files[f].isDirectory()) {
 					XMIECPFolder newFolder = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFolder();
 					newFolder.setXmiDirectoryPath(files[f].getAbsolutePath());
-					((XMIECPWorkspace) getWorkspace()).addFolder(newFolder);
+					//((XMIECPWorkspace) getWorkspace()).addFolder(newFolder); // commented so now error will be thrown
 				}
 				if(files[f].isFile() && isValidXMIFile(files[f])) {
 					XMIECPFileProject fileProject = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();

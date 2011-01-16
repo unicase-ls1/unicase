@@ -6,7 +6,7 @@ OK - File changed on file system or has been deleted
 - Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
 - Delete menu entry does not work for baseElements
 - Teststrategy
-- refactor workspace -> remove folder items
+OK - refactor workspace -> remove folder items
 
 --
 # Accepted plugins:
