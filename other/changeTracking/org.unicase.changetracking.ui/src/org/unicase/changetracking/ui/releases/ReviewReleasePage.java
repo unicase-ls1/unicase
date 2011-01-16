@@ -1,4 +1,4 @@
-package org.unicase.changetracking.ui.buildRelease;
+package org.unicase.changetracking.ui.releases;
 
 
 import org.eclipse.emf.ecore.EObject;

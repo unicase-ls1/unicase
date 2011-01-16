@@ -10,7 +10,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.GitUtil;
-import org.unicase.changetracking.ui.buildRelease.BuildReleaseWizard;
+import org.unicase.changetracking.ui.releases.BuildReleaseWizard;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.git.GitRepository;
