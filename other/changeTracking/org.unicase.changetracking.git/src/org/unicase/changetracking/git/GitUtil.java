@@ -1,6 +1,8 @@
 package org.unicase.changetracking.git;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,6 +27,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RefUpdate.Result;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.git.GitBranch;
@@ -61,9 +64,8 @@ public class GitUtil {
 		}
 
 	}
-
-	public static String getIdentifyingCommitHash(Repository repository) {
-
+	
+	public static Iterable<RevCommit> getAllCommits(Repository repository) {
 		try {
 			RevWalk rw = new RevWalk(repository);
 			for (Ref ref : repository.getAllRefs().values()) {
@@ -73,16 +75,7 @@ public class GitUtil {
 					continue;
 				}
 			}
-			
-			RevCommit lastCommit = null;
-			for (RevCommit c : rw) {
-				lastCommit = c;
-			}
-			
-			if(lastCommit == null)
-				return null;
-			
-			return lastCommit.getId().getName();
+			return rw;
 
 		} catch (MissingObjectException e) {
 			throw new UnexpectedGitException(e);
@@ -90,11 +83,27 @@ public class GitUtil {
 			throw new UnexpectedGitException(e);
 		}
 	}
+
+	public static String getIdentifyingCommitHash(Repository repository) {
+		RevCommit lastCommit = null;
+		for (RevCommit c : getAllCommits(repository)) {
+			lastCommit = c;
+		}
+		
+		if(lastCommit == null)
+			return null;
+		
+		return lastCommit.getId().getName();
+	}
 	
 	public static GitRepository initGitRepoModelFromRepo(Repository repo){
 		GitRepository gitRepoModel = GitFactory.eINSTANCE.createGitRepository();
 		gitRepoModel.setIdentifyingCommitHash(getIdentifyingCommitHash(repo));
 		return gitRepoModel;
+	}
+	
+	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException{
+		return new URIish(remote.getUrl());
 	}
 
 	// public static Ref checkoutRev(IResource f, GitRevision revision){

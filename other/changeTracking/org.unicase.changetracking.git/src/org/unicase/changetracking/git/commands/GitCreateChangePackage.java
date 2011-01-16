@@ -1,24 +1,40 @@
 package org.unicase.changetracking.git.commands;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.egit.core.EclipseGitProgressTransformer;
+import org.eclipse.egit.core.securestorage.EGitSecureStore;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
+import org.eclipse.jgit.api.errors.NoFilepatternException;
+import org.eclipse.jgit.api.errors.NoHeadException;
+import org.eclipse.jgit.api.errors.NoMessageException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
+import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
 import org.eclipse.jgit.errors.AmbiguousObjectException;
+import org.eclipse.jgit.errors.UnmergedPathException;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.RefSpec;
 import org.unicase.changetracking.git.Activator;
+import org.unicase.changetracking.git.GitPushBuilder;
+import org.unicase.changetracking.git.GitPushOperation;
 import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.unicase.changetracking.git.Test;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
@@ -36,33 +52,49 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class GitCreateChangePackage extends UnicaseCommand {
 
 	
-	private final IResource myResource;
+	private final Repository myRepository;
 	private final String myName;
 	private final WorkItem myWorkItem;
 	private final GitRepository myRemoteRepo;
+	private String myShortDescription;
+	private String myLongDescription;
+	private IProgressMonitor progressMonitor;
+	private CredentialsProvider myCredentials;
 
-	public GitCreateChangePackage(IResource r, String name, WorkItem workItem, GitRepository remoteRepo){
-		this.myResource = r;
+	public GitCreateChangePackage(Repository r, WorkItem workItem, GitRepository remoteRepo, String name, String shortDescription, String longDescription, CredentialsProvider credentials){
+		this.myRepository = r;
 		this.myName = name;
+		this.myShortDescription = shortDescription;
+		this.myLongDescription = longDescription;
 		this.myWorkItem = workItem;
 		this.myRemoteRepo = remoteRepo;
+		this.myCredentials = credentials;
 	}
 	@Override
 	protected void doRun() {
-		createChangePackage(myResource, myName, myWorkItem,myRemoteRepo);
+		createChangePackage(myRepository, myWorkItem,myRemoteRepo, myName, myShortDescription, myLongDescription, myCredentials);
 	}
 	
 	/*
 	 * Usecase 1: The user creates a new change package
 	 */
-	public void createChangePackage(IResource r, String name, WorkItem workItem, GitRepository remoteRepo){
-		//Find a git repo
-		Repository repo = GitRepoFindUtil.findRepository(r.getLocation().toFile());
-		Git git = new Git(repo);
-		
-		if(repo == null){
-			throw new UnexpectedGitException("The selected resource is not in any git repository");
+	public void createChangePackage(Repository repo, WorkItem workItem, GitRepository remoteRepo, String name, String shortDescription, String longDescription, CredentialsProvider credentials){
+		//Init progress Monitor 
+		if(progressMonitor == null){
+			progressMonitor = new NullProgressMonitor();
 		}
+		progressMonitor.beginTask("Creating Change Package", 6);
+		progressMonitor.subTask("Checking requirements");
+		Git git = new Git(repo);
+	
+		try{
+		
+		
+		//Check repository state
+		if(!repo.getRepositoryState().canCommit()){
+			throw new UnexpectedGitException("The local repository is in a state which does not allow committing");
+		}
+		
 		
 		//Retrieve project
 		Project p = ModelUtil.getProject(workItem);
@@ -96,9 +128,9 @@ public class GitCreateChangePackage extends UnicaseCommand {
 			throw new UnexpectedGitException("Could not create new branch",e);
 		}
 		
-
-		
-		
+		progressMonitor.worked(1);
+		progressMonitor.subTask("Creating and linking model elements");
+				
 		//Create and attach git branch
 		GitBranch branch = GitFactory.eINSTANCE.createGitBranch();
 		branch.setBranchName(name);
@@ -109,23 +141,68 @@ public class GitCreateChangePackage extends UnicaseCommand {
 		//Create Change Package model element
 		GitBranchChangePackage changePackage = GitFactory.eINSTANCE.createGitBranchChangePackage();
 		changePackage.setName(name);
+		changePackage.setDescription(longDescription);
+		changePackage.setShortDescription(shortDescription);
 		changePackage.setBranch(branch);
 		addToProjectRelative(changePackage, p, branch);
 		
 		//Attach change package to work item
 		workItem.getAttachments().add(changePackage);
+
+		progressMonitor.worked(1);
+		progressMonitor.subTask("Adding...");
 		
-		//FIXME make push work
-		//Push the git branch
 		try {
-			git.push().setRefSpecs(new RefSpec("refs/head/" + name)).setRemote("https://gexicide@github.com/gexicide/testor.git").call();
-		} catch (JGitInternalException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidRemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			git.add().addFilepattern(".").call();
+		} catch (NoFilepatternException e1) {
 		}
+		
+		progressMonitor.worked(1);
+		progressMonitor.subTask("Committing...");
+		
+		//Commit changes
+		RevCommit commit = null;
+		try {
+			commit = git.commit().setAll(true).setMessage(shortDescription + "\n\n" + longDescription).call();
+	
+		} catch (NoHeadException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		} catch (NoMessageException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		} catch (UnmergedPathException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		} catch (ConcurrentRefUpdateException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		} catch (JGitInternalException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		} catch (WrongRepositoryStateException e) {
+			throw new UnexpectedGitException("Could not create new branch",e);
+		}
+		
+		progressMonitor.worked(1);
+		progressMonitor.subTask("Pushing new branch to remote repository...");
+	
+		//Push to remote repo
+		//GitPushOperation pushOp = new GitPushBuilder(repo, remoteRepo, credentials).build(name);
+		//pushOp.run(progressMonitor);
+
+		Test.gitPushTest();
+		} finally {
+			progressMonitor.done();
+		}
+		
+		
+//		//FIXME make push work
+//		//Push the git branch
+//		try {
+//			git.push().setRefSpecs(new RefSpec("refs/head/" + name)).setRemote("https://gexicide@github.com/gexicide/testor.git").call();
+//		} catch (JGitInternalException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvalidRemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 	}
 
@@ -139,6 +216,11 @@ public class GitCreateChangePackage extends UnicaseCommand {
 			EObject workItem) {
 		//TODO: Implement relative placement
 		project.addModelElement(toAdd);
+	}
+	
+	public void run(IProgressMonitor monitor) {
+		this.progressMonitor = monitor;
+		run(false);
 	}
 
 

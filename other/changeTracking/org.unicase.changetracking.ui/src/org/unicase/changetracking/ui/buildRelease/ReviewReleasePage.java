@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.changetracking.ui.ReleaseTreeViewer;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.ui.navigator.ContentProvider;
 
@@ -33,50 +34,11 @@ public class ReviewReleasePage extends WizardPage{
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(1, false));
-		TreeViewer treeViewer = new TreeViewer(composite);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
+		ReleaseTreeViewer treeViewer = new ReleaseTreeViewer(composite, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer);
 		
-		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		
-		treeViewer.setContentProvider(new ITreeContentProvider() {
-			
-			@Override
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public Object[] getChildren(Object parentElement) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Object getParent(Object element) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public boolean hasChildren(Object element) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public Object[] getElements(Object inputElement) {
-				return new Object[]{release};
-			}
-		});
 		treeViewer.setInput(release);
+		treeViewer.expandAll();
 		setControl(composite);
 	}
 

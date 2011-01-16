@@ -17,7 +17,7 @@
             </separator>
          </menu>
          <action
-               class="org.unicase.changetracking.ui.CreateChangePackageActionDelegate"
+               class="org.unicase.changetracking.ui.createChangePackage.CreateChangePackageActionDelegate"
                enablesFor="1"
                icon="icons/GitBranchChangePackage.gif"
                id="org.eclipse.ui.articles.action.contribution.navigator.action2"
@@ -46,15 +46,6 @@
                icon="icons/full/obj16/ChangeTrackingRelease.gif"
                label="Build Release"
                style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeModelelement">
-                  <reference
-                        definitionId="org.unicase.changetracking.ui.definitions.isRelease">
-                  </reference>
-               </with>
-            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

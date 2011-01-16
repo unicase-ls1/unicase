@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="changetracking"
-    nsURI="http://unicase.org/changetracking" nsPrefix="org.unicase.changetracking">
+    nsURI="http://unicase.org/changetracking" nsPrefix="org.unicase.model.changetracking">
   <eClassifiers xsi:type="ecore:EClass" name="ChangeTrackingRelease" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//release/Release">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stream" eType="#//Stream"
         eOpposite="#//Stream/releases"/>
@@ -16,7 +16,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
         eOpposite="#//RepositoryStream/usingStreams"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChangePackage" abstract="true" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//Attachment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangePackage" abstract="true" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//Attachment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortDescription" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryRevision" abstract="true"
       eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
@@ -38,7 +40,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
         eType="#//RepositoryStream" eOpposite="#//RepositoryStream/location"/>
   </eClassifiers>
-  <eSubpackages name="git" nsURI="http://unicase.org/changetracking/git" nsPrefix="org.unicase.changetracking.git">
+  <eSubpackages name="git" nsURI="http://unicase.org/changetracking/git" nsPrefix="org.unicase.model.changetracking.git">
     <eClassifiers xsi:type="ecore:EClass" name="GitBranchChangePackage" eSuperTypes="#//ChangePackage">
       <eStructuralFeatures xsi:type="ecore:EReference" name="branch" eType="#//git/GitBranch"
           eOpposite="#//git/GitBranch/referringChangePackages"/>
@@ -57,7 +59,7 @@
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="patch" nsURI="http://unicase.org/changetracking/patch" nsPrefix="org.unicase.changetracking.patch">
+  <eSubpackages name="patch" nsURI="http://unicase.org/changetracking/patch" nsPrefix="org.unicase.model.changetracking.patch">
     <eClassifiers xsi:type="ecore:EClass" name="Patch"/>
   </eSubpackages>
 </ecore:EPackage>

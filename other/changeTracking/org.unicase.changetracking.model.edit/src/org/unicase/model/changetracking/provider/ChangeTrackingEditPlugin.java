@@ -58,7 +58,7 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	public ChangeTrackingEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
 				EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+				ModelEditPlugin.INSTANCE, });
 	}
 
 	/**
