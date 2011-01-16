@@ -84,6 +84,10 @@ public class AttacheeSelectionDialog extends AdvancedMESelectionDialog{
 	public AttacheeSelectionDialog() {
 		super(TaskPackage.eINSTANCE.getWorkItem());
 	}
+	
+	public AttacheeSelectionDialog(String title, String message) {
+		super(TaskPackage.eINSTANCE.getWorkItem(), title, message);
+	}
 
 		@Override
 		public ViewerFilter getUserFilter(User user) {

@@ -255,6 +255,15 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getChangePackage_ShortDescription() {
+		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRepositoryRevision() {
 		return repositoryRevisionEClass;
 	}
@@ -379,6 +388,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		createEReference(streamEClass, STREAM__REPOSITORY_STREAM);
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
+		createEAttribute(changePackageEClass, CHANGE_PACKAGE__SHORT_DESCRIPTION);
 
 		repositoryRevisionEClass = createEClass(REPOSITORY_REVISION);
 		createEReference(repositoryRevisionEClass,
@@ -491,6 +501,11 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 
 		initEClass(changePackageEClass, ChangePackage.class, "ChangePackage",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getChangePackage_ShortDescription(), theEcorePackage
+				.getEString(), "shortDescription", null, 0, 1,
+				ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(repositoryRevisionEClass, RepositoryRevision.class,
 				"RepositoryRevision", IS_ABSTRACT, !IS_INTERFACE,

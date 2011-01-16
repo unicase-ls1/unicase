@@ -60,7 +60,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.changetracking";
+	String eNS_PREFIX = "org.unicase.model.changetracking";
 
 	/**
 	 * The singleton instance of the package.
@@ -82,13 +82,121 @@ public interface ChangetrackingPackage extends EPackage {
 	int CHANGE_TRACKING_RELEASE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__APPLIED_PATCHES = ReleasePackage.RELEASE__APPLIED_PATCHES;
+	int CHANGE_TRACKING_RELEASE__NAME = ReleasePackage.RELEASE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__DESCRIPTION = ReleasePackage.RELEASE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__ANNOTATIONS = ReleasePackage.RELEASE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__ATTACHMENTS = ReleasePackage.RELEASE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__INCOMING_DOCUMENT_REFERENCES = ReleasePackage.RELEASE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__LEAF_SECTION = ReleasePackage.RELEASE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__STATE = ReleasePackage.RELEASE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__APPLIED_STEREOTYPE_INSTANCES = ReleasePackage.RELEASE__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__COMMENTS = ReleasePackage.RELEASE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__CREATION_DATE = ReleasePackage.RELEASE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__CREATOR = ReleasePackage.RELEASE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__PREDECESSOR = ReleasePackage.RELEASE__PREDECESSOR;
+
+	/**
+	 * The feature id for the '<em><b>Successor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__SUCCESSOR = ReleasePackage.RELEASE__SUCCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
@@ -390,13 +498,22 @@ public interface ChangetrackingPackage extends EPackage {
 	int CHANGE_PACKAGE__REFERRING_MODEL_ELEMENTS = ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Short Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_PACKAGE__SHORT_DESCRIPTION = ModelPackage.ATTACHMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 0;
+	int CHANGE_PACKAGE_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.RepositoryRevisionImpl <em>Repository Revision</em>}' class.
@@ -892,6 +1009,17 @@ public interface ChangetrackingPackage extends EPackage {
 	EClass getChangePackage();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.ChangePackage#getShortDescription <em>Short Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Description</em>'.
+	 * @see org.unicase.model.changetracking.ChangePackage#getShortDescription()
+	 * @see #getChangePackage()
+	 * @generated
+	 */
+	EAttribute getChangePackage_ShortDescription();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.RepositoryRevision <em>Repository Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1082,6 +1210,15 @@ public interface ChangetrackingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CHANGE_PACKAGE = eINSTANCE.getChangePackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHANGE_PACKAGE__SHORT_DESCRIPTION = eINSTANCE
+				.getChangePackage_ShortDescription();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.RepositoryRevisionImpl <em>Repository Revision</em>}' class.

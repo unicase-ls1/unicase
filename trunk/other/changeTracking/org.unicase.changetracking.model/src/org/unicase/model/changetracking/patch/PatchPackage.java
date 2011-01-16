@@ -54,7 +54,7 @@ public interface PatchPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.changetracking.patch";
+	String eNS_PREFIX = "org.unicase.model.changetracking.patch";
 
 	/**
 	 * The singleton instance of the package.

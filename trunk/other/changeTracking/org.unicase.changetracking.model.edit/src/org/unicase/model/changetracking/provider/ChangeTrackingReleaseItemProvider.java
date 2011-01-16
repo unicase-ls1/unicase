@@ -143,13 +143,13 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		ChangeTrackingRelease changeTrackingRelease = (ChangeTrackingRelease) object;
-		return getString("_UI_ChangeTrackingRelease_type") + " "
-				+ changeTrackingRelease.isBuilt();
+		String label = ((ChangeTrackingRelease) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ChangeTrackingRelease_type")
+				: label;
 	}
 
 	/**

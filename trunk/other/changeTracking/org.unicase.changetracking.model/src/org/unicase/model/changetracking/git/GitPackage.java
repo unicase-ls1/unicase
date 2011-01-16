@@ -58,7 +58,7 @@ public interface GitPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.changetracking.git";
+	String eNS_PREFIX = "org.unicase.model.changetracking.git";
 
 	/**
 	 * The singleton instance of the package.
@@ -186,6 +186,15 @@ public interface GitPackage extends EPackage {
 	 * @ordered
 	 */
 	int GIT_BRANCH_CHANGE_PACKAGE__REFERRING_MODEL_ELEMENTS = ChangetrackingPackage.CHANGE_PACKAGE__REFERRING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Short Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIT_BRANCH_CHANGE_PACKAGE__SHORT_DESCRIPTION = ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Branch</b></em>' reference.

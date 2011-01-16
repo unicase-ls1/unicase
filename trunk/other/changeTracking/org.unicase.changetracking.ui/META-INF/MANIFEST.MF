@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.workspace,
  org.unicase.ui.unicasecommon,
  org.unicase.changetracking.git,
- org.unicase.changetracking.model
+ org.unicase.changetracking.model,
+ org.eclipse.egit.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

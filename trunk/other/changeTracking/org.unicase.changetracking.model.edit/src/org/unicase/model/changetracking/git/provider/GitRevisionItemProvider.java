@@ -108,13 +108,13 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((GitRevision) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_GitRevision_type")
-				: getString("_UI_GitRevision_type") + " " + label;
+				:  label;
 	}
 
 	/**

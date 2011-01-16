@@ -96,6 +96,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		this(null);
 	}
 	
+	public AdvancedMESelectionDialog(EClass classBound, String title, String message){
+		this(classBound);
+		this.setTitle(title);
+		this.setMessage(message);
+	}
+	
 	/**
 	 * Default constructor.
 	 */
@@ -134,7 +140,10 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	protected abstract Collection<String> getAllowedClassesForCreation();
 	
 	protected abstract ViewerFilter getUserFilter(User user);
-	
+
+	public UnicaseModelElement getSelectedModelElementNoCreate(){
+		return (UnicaseModelElement) getFirstResult();
+	}
 	public UnicaseModelElement getOrCreateSelectedModelElement(){
 		return getOrCreateSelectedModelElement(new PutIntoOrphansStrategy());
 	}
@@ -147,6 +156,8 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		}
 		return element;
 	}
+	
+
 	
 	/**
 	 * Returns whether a model element is a "create new xxx" entry.

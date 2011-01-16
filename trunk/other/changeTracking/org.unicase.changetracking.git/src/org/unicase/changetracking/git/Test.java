@@ -2,6 +2,7 @@ package org.unicase.changetracking.git;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -10,11 +11,15 @@ import java.util.Map.Entry;
 import org.eclipse.egit.core.EclipseGitProgressTransformer;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.CanceledException;
+import org.eclipse.jgit.api.errors.DetachedHeadException;
+import org.eclipse.jgit.api.errors.InvalidConfigurationException;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
+import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
 import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.AnyObjectId;
@@ -26,23 +31,62 @@ import org.eclipse.jgit.merge.MergeStrategy;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.RemoteRefUpdate;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
 
 public class Test {
 
+	public static SayYesCredentialsProvider getTestCredentials(){
+		return new SayYesCredentialsProvider("gexicide", "Fuck4git");
+	}
+	
 	public static void main(String[] args) {
 		Repository r = GitRepoFindUtil.findRepository(new File(
 						"E:\\Programming\\unicase\\runtime-EclipseApplication\\GitTest"
 						//"E:\\Programming\\unicase\\repos\\egit"
 						));
-		blub(r);
+		gitPushTest();
+		GitRepository remoteRepo = GitFactory.eINSTANCE.createGitRepository();
+		remoteRepo.setName("Git-Hub");
+		String url;
+		url = "https://github.com/gexicide/testor.git";
+		//url = "git@github.com:gexicide/testor.git";
+		
+		remoteRepo.setUrl(url);
+		Map<String, Ref> refs = r.getAllRefs();
+		CredentialsProvider provider = new SayYesCredentialsProvider("gexicide", "Fuck4git"); 
+	
+		//blub(r);
 	}
 	
 	public static void gitPullTest(){
 	
+	}
+	
+	public static void gitPushTest(){
+		Repository r = GitRepoFindUtil.findRepository(new File(
+				"E:\\Programming\\unicase\\runtime-EclipseApplication\\GitTest"
+				//"E:\\Programming\\unicase\\repos\\egit"
+				));
+		
+		GitRepository remoteRepo = GitFactory.eINSTANCE.createGitRepository();
+		remoteRepo.setName("Git-Hub");
+		String url;
+		url = "https://github.com/gexicide/testor.git";
+		//url = "git@github.com:gexicide/testor.git";
+		remoteRepo.setUrl(url);
+		GitPushOperation op = new GitPushBuilder(r, remoteRepo, getTestCredentials()).build("1");
+		try {
+			op.run(null);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void blub(Repository repo) {
@@ -53,12 +97,7 @@ public class Test {
 			return;
 		
 		
-		Map<String, Ref> refs = repo.getAllRefs();
-		for(Entry<String, Ref> e : refs.entrySet()){
-			System.out.println(e.getKey());
-			e.getValue();
-			
-		}
+
 		GitRepository gitRepo = GitFactory.eINSTANCE.createGitRepository();
 		gitRepo.setUrl("https://gexicide@github.com/gexicide/testor.git");
 		GitRemoteUrlHandler remoteHandler = new GitRemoteUrlHandler(gitRepo, repo);

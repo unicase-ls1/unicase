@@ -113,13 +113,13 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRelease(Release object) {
-			return createReleaseAdapter();
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
 		}
 
 		@Override
-		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
-			return createUnicaseModelElementAdapter();
+		public Adapter caseRelease(Release object) {
+			return createReleaseAdapter();
 		}
 
 		@Override
