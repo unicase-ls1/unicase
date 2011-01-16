@@ -69,6 +69,7 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		setMessage(OperationHelper.getAnnotation(operation, "description"));
 
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		// hkq: done (no changes)
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
 		ParameterViewer parameterViewer = new ParameterViewer(this, parent, project);
