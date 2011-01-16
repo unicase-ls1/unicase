@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -44,10 +45,12 @@ public final class DeleteModelElementCommand {
 	 * {@inheritDoc}
 	 */
 	public void run() {
-
+		// hkq: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		String modelElementName = adapterFactoryLabelProvider.getText(me);
+		((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
+		adapterFactoryLabelProvider.dispose();
 		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
 			+ modelElementName + "?", MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
