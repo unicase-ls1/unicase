@@ -24,6 +24,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.ui.navigator.TreeView;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
@@ -117,12 +118,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				if(project instanceof XMIECPProject) {
 					// try to add project to workspace
 					XMIECPFileProject pro = (XMIECPFileProject) project;
+					pro.setProjectStatus(PROJECT_STATUS.NOTLOADED);
 					String path = pro.getXmiFilePath();
 					File projRes = new File(path);
 					
 					if(!projRes.exists()) { 
 						// set project status to failed
-						pro.setProjectStatus(XmiUtil.PROJECT_STATUS.FAILED);
+						pro.setProjectStatus(PROJECT_STATUS.FAILED);
 					}
 					
 					pro.setWorkspace(this);
@@ -135,7 +137,6 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			} catch (IOException e) {
 				new XMIWorkspaceException("Unable to save projects to workspace xmi-file. Please clean it up.", e);
 			}
-			
 		} // END ELSE if the workspace file does exist 
 		
 	} // END loadProjects()

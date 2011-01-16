@@ -207,8 +207,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		 * in case the project is new, you still don't know whether it's imported or not.
 		 */
 		if(!xmiFile.exists()) {
-			if(projectStatus != PROJECT_STATUS.FAILED)
+			if(projectStatus != PROJECT_STATUS.FAILED) {
 				createResource(resourceSetImpl, xmiUri);
+				
+				// set the object as initialized
+				objectInitialized = true;
+				projectStatus = PROJECT_STATUS.LOADED;
+			}
 		}
 		else {
 			// just load the resource

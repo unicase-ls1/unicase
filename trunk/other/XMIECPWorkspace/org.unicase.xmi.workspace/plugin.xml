@@ -38,7 +38,7 @@
             name="ImportLocalProject">
       </command>
       <command
-            categoryId="org.unicase.navigator.ui.project"
+            categoryId="org.unicase.ui.navigator.project"
             defaultHandler="org.unicase.xmi.commands.DeleteProjectHandler"
             description="delete xmi-file-project"
             id="org.unicase.xmi.workspace.deleteProject"
@@ -123,44 +123,27 @@
                label="Delete Project..."
                style="push"
                tooltip="Click here to delete a project.">
-            <visibleWhen
-                  checkEnabled="false">
-               <and>
+            <visibleWhen>
                   <iterate>
                      <instanceof
                            value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
                      </instanceof>
                   </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </and>
             </visibleWhen>
          </command>
          <command
                commandId="org.unicase.xmi.workspace.DeletedResourceHandler"
+               icon="icons/resolve.gif"
                label="Resolve"
                style="push"
                tooltip="Click here to fix project.">
-            <visibleWhen
-                  checkEnabled="false">
-               <and>
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <instanceof
-                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
-                     </instanceof>
-                     <test
-                           forcePluginActivation="true"
-                           property="org.unicase.xmi.workspace.projectStatusTester"
-                           value="true">
-                     </test>
-                  </iterate>
-                  <count
-                        value="1">
-                  </count>
-               </and>
+            <visibleWhen>
+               <iterate>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.unicase.xmi.commands.projectStatusTester">
+                  </test>
+               </iterate>
             </visibleWhen>
          </command>
       </menuContribution>
