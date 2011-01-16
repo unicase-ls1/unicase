@@ -3,6 +3,7 @@ package org.unicase.projectgenerator2;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -23,6 +24,20 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.projectgenerator2.util.AttributSetterEString;
+import org.unicase.projectgenerator2.util.AttributeSetterEBigDecimal;
+import org.unicase.projectgenerator2.util.AttributeSetterEBigInteger;
+import org.unicase.projectgenerator2.util.AttributeSetterEBoolean;
+import org.unicase.projectgenerator2.util.AttributeSetterEByte;
+import org.unicase.projectgenerator2.util.AttributeSetterEByteArray;
+import org.unicase.projectgenerator2.util.AttributeSetterEChar;
+import org.unicase.projectgenerator2.util.AttributeSetterEDate;
+import org.unicase.projectgenerator2.util.AttributeSetterEDouble;
+import org.unicase.projectgenerator2.util.AttributeSetterEFloat;
+import org.unicase.projectgenerator2.util.AttributeSetterEInt;
+import org.unicase.projectgenerator2.util.AttributeSetterELong;
+import org.unicase.projectgenerator2.util.AttributeSetterEShort;
+import org.unicase.projectgenerator2.util.IAttributeSetter;
 import org.unicase.projectgenerator2.util.ProjectGeneratorConfiguration;
 import org.unicase.projectgenerator2.util.ProjectGeneratorUtil;
 
@@ -57,6 +72,9 @@ public class ProjectGeneratorImpl {
 				generateReferences(generatedEObject);			
 			}
 		}
+		
+		
+
 	}
 
 	private static EObject generateModel() {
@@ -250,168 +268,72 @@ public class ProjectGeneratorImpl {
 
 	private static void setEObjectAttributes(EObject newObject) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(newObject);
+		EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
+		
+		LinkedHashMap<EClassifier, IAttributeSetter<?>> map = new LinkedHashMap<EClassifier, IAttributeSetter<?>>();
+		IAttributeSetter<?> oAttributeSetter;
+		
+		oAttributeSetter = new AttributeSetterEBoolean(3, random);
+		map.put(ecoreInstance.getEBoolean(), oAttributeSetter);
+		map.put(ecoreInstance.getEBooleanObject(), oAttributeSetter);
+	
+		
+		map.put(ecoreInstance.getEByteArray(), new AttributeSetterEByteArray(3, random, 100));
+		
+		map.put(ecoreInstance.getEString(), new AttributSetterEString(3, random));
+		
+		oAttributeSetter = new AttributeSetterEInt(3, random);
+		map.put(ecoreInstance.getEInt(), oAttributeSetter);
+		map.put(ecoreInstance.getEIntegerObject(), oAttributeSetter);
+		
+		map.put(ecoreInstance.getEDate(), new AttributeSetterEDate(3, random));
+		
+		oAttributeSetter = new AttributeSetterELong(3, random);
+		map.put(ecoreInstance.getELong(), oAttributeSetter);
+		map.put(ecoreInstance.getELongObject(), oAttributeSetter);
+		
+		oAttributeSetter = new AttributeSetterEByte(3, random);
+		map.put(ecoreInstance.getEByte(), oAttributeSetter);
+		map.put(ecoreInstance.getEByteObject(), oAttributeSetter);
+		
+		oAttributeSetter = new AttributeSetterEChar(3, random);
+		map.put(ecoreInstance.getEChar(), oAttributeSetter);
+		map.put(ecoreInstance.getECharacterObject(), oAttributeSetter);
+		
+		oAttributeSetter = new AttributeSetterEDouble(3, random);
+		map.put(ecoreInstance.getEDouble(), oAttributeSetter);
+		map.put(ecoreInstance.getEDoubleObject(), oAttributeSetter);
+		
+		oAttributeSetter = new AttributeSetterEFloat(3, random);
+		map.put(ecoreInstance.getEFloat(), oAttributeSetter);
+		map.put(ecoreInstance.getEFloatObject(), oAttributeSetter);
+		
+		oAttributeSetter = new AttributeSetterEShort(3, random);
+		map.put(ecoreInstance.getEShort(), oAttributeSetter);
+		map.put(ecoreInstance.getEShortObject(), oAttributeSetter);
+		
+		map.put(ecoreInstance.getEBigInteger(),new AttributeSetterEBigInteger(3, random));
+		
+		map.put(ecoreInstance.getEBigDecimal(),new AttributeSetterEBigDecimal(3, random));
+		
 		for(EAttribute attribute : newObject.eClass().getEAllAttributes()) {
 			try {
 				EClassifier attributeType = attribute.getEType();
-				EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
+				
 				if(!attribute.isChangeable() || attribute.isDerived() || attribute.isVolatile())
 					continue;
-				if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Boolean> newAttributes = new ArrayList<Boolean>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextBoolean());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextBoolean()).doExecute();
+				if (map.containsKey(attributeType)) {
+					if (attribute.isMany()) {
+						new AddCommand(domain, newObject, attribute, map.get(attributeType).createNewAttributes()).doExecute();
 					}
-				} else if (attributeType == ecoreInstance.getEByteArray()){
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						for(int i = 0; i < maxObjects; i++) {
-							byte[] bytes = new byte[random.nextInt(100)];
-							random.nextBytes(bytes);
-							new AddCommand(domain, newObject, attribute, bytes).doExecute();
-						}
-					} else {
-						byte[] bytes = new byte[random.nextInt(100)];
-						random.nextBytes(bytes);
-						new SetCommand(domain, newObject, attribute, bytes).doExecute();
-					}				
-				} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						for(int i = 0; i < maxObjects; i++) {
-							byte[] singleByte = new byte[1];
-							random.nextBytes(singleByte);
-							new AddCommand(domain, newObject, attribute, singleByte).doExecute();
-						}
-					} else {
-						byte[] singleByte = new byte[1];
-						random.nextBytes(singleByte);
-						new SetCommand(domain, newObject, attribute, singleByte).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Character> newAttributes = new ArrayList<Character>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add((char) (random.nextInt(94) + 33));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, (char)(random.nextInt(94) + 33)).doExecute();
-					}
-				} else if(attributeType == ecoreInstance.getEString()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<String> newAttributes = new ArrayList<String>();
-						for(int i = 0; i < maxObjects; i++) {
-							string.delete(0, string.length());
-							for(int j = -5; j<random.nextInt(10); j++) {
-								string.append((char)(random.nextInt(94) + 33));
-							}
-							newAttributes.add(string.toString());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						string.delete(0, string.length());
-						for(int j = -5; j<random.nextInt(10); j++) {
-							string.append((char)(random.nextInt(94) + 33));
-						}
-						new SetCommand(domain, newObject, attribute, string.toString()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEDate()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Date> newAttributes = new ArrayList<Date>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(date);
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, date).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Integer> newAttributes = new ArrayList<Integer>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Double> newAttributes = new ArrayList<Double>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextDouble() * random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextDouble() * random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Float> newAttributes = new ArrayList<Float>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextFloat() * random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextFloat() * random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Long> newAttributes = new ArrayList<Long>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextLong());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextLong()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Short> newAttributes = new ArrayList<Short>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add((short) random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, (short) random.nextInt()).doExecute();
-					}
-				} else if (attributeType ==ecoreInstance.getEBigInteger()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<BigInteger> newAttributes = new ArrayList<BigInteger>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(new BigInteger(20, random));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, new BigInteger(20, random)).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEBigDecimal()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<BigDecimal> newAttributes = new ArrayList<BigDecimal>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(new BigDecimal(random.nextDouble() * random.nextInt()));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, new BigDecimal(random.nextDouble() * random.nextInt())).doExecute();
+					else {
+						new SetCommand(domain, newObject, attribute, map.get(attributeType).createNewAttribute()).doExecute();
 					}
 				}
+//				else {
+//					System.out.println(attributeType.getName());
+//				}
+				
 			} catch (RuntimeException e) {
 			}
 		}
