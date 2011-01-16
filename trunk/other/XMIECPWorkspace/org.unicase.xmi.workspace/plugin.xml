@@ -24,40 +24,44 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            categoryId="org.unicase.ui.navigator.project"
+            categoryId="org.unicase.xmi.workspace.commands"
             defaultHandler="org.unicase.xmi.commands.NewProjectHandler"
             description="create new local xmi-file-project"
             id="org.unicase.xmi.workspace.NewLocalProject"
             name="NewLocalProject">
       </command>
       <command
-            categoryId="org.unicase.ui.navigator.project"
+            categoryId="org.unicase.xmi.workspace.commands"
             defaultHandler="org.unicase.xmi.commands.ImportProjectHandler"
             description="import xmi-file-project"
             id="org.unicase.xmi.workspace.ImportLocalProject"
             name="ImportLocalProject">
       </command>
       <command
-            categoryId="org.unicase.ui.navigator.project"
+            categoryId="org.unicase.xmi.workspace.commands"
             defaultHandler="org.unicase.xmi.commands.DeleteProjectHandler"
             description="delete xmi-file-project"
             id="org.unicase.xmi.workspace.deleteProject"
             name="deleteProject">
       </command>
       <command
-            categoryId="org.unicase.ui.navigator.project"
+            categoryId="org.unicase.xmi.workspace.commands"
             defaultHandler="org.unicase.xmi.commands.ImportFolderHandler"
             description="import xmi-projects from folder"
             id="org.unicase.xmi.workspace.NewFolder"
             name="NewFolder">
       </command>
       <command
-            categoryId="org.unicase.ui.navigator.project"
+            categoryId="org.unicase.xmi.workspace.commands"
             defaultHandler="org.unicase.xmi.commands.DeletedResourceHandler"
             description="resolve problems with deleted file"
             id="org.unicase.xmi.workspace.DeletedResourceHandler"
             name="resolve file problems">
       </command>
+      <category
+            id="org.unicase.xmi.workspace.commands"
+            name="xmicommands">
+      </category>
    </extension>
    <extension
          point="org.eclipse.ui.menus">

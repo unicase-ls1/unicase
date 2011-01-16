@@ -1,12 +1,20 @@
 #Todo:
-OK - File changed on file system or has been deleted
-	OK -> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
-	OK -> Add icon to Resolve command
-	OK -> plugin.xml: for deleted project only one popup menu entry: "resolve"
-- Why are still all models displayed when you open up "New Model Elements"? I thought this would have been fixed?! Or How do we register our model correctly?
+- All models are displayed when you open up "New Model Element" on any project.
+	It should be that in a new project, all models are displayed so the user can pick its model,
+	but in an existing model only the model itself is shown.
+	
 - Delete menu entry does not work for baseElements
-- Teststrategy
-OK - refactor workspace -> remove folder items
+	see plugin.xml from ui.common where the "Delete" command is added,
+	in our plugin.xml adding it was not successful and we can't extend
+	the org.unicase.common.commands.DeleteModelElementCommand due to
+	keyword final of the class
+	The problem is that the EObjects don't know the project and therefore
+	they will not be removed from the baseElements list.
+	
+	Added stuff to fix this:
+		- class DeleteModelelement in commands
+		- icons -> delete_element.gif
+		- changed plugin.xml, but reverted it after seeing that it didn't work
 
 --
 # Accepted plugins:
@@ -58,4 +66,8 @@ Ok - The Slash is File.SEPARATOR .
 Ok - In the XMIWorkspace call getProjects() instead of directly addressing the projects, because of the change listeners for the Navigator.
 	-> This does not work, listener adapters in TreeView register on us and they need to be called when changed!
 Ok - Send a Bug-Report to Jonas that if there are no packages registered for the application, the "New Model Element"-Dialog is strange...
-
+OK - File changed on file system or has been deleted
+	OK -> popupmenu needs to get a PropertyTester (new class) and then execute a Dialog where it asks the user what to do with the failed Projects (Import/Delete/New).
+	OK -> Add icon to Resolve command
+	OK -> plugin.xml: for deleted project only one popup menu entry: "resolve"
+OK - refactor workspace -> remove folder items
