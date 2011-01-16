@@ -61,6 +61,7 @@ public class TemplatesView extends ViewPart {
 			WorkspaceUtil.log("Default templates could not be loaded", e1, IStatus.ERROR);
 		}
 
+		// hkq: open
 		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
