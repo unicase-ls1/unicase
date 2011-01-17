@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -194,6 +195,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		// hkq: open
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		comments = getComments();
@@ -209,6 +211,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			r.dispose();
 		}
 		super.dispose();
+		((IDisposable) labelProvider.getAdapterFactory()).dispose();
 	}
 
 	/**
