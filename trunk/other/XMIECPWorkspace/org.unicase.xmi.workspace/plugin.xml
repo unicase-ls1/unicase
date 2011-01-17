@@ -68,6 +68,30 @@
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
          <command
+               commandId="org.unicase.xmi.workspace.DeletedResourceHandler"
+               icon="icons/resolve.gif"
+               label="Resolve"
+               style="push"
+               tooltip="Click here to fix project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="org.unicase.xmi.commands.projectStatusTester">
+                     </test>
+                     <instanceof
+                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
                commandId="org.unicase.xmi.workspace.NewLocalProject"
                icon="icons/add.png"
                label="New Project..."
@@ -127,27 +151,18 @@
                label="Delete Project..."
                style="push"
                tooltip="Click here to delete a project.">
-            <visibleWhen>
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
                   <iterate>
                      <instanceof
                            value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
                      </instanceof>
                   </iterate>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.unicase.xmi.workspace.DeletedResourceHandler"
-               icon="icons/resolve.gif"
-               label="Resolve"
-               style="push"
-               tooltip="Click here to fix project.">
-            <visibleWhen>
-               <iterate>
-                  <test
-                        forcePluginActivation="true"
-                        property="org.unicase.xmi.commands.projectStatusTester">
-                  </test>
-               </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
             </visibleWhen>
          </command>
       </menuContribution>
