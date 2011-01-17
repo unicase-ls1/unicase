@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.diagram.activityDiagram.navigator;
 
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
@@ -20,9 +21,10 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
+	// hkq: open
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().getItemProvidersAdapterFactory());
+		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
+			.getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -36,8 +38,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public Image getImage(Object element) {
 		if (element instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getImage(((org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) element)
-							.getEObject());
+				.getImage(((org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) element)
+					.getEObject());
 		}
 		return null;
 	}
@@ -48,8 +50,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getText(((org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) element)
-							.getEObject());
+				.getText(((org.unicase.ui.diagram.activityDiagram.navigator.ModelDomainNavigatorItem) element)
+					.getEObject());
 		}
 		return null;
 	}
@@ -65,6 +67,7 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public void dispose() {
+		((IDisposable) myAdapterFactoryLabelProvider.getAdapterFactory()).dispose();
 		myAdapterFactoryLabelProvider.dispose();
 	}
 
