@@ -212,6 +212,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		}
 		super.dispose();
 		((IDisposable) labelProvider.getAdapterFactory()).dispose();
+		labelProvider.dispose();
 	}
 
 	/**
