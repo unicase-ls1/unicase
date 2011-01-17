@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -34,21 +35,16 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart) {
 			ArrayList types = new ArrayList(5);
-			types
-					.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002);
-			types
-					.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003);
-			types
-					.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityInitial_2004);
-			types
-					.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005);
-			types
-					.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006);
+			types.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002);
+			types.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003);
+			types.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityInitial_2004);
+			types.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005);
+			types.add(org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -57,28 +53,28 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
+				.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
+				.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
+				.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
+				.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
+				.getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -86,28 +82,28 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
+				.getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
+				.getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
+				.getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
+				.getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
+				.getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -115,31 +111,29 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+	@Override
+	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+				.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+				.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+				.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+				.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+				.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -147,29 +141,28 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+	@Override
+	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
+				.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
+				.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
+				.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
+				.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
+				.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -177,29 +170,28 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getTypesForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+	@Override
+	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
+				.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
+				.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
+				.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
+				.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) {
 			return ((org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
+				.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -207,19 +199,17 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForSource(IAdaptable target,
-			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+	@Override
+	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+	@Override
+	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
 
 	/**
@@ -229,8 +219,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (types.isEmpty()) {
 			return null;
 		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart == null) {
 			return null;
 		}
@@ -245,16 +234,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (elements.isEmpty()) {
 			return null;
 		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements
-				.size()]));
+		return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(
-				element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
 		return types.contains(type);
 	}
 
@@ -263,21 +250,22 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
+		// hkq: done
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell, labelProvider);
-		dialog
-				.setMessage(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelModelingAssistantProviderMessage);
-		dialog
-				.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelModelingAssistantProviderTitle);
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		dialog.setMessage(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelModelingAssistantProviderMessage);
+		dialog.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;
 		if (dialog.open() == Window.OK) {
 			selected = (EObject) dialog.getFirstResult();
 		}
+		((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose();
+		labelProvider.dispose();
+
 		return selected;
 	}
 }
