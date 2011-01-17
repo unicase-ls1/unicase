@@ -53,6 +53,10 @@ public class DeletedResourceHandler extends AbstractHandler {
 		Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 		
 		switch(dialog.getResult()) {
+		case 1: // remove from workspace
+			ws.removeProject(project);
+			break;
+			
 		case 2: // import from filesystem
 			FileDialog fileDialog = new FileDialog(shell, SWT.OPEN);
 			String fsPath = "";
@@ -88,8 +92,7 @@ public class DeletedResourceHandler extends AbstractHandler {
 			
 			break;
 		
-		default: // remove from workspace
-			ws.removeProject(project);
+		default: // cancel dialog
 			break;
 		}
 		

@@ -88,10 +88,11 @@ public class DeletedObjectDialog {
 		else {
 			// it's a file
 			switch(result) {
+			case 0: res = 1; break;
 			case 1: res = 2; break;
 			case 2: res = 5; break;
 			case 3: res = 4; break;
-			default: res = 1; break;
+			default: res = 0; break;
 			}
 		}
 		
