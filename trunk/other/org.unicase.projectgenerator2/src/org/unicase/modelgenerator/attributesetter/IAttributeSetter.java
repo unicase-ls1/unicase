@@ -1,4 +1,4 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
 import java.util.Collection;
 import java.util.Random;

@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Projectgenerator2
-Bundle-SymbolicName: org.unicase.projectgenerator2;singleton:=true
+Bundle-SymbolicName: org.unicase.modelgenerator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipse.core.commands;bundle-version="3.5.0",
  org.eclipse.emf.ecore;bundle-version="2.5.0",
  org.eclipse.emf.edit;bundle-version="2.5.0"
-Export-Package: org.unicase.projectgenerator2,
- org.unicase.projectgenerator2.util
+Export-Package: org.unicase.modelgenerator,
+ org.unicase.modelgenerator.util

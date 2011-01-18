@@ -1,4 +1,4 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class AttributeSetterEByte implements IAttributeSetter<byte[]> {
+public class AttributeSetterEInt implements IAttributeSetter<Integer> {
 	
 	protected int maxObjects;
 	protected Random randomObj;
@@ -14,7 +14,7 @@ public class AttributeSetterEByte implements IAttributeSetter<byte[]> {
 	
 
 
-	public AttributeSetterEByte(int maxObjects, Random randomObj) {
+	public AttributeSetterEInt(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -45,14 +45,12 @@ public class AttributeSetterEByte implements IAttributeSetter<byte[]> {
 
 
 	
-	public byte[] createNewAttribute() {
-		byte[] singlebyte = new byte[1];
-		randomObj.nextBytes(singlebyte);
-		return singlebyte;
+	public Integer createNewAttribute() {
+		return randomObj.nextInt();
 	}
 
-	public Collection<byte[]> createNewAttributes(){
-		List<byte[]> newAttrs = new ArrayList<byte[]>(maxObjects);
+	public Collection<Integer> createNewAttributes(){
+		List<Integer> newAttrs = new ArrayList<Integer>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

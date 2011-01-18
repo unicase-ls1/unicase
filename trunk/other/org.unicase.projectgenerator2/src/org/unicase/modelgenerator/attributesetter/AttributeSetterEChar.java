@@ -1,13 +1,12 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 
-public class AttributeSetterEBigInteger implements IAttributeSetter<BigInteger> {
+public class AttributeSetterEChar implements IAttributeSetter<Character> {
 	
 	protected int maxObjects;
 	protected Random randomObj;
@@ -15,7 +14,7 @@ public class AttributeSetterEBigInteger implements IAttributeSetter<BigInteger> 
 	
 
 
-	public AttributeSetterEBigInteger(int maxObjects, Random randomObj) {
+	public AttributeSetterEChar(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -46,12 +45,12 @@ public class AttributeSetterEBigInteger implements IAttributeSetter<BigInteger> 
 
 
 	
-	public BigInteger createNewAttribute() {
-		return new BigInteger(20, randomObj);
+	public Character createNewAttribute() {
+		return (char)(randomObj.nextInt(94) + 33);
 	}
 
-	public Collection<BigInteger> createNewAttributes(){
-		List<BigInteger> newAttrs = new ArrayList<BigInteger>(maxObjects);
+	public Collection<Character> createNewAttributes(){
+		List<Character> newAttrs = new ArrayList<Character>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

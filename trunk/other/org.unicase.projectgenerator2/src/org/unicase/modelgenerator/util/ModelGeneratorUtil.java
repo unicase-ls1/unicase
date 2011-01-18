@@ -1,4 +1,4 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.util;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public final class ProjectGeneratorUtil {
+public final class ModelGeneratorUtil {
 
 	private static Set<EClass> modelElementEClasses;
 	private static Set<EPackage> modelPackages;
@@ -25,7 +25,7 @@ public final class ProjectGeneratorUtil {
 	private static Map<EClass, Set<EClass>> allEContainments = new LinkedHashMap<EClass, Set<EClass>>();
 	private static Map<EClass, Set<EClass>> subEClasses = new LinkedHashMap<EClass, Set<EClass>>();	
 	
-	private ProjectGeneratorUtil() {
+	private ModelGeneratorUtil() {
 		
 	}
 
