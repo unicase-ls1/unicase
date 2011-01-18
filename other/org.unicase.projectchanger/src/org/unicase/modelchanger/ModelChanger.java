@@ -1,4 +1,4 @@
-package org.unicase.projectchanger;
+package org.unicase.modelchanger;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,10 +24,10 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
-public class ProjectChangerImpl {
+public class ModelChanger {
 
 	final private Random random;
 	final private StringBuffer string;
@@ -35,9 +35,9 @@ public class ProjectChangerImpl {
 	final private Set<EObject> objectsToDelete;
 	final private Map<EClass, Set<EObject>> allObjectsByEClass;
 	final private Map<EReference, List<EClass>> possibleReferenceClasses;
-	private TransactionalEditingDomain domain;
+	private EditingDomain domain;
 	
-	public ProjectChangerImpl(long seed, EObject rootObject) {
+	public ModelChanger(long seed, EObject rootObject) {
 		random = new Random(seed);
 		string = new StringBuffer();
 		date = new Date();
@@ -47,7 +47,7 @@ public class ProjectChangerImpl {
 		generateChanges(rootObject);
 	}
 
-	public ProjectChangerImpl(long seed, IStructuredSelection ssel) {
+	public ModelChanger(long seed, IStructuredSelection ssel) {
 		random = new Random(seed);
 		string = new StringBuffer();
 		date = new Date();
@@ -68,7 +68,7 @@ public class ProjectChangerImpl {
 	}
 
 	private void generateChanges(EObject rootObject) {
-		domain = TransactionUtil.getEditingDomain(rootObject);
+		domain = AdapterFactoryEditingDomain.getEditingDomainFor(rootObject);
 		List<EObject> allObjects = new ArrayList<EObject>();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
 		allObjects.add(rootObject);
