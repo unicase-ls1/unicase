@@ -2,6 +2,7 @@ package org.unicase.xmi.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
@@ -43,7 +44,7 @@ public class ImportProjectHandler extends XmiAbstractHandler {
 						}
 					}
 					
-				}.run(true);
+				}.run(false);
 				
 			} catch (NoWorkspaceException e) {
 				new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
