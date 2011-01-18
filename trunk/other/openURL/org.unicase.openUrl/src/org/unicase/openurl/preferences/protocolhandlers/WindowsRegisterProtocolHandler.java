@@ -5,6 +5,9 @@
  */
 package org.unicase.openurl.preferences.protocolhandlers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -18,23 +21,69 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
-	private static final String PROTOCOL_NAME = "reg add HKCR\\unicase /v \"URL Protocol\"";
-	private static final String PROTOCOL_PREFIX = "reg add HKCR\\unicase /ve /d \"URL:unicase Protocol\"";
+	private static final String ADD_PROTOCOL_NAME_COMMAND = "reg add HKCR\\unicase /v \"URL Protocol\"";
+	private static final String ADD_PROTOCOL_PREFIX_COMMAND = "reg add HKCR\\unicase /ve /d \"URL:unicase Protocol\"";
 	private static final String REGSTR_TOKEN = "REG_SZ";
 
 	@Override
-	public void registerProtocolHandler() {
+	public void registerHandler() {
 		try {
-			Runtime.getRuntime().exec(PROTOCOL_PREFIX);
-			Runtime.getRuntime().exec(PROTOCOL_NAME);
+			String add_run_handler_command = "reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"java -jar \\\""
+				+ getStartUpJar() + "\\\" %1 " + "\\\"" + FileLocations.getPluginFeaturesDirectory() + "\\\"";
+			Process process = Runtime.getRuntime().exec(ADD_PROTOCOL_PREFIX_COMMAND);
+			if (!canRegisterProtocol(process)) {
+				// write file, prompt user to run it manually;
+				writeFile(ADD_PROTOCOL_PREFIX_COMMAND, ADD_PROTOCOL_NAME_COMMAND, add_run_handler_command);
+				return;
+			}
+
+			Runtime.getRuntime().exec(ADD_PROTOCOL_NAME_COMMAND);
 			// quotes must be written into registry entry in order that a path with spaces will
 			// not get split up
-			Runtime.getRuntime().exec(
-				"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"java -jar \\\"" + getStartUpJar() + "\\\" %1 "
-					+ "\\\"" + FileLocations.getPluginFeaturesDirectory() + "\\\"");
+			Runtime.getRuntime().exec(add_run_handler_command);
 		} catch (IOException e) {
 			showError(e.getMessage());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+	}
+
+	private void writeFile(String addProtocolPrefixCommand, String addProtocolNameCommand, String addRunHandlerCommand) {
+		String desktopPath = System.getProperty("user.home") + File.separator + "Desktop";
+		try {
+			File registerProtocolFile = new File(desktopPath + File.separator + "register_unicase_protocol.bat");
+			FileWriter fileWriter = new FileWriter(registerProtocolFile);
+			fileWriter.write(addProtocolPrefixCommand + "\n" + addProtocolNameCommand + "\n" + addRunHandlerCommand
+				+ "\n");
+
+			showError("The unicase does not have enough rights to register its protocol. The commands needed to register the protocol are written in "
+				+ registerProtocolFile.getAbsolutePath()
+				+ " file. Please execute this file manually with administrator rights.");
+			fileWriter.flush();
+			fileWriter.close();
+
+			// MessageDialog
+			// .openInformation(
+			// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+			// "Unicase Protocol Registertion",
+			// "The unicase does not have enough rights to register its protocol. The commands needed to register the protocol are written in "
+			// + registerProtocolFile.getAbsolutePath()
+			// + " file. Please execute this file manually with administrator rights.");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean canRegisterProtocol(Process process) throws InterruptedException {
+		StreamReader reader = new StreamReader(process.getErrorStream());
+		reader.start();
+		process.waitFor();
+		reader.join();
+		String result = reader.getResult();
+		return result.equals("");
 	}
 
 	public static String getRegistryEntry(String key) {
@@ -61,7 +110,7 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 	}
 
 	@Override
-	public boolean isProtocolHandlerRegistered() {
+	public boolean isHandlerRegistered() {
 
 		boolean regcheck = false;
 		try {

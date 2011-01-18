@@ -13,11 +13,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IStartup;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.unicase.openurl.handlers.URLMessageHandler;
+import org.unicase.openurl.preferences.protocolhandlers.AbstractRegisterProtocolHandler;
+import org.unicase.openurl.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
 import org.unicase.openurl.util.FileLocations;
 import org.unicase.openurl.util.ui.OpenURL;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -36,6 +41,8 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 
 	// The shared instance
 	private static Activator plugin;
+
+	private boolean yes;
 
 	/**
 	 * The constructor.
@@ -89,6 +96,28 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	}
 
 	public void earlyStartup() {
+
+		RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
+		AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler();
+		if (protocolHandler == null) {
+			// write an entry in error log
+			WorkspaceUtil.logException("Could not find protocol handler.", new NullPointerException());
+		}
+
+		if (!protocolHandler.isHandlerRegistered() /* && !dialogSetting.dontShowAgin() */) {
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					yes = MessageDialog.openQuestion(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+						"Unicase Protocol Registraion", "Protocol is not registered. Do you want to register it?");
+
+				}
+			});
+
+			if (yes) {
+				protocolHandler.registerHandler();
+			}
+		}
+
 		try {
 			JUnique.acquireLock(PLUGIN_ID, new URLMessageHandler());
 			WorkspaceUtil.log("UNICASE URL plugin initialized.", null, 0);
@@ -111,6 +140,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		} catch (IOException e) {
 			return;
 		}
+
 	}
 
 	private String readLockFile(File lockFile) throws IOException {

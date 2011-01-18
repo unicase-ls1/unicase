@@ -28,7 +28,7 @@ import org.unicase.openurl.util.FileLocations;
 public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
 	@Override
-	public void registerProtocolHandler() {
+	public void registerHandler() {
 		String startUpJar;
 
 		try {
@@ -103,7 +103,7 @@ public class MacOSRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 	}
 
 	@Override
-	public boolean isProtocolHandlerRegistered() {
+	public boolean isHandlerRegistered() {
 		File executable = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
 			+ "UnicaseURLHandler.app");
 
