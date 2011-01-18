@@ -257,8 +257,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		}
 		
 		// add contained objects to the project
-		for(EObject rootLevelObject: resource.getContents()) {
-			addModelElementToRoot(rootLevelObject);
+		for(EObject eObject: resource.getContents()) {
+			eObject.eAdapters().add(listenerAdapter);
+			baseElements.add(eObject); //TODO
 		}
 	}
 	
@@ -274,6 +275,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			 */
 			@Override
 			public void notifyChanged(Notification notification) {
+				
+				if (!objectInitialized){
+					return;
+				}
+				
 				// save the changed objects
 				Object changedObj = notification.getNotifier();
 				

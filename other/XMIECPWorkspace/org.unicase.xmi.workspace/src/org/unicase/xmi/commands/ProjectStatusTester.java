@@ -4,6 +4,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 
 public class ProjectStatusTester extends PropertyTester {
 	
@@ -12,7 +13,7 @@ public class ProjectStatusTester extends PropertyTester {
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		
-		if (receiver instanceof ECPProject){
+		if (receiver instanceof XMIECPProject){
 			XMIECPFileProject project = (XMIECPFileProject) receiver;
 			
 			if (project.getProjectStatus() == PROJECT_STATUS.FAILED){
