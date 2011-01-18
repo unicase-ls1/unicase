@@ -1,4 +1,4 @@
-package org.unicase.projectgenerator2;
+package org.unicase.modelgenerator;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,9 +22,10 @@ import javax.swing.JTextField;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.projectgenerator2.util.ProjectGeneratorUtil;
+import org.unicase.modelgenerator.util.ModelGeneratorConfiguration;
+import org.unicase.modelgenerator.util.ModelGeneratorUtil;
 
-public class ProjectGeneratorGUI extends JFrame{
+public class ModelGeneratorGUI extends JFrame{
 
 	
 	/**
@@ -32,21 +33,21 @@ public class ProjectGeneratorGUI extends JFrame{
 	 */
 	private static final long serialVersionUID = -1870695207208799938L;
 
-	private IProjectGenerator listener;
+	private IModelGenerator listener;
 	
 	private FirstDialog firstDialog;
 	private SecondDialog secondDialog;
 	
 
-	public void setListener(IProjectGenerator listener) {
+	public void setListener(IModelGenerator listener) {
 		this.listener = listener;
 	}
 
-	public IProjectGenerator getListener() {
+	public IModelGenerator getListener() {
 		return listener;
 	}
 	
-	public ProjectGeneratorGUI() {
+	public ModelGeneratorGUI() {
 		init();
 	}
 
@@ -88,7 +89,7 @@ public class ProjectGeneratorGUI extends JFrame{
 			container.add(mainPanel, BorderLayout.NORTH);
 			container.add(buttonPanel, BorderLayout.SOUTH);		
 			
-			models = new EPackage[]{ProjectGeneratorUtil.getModelPackage("http://unicase.org/model")};
+			models = new EPackage[]{ModelGeneratorUtil.getModelPackage("http://unicase.org/model")};
 			String[] modelsString = getModelNames(models);
 		    modelList = new JList(modelsString);
 		    mainPanel.add(new JScrollPane(modelList));
@@ -101,7 +102,7 @@ public class ProjectGeneratorGUI extends JFrame{
 		    		EPackage model = getSelectedPackage();
 		    		((DefaultListModel)rootObjectList.getModel()).clear();
 		    		if(model!=null){
-		    			allModelElementEClasses = ProjectGeneratorUtil.getAllModelElementEClasses(model).toArray(new EClass[0]);
+		    			allModelElementEClasses = ModelGeneratorUtil.getAllModelElementEClasses(model).toArray(new EClass[0]);
 		    			DefaultListModel defaultModel = (DefaultListModel)rootObjectList.getModel();
 		    			for (int i = 0; i < allModelElementEClasses.length; i++) {
 		    				EClass eClass = allModelElementEClasses[i];
@@ -195,7 +196,7 @@ public class ProjectGeneratorGUI extends JFrame{
 				
 				public void actionPerformed(ActionEvent e) {
 					callListener();
-					ProjectGeneratorGUI.this.dispose();
+					ModelGeneratorGUI.this.dispose();
 				}
 
 			});
@@ -226,9 +227,11 @@ public class ProjectGeneratorGUI extends JFrame{
 	}
 	
 	private void callListener() {
+		ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(firstDialog.getSelectedPackage(), firstDialog.getRootClass(), secondDialog.getProjectWidth(), secondDialog.getProjectHeight());
+		ModelGenerator.generateModel(config);
 //		listener.setHierachyDepth(secondDialog.getProjectHeight());
 //		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
-//		listener.setRootPackage(firstDialog.getSelectedPackage());
+//		listener.setRootPackage();
 //		EClass clazz = firstDialog.getRootClass();
 //		listener.setRootObject(EcoreUtil.create(clazz));
 //		listener.generateModel();
@@ -236,7 +239,7 @@ public class ProjectGeneratorGUI extends JFrame{
 
 	//just for testing
 	public static void main(String[] args) {
-		ProjectGeneratorGUI projectGeneratorGUI = new ProjectGeneratorGUI();
+		ModelGeneratorGUI projectGeneratorGUI = new ModelGeneratorGUI();
 		projectGeneratorGUI.setSize(new Dimension(600,600));
 		projectGeneratorGUI.setVisible(true);
 	}

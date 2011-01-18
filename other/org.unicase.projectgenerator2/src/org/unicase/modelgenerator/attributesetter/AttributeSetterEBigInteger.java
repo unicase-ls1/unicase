@@ -1,22 +1,21 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EcorePackage;
 
-public class AttributeSetterELong implements IAttributeSetter<Long> {
+public class AttributeSetterEBigInteger implements IAttributeSetter<BigInteger> {
 	
 	protected int maxObjects;
 	protected Random randomObj;
 	
+	
 
-	public AttributeSetterELong(int maxObjects, Random randomObj) {
+
+	public AttributeSetterEBigInteger(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -44,13 +43,15 @@ public class AttributeSetterELong implements IAttributeSetter<Long> {
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
-		
-	public Long createNewAttribute() {
-		return randomObj.nextLong();
+
+
+	
+	public BigInteger createNewAttribute() {
+		return new BigInteger(20, randomObj);
 	}
 
-	public Collection<Long> createNewAttributes(){
-		List<Long> newAttrs = new ArrayList<Long>(maxObjects);
+	public Collection<BigInteger> createNewAttributes(){
+		List<BigInteger> newAttrs = new ArrayList<BigInteger>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

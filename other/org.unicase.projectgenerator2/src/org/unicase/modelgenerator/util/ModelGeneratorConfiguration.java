@@ -1,35 +1,35 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-public class ProjectGeneratorConfiguration {
+public class ModelGeneratorConfiguration {
 	private EPackage modelPackage;
-	private EObject rootObject;
+	private EObject rootEObject;
 	private long seed;
 	private int width = 3;
 	private int depth = 3;
 	private boolean ignoreAndLog = false;
 	
-	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject) {
+	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject) {
 		this.modelPackage = modelPackage;
-		this.rootObject = rootObject;
+		this.rootEObject = rootObject;
 		seed = System.currentTimeMillis();
 	}
 	
-	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth) {
+	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth) {
 		this.modelPackage = modelPackage;
-		this.rootObject = rootObject;
+		this.rootEObject = rootObject;
 		this.depth = depth;
 		this.width = width;
 		seed = System.currentTimeMillis();
 	}
 		
-	public ProjectGeneratorConfiguration(EPackage modelPackage, EObject rootObject, long seed, int width, int depth,
+	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, long seed, int width, int depth,
 		boolean ignoreAndLog) {
 		super();
 		this.modelPackage = modelPackage;
-		this.rootObject = rootObject;
+		this.rootEObject = rootObject;
 		this.width = width;
 		this.depth = depth;
 		this.seed = seed;
@@ -52,12 +52,12 @@ public class ProjectGeneratorConfiguration {
 		this.depth = depth;
 	}
 	
-	public EObject getRootObject() {
-		return rootObject;
+	public EObject getRootEObject() {
+		return rootEObject;
 	}
 	
 	public void setRootObject(EObject rootObject) {
-		this.rootObject = rootObject;
+		this.rootEObject = rootObject;
 	}
 	
 	public void setModelPackage(EPackage modelPackage) {

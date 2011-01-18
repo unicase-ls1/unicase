@@ -1,12 +1,13 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 
-public class AttributeSetterEFloat implements IAttributeSetter<Float> {
+public class AttributeSetterEBigDecimal implements IAttributeSetter<BigDecimal> {
 	
 	protected int maxObjects;
 	protected Random randomObj;
@@ -14,7 +15,7 @@ public class AttributeSetterEFloat implements IAttributeSetter<Float> {
 	
 
 
-	public AttributeSetterEFloat(int maxObjects, Random randomObj) {
+	public AttributeSetterEBigDecimal(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -45,12 +46,12 @@ public class AttributeSetterEFloat implements IAttributeSetter<Float> {
 
 
 	
-	public Float createNewAttribute() {
-		return randomObj.nextFloat()*randomObj.nextInt();
+	public BigDecimal createNewAttribute() {
+		return new BigDecimal(randomObj.nextDouble()*randomObj.nextInt());
 	}
 
-	public Collection<Float> createNewAttributes(){
-		List<Float> newAttrs = new ArrayList<Float>(maxObjects);
+	public Collection<BigDecimal> createNewAttributes(){
+		List<BigDecimal> newAttrs = new ArrayList<BigDecimal>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

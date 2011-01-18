@@ -1,22 +1,17 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EcorePackage;
-
-public class AttributeSetterEDate implements IAttributeSetter<Date> {
+public class AttributeSetterELong implements IAttributeSetter<Long> {
 	
 	protected int maxObjects;
 	protected Random randomObj;
 	
 
-	public AttributeSetterEDate(int maxObjects, Random randomObj) {
-		super();
+	public AttributeSetterELong(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -44,14 +39,13 @@ public class AttributeSetterEDate implements IAttributeSetter<Date> {
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
-
-	
-	public Date createNewAttribute() {
-		return new Date();
+		
+	public Long createNewAttribute() {
+		return randomObj.nextLong();
 	}
 
-	public Collection<Date> createNewAttributes(){
-		List<Date> newAttrs = new ArrayList<Date>(maxObjects);
+	public Collection<Long> createNewAttributes(){
+		List<Long> newAttrs = new ArrayList<Long>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

@@ -1,21 +1,20 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 
-public class AttributeSetterEBigDecimal implements IAttributeSetter<BigDecimal> {
-	
+public class AttributeSetterEShort implements IAttributeSetter<Short> {
+
 	protected int maxObjects;
 	protected Random randomObj;
 	
 	
 
 
-	public AttributeSetterEBigDecimal(int maxObjects, Random randomObj) {
+	public AttributeSetterEShort(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
 	}
@@ -46,12 +45,12 @@ public class AttributeSetterEBigDecimal implements IAttributeSetter<BigDecimal> 
 
 
 	
-	public BigDecimal createNewAttribute() {
-		return new BigDecimal(randomObj.nextDouble()*randomObj.nextInt());
+	public Short createNewAttribute() {
+		return (short)randomObj.nextInt();
 	}
 
-	public Collection<BigDecimal> createNewAttributes(){
-		List<BigDecimal> newAttrs = new ArrayList<BigDecimal>(maxObjects);
+	public Collection<Short> createNewAttributes(){
+		List<Short> newAttrs = new ArrayList<Short>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
 			newAttrs.add(createNewAttribute());
 		}

@@ -1,12 +1,9 @@
-package org.unicase.projectgenerator2.util;
+package org.unicase.modelgenerator.attributesetter;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 
