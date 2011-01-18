@@ -12,14 +12,14 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.requirement.Requirement;
 import org.unicase.model.urml.requirement.RequirementPackage;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Test tree handler.
@@ -42,8 +42,8 @@ public final class UrmlTreeHandler {
 	 * @return the test project
 	 * @throws NoWorkspaceException .
 	 */
-	public static ECPProject getTestProject() throws NoWorkspaceException {
-		return ECPWorkspaceManager.getInstance().getWorkSpace().getProjects().get(0);
+	public static Project getTestProject() throws NoWorkspaceException {
+		return WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0).getProject();
 	}
 
 	/**
@@ -51,7 +51,7 @@ public final class UrmlTreeHandler {
 	 * @param project the project
 	 * @return the basic list
 	 */
-	public static Collection<Requirement> getRequirementsFromProject(ECPProject project) {
+	public static Collection<Requirement> getRequirementsFromProject(Project project) {
 		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE
 			.getRequirement(), new BasicEList<EObject>());
 		Collection<Requirement> newList = new ArrayList<Requirement>();
@@ -67,7 +67,7 @@ public final class UrmlTreeHandler {
 	 * @param project the project.
 	 * @return newList the test list
 	 */
-	public static Collection<Requirement> getRolesFromProject(ECPProject project) {
+	public static Collection<Requirement> getRolesFromProject(Project project) {
 		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
 			.getStakeholderRole(), new BasicEList<EObject>());
 		Collection<Requirement> newList = new ArrayList<Requirement>();
@@ -84,7 +84,7 @@ public final class UrmlTreeHandler {
 	 * @param project the project.
 	 * @return the list
 	 */
-	public static Collection<UrmlModelElement> getRequirementsfromProjects(ECPProject project) {
+	public static Collection<UrmlModelElement> getRequirementsfromProjects(Project project) {
 		// project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
 		// return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
 		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(),

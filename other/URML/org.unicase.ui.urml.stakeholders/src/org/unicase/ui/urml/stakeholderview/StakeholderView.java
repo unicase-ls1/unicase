@@ -8,12 +8,12 @@ package org.unicase.ui.urml.stakeholderview;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
@@ -29,7 +29,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.metamodel.Project;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
@@ -54,7 +54,7 @@ public class StakeholderView extends ViewPart implements Observer {
 	private Action openReviewView;
 	private MenuManager chooseRole;
 	private FilterManager filterManager = new FilterManager();
-	private ECPProject activeProject;
+	private Project activeProject;
 	private Link unreviewedReqirements, reviewedReqirements;
 
 	@Override
@@ -76,7 +76,7 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	}
 
-	private Link reviewedRequirementSetup(Composite parent, ECPProject project, final boolean selectReviewed,
+	private Link reviewedRequirementSetup(Composite parent, Project project, final boolean selectReviewed,
 		String linkText) throws NoWorkspaceException {
 		Link link = new Link(parent, SWT.WRAP);
 		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
@@ -101,7 +101,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		return link;
 	}
 
-	private void createOpenReviewViewAction(final ECPProject project) {
+	private void createOpenReviewViewAction(final Project project) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 
@@ -127,7 +127,7 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	}
 
-	private void createFilterAction(final ECPProject project) {
+	private void createFilterAction(final Project project) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 
@@ -138,11 +138,20 @@ public class StakeholderView extends ViewPart implements Observer {
 		createDefaultRolesIfNotExist();
 		createFilterMenuItems();
 
+		createOtherItems();
+
+	}
+
+	private void createOtherItems() {
+		chooseRole.add(new Separator());
 		Action manageStakeholderRoles = new Action() {
 			@Override
 			public void run() {
 				ManageRolesDialog t = new ManageRolesDialog(reviewedReqirements.getShell());
 				t.open();
+				if (t.isRoleListHasChanged()) {
+					refreshRoleList();
+				}
 			}
 		};
 		manageStakeholderRoles.setText(MANAGE_STAKEHOLDER_ROLES);
@@ -159,7 +168,15 @@ public class StakeholderView extends ViewPart implements Observer {
 		resetFilters.setText("Reset role settings");
 		resetFilters.setToolTipText("Reset maded role settings, hence showing all elements.");
 		chooseRole.add(resetFilters);
+	}
 
+	/**
+	 * Updated the role list.
+	 */
+	protected void refreshRoleList() {
+		chooseRole.removeAll();
+		createFilterMenuItems();
+		createOtherItems();
 	}
 
 	private void createDefaultRolesIfNotExist() {
@@ -174,29 +191,38 @@ public class StakeholderView extends ViewPart implements Observer {
 			.getStakeholderRole(), new BasicEList<EObject>());
 		for (EObject obj : defaultRoles) {
 			final StakeholderRole role = (StakeholderRole) obj;
-			Action a = new Action() {
-				@Override
-				public void run() {
-					filterManager.applyFilter(new ViewerFilter() {
-
-						@Override
-						public boolean select(Viewer viewer, Object parentElement, Object element) {
-							if (element instanceof UrmlModelElement) {
-								if (role.getReviewSet().contains(((UrmlModelElement) element).eClass().getName())) {
-									return true;
-								}
-								return false;
-							}
-							return true;
-						}
-
-					});
-				}
-			};
+			Action a = createMenuAction(role);
 			a.setText(role.getName());
 			a.setToolTipText("Filter to elements that are important for the " + role.getName());
 			chooseRole.add(a);
 		}
+	}
+
+	private Action createMenuAction(final StakeholderRole role) {
+		Action a = new Action() {
+			@Override
+			public void run() {
+				filterManager.applyFilter(new ViewerFilter() {
+					@Override
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof UrmlModelElement) {
+							return role.getFilterSet().contains(((UrmlModelElement) element).eClass().getName());
+						}
+						return true;
+					}
+
+				});
+				ReviewView reviewView = null;
+				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					reviewView = (ReviewView) page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+				} catch (PartInitException e) {
+					e.printStackTrace();
+				}
+				reviewView.setInputFromRole(activeProject, role);
+			}
+		};
+		return a;
 	}
 
 	@Override

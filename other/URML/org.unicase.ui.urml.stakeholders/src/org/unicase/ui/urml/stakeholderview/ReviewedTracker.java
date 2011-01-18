@@ -10,7 +10,7 @@ import java.util.Observable;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
+import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.requirement.Requirement;
@@ -24,7 +24,7 @@ import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
 public class ReviewedTracker extends Observable {
 
-	private ECPProject project;
+	private Project project;
 	private Collection<Requirement> requirements;
 	
 	
@@ -32,7 +32,7 @@ public class ReviewedTracker extends Observable {
 	 * The construct.
 	 * @param project the project whose elements will be tracked
 	 */
-	public ReviewedTracker(ECPProject project){
+	public ReviewedTracker(Project project){
 		this.project = project;
 	}
 	

@@ -45,20 +45,6 @@
             type="org.unicase.model.urml.UrmlModelElement">
       </widget>
    </extension>
-   <extension
-         point="org.unicase.stakeholders.roles">
-      <role
-            class="org.unicase.ui.urml.stakeholderview.roles.SafetyEngineerRole"
-            name="Safety Engineer">
-      </role>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.unicase.ui.urml.stakeholders.TestPreferencePage"
-            id="org.unicase.ui.urml.stakeholders.TestPreferencePage"
-            name="TestPreferencePage">
-      </page>
-   </extension>
+
 
 </plugin>
