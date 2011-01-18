@@ -5,12 +5,8 @@
  */
 package org.unicase.ui.urml.stakeholderview.roles;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.model.urml.StakeholderRole;
+import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -21,39 +17,42 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class DefaultStakeholderRoles {
 
+	
+//	public DefaultStakeholderRoles(List<StakeholderRole> roleList){
+//		this.roleList = roleList;
+//	}
+	
 	/**
 	 * Test class.
 	 * @param project the project whose default stakeholder roles are set.
-	 * @return roleList the list the predefined roles
 	 */
-	public List<StakeholderRole> createDefaultRoles(final ECPProject project){
-		List<StakeholderRole> roleList = new ArrayList<StakeholderRole>();
+	public void createDefaultRoles(final Project project){
 		final org.unicase.model.urml.StakeholderRole testEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		testEngineer.setName("Test Engineer");
-		final EList<String> set = testEngineer.getReviewSet();
-		set.add("Danger");
-		set.add("NonFunctionalRequirement");
-		set.add("FunctionalRequirement");
-		roleList.add(testEngineer);
+		final EList<String> reviewSet = testEngineer.getReviewSet();
+		reviewSet.add("Danger");
+		reviewSet.add("NonFunctionalRequirement");
+		reviewSet.add("FunctionalRequirement");
+		final EList<String> filterSet = testEngineer.getFilterSet();
+		filterSet.add("Goal");
 		
 		final org.unicase.model.urml.StakeholderRole safetyEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		safetyEngineer.setName("Safety Engineer");
-		final EList<String> safetySet = testEngineer.getReviewSet();
+		final EList<String> safetySet = safetyEngineer.getReviewSet();
 		safetySet.add("Danger");
 		safetySet.add("FunctionalRequirement");
+		final EList<String> safetyFilterSet = testEngineer.getFilterSet();
+		safetyFilterSet.add("Mitigation");
 		
-		
-		roleList.add(safetyEngineer);
 		
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				project.addModelElementToRoot(testEngineer);
-				project.addModelElementToRoot(safetyEngineer);
-				
+			
+				project.addModelElement(testEngineer);
+				project.addModelElement(safetyEngineer);
 			}
 		}.run();
-		return roleList;
 	}
-	
+
 }

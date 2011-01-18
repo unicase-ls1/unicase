@@ -6,13 +6,11 @@
 package org.unicase.ui.urml.reviewview;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.OpenEvent;
@@ -31,22 +29,21 @@ import org.unicase.model.urml.UrmlModelElement;
 public class ListenerHandling {
 
 	private int lastModelElementIndex = -1;
-	// use set methods for changes
 	private List<UrmlModelElement> curContent = new ArrayList<UrmlModelElement>();
 	private Map<ModelElementChangeListener, UrmlModelElement> listeners = new HashMap<ModelElementChangeListener, UrmlModelElement>();
 	private TableViewer listViewer;
-	private ReviewView view;
+	private ReviewView reviewView;
 
 	/**
 	 * The constructor.
 	 * 
-	 * @param view the view
-	 * @param listViewer the list viewer
+	 * @param reviewView the view
+	 * @param tableViewer the list viewer
 	 */
 
-	public ListenerHandling(ReviewView view, TableViewer listViewer) {
-		this.listViewer = listViewer;
-		this.view = view;
+	public ListenerHandling(ReviewView reviewView, TableViewer tableViewer) {
+		this.listViewer = tableViewer;
+		this.reviewView = reviewView;
 
 	}
 
@@ -67,7 +64,7 @@ public class ListenerHandling {
 				Object o = selection.getFirstElement();
 				if (o instanceof UrmlModelElement) {
 
-					view.openElement((UrmlModelElement) o);
+					reviewView.openElement((UrmlModelElement) o);
 					setLastSelectedElementIndex(getIndex((UrmlModelElement) o));
 				}
 			}
@@ -98,7 +95,7 @@ public class ListenerHandling {
 
 	public int getIndex(UrmlModelElement el) {
 		int index = 0;
-		for (UrmlModelElement u : curContent) {
+		for (UrmlModelElement u : getCurContent()) {
 			// search the element index
 			if (u.equals(el)) {
 				return index;
@@ -108,46 +105,6 @@ public class ListenerHandling {
 		return -1;
 	}
 
-	/**
-	 * Sets the input to the list viewer.
-	 * 
-	 * @param collection the collection of the model elements
-	 */
-	public void setInput(Collection<UrmlModelElement> collection) {
-		// save the elements in a separate lists for index element mapping
-		curContent.clear();
-		for (UrmlModelElement e : collection) {
-			curContent.add(e);
-		}
-		listViewer.setInput(collection);
-		for (final UrmlModelElement urmlElement : collection) {
-			ModelElementChangeListener listener = new ModelElementChangeListener() {
-
-				@Override
-				public void onRuntimeExceptionInListener(RuntimeException exception) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void onChange(Notification notification) {
-					Object notificationFeature = notification.getFeature();
-					if (notification.getEventType() == Notification.RESOLVE) {
-						return;
-					}
-					Object nameFeature = urmlElement.eClass().getEStructuralFeature("name");
-					Object reviewedFeature = urmlElement.eClass().getEStructuralFeature("reviewed");
-					if (notificationFeature.equals(nameFeature) || notificationFeature.equals(reviewedFeature)) {
-						listViewer.refresh();
-					} else {
-						return;
-					}
-				}
-			};
-			listeners.put(listener, urmlElement);
-			urmlElement.addModelElementChangeListener(listener);
-		}
-	}
 
 	/**
 	 * Listener for handling presses of the up or down button.
@@ -164,7 +121,7 @@ public class ListenerHandling {
 
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			int size = curContent.size();
+			int size = getCurContent().size();
 			if (lastModelElementIndex == -1) {
 				lastModelElementIndex = 0;
 				listViewer.getTable().select(0);
@@ -176,7 +133,7 @@ public class ListenerHandling {
 				}
 				listViewer.getTable().deselectAll();
 				listViewer.getTable().select(lastModelElementIndex);
-				view.openElement(curContent.get(lastModelElementIndex));
+				reviewView.openElement(getCurContent().get(lastModelElementIndex));
 			}
 		}
 
@@ -189,8 +146,40 @@ public class ListenerHandling {
 	 * Removes all model element change listeners, which are added to the urml elements.
 	 */
 	public void dispose() {
-		for(Entry<ModelElementChangeListener, UrmlModelElement> entry : listeners.entrySet()){
+		for(Entry<ModelElementChangeListener, UrmlModelElement> entry : getListeners().entrySet()){
 			entry.getValue().removeModelElementChangeListener(entry.getKey());
 		}
+	}
+
+	/**
+	 * Sets the content(model elements) of the current element list. 
+	 * @param curContent the content which is to set
+	 */
+	public void setCurContent(List<UrmlModelElement> curContent) {
+		this.curContent = curContent;
+	}
+
+	/**
+	 * Gets the current content of the list with model elements.
+	 * @return curContent the content
+	 */
+	public List<UrmlModelElement> getCurContent() {
+		return curContent;
+	}
+
+	/**
+	 * Sets the listeners to the model elements.
+	 * @param listeners the listener
+	 */
+	public void setListeners(Map<ModelElementChangeListener, UrmlModelElement> listeners) {
+		this.listeners = listeners;
+	}
+
+	/**
+	 * Gets the listener of the model elements.
+	 * @return listeners the listener.
+	 */
+	public Map<ModelElementChangeListener, UrmlModelElement> getListeners() {
+		return listeners;
 	}
 }

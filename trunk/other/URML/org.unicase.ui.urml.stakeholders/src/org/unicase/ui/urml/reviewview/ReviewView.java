@@ -5,6 +5,13 @@
  */
 package org.unicase.ui.urml.reviewview;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
@@ -36,6 +43,9 @@ import org.eclipse.swt.widgets.Sash;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholderview.Activator;
@@ -50,7 +60,7 @@ import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 public class ReviewView extends ViewPart {
 
 	private TableViewer elementsViewer;
-	private ListenerHandling indexHandler;
+	private ListenerHandling listenerHandler;
 	private ILabelProvider reviewViewLabelProvider;
 	private TableViewerColumn viewerNameColumn;
 	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, referenceComposite;
@@ -67,7 +77,7 @@ public class ReviewView extends ViewPart {
 	@Override
 	public void dispose() {
 		super.dispose();
-		indexHandler.dispose();
+		listenerHandler.dispose();
 	}
 	
 	@Override
@@ -83,7 +93,7 @@ public class ReviewView extends ViewPart {
 
 		// **** Create necessary fields ***
 		contentFactory = new ReviewViewContentFactory(editorComposite);
-		indexHandler = new ListenerHandling(this, elementsViewer);
+		listenerHandler = new ListenerHandling(this, elementsViewer);
 
 		// *** Setup listeners for the different buttons and other UI actions ***
 		setupListeners();
@@ -91,12 +101,49 @@ public class ReviewView extends ViewPart {
 		createShowStatusAction(elementsViewer.getInput());
 
 		// Test code for filling the view with elements. To be replaced later
+		
 		try {
-
-			indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
+			setReviewViewInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
+		//	indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
 			// later getStakeholderElementSet(stakeholder);
 		} catch (NoWorkspaceException e1) {
 			e1.printStackTrace();
+		}
+	}
+	
+	private void setReviewViewInput(Collection<UrmlModelElement> collection) {
+		// save the elements in a separate lists for index element mapping
+		List<UrmlModelElement> curContent = listenerHandler.getCurContent();
+		curContent.clear();
+		for (UrmlModelElement e : collection) {
+			curContent.add(e);
+		}
+		elementsViewer.setInput(collection);
+		for (final UrmlModelElement urmlElement : collection) {
+			ModelElementChangeListener listener = new ModelElementChangeListener() {
+
+				@Override
+				public void onRuntimeExceptionInListener(RuntimeException exception) {
+			
+				}
+
+				@Override
+				public void onChange(Notification notification) {
+					Object notificationFeature = notification.getFeature();
+					if (notification.getEventType() == Notification.RESOLVE) {
+						return;
+					}
+					Object nameFeature = urmlElement.eClass().getEStructuralFeature("name");
+					Object reviewedFeature = urmlElement.eClass().getEStructuralFeature("reviewed");
+					if (notificationFeature.equals(nameFeature) || notificationFeature.equals(reviewedFeature)) {
+						elementsViewer.refresh();
+					} else {
+						return;
+					}
+				}
+			};
+			listenerHandler.getListeners().put(listener, urmlElement);
+			urmlElement.addModelElementChangeListener(listener);
 		}
 	}
 
@@ -119,7 +166,7 @@ public class ReviewView extends ViewPart {
 		};
 
 		showReviewed.setText("Show reviewed");
-		showReviewed.setToolTipText("Manages the Stakeholder roles with Dialog for choosing the settings.");
+		showReviewed.setToolTipText("Shows the reviewed element.");
 		showReviewed.setImageDescriptor(Activator.getImageDescriptor("icons/closed.gif"));
 		menuManager.add(showReviewed);
 
@@ -135,6 +182,18 @@ public class ReviewView extends ViewPart {
 		showUnreviewed.setToolTipText("Shows only the unreviewed elements.");
 		showUnreviewed.setImageDescriptor(Activator.getImageDescriptor("icons/open.png"));
 		menuManager.add(showUnreviewed);
+		
+		Action showAll = new Action() {
+			@Override
+			public void run() {
+				elementsViewer.resetFilters();
+			}
+		};
+
+		showAll.setText("Show all");
+		showAll.setToolTipText("Show all element without filter settingss.");
+	//	showAll.setImageDescriptor(Activator.getImageDescriptor("icons/closed.gif"));
+		menuManager.add(showAll);
 	}
 
 	private void createLeftSide(final Composite parent) {
@@ -290,9 +349,9 @@ public class ReviewView extends ViewPart {
 
 	private void setupListeners() {
 
-		indexHandler.createOpenListener(elementsViewer);
-		up.addSelectionListener(indexHandler.createUpDownListener(true));
-		down.addSelectionListener(indexHandler.createUpDownListener(false));
+		listenerHandler.createOpenListener(elementsViewer);
+		up.addSelectionListener(listenerHandler.createUpDownListener(true));
+		down.addSelectionListener(listenerHandler.createUpDownListener(false));
 
 		openModelElement.addSelectionListener(new SelectionListener() {
 
@@ -333,6 +392,24 @@ public class ReviewView extends ViewPart {
 	public void showOnlyReviewedElements(boolean reviewed) {
 		ReviewedFilter filter = new ReviewedFilter(reviewed);
 		elementsViewer.setFilters(new ViewerFilter[]{filter});
+	}
+
+	/**
+	 * Sets the input to the review view depending on the role and the project.
+	 * @param activeProject the project
+	 * @param role the role review set defines which elements should be shown
+	 */
+	public void setInputFromRole(Project activeProject, StakeholderRole role) {
+		Collection<UrmlModelElement> result = new ArrayList<UrmlModelElement>();
+		Set<EObject> modelElementSet = activeProject.getAllModelElements();
+		for(EObject e: modelElementSet){
+			if (e instanceof UrmlModelElement) {
+				if (role.getReviewSet().contains(((UrmlModelElement) e).eClass().getName())){
+					result.add((UrmlModelElement) e);
+				}
+			}
+		}
+		setReviewViewInput(result);
 	}
 
 }
