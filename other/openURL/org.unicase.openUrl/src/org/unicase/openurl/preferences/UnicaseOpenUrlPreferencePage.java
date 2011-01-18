@@ -46,8 +46,8 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 	 */
 	@Override
 	public void createFieldEditors() {
-		addField(new UnicaseOpenUrlFieldEditor("Protocol handler", "Protocol handler associated:",
-			getFieldEditorParent()));
+		// addField(new UnicaseOpenUrlFieldEditor("Protocol handler", "Protocol handler associated:",
+		// getFieldEditorParent()));
 	}
 
 	/*
@@ -61,7 +61,7 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 
 		public UnicaseOpenUrlFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
-			getTextControl().setText(protocolHandler.isProtocolHandlerRegistered() ? "Yes" : "No");
+			getTextControl().setText(protocolHandler.isHandlerRegistered() ? "Yes" : "No");
 			getTextControl().setEditable(false);
 			// getTextControl().setEnabled(false);
 			// getApplyButton().setText(string)
@@ -80,7 +80,7 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 					});
 				}
 
-				protocolHandler.registerProtocolHandler();
+				protocolHandler.registerHandler();
 				writeStartupConfigFile(protocolHandler.getEclipseExecutable(), protocolHandler.getStartUpJar());
 			} catch (IOException e) {
 				Display.getDefault().syncExec(new Runnable() {
@@ -91,7 +91,7 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 				});
 			}
 
-			if (protocolHandler.isProtocolHandlerRegistered()) {
+			if (protocolHandler.isHandlerRegistered()) {
 				getTextControl().setText("Yes");
 				Display.getDefault().syncExec(new Runnable() {
 					public void run() {

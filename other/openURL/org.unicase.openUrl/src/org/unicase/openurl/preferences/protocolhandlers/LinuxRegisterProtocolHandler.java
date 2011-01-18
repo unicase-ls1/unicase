@@ -20,7 +20,7 @@ import org.unicase.openurl.util.FileLocations;
 public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandler {
 
 	@Override
-	public void registerProtocolHandler() {
+	public void registerHandler() {
 		File shellScript = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
 			+ "registerUnicaseProtocolHandler.sh");
 
@@ -45,7 +45,7 @@ public class LinuxRegisterProtocolHandler extends AbstractRegisterProtocolHandle
 	}
 
 	@Override
-	public boolean isProtocolHandlerRegistered() {
+	public boolean isHandlerRegistered() {
 
 		File shellScript = new File(FileLocations.getPluginFeaturesDirectory() + File.separator
 			+ "registerUnicaseProtocolHandler.sh");

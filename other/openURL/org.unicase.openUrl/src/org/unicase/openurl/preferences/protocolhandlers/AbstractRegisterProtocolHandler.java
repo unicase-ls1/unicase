@@ -23,12 +23,12 @@ public abstract class AbstractRegisterProtocolHandler {
 	/**
 	 * Register the protocol handler on an operating system.
 	 */
-	public abstract void registerProtocolHandler();
+	public abstract void registerHandler();
 
 	/**
 	 * Determines whether the protocol handler has been registered successfully.
 	 */
-	public abstract boolean isProtocolHandlerRegistered();
+	public abstract boolean isHandlerRegistered();
 
 	/**
 	 * Opens up a error dialog showing the user the given text.
@@ -49,7 +49,7 @@ public abstract class AbstractRegisterProtocolHandler {
 	 * @return the absolute path of the startup jar
 	 * @throws IOException if the startup jar doesn't exist
 	 */
-	public String getStartUpJar() throws IOException {
+	public static String getStartUpJar() throws IOException {
 		return FileLocations.getPluginFeaturesDirectory() + File.separator + "org.unicase.openurl.startup.jar";
 	}
 
