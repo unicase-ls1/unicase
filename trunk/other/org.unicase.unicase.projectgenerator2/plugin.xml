@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.unicase.projectgenerator2.CreateExampleProjectHandler"
+            defaultHandler="org.unicase.unicase.modelgenerator.CreateExampleProjectHandler"
             id="org.unicase.unicase.projectgenerator2.command1"
             name="name">
       </command>
