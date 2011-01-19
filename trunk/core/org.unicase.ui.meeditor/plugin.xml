@@ -107,4 +107,13 @@
             type="org.eclipse.emf.ecore.EObject">
       </widget>
    </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.MEDoubleControl"
+            name="org.unicase.ui.meeditor.medoublecontrol"
+            showLabel="true"
+            type="java.lang.Double">
+      </widget>
+   </extension>
 </plugin>
