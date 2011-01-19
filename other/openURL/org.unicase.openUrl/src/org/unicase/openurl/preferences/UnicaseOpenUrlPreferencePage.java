@@ -46,8 +46,8 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 	 */
 	@Override
 	public void createFieldEditors() {
-		// addField(new UnicaseOpenUrlFieldEditor("Protocol handler", "Protocol handler associated:",
-		// getFieldEditorParent()));
+		addField(new UnicaseOpenUrlFieldEditor("Protocol handler", "Protocol handler associated:",
+			getFieldEditorParent()));
 	}
 
 	/*
@@ -63,8 +63,6 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 			super(name, labelText, parent);
 			getTextControl().setText(protocolHandler.isHandlerRegistered() ? "Yes" : "No");
 			getTextControl().setEditable(false);
-			// getTextControl().setEnabled(false);
-			// getApplyButton().setText(string)
 		}
 
 		@Override
