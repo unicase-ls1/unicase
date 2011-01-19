@@ -14,8 +14,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -98,18 +101,44 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	public void earlyStartup() {
 
 		RegisterProtocolHandlerFactory fac = new RegisterProtocolHandlerFactory();
-		AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler();
+		final AbstractRegisterProtocolHandler protocolHandler = fac.getRegisterProtocolHandler();
 		if (protocolHandler == null) {
 			// write an entry in error log
 			WorkspaceUtil.logException("Could not find protocol handler.", new NullPointerException());
 		}
 
-		if (!protocolHandler.isHandlerRegistered() /* && !dialogSetting.dontShowAgin() */) {
+		// get/create a preference store
+		final IPreferenceStore prefStore = PlatformUI.getPreferenceStore(); // have to use the platform -> plugin not
+																			// initialized completely yet.
+		final String prefName = "unicase.protocol.prompt";
+
+		// check whether protocol handler is registered and whether the user wants to be prompted
+		if (!protocolHandler.isHandlerRegistered() && !prefStore.getBoolean(prefName)) {
 			Display.getDefault().syncExec(new Runnable() {
 				public void run() {
-					yes = MessageDialog.openQuestion(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-						"Unicase Protocol Registraion", "Protocol is not registered. Do you want to register it?");
+					// values for the dialog
+					Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+					String title = "Unicase Protocol Registraion";
+					String message = "The unicase protocol is not registered. Do you want to register it?";
+					String toggleMessage = "Don't show this dialog again.";
 
+					// create dialog
+					MessageDialogWithToggle dialog = new MessageDialogWithToggle(activeShell, title, null, message,
+						MessageDialog.QUESTION, new String[] { "Yes", "No", "Cancel" }, 0, toggleMessage, false);
+					dialog.setPrefStore(prefStore);
+					dialog.create();
+
+					// open dialog and ask for result
+					if (dialog.open() == 0) {
+						// register protocol
+						protocolHandler.registerHandler();
+					}
+
+					// save the toggle state
+					boolean toggleState = dialog.getToggleState();
+					if (toggleState) {
+						prefStore.setValue(prefName, true);
+					}
 				}
 			});
 
