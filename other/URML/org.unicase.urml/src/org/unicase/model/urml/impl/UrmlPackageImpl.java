@@ -102,7 +102,7 @@ public class UrmlPackageImpl extends EPackageImpl implements UrmlPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		DiagramPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		GoalPackageImpl theGoalPackage = (GoalPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GoalPackage.eNS_URI) instanceof GoalPackageImpl ? EPackage.Registry.INSTANCE

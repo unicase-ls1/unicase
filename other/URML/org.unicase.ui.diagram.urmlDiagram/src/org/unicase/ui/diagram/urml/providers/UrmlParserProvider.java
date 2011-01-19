@@ -353,6 +353,7 @@ public class UrmlParserProvider extends AbstractProvider implements IParserProvi
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

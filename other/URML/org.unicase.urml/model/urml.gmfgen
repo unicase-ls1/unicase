@@ -43,9 +43,9 @@
         <metaClass
             href="urml.genmodel#//urml/Stakeholder"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5008"
@@ -92,9 +92,9 @@
         <metaClass
             href="urml.genmodel#//urml/goal/Goal"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5009"
@@ -140,9 +140,9 @@
         <metaClass
             href="urml.genmodel#//urml/requirement/FunctionalRequirement"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5010"
@@ -189,9 +189,9 @@
         <metaClass
             href="urml.genmodel#//urml/feature/Feature"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5011"
@@ -237,9 +237,9 @@
         <metaClass
             href="urml.genmodel#//urml/service/Service"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5002"
@@ -285,9 +285,9 @@
         <metaClass
             href="urml.genmodel#//urml/requirement/NonFunctionalRequirement"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5003"
@@ -334,9 +334,9 @@
         <metaClass
             href="urml.genmodel#//urml/danger/Danger"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5004"
@@ -382,9 +382,9 @@
         <metaClass
             href="urml.genmodel#//urml/usecase/Actor"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5005"
@@ -430,9 +430,9 @@
         <metaClass
             href="urml.genmodel#//urml/danger/ProceduralMitigation"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5006"
@@ -478,9 +478,9 @@
         <metaClass
             href="urml.genmodel#//urml/feature/VariationPoint"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5012"
@@ -527,9 +527,9 @@
         <metaClass
             href="urml.genmodel#//urml/feature/VariationPointInstance"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5013"
@@ -576,9 +576,9 @@
         <metaClass
             href="urml.genmodel#//urml/feature/Product"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/elements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
           visualID="5014"
@@ -938,9 +938,9 @@
         <metaClass
             href="urml.genmodel#//urml/goal/GoalReference"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -1019,9 +1019,9 @@
         <metaClass
             href="urml.genmodel#//urml/goal/GoalReference"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -1100,9 +1100,9 @@
         <metaClass
             href="urml.genmodel#//urml/goal/GoalReference"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -1181,9 +1181,9 @@
         <metaClass
             href="urml.genmodel#//urml/goal/GoalReference"/>
         <containmentMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
-            href="../../../plugin/org.unicase.model/model/model.genmodel#//model/diagram/MEDiagram/newElements"/>
+            href="../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <modelElementInitializer
             xsi:type="gmfgen:GenFeatureSeqInitializer">
           <initializers
@@ -2724,6 +2724,25 @@
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
+  <propertySheet>
+    <tabs
+        xsi:type="gmfgen:GenStandardPropertyTab"
+        iD="appearance"/>
+    <tabs
+        xsi:type="gmfgen:GenStandardPropertyTab"
+        iD="diagram"/>
+    <tabs
+        xsi:type="gmfgen:GenCustomPropertyTab"
+        iD="domain"
+        label="Core">
+      <filter
+          xsi:type="gmfgen:TypeTabFilter">
+        <types>org.eclipse.gmf.runtime.notation.View</types>
+        <types>org.eclipse.gef.EditPart</types>
+        <generatedTypes>abstractNavigatorItem</generatedTypes>
+      </filter>
+    </tabs>
+  </propertySheet>
   <domainGenModel
       href="urml.genmodel#/"/>
   <expressionProviders>

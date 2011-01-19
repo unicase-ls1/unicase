@@ -7,9 +7,9 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//Stakeholder"/>
@@ -30,9 +30,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//goal/Goal"/>
@@ -52,9 +52,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//requirement/FunctionalRequirement"/>
@@ -75,9 +75,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//feature/Feature"/>
@@ -97,9 +97,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//service/Service"/>
@@ -119,9 +119,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//requirement/NonFunctionalRequirement"/>
@@ -142,9 +142,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//danger/Danger"/>
@@ -164,9 +164,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//usecase/Actor"/>
@@ -186,9 +186,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//danger/ProceduralMitigation"/>
@@ -208,9 +208,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//feature/VariationPoint"/>
@@ -231,9 +231,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//feature/VariationPointInstance"/>
@@ -254,9 +254,9 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <childrenFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/elements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
     <ownedChild>
       <domainMetaElement
           href="urml.ecore#//feature/Product"/>
@@ -400,7 +400,7 @@
           href="urml.gmfgraph#Influences"/>
     </labelMappings>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <diagramLink
         href="urml.gmfgraph#GoalInfluenceGoals"/>
     <sourceMetaFeature
@@ -439,7 +439,7 @@
           href="urml.gmfgraph#Influences"/>
     </labelMappings>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <diagramLink
         href="urml.gmfgraph#GoalInfluenceGoals"/>
     <sourceMetaFeature
@@ -478,7 +478,7 @@
           href="urml.gmfgraph#Influences"/>
     </labelMappings>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <diagramLink
         href="urml.gmfgraph#GoalInfluenceGoals"/>
     <sourceMetaFeature
@@ -517,7 +517,7 @@
           href="urml.gmfgraph#Influences"/>
     </labelMappings>
     <containmentFeature
-        href="../../org.unicase.model/model/model.ecore#//diagram/MEDiagram/newElements"/>
+        href="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
     <diagramLink
         href="urml.gmfgraph#GoalInfluenceGoals"/>
     <sourceMetaFeature

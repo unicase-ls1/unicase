@@ -35,5 +35,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.metamodel;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.unicase.ui.meeditor;bundle-version="1.0.0"
+ org.unicase.ui.meeditor;bundle-version="1.0.0",
+ org.unicase.diagram;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

@@ -379,7 +379,8 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	}
 
 	public List<EStructuralFeature> getAssociationFeatures() {
-		return AssociationClassHelper.getAssociationFeatures(GoalPackage.eINSTANCE.getGoalReference(), getSourceFeature(), getTargetFeature());
+		return AssociationClassHelper.getAssociationFeatures(GoalPackage.eINSTANCE.getGoalReference(),
+			getSourceFeature(), getTargetFeature());
 	}
 
 	public EReference getSourceFeature() {
