@@ -227,7 +227,7 @@ public class MigrationManager {
 		for (URI changeURI : changesURIs) {
 			modelURIs.add(changeURI);
 		}
-		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new ConsoleProgressMonitor());
+		migrator.migrateAndSave(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new ConsoleProgressMonitor());
 	}
 
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
