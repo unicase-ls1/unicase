@@ -32,7 +32,10 @@ public class CreateChangePackageActionDelegate extends ResourceSelectionActionDe
 		IResource[] resources = getSelectedResources();
 		if(resources.length == 0){
 			return;
-		}	
+		}	   
+		String version = System.getProperty("java.version");
+	    System.out.println("JDK version "+ version + " found");
+		
 		
 		//TODO Make this generic, so the dependency to the git plugin can be removed
 		//Get the git repo the resource belongs to

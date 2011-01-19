@@ -16,8 +16,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.changetracking.release.ReleaseCheckReport;
+import org.unicase.changetracking.release.ReleaseChecker;
+import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
@@ -38,15 +43,38 @@ public class CheckReleaseHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		//Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if(!(me instanceof ChangeTrackingRelease)){
-			//TODO Error message
+			UIUtil.errorMessage("The selected model element is no change tracking release");
 			return null;
 		}
 		ChangeTrackingRelease r = (ChangeTrackingRelease) me;
-		CheckReleaseDialog dialog = new CheckReleaseDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), r);
+		
+		//Find the corresponding local repository
+		Repository localRepo = new LocalRepoFindHandler(r).find();
+		
+		//Ask the user to refresh his repo
+		boolean upToDate = true;
+		if(localRepo != null){
+			upToDate = askForRefreshing();
+		}
+		
+		//Create a report
+		ReleaseCheckReport report = ReleaseChecker.check(localRepo, r, upToDate);
+		
+		
+		CheckReleaseDialog dialog = new CheckReleaseDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), r, report);
 		dialog.open();
 		return null;
+	}
+
+	private boolean askForRefreshing() {
+		boolean wantPull = MessageDialog.openQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Refresh local repository?", "You should refresh your local repository (pull from remote) to ensure that all branches are up to date. Do you want to pull now?");
+	
+		//FIXME Implement pull
+		
+		return wantPull;
 	}
 
 	

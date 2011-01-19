@@ -16,6 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.workspace
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.unicase.changetracking.git,
+Export-Package: org.unicase.changetracking.common,
+ org.unicase.changetracking.git,
  org.unicase.changetracking.git.commands,
- org.unicase.changetracking.git.exceptions
+ org.unicase.changetracking.git.exceptions,
+ org.unicase.changetracking.release

@@ -17,7 +17,7 @@ public class CreateChangePackageWizard extends Wizard{
 	private Repository localRepository;
 	private ChooseWorkItemPage chooseWorkItemPage;
 	private ChooseNameAndDescriptionPage chooseNamePage;
-	private static final ImageDescriptor PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/unicase.png");
+	private static final ImageDescriptor PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/create_change_package_wiz.png");
 
 	public CreateChangePackageWizard(Repository localRepository) {
 		setFinishable(false);

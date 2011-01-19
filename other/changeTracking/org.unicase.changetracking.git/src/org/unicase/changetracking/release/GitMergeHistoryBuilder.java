@@ -1,6 +1,7 @@
 package org.unicase.changetracking.release;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,18 +20,47 @@ public class GitMergeHistoryBuilder {
 		this.repo = repo;
 	}
 	
-	public void build(String baseBranch, List<String> branches){
-	}
 	
-	public void build(RevCommit baseHead, List<RevCommit> branchHeads){
+	public Map<RevCommit,BranchState> build(RevCommit baseHead, Collection<RevCommit> set){
+		Map<RevCommit,BranchState> result = new HashMap<RevCommit, BranchState>();
 		Map<String, RevCommit> trunkSet = buildTrunkSet(baseHead);
-		for(RevCommit c: branchHeads){
+		
+		for (RevCommit c: set){
 			//If the commit is contained in the trunk set, it is already merged in.
-			if(trunkSet.containsKey(c.getName())){
-				HIER WEITER
+			if (trunkSet.containsKey(c.getName())){
+				result.put(c, BranchState.MERGED);
+			
+			//Otherwise, check if it is connected with the trunk set
+			} else if (checkConnection(trunkSet, c)){
+				result.put(c, BranchState.UNMERGED);
+			} else {
+				result.put(c, BranchState.UNCONNECTED);
 			}
 		}
+		
+		return result;
 	}
+
+	private boolean checkConnection(Map<String, RevCommit> trunkSet, RevCommit c) {
+		if(trunkSet.containsKey(c.getName())){
+			//This node is in the trunk set, so it is obviously connected to it
+			return true;
+		} else if (c.getParentCount() > 0){
+			int count = c.getParentCount();
+			for ( int i=0 ; i < count ; i++ ){
+				if(checkConnection(trunkSet, c.getParent(i))){
+					//Parent is connected, so this commit is, too
+					return true;
+				}
+			}
+			//No parent is connected? Then this is not connected, too
+			return false;
+		} else {
+			//Still not connected and has no more parents? => Not connected
+			return false;
+		}
+	}
+
 
 	private Map<String, RevCommit> buildTrunkSet(RevCommit baseHead) {
 		Map<String, RevCommit> result = new HashMap<String, RevCommit>();
@@ -42,8 +72,10 @@ public class GitMergeHistoryBuilder {
 			result.put(cur.getName(), cur);
 			
 			//Add all parents into queue
-			for(RevCommit parent : cur.getParents()){
-				queue.add(parent);
+			if(cur.getParents() != null){
+				for(RevCommit parent : cur.getParents()){
+					queue.add(parent);
+				}
 			}
 		}
 		return result;

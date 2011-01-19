@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -20,7 +21,7 @@ import org.unicase.changetracking.ui.ReleaseTreeViewer;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.ui.navigator.ContentProvider;
 
-public class ReviewReleasePage extends WizardPage{
+public class ReviewReleasePage extends WizardPage implements IDialogHead{
 
 	private ChangeTrackingRelease release;
 
