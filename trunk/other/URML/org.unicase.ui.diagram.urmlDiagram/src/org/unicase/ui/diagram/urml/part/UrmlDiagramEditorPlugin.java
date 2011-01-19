@@ -45,6 +45,7 @@ import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFa
 import org.unicase.model.profile.provider.ProfileItemProviderAdapterFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.rationale.provider.RationaleItemProviderAdapterFactory;
+import org.unicase.model.release.provider.ReleaseItemProviderAdapterFactory;
 import org.unicase.model.state.provider.StateItemProviderAdapterFactory;
 import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 import org.unicase.model.urml.danger.provider.DangerItemProviderAdapterFactory;
@@ -139,6 +140,7 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new ServiceItemProviderAdapterFactory());
 		factories.add(new DangerItemProviderAdapterFactory());
 		factories.add(new FeatureItemProviderAdapterFactory());
+		factories.add(new DiagramItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new EsmodelItemProviderAdapterFactory());
 		factories.add(new VersioningItemProviderAdapterFactory());
@@ -154,7 +156,6 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new ModelItemProviderAdapterFactory());
 		factories.add(new OrganizationItemProviderAdapterFactory());
 		factories.add(new TaskItemProviderAdapterFactory());
-		factories.add(new DiagramItemProviderAdapterFactory());
 		factories.add(new ClassesItemProviderAdapterFactory());
 		factories.add(new DocumentItemProviderAdapterFactory());
 		factories.add(new org.unicase.model.requirement.provider.RequirementItemProviderAdapterFactory());
@@ -168,6 +169,7 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new ProfileItemProviderAdapterFactory());
 		factories.add(new UtilItemProviderAdapterFactory());
 		factories.add(new ActivityItemProviderAdapterFactory());
+		factories.add(new ReleaseItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
@@ -192,9 +194,8 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * 
 	 * @generated
 	 * @param path the path
 	 * @return the image descriptor
@@ -204,10 +205,9 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
-	 * path, first segment is taken as id of plug-in with image
-	 *
+	 * Respects images residing in any plug-in. If path is relative, then this bundle is looked up for the image,
+	 * otherwise, for absolute path, first segment is taken as id of plug-in with image
+	 * 
 	 * @generated
 	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
@@ -223,9 +223,9 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image for the image file at the given plug-in relative path.
-	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 *
+	 * Returns an image for the image file at the given plug-in relative path. Client do not need to dispose this image.
+	 * Images will be disposed automatically.
+	 * 
 	 * @generated
 	 * @param path the path
 	 * @return image instance
@@ -241,7 +241,7 @@ public class UrmlDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 *
+	 * 
 	 * @generated
 	 */
 	public static String getString(String key) {

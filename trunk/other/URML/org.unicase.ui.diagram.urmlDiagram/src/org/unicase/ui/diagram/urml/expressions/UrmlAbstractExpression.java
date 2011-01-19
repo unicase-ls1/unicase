@@ -102,7 +102,9 @@ public abstract class UrmlAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer
+	 * is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * 
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {

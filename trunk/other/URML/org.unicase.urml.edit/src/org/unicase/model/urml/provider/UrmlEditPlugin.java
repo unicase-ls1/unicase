@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
+import org.unicase.model.diagram.provider.DiagramEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -37,7 +38,7 @@ public final class UrmlEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public UrmlEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
+		super(new ResourceLocator[] { DiagramEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
 			MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
 	}
 

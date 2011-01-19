@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.danger.impl.DangerPackageImpl;
@@ -103,7 +103,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		DiagramPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		UrmlPackageImpl theUrmlPackage = (UrmlPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UrmlPackage.eNS_URI) instanceof UrmlPackageImpl ? EPackage.Registry.INSTANCE

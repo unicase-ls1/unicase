@@ -39,7 +39,6 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
-import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.unicase.ui.diagram.urml.navigator.UrmlNavigatorItem;
 import org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor;
 
@@ -93,9 +92,6 @@ public class UrmlDiagramEditor extends ModelDiagramEditor implements IGotoMarker
 	 * @generated
 	 */
 	public Object getAdapter(Class type) {
-		if (type == IPropertySheetPage.class) {
-			return null;
-		}
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 				public String[] getShowInTargetIds() {

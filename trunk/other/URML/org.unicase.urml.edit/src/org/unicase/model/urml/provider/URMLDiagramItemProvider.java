@@ -103,52 +103,52 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			UrmlFactory.eINSTANCE.createStakeholder()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			UrmlFactory.eINSTANCE.createURMLDiagram()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			GoalFactory.eINSTANCE.createGoal()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			GoalFactory.eINSTANCE.createGoalReference()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			UsecaseFactory.eINSTANCE.createApplicationDomainUseCase()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			UsecaseFactory.eINSTANCE.createSolutionDomainUseCase()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			UsecaseFactory.eINSTANCE.createActor()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			ServiceFactory.eINSTANCE.createService()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			DangerFactory.eINSTANCE.createDanger()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			DangerFactory.eINSTANCE.createProceduralMitigation()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			FeatureFactory.eINSTANCE.createFeature()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			FeatureFactory.eINSTANCE.createVariationPoint()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			FeatureFactory.eINSTANCE.createVariationPointInstance()));
 
-		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 			FeatureFactory.eINSTANCE.createProduct()));
 	}
 
@@ -164,7 +164,7 @@ public class URMLDiagramItemProvider extends MEDiagramItemProvider implements IE
 		Object childObject = child;
 
 		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
-			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS
+			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS
 			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
