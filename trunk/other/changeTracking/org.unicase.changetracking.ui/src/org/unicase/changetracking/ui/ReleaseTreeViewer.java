@@ -6,6 +6,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -34,7 +35,7 @@ public class ReleaseTreeViewer extends Composite{
 	private ImageAndTextLabel captionLabel;
 
 	public ReleaseTreeViewer(Composite parent, int style) {
-		super(parent, SWT.BORDER);
+		super(parent, style);
 		
 		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(2).applyTo(this);
 		//Color colorWhite = parent.getDisplay().getSystemColor(SWT.COLOR_WHITE);
@@ -119,5 +120,8 @@ public class ReleaseTreeViewer extends Composite{
 		treeViewer.expandAll();		
 	}
 	
+	public void setLabelProvider(ILabelProvider labelProvider){
+		treeViewer.setLabelProvider(labelProvider);
+	}
 	
 }

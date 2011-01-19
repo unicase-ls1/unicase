@@ -46,6 +46,10 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
+			    String version = System.getProperty("java.version");
+			    System.out.println("JDK version "+ version + " found");
+	
+		if(true) return;
 		Repository r = GitRepoFindUtil.findRepository(new File(
 						"E:\\Programming\\unicase\\runtime-EclipseApplication\\GitTest"
 						//"E:\\Programming\\unicase\\repos\\egit"
