@@ -1,7 +1,6 @@
 package org.unicase.xmi.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;

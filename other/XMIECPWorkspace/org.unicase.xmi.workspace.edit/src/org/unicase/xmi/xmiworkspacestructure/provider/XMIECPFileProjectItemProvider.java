@@ -172,9 +172,9 @@ public class XMIECPFileProjectItemProvider
 		if(object instanceof XMIECPFileProject) {
 			XMIECPFileProject pro = (XMIECPFileProject) object;
 			if(pro.getProjectStatus() == PROJECT_STATUS.FAILED)
-				return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProjectFailed.png"));
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/projectFailed.png"));
 		}
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/XMIECPFileProject.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/project.png"));
 	}
 
 	/**

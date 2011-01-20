@@ -19,13 +19,12 @@ WAIT 4 MAX - Delete menu entry does not work for baseElements
 
 	-> eMail to Max: Elements are contained in an eResource, not in an eContainer. Is it ok? Change in root class.
 
-- change project icon
-- Make resource path relative to workspace, if chosen from workspace.
+POSTPONED - Make resource path relative to workspace, if chosen from workspace.
 
-- Remove Unicase-Model from Extensions
-[- remove refresh from our implementation and change TreeView.refresh]
+@ END - Remove Unicase-Model from Extensions
+@ IGNORE - remove refresh from our implementation and change TreeView.refresh
 
---
+
 # Accepted plugins:
 # Message extract from Nov 15, 18.35h @ XMI/MemoryLeak Group Channel
 
@@ -37,19 +36,16 @@ hope i didnt forget one.
 # API Resources
 http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/
 http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/overview-summary.html
-
---
-- @ Project Generator Team: they save the file the wrong way, the registered model is XMI which is no valid model
-	--> How do you save your model?
 	
---
+
+
 # Resolved:
-29.12.	Matti	OK	Change Design -> Refactor, make the Commands do the work, not the Dialogs!
-29.12.	Matti	OK	Folder shouldn't be shown in the navigator -> the workspace should shortcut it to the projects in the folder
-26.12.	Matti	OK	Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
-26.12.	Matti	OK	We shouldn't have dependencies on the workspace package -> remove dependencies (also look for other dependencies that can be removed!) -> Markus
-26.12.	Matti	OK	Saving the (workspace-) file to an other place for example where the runtime is!
-26.12.	Matti	OK	Use own command instead of unicase command in the dialog
+OK - Change Design -> Refactor, make the Commands do the work, not the Dialogs!
+OK - Folder shouldn't be shown in the navigator -> the workspace should shortcut it to the projects in the folder
+OK - Feature request: for notes l. 11+12 (ECP Folder Structure done) -> Markus
+OK - We shouldn't have dependencies on the workspace package -> remove dependencies (also look for other dependencies that can be removed!) -> Markus
+OK - Saving the (workspace-) file to an other place for example where the runtime is!
+OK - Use own command instead of unicase command in the dialog
 OK - Remove DeleteFolderHandler
 Ok - Can we please use the org.unicase.metamodel package? We need it for the "NonDomainElement" and "AssociationClassElement". Otherwise I would have to implement the Classes in a util class.
 Ok - With what content should we use the "Browse Workspace" package if the workspace is only ourselves?
@@ -81,3 +77,4 @@ OK - File changed on file system or has been deleted
 	OK -> plugin.xml: for deleted project only one popup menu entry: "resolve"
 OK - refactor workspace -> remove folder items
 OK - add Progress-bar when trying to load a folder (respectively trying to load projects from a folder)
+OK - change project icon
