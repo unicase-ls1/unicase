@@ -19,6 +19,11 @@ public class XmiUtil {
 	public static final String DEFAULT_LOCATION = Platform.getLocation().toOSString();
 
 	/**
+	 * Set the common workspacepath for all XMI related classes as the default location for a project
+	 */
+	public static final String WORKSPACE_PATH = DEFAULT_LOCATION;
+	
+	/**
 	 * Returns whether a string is null or equals en empty string.
 	 * @param str The string to test
 	 * @return True when string is not null and is not empty, else false

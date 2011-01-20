@@ -161,7 +161,20 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 */
 	private boolean objectInitialized = false;
 	
+	/**
+	 * Contains the status of the project
+	 */
 	private PROJECT_STATUS projectStatus;
+	
+	/**
+	 * Flag whether the XMI filepath is relative to the workspace 
+	 */
+	private boolean isWorkspacePath = false;
+	
+	/**
+	 * The MetaModelElementContext of the project.
+	 */
+	private XMIMetaModelElementContext context;
 	
 	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
@@ -191,6 +204,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		setRootObject(this);
 		
 		baseElements = new BasicEList<EObject>();
+		
+		// determine full path
+		if (isWorkspacePath) {
+			xmiFilePath = XmiUtil.WORKSPACE_PATH + File.separator + xmiFilePath;
+		}
 		
 		// file resources
 		File xmiFile = new File(xmiFilePath);
@@ -667,7 +685,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public MetaModelElementContext getMetaModelElementContext() {
-		return XMIMetaModelElementContext.getInstance();
+		if (context == null){
+			context = new XMIMetaModelElementContext(this);
+		}
+		return context;
 	}
 
 	/**
@@ -719,6 +740,22 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 */
 	public void setProjectStatus(XmiUtil.PROJECT_STATUS status) {
 		projectStatus = status;
+	}
+	
+	/**
+	 * Retrieve whether the filepath is relative to workspace
+	 * @return true if the filepath is relative to workspace else false
+	 */
+	public boolean isWorkspacePath(){
+		return isWorkspacePath;
+	}
+	
+	/**
+	 * Sets whether the filepath is relative to workspace 
+	 * @param isWsP
+	 */
+	public void isWorkspacePath (boolean isWsP){
+		this.isWorkspacePath = isWsP;
 	}
 
 } //XMIECPFileProjectImpl

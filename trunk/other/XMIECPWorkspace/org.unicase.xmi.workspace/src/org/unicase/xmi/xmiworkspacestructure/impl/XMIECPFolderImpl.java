@@ -32,7 +32,6 @@ import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFolder;
@@ -453,7 +452,7 @@ public class XMIECPFolderImpl extends XMIECPProjectContainerImpl implements XMIE
 	}
 
 	public MetaModelElementContext getMetaModelElementContext() {
-		return new XMIMetaModelElementContext();
+		return null; // Change
 	}
 
 	/**

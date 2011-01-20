@@ -16,6 +16,11 @@
 		- class DeleteModelelement in commands
 		- icons -> delete_element.gif
 		- changed plugin.xml, but reverted it after seeing that it didn't work
+		
+- Remove Unicase-Model from Extensions
+
+- Unrelated:
+	(- remove refresh from oen implementation and change TreeView.refresh...)
 
 --
 # Accepted plugins:
