@@ -1,10 +1,10 @@
 #Todo:
-- All models are displayed when you open up "New Model Element" on any project.
+WAIT 4 MAX - All models are displayed when you open up "New Model Element" on any project.
 	It should be that in a new project, all models are displayed so the user can pick its model,
 	but in an existing model only the model itself is shown.
 		- If Package not found -> show dialog what to do
 	
-- Delete menu entry does not work for baseElements
+WAIT 4 MAX - Delete menu entry does not work for baseElements
 	see plugin.xml from ui.common where the "Delete" command is added,
 	in our plugin.xml adding it was not successful and we can't extend
 	the org.unicase.common.commands.DeleteModelElementCommand due to
@@ -16,11 +16,14 @@
 		- class DeleteModelelement in commands
 		- icons -> delete_element.gif
 		- changed plugin.xml, but reverted it after seeing that it didn't work
-		
-- Remove Unicase-Model from Extensions
 
-- Unrelated:
-	(- remove refresh from oen implementation and change TreeView.refresh...)
+	-> eMail to Max: Elements are contained in an eResource, not in an eContainer. Is it ok? Change in root class.
+
+- change project icon
+- Make resource path relative to workspace, if chosen from workspace.
+
+- Remove Unicase-Model from Extensions
+[- remove refresh from our implementation and change TreeView.refresh]
 
 --
 # Accepted plugins:
@@ -77,3 +80,4 @@ OK - File changed on file system or has been deleted
 	OK -> Add icon to Resolve command
 	OK -> plugin.xml: for deleted project only one popup menu entry: "resolve"
 OK - refactor workspace -> remove folder items
+OK - add Progress-bar when trying to load a folder (respectively trying to load projects from a folder)
