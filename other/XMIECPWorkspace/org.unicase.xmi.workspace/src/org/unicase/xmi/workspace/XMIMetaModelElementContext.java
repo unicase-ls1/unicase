@@ -41,9 +41,8 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		
 		while(iterator.hasNext()) {
 			EClass next = iterator.next();
-			System.out.println(next.eClass().getEPackage().getNsURI() + " --> " + next.getName().toString());
+//			System.out.println(next.eClass().getEPackage().toString() + " --> " + next.getName().toString());
 		}
-		
 		return UnicaseUtil.getAllModelElementEClasses();
 	}
 

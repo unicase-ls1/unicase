@@ -277,7 +277,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		// add contained objects to the project
 		for(EObject eObject: resource.getContents()) {
 			eObject.eAdapters().add(listenerAdapter);
-			baseElements.add(eObject); //TODO
+			baseElements.add(eObject);
 		}
 	}
 	
