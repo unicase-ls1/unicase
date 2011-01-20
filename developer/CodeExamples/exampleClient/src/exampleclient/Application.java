@@ -89,7 +89,7 @@ public class Application implements IApplication {
 					ModelUtil.logException(e);
 				}
 			}
-		}.run();
+		}.run(false);
 	}
 
 	private void runClient2() throws AccessControlException, EmfStoreException {
@@ -145,7 +145,7 @@ public class Application implements IApplication {
 					throw new IllegalStateException();
 				}
 			}
-		}.run();
+		}.run(false);
 
 		final ProjectSpace projectSpace2 = new UnicaseCommandWithParameterAndResult<ProjectSpace, ProjectSpace>() {
 			@Override
@@ -167,7 +167,7 @@ public class Application implements IApplication {
 				}
 				return projectSpace2;
 			}
-		}.run(projectSpace1);
+		}.run(projectSpace1, false);
 
 		final Book book = new UnicaseCommandWithParameterAndResult<Book, ProjectSpace>() {
 			@Override
@@ -180,7 +180,7 @@ public class Application implements IApplication {
 				library.getBooks().add(book);
 				return book;
 			}
-		}.run(projectSpace1);
+		}.run(projectSpace1, false);
 
 		new UnicaseCommand() {
 			@Override
@@ -194,14 +194,14 @@ public class Application implements IApplication {
 					ModelUtil.logException(e);
 				}
 			}
-		}.run();
+		}.run(false);
 
 		final Book book2 = new UnicaseCommandWithResult<Book>() {
 			@Override
 			protected Book doRun() {
 				//get the same book (same id) from the second ProjectSpace
 				Book book2 = (Book) projectSpace2.getProject()
-				.getModelElement(book.getModelElementId());
+				.getModelElement(projectSpace1.getProject().getModelElementId(book));
 				System.out.println("Title of library in ProjectSpace 1: "
 						+ book.getTitle());
 				System.out.println("Title of library in ProjectSpace 2: "
@@ -213,7 +213,7 @@ public class Application implements IApplication {
 						+ book2.getTitle());
 				return book2;
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
@@ -231,7 +231,7 @@ public class Application implements IApplication {
 					ModelUtil.logException(e);
 				}
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
@@ -243,7 +243,7 @@ public class Application implements IApplication {
 				System.out.println("Title of library in ProjectSpace 2: "
 						+ book2.getTitle());
 			}
-		}.run();
+		}.run(false);
 
 		new UnicaseCommand() {
 			@Override
@@ -310,7 +310,7 @@ public class Application implements IApplication {
 				}
 
 			}
-		}.run();
+		}.run(false);
 
 		System.out.println("Client run completed.");
 	}
