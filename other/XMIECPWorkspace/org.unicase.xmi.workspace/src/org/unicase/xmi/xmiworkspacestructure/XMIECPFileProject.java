@@ -105,4 +105,16 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 */
 	public List<ECPProjectListener> getProjectListeners();
 	
+	/**
+	 * Retrieve whether the filepath is relative to workspace
+	 * @return true if the filepath is relative to workspace else false
+	 */
+	public boolean isWorkspacePath();
+	
+	/**
+	 * Sets whether the filepath is relative to workspace 
+	 * @param isWsP
+	 */
+	public void isWorkspacePath (boolean isWsP);
+	
 } // XMIECPFileProject
