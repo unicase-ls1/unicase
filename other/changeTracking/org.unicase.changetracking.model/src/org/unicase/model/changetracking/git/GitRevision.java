@@ -17,6 +17,7 @@ import org.unicase.model.changetracking.RepositoryRevision;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.changetracking.git.GitRevision#getHash <em>Hash</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.git.GitRevision#getTagName <em>Tag Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,5 +58,31 @@ public interface GitRevision extends RepositoryRevision {
 	 * @generated
 	 */
 	void setHash(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Tag Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tag Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tag Name</em>' attribute.
+	 * @see #setTagName(String)
+	 * @see org.unicase.model.changetracking.git.GitPackage#getGitRevision_TagName()
+	 * @model
+	 * @generated
+	 */
+	String getTagName();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.changetracking.git.GitRevision#getTagName <em>Tag Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tag Name</em>' attribute.
+	 * @see #getTagName()
+	 * @generated
+	 */
+	void setTagName(String value);
 
 } // GitRevision

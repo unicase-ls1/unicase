@@ -38,8 +38,7 @@ public class CreateChangePackageWizard extends Wizard{
 		
 		ProgressMonitorDialog progressMonitor = new ProgressMonitorDialog(PlatformUI.getWorkbench().
 				getActiveWorkbenchWindow().getShell());
-		progressMonitor.open();
-		
+				
 		try {
 			progressMonitor.run(true, true, new CreateChangePackageOperation(
 				localRepository,

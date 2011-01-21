@@ -52,6 +52,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GitRevision" eSuperTypes="#//RepositoryRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hash" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tagName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GitRepository" eSuperTypes="#//RepositoryLocation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>

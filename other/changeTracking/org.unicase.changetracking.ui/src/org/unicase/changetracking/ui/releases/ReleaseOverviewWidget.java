@@ -8,6 +8,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -35,8 +36,13 @@ public class ReleaseOverviewWidget extends Composite {
 	private static final Image TAB_IMAGE_CHANGELOG = Activator.getImageDescriptor("icons/changelog.gif").createImage();
 	
 	private IDialogHead dialogHead;
+	
+//	@Override
+//	public Point computeSize(int wHint, int hHint, boolean changed) {
+//		return new Point(200, 200);
+//	}
 
-	public ReleaseOverviewWidget(Composite parent, int style, ChangeTrackingRelease release, IDialogHead dialogHead, ReleaseCheckReport report) {
+	public ReleaseOverviewWidget(Composite parent, int style, ChangeTrackingRelease release,  ReleaseCheckReport report) {
 		super(parent, style);
 		this.dialogHead = dialogHead;
 		
@@ -111,7 +117,6 @@ public class ReleaseOverviewWidget extends Composite {
 
 		createChangelogTab(tabFolder, report, release);
 		
-		configureDialogHead(report);
 	}
 
 	private void createChangelogTab(TabFolder tabFolder, ReleaseCheckReport report, ChangeTrackingRelease release) {
@@ -134,20 +139,6 @@ public class ReleaseOverviewWidget extends Composite {
 		changelogText.setText(changelog.toString());
 	}
 
-	private void configureDialogHead(ReleaseCheckReport report) {
-		if(dialogHead == null){
-			return;
-		}
-		
-		if(report.hasErrors()){
-			dialogHead.setMessage("There are errors in the release. Check the 'problems' tab for details.", IMessageProvider.ERROR);
-		} else if(report.hasWarnings()){
-			dialogHead.setMessage("There are warnings in the release. Check the 'problems' tab for details.", IMessageProvider.WARNING);
-		} else {
-			dialogHead.setMessage("No errors were found in this release.", IMessageProvider.INFORMATION);
-		}
-		
-		
-	}
+
 
 }

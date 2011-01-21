@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.changetracking.git.commands.GitApplyChangePackage;
+import org.unicase.changetracking.git.commands.GitApplyChangePackageCommand;
 import org.unicase.changetracking.git.exceptions.NoMatchingLocalRepositoryInWorkspace;
 import org.unicase.model.attachment.PatchAttachment;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
@@ -112,7 +112,7 @@ public class MEChangePackageControl  extends MELinkControl {
 		@Override
 		public void mouseUp(MouseEvent e) {
 			try {
-				new GitApplyChangePackage().applyChangePackage((GitBranchChangePackage) changePackage);
+				new GitApplyChangePackageCommand().applyChangePackage((GitBranchChangePackage) changePackage);
 				MessageDialog.openInformation(
 						PlatformUI.getWorkbench().
 						getActiveWorkbenchWindow().getShell(),

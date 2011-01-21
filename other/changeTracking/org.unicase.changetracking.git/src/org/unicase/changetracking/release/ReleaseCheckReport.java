@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.unicase.changetracking.release.Problem.Severity;
 import org.unicase.model.changetracking.ChangePackage;
 
@@ -13,8 +14,14 @@ public class ReleaseCheckReport {
 
 	private final List<Problem> problems;	
 	private final List<ChangePackage> changePackages;
-	private final Map<ChangePackage,BranchState> changePackageStates;
+	private final Map<ChangePackage,ChangePackageCheckEntry> changePackageResults;
 	
+	private final CheckEntry releaseBase;
+	
+	public CheckEntry getReleaseBase() {
+		return releaseBase;
+	}
+
 	public List<Problem> getProblems() {
 		return problems;
 	}
@@ -41,28 +48,31 @@ public class ReleaseCheckReport {
 		return changePackages;
 	}
 
-	public Map<ChangePackage, BranchState> getChangePackageStates() {
-		return changePackageStates;
+	public Map<ChangePackage, ChangePackageCheckEntry> getChangePackageResults() {
+		return changePackageResults;
 	}
 	
 	ReleaseCheckReport(List<ChangePackage> changePackages,
 			List<Problem> errorMessages, boolean checkedOut) {
 		this.problems = errorMessages;
 		this.changePackages = changePackages;
-		this.changePackageStates = new HashMap<ChangePackage, BranchState>();
-		
+		this.changePackageResults = new HashMap<ChangePackage, ChangePackageCheckEntry>();
+		this.releaseBase = null;
 		//All branches are erroneous
 		for(ChangePackage cp : changePackages){
-			changePackageStates.put(cp, BranchState.ERROR);
+			ChangePackageCheckEntry entry = new ChangePackageCheckEntry(cp);
+			entry.setState(BranchState.ERROR);
+			changePackageResults.put(cp, entry);
 		}
 	}
 	
 	ReleaseCheckReport(List<ChangePackage> changePackages,
-			List<Problem> errorMessages, boolean checkedOut, boolean upToDate, Map<ChangePackage,BranchState> changePackageStates) {
+			List<Problem> errorMessages, boolean checkedOut, boolean upToDate, CheckEntry releaseBase, HashMap<ChangePackage, ChangePackageCheckEntry> resultMap) {
 		this.problems = errorMessages;
 		this.changePackages = changePackages;
-		this.changePackageStates = changePackageStates;
-	}
+		this.changePackageResults = resultMap;
+		this.releaseBase = releaseBase;
+}
 
 
 

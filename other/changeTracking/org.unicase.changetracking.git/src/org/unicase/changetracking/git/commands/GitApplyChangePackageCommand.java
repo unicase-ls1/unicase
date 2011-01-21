@@ -16,7 +16,7 @@ import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.workspace.util.UnicaseCommand;
 
-public class GitApplyChangePackage extends UnicaseCommand {
+public class GitApplyChangePackageCommand extends UnicaseCommand {
 
 	
 	//private GitBranchChangePackage myChangePackage;

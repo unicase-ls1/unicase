@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.jws.WebParam.Mode;
+
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.egit.core.IteratorService;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jgit.api.Git;
@@ -20,6 +24,7 @@ import org.eclipse.jgit.errors.IncorrectObjectTypeException;
 import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.errors.NoWorkTreeException;
 import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.IndexDiff;
 import org.eclipse.jgit.lib.MutableObjectId;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.RefUpdate;
@@ -30,6 +35,9 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitPackage;
@@ -63,6 +71,34 @@ public class GitUtil {
 					"Could not obtain a commit from a repository", e);
 		}
 
+	}
+	
+	/**
+	 * Checks whether there are no changes in the working directory
+	 * and the index. This method is computationally intensive as it
+	 * checks the whole repository. Cache the result rather than calling
+	 * it more than once.
+	 * 
+	 * @param repository local repository to check
+	 * @return true iff no changes exist in the index and the working directory
+	 */
+	public static boolean isIndexAndWorkDirClean(Repository repository){
+		IndexDiff indexDiff;
+		try {
+			indexDiff = new IndexDiff(repository, Constants.HEAD,
+					IteratorService.createInitialIterator(repository));
+			indexDiff.diff();
+		} catch (IOException e) {
+			throw new UnexpectedGitException(
+					"IO Exception while examining local repository", e);
+		}
+		
+		return indexDiff.getAdded().isEmpty()
+			&& indexDiff.getChanged().isEmpty()
+			&& indexDiff.getMissing().isEmpty()
+			&& indexDiff.getModified().isEmpty()
+			&& indexDiff.getRemoved().isEmpty()
+			&& indexDiff.getUntracked().isEmpty();
 	}
 	
 	public static Iterable<RevCommit> getAllCommits(Repository repository) {
@@ -104,6 +140,15 @@ public class GitUtil {
 	
 	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException{
 		return new URIish(remote.getUrl());
+	}
+	
+	public static void addToProjectRelative(UnicaseModelElement toAdd, Project project, UnicaseModelElement relativeTo){
+		project.addModelElement(toAdd);
+	}
+
+	public static void addToProjectRelative(UnicaseModelElement toAdd, UnicaseModelElement relativeTo) {
+		addToProjectRelative(toAdd, ModelUtil.getProject(relativeTo), relativeTo);
+		
 	}
 
 	// public static Ref checkoutRev(IResource f, GitRevision revision){

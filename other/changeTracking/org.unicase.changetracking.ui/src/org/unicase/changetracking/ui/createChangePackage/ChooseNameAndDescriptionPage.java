@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.changetracking.git.GitNameUtil;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
@@ -54,7 +55,7 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 	private Text shortDescInput;
 	private Text longDescInput;
 	private boolean validInput = true;
-	private Map<String, Ref> refNames;
+	private Repository repository;
 	
 	public String getSelectedName(){
 		return nameInput.getText();
@@ -72,7 +73,7 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 			ImageDescriptor titleImage, Repository repo) {
 		super(pageName, title, titleImage);
 		
-		refNames = repo.getAllRefs();
+		repository = repo;
 		
 		
 	}
@@ -129,7 +130,6 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 	}
 	
 	private static final Pattern EMPTY_PATTERN = Pattern.compile("\\s*");
-	private static final Pattern DISALLOWED_PATTERN = Pattern.compile("(\\\\)|(\\/)");
 	
 	private boolean isEmpty(Text input){
 		return EMPTY_PATTERN.matcher(input.getText()).matches();
@@ -137,45 +137,31 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 
 	private void updateFields() {
 		if (isEmpty(nameInput) || isEmpty(shortDescInput) || isEmpty(longDescInput)){
-
 			setMessage(ERROR_MESSAGE,DialogPage.ERROR);
 			if (validInput){
 				validInput = false;
 				((CreateChangePackageWizard) getWizard()).setFinishable(false);
 			}
-		} else if (!isNameValid()){
-			setMessage("The name contains invalid characters",DialogPage.ERROR);
-			if(validInput){
-				validInput = false;
-				((CreateChangePackageWizard) getWizard()).setFinishable(false);
+		} else{
+			String message = GitNameUtil.isNewBranchNameValid(nameInput.getText(), repository);
+			if(message != null){
+				setMessage(message,DialogPage.ERROR);
+				if(validInput){
+					validInput = false;
+					((CreateChangePackageWizard) getWizard()).setFinishable(false);
+				}	
+			} else {
+				setMessage("",DialogPage.NONE);
+				if (!validInput){
+					validInput = true;
+					((CreateChangePackageWizard) getWizard()).setFinishable(true);
+				}
 			}
-		} else if (isNameUsed()){
-			setMessage("The name is already used by a branch in the repository",DialogPage.ERROR);
-			if(validInput){
-				validInput = false;
-				((CreateChangePackageWizard) getWizard()).setFinishable(false);
-			}
-		} else {
-			setMessage("",DialogPage.NONE);
-			if (!validInput){
-				validInput = true;
-				((CreateChangePackageWizard) getWizard()).setFinishable(true);
-			}
+			
 		}
-
 	}
 
-	private boolean isNameValid() {
-		return !DISALLOWED_PATTERN.matcher(nameInput.getText()).find();
-	}
-
-	private boolean isNameUsed() {
-		String text = nameInput.getText();
-		if(refNames.containsKey(text)||refNames.containsKey("refs/heads/" + text)){
-			return true;
-		}
-		return false;
-	}
+	
 
 	
 	

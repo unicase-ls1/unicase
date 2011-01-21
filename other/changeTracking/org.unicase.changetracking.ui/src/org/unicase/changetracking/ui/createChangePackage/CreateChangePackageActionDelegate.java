@@ -12,7 +12,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.GitRepoFindUtil;
-import org.unicase.changetracking.git.commands.GitCreateChangePackage;
+import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
 import org.unicase.changetracking.ui.CreateRepositoryActionDelegate;
 import org.unicase.changetracking.ui.ResourceSelectionActionDelegate;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
