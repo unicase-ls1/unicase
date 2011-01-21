@@ -34,22 +34,37 @@ public class AttributSetterEString implements IAttributeSetter<String> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public String createNewAttribute() {
 		 StringBuffer string = new StringBuffer();
 		 string.delete(0, string.length());
@@ -59,6 +74,9 @@ public class AttributSetterEString implements IAttributeSetter<String> {
 		return string.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<String> createNewAttributes(){
 		List<String> newAttrs = new ArrayList<String>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {

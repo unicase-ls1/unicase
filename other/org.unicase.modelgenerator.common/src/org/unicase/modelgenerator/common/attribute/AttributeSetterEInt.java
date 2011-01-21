@@ -34,26 +34,44 @@ public class AttributeSetterEInt implements IAttributeSetter<Integer> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Integer createNewAttribute() {
 		return randomObj.nextInt();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<Integer> createNewAttributes(){
 		List<Integer> newAttrs = new ArrayList<Integer>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {

@@ -35,26 +35,44 @@ public class AttributeSetterEBigInteger implements IAttributeSetter<BigInteger> 
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public BigInteger createNewAttribute() {
 		return new BigInteger(20, randomObj);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<BigInteger> createNewAttributes(){
 		List<BigInteger> newAttrs = new ArrayList<BigInteger>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {

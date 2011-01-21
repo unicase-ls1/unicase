@@ -34,28 +34,46 @@ public class AttributeSetterEByte implements IAttributeSetter<Byte> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Byte createNewAttribute() {
 		byte[] singlebyte = new byte[1];
 		randomObj.nextBytes(singlebyte);
 		return singlebyte[0];
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<Byte> createNewAttributes(){
 		List<Byte> newAttrs = new ArrayList<Byte>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {

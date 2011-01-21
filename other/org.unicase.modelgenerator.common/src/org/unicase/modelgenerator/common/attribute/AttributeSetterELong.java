@@ -34,26 +34,44 @@ public class AttributeSetterELong implements IAttributeSetter<Long> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
-		
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public Long createNewAttribute() {
 		return randomObj.nextLong();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<Long> createNewAttributes(){
 		List<Long> newAttrs = new ArrayList<Long>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
