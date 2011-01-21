@@ -298,14 +298,17 @@ public final class ModelGeneratorUtil {
 	public static Map<EClass, List<EObject>> getAllClassesAndObjects(EObject rootObject) {
 		Map<EClass, List<EObject>> result = new LinkedHashMap<EClass, List<EObject>>();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
+		List<EObject> newList = new LinkedList<EObject>();
+		newList.add(rootObject);
+		result.put(rootObject.eClass(), newList);
 		while(allContents.hasNext()) {
 			EObject eObject = allContents.next();
 			if(result.containsKey(eObject.eClass()))
 				result.get(eObject.eClass()).add(eObject);
 			else {
-				List<EObject> newSet = new LinkedList<EObject>();
-				newSet.add(eObject);
-				result.put(eObject.eClass(), newSet);
+				newList = new LinkedList<EObject>();
+				newList.add(eObject);
+				result.put(eObject.eClass(), newList);
 			}
 		}
 		return result;
