@@ -11,7 +11,7 @@
       <command
             defaultHandler="org.unicase.unicase.modelgenerator.GenerateChangesHandler"
             id="org.unicase.unicase.modelgenerator.generateChanges"
-            name="Generate Project Changes">
+            name="Generate Changes">
       </command>
    </extension>
    <extension
@@ -25,8 +25,17 @@
          </command>
          <command
                commandId="org.unicase.unicase.modelgenerator.generateChanges"
-               label="Generate Project Changes"
+               label="Generate Changes"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
