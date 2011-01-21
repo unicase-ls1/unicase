@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link bowling.Game#getDate <em>Date</em>}</li>
  *   <li>{@link bowling.Game#getFrames <em>Frames</em>}</li>
- *   <li>{@link bowling.Game#getSum <em>Sum</em>}</li>
  *   <li>{@link bowling.Game#getPlayer <em>Player</em>}</li>
  *   <li>{@link bowling.Game#getMatchup <em>Matchup</em>}</li>
  * </ul>
@@ -74,21 +73,6 @@ public interface Game extends EObject {
 	 * @generated
 	 */
 	EList<Integer> getFrames();
-
-	/**
-	 * Returns the value of the '<em><b>Sum</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sum</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sum</em>' attribute.
-	 * @see bowling.BowlingPackage#getGame_Sum()
-	 * @model changeable="false" derived="true"
-	 * @generated
-	 */
-	int getSum();
 
 	/**
 	 * Returns the value of the '<em><b>Player</b></em>' reference.

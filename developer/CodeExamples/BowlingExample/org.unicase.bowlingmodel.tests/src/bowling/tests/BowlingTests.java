@@ -35,7 +35,6 @@ public class BowlingTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new BowlingTests("bowling Tests");
-		suite.addTestSuite(GameTest.class);
 		return suite;
 	}
 

@@ -67,7 +67,6 @@ public class GameItemProvider
 
 			addDatePropertyDescriptor(object);
 			addFramesPropertyDescriptor(object);
-			addSumPropertyDescriptor(object);
 			addPlayerPropertyDescriptor(object);
 			addMatchupPropertyDescriptor(object);
 		}
@@ -110,28 +109,6 @@ public class GameItemProvider
 				 getString("_UI_Game_frames_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Game_frames_feature", "_UI_Game_type"),
 				 BowlingPackage.Literals.GAME__FRAMES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Sum feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSumPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Game_sum_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Game_sum_feature", "_UI_Game_type"),
-				 BowlingPackage.Literals.GAME__SUM,
 				 true,
 				 false,
 				 false,
@@ -240,7 +217,6 @@ public class GameItemProvider
 		switch (notification.getFeatureID(Game.class)) {
 			case BowlingPackage.GAME__DATE:
 			case BowlingPackage.GAME__FRAMES:
-			case BowlingPackage.GAME__SUM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

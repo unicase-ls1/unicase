@@ -244,22 +244,13 @@ public interface BowlingPackage extends EPackage {
 	int GAME__FRAMES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Sum</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GAME__SUM = 2;
-
-	/**
 	 * The feature id for the '<em><b>Player</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GAME__PLAYER = 3;
+	int GAME__PLAYER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Matchup</b></em>' container reference.
@@ -268,7 +259,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAME__MATCHUP = 4;
+	int GAME__MATCHUP = 3;
 
 	/**
 	 * The number of structural features of the '<em>Game</em>' class.
@@ -277,7 +268,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAME_FEATURE_COUNT = 5;
+	int GAME_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link bowling.impl.MatchupImpl <em>Matchup</em>}' class.
@@ -578,17 +569,6 @@ public interface BowlingPackage extends EPackage {
 	EAttribute getGame_Frames();
 
 	/**
-	 * Returns the meta object for the attribute '{@link bowling.Game#getSum <em>Sum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sum</em>'.
-	 * @see bowling.Game#getSum()
-	 * @see #getGame()
-	 * @generated
-	 */
-	EAttribute getGame_Sum();
-
-	/**
 	 * Returns the meta object for the reference '{@link bowling.Game#getPlayer <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -877,14 +857,6 @@ public interface BowlingPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GAME__FRAMES = eINSTANCE.getGame_Frames();
-
-		/**
-		 * The meta object literal for the '<em><b>Sum</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GAME__SUM = eINSTANCE.getGame_Sum();
 
 		/**
 		 * The meta object literal for the '<em><b>Player</b></em>' reference feature.
