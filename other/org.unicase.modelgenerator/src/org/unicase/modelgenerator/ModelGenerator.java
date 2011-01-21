@@ -45,13 +45,6 @@ public class ModelGenerator {
 	private static Random random;
 	
 	/**
-	 * The attributeHandler that actually creates random attribute values.
-	 * 
-	 * @see AttributeHandler 
-	 */
-	private static AttributeHandler attributeHandler;
-	
-	/**
 	 * All EObjects including the root and all its direct and indirect contents,
 	 * after deleting random EObjects.
 	 */
@@ -110,7 +103,7 @@ public class ModelGenerator {
 	public static void generateModel(ModelGeneratorConfiguration configuration) {
 		config = configuration;
 		random = new Random(config.getSeed());
-		attributeHandler = new AttributeHandler(random);
+		AttributeHandler.setRandom(random);
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		exceptions = new LinkedHashSet<RuntimeException>();
@@ -199,8 +192,7 @@ public class ModelGenerator {
 	 */
 	private static EObject setContainment(EObject parentEObject, EClass childClass, EReference reference) {
 		EObject newEObject = EcoreUtil.create(childClass);
-		ModelGeneratorUtil.setEObjectAttributes(newEObject, attributeHandler,
-			exceptions, config.getIgnoreAndLog());
+		ModelGeneratorUtil.setEObjectAttributes(newEObject,	exceptions, config.getIgnoreAndLog());
 		if(reference.isMany()) {
 			return ModelGeneratorUtil.addPerCommand(parentEObject, reference, newEObject,
 				exceptions, config.getIgnoreAndLog());
@@ -273,8 +265,7 @@ public class ModelGenerator {
 			if(parentClass.isInterface() || parentClass.isAbstract())
 				return null;
 			rootEObject = EcoreUtil.create(parentClass);
-			ModelGeneratorUtil.setEObjectAttributes(rootEObject, attributeHandler,
-				exceptions, config.getIgnoreAndLog());
+			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptions, config.getIgnoreAndLog());
 		}
 		return rootEObject;
 	}
