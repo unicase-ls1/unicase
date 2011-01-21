@@ -8,7 +8,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.modelchanger.ModelChanger;
-import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -32,8 +31,7 @@ public class GenerateChangesHandler extends AbstractHandler {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(null, rootObject);
-				ModelChanger.generateChanges(config);
+				ModelChanger.generateChanges(rootObject);
 			}
 		}.run(false);
 
