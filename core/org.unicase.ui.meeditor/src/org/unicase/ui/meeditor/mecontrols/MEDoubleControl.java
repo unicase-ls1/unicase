@@ -54,7 +54,6 @@ public class MEDoubleControl extends AbstractMEControl {
 			}
 		}
 		spinner = new Spinner(parent, style);
-		spinner.setDigits(3);
 		spinner.setDigits(digits);
 		spinner.setMinimum(-1000);
 		spinner.setMaximum(1000);
