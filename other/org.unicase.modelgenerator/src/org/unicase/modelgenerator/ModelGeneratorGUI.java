@@ -22,8 +22,8 @@ import javax.swing.JTextField;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.modelgenerator.util.ModelGeneratorConfiguration;
-import org.unicase.modelgenerator.util.ModelGeneratorUtil;
+import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
+import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 
 public class ModelGeneratorGUI extends JFrame{
 
@@ -33,17 +33,17 @@ public class ModelGeneratorGUI extends JFrame{
 	 */
 	private static final long serialVersionUID = -1870695207208799938L;
 
-	private IModelGenerator listener;
+	private ModelGenerator listener;
 	
 	private FirstDialog firstDialog;
 	private SecondDialog secondDialog;
 	
 
-	public void setListener(IModelGenerator listener) {
+	public void setListener(ModelGenerator listener) {
 		this.listener = listener;
 	}
 
-	public IModelGenerator getListener() {
+	public ModelGenerator getListener() {
 		return listener;
 	}
 	
@@ -89,7 +89,7 @@ public class ModelGeneratorGUI extends JFrame{
 			container.add(mainPanel, BorderLayout.NORTH);
 			container.add(buttonPanel, BorderLayout.SOUTH);		
 			
-			models = new EPackage[]{ModelGeneratorUtil.getModelPackage("http://unicase.org/model")};
+			models = new EPackage[]{ModelGeneratorUtil.getEPackage("http://unicase.org/model")};
 			String[] modelsString = getModelNames(models);
 		    modelList = new JList(modelsString);
 		    mainPanel.add(new JScrollPane(modelList));
@@ -102,7 +102,7 @@ public class ModelGeneratorGUI extends JFrame{
 		    		EPackage model = getSelectedPackage();
 		    		((DefaultListModel)rootObjectList.getModel()).clear();
 		    		if(model!=null){
-		    			allModelElementEClasses = ModelGeneratorUtil.getAllModelElementEClasses(model).toArray(new EClass[0]);
+		    			allModelElementEClasses = ModelGeneratorUtil.getAllEClasses(model).toArray(new EClass[0]);
 		    			DefaultListModel defaultModel = (DefaultListModel)rootObjectList.getModel();
 		    			for (int i = 0; i < allModelElementEClasses.length; i++) {
 		    				EClass eClass = allModelElementEClasses[i];
