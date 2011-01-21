@@ -250,7 +250,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		// hkq: done
+		// hkq: open
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory());
@@ -263,7 +263,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (dialog.open() == Window.OK) {
 			selected = (EObject) dialog.getFirstResult();
 		}
-		((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose();
+		((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose(); // not possible
 		labelProvider.dispose();
 
 		return selected;
