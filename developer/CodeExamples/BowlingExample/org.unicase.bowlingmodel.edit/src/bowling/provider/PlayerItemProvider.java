@@ -317,7 +317,16 @@ public class PlayerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Player)object).getFirstname() + " " + ((Player)object).getLastname();
+		String firstname = ((Player)object).getFirstname();
+		String lastname = ((Player)object).getLastname();
+		String label = "";
+		if (firstname != null) {
+			label += firstname + " ";
+		}
+		if (lastname != null) {
+			label += lastname;
+		}
+		label.trim();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Player_type") :
 			getString("_UI_Player_type") + " " + label;
