@@ -220,7 +220,7 @@ public class TournamentItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return BowlingEditPlugin.INSTANCE;
+		return BowlingmodelEditPlugin.INSTANCE;
 	}
 
 }
