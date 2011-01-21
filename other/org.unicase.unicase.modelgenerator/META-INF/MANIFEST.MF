@@ -11,4 +11,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.unicase.metamodel;bundle-version="1.0.0",
  org.unicase.workspace;bundle-version="1.0.0",
  org.unicase.model;bundle-version="1.0.0",
- org.unicase.modelgenerator;bundle-version="1.0.0"
+ org.unicase.modelgenerator;bundle-version="1.0.0",
+ org.unicase.modelchanger;bundle-version="1.0.0",
+ org.unicase.modelgenerator.common;bundle-version="1.0.0"
