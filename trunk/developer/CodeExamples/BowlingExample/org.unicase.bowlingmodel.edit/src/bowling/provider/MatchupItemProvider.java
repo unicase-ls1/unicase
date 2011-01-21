@@ -11,7 +11,6 @@ import bowling.BowlingFactory;
 import bowling.BowlingPackage;
 import bowling.Game;
 import bowling.Matchup;
-import bowling.Player;
 
 import java.util.Collection;
 import java.util.List;
@@ -146,7 +145,7 @@ public class MatchupItemProvider
 	public String getText(Object object) {
 		String label = "";
 		List<Game> games = ((Matchup)object).getGames();
-		if (games.size() == 2) {
+		if (games.size() == 2 && games.get(0).getPlayer() != null && games.get(1).getPlayer() != null) {
 			label += games.get(0).getPlayer().getLastname();
 			label += " vs. ";
 			label += games.get(1).getPlayer().getLastname();
