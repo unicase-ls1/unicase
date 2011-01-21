@@ -154,7 +154,7 @@ public class MatchupItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BowlingPackage.Literals.MATCHUP__GAMES,
-				 BowlingFactory.eINSTANCE.createGames()));
+				 BowlingFactory.eINSTANCE.createGame()));
 	}
 
 	/**

@@ -11,8 +11,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateOfBirth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isProfessional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="games" eType="#//Games"
-        eOpposite="#//Games/player">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="games" eType="#//Game"
+        eOpposite="#//Game/player">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="position" value="right"/>
         <details key="priority" value="0"/>
@@ -36,7 +36,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Games">
+  <eClassifiers xsi:type="ecore:EClass" name="Game">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="frames" upperBound="10"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -56,8 +56,8 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Matchup">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="games" upperBound="2" eType="#//Games"
-        containment="true" eOpposite="#//Games/matchup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="games" upperBound="2" eType="#//Game"
+        containment="true" eOpposite="#//Game/matchup">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="position" value="right"/>
         <details key="priority" value="0"/>

@@ -14,24 +14,24 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Games</b></em>'.
+ * A representation of the model object '<em><b>Game</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link bowling.Games#getDate <em>Date</em>}</li>
- *   <li>{@link bowling.Games#getFrames <em>Frames</em>}</li>
- *   <li>{@link bowling.Games#getPlayer <em>Player</em>}</li>
- *   <li>{@link bowling.Games#getMatchup <em>Matchup</em>}</li>
+ *   <li>{@link bowling.Game#getDate <em>Date</em>}</li>
+ *   <li>{@link bowling.Game#getFrames <em>Frames</em>}</li>
+ *   <li>{@link bowling.Game#getPlayer <em>Player</em>}</li>
+ *   <li>{@link bowling.Game#getMatchup <em>Matchup</em>}</li>
  * </ul>
  * </p>
  *
- * @see bowling.BowlingPackage#getGames()
+ * @see bowling.BowlingPackage#getGame()
  * @model
  * @generated
  */
-public interface Games extends EObject {
+public interface Game extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,14 +42,14 @@ public interface Games extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
-	 * @see bowling.BowlingPackage#getGames_Date()
+	 * @see bowling.BowlingPackage#getGame_Date()
 	 * @model
 	 * @generated
 	 */
 	Date getDate();
 
 	/**
-	 * Sets the value of the '{@link bowling.Games#getDate <em>Date</em>}' attribute.
+	 * Sets the value of the '{@link bowling.Game#getDate <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Date</em>' attribute.
@@ -68,7 +68,7 @@ public interface Games extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Frames</em>' attribute list.
-	 * @see bowling.BowlingPackage#getGames_Frames()
+	 * @see bowling.BowlingPackage#getGame_Frames()
 	 * @model upper="10"
 	 * @generated
 	 */
@@ -85,7 +85,7 @@ public interface Games extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Player</em>' reference.
 	 * @see #setPlayer(Player)
-	 * @see bowling.BowlingPackage#getGames_Player()
+	 * @see bowling.BowlingPackage#getGame_Player()
 	 * @see bowling.Player#getGames
 	 * @model opposite="games"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
@@ -94,7 +94,7 @@ public interface Games extends EObject {
 	Player getPlayer();
 
 	/**
-	 * Sets the value of the '{@link bowling.Games#getPlayer <em>Player</em>}' reference.
+	 * Sets the value of the '{@link bowling.Game#getPlayer <em>Player</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Player</em>' reference.
@@ -114,7 +114,7 @@ public interface Games extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matchup</em>' container reference.
 	 * @see #setMatchup(Matchup)
-	 * @see bowling.BowlingPackage#getGames_Matchup()
+	 * @see bowling.BowlingPackage#getGame_Matchup()
 	 * @see bowling.Matchup#getGames
 	 * @model opposite="games" transient="false"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
@@ -123,7 +123,7 @@ public interface Games extends EObject {
 	Matchup getMatchup();
 
 	/**
-	 * Sets the value of the '{@link bowling.Games#getMatchup <em>Matchup</em>}' container reference.
+	 * Sets the value of the '{@link bowling.Game#getMatchup <em>Matchup</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Matchup</em>' container reference.
@@ -132,4 +132,4 @@ public interface Games extends EObject {
 	 */
 	void setMatchup(Matchup value);
 
-} // Games
+} // Game

@@ -7,7 +7,7 @@
 package bowling.tests;
 
 import bowling.BowlingFactory;
-import bowling.Games;
+import bowling.Game;
 
 import junit.framework.TestCase;
 
@@ -15,19 +15,19 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Games</b></em>'.
+ * A test case for the model object '<em><b>Game</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class GamesTest extends TestCase {
+public class GameTest extends TestCase {
 
 	/**
-	 * The fixture for this Games test case.
+	 * The fixture for this Game test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Games fixture = null;
+	protected Game fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -35,36 +35,36 @@ public class GamesTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(GamesTest.class);
+		TestRunner.run(GameTest.class);
 	}
 
 	/**
-	 * Constructs a new Games test case with the given name.
+	 * Constructs a new Game test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GamesTest(String name) {
+	public GameTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Games test case.
+	 * Sets the fixture for this Game test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Games fixture) {
+	protected void setFixture(Game fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Games test case.
+	 * Returns the fixture for this Game test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Games getFixture() {
+	protected Game getFixture() {
 		return fixture;
 	}
 
@@ -76,7 +76,7 @@ public class GamesTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(BowlingFactory.eINSTANCE.createGames());
+		setFixture(BowlingFactory.eINSTANCE.createGame());
 	}
 
 	/**
@@ -90,4 +90,4 @@ public class GamesTest extends TestCase {
 		setFixture(null);
 	}
 
-} //GamesTest
+} //GameTest

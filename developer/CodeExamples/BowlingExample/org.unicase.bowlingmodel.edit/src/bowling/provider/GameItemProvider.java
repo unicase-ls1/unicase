@@ -8,7 +8,7 @@ package bowling.provider;
 
 
 import bowling.BowlingPackage;
-import bowling.Games;
+import bowling.Game;
 
 import java.util.Collection;
 import java.util.Date;
@@ -31,12 +31,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link bowling.Games} object.
+ * This is the item provider adapter for a {@link bowling.Game} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GamesItemProvider
+public class GameItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +50,7 @@ public class GamesItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GamesItemProvider(AdapterFactory adapterFactory) {
+	public GameItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -83,9 +83,9 @@ public class GamesItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Games_date_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Games_date_feature", "_UI_Games_type"),
-				 BowlingPackage.Literals.GAMES__DATE,
+				 getString("_UI_Game_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Game_date_feature", "_UI_Game_type"),
+				 BowlingPackage.Literals.GAME__DATE,
 				 true,
 				 false,
 				 false,
@@ -105,9 +105,9 @@ public class GamesItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Games_frames_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Games_frames_feature", "_UI_Games_type"),
-				 BowlingPackage.Literals.GAMES__FRAMES,
+				 getString("_UI_Game_frames_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Game_frames_feature", "_UI_Game_type"),
+				 BowlingPackage.Literals.GAME__FRAMES,
 				 true,
 				 false,
 				 false,
@@ -127,9 +127,9 @@ public class GamesItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Games_player_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Games_player_feature", "_UI_Games_type"),
-				 BowlingPackage.Literals.GAMES__PLAYER,
+				 getString("_UI_Game_player_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Game_player_feature", "_UI_Game_type"),
+				 BowlingPackage.Literals.GAME__PLAYER,
 				 true,
 				 false,
 				 true,
@@ -139,14 +139,14 @@ public class GamesItemProvider
 	}
 
 	/**
-	 * This returns Games.gif.
+	 * This returns Game.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Games"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Game"));
 	}
 
 	/**
@@ -157,11 +157,11 @@ public class GamesItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Games)object).getDate();
+		Date labelValue = ((Game)object).getDate();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Games_type") :
-			getString("_UI_Games_type") + " " + label;
+			getString("_UI_Game_type") :
+			getString("_UI_Game_type") + " " + label;
 	}
 
 	/**
@@ -175,9 +175,9 @@ public class GamesItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Games.class)) {
-			case BowlingPackage.GAMES__DATE:
-			case BowlingPackage.GAMES__FRAMES:
+		switch (notification.getFeatureID(Game.class)) {
+			case BowlingPackage.GAME__DATE:
+			case BowlingPackage.GAME__FRAMES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
