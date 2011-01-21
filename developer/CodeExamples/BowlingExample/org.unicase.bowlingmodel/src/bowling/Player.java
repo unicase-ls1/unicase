@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link bowling.Player#isIsProfessional <em>Is Professional</em>}</li>
  *   <li>{@link bowling.Player#getGames <em>Games</em>}</li>
  *   <li>{@link bowling.Player#getPlayerlist <em>Playerlist</em>}</li>
+ *   <li>{@link bowling.Player#getHeight <em>Height</em>}</li>
  * </ul>
  * </p>
  *
@@ -274,5 +275,31 @@ public interface Player extends EObject {
 	 * @generated
 	 */
 	void setPlayerlist(Playerlist value);
+
+	/**
+	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #setHeight(double)
+	 * @see bowling.BowlingPackage#getPlayer_Height()
+	 * @model
+	 * @generated
+	 */
+	double getHeight();
+
+	/**
+	 * Sets the value of the '{@link bowling.Player#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #getHeight()
+	 * @generated
+	 */
+	void setHeight(double value);
 
 } // Player
