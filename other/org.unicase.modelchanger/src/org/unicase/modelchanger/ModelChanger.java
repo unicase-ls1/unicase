@@ -1,337 +1,200 @@
 package org.unicase.modelchanger;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.modelgenerator.common.attribute.AttributeHandler;
+import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
+import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 
+/**
+ * Class for changing Ecore models automatically, static methods only.
+ * Changing a model includes:<br>
+ * - deleting random EObjects and all their children<br>
+ * - replace attributes by new random values<br>
+ * - replace references (no containment references) by new random values
+ *
+ *@see #generateChanges(ModelGeneratorConfiguration)
+ */
 public class ModelChanger {
 
-	final private Random random;
-	final private StringBuffer string;
-	final private Date date;
-	final private Set<EObject> objectsToDelete;
-	final private Map<EClass, Set<EObject>> allObjectsByEClass;
-	final private Map<EReference, List<EClass>> possibleReferenceClasses;
-	private EditingDomain domain;
+	/**
+	 * The configuration containing settings for the changing process. 
+	 * @see ModelGeneratorConfiguration
+	 */
+	private static ModelGeneratorConfiguration config;
 	
-	public ModelChanger(long seed, EObject rootObject) {
-		random = new Random(seed);
-		string = new StringBuffer();
-		date = new Date();
-		objectsToDelete = new LinkedHashSet<EObject>();
-		allObjectsByEClass = new LinkedHashMap<EClass, Set<EObject>>();
-		possibleReferenceClasses =  new LinkedHashMap<EReference, List<EClass>>();
-		generateChanges(rootObject);
+	/**
+	 * Random-object to compute random values for deleting EObjects
+	 * and setting their attributes and references.
+	 */
+	private static Random random;
+	
+	/**
+	 * The attributeHandler that actually creates random attribute values. 
+	 */
+	private static AttributeHandler attributeHandler;
+	
+	/**
+	 * All EObjects including the root and all its direct and indirect contents,
+	 * after deleting random EObjects.
+	 */
+	private static Map<EClass, List<EObject>> allObjectsByEClass;
+	
+	/**
+	 * A set of RuntimeExceptions that occurred during the last changing process.
+	 */
+	private static Set<RuntimeException> exceptions;
+	
+	/**
+	 * Private constructor.
+	 */
+	private ModelChanger() {
+		// all methods should be accessed in a static way
 	}
-
-	public ModelChanger(long seed, IStructuredSelection ssel) {
-		random = new Random(seed);
-		string = new StringBuffer();
-		date = new Date();
-		objectsToDelete = new LinkedHashSet<EObject>();
-		allObjectsByEClass = new LinkedHashMap<EClass, Set<EObject>>();
-		possibleReferenceClasses =  new LinkedHashMap<EReference, List<EClass>>();
-		if(!ssel.isEmpty()) {
-			Object firstSelectedElement;
-			firstSelectedElement = ssel.getFirstElement();
-			if(firstSelectedElement instanceof EObject) {
-				generateChanges(((EObject) firstSelectedElement));
-			} else {
-				throw new IllegalArgumentException("Selected element is no EObject!");
-			}
-		} else {
-			throw new IllegalArgumentException("No EObject selected!");
-		}
-	}
-
-	private void generateChanges(EObject rootObject) {
-		domain = AdapterFactoryEditingDomain.getEditingDomainFor(rootObject);
-		List<EObject> allObjects = new ArrayList<EObject>();
+	
+	/**
+	 * Changes EObjects using the settings specified in <code>configuration</code>.
+	 * Changing includes deleting EObjects and their children and replacing all set
+	 * attributes and references (no containment-references) with new values. 
+	 * 
+	 * @param configuration the ModelGeneratorConfiguration to use for changing EObjects
+	 * @see ModelGeneratorConfiguration
+	 * @see #generateChanges()
+	 */
+	public static void generateChanges(ModelGeneratorConfiguration configuration) {
+		config = configuration;
+		random = new Random(config.getSeed());
+		attributeHandler = new AttributeHandler(random);
+		Set<EObject> allChildren = new LinkedHashSet<EObject>();
+		EObject rootObject = config.getRootEObject();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
-		allObjects.add(rootObject);
 		while(allContents.hasNext()) {
-			allObjects.add(allContents.next());
+			allChildren.add(allContents.next());
 		}
-		for(EObject eObject : allObjects) {
-			if(!objectsToDelete.contains(eObject)) {
-				if(random.nextDouble() < 0.1 && !eObject.equals(rootObject)) {
-					objectsToDelete.add(eObject);
-					TreeIterator<EObject> childrenIterator = eObject.eAllContents();
-					while(childrenIterator.hasNext()) {
-						objectsToDelete.add(childrenIterator.next());
-					}
-					continue;
-				}
-				if(allObjectsByEClass.containsKey(eObject.eClass())) {
-					allObjectsByEClass.get(eObject.eClass()).add(eObject);
-				} else {
-					Set<EObject> newSet = new LinkedHashSet<EObject>();
-					newSet.add(eObject);
-					allObjectsByEClass.put(eObject.eClass(), newSet);
-				}
+		deleteRandomEObjects(allChildren);
+		generateChanges();
+	}
+	
+	/**
+	 * Randomly deletes EObjects and their children from a set of EObjects.
+	 * <code>allChildren</code> shouldn't contain the rootObject, so the
+	 * root (and therefore ALL existing EObjects) doesn't get deleted.
+	 * 
+	 * @param allChildren set of EObjects from which EObjects are selected to be deleted
+	 * @see #deleteAllChildren(EList)
+	 */
+	private static void deleteRandomEObjects(Set<EObject> allChildren) {
+		Set<EObject> deletedChildren = new LinkedHashSet<EObject>();
+		for(EObject eObject : allChildren) {
+			if(deletedChildren.contains(eObject))
+				continue;
+			if(random.nextDouble() < 0.1) {
+				deletedChildren.addAll(deleteAllChildren(eObject.eContents()));
+				EcoreUtil.delete(eObject);
 			}
 		}
-		for(EObject deletedObject : objectsToDelete) {
-			if(allObjectsByEClass.containsKey(deletedObject.eClass()))
-				allObjectsByEClass.get(deletedObject.eClass()).remove(deletedObject);
+	}
+
+	/**
+	 * Deletes a list of EObjects and all their direct and indirect contents
+	 * recursively.
+	 * 
+	 * @param children all children that should be deleted
+	 * @return all deleted EObjects and all their direct and indirect contents
+	 * @see #deleteRandomEObjects(Set)
+	 */
+	private static Set<EObject> deleteAllChildren(EList<EObject> children) {
+		Set<EObject> allDeletedChildren = new LinkedHashSet<EObject>();
+		for(EObject child : children) {
+			allDeletedChildren.addAll(deleteAllChildren(child.eContents()));
+			EcoreUtil.delete(child);
+			allDeletedChildren.add(child);
 		}
-		new DeleteCommand(domain, objectsToDelete).execute();
+		return allDeletedChildren;
+	}
+
+	/**
+	 * Performs changes upon every EObject (the root and all its direct and indirect contents).
+	 * Changing includes replacing attribute and reference values.
+	 * Deleting EObjects is performed before this operation.
+	 * 
+	 * @see #generateChanges(ModelGeneratorConfiguration)
+	 */
+	private static void generateChanges() {
+		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(config.getRootEObject());
+		
 		for(EClass eClass : allObjectsByEClass.keySet()) {
 			for(EObject eObject : allObjectsByEClass.get(eClass)) {
 				changeEObjectAttributes(eObject);
 				changeEObjectReferences(eObject);
 			}
 		}
-		
 	}
 	
-	private void changeEObjectReferences(EObject newObject) {
-		for(EReference reference : newObject.eClass().getEAllReferences()) {
-			if(reference.isContainment() || reference.isContainer() || reference.isVolatile() || reference.isTransient() || reference.isDerived() || !reference.isChangeable() || (!reference.isMany() && newObject.eIsSet(reference))) {
-				continue;
+	/**
+	 * Sets all of <code>eObject</code>'s attributes to new values, discarding old ones.
+	 * Therefore all values from many-valued attributes are removed using a RemoveCommand.
+	 * Single-valued attributes are simply replaced.
+	 * 
+	 * @param eObject the EObject to change attributes for
+	 * @see ModelGeneratorUtil#removePerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Collection, Set, boolean)
+	 * @see ModelGeneratorUtil#setEObjectAttributes(EObject, AttributeHandler, Set, boolean)
+	 */
+	private static void changeEObjectAttributes(EObject eObject) {
+		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
+			if(attribute.isMany() && eObject.eIsSet(attribute)) {
+				ModelGeneratorUtil.removePerCommand(eObject, attribute, (Collection<?>) eObject.eGet(attribute),
+					exceptions, config.getIgnoreAndLog());
 			}
-			if(reference.isMany()) {
-				new RemoveCommand(domain, newObject, reference, (List)newObject.eGet(reference)).doExecute();
+		}
+		ModelGeneratorUtil.setEObjectAttributes(eObject, attributeHandler,
+			exceptions, config.getIgnoreAndLog());
+	}
+
+	/**
+	 * Sets all of <code>eObject</code>'s references to new values, discarding old ones.
+	 * Therefore all values from many-valued references are removed using a RemoveCommand.
+	 * Single-valued references are simply replaced.
+	 * 
+	 * @param eObject the EObject to change references for
+	 * @see ModelGeneratorUtil#removePerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Collection, Set, boolean)
+	 * @see ModelGeneratorUtil#setReference(EObject, EClass, EReference, Random, Set, boolean, Map)
+	 */
+	private static void changeEObjectReferences(EObject eObject) {
+		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
+			if(reference.isMany() && eObject.eIsSet(reference)) {
+				ModelGeneratorUtil.removePerCommand(eObject, reference, (Collection<?>) eObject.eGet(reference),
+					exceptions, config.getIgnoreAndLog());
 			}
-			List<EClass> possibleReferenceClasses = getPossibleReferenceClasses(reference); 
-			for(EClass nextReferenceClass : possibleReferenceClasses) {
+			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				if(allObjectsByEClass.containsKey(nextReferenceClass)) {
-					List<EObject> possibleReferenceObjects = new ArrayList<EObject>(allObjectsByEClass.get(nextReferenceClass)); 
-					possibleReferenceObjects.remove(newObject);
-					Collections.shuffle(possibleReferenceObjects, random);
-					if(!possibleReferenceObjects.isEmpty()) {
-						int index = 0;
-						try {
-							if(reference.isMany()) {
-								int maxObjects = random.nextInt(3) + 1;
-								if(reference.isRequired()) maxObjects++;
-								List<EObject> referencedObjects = new ArrayList<EObject>();
-								for(int i = 0; i < maxObjects; i++) {
-									referencedObjects.add(possibleReferenceObjects.get(index));
-									if(++index==possibleReferenceObjects.size()) break;
-								}
-								new AddCommand(domain, newObject, reference, referencedObjects).doExecute();
-							} else if (reference.isRequired() || random.nextBoolean()){
-								EObject referencedObject = possibleReferenceObjects.get(index);
-								new SetCommand(domain, newObject, reference, referencedObject).doExecute();
-								break;
-							} else break;
-						} catch (Exception e) {
-						}
-					}
+					ModelGeneratorUtil.setReference(eObject, nextReferenceClass, reference, random,
+						exceptions, config.getIgnoreAndLog(), allObjectsByEClass);
 				}
 			}
 		}
 	}
 	
-	private List<EClass> getPossibleReferenceClasses(EReference reference) {
-		if(possibleReferenceClasses.containsKey(reference))
-			return possibleReferenceClasses.get(reference);
-		else {
-			List<EClass> result = new ArrayList<EClass>();
-			EClass referenceType = reference.getEReferenceType();
-			result.add(referenceType);
-			for(EClass eClass : allObjectsByEClass.keySet()) {
-				if(referenceType.isSuperTypeOf(eClass)) {
-					result.add(eClass);
-				}
-			}
-			possibleReferenceClasses.put(reference, result);
-			return result;
-		}
-	}
-	
-	private void changeEObjectAttributes(EObject newObject) {
-		for(EAttribute attribute : newObject.eClass().getEAllAttributes()) {
-			try {
-				if(attribute.isMany()) {
-					new RemoveCommand(domain, newObject, attribute, (List) newObject.eGet(attribute)).doExecute();
-				}
-				EClassifier attributeType = attribute.getEType();
-				EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
-				if(!attribute.isChangeable() || attribute.isDerived() || attribute.isTransient() || attribute.isVolatile())
-					continue;
-				if (attributeType == ecoreInstance.getEBoolean() || attributeType == ecoreInstance.getEBooleanObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Boolean> newAttributes = new ArrayList<Boolean>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextBoolean());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextBoolean()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEByteArray()){
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						for(int i = 0; i < maxObjects; i++) {
-							byte[] bytes = new byte[random.nextInt(100)];
-							random.nextBytes(bytes);
-							new AddCommand(domain, newObject, attribute, bytes).doExecute();
-						}
-					} else {
-						byte[] bytes = new byte[random.nextInt(100)];
-						random.nextBytes(bytes);
-						new SetCommand(domain, newObject, attribute, bytes).doExecute();
-					}				
-				} else if (attributeType == ecoreInstance.getEByte() || attributeType == ecoreInstance.getEByteObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						for(int i = 0; i < maxObjects; i++) {
-							byte[] singleByte = new byte[1];
-							random.nextBytes(singleByte);
-							new AddCommand(domain, newObject, attribute, singleByte).doExecute();
-						}
-					} else {
-						byte[] singleByte = new byte[1];
-						random.nextBytes(singleByte);
-						new SetCommand(domain, newObject, attribute, singleByte).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEChar() || attributeType == ecoreInstance.getECharacterObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Character> newAttributes = new ArrayList<Character>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add((char) (random.nextInt(94) + 33));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, (char)(random.nextInt(94) + 33)).doExecute();
-					}
-				} else if(attributeType == ecoreInstance.getEString()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<String> newAttributes = new ArrayList<String>();
-						for(int i = 0; i < maxObjects; i++) {
-							string.delete(0, string.length());
-							for(int j = -5; j<random.nextInt(10); j++) {
-								string.append((char)(random.nextInt(94) + 33));
-							}
-							newAttributes.add(string.toString());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						string.delete(0, string.length());
-						for(int j = -5; j<random.nextInt(10); j++) {
-							string.append((char)(random.nextInt(94) + 33));
-						}
-						new SetCommand(domain, newObject, attribute, string.toString()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEDate()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Date> newAttributes = new ArrayList<Date>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(date);
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, date).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEInt() || attributeType == ecoreInstance.getEIntegerObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Integer> newAttributes = new ArrayList<Integer>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEDouble() || attributeType == ecoreInstance.getEDoubleObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Double> newAttributes = new ArrayList<Double>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextDouble() * random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextDouble() * random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEFloat() || attributeType == ecoreInstance.getEFloatObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Float> newAttributes = new ArrayList<Float>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextFloat() * random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextFloat() * random.nextInt()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getELong() || attributeType == ecoreInstance.getELongObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Long> newAttributes = new ArrayList<Long>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(random.nextLong());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, random.nextLong()).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEShort() || attributeType == ecoreInstance.getEShortObject()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<Short> newAttributes = new ArrayList<Short>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add((short) random.nextInt());
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, (short) random.nextInt()).doExecute();
-					}
-				} else if (attributeType ==ecoreInstance.getEBigInteger()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<BigInteger> newAttributes = new ArrayList<BigInteger>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(new BigInteger(20, random));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, new BigInteger(20, random)).doExecute();
-					}
-				} else if (attributeType == ecoreInstance.getEBigDecimal()) {
-					if(attribute.isMany()) {
-						int maxObjects = random.nextInt(3) + 1;
-						List<BigDecimal> newAttributes = new ArrayList<BigDecimal>();
-						for(int i = 0; i < maxObjects; i++) {
-							newAttributes.add(new BigDecimal(random.nextDouble() * random.nextInt()));
-						}
-						new AddCommand(domain, newObject, attribute, newAttributes).doExecute();
-					} else {
-						new SetCommand(domain, newObject, attribute, new BigDecimal(random.nextDouble() * random.nextInt())).doExecute();
-					}
-				}
-			} catch (Exception e) {
-			}
-		}
+	/**
+	 * Returns the Exception-Log for the last {@link #generateChanges()}
+	 * The log is empty if no RuntimeException occurred or <code>ignoreAndLog</code>
+	 * was set to <code>false</code> in the last configuration used.
+	 * 
+	 * @return a set of RuntimeExceptions that occurred during the last changing process
+	 */
+	public static Set<RuntimeException> getLog() {
+		return exceptions;
 	}
 }
