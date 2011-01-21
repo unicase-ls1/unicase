@@ -300,8 +300,17 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGame_Sum() {
+		return (EAttribute)gameEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getGame_Player() {
-		return (EReference)gameEClass.getEStructuralFeatures().get(2);
+		return (EReference)gameEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -310,7 +319,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * @generated
 	 */
 	public EReference getGame_Matchup() {
-		return (EReference)gameEClass.getEStructuralFeatures().get(3);
+		return (EReference)gameEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -442,6 +451,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		gameEClass = createEClass(GAME);
 		createEAttribute(gameEClass, GAME__DATE);
 		createEAttribute(gameEClass, GAME__FRAMES);
+		createEAttribute(gameEClass, GAME__SUM);
 		createEReference(gameEClass, GAME__PLAYER);
 		createEReference(gameEClass, GAME__MATCHUP);
 
@@ -509,6 +519,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGame_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGame_Frames(), ecorePackage.getEInt(), "frames", null, 0, 10, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGame_Sum(), ecorePackage.getEInt(), "sum", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getGame_Player(), this.getPlayer(), this.getPlayer_Games(), "player", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGame_Matchup(), this.getMatchup(), this.getMatchup_Games(), "matchup", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

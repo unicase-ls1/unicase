@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link bowling.impl.GameImpl#getDate <em>Date</em>}</li>
  *   <li>{@link bowling.impl.GameImpl#getFrames <em>Frames</em>}</li>
+ *   <li>{@link bowling.impl.GameImpl#getSum <em>Sum</em>}</li>
  *   <li>{@link bowling.impl.GameImpl#getPlayer <em>Player</em>}</li>
  *   <li>{@link bowling.impl.GameImpl#getMatchup <em>Matchup</em>}</li>
  * </ul>
@@ -74,6 +75,26 @@ public class GameImpl extends EObjectImpl implements Game {
 	 * @ordered
 	 */
 	protected EList<Integer> frames;
+
+	/**
+	 * The default value of the '{@link #getSum() <em>Sum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSum()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SUM_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSum() <em>Sum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSum()
+	 * @generated
+	 * @ordered
+	 */
+	protected int sum = SUM_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPlayer() <em>Player</em>}' reference.
@@ -135,6 +156,20 @@ public class GameImpl extends EObjectImpl implements Game {
 			frames = new EDataTypeUniqueEList<Integer>(Integer.class, this, BowlingPackage.GAME__FRAMES);
 		}
 		return frames;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getSum() {
+		int result = 0;
+		for (int i : getFrames()) {
+			result += i;
+		}
+		//sum = result;
+		return result;
 	}
 
 	/**
@@ -300,6 +335,8 @@ public class GameImpl extends EObjectImpl implements Game {
 				return getDate();
 			case BowlingPackage.GAME__FRAMES:
 				return getFrames();
+			case BowlingPackage.GAME__SUM:
+				return getSum();
 			case BowlingPackage.GAME__PLAYER:
 				if (resolve) return getPlayer();
 				return basicGetPlayer();
@@ -371,6 +408,8 @@ public class GameImpl extends EObjectImpl implements Game {
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case BowlingPackage.GAME__FRAMES:
 				return frames != null && !frames.isEmpty();
+			case BowlingPackage.GAME__SUM:
+				return sum != SUM_EDEFAULT;
 			case BowlingPackage.GAME__PLAYER:
 				return player != null;
 			case BowlingPackage.GAME__MATCHUP:
@@ -393,6 +432,8 @@ public class GameImpl extends EObjectImpl implements Game {
 		result.append(date);
 		result.append(", frames: ");
 		result.append(frames);
+		result.append(", sum: ");
+		result.append(sum);
 		result.append(')');
 		return result.toString();
 	}

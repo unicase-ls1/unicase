@@ -17,6 +17,12 @@ import junit.textui.TestRunner;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Game</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are tested:
+ * <ul>
+ *   <li>{@link bowling.Game#getSum() <em>Sum</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class GameTest extends TestCase {
@@ -88,6 +94,19 @@ public class GameTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link bowling.Game#getSum() <em>Sum</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bowling.Game#getSum()
+	 * @generated
+	 */
+	public void testGetSum() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //GameTest
