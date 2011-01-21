@@ -116,13 +116,22 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__DATE_OF_BIRTH = 4;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__HEIGHT = 5;
+
+	/**
 	 * The feature id for the '<em><b>City</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__CITY = 5;
+	int PLAYER__CITY = 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Professional</b></em>' attribute.
@@ -131,7 +140,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__IS_PROFESSIONAL = 6;
+	int PLAYER__IS_PROFESSIONAL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Games</b></em>' reference.
@@ -140,7 +149,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__GAMES = 7;
+	int PLAYER__GAMES = 8;
 
 	/**
 	 * The feature id for the '<em><b>Playerlist</b></em>' container reference.
@@ -149,16 +158,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__PLAYERLIST = 8;
-
-	/**
-	 * The feature id for the '<em><b>Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLAYER__HEIGHT = 9;
+	int PLAYER__PLAYERLIST = 9;
 
 	/**
 	 * The number of structural features of the '<em>Player</em>' class.

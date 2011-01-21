@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link bowling.Player#getStreet <em>Street</em>}</li>
  *   <li>{@link bowling.Player#getStreetnumber <em>Streetnumber</em>}</li>
  *   <li>{@link bowling.Player#getDateOfBirth <em>Date Of Birth</em>}</li>
+ *   <li>{@link bowling.Player#getHeight <em>Height</em>}</li>
  *   <li>{@link bowling.Player#getCity <em>City</em>}</li>
  *   <li>{@link bowling.Player#isIsProfessional <em>Is Professional</em>}</li>
  *   <li>{@link bowling.Player#getGames <em>Games</em>}</li>
  *   <li>{@link bowling.Player#getPlayerlist <em>Playerlist</em>}</li>
- *   <li>{@link bowling.Player#getHeight <em>Height</em>}</li>
  * </ul>
  * </p>
  *
