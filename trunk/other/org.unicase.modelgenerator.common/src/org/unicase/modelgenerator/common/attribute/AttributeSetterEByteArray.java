@@ -42,37 +42,60 @@ public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 		this.bytesize = bytesize;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getBytesize() {
 		return bytesize;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setBytesize(int bytesize) {
 		this.bytesize = bytesize;
 	}
- 
-		
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public byte[] createNewAttribute() {
 		byte[] bytes = new byte[bytesize];
 		randomObj.nextBytes(bytes);
 		return bytes;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<byte[]> createNewAttributes() {
 		List<byte[]> newAttributes = new ArrayList<byte[]>(maxObjects);
 		for (int i=0; i<maxObjects; i++) {

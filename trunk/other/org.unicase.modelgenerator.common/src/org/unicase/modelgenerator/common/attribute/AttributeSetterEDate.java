@@ -36,26 +36,44 @@ public class AttributeSetterEDate implements IAttributeSetter<Date> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Date createNewAttribute() {
 		return new Date();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<Date> createNewAttributes(){
 		List<Date> newAttrs = new ArrayList<Date>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {

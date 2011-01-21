@@ -34,26 +34,44 @@ public class AttributeSetterEDouble implements IAttributeSetter<Double> {
 		this.randomObj = randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getMaxObjects() {
 		return maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setMaxObjects(int maxObjects) {
 		this.maxObjects = maxObjects;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Random getRandomObj() {
 		return randomObj;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRandomObj(Random randomObj) {
 		this.randomObj = randomObj;
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public Double createNewAttribute() {
 		return randomObj.nextDouble()*randomObj.nextInt();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<Double> createNewAttributes(){
 		List<Double> newAttrs = new ArrayList<Double>(maxObjects);
 		for (int i=0; i<maxObjects;i++) {
