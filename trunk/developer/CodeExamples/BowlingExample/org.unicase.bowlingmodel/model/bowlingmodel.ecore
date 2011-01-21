@@ -36,6 +36,8 @@
         <details key="priority" value="0"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tournament" eType="#//Tournament"
+        eOpposite="#//Tournament/playerlist"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Game">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
@@ -82,6 +84,8 @@
         <details key="priority" value="0"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="playerlist" lowerBound="1"
+        eType="#//Playerlist" containment="true" eOpposite="#//Playerlist/tournament"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TournamentType">
     <eLiterals name="Amateur"/>

@@ -10,6 +10,7 @@ import bowling.BowlingPackage;
 import bowling.Player;
 import bowling.Playerlist;
 
+import bowling.Tournament;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -35,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link bowling.impl.PlayerlistImpl#getName <em>Name</em>}</li>
  *   <li>{@link bowling.impl.PlayerlistImpl#getPlayer <em>Player</em>}</li>
+ *   <li>{@link bowling.impl.PlayerlistImpl#getTournament <em>Tournament</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,12 +131,57 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Tournament getTournament() {
+		if (eContainerFeatureID() != BowlingPackage.PLAYERLIST__TOURNAMENT) return null;
+		return (Tournament)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTournament(Tournament newTournament, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTournament, BowlingPackage.PLAYERLIST__TOURNAMENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTournament(Tournament newTournament) {
+		if (newTournament != eInternalContainer() || (eContainerFeatureID() != BowlingPackage.PLAYERLIST__TOURNAMENT && newTournament != null)) {
+			if (EcoreUtil.isAncestor(this, newTournament))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newTournament != null)
+				msgs = ((InternalEObject)newTournament).eInverseAdd(this, BowlingPackage.TOURNAMENT__PLAYERLIST, Tournament.class, msgs);
+			msgs = basicSetTournament(newTournament, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYERLIST__TOURNAMENT, newTournament, newTournament));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BowlingPackage.PLAYERLIST__PLAYER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPlayer()).basicAdd(otherEnd, msgs);
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTournament((Tournament)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -148,8 +196,24 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 		switch (featureID) {
 			case BowlingPackage.PLAYERLIST__PLAYER:
 				return ((InternalEList<?>)getPlayer()).basicRemove(otherEnd, msgs);
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				return basicSetTournament(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				return eInternalContainer().eInverseRemove(this, BowlingPackage.TOURNAMENT__PLAYERLIST, Tournament.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -164,6 +228,8 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 				return getName();
 			case BowlingPackage.PLAYERLIST__PLAYER:
 				return getPlayer();
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				return getTournament();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,6 +250,9 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 				getPlayer().clear();
 				getPlayer().addAll((Collection<? extends Player>)newValue);
 				return;
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				setTournament((Tournament)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -202,6 +271,9 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 			case BowlingPackage.PLAYERLIST__PLAYER:
 				getPlayer().clear();
 				return;
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				setTournament((Tournament)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -218,6 +290,8 @@ public class PlayerlistImpl extends EObjectImpl implements Playerlist {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BowlingPackage.PLAYERLIST__PLAYER:
 				return player != null && !player.isEmpty();
+			case BowlingPackage.PLAYERLIST__TOURNAMENT:
+				return getTournament() != null;
 		}
 		return super.eIsSet(featureID);
 	}

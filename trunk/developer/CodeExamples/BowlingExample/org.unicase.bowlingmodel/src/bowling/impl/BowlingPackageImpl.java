@@ -264,6 +264,15 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPlayerlist_Tournament() {
+		return (EReference)playerlistEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGame() {
 		return gameEClass;
 	}
@@ -372,6 +381,15 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTournament_Playerlist() {
+		return (EReference)tournamentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTournamentType() {
 		return tournamentTypeEEnum;
 	}
@@ -419,6 +437,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		playerlistEClass = createEClass(PLAYERLIST);
 		createEAttribute(playerlistEClass, PLAYERLIST__NAME);
 		createEReference(playerlistEClass, PLAYERLIST__PLAYER);
+		createEReference(playerlistEClass, PLAYERLIST__TOURNAMENT);
 
 		gameEClass = createEClass(GAME);
 		createEAttribute(gameEClass, GAME__DATE);
@@ -434,6 +453,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		createEAttribute(tournamentEClass, TOURNAMENT__TITLE);
 		createEAttribute(tournamentEClass, TOURNAMENT__TYPE);
 		createEReference(tournamentEClass, TOURNAMENT__MATCHUP);
+		createEReference(tournamentEClass, TOURNAMENT__PLAYERLIST);
 
 		// Create enums
 		tournamentTypeEEnum = createEEnum(TOURNAMENT_TYPE);
@@ -484,6 +504,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		initEClass(playerlistEClass, Playerlist.class, "Playerlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlayerlist_Name(), ecorePackage.getEString(), "name", null, 0, 1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlayerlist_Player(), this.getPlayer(), this.getPlayer_Playerlist(), "player", null, 0, -1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlayerlist_Tournament(), this.getTournament(), this.getTournament_Playerlist(), "tournament", null, 0, 1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGame_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -499,6 +520,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		initEAttribute(getTournament_Title(), ecorePackage.getEString(), "title", null, 0, 1, Tournament.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTournament_Type(), this.getTournamentType(), "type", null, 0, 1, Tournament.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTournament_Matchup(), this.getMatchup(), this.getMatchup_Tournament(), "matchup", null, 0, -1, Tournament.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTournament_Playerlist(), this.getPlayerlist(), this.getPlayerlist_Tournament(), "playerlist", null, 1, 1, Tournament.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tournamentTypeEEnum, TournamentType.class, "TournamentType");
