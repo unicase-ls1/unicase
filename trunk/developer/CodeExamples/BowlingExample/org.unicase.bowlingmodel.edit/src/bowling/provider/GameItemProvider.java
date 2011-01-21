@@ -176,12 +176,24 @@ public class GameItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Game)object).getDate();
-		String label = labelValue == null ? null : labelValue.toString();
+		String playerlastname = ((Game)object).getPlayer().getLastname(); 
+		String playerfirstname = ((Game)object).getPlayer().getFirstname(); 
+		Date date = ((Game)object).getDate();
+		String label = "";
+		if (playerfirstname != null) {
+			label += playerfirstname + " ";
+		}
+		if (playerlastname != null) {
+			label += playerlastname + " ";
+		}
+		if (date != null) {
+			label += date;
+		}
+		label = label.trim();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Game_type") :
 			getString("_UI_Game_type") + " " + label;
