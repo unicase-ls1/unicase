@@ -193,15 +193,6 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * @generated
 	 */
 	public EAttribute getPlayer_City() {
-		return (EAttribute)playerEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlayer_IsProfessional() {
 		return (EAttribute)playerEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -210,8 +201,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlayer_Games() {
-		return (EReference)playerEClass.getEStructuralFeatures().get(7);
+	public EAttribute getPlayer_IsProfessional() {
+		return (EAttribute)playerEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -219,7 +210,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlayer_Playerlist() {
+	public EReference getPlayer_Games() {
 		return (EReference)playerEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -228,8 +219,17 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPlayer_Playerlist() {
+		return (EReference)playerEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getPlayer_Height() {
-		return (EAttribute)playerEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)playerEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -410,11 +410,11 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		createEAttribute(playerEClass, PLAYER__STREET);
 		createEAttribute(playerEClass, PLAYER__STREETNUMBER);
 		createEAttribute(playerEClass, PLAYER__DATE_OF_BIRTH);
+		createEAttribute(playerEClass, PLAYER__HEIGHT);
 		createEAttribute(playerEClass, PLAYER__CITY);
 		createEAttribute(playerEClass, PLAYER__IS_PROFESSIONAL);
 		createEReference(playerEClass, PLAYER__GAMES);
 		createEReference(playerEClass, PLAYER__PLAYERLIST);
-		createEAttribute(playerEClass, PLAYER__HEIGHT);
 
 		playerlistEClass = createEClass(PLAYERLIST);
 		createEAttribute(playerlistEClass, PLAYERLIST__NAME);
@@ -475,11 +475,11 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		initEAttribute(getPlayer_Street(), ecorePackage.getEString(), "street", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_Streetnumber(), ecorePackage.getEInt(), "streetnumber", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_DateOfBirth(), ecorePackage.getEDate(), "dateOfBirth", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlayer_Height(), ecorePackage.getEDouble(), "height", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_City(), ecorePackage.getEString(), "city", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_IsProfessional(), ecorePackage.getEBoolean(), "isProfessional", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlayer_Games(), this.getGame(), this.getGame_Player(), "games", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlayer_Playerlist(), this.getPlayerlist(), this.getPlayerlist_Player(), "playerlist", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlayer_Height(), ecorePackage.getEDouble(), "height", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(playerlistEClass, Playerlist.class, "Playerlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlayerlist_Name(), ecorePackage.getEString(), "name", null, 0, 1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

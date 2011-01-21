@@ -69,11 +69,11 @@ public class PlayerItemProvider
 			addStreetPropertyDescriptor(object);
 			addStreetnumberPropertyDescriptor(object);
 			addDateOfBirthPropertyDescriptor(object);
+			addHeightPropertyDescriptor(object);
 			addCityPropertyDescriptor(object);
 			addIsProfessionalPropertyDescriptor(object);
 			addGamesPropertyDescriptor(object);
 			addPlayerlistPropertyDescriptor(object);
-			addHeightPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -340,9 +340,9 @@ public class PlayerItemProvider
 			case BowlingPackage.PLAYER__STREET:
 			case BowlingPackage.PLAYER__STREETNUMBER:
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
+			case BowlingPackage.PLAYER__HEIGHT:
 			case BowlingPackage.PLAYER__CITY:
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
-			case BowlingPackage.PLAYER__HEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
