@@ -114,23 +114,12 @@ public interface Tournament extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Playerlist</em>' containment reference.
-	 * @see #setPlayerlist(Playerlist)
 	 * @see bowling.BowlingPackage#getTournament_Playerlist()
 	 * @see bowling.Playerlist#getTournament
-	 * @model opposite="tournament" containment="true" required="true"
+	 * @model opposite="tournament" containment="true" required="true" changeable="false"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
 	 * @generated
 	 */
 	Playerlist getPlayerlist();
-
-	/**
-	 * Sets the value of the '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Playerlist</em>' containment reference.
-	 * @see #getPlayerlist()
-	 * @generated
-	 */
-	void setPlayerlist(Playerlist value);
 
 } // Tournament

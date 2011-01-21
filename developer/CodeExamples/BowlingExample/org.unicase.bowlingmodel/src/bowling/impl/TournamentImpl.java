@@ -207,25 +207,6 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlayerlist(Playerlist newPlayerlist) {
-		if (newPlayerlist != playerlist) {
-			NotificationChain msgs = null;
-			if (playerlist != null)
-				msgs = ((InternalEObject)playerlist).eInverseRemove(this, BowlingPackage.PLAYERLIST__TOURNAMENT, Playerlist.class, msgs);
-			if (newPlayerlist != null)
-				msgs = ((InternalEObject)newPlayerlist).eInverseAdd(this, BowlingPackage.PLAYERLIST__TOURNAMENT, Playerlist.class, msgs);
-			msgs = basicSetPlayerlist(newPlayerlist, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.TOURNAMENT__PLAYERLIST, newPlayerlist, newPlayerlist));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -295,9 +276,6 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 				getMatchup().clear();
 				getMatchup().addAll((Collection<? extends Matchup>)newValue);
 				return;
-			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				setPlayerlist((Playerlist)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -318,9 +296,6 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 				return;
 			case BowlingPackage.TOURNAMENT__MATCHUP:
 				getMatchup().clear();
-				return;
-			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				setPlayerlist((Playerlist)null);
 				return;
 		}
 		super.eUnset(featureID);
