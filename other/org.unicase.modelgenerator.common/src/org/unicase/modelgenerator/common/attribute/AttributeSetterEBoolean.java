@@ -5,11 +5,30 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for creating random Boolean values.
+ * 
+ * @see IAttributeSetter
+ */
 public class AttributeSetterEBoolean implements IAttributeSetter<Boolean> {
 	
-	private int maxObjects;
-	private Random randomObj;
+	/**
+	 * Maximum amount of attributes that are created by {@link #createNewAttributes()}.
+	 */
+	protected int maxObjects;
 	
+	/**
+	 * Random object that is used to determine values for attributes created 
+	 * by {@link #createNewAttribute()} and {@link #createNewAttributes()}.
+	 */
+	protected Random randomObj;
+	
+	/**
+	 * Creates a new AttributeSetter for Boolean attributes.
+	 * 
+	 * @param maxObjects maximum amount of attributes to create
+	 * @param randomObj Random object used to create attribute values
+	 */
 	public AttributeSetterEBoolean(int maxObjects, Random randomObj) {
 		this.maxObjects = maxObjects;
 		this.randomObj = randomObj;
@@ -31,18 +50,10 @@ public class AttributeSetterEBoolean implements IAttributeSetter<Boolean> {
 		this.randomObj = randomObj;
 	}
 
-	
-
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.util.IAttributeSetter#createNewAttribute()
-	 */
 	public Boolean createNewAttribute() {
 		return randomObj.nextBoolean();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.unicase.projectgenerator2.util.IAttributeSetter#createNewAttributes()
-	 */
 	public Collection<Boolean> createNewAttributes() {
 		List<Boolean> newAttributes = new ArrayList<Boolean>();
 		for (int i=0; i<maxObjects; i++) {

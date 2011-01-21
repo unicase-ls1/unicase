@@ -5,12 +5,36 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for creating random Byte[] values.
+ * 
+ * @see IAttributeSetter
+ */
 public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 
-	private int maxObjects;
-	private Random randomObj;
+	/**
+	 * Maximum amount of attributes that are created by {@link #createNewAttributes()}.
+	 */
+	protected int maxObjects;
+	
+	/**
+	 * Random object that is used to determine values for attributes created 
+	 * by {@link #createNewAttribute()} and {@link #createNewAttributes()}.
+	 */
+	protected Random randomObj;
+	
+	/**
+	 * length of the Byte-array that is randomly filled
+	 */
 	private int bytesize;
 	
+	/**
+	 * Creates a new AttributeSetter for Byte[] attributes.
+	 * 
+	 * @param maxObjects maximum amount of attributes to create
+	 * @param randomObj Random object used to create attribute values
+	 * @param bytesize length of the Byte-array
+	 */
 	public AttributeSetterEByteArray(int maxObjects, Random randomObj,
 			int bytesize) {
 		this.maxObjects = maxObjects;
@@ -45,6 +69,7 @@ public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 		
 	public byte[] createNewAttribute() {
 		byte[] bytes = new byte[bytesize];
+		randomObj.nextBytes(bytes);
 		return bytes;
 	}
 
@@ -53,7 +78,6 @@ public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 		for (int i=0; i<maxObjects; i++) {
 			newAttributes.add(createNewAttribute());
 		}
- 		
 		return newAttributes;
 	}
 
