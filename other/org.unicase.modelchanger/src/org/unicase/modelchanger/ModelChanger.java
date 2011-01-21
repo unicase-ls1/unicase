@@ -42,11 +42,6 @@ public class ModelChanger {
 	private static Random random;
 	
 	/**
-	 * The attributeHandler that actually creates random attribute values. 
-	 */
-	private static AttributeHandler attributeHandler;
-	
-	/**
 	 * All EObjects including the root and all its direct and indirect contents,
 	 * after deleting random EObjects.
 	 */
@@ -76,7 +71,7 @@ public class ModelChanger {
 	public static void generateChanges(ModelGeneratorConfiguration configuration) {
 		config = configuration;
 		random = new Random(config.getSeed());
-		attributeHandler = new AttributeHandler(random);
+		AttributeHandler.setRandom(random);
 		Set<EObject> allChildren = new LinkedHashSet<EObject>();
 		EObject rootObject = config.getRootEObject();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
@@ -159,8 +154,7 @@ public class ModelChanger {
 					exceptions, config.getIgnoreAndLog());
 			}
 		}
-		ModelGeneratorUtil.setEObjectAttributes(eObject, attributeHandler,
-			exceptions, config.getIgnoreAndLog());
+		ModelGeneratorUtil.setEObjectAttributes(eObject, exceptions, config.getIgnoreAndLog());
 	}
 
 	/**
