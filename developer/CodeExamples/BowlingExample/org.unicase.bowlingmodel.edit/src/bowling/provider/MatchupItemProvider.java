@@ -9,7 +9,9 @@ package bowling.provider;
 
 import bowling.BowlingFactory;
 import bowling.BowlingPackage;
+import bowling.Game;
 import bowling.Matchup;
+import bowling.Player;
 
 import java.util.Collection;
 import java.util.List;
@@ -138,11 +140,20 @@ public class MatchupItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Matchup_type");
+		String label = "";
+		List<Game> games = ((Matchup)object).getGames();
+		if (games.size() == 2) {
+			label += games.get(0).getPlayer().getLastname();
+			label += " vs. ";
+			label += games.get(1).getPlayer().getLastname();
+		}
+		return label == null || label.length() == 0 ?
+			getString("_UI_Matchup_type") :
+			getString("_UI_Matchup_type") + " " + label;
 	}
 
 	/**
