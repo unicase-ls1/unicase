@@ -11,7 +11,8 @@ import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.SayYesCredentialsProvider;
 import org.unicase.changetracking.git.Test;
-import org.unicase.changetracking.git.commands.GitCreateChangePackage;
+import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
+import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
@@ -63,16 +64,13 @@ public class CreateChangePackageOperation implements IRunnableWithProgress{
 			};
 		}
 		try{
-			new GitCreateChangePackage(localRepo, (WorkItem) workItem, remoteRepo, name, shortDescription, longDescription, Test.getTestCredentials() ).run(monitor);
+			new GitCreateChangePackageCommand(localRepo, (WorkItem) workItem, remoteRepo, name, shortDescription, longDescription, Test.getTestCredentials() ).run(monitor);
 		} catch (Throwable t){
-			t.printStackTrace();
 			ModelUtil.logException(t);
+			return;
 		}
 		
-		MessageDialog.openInformation(
-				PlatformUI.getWorkbench().
-				getActiveWorkbenchWindow().getShell(),
-				"Success!",
+		UIUtil.openInformation("Success!",
 				"Change package was created successfully.");
 		monitor.done();
 	}

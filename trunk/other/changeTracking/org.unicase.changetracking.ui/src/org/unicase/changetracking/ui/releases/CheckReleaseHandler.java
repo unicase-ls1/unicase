@@ -57,7 +57,7 @@ public class CheckReleaseHandler extends AbstractHandler {
 		//Ask the user to refresh his repo
 		boolean upToDate = true;
 		if(localRepo != null){
-			upToDate = askForRefreshing();
+			upToDate = UIUtil.askForRefreshing();
 		}
 		
 		//Create a report
@@ -69,13 +69,7 @@ public class CheckReleaseHandler extends AbstractHandler {
 		return null;
 	}
 
-	private boolean askForRefreshing() {
-		boolean wantPull = MessageDialog.openQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Refresh local repository?", "You should refresh your local repository (pull from remote) to ensure that all branches are up to date. Do you want to pull now?");
-	
-		//FIXME Implement pull
-		
-		return wantPull;
-	}
+
 
 	
 

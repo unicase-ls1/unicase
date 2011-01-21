@@ -49,7 +49,7 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	public Image getImage(Object element) {
 		if(element instanceof ChangePackage){
 			Image img = wrappedProvider.getImage(element);
-			BranchState state = report.getChangePackageStates().get(element);
+			BranchState state = report.getChangePackageResults().get(element).getState();
 			if(state == null){
 				state = BranchState.ERROR;
 			}

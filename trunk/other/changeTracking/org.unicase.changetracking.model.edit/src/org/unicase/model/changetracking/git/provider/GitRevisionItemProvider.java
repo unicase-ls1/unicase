@@ -68,6 +68,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 			super.getPropertyDescriptors(object);
 
 			addHashPropertyDescriptor(object);
+			addTagNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -93,6 +94,24 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Tag Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTagNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_GitRevision_tagName_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_GitRevision_tagName_feature",
+						"_UI_GitRevision_type"),
+				GitPackage.Literals.GIT_REVISION__TAG_NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns GitRevision.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,7 +133,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	public String getText(Object object) {
 		String label = ((GitRevision) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_GitRevision_type")
-				:  label;
+				: label;
 	}
 
 	/**
@@ -130,6 +149,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 
 		switch (notification.getFeatureID(GitRevision.class)) {
 		case GitPackage.GIT_REVISION__HASH:
+		case GitPackage.GIT_REVISION__TAG_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

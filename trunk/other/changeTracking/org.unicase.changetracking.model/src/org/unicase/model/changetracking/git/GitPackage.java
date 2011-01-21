@@ -514,13 +514,22 @@ public interface GitPackage extends EPackage {
 	int GIT_REVISION__HASH = ChangetrackingPackage.REPOSITORY_REVISION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Tag Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIT_REVISION__TAG_NAME = ChangetrackingPackage.REPOSITORY_REVISION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GIT_REVISION_FEATURE_COUNT = ChangetrackingPackage.REPOSITORY_REVISION_FEATURE_COUNT + 1;
+	int GIT_REVISION_FEATURE_COUNT = ChangetrackingPackage.REPOSITORY_REVISION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.git.impl.GitRepositoryImpl <em>Repository</em>}' class.
@@ -742,6 +751,17 @@ public interface GitPackage extends EPackage {
 	EAttribute getGitRevision_Hash();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.git.GitRevision#getTagName <em>Tag Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tag Name</em>'.
+	 * @see org.unicase.model.changetracking.git.GitRevision#getTagName()
+	 * @see #getGitRevision()
+	 * @generated
+	 */
+	EAttribute getGitRevision_TagName();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.git.GitRepository <em>Repository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -860,6 +880,14 @@ public interface GitPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GIT_REVISION__HASH = eINSTANCE.getGitRevision_Hash();
+
+		/**
+		 * The meta object literal for the '<em><b>Tag Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GIT_REVISION__TAG_NAME = eINSTANCE.getGitRevision_TagName();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.git.impl.GitRepositoryImpl <em>Repository</em>}' class.

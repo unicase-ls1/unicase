@@ -49,7 +49,7 @@ import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.util.UnicaseCommand;
 
-public class GitCreateChangePackage extends UnicaseCommand {
+public class GitCreateChangePackageCommand extends UnicaseProgressMonitorCommand {
 
 	
 	private final Repository myRepository;
@@ -58,10 +58,9 @@ public class GitCreateChangePackage extends UnicaseCommand {
 	private final GitRepository myRemoteRepo;
 	private String myShortDescription;
 	private String myLongDescription;
-	private IProgressMonitor progressMonitor;
 	private CredentialsProvider myCredentials;
 
-	public GitCreateChangePackage(Repository r, WorkItem workItem, GitRepository remoteRepo, String name, String shortDescription, String longDescription, CredentialsProvider credentials){
+	public GitCreateChangePackageCommand(Repository r, WorkItem workItem, GitRepository remoteRepo, String name, String shortDescription, String longDescription, CredentialsProvider credentials){
 		this.myRepository = r;
 		this.myName = name;
 		this.myShortDescription = shortDescription;
@@ -80,9 +79,7 @@ public class GitCreateChangePackage extends UnicaseCommand {
 	 */
 	public void createChangePackage(Repository repo, WorkItem workItem, GitRepository remoteRepo, String name, String shortDescription, String longDescription, CredentialsProvider credentials){
 		//Init progress Monitor 
-		if(progressMonitor == null){
-			progressMonitor = new NullProgressMonitor();
-		}
+		IProgressMonitor progressMonitor = getProgressMonitor();
 		progressMonitor.beginTask("Creating Change Package", 6);
 		progressMonitor.subTask("Checking requirements");
 		Git git = new Git(repo);
@@ -218,10 +215,6 @@ public class GitCreateChangePackage extends UnicaseCommand {
 		project.addModelElement(toAdd);
 	}
 	
-	public void run(IProgressMonitor monitor) {
-		this.progressMonitor = monitor;
-		run(false);
-	}
 
 
 }

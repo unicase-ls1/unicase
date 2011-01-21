@@ -3,8 +3,10 @@ package org.unicase.changetracking.release;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
@@ -54,6 +56,7 @@ public class ReleaseChecker {
 	private RevWalk revWalk;
 	private Map<String, Ref> refMap;
 	private boolean repoIsUpToDate;
+	private HashMap<ChangePackage, ChangePackageCheckEntry> resultMap;
 	
 	public static ReleaseCheckReport check(Repository localRepo, ChangeTrackingRelease release, boolean repoIsUpToDate){
 		return new ReleaseChecker(localRepo, release, repoIsUpToDate).check();
@@ -88,6 +91,9 @@ public class ReleaseChecker {
 	public ReleaseCheckReport check(){
 		//Retrieve all change packages
 		List<ChangePackage> changePackages = ReleaseUtil.getChangePackagesFromRelease(release);
+		
+		//Create result map
+		initResult(changePackages);
 	
 		//Check the release itself (its stream and the streams location)
 		checkRelease();
@@ -112,46 +118,52 @@ public class ReleaseChecker {
 		Map<RevCommit, List<ChangePackage>> commitMapping = checkForCommits(branchMap,branchMapping);
 		
 		//Check release branch
-		RevCommit releaseBranchHead = checkReleaseBranch();
+		CheckEntry releaseBase = checkReleaseBranch();
 		
 		//Using all the gathered information,
 		//we can now check which branches are already merged
-		Map<RevCommit, BranchState> mergeStatus = calcMergeState(releaseBranchHead,commitMapping);
+		Map<RevCommit, BranchState> mergeStatus = calcMergeState(releaseBase,commitMapping);
 		
 		//From the branch state mapping, we can infer the state mapping of the change packages
-		Map<ChangePackage, BranchState> changePackageState = calcChangePackageState(commitMapping, mergeStatus, changePackages);
+		calcChangePackageState(commitMapping, mergeStatus, changePackages);
 		
 		//All relevant information has been gathered, create and return a report
-		return new ReleaseCheckReport(changePackages, errorMessages, true, repoIsUpToDate, changePackageState);
+		return new ReleaseCheckReport(changePackages, errorMessages, true, repoIsUpToDate, releaseBase, resultMap);
 	}
 
 
 
-	private Map<ChangePackage, BranchState> calcChangePackageState(
+	private void initResult(List<ChangePackage> changePackages) {
+		resultMap = new HashMap<ChangePackage, ChangePackageCheckEntry>();
+		for(ChangePackage cp: changePackages){
+			resultMap.put(cp, new ChangePackageCheckEntry(cp));
+		}
+	}
+
+	private void calcChangePackageState(
 			Map<RevCommit, List<ChangePackage>> commitMapping,
 			Map<RevCommit, BranchState> mergeStatus, List<ChangePackage> changePackages) {
 		
-		Map<ChangePackage, BranchState> result = new HashMap<ChangePackage, BranchState>();
+		Set<ChangePackage> done = new HashSet<ChangePackage>();
 		
 		//For the registered commits, register the packages
 		for(Entry<RevCommit, BranchState> e: mergeStatus.entrySet()){
 			BranchState mergeState = e.getValue();
 			for(ChangePackage cp : commitMapping.get(e.getKey())){
-				result.put(cp, mergeState);
+				done.add(cp);
+				resultMap.get(cp).setState(mergeState);
 			}
 		}
 		
 		//For all other packages, add the error state
 		for(ChangePackage cp : changePackages){
-			if(!result.containsKey(cp)){
-				result.put(cp, BranchState.ERROR);
+			if(!done.contains(cp)){
+				resultMap.get(cp).setState(BranchState.ERROR);
 			}
 		}
-		
-		return result;
 	}
 
-	private RevCommit checkReleaseBranch() {
+	private CheckEntry checkReleaseBranch() {
 		//If either the release branch or its location couldn't be calculated,
 		//the commit cannot be inferred.
 		if(releaseBranch == null || releaseStreamLocation == null)
@@ -179,17 +191,20 @@ public class ReleaseChecker {
 			addError(ERROR_IO_EXCEPTION_WHILE_PARSING_COMMIT,ref.getName());
 			return null;
 		}
-		
-		return c;
+
+		CheckEntry releaseBase = new CheckEntry();
+		releaseBase.setRef(ref);
+		releaseBase.setCommit(c);
+		return releaseBase;
 	}
 
 	private Map<RevCommit, BranchState> calcMergeState(
-			RevCommit releaseBranchHead, Map<RevCommit, List<ChangePackage>> commitMapping) {
-		if(releaseBranchHead == null){
+			CheckEntry releaseBase, Map<RevCommit, List<ChangePackage>> commitMapping) {
+		if(releaseBase == null){
 			return new HashMap<RevCommit, BranchState>();
 		}
 		
-		return new GitMergeHistoryBuilder(localRepo).build(releaseBranchHead, commitMapping.keySet());
+		return new GitMergeHistoryBuilder(localRepo).build(releaseBase.getCommit(), commitMapping.keySet());
 		
 	}
 
@@ -225,6 +240,7 @@ public class ReleaseChecker {
 				result.put(commit, list);
 			}
 			list.add(changePackage);
+			resultMap.get(changePackage).setCommit(commit);
 		}
 		
 		return result;
@@ -306,8 +322,9 @@ public class ReleaseChecker {
 				continue;
 			}
 			
-			//No errors? Then add to branch map.
+			//No errors? Then add to branch map and to the result
 			branchMap.put(branch, cp);
+			resultMap.get(cp).setBranch(branch);
 			
 		}
 		
@@ -317,7 +334,7 @@ public class ReleaseChecker {
 	
 	private Map<Ref, GitBranch> checkLocalBranches(Map<GitBranch, ChangePackage> branchMap) {
 		
-		Map<Ref, GitBranch> result = new HashMap<Ref, GitBranch>(); 
+		Map<Ref, GitBranch> map = new HashMap<Ref, GitBranch>(); 
 
 		for(Entry<GitBranch, ChangePackage> e : branchMap.entrySet()){
 			GitBranch branch = e.getKey();
@@ -331,16 +348,17 @@ public class ReleaseChecker {
 			
 			//Check for duplicate branch mappings
 			Ref ref = refMap.get(refName);
-			if(result.containsKey(ref)){
-				addError(ERROR_DUPLICATE_BRANCH_MAPPING,branch.getName(),result.get(ref).getName(),ref.getName());
+			if(map.containsKey(ref)){
+				addError(ERROR_DUPLICATE_BRANCH_MAPPING,branch.getName(),map.get(ref).getName(),ref.getName());
 				continue;
 			}
 			
 			//Everything okay. So put it into the result
-			result.put(ref,branch);
+			map.put(ref,branch);
+			resultMap.get(e.getValue()).setRef(ref);
 		}
 		
-		return result;
+		return map;
 	}
 
 

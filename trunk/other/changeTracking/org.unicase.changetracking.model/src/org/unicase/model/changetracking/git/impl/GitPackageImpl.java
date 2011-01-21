@@ -224,6 +224,15 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGitRevision_TagName() {
+		return (EAttribute) gitRevisionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGitRepository() {
 		return gitRepositoryEClass;
 	}
@@ -285,6 +294,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 
 		gitRevisionEClass = createEClass(GIT_REVISION);
 		createEAttribute(gitRevisionEClass, GIT_REVISION__HASH);
+		createEAttribute(gitRevisionEClass, GIT_REVISION__TAG_NAME);
 
 		gitRepositoryEClass = createEClass(GIT_REPOSITORY);
 		createEAttribute(gitRepositoryEClass, GIT_REPOSITORY__URL);
@@ -363,6 +373,10 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGitRevision_Hash(), theEcorePackage.getEString(),
 				"hash", null, 0, 1, GitRevision.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGitRevision_TagName(), theEcorePackage.getEString(),
+				"tagName", null, 0, 1, GitRevision.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
