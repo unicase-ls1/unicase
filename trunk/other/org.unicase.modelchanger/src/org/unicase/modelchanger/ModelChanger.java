@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.modelgenerator.common.attribute.AttributeHandler;
-import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 
 /**
@@ -25,15 +23,10 @@ import org.unicase.modelgenerator.common.ModelGeneratorUtil;
  * - replace attributes by new random values<br>
  * - replace references (no containment references) by new random values
  *
- *@see #generateChanges(ModelGeneratorConfiguration)
+ * @see #generateChanges(EObject)
+ * @see #generateChanges(EObject, long, boolean)
  */
 public class ModelChanger {
-
-	/**
-	 * The configuration containing settings for the changing process. 
-	 * @see ModelGeneratorConfiguration
-	 */
-	private static ModelGeneratorConfiguration config;
 	
 	/**
 	 * Random-object to compute random values for deleting EObjects
@@ -50,7 +43,7 @@ public class ModelChanger {
 	/**
 	 * A set of RuntimeExceptions that occurred during the last changing process.
 	 */
-	private static Set<RuntimeException> exceptions;
+	private static Set<RuntimeException> exceptionLog;
 	
 	/**
 	 * Private constructor.
@@ -60,26 +53,43 @@ public class ModelChanger {
 	}
 	
 	/**
-	 * Changes EObjects using the settings specified in <code>configuration</code>.
+	 * Generates changes for the specified root and all its direct and indirect contents 
+	 * using default values for <code>seed</code> and <code>ignoreAndLog</code>. 
+	 * Changing includes deleting EObjects and their children and replacing all set
+	 * attributes and references (no containment-references) with new values.
+	 * 
+	 * @param rootObject the root EObject
+	 * @see #generateChanges(EObject, long, boolean)
+	 * @see #generateChanges()
+	 */
+	public static void generateChanges(EObject rootObject) {
+		generateChanges(rootObject, System.currentTimeMillis(), false);
+	}
+	
+	/**
+	 * Generates changes for the specified root and all its direct and indirect contents
+	 * using <code>seed</code> to determine random values and <code>ignoreAndLog</code>
+	 * to decide whether occurring RuntimeExceptions shall be thrown or logged only.
 	 * Changing includes deleting EObjects and their children and replacing all set
 	 * attributes and references (no containment-references) with new values. 
 	 * 
-	 * @param configuration the ModelGeneratorConfiguration to use for changing EObjects
-	 * @see ModelGeneratorConfiguration
+	 * @param root the root EObject
+	 * @param seed value to determine randomness
+	 * @param ignoreAndLog should exceptions be ignored and added to the log?
 	 * @see #generateChanges()
 	 */
-	public static void generateChanges(ModelGeneratorConfiguration configuration) {
-		config = configuration;
-		random = new Random(config.getSeed());
+	public static void generateChanges(EObject root, long seed, boolean ignoreAndLog) {
+		random = new Random(seed);
 		AttributeHandler.setRandom(random);
 		Set<EObject> allChildren = new LinkedHashSet<EObject>();
-		EObject rootObject = config.getRootEObject();
+		EObject rootObject = root;
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
 		while(allContents.hasNext()) {
 			allChildren.add(allContents.next());
 		}
 		deleteRandomEObjects(allChildren);
-		generateChanges();
+		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootObject);
+		generateChanges(ignoreAndLog);
 	}
 	
 	/**
@@ -88,7 +98,7 @@ public class ModelChanger {
 	 * root (and therefore ALL existing EObjects) doesn't get deleted.
 	 * 
 	 * @param allChildren set of EObjects from which EObjects are selected to be deleted
-	 * @see #deleteAllChildren(EList)
+	 * @see #deleteAllChildren(Set)
 	 */
 	private static void deleteRandomEObjects(Set<EObject> allChildren) {
 		Set<EObject> deletedChildren = new LinkedHashSet<EObject>();
@@ -96,7 +106,8 @@ public class ModelChanger {
 			if(deletedChildren.contains(eObject))
 				continue;
 			if(random.nextDouble() < 0.1) {
-				deletedChildren.addAll(deleteAllChildren(eObject.eContents()));
+				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
+				deletedChildren.addAll(deleteAllChildren(contentCopy));
 				EcoreUtil.delete(eObject);
 			}
 		}
@@ -110,10 +121,11 @@ public class ModelChanger {
 	 * @return all deleted EObjects and all their direct and indirect contents
 	 * @see #deleteRandomEObjects(Set)
 	 */
-	private static Set<EObject> deleteAllChildren(EList<EObject> children) {
+	private static Set<EObject> deleteAllChildren(Set<EObject> children) {
 		Set<EObject> allDeletedChildren = new LinkedHashSet<EObject>();
 		for(EObject child : children) {
-			allDeletedChildren.addAll(deleteAllChildren(child.eContents()));
+			Set<EObject> contentCopy = new LinkedHashSet<EObject>(child.eContents());
+			allDeletedChildren.addAll(deleteAllChildren(contentCopy));
 			EcoreUtil.delete(child);
 			allDeletedChildren.add(child);
 		}
@@ -125,15 +137,15 @@ public class ModelChanger {
 	 * Changing includes replacing attribute and reference values.
 	 * Deleting EObjects is performed before this operation.
 	 * 
-	 * @see #generateChanges(ModelGeneratorConfiguration)
+	 * @param ignoreAndLog should exceptions be ignored and added to the log?
+	 * @see #generateChanges(EObject)
+	 * @see #generateChanges(EObject, long, boolean)
 	 */
-	private static void generateChanges() {
-		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(config.getRootEObject());
-		
+	private static void generateChanges(boolean ignoreAndLog) {
 		for(EClass eClass : allObjectsByEClass.keySet()) {
 			for(EObject eObject : allObjectsByEClass.get(eClass)) {
-				changeEObjectAttributes(eObject);
-				changeEObjectReferences(eObject);
+				changeEObjectAttributes(eObject, ignoreAndLog);
+				changeEObjectReferences(eObject, ignoreAndLog);
 			}
 		}
 	}
@@ -144,17 +156,18 @@ public class ModelChanger {
 	 * Single-valued attributes are simply replaced.
 	 * 
 	 * @param eObject the EObject to change attributes for
+	 * @param ignoreAndLog should exceptions be ignored and added to the log?
 	 * @see ModelGeneratorUtil#removePerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Collection, Set, boolean)
 	 * @see ModelGeneratorUtil#setEObjectAttributes(EObject, AttributeHandler, Set, boolean)
 	 */
-	private static void changeEObjectAttributes(EObject eObject) {
+	private static void changeEObjectAttributes(EObject eObject, boolean ignoreAndLog) {
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
 			if(attribute.isMany() && eObject.eIsSet(attribute)) {
 				ModelGeneratorUtil.removePerCommand(eObject, attribute, (Collection<?>) eObject.eGet(attribute),
-					exceptions, config.getIgnoreAndLog());
+					exceptionLog, ignoreAndLog);
 			}
 		}
-		ModelGeneratorUtil.setEObjectAttributes(eObject, exceptions, config.getIgnoreAndLog());
+		ModelGeneratorUtil.setEObjectAttributes(eObject, exceptionLog, ignoreAndLog);
 	}
 
 	/**
@@ -163,32 +176,33 @@ public class ModelChanger {
 	 * Single-valued references are simply replaced.
 	 * 
 	 * @param eObject the EObject to change references for
+	 * @param ignoreAndLog should exceptions be ignored and added to the log?
 	 * @see ModelGeneratorUtil#removePerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Collection, Set, boolean)
 	 * @see ModelGeneratorUtil#setReference(EObject, EClass, EReference, Random, Set, boolean, Map)
 	 */
-	private static void changeEObjectReferences(EObject eObject) {
+	private static void changeEObjectReferences(EObject eObject, boolean ignoreAndLog) {
 		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
 			if(reference.isMany() && eObject.eIsSet(reference)) {
 				ModelGeneratorUtil.removePerCommand(eObject, reference, (Collection<?>) eObject.eGet(reference),
-					exceptions, config.getIgnoreAndLog());
+					exceptionLog, ignoreAndLog);
 			}
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				if(allObjectsByEClass.containsKey(nextReferenceClass)) {
 					ModelGeneratorUtil.setReference(eObject, nextReferenceClass, reference, random,
-						exceptions, config.getIgnoreAndLog(), allObjectsByEClass);
+						exceptionLog, ignoreAndLog, allObjectsByEClass);
 				}
 			}
 		}
 	}
 	
 	/**
-	 * Returns the Exception-Log for the last {@link #generateChanges()}
+	 * Returns the Exception-Log for the last {@link #generateChanges()}-call.
 	 * The log is empty if no RuntimeException occurred or <code>ignoreAndLog</code>
-	 * was set to <code>false</code> in the last configuration used.
+	 * was set to <code>false</code>.
 	 * 
 	 * @return a set of RuntimeExceptions that occurred during the last changing process
 	 */
 	public static Set<RuntimeException> getLog() {
-		return exceptions;
+		return exceptionLog;
 	}
 }
