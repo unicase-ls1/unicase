@@ -69,6 +69,7 @@ public class PlayerlistItemProvider
 
 			addNamePropertyDescriptor(object);
 			addPlayerPropertyDescriptor(object);
+			addTournamentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -109,6 +110,28 @@ public class PlayerlistItemProvider
 				 getString("_UI_Playerlist_player_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Playerlist_player_feature", "_UI_Playerlist_type"),
 				 BowlingPackage.Literals.PLAYERLIST__PLAYER,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Tournament feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTournamentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Playerlist_tournament_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Playerlist_tournament_feature", "_UI_Playerlist_type"),
+				 BowlingPackage.Literals.PLAYERLIST__TOURNAMENT,
 				 true,
 				 false,
 				 false,

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link bowling.Playerlist#getName <em>Name</em>}</li>
  *   <li>{@link bowling.Playerlist#getPlayer <em>Player</em>}</li>
+ *   <li>{@link bowling.Playerlist#getTournament <em>Tournament</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,5 +73,33 @@ public interface Playerlist extends EObject {
 	 * @generated
 	 */
 	EList<Player> getPlayer();
+
+	/**
+	 * Returns the value of the '<em><b>Tournament</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tournament</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tournament</em>' container reference.
+	 * @see #setTournament(Tournament)
+	 * @see bowling.BowlingPackage#getPlayerlist_Tournament()
+	 * @see bowling.Tournament#getPlayerlist
+	 * @model opposite="playerlist" transient="false"
+	 * @generated
+	 */
+	Tournament getTournament();
+
+	/**
+	 * Sets the value of the '{@link bowling.Playerlist#getTournament <em>Tournament</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tournament</em>' container reference.
+	 * @see #getTournament()
+	 * @generated
+	 */
+	void setTournament(Tournament value);
 
 } // Playerlist

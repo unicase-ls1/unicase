@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link bowling.Tournament#getTitle <em>Title</em>}</li>
  *   <li>{@link bowling.Tournament#getType <em>Type</em>}</li>
  *   <li>{@link bowling.Tournament#getMatchup <em>Matchup</em>}</li>
+ *   <li>{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,5 +103,33 @@ public interface Tournament extends EObject {
 	 * @generated
 	 */
 	EList<Matchup> getMatchup();
+
+	/**
+	 * Returns the value of the '<em><b>Playerlist</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link bowling.Playerlist#getTournament <em>Tournament</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Playerlist</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Playerlist</em>' containment reference.
+	 * @see #setPlayerlist(Playerlist)
+	 * @see bowling.BowlingPackage#getTournament_Playerlist()
+	 * @see bowling.Playerlist#getTournament
+	 * @model opposite="tournament" containment="true" required="true"
+	 * @generated
+	 */
+	Playerlist getPlayerlist();
+
+	/**
+	 * Sets the value of the '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Playerlist</em>' containment reference.
+	 * @see #getPlayerlist()
+	 * @generated
+	 */
+	void setPlayerlist(Playerlist value);
 
 } // Tournament

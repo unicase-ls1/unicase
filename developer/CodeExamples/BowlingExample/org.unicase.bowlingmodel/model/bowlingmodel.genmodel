@@ -16,6 +16,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/street"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/streetnumber"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/dateOfBirth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/city"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Player/isProfessional"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Player/games"/>
@@ -24,6 +25,7 @@
     <genClasses ecoreClass="bowlingmodel.ecore#//Playerlist">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Playerlist/name"/>
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Playerlist/player"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Playerlist/tournament"/>
     </genClasses>
     <genClasses ecoreClass="bowlingmodel.ecore#//Game">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Game/date"/>
@@ -39,6 +41,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Tournament/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Tournament/type"/>
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Tournament/matchup"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Tournament/playerlist"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

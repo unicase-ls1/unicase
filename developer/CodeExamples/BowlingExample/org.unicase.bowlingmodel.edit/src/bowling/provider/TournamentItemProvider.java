@@ -70,6 +70,7 @@ public class TournamentItemProvider
 			addTitlePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addMatchupPropertyDescriptor(object);
+			addPlayerlistPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -141,6 +142,28 @@ public class TournamentItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Playerlist feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlayerlistPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tournament_playerlist_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tournament_playerlist_feature", "_UI_Tournament_type"),
+				 BowlingPackage.Literals.TOURNAMENT__PLAYERLIST,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -153,6 +176,7 @@ public class TournamentItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BowlingPackage.Literals.TOURNAMENT__MATCHUP);
+			childrenFeatures.add(BowlingPackage.Literals.TOURNAMENT__PLAYERLIST);
 		}
 		return childrenFeatures;
 	}
@@ -212,6 +236,7 @@ public class TournamentItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BowlingPackage.TOURNAMENT__MATCHUP:
+			case BowlingPackage.TOURNAMENT__PLAYERLIST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -233,6 +258,11 @@ public class TournamentItemProvider
 			(createChildParameter
 				(BowlingPackage.Literals.TOURNAMENT__MATCHUP,
 				 BowlingFactory.eINSTANCE.createMatchup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BowlingPackage.Literals.TOURNAMENT__PLAYERLIST,
+				 BowlingFactory.eINSTANCE.createPlayerlist()));
 	}
 
 	/**
