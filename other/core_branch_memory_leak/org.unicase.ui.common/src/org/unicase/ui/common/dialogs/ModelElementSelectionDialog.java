@@ -72,7 +72,7 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 * @return a label provider for the dialog
 	 */
 	protected ILabelProvider createLabelProvider() {
-		// hkq: open
+		// hkq: done
 		return new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
@@ -253,6 +253,21 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	@Override
 	protected IStatus validateItem(Object item) {
 		return Status.OK_STATUS;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#close()
+	 */
+	@Override
+	public boolean close() {
+		labelProvider.dispose();
+		/*
+		 * HKQ: can't dispose adapterFactory in labelProvider cause a labelProvider can set via setLabelProvider and
+		 * adapterFactory in labelProvider can be referenced by more than one
+		 */
+		return super.close();
 	}
 
 	/**
