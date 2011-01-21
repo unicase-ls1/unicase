@@ -35,7 +35,6 @@ public class BowlingmodelAllTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new BowlingmodelAllTests("Bowlingmodel Tests");
-		suite.addTest(BowlingTests.suite());
 		return suite;
 	}
 

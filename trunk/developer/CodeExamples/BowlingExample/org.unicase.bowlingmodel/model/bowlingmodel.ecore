@@ -48,8 +48,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="frames" upperBound="10"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        changeable="false" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="player" eType="#//Player"
         eOpposite="#//Player/games">
       <eAnnotations source="org.unicase.ui.meeditor">
