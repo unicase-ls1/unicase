@@ -565,6 +565,13 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 			 "priority", "0"
 		   });		
 		addAnnotation
+		  (getPlayerlist_Tournament(), 
+		   source, 
+		   new String[] {
+			 "position", "right",
+			 "priority", "0"
+		   });		
+		addAnnotation
 		  (getGame_Player(), 
 		   source, 
 		   new String[] {
@@ -594,6 +601,13 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		   });		
 		addAnnotation
 		  (getTournament_Matchup(), 
+		   source, 
+		   new String[] {
+			 "position", "right",
+			 "priority", "0"
+		   });		
+		addAnnotation
+		  (getTournament_Playerlist(), 
 		   source, 
 		   new String[] {
 			 "position", "right",
