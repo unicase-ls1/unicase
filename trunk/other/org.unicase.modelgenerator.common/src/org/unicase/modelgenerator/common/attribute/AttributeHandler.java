@@ -21,17 +21,44 @@ import org.unicase.modelgenerator.common.attribute.AttributeSetterELong;
 import org.unicase.modelgenerator.common.attribute.AttributeSetterEShort;
 import org.unicase.modelgenerator.common.attribute.IAttributeSetter;
 
+/**
+ * Class that grants access to the attribute setters in order to generate 
+ * new attributes when generating or changing an Ecore model. These setters
+ * can be accessed by {@link #getAttributeSetters()}.
+ * 
+ * @see IAttributeSetter
+ */
 public class AttributeHandler {
 	
-	private Random random;
+	/**
+	 * The Random-object corresponding to the current map of AttributeSetters
+	 * 
+	 * @see #setRandom(Random)
+	 */
+	private static Random random;
 	
-	public AttributeHandler(Random random) {
-		this.random = random;
+	/**
+	 * Map that maps every attributeType to an AttributeSetter.
+	 * 
+	 * @see #getAttributeSetters()
+	 */
+	private static Map<EClassifier, IAttributeSetter<?>> attributeSetters;
+
+	/**
+	 * Private constructor
+	 */
+	private AttributeHandler() {
+		// all methods should be accessed in a static way
 	}
 	
-	private Map<EClassifier, IAttributeSetter<?>> attributeSetters;
-	
-	public Map<EClassifier, IAttributeSetter<?>> getAttributeSetters() {
+	/**
+	 * Returns a map containing an AttributeSetter-instance for each 
+	 * attribute type, granting access to all AttributeSetters.
+	 *  
+	 * @return the map that maps every attribute type to its attribute setter
+	 * @see AttributeSetter
+	 */
+	public static Map<EClassifier, IAttributeSetter<?>> getAttributeSetters() {
 		if(attributeSetters != null)
 			return attributeSetters;
 		EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
@@ -83,5 +110,17 @@ public class AttributeHandler {
 		
 		return attributeSetters;
 		
+	}
+	
+	/**
+	 * Sets the current Random-object to <code>newRandom</code>.
+	 * The {@link #attributeSetters}-map is set to <code>null</code>,
+	 * as new AttributeSetters have to be created for the new random value.
+	 *   
+	 * @param newRandom the new value for <code>this.random</code>
+	 */
+	public static void setRandom(Random newRandom) {
+		attributeSetters = null;
+		random = newRandom;
 	}
 }

@@ -394,6 +394,8 @@ public final class ModelGeneratorUtil {
 	 */
 	public static EObject addPerCommand(EObject parentEObject, EStructuralFeature feature, Object newObject,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
+		if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(newObject))
+			return null;
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
 			new AddCommand(domain, parentEObject, feature, newObject).doExecute();
@@ -421,6 +423,10 @@ public final class ModelGeneratorUtil {
 	 */
 	public static void addPerCommand(EObject parentEObject, EStructuralFeature feature, Collection<?> objects,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
+		for(Object object : objects) {
+			if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(object))
+				return;
+		}
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
 			new AddCommand(domain, parentEObject, feature, objects).doExecute();
@@ -529,9 +535,8 @@ public final class ModelGeneratorUtil {
 	 * @see #addPerCommand(EObject, EStructuralFeature, Object, Set, boolean)
 	 * @see #setPerCommand(EObject, EStructuralFeature, Object, Set, boolean)
 	 */
-	public static void setEObjectAttributes(EObject eObject, AttributeHandler attrHandler,
-		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
-		Map<EClassifier, IAttributeSetter<?>> attributeSetters = attrHandler.getAttributeSetters();
+	public static void setEObjectAttributes(EObject eObject, Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
+		Map<EClassifier, IAttributeSetter<?>> attributeSetters = AttributeHandler.getAttributeSetters();
 		
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
 			EClassifier attributeType = attribute.getEType();
