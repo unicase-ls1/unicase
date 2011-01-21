@@ -152,13 +152,22 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__PLAYERLIST = 8;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__HEIGHT = 9;
+
+	/**
 	 * The number of structural features of the '<em>Player</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER_FEATURE_COUNT = 9;
+	int PLAYER_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link bowling.impl.PlayerlistImpl <em>Playerlist</em>}' class.
@@ -456,6 +465,17 @@ public interface BowlingPackage extends EPackage {
 	EReference getPlayer_Playerlist();
 
 	/**
+	 * Returns the meta object for the attribute '{@link bowling.Player#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see bowling.Player#getHeight()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EAttribute getPlayer_Height();
+
+	/**
 	 * Returns the meta object for class '{@link bowling.Playerlist <em>Playerlist</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -729,6 +749,14 @@ public interface BowlingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLAYER__PLAYERLIST = eINSTANCE.getPlayer_Playerlist();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYER__HEIGHT = eINSTANCE.getPlayer_Height();
 
 		/**
 		 * The meta object literal for the '{@link bowling.impl.PlayerlistImpl <em>Playerlist</em>}' class.
