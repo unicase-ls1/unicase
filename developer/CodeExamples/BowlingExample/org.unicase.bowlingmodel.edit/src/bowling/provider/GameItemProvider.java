@@ -180,8 +180,12 @@ public class GameItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String playerlastname = ((Game)object).getPlayer().getLastname(); 
-		String playerfirstname = ((Game)object).getPlayer().getFirstname(); 
+		String playerlastname = null;
+		String playerfirstname = null;
+		if (((Game)object).getPlayer() != null) {
+			playerlastname = ((Game)object).getPlayer().getLastname(); 
+			playerfirstname = ((Game)object).getPlayer().getFirstname(); 			
+		}
 		Date date = ((Game)object).getDate();
 		String label = "";
 		if (playerfirstname != null) {
