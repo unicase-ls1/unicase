@@ -2,23 +2,33 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.unicase.modelgenerator.GenerateProjectHandler"
+            id="org.unicase.unicase.modelgenerator.generateModel"
+            name="Generate Project">
+      </command>
+      <command
+            defaultHandler="org.unicase.unicase.modelgenerator.GenerateChangesHandler"
+            id="org.unicase.unicase.modelgenerator.generateChanges"
+            name="Generate Project Changes">
+      </command>
+   </extension>
+   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
-               commandId="org.unicase.unicase.projectgenerator2.command1"
-               label="Create Example Project"
+               commandId="org.unicase.unicase.modelgenerator.generateModel"
+               label="Generate Project"
+               style="push">
+         </command>
+         <command
+               commandId="org.unicase.unicase.modelgenerator.generateChanges"
+               label="Generate Project Changes"
                style="push">
          </command>
       </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.unicase.unicase.modelgenerator.CreateExampleProjectHandler"
-            id="org.unicase.unicase.projectgenerator2.command1"
-            name="name">
-      </command>
    </extension>
 
 </plugin>
