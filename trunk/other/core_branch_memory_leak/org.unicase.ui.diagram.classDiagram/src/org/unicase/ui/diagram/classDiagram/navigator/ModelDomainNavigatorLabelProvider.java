@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.diagram.classDiagram.navigator;
 
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
@@ -67,7 +66,7 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public void dispose() {
-		((IDisposable) myAdapterFactoryLabelProvider.getAdapterFactory()).dispose();
+		// ((IDisposable) myAdapterFactoryLabelProvider.getAdapterFactory()).dispose(); // not possible
 		myAdapterFactoryLabelProvider.dispose();
 	}
 
