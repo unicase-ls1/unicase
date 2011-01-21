@@ -76,7 +76,6 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import bowling.BowlingFactory;
 import bowling.BowlingPackage;
 import bowling.provider.BowlingmodelEditPlugin;
-import bowling.provider.BowlingEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -400,7 +399,8 @@ public class BowlingModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;

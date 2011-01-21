@@ -7,7 +7,7 @@
 package bowling.impl;
 
 import bowling.BowlingPackage;
-import bowling.Games;
+import bowling.Game;
 import bowling.Matchup;
 import bowling.Tournament;
 
@@ -51,7 +51,7 @@ public class MatchupImpl extends EObjectImpl implements Matchup {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Games> games;
+	protected EList<Game> games;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,9 +77,9 @@ public class MatchupImpl extends EObjectImpl implements Matchup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Games> getGames() {
+	public EList<Game> getGames() {
 		if (games == null) {
-			games = new EObjectContainmentWithInverseEList<Games>(Games.class, this, BowlingPackage.MATCHUP__GAMES, BowlingPackage.GAMES__MATCHUP);
+			games = new EObjectContainmentWithInverseEList<Game>(Game.class, this, BowlingPackage.MATCHUP__GAMES, BowlingPackage.GAME__MATCHUP);
 		}
 		return games;
 	}
@@ -201,7 +201,7 @@ public class MatchupImpl extends EObjectImpl implements Matchup {
 		switch (featureID) {
 			case BowlingPackage.MATCHUP__GAMES:
 				getGames().clear();
-				getGames().addAll((Collection<? extends Games>)newValue);
+				getGames().addAll((Collection<? extends Game>)newValue);
 				return;
 			case BowlingPackage.MATCHUP__TOURNAMENT:
 				setTournament((Tournament)newValue);

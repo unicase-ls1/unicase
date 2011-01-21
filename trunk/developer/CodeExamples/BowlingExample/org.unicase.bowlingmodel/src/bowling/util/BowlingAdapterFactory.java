@@ -80,8 +80,8 @@ public class BowlingAdapterFactory extends AdapterFactoryImpl {
 				return createPlayerlistAdapter();
 			}
 			@Override
-			public Adapter caseGames(Games object) {
-				return createGamesAdapter();
+			public Adapter caseGame(Game object) {
+				return createGameAdapter();
 			}
 			@Override
 			public Adapter caseMatchup(Matchup object) {
@@ -140,16 +140,16 @@ public class BowlingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bowling.Games <em>Games</em>}'.
+	 * Creates a new adapter for an object of class '{@link bowling.Game <em>Game</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bowling.Games
+	 * @see bowling.Game
 	 * @generated
 	 */
-	public Adapter createGamesAdapter() {
+	public Adapter createGameAdapter() {
 		return null;
 	}
 

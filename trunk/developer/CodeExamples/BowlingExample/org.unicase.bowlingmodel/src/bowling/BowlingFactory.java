@@ -44,13 +44,13 @@ public interface BowlingFactory extends EFactory {
 	Playerlist createPlayerlist();
 
 	/**
-	 * Returns a new object of class '<em>Games</em>'.
+	 * Returns a new object of class '<em>Game</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Games</em>'.
+	 * @return a new object of class '<em>Game</em>'.
 	 * @generated
 	 */
-	Games createGames();
+	Game createGame();
 
 	/**
 	 * Returns a new object of class '<em>Matchup</em>'.

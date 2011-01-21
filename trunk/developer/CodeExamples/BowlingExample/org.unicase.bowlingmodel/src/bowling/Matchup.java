@@ -30,8 +30,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface Matchup extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Games</b></em>' containment reference list.
-	 * The list contents are of type {@link bowling.Games}.
-	 * It is bidirectional and its opposite is '{@link bowling.Games#getMatchup <em>Matchup</em>}'.
+	 * The list contents are of type {@link bowling.Game}.
+	 * It is bidirectional and its opposite is '{@link bowling.Game#getMatchup <em>Matchup</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Games</em>' containment reference list isn't clear,
@@ -40,12 +40,12 @@ public interface Matchup extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Games</em>' containment reference list.
 	 * @see bowling.BowlingPackage#getMatchup_Games()
-	 * @see bowling.Games#getMatchup
+	 * @see bowling.Game#getMatchup
 	 * @model opposite="matchup" containment="true" upper="2"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
 	 * @generated
 	 */
-	EList<Games> getGames();
+	EList<Game> getGames();
 
 	/**
 	 * Returns the value of the '<em><b>Tournament</b></em>' container reference.

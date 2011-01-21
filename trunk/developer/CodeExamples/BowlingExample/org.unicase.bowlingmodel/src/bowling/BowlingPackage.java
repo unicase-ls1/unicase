@@ -198,14 +198,14 @@ public interface BowlingPackage extends EPackage {
 	int PLAYERLIST_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link bowling.impl.GamesImpl <em>Games</em>}' class.
+	 * The meta object id for the '{@link bowling.impl.GameImpl <em>Game</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bowling.impl.GamesImpl
-	 * @see bowling.impl.BowlingPackageImpl#getGames()
+	 * @see bowling.impl.GameImpl
+	 * @see bowling.impl.BowlingPackageImpl#getGame()
 	 * @generated
 	 */
-	int GAMES = 2;
+	int GAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -214,7 +214,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAMES__DATE = 0;
+	int GAME__DATE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Frames</b></em>' attribute list.
@@ -223,7 +223,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAMES__FRAMES = 1;
+	int GAME__FRAMES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Player</b></em>' reference.
@@ -232,7 +232,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAMES__PLAYER = 2;
+	int GAME__PLAYER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Matchup</b></em>' container reference.
@@ -241,16 +241,16 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GAMES__MATCHUP = 3;
+	int GAME__MATCHUP = 3;
 
 	/**
-	 * The number of structural features of the '<em>Games</em>' class.
+	 * The number of structural features of the '<em>Game</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GAMES_FEATURE_COUNT = 4;
+	int GAME_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link bowling.impl.MatchupImpl <em>Matchup</em>}' class.
@@ -488,58 +488,58 @@ public interface BowlingPackage extends EPackage {
 	EReference getPlayerlist_Player();
 
 	/**
-	 * Returns the meta object for class '{@link bowling.Games <em>Games</em>}'.
+	 * Returns the meta object for class '{@link bowling.Game <em>Game</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Games</em>'.
-	 * @see bowling.Games
+	 * @return the meta object for class '<em>Game</em>'.
+	 * @see bowling.Game
 	 * @generated
 	 */
-	EClass getGames();
+	EClass getGame();
 
 	/**
-	 * Returns the meta object for the attribute '{@link bowling.Games#getDate <em>Date</em>}'.
+	 * Returns the meta object for the attribute '{@link bowling.Game#getDate <em>Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see bowling.Games#getDate()
-	 * @see #getGames()
+	 * @see bowling.Game#getDate()
+	 * @see #getGame()
 	 * @generated
 	 */
-	EAttribute getGames_Date();
+	EAttribute getGame_Date();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link bowling.Games#getFrames <em>Frames</em>}'.
+	 * Returns the meta object for the attribute list '{@link bowling.Game#getFrames <em>Frames</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Frames</em>'.
-	 * @see bowling.Games#getFrames()
-	 * @see #getGames()
+	 * @see bowling.Game#getFrames()
+	 * @see #getGame()
 	 * @generated
 	 */
-	EAttribute getGames_Frames();
+	EAttribute getGame_Frames();
 
 	/**
-	 * Returns the meta object for the reference '{@link bowling.Games#getPlayer <em>Player</em>}'.
+	 * Returns the meta object for the reference '{@link bowling.Game#getPlayer <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Player</em>'.
-	 * @see bowling.Games#getPlayer()
-	 * @see #getGames()
+	 * @see bowling.Game#getPlayer()
+	 * @see #getGame()
 	 * @generated
 	 */
-	EReference getGames_Player();
+	EReference getGame_Player();
 
 	/**
-	 * Returns the meta object for the container reference '{@link bowling.Games#getMatchup <em>Matchup</em>}'.
+	 * Returns the meta object for the container reference '{@link bowling.Game#getMatchup <em>Matchup</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Matchup</em>'.
-	 * @see bowling.Games#getMatchup()
-	 * @see #getGames()
+	 * @see bowling.Game#getMatchup()
+	 * @see #getGame()
 	 * @generated
 	 */
-	EReference getGames_Matchup();
+	EReference getGame_Matchup();
 
 	/**
 	 * Returns the meta object for class '{@link bowling.Matchup <em>Matchup</em>}'.
@@ -757,14 +757,14 @@ public interface BowlingPackage extends EPackage {
 		EReference PLAYERLIST__PLAYER = eINSTANCE.getPlayerlist_Player();
 
 		/**
-		 * The meta object literal for the '{@link bowling.impl.GamesImpl <em>Games</em>}' class.
+		 * The meta object literal for the '{@link bowling.impl.GameImpl <em>Game</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see bowling.impl.GamesImpl
-		 * @see bowling.impl.BowlingPackageImpl#getGames()
+		 * @see bowling.impl.GameImpl
+		 * @see bowling.impl.BowlingPackageImpl#getGame()
 		 * @generated
 		 */
-		EClass GAMES = eINSTANCE.getGames();
+		EClass GAME = eINSTANCE.getGame();
 
 		/**
 		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
@@ -772,7 +772,7 @@ public interface BowlingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GAMES__DATE = eINSTANCE.getGames_Date();
+		EAttribute GAME__DATE = eINSTANCE.getGame_Date();
 
 		/**
 		 * The meta object literal for the '<em><b>Frames</b></em>' attribute list feature.
@@ -780,7 +780,7 @@ public interface BowlingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GAMES__FRAMES = eINSTANCE.getGames_Frames();
+		EAttribute GAME__FRAMES = eINSTANCE.getGame_Frames();
 
 		/**
 		 * The meta object literal for the '<em><b>Player</b></em>' reference feature.
@@ -788,7 +788,7 @@ public interface BowlingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GAMES__PLAYER = eINSTANCE.getGames_Player();
+		EReference GAME__PLAYER = eINSTANCE.getGame_Player();
 
 		/**
 		 * The meta object literal for the '<em><b>Matchup</b></em>' container reference feature.
@@ -796,7 +796,7 @@ public interface BowlingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GAMES__MATCHUP = eINSTANCE.getGames_Matchup();
+		EReference GAME__MATCHUP = eINSTANCE.getGame_Matchup();
 
 		/**
 		 * The meta object literal for the '{@link bowling.impl.MatchupImpl <em>Matchup</em>}' class.

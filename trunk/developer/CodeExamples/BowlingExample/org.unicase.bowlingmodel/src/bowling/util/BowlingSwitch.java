@@ -99,9 +99,9 @@ public class BowlingSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BowlingPackage.GAMES: {
-				Games games = (Games)theEObject;
-				T result = caseGames(games);
+			case BowlingPackage.GAME: {
+				Game game = (Game)theEObject;
+				T result = caseGame(game);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,17 +152,17 @@ public class BowlingSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Games</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Game</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Games</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Game</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGames(Games object) {
+	public T caseGame(Game object) {
 		return null;
 	}
 

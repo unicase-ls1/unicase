@@ -219,7 +219,7 @@ public interface Player extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Games</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link bowling.Games#getPlayer <em>Player</em>}'.
+	 * It is bidirectional and its opposite is '{@link bowling.Game#getPlayer <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Games</em>' reference isn't clear,
@@ -227,14 +227,14 @@ public interface Player extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Games</em>' reference.
-	 * @see #setGames(Games)
+	 * @see #setGames(Game)
 	 * @see bowling.BowlingPackage#getPlayer_Games()
-	 * @see bowling.Games#getPlayer
+	 * @see bowling.Game#getPlayer
 	 * @model opposite="player"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
 	 * @generated
 	 */
-	Games getGames();
+	Game getGames();
 
 	/**
 	 * Sets the value of the '{@link bowling.Player#getGames <em>Games</em>}' reference.
@@ -244,7 +244,7 @@ public interface Player extends EObject {
 	 * @see #getGames()
 	 * @generated
 	 */
-	void setGames(Games value);
+	void setGames(Game value);
 
 	/**
 	 * Returns the value of the '<em><b>Playerlist</b></em>' container reference.

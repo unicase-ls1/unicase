@@ -7,7 +7,7 @@
 package bowling.impl;
 
 import bowling.BowlingPackage;
-import bowling.Games;
+import bowling.Game;
 import bowling.Matchup;
 import bowling.Player;
 
@@ -30,21 +30,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Games</b></em>'.
+ * An implementation of the model object '<em><b>Game</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link bowling.impl.GamesImpl#getDate <em>Date</em>}</li>
- *   <li>{@link bowling.impl.GamesImpl#getFrames <em>Frames</em>}</li>
- *   <li>{@link bowling.impl.GamesImpl#getPlayer <em>Player</em>}</li>
- *   <li>{@link bowling.impl.GamesImpl#getMatchup <em>Matchup</em>}</li>
+ *   <li>{@link bowling.impl.GameImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link bowling.impl.GameImpl#getFrames <em>Frames</em>}</li>
+ *   <li>{@link bowling.impl.GameImpl#getPlayer <em>Player</em>}</li>
+ *   <li>{@link bowling.impl.GameImpl#getMatchup <em>Matchup</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GamesImpl extends EObjectImpl implements Games {
+public class GameImpl extends EObjectImpl implements Game {
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,7 +90,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GamesImpl() {
+	protected GameImpl() {
 		super();
 	}
 
@@ -101,7 +101,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BowlingPackage.Literals.GAMES;
+		return BowlingPackage.Literals.GAME;
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAMES__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAME__DATE, oldDate, date));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 */
 	public EList<Integer> getFrames() {
 		if (frames == null) {
-			frames = new EDataTypeUniqueEList<Integer>(Integer.class, this, BowlingPackage.GAMES__FRAMES);
+			frames = new EDataTypeUniqueEList<Integer>(Integer.class, this, BowlingPackage.GAME__FRAMES);
 		}
 		return frames;
 	}
@@ -148,7 +148,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 			player = (Player)eResolveProxy(oldPlayer);
 			if (player != oldPlayer) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.GAMES__PLAYER, oldPlayer, player));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.GAME__PLAYER, oldPlayer, player));
 			}
 		}
 		return player;
@@ -172,7 +172,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 		Player oldPlayer = player;
 		player = newPlayer;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BowlingPackage.GAMES__PLAYER, oldPlayer, newPlayer);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BowlingPackage.GAME__PLAYER, oldPlayer, newPlayer);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -194,7 +194,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAMES__PLAYER, newPlayer, newPlayer));
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAME__PLAYER, newPlayer, newPlayer));
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 * @generated
 	 */
 	public Matchup getMatchup() {
-		if (eContainerFeatureID() != BowlingPackage.GAMES__MATCHUP) return null;
+		if (eContainerFeatureID() != BowlingPackage.GAME__MATCHUP) return null;
 		return (Matchup)eContainer();
 	}
 
@@ -213,7 +213,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 * @generated
 	 */
 	public NotificationChain basicSetMatchup(Matchup newMatchup, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newMatchup, BowlingPackage.GAMES__MATCHUP, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newMatchup, BowlingPackage.GAME__MATCHUP, msgs);
 		return msgs;
 	}
 
@@ -223,7 +223,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	 * @generated
 	 */
 	public void setMatchup(Matchup newMatchup) {
-		if (newMatchup != eInternalContainer() || (eContainerFeatureID() != BowlingPackage.GAMES__MATCHUP && newMatchup != null)) {
+		if (newMatchup != eInternalContainer() || (eContainerFeatureID() != BowlingPackage.GAME__MATCHUP && newMatchup != null)) {
 			if (EcoreUtil.isAncestor(this, newMatchup))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -235,7 +235,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAMES__MATCHUP, newMatchup, newMatchup));
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAME__MATCHUP, newMatchup, newMatchup));
 	}
 
 	/**
@@ -246,11 +246,11 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				if (player != null)
 					msgs = ((InternalEObject)player).eInverseRemove(this, BowlingPackage.PLAYER__GAMES, Player.class, msgs);
 				return basicSetPlayer((Player)otherEnd, msgs);
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetMatchup((Matchup)otherEnd, msgs);
@@ -266,9 +266,9 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				return basicSetPlayer(null, msgs);
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				return basicSetMatchup(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -282,7 +282,7 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				return eInternalContainer().eInverseRemove(this, BowlingPackage.MATCHUP__GAMES, Matchup.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -296,14 +296,14 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__DATE:
+			case BowlingPackage.GAME__DATE:
 				return getDate();
-			case BowlingPackage.GAMES__FRAMES:
+			case BowlingPackage.GAME__FRAMES:
 				return getFrames();
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				if (resolve) return getPlayer();
 				return basicGetPlayer();
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				return getMatchup();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -318,17 +318,17 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__DATE:
+			case BowlingPackage.GAME__DATE:
 				setDate((Date)newValue);
 				return;
-			case BowlingPackage.GAMES__FRAMES:
+			case BowlingPackage.GAME__FRAMES:
 				getFrames().clear();
 				getFrames().addAll((Collection<? extends Integer>)newValue);
 				return;
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				setPlayer((Player)newValue);
 				return;
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				setMatchup((Matchup)newValue);
 				return;
 		}
@@ -343,16 +343,16 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__DATE:
+			case BowlingPackage.GAME__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
-			case BowlingPackage.GAMES__FRAMES:
+			case BowlingPackage.GAME__FRAMES:
 				getFrames().clear();
 				return;
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				setPlayer((Player)null);
 				return;
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				setMatchup((Matchup)null);
 				return;
 		}
@@ -367,13 +367,13 @@ public class GamesImpl extends EObjectImpl implements Games {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BowlingPackage.GAMES__DATE:
+			case BowlingPackage.GAME__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-			case BowlingPackage.GAMES__FRAMES:
+			case BowlingPackage.GAME__FRAMES:
 				return frames != null && !frames.isEmpty();
-			case BowlingPackage.GAMES__PLAYER:
+			case BowlingPackage.GAME__PLAYER:
 				return player != null;
-			case BowlingPackage.GAMES__MATCHUP:
+			case BowlingPackage.GAME__MATCHUP:
 				return getMatchup() != null;
 		}
 		return super.eIsSet(featureID);
@@ -397,4 +397,4 @@ public class GamesImpl extends EObjectImpl implements Games {
 		return result.toString();
 	}
 
-} //GamesImpl
+} //GameImpl

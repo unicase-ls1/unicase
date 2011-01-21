@@ -63,7 +63,7 @@ public class BowlingFactoryImpl extends EFactoryImpl implements BowlingFactory {
 		switch (eClass.getClassifierID()) {
 			case BowlingPackage.PLAYER: return createPlayer();
 			case BowlingPackage.PLAYERLIST: return createPlayerlist();
-			case BowlingPackage.GAMES: return createGames();
+			case BowlingPackage.GAME: return createGame();
 			case BowlingPackage.MATCHUP: return createMatchup();
 			case BowlingPackage.TOURNAMENT: return createTournament();
 			default:
@@ -126,9 +126,9 @@ public class BowlingFactoryImpl extends EFactoryImpl implements BowlingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Games createGames() {
-		GamesImpl games = new GamesImpl();
-		return games;
+	public Game createGame() {
+		GameImpl game = new GameImpl();
+		return game;
 	}
 
 	/**

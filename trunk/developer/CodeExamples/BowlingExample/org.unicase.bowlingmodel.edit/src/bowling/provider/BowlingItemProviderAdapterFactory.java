@@ -122,26 +122,26 @@ public class BowlingItemProviderAdapterFactory extends BowlingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bowling.Games} instances.
+	 * This keeps track of the one adapter used for all {@link bowling.Game} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GamesItemProvider gamesItemProvider;
+	protected GameItemProvider gameItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bowling.Games}.
+	 * This creates an adapter for a {@link bowling.Game}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGamesAdapter() {
-		if (gamesItemProvider == null) {
-			gamesItemProvider = new GamesItemProvider(this);
+	public Adapter createGameAdapter() {
+		if (gameItemProvider == null) {
+			gameItemProvider = new GameItemProvider(this);
 		}
 
-		return gamesItemProvider;
+		return gameItemProvider;
 	}
 
 	/**
@@ -291,7 +291,7 @@ public class BowlingItemProviderAdapterFactory extends BowlingAdapterFactory imp
 	public void dispose() {
 		if (playerItemProvider != null) playerItemProvider.dispose();
 		if (playerlistItemProvider != null) playerlistItemProvider.dispose();
-		if (gamesItemProvider != null) gamesItemProvider.dispose();
+		if (gameItemProvider != null) gameItemProvider.dispose();
 		if (matchupItemProvider != null) matchupItemProvider.dispose();
 		if (tournamentItemProvider != null) tournamentItemProvider.dispose();
 	}

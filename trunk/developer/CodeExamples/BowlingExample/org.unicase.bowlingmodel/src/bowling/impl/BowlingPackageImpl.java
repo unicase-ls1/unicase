@@ -8,7 +8,7 @@ package bowling.impl;
 
 import bowling.BowlingFactory;
 import bowling.BowlingPackage;
-import bowling.Games;
+import bowling.Game;
 import bowling.Matchup;
 import bowling.Player;
 import bowling.Playerlist;
@@ -49,7 +49,7 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass gamesEClass = null;
+	private EClass gameEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,8 +255,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGames() {
-		return gamesEClass;
+	public EClass getGame() {
+		return gameEClass;
 	}
 
 	/**
@@ -264,8 +264,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGames_Date() {
-		return (EAttribute)gamesEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGame_Date() {
+		return (EAttribute)gameEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -273,8 +273,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGames_Frames() {
-		return (EAttribute)gamesEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGame_Frames() {
+		return (EAttribute)gameEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -282,8 +282,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGames_Player() {
-		return (EReference)gamesEClass.getEStructuralFeatures().get(2);
+	public EReference getGame_Player() {
+		return (EReference)gameEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -291,8 +291,8 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGames_Matchup() {
-		return (EReference)gamesEClass.getEStructuralFeatures().get(3);
+	public EReference getGame_Matchup() {
+		return (EReference)gameEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -410,11 +410,11 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		createEAttribute(playerlistEClass, PLAYERLIST__NAME);
 		createEReference(playerlistEClass, PLAYERLIST__PLAYER);
 
-		gamesEClass = createEClass(GAMES);
-		createEAttribute(gamesEClass, GAMES__DATE);
-		createEAttribute(gamesEClass, GAMES__FRAMES);
-		createEReference(gamesEClass, GAMES__PLAYER);
-		createEReference(gamesEClass, GAMES__MATCHUP);
+		gameEClass = createEClass(GAME);
+		createEAttribute(gameEClass, GAME__DATE);
+		createEAttribute(gameEClass, GAME__FRAMES);
+		createEReference(gameEClass, GAME__PLAYER);
+		createEReference(gameEClass, GAME__MATCHUP);
 
 		matchupEClass = createEClass(MATCHUP);
 		createEReference(matchupEClass, MATCHUP__GAMES);
@@ -467,21 +467,21 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 		initEAttribute(getPlayer_DateOfBirth(), ecorePackage.getEDate(), "dateOfBirth", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_City(), ecorePackage.getEString(), "city", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlayer_IsProfessional(), ecorePackage.getEBoolean(), "isProfessional", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPlayer_Games(), this.getGames(), this.getGames_Player(), "games", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlayer_Games(), this.getGame(), this.getGame_Player(), "games", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlayer_Playerlist(), this.getPlayerlist(), this.getPlayerlist_Player(), "playerlist", null, 0, 1, Player.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(playerlistEClass, Playerlist.class, "Playerlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlayerlist_Name(), ecorePackage.getEString(), "name", null, 0, 1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlayerlist_Player(), this.getPlayer(), this.getPlayer_Playerlist(), "player", null, 0, -1, Playerlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(gamesEClass, Games.class, "Games", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGames_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Games.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGames_Frames(), ecorePackage.getEInt(), "frames", null, 0, 10, Games.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGames_Player(), this.getPlayer(), this.getPlayer_Games(), "player", null, 0, 1, Games.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGames_Matchup(), this.getMatchup(), this.getMatchup_Games(), "matchup", null, 0, 1, Games.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(gameEClass, Game.class, "Game", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGame_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGame_Frames(), ecorePackage.getEInt(), "frames", null, 0, 10, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGame_Player(), this.getPlayer(), this.getPlayer_Games(), "player", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGame_Matchup(), this.getMatchup(), this.getMatchup_Games(), "matchup", null, 0, 1, Game.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(matchupEClass, Matchup.class, "Matchup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMatchup_Games(), this.getGames(), this.getGames_Matchup(), "games", null, 0, 2, Matchup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMatchup_Games(), this.getGame(), this.getGame_Matchup(), "games", null, 0, 2, Matchup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMatchup_Tournament(), this.getTournament(), this.getTournament_Matchup(), "tournament", null, 0, 1, Matchup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tournamentEClass, Tournament.class, "Tournament", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -532,14 +532,14 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 			 "priority", "0"
 		   });		
 		addAnnotation
-		  (getGames_Player(), 
+		  (getGame_Player(), 
 		   source, 
 		   new String[] {
 			 "position", "right",
 			 "priority", "0"
 		   });		
 		addAnnotation
-		  (getGames_Matchup(), 
+		  (getGame_Matchup(), 
 		   source, 
 		   new String[] {
 			 "position", "right",

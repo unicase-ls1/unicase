@@ -7,7 +7,7 @@
 package bowling.impl;
 
 import bowling.BowlingPackage;
-import bowling.Games;
+import bowling.Game;
 import bowling.Player;
 import bowling.Playerlist;
 
@@ -194,7 +194,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * @generated
 	 * @ordered
 	 */
-	protected Games games;
+	protected Game games;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -367,10 +367,10 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Games getGames() {
+	public Game getGames() {
 		if (games != null && games.eIsProxy()) {
 			InternalEObject oldGames = (InternalEObject)games;
-			games = (Games)eResolveProxy(oldGames);
+			games = (Game)eResolveProxy(oldGames);
 			if (games != oldGames) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.PLAYER__GAMES, oldGames, games));
@@ -384,7 +384,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Games basicGetGames() {
+	public Game basicGetGames() {
 		return games;
 	}
 
@@ -393,8 +393,8 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGames(Games newGames, NotificationChain msgs) {
-		Games oldGames = games;
+	public NotificationChain basicSetGames(Game newGames, NotificationChain msgs) {
+		Game oldGames = games;
 		games = newGames;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYER__GAMES, oldGames, newGames);
@@ -408,13 +408,13 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGames(Games newGames) {
+	public void setGames(Game newGames) {
 		if (newGames != games) {
 			NotificationChain msgs = null;
 			if (games != null)
-				msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAMES__PLAYER, Games.class, msgs);
+				msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
 			if (newGames != null)
-				msgs = ((InternalEObject)newGames).eInverseAdd(this, BowlingPackage.GAMES__PLAYER, Games.class, msgs);
+				msgs = ((InternalEObject)newGames).eInverseAdd(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
 			msgs = basicSetGames(newGames, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -473,8 +473,8 @@ public class PlayerImpl extends EObjectImpl implements Player {
 		switch (featureID) {
 			case BowlingPackage.PLAYER__GAMES:
 				if (games != null)
-					msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAMES__PLAYER, Games.class, msgs);
-				return basicSetGames((Games)otherEnd, msgs);
+					msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
+				return basicSetGames((Game)otherEnd, msgs);
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -574,7 +574,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				setIsProfessional((Boolean)newValue);
 				return;
 			case BowlingPackage.PLAYER__GAMES:
-				setGames((Games)newValue);
+				setGames((Game)newValue);
 				return;
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				setPlayerlist((Playerlist)newValue);
@@ -613,7 +613,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				setIsProfessional(IS_PROFESSIONAL_EDEFAULT);
 				return;
 			case BowlingPackage.PLAYER__GAMES:
-				setGames((Games)null);
+				setGames((Game)null);
 				return;
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				setPlayerlist((Playerlist)null);
