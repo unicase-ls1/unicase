@@ -204,7 +204,7 @@ public class GamesItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return BowlingEditPlugin.INSTANCE;
+		return BowlingmodelEditPlugin.INSTANCE;
 	}
 
 }

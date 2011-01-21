@@ -523,7 +523,7 @@ public class BowlingEditor
 					}
 				}
 				catch (CoreException exception) {
-					BowlingEditorPlugin.INSTANCE.log(exception);
+					BowlingmodelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -639,7 +639,7 @@ public class BowlingEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					BowlingEditorPlugin.INSTANCE.log(exception);
+					BowlingmodelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -650,7 +650,7 @@ public class BowlingEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						BowlingEditorPlugin.INSTANCE.log(exception);
+						BowlingmodelEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1509,7 +1509,7 @@ public class BowlingEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			BowlingEditorPlugin.INSTANCE.log(exception);
+			BowlingmodelEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1602,7 +1602,7 @@ public class BowlingEditor
 			}
 		}
 		catch (CoreException exception) {
-			BowlingEditorPlugin.INSTANCE.log(exception);
+			BowlingmodelEditorPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1724,7 +1724,7 @@ public class BowlingEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return BowlingEditorPlugin.INSTANCE.getString(key);
+		return BowlingmodelEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1734,7 +1734,7 @@ public class BowlingEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return BowlingEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return BowlingmodelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

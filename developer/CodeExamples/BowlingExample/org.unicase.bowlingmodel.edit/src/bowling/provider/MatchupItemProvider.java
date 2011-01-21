@@ -165,7 +165,7 @@ public class MatchupItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return BowlingEditPlugin.INSTANCE;
+		return BowlingmodelEditPlugin.INSTANCE;
 	}
 
 }
