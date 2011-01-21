@@ -71,7 +71,7 @@ public class ModelGenerator {
 	 * 
 	 * @see #getLog()
 	 */
-	private static Set<RuntimeException> exceptions;
+	private static Set<RuntimeException> exceptionLog;
 	
 	/**
 	 * Private constructor.
@@ -106,7 +106,7 @@ public class ModelGenerator {
 		AttributeHandler.setRandom(random);
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
-		exceptions = new LinkedHashSet<RuntimeException>();
+		exceptionLog = new LinkedHashSet<RuntimeException>();
 		EObject rootEObject = generateModel();
 		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootEObject);
 		for(EClass eClass : allObjectsByEClass.keySet()) {
@@ -192,14 +192,14 @@ public class ModelGenerator {
 	 */
 	private static EObject setContainment(EObject parentEObject, EClass childClass, EReference reference) {
 		EObject newEObject = EcoreUtil.create(childClass);
-		ModelGeneratorUtil.setEObjectAttributes(newEObject,	exceptions, config.getIgnoreAndLog());
+		ModelGeneratorUtil.setEObjectAttributes(newEObject,	exceptionLog, config.getIgnoreAndLog());
 		if(reference.isMany()) {
 			return ModelGeneratorUtil.addPerCommand(parentEObject, reference, newEObject,
-				exceptions, config.getIgnoreAndLog());
+				exceptionLog, config.getIgnoreAndLog());
 		}
 		else {
 			return ModelGeneratorUtil.setPerCommand(parentEObject, reference, newEObject,
-				exceptions, config.getIgnoreAndLog());
+				exceptionLog, config.getIgnoreAndLog());
 		}
 	}
 
@@ -265,7 +265,7 @@ public class ModelGenerator {
 			if(parentClass.isInterface() || parentClass.isAbstract())
 				return null;
 			rootEObject = EcoreUtil.create(parentClass);
-			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptions, config.getIgnoreAndLog());
+			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptionLog, config.getIgnoreAndLog());
 		}
 		return rootEObject;
 	}
@@ -280,7 +280,7 @@ public class ModelGenerator {
 	 * @return a set of RuntimeExceptions that occurred during the last generation process
 	 */
 	public static Set<RuntimeException> getLog() {
-		return exceptions;
+		return exceptionLog;
 	}
 
 	/**
@@ -313,7 +313,7 @@ public class ModelGenerator {
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				if(allObjectsByEClass.containsKey(nextReferenceClass)) {
 					ModelGeneratorUtil.setReference(eObject, nextReferenceClass, reference, random,
-						exceptions, config.getIgnoreAndLog(), allObjectsByEClass);
+						exceptionLog, config.getIgnoreAndLog(), allObjectsByEClass);
 				}
 			}
 		}
