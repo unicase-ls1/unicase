@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -85,7 +86,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 	public AbstractDashboardWidget() {
 		display = Display.getCurrent();
 		bg = new Color(display, 233, 244, 255);
-		// hkq: open
+		// hkq: done
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
@@ -278,5 +279,9 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 	 */
 	public void dispose() {
 		composite.dispose();
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+		}
 	}
 }
