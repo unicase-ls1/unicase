@@ -8,6 +8,7 @@ package org.unicase.ui.urml.stakeholderview;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.ui.urml.reviewview.ReviewedTracker;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
 /**

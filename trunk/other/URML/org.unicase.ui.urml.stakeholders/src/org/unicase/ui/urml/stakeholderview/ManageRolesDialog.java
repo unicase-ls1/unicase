@@ -8,13 +8,11 @@ package org.unicase.ui.urml.stakeholderview;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -52,7 +50,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author kterzieva
  */
-public class ManageRolesDialog extends TitleAreaDialog {
+public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 
 	private static final String EDIT_DIALOG = "Edit dialog";
 	private static final String ADD_NEW_ROLE = "Add new role";
@@ -68,8 +66,6 @@ public class ManageRolesDialog extends TitleAreaDialog {
 	private ILabelProvider tableViewLabelProvider;
 	private DeleteButtonListener dialogListener;
 	private boolean roleListHasChanged;
-
-	
 
 	/**
 	 * The constructor. The list with the created roles is created.
@@ -102,7 +98,7 @@ public class ManageRolesDialog extends TitleAreaDialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setSize(300, 400);
+	
 	}
 
 
@@ -113,7 +109,6 @@ public class ManageRolesDialog extends TitleAreaDialog {
 				new UnicaseCommand() {
 					@Override
 					protected void doRun() {
-						//if(role name was changed);
 						roleListHasChanged = true;
 					}
 				}.run();
@@ -123,7 +118,6 @@ public class ManageRolesDialog extends TitleAreaDialog {
 	private void createAddDialog() {
 		final StakeholderRole newRole = UrmlFactory.eINSTANCE.createStakeholderRole();
 		EditRoleDialog addDialog = new EditRoleDialog(editButton.getShell(), newRole, ADD_NEW_ROLE, ADD_DIALOG_MESSAGE);
-		
 		addDialog.setBlockOnOpen(true);
 		if(addDialog.open() == Window.OK){
 			new UnicaseCommand() {
@@ -143,8 +137,10 @@ public class ManageRolesDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		setTitle(MANAGE_STAKEHOLDER_ROLES);
 		setMessage(SELECT_STAKEHOLDER_ROLE);
+		Composite wrap = (Composite) super.createDialogArea(parent);
 
-		Composite viewComposite = createViewComposite(parent);
+
+		Composite viewComposite = createViewComposite(wrap);
 		tableViewSetUp(viewComposite);
 		setTableInput();
 		addListeners();
@@ -154,11 +150,13 @@ public class ManageRolesDialog extends TitleAreaDialog {
 
 	private Composite createViewComposite(Composite parent) {
 		// Create composite
-		Composite viewComposite = (Composite) super.createDialogArea(parent);
+		Composite composite = new Composite(parent, SWT.NONE);
 		// Layout stuff
 		GridLayout gridLayout = new GridLayout(3, false);
-		viewComposite.setLayout(gridLayout);
-		return viewComposite;
+		composite.setLayout(gridLayout);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		composite.setFont(parent.getFont());
+		return composite;
 	}
 
 	private void tableViewSetUp(Composite composite) {
@@ -175,8 +173,7 @@ public class ManageRolesDialog extends TitleAreaDialog {
 				cell.setImage(tableViewLabelProvider.getImage(cell.getElement()));
 			}
 		});
-		viewerNameColumn.getColumn().setText("Test");
-		viewerNameColumn.getColumn().setWidth(270);
+		viewerNameColumn.getColumn().setWidth(280);
 
 	}
 
@@ -291,5 +288,22 @@ public class ManageRolesDialog extends TitleAreaDialog {
 		this.roleListHasChanged = roleHasChanged;
 	}
 	
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.urml.stakeholderview.TitleDialogWithoutMinSize#getMinWidth()
+	 */
+	public int getMinWidth(){
+		return 50;
+	}
+	
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.urml.stakeholderview.TitleDialogWithoutMinSize#getMinHeight()
+	 */
+	public int getMinHeight(){
+		return 400;
+	}
 
 }
