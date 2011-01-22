@@ -27,6 +27,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTag;
 import org.unicase.changetracking.git.GitNameUtil;
 import org.unicase.changetracking.git.GitUtil;
+import org.unicase.changetracking.git.GitWrapper;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.changetracking.release.Problem;
 import org.unicase.changetracking.release.Problem.Severity;
@@ -43,7 +44,9 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 	private Ref baseBranch;
 	private List<Ref> branchesToMerge;
 	private String tagName;
-
+	private boolean isContinuing;
+	private boolean conflictOccurred;
+	
 	public GitBuildReleaseCommand(ChangeTrackingRelease release, Repository localRepo, Ref baseBranch, List<Ref> branchesToMerge, String tagName) {
 		this.release = release;
 		this.localRepo = localRepo;
@@ -56,21 +59,34 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 	protected void doRun() {
 		
 		IProgressMonitor progressMonitor = getProgressMonitor();
-		progressMonitor.beginTask("Building Release", 6);
-		try{
+		progressMonitor.beginTask("Building Release", 7 + branchesToMerge.size()*2);
+		conflictOccurred = false;
 		
+		try{
+			
 			// 1. Checks...
-			
-			//Make sure that the local repository is in a valid state
 			progressMonitor.subTask("Checking requirements");
-			boolean indexClean = GitUtil.isIndexAndWorkDirClean(localRepo);
-			if(!indexClean){
-				throw new UnexpectedGitException("Cannot build release while working directory or index contains changes");
-			}
-			
-			//Check that it is in a safe state
-			if(RepositoryState.SAFE != localRepo.getRepositoryState()){
-				throw new UnexpectedGitException("Local repository is not in a safe state");
+			if(isContinuing){
+				//Make sure we are in a merge resolved state
+				if(RepositoryState.MERGING_RESOLVED != localRepo.getRepositoryState()){
+					if(RepositoryState.MERGING == localRepo.getRepositoryState()){
+						throw new UnexpectedGitException("Local repository still contains unresolved changes. Resolve these and add the conflicting files afterwards");
+					} else {
+						throw new UnexpectedGitException("Local repository is in an invalid state. Have you commited the conflict merge by hand? If so, restart building the release.");
+					}
+				}
+			} else {
+				//Make sure that the local repository is in a valid state
+				boolean indexClean = GitUtil.isIndexAndWorkDirClean(localRepo);
+				if(!indexClean){
+					throw new UnexpectedGitException("Cannot build release while working directory or index contains changes");
+				}
+				
+				//Check that it is in a safe state
+				if(RepositoryState.SAFE != localRepo.getRepositoryState()){
+					throw new UnexpectedGitException("Local repository is not in a safe state");
+				}
+
 			}
 			
 			//Check that the release is not built yet
@@ -82,83 +98,48 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 			if(tagName == null){
 				throw new UnexpectedGitException("No tag name provided");
 			} 
+		
 			String error = GitNameUtil.isNewTagNameValid(tagName,localRepo);
 			if(error != null){
 				throw new UnexpectedGitException("Tag name '" + tagName + "' is invalid: " + error);
 			}
 			progressMonitor.worked(1);
 			
-			// 2. Check out the base branch
-			progressMonitor.subTask("Checking out base branch");
-			Git git = new Git(localRepo);
-			try {
-				git.checkout().setName(baseBranch.getName()).call();
-			} catch (JGitInternalException e) {
-				throw new UnexpectedGitException("Checking out the base branch failed.",e);
-			} catch (RefAlreadyExistsException e) {
-				throw new UnexpectedGitException("Checking out the base branch failed.",e);
-			} catch (RefNotFoundException e) {
-				throw new UnexpectedGitException("Checking out the base branch failed.",e);
-			} catch (InvalidRefNameException e) {
-				throw new UnexpectedGitException("Checking out the base branch failed.",e);
+			// 2. Check out the base branch or do a merging commit.
+			GitWrapper git = new GitWrapper(localRepo);
+			if(isContinuing){
+				progressMonitor.subTask("Commiting resolved merge conflicts");
+				git.commitResolvedMergeConflicts();
+			} else {
+				progressMonitor.subTask("Checking out base branch");
+				git.checkout(baseBranch.getName());
 			}
 			progressMonitor.worked(1);
 			
 			// 3. Merge the unmerged branches onto it
-			if(!branchesToMerge.isEmpty()){
-				progressMonitor.subTask("Merging unmerged branches");
-				MergeCommand merge = git.merge();
-				merge.setStrategy(MergeStrategy.RESOLVE);
-				for(Ref branch : branchesToMerge){
-					merge.include(branch);			
-				}
-				MergeResult mergeRes;
-				try {
-					mergeRes = merge.call();
-				} catch (NoHeadException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				} catch (ConcurrentRefUpdateException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				} catch (CheckoutConflictException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				} catch (InvalidMergeHeadsException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				} catch (WrongRepositoryStateException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				} catch (NoMessageException e) {
-					throw new UnexpectedGitException(e.getMessage(), e);
-				}
+			while(!branchesToMerge.isEmpty()){
+				Ref branch = branchesToMerge.remove(0);;
+				progressMonitor.subTask("Merging branch " + branch.getName());
+				MergeResult mergeRes = git.mergeWithResolve(branch);
 				switch(mergeRes.getMergeStatus()){
 				case ALREADY_UP_TO_DATE:
 				case FAST_FORWARD:
 				case MERGED:
 					break;
 				case CONFLICTING:
-					throw new UnexpectedGitException("There were conflicts. Resolve these and commit");
+					conflictOccurred = true;
+					throw new UnexpectedGitException("There were conflicts while merging branch " + branch.getName() + ". Resolve these and then go on with building.");
 				case FAILED:
 					throw new UnexpectedGitException("Merge failed!");
 				case NOT_SUPPORTED:
 					throw new UnexpectedGitException("Merge not yet supported by jgit!");
 				}
+				progressMonitor.worked(2);
 			}
-			progressMonitor.worked(2);
 			
 			// 4. Add tag for the release
 			progressMonitor.subTask("Creating tag");
-			TagCommand tagCommand = git.tag().setName(tagName);
-			tagCommand.setMessage("This is the automatically built release '" + release.getName() + "'");
-			RevTag tag;
-			try {
-				tag = tagCommand.call();
-			} catch (JGitInternalException e) {
-				throw new UnexpectedGitException("Creating a tag for the release failed.",e);
-			} catch (ConcurrentRefUpdateException e) {
-				throw new UnexpectedGitException("Creating a tag for the release failed.",e);
-			} catch (InvalidTagNameException e) {
-				throw new UnexpectedGitException("Creating a tag for the release failed.",e);
-			} catch (NoHeadException e) {
-				throw new UnexpectedGitException("Creating a tag for the release failed.",e);
-			}
+			RevTag tag = git.createTag(tagName, "This is the automatically built release '" + release.getName() + "'");;
 			progressMonitor.worked(1);
 			
 			// 5. Create tag in UNICASE and associate with release
@@ -166,12 +147,16 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 			GitRevision revision = GitFactory.eINSTANCE.createGitRevision();
 			revision.setTagName(tagName);
 			revision.setHash(tag.getName());
+			revision.setName("Release: " + release.getName());
 			GitUtil.addToProjectRelative(revision, release);
 			release.setBuilt(true);
 			//FIXME for some reason, this does not work, even when directly set in the MEEditor
 			release.setBuiltRevision(revision);
 			progressMonitor.worked(1);
 			
+			//FIXME Add push
+			progressMonitor.subTask("Pushing created revisions to remote repository");
+			progressMonitor.worked(3);
 		} finally {
 			progressMonitor.done();
 		}

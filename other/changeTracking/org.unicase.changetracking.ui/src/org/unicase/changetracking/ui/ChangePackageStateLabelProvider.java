@@ -13,7 +13,9 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.unicase.changetracking.release.BranchState;
 import org.unicase.changetracking.release.ReleaseCheckReport;
+import org.unicase.changetracking.release.ReleaseUtil;
 import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.task.WorkItem;
 
 public class ChangePackageStateLabelProvider implements ILabelProvider{
 	
@@ -21,7 +23,11 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	private static final ImageData MERGED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/merged.gif").getImageData();
 	private static final ImageData UNMERGED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/unmerged.gif").getImageData();
 	private static final ImageData UNCONNECTED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/error.gif").getImageData();
+	private static final ImageData OPEN_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/open.png").getImageData();
+	private static final ImageData WARNING_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/warning.gif").getImageData();
+	
 	private static final Image CHANGE_PACKAGE_IMAGE = Activator.getImageDescriptor("icons/ChangePackage.gif").createImage();
+	
 	
 	
 	private static final Map<BranchState, ImageData> decorationMapping = new HashMap<BranchState, ImageData>();
@@ -54,6 +60,14 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 				state = BranchState.ERROR;
 			}
 			img = new Image(img.getDevice(), new DecorationImageDescriptor(img,state).getImageData());
+			return img;
+		} else if(element instanceof WorkItem) {
+			Image img = wrappedProvider.getImage(element);
+			if(!((WorkItem) element).isResolved()){
+				img = new Image(img.getDevice(), new DecorationImageDescriptor(img,OPEN_DECORATION_IMAGE).getImageData());
+			} else if(!ReleaseUtil.workItemHasChangePackage(((WorkItem) element))){
+				img = new Image(img.getDevice(), new DecorationImageDescriptor(img,WARNING_DECORATION_IMAGE).getImageData());		
+			}
 			return img;
 		} else {
 			return wrappedProvider.getImage(element);
@@ -94,13 +108,19 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	private final class DecorationImageDescriptor extends CompositeImageDescriptor{
 		
 		private ImageData imageData;
-		private BranchState state;
+		private ImageData decorationData;
 
 		private DecorationImageDescriptor(Image image, BranchState state){
 			this.imageData = image.getImageData();
-			this.state = state;
+			this.decorationData = decorationMapping.get(state);
 		}
 
+		private DecorationImageDescriptor(Image image, ImageData decoration){
+			this.imageData = image.getImageData();
+			this.decorationData = decoration;
+		}
+
+		
 		/**
 		 * {@inheritDoc}
 		 */
@@ -111,7 +131,7 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 			drawImage(imageData, 0, 0);
 			
 			//Add decoration
-			drawImage(decorationMapping.get(state),6,0);
+			drawImage(decorationData,imageData.width-decorationData.width,0);
 		}
 		
 

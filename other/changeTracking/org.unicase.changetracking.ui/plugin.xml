@@ -32,6 +32,14 @@
                label="Register Remote Repository"
                menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1">
          </action>
+         <action
+               class="org.unicase.changetracking.ui.releases.ContinueReleaseBuildActionDelegate"
+               enablesFor="1"
+               icon="icons/full/obj16/ChangeTrackingRelease.gif"
+               id="org.eclipse.ui.articles.action.contribution.navigator.action4"
+               label="Continue Release Building"
+               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1">
+         </action>
       </objectContribution>
    </extension>
    <extension

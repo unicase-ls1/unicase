@@ -1,4 +1,4 @@
-package org.unicase.changetracking.ui.createChangePackage;
+package org.unicase.changetracking.ui.releases;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
@@ -23,7 +23,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.task.WorkItem;
 
-public class CreateChangePackageActionDelegate extends ResourceSelectionActionDelegate {
+public class ContinueReleaseBuildActionDelegate extends ResourceSelectionActionDelegate {
 
 
 	@Override
@@ -51,14 +51,14 @@ public class CreateChangePackageActionDelegate extends ResourceSelectionActionDe
 			return;
 		}
 		
-		try{
-			WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(repo));
-		    dlg.open();
-		} catch (Throwable t){
-			ModelUtil.logException(t);
-			return;
-		}
+//		try{
+//			WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().
+//					getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(repo));
+//		    dlg.open();
+//		} catch (Throwable t){
+//			ModelUtil.logException(t);
+//			return;
+//		}
 		
 	}
 			

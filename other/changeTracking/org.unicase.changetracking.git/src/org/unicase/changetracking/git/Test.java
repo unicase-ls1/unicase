@@ -46,7 +46,7 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-			    String version = System.getProperty("java.version");
+			    String version = System.getProperty("java.home");
 			    System.out.println("JDK version "+ version + " found");
 	
 		if(true) return;

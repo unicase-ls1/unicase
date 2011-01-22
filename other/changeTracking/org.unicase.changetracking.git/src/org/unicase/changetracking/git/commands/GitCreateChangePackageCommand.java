@@ -34,6 +34,7 @@ import org.unicase.changetracking.git.Activator;
 import org.unicase.changetracking.git.GitPushBuilder;
 import org.unicase.changetracking.git.GitPushOperation;
 import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.unicase.changetracking.git.GitWrapper;
 import org.unicase.changetracking.git.Test;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
@@ -82,7 +83,7 @@ public class GitCreateChangePackageCommand extends UnicaseProgressMonitorCommand
 		IProgressMonitor progressMonitor = getProgressMonitor();
 		progressMonitor.beginTask("Creating Change Package", 6);
 		progressMonitor.subTask("Checking requirements");
-		Git git = new Git(repo);
+		GitWrapper git = new GitWrapper(repo);
 	
 		try{
 		
@@ -112,19 +113,7 @@ public class GitCreateChangePackageCommand extends UnicaseProgressMonitorCommand
 		}
 		
 		//Create and checkout a new branch
-		CheckoutCommand command = git.checkout().setName(name).setCreateBranch(true);
-		try {
-			command.call();
-		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (RefAlreadyExistsException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (RefNotFoundException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (InvalidRefNameException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		}
-		
+		git.checkout(name, true);
 		progressMonitor.worked(1);
 		progressMonitor.subTask("Creating and linking model elements");
 				
@@ -145,36 +134,19 @@ public class GitCreateChangePackageCommand extends UnicaseProgressMonitorCommand
 		
 		//Attach change package to work item
 		workItem.getAttachments().add(changePackage);
-
+		
+		
+		//Adding all files
 		progressMonitor.worked(1);
 		progressMonitor.subTask("Adding...");
 		
-		try {
-			git.add().addFilepattern(".").call();
-		} catch (NoFilepatternException e1) {
-		}
+		git.addAllFiles();
 		
 		progressMonitor.worked(1);
 		progressMonitor.subTask("Committing...");
 		
 		//Commit changes
-		RevCommit commit = null;
-		try {
-			commit = git.commit().setAll(true).setMessage(shortDescription + "\n\n" + longDescription).call();
-	
-		} catch (NoHeadException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (NoMessageException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (UnmergedPathException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (ConcurrentRefUpdateException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		} catch (WrongRepositoryStateException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
-		}
+		git.commit(shortDescription, longDescription);
 		
 		progressMonitor.worked(1);
 		progressMonitor.subTask("Pushing new branch to remote repository...");
@@ -183,7 +155,7 @@ public class GitCreateChangePackageCommand extends UnicaseProgressMonitorCommand
 		//GitPushOperation pushOp = new GitPushBuilder(repo, remoteRepo, credentials).build(name);
 		//pushOp.run(progressMonitor);
 
-		Test.gitPushTest();
+		//Test.gitPushTest();
 		} finally {
 			progressMonitor.done();
 		}

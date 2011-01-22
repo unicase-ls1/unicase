@@ -71,16 +71,20 @@ public class BuildReleaseWizard extends Wizard{
 			try {
 				ProgressMonitorDialog progressMonitor = new ProgressMonitorDialog(PlatformUI.getWorkbench().
 					getActiveWorkbenchWindow().getShell());
-				progressMonitor.run(true, true, new BuildReleaseOperation(
+				BuildReleaseOperation op;
+				progressMonitor.run(true, true, op = new BuildReleaseOperation(
 						release, localRepo, report.getReleaseBase().getRef(), ReleaseUtil.buildMergeSetFromReport(report), buildSettingsPage.getTagName())
 					);
-				
+				if(op.isSuccessful()){
+					UIUtil.openInformation("Success!",
+					"Release was built successfully.");
+				}
+					
+						
 			//Both exceptions are not possible.
 			} catch (InvocationTargetException e) {
 			} catch (InterruptedException e) {
 			}	
-			UIUtil.openInformation("Success!",
-			"Release was built successfully.");
 		}
 		return true;
 	}
