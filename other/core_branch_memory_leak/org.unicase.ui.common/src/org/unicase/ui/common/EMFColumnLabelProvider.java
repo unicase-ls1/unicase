@@ -6,10 +6,12 @@
 package org.unicase.ui.common;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
@@ -29,6 +31,7 @@ public class EMFColumnLabelProvider extends ColumnLabelProvider implements IColo
 	public EMFColumnLabelProvider() {
 		super();
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		// hkq: done
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());
@@ -52,6 +55,19 @@ public class EMFColumnLabelProvider extends ColumnLabelProvider implements IColo
 	 */
 	@Override
 	public void dispose() {
+
+		/*
+		 * Since we know that decoratingLabelProvider, labelprovider and adapterfactory was instantiated in constructor
+		 * there are no other references to adapterfactory therefore we can dispose adapterfactory here.
+		 */
+		ILabelProvider labelProvider = decoratingLabelProvider.getLabelProvider();
+		if (labelProvider instanceof AdapterFactoryLabelProvider) {
+			if (((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory() instanceof IDisposable) {
+				((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose();
+			}
+		}
+		labelProvider.dispose();
+		decoratingLabelProvider.dispose();
 		super.dispose();
 	}
 
