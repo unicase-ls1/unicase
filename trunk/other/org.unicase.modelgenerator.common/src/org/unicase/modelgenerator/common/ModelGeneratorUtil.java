@@ -177,11 +177,10 @@ public final class ModelGeneratorUtil {
 	}
 	
 	/**
-	 * Iterates over all registered EPackages to retrieve
+	 * Iterates over all registered EPackages in order to retrieve
 	 * all available EClasses and returns them as a Set.
 	 * 
-	 * @return a set of all EClasses that are contained
-	 * in registered EPackages
+	 * @return a set of all EClasses that are contained in registered EPackages
 	 * 
 	 * @see Registry
 	 */
