@@ -195,7 +195,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		// hkq: open
+		// hkq: done
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		comments = getComments();
@@ -210,9 +210,12 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		for (Resource r : localResources) {
 			r.dispose();
 		}
-		super.dispose();
-		((IDisposable) labelProvider.getAdapterFactory()).dispose();
 		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+		}
+		super.dispose();
+
 	}
 
 	/**
