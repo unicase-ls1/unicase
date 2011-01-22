@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
-import org.unicase.ui.urml.stakeholderview.ReviewViewUtil;
+import org.unicase.ui.urml.reviewview.ReviewViewUtil;
 
 /**
  * The review view widget for multi line text fields.

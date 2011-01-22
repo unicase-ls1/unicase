@@ -34,6 +34,7 @@ import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.reviewview.ReviewView;
+import org.unicase.ui.urml.reviewview.ReviewedTracker;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 import org.unicase.ui.urml.stakeholderview.roles.DefaultStakeholderRoles;
 
@@ -80,7 +81,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		String linkText) throws NoWorkspaceException {
 		Link link = new Link(parent, SWT.WRAP);
 		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
-		data.widthHint = 300;
+	//	data.widthHint = 300;
 		link.setLayoutData(data);
 		link.setText("<a>" + linkText + "</a> " + "<a>" + Activator.getTracker().getReviewedElements(selectReviewed)
 			+ "</a>");
@@ -96,7 +97,6 @@ public class StakeholderView extends ViewPart implements Observer {
 					e1.printStackTrace();
 				}
 			}
-
 		});
 		return link;
 	}

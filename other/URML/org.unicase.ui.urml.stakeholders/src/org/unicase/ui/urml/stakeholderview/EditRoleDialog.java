@@ -12,17 +12,20 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.metamodel.util.ModelUtil;
@@ -56,43 +59,38 @@ public class EditRoleDialog extends TitleAreaDialog {
 	 * @param dialogName the name of the dialog
 	 * @param dialogMessage the dialog message
 	 */
-	// TODO String dialogName, String dialogMessage
 	public EditRoleDialog(Shell parentShell, StakeholderRole role, String dialogName, String dialogMessage) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		this.stakeholderRole = role;
 		this.dialogName = dialogName;
 		this.dialogMessage = dialogMessage;
-//		try {
-//			this.project = UrmlTreeHandler.getTestProject();
-//		} catch (NoWorkspaceException e) {
-//			ModelUtil.logException(e);
-//		}
 	}
 
 	@Override
 	protected void configureShell(Shell parent) {
 		super.configureShell(parent);
-		// parent.setSize(300, 300);
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitleAndMessage(dialogName, dialogMessage);
-
 		// Create composite
-		composite = (Composite) super.createDialogArea(parent);
+		Composite wrap = (Composite) super.createDialogArea(parent);
+		
+		composite = new Composite(wrap, SWT.NONE);
 		// Layout stuff
 		GridLayout gridLayout = new GridLayout(1, true);
 		composite.setLayout(gridLayout);
-		composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		composite.setFont(parent.getFont());
+	//	composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+
+		createNameLabel();
 
 		Set<EClass> subClass = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
 		EList<String> reviewSet = stakeholderRole.getReviewSet();
 		EList<String> filterSet = stakeholderRole.getFilterSet();
-
-		createNameLabel();
-
 		reviewSetElements = createButtonGroup(subClass, composite, REVIEW_SET, reviewSet);
 		reviewFilterElements = createButtonGroup(subClass, composite, FILTER_SET, filterSet);
 		return composite;
@@ -104,13 +102,12 @@ public class EditRoleDialog extends TitleAreaDialog {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalAlignment = SWT.FILL;
 		roleName.setLayoutData(gridData);
-		
 		roleName.setText(stakeholderRole.getName());
 	}
-	
+
 	@Override
 	protected void buttonPressed(int buttonId) {
-		if(buttonId == Window.OK){
+		if (buttonId == Window.OK) {
 			writeInputToModel();
 		}
 		super.buttonPressed(buttonId);
@@ -123,16 +120,16 @@ public class EditRoleDialog extends TitleAreaDialog {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-			
 				String newRoleName = roleName.getText();
 				stakeholderRole.setName(newRoleName);
 				stakeholderRole.getReviewSet().clear();
 				stakeholderRole.getFilterSet().clear();
-				writeInputToSets();	
+				writeInputToSets();
 			}
 		}.run();
-		
+
 	}
+
 	private void writeInputToSets() {
 		for (Button b : reviewSetElements) {
 			if (b.getSelection()) {
@@ -160,19 +157,38 @@ public class EditRoleDialog extends TitleAreaDialog {
 		Group group = new Group(composite, SWT.HORIZONTAL);
 		group.setLayoutData(new GridData(SWT.BEGINNING, SWT.DEFAULT, false, false));
 		group.setText(setName);
-		group.setLayout(new GridLayout(3, false));
-		group.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		group.setLayout(new GridLayout(6, false));
 
 		buttons = new ArrayList<Button>();
-		for (EClass e : subClass) {
-			Button button = new Button(group, SWT.CHECK);
-			button.setText(e.getName());
+		for (final EClass e : subClass) {
+			final Button button = new Button(group, SWT.CHECK);
+			button.setLayoutData(new GridData());
+			buttons.add(button);
+			final Link l = new Link(group, SWT.WRAP);
+			l.setText(e.getName());
 			if (set.contains(e.getName())) {
 				button.setSelection(true);
 			}
-			button.setLayoutData(new GridData());
-			button.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-			buttons.add(button);	
+			for (EReference reference : e.getEAllReferences()) {
+				System.out.println(reference.getName());
+			}
+			l.setText("<a>" + e.getName() + "</a> ");
+			l.addSelectionListener(new SelectionAdapter() {
+				public void widgetSelected(SelectionEvent ev) {
+						SelectReferenceDialog referenceDialog = new SelectReferenceDialog(button.getShell(), e
+							.getEAllReferences());
+						referenceDialog.setBlockOnOpen(true);
+						if(referenceDialog.open() == Window.OK){
+							new UnicaseCommand() {
+								@Override
+								protected void doRun() {
+									
+								}
+							}.run();
+						}
+				}
+
+			});
 		}
 		return (ArrayList<Button>) buttons;
 	}

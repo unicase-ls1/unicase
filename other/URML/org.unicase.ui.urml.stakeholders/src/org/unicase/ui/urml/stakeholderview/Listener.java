@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.ui.urml.reviewview.ReviewedTracker;
 
 /**
  * Abstract class for the reviewed listener.

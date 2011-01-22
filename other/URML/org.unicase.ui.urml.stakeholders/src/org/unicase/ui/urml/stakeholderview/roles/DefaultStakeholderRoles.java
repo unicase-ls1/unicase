@@ -51,6 +51,7 @@ public class DefaultStakeholderRoles {
 			
 				project.addModelElement(testEngineer);
 				project.addModelElement(safetyEngineer);
+
 			}
 		}.run();
 	}

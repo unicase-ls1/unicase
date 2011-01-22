@@ -69,9 +69,7 @@ public class ReviewView extends ViewPart {
 	private UrmlModelElement currentlyDisplayedElement;
 	private Button openModelElement, up, down;
 	 
-
 	private static final Image UNREVIEWED_ICON = Activator.getImageDescriptor("icons/open.png").createImage();
-
 	private static final Image REVIEWED_ICON = Activator.getImageDescriptor("icons/closed.gif").createImage();
 
 	@Override
