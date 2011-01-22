@@ -24,9 +24,11 @@ import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
+import org.unicase.model.task.WorkItem;
 
 public class ReleaseChecker {
 
+	private static final String WARNING_LONELY_WORK_ITEM = "The %s '%s' is resolved but has no change package attached.";
 	private static final String WARNING_REPO_NOT_UP_TO_DATE = "Your local repository is not up to date. Some information might be outdated.";
 	private static final String ERROR_INCOMPATIBLE_CHANGE_PACKAGE = 
 		"The change package '%s' is not a Git branch change package." +
@@ -88,22 +90,33 @@ public class ReleaseChecker {
 		errorMessages.add(new Problem(Severity.WARNING,errorString));
 	}
 	
+
+	private void addWarning(String string, Object... arguments) {
+		errorMessages.add(new Problem(Severity.WARNING,new PrintfFormat(string).sprintf(arguments)));
+	}
+	
 	public ReleaseCheckReport check(){
+		//Calculate work item statistics
+		WorkItemStatistics workItemStats = ReleaseUtil.getWorkItemStatisticsFromRelease(release);
+		
 		//Retrieve all change packages
-		List<ChangePackage> changePackages = ReleaseUtil.getChangePackagesFromRelease(release);
+		Map<ChangePackage, WorkItem> changePackages = ReleaseUtil.getChangePackagesFromRelease(release);
+		
+		//Check for resolved work items without change packages
+		checkLonelyWorkItems(ReleaseUtil.getWorkItemsWithoutChangePackagesFromRelease(release));
 		
 		//Create result map
-		initResult(changePackages);
+		initResult(changePackages.keySet());
 	
 		//Check the release itself (its stream and the streams location)
 		checkRelease();
 		
 		//Check the change packages and their referenced branches and locations
-		Map<GitBranch, ChangePackage> branchMap = checkChangePackages(changePackages);
+		Map<GitBranch, ChangePackage> branchMap = checkChangePackages(changePackages.keySet());
 		
 		//If the repository is not checked out, we cannot do further checks.
 		if(localRepo == null){
-			return new ReleaseCheckReport(changePackages, errorMessages,false);
+			return new ReleaseCheckReport(workItemStats, changePackages.keySet(), errorMessages,false);
 		}
 		
 		//If a repo exists and is not up to date, add this as error Message
@@ -125,24 +138,35 @@ public class ReleaseChecker {
 		Map<RevCommit, BranchState> mergeStatus = calcMergeState(releaseBase,commitMapping);
 		
 		//From the branch state mapping, we can infer the state mapping of the change packages
-		calcChangePackageState(commitMapping, mergeStatus, changePackages);
+		calcChangePackageState(commitMapping, mergeStatus, changePackages.keySet());
 		
 		//All relevant information has been gathered, create and return a report
-		return new ReleaseCheckReport(changePackages, errorMessages, true, repoIsUpToDate, releaseBase, resultMap);
+		return new ReleaseCheckReport(workItemStats, changePackages.keySet(), errorMessages, true, repoIsUpToDate, releaseBase, resultMap);
 	}
 
 
 
-	private void initResult(List<ChangePackage> changePackages) {
+	private void checkLonelyWorkItems(
+			List<WorkItem> items) {
+		for(WorkItem w: items){
+			if(w.isResolved()){
+				addWarning(WARNING_LONELY_WORK_ITEM, w.eClass().getName(), w.getName());
+			}
+		}
+	}
+
+
+	private void initResult(Set<ChangePackage> set) {
 		resultMap = new HashMap<ChangePackage, ChangePackageCheckEntry>();
-		for(ChangePackage cp: changePackages){
+		for(ChangePackage cp: set){
 			resultMap.put(cp, new ChangePackageCheckEntry(cp));
 		}
+	
 	}
 
 	private void calcChangePackageState(
 			Map<RevCommit, List<ChangePackage>> commitMapping,
-			Map<RevCommit, BranchState> mergeStatus, List<ChangePackage> changePackages) {
+			Map<RevCommit, BranchState> mergeStatus, Set<ChangePackage> set) {
 		
 		Set<ChangePackage> done = new HashSet<ChangePackage>();
 		
@@ -156,7 +180,7 @@ public class ReleaseChecker {
 		}
 		
 		//For all other packages, add the error state
-		for(ChangePackage cp : changePackages){
+		for(ChangePackage cp : set){
 			if(!done.contains(cp)){
 				resultMap.get(cp).setState(BranchState.ERROR);
 			}
@@ -277,10 +301,10 @@ public class ReleaseChecker {
 		}
 	}
 
-	private Map<GitBranch, ChangePackage> checkChangePackages(List<ChangePackage> changePackages) {
+	private Map<GitBranch, ChangePackage> checkChangePackages(Set<ChangePackage> set) {
 		Map<GitBranch, ChangePackage> branchMap = new HashMap<GitBranch, ChangePackage>();
 		RepositoryLocation lastLocation = null;
-		for(ChangePackage cp: changePackages ){
+		for(ChangePackage cp: set ){
 			
 			//Only git branch change packages are allowed at the moment
 			if(!(cp instanceof GitBranchChangePackage)){

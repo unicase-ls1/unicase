@@ -45,7 +45,7 @@ public class BuildReleaseHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		 String version = System.getProperty("java.home");
 		//Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if(!(me instanceof ChangeTrackingRelease)){

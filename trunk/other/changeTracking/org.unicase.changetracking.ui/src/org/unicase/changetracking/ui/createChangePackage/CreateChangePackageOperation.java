@@ -61,7 +61,7 @@ public class CreateChangePackageOperation implements IRunnableWithProgress{
 				protected void doRun() {
 					project.addModelElement(workItem);
 				}
-			};
+			}.run(false);
 		}
 		try{
 			new GitCreateChangePackageCommand(localRepo, (WorkItem) workItem, remoteRepo, name, shortDescription, longDescription, Test.getTestCredentials() ).run(monitor);

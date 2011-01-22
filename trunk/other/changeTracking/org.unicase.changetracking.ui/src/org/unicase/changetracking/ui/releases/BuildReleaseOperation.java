@@ -34,7 +34,7 @@ public class BuildReleaseOperation implements IRunnableWithProgress{
 	private Ref baseBranch;
 	private List<Ref> branchesToMerge;
 	private String tagName;
-
+	private boolean successful;
 
 
 	public BuildReleaseOperation(ChangeTrackingRelease release, Repository localRepo, Ref baseBranch, List<Ref> branchesToMerge, String tagName){
@@ -46,12 +46,17 @@ public class BuildReleaseOperation implements IRunnableWithProgress{
 	}
 	
 
+	public boolean isSuccessful() {
+		return successful;
+	}
+	
 
 	@Override
 	public void run(IProgressMonitor monitor) {
 
 		try{
 			new GitBuildReleaseCommand(release, localRepo, baseBranch, branchesToMerge, tagName).run(monitor);
+			successful = true;
 		} catch (Throwable t){
 			ModelUtil.logException(t);
 			return;

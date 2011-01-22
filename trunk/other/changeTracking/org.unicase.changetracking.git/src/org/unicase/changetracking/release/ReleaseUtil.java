@@ -1,6 +1,7 @@
 package org.unicase.changetracking.release;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,17 +17,43 @@ public final class ReleaseUtil {
 
 	private ReleaseUtil(){}
 	
-	public static List<ChangePackage> getChangePackagesFromRelease(ChangeTrackingRelease release){
-		List<ChangePackage> result = new ArrayList<ChangePackage>();
+	public static Map<ChangePackage, WorkItem> getChangePackagesFromRelease(ChangeTrackingRelease release){
+		LinkedHashMap<ChangePackage, WorkItem> result = new LinkedHashMap<ChangePackage, WorkItem>();
 		EList<WorkItem> workItems = release.getIncludedWorkItems();
 		for(WorkItem w : workItems){
 			for(Attachment a : w.getAttachments()){
 				if(a instanceof ChangePackage){
-					result.add((ChangePackage) a);
+					result.put((ChangePackage) a,w);
 				}
 			}
 		}
 		return result;
+	}
+	
+	public static List<WorkItem> getWorkItemsWithoutChangePackagesFromRelease(ChangeTrackingRelease release){
+		List<WorkItem> result = new ArrayList<WorkItem>();
+		EList<WorkItem> workItems = release.getIncludedWorkItems();
+		outer: for(WorkItem w : workItems){
+			for(Attachment a : w.getAttachments()){
+				if(a instanceof ChangePackage){
+					continue outer;
+				}
+			}
+			result.add(w);
+		}
+		return result;
+	}
+	
+	public static WorkItemStatistics getWorkItemStatisticsFromRelease(ChangeTrackingRelease release){
+		List<ChangePackage> result = new ArrayList<ChangePackage>();
+		EList<WorkItem> workItems = release.getIncludedWorkItems();
+		int num = workItems.size();
+		int numResolved = 0;
+		for(WorkItem w : workItems){
+			if(w.isResolved())
+				numResolved++;
+		}
+		return new WorkItemStatistics(num, numResolved);
 	}
 	
 	public static List<Ref> buildMergeSetFromReport(ReleaseCheckReport report){
@@ -41,6 +68,15 @@ public final class ReleaseUtil {
 		}
 		
 		return mergeList;
+	}
+
+	public static boolean workItemHasChangePackage(WorkItem workItem) {
+		for(Attachment a : workItem.getAttachments()){
+			if(a instanceof ChangePackage){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

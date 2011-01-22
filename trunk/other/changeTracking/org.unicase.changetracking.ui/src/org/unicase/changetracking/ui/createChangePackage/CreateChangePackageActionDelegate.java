@@ -33,11 +33,12 @@ public class CreateChangePackageActionDelegate extends ResourceSelectionActionDe
 		if(resources.length == 0){
 			return;
 		}	   
-		String version = System.getProperty("java.version");
-	    System.out.println("JDK version "+ version + " found");
+
+		//Save dirty editors
+		if(!PlatformUI.getWorkbench().saveAllEditors(true)){
+			return;
+		}
 		
-		
-		//TODO Make this generic, so the dependency to the git plugin can be removed
 		//Get the git repo the resource belongs to
 		Repository repo = GitRepoFindUtil.findRepository(resources[0].getLocation().toFile());
 		if(repo == null){
