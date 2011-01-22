@@ -193,9 +193,9 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the width of this configuration to a new value
+	 * Sets the <code>ignoreAndLog</code>-value of this configuration to a new value
 	 * 
-	 * @param width the new value of width
+	 * @param ignoreAndLog the new value of <code>ignoreAndLog</code>
 	 */
 	public void setIgnoreAndLog(boolean ignoreAndLog) {
 		this.ignoreAndLog = ignoreAndLog;
