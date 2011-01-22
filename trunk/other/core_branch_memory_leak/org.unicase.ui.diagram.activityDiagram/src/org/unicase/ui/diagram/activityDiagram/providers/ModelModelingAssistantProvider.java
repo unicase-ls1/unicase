@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -263,7 +262,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (dialog.open() == Window.OK) {
 			selected = (EObject) dialog.getFirstResult();
 		}
-		((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose(); // not possible
+		// ((IDisposable) ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory()).dispose(); // not possible
 		labelProvider.dispose();
 
 		return selected;
