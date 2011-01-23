@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,6 +21,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.model.urml.ReviewSetEntry;
+import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -44,16 +47,27 @@ public class ReviewViewContentFactory {
 	public ReviewViewContentFactory(Composite editorComposite) {
 		this.editorComposite = editorComposite;
 		
-		shownProperties.addAll(Arrays.asList("Name","Description","Mitigated Dangers","Reviewed", "Mitigations"));
 	}
+
+
+	
 
 
 	/**
 	 * Creates the controllers which can show the properties of the urml element.
 	 * 
 	 * @param urmlElement the urml model element
+	 * @param role the stakeholder role
 	 */
-	public void createElementContent(UrmlModelElement urmlElement) {
+	public void createElementContent(UrmlModelElement urmlElement, StakeholderRole role) {
+		
+		//Finde die refernceToShow, die zu className gehört 
+		String reference = findReferenceToShow(urmlElement, role);
+		
+
+		//,"Mitigated Dangers" , "Mitigations"
+		shownProperties.addAll(Arrays.asList("Name","Description","Reviewed", reference));
+		
 		while (!controls.isEmpty()) {
 			IDisposable c = controls.get(controls.size() - 1);
 			c.dispose();
@@ -67,7 +81,7 @@ public class ReviewViewContentFactory {
 			.getPropertyDescriptors(urmlElement);
 		DisplayControlFactory displayControlFactory = new DisplayControlFactory();
 		for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-			
+			//itemPropertyDescriptor.g
 			if(!shownProperties.contains(itemPropertyDescriptor.getDisplayName(urmlElement))){
 				continue;
 			}
@@ -111,6 +125,18 @@ public class ReviewViewContentFactory {
 
 		editorComposite.layout();
 		editorComposite.getParent().layout();
+	}
+
+	//primitive implementation of the get-method of map
+	private String findReferenceToShow(UrmlModelElement urmlElement, StakeholderRole role) {
+		String className = urmlElement.eClass().getName();
+		EList<ReviewSetEntry> curReviewSet = role.getReviewSet();
+		for(ReviewSetEntry entry: curReviewSet){
+			if(entry.getElementClass().equals(className)){
+				return entry.getReferenceToShow();
+			}
+		}
+		return null;
 	}
 
 }

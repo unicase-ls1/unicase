@@ -8,11 +8,12 @@ package org.unicase.ui.urml.stakeholderview;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.window.Window;
@@ -29,7 +30,9 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.urml.ReviewSetEntry;
 import org.unicase.model.urml.StakeholderRole;
+import org.unicase.model.urml.UrmlFactory;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -47,9 +50,11 @@ public class EditRoleDialog extends TitleAreaDialog {
 	private String dialogName, dialogMessage;
 	private Text roleName;
 	private Collection<Button> buttons;
-	private ArrayList<Button> reviewSetElements, reviewFilterElements;
-	private EList<String> reviewSet;
+	private ArrayList<Button> reviewSetElements, filterSetElements;
+	private EList<ReviewSetEntry> reviewSet;
 	private EList<String> filterSet;
+	private HashMap<Button, String> buttonTextMapping;
+	private HashMap<String, String> classNameToReferenceMapping;
 
 	/**
 	 * The construct.
@@ -84,16 +89,27 @@ public class EditRoleDialog extends TitleAreaDialog {
 		composite.setLayout(gridLayout);
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		composite.setFont(parent.getFont());
-	//	composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		createNameLabel();
+		createClassNameToReferenceMapping();
 
-		Set<EClass> subClass = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
-		EList<String> reviewSet = stakeholderRole.getReviewSet();
-		EList<String> filterSet = stakeholderRole.getFilterSet();
-		reviewSetElements = createButtonGroup(subClass, composite, REVIEW_SET, reviewSet);
-		reviewFilterElements = createButtonGroup(subClass, composite, FILTER_SET, filterSet);
+		Set<EClass> subClasses = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
+		List<String> reviewClassNames = new ArrayList<String>();
+		for(ReviewSetEntry entry : stakeholderRole.getReviewSet()){
+			reviewClassNames.add(entry.getElementClass());
+		}
+		
+		buttonTextMapping = new HashMap<Button, String>();
+		reviewSetElements = createButtonGroup(subClasses, composite, REVIEW_SET, reviewClassNames, true);
+		filterSetElements = createButtonGroup(subClasses, composite, FILTER_SET, stakeholderRole.getFilterSet(), false);
 		return composite;
+	}
+
+	private void createClassNameToReferenceMapping() {
+		classNameToReferenceMapping = new HashMap<String, String>();
+		for(ReviewSetEntry entry : stakeholderRole.getReviewSet()){
+			classNameToReferenceMapping.put(entry.getElementClass(), entry.getReferenceToShow());
+		}
 	}
 
 	private void createNameLabel() {
@@ -131,17 +147,20 @@ public class EditRoleDialog extends TitleAreaDialog {
 	}
 
 	private void writeInputToSets() {
+		filterSet = stakeholderRole.getFilterSet();
+		reviewSet = stakeholderRole.getReviewSet();
 		for (Button b : reviewSetElements) {
 			if (b.getSelection()) {
-				reviewSet = stakeholderRole.getReviewSet();
-				reviewSet.add(b.getText());
+				ReviewSetEntry entry = UrmlFactory.eINSTANCE.createReviewSetEntry();
+				entry.setElementClass(buttonTextMapping.get(b));
+				entry.setReferenceToShow(classNameToReferenceMapping.get(entry.getElementClass()));
+				reviewSet.add(entry);
 			}
 		}
-		for (Button b : reviewFilterElements) {
+		for (Button b : filterSetElements) {
 			if (b.getSelection()) {
 				if (b.getSelection()) {
-					filterSet = stakeholderRole.getFilterSet();
-					filterSet.add(b.getText());
+					filterSet.add(buttonTextMapping.get(b));
 				}
 			}
 		}
@@ -152,45 +171,49 @@ public class EditRoleDialog extends TitleAreaDialog {
 		setMessage(dialogMessage);
 	}
 
-	private ArrayList<Button> createButtonGroup(Set<EClass> subClass, Composite composite, String setName,
-		EList<String> set) {
+	private ArrayList<Button> createButtonGroup(Set<EClass> subClasses, Composite composite, String setName,
+		List<String> set, boolean reviewSet) {
+		Group group = groupSetUp(composite, setName);
+
+		buttons = new ArrayList<Button>();
+		for (final EClass eSubClass : subClasses) {
+			final Button button = new Button(group, SWT.CHECK);
+			button.setLayoutData(new GridData());
+			buttons.add(button);
+			final Link link = new Link(group, SWT.WRAP);
+			String elementName = eSubClass.getName();
+			link.setText(elementName);
+			buttonTextMapping.put(button, elementName);
+			if (set.contains(elementName)) {
+				button.setSelection(true);
+			}
+			if(!reviewSet){
+				link.setText(eSubClass.getName());
+			}else{
+
+				link.setText("<a>" + eSubClass.getName() + "</a> ");
+				link.addSelectionListener(new SelectionAdapter() {
+					public void widgetSelected(SelectionEvent ev) {
+						SelectReferenceDialog referenceDialog = new SelectReferenceDialog(button.getShell(), eSubClass, classNameToReferenceMapping);
+						referenceDialog.setBlockOnOpen(true);
+						referenceDialog.open();
+				}
+
+			});
+				
+			}
+		}
+		return (ArrayList<Button>) buttons;
+	}
+	
+	
+
+	private Group groupSetUp(Composite composite, String setName) {
 		Group group = new Group(composite, SWT.HORIZONTAL);
 		group.setLayoutData(new GridData(SWT.BEGINNING, SWT.DEFAULT, false, false));
 		group.setText(setName);
 		group.setLayout(new GridLayout(6, false));
-
-		buttons = new ArrayList<Button>();
-		for (final EClass e : subClass) {
-			final Button button = new Button(group, SWT.CHECK);
-			button.setLayoutData(new GridData());
-			buttons.add(button);
-			final Link l = new Link(group, SWT.WRAP);
-			l.setText(e.getName());
-			if (set.contains(e.getName())) {
-				button.setSelection(true);
-			}
-			for (EReference reference : e.getEAllReferences()) {
-				System.out.println(reference.getName());
-			}
-			l.setText("<a>" + e.getName() + "</a> ");
-			l.addSelectionListener(new SelectionAdapter() {
-				public void widgetSelected(SelectionEvent ev) {
-						SelectReferenceDialog referenceDialog = new SelectReferenceDialog(button.getShell(), e
-							.getEAllReferences());
-						referenceDialog.setBlockOnOpen(true);
-						if(referenceDialog.open() == Window.OK){
-							new UnicaseCommand() {
-								@Override
-								protected void doRun() {
-									
-								}
-							}.run();
-						}
-				}
-
-			});
-		}
-		return (ArrayList<Button>) buttons;
+		return group;
 	}
 
 	@Override
