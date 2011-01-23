@@ -107,6 +107,7 @@ public class ModelGeneratorConfiguration {
 
 	/**
 	 * @return model's width of this configuration
+	 * @see #width
 	 */
 	public int getWidth() {
 		return width;
@@ -116,6 +117,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the width of this configuration to a new value
 	 * 
 	 * @param width the new value of <code>this.width</code>
+	 * @see #width
 	 */
 	public void setWidth(int width) {
 		this.width = width;
@@ -123,6 +125,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * @return model's hierarchy depth of this configuration
+	 * @see #depth
 	 */
 	public int getDepth() {
 		return depth;
@@ -132,6 +135,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the depth of this configuration to a new value
 	 * 
 	 * @param depth the new value of <code>this.depth</code>
+	 * @see #depth
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
@@ -139,6 +143,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * @return the EObject that shall be used as the root
+	 * @see #rootEObject
 	 */
 	public EObject getRootEObject() {
 		return rootEObject;
@@ -148,6 +153,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the root of this configuration to a new value
 	 * 
 	 * @param rootEObject the new value of <code>this.rootEObject</code>
+	 * @see #rootEObject
 	 */
 	public void setRootObject(EObject rootEObject) {
 		this.rootEObject = rootEObject;
@@ -155,6 +161,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * @return the EPackage to retrieve EClasses from
+	 * @see #modelPackage
 	 */
 	public EPackage getModelPackage() {
 		return modelPackage;
@@ -164,6 +171,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the model package of this configuration to a new value
 	 * 
 	 * @param modelPackage the new value of <code>this.modelPackage</code>
+	 * @see #modelPackage
 	 */
 	public void setModelPackage(EPackage modelPackage) {
 		this.modelPackage = modelPackage;
@@ -171,6 +179,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * @return the seed value of this configuration
+	 * @see #seed
 	 */
 	public long getSeed() {
 		return seed;
@@ -180,6 +189,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the seed of this configuration to a new value
 	 * 
 	 * @param seed the new value of <code>this.seed</code>
+	 * @see #seed
 	 */
 	public void setSeed(long seed) {
 		this.seed = seed;
@@ -187,6 +197,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * @return the ignoreAndLog value of this configuration
+	 * @see #ignoreAndLog
 	 */
 	public boolean getIgnoreAndLog() {
 		return ignoreAndLog;
@@ -196,6 +207,7 @@ public class ModelGeneratorConfiguration {
 	 * Sets the <code>ignoreAndLog</code>-value of this configuration to a new value
 	 * 
 	 * @param ignoreAndLog the new value of <code>ignoreAndLog</code>
+	 * @see #ignoreAndLog
 	 */
 	public void setIgnoreAndLog(boolean ignoreAndLog) {
 		this.ignoreAndLog = ignoreAndLog;
