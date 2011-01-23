@@ -89,18 +89,20 @@ public class ModelGenerator {
 	 * 
 	 * @param modelPackage the EPackage to create new EObjects from
 	 * @param rootEObject the EObject that shall be the root container for all generated EObjects
+	 * @return the validated root EObject of the resulting Ecore hierarchy
 	 */
-	public static void generateModel(EPackage modelPackage, EObject rootEObject) {
-		generateModel(new ModelGeneratorConfiguration(modelPackage, rootEObject));
+	public static EObject generateModel(EPackage modelPackage, EObject rootEObject) {
+		return generateModel(new ModelGeneratorConfiguration(modelPackage, rootEObject));
 	}
 	
 	/**
 	 * Generates EObjects using the settings specified in <code>config</code>.
 	 * 
 	 * @param configuration the ModelGeneratorConfiguration to use for generating EObjects
+	 * @return the validated root EObject of the resulting Ecore hierarchy
 	 * @see ModelGeneratorConfiguration
 	 */
-	public static void generateModel(ModelGeneratorConfiguration configuration) {
+	public static EObject generateModel(ModelGeneratorConfiguration configuration) {
 		config = configuration;
 		random = new Random(config.getSeed());
 		AttributeHandler.setRandom(random);
@@ -114,6 +116,7 @@ public class ModelGenerator {
 				generateReferences(generatedEObject);			
 			}
 		}
+		return rootEObject;
 	}
 
 	/**
@@ -122,7 +125,6 @@ public class ModelGenerator {
 	 * {@link #generateModel(ModelGeneratorConfiguration)}
 	 * 
 	 * @return the valid root EObject used for generating the model
-	 * 
 	 * @see #generateModel(EPackage, EObject)
 	 * @see #generateModel(ModelGeneratorConfiguration)
 	 */
