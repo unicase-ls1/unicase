@@ -7,6 +7,7 @@ package org.unicase.ui.urml.stakeholderview.roles;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.metamodel.Project;
+import org.unicase.model.urml.ReviewSetEntry;
 import org.unicase.model.urml.UrmlFactory;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -18,10 +19,6 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class DefaultStakeholderRoles {
 
 	
-//	public DefaultStakeholderRoles(List<StakeholderRole> roleList){
-//		this.roleList = roleList;
-//	}
-	
 	/**
 	 * Test class.
 	 * @param project the project whose default stakeholder roles are set.
@@ -29,18 +26,18 @@ public class DefaultStakeholderRoles {
 	public void createDefaultRoles(final Project project){
 		final org.unicase.model.urml.StakeholderRole testEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		testEngineer.setName("Test Engineer");
-		final EList<String> reviewSet = testEngineer.getReviewSet();
-		reviewSet.add("Danger");
-		reviewSet.add("NonFunctionalRequirement");
-		reviewSet.add("FunctionalRequirement");
+		final EList<ReviewSetEntry> reviewSet = testEngineer.getReviewSet();
+		createReviewSetEntry("Danger", null, reviewSet);
+		createReviewSetEntry("NonFunctionalRequirement", null, reviewSet);
+		createReviewSetEntry("FunctionalRequirement", null, reviewSet);
 		final EList<String> filterSet = testEngineer.getFilterSet();
 		filterSet.add("Goal");
 		
 		final org.unicase.model.urml.StakeholderRole safetyEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		safetyEngineer.setName("Safety Engineer");
-		final EList<String> safetySet = safetyEngineer.getReviewSet();
-		safetySet.add("Danger");
-		safetySet.add("FunctionalRequirement");
+		final EList<ReviewSetEntry> safetySet = safetyEngineer.getReviewSet();
+		createReviewSetEntry("Danger", null, reviewSet);
+		createReviewSetEntry("FunctionalRequirement", null, safetySet);
 		final EList<String> safetyFilterSet = testEngineer.getFilterSet();
 		safetyFilterSet.add("Mitigation");
 		
@@ -56,4 +53,12 @@ public class DefaultStakeholderRoles {
 		}.run();
 	}
 
+
+	private void createReviewSetEntry(String className, String referenceToShow, EList<ReviewSetEntry> reviewSet){
+		ReviewSetEntry entry = UrmlFactory.eINSTANCE.createReviewSetEntry();
+		entry.setElementClass(className);
+		entry.setReferenceToShow(referenceToShow);
+		reviewSet.add(entry);
+	}
+	
 }

@@ -5,9 +5,19 @@
  */
 package org.unicase.ui.urml.stakeholderview;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -16,6 +26,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Dialog for selecting the reference elements for the review view.
@@ -24,18 +35,25 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class SelectReferenceDialog extends TitleDialogWithoutMinSize {
 
-	private EList<EReference> references;
+	private String referenceName;
+	private EClass eClassName;
+	private String displayReferenceName;
+	private ArrayList<Button> buttons;
+	private HashMap<String, String> mapping;
 
 	/**
 	 * The construct.
 	 * 
 	 * @param parentShell the parent shell
-	 * @param references list with the references
+	 * @param eClass the class is used to represent the name of the references shown in this dialog
+	 * @param classNameToReferenceMapping list with the name/reference mapping
 	 */
-	public SelectReferenceDialog(Shell parentShell, EList<EReference> references) {
+	public SelectReferenceDialog(Shell parentShell, EClass eClass, HashMap<String, String> classNameToReferenceMapping) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
-		this.references = references;
+		this.eClassName = eClass;
+		this.mapping = classNameToReferenceMapping;
+		referenceName = mapping.get(eClass.getName());
 	}
 
 	@Override
@@ -63,14 +81,66 @@ public class SelectReferenceDialog extends TitleDialogWithoutMinSize {
 		group.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
 		group.setText("Reference list");
 
-		for (EReference re : references) {
-			Button b = new Button(group, SWT.RADIO);
+		EObject test = eClassName.getEPackage().getEFactoryInstance().create(eClassName);
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(test);
+
+		buttons = new ArrayList<Button>();
+		
+		for (IItemPropertyDescriptor itemDescriptor : propertyDescriptors) {
+			final Button b = new Button(group, SWT.RADIO);
 			b.setLayoutData(new GridData());
-			b.setText(re.getName());
+			buttons.add(b);
+			String currentName = itemDescriptor.getDisplayName(itemDescriptor);
+			b.setText(currentName);
+			
+			if(referenceName != null && referenceName.equals(b.getText())){
+				b.setSelection(true);
+			}
+			
+			b.addSelectionListener(new SelectionListener() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					displayReferenceName = b.getText();
+				}
+
+				@Override
+				public void widgetDefaultSelected(SelectionEvent e) {
+
+				}
+			});
 		}
 		Label titleBarSeparator = new Label(wrap, SWT.HORIZONTAL | SWT.SEPARATOR);
 		titleBarSeparator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		return group;
 	}
 
+	/**
+	 * Writes the input made by the user into the model.
+	 * @param displayReferenceName the name of the reference
+	 */
+	protected void writeReferenceInputToModel(final String displayReferenceName) {
+		for (Button b : buttons) {
+			if (b.getSelection()) {
+				mapping.put(eClassName.getName(), b.getText());
+			}
+		}
+	}
+
+	@Override
+	protected void buttonPressed(int buttonId) {
+		if (buttonId == Window.OK) {
+			new UnicaseCommand() {
+				
+				@Override
+				protected void doRun() {
+					writeReferenceInputToModel(displayReferenceName);					
+				}
+			}.run();
+			
+		}
+		super.buttonPressed(buttonId);
+	}
 }

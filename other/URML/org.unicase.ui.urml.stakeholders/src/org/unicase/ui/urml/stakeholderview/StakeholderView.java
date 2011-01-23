@@ -57,6 +57,7 @@ public class StakeholderView extends ViewPart implements Observer {
 	private FilterManager filterManager = new FilterManager();
 	private Project activeProject;
 	private Link unreviewedReqirements, reviewedReqirements;
+	public static StakeholderRole activeRole;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -202,13 +203,14 @@ public class StakeholderView extends ViewPart implements Observer {
 		Action a = new Action() {
 			@Override
 			public void run() {
+				activeRole = role;
 				filterManager.applyFilter(new ViewerFilter() {
 					@Override
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof UrmlModelElement) {
 							return role.getFilterSet().contains(((UrmlModelElement) element).eClass().getName());
 						}
-						return true;
+						return true;	
 					}
 
 				});
@@ -236,6 +238,14 @@ public class StakeholderView extends ViewPart implements Observer {
 	@Override
 	public void setFocus() {
 
+	}
+
+	/**
+	 * Gets the current stakeholder role.
+	 * @return activeRole the active stakeholder role
+	 */
+	public static StakeholderRole getActiveRole() {
+		return activeRole;
 	}
 
 }

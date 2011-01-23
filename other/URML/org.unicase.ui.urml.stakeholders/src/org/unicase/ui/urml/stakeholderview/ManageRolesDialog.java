@@ -93,33 +93,26 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 		}
 		tableViewer.setInput(stakeholderRoles);
 	}
-	
-	
+
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-	
+
 	}
 
-
 	private void createEditDialog(StakeholderRole role) {
-			EditRoleDialog editDialog = new EditRoleDialog(editButton.getShell(), role, EDIT_DIALOG,
-				EDIT_DIALOG_MESSAGE);
-			if(editDialog.open() == Window.OK){
-				new UnicaseCommand() {
-					@Override
-					protected void doRun() {
-						roleListHasChanged = true;
-					}
-				}.run();
-			}
+		EditRoleDialog editDialog = new EditRoleDialog(editButton.getShell(), role, EDIT_DIALOG, EDIT_DIALOG_MESSAGE);
+		if (editDialog.open() == Window.OK) {
+			roleListHasChanged = true;
+
 		}
-	
+	}
+
 	private void createAddDialog() {
 		final StakeholderRole newRole = UrmlFactory.eINSTANCE.createStakeholderRole();
 		EditRoleDialog addDialog = new EditRoleDialog(editButton.getShell(), newRole, ADD_NEW_ROLE, ADD_DIALOG_MESSAGE);
 		addDialog.setBlockOnOpen(true);
-		if(addDialog.open() == Window.OK){
+		if (addDialog.open() == Window.OK) {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
@@ -129,16 +122,14 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 			}.run();
 			setTableInput();
 		}
-		
+
 	}
 
-	
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitle(MANAGE_STAKEHOLDER_ROLES);
 		setMessage(SELECT_STAKEHOLDER_ROLE);
 		Composite wrap = (Composite) super.createDialogArea(parent);
-
 
 		Composite viewComposite = createViewComposite(wrap);
 		tableViewSetUp(viewComposite);
@@ -237,7 +228,6 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 		return null;
 	}
 
-			
 	/**
 	 * Listener of the manage role dialog buttons.
 	 * 
@@ -270,10 +260,10 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 
 		}
 	}
-	
+
 	/**
-	 * Gets the value, whether the role list was changed.
-	 * This happens if role was added or removed.
+	 * Gets the value, whether the role list was changed. This happens if role was added or removed.
+	 * 
 	 * @return roleHasChangerd
 	 */
 	public boolean isRoleListHasChanged() {
@@ -282,27 +272,28 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 
 	/**
 	 * Sets the value of the variable.
+	 * 
 	 * @param roleHasChanged the value if the role list was changed
 	 */
 	public void isRroleListHasChanged(boolean roleHasChanged) {
 		this.roleListHasChanged = roleHasChanged;
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.urml.stakeholderview.TitleDialogWithoutMinSize#getMinWidth()
 	 */
-	public int getMinWidth(){
+	public int getMinWidth() {
 		return 50;
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.urml.stakeholderview.TitleDialogWithoutMinSize#getMinHeight()
 	 */
-	public int getMinHeight(){
+	public int getMinHeight() {
 		return 400;
 	}
 

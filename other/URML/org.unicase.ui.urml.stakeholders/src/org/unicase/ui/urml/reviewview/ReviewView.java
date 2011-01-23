@@ -7,6 +7,7 @@ package org.unicase.ui.urml.reviewview;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,10 +46,12 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.unicase.model.urml.ReviewSetEntry;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholderview.Activator;
+import org.unicase.ui.urml.stakeholderview.StakeholderView;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
 /**
@@ -67,8 +70,7 @@ public class ReviewView extends ViewPart {
 	private Sash sash;
 	private ReviewViewContentFactory contentFactory;
 	private UrmlModelElement currentlyDisplayedElement;
-	private Button openModelElement, up, down;
-	 
+	private Button openModelElement, up, down; 
 	private static final Image UNREVIEWED_ICON = Activator.getImageDescriptor("icons/open.png").createImage();
 	private static final Image REVIEWED_ICON = Activator.getImageDescriptor("icons/closed.gif").createImage();
 
@@ -366,7 +368,7 @@ public class ReviewView extends ViewPart {
 	}
 
 	/**
-	 * Open an model element in the review view.
+	 * Open a model element in the review view.
 	 * 
 	 * @param urmlElement the urml element
 	 */
@@ -374,7 +376,7 @@ public class ReviewView extends ViewPart {
 	public void openElement(UrmlModelElement urmlElement) {
 		this.currentlyDisplayedElement = urmlElement;
 		openModelElement.setEnabled(true);
-		contentFactory.createElementContent(urmlElement);
+		contentFactory.createElementContent(urmlElement, StakeholderView.activeRole);
 	}
 
 	@Override
@@ -400,9 +402,14 @@ public class ReviewView extends ViewPart {
 	public void setInputFromRole(Project activeProject, StakeholderRole role) {
 		Collection<UrmlModelElement> result = new ArrayList<UrmlModelElement>();
 		Set<EObject> modelElementSet = activeProject.getAllModelElements();
+		
+		Set<String> reviewClassNames = new HashSet<String>();
+		for(ReviewSetEntry entry : role.getReviewSet()){
+			reviewClassNames.add(entry.getElementClass());
+		}
 		for(EObject e: modelElementSet){
 			if (e instanceof UrmlModelElement) {
-				if (role.getReviewSet().contains(((UrmlModelElement) e).eClass().getName())){
+				if (reviewClassNames.contains(((UrmlModelElement) e).eClass().getName())){
 					result.add((UrmlModelElement) e);
 				}
 			}
