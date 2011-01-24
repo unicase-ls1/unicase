@@ -92,14 +92,6 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 								+ " was successful.");
 					}
 				});
-			} else {
-				Display.getDefault().syncExec(new Runnable() {
-					public void run() {
-						MessageDialog.openError(getShell(), "URL handler registration failed",
-							"The registration of the URL handler for unicase:// URLs on your operating system "
-								+ " wasn't successful.");
-					}
-				});
 			}
 
 			return null;

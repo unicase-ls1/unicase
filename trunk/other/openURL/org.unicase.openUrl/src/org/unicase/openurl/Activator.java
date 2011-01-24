@@ -105,7 +105,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		} else {
 			// get/create a preference store
 			final IPreferenceStore prefStore = PlatformUI.getPreferenceStore(); // have to use the platform -> plugin
-																				// not initialized completely yet.
+			// not initialized completely yet.
 			final String prefName = "unicase.protocol.prompt";
 
 			// check whether protocol handler is registered and whether the user wants to be prompted
@@ -124,8 +124,12 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 						dialog.setPrefStore(prefStore);
 						dialog.create();
 
+						// int returnCode = dialog.openYesNoCancelQuestion(activeShell, title, message, toggleMessage,
+						// false, prefStore, prefName).getReturnCode();
+
+						int open = dialog.open();
 						// open dialog and ask for result
-						if (dialog.open() == 0) {
+						if (open == 256) {
 							// register protocol
 							protocolHandler.registerHandler();
 						}
