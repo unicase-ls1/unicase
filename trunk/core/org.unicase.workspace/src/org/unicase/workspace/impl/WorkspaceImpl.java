@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
@@ -130,7 +131,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	private ConnectionManager connectionManager;
-	private TransactionalEditingDomain transactionalEditingDomain;
 
 	private Map<Project, ProjectSpace> projectToProjectSpaceMap;
 
@@ -471,8 +471,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#init(org.eclipse.emf.transaction.TransactionalEditingDomain)
 	 * @generated NOT
 	 */
-	public void init(TransactionalEditingDomain editingDomain) {
-		this.transactionalEditingDomain = editingDomain;
+	public void init(EditingDomain editingDomain) {
 		projectToProjectSpaceMap = new HashMap<Project, ProjectSpace>();
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
@@ -493,7 +492,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated NOT
 	 */
 	public TransactionalEditingDomain getEditingDomain() {
-		return this.transactionalEditingDomain;
+		return Configuration.getEditingDomain();
 	}
 
 	/**
