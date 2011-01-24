@@ -83,6 +83,8 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 				protocolHandler.registerHandler();
 				writeStartupConfigFile(protocolHandler.getEclipseExecutable(), AbstractRegisterProtocolHandler
 					.getStartUpJar());
+				getTextControl().setText("No");
+				this.setEnabled(false, getFieldEditorParent());
 
 			} catch (IOException e) {
 				// write an entry in error log
