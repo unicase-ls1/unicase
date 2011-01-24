@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
@@ -65,10 +64,9 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	/**
 	 * Constructor.
 	 * 
-	 * @param editingDomain editing domain
 	 * @param viewer viewer
 	 */
-	public ComposedDropAdapter(TransactionalEditingDomain editingDomain, StructuredViewer viewer) {
+	public ComposedDropAdapter(StructuredViewer viewer) {
 
 		super();
 		this.viewer = viewer;
@@ -79,7 +77,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		for (IConfigurationElement element : confs) {
 			try {
 				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");
-				dropAdapter.init(editingDomain, viewer);
+				dropAdapter.init(viewer);
 				dropAdapters.put(dropAdapter.isDropAdapterfor(), dropAdapter);
 
 			} catch (CoreException e) {

@@ -41,8 +41,8 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -387,8 +387,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(currentWorkspace.getEditingDomain(),
-			viewer));
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(viewer));
 
 	}
 
