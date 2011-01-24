@@ -62,8 +62,14 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 
 		public UnicaseOpenUrlFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
-			getTextControl().setText(protocolHandler.isHandlerRegistered() ? "Yes" : "No");
+			String text = "No";
+			if (protocolHandler.isHandlerRegistered()) {
+				text = "Yes";
+				this.setEnabled(false, parent);
+			}
+			getTextControl().setText(text);
 			getTextControl().setEditable(false);
+			setChangeButtonText("Register");
 		}
 
 		@Override
@@ -74,10 +80,10 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 					WorkspaceUtil.logException("Could not find protocol handler.", new NullPointerException());
 					return null;
 				}
-
 				protocolHandler.registerHandler();
 				writeStartupConfigFile(protocolHandler.getEclipseExecutable(), AbstractRegisterProtocolHandler
 					.getStartUpJar());
+
 			} catch (IOException e) {
 				// write an entry in error log
 				WorkspaceUtil.logException("The start-up jar file has not been found.", new NullPointerException());
