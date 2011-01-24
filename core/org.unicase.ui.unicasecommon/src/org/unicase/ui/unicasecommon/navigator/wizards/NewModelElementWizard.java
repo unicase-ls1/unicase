@@ -7,8 +7,6 @@ package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -21,7 +19,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Hodaie This is implementation of New Model Element wizard. This wizard is show through
@@ -77,33 +75,31 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
 			if (selectedME instanceof LeafSection) {
-
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						((LeafSection) selectedME).getModelElements().add(newMEInstance);
-					}
-				});
 
+					}
+				}.run(true);
 			}
 
 			if (newMEInstance instanceof Meeting) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						setupMeetingSections((Meeting) newMEInstance);
+
 					}
-				});
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				}.run(true);
+
+				new UnicaseCommand() {
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
+
 						setupMeetingSubSections((Meeting) newMEInstance);
 					}
-				});
+				}.run(true);
 			}
 			// 3.open the newly created ME
 			UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());

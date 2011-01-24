@@ -6,8 +6,6 @@
 package org.unicase.ui.unicasecommon.common.wizards;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -17,7 +15,7 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSectionSelectionPage;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSelectionPage;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author naughton Wizard for creating a follow-up meeting.
@@ -62,21 +60,19 @@ public class WorkPackageReviewWizard extends Wizard implements IWorkbenchWizard 
 	 */
 	@Override
 	public boolean performFinish() {
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-
 		final WorkItemMeetingSection selectedSection = workItemSectionSelectionPage.getSelectedSection();
 		final EList<WorkItem> selectedWorkItems = workItemSelectionPage.getSelectedWorkItems();
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				// HN: Notification.ADD_MANY does not work yet - when it works replace?
 				// selectedSection.getIncludedWorkItems().addAll(selectedWorkItems);
 				for (WorkItem item : selectedWorkItems) {
 					selectedSection.getIncludedWorkItems().add(item);
 				}
 			}
-		});
+		}.run(true);
 
 		return true;
 	}

@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -36,8 +34,8 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Standard widget to show the number of comments.
@@ -139,12 +137,10 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	}
 
 	private void update() {
-
-		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@SuppressWarnings("unchecked")
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				List<Comment> comments = (List<Comment>) getModelElement().eGet(reference);
 				if (comments != null) {
 					if (commentIcon != null) {
@@ -161,7 +157,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 				commentComposite.getParent().layout(true);
 				commentComposite.getParent().getParent().layout(true);
 			}
-		});
+		}.run(true);
 	}
 
 	/**

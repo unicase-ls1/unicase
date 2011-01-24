@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 
@@ -58,10 +58,10 @@ public class CreateContainmentHandler extends AbstractHandler {
 					Activator.getDefault().logException(e.getMessage(), e);
 					return null;
 				}
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
+				new ECPCommand(selectedME) {
 					@SuppressWarnings("unchecked")
-					protected void doExecute() {
+					@Override
+					protected void doRun() {
 						Object object = selectedME.eGet(eReference);
 						if ((eReference.getUpperBound() == -1)) {
 							EList<EObject> eList = (EList<EObject>) object;
@@ -71,7 +71,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 						}
 						ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 					}
-				});
+				};
 			}
 		}
 		return null;
