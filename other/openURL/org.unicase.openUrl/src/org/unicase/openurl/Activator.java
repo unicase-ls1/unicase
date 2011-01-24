@@ -9,8 +9,10 @@ import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -132,6 +134,13 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 						if (open == 256) {
 							// register protocol
 							protocolHandler.registerHandler();
+							try {
+								writeStartupConfigFile(protocolHandler.getEclipseExecutable(),
+									AbstractRegisterProtocolHandler.getStartUpJar());
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+
 						}
 
 						// save the toggle state
@@ -180,5 +189,21 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		}
 
 		return link;
+	}
+
+	private void writeStartupConfigFile(String eclipseExecutablePath, String startUpJarPath) {
+		String cfgFilePath = startUpJarPath.substring(0, startUpJarPath.lastIndexOf(File.separator)) + File.separator
+			+ "unicaseOpenUrl.conf";
+		File cfgFile = new File(cfgFilePath);
+
+		try {
+			cfgFile.createNewFile();
+			FileWriter cfgFileWriter = new FileWriter(cfgFile);
+			BufferedWriter bufferedWriter = new BufferedWriter(cfgFileWriter);
+			bufferedWriter.write(eclipseExecutablePath);
+			bufferedWriter.close();
+		} catch (IOException e) {
+
+		}
 	}
 }
