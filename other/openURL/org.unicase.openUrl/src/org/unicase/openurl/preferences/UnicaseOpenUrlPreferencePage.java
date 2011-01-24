@@ -62,14 +62,13 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 
 		public UnicaseOpenUrlFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
-			String text = "No";
-			if (protocolHandler.isHandlerRegistered()) {
-				text = "Yes";
-				this.setEnabled(false, parent);
-			}
-			getTextControl().setText(text);
+			getTextControl().setText("No");
 			getTextControl().setEditable(false);
 			setChangeButtonText("Register");
+			if (protocolHandler.isHandlerRegistered()) {
+				getTextControl().setText("Yes");
+				this.setEnabled(false, parent);
+			}
 		}
 
 		@Override
