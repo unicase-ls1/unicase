@@ -10,8 +10,6 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
@@ -21,7 +19,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Hodaie This is the handler for createME command (org.unicase.ui.unicasecommon.navigator.createME). This
@@ -69,30 +67,29 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			// add this newly created model element to LeafSection
 			final LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();
 			if (leafSection != null) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getEditingDomain();
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						leafSection.getModelElements().add(newMEInstance);
 					}
-				});
+				}.run(true);
 
 				if (newMEInstance instanceof Meeting) {
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+					new UnicaseCommand() {
 						@Override
-						protected void doExecute() {
+						protected void doRun() {
 							// FIXME: added DOLLI meeting structure as default - needs flexible approach.
 							addMeetingSections((Meeting) newMEInstance);
 						}
-					});
+					}.run(true);
 
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
+					new UnicaseCommand() {
 						@Override
-						protected void doExecute() {
+						protected void doRun() {
 							addMeetingSubSections((Meeting) newMEInstance);
 						}
-					});
+					}.run(true);
 				}
 				UnicaseActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 			}

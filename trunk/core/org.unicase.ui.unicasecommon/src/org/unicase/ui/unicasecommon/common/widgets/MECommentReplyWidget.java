@@ -13,8 +13,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.window.Window;
@@ -42,10 +40,10 @@ import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -60,18 +58,18 @@ public class MECommentReplyWidget extends Composite {
 	 * 
 	 * @author helming
 	 */
-	private final class CreateCommentCommand extends RecordingCommand {
+	private final class CreateCommentCommand extends UnicaseCommand {
 		private final EList<OrgUnit> recipientsList;
 		private final Text inputText;
 
-		private CreateCommentCommand(TransactionalEditingDomain domain, EList<OrgUnit> recipientsList, Text inputText) {
-			super(domain);
+		private CreateCommentCommand(EList<OrgUnit> recipientsList, Text inputText) {
+			super();
 			this.recipientsList = recipientsList;
 			this.inputText = inputText;
 		}
 
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			CompositeOperationHandle compositeOperationHandle = WorkspaceManager.getProjectSpace(modelElement)
 				.beginCompositeOperation();
 			final Comment newComment = RationaleFactory.eINSTANCE.createComment();
@@ -215,8 +213,8 @@ public class MECommentReplyWidget extends Composite {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				final EList<OrgUnit> list = new BasicEList<OrgUnit>();
-				WorkspaceManager.getProjectSpace(modelElement).getProject().getAllModelElementsbyClass(
-					OrganizationPackage.eINSTANCE.getOrgUnit(), list);
+				WorkspaceManager.getProjectSpace(modelElement).getProject()
+					.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getOrgUnit(), list);
 				list.removeAll(recipientsList);
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 				dialog.setMultipleSelection(true);
@@ -254,8 +252,7 @@ public class MECommentReplyWidget extends Composite {
 		acceptButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				TransactionalEditingDomain domain = Configuration.getEditingDomain();
-				domain.getCommandStack().execute(new CreateCommentCommand(domain, recipientsList, inputText));
+				new CreateCommentCommand(recipientsList, inputText).run(true);
 			}
 		});
 	}
