@@ -62,14 +62,6 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 			fileWriter.flush();
 			fileWriter.close();
 
-			// MessageDialog
-			// .openInformation(
-			// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-			// "Unicase Protocol Registertion",
-			// "The unicase does not have enough rights to register its protocol. The commands needed to register the protocol are written in "
-			// + registerProtocolFile.getAbsolutePath()
-			// + " file. Please execute this file manually with administrator rights.");
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

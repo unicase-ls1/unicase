@@ -19,6 +19,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.unicase.openurl.preferences.protocolhandlers.AbstractRegisterProtocolHandler;
 import org.unicase.openurl.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The preference page locates the org.unciase.openurl.startup jar file which has been installed with the feature and
@@ -69,24 +70,17 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 		protected String changePressed() {
 			try {
 				if (protocolHandler == null) {
-					Display.getDefault().syncExec(new Runnable() {
-						public void run() {
-							MessageDialog.openError(getShell(), "Protocol handler registration failed",
-								"The registration of the UNICASE protocol hasn't been implemented yet "
-									+ "for your operating system.");
-						}
-					});
+					// write an entry in error log
+					WorkspaceUtil.logException("Could not find protocol handler.", new NullPointerException());
+					return null;
 				}
 
 				protocolHandler.registerHandler();
-				writeStartupConfigFile(protocolHandler.getEclipseExecutable(), protocolHandler.getStartUpJar());
+				writeStartupConfigFile(protocolHandler.getEclipseExecutable(), AbstractRegisterProtocolHandler
+					.getStartUpJar());
 			} catch (IOException e) {
-				Display.getDefault().syncExec(new Runnable() {
-					public void run() {
-						MessageDialog.openError(getShell(), "Start-up jar not found.",
-							"The start-up jar file has not been found.");
-					}
-				});
+				// write an entry in error log
+				WorkspaceUtil.logException("The start-up jar file has not been found.", new NullPointerException());
 			}
 
 			if (protocolHandler.isHandlerRegistered()) {
