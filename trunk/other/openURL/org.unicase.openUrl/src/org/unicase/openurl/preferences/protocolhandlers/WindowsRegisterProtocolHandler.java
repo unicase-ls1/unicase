@@ -33,7 +33,9 @@ public class WindowsRegisterProtocolHandler extends AbstractRegisterProtocolHand
 			Process process = Runtime.getRuntime().exec(ADD_PROTOCOL_PREFIX_COMMAND);
 			if (!canRegisterProtocol(process)) {
 				// write file, prompt user to run it manually;
-				writeFile(ADD_PROTOCOL_PREFIX_COMMAND, ADD_PROTOCOL_NAME_COMMAND, add_run_handler_command);
+				writeFile(ADD_PROTOCOL_PREFIX_COMMAND, ADD_PROTOCOL_NAME_COMMAND,
+					"reg add HKCR\\unicase\\Shell\\Open\\Command /ve /d \"java -jar \\\"" + getStartUpJar()
+						+ "\\\" %%1 " + "\\\"" + FileLocations.getPluginFeaturesDirectory() + "\\\"");
 				return;
 			}
 
