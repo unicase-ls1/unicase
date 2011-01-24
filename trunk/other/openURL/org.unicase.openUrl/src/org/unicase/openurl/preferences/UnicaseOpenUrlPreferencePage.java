@@ -19,6 +19,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.unicase.openurl.preferences.protocolhandlers.AbstractRegisterProtocolHandler;
 import org.unicase.openurl.preferences.protocolhandlers.RegisterProtocolHandlerFactory;
+import org.unicase.openurl.util.FileLocations;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -103,8 +104,7 @@ public class UnicaseOpenUrlPreferencePage extends FieldEditorPreferencePage impl
 		}
 
 		private void writeStartupConfigFile(String eclipseExecutablePath, String startUpJarPath) {
-			String cfgFilePath = startUpJarPath.substring(0, startUpJarPath.lastIndexOf(File.separator))
-				+ File.separator + "unicaseOpenUrl.conf";
+			String cfgFilePath = FileLocations.getPluginFeaturesDirectory() + File.separator + "unicaseOpenUrl.conf";
 			File cfgFile = new File(cfgFilePath);
 
 			try {

@@ -134,12 +134,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 						if (open == 256) {
 							// register protocol
 							protocolHandler.registerHandler();
-							try {
-								writeStartupConfigFile(protocolHandler.getEclipseExecutable(),
-									AbstractRegisterProtocolHandler.getStartUpJar());
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+							writeStartupConfigFile(protocolHandler.getEclipseExecutable());
 
 						}
 
@@ -191,9 +186,8 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		return link;
 	}
 
-	private void writeStartupConfigFile(String eclipseExecutablePath, String startUpJarPath) {
-		String cfgFilePath = startUpJarPath.substring(0, startUpJarPath.lastIndexOf(File.separator)) + File.separator
-			+ "unicaseOpenUrl.conf";
+	private void writeStartupConfigFile(String eclipseExecutablePath) {
+		String cfgFilePath = FileLocations.getPluginFeaturesDirectory() + File.separator + "unicaseOpenUrl.conf";
 		File cfgFile = new File(cfgFilePath);
 
 		try {
