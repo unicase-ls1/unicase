@@ -1,14 +1,15 @@
 package org.unicase.modelgenerator;
 
-import java.util.LinkedList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -116,6 +117,34 @@ public class ModelGenerator {
 				generateReferences(generatedEObject);			
 			}
 		}
+		return rootEObject;
+	}
+	
+	/**
+	 * Generates EObjects using the settings specified in <code>config</code>.
+	 * 
+	 * @param configuration the ModelGeneratorConfiguration to use for generating EObjects
+	 * @param monitor the progress of the generation process
+	 * @return the validated root EObject of the resulting Ecore hierarchy
+	 * @see ModelGeneratorConfiguration
+	 */
+	public static EObject generateModel(ModelGeneratorConfiguration configuration, IProgressMonitor monitor) {
+		config = configuration;
+		random = new Random(config.getSeed());
+		AttributeHandler.setRandom(random);
+		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
+		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
+		exceptionLog = new LinkedHashSet<RuntimeException>();
+		EObject rootEObject = generateModel();
+		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootEObject);
+		monitor.beginTask("Generation progress", allObjectsByEClass.size());
+		for(EClass eClass : allObjectsByEClass.keySet()) {
+			for(EObject generatedEObject : allObjectsByEClass.get(eClass)) {
+				generateReferences(generatedEObject);			
+			}
+			monitor.worked(1);
+		}
+		monitor.done();
 		return rootEObject;
 	}
 

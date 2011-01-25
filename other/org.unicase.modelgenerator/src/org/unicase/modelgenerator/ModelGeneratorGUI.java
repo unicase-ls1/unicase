@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
@@ -19,9 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 
@@ -33,21 +37,28 @@ public class ModelGeneratorGUI extends JFrame{
 	 */
 	private static final long serialVersionUID = -1870695207208799938L;
 
-	private ModelGenerator listener;
+	private IGuiListener listener;
 	
 	private FirstDialog firstDialog;
 	private SecondDialog secondDialog;
+
+	private EObject project;
 	
 
-	public void setListener(ModelGenerator listener) {
+	public void setListener(IGuiListener listener) {
 		this.listener = listener;
 	}
 
-	public ModelGenerator getListener() {
+	public IGuiListener getListener() {
 		return listener;
 	}
 	
 	public ModelGeneratorGUI() {
+		init();
+	}
+
+	public ModelGeneratorGUI(EObject project) {
+		this.project=project;
 		init();
 	}
 
@@ -89,7 +100,8 @@ public class ModelGeneratorGUI extends JFrame{
 			container.add(mainPanel, BorderLayout.NORTH);
 			container.add(buttonPanel, BorderLayout.SOUTH);		
 			
-			models = new EPackage[]{ModelGeneratorUtil.getEPackage("http://unicase.org/model")};
+			//models = new EPackage[]{ModelGeneratorUtil.getEPackage("http://unicase.org/model")};
+			models = ModelGeneratorUtil.getAllRootEPackages().toArray(new EPackage[0]);
 			String[] modelsString = getModelNames(models);
 		    modelList = new JList(modelsString);
 		    mainPanel.add(new JScrollPane(modelList));
@@ -227,14 +239,20 @@ public class ModelGeneratorGUI extends JFrame{
 	}
 	
 	private void callListener() {
-		ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(firstDialog.getSelectedPackage(), firstDialog.getRootClass(), secondDialog.getProjectWidth(), secondDialog.getProjectHeight());
-		ModelGenerator.generateModel(config);
-//		listener.setHierachyDepth(secondDialog.getProjectHeight());
-//		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
-//		listener.setRootPackage();
-//		EClass clazz = firstDialog.getRootClass();
-//		listener.setRootObject(EcoreUtil.create(clazz));
-//		listener.generateModel();
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(new Shell(new Display()));
+		try {
+			progressDialog.run(true, true, new IRunnableWithProgress(){
+			    public void run(IProgressMonitor monitor) {
+					listener.runInCommand(ModelGeneratorGUI.this, monitor);
+			    }
+			});
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	//just for testing
@@ -242,5 +260,19 @@ public class ModelGeneratorGUI extends JFrame{
 		ModelGeneratorGUI projectGeneratorGUI = new ModelGeneratorGUI();
 		projectGeneratorGUI.setSize(new Dimension(600,600));
 		projectGeneratorGUI.setVisible(true);
+	}
+
+	public void generateModel(IProgressMonitor monitor) {
+		final ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(firstDialog.getSelectedPackage(), project, secondDialog.getProjectWidth(), secondDialog.getProjectHeight());
+		ModelGenerator.generateModel(config, monitor);
+
+						
+		
+//		listener.setHierachyDepth(secondDialog.getProjectHeight());
+//		listener.setNoOfExampleValues(secondDialog.getProjectWidth());
+//		listener.setRootPackage();
+//		EClass clazz = firstDialog.getRootClass();
+//		listener.setRootObject(EcoreUtil.create(clazz));
+//		listener.generateModel();		
 	}
 }
