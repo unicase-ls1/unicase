@@ -69,7 +69,7 @@ public interface Game extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Frames</em>' attribute list.
 	 * @see bowling.BowlingPackage#getGame_Frames()
-	 * @model upper="10"
+	 * @model unique="false" upper="10"
 	 * @generated
 	 */
 	EList<Integer> getFrames();
@@ -88,7 +88,7 @@ public interface Game extends EObject {
 	 * @see bowling.BowlingPackage#getGame_Player()
 	 * @see bowling.Player#getGames
 	 * @model opposite="games"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
+	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
 	Player getPlayer();
@@ -117,7 +117,7 @@ public interface Game extends EObject {
 	 * @see bowling.BowlingPackage#getGame_Matchup()
 	 * @see bowling.Matchup#getGames
 	 * @model opposite="games" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
+	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
 	Matchup getMatchup();

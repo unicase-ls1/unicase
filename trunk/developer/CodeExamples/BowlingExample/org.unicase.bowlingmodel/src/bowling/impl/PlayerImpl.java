@@ -35,9 +35,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link bowling.impl.PlayerImpl#getLastname <em>Lastname</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getStreet <em>Street</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getStreetnumber <em>Streetnumber</em>}</li>
+ *   <li>{@link bowling.impl.PlayerImpl#getCity <em>City</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getDateOfBirth <em>Date Of Birth</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getHeight <em>Height</em>}</li>
- *   <li>{@link bowling.impl.PlayerImpl#getCity <em>City</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#isIsProfessional <em>Is Professional</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getGames <em>Games</em>}</li>
  *   <li>{@link bowling.impl.PlayerImpl#getPlayerlist <em>Playerlist</em>}</li>
@@ -128,6 +128,26 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	protected int streetnumber = STREETNUMBER_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getCity() <em>City</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CITY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCity() <em>City</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCity()
+	 * @generated
+	 * @ordered
+	 */
+	protected String city = CITY_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getDateOfBirth() <em>Date Of Birth</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,26 +186,6 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * @ordered
 	 */
 	protected double height = HEIGHT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getCity() <em>City</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCity()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CITY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCity() <em>City</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCity()
-	 * @generated
-	 * @ordered
-	 */
-	protected String city = CITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsProfessional() <em>Is Professional</em>}' attribute.
@@ -571,12 +571,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				return getStreet();
 			case BowlingPackage.PLAYER__STREETNUMBER:
 				return getStreetnumber();
+			case BowlingPackage.PLAYER__CITY:
+				return getCity();
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
 				return getDateOfBirth();
 			case BowlingPackage.PLAYER__HEIGHT:
 				return getHeight();
-			case BowlingPackage.PLAYER__CITY:
-				return getCity();
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				return isIsProfessional();
 			case BowlingPackage.PLAYER__GAMES:
@@ -608,14 +608,14 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			case BowlingPackage.PLAYER__STREETNUMBER:
 				setStreetnumber((Integer)newValue);
 				return;
+			case BowlingPackage.PLAYER__CITY:
+				setCity((String)newValue);
+				return;
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
 				setDateOfBirth((Date)newValue);
 				return;
 			case BowlingPackage.PLAYER__HEIGHT:
 				setHeight((Double)newValue);
-				return;
-			case BowlingPackage.PLAYER__CITY:
-				setCity((String)newValue);
 				return;
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				setIsProfessional((Boolean)newValue);
@@ -650,14 +650,14 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			case BowlingPackage.PLAYER__STREETNUMBER:
 				setStreetnumber(STREETNUMBER_EDEFAULT);
 				return;
+			case BowlingPackage.PLAYER__CITY:
+				setCity(CITY_EDEFAULT);
+				return;
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
 				setDateOfBirth(DATE_OF_BIRTH_EDEFAULT);
 				return;
 			case BowlingPackage.PLAYER__HEIGHT:
 				setHeight(HEIGHT_EDEFAULT);
-				return;
-			case BowlingPackage.PLAYER__CITY:
-				setCity(CITY_EDEFAULT);
 				return;
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				setIsProfessional(IS_PROFESSIONAL_EDEFAULT);
@@ -688,12 +688,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				return STREET_EDEFAULT == null ? street != null : !STREET_EDEFAULT.equals(street);
 			case BowlingPackage.PLAYER__STREETNUMBER:
 				return streetnumber != STREETNUMBER_EDEFAULT;
+			case BowlingPackage.PLAYER__CITY:
+				return CITY_EDEFAULT == null ? city != null : !CITY_EDEFAULT.equals(city);
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
 				return DATE_OF_BIRTH_EDEFAULT == null ? dateOfBirth != null : !DATE_OF_BIRTH_EDEFAULT.equals(dateOfBirth);
 			case BowlingPackage.PLAYER__HEIGHT:
 				return height != HEIGHT_EDEFAULT;
-			case BowlingPackage.PLAYER__CITY:
-				return CITY_EDEFAULT == null ? city != null : !CITY_EDEFAULT.equals(city);
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				return isProfessional != IS_PROFESSIONAL_EDEFAULT;
 			case BowlingPackage.PLAYER__GAMES:
@@ -722,12 +722,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 		result.append(street);
 		result.append(", streetnumber: ");
 		result.append(streetnumber);
+		result.append(", city: ");
+		result.append(city);
 		result.append(", dateOfBirth: ");
 		result.append(dateOfBirth);
 		result.append(", height: ");
 		result.append(height);
-		result.append(", city: ");
-		result.append(city);
 		result.append(", isProfessional: ");
 		result.append(isProfessional);
 		result.append(')');

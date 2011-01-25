@@ -107,13 +107,22 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__STREETNUMBER = 3;
 
 	/**
+	 * The feature id for the '<em><b>City</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__CITY = 4;
+
+	/**
 	 * The feature id for the '<em><b>Date Of Birth</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__DATE_OF_BIRTH = 4;
+	int PLAYER__DATE_OF_BIRTH = 5;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -122,16 +131,7 @@ public interface BowlingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER__HEIGHT = 5;
-
-	/**
-	 * The feature id for the '<em><b>City</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLAYER__CITY = 6;
+	int PLAYER__HEIGHT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Professional</b></em>' attribute.
@@ -345,7 +345,7 @@ public interface BowlingPackage extends EPackage {
 	int TOURNAMENT__MATCHUP = 2;
 
 	/**
-	 * The feature id for the '<em><b>Playerlist</b></em>' containment reference.
+	 * The feature id for the '<em><b>Playerlist</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -666,10 +666,10 @@ public interface BowlingPackage extends EPackage {
 	EReference getTournament_Matchup();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
+	 * Returns the meta object for the containment reference list '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Playerlist</em>'.
+	 * @return the meta object for the containment reference list '<em>Playerlist</em>'.
 	 * @see bowling.Tournament#getPlayerlist()
 	 * @see #getTournament()
 	 * @generated
@@ -935,7 +935,7 @@ public interface BowlingPackage extends EPackage {
 		EReference TOURNAMENT__MATCHUP = eINSTANCE.getTournament_Matchup();
 
 		/**
-		 * The meta object literal for the '<em><b>Playerlist</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Playerlist</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
