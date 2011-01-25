@@ -20,9 +20,6 @@
             modelPackage="XmiworkspacestructurePackage">
       
       </modelPackage>
-      <modelPackage
-            modelPackage="http://unicase.org/model">
-      </modelPackage>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

@@ -3,6 +3,7 @@ WAIT 4 MAX - All models are displayed when you open up "New Model Element" on an
 	It should be that in a new project, all models are displayed so the user can pick its model,
 	but in an existing model only the model itself is shown.
 		- If Package not found -> show dialog what to do
+		- Search in NewModelElement Dialog throws an error, e.g. The image resource 'full/obj16/XSDNumericFacet' could not be located
 	
 WAIT 4 MAX - Delete menu entry does not work for baseElements
 	see plugin.xml from ui.common where the "Delete" command is added,
