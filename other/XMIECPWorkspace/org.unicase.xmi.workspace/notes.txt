@@ -1,4 +1,5 @@
 #Todo:
+
 WAIT 4 MAX - All models are displayed when you open up "New Model Element" on any project.
 	It should be that in a new project, all models are displayed so the user can pick its model,
 	but in an existing model only the model itself is shown.
@@ -12,18 +13,16 @@ WAIT 4 MAX - Delete menu entry does not work for baseElements
 	keyword final of the class
 	The problem is that the EObjects don't know the project and therefore
 	they will not be removed from the baseElements list.
-	
-	Added stuff to fix this:
-		- class DeleteModelelement in commands
-		- icons -> delete_element.gif
-		- changed plugin.xml, but reverted it after seeing that it didn't work
 
 	-> eMail to Max: Elements are contained in an eResource, not in an eContainer. Is it ok? Change in root class.
 
 POSTPONED - Make resource path relative to workspace, if chosen from workspace.
 
-@ END - Remove Unicase-Model from Extensions
-@ IGNORE - remove refresh from our implementation and change TreeView.refresh
+- start to prepare a feature
+	- test deployment
+- summary presentation (5 min)
+
+@ IGNORE - remove refresh from our implementation and change TreeView.refresh (also look for chhanges  in line 388 "addDropSupport")
 
 
 # Accepted plugins:
