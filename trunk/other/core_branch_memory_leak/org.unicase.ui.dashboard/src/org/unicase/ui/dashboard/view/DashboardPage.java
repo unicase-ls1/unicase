@@ -16,7 +16,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -49,6 +48,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -63,13 +63,10 @@ public class DashboardPage extends FormPage {
 	 * 
 	 * @author shterevg
 	 */
-	private final class CreateNotificationsCommand extends RecordingCommand {
-		private CreateNotificationsCommand(TransactionalEditingDomain domain) {
-			super(domain);
-		}
+	private final class CreateNotificationsCommand extends UnicaseCommand {
 
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			int count = PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.DASHBOARD_SIZE)
 				.getIntegerProperty();
 			count = Math.min(count, notifications.size());
@@ -234,8 +231,8 @@ public class DashboardPage extends FormPage {
 		notificationsComposite = toolkit.createComposite(body, SWT.NONE);
 		notificationsComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		notificationsComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).margins(5, 5).applyTo(
-			notificationsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).margins(5, 5)
+			.applyTo(notificationsComposite);
 		data = new FormData();
 		data.top = new FormAttachment(0, 0);
 		data.bottom = new FormAttachment(100, 0);
@@ -245,8 +242,8 @@ public class DashboardPage extends FormPage {
 
 		widgetsComposite = toolkit.createComposite(body, SWT.NONE);
 		widgetsComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(
-			widgetsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0)
+			.applyTo(widgetsComposite);
 		data = new FormData();
 		data.top = new FormAttachment(0, 0);
 		data.bottom = new FormAttachment(100, 0);
@@ -282,17 +279,17 @@ public class DashboardPage extends FormPage {
 		focusEvent.setPluginId(DashboardEditor.ID);
 		focusEvent.setTimestamp(new Date());
 		focusEvent.setStartDate(new Date());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				projectSpace.addEvent(focusEvent);
 			}
-		});
+		}.run();
 	}
 
 	private void createNotifications() {
-		domain.getCommandStack().execute(new CreateNotificationsCommand(domain));
+		new CreateNotificationsCommand().run();
 	}
 
 	/**

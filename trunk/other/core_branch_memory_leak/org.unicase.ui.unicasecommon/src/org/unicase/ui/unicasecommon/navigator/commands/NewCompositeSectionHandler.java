@@ -8,13 +8,11 @@ package org.unicase.ui.unicasecommon.navigator.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Helming This is the handler to create a new CompositeSection
@@ -42,14 +40,12 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 		createCompositeSection.setName(NEW_COMPOSITESECTION_NAME);
 
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				compositeSection.getSubsections().add(createCompositeSection);
 			}
-		});
+		}.run(true);
 
 		UnicaseActionHelper.openModelElement(createCompositeSection, this.getClass().getName());
 

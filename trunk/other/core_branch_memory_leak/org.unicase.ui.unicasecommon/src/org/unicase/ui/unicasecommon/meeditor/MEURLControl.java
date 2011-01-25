@@ -11,8 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -40,7 +38,6 @@ import org.unicase.ui.common.util.ExtProgramFactoryFacade;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -61,18 +58,18 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	 * @author helming
 	 * @author nagel
 	 */
-	private final class SetURLCommand extends RecordingCommand {
+	private final class SetURLCommand extends UnicaseCommand {
 		private final String newURL;
 		private final UrlAttachment urlAttachment;
 
-		public SetURLCommand(TransactionalEditingDomain domain, String newURL, UrlAttachment urlAttachment) {
-			super(domain);
+		public SetURLCommand(String newURL, UrlAttachment urlAttachment) {
+			super();
 			this.newURL = newURL;
 			this.urlAttachment = urlAttachment;
 		}
 
 		@Override
-		protected void doExecute() {
+		protected void doRun() {
 			urlAttachment.setUrl(newURL);
 		}
 	}
@@ -158,8 +155,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				input.setBlockOnOpen(true);
 				int result = input.open();
 				if (result == InputDialog.OK) {
-					TransactionalEditingDomain domain = Configuration.getEditingDomain();
-					domain.getCommandStack().execute(new SetURLCommand(domain, input.getValue(), urlattachement));
+					new SetURLCommand(input.getValue(), urlattachement).run(true);
 				}
 			}
 

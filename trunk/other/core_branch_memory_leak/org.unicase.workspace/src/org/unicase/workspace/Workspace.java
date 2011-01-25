@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
@@ -150,7 +151,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @param editingDomain the editing domain of the workspace
 	 * @generated NOT
 	 */
-	void init(TransactionalEditingDomain editingDomain);
+	void init(EditingDomain editingDomain);
 
 	/**
 	 * Return this workspace«s transactional editing domain.

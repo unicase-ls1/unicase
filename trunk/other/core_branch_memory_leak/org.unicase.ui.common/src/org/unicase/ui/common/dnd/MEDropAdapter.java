@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -25,7 +24,6 @@ import org.eclipse.swt.dnd.DropTargetEvent;
  */
 public abstract class MEDropAdapter {
 
-	private TransactionalEditingDomain domain;
 	private StructuredViewer viewer;
 
 	/**
@@ -41,8 +39,7 @@ public abstract class MEDropAdapter {
 	 * @param domain the editing domain
 	 * @param viewer the viewer
 	 */
-	public void init(TransactionalEditingDomain domain, StructuredViewer viewer) {
-		this.domain = domain;
+	public void init(StructuredViewer viewer) {
 		this.viewer = viewer;
 	}
 
@@ -337,14 +334,15 @@ public abstract class MEDropAdapter {
 		return result;
 	}
 
-	/**
-	 * This returns the TransactionalEditingDomain.
-	 * 
-	 * @return TransactionalEditingDomain
-	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		return domain;
-	}
+	// TODO: DOD - do we need this?
+	// /**
+	// * This returns the TransactionalEditingDomain.
+	// *
+	// * @return TransactionalEditingDomain
+	// */
+	// protected TransactionalEditingDomain getEditingDomain() {
+	// return domain;
+	// }
 
 	/**
 	 * Drop after or before.
