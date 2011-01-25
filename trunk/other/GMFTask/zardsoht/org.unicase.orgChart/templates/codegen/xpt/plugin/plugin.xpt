@@ -11,6 +11,7 @@
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://unicase.org/model/orga'»
 
 «EXTENSION xpt::GenEditorGenerator»
 «REM»
@@ -68,6 +69,17 @@
              test3=«echoFirst(editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix)»
              test4=«editorGen.domainGenModel.genPackages.ecorePackage.nsPrefix->at(0)»
              namespace=«getEcorePackageName(editorGen.domainGenModel.genPackages->at(0))»
+             «editorGen.diagram»
+             «editorGen.editor»
+             «editorGen.editor.iD»
+             «editorGen.editor.packageName»
+             «editorGen.editor.getQualifiedClassName()»
+             «editorGen.plugin»
+             «editorGen.plugin.iD»
+             «editorGen.plugin.name»
+             «editorGen.plugin.getActivatorQualifiedClassName()»
+             «editorGen.diagram.domainDiagramElement.ecoreClass.ePackage.nsPrefix».«editorGen.diagram.domainDiagramElement.ecoreClass.name»
+             
              properties="isDiagramType"
              type="org.eclipse.emf.ecore.EObject">
         </propertyTester>
