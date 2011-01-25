@@ -204,6 +204,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 					if(dir.isDirectory()) {
 						// open directory
 						File[] files = dir.listFiles();
+						int numFiles = files.length;
+						
+						monitor.beginTask("Loading files", numFiles);
 						
 						// Go through all files of the directory and try to load them
 						for(File f: files) {
@@ -216,11 +219,13 @@ public class ImportFolderDialog extends TitleAreaDialog {
 							catch(WrappedException e) {
 								// ignore -> it's simply not loadable
 							}
+							monitor.worked(1);
 						}
 					}
 					else {
 						new XMIFileTypeException(dirPath + " is not a directory.");
 					}
+					monitor.done();
 				}
 				
 			});
