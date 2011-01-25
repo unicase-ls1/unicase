@@ -42,6 +42,23 @@
                   icon="icons/unicase_link.png"
                   mnemonic="U"
                   id="org.unicase.openurl.menus.getUnicaseLink">
+                 
+              <visibleWhen
+                 checkEnabled="false">
+                 <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.metamodel.ModelElement">
+                    </instanceof>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+                 </and>
+           	   </visibleWhen>
+
             </command>
         
       </menuContribution>
