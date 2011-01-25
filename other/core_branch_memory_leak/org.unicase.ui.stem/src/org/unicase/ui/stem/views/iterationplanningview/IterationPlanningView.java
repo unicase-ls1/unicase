@@ -47,7 +47,6 @@ import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -368,8 +367,7 @@ public class IterationPlanningView extends ViewPart {
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(Configuration.getEditingDomain(),
-			viewer));
+		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(viewer));
 
 	}
 

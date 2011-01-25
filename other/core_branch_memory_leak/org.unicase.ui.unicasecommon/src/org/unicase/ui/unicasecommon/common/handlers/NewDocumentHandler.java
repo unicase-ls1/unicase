@@ -9,13 +9,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . This is the handler to add a new Document to a ProjectSpace
@@ -35,16 +33,14 @@ public class NewDocumentHandler extends AbstractHandler {
 		}
 		final ProjectSpace projectSpace = (ProjectSpace) eObject;
 
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 				compositeSection.setName("new Document");
 				projectSpace.getProject().addModelElement(compositeSection);
 			}
-		});
+		}.run(true);
 
 		return null;
 	}

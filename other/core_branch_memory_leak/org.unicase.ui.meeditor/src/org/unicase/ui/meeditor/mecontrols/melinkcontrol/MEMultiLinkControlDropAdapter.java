@@ -14,12 +14,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
@@ -65,19 +64,14 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @see org.eclipse.swt.dnd.DropTargetListener#drop(org.eclipse.swt.dnd.DropTargetEvent)
 	 */
 	public void drop(DropTargetEvent event) {
-
 		if (dropee != null) {
-			editingDomain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) editingDomain) {
-
+			new ECPCommand(dropee) {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					addME();
 				}
-
-			});
-
+			};
 		}
-
 	}
 
 	@SuppressWarnings("unchecked")
