@@ -43,6 +43,8 @@ public class ModelGeneratorGUI extends JFrame{
 	private SecondDialog secondDialog;
 
 	private EObject project;
+
+	private Display display;
 	
 
 	public void setListener(IGuiListener listener) {
@@ -239,7 +241,13 @@ public class ModelGeneratorGUI extends JFrame{
 	}
 	
 	private void callListener() {
-		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(new Shell(new Display()));
+		ProgressMonitorDialog progressDialog;
+		if(Display.getCurrent()!=null){
+			progressDialog = new ProgressMonitorDialog(new Shell(Display.getCurrent()));
+		}
+		else{
+			progressDialog = new ProgressMonitorDialog(new Shell(new Display()));
+		}
 		try {
 			progressDialog.run(true, true, new IRunnableWithProgress(){
 			    public void run(IProgressMonitor monitor) {
@@ -247,10 +255,8 @@ public class ModelGeneratorGUI extends JFrame{
 			    }
 			});
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

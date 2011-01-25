@@ -135,16 +135,13 @@ public class ModelGenerator {
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		exceptionLog = new LinkedHashSet<RuntimeException>();
-		EObject rootEObject = generateModel();
+		EObject rootEObject = generateModel(monitor);
 		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootEObject);
-		monitor.beginTask("Generation progress", allObjectsByEClass.size());
 		for(EClass eClass : allObjectsByEClass.keySet()) {
 			for(EObject generatedEObject : allObjectsByEClass.get(eClass)) {
 				generateReferences(generatedEObject);			
 			}
-			monitor.worked(1);
 		}
-		monitor.done();
 		return rootEObject;
 	}
 
@@ -174,6 +171,39 @@ public class ModelGenerator {
 				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
 			}
 		}
+		return rootEObject;
+	}
+	
+	
+	/**
+	 * The method that actually performs the generation. This can only be
+	 * accessed by calling {@link #generateModel(EPackage, EObject)} or
+	 * {@link #generateModel(ModelGeneratorConfiguration)}
+	 * @param monitor shows the progress
+	 * @return the valid root EObject used for generating the model
+	 * @see #generateModel(EPackage, EObject)
+	 * @see #generateModel(ModelGeneratorConfiguration)
+	 */
+	private static EObject generateModel(IProgressMonitor monitor) {
+		EObject rootEObject = validateRoot(config.getRootEObject());
+		List<EObject> remainingObjects = new LinkedList<EObject>();
+		remainingObjects.add(rootEObject);
+		int currentDepth = 1;
+		int remainingElementsInThisDepth = config.getWidth();
+		monitor.beginTask("Generation progress", (int)Math.pow(config.getWidth(), config.getDepth()));
+		while(!remainingObjects.isEmpty()) {
+			EObject nextParentEObject = remainingObjects.remove(0);
+			List<EObject> children = generateChildren(nextParentEObject); 
+			if(currentDepth < config.getDepth())
+				remainingObjects.addAll(children);
+			remainingElementsInThisDepth -= config.getWidth();
+			if(remainingElementsInThisDepth <= 0) {
+				currentDepth++;
+				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
+			}
+			monitor.worked(1);
+		}
+		monitor.done();
 		return rootEObject;
 	}
 	
