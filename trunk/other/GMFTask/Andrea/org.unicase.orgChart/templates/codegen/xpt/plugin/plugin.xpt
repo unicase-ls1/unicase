@@ -22,11 +22,11 @@
 
 
 	<extension point="org.unicase.ui.common.modelelementopener">
-		<ModelElementOpener class=" «editorGen.editor.packageName».«editorGen.modelID»DiagramOpener" name="org.unicase.ui.MEDiagramEditor"></ModelElementOpener>
+		<ModelElementOpener class=" «editorGen.editor.getQualifiedClassName()».«editorGen.modelID»DiagramOpener" name="org.unicase.ui.MEDiagramEditor"></ModelElementOpener>
 	</extension>
 
 	<extension point="org.eclipse.core.expressions.propertyTesters">
-		<propertyTester class="«editorGen.editor.packageName».«editorGen.modelID»DiagramTypeTester" id="«editorGen.editor.packageName».DiagramTypeTester" properties="isDiagramType" type="org.eclipse.emf.ecore.EObject" namespace=""></propertyTester>
+		<propertyTester class="«editorGen.editor.getQualifiedClassName()».«editorGen.modelID»DiagramTypeTester" id="«editorGen.editor.packageName».DiagramTypeTester" properties="isDiagramType" type="org.eclipse.emf.ecore.EObject" namespace=""></propertyTester>
 	</extension>
 
 
