@@ -26,7 +26,7 @@
 	</extension>
 
 	<extension point="org.eclipse.core.expressions.propertyTesters">
-		<propertyTester class="«editorGen.editor.packageName».DiagramTypeTester" id="«editorGen.editor.packageName».DiagramTypeTester" properties="isDiagramType" type="org.eclipse.emf.ecore.EObject" namespace=""></propertyTester>
+		<propertyTester class="«editorGen.editor.packageName».«editorGen.modelID»DiagramTypeTester" id="«editorGen.editor.packageName».DiagramTypeTester" properties="isDiagramType" type="org.eclipse.emf.ecore.EObject" namespace=""></propertyTester>
 	</extension>
 
 
