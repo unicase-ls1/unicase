@@ -69,7 +69,7 @@ public interface Playerlist extends EObject {
 	 * @see bowling.BowlingPackage#getPlayerlist_Player()
 	 * @see bowling.Player#getPlayerlist
 	 * @model opposite="playerlist" containment="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
+	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
 	EList<Player> getPlayer();
@@ -88,7 +88,6 @@ public interface Playerlist extends EObject {
 	 * @see bowling.BowlingPackage#getPlayerlist_Tournament()
 	 * @see bowling.Tournament#getPlayerlist
 	 * @model opposite="playerlist" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
 	 * @generated
 	 */
 	Tournament getTournament();

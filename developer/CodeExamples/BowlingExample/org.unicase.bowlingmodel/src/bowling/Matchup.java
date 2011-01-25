@@ -42,7 +42,7 @@ public interface Matchup extends EObject {
 	 * @see bowling.BowlingPackage#getMatchup_Games()
 	 * @see bowling.Game#getMatchup
 	 * @model opposite="matchup" containment="true" upper="2"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
+	 *        annotation="org.unicase.ui.meeditor position='left'"
 	 * @generated
 	 */
 	EList<Game> getGames();
@@ -61,7 +61,7 @@ public interface Matchup extends EObject {
 	 * @see bowling.BowlingPackage#getMatchup_Tournament()
 	 * @see bowling.Tournament#getMatchup
 	 * @model opposite="matchup" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='0'"
+	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
 	Tournament getTournament();

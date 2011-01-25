@@ -68,9 +68,9 @@ public class PlayerItemProvider
 			addLastnamePropertyDescriptor(object);
 			addStreetPropertyDescriptor(object);
 			addStreetnumberPropertyDescriptor(object);
+			addCityPropertyDescriptor(object);
 			addDateOfBirthPropertyDescriptor(object);
 			addHeightPropertyDescriptor(object);
-			addCityPropertyDescriptor(object);
 			addIsProfessionalPropertyDescriptor(object);
 			addGamesPropertyDescriptor(object);
 			addPlayerlistPropertyDescriptor(object);
@@ -348,9 +348,9 @@ public class PlayerItemProvider
 			case BowlingPackage.PLAYER__LASTNAME:
 			case BowlingPackage.PLAYER__STREET:
 			case BowlingPackage.PLAYER__STREETNUMBER:
+			case BowlingPackage.PLAYER__CITY:
 			case BowlingPackage.PLAYER__DATE_OF_BIRTH:
 			case BowlingPackage.PLAYER__HEIGHT:
-			case BowlingPackage.PLAYER__CITY:
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
