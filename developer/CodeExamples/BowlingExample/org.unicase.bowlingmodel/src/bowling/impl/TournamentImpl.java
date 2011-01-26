@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -96,14 +97,14 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	protected EList<Matchup> matchup;
 
 	/**
-	 * The cached value of the '{@link #getPlayerlist() <em>Playerlist</em>}' containment reference list.
+	 * The cached value of the '{@link #getPlayerlist() <em>Playerlist</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPlayerlist()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Playerlist> playerlist;
+	protected Playerlist playerlist;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,11 +184,59 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Playerlist> getPlayerlist() {
-		if (playerlist == null) {
-			playerlist = new EObjectContainmentWithInverseEList<Playerlist>(Playerlist.class, this, BowlingPackage.TOURNAMENT__PLAYERLIST, BowlingPackage.PLAYERLIST__TOURNAMENT);
+	public Playerlist getPlayerlist() {
+		if (playerlist != null && playerlist.eIsProxy()) {
+			InternalEObject oldPlayerlist = (InternalEObject)playerlist;
+			playerlist = (Playerlist)eResolveProxy(oldPlayerlist);
+			if (playerlist != oldPlayerlist) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.TOURNAMENT__PLAYERLIST, oldPlayerlist, playerlist));
+			}
 		}
 		return playerlist;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Playerlist basicGetPlayerlist() {
+		return playerlist;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPlayerlist(Playerlist newPlayerlist, NotificationChain msgs) {
+		Playerlist oldPlayerlist = playerlist;
+		playerlist = newPlayerlist;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BowlingPackage.TOURNAMENT__PLAYERLIST, oldPlayerlist, newPlayerlist);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPlayerlist(Playerlist newPlayerlist) {
+		if (newPlayerlist != playerlist) {
+			NotificationChain msgs = null;
+			if (playerlist != null)
+				msgs = ((InternalEObject)playerlist).eInverseRemove(this, BowlingPackage.PLAYERLIST__TOURNAMENT, Playerlist.class, msgs);
+			if (newPlayerlist != null)
+				msgs = ((InternalEObject)newPlayerlist).eInverseAdd(this, BowlingPackage.PLAYERLIST__TOURNAMENT, Playerlist.class, msgs);
+			msgs = basicSetPlayerlist(newPlayerlist, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.TOURNAMENT__PLAYERLIST, newPlayerlist, newPlayerlist));
 	}
 
 	/**
@@ -202,7 +251,9 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 			case BowlingPackage.TOURNAMENT__MATCHUP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMatchup()).basicAdd(otherEnd, msgs);
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPlayerlist()).basicAdd(otherEnd, msgs);
+				if (playerlist != null)
+					msgs = ((InternalEObject)playerlist).eInverseRemove(this, BowlingPackage.PLAYERLIST__TOURNAMENT, Playerlist.class, msgs);
+				return basicSetPlayerlist((Playerlist)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -218,7 +269,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 			case BowlingPackage.TOURNAMENT__MATCHUP:
 				return ((InternalEList<?>)getMatchup()).basicRemove(otherEnd, msgs);
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				return ((InternalEList<?>)getPlayerlist()).basicRemove(otherEnd, msgs);
+				return basicSetPlayerlist(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -238,7 +289,8 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 			case BowlingPackage.TOURNAMENT__MATCHUP:
 				return getMatchup();
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				return getPlayerlist();
+				if (resolve) return getPlayerlist();
+				return basicGetPlayerlist();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,8 +315,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 				getMatchup().addAll((Collection<? extends Matchup>)newValue);
 				return;
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				getPlayerlist().clear();
-				getPlayerlist().addAll((Collection<? extends Playerlist>)newValue);
+				setPlayerlist((Playerlist)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,7 +339,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 				getMatchup().clear();
 				return;
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				getPlayerlist().clear();
+				setPlayerlist((Playerlist)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -309,7 +360,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 			case BowlingPackage.TOURNAMENT__MATCHUP:
 				return matchup != null && !matchup.isEmpty();
 			case BowlingPackage.TOURNAMENT__PLAYERLIST:
-				return playerlist != null && !playerlist.isEmpty();
+				return playerlist != null;
 		}
 		return super.eIsSet(featureID);
 	}
