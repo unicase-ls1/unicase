@@ -103,6 +103,7 @@ public final class DecisionUtil {
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
+		// jc: open
 	}
 
 	/**
@@ -193,5 +194,6 @@ public final class DecisionUtil {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider;
+		// jc: open
 	}
 }

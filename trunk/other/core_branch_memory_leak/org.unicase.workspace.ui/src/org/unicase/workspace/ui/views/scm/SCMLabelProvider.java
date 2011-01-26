@@ -65,6 +65,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	// jc: open
 	private ChangePackageVisualizationHelper changePackageVisualizationHelper;
 	private Image baseRevision;
 	private Image currentRevision;
