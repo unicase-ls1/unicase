@@ -44,6 +44,7 @@ public final class UiUtil {
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
 			new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		//jc: open
 
 		dlg.setElements(initialContent.toArray(new Object[initialContent.size()]));
 		dlg.setTitle(title);
@@ -70,6 +71,7 @@ public final class UiUtil {
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 		return labelProvider.getText(modelElement);
+		//jc: open
 	}
 
 }
