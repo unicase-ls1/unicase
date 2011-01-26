@@ -30,6 +30,7 @@ public class FlatTabColumnLabelProvider extends ColumnLabelProvider implements I
 		super();
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// jc: open
 	}
 
 	/**
