@@ -30,9 +30,9 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
