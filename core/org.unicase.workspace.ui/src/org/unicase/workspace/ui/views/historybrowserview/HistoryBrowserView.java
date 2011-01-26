@@ -17,12 +17,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IMenuListener;
-import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -36,22 +33,20 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -64,7 +59,6 @@ import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.ModelElementId;
@@ -73,9 +67,6 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.UiUtil;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.util.ElementOpenerHelper;
@@ -165,83 +156,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 	}
 
-	/**
-	 * Provides popup menu for versions.
-	 * 
-	 * @author shterevg
-	 */
-	private final class PopupMenuListener implements IMenuListener {
-		public void menuAboutToShow(IMenuManager manager) {
-			ISelection selection = viewer.getSelection();
-			Object obj = ((IStructuredSelection) selection).getFirstElement();
-			if (obj instanceof TreeNode) {
-				TreeNode node = (TreeNode) obj;
-				if (node.getValue() instanceof HistoryInfo) {
-					HistoryInfo historyInfo = (HistoryInfo) node.getValue();
-					if (historyInfo.getChangePackage() != null
-						&& (historyInfo.getLogMessage() != null || historyInfo.getChangePackage().getLogMessage() != null)) {
-						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
-						try {
-							helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-							manager.add(addTagAction);
-							manager.add(removeTagAction);
-							manager.add(new Separator());
-						} catch (AccessControlException e) {
-							// do nothing
-						}
-					}
-
-				}
-				if (node.getValue() instanceof HistoryInfo) {
-					manager.add(checkoutAction);
-					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
-					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-						manager.add(revertAction);
-						manager.add(forceRevertAction);
-					} catch (AccessControlException e) {
-						// do nothing
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Provides remove tag action.
-	 * 
-	 * @author shterevg
-	 */
-	private final class RemoveTagAction extends Action {
-		private final LabelProvider tagLabelProvider;
-
-		private RemoveTagAction(LabelProvider tagLabelProvider) {
-			this.tagLabelProvider = tagLabelProvider;
-		}
-
-		@Override
-		public void run() {
-			ISelection selection = viewer.getSelection();
-			Object obj = ((IStructuredSelection) selection).getFirstElement();
-			HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), tagLabelProvider);
-			dlg.setElements(historyInfo.getTagSpecs().toArray());
-			dlg.setTitle("Tag selection");
-			dlg.setBlockOnOpen(true);
-			dlg.setMultipleSelection(true);
-			int ret = dlg.open();
-			if (ret != Window.OK) {
-				return;
-			}
-			Object[] tags = dlg.getResult();
-			for (Object tag : tags) {
-				removeTag(historyInfo.getPrimerySpec(), (TagVersionSpec) tag);
-			}
-			refresh();
-		}
-	}
-
 	private static final String VIEW_ID = "org.unicase.workspace.ui.views.historybrowserview";
 
 	private List<HistoryInfo> historyInfos;
@@ -276,17 +190,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 	private Composite parent;
 
-	private Action removeTagAction;
-
-	private Action addTagAction;
-
-	private Action checkoutAction;
-
 	private boolean isUnlinkedFromNavigator;
 
-	private Action revertAction;
+	private TreeViewerColumn changesColumn;
 
-	private Action forceRevertAction;
+	private TreeViewerColumn logColumn;
+
+	private LogMessageColumnLabelProvider logLabelProvider;
 
 	/**
 	 * Constructor.
@@ -310,6 +220,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		viewer = new TreeViewerWithModelElementSelectionProvider(parent, SWT.NONE);
 
+		MenuManager menuMgr = new MenuManager("#PopupMenu");
+		menuMgr.add(new Separator("additions"));
+		Control control = viewer.getControl();
+		Menu menu = menuMgr.createContextMenu(control);
+		control.setMenu(menu);
+		getSite().registerContextMenu(menuMgr, viewer);
+
 		getSite().setSelectionProvider(viewer);
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
@@ -327,9 +244,18 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 		});
 
-		hookToobar();
-		hookContextMenu();
+		changesColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		changesColumn.getColumn().setText("Changes");
+		changesColumn.getColumn().setWidth(400);
 
+		logColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		logColumn.getColumn().setText("Commit information");
+		logColumn.getColumn().setWidth(300);
+
+		Tree tree = viewer.getTree();
+		tree.setHeaderVisible(true);
+
+		hookToobar();
 	}
 
 	private void hookToobar() {
@@ -510,10 +436,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Refreshes the view using the current end point.
 	 */
-	protected void refresh() {
+	public void refresh() {
 		load(currentEnd);
 		viewer.setContentProvider(contentProvider);
-		viewer.setLabelProvider(labelProvider);
 		viewer.setInput(getHistoryInfos());
 	}
 
@@ -589,7 +514,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(
 			changePackageCache.values()), projectSpace.getProject());
 		labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		logLabelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 		contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		contentProvider.setProjectSpace(projectSpace);
 	}
 
 	/**
@@ -635,6 +562,11 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 		setContentDescription(label);
 		labelProvider = new SCMLabelProvider(project);
+		changesColumn.setLabelProvider(labelProvider);
+
+		logLabelProvider = new LogMessageColumnLabelProvider(project);
+		logColumn.setLabelProvider(logLabelProvider);
+
 		refresh();
 	}
 
@@ -710,192 +642,11 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	/**
-	 * Adds a tag to a version.
-	 * 
-	 * @param versionSpec the version
-	 * @param tag the tag
-	 */
-	public void addTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
-
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
-				projectSpace.addTag(versionSpec, tag);
-				return null;
-			}
-
-			@Override
-			public String getTaskTitle() {
-				return "Resolving project versions...";
-			}
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
-	}
-
-	/**
-	 * Checks out a specific revision.
-	 * 
-	 * @param versionSpec the version
-	 */
-	public void checkout(final PrimaryVersionSpec versionSpec) {
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
-				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(projectSpace.getUsersession(),
-					projectSpace.getProjectInfo(), versionSpec);
-				return null;
-			}
-
-			@Override
-			public String getTaskTitle() {
-				return "Resolving project versions...";
-			}
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
-	}
-
-	/**
-	 * Reverts the commit from a certain revision in a local workspace that can be commited later.
-	 * 
-	 * @param versionSpec the version of the commit to revert
-	 */
-	public void revertCommit(final PrimaryVersionSpec versionSpec) {
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
-				MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-					"Do you really want to revert changes of this version on project " + projectSpace.getProjectName(),
-					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-				int result = dialog.open();
-				if (result == Window.OK) {
-					checkoutAndReverseCommit(versionSpec);
-				}
-				return null;
-			}
-
-			@Override
-			public String getTaskTitle() {
-				return "Resolving project versions...";
-			}
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
-	}
-
-	/**
-	 * Reverts the commit from a certain revision in a local workspace on the HEAD version that can be committed later.
-	 * 
-	 * @param versionSpec the version of the commit to revert
-	 */
-	public void forceRevertCommit(final PrimaryVersionSpec versionSpec) {
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
-				MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-					"Do you really want to force to revert changes of this version on project "
-						+ projectSpace.getProjectName(), MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-				int result = dialog.open();
-				if (result == Window.OK) {
-					checkoutHeadAndReverseCommit(versionSpec);
-				}
-				return null;
-			}
-
-			@Override
-			public String getTaskTitle() {
-				return "Resolving project versions...";
-			}
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
-	}
-
-	private void checkoutHeadAndReverseCommit(final PrimaryVersionSpec versionSpec) throws EmfStoreException {
-
-		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
-
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(),
-			projectSpace.getProjectInfo(),
-			connectionManager.resolveVersionSpec(projectSpace.getUsersession().getSessionId(), projectSpace
-				.getProjectId(), VersionSpec.HEAD_VERSION));
-		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
-		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
-		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
-		if (changes.size() != 1) {
-			throw new EmfStoreException("Zero or more than 1 Change Package received for one revision!");
-		}
-		ChangePackage changePackage = changes.get(0);
-		ChangePackage reversedChangePackage = changePackage.reverse();
-		reversedChangePackage.apply(revertSpace.getProject(), true);
-	}
-
-	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec) throws EmfStoreException {
-		ProjectSpace revertSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-			projectSpace.getUsersession(), projectSpace.getProjectInfo(), versionSpec);
-		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
-		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
-		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion, versionSpec);
-		if (changes.size() != 1) {
-			throw new EmfStoreException("Zero or more than 1 Change Package received for one revision!");
-		}
-		ChangePackage changePackage = changes.get(0);
-		ChangePackage reversedChangePackage = changePackage.reverse();
-		reversedChangePackage.apply(revertSpace.getProject(), true);
-	}
-
-	/**
-	 * Removes a tag to a version.
-	 * 
-	 * @param versionSpec the version
-	 * @param tag the tag
-	 */
-	public void removeTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
-
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
-				projectSpace.removeTag(versionSpec, tag);
-				return null;
-			}
-
-			@Override
-			public String getTaskTitle() {
-				return "Resolving project versions...";
-			}
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
-
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void setFocus() {
+		viewer.getControl().setFocus();
 		WorkspaceUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 
@@ -904,89 +655,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	 */
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
 		return changePackageVisualizationHelper;
-	}
-
-	private void hookContextMenu() {
-
-		checkoutAction = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
-				checkout(versionSpec);
-			}
-		};
-		checkoutAction.setText("Checkout this revision");
-		checkoutAction.setToolTipText("Checkout this revision of the project");
-
-		revertAction = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
-				revertCommit(versionSpec);
-			}
-		};
-		revertAction.setText("Revert this revision");
-		revertAction
-			.setToolTipText("Revert this revision of the project, the reversed changes between the previous revision has been applied");
-
-		forceRevertAction = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
-				forceRevertCommit(versionSpec);
-			}
-		};
-		forceRevertAction.setText("Force to revert this revision");
-		forceRevertAction
-			.setToolTipText("Force to revert, the reversed changes between the previous revision has been applied");
-
-		addTagAction = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
-				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Add tag",
-					"Please enter the tag's name.", "", null);
-				inputDialog.open();
-				String str = inputDialog.getValue().trim();
-				if (!(str == null || str.equals(""))) {
-					TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
-					tag.setName(str);
-					addTag(versionSpec, tag);
-					refresh();
-				}
-			}
-		};
-		addTagAction.setText("Add tag");
-		addTagAction.setToolTipText("Add a new tag to this revision");
-
-		final LabelProvider tagLabelProvider = new LabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return ((TagVersionSpec) element).getName();
-			}
-		};
-		removeTagAction = new RemoveTagAction(tagLabelProvider);
-		removeTagAction.setText("Remove tag");
-		removeTagAction.setToolTipText("Remove an existing tag");
-
-		MenuManager menuMgr = new MenuManager("#PopupMenu");
-		menuMgr.setRemoveAllWhenShown(true);
-		menuMgr.addMenuListener(new PopupMenuListener());
-		Menu menu = menuMgr.createContextMenu(viewer.getControl());
-		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(menuMgr, viewer);
 	}
 
 	/**

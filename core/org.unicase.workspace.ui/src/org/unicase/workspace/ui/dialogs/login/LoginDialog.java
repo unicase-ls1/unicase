@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.sharemedia.ui.sat.SATRunner;
 import org.sharemedia.ui.sat.movement.SinusVariation;
@@ -354,6 +355,11 @@ public class LoginDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		new LoginUnicaseCommand().run();
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.emfstorebrowser.LoginDecorator");
+			}
+		});
 	}
 
 	private boolean loadSessionFromSelection(ISelection selection) {
