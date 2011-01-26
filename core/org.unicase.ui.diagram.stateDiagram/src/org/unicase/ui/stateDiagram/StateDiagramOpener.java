@@ -8,8 +8,8 @@ package org.unicase.ui.stateDiagram;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
-import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
+import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * Opener for state diagrams.
@@ -21,7 +21,7 @@ public class StateDiagramOpener extends DiagramOpener implements ModelElementOpe
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
+	 * @see org.unicase.ui.util.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
 	public int canOpen(EObject me) {
 		if (me instanceof StateDiagram) {
@@ -36,7 +36,7 @@ public class StateDiagramOpener extends DiagramOpener implements ModelElementOpe
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
+	 * @see org.unicase.ui.util.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
 	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof MEDiagram) {

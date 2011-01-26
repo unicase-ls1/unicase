@@ -8,8 +8,8 @@ package org.unicase.ui.usecaseDiagram;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
+import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * Opener for use case diagrams.
@@ -21,7 +21,7 @@ public class UseCaseDiagramOpener extends DiagramOpener implements ModelElementO
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
+	 * @see org.unicase.ui.util.ModelElementOpener#canOpen(org.unicase.metamodel.ModelElement)
 	 */
 	public int canOpen(EObject me) {
 		if (me instanceof UseCaseDiagram) {
@@ -36,7 +36,7 @@ public class UseCaseDiagramOpener extends DiagramOpener implements ModelElementO
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
+	 * @see org.unicase.ui.util.ModelElementOpener#openModelElement(org.unicase.metamodel.ModelElement)
 	 */
 	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof MEDiagram) {
