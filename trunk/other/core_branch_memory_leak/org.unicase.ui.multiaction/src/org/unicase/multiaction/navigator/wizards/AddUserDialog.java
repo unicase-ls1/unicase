@@ -26,29 +26,28 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.common.Activator;
 
 /**
- * 
  * @author jfinis A dialog to select users or groups.
- *
  */
-public class AddUserDialog extends FilteredItemsSelectionDialog{
+public class AddUserDialog extends FilteredItemsSelectionDialog {
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 	private EList<OrgUnit> elements;
 	private AdapterFactoryLabelProvider labelProvider;
-	
+
 	/**
-	 * The constructor.
-	 * {@inheritDoc}
+	 * The constructor. {@inheritDoc}
+	 * 
 	 * @param p the project from which the users / groups should be gathered
 	 * @param message the message shown in the dialog.
 	 */
-	public AddUserDialog(Project p, String message){
-		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),true);
-		elements = p.getAllModelElementsbyClass(OrganizationPackage.Literals.ORG_UNIT,new BasicEList<OrgUnit>());
+	public AddUserDialog(Project p, String message) {
+		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), true);
+		elements = p.getAllModelElementsbyClass(OrganizationPackage.Literals.ORG_UNIT, new BasicEList<OrgUnit>());
 
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		setListLabelProvider(labelProvider);
 		setDetailsLabelProvider(labelProvider);
-
+		// jc: open
 
 		setBlockOnOpen(true);
 		setInitialPattern("**", NONE);
@@ -56,9 +55,9 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 		setTitle("Add assignees");
 	}
 
-
 	/**
 	 * Does nothing.
+	 * 
 	 * @param parent the parent
 	 * @return null
 	 */
@@ -69,6 +68,7 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 
 	/**
 	 * Returns a new instance of class UserFilter.
+	 * 
 	 * @return new instance of class UserFilter
 	 */
 	@Override
@@ -78,13 +78,14 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 
 	/**
 	 * Fills the content provider with all elements matching the items filter.
+	 * 
 	 * @param contentProvider the content provider which gets added the items
 	 * @param itemsFilter the used items filter
 	 * @param progressMonitor a progress monitor stating the progress
 	 */
 	@Override
-	protected void fillContentProvider(AbstractContentProvider contentProvider,
-			ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
+	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
+		IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", elements.size());
 		for (UnicaseModelElement me : elements) {
@@ -92,11 +93,12 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 			progressMonitor.worked(1);
 		}
 		progressMonitor.done();
-		
+
 	}
 
 	/**
 	 * Gets the dialog settings.
+	 * 
 	 * @return the dialog settings
 	 */
 	@Override
@@ -110,6 +112,7 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 
 	/**
 	 * Gets the name of an element by asking the labelProvider.
+	 * 
 	 * @return the name as provided by the labelProvider
 	 * @param item the element to get the name from
 	 */
@@ -124,20 +127,22 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 
 	/**
 	 * Returns an alphabetical comparator.
+	 * 
 	 * @return an alphabetical comparator
 	 */
 	@Override
 	protected Comparator<Object> getItemsComparator() {
-	    return new Comparator<Object>() {
-	         public int compare(Object arg0, Object arg1) {
-	            return arg0.toString().compareTo(arg1.toString());
-	         }
-	      };
+		return new Comparator<Object>() {
+			public int compare(Object arg0, Object arg1) {
+				return arg0.toString().compareTo(arg1.toString());
+			}
+		};
 
 	}
 
 	/**
 	 * Always returns Status.OK_STATUS.
+	 * 
 	 * @return Status.OK_STATUS
 	 * @param item an item
 	 */
@@ -145,11 +150,9 @@ public class AddUserDialog extends FilteredItemsSelectionDialog{
 	protected IStatus validateItem(Object item) {
 		return Status.OK_STATUS;
 	}
-	
+
 	/**
-	 * 
 	 * @author jfinis A simple filter class.
-	 *
 	 */
 	class UserFilter extends ItemsFilter {
 		/**
