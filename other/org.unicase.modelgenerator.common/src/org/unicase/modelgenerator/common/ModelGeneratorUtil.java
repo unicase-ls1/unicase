@@ -45,15 +45,6 @@ public final class ModelGeneratorUtil {
 	private static Set<EClass> allEClasses;
 	
 	/**
-	 * Set of all EPackages that are currently registered in
-	 * the EPackage registry.
-	 * 
-	 *  @see #getAllEPackages()
-	 */
-	private static Set<EPackage> modelPackages;
-	
-	
-	/**
 	 * Set of all EPackages that are currently registered in the 
 	 * EPackage registry and not contained in any other package.
 	 * 
@@ -94,7 +85,6 @@ public final class ModelGeneratorUtil {
 	 * 
 	 * @param nsURI the NsUri of the EPackage to get
 	 * @return the EPackage belonging to <code>nsURI</code>
-	 * 
 	 * @see Registry#getEPackage(String)
 	 */
 	public static EPackage getEPackage(String nsURI) { 
@@ -102,33 +92,12 @@ public final class ModelGeneratorUtil {
 	}
 	
 	/**
-	 * Looks up all EPackages that are registered in the registry
-	 * and returns them as a Set.
+	 * Returns all EPackages on the root level that are currently
+	 * registered in the registry.
 	 * 
-	 * @return all registered EPackages as a Set
+	 * @return a Set of all root EPackages
 	 * @see Registry
 	 */
-	public static Set<EPackage> getAllEPackages() {
-		if(modelPackages != null) {
-			return modelPackages;
-		}
-		modelPackages = new LinkedHashSet<EPackage>();
-		Registry registry = EPackage.Registry.INSTANCE;
-
-		for (Entry<String, Object> entry : registry.entrySet()) {
-			try {
-				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				modelPackages.add(model);
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-			catch (RuntimeException exception) {
-				// END SUPRESS CATCH EXCEPTION
-				//logException("Failed to load model package " + entry.getKey(), exception);
-			}
-		}
-		return modelPackages;
-	}
-	
 	public static Set<EPackage> getAllRootEPackages() {
 		if(rootModelPackages != null) {
 			return rootModelPackages;
@@ -137,15 +106,8 @@ public final class ModelGeneratorUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
-			try {
-				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				if (model.getESuperPackage() == null) rootModelPackages.add(model);
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-			catch (RuntimeException exception) {
-				// END SUPRESS CATCH EXCEPTION
-				//logException("Failed to load model package " + entry.getKey(), exception);
-			}
+			EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+			if (model.getESuperPackage() == null) rootModelPackages.add(model);
 		}
 		return rootModelPackages;
 	}
@@ -181,7 +143,6 @@ public final class ModelGeneratorUtil {
 	 * all available EClasses and returns them as a Set.
 	 * 
 	 * @return a set of all EClasses that are contained in registered EPackages
-	 * 
 	 * @see Registry
 	 */
 	public static Set<EClass> getAllEClasses() {
@@ -192,16 +153,8 @@ public final class ModelGeneratorUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : new LinkedHashSet<Entry<String, Object>>(registry.entrySet())) {
-			try {
-				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-				result.addAll(getAllEClasses(ePackage));
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-			catch (RuntimeException exception) {
-				// END SUPRESS CATCH EXCEPTION
-				// logException("Failed to load model package " + entry.getKey(), exception);
-			}
-
+			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+			result.addAll(getAllEClasses(ePackage));
 		}
 		allEClasses = result;
 		return result;
@@ -253,7 +206,7 @@ public final class ModelGeneratorUtil {
 			return allEClasses;
 		Set<EClass> result = new LinkedHashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && (!subClass.isAbstract()) && (!subClass.isInterface())) {
+			if (eClass.isSuperTypeOf(subClass) && !subClass.isAbstract() && !subClass.isInterface()) {
 				result.add(subClass);
 			}
 		}
