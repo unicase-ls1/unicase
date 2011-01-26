@@ -105,8 +105,7 @@ public interface Tournament extends EObject {
 	EList<Matchup> getMatchup();
 
 	/**
-	 * Returns the value of the '<em><b>Playerlist</b></em>' containment reference list.
-	 * The list contents are of type {@link bowling.Playerlist}.
+	 * Returns the value of the '<em><b>Playerlist</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link bowling.Playerlist#getTournament <em>Tournament</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -114,13 +113,24 @@ public interface Tournament extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Playerlist</em>' containment reference list.
+	 * @return the value of the '<em>Playerlist</em>' reference.
+	 * @see #setPlayerlist(Playerlist)
 	 * @see bowling.BowlingPackage#getTournament_Playerlist()
 	 * @see bowling.Playerlist#getTournament
-	 * @model opposite="tournament" containment="true" required="true"
+	 * @model opposite="tournament" required="true"
 	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
-	EList<Playerlist> getPlayerlist();
+	Playerlist getPlayerlist();
+
+	/**
+	 * Sets the value of the '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Playerlist</em>' reference.
+	 * @see #getPlayerlist()
+	 * @generated
+	 */
+	void setPlayerlist(Playerlist value);
 
 } // Tournament

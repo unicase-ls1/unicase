@@ -11,18 +11,22 @@ import bowling.Game;
 import bowling.Player;
 import bowling.Playerlist;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -208,14 +212,14 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	protected boolean isProfessional = IS_PROFESSIONAL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getGames() <em>Games</em>}' reference.
+	 * The cached value of the '{@link #getGames() <em>Games</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGames()
 	 * @generated
 	 * @ordered
 	 */
-	protected Game games;
+	protected EList<Game> games;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -388,59 +392,11 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Game getGames() {
-		if (games != null && games.eIsProxy()) {
-			InternalEObject oldGames = (InternalEObject)games;
-			games = (Game)eResolveProxy(oldGames);
-			if (games != oldGames) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.PLAYER__GAMES, oldGames, games));
-			}
+	public EList<Game> getGames() {
+		if (games == null) {
+			games = new EObjectWithInverseResolvingEList<Game>(Game.class, this, BowlingPackage.PLAYER__GAMES, BowlingPackage.GAME__PLAYER);
 		}
 		return games;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Game basicGetGames() {
-		return games;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGames(Game newGames, NotificationChain msgs) {
-		Game oldGames = games;
-		games = newGames;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYER__GAMES, oldGames, newGames);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGames(Game newGames) {
-		if (newGames != games) {
-			NotificationChain msgs = null;
-			if (games != null)
-				msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
-			if (newGames != null)
-				msgs = ((InternalEObject)newGames).eInverseAdd(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
-			msgs = basicSetGames(newGames, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYER__GAMES, newGames, newGames));
 	}
 
 	/**
@@ -510,13 +466,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BowlingPackage.PLAYER__GAMES:
-				if (games != null)
-					msgs = ((InternalEObject)games).eInverseRemove(this, BowlingPackage.GAME__PLAYER, Game.class, msgs);
-				return basicSetGames((Game)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGames()).basicAdd(otherEnd, msgs);
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -534,7 +489,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BowlingPackage.PLAYER__GAMES:
-				return basicSetGames(null, msgs);
+				return ((InternalEList<?>)getGames()).basicRemove(otherEnd, msgs);
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				return basicSetPlayerlist(null, msgs);
 		}
@@ -580,8 +535,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				return isIsProfessional();
 			case BowlingPackage.PLAYER__GAMES:
-				if (resolve) return getGames();
-				return basicGetGames();
+				return getGames();
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				return getPlayerlist();
 		}
@@ -593,6 +547,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -621,7 +576,8 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				setIsProfessional((Boolean)newValue);
 				return;
 			case BowlingPackage.PLAYER__GAMES:
-				setGames((Game)newValue);
+				getGames().clear();
+				getGames().addAll((Collection<? extends Game>)newValue);
 				return;
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				setPlayerlist((Playerlist)newValue);
@@ -663,7 +619,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				setIsProfessional(IS_PROFESSIONAL_EDEFAULT);
 				return;
 			case BowlingPackage.PLAYER__GAMES:
-				setGames((Game)null);
+				getGames().clear();
 				return;
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				setPlayerlist((Playerlist)null);
@@ -697,7 +653,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			case BowlingPackage.PLAYER__IS_PROFESSIONAL:
 				return isProfessional != IS_PROFESSIONAL_EDEFAULT;
 			case BowlingPackage.PLAYER__GAMES:
-				return games != null;
+				return games != null && !games.isEmpty();
 			case BowlingPackage.PLAYER__PLAYERLIST:
 				return getPlayerlist() != null;
 		}

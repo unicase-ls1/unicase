@@ -143,7 +143,7 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__IS_PROFESSIONAL = 7;
 
 	/**
-	 * The feature id for the '<em><b>Games</b></em>' reference.
+	 * The feature id for the '<em><b>Games</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -198,7 +198,7 @@ public interface BowlingPackage extends EPackage {
 	int PLAYERLIST__PLAYER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tournament</b></em>' container reference.
+	 * The feature id for the '<em><b>Tournament</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -345,7 +345,7 @@ public interface BowlingPackage extends EPackage {
 	int TOURNAMENT__MATCHUP = 2;
 
 	/**
-	 * The feature id for the '<em><b>Playerlist</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Playerlist</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -461,10 +461,10 @@ public interface BowlingPackage extends EPackage {
 	EAttribute getPlayer_IsProfessional();
 
 	/**
-	 * Returns the meta object for the reference '{@link bowling.Player#getGames <em>Games</em>}'.
+	 * Returns the meta object for the reference list '{@link bowling.Player#getGames <em>Games</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Games</em>'.
+	 * @return the meta object for the reference list '<em>Games</em>'.
 	 * @see bowling.Player#getGames()
 	 * @see #getPlayer()
 	 * @generated
@@ -526,10 +526,10 @@ public interface BowlingPackage extends EPackage {
 	EReference getPlayerlist_Player();
 
 	/**
-	 * Returns the meta object for the container reference '{@link bowling.Playerlist#getTournament <em>Tournament</em>}'.
+	 * Returns the meta object for the reference '{@link bowling.Playerlist#getTournament <em>Tournament</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Tournament</em>'.
+	 * @return the meta object for the reference '<em>Tournament</em>'.
 	 * @see bowling.Playerlist#getTournament()
 	 * @see #getPlayerlist()
 	 * @generated
@@ -666,10 +666,10 @@ public interface BowlingPackage extends EPackage {
 	EReference getTournament_Matchup();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
+	 * Returns the meta object for the reference '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Playerlist</em>'.
+	 * @return the meta object for the reference '<em>Playerlist</em>'.
 	 * @see bowling.Tournament#getPlayerlist()
 	 * @see #getTournament()
 	 * @generated
@@ -775,7 +775,7 @@ public interface BowlingPackage extends EPackage {
 		EAttribute PLAYER__IS_PROFESSIONAL = eINSTANCE.getPlayer_IsProfessional();
 
 		/**
-		 * The meta object literal for the '<em><b>Games</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Games</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -825,7 +825,7 @@ public interface BowlingPackage extends EPackage {
 		EReference PLAYERLIST__PLAYER = eINSTANCE.getPlayerlist_Player();
 
 		/**
-		 * The meta object literal for the '<em><b>Tournament</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Tournament</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -935,7 +935,7 @@ public interface BowlingPackage extends EPackage {
 		EReference TOURNAMENT__MATCHUP = eINSTANCE.getTournament_Matchup();
 
 		/**
-		 * The meta object literal for the '<em><b>Playerlist</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Playerlist</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

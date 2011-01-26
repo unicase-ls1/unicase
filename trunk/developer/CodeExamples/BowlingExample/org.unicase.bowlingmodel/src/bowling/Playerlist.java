@@ -75,7 +75,7 @@ public interface Playerlist extends EObject {
 	EList<Player> getPlayer();
 
 	/**
-	 * Returns the value of the '<em><b>Tournament</b></em>' container reference.
+	 * Returns the value of the '<em><b>Tournament</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link bowling.Tournament#getPlayerlist <em>Playerlist</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -83,20 +83,20 @@ public interface Playerlist extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tournament</em>' container reference.
+	 * @return the value of the '<em>Tournament</em>' reference.
 	 * @see #setTournament(Tournament)
 	 * @see bowling.BowlingPackage#getPlayerlist_Tournament()
 	 * @see bowling.Tournament#getPlayerlist
-	 * @model opposite="playerlist" transient="false"
+	 * @model opposite="playerlist"
 	 * @generated
 	 */
 	Tournament getTournament();
 
 	/**
-	 * Sets the value of the '{@link bowling.Playerlist#getTournament <em>Tournament</em>}' container reference.
+	 * Sets the value of the '{@link bowling.Playerlist#getTournament <em>Tournament</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tournament</em>' container reference.
+	 * @param value the new value of the '<em>Tournament</em>' reference.
 	 * @see #getTournament()
 	 * @generated
 	 */
