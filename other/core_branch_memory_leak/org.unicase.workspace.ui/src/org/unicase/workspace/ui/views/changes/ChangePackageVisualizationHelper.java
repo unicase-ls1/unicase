@@ -68,7 +68,7 @@ public class ChangePackageVisualizationHelper {
 		this.project = project;
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
+		// jc: open
 		this.customLabelProviderManager = new CustomOperationLabelProviderManager();
 	}
 

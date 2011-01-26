@@ -54,6 +54,7 @@ public final class URLHelper {
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
+	// jc: open
 	private URLHelper() {
 
 	}
@@ -99,6 +100,7 @@ public final class URLHelper {
 		ret.append("/");
 		String name = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getText(modelElement);
+		// jc: open
 		ModelElementId modelElementId = projectSpace.getProject().getModelElementId(modelElement);
 
 		if (name != null) {

@@ -428,6 +428,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		};
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// jc: open
 		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
 			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
