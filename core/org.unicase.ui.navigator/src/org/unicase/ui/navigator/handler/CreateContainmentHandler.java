@@ -16,12 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
 
 /**
  * . This is the generic handler for commands to create containments of a model element
@@ -51,13 +47,6 @@ public class CreateContainmentHandler extends AbstractHandler {
 			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);
 			if ((selectedME != null) && (!eReference.isContainer())) {
-				TransactionalEditingDomain domain;
-				try {
-					domain = ECPWorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
-				} catch (NoWorkspaceException e) {
-					Activator.getDefault().logException(e.getMessage(), e);
-					return null;
-				}
 				new ECPCommand(selectedME) {
 					@SuppressWarnings("unchecked")
 					@Override
