@@ -136,8 +136,10 @@ public class SprintStatusView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		final AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			composedAdapterFactory);
 
 		statusComposite = new SprintStatusComposite(parent, SWT.NONE);
 
@@ -185,6 +187,9 @@ public class SprintStatusView extends ViewPart {
 		groupByUser.setChecked(false);
 		menuManager.add(groupByUser);
 
+		adapterFactoryLabelProvider.dispose();
+		composedAdapterFactory.dispose();
+		// jc: done
 	}
 
 	/**
