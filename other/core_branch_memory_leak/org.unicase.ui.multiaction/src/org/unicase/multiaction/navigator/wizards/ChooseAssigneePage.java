@@ -80,6 +80,7 @@ public class ChooseAssigneePage extends WizardPage {
 		parentWizard = multiactionWizard;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// jc: open
 		listener = new AssigneePageListener();
 	}
 
