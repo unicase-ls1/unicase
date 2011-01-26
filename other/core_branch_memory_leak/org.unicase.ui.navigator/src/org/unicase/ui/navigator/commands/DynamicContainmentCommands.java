@@ -23,8 +23,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
@@ -41,6 +41,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	// jc: open
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
 	private EObject selectedME;
@@ -115,8 +116,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			}
 
 			try {
-				if (ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME).getMetaModelElementContext()
-					.isNonDomainElement(containment.getEReferenceType())) {
+				if (ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME)
+					.getMetaModelElementContext().isNonDomainElement(containment.getEReferenceType())) {
 					continue;
 				}
 			} catch (NoWorkspaceException e) {
