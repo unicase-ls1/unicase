@@ -47,6 +47,7 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());
+		// jc: open
 
 	}
 
