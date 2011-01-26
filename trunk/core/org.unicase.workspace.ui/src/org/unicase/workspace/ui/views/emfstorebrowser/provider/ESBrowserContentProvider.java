@@ -7,13 +7,10 @@ package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TreeNode;
-import org.eclipse.jface.window.Window;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
-import org.unicase.workspace.ui.dialogs.login.LoginDialog;
 
 /**
  * Content provider for the tree view.
@@ -63,17 +60,6 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	private Object[] getChildren(ServerInfo serverInfo) {
-		if (serverInfo.getLastUsersession() == null || !serverInfo.getLastUsersession().isLoggedIn()) {
-			LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), serverInfo);
-			dialog.open();
-
-			// the login has been canceled and the project list should be
-			// cleared since the user is no longer logged
-			// in
-			if (dialog.getReturnCode() == Window.CANCEL) {
-				return new Object[0];
-			}
-		}
 		return serverInfo.getProjectInfos().toArray();
 	}
 
