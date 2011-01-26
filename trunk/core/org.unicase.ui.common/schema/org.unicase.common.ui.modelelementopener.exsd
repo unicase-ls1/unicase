@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.ui.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.unicase.ui.common" id="org.unicase.common.meeditors" name="Editors for Modelelementa"/>
+         <meta.schema plugin="org.unicase.ui.common" id="org.unicase.common.meeditors" name="Editors for Modelelements"/>
       </appInfo>
       <documentation>
          A model element opener is responsible to handle the double click action in the navigator on a model element.
@@ -62,7 +62,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.ui.common.ModelElementOpener"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.ui.util.ModelElementOpener"/>
                </appInfo>
             </annotation>
          </attribute>
