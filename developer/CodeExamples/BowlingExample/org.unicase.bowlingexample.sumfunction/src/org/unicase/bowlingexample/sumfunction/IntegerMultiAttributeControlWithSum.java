@@ -31,8 +31,6 @@ public class IntegerMultiAttributeControlWithSum extends IntegerMultiAttributeCo
 	public Control createControl(Composite parent, int style) {
 		this.style = style;
 		composite = (Composite) super.createControl(parent, style);
-		label = new Label(composite, style);
-		super.reInitializeWidget();
 		setSum();
 		return composite;
 	}
@@ -40,27 +38,26 @@ public class IntegerMultiAttributeControlWithSum extends IntegerMultiAttributeCo
 	@Override
 	protected void refreshWidget() {
 		super.refreshWidget();
-		setSum();
-	}
-	
-	@Override
-	protected void reInitializeWidget() {
-		label.dispose();
-		label = new Label(composite, style);
-		super.reInitializeWidget();
+		if (label != null) {
+			// check needed because refresh widget is called during super.createControl()
+			setSum();			
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	private void setSum() {
 		if (label != null) {
-			// because refresh widget is called during super.createControl()
-			int counter = 0;
-			for (Integer i : (EDataTypeEList<Integer>) getModelElement().eGet(
-					(EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement()))) {
-				counter += i;
-			}
-			label.setText("Sum: "+counter);			
+			// delete the old one
+			label.dispose();
 		}
+		label = new Label(composite, style);
+		int counter = 0;
+		for (Integer i : (EDataTypeEList<Integer>) getModelElement().eGet(
+				(EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement()))) {
+			counter += i;
+		}
+		label.setText("Sum: "+counter);
+		super.refreshWidget();
 	}
 
 }
