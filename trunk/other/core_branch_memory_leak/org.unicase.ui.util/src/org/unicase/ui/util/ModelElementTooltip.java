@@ -30,6 +30,7 @@ public class ModelElementTooltip extends DefaultToolTip {
 		super(control, ToolTip.NO_RECREATE, false);
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		//jc: open
 	}
 
 	/**
