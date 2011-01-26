@@ -154,7 +154,10 @@ public class EmfStoreController implements IApplication, Runnable {
 					System.out.println(status.getMessage());
 				} else if (!status.isOK()) {
 					System.err.println(status.getMessage());
-					status.getException().printStackTrace(System.err);
+					Throwable exception = status.getException();
+					if (exception != null) {
+						exception.printStackTrace(System.err);
+					}
 				}
 			}
 
