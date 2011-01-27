@@ -8,11 +8,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.views.ConfigureModelsDialog;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
@@ -23,6 +21,7 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
  */
 public class ConfigureModelsHandler extends AbstractHandler{
 
+	//The list of models that is selected from user to be added to project
 	private List<String> list;
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -43,15 +42,25 @@ public class ConfigureModelsHandler extends AbstractHandler{
 		if (dialog.open() == Window.OK){
 			XMIMetaModelElementContext context = (XMIMetaModelElementContext) project.getMetaModelElementContext();
 			
+			//remove all registered models
+			context.clearModels();
+			
 			//Add all selected models
 			for(String s : list){
 				context.addModel(s);
 			}
+			
+			//Add all models that are used but not selected by user
+			project.completeModels();
 		}
 		
 		return null;
 	}
 	
+	/**
+	 * Sets the selected models
+	 * @param list of selected models
+	 */
 	public void setModelList(List<String> list){
 		this.list = list;
 		

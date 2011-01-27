@@ -174,7 +174,7 @@
          </command>
          <command
                commandId="org.unicase.xmi.workspace.ConfigureModels"
-               icon="configure.png"
+               icon="icons/configure.png"
                label="Configure Models..."
                style="push"
                tooltip="Click to add or remove models from project">
