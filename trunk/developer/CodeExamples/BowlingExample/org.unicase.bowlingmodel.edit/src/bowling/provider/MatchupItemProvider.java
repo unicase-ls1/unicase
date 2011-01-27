@@ -145,7 +145,8 @@ public class MatchupItemProvider
 	public String getText(Object object) {
 		String label = "";
 		List<Game> games = ((Matchup)object).getGames();
-		if (games.size() == 2 && games.get(0).getPlayer() != null && games.get(1).getPlayer() != null) {
+		if (games.size() == 2 && games.get(0).getPlayer() != null && games.get(1).getPlayer() != null
+				&& games.get(0).getPlayer().getLastname() != null && games.get(1).getPlayer().getLastname() != null) {
 			label += games.get(0).getPlayer().getLastname();
 			label += " vs. ";
 			label += games.get(1).getPlayer().getLastname();
