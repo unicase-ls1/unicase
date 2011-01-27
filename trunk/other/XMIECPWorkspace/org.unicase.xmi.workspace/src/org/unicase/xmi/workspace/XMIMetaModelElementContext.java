@@ -1,31 +1,28 @@
 package org.unicase.xmi.workspace;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.util.UnicaseUtil;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	/**
-	 * The Project for which this content is for
-	 */
-	private final XMIECPFileProject project;
-	
-	/**
 	 * Project specific model
 	 */
-	private String model;
+	private List<String> model;
 
 	/**
 	 * Context of the project containing related model
 	 * @param project
 	 */
-	public XMIMetaModelElementContext (XMIECPFileProject project){
-		this.project = project;
+	public XMIMetaModelElementContext() {
+		this.model = new ArrayList<String>();
 	}
 	
 	@Override
@@ -36,14 +33,25 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
 		//TODO filter all classes for the registered ones.
+		Set<EClass> result = new HashSet<EClass>();
+		
 		Set<EClass> allModels = UnicaseUtil.getAllModelElementEClasses();
 		Iterator<EClass> iterator = allModels.iterator();
 		
 		while(iterator.hasNext()) {
 			EClass next = iterator.next();
-//			System.out.println(next.eClass().getEPackage().toString() + " --> " + next.getName().toString());
+			
+			//TODO experimental
+			if(this.model.contains(next.getEPackage().getNsPrefix())) {
+				result.add(next);
+			}
 		}
-		return UnicaseUtil.getAllModelElementEClasses();
+		
+		// if there is no package registered, just return all packages
+		if(result.size() == 0) {
+			return UnicaseUtil.getAllModelElementEClasses();
+		}
+		return result;
 	}
 
 	@Override
@@ -52,10 +60,20 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	}
 	
 	/**
-	 * Sets the model of the related project
-	 * @param model
+	 * Adds a model to the model context of the project.
+	 * @param model URI of the model
 	 */
-	public void setModel(String model){
-		this.model = model;
+	public void addModel(String model) {
+		if(!this.model.contains(model)) {
+			this.model.add(model);
+		}
+	}
+	
+	/**
+	 * Removes a model from the model context of the project.
+	 * @param model URI of the model
+	 */
+	public void removeModel(String model) {
+		this.model.remove(model);
 	}
 }
