@@ -62,6 +62,13 @@
             id="org.unicase.xmi.workspace.commands"
             name="xmicommands">
       </category>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.ConfigureModelsHandler"
+            description="adds or removes models form project"
+            id="org.unicase.xmi.workspace.ConfigureModels"
+            name="configure models">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -162,6 +169,26 @@
                   <count
                         value="1">
                   </count>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.ConfigureModels"
+               icon="configure.png"
+               label="Configure Models..."
+               style="push"
+               tooltip="Click to add or remove models from project">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <instanceof
+                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                     </instanceof>
+                  </iterate>
                </and>
             </visibleWhen>
          </command>
