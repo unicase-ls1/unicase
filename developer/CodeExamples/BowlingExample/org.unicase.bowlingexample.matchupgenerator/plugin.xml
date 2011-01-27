@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+         <command
+               commandId="org.unicase.bowlingexample.matchupgenerator.command1"
+               label="Generate Matchups"
+               style="push"
+               tooltip="Click here to generate matchups for this tournament.">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <instanceof
+                           value="bowling.Tournament">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.unicase.bowlingexample.matchupgenerator"
+            defaultHandler="org.unicase.bowlingexample.matchupgenerator.MatchupGeneratorHandler"
+            id="org.unicase.bowlingexample.matchupgenerator.command1"
+            name="name">
+      </command>
+   </extension>
+
+</plugin>
