@@ -7,11 +7,11 @@
 		- Search in NewModelElement Dialog throws an error, e.g. The image resource 'full/obj16/XSDNumericFacet' could not be located
 	
 	=> Solution:
-	- Individual MetaModelElementContext for each project
+	OK - Individual MetaModelElementContext for each project
 	- Contextmenu add "Configure EPackages..."
 		- add to and remove epackages from the project 
 	- When project is loaded -> scan file and add the packages to the list of epackages
-
+	- when a new baselement is added, also save its model and refresh the view
 
 - prepare a feature
 	- test deployment

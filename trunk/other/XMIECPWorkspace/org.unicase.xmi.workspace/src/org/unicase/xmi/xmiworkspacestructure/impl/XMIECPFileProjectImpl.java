@@ -179,7 +179,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	/**
 	 * The MetaModelElementContext of the project.
 	 */
-	private XMIMetaModelElementContext context;
+	private XMIMetaModelElementContext metaContext = new XMIMetaModelElementContext();
 	
 	/**
 	 * Creates a new XMIECPFileProject representing one xmi-file.
@@ -193,7 +193,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		super();
 		
 		workspace = null;
-		context = new XMIMetaModelElementContext();
 		
 		buildEContentAdapter();
 		buildRootlevelAdapter();
@@ -287,7 +286,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(EObject eObject: resource.getContents()) {
 			eObject.eAdapters().add(listenerAdapter);
 			baseElements.add(eObject);
-			context.addModel(eObject.eClass().getEPackage().getNsPrefix());
+			metaContext.addModel(eObject.eClass().getEPackage().getNsPrefix());
 		}
 	}
 	
@@ -741,10 +740,10 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	public MetaModelElementContext getMetaModelElementContext() {
-		if (context == null){
-			context = new XMIMetaModelElementContext();
+		if (metaContext == null){
+			metaContext = new XMIMetaModelElementContext();
 		}
-		return context;
+		return metaContext;
 	}
 
 	/**
@@ -764,6 +763,8 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		
 		// add the object to the first-level-list
 		baseElements.add(eObject);
+		
+		metaContext.addModel(eObject.eClass().getEPackage().getNsPrefix());
 	}
 	
 	public Collection<EObject> getRootLevel() {

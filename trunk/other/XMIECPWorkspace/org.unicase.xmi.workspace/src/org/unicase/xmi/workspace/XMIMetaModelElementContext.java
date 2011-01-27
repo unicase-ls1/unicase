@@ -41,7 +41,6 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		while(iterator.hasNext()) {
 			EClass next = iterator.next();
 			
-			//TODO experimental
 			if(this.model.contains(next.getEPackage().getNsPrefix())) {
 				result.add(next);
 			}
