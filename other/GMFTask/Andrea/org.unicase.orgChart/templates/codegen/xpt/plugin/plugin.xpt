@@ -22,7 +22,7 @@
 
 
 	<extension point="org.unicase.ui.common.modelelementopener">
-		<ModelElementOpener class=" «editorGen.editor.getQualifiedClassName()».«editorGen.modelID»DiagramOpener" name="org.unicase.ui.MEDiagramEditor"></ModelElementOpener>
+		<ModelElementOpener class=" «editorGen.editor.getQualifiedClassName()»$«editorGen.modelID»DiagramOpener" name="org.unicase.ui.MEDiagramEditor"></ModelElementOpener>
 	</extension>
 
 	<extension point="org.eclipse.core.expressions.propertyTesters">
