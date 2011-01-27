@@ -1,0 +1,3 @@
+- how to manage visibility for toolbar entries?
+- why doesn't drag+drop player<>game work the other way round?
+- how to change number of digits for double?
