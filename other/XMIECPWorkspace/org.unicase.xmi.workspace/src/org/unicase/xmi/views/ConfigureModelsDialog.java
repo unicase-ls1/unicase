@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -102,12 +103,13 @@ public class ConfigureModelsDialog extends TitleAreaDialog {
 		MetaModelElementContext context = project.getMetaModelElementContext();
 		if(context instanceof XMIMetaModelElementContext) {
 			XMIMetaModelElementContext xmiContext = (XMIMetaModelElementContext) context;
-			xmiContext.
+			List<String> models = xmiContext.getModels();
+			viewer.setSelection(new StructuredSelection(models));
 		}
 		
 		// Set layout in general
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(
+		GridLayoutFactory.fillDefaults().numColumns(1).margins(
 				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
