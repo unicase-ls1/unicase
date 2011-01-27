@@ -1,29 +1,14 @@
-#Todo:
-
-- All models are displayed when you open up "New Model Element" on any project.
-	It should be that in a new project, all models are displayed so the user can pick its model,
-	but in an existing model only the model itself is shown.
-		- If Package not found -> show dialog what to do
-		- Search in NewModelElement Dialog throws an error, e.g. The image resource 'full/obj16/XSDNumericFacet' could not be located
-	
-	=> Solution:
-	OK - Individual MetaModelElementContext for each project
-	- Contextmenu add "Configure EPackages..."
-		- add to and remove epackages from the project 
-	- When project is loaded -> scan file and add the packages to the list of epackages
-	- when a new baselement is added, also save its model and refresh the view
+# TODO
 
 - prepare a feature
 	- include icons
 	- test deployment
-	
-- Add "Mark the Projects that shall be imported" in Import Folder Dialog
 
 - Send e-Mail to Max an Jonas with Link of feature and patch for DeleteCommand (already in drafts)	
 	
 - summary presentation (5 min)
 
-@Optional
+@ OPTIONAL
 - Delete Dialog should appear for multiple marked projects
 
 @ POSTPONED
@@ -102,3 +87,19 @@ OK - Delete menu entry does not work for baseElements
 	OK - Test scenarios:
 		- Unicase / EMFStore
 		- XMI Workspace
+	
+OK - All models are displayed when you open up "New Model Element" on any project.
+	It should be that in a new project, all models are displayed so the user can pick its model,
+	but in an existing model only the model itself is shown.
+		- If Package not found -> show dialog what to do
+		- Search in NewModelElement Dialog throws an error, e.g. The image resource 'full/obj16/XSDNumericFacet' could not be located
+	
+	=> Solution:
+	OK - Individual MetaModelElementContext for each project
+	OK - Contextmenu add "Configure EPackages..."
+		OK - add to and remove epackages from the project 
+	OK - When project is loaded -> scan file and add the packages to the list of epackages
+	OK - when a new baselement is added, also save its model and refresh the view
+	OK - sort models alphabetically
+
+OK - Add "Mark the Projects that shall be imported" in Import Folder Dialog

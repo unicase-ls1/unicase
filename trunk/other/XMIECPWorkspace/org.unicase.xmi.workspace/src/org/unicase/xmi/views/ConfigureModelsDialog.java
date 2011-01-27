@@ -1,6 +1,7 @@
 package org.unicase.xmi.views;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -84,19 +85,24 @@ public class ConfigureModelsDialog extends TitleAreaDialog {
 		// create selection area
 		viewer = new XmiListViewer(contents);
 		
-		// add all models to the viewer
+		// get all models
 		Iterator<EClass> iterator = UnicaseUtil.getAllModelElementEClasses().iterator();
-		
-		List<String> alreadyAdded = new ArrayList<String>();
-		
+		List<String> allModels = new ArrayList<String>();
 		while(iterator.hasNext()) {
 			EClass next = iterator.next();
 			String epackage = next.getEPackage().getNsPrefix();
 			
-			if(!alreadyAdded.contains(epackage)) {
-				viewer.add(epackage);
-				alreadyAdded.add(epackage);
+			if(!allModels.contains(epackage)) {
+				allModels.add(epackage);
 			}
+		}
+		
+		// sort models alphabetically 
+		Collections.sort(allModels);
+		
+		// add models to viewer
+		for(String model: allModels) {
+			viewer.add(model);
 		}
 		
 		// get the registered models and mark them
