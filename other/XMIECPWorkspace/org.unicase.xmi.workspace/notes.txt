@@ -11,24 +11,7 @@
 	- Contextmenu add "Configure EPackages..."
 		- add to and remove epackages from the project 
 	- When project is loaded -> scan file and add the packages to the list of epackages
-	
-	
-- Delete menu entry does not work for baseElements
-	see plugin.xml from ui.common where the "Delete" command is added,
-	in our plugin.xml adding it was not successful and we can't extend
-	the org.unicase.common.commands.DeleteModelElementCommand due to
-	keyword final of the class
-	The problem is that the EObjects don't know the project and therefore
-	they will not be removed from the baseElements list.
 
-	=> Solution:
-	OK - change their DeleteModelElementCommand and add this line before deleting the eObject:
-	eObject.eResource().getContents().remove(eObject);
-	OK - add listener to fileprojectimpl
-	
-	- Test scenarios:
-		- Unicase / EMFStore
-		- XMI Workspace
 
 - prepare a feature
 	- test deployment
@@ -94,3 +77,19 @@ OK - File changed on file system or has been deleted
 OK - refactor workspace -> remove folder items
 OK - add Progress-bar when trying to load a folder (respectively trying to load projects from a folder)
 OK - change project icon
+OK - Delete menu entry does not work for baseElements
+	see plugin.xml from ui.common where the "Delete" command is added,
+	in our plugin.xml adding it was not successful and we can't extend
+	the org.unicase.common.commands.DeleteModelElementCommand due to
+	keyword final of the class
+	The problem is that the EObjects don't know the project and therefore
+	they will not be removed from the baseElements list.
+
+	=> Solution:
+	OK - change their DeleteModelElementCommand and add this line before deleting the eObject:
+	eObject.eResource().getContents().remove(eObject);
+	OK - add listener to fileprojectimpl
+	
+	OK - Test scenarios:
+		- Unicase / EMFStore
+		- XMI Workspace

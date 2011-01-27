@@ -370,6 +370,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 							baseElements.add(eo);
 						}
 						
+						saveResource();
 					}
 					
 					// refresh navigator just to make sure the element is not shown anymore.
