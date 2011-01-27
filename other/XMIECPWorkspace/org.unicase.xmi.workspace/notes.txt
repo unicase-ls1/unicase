@@ -14,8 +14,17 @@
 	- when a new baselement is added, also save its model and refresh the view
 
 - prepare a feature
+	- include icons
 	- test deployment
+	
+- Add "Mark the Projects that shall be imported" in Import Folder Dialog
+
+- Send e-Mail to Max an Jonas with Link of feature and patch for DeleteCommand (already in drafts)	
+	
 - summary presentation (5 min)
+
+@Optional
+- Delete Dialog should appear for multiple marked projects
 
 @ POSTPONED
 - Make resource path relative to workspace, if chosen from workspace.
