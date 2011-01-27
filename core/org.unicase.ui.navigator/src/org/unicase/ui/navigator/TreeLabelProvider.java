@@ -6,25 +6,23 @@
 package org.unicase.ui.navigator;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 
 /**
- * Transactional and composed Label provider with all registered label providers.
+ * Composed Label provider with all registered label providers.
  * 
  * @author helming
  */
-public class TreeLabelProvider extends TransactionalAdapterFactoryLabelProvider implements ILabelProvider {
+public class TreeLabelProvider extends AdapterFactoryLabelProvider implements ILabelProvider {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param editingDomain the transactional editing domain
 	 */
-	public TreeLabelProvider(TransactionalEditingDomain editingDomain) {
+	public TreeLabelProvider() {
 
-		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 

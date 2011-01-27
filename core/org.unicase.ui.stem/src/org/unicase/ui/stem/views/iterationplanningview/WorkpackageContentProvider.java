@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -31,8 +31,7 @@ import org.unicase.workspace.WorkspacePackage;
  * 
  * @author Helming
  */
-public class WorkpackageContentProvider extends TransactionalAdapterFactoryContentProvider implements
-	ProjectChangeObserver {
+public class WorkpackageContentProvider extends AdapterFactoryContentProvider implements ProjectChangeObserver {
 
 	/**
 	 * remove listener.
@@ -54,8 +53,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	 * . Constructor
 	 */
 	public WorkpackageContentProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		// Listen to active project space change and register as listener
 		final WorkpackageContentProvider instance = this;
 		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -94,8 +92,8 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 			Project project = (Project) object;
 			backlog = new Backlog(project);
 			ret.add(backlog);
-			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-				.getWorkPackage(), new BasicEList<WorkPackage>());
+			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(
+				TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
 					ret.add(workPackage);
@@ -129,8 +127,8 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	}
 
 	private List<WorkItem> getProjectWorkItems(Project project) {
-		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-			.getWorkItem(), new BasicEList<WorkItem>(), true);
+		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(
+			TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>(), true);
 		List<WorkItem> ret = new ArrayList<WorkItem>();
 		for (WorkItem workItem : allModelElementsbyClass) {
 			if (!(workItem instanceof WorkPackage)) {

@@ -47,7 +47,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	@Override
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain());
+		document.setEditingDomain((TransactionalEditingDomain) WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getEditingDomain());
 		return document;
 	}
 

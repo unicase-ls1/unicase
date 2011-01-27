@@ -7,6 +7,7 @@ package org.unicase.ecp.model.workSpaceModel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -65,7 +66,7 @@ public interface ECPWorkspace extends EObject {
 	 * 
 	 * @return the editing domain
 	 */
-	public TransactionalEditingDomain getEditingDomain();
+	public EditingDomain getEditingDomain();
 
 	/**
 	 * Sets the transaction editing domain.

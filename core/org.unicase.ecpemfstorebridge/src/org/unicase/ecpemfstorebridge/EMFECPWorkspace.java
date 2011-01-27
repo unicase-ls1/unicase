@@ -11,7 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.util.observer.ObserverBus;
@@ -74,7 +74,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getEditingDomain()
 	 */
 	@Override
-	public TransactionalEditingDomain getEditingDomain() {
+	public EditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
 	}
 
@@ -150,8 +150,8 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 
 			@Override
 			protected void doRun() {
-				org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(
-					projectSpace);
+				org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace()
+					.setActiveProjectSpace(projectSpace);
 			}
 		}.run();
 

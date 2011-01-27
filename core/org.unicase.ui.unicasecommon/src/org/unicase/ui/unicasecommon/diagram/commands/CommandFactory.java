@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -22,9 +23,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.services.layout.LayoutType;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -111,23 +112,23 @@ public class CommandFactory {
 		CompoundCommand cc = new CompoundCommand("Colorize");
 
 		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set line color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_LINECOLOR, FigureUtilities
-				.colorToInteger(DiagramColorConstants.blue));
+			new DynamicEObjectAdapter(object, host), Properties.ID_LINECOLOR,
+			FigureUtilities.colorToInteger(DiagramColorConstants.blue));
 
 		Command setLineColorCommandProxy = new ICommandProxy(setLineColorCommand);
 		cc.add(setLineColorCommandProxy);
 
 		Color veryLightBlue = new Color(null, 240, 240, 255);
 		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set fill color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_FILLCOLOR, FigureUtilities
-				.colorToInteger(veryLightBlue));
+			new DynamicEObjectAdapter(object, host), Properties.ID_FILLCOLOR,
+			FigureUtilities.colorToInteger(veryLightBlue));
 
 		Command setFillColorCommandProxy = new ICommandProxy(setFillColorCommand);
 		cc.add(setFillColorCommandProxy);
 
 		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set font color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_FONTCOLOR, FigureUtilities
-				.colorToInteger(DiagramColorConstants.blue));
+			new DynamicEObjectAdapter(object, host), Properties.ID_FONTCOLOR,
+			FigureUtilities.colorToInteger(DiagramColorConstants.blue));
 
 		Command setFontColorCommandProxy = new ICommandProxy(setFontColorCommand);
 		cc.add(setFontColorCommandProxy);
@@ -161,8 +162,8 @@ public class CommandFactory {
 	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
 	 */
 	public static Command createDeleteFromDiagramCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain) WorkspaceManager
+			.getInstance().getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
 		if (type != null) {
 			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
@@ -176,8 +177,8 @@ public class CommandFactory {
 	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
 	 */
 	public static Command createDeleteFromModelCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain) WorkspaceManager
+			.getInstance().getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
 		if (type != null) {
 			return new ICommandProxy(new DeleteFromModelCommand(request));
