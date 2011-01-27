@@ -130,6 +130,7 @@ public final class ActionHelper {
 		int bestValue = -1;
 		String name = "";
 		for (IConfigurationElement element : modelelementopener) {
+			modelelementopener = null;
 			try {
 				ModelElementOpener modelelementOpener = (ModelElementOpener) element.createExecutableExtension("class");
 				int value = modelelementOpener.canOpen(me);
@@ -140,6 +141,7 @@ public final class ActionHelper {
 				}
 			} catch (CoreException e) {
 				// TODO: ChainSaw logging done
+				e.printStackTrace();
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
