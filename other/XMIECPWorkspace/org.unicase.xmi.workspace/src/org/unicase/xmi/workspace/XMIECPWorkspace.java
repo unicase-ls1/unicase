@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.jface.viewers.ITreeSelection;
+import org.eclipse.jface.viewers.TreePath;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -226,6 +228,17 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	public ECPProject getActiveProject() {
 		ECPProject ap = super.getActiveProject();
 		
+		ITreeSelection selection = (ITreeSelection) TreeView.getTreeViewer().getSelection();		
+		TreePath[] paths = selection.getPaths();
+		
+		if(paths != null && paths.length != 0) {
+			Object firstObject = paths[0].getFirstSegment();
+			if(firstObject instanceof XMIECPFileProject) {
+				XMIECPFileProject project = (XMIECPFileProject) firstObject;
+				ap = project;
+			}
+		}
+		
 		// added this to avoid errors
 		if(ap == null) {
 			// It should throw an error here, that no project is selected, but it's ignored here.
@@ -233,10 +246,5 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		}
 		
 		return ap;
-	}
-
-	@Override
-	public void setActiveProject(ECPProject newActiveProject) {
-		super.setActiveProject(newActiveProject);
 	}
 }
