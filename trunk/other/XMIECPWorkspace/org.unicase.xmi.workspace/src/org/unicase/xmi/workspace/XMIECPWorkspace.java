@@ -224,13 +224,20 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		TreeView.getTreeViewer().refresh();
 	}
 
+	/**
+	 * Returns the project that the user is currently working in,
+	 * by checking where the current selection is.
+	 */
 	@Override
 	public ECPProject getActiveProject() {
+		// get active project is one is set -> usually null
 		ECPProject ap = super.getActiveProject();
 		
+		// get selection from the tree viewer
 		ITreeSelection selection = (ITreeSelection) TreeView.getTreeViewer().getSelection();		
 		TreePath[] paths = selection.getPaths();
 		
+		// get the first object in the path of the first selected element
 		if(paths != null && paths.length != 0) {
 			Object firstObject = paths[0].getFirstSegment();
 			if(firstObject instanceof XMIECPFileProject) {
@@ -239,7 +246,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			}
 		}
 		
-		// added this to avoid errors
+		// if the active project is still null, simply return the first project
 		if(ap == null) {
 			// It should throw an error here, that no project is selected, but it's ignored here.
 			return getProjects().get(0);

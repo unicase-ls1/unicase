@@ -75,4 +75,14 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	public void removeModel(String model) {
 		this.model.remove(model);
 	}
+	
+	/**
+	 * Returns a list of all models registered in this project.
+	 * @return List of all models as strings.
+	 */
+	public List<String> getModels() {
+		List<String> result = new ArrayList<String>();
+		result.addAll(model);
+		return result;
+	}
 }
