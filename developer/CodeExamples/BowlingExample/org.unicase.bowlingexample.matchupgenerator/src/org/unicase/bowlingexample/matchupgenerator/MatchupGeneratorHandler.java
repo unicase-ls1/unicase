@@ -20,8 +20,10 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// get EObject
-		EObject eObject = ActionHelper.getSelection(event);
+		EObject eObject = ActionHelper.getModelElement(event);
 		if (!(eObject instanceof Tournament)) {
+			JOptionPane.showMessageDialog(null, "DO NOT CLICK HERE!!!!!",
+					"Generate Matchups", JOptionPane.INFORMATION_MESSAGE);
 			return null;
 		}
 		// cast
