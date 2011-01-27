@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
+   <description name="XMIECPWorkspace" url="http://www.inizio.org/unicase">
+      XMIECPWorkspace Plugin from the Unicase.org Project
+   </description>
+   <feature url="features/XMIECPWorkspace_0.1.1.jar" id="XMIECPWorkspace" version="0.1.1">
+      <category name="org.unicase.xmi.workspace"/>
+   </feature>
    <category-def name="org.unicase.xmi.workspace" label="XMIECPWorkspace">
       <description>
          All features related to the XMIECPWorkspace
