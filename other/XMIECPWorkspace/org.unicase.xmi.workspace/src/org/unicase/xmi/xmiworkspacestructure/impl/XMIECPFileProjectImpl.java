@@ -157,6 +157,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	private EContentAdapter listenerAdapter;
 	
 	/**
+	 * EContentAdapter that removes an EObject from the baseElement if it is removed from the resource.
+	 */
+	private EContentAdapter rootlevelAdapter;
+	
+	/**
 	 * Flag whether the object has been initialized or not
 	 */
 	private boolean objectInitialized = false;
@@ -188,11 +193,13 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		super();
 		
 		workspace = null;
+		context = new XMIMetaModelElementContext();
 		
 		buildEContentAdapter();
+		buildRootlevelAdapter();
 		projectStatus = PROJECT_STATUS.NOTLOADED;
 	}
-	
+
 	/**
 	 * Initializes project
 	 */
@@ -227,6 +234,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		if(!xmiFile.exists()) {
 			if(projectStatus != PROJECT_STATUS.FAILED) {
 				createResource(resourceSetImpl, xmiUri);
+				this.resource.eAdapters().add(rootlevelAdapter);
 				
 				// set the object as initialized
 				objectInitialized = true;
@@ -236,6 +244,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		else {
 			// just load the resource
 			loadResource(resourceSetImpl, xmiUri);
+			this.resource.eAdapters().add(rootlevelAdapter);
 			
 			// set the object as initialized
 			objectInitialized = true;
@@ -278,6 +287,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		for(EObject eObject: resource.getContents()) {
 			eObject.eAdapters().add(listenerAdapter);
 			baseElements.add(eObject);
+			context.addModel(eObject.eClass().getEPackage().getNsPrefix());
 		}
 	}
 	
@@ -323,6 +333,51 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 					super.notifyChanged(notification);
 				}
 			}
+		};
+	}
+	
+	/**
+	 * Sets the rootlevelAdapter to remove elements from the baseElements list if they are removed from the resource.
+	 */
+	private void buildRootlevelAdapter() {
+		this.rootlevelAdapter = new EContentAdapter() {
+			
+			/**
+			 * This method is executed when the resource changes.
+			 */
+			@Override
+			public void notifyChanged(Notification notification) {
+				
+				// if the project is not initialized quit
+				if (!objectInitialized){
+					return;
+				}
+				
+				// if the event is not to remove an object, then don't do anything
+				if (notification.getEventType() == Notification.REMOVE) {
+					Object notifier = notification.getNotifier();
+					
+					// notifier is not an EObject, it's the resource
+					if(notifier instanceof Resource) {
+						Resource res = (Resource) notifier;
+						
+						// refresh baseElements
+						// this is not the best solution in terms of performance,
+						// but it's best because you don't have to change too much... 
+						baseElements.clear();
+						for(EObject eo: res.getContents()) {
+							eo.eAdapters().add(listenerAdapter);
+							baseElements.add(eo);
+						}
+						
+					}
+					
+					// refresh navigator just to make sure the element is not shown anymore.
+					TreeView.getTreeViewer().refresh();
+				}
+				
+			}
+			
 		};
 	}
 
@@ -686,7 +741,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 
 	public MetaModelElementContext getMetaModelElementContext() {
 		if (context == null){
-			context = new XMIMetaModelElementContext(this);
+			context = new XMIMetaModelElementContext();
 		}
 		return context;
 	}
