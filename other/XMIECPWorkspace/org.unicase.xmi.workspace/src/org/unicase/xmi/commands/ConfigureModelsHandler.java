@@ -19,11 +19,16 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
  * @author Markus, Matti
  *
  */
-public class ConfigureModelsHandler extends AbstractHandler{
+public class ConfigureModelsHandler extends AbstractHandler {
 
-	//The list of models that is selected from user to be added to project
+	/**
+	 * The list of models that is selected from user to be added to project
+	 */
 	private List<String> list;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		//determine an open project

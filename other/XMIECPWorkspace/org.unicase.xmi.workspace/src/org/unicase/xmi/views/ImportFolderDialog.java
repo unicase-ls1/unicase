@@ -71,8 +71,11 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+		// set title and message
+		String message = "Please enter the location of the folder containing the projects.\n";
+		message += "Then select all the project you want to import.";
+		setMessage(message);
 		setTitle("Import Projects from Folder");
-		setMessage("Please enter the location of the folder containing the projects.");
 		
 		// Determine Location
 		Label locationLabel = new Label(contents, SWT.NULL);
