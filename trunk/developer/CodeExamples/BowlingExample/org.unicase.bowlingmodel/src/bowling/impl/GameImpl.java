@@ -182,7 +182,7 @@ public class GameImpl extends EObjectImpl implements Game {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setPlayer(Player newPlayer) {
 		if (newPlayer != player) {
@@ -192,7 +192,8 @@ public class GameImpl extends EObjectImpl implements Game {
 			if (newPlayer != null)
 				msgs = ((InternalEObject)newPlayer).eInverseAdd(this, BowlingPackage.PLAYER__GAMES, Player.class, msgs);
 			msgs = basicSetPlayer(newPlayer, msgs);
-			if (msgs != null) msgs.dispatch();
+			// TODO: quick fix!
+			//if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.GAME__PLAYER, newPlayer, newPlayer));

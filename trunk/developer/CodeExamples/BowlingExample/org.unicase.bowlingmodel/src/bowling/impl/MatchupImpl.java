@@ -107,7 +107,7 @@ public class MatchupImpl extends EObjectImpl implements Matchup {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setTournament(Tournament newTournament) {
 		if (newTournament != eInternalContainer() || (eContainerFeatureID() != BowlingPackage.MATCHUP__TOURNAMENT && newTournament != null)) {
@@ -119,7 +119,8 @@ public class MatchupImpl extends EObjectImpl implements Matchup {
 			if (newTournament != null)
 				msgs = ((InternalEObject)newTournament).eInverseAdd(this, BowlingPackage.TOURNAMENT__MATCHUP, Tournament.class, msgs);
 			msgs = basicSetTournament(newTournament, msgs);
-			if (msgs != null) msgs.dispatch();
+			// TODO: quick fix!
+			//if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.MATCHUP__TOURNAMENT, newTournament, newTournament));
