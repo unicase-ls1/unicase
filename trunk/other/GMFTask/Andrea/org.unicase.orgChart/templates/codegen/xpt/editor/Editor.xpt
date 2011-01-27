@@ -64,7 +64,7 @@ public class «className»  extends org.unicase.ui.unicasecommon.diagram.part.Mo
 	
 	
 	«EXPAND xpt::Common::generatedMemberComment»
-	public class «editorGen.modelID»DiagramOpener extends org.unicase.ui.unicasecommon.common.diagram.DiagramOpener implements org.unicase.workspace.ui.util.ModelElementOpener { 
+	public static class «editorGen.modelID»DiagramOpener extends org.unicase.ui.unicasecommon.common.diagram.DiagramOpener implements org.unicase.workspace.ui.util.ModelElementOpener { 
 		«EXPAND xpt::Common::generatedMemberComment»
 		@Override
 		public int canOpen(org.eclipse.emf.ecore.EObject modelElement) {
@@ -89,7 +89,7 @@ public class «className»  extends org.unicase.ui.unicasecommon.diagram.part.Mo
 	}
 	}
 	«EXPAND xpt::Common::generatedMemberComment»
-	public class «editorGen.modelID»DiagramTypeTester extends org.unicase.ui.unicasecommon.diagram.part.DiagramTypeTester  {
+	public static class «editorGen.modelID»DiagramTypeTester extends org.unicase.ui.unicasecommon.diagram.part.DiagramTypeTester  {
 	
 		«EXPAND xpt::Common::generatedMemberComment»
 		@Override

@@ -16,6 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.metamodel;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.unicase.diagram.edit;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.gmf.xpand.migration
+ org.unicase.diagram.edit;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
