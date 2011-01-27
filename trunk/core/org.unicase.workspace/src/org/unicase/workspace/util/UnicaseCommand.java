@@ -5,41 +5,12 @@
  */
 package org.unicase.workspace.util;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.unicase.workspace.Configuration;
-
 /**
  * Recording command that can buffer a result for later retrieval.
  * 
  * @author koegel
  */
-public abstract class UnicaseCommand extends RecordingCommand {
-
-	private RuntimeException runtimeException;
-
-	/**
-	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
-	 */
-	public UnicaseCommand() {
-		super(Configuration.getEditingDomain());
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
-	 */
-	@Override
-	protected final void doExecute() {
-		try {
-			doRun();
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			// END SUPRESS CATCH EXCEPTION
-			runtimeException = e;
-			throw e;
-		}
-	}
+public abstract class UnicaseCommand extends AbstractUnicaseCommand {
 
 	/**
 	 * The actual action that is being executed.
@@ -47,28 +18,28 @@ public abstract class UnicaseCommand extends RecordingCommand {
 	protected abstract void doRun();
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.util.AbstractUnicaseCommand#commandBody()
+	 */
+	@Override
+	protected void commandBody() {
+		doRun();
+	}
+
+	/**
 	 * Executes the command on the workspaces editing domain.
 	 * 
 	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
 	 */
 	public void run(boolean ignoreExceptions) {
-		runtimeException = null;
-
-		Configuration.getEditingDomain().getCommandStack().execute(this);
-
-		if (!ignoreExceptions && runtimeException != null) {
-			throw runtimeException;
-		}
+		super.aRun(ignoreExceptions);
 	}
 
 	/**
 	 * Executes the command on the workspaces editing domain with ignoring runtime exceptions.
-	 * 
-	 * @deprecated Use run(boolean) instead
 	 */
-	@Deprecated
 	public void run() {
 		run(true);
 	}
-
 }

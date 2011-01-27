@@ -160,9 +160,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		try {
 			ECPWorkspace workSpace = ECPWorkspaceManager.getInstance().getWorkSpace();
 			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(workSpace.getEditingDomain()),
-				decoratorManager.getLabelDecorator()));
-			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
+			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
+				.getLabelDecorator()));
+			viewer.setContentProvider(new TreeContentProvider());
 			viewer.setInput(workSpace);
 			// viewer.setInput(currentWorkspace);
 		} catch (NoWorkspaceException e) {

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -84,7 +84,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private DirtyResourceSet dirtyResourceSet;
 	private EMFStoreTransactionalCommandStack emfStoreTransactionalCommandStack;
 	private int currentOperationListSize;
-	private TransactionalEditingDomain editingDomain;
+	private EditingDomain editingDomain;
 	private Set<EObject> currentClipboard;
 	private List<AbstractOperation> operations;
 	private List<EObject> removedElements;
@@ -116,12 +116,16 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 			CommandStack commandStack = editingDomain.getCommandStack();
 
-			if (!(commandStack instanceof EMFStoreTransactionalCommandStack)) {
-				throw new IllegalStateException(
-					"Setup of ResourceSet is invalid, there is no EMFStoreTransactionalCommandStack!");
+			// TODO DOD - can we ignore this?
+
+			// if (!(commandStack instanceof EMFStoreTransactionalCommandStack)) {
+			// throw new IllegalStateException(
+			// "Setup of ResourceSet is invalid, there is no EMFStoreTransactionalCommandStack!");
+			// }
+			if (commandStack instanceof EMFStoreTransactionalCommandStack) {
+				emfStoreTransactionalCommandStack = (EMFStoreTransactionalCommandStack) commandStack;
+				emfStoreTransactionalCommandStack.addCommandStackObserver(this);
 			}
-			emfStoreTransactionalCommandStack = (EMFStoreTransactionalCommandStack) commandStack;
-			emfStoreTransactionalCommandStack.addCommandStackObserver(this);
 		}
 		operations = projectSpace.getOperations();
 		removedElements = new ArrayList<EObject>();
@@ -366,7 +370,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 				op.getSubOperations().addAll(ops);
 				// set the last operation as the main one for natural composites
 				op.setMainOperation(ops.get(ops.size() - 1));
-				op.setModelElementId((ModelElementId) EcoreUtil.copy(op.getMainOperation().getModelElementId()));
+				op.setModelElementId(EcoreUtil.copy(op.getMainOperation().getModelElementId()));
 				projectSpace.addOperation(op);
 			} else if (ops.size() == 1) {
 				projectSpace.addOperation(ops.get(0));
@@ -487,7 +491,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
 	public void projectDeleted(Project project) {
-		emfStoreTransactionalCommandStack.removeCommandStackObserver(this);
+		if (emfStoreTransactionalCommandStack != null) {
+			emfStoreTransactionalCommandStack.removeCommandStackObserver(this);
+		}
 	}
 
 	/**

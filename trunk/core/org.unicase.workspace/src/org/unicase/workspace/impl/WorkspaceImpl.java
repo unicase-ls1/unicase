@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
@@ -249,7 +248,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		PrimaryVersionSpec targetSpec) throws EmfStoreException {
 
 		// MK: hack: set head version manually because esbrowser does not update revisions properly
-		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
+		ProjectInfo projectInfoCopy = EcoreUtil.copy(projectInfo);
 		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
@@ -286,14 +285,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			dateVersionSpec.setDate(calendar.getTime());
 			PrimaryVersionSpec sourceSpec;
 			try {
-				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectSpace
-					.getProjectId(), dateVersionSpec);
+				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
+					projectSpace.getProjectId(), dateVersionSpec);
 			} catch (InvalidVersionSpecException e) {
 				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				sourceSpec.setIdentifier(0);
 			}
-			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectSpace
-				.getProjectId(), sourceSpec, targetSpec);
+			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(),
+				projectSpace.getProjectId(), sourceSpec, targetSpec);
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance(projectSpace)
 				.generateNotifications(changes, usersession.getUsername());
 			projectSpace.getNotificationsFromComposite().addAll(newNotifications);
@@ -471,7 +470,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#init(org.eclipse.emf.transaction.TransactionalEditingDomain)
 	 * @generated NOT
 	 */
-	public void init(EditingDomain editingDomain) {
+	public void init() {
 		projectToProjectSpaceMap = new HashMap<Project, ProjectSpace>();
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
@@ -491,7 +490,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#getEditingDomain()
 	 * @generated NOT
 	 */
-	public TransactionalEditingDomain getEditingDomain() {
+	public EditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
 	}
 
@@ -573,14 +572,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
-		ProjectSpace copiedProjectSpace = (ProjectSpace) EcoreUtil.copy(projectSpace);
+		ProjectSpace copiedProjectSpace = EcoreUtil.copy(projectSpace);
 		copiedProjectSpace.setUsersession(null);
 
 		Project clonedProject = ModelUtil.clone(projectSpace.getProject());
 		copiedProjectSpace.setProject(clonedProject);
 
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace, copiedProjectSpace
-			.getProject());
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace,
+			copiedProjectSpace.getProject());
 	}
 
 	/**
@@ -610,7 +609,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
-		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
+		Project project = EcoreUtil.copy(projectSpace.getProject());
 		ResourceHelper.putElementIntoNewResource(absoluteFileName, project);
 	}
 
