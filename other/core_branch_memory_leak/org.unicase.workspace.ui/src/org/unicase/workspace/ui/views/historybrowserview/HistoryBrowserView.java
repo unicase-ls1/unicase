@@ -1013,4 +1013,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		return this.projectSpace;
 	}
 
+	// @Override
+	// public void dispose() {
+	// super.dispose();
+	//
+	// }
+
 }
