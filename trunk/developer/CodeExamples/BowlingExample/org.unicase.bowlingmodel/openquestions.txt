@@ -1,3 +1,6 @@
-- how to manage visibility for toolbar entries?
-- why doesn't drag+drop player<>game work the other way round?
+- how to manage visibility for tool bar entries?
 - how to change number of digits for double?
+- fixing generation method!
+- putting something on the second empty page!
+-------------------------------------------------
+- re-do model to fix strange bugs (i.e. Playerlist duplication) 

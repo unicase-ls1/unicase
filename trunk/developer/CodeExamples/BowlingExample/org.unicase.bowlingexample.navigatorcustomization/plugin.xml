@@ -13,5 +13,17 @@
             class="org.eclipse.bowlingmodel.navigatorcustomisation.MEDropAdaptorPlayer">
       </MEDropAdapter>
    </extension>
+   <extension
+         point="org.unicase.ui.common.medropadapter">
+      <MEDropAdapter
+            class="org.eclipse.bowlingmodel.navigatorcustomisation.MEDropAdaptorTournament">
+      </MEDropAdapter>
+   </extension>
+   <extension
+         point="org.unicase.ui.common.medropadapter">
+      <MEDropAdapter
+            class="org.eclipse.bowlingmodel.navigatorcustomisation.MEDropAdapterPlayerlist">
+      </MEDropAdapter>
+   </extension>
 
 </plugin>
