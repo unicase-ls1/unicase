@@ -7,6 +7,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.TreeView;
 
@@ -45,6 +46,30 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 			}
 		}
 		// implement - which command?
+		new ECPCommand(t) {
+
+			@Override
+			protected void doRun() {
+				t.getMatchup().clear();
+				for (int i=0; i<playerlist.size(); i++) {
+					for (int j=i+1; j<playerlist.size(); j++) {
+						Player p1 = playerlist.get(i);
+						Player p2 = playerlist.get(j);
+						Game g1 = BowlingFactory.eINSTANCE.createGame();
+						Game g2 = BowlingFactory.eINSTANCE.createGame();
+						g1.setPlayer(p1);
+						g2.setPlayer(p2);
+						Matchup m = BowlingFactory.eINSTANCE.createMatchup();
+						g1.setMatchup(m);
+						g2.setMatchup(m);
+						m.setTournament(t);				
+					}
+				}
+			}
+			
+		}.run(true);
+		
+		/*
 		t.getMatchup().clear();
 		for (int i=0; i<playerlist.size(); i++) {
 			for (int j=i+1; j<playerlist.size(); j++) {
@@ -60,6 +85,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 				m.setTournament(t);				
 			}
 		}
+		*/
 		
 		TreeView.getTreeViewer().refresh();
 		return null;
