@@ -293,7 +293,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			win.getSelectionService().addSelectionListener(this);
 			this.setTitleImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(this.getDiagram().getElement()));
-
+			// jc: open
 		} catch (CoreException x) {
 			// dengler: show in error log
 			WorkspaceUtil.logException("Set diagram content failed", x);
