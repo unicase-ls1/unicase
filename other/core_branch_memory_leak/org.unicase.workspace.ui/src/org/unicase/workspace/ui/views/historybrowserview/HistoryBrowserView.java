@@ -426,14 +426,17 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			composedAdapterFactory);
 		// jc: open
 		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
 			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
+
 	}
 
 	private void addNextAndPreviousAction(IToolBarManager menuManager) {
@@ -1012,11 +1015,5 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 		return this.projectSpace;
 	}
-
-	// @Override
-	// public void dispose() {
-	// super.dispose();
-	//
-	// }
 
 }
