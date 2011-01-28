@@ -138,6 +138,7 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 		List<Issue> identifiedIssues, List<Issue> otherIssues) {
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// jc: open
 
 		// first add all work items identified in the last meeting and check
 		// them per default

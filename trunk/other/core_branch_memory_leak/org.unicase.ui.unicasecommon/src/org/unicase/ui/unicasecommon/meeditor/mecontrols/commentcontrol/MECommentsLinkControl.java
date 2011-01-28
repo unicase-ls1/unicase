@@ -90,6 +90,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		this.reference = (EReference) feature;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		// jc: open
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
