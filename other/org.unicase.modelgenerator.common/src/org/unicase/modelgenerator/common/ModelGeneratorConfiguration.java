@@ -28,6 +28,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * Collection of EClasses, that shall not be instantiated during the generation process.
+	 * All subclasses of the EClasses specified here will be ignored as well.
 	 * Defaults to an empty set.
 	 */
 	private Collection<EClass> eClassesToIgnore;
@@ -59,12 +60,13 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * Constructor that only takes an EPackage and an EObject.
-	 * <code>seed, width, depth</code> and <code>ignoreAndLog</code> use default values.
+	 * <code>seed, width, depth, ignoreAndLog</code> and <code>eClassesToIgnore</code>
+	 * use default values.
 	 * 
 	 * @param modelPackage the EPackage to retrieve EClasses to generate from
 	 * @param rootObject the EObject that shall be the root container of all generated EObjects
 	 * @see #ModelGeneratorConfiguration(EPackage, EObject, int, int)
-	 * @see #ModelGeneratorConfiguration(EPackage, EObject, long, int, int, boolean)
+	 * @see #ModelGeneratorConfiguration(EPackage, EObject, Collection, long, int, int, boolean)
 	 */
 	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject) {
 		this.modelPackage = modelPackage;
@@ -76,14 +78,14 @@ public class ModelGeneratorConfiguration {
 	/**
 	 * Constructor that takes an EPackage and an EObject as well as width and depth of the
 	 * model to generate.
-	 * <code>seed</code> and <code>ignoreAndLog</code> use default values.
+	 * <code>seed</code>, <code>ignoreAndLog</code> and <code>eClassesToIgnore</code> use default values.
 	 * 
 	 * @param modelPackage the EPackage to retrieve EClasses to generate from
 	 * @param rootObject the EObject that shall be the root container of all generated EObjects
 	 * @param width maximum number of children each EObject should have
 	 * @param depth maximum hierarchy depth of the model
 	 * @see #ModelGeneratorConfiguration(EPackage, EObject)
-	 * @see #ModelGeneratorConfiguration(EPackage, EObject, long, int, int, boolean)
+	 * @see #ModelGeneratorConfiguration(EPackage, EObject, Collection, long, int, int, boolean)
 	 */
 	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth) {
 		this.modelPackage = modelPackage;
@@ -99,7 +101,8 @@ public class ModelGeneratorConfiguration {
 	 * 
 	 * @param modelPackage the EPackage to retrieve EClasses to generate from
 	 * @param rootObject the EObject that shall be the root container of all generated EObjects
-	 * @param eClassesToIgnore collection of EClasses that shall not be instantiated
+	 * @param eClassesToIgnore collection of EClasses that shall not be instantiated.
+	 * 		  All subclasses of the EClasses specified here will be ignored as well.
 	 * @param width maximum number of children each EObject should have
 	 * @param depth maximum hierarchy depth of the model
 	 * @param seed the seed to use for random values during the generation process 
@@ -193,6 +196,7 @@ public class ModelGeneratorConfiguration {
 	
 	/**
 	 * Sets the collection of EClasses to ignore to a new value.
+	 * All subclasses of the EClasses specified here will be ignored as well.
 	 * 
 	 * @param eClassesToIgnore the new value of <code>this.eClassesToIgnore</code>
 	 * @see #eClassesToIgnore
@@ -202,6 +206,9 @@ public class ModelGeneratorConfiguration {
 	}
 
 	/**
+	 * Returns all EClasses that will be ignored during the generation process.
+	 * All subclasses of the EClasses specified here will be ignored as well.
+	 * 
 	 * @return the collection of EClasses to ignore
 	 * @see #eClassesToIgnore
 	 */
