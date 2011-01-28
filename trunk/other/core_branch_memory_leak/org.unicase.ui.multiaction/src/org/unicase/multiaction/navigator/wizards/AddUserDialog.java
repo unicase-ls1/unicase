@@ -48,6 +48,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 		setListLabelProvider(labelProvider);
 		setDetailsLabelProvider(labelProvider);
 		// jc: open
+		// hkq: @Johanna do not close this! labelprovider is instance field and
+		// we have two public methods setListLabelProvider, setDetailsLabelProvider
 
 		setBlockOnOpen(true);
 		setInitialPattern("**", NONE);
