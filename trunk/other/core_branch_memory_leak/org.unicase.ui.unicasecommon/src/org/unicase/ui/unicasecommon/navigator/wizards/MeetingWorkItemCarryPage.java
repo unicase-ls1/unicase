@@ -136,9 +136,10 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 	// create and precheck table items
 	private void createTableItems(Table table, List<WorkItem> identifiedWorkItems, List<WorkItem> otherWorkItems,
 		List<Issue> identifiedIssues, List<Issue> otherIssues) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
+		// jc: done
 
 		// first add all work items identified in the last meeting and check
 		// them per default
@@ -179,6 +180,8 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 			item.setText(issue.getName());
 			item.setChecked(false);
 		}
+		labelProvider.dispose();
+		composedAdapterFactory.dispose();
 	}
 
 	// find IssueMeetingSections other than the one linked as
