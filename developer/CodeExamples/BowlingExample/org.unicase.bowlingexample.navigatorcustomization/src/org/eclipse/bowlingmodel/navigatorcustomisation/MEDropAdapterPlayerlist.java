@@ -21,7 +21,7 @@ public class MEDropAdapterPlayerlist extends MEDropAdapter {
 
 	public void drop(DropTargetEvent event, EObject target, List<EObject> source){
 		if(source.get(0) instanceof Tournament | target instanceof Playerlist){
-			
+			((Playerlist) target).setTournament((Tournament)source.get(0));
 		}
 			
 	}
