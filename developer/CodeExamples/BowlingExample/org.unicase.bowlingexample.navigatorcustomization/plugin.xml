@@ -10,7 +10,7 @@
    <extension
          point="org.unicase.ui.common.medropadapter">
       <MEDropAdapter
-            class="org.eclipse.bowlingmodel.navigatorcustomisation.MEDropAdaptorTournament">
+            class="org.eclipse.bowlingmodel.navigatorcustomisation.MEDropAdaptorPlayer">
       </MEDropAdapter>
    </extension>
 

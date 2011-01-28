@@ -15,13 +15,12 @@ public class MEDropAdaptorPlayer extends MEDropAdapter {
 
 	@Override
 	public EClass isDropAdapterfor() {
-		// TODO Auto-generated method stub
 		return BowlingPackage.eINSTANCE.getPlayer();
 	}
 	
 	public void drop(DropTargetEvent event, EObject target, List<EObject> source){
 		if(source.get(0) instanceof Game | target instanceof Player){
-			
+			((Game)source.get(0)).setPlayer((Player)target);
 		}
 	}
 
