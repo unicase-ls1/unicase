@@ -45,9 +45,20 @@ public class ModelGenerator {
 	 */
 	private static Random random;
 	
+	
+	/**
+	 * All EClasses that shall be ignored during the generation process.
+	 * These EClasses are specified in the configuration.
+	 * 
+	 * @see #getEClassesToIgnore()
+	 */
+	private static Set<EClass> eClassesToIgnore;
+	
 	/**
 	 * All EObjects including the root and all its direct and indirect contents,
 	 * after deleting random EObjects.
+	 * 
+	 * @see ModelGeneratorUtil#getAllClassesAndObjects(EObject)
 	 */
 	private static Map<EClass, List<EObject>> allObjectsByEClass;
 	
@@ -107,6 +118,7 @@ public class ModelGenerator {
 		config = configuration;
 		random = new Random(config.getSeed());
 		AttributeHandler.setRandom(random);
+		eClassesToIgnore = getEClassesToIgnore();
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		exceptionLog = new LinkedHashSet<RuntimeException>();
@@ -132,6 +144,7 @@ public class ModelGenerator {
 		config = configuration;
 		random = new Random(config.getSeed());
 		AttributeHandler.setRandom(random);
+		eClassesToIgnore = getEClassesToIgnore();
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		exceptionLog = new LinkedHashSet<RuntimeException>();
@@ -320,11 +333,11 @@ public class ModelGenerator {
 	 */
 	private static EObject validateRoot(EObject rootEObject) {
 		if(rootEObject == null)
-			return null;
+			throw new IllegalArgumentException("Root mustn't be null!");
 		if(rootEObject instanceof EClass) {
 			EClass parentClass = (EClass) rootEObject;
 			if(parentClass.isInterface() || parentClass.isAbstract())
-				return null;
+				throw new IllegalArgumentException("Root mustn't be abstract or an interface!");
 			rootEObject = EcoreUtil.create(parentClass);
 			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptionLog, config.getIgnoreAndLog());
 		}
@@ -384,12 +397,13 @@ public class ModelGenerator {
 	 * Returns all EClasses that can possibly created as children for <code>parentEClass</code>.
 	 * The result is shuffled before it is returned, so different seeds cause different result.
 	 * Only EClasses that are also contained in the configuration's <code>modelPackage</code>
-	 * are retained.
+	 * and not in the <code>eClassesToIgnore</code>-collection are retained.
 	 * 
 	 * @param parentEClass
 	 * @return all possible child-EClasses as a list
 	 * @see ModelGeneratorUtil#getAllEContainments(EClass)
 	 * @see ModelGeneratorUtil#getAllEClasses(EPackage)
+	 * @see #getEClassesToIgnore()
 	 */
 	private static List<EClass> getElementsToCreate(EClass parentEClass) {
 		if(eClassToElementsToCreate.containsKey(parentEClass)) {
@@ -398,9 +412,26 @@ public class ModelGenerator {
 			List<EClass> result = new LinkedList<EClass>(ModelGeneratorUtil.getAllEContainments(parentEClass));
 			Set<EClass> modelElementEClasses = ModelGeneratorUtil.getAllEClasses(config.getModelPackage());
 			result.retainAll(modelElementEClasses);
+			result.removeAll(eClassesToIgnore);
 			Collections.shuffle(result, random);
 			eClassToElementsToCreate.put(parentEClass, result);
 			return result;
 		}
+	}
+	
+	/**
+	 * Returns all EClasses that shall be excluded from the generation process,
+	 * using the <code>eClassesToIgnore</code>-collection from the configuration.
+	 * Every subclass of the specified EClasses is ignored as well.
+	 * 
+	 * @return all EClasses that shall be ignored as a set
+	 */
+	private static Set<EClass> getEClassesToIgnore() {
+		Set<EClass> result = new LinkedHashSet<EClass>();
+		for(EClass eClass : config.getEClassesToIgnore()) {
+			result.add(eClass);
+			result.addAll(ModelGeneratorUtil.getAllSubEClasses(eClass));
+		}
+		return result;
 	}
 }
