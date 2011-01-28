@@ -8,7 +8,7 @@ package org.unicase.workspace.ui.dialogs.login;
 import java.util.HashSet;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
@@ -19,22 +19,18 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class UsersessionsContentProvider extends
-		TransactionalAdapterFactoryContentProvider {
+public class UsersessionsContentProvider extends AdapterFactoryContentProvider {
 
-	private static Workspace currentWorkspace = WorkspaceManager.getInstance()
-			.getCurrentWorkspace();
+	private static Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 	private ServerInfo serverInfo;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param serverInfo
-	 *            limits the displayed usersession to this server info.
+	 * @param serverInfo limits the displayed usersession to this server info.
 	 */
 	public UsersessionsContentProvider(ServerInfo serverInfo) {
-		super(currentWorkspace.getEditingDomain(), new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.serverInfo = serverInfo;
 	}
 
@@ -46,8 +42,7 @@ public class UsersessionsContentProvider extends
 		if (viewer.getInput() instanceof Workspace) {
 			HashSet<Usersession> tempList = new HashSet<Usersession>();
 			for (Usersession session : currentWorkspace.getUsersessions()) {
-				if (session.getServerInfo() != null
-						&& session.getServerInfo().equals(serverInfo)) {
+				if (session.getServerInfo() != null && session.getServerInfo().equals(serverInfo)) {
 					tempList.add(session);
 				}
 			}

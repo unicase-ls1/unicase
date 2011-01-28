@@ -160,9 +160,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		try {
 			ECPWorkspace workSpace = ECPWorkspaceManager.getInstance().getWorkSpace();
 			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(workSpace.getEditingDomain()),
-				decoratorManager.getLabelDecorator()));
-			viewer.setContentProvider(new TreeContentProvider(workSpace.getEditingDomain()));
+			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
+				.getLabelDecorator()));
+			viewer.setContentProvider(new TreeContentProvider());
 			viewer.setInput(workSpace);
 			// viewer.setInput(currentWorkspace);
 		} catch (NoWorkspaceException e) {
@@ -271,17 +271,19 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		// // TreeView.getTreeViewer().setSelection(new StructuredSelection(me), true);
 
 		EObject container = me.eContainer();
-		internalSelectionEvent = true;
-		viewer.setSelection(new StructuredSelection(container), true);
+		if (container != null) {
+			internalSelectionEvent = true;
+			viewer.setSelection(new StructuredSelection(container), true);
 
-		TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
-		if (treeSelection.getPaths().length > 0) {
-			TreePath treePath = treeSelection.getPaths()[0].createChildPath(me);
+			TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
+			if (treeSelection.getPaths().length > 0) {
+				TreePath treePath = treeSelection.getPaths()[0].createChildPath(me);
 
-			TreeSelection newTreeSeleciton = new TreeSelection(treePath);
-			viewer.setSelection(newTreeSeleciton, true);
+				TreeSelection newTreeSeleciton = new TreeSelection(treePath);
+				viewer.setSelection(newTreeSeleciton, true);
+			}
+			internalSelectionEvent = false;
 		}
-		internalSelectionEvent = false;
 	}
 
 	private void addSelectionListener() {

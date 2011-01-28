@@ -16,7 +16,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -44,7 +43,6 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
 import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
@@ -100,8 +98,6 @@ public class DashboardPage extends FormPage {
 
 	private List<ESNotification> notifications;
 
-	private TransactionalEditingDomain domain;
-
 	private ArrayList<AbstractDashboardWidget> widgets;
 
 	private Color sashColor;
@@ -115,7 +111,6 @@ public class DashboardPage extends FormPage {
 	 */
 	public DashboardPage(DashboardEditor editor, String id, String title) {
 		super(editor, id, title);
-		domain = Configuration.getEditingDomain();
 	}
 
 	/**

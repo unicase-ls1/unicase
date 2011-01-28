@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -56,7 +57,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	 */
 	protected ECPProject activeProject;
 
-	private TransactionalEditingDomain editingDomain;
+	private EditingDomain editingDomain;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -215,7 +216,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 		return super.eIsSet(featureID);
 	}
 
-	public TransactionalEditingDomain getEditingDomain() {
+	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 

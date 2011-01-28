@@ -13,7 +13,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.LocationProvider;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
@@ -40,6 +40,7 @@ public final class Configuration {
 	private static final String PLUGIN_BASEDIR = "pluginData";
 	private static boolean testing;
 	private static LocationProvider locationProvider;
+	private static EditingDomain editingDomain;
 
 	private Configuration() {
 		// nothing to do
@@ -305,7 +306,16 @@ public final class Configuration {
 	 * 
 	 * @return the unicase workspace editing domain
 	 */
-	public static TransactionalEditingDomain getEditingDomain() {
-		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
+	public static EditingDomain getEditingDomain() {
+		return Configuration.editingDomain;
+	}
+
+	/**
+	 * Sets the EditingDomain.
+	 * 
+	 * @param editingDomain new domain.
+	 */
+	public static void setEditingDomain(EditingDomain editingDomain) {
+		Configuration.editingDomain = editingDomain;
 	}
 }

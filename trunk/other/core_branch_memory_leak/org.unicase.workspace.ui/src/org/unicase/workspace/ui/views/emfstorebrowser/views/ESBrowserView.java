@@ -13,8 +13,11 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeViewerListener;
+import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -29,6 +32,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.observers.LoginObserver;
+import org.unicase.workspace.ui.dialogs.login.LoginDialog;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserViewerSorter;
@@ -120,6 +124,29 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 		viewer.setSorter(new ESBrowserViewerSorter());
 
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
+		viewer.addTreeListener(new ITreeViewerListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void treeExpanded(TreeExpansionEvent event) {
+				if (event.getElement() instanceof TreeNode) {
+					Object value = ((TreeNode) event.getElement()).getValue();
+					if (value instanceof ServerInfo) {
+						ServerInfo serverInfo = (ServerInfo) value;
+						LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+							serverInfo);
+						if (dialog.open() == Window.OK) {
+							event.getTreeViewer().refresh(value, true);
+						}
+
+					}
+				}
+			}
+
+			public void treeCollapsed(TreeExpansionEvent event) {
+			}
+		});
 
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
 

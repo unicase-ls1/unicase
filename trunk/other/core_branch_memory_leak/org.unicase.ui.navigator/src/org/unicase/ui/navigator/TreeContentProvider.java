@@ -16,18 +16,17 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 
 /**
  * Transactional and composed content provider with all registered label providers.
  * 
  * @author helming
  */
-public class TreeContentProvider extends TransactionalAdapterFactoryContentProvider {
+public class TreeContentProvider extends AdapterFactoryContentProvider {
 
 	private HashMap<String, ContentProvider> contentProviders = new HashMap<String, ContentProvider>();
 
@@ -109,8 +108,8 @@ public class TreeContentProvider extends TransactionalAdapterFactoryContentProvi
 	 * 
 	 * @param editingDomain the transactional editing domain
 	 */
-	public TreeContentProvider(TransactionalEditingDomain editingDomain) {
-		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	public TreeContentProvider() {
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ui.navigator.replaceContentProvider");
 		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();

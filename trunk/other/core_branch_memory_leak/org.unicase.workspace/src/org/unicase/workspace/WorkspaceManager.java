@@ -14,17 +14,16 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryImpl;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
@@ -33,12 +32,12 @@ import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.util.UnicaseUtil;
 import org.unicase.util.observer.ObserverBus;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
+import org.unicase.workspace.util.EditingDomainProvider;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -54,8 +53,6 @@ import edu.tum.cs.cope.migration.execution.ReleaseUtil;
  * @generated NOT
  */
 public final class WorkspaceManager {
-
-	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 
 	private static WorkspaceManager instance;
 
@@ -160,7 +157,7 @@ public final class WorkspaceManager {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the ressource
-		final TransactionalEditingDomain domain = (TransactionalEditingDomain) createEditingDomain(resourceSet);
+		Configuration.setEditingDomain(createEditingDomain(resourceSet));
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
 		File workspaceFile = new File(Configuration.getWorkspacePath());
@@ -168,12 +165,12 @@ public final class WorkspaceManager {
 		final Resource resource;
 		if (!workspaceFile.exists()) {
 
-			workspace = createNewWorkspace(resourceSet, domain, fileURI);
+			workspace = createNewWorkspace(resourceSet, fileURI);
 
 		} else {
 			// file exists load it
 			// check if a migration is needed
-			migrateModel(resourceSet, domain);
+			migrateModel(resourceSet);
 
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
@@ -187,7 +184,7 @@ public final class WorkspaceManager {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				workspace.init(domain);
+				workspace.init();
 			}
 		}.run(true);
 
@@ -196,16 +193,34 @@ public final class WorkspaceManager {
 	}
 
 	private EditingDomain createEditingDomain(ResourceSet resourceSet) {
-		TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreTransactionalCommandStack(), resourceSet);
-		((FactoryImpl) TransactionalEditingDomain.Factory.INSTANCE).mapResourceSet(domain);
-		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
-		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
-
-		return domain;
+		EditingDomainProvider domainProvider = getDomainProvider();
+		if (domainProvider != null) {
+			return domainProvider.getEditingDomain(resourceSet);
+		} else {
+			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new BasicCommandStack(), resourceSet);
+			resourceSet.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(domain));
+			return domain;
+		}
 	}
 
-	private Workspace createNewWorkspace(ResourceSet resourceSet, final TransactionalEditingDomain domain, URI fileURI) {
+	private EditingDomainProvider getDomainProvider() {
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.editingDomainProvider");
+		for (IConfigurationElement extension : rawExtensions) {
+			try {
+				EditingDomainProvider provider = (EditingDomainProvider) extension.createExecutableExtension("class");
+				if (provider != null) {
+					return provider;
+				}
+			} catch (CoreException e) {
+				// fail silently
+			}
+		}
+		return null;
+	}
+
+	private Workspace createNewWorkspace(ResourceSet resourceSet, URI fileURI) {
 		final Workspace workspace;
 		final Resource resource;
 		// no workspace content found, create a workspace
@@ -258,7 +273,7 @@ public final class WorkspaceManager {
 		}
 	}
 
-	private void migrateModel(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+	private void migrateModel(ResourceSet resourceSet) {
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
 		int modelVersionNumber;
 		try {
@@ -271,7 +286,7 @@ public final class WorkspaceManager {
 		if (workspaceModelVersion.getReleaseNumber() == modelVersionNumber) {
 			return;
 		} else if (workspaceModelVersion.getReleaseNumber() > modelVersionNumber) {
-			backupAndRecreateWorkspace(resourceSet, domain);
+			backupAndRecreateWorkspace(resourceSet);
 			WorkspaceUtil.logException("Model conforms to a newer version, update client! New workspace was backuped!",
 				new IllegalStateException());
 			return;
@@ -301,7 +316,7 @@ public final class WorkspaceManager {
 				if (operationsFilePath == null) {
 					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
 						+ " failed!", new IllegalStateException("Broken workspace!"));
-					backupAndRecreateWorkspace(resourceSet, domain);
+					backupAndRecreateWorkspace(resourceSet);
 				}
 				URI operationsURI = URI.createFileURI(operationsFilePath);
 				try {
@@ -309,7 +324,7 @@ public final class WorkspaceManager {
 				} catch (MigrationException e) {
 					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
 						+ " failed!", e);
-					backupAndRecreateWorkspace(resourceSet, domain);
+					backupAndRecreateWorkspace(resourceSet);
 				}
 			}
 		}
@@ -337,10 +352,10 @@ public final class WorkspaceManager {
 		}
 	}
 
-	private void backupAndRecreateWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+	private void backupAndRecreateWorkspace(ResourceSet resourceSet) {
 		backupWorkspace(true);
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
-		createNewWorkspace(resourceSet, domain, fileURI);
+		createNewWorkspace(resourceSet, fileURI);
 	}
 
 	private void backupWorkspace(boolean move) {

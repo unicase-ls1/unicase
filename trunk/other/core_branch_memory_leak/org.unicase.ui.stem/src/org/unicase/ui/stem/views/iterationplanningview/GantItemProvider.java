@@ -14,19 +14,18 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Example for a ganttchart item provider.
  * 
  * @author helming
  */
-public class GantItemProvider extends TransactionalAdapterFactoryContentProvider implements IContentProvider {
+public class GantItemProvider extends AdapterFactoryContentProvider implements IContentProvider {
 	/**
 	 * Comapartor to order workpackages by their name.
 	 * 
@@ -48,8 +47,7 @@ public class GantItemProvider extends TransactionalAdapterFactoryContentProvider
 	 * default constructor.
 	 */
 	public GantItemProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -60,8 +58,8 @@ public class GantItemProvider extends TransactionalAdapterFactoryContentProvider
 		List<EObject> ret = new ArrayList<EObject>();
 		if (object instanceof Project) {
 			Project project = (Project) object;
-			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-				.getWorkPackage(), new BasicEList<WorkPackage>());
+			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(
+				TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
 					ret.add(workPackage);
