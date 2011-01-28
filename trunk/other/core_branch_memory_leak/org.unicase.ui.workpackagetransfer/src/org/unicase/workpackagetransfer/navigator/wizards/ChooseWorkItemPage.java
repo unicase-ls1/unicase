@@ -41,6 +41,7 @@ public class ChooseWorkItemPage extends WizardPage {
 	private static final String CLABEL_INIT_TEXT = ">> Select target Workpackage <<";
 
 	private AdapterFactoryLabelProvider labelProvider;
+	private ComposedAdapterFactory composedAdapterFactory;
 
 	private WorkPackage targetWorkPackage;
 
@@ -70,8 +71,8 @@ public class ChooseWorkItemPage extends WizardPage {
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		labelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
 		// jc: open
 		listener = new ChooseWorkItemPageListener();
 		treeHandler = new TreeHandler(labelProvider, parentWizard.getSelectedWorkPackage());
@@ -210,4 +211,12 @@ public class ChooseWorkItemPage extends WizardPage {
 		}
 
 	}
+
+	@Override
+	public void dispose() {
+		labelProvider.dispose();
+		composedAdapterFactory.dispose();
+		super.dispose();
+	}
+
 }
