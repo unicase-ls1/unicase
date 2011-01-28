@@ -20,15 +20,16 @@ import org.eclipse.swt.graphics.Image;
 public class ValidationLabelProvider extends ColumnLabelProvider {
 
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
+	private ComposedAdapterFactory composedAdapterFactory;
 
 	/**
 	 * Default constructor.
 	 */
 	public ValidationLabelProvider() {
 		super();
-		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
+		// jc: done
 	}
 
 	/**
@@ -57,6 +58,13 @@ public class ValidationLabelProvider extends ColumnLabelProvider {
 			}
 		}
 		return super.getText(object);
+	}
+
+	@Override
+	public void dispose() {
+		adapterFactoryLabelProvider.dispose();
+		composedAdapterFactory.dispose();
+		super.dispose();
 	}
 
 }
