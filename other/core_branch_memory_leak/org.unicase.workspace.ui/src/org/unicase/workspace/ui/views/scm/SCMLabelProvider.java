@@ -63,8 +63,10 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		headRevision = Activator.getImageDescriptor("icons/HistoryInfo_head.png").createImage();
 	}
 
+	private ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+		ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		composedAdapterFactory);
 	// jc: open
 	private ChangePackageVisualizationHelper changePackageVisualizationHelper;
 	private Image baseRevision;
@@ -321,5 +323,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		headRevision.dispose();
 		currentRevision.dispose();
 		baseRevision.dispose();
+		adapterFactoryLabelProvider.dispose();
+		composedAdapterFactory.dispose();
 	}
 }
