@@ -45,7 +45,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 			}
 		}
 		// implement - which command?
-		//t.getMatchup().clear();
+		t.getMatchup().clear();
 		for (int i=0; i<playerlist.size(); i++) {
 			for (int j=i+1; j<playerlist.size(); j++) {
 				Player p1 = playerlist.get(i);
