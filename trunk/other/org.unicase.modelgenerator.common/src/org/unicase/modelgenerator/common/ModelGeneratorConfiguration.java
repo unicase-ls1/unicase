@@ -1,5 +1,9 @@
 package org.unicase.modelgenerator.common;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -21,6 +25,12 @@ public class ModelGeneratorConfiguration {
 	 * NO default value available .
 	 */
 	private EObject rootEObject;
+	
+	/**
+	 * Collection of EClasses, that shall not be instantiated during the generation process.
+	 * Defaults to an empty set.
+	 */
+	private Collection<EClass> eClassesToIgnore;
 	
 	/**
 	 * Seed-value used for Random.
@@ -59,6 +69,7 @@ public class ModelGeneratorConfiguration {
 	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject) {
 		this.modelPackage = modelPackage;
 		this.rootEObject = rootObject;
+		eClassesToIgnore = new LinkedHashSet<EClass>();
 		seed = System.currentTimeMillis();
 	}
 	
@@ -77,6 +88,7 @@ public class ModelGeneratorConfiguration {
 	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth) {
 		this.modelPackage = modelPackage;
 		this.rootEObject = rootObject;
+		eClassesToIgnore = new LinkedHashSet<EClass>();
 		this.depth = depth;
 		this.width = width;
 		seed = System.currentTimeMillis();
@@ -87,6 +99,7 @@ public class ModelGeneratorConfiguration {
 	 * 
 	 * @param modelPackage the EPackage to retrieve EClasses to generate from
 	 * @param rootObject the EObject that shall be the root container of all generated EObjects
+	 * @param eClassesToIgnore collection of EClasses that shall not be instantiated
 	 * @param width maximum number of children each EObject should have
 	 * @param depth maximum hierarchy depth of the model
 	 * @param seed the seed to use for random values during the generation process 
@@ -94,11 +107,12 @@ public class ModelGeneratorConfiguration {
 	 * @see #ModelGeneratorConfiguration(EPackage, EObject)
 	 * @see #ModelGeneratorConfiguration(EPackage, EObject, int, int)
 	 */
-	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, int width, int depth,
-		long seed, boolean ignoreAndLog) {
+	public ModelGeneratorConfiguration(EPackage modelPackage, EObject rootObject, 
+		Collection<EClass> eClassesToIgnore, int width, int depth, long seed, boolean ignoreAndLog) {
 		super();
 		this.modelPackage = modelPackage;
 		this.rootEObject = rootObject;
+		this.eClassesToIgnore = eClassesToIgnore;
 		this.width = width;
 		this.depth = depth;
 		this.seed = seed;
@@ -177,6 +191,24 @@ public class ModelGeneratorConfiguration {
 		this.modelPackage = modelPackage;
 	}
 	
+	/**
+	 * Sets the collection of EClasses to ignore to a new value.
+	 * 
+	 * @param eClassesToIgnore the new value of <code>this.eClassesToIgnore</code>
+	 * @see #eClassesToIgnore
+	 */
+	public void setEClassesToIgnore(Collection<EClass> eClassesToIgnore) {
+		this.eClassesToIgnore = eClassesToIgnore;
+	}
+
+	/**
+	 * @return the collection of EClasses to ignore
+	 * @see #eClassesToIgnore
+	 */
+	public Collection<EClass> getEClassesToIgnore() {
+		return eClassesToIgnore;
+	}
+
 	/**
 	 * @return the seed value of this configuration
 	 * @see #seed
