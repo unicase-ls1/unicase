@@ -72,6 +72,7 @@ public final class UiUtil {
 		}
 		return labelProvider.getText(modelElement);
 		//jc: open
+		// static und keine Superklasse mit dispose()
 	}
 
 }
