@@ -249,7 +249,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		// hkq: open
+		// hkq: done (generated)
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory());
