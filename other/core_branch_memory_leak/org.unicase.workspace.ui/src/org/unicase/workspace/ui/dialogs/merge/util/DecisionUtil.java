@@ -104,6 +104,7 @@ public final class DecisionUtil {
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
 		// jc: open
+		// Superklasse hat kein dispose()
 	}
 
 	/**
@@ -195,5 +196,6 @@ public final class DecisionUtil {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider;
 		// jc: open
+		// Superklasse hat kein dispose()
 	}
 }

@@ -319,11 +319,12 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	 */
 	@Override
 	public void dispose() {
+		adapterFactoryLabelProvider.dispose();
+		composedAdapterFactory.dispose();
 		super.dispose();
 		headRevision.dispose();
 		currentRevision.dispose();
 		baseRevision.dispose();
-		adapterFactoryLabelProvider.dispose();
-		composedAdapterFactory.dispose();
+
 	}
 }

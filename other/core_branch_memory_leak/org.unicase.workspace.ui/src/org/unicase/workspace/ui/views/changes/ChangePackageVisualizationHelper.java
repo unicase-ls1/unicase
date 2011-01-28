@@ -69,6 +69,7 @@ public class ChangePackageVisualizationHelper {
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		// jc: open
+		// Superklasse hat kein dispose()
 		this.customLabelProviderManager = new CustomOperationLabelProviderManager();
 	}
 
@@ -318,4 +319,5 @@ public class ChangePackageVisualizationHelper {
 		}
 		return resultCollection;
 	}
+
 }

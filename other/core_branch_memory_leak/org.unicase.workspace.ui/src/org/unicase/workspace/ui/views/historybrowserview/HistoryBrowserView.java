@@ -426,16 +426,20 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
+
 		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			composedAdapterFactory);
-		// jc: open
+		// jc: done
+
 		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
 			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
+		adapterFactoryLabelProvider.dispose();
+		composedAdapterFactory.dispose();
 
 	}
 

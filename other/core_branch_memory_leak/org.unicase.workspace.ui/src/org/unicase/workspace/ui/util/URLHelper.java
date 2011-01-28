@@ -55,6 +55,7 @@ public final class URLHelper {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	// jc: open
+	// Superklasse hat kein dispose()
 	private URLHelper() {
 
 	}
@@ -101,6 +102,7 @@ public final class URLHelper {
 		String name = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getText(modelElement);
 		// jc: open
+		// Superklasse hat kein dispose()
 		ModelElementId modelElementId = projectSpace.getProject().getModelElementId(modelElement);
 
 		if (name != null) {
