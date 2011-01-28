@@ -21,7 +21,7 @@ import org.unicase.ui.util.DialogHandler;
  * 
  * @author helming
  */
-public class ModelElementOpener implements org.unicase.ui.common.ModelElementOpener {
+public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpener {
 	/**
 	 *Default constructor.
 	 */

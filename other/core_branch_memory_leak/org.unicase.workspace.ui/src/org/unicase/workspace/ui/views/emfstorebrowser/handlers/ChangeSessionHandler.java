@@ -11,6 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -30,10 +31,8 @@ public class ChangeSessionHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		if (!(obj instanceof TreeNode)) {
 			return null;
@@ -56,6 +55,11 @@ public class ChangeSessionHandler extends AbstractHandler {
 				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			}
 		}.run();
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.emfstorebrowser.LoginDecorator");
+			}
+		});
 		return null;
 	}
 }

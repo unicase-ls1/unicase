@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
@@ -148,10 +147,9 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Init the workspace and its projectspaces.
 	 * 
-	 * @param editingDomain the editing domain of the workspace
 	 * @generated NOT
 	 */
-	void init(EditingDomain editingDomain);
+	void init();
 
 	/**
 	 * Return this workspace«s transactional editing domain.
@@ -159,7 +157,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * @return the editing domain
 	 * @generated NOT
 	 */
-	TransactionalEditingDomain getEditingDomain();
+	EditingDomain getEditingDomain();
 
 	/**
 	 * Import a project from file.

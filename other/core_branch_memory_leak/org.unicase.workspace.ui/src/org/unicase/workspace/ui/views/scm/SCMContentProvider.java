@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 /**
@@ -36,6 +37,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	private boolean showRootNodes = true;
 	private boolean reverseNodes = true;
 	private AdapterFactoryContentProvider contentProvider;
+	private ProjectSpace projectSpace;
 
 	/**
 	 * Default constructor.
@@ -198,8 +200,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 					content = modelElement;
 				}
 			}
-			TreeNode meNode = new TreeNode(content);
+			SCMTreeNode meNode = new SCMTreeNode(content);
 			meNode.setParent(treeNode);
+			meNode.setProjectSpace(projectSpace);
 			nodes.add(meNode);
 		}
 		return nodes;
@@ -314,8 +317,8 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(ChangePackage changePackage, TreeNode treeNode) {
-			ArrayList<EObject> modelElements = changePackageVisualizationHelper.getModelElements(changePackage
-				.getAllInvolvedModelElements(), new ArrayList<EObject>());
+			ArrayList<EObject> modelElements = changePackageVisualizationHelper.getModelElements(
+				changePackage.getAllInvolvedModelElements(), new ArrayList<EObject>());
 			List<TreeNode> nodes = nodify(treeNode, modelElements);
 			return nodes.toArray();
 
@@ -347,6 +350,15 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 		}
 
+	}
+
+	/**
+	 * Sets the ProjectSpace
+	 * 
+	 * @param projectSpace the projectspace
+	 */
+	public void setProjectSpace(ProjectSpace projectSpace) {
+		this.projectSpace = projectSpace;
 	}
 
 }

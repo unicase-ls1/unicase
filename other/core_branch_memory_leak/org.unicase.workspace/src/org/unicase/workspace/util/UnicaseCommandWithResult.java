@@ -5,42 +5,24 @@
  */
 package org.unicase.workspace.util;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.unicase.workspace.Configuration;
-
 /**
- * Recording command that can buffer a result for later retrieval.
+ * Command that can buffer a result for later retrieval.
  * 
  * @author koegel
  * @param <T> result type
  */
-public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
+public abstract class UnicaseCommandWithResult<T> extends AbstractUnicaseCommand {
 
 	private T result;
-	private RuntimeException runtimeException;
-
-	/**
-	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
-	 */
-	public UnicaseCommandWithResult() {
-		super(Configuration.getEditingDomain());
-	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 * @see org.unicase.workspace.util.AbstractUnicaseCommand#commandBody()
 	 */
 	@Override
-	protected final void doExecute() {
-		try {
-			this.result = doRun();
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			// END SUPRESS CATCH EXCEPTION
-			runtimeException = e;
-			throw e;
-		}
+	protected void commandBody() {
+		result = doRun();
 	}
 
 	/**
@@ -58,7 +40,7 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 */
 	@Deprecated
 	public T run() {
-		return run(true);
+		return this.run(true);
 	}
 
 	/**
@@ -68,14 +50,7 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 * @return the result
 	 */
 	public T run(boolean ignoreExceptions) {
-		runtimeException = null;
-
-		Configuration.getEditingDomain().getCommandStack().execute(this);
-
-		if (!ignoreExceptions && runtimeException != null) {
-			throw runtimeException;
-		}
-
+		super.aRun(ignoreExceptions);
 		return this.result;
 	}
 

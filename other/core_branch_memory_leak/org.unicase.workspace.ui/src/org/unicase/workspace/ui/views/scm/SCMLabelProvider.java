@@ -84,9 +84,9 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			if (value instanceof HistoryInfo) {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				return getText(historyInfo);
-			} else if (value instanceof AbstractOperation) {
+			} else if (value instanceof AbstractOperation && changePackageVisualizationHelper != null) {
 				ret = changePackageVisualizationHelper.getDescription((AbstractOperation) value);
-			} else if (value instanceof ModelElementId) {
+			} else if (value instanceof ModelElementId && changePackageVisualizationHelper != null) {
 				EObject modelElement = changePackageVisualizationHelper.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
 					ret = UiUtil.getNameForModelElement(modelElement);
@@ -213,8 +213,12 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		// element)).equals(LOCAL_REVISION)) {
 		// return italic;
 		// }
+		String text = getText(element);
+		if (text == null) {
+			text = "";
+		}
 		if (value instanceof HistoryInfo) {
-			if (getText(element).equals(LOCAL_REVISION)) {
+			if (text.equals(LOCAL_REVISION)) {
 				return italic;
 			}
 			HistoryInfo historyInfo = (HistoryInfo) value;
@@ -223,7 +227,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				return bold;
 			}
 		} else if (value instanceof ModelElementId) {
-			if (getText(element).equals(ELEMENT_NOT_FOUND)) {
+			if (text.equals(ELEMENT_NOT_FOUND)) {
 				return italic;
 			}
 		}

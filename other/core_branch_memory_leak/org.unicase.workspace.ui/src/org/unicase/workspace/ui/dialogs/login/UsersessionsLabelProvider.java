@@ -6,28 +6,21 @@
 package org.unicase.workspace.ui.dialogs.login;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Label provider for the saved sessions for a server info.
  * 
  * @author shterev
  */
-public class UsersessionsLabelProvider extends
-		TransactionalAdapterFactoryLabelProvider {
-
-	private static Workspace currentWorkspace = WorkspaceManager.getInstance()
-			.getCurrentWorkspace();;
+public class UsersessionsLabelProvider extends AdapterFactoryLabelProvider {
 
 	/**
 	 * Default constructor.
 	 */
 	public UsersessionsLabelProvider() {
-		super(currentWorkspace.getEditingDomain(), new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**

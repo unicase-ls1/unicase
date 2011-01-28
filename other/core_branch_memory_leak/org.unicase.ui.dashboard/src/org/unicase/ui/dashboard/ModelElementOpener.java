@@ -14,7 +14,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author helming
  */
-public class ModelElementOpener implements org.unicase.ui.common.ModelElementOpener {
+public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpener {
 	/**
 	 * default constructor.
 	 */
@@ -25,7 +25,7 @@ public class ModelElementOpener implements org.unicase.ui.common.ModelElementOpe
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#canOpen(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ui.util.ModelElementOpener#canOpen(org.eclipse.emf.ecore.EObject)
 	 */
 	public int canOpen(EObject modelElement) {
 		if (modelElement instanceof ProjectSpace) {
@@ -37,7 +37,7 @@ public class ModelElementOpener implements org.unicase.ui.common.ModelElementOpe
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.ModelElementOpener#openModelElement(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ui.util.ModelElementOpener#openModelElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof ProjectSpace) {

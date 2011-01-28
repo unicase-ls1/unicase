@@ -939,4 +939,10 @@
            class="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
      </postcreationlistener>
   </extension>
+  <extension
+        point="org.unicase.workspace.editingDomainProvider">
+     <provider
+           class="org.unicase.ui.unicasecommon.common.EditingDomainProvider">
+     </provider>
+  </extension>
 </plugin>

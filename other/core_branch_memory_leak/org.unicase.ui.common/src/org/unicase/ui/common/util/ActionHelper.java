@@ -30,9 +30,9 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.util.DialogHandler;
+import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -130,6 +130,7 @@ public final class ActionHelper {
 		int bestValue = -1;
 		String name = "";
 		for (IConfigurationElement element : modelelementopener) {
+			modelelementopener = null;
 			try {
 				ModelElementOpener modelelementOpener = (ModelElementOpener) element.createExecutableExtension("class");
 				int value = modelelementOpener.canOpen(me);
@@ -140,6 +141,7 @@ public final class ActionHelper {
 				}
 			} catch (CoreException e) {
 				// TODO: ChainSaw logging done
+				e.printStackTrace();
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}

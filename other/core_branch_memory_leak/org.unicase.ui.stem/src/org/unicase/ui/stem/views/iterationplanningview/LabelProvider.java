@@ -6,24 +6,22 @@
 package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * . LabelProvider for IterationPlanning view to show decorations on WorkPackages
  * 
  * @author Helming
  */
-public class LabelProvider extends TransactionalAdapterFactoryLabelProvider implements ILabelProvider {
+public class LabelProvider extends AdapterFactoryLabelProvider implements ILabelProvider {
 
 	/**
 	 * . Constructor
 	 */
 	public LabelProvider() {
 
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 }
