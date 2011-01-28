@@ -31,6 +31,7 @@ public class ModelElementTooltip extends DefaultToolTip {
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		//jc: open
+		//Superklasse hat kein dispose()
 	}
 
 	/**
@@ -63,4 +64,5 @@ public class ModelElementTooltip extends DefaultToolTip {
 	public static void enableFor(Control control) {
 		new ModelElementTooltip(control);
 	}
+	
 }
