@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.layout.GridData;
@@ -40,7 +41,7 @@ public class TemplatesView extends ViewPart {
 	 */
 	public static final String ID = "org.unicase.templatesView";
 
-	private static TreeViewer viewer;
+	private TreeViewer viewer;
 
 	/**
 	 * The constructor.
@@ -61,7 +62,7 @@ public class TemplatesView extends ViewPart {
 			WorkspaceUtil.log("Default templates could not be loaded", e1, IStatus.ERROR);
 		}
 
-		// hkq: open
+		// hkq: done
 		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
@@ -113,4 +114,23 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void setFocus() {
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
+	 */
+	@Override
+	public void dispose() {
+		IBaseLabelProvider labelProvider = viewer.getLabelProvider();
+		if (labelProvider instanceof AdapterFactoryLabelProvider) {
+			AdapterFactory adapterFactory = ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory();
+			if (adapterFactory instanceof ComposedAdapterFactory) {
+				((ComposedAdapterFactory) adapterFactory).dispose();
+				labelProvider.dispose();
+			}
+		}
+		super.dispose();
+	}
+
 }
