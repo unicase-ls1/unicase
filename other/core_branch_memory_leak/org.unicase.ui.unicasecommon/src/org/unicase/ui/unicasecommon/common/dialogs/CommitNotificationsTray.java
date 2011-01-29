@@ -14,6 +14,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -248,7 +249,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 
 			final AdapterFactoryLabelProvider userLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			// jc: open
+			// jc: done
 			Composite root = new Composite(parent, SWT.NONE);
 			GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 5).applyTo(root);
 			GridDataFactory.fillDefaults().grab(true, true).applyTo(root);
@@ -335,7 +336,14 @@ public class CommitNotificationsTray extends CommitDialogTray {
 			commentText = new Text(root, SWT.BORDER);
 			GridDataFactory.fillDefaults().span(2, 1).grab(true, false).applyTo(commentText);
 
+			userLabelProvider.dispose();
+			if (userLabelProvider.getAdapterFactory() instanceof IDisposable) {
+				((IDisposable) userLabelProvider.getAdapterFactory()).dispose();
+
+			}
+
 			return root;
+
 		}
 
 		@Override
