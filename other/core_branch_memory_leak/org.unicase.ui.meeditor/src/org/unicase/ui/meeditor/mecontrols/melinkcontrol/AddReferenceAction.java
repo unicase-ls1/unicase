@@ -141,9 +141,11 @@ public class AddReferenceAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
-		// jc: open
-		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
+		// hkq: done
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		Image image = labelProvider.getImage(obj);
 		String overlayString = "icons/link_overlay.png";
 		if (eReference.isContainment()) {
 			overlayString = "icons/containment_overlay.png";
@@ -162,6 +164,8 @@ public class AddReferenceAction extends Action {
 		}
 
 		setToolTipText("Link " + attribute);
+		adapterFactory.dispose();
+		labelProvider.dispose();
 
 	}
 
