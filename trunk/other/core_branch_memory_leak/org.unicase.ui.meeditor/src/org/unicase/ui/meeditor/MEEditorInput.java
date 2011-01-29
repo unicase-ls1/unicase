@@ -44,6 +44,7 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public MEEditorInput(EObject me, ModelElementContext context) {
 		super();
+		// jc: open
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
