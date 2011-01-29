@@ -136,9 +136,11 @@ public class NewReferenceAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
-		// jc: open
-		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
+		// hkq: done
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		Image image = labelProvider.getImage(obj);
 
 		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/add_overlay.png");
 		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, addOverlay,
@@ -154,6 +156,8 @@ public class NewReferenceAction extends Action {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
 		setToolTipText("Create and link new " + attribute);
+		adapterFactory.dispose();
+		labelProvider.dispose();
 
 	}
 
