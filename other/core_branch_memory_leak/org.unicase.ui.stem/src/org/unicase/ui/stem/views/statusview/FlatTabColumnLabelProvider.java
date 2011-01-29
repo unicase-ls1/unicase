@@ -6,6 +6,7 @@
 package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -30,7 +31,7 @@ public class FlatTabColumnLabelProvider extends ColumnLabelProvider implements I
 		super();
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 	}
 
 	/**
@@ -48,6 +49,17 @@ public class FlatTabColumnLabelProvider extends ColumnLabelProvider implements I
 	 */
 	public AdapterFactoryLabelProvider getAdapterFactoryLabelProvider() {
 		return adapterFactoryLabelProvider;
+	}
+
+	@Override
+	public void dispose() {
+		adapterFactoryLabelProvider.dispose();
+		if (adapterFactoryLabelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
+
+		}
+
+		super.dispose();
 	}
 
 }
