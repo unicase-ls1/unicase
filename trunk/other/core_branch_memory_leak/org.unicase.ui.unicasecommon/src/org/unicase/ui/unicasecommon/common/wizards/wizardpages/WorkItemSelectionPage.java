@@ -8,6 +8,7 @@ package org.unicase.ui.unicasecommon.common.wizards.wizardpages;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -91,7 +92,7 @@ public class WorkItemSelectionPage extends WizardPage {
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 		for (WorkItem workItem : workItems) {
 			TableItem item = new TableItem(table, SWT.NONE);
 			item.setData(workItem);
@@ -103,6 +104,13 @@ public class WorkItemSelectionPage extends WizardPage {
 
 		// Turn drawing back on!
 		table.setRedraw(true);
+
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
 	}
 
 	private boolean getStatus(WorkItem workItem) {
