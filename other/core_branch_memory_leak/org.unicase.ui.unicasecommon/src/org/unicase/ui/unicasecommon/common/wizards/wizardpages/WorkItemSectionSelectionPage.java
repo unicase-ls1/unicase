@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -85,7 +86,7 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 		List<WorkItemMeetingSection> workItemMeetingSections = getAllWorkItemMeetingSections(meeting);
 
 		for (WorkItemMeetingSection workItemMeetingSection : workItemMeetingSections) {
@@ -101,6 +102,13 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 
 		// Turn drawing back on!
 		table.setRedraw(true);
+
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
 	}
 
 	private List<WorkItemMeetingSection> getAllWorkItemMeetingSections(Meeting meeting) {
