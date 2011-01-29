@@ -143,6 +143,7 @@ public class MEEditorPage extends FormPage {
 			bottomComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(bottomComposite);
 		// updateSectionTitle();
+		// jc: open
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
 		// Sort and order attributes
