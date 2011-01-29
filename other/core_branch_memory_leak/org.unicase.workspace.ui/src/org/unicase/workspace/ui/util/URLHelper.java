@@ -55,7 +55,7 @@ public final class URLHelper {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	// jc: open
-	// Superklasse hat kein dispose()
+	// Superklasse hat kein dispose() und static labelProvider
 	private URLHelper() {
 
 	}
