@@ -81,6 +81,7 @@ public class AddAssociationClassAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
+		// jc: open
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
 		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/link_overlay.png");
@@ -95,6 +96,7 @@ public class AddAssociationClassAction extends Action {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
 		setToolTipText("Link " + attribute);
+
 	}
 
 	/**
@@ -104,4 +106,5 @@ public class AddAssociationClassAction extends Action {
 	public void run() {
 		new AddAssociationClassCommand(modelElement).run();
 	}
+
 }
