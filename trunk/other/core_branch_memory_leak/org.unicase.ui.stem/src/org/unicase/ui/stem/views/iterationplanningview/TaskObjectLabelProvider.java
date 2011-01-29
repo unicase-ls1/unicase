@@ -7,6 +7,7 @@
 package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Image;
@@ -27,7 +28,7 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	 */
 	public TaskObjectLabelProvider() {
 		super();
-		// jc: open
+		// hkq: done
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
@@ -80,6 +81,20 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	 */
 	public AdapterFactoryLabelProvider getAdapterFactoryLabelProvider() {
 		return adapterFactoryLabelProvider;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.BaseLabelProvider#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (adapterFactoryLabelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
+		}
+		adapterFactoryLabelProvider.dispose();
+		super.dispose();
 	}
 
 }
