@@ -7,6 +7,7 @@ package org.unicase.ui.stem.views;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.task.WorkItem;
@@ -66,6 +67,17 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 			return "N/A";
 		}
 		return adapterFactoryLabelProvider.getText(assignee);
+	}
+
+	@Override
+	public void dispose() {
+		adapterFactoryLabelProvider.dispose();
+		if (adapterFactoryLabelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
+
+		}
+
+		super.dispose();
 	}
 
 }
