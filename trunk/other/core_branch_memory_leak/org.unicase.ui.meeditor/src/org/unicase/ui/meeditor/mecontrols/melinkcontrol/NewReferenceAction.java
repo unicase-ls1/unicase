@@ -136,6 +136,7 @@ public class NewReferenceAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
+		// jc: open
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
 
