@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -90,7 +91,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		this.reference = (EReference) feature;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
@@ -104,6 +105,13 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentComposite);
 		commentComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		update();
+
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
 		return commentComposite;
 	}
 
