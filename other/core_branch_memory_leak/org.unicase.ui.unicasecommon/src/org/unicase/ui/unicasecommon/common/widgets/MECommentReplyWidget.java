@@ -12,6 +12,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -125,7 +126,7 @@ public class MECommentReplyWidget extends Composite {
 		listeners = new HashSet<MECommentWidgetListener>();
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(this);
 
 		inputComposite = new Composite(this, SWT.NONE);
@@ -214,8 +215,8 @@ public class MECommentReplyWidget extends Composite {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				final EList<OrgUnit> list = new BasicEList<OrgUnit>();
-				WorkspaceManager.getProjectSpace(modelElement).getProject()
-					.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getOrgUnit(), list);
+				WorkspaceManager.getProjectSpace(modelElement).getProject().getAllModelElementsbyClass(
+					OrganizationPackage.eINSTANCE.getOrgUnit(), list);
 				list.removeAll(recipientsList);
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 				dialog.setMultipleSelection(true);
@@ -292,6 +293,12 @@ public class MECommentReplyWidget extends Composite {
 		for (Resource r : localResources) {
 			r.dispose();
 		}
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
 		super.dispose();
 	}
 
