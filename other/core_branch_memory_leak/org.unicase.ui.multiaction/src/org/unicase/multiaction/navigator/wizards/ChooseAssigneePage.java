@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
@@ -80,7 +81,7 @@ public class ChooseAssigneePage extends WizardPage {
 		parentWizard = multiactionWizard;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 		listener = new AssigneePageListener();
 	}
 
@@ -242,4 +243,16 @@ public class ChooseAssigneePage extends WizardPage {
 		}
 
 	}
+
+	@Override
+	public void dispose() {
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
+		super.dispose();
+	}
+
 }
