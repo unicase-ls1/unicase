@@ -117,4 +117,5 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 	public EStructuralFeature getFeature() {
 		return feature;
 	}
+	
 }

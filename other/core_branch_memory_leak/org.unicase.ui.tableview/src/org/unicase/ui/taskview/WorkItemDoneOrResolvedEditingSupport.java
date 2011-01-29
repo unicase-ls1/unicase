@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -182,7 +183,7 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	private void showReviewerSelectionDialog(WorkItem workItem) {
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
+		// jc: done
 		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer().getControl()
 			.getShell(), labelProvider, workItem);
 		reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
@@ -192,6 +193,13 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			new BasicEList<User>());
 		reviwerSelectionDialog.setElements(users.toArray());
 		reviwerSelectionDialog.open();
+
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
+
 	}
 
 	/**
