@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -216,8 +217,8 @@ public class AssociationClassLink extends MELinkControl {
 				if (adapterFactoryLabelProvider instanceof AdapterFactoryLabelProvider) {
 					AdapterFactory adapterfactory = ((AdapterFactoryLabelProvider) adapterFactoryLabelProvider)
 						.getAdapterFactory();
-					if (adapterfactory instanceof ComposedAdapterFactory) {
-						((ComposedAdapterFactory) adapterfactory).dispose();
+					if (adapterfactory instanceof IDisposable) {
+						((IDisposable) adapterfactory).dispose();
 					}
 				}
 				adapterFactoryLabelProvider.dispose();
