@@ -5,7 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.unicase.metamodel.Project;
-import org.unicase.modelgenerator.ModelGeneratorGUI;
+import org.unicase.modelgenerator.ui.ModelGeneratorGUI;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -44,7 +44,7 @@ public class GenerateProjectHandler extends AbstractHandler implements IHandler 
 					protected void doRun() {
 						final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
 						ModelGeneratorGUI modelGui = new ModelGeneratorGUI(project);
-						modelGui.setListener(new UnicaseGuiListener());
+						modelGui.setListener(new UnicaseGUIListener());
 						modelGui.setVisible(true);
 					}
 		}.run(false);

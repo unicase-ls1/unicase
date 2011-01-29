@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Projectgenerator2
-Bundle-SymbolicName: org.unicase.unicase.projectgenerator2;singleton:=true
+Bundle-Name: Unicase Modelgenerator Adapter
+Bundle-SymbolicName: org.unicase.unicase.modelgenerator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
@@ -13,4 +13,5 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.unicase.model;bundle-version="1.0.0",
  org.unicase.modelgenerator;bundle-version="1.0.0",
  org.unicase.modelchanger;bundle-version="1.0.0",
- org.unicase.modelgenerator.common;bundle-version="1.0.0"
+ org.unicase.modelgenerator.common;bundle-version="1.0.0",
+ org.unicase.modelgenerator.ui;bundle-version="1.0.0"
