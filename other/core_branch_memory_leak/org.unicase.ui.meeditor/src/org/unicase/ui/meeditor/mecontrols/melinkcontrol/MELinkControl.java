@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
@@ -99,6 +100,7 @@ public class MELinkControl {
 	}
 
 	protected void createHyperlink(final Composite parent, int style) {
+		// jc: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -145,6 +147,13 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName(), context);
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
+
+		adapterFactoryLabelProvider.dispose();
+		if (adapterFactoryLabelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
+
+		}
+
 	}
 
 	private void updateIcon() {
