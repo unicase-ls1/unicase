@@ -119,6 +119,7 @@ public class NewAssociationClassAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
+		// jc: open
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
 		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/add_overlay.png");
