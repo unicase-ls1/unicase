@@ -7,6 +7,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -166,7 +167,7 @@ public class AssociationClassLink extends MELinkControl {
 		delAssociationListener = new MEHyperLinkDeleteAdapter(modelElement, eReference, association, getContext());
 		// listen for changes of the goal reference instance
 		associationChangeListener = new AssociationChangeListener(association);
-		// jc: open
+		// hkq: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -209,6 +210,18 @@ public class AssociationClassLink extends MELinkControl {
 			associationChangeListener.remove();
 		}
 		if (labelProvider != null) {
+			if (labelProvider instanceof DecoratingLabelProvider) {
+				ILabelProvider adapterFactoryLabelProvider = ((DecoratingLabelProvider) labelProvider)
+					.getLabelProvider();
+				if (adapterFactoryLabelProvider instanceof AdapterFactoryLabelProvider) {
+					AdapterFactory adapterfactory = ((AdapterFactoryLabelProvider) adapterFactoryLabelProvider)
+						.getAdapterFactory();
+					if (adapterfactory instanceof ComposedAdapterFactory) {
+						((ComposedAdapterFactory) adapterfactory).dispose();
+					}
+				}
+				adapterFactoryLabelProvider.dispose();
+			}
 			labelProvider.dispose();
 		}
 		if (composite != null) {
