@@ -94,6 +94,8 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			// jc: open
 			// in dieser inneren Klasse dispose methode schreiben
+			// hkq: geht nicht die Elternklassen haben keine dispose methode...
+
 			setImageDescriptor(ImageDescriptor.createFromImage(provider.getImage(modelElement)));
 			setToolTipText("Set and create MergingSolution");
 		}
