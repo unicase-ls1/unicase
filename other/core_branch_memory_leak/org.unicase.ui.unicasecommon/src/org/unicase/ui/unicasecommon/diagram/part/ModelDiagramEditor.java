@@ -286,17 +286,27 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	@Override
 	public void setInput(IEditorInput input) {
+		ComposedAdapterFactory adapterFactory = null;
+		AdapterFactoryLabelProvider labelProvider = null;
 		try {
 			doSetInput(input, true);
 			IWorkbench wb = PlatformUI.getWorkbench();
 			IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 			win.getSelectionService().addSelectionListener(this);
-			this.setTitleImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(this.getDiagram().getElement()));
-			// jc: open
+			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+			this.setTitleImage(labelProvider.getImage(this.getDiagram().getElement()));
+			// hkq: done
 		} catch (CoreException x) {
 			// dengler: show in error log
 			WorkspaceUtil.logException("Set diagram content failed", x);
+		} finally {
+			if (adapterFactory != null) {
+				adapterFactory.dispose();
+			}
+			if (labelProvider != null) {
+				labelProvider.dispose();
+			}
 		}
 	}
 
