@@ -93,7 +93,7 @@ public class ModelGeneratorGUI extends JFrame{
 	    private JList rootObjectList=new JList(new DefaultListModel());
 
 	    private EClass[] allModelElementEClasses;
-		private JList ignoredObjectsList;
+		private JList ignoredObjectsList=new JList(new DefaultListModel());;
 		
 		
 		public FirstDialog() {
@@ -109,7 +109,6 @@ public class ModelGeneratorGUI extends JFrame{
 			models = ModelGeneratorUtil.getAllRootEPackages().toArray(new EPackage[0]);
 			String[] modelsString = getModelNames(models);
 			modelList = new JList(modelsString);
-			ignoredObjectsList = new JList(modelsString);
 			ignoredObjectsList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			mainPanel.setLayout(new BorderLayout());
 		    mainPanel.add(new JScrollPane(modelList), BorderLayout.NORTH);
@@ -124,6 +123,7 @@ public class ModelGeneratorGUI extends JFrame{
 		    	public void mouseClicked(MouseEvent e) {
 		    		EPackage model = getSelectedPackage();
 		    		((DefaultListModel)rootObjectList.getModel()).clear();
+		    		((DefaultListModel)ignoredObjectsList.getModel()).clear();
 		    		if(model!=null){
 		    			allModelElementEClasses = ModelGeneratorUtil.getAllEClasses(model).toArray(new EClass[0]);
 		    			DefaultListModel defaultModel = (DefaultListModel)rootObjectList.getModel();
