@@ -45,9 +45,11 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	protected void initUsersession() {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		// jc: open
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, labelProvider);
+		// hkq: done
 		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		Collection<Usersession> allSessions = currentWorkspace.getUsersessions();
 		dlg.setElements(allSessions.toArray());
@@ -59,6 +61,9 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 				setUsersession((Usersession) result);
 			}
 		}
+		adapterFactory.dispose();
+		labelProvider.dispose();
+		dlg.close();
 	}
 
 	/**
