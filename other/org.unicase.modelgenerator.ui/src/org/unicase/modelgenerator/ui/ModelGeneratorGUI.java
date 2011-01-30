@@ -7,10 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,6 +29,8 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.modelgenerator.ModelGenerator;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
@@ -44,9 +49,6 @@ public class ModelGeneratorGUI extends JFrame{
 	private SecondDialog secondDialog;
 
 	private EObject project;
-
-	private Display display;
-	
 
 	public void setListener(IGUIListener listener) {
 		this.listener = listener;
@@ -87,11 +89,11 @@ public class ModelGeneratorGUI extends JFrame{
 		private JPanel container = new JPanel();
 		private JButton forwardButton = new JButton("Forward");
 	    
-	    private Vector<String> list = new Vector<String>();
 	    private JList modelList;
 	    private JList rootObjectList=new JList(new DefaultListModel());
 
 	    private EClass[] allModelElementEClasses;
+		private JList ignoredObjectsList;
 		
 		
 		public FirstDialog() {
@@ -106,9 +108,15 @@ public class ModelGeneratorGUI extends JFrame{
 			//models = new EPackage[]{ModelGeneratorUtil.getEPackage("http://unicase.org/model")};
 			models = ModelGeneratorUtil.getAllRootEPackages().toArray(new EPackage[0]);
 			String[] modelsString = getModelNames(models);
-		    modelList = new JList(modelsString);
-		    mainPanel.add(new JScrollPane(modelList));
-		    mainPanel.add(new JScrollPane(rootObjectList));
+			modelList = new JList(modelsString);
+			ignoredObjectsList = new JList(modelsString);
+			ignoredObjectsList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+			mainPanel.setLayout(new BorderLayout());
+		    mainPanel.add(new JScrollPane(modelList), BorderLayout.NORTH);
+		    JPanel objectsPanel=new JPanel();
+		    objectsPanel.add(new JScrollPane(ignoredObjectsList));
+		    objectsPanel.add(new JScrollPane(rootObjectList));
+		    mainPanel.add(objectsPanel, BorderLayout.SOUTH);
 		    buttonPanel.add(forwardButton);
 		    
 		    modelList.addMouseListener(new MouseAdapter() {
@@ -119,10 +127,12 @@ public class ModelGeneratorGUI extends JFrame{
 		    		if(model!=null){
 		    			allModelElementEClasses = ModelGeneratorUtil.getAllEClasses(model).toArray(new EClass[0]);
 		    			DefaultListModel defaultModel = (DefaultListModel)rootObjectList.getModel();
+		    			DefaultListModel ignoredModel = (DefaultListModel)ignoredObjectsList.getModel();
 		    			for (int i = 0; i < allModelElementEClasses.length; i++) {
 		    				EClass eClass = allModelElementEClasses[i];
 							defaultModel.addElement(eClass.getName());
-						}
+							ignoredModel.addElement(eClass.getName());
+		    			}
 						
 		    		}
 		    	}
@@ -156,6 +166,15 @@ public class ModelGeneratorGUI extends JFrame{
 		private EClass getRootClass(){
 			return (allModelElementEClasses[rootObjectList.getSelectedIndex()]);
 		}
+		
+		private List<EClass> getIgnoredObjectsAsClass(){
+			int[] selectedIndices = ignoredObjectsList.getSelectedIndices();
+			List<EClass> eClasses = new ArrayList<EClass>();
+			for (int i : selectedIndices) {
+				eClasses.add(allModelElementEClasses[i]);
+			}
+			return eClasses;
+		}
 	}
 	
 	private class SecondDialog extends JPanel{
@@ -178,9 +197,17 @@ public class ModelGeneratorGUI extends JFrame{
 	
 		private JTextField heightField = new JTextField(5);
 		private JLabel heightLabel = new JLabel("Höhe:");
+		
+		private JTextField seedField = new JTextField(5);
+		private JLabel seedLabel = new JLabel("Seed:");
 
+		private JCheckBox checkLogging = new JCheckBox("Enable Logging");
 		public SecondDialog() {
 			init();
+		}
+		
+		private boolean isLoggingEnabled(){
+			return checkLogging.isSelected();
 		}
 		
 		private int getProjectHeight(){
@@ -189,6 +216,10 @@ public class ModelGeneratorGUI extends JFrame{
 		
 		private int getProjectWidth(){
 			return new Integer(widthField.getText());
+		}
+		
+		private int getSeed(){
+			return new Integer(seedField.getText());
 		}
 
 		private void init() {
@@ -203,10 +234,13 @@ public class ModelGeneratorGUI extends JFrame{
 //			heightField.setSize(100,100);
 			mainPanel.add(heightLabel);
 			mainPanel.add(heightField);
+			
+			mainPanel.add(seedLabel);
+			mainPanel.add(seedField);
 
 			buttonPanel.add(okButton);
 			buttonPanel.add(backButton);
-			
+			mainPanel.add(checkLogging);
 			okButton.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
@@ -240,6 +274,7 @@ public class ModelGeneratorGUI extends JFrame{
 		this.pack();
 		this.setSize(new Dimension(600,600));
 	}
+
 	
 	private void callListener() {
 		ProgressMonitorDialog progressDialog;
@@ -252,6 +287,8 @@ public class ModelGeneratorGUI extends JFrame{
 		try {
 			progressDialog.run(true, true, new IRunnableWithProgress(){
 			    public void run(IProgressMonitor monitor) {
+			    	IHandlerService service=(IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+	//		    	service.executeCommand(arg0, arg1)
 					listener.runInCommand(ModelGeneratorGUI.this, monitor);
 			    }
 			});
@@ -270,7 +307,7 @@ public class ModelGeneratorGUI extends JFrame{
 	}
 
 	public void generateModel(IProgressMonitor monitor) {
-		final ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(firstDialog.getSelectedPackage(), project, secondDialog.getProjectWidth(), secondDialog.getProjectHeight());
+		final ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(firstDialog.getSelectedPackage(), project, firstDialog.getIgnoredObjectsAsClass(), secondDialog.getProjectWidth(), secondDialog.getProjectHeight(), secondDialog.getSeed(), secondDialog.isLoggingEnabled());
 		ModelGenerator.generateModel(config, monitor);
 
 						
