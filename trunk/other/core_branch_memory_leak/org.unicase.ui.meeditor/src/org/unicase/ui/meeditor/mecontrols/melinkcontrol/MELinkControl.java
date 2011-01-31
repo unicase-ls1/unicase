@@ -7,6 +7,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -100,8 +101,7 @@ public class MELinkControl {
 	}
 
 	protected void createHyperlink(final Composite parent, int style) {
-		// jc: done
-		// hkq: wrong
+		// hkq: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -148,13 +148,6 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName(), context);
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-
-		adapterFactoryLabelProvider.dispose();
-		if (adapterFactoryLabelProvider.getAdapterFactory() instanceof IDisposable) {
-			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
-
-		}
-
 	}
 
 	private void updateIcon() {
@@ -170,6 +163,18 @@ public class MELinkControl {
 			modelElementChangeListener.remove();
 		}
 		if (labelProvider != null) {
+			if (labelProvider instanceof DecoratingLabelProvider) {
+				ILabelProvider adapterFactoryLabelProvider = ((DecoratingLabelProvider) labelProvider)
+					.getLabelProvider();
+				if (adapterFactoryLabelProvider instanceof AdapterFactoryLabelProvider) {
+					AdapterFactory adapterfactory = ((AdapterFactoryLabelProvider) adapterFactoryLabelProvider)
+						.getAdapterFactory();
+					if (adapterfactory instanceof IDisposable) {
+						((IDisposable) adapterfactory).dispose();
+					}
+				}
+				adapterFactoryLabelProvider.dispose();
+			}
 			labelProvider.removeListener(labelProviderListener);
 			labelProvider.dispose();
 		}
