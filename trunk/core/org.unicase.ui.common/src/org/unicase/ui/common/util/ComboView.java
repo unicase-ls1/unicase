@@ -105,7 +105,7 @@ public class ComboView<T> {
 	 * 
 	 * @param entries
 	 */
-	public void setInput(Collection<T> entries) {
+	public void setInput(Collection<? extends T> entries) {
 		setInput(entries, null, false);
 	}
 
@@ -116,7 +116,7 @@ public class ComboView<T> {
 	 * @param defaultEntry the default selected entry
 	 * @param fireSelectionChangeEvents if a selection change event should be fired
 	 */
-	public void setInput(Collection<T> entries, T defaultEntry, boolean fireSelectionChangeEvents) {
+	public void setInput(Collection<? extends T> entries, T defaultEntry, boolean fireSelectionChangeEvents) {
 		String[] labels = new String[entries.size()];
 		int selection = 0;
 		int i = 0;
