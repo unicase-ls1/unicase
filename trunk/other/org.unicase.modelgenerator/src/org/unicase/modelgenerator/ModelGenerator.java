@@ -133,7 +133,8 @@ public class ModelGenerator {
 	}
 	
 	/**
-	 * Generates EObjects using the settings specified in <code>config</code>.
+	 * Generates EObjects using the settings specified in <code>config</code>, showing
+	 * a ProgressBar during the generation process. This also allows to cancel the process.
 	 * 
 	 * @param configuration the ModelGeneratorConfiguration to use for generating EObjects
 	 * @param monitor the progress of the generation process
@@ -148,14 +149,35 @@ public class ModelGenerator {
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		exceptionLog = new LinkedHashSet<RuntimeException>();
+		monitor.beginTask("Generation progress", computeAmountOfWork());
 		EObject rootEObject = generateModel(monitor);
 		allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootEObject);
 		for(EClass eClass : allObjectsByEClass.keySet()) {
+			if(monitor.isCanceled())
+				break;
 			for(EObject generatedEObject : allObjectsByEClass.get(eClass)) {
-				generateReferences(generatedEObject);			
+				if(monitor.isCanceled())
+					break;
+				generateReferences(generatedEObject);		
 			}
 		}
+		monitor.done();
 		return rootEObject;
+	}
+	
+	/**
+	 * Computes the total amount of work to do (in units) during the generation process.
+	 * This number is used for the Progress Bar and is twice the number of all EObjects 
+	 * that will be created (once for the creation, once for setting its references). 
+	 * 
+	 * @return the total amount of work in units as an integer
+	 */
+	private static int computeAmountOfWork() {
+		int result = 0;
+		for(int i=1; i<=config.getDepth(); i++) {
+			result += (int) Math.pow(config.getWidth(), i);
+		}
+		return result*2;
 	}
 
 	/**
@@ -190,12 +212,13 @@ public class ModelGenerator {
 	
 	/**
 	 * The method that actually performs the generation. This can only be
-	 * accessed by calling {@link #generateModel(EPackage, EObject)} or
-	 * {@link #generateModel(ModelGeneratorConfiguration)}
-	 * @param monitor shows the progress
+	 * accessed by calling {@link #generateModel(ModelGeneratorConfiguration, IProgressMonitor)}.
+	 * Shows a progress bar during the generation process. This also allows
+	 * to cancel the process.
+	 * 
+	 * @param monitor the progress of the generation process
 	 * @return the valid root EObject used for generating the model
-	 * @see #generateModel(EPackage, EObject)
-	 * @see #generateModel(ModelGeneratorConfiguration)
+	 * @see #generateModel(ModelGeneratorConfiguration, IProgressMonitor)
 	 */
 	private static EObject generateModel(IProgressMonitor monitor) {
 		EObject rootEObject = validateRoot(config.getRootEObject());
@@ -203,8 +226,10 @@ public class ModelGenerator {
 		remainingObjects.add(rootEObject);
 		int currentDepth = 1;
 		int remainingElementsInThisDepth = config.getWidth();
-		monitor.beginTask("Generation progress", (int)Math.pow(config.getWidth(), config.getDepth()));
 		while(!remainingObjects.isEmpty()) {
+			if(monitor.isCanceled()) {
+				break;
+			}
 			EObject nextParentEObject = remainingObjects.remove(0);
 			List<EObject> children = generateChildren(nextParentEObject); 
 			if(currentDepth < config.getDepth())
@@ -214,9 +239,8 @@ public class ModelGenerator {
 				currentDepth++;
 				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
 			}
-			monitor.worked(1);
+			monitor.worked(config.getWidth());
 		}
-		monitor.done();
 		return rootEObject;
 	}
 	
@@ -277,8 +301,6 @@ public class ModelGenerator {
 		}
 	}
 
-
-	
 	/**
 	 * Gets the next valid EClass from a list of EClasses. A valid EClass is an
 	 * EClass that is neither abstract nor an interface and can therefore be
@@ -343,8 +365,6 @@ public class ModelGenerator {
 		}
 		return rootEObject;
 	}
-
-
 	
 	/**
 	 * Returns the Exception-Log for the last {@link #generateModel()}-call.
