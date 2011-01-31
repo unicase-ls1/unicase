@@ -59,7 +59,7 @@ done in project B)
 - Make resource path relative to workspace, if chosen from workspace.
 
 @ IGNORE
-- remove refresh from our implementation and change TreeView.refresh (also look for chhanges  in line 388 "addDropSupport")
+- remove refresh from our implementation and change TreeView.refresh (also look for changes  in line 388 "addDropSupport")
 
 
 # Accepted plugins:
