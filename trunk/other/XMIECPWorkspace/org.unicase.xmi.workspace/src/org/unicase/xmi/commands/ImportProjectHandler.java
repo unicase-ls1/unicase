@@ -2,6 +2,7 @@ package org.unicase.xmi.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
@@ -24,7 +25,7 @@ public class ImportProjectHandler extends XmiAbstractHandler {
 			try {
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 				
-				new XmiCommand(ws.getEditingDomain()) {
+				new XmiCommand((TransactionalEditingDomain) ws.getEditingDomain()) {
 
 					@Override
 					protected void doRun() {

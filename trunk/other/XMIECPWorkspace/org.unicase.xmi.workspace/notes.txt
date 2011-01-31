@@ -1,10 +1,54 @@
-# TODO
+# REPORTED BUGS
 
+@ FROM Chris
+- "Show References"
+	1. click on a model element and select 'Show References' 
+	2. some entries of the righ-click menu disappear (first of all "New 
+	Model Element" which I was looking for - I can't find this menu entry 
+	no matter if my focus is on a model element or the whole project) 
+	3a. Deleting the project and importing it again solves the problem 
+	3b. randomly clicking around (e.g. on "Create Dynamic Instance") 
+	sometimes helps as well
+
+@ FROM Matteo
+- when creating a new project ("New Project...") and selecting the 
+Location before entering the name, the created file will be some kind of 
+serial number (123689317863.ucw), even when changing the name afterwards 
+
+- in the "Create/Import Project"-Dialog when Browsing the Filesystem but 
+not selecting any file (canceling the Folder/File Selection-Dialog), a 
+"12348638475817.ucw" file is selected from my workspace directory, even 
+though the file doesn't exist (but is created after clicking Yes) 
+
+- in the "Import Project from Folder"-Dialog when Browsing the 
+Filesystem, cancelling the Folder Selection-Dialog doesn't seem to work 
+(the Dialog reopens after cancelling, so that I have to choose a folder 
+to close it) 
+
+- using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
+different Confirmation Dialog, asking me if I wanted to delete the 
+project. Selecting Yes results in a Deletion-Progress (for about 0.1s), 
+but doesn't do anything, although deleting via the context menu works
+
+- trying to Drag and Drop any Project or any contained Element results 
+in a NullPointerException ("Unhandled event loop exception" in the Error 
+Log)
+
+- deleting a project while it's opened in the MEEditor causes a 
+NullPointerException ("An unexpected exception was thrown" in the Error Log) 
+
+- it's possible to import the same project-file into the workspace 
+twice, allowing it to work simultaneously on the same .xmi file. 
+Changing one project doesn't update the other one (if I delete file XYZ 
+in project A, i can still change it in project B; restarting Eclipse 
+shows, that file XYZ appears again now in project A with the new changes 
+done in project B)
+
+
+# TODO
 - prepare a feature
 	- include icons
-	- test deployment
-
-- Send e-Mail to Max an Jonas with Link of feature and patch for DeleteCommand (already in drafts)	
+	- test deployment	
 	
 - summary presentation (5 min)
 
