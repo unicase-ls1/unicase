@@ -40,12 +40,12 @@ public class GenerateProjectHandler extends AbstractHandler implements IHandler 
 				
 
 		new UnicaseCommand() {
-					@Override
-					protected void doRun() {
-						final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-						ModelGeneratorGUI modelGui = new ModelGeneratorGUI(project);
-						modelGui.setListener(new UnicaseGUIListener());
-						modelGui.setVisible(true);
+			@Override
+			protected void doRun() {
+				final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
+				ModelGeneratorGUI modelGui = new ModelGeneratorGUI(project);
+				modelGui.setListener(new UnicaseGUIListener());
+				modelGui.setVisible(true);
 					}
 		}.run(false);
 
