@@ -91,7 +91,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		this.reference = (EReference) feature;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
+		// hkq: done
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
@@ -105,12 +105,6 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentComposite);
 		commentComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		update();
-
-		labelProvider.dispose();
-		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
-			((IDisposable) labelProvider.getAdapterFactory()).dispose();
-
-		}
 
 		return commentComposite;
 	}
@@ -142,6 +136,12 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	@Override
 	public void dispose() {
 		project.removeProjectChangeObserver(observerImpl);
+
+		labelProvider.dispose();
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+
+		}
 		super.dispose();
 	}
 
