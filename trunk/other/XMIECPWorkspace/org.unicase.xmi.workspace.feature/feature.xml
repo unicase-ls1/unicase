@@ -227,7 +227,6 @@ litigation.
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.unicase.ui.navigator" version="0.4.8" match="greaterOrEqual"/>
-      <import plugin="org.unicase.xmi.workspace"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.core.expressions"/>
@@ -244,14 +243,14 @@ litigation.
          id="org.unicase.xmi.workspace"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.xmi.workspace.edit"
          download-size="0"
          install-size="0"
-         version="1.0.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
