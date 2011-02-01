@@ -28,6 +28,7 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 public interface XMIECPProject extends ECPProject {
 	/**
 	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
+	 * The default value is <code>"\"New Project\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear,
@@ -37,7 +38,7 @@ public interface XMIECPProject extends ECPProject {
 	 * @return the value of the '<em>Project Name</em>' attribute.
 	 * @see #setProjectName(String)
 	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPProject_ProjectName()
-	 * @model
+	 * @model default="\"New Project\""
 	 * @generated
 	 */
 	String getProjectName();
@@ -54,6 +55,7 @@ public interface XMIECPProject extends ECPProject {
 
 	/**
 	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
+	 * The default value is <code>"\"Empty new Project\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear,
@@ -63,7 +65,7 @@ public interface XMIECPProject extends ECPProject {
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
 	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPProject_ProjectDescription()
-	 * @model
+	 * @model default="\"Empty new Project\""
 	 * @generated
 	 */
 	String getProjectDescription();

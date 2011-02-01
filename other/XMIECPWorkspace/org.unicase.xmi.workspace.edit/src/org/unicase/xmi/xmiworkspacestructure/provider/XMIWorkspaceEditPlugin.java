@@ -10,6 +10,8 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.unicase.ecp.model.workSpaceModel.provider.WorkspaceModelEditPlugin;
+
 /**
  * This is the central singleton for the XMIWorkspace edit plugin.
  * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public final class XMIWorkspaceEditPlugin extends EMFPlugin {
 	public XMIWorkspaceEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     WorkspaceModelEditPlugin.INSTANCE,
 		   });
 	}
 

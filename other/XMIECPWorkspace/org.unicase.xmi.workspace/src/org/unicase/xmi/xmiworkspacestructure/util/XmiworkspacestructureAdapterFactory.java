@@ -13,6 +13,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+
 import org.unicase.xmi.xmiworkspacestructure.*;
 
 /**
@@ -80,12 +82,8 @@ public class XmiworkspacestructureAdapterFactory extends AdapterFactoryImpl {
 				return createXMIECPFileProjectAdapter();
 			}
 			@Override
-			public Adapter caseXMIECPProjectContainer(XMIECPProjectContainer object) {
-				return createXMIECPProjectContainerAdapter();
-			}
-			@Override
-			public Adapter caseXMIECPFolder(XMIECPFolder object) {
-				return createXMIECPFolderAdapter();
+			public Adapter caseECPProject(ECPProject object) {
+				return createECPProjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -136,30 +134,16 @@ public class XmiworkspacestructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer <em>XMIECP Project Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.ecp.model.workSpaceModel.ECPProject <em>ECP Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject
 	 * @generated
 	 */
-	public Adapter createXMIECPProjectContainerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder <em>XMIECP Folder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPFolder
-	 * @generated
-	 */
-	public Adapter createXMIECPFolderAdapter() {
+	public Adapter createECPProjectAdapter() {
 		return null;
 	}
 

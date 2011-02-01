@@ -26,7 +26,6 @@ import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getXmiFilePath <em>Xmi File Path</em>}</li>
- *   <li>{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getBaseElements <em>Base Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,22 +56,6 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 */
 	void setXmiFilePath(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Base Elements</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.emf.common.util.EList}&lt;org.eclipse.emf.ecore.EObject>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Base Elements</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Elements</em>' attribute list.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage#getXMIECPFileProject_BaseElements()
-	 * @model transient="true"
-	 * @generated
-	 */
-	EList<EObject> getBaseElements();
-	
 	/**
 	 * Sets the workspace for the project
 	 * @param workspace where the project is contained in

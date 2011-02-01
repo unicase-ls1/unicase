@@ -23,9 +23,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.ecp.model.workSpaceModel.provider.ECPProjectItemProvider;
 import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
@@ -37,7 +37,7 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
  * @generated
  */
 public class XMIECPFileProjectItemProvider
-	extends ItemProviderAdapter
+	extends ECPProjectItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -68,7 +68,6 @@ public class XMIECPFileProjectItemProvider
 			addProjectNamePropertyDescriptor(object);
 			addProjectDescriptionPropertyDescriptor(object);
 			addXmiFilePathPropertyDescriptor(object);
-			addBaseElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,7 +109,7 @@ public class XMIECPFileProjectItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPProject_projectDescription_feature", "_UI_XMIECPProject_type"),
 				 XmiworkspacestructurePackage.Literals.XMIECP_PROJECT__PROJECT_DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -140,32 +139,10 @@ public class XMIECPFileProjectItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Elements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBaseElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_XMIECPFileProject_baseElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_XMIECPFileProject_baseElements_feature", "_UI_XMIECPFileProject_type"),
-				 XmiworkspacestructurePackage.Literals.XMIECP_FILE_PROJECT__BASE_ELEMENTS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns XMIECPFileProject.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
@@ -183,17 +160,25 @@ public class XMIECPFileProjectItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getText(Object object) {
+	private String getTextGen(Object object) {
 		String label = ((XMIECPFileProject)object).getProjectName();
-		
-		if(((XMIECPFileProject)object).getProjectStatus() == PROJECT_STATUS.FAILED) {
-			label = "[" + label + "]";
-		}
 		
 		return label == null || label.length() == 0 ?
 			getString("_UI_XMIECPFileProject_type") :
 			getString("_UI_XMIECPFileProject_type") + " " + label;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @generated not
+	 */
+	@Override
+	public String getText(Object object) {
+		String label = getTextGen(object);
+		if(((XMIECPFileProject)object).getProjectStatus() == PROJECT_STATUS.FAILED) {
+			return "[" + label + "]";
+		}
+		return label;
 	}
 
 	/**
@@ -211,7 +196,6 @@ public class XMIECPFileProjectItemProvider
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__PROJECT_NAME:
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__PROJECT_DESCRIPTION:
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
-			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -241,6 +225,9 @@ public class XMIECPFileProjectItemProvider
 		return XMIWorkspaceEditPlugin.INSTANCE;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
 		

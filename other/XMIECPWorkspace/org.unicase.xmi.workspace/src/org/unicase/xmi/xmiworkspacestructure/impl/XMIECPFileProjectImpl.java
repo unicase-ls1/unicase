@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -58,7 +57,6 @@ import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage;
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl#getXmiFilePath <em>Xmi File Path</em>}</li>
- *   <li>{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl#getBaseElements <em>Base Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,7 +71,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROJECT_NAME_EDEFAULT = "New Project";
+	protected static final String PROJECT_NAME_EDEFAULT = "\"New Project\"";
 
 	/**
 	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
@@ -93,7 +91,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROJECT_DESCRIPTION_EDEFAULT = "Empty new project.";
+	protected static final String PROJECT_DESCRIPTION_EDEFAULT = "\"Empty new Project\"";
 
 	/**
 	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
@@ -126,13 +124,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	protected String xmiFilePath = XMI_FILE_PATH_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBaseElements() <em>Base Elements</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * Holds the elements of the first level in the TreeView.
-	 * <!-- end-user-doc -->
-	 * @see #getBaseElements()
-	 * @generated
-	 * @ordered
+	 * The elements of the first level in a project.
 	 */
 	protected EList<EObject> baseElements;
 
@@ -458,18 +450,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> getBaseElements() {
-		if (baseElements == null) {
-			baseElements = new EDataTypeUniqueEList<EObject>(EList.class, this, XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS);
-		}
-		return baseElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -479,8 +459,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 				return getProjectDescription();
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
 				return getXmiFilePath();
-			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
-				return getBaseElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -490,7 +468,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -502,10 +479,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 				return;
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
 				setXmiFilePath((String)newValue);
-				return;
-			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
-				getBaseElements().clear();
-				getBaseElements().addAll((Collection<? extends EObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -528,9 +501,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
 				setXmiFilePath(XMI_FILE_PATH_EDEFAULT);
 				return;
-			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
-				getBaseElements().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -549,8 +519,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 				return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__XMI_FILE_PATH:
 				return XMI_FILE_PATH_EDEFAULT == null ? xmiFilePath != null : !XMI_FILE_PATH_EDEFAULT.equals(xmiFilePath);
-			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT__BASE_ELEMENTS:
-				return baseElements != null && !baseElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -571,8 +539,6 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		result.append(projectDescription);
 		result.append(", xmiFilePath: ");
 		result.append(xmiFilePath);
-		result.append(", baseElements: ");
-		result.append(baseElements);
 		result.append(')');
 		return result.toString();
 	}

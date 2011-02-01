@@ -35,15 +35,6 @@ public interface XmiworkspacestructureFactory extends EFactory {
 	XMIECPFileProject createXMIECPFileProject();
 
 	/**
-	 * Returns a new object of class '<em>XMIECP Folder</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>XMIECP Folder</em>'.
-	 * @generated
-	 */
-	XMIECPFolder createXMIECPFolder();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

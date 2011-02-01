@@ -61,7 +61,6 @@ public class XmiworkspacestructureFactoryImpl extends EFactoryImpl implements Xm
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case XmiworkspacestructurePackage.XMIECP_FILE_PROJECT: return createXMIECPFileProject();
-			case XmiworkspacestructurePackage.XMIECP_FOLDER: return createXMIECPFolder();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -75,16 +74,6 @@ public class XmiworkspacestructureFactoryImpl extends EFactoryImpl implements Xm
 	public XMIECPFileProject createXMIECPFileProject() {
 		XMIECPFileProjectImpl xmiecpFileProject = new XMIECPFileProjectImpl();
 		return xmiecpFileProject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public XMIECPFolder createXMIECPFolder() {
-		XMIECPFolderImpl xmiecpFolder = new XMIECPFolderImpl();
-		return xmiecpFolder;
 	}
 
 	/**
