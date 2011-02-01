@@ -110,6 +110,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					XMIECPFileProject pro = (XMIECPFileProject) project;
 					pro.setProjectStatus(PROJECT_STATUS.NOTLOADED);
 					String path = pro.getXmiFilePath();
+					
+					//TODO add check for duplicate projects
+					// -> set project to failed + set status "DUPLICATED" + change ItemProvider to show [DUPLICATED] behind title
+					
 					File projRes = new File(path);
 					
 					if(!projRes.exists()) { 

@@ -32,7 +32,7 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
-		//TODO filter all classes for the registered ones.
+		// filter all classes for the registered ones.
 		Set<EClass> result = new HashSet<EClass>();
 		
 		Set<EClass> allModels = UnicaseUtil.getAllModelElementEClasses();
@@ -48,6 +48,7 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		
 		// if there is no package registered, just return all packages
 		if(result.size() == 0) {
+			//TODO filter our own package
 			return UnicaseUtil.getAllModelElementEClasses();
 		}
 		return result;
