@@ -4,7 +4,7 @@ import org.eclipse.core.runtime.Platform;
 
 /**
  * This class offers useful constants and methods needed from several classes.
- * @author matti, markus
+ * @author maierma, kraftm
  */
 public class XmiUtil {
 	

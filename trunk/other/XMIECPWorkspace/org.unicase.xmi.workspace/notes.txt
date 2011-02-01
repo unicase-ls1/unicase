@@ -1,5 +1,6 @@
 # REPORTED BUGS
 
+MARKUS
 - The menu item "export model element" is visible on project node. 
 Clicking it caused the following exception in error log: 
 java.lang.ArrayStoreException 
@@ -29,6 +30,7 @@ in a NullPointerException ("Unhandled event loop exception" in the Error
 Log)
 => ask Jonas: difficult to implement -> enough time for it?! -> report it to Unicase
 
+IMPORTANT
 - deleting a project while it's opened in the MEEditor causes a 
 NullPointerException ("An unexpected exception was thrown" in the Error Log) 
 => ask Jonas/Max: How to handle this? How can we close the tabs before deleting the project?
@@ -39,30 +41,13 @@ NullPointerException ("An unexpected exception was thrown" in the Error Log)
 => the case if there is no name yet -> ask Jonas
 -> send an email, no core issue
 
-1) If I enter two lines in the project description and then look at 
-the description after double clicking on the project in the navigator, 
-there's only one line shown and there's even no space between "the 
-lines".
-=> Is this bug relevant to be fixed? Bug in the MEEditor -> shows textfield instead of textarea
-
-Warning 1:	
-Description/Action: (additionally (also occurs when trying to set an EReference Type in ecore model package))
-An exception was ignored during command execution
-org.eclipse.emf.common.util.WrappedException: An exception was ignored during command execution
-=> model specific: do we have to handle that?
-
-- "Show References"
-	1. click on a model element and select 'Show References' 
-	2. some entries of the righ-click menu disappear (first of all "New 
-	Model Element" which I was looking for - I can't find this menu entry 
-	no matter if my focus is on a model element or the whole project) 
-	3a. Deleting the project and importing it again solves the problem 
-	3b. randomly clicking around (e.g. on "Create Dynamic Instance") 
-	sometimes helps as well
-=> model specific misbehaviour, e.g. ecore
-
+OK - If I enter two lines in the project description and then look at 
+	the description after double clicking on the project in the navigator, 
+	there's only one line shown and there's even no space between "the 
+	lines".
 
 @ FROM Matteo
+IMPORTANT
 - when creating a new project ("New Project...") and selecting the 
 Location before entering the name, the created file will be some kind of 
 serial number (123689317863.ucw), even when changing the name afterwards 
@@ -72,6 +57,7 @@ not selecting any file (canceling the Folder/File Selection-Dialog), a
 though the file doesn't exist (but is created after clicking Yes)
 => created TODOs
 
+IMPORTANT
 - it's possible to import the same project-file into the workspace 
 twice, allowing it to work simultaneously on the same .xmi file. 
 Changing one project doesn't update the other one (if I delete file XYZ 
@@ -91,29 +77,20 @@ Unhandled event loop exception
 => created TODOs
 
 Error 7:
+IMPORTANT
 Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
 An unexpected exception was thrown.
 java.lang.NullPointerException
 => check again, probably more difficult problem with duplicate imports, etc...
 
 @ FROM Zardosht
-- wanted to add a new model element to the project. Right click on 
-project--> add model element --> in new model element dialog try to 
-use filter --> NPE
-=> Problem occurs due to model registration problems!
- 
-6. if I add a new ME form a package in new ME dialog, the next time I 
-want to add a ME, the new ME dialog only shows the package I just 
-used. All other packages are not shown. 
-=> we had to painfully implement that!!!!
-
 10. I can select multiple items in navigator. However the menu items 
 are not relevant then.
 => only selecting one is handled
 
 
 # TODO
-- Issue with open project in MEEditor
+OK - Issue with open project in MEEditor
 
 - summary presentation (5 min)
 	- problem

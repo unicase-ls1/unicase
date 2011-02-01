@@ -13,6 +13,11 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
+/**
+ * Handler for creating a new project
+ * @author kraftm, maierma
+ *
+ */
 public class NewProjectHandler extends XmiAbstractHandler {
 	
 	/**

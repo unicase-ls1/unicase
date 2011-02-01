@@ -20,7 +20,7 @@ import org.unicase.xmi.commands.XmiAbstractHandler;
 import org.unicase.xmi.workspace.XmiUtil;
 
 /**
- * @author Markus, Matti
+ * @author kraftm, maierma
  * superclass for single project dialogs
  *
  */

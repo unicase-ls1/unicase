@@ -24,7 +24,7 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 /**
  * Userinterface to ask which models should be used by the project.
- * @author matti, markus
+ * @author maierma, kraftm
  *
  */
 public class ConfigureModelsDialog extends TitleAreaDialog {

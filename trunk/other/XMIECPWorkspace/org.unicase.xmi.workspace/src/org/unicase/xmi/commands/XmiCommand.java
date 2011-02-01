@@ -3,6 +3,11 @@ package org.unicase.xmi.commands;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+/**
+ * A command that is used in XMIECPWorkspace
+ * @author kraftm, maierma
+ *
+ */
 public abstract class XmiCommand extends RecordingCommand {
 
 	/**

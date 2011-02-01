@@ -18,6 +18,11 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
+/**
+ * Handler for importing files from a folder
+ * @author kraftm, maierma
+ *
+ */
 public class ImportFolderHandler extends AbstractHandler {
 
 	/**
