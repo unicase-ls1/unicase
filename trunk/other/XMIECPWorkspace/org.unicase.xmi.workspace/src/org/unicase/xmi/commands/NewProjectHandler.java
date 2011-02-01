@@ -29,6 +29,8 @@ public class NewProjectHandler extends XmiAbstractHandler {
 		// work with the results of the dialog and create the project
 		if(dialog.open() == Window.OK) {
 			
+			//TODO check whether name and path is valid
+			
 			try {						
 				// get ECPWorkspace
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();

@@ -130,6 +130,10 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
+		
+		//TODO check if location already exists in workspace, if so -> warning "Project Path already present" + OK button
+		// if OK -> return to dialog
+		
 		handler.setProjectName(txtProjectName.getText());
 		handler.setProjectDescription(txtProjectDescription.getText());
 		handler.setProjectLocation(txtProjectLocation.getText());
@@ -177,7 +181,15 @@ public abstract class XMIDialog extends TitleAreaDialog {
 		
 		// determine name
 		if(XmiUtil.validate(name)) location += name;
-		else location += System.currentTimeMillis();
+		else {
+			//TODO name not set, but path -> see details
+			/*
+			 * return only path and set a listener on the name field to update the location field as soon as the name changes
+			 * make sure the listener attaches .ucw at the end of the name
+			 */
+			
+			location += System.currentTimeMillis(); // remove
+		}
 		location += ".ucw";
 		
 		return location;

@@ -1,120 +1,5 @@
 # Questions on meeting
 
-
-
-
-
-# REPORTED BUGS
-
-@ FROM Chris
-- "Show References"
-	1. click on a model element and select 'Show References' 
-	2. some entries of the righ-click menu disappear (first of all "New 
-	Model Element" which I was looking for - I can't find this menu entry 
-	no matter if my focus is on a model element or the whole project) 
-	3a. Deleting the project and importing it again solves the problem 
-	3b. randomly clicking around (e.g. on "Create Dynamic Instance") 
-	sometimes helps as well
-
-@ FROM Matteo
-- when creating a new project ("New Project...") and selecting the 
-Location before entering the name, the created file will be some kind of 
-serial number (123689317863.ucw), even when changing the name afterwards 
-
-- in the "Create/Import Project"-Dialog when Browsing the Filesystem but 
-not selecting any file (canceling the Folder/File Selection-Dialog), a 
-"12348638475817.ucw" file is selected from my workspace directory, even 
-though the file doesn't exist (but is created after clicking Yes) 
-
-OK - in the "Import Project from Folder"-Dialog when Browsing the 
-Filesystem, cancelling the Folder Selection-Dialog doesn't seem to work 
-(the Dialog reopens after cancelling, so that I have to choose a folder 
-to close it)
-=> fixed, but was intended!
-
-- using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
-different Confirmation Dialog, asking me if I wanted to delete the 
-project. Selecting Yes results in a Deletion-Progress (for about 0.1s), 
-but doesn't do anything, although deleting via the context menu works
-
-- trying to Drag and Drop any Project or any contained Element results 
-in a NullPointerException ("Unhandled event loop exception" in the Error 
-Log)
-
-- deleting a project while it's opened in the MEEditor causes a 
-NullPointerException ("An unexpected exception was thrown" in the Error Log) 
-
-- it's possible to import the same project-file into the workspace 
-twice, allowing it to work simultaneously on the same .xmi file. 
-Changing one project doesn't update the other one (if I delete file XYZ 
-in project A, i can still change it in project B; restarting Eclipse 
-shows, that file XYZ appears again now in project A with the new changes 
-done in project B)
-
-@ FROM Stephan
-1) If I enter two lines in the project description and then look at 
-the description after double clicking on the project in the navigator, 
-there's only one line shown and there's even no space between "the 
-lines". 
-
-OK 2) If I choose import from Folders and then "Browse Filesystem" and 
-then try to cancel the following window. It appears again and again.
-=> fixed, see above
-
-@ FROM Tobi
-- (Navigator does not refresh when i.e. creating one project after another; 
-and also while creating new subelements i.e. ecore model)
-
-OK - ("Abbrechen" bei Import Project from Folder->Browse Filesystem does not work)
-=> fixed, see above
-
-Error 6:
-Description/Action: (Creating new Project, then New Model Element -> choosing XMIECPFolder -> putting new Project in this folder)
-Unhandled event loop exception
-
-Warning 1:	
-Description/Action: (additionally (also occurs when trying to set an EReference Type in ecore model package))
-An exception was ignored during command execution
-org.eclipse.emf.common.util.WrappedException: An exception was ignored during command execution
-
-Error 7:
-Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
-An unexpected exception was thrown.
-java.lang.NullPointerException
-
-Error 8:
-Description/Action: (importing with "Import Project-File..." while one new project was already in the navigator)
-(also occurs when importing from a file throught "Import Project-File..." and then importing the same project through
-"Import Project from Folder..." and imports with x+1 (restarting eclipse, solves that problem; seems like it keeps a backup or so and then imports the file from hard drive + backup;
-don't know if that's relevant, because why should you import the same project twice?!) 
-Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench".
-org.eclipse.swt.SWTException: Widget is disposed
-
-Error 9:
-Description/Action: (removing a project through "Delete Project...")
-An unexpected exception was thrown.
-java.lang.NullPointerException
-
-@ FROM Zardosht
-
-1. installed XMIWorksapce. Worked ok. 
-2. created a project. Ok. 
-3. wanted to add a new model element to the project. Right click on 
-project--> add model element --> in new model element dialog try to 
-use filter --> NPE 
-4. created a project with the same name twice (for example test). Two 
-are shown in navigator. But there is only one test.ucw file. It is 
-unclear to me what should be the correct behavior of the software 
-here. For example, I can change both projects. But changes in one, 
-overwrites the changes the other one made in test.ucw file. Also in 
-this case synching edior with navigator, causes and exception in error 
-log. 
-
-5. navigator does not update upon adding a new ME. 
-6. if I add a new ME form a package in new ME dialog, the next time I 
-want to add a ME, the new ME dialog only shows the package I just 
-used. All other packages are not shown. 
-7. deleting an ME works. The Navigator also gets updated immediately. 
 8. The menu item "export model element" is visible on project node. 
 Clicking it caused the following exception in error log: 
 java.lang.ArrayStoreException 
@@ -130,14 +15,104 @@ java.lang.ArrayStoreException
         at org.unicase.ui.navigator.handler.ExportModelHandler.getSelfContainedModelElementTree(ExportModelHandler.java:118) 
         at org.unicase.ui.navigator.handler.ExportModelHandler.execute(ExportModelHandler.java:63) 
         at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294) 
-        at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476) 
+        at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476)
+=> ask Jonas: Patch for ui.navigator?
 
-9. importing a project file worked ok. 
+- using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
+different Confirmation Dialog, asking me if I wanted to delete the 
+project. Selecting Yes results in a Deletion-Progress (for about 0.1s), 
+but doesn't do anything, although deleting via the context menu works
+=> ask Jonas: Case specific key binding?
+
+- trying to Drag and Drop any Project or any contained Element results 
+in a NullPointerException ("Unhandled event loop exception" in the Error 
+Log)
+=> ask Jonas: difficult to implement -> enough time for it?!
+
+- deleting a project while it's opened in the MEEditor causes a 
+NullPointerException ("An unexpected exception was thrown" in the Error Log) 
+=> ask Jonas/Max: How to handle this? How can we close the tabs before deleting the project?
+
+5. navigator does not update upon adding a new ME.
+=> the case if there is no name yet -> ask Jonas
+
+1) If I enter two lines in the project description and then look at 
+the description after double clicking on the project in the navigator, 
+there's only one line shown and there's even no space between "the 
+lines".
+=> Is this bug relevant to be fixed? Bug in the MEEditor -> shows textfield instead of textarea
+
+Warning 1:	
+Description/Action: (additionally (also occurs when trying to set an EReference Type in ecore model package))
+An exception was ignored during command execution
+org.eclipse.emf.common.util.WrappedException: An exception was ignored during command execution
+=> model specific: do we have to handle that?
+
+- "Show References"
+	1. click on a model element and select 'Show References' 
+	2. some entries of the righ-click menu disappear (first of all "New 
+	Model Element" which I was looking for - I can't find this menu entry 
+	no matter if my focus is on a model element or the whole project) 
+	3a. Deleting the project and importing it again solves the problem 
+	3b. randomly clicking around (e.g. on "Create Dynamic Instance") 
+	sometimes helps as well
+=> model specific misbehaviour, e.g. ecore
+
+
+# REPORTED BUGS
+
+@ FROM Chris
+
+@ FROM Matteo
+- when creating a new project ("New Project...") and selecting the 
+Location before entering the name, the created file will be some kind of 
+serial number (123689317863.ucw), even when changing the name afterwards 
++ in the "Create/Import Project"-Dialog when Browsing the Filesystem but 
+not selecting any file (canceling the Folder/File Selection-Dialog), a 
+"12348638475817.ucw" file is selected from my workspace directory, even 
+though the file doesn't exist (but is created after clicking Yes)
+=> created TODOs
+
+- it's possible to import the same project-file into the workspace 
+twice, allowing it to work simultaneously on the same .xmi file. 
+Changing one project doesn't update the other one (if I delete file XYZ 
+in project A, i can still change it in project B; restarting Eclipse 
+shows, that file XYZ appears again now in project A with the new changes 
+done in project B)
+=> created TODOs
+
+@ FROM Stephan
+
+@ FROM Tobi
+- (Navigator does not refresh when i.e. creating one project after another; 
+and also while creating new subelements i.e. ecore model)
+=> we were unable to reproduce this bug...
+
+Error 6:
+Description/Action: (Creating new Project, then New Model Element -> choosing XMIECPFolder -> putting new Project in this folder)
+Unhandled event loop exception
+=> created TODOs
+
+Error 7:
+Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
+An unexpected exception was thrown.
+java.lang.NullPointerException
+=> check again, probably more difficult problem with duplicate imports, etc...
+
+@ FROM Zardosht
+- wanted to add a new model element to the project. Right click on 
+project--> add model element --> in new model element dialog try to 
+use filter --> NPE
+=> Problem occurs due to model registration problems!
+ 
+6. if I add a new ME form a package in new ME dialog, the next time I 
+want to add a ME, the new ME dialog only shows the package I just 
+used. All other packages are not shown. 
+=> we had to painfully implement that!!!!
+
 10. I can select multiple items in navigator. However the menu items 
-are not relevant then. 
-11. Importing projects from a folder works. However as Matteo also 
-mentioned, I cannot cancel the folder selection dialog.
-
+are not relevant then.
+=> only selecting one is handled
 
 
 # TODO
@@ -242,3 +217,5 @@ OK - Add "Mark the Projects that shall be imported" in Import Folder Dialog
 OK - prepare a feature
 	OK - include icons
 	OK - test deployment
+	
+OK - in the "Import Project from Folder"-Dialog when Browsing the Filesystem, cancelling the Folder Selection-Dialog doesn't seem to work (the Dialog reopens after cancelling, so that I have to choose a folder to close it) => fixed, but was intended!
