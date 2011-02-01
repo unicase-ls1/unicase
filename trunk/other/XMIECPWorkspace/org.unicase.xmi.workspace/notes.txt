@@ -1,6 +1,6 @@
 # Questions on meeting
 
-8. The menu item "export model element" is visible on project node. 
+- The menu item "export model element" is visible on project node. 
 Clicking it caused the following exception in error log: 
 java.lang.ArrayStoreException 
         at org.eclipse.emf.common.util.BasicEList.assign(BasicEList.java:124) 
@@ -16,25 +16,27 @@ java.lang.ArrayStoreException
         at org.unicase.ui.navigator.handler.ExportModelHandler.execute(ExportModelHandler.java:63) 
         at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294) 
         at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476)
-=> ask Jonas: Patch for ui.navigator?
+=> ask Jonas: Patch for ui.navigator? -> strip it out of the project node
 
 - using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
 different Confirmation Dialog, asking me if I wanted to delete the 
 project. Selecting Yes results in a Deletion-Progress (for about 0.1s), 
 but doesn't do anything, although deleting via the context menu works
-=> ask Jonas: Case specific key binding?
+=> ask Jonas: Case specific key binding? -> report it in Unicase
 
 - trying to Drag and Drop any Project or any contained Element results 
 in a NullPointerException ("Unhandled event loop exception" in the Error 
 Log)
-=> ask Jonas: difficult to implement -> enough time for it?!
+=> ask Jonas: difficult to implement -> enough time for it?! -> report it to Unicase
 
 - deleting a project while it's opened in the MEEditor causes a 
 NullPointerException ("An unexpected exception was thrown" in the Error Log) 
 => ask Jonas/Max: How to handle this? How can we close the tabs before deleting the project?
+	- test it with the EMFStore workspace
 
 5. navigator does not update upon adding a new ME.
 => the case if there is no name yet -> ask Jonas
+-> send an email, no core issue
 
 1) If I enter two lines in the project description and then look at 
 the description after double clicking on the project in the navigator, 
@@ -117,6 +119,13 @@ are not relevant then.
 
 # TODO
 - summary presentation (5 min)
+	- problem
+	- our solution -> requirements
+	- the biggest problems
+
+Dialog -> Configure Models
+- change to make two columns to put one from left or not
+- remove model check and try not to add the models from the 
 
 @ OPTIONAL
 - Delete Dialog should appear for multiple marked projects
