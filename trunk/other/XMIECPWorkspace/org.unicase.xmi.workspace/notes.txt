@@ -20,10 +20,11 @@ not selecting any file (canceling the Folder/File Selection-Dialog), a
 "12348638475817.ucw" file is selected from my workspace directory, even 
 though the file doesn't exist (but is created after clicking Yes) 
 
-- in the "Import Project from Folder"-Dialog when Browsing the 
+OK - in the "Import Project from Folder"-Dialog when Browsing the 
 Filesystem, cancelling the Folder Selection-Dialog doesn't seem to work 
 (the Dialog reopens after cancelling, so that I have to choose a folder 
-to close it) 
+to close it)
+=> fixed, but was intended!
 
 - using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
 different Confirmation Dialog, asking me if I wanted to delete the 
@@ -44,12 +45,52 @@ in project A, i can still change it in project B; restarting Eclipse
 shows, that file XYZ appears again now in project A with the new changes 
 done in project B)
 
+@ FROM Stephan
+1) If I enter two lines in the project description and then look at 
+the description after double clicking on the project in the navigator, 
+there's only one line shown and there's even no space between "the 
+lines". 
+
+OK 2) If I choose import from Folders and then "Browse Filesystem" and 
+then try to cancel the following window. It appears again and again.
+=> fixed, see above
+
+@ FROM Tobi
+- (Navigator does not refresh when i.e. creating one project after another; 
+and also while creating new subelements i.e. ecore model)
+
+OK - ("Abbrechen" bei Import Project from Folder->Browse Filesystem does not work)
+=> fixed, see above
+
+Error 6:
+Description/Action: (Creating new Project, then New Model Element -> choosing XMIECPFolder -> putting new Project in this folder)
+Unhandled event loop exception
+
+Warning 1:	
+Description/Action: (additionally (also occurs when trying to set an EReference Type in ecore model package))
+An exception was ignored during command execution
+org.eclipse.emf.common.util.WrappedException: An exception was ignored during command execution
+
+Error 7:
+Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
+An unexpected exception was thrown.
+java.lang.NullPointerException
+
+Error 8:
+Description/Action: (importing with "Import Project-File..." while one new project was already in the navigator)
+(also occurs when importing from a file throught "Import Project-File..." and then importing the same project through
+"Import Project from Folder..." and imports with x+1 (restarting eclipse, solves that problem; seems like it keeps a backup or so and then imports the file from hard drive + backup;
+don't know if that's relevant, because why should you import the same project twice?!) 
+Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench".
+org.eclipse.swt.SWTException: Widget is disposed
+
+Error 9:
+Description/Action: (removing a project through "Delete Project...")
+An unexpected exception was thrown.
+java.lang.NullPointerException
+
 
 # TODO
-- prepare a feature
-	- include icons
-	- test deployment	
-	
 - summary presentation (5 min)
 
 @ OPTIONAL
@@ -147,3 +188,7 @@ OK - All models are displayed when you open up "New Model Element" on any projec
 	OK - sort models alphabetically
 
 OK - Add "Mark the Projects that shall be imported" in Import Folder Dialog
+
+OK - prepare a feature
+	OK - include icons
+	OK - test deployment
