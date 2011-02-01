@@ -8,8 +8,12 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.changetracking.git.Test;
+import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
 import org.unicase.changetracking.ui.Activator;
+import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.task.WorkItem;
 
 public class CreateChangePackageWizard extends Wizard{
 
@@ -35,27 +39,15 @@ public class CreateChangePackageWizard extends Wizard{
 	}
 	@Override
 	public boolean performFinish() {
-		
-		ProgressMonitorDialog progressMonitor = new ProgressMonitorDialog(PlatformUI.getWorkbench().
-				getActiveWorkbenchWindow().getShell());
-				
-		try {
-			progressMonitor.run(true, true, new CreateChangePackageOperation(
+		UIUtil.runProgressMonitorCommand(new GitCreateChangePackageCommand(
 				localRepository,
 				chooseWorkItemPage.getSelectedWorkItem(),
-				chooseWorkItemPage.getSelectedProject(),
 				chooseWorkItemPage.getSelectedRepository(),
 				chooseNamePage.getSelectedName(),
 				chooseNamePage.getSelectedShortDescription(),
 				chooseNamePage.getSelectedLongDescription(),
-				chooseWorkItemPage.wantCreateWorkItem()
-			));
-
-		//Both exceptions are not possible.
-		} catch (InvocationTargetException e) {
-		} catch (InterruptedException e) {
-		}
-
+				 Test.getTestCredentials()
+			), "Change package was created successfully.");
 		return true;
 
 	}

@@ -235,13 +235,22 @@ public interface ChangetrackingPackage extends EPackage {
 	int CHANGE_TRACKING_RELEASE__BUILT_REVISION = ReleasePackage.RELEASE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Build Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__BUILD_DATE = ReleasePackage.RELEASE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Change Tracking Release</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE_FEATURE_COUNT = ReleasePackage.RELEASE_FEATURE_COUNT + 3;
+	int CHANGE_TRACKING_RELEASE_FEATURE_COUNT = ReleasePackage.RELEASE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.
@@ -967,6 +976,17 @@ public interface ChangetrackingPackage extends EPackage {
 	EReference getChangeTrackingRelease_BuiltRevision();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate <em>Build Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Build Date</em>'.
+	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate()
+	 * @see #getChangeTrackingRelease()
+	 * @generated
+	 */
+	EAttribute getChangeTrackingRelease_BuildDate();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.Stream <em>Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,6 +1193,15 @@ public interface ChangetrackingPackage extends EPackage {
 		 */
 		EReference CHANGE_TRACKING_RELEASE__BUILT_REVISION = eINSTANCE
 				.getChangeTrackingRelease_BuiltRevision();
+
+		/**
+		 * The meta object literal for the '<em><b>Build Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHANGE_TRACKING_RELEASE__BUILD_DATE = eINSTANCE
+				.getChangeTrackingRelease_BuildDate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.

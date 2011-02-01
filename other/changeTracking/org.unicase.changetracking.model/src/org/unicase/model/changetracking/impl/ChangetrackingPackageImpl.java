@@ -219,6 +219,16 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getChangeTrackingRelease_BuildDate() {
+		return (EAttribute) changeTrackingReleaseEClass
+				.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStream() {
 		return streamEClass;
 	}
@@ -382,6 +392,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				CHANGE_TRACKING_RELEASE__BUILT);
 		createEReference(changeTrackingReleaseEClass,
 				CHANGE_TRACKING_RELEASE__BUILT_REVISION);
+		createEAttribute(changeTrackingReleaseEClass,
+				CHANGE_TRACKING_RELEASE__BUILD_DATE);
 
 		streamEClass = createEClass(STREAM);
 		createEReference(streamEClass, STREAM__RELEASES);
@@ -484,6 +496,11 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				null, 0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChangeTrackingRelease_BuildDate(), theEcorePackage
+				.getEDate(), "buildDate", null, 0, 1,
+				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(streamEClass, Stream.class, "Stream", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

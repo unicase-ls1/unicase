@@ -1,9 +1,11 @@
 package org.unicase.changetracking.git.commands;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.MergeResult;
@@ -33,6 +35,7 @@ import org.unicase.changetracking.release.Problem;
 import org.unicase.changetracking.release.Problem.Severity;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.git.GitFactory;
+import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRevision;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -47,6 +50,24 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 	private boolean isContinuing;
 	private boolean conflictOccurred;
 	
+	private static GitBuildReleaseCommand lastConflictingCommand;
+	
+	public static GitBuildReleaseCommand getLastConflictingCommand() {
+		return lastConflictingCommand;
+	}
+	
+	
+
+
+
+	public Repository getLocalRepo() {
+		return localRepo;
+	}
+
+
+
+
+
 	public GitBuildReleaseCommand(ChangeTrackingRelease release, Repository localRepo, Ref baseBranch, List<Ref> branchesToMerge, String tagName) {
 		this.release = release;
 		this.localRepo = localRepo;
@@ -55,12 +76,15 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 		this.tagName = tagName;
 	}
 	
+	
+	
 	@Override
 	protected void doRun() {
 		
 		IProgressMonitor progressMonitor = getProgressMonitor();
 		progressMonitor.beginTask("Building Release", 7 + branchesToMerge.size()*2);
 		conflictOccurred = false;
+		lastConflictingCommand = null;
 		
 		try{
 			
@@ -128,7 +152,8 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 					break;
 				case CONFLICTING:
 					conflictOccurred = true;
-					throw new UnexpectedGitException("There were conflicts while merging branch " + branch.getName() + ". Resolve these and then go on with building.");
+					lastConflictingCommand = this;
+					throw new UnexpectedGitException("There were conflicts while merging branch " + branch.getName() + ". Resolve these, add them to mark them as resolved and then go on with building.");
 				case FAILED:
 					throw new UnexpectedGitException("Merge failed!");
 				case NOT_SUPPORTED:
@@ -152,6 +177,7 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 			release.setBuilt(true);
 			//FIXME for some reason, this does not work, even when directly set in the MEEditor
 			release.setBuiltRevision(revision);
+			release.setBuildDate(new Date());
 			progressMonitor.worked(1);
 			
 			//FIXME Add push
@@ -160,6 +186,22 @@ public class GitBuildReleaseCommand extends UnicaseProgressMonitorCommand{
 		} finally {
 			progressMonitor.done();
 		}
+	}
+
+
+
+
+
+	public void setContinue(boolean b) {
+		this.isContinuing = b;
+	}
+
+
+
+
+
+	public boolean hadConflict() {
+		return conflictOccurred;
 	}
 
 	

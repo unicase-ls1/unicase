@@ -14,6 +14,8 @@ public class Activator extends AbstractUIPlugin {
 	public static final LocalRepositoryCache REPO_CACHE = new LocalRepositoryCache();
 	
 
+	
+
 	// The shared instance
 	private static Activator plugin;
 	

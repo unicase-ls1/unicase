@@ -1,19 +1,15 @@
 package org.unicase.changetracking.ui.releases;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.jface.dialogs.IPageChangeProvider;
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.PageChangedEvent;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.ui.PlatformUI;
+import org.unicase.changetracking.git.commands.GitBuildReleaseCommand;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.ReleaseUtil;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.ui.createChangePackage.CreateChangePackageOperation;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 
 public class BuildReleaseWizard extends Wizard{
@@ -60,7 +56,6 @@ public class BuildReleaseWizard extends Wizard{
 		boolean wantBuild = false;
 		if(report.hasWarnings()){
 			if (UIUtil.openQuestion("Build with warnings?", "The release contains warnings. Do you really want to build it?")){
-				
 				wantBuild = true;
 			}
 		} else {
@@ -68,23 +63,8 @@ public class BuildReleaseWizard extends Wizard{
 		}
 		
 		if(wantBuild){
-			try {
-				ProgressMonitorDialog progressMonitor = new ProgressMonitorDialog(PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().getShell());
-				BuildReleaseOperation op;
-				progressMonitor.run(true, true, op = new BuildReleaseOperation(
-						release, localRepo, report.getReleaseBase().getRef(), ReleaseUtil.buildMergeSetFromReport(report), buildSettingsPage.getTagName())
-					);
-				if(op.isSuccessful()){
-					UIUtil.openInformation("Success!",
-					"Release was built successfully.");
-				}
-					
-						
-			//Both exceptions are not possible.
-			} catch (InvocationTargetException e) {
-			} catch (InterruptedException e) {
-			}	
+			GitBuildReleaseCommand command = new GitBuildReleaseCommand(release, localRepo, report.getReleaseBase().getRef(), ReleaseUtil.buildMergeSetFromReport(report), buildSettingsPage.getTagName());
+			new BuildReleaseOperation(command,false).run();
 		}
 		return true;
 	}

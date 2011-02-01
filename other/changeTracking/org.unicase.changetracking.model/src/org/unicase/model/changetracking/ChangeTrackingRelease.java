@@ -6,6 +6,7 @@
  */
 package org.unicase.model.changetracking;
 
+import java.util.Date;
 import org.unicase.model.release.Release;
 
 /**
@@ -19,6 +20,7 @@ import org.unicase.model.release.Release;
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getStream <em>Stream</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#isBuilt <em>Built</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuiltRevision <em>Built Revision</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate <em>Build Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +117,31 @@ public interface ChangeTrackingRelease extends Release {
 	 * @generated
 	 */
 	void setBuiltRevision(RepositoryRevision value);
+
+	/**
+	 * Returns the value of the '<em><b>Build Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Build Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Build Date</em>' attribute.
+	 * @see #setBuildDate(Date)
+	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getChangeTrackingRelease_BuildDate()
+	 * @model
+	 * @generated
+	 */
+	Date getBuildDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate <em>Build Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Build Date</em>' attribute.
+	 * @see #getBuildDate()
+	 * @generated
+	 */
+	void setBuildDate(Date value);
 
 } // ChangeTrackingRelease

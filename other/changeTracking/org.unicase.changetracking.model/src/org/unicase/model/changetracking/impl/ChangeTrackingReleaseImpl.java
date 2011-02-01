@@ -6,6 +6,7 @@
  */
 package org.unicase.model.changetracking.impl;
 
+import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -31,6 +32,7 @@ import org.unicase.model.release.impl.ReleaseImpl;
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getStream <em>Stream</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#isBuilt <em>Built</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getBuiltRevision <em>Built Revision</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getBuildDate <em>Build Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +86,26 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 	 * @ordered
 	 */
 	protected RepositoryRevision builtRevision;
+
+	/**
+	 * The default value of the '{@link #getBuildDate() <em>Build Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBuildDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date BUILD_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBuildDate() <em>Build Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBuildDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date buildDate = BUILD_DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -293,6 +315,29 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getBuildDate() {
+		return buildDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBuildDate(Date newBuildDate) {
+		Date oldBuildDate = buildDate;
+		buildDate = newBuildDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE,
+					oldBuildDate, buildDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -350,6 +395,8 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			if (resolve)
 				return getBuiltRevision();
 			return basicGetBuiltRevision();
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
+			return getBuildDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,6 +417,9 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			return;
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT_REVISION:
 			setBuiltRevision((RepositoryRevision) newValue);
+			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
+			setBuildDate((Date) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -392,6 +442,9 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT_REVISION:
 			setBuiltRevision((RepositoryRevision) null);
 			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
+			setBuildDate(BUILD_DATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -410,6 +463,9 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			return built != BUILT_EDEFAULT;
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT_REVISION:
 			return builtRevision != null;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
+			return BUILD_DATE_EDEFAULT == null ? buildDate != null
+					: !BUILD_DATE_EDEFAULT.equals(buildDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -427,6 +483,8 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (built: ");
 		result.append(built);
+		result.append(", buildDate: ");
+		result.append(buildDate);
 		result.append(')');
 		return result.toString();
 	}

@@ -64,28 +64,4 @@ public class CreateChangePackageActionDelegate extends ResourceSelectionActionDe
 			
 
 
-//	
-//	/**
-//	 * This class validates a String. It makes sure that the String is between 5 and 8
-//	 * characters
-//	 */
-//	class InputValidator implements IInputValidator {
-//	  /**
-//	   * Validates the String. Returns null for no error, or an error message
-//	   * 
-//	   * @param newText the String to validate
-//	   * @return String
-//	   */
-//	  public String isValid(String newText) {
-//	    int len = newText.length();
-//
-//	    // Determine if input is too short or too long
-//	    if (len < 1) return "Enter a name";
-//
-//	    // Input must be OK
-//	    return null;
-//	  }
-//	}
-
-
 }

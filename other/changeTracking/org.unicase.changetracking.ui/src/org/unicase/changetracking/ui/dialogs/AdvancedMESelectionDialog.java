@@ -21,7 +21,9 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
@@ -44,7 +46,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.unicasecommon.common.filter.UserFilter;
+import org.unicase.ui.common.util.ComboView;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -78,12 +80,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	/**
 	 * The user selection combo box.
 	 */
-	private ComboBoxSet<User> userBar;
+	private ComboView<User> userBar;
 	
 	/**
 	 * The project selection combo box.
 	 */
-	private ComboBoxSet<ProjectSpace> projectBar;
+	private ComboView<ProjectSpace> projectBar;
 	
 	/**
 	 * This variable is part of a hack which is used to inject new content during runtime into the dialog.
@@ -107,6 +109,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 */
 	public AdvancedMESelectionDialog(EClass classBound) {
 		super(false);
+		setBlockOnOpen(true);
 		
 		//Create the "create new" entries
 		Set<EClass> classes = ModelUtil.getSubclasses(TaskPackage.eINSTANCE.getWorkItem());
@@ -157,6 +160,24 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		return element;
 	}
 	
+	
+	
+	@Override
+	public boolean close() {
+		UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
+		
+		if(getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)){
+				ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedProjectSpace(), getSelectedModelElementNoCreate(), true);
+				if(placementDialog.open() == Window.OK){
+					placementDialog.doPlacement();
+				} else {
+					setReturnCode(Window.CANCEL);
+				}
+		}
+		return super.close();
+	}
+	
+
 
 	
 	/**
@@ -235,22 +256,18 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		l.setLayoutData(new GridData(SWT.LEFT));
 		Combo combo = new Combo (subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
-		projectBar = new ComboBoxSet<ProjectSpace>(combo) {
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected String getLabel(ProjectSpace element) {
-				return element.getProjectName();
-			}
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected void onSelectionChange(ProjectSpace newSelection) {
+		projectBar.addSelectionChangedListener(new ComboView.IComboChangeListener<ProjectSpace>() {
+			public void selectionChanged(ProjectSpace newSelection) {
 				populateUserBar(newSelection, userBar.getSelection(), true);
 			}
-		};
+		});
+		
+		projectBar.setLabelProvider(new LabelProvider(){
+			@Override
+			public String getText(Object element) {
+				return ((ProjectSpace)element).getProjectName();
+			}
+		});
 		
 		//User selection combo box
 		l = new Label(subComposite, SWT.NONE);
@@ -258,23 +275,13 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		l.setLayoutData(new GridData(SWT.LEFT));
 		combo = new Combo (subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
-		userBar = new ComboBoxSet<User>(combo){
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected String getLabel(User element) {
-				return element.getName();
-			}
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected void onSelectionChange(User newSelection) {
+		userBar = new ComboView<User>(combo);
+		userBar.addSelectionChangedListener(new ComboView.IComboChangeListener<User>() {
+			public void selectionChanged(User newSelection) {
 				populateEntries(projectBar.getSelection(), getSelectedUserOrNoUser(newSelection));
 				doRefresh();
 			}
-		};
+		});
 		
 		//Create the rest of the dialog
 		Composite dialogArea = (Composite) super.createDialogArea(composite);
@@ -423,7 +430,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		users.add(noUser);
 		users.addAll(projectUsers);
 		
-		userBar.rebuild(users, selectedUser2, fireChangeEvents);
+		userBar.setInput(users, selectedUser2, fireChangeEvents);
 		
 	}
 
@@ -436,7 +443,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 		EList<ProjectSpace> spaces = w.getProjectSpaces();
 		
-		projectBar.rebuild(spaces, selectedProject2, fireChangeEvents);
+		projectBar.setInput(spaces, selectedProject2, fireChangeEvents);
 	}
 	
 	/**
