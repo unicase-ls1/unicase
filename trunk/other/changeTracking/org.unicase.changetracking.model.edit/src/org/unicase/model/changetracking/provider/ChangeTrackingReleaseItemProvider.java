@@ -65,6 +65,7 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 			addStreamPropertyDescriptor(object);
 			addBuiltPropertyDescriptor(object);
 			addBuiltRevisionPropertyDescriptor(object);
+			addBuildDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -128,15 +129,42 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	}
 
 	/**
-	 * This returns ChangeTrackingRelease.gif.
+	 * This adds a property descriptor for the Build Date feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	protected void addBuildDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ChangeTrackingRelease_buildDate_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_ChangeTrackingRelease_buildDate_feature",
+								"_UI_ChangeTrackingRelease_type"),
+						ChangetrackingPackage.Literals.CHANGE_TRACKING_RELEASE__BUILD_DATE,
+						true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns ChangeTrackingRelease.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ChangeTrackingRelease"));
+		boolean built = ((ChangeTrackingRelease) object).isBuilt();
+		String path;
+		if(built){
+			path = "full/obj16/ReleaseBuilt";
+		} else {
+			path = "full/obj16/ReleaseNotBuilt";
+		}
+		return overlayImage(object, getResourceLocator().getImage(path));
 	}
 
 	/**
@@ -165,6 +193,7 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 
 		switch (notification.getFeatureID(ChangeTrackingRelease.class)) {
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT:
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

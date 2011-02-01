@@ -1,5 +1,7 @@
 package org.unicase.changetracking.ui.releases;
 
+import java.text.DateFormat;
+
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -9,6 +11,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -30,6 +33,7 @@ import org.unicase.model.changetracking.ChangeTrackingRelease;
 
 public class ReleaseOverviewWidget extends Composite {
 	
+	private static final int MAX_HEIGHT = 300;
 	private static final Image ERROR_IMAGE = Activator.getImageDescriptor("icons/error.gif").createImage();
 	private static final Image WARNING_IMAGE = Activator.getImageDescriptor("icons/warning.gif").createImage();
 
@@ -37,6 +41,9 @@ public class ReleaseOverviewWidget extends Composite {
 	private static final Image TAB_IMAGE_CONTENT = Activator.getImageDescriptor("icons/ChangePackage.gif").createImage();
 	private static final Image TAB_IMAGE_PROBLEMS = Activator.getImageDescriptor("icons/warning.gif").createImage();
 	private static final Image TAB_IMAGE_CHANGELOG = Activator.getImageDescriptor("icons/changelog.gif").createImage();
+	private static final Image ALREADY_BUILT_IMAGE = Activator.getImageDescriptor("icons/ReleaseBuilt.gif").createImage();;
+	private static final Image READY_TO_BUILD_IMAGE = Activator.getImageDescriptor("icons/play.gif").createImage();
+	
 	private ChangePackageStateLabelProvider labelProvider;
 	private Image alreadyMergedImage;
 	private Image unmergedImage;
@@ -119,6 +126,27 @@ public class ReleaseOverviewWidget extends Composite {
 		
 		ImageAndTextLabel errorLabel = new ImageAndTextLabel(legend, SWT.NONE);
 		errorLabel.setContent(errorImage,(report.getNumChangePackagesOfState(BranchState.ERROR) + report.getNumChangePackagesOfState(BranchState.UNCONNECTED)) +  " change packages erroneous");
+		
+		Label releaseStatus = new Label(overviewComposite,SWT.NONE);
+		releaseStatus.setText("Release status:");
+		GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.TOP).applyTo(buildProgress);
+		
+		ImageAndTextLabel releaseStatusLabel = new ImageAndTextLabel(overviewComposite, SWT.NONE);
+		if(release.isBuilt()){
+			String buildStr;
+			if(release.getBuildDate() != null){
+				buildStr = " at " + DateFormat.getDateTimeInstance().format(release.getBuildDate());
+			} else {
+				buildStr = "";
+			}
+			releaseStatusLabel.setContent(ALREADY_BUILT_IMAGE,"The release has already been built " + buildStr);
+		} else if(report.hasErrors()){
+			releaseStatusLabel.setContent(ERROR_IMAGE,"The release cannot can be built due to errors");
+		} else if(report.hasWarnings()){
+			releaseStatusLabel.setContent(WARNING_IMAGE,"The release can be built, but has warnings");
+		} else {
+			releaseStatusLabel.setContent(READY_TO_BUILD_IMAGE,"The release is ready to get built");
+		}
 
 	}
 
@@ -219,5 +247,15 @@ public class ReleaseOverviewWidget extends Composite {
 	}
 
 
+
+	
+	@Override
+	public Point computeSize(int wHint, int hHint, boolean changed) {
+		Point size = super.computeSize(wHint, hHint, changed);
+		if(size.y > MAX_HEIGHT){
+			size.y = MAX_HEIGHT;
+		}
+		return size;
+	}
 
 }

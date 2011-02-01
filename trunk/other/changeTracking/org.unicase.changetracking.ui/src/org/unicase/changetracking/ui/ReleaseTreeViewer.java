@@ -13,6 +13,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
@@ -122,6 +123,12 @@ public class ReleaseTreeViewer extends Composite{
 	
 	public void setLabelProvider(ILabelProvider labelProvider){
 		treeViewer.setLabelProvider(labelProvider);
+	}
+	
+	@Override
+	public Point computeSize(int wHint, int hHint, boolean changed) {
+		// TODO Auto-generated method stub
+		return super.computeSize(wHint, hHint, changed);
 	}
 	
 }

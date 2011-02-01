@@ -2,71 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="true"
-            id="org.unicase.patchAttachment.ui.ResourceContributions"
-            objectClass="org.eclipse.core.resources.mapping.ResourceMapping">
-         <menu
-               icon="icons/unicase.png"
-               id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
-               label="Unicase Change Tracking"
-               path="team.main">
-            <separator
-                  name="group1">
-            </separator>
-         </menu>
-         <action
-               class="org.unicase.changetracking.ui.createChangePackage.CreateChangePackageActionDelegate"
-               enablesFor="1"
-               icon="icons/GitBranchChangePackage.gif"
-               id="org.eclipse.ui.articles.action.contribution.navigator.action2"
-               label="Create Change Package"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1">
-         </action>
-         <action
-               class="org.unicase.changetracking.ui.CreateRepositoryActionDelegate"
-               enablesFor="1"
-               icon="icons/GitRepository.gif"
-               id="org.eclipse.ui.articles.action.contribution.navigator.action3"
-               label="Register Remote Repository"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1">
-         </action>
-         <action
-               class="org.unicase.changetracking.ui.releases.ContinueReleaseBuildActionDelegate"
-               enablesFor="1"
-               icon="icons/full/obj16/ChangeTrackingRelease.gif"
-               id="org.eclipse.ui.articles.action.contribution.navigator.action4"
-               label="Continue Release Building"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1">
-         </action>
-      </objectContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="org.unicase.changetracking.ui.menuContribution2">
-      </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
-         <command
-               commandId="org.unicase.changetracking.ui.buildReleaseCommand"
-               icon="icons/full/obj16/ChangeTrackingRelease.gif"
-               label="Build Release"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
-         <command
-               commandId="org.unicase.changetracking.ui.checkReleaseCommand"
-               icon="icons/full/obj16/ChangeTrackingRelease.gif"
-               label="Check Release"
-               style="push">
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
          point="org.unicase.ui.meeditor.melinkcontrols">
       <widget
             class="org.unicase.changetracking.ui.MEChangePackageControl"
@@ -77,14 +12,34 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.changetracking.ui.releases.BuildReleaseHandler"
+            defaultHandler="org.unicase.changetracking.ui.commands.BuildReleaseHandler"
             id="org.unicase.changetracking.ui.buildReleaseCommand"
             name="Build Release">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.releases.CheckReleaseHandler"
+            defaultHandler="org.unicase.changetracking.ui.commands.CheckReleaseHandler"
             id="org.unicase.changetracking.ui.checkReleaseCommand"
             name="Check Release">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.ApplyChangePackageHandler"
+            id="org.unicase.changetracking.ui.applyChangePackageCommand"
+            name="Apply Change Package">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.CreateChangePackageHandler"
+            id="org.unicase.changetracking.ui.createChangePackageCommand"
+            name="Create Change Package">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.ContinueReleaseBuildingHandler"
+            id="org.unicase.changetracking.ui.continueReleaseBuildingCommand"
+            name="Continue Release Building">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.CreateRepositoryLocationHandler"
+            id="org.unicase.changetracking.ui.createRepositoryLocationCommand"
+            name="Create Repository Location">
       </command>
    </extension>
    <extension
@@ -95,6 +50,99 @@
                value="org.unicase.model.changetracking.ChangeTrackingRelease">
          </instanceof>
       </definition>
+   </extension>
+   
+   
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <command
+               commandId="org.unicase.changetracking.ui.buildReleaseCommand"
+               icon="icons/buildRelease2.gif"
+               label="Build Release"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.changetracking.ui.checkReleaseCommand"
+               icon="icons/checkRelease2.gif"
+               label="Check Release"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.changetracking.ui.applyChangePackageCommand"
+               icon="icons/apply_package.gif"
+               label="Apply Change Package"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangePackage">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+       <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               icon="icons/unicase.png"
+               label="Unicase Change Tracking">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <count
+                        value="+">
+                  </count>
+                  <iterate>
+                     <instanceof
+                           value="org.eclipse.core.runtime.IAdaptable">
+                     </instanceof>
+                  </iterate>
+               </with>
+            </visibleWhen>
+            <command
+                  commandId="org.unicase.changetracking.ui.createChangePackageCommand"
+                  icon="icons/createChangePackage.png"
+                  label="Create Change Package"
+                  style="push"
+                  tooltip="Creates a new change package by creating a new branch and commiting all local changes to it">
+            </command>
+            <command
+                  commandId="org.unicase.changetracking.ui.continueReleaseBuildingCommand"
+                  icon="icons/buildRelease2.gif"
+                  label="Continue Release Building"
+                  style="push"
+                  tooltip="Continues a previously interrupted release building process.">
+            </command>
+            <command
+                  commandId="org.unicase.changetracking.ui.createRepositoryLocationCommand"
+                  helpContextId="variable_watch_action_context"
+                  icon="icons/createRepositoryLocation.gif"
+                  label="Create Repository Location"
+                  tooltip="Creates a repository location in unicase based on the repository of the selected resource">
+            </command>
+         </menu>
+       </menuContribution>
    </extension>
 
 </plugin>

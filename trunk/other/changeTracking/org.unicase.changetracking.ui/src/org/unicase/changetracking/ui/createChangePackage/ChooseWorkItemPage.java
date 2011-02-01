@@ -36,6 +36,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.git.GitRepository;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.navigator.ContentProvider;
 
 public class ChooseWorkItemPage extends WizardPage{
@@ -65,8 +66,8 @@ public class ChooseWorkItemPage extends WizardPage{
 		return selectedProject;
 	}
 
-	public UnicaseModelElement getSelectedWorkItem() {
-		return selectedWorkItem;
+	public WorkItem getSelectedWorkItem() {
+		return (WorkItem) selectedWorkItem;
 	}
 
 	public GitRepository getSelectedRepository() {
@@ -82,7 +83,6 @@ public class ChooseWorkItemPage extends WizardPage{
 		super(pageName, title, titleImage);
 		this.release = release;
 		attacheeDialog = new AttacheeSelectionDialog("Choose work item","Choose a work item to attach the change package to.");
-		attacheeDialog.setBlockOnOpen(true);
 		this.localRepo = localRepo;
 		labelProvider = attacheeDialog.getLabelProvider();
 		
@@ -194,11 +194,6 @@ public class ChooseWorkItemPage extends WizardPage{
 		
 		
 	}
-
-	public boolean wantCreateWorkItem() {
-		return attacheeDialog.elementIsCreateEntry(selectedWorkItem);
-	}
-
 
 	
 	

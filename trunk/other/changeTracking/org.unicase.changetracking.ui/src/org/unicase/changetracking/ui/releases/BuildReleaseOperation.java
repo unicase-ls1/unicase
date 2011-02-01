@@ -1,67 +1,29 @@
 package org.unicase.changetracking.ui.releases;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egit.ui.internal.EgitUiEditorUtils;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.changetracking.git.SayYesCredentialsProvider;
-import org.unicase.changetracking.git.Test;
+import org.eclipse.ui.WorkbenchException;
 import org.unicase.changetracking.git.commands.GitBuildReleaseCommand;
-import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
-public class BuildReleaseOperation implements IRunnableWithProgress{
+public class BuildReleaseOperation {
 
+	private static final String JAVA_PERSPECTIVE_ID = "org.eclipse.jdt.ui.JavaPerspective";
+	private boolean isContinueing;
+	private GitBuildReleaseCommand command;
 
-	private ChangeTrackingRelease release;
-	private Repository localRepo;
-	private Ref baseBranch;
-	private List<Ref> branchesToMerge;
-	private String tagName;
-	private boolean successful;
-
-
-	public BuildReleaseOperation(ChangeTrackingRelease release, Repository localRepo, Ref baseBranch, List<Ref> branchesToMerge, String tagName){
-		this.release = release;
-		this.localRepo = localRepo;
-		this.baseBranch = baseBranch;
-		this.branchesToMerge = branchesToMerge;
-		this.tagName = tagName;
+	public BuildReleaseOperation(GitBuildReleaseCommand command, boolean isContinueing) {
+		this.command = command;
+		this.isContinueing = isContinueing;
 	}
 	
-
-	public boolean isSuccessful() {
-		return successful;
-	}
-	
-
-	@Override
-	public void run(IProgressMonitor monitor) {
-
-		try{
-			new GitBuildReleaseCommand(release, localRepo, baseBranch, branchesToMerge, tagName).run(monitor);
-			successful = true;
-		} catch (Throwable t){
-			ModelUtil.logException(t);
-			return;
+	public void run(){
+		command.setContinue(isContinueing);
+		UIUtil.runProgressMonitorCommand(command, "Release was built successfully.");
+		if(command.hadConflict()){
+			try {
+				PlatformUI.getWorkbench().showPerspective(JAVA_PERSPECTIVE_ID, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+			} catch (WorkbenchException e) {
+			}
 		}
-		monitor.done();
 	}
-
 }

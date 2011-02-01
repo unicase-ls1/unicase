@@ -13,6 +13,11 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.egit.core.IteratorService;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
@@ -43,6 +48,7 @@ import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
+import org.unicase.util.UnicaseUtil;
 
 public class GitUtil {
 
@@ -143,83 +149,72 @@ public class GitUtil {
 	}
 	
 	public static void addToProjectRelative(UnicaseModelElement toAdd, Project project, UnicaseModelElement relativeTo){
-		project.addModelElement(toAdd);
+		placeRelative(toAdd,relativeTo);
 	}
 
 	public static void addToProjectRelative(UnicaseModelElement toAdd, UnicaseModelElement relativeTo) {
-		addToProjectRelative(toAdd, ModelUtil.getProject(relativeTo), relativeTo);
+		if(!placeRelative(toAdd,relativeTo)){
+			Project p = ModelUtil.getProject(relativeTo);
+			if(p != null){
+				p.addModelElement(toAdd);
+			}
+		}
+		
+	}
+	
+	
+	/**
+	 * @param newMEInstance {@link EObject} the new modelElement instance.
+	 * @return EReference the Container
+	 * @param parent The EObject to get containment references from
+	 */
+	public static EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
+		// the value of the 'EAll Containments' reference list.
+		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		EReference reference = null;
+		for (EReference containmentitem : eallcontainments) {
+
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.isInstance(newMEInstance)) {
+				reference = containmentitem;
+				break;
+			}
+		}
+		return reference;
+	}
+	
+	private static boolean placeRelative(final EObject newMEInstance, EObject parent){
+		EReference ref = getPossibleContainingReference(newMEInstance, parent);
+		if(ref != null){
+			Object r = parent.eGet(ref);
+			if(ref.isMany()){
+				((EList)r).add(newMEInstance);
+				return true;
+			}
+			return false;
+		} else if(parent.eContainer() != null){
+			return placeRelative(newMEInstance,parent.eContainer());
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public static boolean putInto(final EObject newMEInstance, EObject parent){
+		EReference ref = getPossibleContainingReference(newMEInstance, parent);
+		if(ref != null){
+			Object r = parent.eGet(ref);
+			if(ref.isMany()){
+				((EList)r).add(newMEInstance);
+				return true;
+			}
+			return false;
+		} else {
+			return false;
+		}
 		
 	}
 
-	// public static Ref checkoutRev(IResource f, GitRevision revision){
-	// Repository repo =
-	// GitRepoFinder.INSTANCE.findRepository(f.getLocation().toFile());
-	// GitBranch stream = (GitBranch) revision.getRepositoryStream();
-	// String branch = stream.getBranchName();
-	// String revHash = revision.getHash();
-	//		
-	// try {
-	// return new
-	// Git(repo).checkout().setName(branch).setStartPoint(getCommitByHash(revHash,
-	// repo)).call();
-	// } catch (JGitInternalException e) {
-	// throw new UnexpectedGitException("Checkout failed",e);
-	// } catch (RefAlreadyExistsException e) {
-	// throw new UnexpectedGitException("Checkout failed",e);
-	// } catch (RefNotFoundException e) {
-	// throw new UnexpectedGitException("Checkout failed",e);
-	// } catch (InvalidRefNameException e) {
-	// throw new UnexpectedGitException("Checkout failed",e);
-	// }
-	//		
-	// }
-
-	// public static void checkoutCommit(Repository repo, RevCommit commit){
-	// RevWalk revWalk = new RevWalk(repo);
-	// try {
-	// Ref headRef = repo.getRef(Constants.HEAD);
-	// RevCommit headCommit = revWalk.parseCommit(headRef.getObjectId());
-	// String refLogMessage = "checkout: moving from "
-	// + headRef.getTarget().getName();
-	//
-	//
-	// DirCacheCheckout dco;
-	//
-	// dco = new DirCacheCheckout(repo, headCommit
-	// .getTree(), repo.lockDirCache(), commit.getTree());
-	//
-	// dco.setFailOnConflict(true);
-	//			
-	// dco.checkout();
-	//			
-	// Ref ref = null;
-	// RefUpdate refUpdate = repo.updateRef(Constants.HEAD, ref == null);
-	// refUpdate.setForceUpdate(false);
-	// Result updateResult;
-	// if (ref != null)
-	// updateResult = refUpdate.link(ref.getName());
-	// else {
-	// refUpdate.setNewObjectId(commit);
-	// updateResult = refUpdate.forceUpdate();
-	// }
-	// } catch (NoWorkTreeException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (MissingObjectException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (IncorrectObjectTypeException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (CorruptObjectException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	//	
-	// }
+	
 
 }

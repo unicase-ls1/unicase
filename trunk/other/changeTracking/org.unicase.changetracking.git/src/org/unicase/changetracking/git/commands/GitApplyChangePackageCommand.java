@@ -52,6 +52,9 @@ public class GitApplyChangePackageCommand extends UnicaseCommand {
 			throw new NoMatchingLocalRepositoryInWorkspace("Found no local repository associated with this git repository. Clone from it first.");
 		}
 		
+		//Check the repository state
+		//FIXME Do it (check for checkout and no modifications!)
+		
 		//2. Pull the branch from remote
 		//TODO: The pull
 		

@@ -1,12 +1,15 @@
 package org.unicase.changetracking.ui.releases;
 
+
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -39,6 +42,15 @@ public class CheckReleaseDialog extends TitleAreaDialog implements IDialogHead  
 				| SWT.APPLICATION_MODAL | SWT.RESIZE);
 	}
 
+	@Override
+	protected Button createButton(Composite parent, int id, String label,
+			boolean defaultButton) {
+		if(id == Window.CANCEL){
+			return null;
+		}
+		return super.createButton(parent, id, label, defaultButton);
+	}
+	
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitleImage(PAGE_IMAGE);

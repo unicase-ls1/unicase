@@ -4,13 +4,16 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.releases;
+package org.unicase.changetracking.ui.commands;
 
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.EvaluationContext;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -26,6 +29,8 @@ import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.ReleaseChecker;
 import org.unicase.changetracking.release.Problem.Severity;
 import org.unicase.changetracking.ui.UIUtil;
+import org.unicase.changetracking.ui.releases.BuildReleaseWizard;
+import org.unicase.changetracking.ui.releases.LocalRepoFindHandler;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
@@ -40,12 +45,30 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class BuildReleaseHandler extends AbstractHandler {
+	
+	public BuildReleaseHandler() {
+		//setBaseEnabled(false);
+	
+	}
+	
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		//FIXME: Make this called when the build state changes
+//		if(evaluationContext instanceof EvaluationContext){
+//			EObject e = (EObject) ((EvaluationContext) evaluationContext).getVariable("meToOpen");
+//			if(e instanceof ChangeTrackingRelease && !((ChangeTrackingRelease)e).isBuilt()){
+//				setBaseEnabled(true);
+//				return;
+//			}
+//		}
+		setBaseEnabled(true);
+	}
 
 	/**
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		 String version = System.getProperty("java.home");
+
 		//Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if(!(me instanceof ChangeTrackingRelease)){

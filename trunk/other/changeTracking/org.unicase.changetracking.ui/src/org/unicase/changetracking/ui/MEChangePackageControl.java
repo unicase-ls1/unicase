@@ -23,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.changetracking.git.commands.GitApplyChangePackageCommand;
 import org.unicase.changetracking.git.exceptions.NoMatchingLocalRepositoryInWorkspace;
+import org.unicase.changetracking.ui.commands.ApplyChangePackageHandler;
 import org.unicase.model.attachment.PatchAttachment;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -79,7 +80,7 @@ public class MEChangePackageControl  extends MELinkControl {
 		ImageHyperlink applyLink = toolkit.createImageHyperlink(linkComposite, style);
 		Image applyImage = null;
 
-		applyImage = Activator.getImageDescriptor("icons/script_lightning.png")
+		applyImage = Activator.getImageDescriptor("icons/apply_package.gif")
 		.createImage();
 		applyLink.setImage(applyImage);
 		applyLink.setToolTipText(APPLIES_THIS_PATCH_ONTO_YOUR_WORKSPACE);
@@ -111,25 +112,9 @@ public class MEChangePackageControl  extends MELinkControl {
 		 */
 		@Override
 		public void mouseUp(MouseEvent e) {
-			try {
-				new GitApplyChangePackageCommand().applyChangePackage((GitBranchChangePackage) changePackage);
-				MessageDialog.openInformation(
-						PlatformUI.getWorkbench().
-						getActiveWorkbenchWindow().getShell(),
-						"Success!",
-						"The change package was successfully applied onto your workspace.");
-			} catch (NoMatchingLocalRepositoryInWorkspace e1) {
-				errorMessage("No matching local repository was found in workspace. Make sure you have cloned the remote repository of this change package.");
-			}
+			new ApplyChangePackageHandler().applyChangePackage((GitBranchChangePackage) changePackage);
 		}
-		
-		protected void errorMessage(String message){
-			MessageDialog.openError(
-					PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().getShell(),
-					"Error",
-					message);
-		}
+
 	}
 
 }
