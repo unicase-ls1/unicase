@@ -1,3 +1,9 @@
+# Questions on meeting
+
+
+
+
+
 # REPORTED BUGS
 
 @ FROM Chris
@@ -88,6 +94,50 @@ Error 9:
 Description/Action: (removing a project through "Delete Project...")
 An unexpected exception was thrown.
 java.lang.NullPointerException
+
+@ FROM Zardosht
+
+1. installed XMIWorksapce. Worked ok. 
+2. created a project. Ok. 
+3. wanted to add a new model element to the project. Right click on 
+project--> add model element --> in new model element dialog try to 
+use filter --> NPE 
+4. created a project with the same name twice (for example test). Two 
+are shown in navigator. But there is only one test.ucw file. It is 
+unclear to me what should be the correct behavior of the software 
+here. For example, I can change both projects. But changes in one, 
+overwrites the changes the other one made in test.ucw file. Also in 
+this case synching edior with navigator, causes and exception in error 
+log. 
+
+5. navigator does not update upon adding a new ME. 
+6. if I add a new ME form a package in new ME dialog, the next time I 
+want to add a ME, the new ME dialog only shows the package I just 
+used. All other packages are not shown. 
+7. deleting an ME works. The Navigator also gets updated immediately. 
+8. The menu item "export model element" is visible on project node. 
+Clicking it caused the following exception in error log: 
+java.lang.ArrayStoreException 
+        at org.eclipse.emf.common.util.BasicEList.assign(BasicEList.java:124) 
+        at org.eclipse.emf.common.util.BasicEList.addAllUnique(BasicEList.java:514) 
+        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.doAddAllUnique(NotifyingListImpl.java:506) 
+        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.addAllUnique(NotifyingListImpl.java:478) 
+        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.addAllUnique(NotifyingListImpl.java:406) 
+        at org.eclipse.emf.common.util.AbstractEList.addAll(AbstractEList.java:374) 
+        at org.eclipse.emf.ecore.util.EcoreUtil$Copier.copyAttribute(EcoreUtil.java:614) 
+        at org.eclipse.emf.ecore.util.EcoreUtil$Copier.copy(EcoreUtil.java:479) 
+        at org.eclipse.emf.ecore.util.EcoreUtil.copy(EcoreUtil.java:360) 
+        at org.unicase.ui.navigator.handler.ExportModelHandler.getSelfContainedModelElementTree(ExportModelHandler.java:118) 
+        at org.unicase.ui.navigator.handler.ExportModelHandler.execute(ExportModelHandler.java:63) 
+        at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294) 
+        at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476) 
+
+9. importing a project file worked ok. 
+10. I can select multiple items in navigator. However the menu items 
+are not relevant then. 
+11. Importing projects from a folder works. However as Matteo also 
+mentioned, I cannot cancel the folder selection dialog.
+
 
 
 # TODO
