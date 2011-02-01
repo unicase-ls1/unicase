@@ -5,6 +5,11 @@ import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 
+/**
+ * PropertyTester for checking whether the project status is "failed"
+ * @author kraftm, maierma
+ *
+ */
 public class ProjectStatusTester extends PropertyTester {
 	
 	/**

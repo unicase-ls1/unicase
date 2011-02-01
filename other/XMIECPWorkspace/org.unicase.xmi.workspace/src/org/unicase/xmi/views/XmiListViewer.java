@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * Shows a list where the user can select one or more items and
  * the list of the items can be retrieved with a simple method.
- * @author matti
+ * @author maierma, kraftm
  *
  */
 public class XmiListViewer extends ListViewer {

@@ -16,7 +16,7 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 /**
  * Handles the user's choice to add or remove a model from a FileProject
- * @author Markus, Matti
+ * @author kraftm, maierma
  *
  */
 public class ConfigureModelsHandler extends AbstractHandler {

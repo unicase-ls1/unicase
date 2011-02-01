@@ -16,7 +16,6 @@ import org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl;
 
 /**
  * Handler for delete project menu item.
- * 
  * @author maierma, kraftm
  */
 public class DeleteProjectHandler extends AbstractHandler {

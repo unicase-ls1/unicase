@@ -71,6 +71,14 @@ public class XMIECPFileProjectItemProvider
 		}
 		return itemPropertyDescriptors;
 	}
+	
+	/**
+	 * not needed in this implementation
+	 */
+	@Override
+	protected void addRootObjectPropertyDescriptor(Object object) {
+		//do nothing
+	}
 
 	/**
 	 * This adds a property descriptor for the Project Name feature.

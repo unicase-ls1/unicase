@@ -7,7 +7,7 @@ import org.unicase.xmi.workspace.XmiUtil;
 
 /**
  * Class needed to generalize dialogs
- * @author Markus, Matti
+ * @author kraftm, maierma
  *
  */
 public abstract class XmiAbstractHandler extends AbstractHandler {

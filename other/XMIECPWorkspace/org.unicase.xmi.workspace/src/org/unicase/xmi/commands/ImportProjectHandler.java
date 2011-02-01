@@ -14,6 +14,11 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
+/**
+ * Handler for importing a single project from filesystem or workspace
+ * @author kraftm, maierma
+ *
+ */
 public class ImportProjectHandler extends XmiAbstractHandler {
 	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
