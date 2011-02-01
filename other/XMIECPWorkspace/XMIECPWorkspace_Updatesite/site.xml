@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/XMIECPWorkspace_0.1.1.jar" id="XMIECPWorkspace" version="0.1.1">
+      <category name="Unicase"/>
+   </feature>
+   <category-def name="Unicase" label="UNICASE"/>
+</site>
