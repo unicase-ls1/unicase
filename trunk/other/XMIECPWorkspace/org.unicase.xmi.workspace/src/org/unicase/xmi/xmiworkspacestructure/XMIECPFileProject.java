@@ -9,8 +9,6 @@ package org.unicase.xmi.xmiworkspacestructure;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
