@@ -11,9 +11,11 @@ import java.util.Comparator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -126,11 +128,12 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	}
 
 	/**
-	 * Sets the labelProvider.
+	 * Sets the labelProvider. LabelProvider and containing adapterFactory will be disposed when closing this dialog
+	 * (means do not set a labelprovider or adapterfactory which is referenced by more than one object).
 	 * 
 	 * @param labelProvider is the labelProvider for this class
 	 */
-	public void setLabelProvider(ILabelProvider labelProvider) {
+	protected void setLabelProvider(ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
 	}
 
@@ -263,11 +266,15 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 */
 	@Override
 	public boolean close() {
+		if (labelProvider != null) {
+			if (labelProvider instanceof AdapterFactoryLabelProvider) {
+				AdapterFactory adapterFactory = ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory();
+				if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+					((IDisposable) adapterFactory).dispose();
+				}
+			}
+		}
 		labelProvider.dispose();
-		/*
-		 * HKQ: can't dispose adapterFactory in labelProvider cause a labelProvider can set via setLabelProvider and
-		 * adapterFactory in labelProvider can be referenced by more than one
-		 */
 		return super.close();
 	}
 
