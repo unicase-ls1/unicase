@@ -13,12 +13,16 @@ http://unicase.googlecode.com/files/06685.png
 *_The EAnnotation has the following properties:_*
 
     *  source: org.unicase.ui.meeditor
-    * key: priority value: double value from 0 to 100
-    * key: position value: left, right, bottom, `<custom>` <br>
+    * key: priority, value: double value from 0 to 100
+    * key: position, value: left, right, bottom, `<custom>`
+    * key: digits, value: int value (only valid for double)
 
-       The latter ("position") controls in which part of the editor this feature should appear - the left column, the right column or the bottom. You can also specify a custom text, in which case the feature would be displayed in a stand-alone tab with this name.
-<br>
-       The former key ("priority") is a bit tricky and there are a couple guidelines to set this up. The !BugReport example is actually most suitable for this, because it has a number of super types - !WorkItem, Checkable, !ModelElement.<br>
+==Digits==
+       The key "digits" is only valid for attributes of type EDouble and specifies the amount of fractional digits that should be displayed after the separator sign.
+==Position==
+       The key "position" controls in which part of the editor this feature should appear - the left column, the right column or the bottom. You can also specify a custom text, in which case the feature would be displayed in a stand-alone tab with this name.
+==Priority==
+       The key "priority" is a bit tricky and there are a couple guidelines to set this up. The !BugReport example is actually most suitable for this, because it has a number of super types - !WorkItem, Checkable, !ModelElement.<br>
        
 
        As previously mentioned, the priority field should contain a double value from 0.0 to 100.0 (0.0 being the highest priority). Usually if a super type is present, its features are important and should have higher priority that the ones from a subclass. Therefore, the "priority line" is split into intervals of 10 - 0.0 to 10.0, 10.1 to 20.0, .... 90.0 to 100.0 - and every type (from the top down) lies in a specific interval. In the example of the !BugReport, the type hierarchy is as follows:<br>
