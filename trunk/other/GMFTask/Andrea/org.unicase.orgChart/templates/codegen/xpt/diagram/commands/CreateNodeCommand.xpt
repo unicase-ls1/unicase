@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2007, 2008 Borland Software Corporation
+﻿/*
+ * Copyright (c) 2007, 2010 Borland Software Corporation and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,11 +10,50 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  */
 
-«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"»
-«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
-«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
-«EXTENSION xpt::GenModelUtils»
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::diagram::Utils»
+
+«DEFINE CreateNodeCommand FOR gmfgen::GenNode-»
+«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().editCommandsPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «createCommandClassName» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
+
+	«EXPAND _constructor-»
+
+	«EXPAND getElementToEdit-»
+
+	«EXPAND canExecuteMethod-»
+
+	«EXPAND doExecuteWithResultMethod»
+
+	«EXPAND doConfigureMethod»	
+}
+«ENDDEFINE»
+
+
+«DEFINE doExecuteWithResultMethod FOR gmfgen::GenNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
+«IF modelFacet.isPhantomElement()-»
+		«EXPAND phantomElementCreation(self, 'newElement') FOR modelFacet»
+«ELSE-»
+		«EXPAND normalElementCreation(self, 'newElement') FOR modelFacet»
+«ENDIF»
+		«EXPAND initialize(self, 'newElement') FOR modelFacet-»
+		«REM» added following two lines«ENDREM»
+		org.unicase.model.diagram.MEDiagram childHolder = (org.unicase.model.diagram.MEDiagram) getElementToEdit();
+		childHolder.getElements().add(newElement);
+		
+«IF true/*FIXME boolean needsExternalConfiguration*/»
+		doConfigure(newElement, monitor, info);
+«ENDIF»
+		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«EXPAND MetaModel::DowncastToEObject('newElement') FOR modelFacet.metaClass»);
+		return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
+	}
+«ENDDEFINE»
+
 
 «DEFINE doDefaultElementCreation_Normal(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-»
 	«IF modelElementInitializer <> null or hasExplicitChildFeature(self.repr())-»
