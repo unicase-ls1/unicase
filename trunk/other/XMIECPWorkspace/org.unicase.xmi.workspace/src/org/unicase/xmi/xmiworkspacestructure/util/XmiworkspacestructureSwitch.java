@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.ecp.model.workSpaceModel.ECPProject;
+
 import org.unicase.xmi.xmiworkspacestructure.*;
 
 /**
@@ -90,6 +92,7 @@ public class XmiworkspacestructureSwitch<T> {
 			case XmiworkspacestructurePackage.XMIECP_PROJECT: {
 				XMIECPProject xmiecpProject = (XMIECPProject)theEObject;
 				T result = caseXMIECPProject(xmiecpProject);
+				if (result == null) result = caseECPProject(xmiecpProject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -97,19 +100,7 @@ public class XmiworkspacestructureSwitch<T> {
 				XMIECPFileProject xmiecpFileProject = (XMIECPFileProject)theEObject;
 				T result = caseXMIECPFileProject(xmiecpFileProject);
 				if (result == null) result = caseXMIECPProject(xmiecpFileProject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case XmiworkspacestructurePackage.XMIECP_PROJECT_CONTAINER: {
-				XMIECPProjectContainer xmiecpProjectContainer = (XMIECPProjectContainer)theEObject;
-				T result = caseXMIECPProjectContainer(xmiecpProjectContainer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case XmiworkspacestructurePackage.XMIECP_FOLDER: {
-				XMIECPFolder xmiecpFolder = (XMIECPFolder)theEObject;
-				T result = caseXMIECPFolder(xmiecpFolder);
-				if (result == null) result = caseXMIECPProjectContainer(xmiecpFolder);
+				if (result == null) result = caseECPProject(xmiecpFileProject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -148,32 +139,17 @@ public class XmiworkspacestructureSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>XMIECP Project Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ECP Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>XMIECP Project Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ECP Project</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseXMIECPProjectContainer(XMIECPProjectContainer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>XMIECP Folder</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>XMIECP Folder</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseXMIECPFolder(XMIECPFolder object) {
+	public T caseECPProject(ECPProject object) {
 		return null;
 	}
 

@@ -9,7 +9,8 @@ package org.unicase.xmi.xmiworkspacestructure;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
+
+import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,13 +71,31 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	int XMIECP_PROJECT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Workspace</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMIECP_PROJECT__WORKSPACE = WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE;
+
+	/**
+	 * The feature id for the '<em><b>Root Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMIECP_PROJECT__ROOT_OBJECT = WorkSpaceModelPackage.ECP_PROJECT__ROOT_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int XMIECP_PROJECT__PROJECT_NAME = 0;
+	int XMIECP_PROJECT__PROJECT_NAME = WorkSpaceModelPackage.ECP_PROJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Project Description</b></em>' attribute.
@@ -85,7 +104,7 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XMIECP_PROJECT__PROJECT_DESCRIPTION = 1;
+	int XMIECP_PROJECT__PROJECT_DESCRIPTION = WorkSpaceModelPackage.ECP_PROJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>XMIECP Project</em>' class.
@@ -94,7 +113,7 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XMIECP_PROJECT_FEATURE_COUNT = 2;
+	int XMIECP_PROJECT_FEATURE_COUNT = WorkSpaceModelPackage.ECP_PROJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFileProjectImpl <em>XMIECP File Project</em>}' class.
@@ -105,6 +124,24 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	 * @generated
 	 */
 	int XMIECP_FILE_PROJECT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Workspace</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMIECP_FILE_PROJECT__WORKSPACE = XMIECP_PROJECT__WORKSPACE;
+
+	/**
+	 * The feature id for the '<em><b>Root Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMIECP_FILE_PROJECT__ROOT_OBJECT = XMIECP_PROJECT__ROOT_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
@@ -134,114 +171,13 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	int XMIECP_FILE_PROJECT__XMI_FILE_PATH = XMIECP_PROJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Elements</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FILE_PROJECT__BASE_ELEMENTS = XMIECP_PROJECT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>XMIECP File Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int XMIECP_FILE_PROJECT_FEATURE_COUNT = XMIECP_PROJECT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPProjectContainerImpl <em>XMIECP Project Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.xmi.xmiworkspacestructure.impl.XMIECPProjectContainerImpl
-	 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getXMIECPProjectContainer()
-	 * @generated
-	 */
-	int XMIECP_PROJECT_CONTAINER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Internal Projects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Container Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_PROJECT_CONTAINER__CONTAINER_NAME = 1;
-
-	/**
-	 * The number of structural features of the '<em>XMIECP Project Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_PROJECT_CONTAINER_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFolderImpl
-	 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getXMIECPFolder()
-	 * @generated
-	 */
-	int XMIECP_FOLDER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Internal Projects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FOLDER__INTERNAL_PROJECTS = XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS;
-
-	/**
-	 * The feature id for the '<em><b>Container Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FOLDER__CONTAINER_NAME = XMIECP_PROJECT_CONTAINER__CONTAINER_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Xmi Directory Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FOLDER__XMI_DIRECTORY_PATH = XMIECP_PROJECT_CONTAINER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Contained Files</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FOLDER__CONTAINED_FILES = XMIECP_PROJECT_CONTAINER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>XMIECP Folder</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XMIECP_FOLDER_FEATURE_COUNT = XMIECP_PROJECT_CONTAINER_FEATURE_COUNT + 2;
+	int XMIECP_FILE_PROJECT_FEATURE_COUNT = XMIECP_PROJECT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -296,81 +232,6 @@ public interface XmiworkspacestructurePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getXMIECPFileProject_XmiFilePath();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getBaseElements <em>Base Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Base Elements</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject#getBaseElements()
-	 * @see #getXMIECPFileProject()
-	 * @generated
-	 */
-	EAttribute getXMIECPFileProject_BaseElements();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer <em>XMIECP Project Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>XMIECP Project Container</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer
-	 * @generated
-	 */
-	EClass getXMIECPProjectContainer();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getInternalProjects <em>Internal Projects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Internal Projects</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getInternalProjects()
-	 * @see #getXMIECPProjectContainer()
-	 * @generated
-	 */
-	EReference getXMIECPProjectContainer_InternalProjects();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getContainerName <em>Container Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Container Name</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPProjectContainer#getContainerName()
-	 * @see #getXMIECPProjectContainer()
-	 * @generated
-	 */
-	EAttribute getXMIECPProjectContainer_ContainerName();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder <em>XMIECP Folder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>XMIECP Folder</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPFolder
-	 * @generated
-	 */
-	EClass getXMIECPFolder();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getXmiDirectoryPath <em>Xmi Directory Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Xmi Directory Path</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getXmiDirectoryPath()
-	 * @see #getXMIECPFolder()
-	 * @generated
-	 */
-	EAttribute getXMIECPFolder_XmiDirectoryPath();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getContainedFiles <em>Contained Files</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Contained Files</em>'.
-	 * @see org.unicase.xmi.xmiworkspacestructure.XMIECPFolder#getContainedFiles()
-	 * @see #getXMIECPFolder()
-	 * @generated
-	 */
-	EAttribute getXMIECPFolder_ContainedFiles();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -437,66 +298,6 @@ public interface XmiworkspacestructurePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute XMIECP_FILE_PROJECT__XMI_FILE_PATH = eINSTANCE.getXMIECPFileProject_XmiFilePath();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Elements</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute XMIECP_FILE_PROJECT__BASE_ELEMENTS = eINSTANCE.getXMIECPFileProject_BaseElements();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPProjectContainerImpl <em>XMIECP Project Container</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.xmi.xmiworkspacestructure.impl.XMIECPProjectContainerImpl
-		 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getXMIECPProjectContainer()
-		 * @generated
-		 */
-		EClass XMIECP_PROJECT_CONTAINER = eINSTANCE.getXMIECPProjectContainer();
-
-		/**
-		 * The meta object literal for the '<em><b>Internal Projects</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference XMIECP_PROJECT_CONTAINER__INTERNAL_PROJECTS = eINSTANCE.getXMIECPProjectContainer_InternalProjects();
-
-		/**
-		 * The meta object literal for the '<em><b>Container Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute XMIECP_PROJECT_CONTAINER__CONTAINER_NAME = eINSTANCE.getXMIECPProjectContainer_ContainerName();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFolderImpl <em>XMIECP Folder</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.xmi.xmiworkspacestructure.impl.XMIECPFolderImpl
-		 * @see org.unicase.xmi.xmiworkspacestructure.impl.XmiworkspacestructurePackageImpl#getXMIECPFolder()
-		 * @generated
-		 */
-		EClass XMIECP_FOLDER = eINSTANCE.getXMIECPFolder();
-
-		/**
-		 * The meta object literal for the '<em><b>Xmi Directory Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute XMIECP_FOLDER__XMI_DIRECTORY_PATH = eINSTANCE.getXMIECPFolder_XmiDirectoryPath();
-
-		/**
-		 * The meta object literal for the '<em><b>Contained Files</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute XMIECP_FOLDER__CONTAINED_FILES = eINSTANCE.getXMIECPFolder_ContainedFiles();
 
 	}
 
