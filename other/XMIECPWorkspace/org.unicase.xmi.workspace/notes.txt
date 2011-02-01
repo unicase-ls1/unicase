@@ -1,4 +1,4 @@
-# Questions on meeting
+# REPORTED BUGS
 
 - The menu item "export model element" is visible on project node. 
 Clicking it caused the following exception in error log: 
@@ -32,7 +32,8 @@ Log)
 - deleting a project while it's opened in the MEEditor causes a 
 NullPointerException ("An unexpected exception was thrown" in the Error Log) 
 => ask Jonas/Max: How to handle this? How can we close the tabs before deleting the project?
-	- test it with the EMFStore workspace
+	- test it with the EMFStore workspace, if doesn't occur check onDelete() in MEEditor
+	- MEEditor -> init() -> ContextListener method should be called
 
 5. navigator does not update upon adding a new ME.
 => the case if there is no name yet -> ask Jonas
@@ -61,10 +62,6 @@ org.eclipse.emf.common.util.WrappedException: An exception was ignored during co
 => model specific misbehaviour, e.g. ecore
 
 
-# REPORTED BUGS
-
-@ FROM Chris
-
 @ FROM Matteo
 - when creating a new project ("New Project...") and selecting the 
 Location before entering the name, the created file will be some kind of 
@@ -82,8 +79,6 @@ in project A, i can still change it in project B; restarting Eclipse
 shows, that file XYZ appears again now in project A with the new changes 
 done in project B)
 => created TODOs
-
-@ FROM Stephan
 
 @ FROM Tobi
 - (Navigator does not refresh when i.e. creating one project after another; 
@@ -118,6 +113,8 @@ are not relevant then.
 
 
 # TODO
+- Issue with open project in MEEditor
+
 - summary presentation (5 min)
 	- problem
 	- our solution -> requirements
