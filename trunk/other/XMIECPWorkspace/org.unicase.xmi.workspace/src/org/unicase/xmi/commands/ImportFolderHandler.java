@@ -34,6 +34,7 @@ public class ImportFolderHandler extends AbstractHandler {
 		ImportFolderDialog dialog = new ImportFolderDialog(PlatformUI
 			.getWorkbench().getDisplay().getActiveShell(), this);
 
+		files.clear();
 		if(dialog.open() == Window.OK) {
 			
 			//TODO check whether name and path is valid

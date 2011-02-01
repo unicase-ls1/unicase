@@ -24,6 +24,11 @@ public class XmiUtil {
 	public static final String WORKSPACE_PATH = DEFAULT_LOCATION;
 	
 	/**
+	 * The name of the model the XMIECPProjects are contained in.
+	 */
+	public static final String XMI_MODELNAME = "org.unicase.xmi.structureModel";
+	
+	/**
 	 * Returns whether a string is null or equals en empty string.
 	 * @param str The string to test
 	 * @return True when string is not null and is not empty, else false
@@ -36,6 +41,6 @@ public class XmiUtil {
 	 * Contains the possible status of a project
 	 */
 	public enum PROJECT_STATUS {
-		LOADED, FAILED, NOTLOADED
+		LOADED, FAILED, NOTLOADED, DUPLICATED
 	}
 }

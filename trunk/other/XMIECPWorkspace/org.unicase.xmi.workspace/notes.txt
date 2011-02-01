@@ -41,11 +41,6 @@ NullPointerException ("An unexpected exception was thrown" in the Error Log)
 => the case if there is no name yet -> ask Jonas
 -> send an email, no core issue
 
-OK - If I enter two lines in the project description and then look at 
-	the description after double clicking on the project in the navigator, 
-	there's only one line shown and there's even no space between "the 
-	lines".
-
 @ FROM Matteo
 IMPORTANT
 - when creating a new project ("New Project...") and selecting the 
@@ -57,41 +52,17 @@ not selecting any file (canceling the Folder/File Selection-Dialog), a
 though the file doesn't exist (but is created after clicking Yes)
 => created TODOs
 
-IMPORTANT
-- it's possible to import the same project-file into the workspace 
-twice, allowing it to work simultaneously on the same .xmi file. 
-Changing one project doesn't update the other one (if I delete file XYZ 
-in project A, i can still change it in project B; restarting Eclipse 
-shows, that file XYZ appears again now in project A with the new changes 
-done in project B)
-=> created TODOs
-
 @ FROM Tobi
 - (Navigator does not refresh when i.e. creating one project after another; 
 and also while creating new subelements i.e. ecore model)
 => we were unable to reproduce this bug...
-
-Error 6:
-Description/Action: (Creating new Project, then New Model Element -> choosing XMIECPFolder -> putting new Project in this folder)
-Unhandled event loop exception
-=> created TODOs
-
-Error 7:
-IMPORTANT
-Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
-An unexpected exception was thrown.
-java.lang.NullPointerException
-=> check again, probably more difficult problem with duplicate imports, etc...
 
 @ FROM Zardosht
 10. I can select multiple items in navigator. However the menu items 
 are not relevant then.
 => only selecting one is handled
 
-
 # TODO
-OK - Issue with open project in MEEditor
-
 - summary presentation (5 min)
 	- problem
 	- our solution -> requirements
@@ -202,3 +173,27 @@ OK - prepare a feature
 	OK - test deployment
 	
 OK - in the "Import Project from Folder"-Dialog when Browsing the Filesystem, cancelling the Folder Selection-Dialog doesn't seem to work (the Dialog reopens after cancelling, so that I have to choose a folder to close it) => fixed, but was intended!
+
+OK - FIXED - Error 6:
+	Description/Action: (Creating new Project, then New Model Element -> choosing XMIECPFolder -> putting new Project in this folder)
+	Unhandled event loop exception
+	
+OK - FIXED - IMPORTANT - Error 7:
+	Description/Action: (reimporting a deleted project/.ucw file through "import projects from folder")
+	An unexpected exception was thrown.
+	java.lang.NullPointerException
+	
+OK - FIXED - IMPORTANT
+	it's possible to import the same project-file into the workspace 
+	twice, allowing it to work simultaneously on the same .xmi file. 
+	Changing one project doesn't update the other one (if I delete file XYZ 
+	in project A, i can still change it in project B; restarting Eclipse 
+	shows, that file XYZ appears again now in project A with the new changes 
+	done in project B)
+	
+OK - Issue with open project in MEEditor
+
+OK - If I enter two lines in the project description and then look at 
+	the description after double clicking on the project in the navigator, 
+	there's only one line shown and there's even no space between "the 
+	lines".

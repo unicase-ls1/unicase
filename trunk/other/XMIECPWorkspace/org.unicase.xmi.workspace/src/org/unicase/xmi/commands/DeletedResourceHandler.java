@@ -49,7 +49,7 @@ public class DeletedResourceHandler extends AbstractHandler {
 			return null;
 		}
 		
-		DeletedObjectDialog dialog = new DeletedObjectDialog(false, project.getXmiFilePath());
+		DeletedObjectDialog dialog = new DeletedObjectDialog(project.getProjectStatus(), project.getXmiFilePath());
 		Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 		
 		switch(dialog.getResult()) {

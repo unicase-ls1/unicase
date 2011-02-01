@@ -1,15 +1,14 @@
 package org.unicase.xmi.views;
 
-
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 
+/**
+ * This dialog shows up if the user clicks on "Resolve" when the project's status is "failed" or "duplicated".
+ * @author matti, markus
+ *
+ */
 public class DeletedObjectDialog {
-	
-	/**
-	 * Determines whether the lost object was a file or folder.
-	 */
-	private boolean isFolder = false;
-
 	/**
 	 * The dialog that's being displayed.
 	 */
@@ -22,18 +21,30 @@ public class DeletedObjectDialog {
 	
 	/**
 	 * Creates a Dialog where the user is asked what to do if the path or folder at the given location does not exist.
-	 * @param isFolder True when the object is a folder, else false.
+	 * @param status The current status of the project.
 	 * @param failedPath The path where the file/folder used to be.
 	 */
-	public DeletedObjectDialog(boolean isFolder, String failedPath) {
-		// set the title of the dialog
-		String title = "WARNING - ";
-		if(isFolder) title += "Folder ";
-		else title += "File ";
-		title += "not found!";
-
-		// set the message of the dialog
-		String message = "\"" + failedPath  + "\" not found. What would you like to do? Would you like to remove it from workspace, import it or create it?";
+	public DeletedObjectDialog(PROJECT_STATUS status, String failedPath) {
+		
+		// set the title and the message of the dialog
+		String title, message;
+		
+		if(status == PROJECT_STATUS.FAILED) {
+			// set the title and message in case the file underneath the project cannot be found.
+			title = "WARNING - ";
+			title += "File ";
+			title += "not found!";
+	
+			message = "\"" + failedPath  + "\" not found.";
+			message += "What would you like to do? ";
+			message += "Would you like to remove it from the workspace, import or create it?";
+		}
+		else {
+			// set the title and message in case the project is duplicated
+			title = "WARNING - Projectfile already in use!";
+			message = "What would you like to do? ";
+			message += "Would you like to remove it from the workspace, import another file or create a new file?";
+		}
 		
 		dialog = new MessageDialog(null, title, null, message, MessageDialog.WARNING, createButtons(), 0);
 		result = dialog.open();
@@ -43,25 +54,14 @@ public class DeletedObjectDialog {
 	 * Creates the buttons of the dialog.
 	 */
 	private String[] createButtons() {
-		String[] buttons;
 		/* add options for user
-		 * - in case of file:
 		 *    - remove project from workspace
-		 *    - import file
+		 *    - import file from filesystem/workspace
 		 *    - new project 
-		 * - in case of folder:
-		 *    - remove folder form workspace
-		 *    - new folder or import if existent
 		 */
-		
-		if(isFolder) {
-			// case FOLDER
-			buttons = new String[] {"Remove", "New/Import"};
-		}
-		else {
-			// case FILE
-			buttons = new String[] {"Remove", "Import from Filesystem", "Import from Workspace", "New"};
-		}
+		String[] buttons = new String[] {
+				"Remove", "Import from Filesystem", "Import from Workspace", "New"
+			};
 		
 		return buttons;
 	}
@@ -71,29 +71,24 @@ public class DeletedObjectDialog {
 	 * @return The integer that is returned stands for one of the following results:<br />
 	 *  1 = remove object from workspace<br />
 	 *  2 = import file from filesystem<br />
-	 *  3 = new/import folder<br />
 	 *  4 = new file<br />
 	 *  5 = import file from workspace<br />
 	 */
-	public int getResult() {
-		// mapping
+	public int getResult() {		
 		int res;
 		
-		if(isFolder) {
-			switch(result) {
-				case 1: res = 3; break;
-				default: res = 1; break;
-			}
-		}
-		else {
-			// it's a file
-			switch(result) {
+		/*
+		 * The reason why number 3 was left out is because the folder was
+		 * completely removed from the workspace structure model.
+		 */
+		
+		// mapping
+		switch(result) {
 			case 0: res = 1; break;
 			case 1: res = 2; break;
 			case 2: res = 5; break;
 			case 3: res = 4; break;
 			default: res = 0; break;
-			}
 		}
 		
 		return res;

@@ -111,16 +111,18 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					pro.setProjectStatus(PROJECT_STATUS.NOTLOADED);
 					String path = pro.getXmiFilePath();
 					
-					//TODO add check for duplicate projects
-					// -> set project to failed + set status "DUPLICATED" + change ItemProvider to show [DUPLICATED] behind title
-					
-					File projRes = new File(path);
-					
-					if(!projRes.exists()) { 
-						// set project status to failed
-						pro.setProjectStatus(PROJECT_STATUS.FAILED);
+					// check for duplicate projects
+					if(projectPathExists(path)) {
+						pro.setProjectStatus(PROJECT_STATUS.DUPLICATED);
+					}
+					else {
+						if(!(new File(path)).exists()) { 
+							// set project status to failed
+							pro.setProjectStatus(PROJECT_STATUS.FAILED);
+						}
 					}
 					
+					// add project to workspace
 					pro.setWorkspace(this);
 					pro.eAdapters().add(projectListener);
 					getProjects().add(pro);
@@ -135,6 +137,24 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		
 	} // END loadProjects()
 	
+	/**
+	 * Checks whether a project in the workspace has the same path than the given one.
+	 * @param path Path of a xmi file.
+	 * @return True if the path is already in the workspace, otherwise false
+	 */
+	public boolean projectPathExists(String path) {
+		// if projects is not set or null just return false
+		if(projects == null || projects.isEmpty()) return false;
+		
+		// iterate over all projects and check for their path		
+		for(ECPProject p: projects) {
+			if(p instanceof XMIECPFileProject && ((XMIECPFileProject) p).getXmiFilePath().equals(path)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void buildProjectListener() {
 		projectListener = new EContentAdapter() {
 			
