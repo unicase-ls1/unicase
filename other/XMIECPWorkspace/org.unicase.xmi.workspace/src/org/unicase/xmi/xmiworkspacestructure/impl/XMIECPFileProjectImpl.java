@@ -233,13 +233,15 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 			}
 		}
 		else {
-			// just load the resource
-			loadResource(resourceSetImpl, xmiUri);
-			this.resource.eAdapters().add(rootlevelAdapter);
-			
-			// set the object as initialized
-			objectInitialized = true;
-			projectStatus = PROJECT_STATUS.LOADED;
+			if(projectStatus != PROJECT_STATUS.DUPLICATED) {
+				// load the resource
+				loadResource(resourceSetImpl, xmiUri);
+				this.resource.eAdapters().add(rootlevelAdapter);
+				
+				// set the object as initialized
+				objectInitialized = true;
+				projectStatus = PROJECT_STATUS.LOADED;
+			}
 		}
 	}
 	

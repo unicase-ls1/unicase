@@ -48,8 +48,15 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		
 		// if there is no package registered, just return all packages
 		if(result.size() == 0) {
-			//TODO filter our own package
-			return UnicaseUtil.getAllModelElementEClasses();
+			// filter our own package and remove it from the result set
+			Set<EClass> allModelClasses = UnicaseUtil.getAllModelElementEClasses();
+			Iterator<EClass> it = allModelClasses.iterator();
+			while(it.hasNext()) {
+				EClass clazz = it.next();
+				if(clazz.getEPackage().getNsPrefix() != XmiUtil.XMI_MODELNAME) {
+					result.add(clazz);
+				}
+			}
 		}
 		return result;
 	}

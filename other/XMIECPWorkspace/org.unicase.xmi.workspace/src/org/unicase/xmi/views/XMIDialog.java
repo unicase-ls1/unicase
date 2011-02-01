@@ -2,6 +2,7 @@ package org.unicase.xmi.views;
 
 import java.io.File;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -16,7 +17,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.commands.XmiAbstractHandler;
+import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XmiUtil;
 
 /**
@@ -131,13 +137,31 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	@Override
 	public void okPressed() {
 		
-		//TODO check if location already exists in workspace, if so -> warning "Project Path already present" + OK button
-		// if OK -> return to dialog
+		// check if location already exists in workspace
+		//  if so -> warning -> return to dialog
+		boolean duplicate = false;
 		
-		handler.setProjectName(txtProjectName.getText());
-		handler.setProjectDescription(txtProjectDescription.getText());
-		handler.setProjectLocation(txtProjectLocation.getText());
-		close();
+		try {
+			ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
+			if(ws instanceof XMIECPWorkspace) {
+				if(((XMIECPWorkspace) ws).projectPathExists(txtProjectLocation.getText())) {
+					String warningTitle = "Duplicate Path in Workspace";
+					String warningMessage = "The path you entered already exists in the workspace.";
+					MessageDialog.openWarning(shell, warningTitle, warningMessage);
+					duplicate = true;
+				}
+			}
+			
+		} catch (NoWorkspaceException e) {
+			new XMIWorkspaceException("No workspace available. Please check your configuration.", e);
+		}
+		
+		if(!duplicate) {
+			handler.setProjectName(txtProjectName.getText());
+			handler.setProjectDescription(txtProjectDescription.getText());
+			handler.setProjectLocation(txtProjectLocation.getText());
+			close();
+		}
 	}
 	
 	/**

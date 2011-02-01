@@ -13,14 +13,15 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 public class ProjectStatusTester extends PropertyTester {
 	
 	/**
-	 * Return true when the project is a XMIECPFilePRoject and the project's status is "failed".
+	 * Return true when the project is a XMIECPFilePRoject and the project's status is "failed" or "duplicated".
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		
 		if (receiver instanceof XMIECPProject){
 			XMIECPFileProject project = (XMIECPFileProject) receiver;
 			
-			if (project.getProjectStatus() == PROJECT_STATUS.FAILED){
+			if (project.getProjectStatus() == PROJECT_STATUS.FAILED ||
+					project.getProjectStatus() == PROJECT_STATUS.DUPLICATED) {
 				return true;
 			}
 		}
