@@ -162,7 +162,6 @@ public class XMIECPFileProjectItemProvider
 	 */
 	private String getTextGen(Object object) {
 		String label = ((XMIECPFileProject)object).getProjectName();
-		
 		return label == null || label.length() == 0 ?
 			getString("_UI_XMIECPFileProject_type") :
 			getString("_UI_XMIECPFileProject_type") + " " + label;
