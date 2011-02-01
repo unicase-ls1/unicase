@@ -103,23 +103,21 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		browseButton.addSelectionListener(new SelectionListener() {
 			
 			public void widgetDefaultSelected(SelectionEvent e) {
+				// ask the user for the path in the filesystem
 				DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
-				String path = null;
-				
-				// ask for a path until the user enters one
-				while(path == null || path.equals("")) {
-					path = dirDialog.open();
-				}
+				String path = dirDialog.open();
 				
 				// set the path to the text field
-				txtFolderLocation.setText(path);
-				
-				// try to load contents
-				tryLoadingProjects(loadableFiles, path, getShell());
-				
-				// add projects to viewer
-				for(String s: loadableFiles) {
-					listViewer.add(s);
+				if(path != null && path != "") {
+					txtFolderLocation.setText(path);
+					
+					// try to load contents
+					tryLoadingProjects(loadableFiles, path, getShell());
+					
+					// add projects to viewer
+					for(String s: loadableFiles) {
+						listViewer.add(s);
+					}
 				}
 			}
 
