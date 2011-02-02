@@ -45,22 +45,14 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void addAdapter(Notifier notifier) {
+		if (!notifier.eAdapters().contains(this)) {
+			super.addAdapter(notifier);
+		}
 		if (!isInitializing && notifier instanceof EObject && !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
-			// ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-			// handle same id but different instance, probably copied element
-
-			// EM: see comment on ModelUtil.reassignModelElementIds
-			// if (projectImpl.contains(modelElement) && projectImpl.getModelElement(modelElementId) != modelElement) {
-			// ModelUtil.reassignModelElementIds(modelElement);
-			// }
-
 			if (!projectImpl.containsInstance(modelElement) && isInProject(modelElement)) {
 				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
 			}
-		}
-		if (!notifier.eAdapters().contains(this)) {
-			super.addAdapter(notifier);
 		}
 	}
 
