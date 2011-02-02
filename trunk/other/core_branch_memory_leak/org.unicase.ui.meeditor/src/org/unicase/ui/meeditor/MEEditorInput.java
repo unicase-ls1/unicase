@@ -20,6 +20,7 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.services.IDisposable;
 import org.unicase.ecp.model.ModelElementContext;
 
 /**
@@ -29,7 +30,7 @@ import org.unicase.ecp.model.ModelElementContext;
  * @author shterev
  * @author naughton
  */
-public class MEEditorInput implements IEditorInput {
+public class MEEditorInput implements IEditorInput, IDisposable {
 
 	private EObject modelElement;
 	private EStructuralFeature problemFeature;
@@ -44,7 +45,7 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public MEEditorInput(EObject me, ModelElementContext context) {
 		super();
-		// jc: open
+		// hkq: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -205,6 +206,22 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public ModelElementContext getModelElementContext() {
 		return modelElementContext;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.services.IDisposable#dispose()
+	 */
+	public void dispose() {
+		// TODO Auto-generated method stub
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = (AdapterFactoryLabelProvider) labelProvider
+			.getLabelProvider();
+		ComposedAdapterFactory adapterFactory = (ComposedAdapterFactory) adapterFactoryLabelProvider
+			.getAdapterFactory();
+		adapterFactory.dispose();
+		// adapterFactoryLabelProvider.dispose();
+		labelProvider.dispose();
 	}
 
 }
