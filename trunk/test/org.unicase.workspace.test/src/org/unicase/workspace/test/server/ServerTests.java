@@ -33,8 +33,6 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.SerializationException;
-import org.unicase.projectgenerator.TestProjectGenerator;
-import org.unicase.projectgenerator.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
@@ -112,8 +110,9 @@ public class ServerTests {
 		SetupHelper.startSever();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		login(SetupHelper.getServerInfo());
-		TestProjectGenerator projectGenerator = new TestProjectGenerator(new TestProjectParmeters());
-		generatedProject = projectGenerator.generateProject();
+		// FIXME: readd when new project generator is available
+		// TestProjectGenerator projectGenerator = new TestProjectGenerator(new TestProjectParmeters());
+		// generatedProject = projectGenerator.generateProject();
 		projectsOnServerBeforeTest = 1;
 		initArguments();
 	}
@@ -232,8 +231,8 @@ public class ServerTests {
 	 */
 	public static HistoryQuery createHistoryQuery(PrimaryVersionSpec ver1, PrimaryVersionSpec ver2) {
 		HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
-		historyQuery.setSource((PrimaryVersionSpec) EcoreUtil.copy(ver1));
-		historyQuery.setTarget((PrimaryVersionSpec) EcoreUtil.copy(ver2));
+		historyQuery.setSource(EcoreUtil.copy(ver1));
+		historyQuery.setTarget(EcoreUtil.copy(ver2));
 		return historyQuery;
 	}
 

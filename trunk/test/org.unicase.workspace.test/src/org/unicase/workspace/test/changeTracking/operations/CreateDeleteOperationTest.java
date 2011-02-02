@@ -43,6 +43,7 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.Solution;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.ActionItem;
@@ -90,6 +91,74 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
 		assertEquals(0, createDeleteOperation.getSubOperations().size());
 		assertEquals(false, createDeleteOperation.isDelete());
+	}
+
+	/**
+	 * Test adding an element with cross references to an existing element.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void createElementwithCrossreferencesTest() throws UnsupportedOperationException,
+		UnsupportedNotificationException {
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+			}
+		}.run(false);
+
+		assertEquals(true, getProject().containsInstance(useCase));
+		assertEquals(getProject(), ModelUtil.getProject(useCase));
+
+		final FunctionalRequirement functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				useCase.getFunctionalRequirements().add(functionalRequirement);
+				clearOperations();
+			}
+		}.run(false);
+
+		assertEquals(functionalRequirement, useCase.getFunctionalRequirements().get(0));
+		assertEquals(useCase, functionalRequirement.getUseCases().get(0));
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(functionalRequirement);
+			}
+		}.run(false);
+
+		assertEquals(true, getProject().containsInstance(functionalRequirement));
+		assertEquals(getProject(), ModelUtil.getProject(functionalRequirement));
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof CreateDeleteOperation);
+		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+
+		ModelElementId funtionalRQID = ModelUtil.getProject(useCase).getModelElementId(functionalRequirement);
+
+		assertEquals(funtionalRQID, createDeleteOperation.getModelElementId());
+		assertEquals(2, createDeleteOperation.getSubOperations().size());
+		assertEquals(false, createDeleteOperation.isDelete());
+
+		MultiReferenceOperation subOperation1 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
+			1);
+		assertEquals(functionalRequirement, getProject().getModelElement(subOperation1.getModelElementId()));
+		assertEquals(useCase, getProject().getModelElement(subOperation1.getReferencedModelElements().get(0)));
+
+		MultiReferenceOperation subOperation2 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
+			0);
+		assertEquals(useCase, getProject().getModelElement(subOperation2.getModelElementId()));
+		assertEquals(functionalRequirement,
+			getProject().getModelElement(subOperation2.getReferencedModelElements().get(0)));
 	}
 
 	/**
@@ -285,8 +354,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, referencedModelElements3.get(0));
 
 		// ((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 		Project loadedProject = loadedProjectSpace.getProject();
 
 		assertEquals(false, loadedProject.containsInstance(useCase));
@@ -616,8 +685,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(230, getProjectSpace().getOperations().size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
 	}
@@ -674,8 +743,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(2, subOperations.size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -755,8 +824,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(sectionId, multiReferenceOperation.getModelElementId());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -793,8 +862,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -813,7 +882,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		meeting.setIdentifiedIssuesSection(issueMeeting);
 		meeting.setIdentifiedWorkItemsSection(workItemMeetingSecion);
 
-		Meeting copiedMeeting = (Meeting) EcoreUtil.copy(meeting);
+		Meeting copiedMeeting = EcoreUtil.copy(meeting);
 		assertFalse(copiedMeeting.getIdentifiedIssuesSection() == meeting.getIdentifiedIssuesSection());
 		assertFalse(copiedMeeting.getIdentifiedWorkItemsSection() == meeting.getIdentifiedWorkItemsSection());
 
