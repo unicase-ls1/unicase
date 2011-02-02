@@ -37,9 +37,8 @@ NullPointerException ("An unexpected exception was thrown" in the Error Log)
 	- test it with the EMFStore workspace, if doesn't occur check onDelete() in MEEditor
 	- MEEditor -> init() -> ContextListener method should be called
 
-5. navigator does not update upon adding a new ME.
-=> the case if there is no name yet -> ask Jonas
--> send an email, no core issue
+- navigator does not update upon adding a new ME.
+=> the case if there is no name yet -> send an email, no core issue
 
 @ FROM Matteo
 IMPORTANT
@@ -52,11 +51,6 @@ not selecting any file (canceling the Folder/File Selection-Dialog), a
 though the file doesn't exist (but is created after clicking Yes)
 => created TODOs
 
-@ FROM Tobi
-- (Navigator does not refresh when i.e. creating one project after another; 
-and also while creating new subelements i.e. ecore model)
-=> we were unable to reproduce this bug...
-
 @ FROM Zardosht
 10. I can select multiple items in navigator. However the menu items 
 are not relevant then.
@@ -68,9 +62,17 @@ are not relevant then.
 	- our solution -> requirements
 	- the biggest problems
 
-Dialog -> Configure Models
-- change to make two columns to put one from left or not
-- remove model check and try not to add the models from the 
+- Dialog -> Configure Models
+	- change the selection widget
+		- e.g. ListSelectionDialog
+		ListSelectionDialog dlg = new ListSelectionDialog(window.getShell(), ResourcesPlugin.getWorkspace().getRoot(), new BaseWorkbenchContentProvider(), new WorkbenchLabelProvider(), "Select the Project:");
+		dlg.setTitle("Project Selection");
+		dlg.open();
+		- see more @ http://blog.cypal-solutions.com/2008/07/selection-dialogs-in-eclipse.html
+	- remove model check and auto adding
+
+- remove deprecated complete models from XMIFileProjectImpl
+	-> test it before you remove and commit it!
 
 @ OPTIONAL
 - Delete Dialog should appear for multiple marked projects

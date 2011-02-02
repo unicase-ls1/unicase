@@ -8,6 +8,7 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -110,6 +111,10 @@ public abstract class XMIDialog extends TitleAreaDialog {
 		location.setLayout(new FillLayout());
 		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
 		txtProjectLocation.setSize(140, 20);
+		
+		//TODO add a listener to the text field, so if it changes the name will be changed too
+		
+		
 		Button browseButton = new Button(location, SWT.NONE);
 		browseButton.setText("Browse Filesystem...");
 		Button wsButton = new Button(location, SWT.NONE);
@@ -136,10 +141,9 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		
 		// check if location already exists in workspace
 		//  if so -> warning -> return to dialog
-		boolean duplicate = false;
+		boolean failed = false;
 		
 		try {
 			ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
@@ -148,7 +152,7 @@ public abstract class XMIDialog extends TitleAreaDialog {
 					String warningTitle = "Duplicate Path in Workspace";
 					String warningMessage = "The path you entered already exists in the workspace.";
 					MessageDialog.openWarning(shell, warningTitle, warningMessage);
-					duplicate = true;
+					failed = true;
 				}
 			}
 			
@@ -156,7 +160,13 @@ public abstract class XMIDialog extends TitleAreaDialog {
 			new XMIWorkspaceException("No workspace available. Please check your configuration.", e);
 		}
 		
-		if(!duplicate) {
+		// check for empty name
+		if(!XmiUtil.validate(txtProjectName.getText())) {
+			txtProjectName.setBackground(new Color(shell.getDisplay(), 205, 106, 106));
+			failed = true;
+		}
+		
+		if(!failed) {
 			handler.setProjectName(txtProjectName.getText());
 			handler.setProjectDescription(txtProjectDescription.getText());
 			handler.setProjectLocation(txtProjectLocation.getText());

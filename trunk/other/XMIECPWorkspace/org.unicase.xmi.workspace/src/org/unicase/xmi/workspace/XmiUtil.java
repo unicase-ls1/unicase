@@ -1,6 +1,12 @@
 package org.unicase.xmi.workspace;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
+import org.unicase.util.UnicaseUtil;
 
 /**
  * This class offers useful constants and methods needed from several classes.
@@ -42,5 +48,23 @@ public class XmiUtil {
 	 */
 	public enum PROJECT_STATUS {
 		LOADED, FAILED, NOTLOADED, DUPLICATED
+	}
+	
+	/**
+	 * Returns all models in the registry as strings.
+	 * @return A list of strings containing all models in the registry 
+	 */
+	public static List<String> getAllModels() {
+		Iterator<EClass> iterator = UnicaseUtil.getAllModelElementEClasses().iterator();
+		List<String> allModels = new ArrayList<String>();
+		while(iterator.hasNext()) {
+			EClass next = iterator.next();
+			String epackage = next.getEPackage().getNsPrefix();
+			
+			if(!allModels.contains(epackage)) {
+				allModels.add(epackage);
+			}
+		}
+		return allModels;
 	}
 }

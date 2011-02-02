@@ -156,8 +156,10 @@ public class XMIECPFileProjectItemProvider
 	public Object getImage(Object object) {
 		if(object instanceof XMIECPFileProject) {
 			XMIECPFileProject pro = (XMIECPFileProject) object;
-			if(pro.getProjectStatus() == PROJECT_STATUS.FAILED)
+			
+			if(pro.getProjectStatus() == PROJECT_STATUS.FAILED || pro.getProjectStatus() == PROJECT_STATUS.DUPLICATED) {
 				return overlayImage(object, getResourceLocator().getImage("full/obj16/projectFailed.png"));
+			}
 		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/project.png"));
 	}
@@ -182,9 +184,15 @@ public class XMIECPFileProjectItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = getTextGen(object);
-		if(((XMIECPFileProject)object).getProjectStatus() == PROJECT_STATUS.FAILED) {
+		PROJECT_STATUS projectStatus = ((XMIECPFileProject)object).getProjectStatus();
+		if(projectStatus == PROJECT_STATUS.FAILED) {
 			return "[" + label + "]";
 		}
+		
+		if(projectStatus == PROJECT_STATUS.DUPLICATED) {
+			return label + " [DUPLICATED]";
+		}
+		
 		return label;
 	}
 

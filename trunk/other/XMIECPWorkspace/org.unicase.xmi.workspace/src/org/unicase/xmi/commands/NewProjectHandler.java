@@ -4,6 +4,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -28,14 +29,11 @@ public class NewProjectHandler extends XmiAbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		// open dialog
-		CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI
-			.getWorkbench().getDisplay().getActiveShell(), this);
+		Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+		CreateProjectDialog dialog = new CreateProjectDialog(activeShell, this);
 
 		// work with the results of the dialog and create the project
 		if(dialog.open() == Window.OK) {
-			
-			//TODO check whether name and path is valid
-			
 			try {						
 				// get ECPWorkspace
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();

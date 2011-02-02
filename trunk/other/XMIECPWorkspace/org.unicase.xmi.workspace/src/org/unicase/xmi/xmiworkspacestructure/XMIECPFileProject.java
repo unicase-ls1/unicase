@@ -98,10 +98,4 @@ public interface XMIECPFileProject extends XMIECPProject {
 	 */
 	public void isWorkspacePath (boolean isWsP);
 	
-	/**
-	 * Checks whether the registered models in the metamodelelement context
-	 * fit to the content of the project.
-	 */
-	public void completeModels();
-	
 } // XMIECPFileProject

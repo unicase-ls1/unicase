@@ -43,6 +43,8 @@ public class ConfigureModelsHandler extends AbstractHandler {
 		ConfigureModelsDialog dialog = new ConfigureModelsDialog(PlatformUI
 			.getWorkbench().getDisplay().getActiveShell(), this, project);
 		
+		dialog.setTitle("Project Selection");
+		
 		//work with the result of the dialog to add or remove models from FileProject
 		if (dialog.open() == Window.OK){
 			XMIMetaModelElementContext context = (XMIMetaModelElementContext) project.getMetaModelElementContext();
@@ -54,9 +56,6 @@ public class ConfigureModelsHandler extends AbstractHandler {
 			for(String s : list){
 				context.addModel(s);
 			}
-			
-			//Add all models that are used but not selected by user
-			project.completeModels();
 		}
 		
 		return null;
