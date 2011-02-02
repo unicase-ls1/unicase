@@ -10,6 +10,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.ecp.model.MetaModelElementContext;
 import org.unicase.util.UnicaseUtil;
 
+/**
+ * Context each project is in. The context manages the models used for each
+ * project. They can be configured by the user with the "Configure Models..."
+ * menu-entry in the popupmenu when the user right-clicks on the project.
+ * @author matti, markus
+ *
+ */
 public class XMIMetaModelElementContext extends MetaModelElementContext {
 	
 	/**
@@ -25,11 +32,17 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		this.model = new ArrayList<String>();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
 		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
 		// filter all classes for the registered ones.
@@ -61,6 +74,9 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isNonDomainElement(EClass eClass) {
 		return false; // CAUTION: this feature is not supported by this plugin!

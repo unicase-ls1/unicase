@@ -11,19 +11,26 @@ import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.unicase.xmi.commands.ImportProjectHandler;
 
+/**
+ * Dialog that will be shown when the user wants to import a new project.
+ * @author matti, markus
+ *
+ */
 public class ImportProjectDialog extends XMIDialog {
 	
 	/**
-	 * Default constructor.
-	 * 
-	 * @param parent
-	 *            the parent shell
+	 * Create a dialog to import a file from the workspace or filesystem.
+	 * @param parent Shell where the dialog will be created in.
+	 * @param handler Handler which invokes the dialog and who will receive the result upon completion.
 	 */
 	public ImportProjectDialog(Shell parent, ImportProjectHandler handler) {
 		super(parent, "Import Project", "Please enter the name of your project-file and its location.");
 		setHandler(handler);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectionListener getBrowseFilesystemListener() {
 		return new SelectionListener() {
@@ -41,6 +48,9 @@ public class ImportProjectDialog extends XMIDialog {
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
@@ -73,6 +83,9 @@ public class ImportProjectDialog extends XMIDialog {
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addInputListener() {
 		// do nothing, because listener is not needed in this case

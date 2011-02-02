@@ -38,9 +38,11 @@ public class DeleteProjectHandler extends AbstractHandler {
 		stringBuilder.append(project.getProjectName());
 		stringBuilder.append("\"-project?");
 		String message = stringBuilder.toString();
+		
 		MessageDialog dialog = new MessageDialog(null, "Confirmation", null, message, MessageDialog.QUESTION,
 			new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
+		
 		// check whether the user clicked "yes", otherwise do nothing
 		if(result == 0) {
 			final XMIECPWorkspace ws = (XMIECPWorkspace) project.getWorkspace();
@@ -48,7 +50,8 @@ public class DeleteProjectHandler extends AbstractHandler {
 			new XmiCommand(ws.getEditingDomain()) {
 				@Override
 				protected void doRun() {
-					ws.removeProject(project); // takes care of project removal
+					// takes care of project removal
+					ws.removeProject(project);
 				}
 			}.run(false);
 		}

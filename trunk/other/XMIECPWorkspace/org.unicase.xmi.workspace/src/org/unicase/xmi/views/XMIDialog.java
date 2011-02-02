@@ -27,9 +27,9 @@ import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XmiUtil;
 
 /**
- * @author kraftm, maierma
- * superclass for single project dialogs
- *
+ * Offers common functionalities for the dialogs that will
+ * be used when a new project is created or imported.
+ * @author matti, markus
  */
 public abstract class XMIDialog extends TitleAreaDialog {
 	

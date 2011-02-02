@@ -16,15 +16,17 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.xmi.commands.NewProjectHandler;
 import org.unicase.xmi.workspace.XmiUtil;
 
+/**
+ * Dialog to be shown when a new project is about to be created.
+ * @author matti, markus
+ *
+ */
 public class NewProjectDialog extends XMIDialog {
 
 	/**
-	 * Default constructor.
-	 * 
-	 * @param parent
-	 *            the parent shell
-	 * @param handler
-	 *            the NewProjectHandler calling this dialog
+	 * Create a dialog to ask the user for the informations about his new project.
+	 * @param parent Parent shell the dialog is displayed in.
+	 * @param handler Handler the dialog interacts with.
 	 */
 	public NewProjectDialog(Shell parent, NewProjectHandler handler) {
 		super(parent, "Create New Project", "Please enter the name, the location and a description of the project.");
@@ -55,6 +57,9 @@ public class NewProjectDialog extends XMIDialog {
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
@@ -84,6 +89,9 @@ public class NewProjectDialog extends XMIDialog {
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addInputListener() {
 		txtProjectName.addFocusListener(new FocusListener() {
@@ -118,4 +126,4 @@ public class NewProjectDialog extends XMIDialog {
 		});
 	}
 	
-}
+} // END of class

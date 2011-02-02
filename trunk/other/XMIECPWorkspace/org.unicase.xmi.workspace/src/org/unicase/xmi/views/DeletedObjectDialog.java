@@ -82,7 +82,7 @@ public class DeletedObjectDialog {
 		 * completely removed from the workspace structure model.
 		 */
 		
-		// mapping
+		// mapping (for convenience)
 		switch(result) {
 			case 0: res = 1; break;
 			case 1: res = 2; break;

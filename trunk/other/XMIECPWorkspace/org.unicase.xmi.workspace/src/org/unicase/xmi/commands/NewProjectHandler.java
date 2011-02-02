@@ -2,20 +2,15 @@ package org.unicase.xmi.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 import org.unicase.xmi.views.NewProjectDialog;
-import org.unicase.xmi.workspace.XMIECPWorkspace;
-import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
-import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
 /**
- * Handler for creating a new project
+ * Handler for creating a new project in workspace or filesystem
  * @author kraftm, maierma
  *
  */
@@ -32,33 +27,11 @@ public class NewProjectHandler extends XmiAbstractHandler {
 		Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 		NewProjectDialog dialog = new NewProjectDialog(activeShell, this);
 
-		// work with the results of the dialog and create the project
+		// open dialog and process the results if the user doesn't cancel the dialog
 		if(dialog.open() == Window.OK) {
 			try {						
-				// get ECPWorkspace
-				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
-				
-				new XmiCommand((TransactionalEditingDomain) ws.getEditingDomain()) {
-
-					@Override
-					protected void doRun() {
-						if(ws instanceof XMIECPWorkspace) {
-							XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
-							project.setProjectName(getProjectName());
-							project.setProjectDescription(getProjectDescription());
-							project.setXmiFilePath(getProjectLocation());
-							project.loadContents();
-							
-							// add a new XMIFileProject to the workspace
-							((XMIECPWorkspace) ws).addProject(project);
-						}
-						else {
-							new XMIWorkspaceException("Could not add project to workspace. Unknown workspace.");
-						}
-					}
-					
-				}.run(true);
-
+				// run the import process in a command
+				buildCommand(ECPWorkspaceManager.getInstance().getWorkSpace()).run(true);
 			} catch (Exception e) {
 				new XMIWorkspaceException("Could not create new model element.", e);
 			}
