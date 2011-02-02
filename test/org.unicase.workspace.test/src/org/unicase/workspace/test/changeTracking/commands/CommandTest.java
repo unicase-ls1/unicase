@@ -32,7 +32,6 @@ import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -85,7 +84,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// copy to clipboard
 		Collection<EObject> toCopy = new ArrayList<EObject>();
@@ -161,7 +160,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// copy
 		CopyCommand.Helper helper = new CopyCommand.Helper();
@@ -205,7 +204,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// copy
 		Command command = CopyToClipboardCommand.create(editingDomain, actor);
@@ -240,7 +239,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// copy
 		Command command = CopyCommand.create(editingDomain, actor);
@@ -483,7 +482,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// cut to clipboard
 		Collection<Actor> toCut = new ArrayList<Actor>();
@@ -555,7 +554,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// copy to clipboard
 		Command cutCommand = CutToClipboardCommand.create(editingDomain, leafSection,
@@ -626,7 +625,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// cut to clipboard
 		Command cutCommand = CutToClipboardCommand.create(editingDomain, leafSection,
@@ -668,7 +667,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// remove
 		Command removeCommand = RemoveCommand.create(editingDomain, leafSection,
@@ -708,7 +707,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// remove
 		Collection<Actor> toRemove = new ArrayList<Actor>();
@@ -751,7 +750,7 @@ public class CommandTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// delete
 		Collection<Actor> toDelete = new ArrayList<Actor>();
@@ -794,7 +793,7 @@ public class CommandTest extends WorkspaceTest {
 		}.run(false);
 
 		assertEquals(0, getProjectSpace().getOperations().size());
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// delete
 		Collection<Actor> toDelete = new ArrayList<Actor>();
@@ -852,7 +851,7 @@ public class CommandTest extends WorkspaceTest {
 		}.run(false);
 		ModelElementId workPackageId = getProject().getModelElementId(workPackage);
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// cut the element
 		Command command = CutToClipboardCommand.create(editingDomain, workPackage);
@@ -890,7 +889,7 @@ public class CommandTest extends WorkspaceTest {
 
 		assertEquals(0, getProjectSpace().getOperations().size());
 
-		TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		EditingDomain domain1 = AdapterFactoryEditingDomain.getEditingDomainFor(actor);
 		assertSame(editingDomain, domain1);
@@ -916,7 +915,7 @@ public class CommandTest extends WorkspaceTest {
 		}.run(false);
 
 		assertEquals(0, getProjectSpace().getOperations().size());
-		final TransactionalEditingDomain editingDomain = Configuration.getEditingDomain();
+		final EditingDomain editingDomain = Configuration.getEditingDomain();
 
 		// delete
 		editingDomain.getCommandStack().execute(DeleteCommand.create(editingDomain, actor));
