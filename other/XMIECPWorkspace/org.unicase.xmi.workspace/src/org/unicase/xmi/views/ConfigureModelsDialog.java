@@ -1,11 +1,8 @@
 package org.unicase.xmi.views;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -17,9 +14,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.util.UnicaseUtil;
 import org.unicase.xmi.commands.ConfigureModelsHandler;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
+import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 /**
@@ -86,16 +83,8 @@ public class ConfigureModelsDialog extends TitleAreaDialog {
 		viewer = new XmiListViewer(contents);
 		
 		// get all models
-		Iterator<EClass> iterator = UnicaseUtil.getAllModelElementEClasses().iterator();
-		List<String> allModels = new ArrayList<String>();
-		while(iterator.hasNext()) {
-			EClass next = iterator.next();
-			String epackage = next.getEPackage().getNsPrefix();
-			
-			if(!allModels.contains(epackage)) {
-				allModels.add(epackage);
-			}
-		}
+		
+		List<String> allModels = XmiUtil.getAllModels();
 		
 		// sort models alphabetically 
 		Collections.sort(allModels);

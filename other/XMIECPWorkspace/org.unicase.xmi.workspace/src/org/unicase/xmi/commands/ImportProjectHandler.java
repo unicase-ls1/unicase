@@ -26,7 +26,7 @@ public class ImportProjectHandler extends XmiAbstractHandler {
 			.getWorkbench().getDisplay().getActiveShell(), this);
 		
 		int dialogResult = dialog.open();
-		if(dialogResult == Window.OK) {
+		if(dialogResult == Window.OK) {			
 			try {
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 				

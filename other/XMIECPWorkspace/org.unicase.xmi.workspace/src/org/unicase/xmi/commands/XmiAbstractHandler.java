@@ -68,7 +68,5 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 		this.projectLocation = projectLocation;
 	}
 	
-	//TODO create method -> validate dialogInput
-	
 	// END GETTERS AND SETTERS
 }

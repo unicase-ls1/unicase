@@ -35,10 +35,7 @@ public class ImportFolderHandler extends AbstractHandler {
 			.getWorkbench().getDisplay().getActiveShell(), this);
 
 		files.clear();
-		if(dialog.open() == Window.OK) {
-			
-			//TODO check whether name and path is valid
-			
+		if(dialog.open() == Window.OK) {			
 			try {
 				final ECPWorkspace ws = ECPWorkspaceManager.getInstance().getWorkSpace();
 				

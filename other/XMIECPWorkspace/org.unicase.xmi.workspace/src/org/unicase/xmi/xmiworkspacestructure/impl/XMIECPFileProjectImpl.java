@@ -782,24 +782,5 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	public void isWorkspacePath (boolean isWsP){
 		this.isWorkspacePath = isWsP;
 	}
-	
-	/**
-	 * Checks whether the registered models in the metamodelelement context
-	 * fit to the content of the project.
-	 */
-	public void completeModels() {
-		// get all registered models from the context
-		List<String> registeredModels = metaContext.getModels();
-		
-		// go through all base elements and check their models
-		for(EObject be: baseElements) {
-			String beModel = be.eClass().getEPackage().getNsPrefix();
-			
-			// if a model is not in the context, add it to the context
-			if(!registeredModels.contains(beModel)) {
-				metaContext.addModel(beModel);
-			}
-		}
-	}
 
 } //XMIECPFileProjectImpl
