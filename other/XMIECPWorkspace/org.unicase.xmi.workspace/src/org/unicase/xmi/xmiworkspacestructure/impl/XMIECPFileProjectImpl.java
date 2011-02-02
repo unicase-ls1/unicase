@@ -376,8 +376,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	@Override
@@ -386,8 +385,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -395,8 +393,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
@@ -407,8 +404,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <{@inheritDoc}
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -416,8 +412,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
@@ -428,8 +423,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	public String getXmiFilePath() {
@@ -437,8 +431,11 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
 	 * Sets the path to the xmi-file where the project contents are stored.
 	 * @param newXmiFilePath The complete path to the xmi-file.
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public void setXmiFilePath(String newXmiFilePath) {
 		String oldXmiFilePath = xmiFilePath;
@@ -448,8 +445,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	@Override
@@ -487,8 +483,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	@Override
@@ -508,8 +503,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	@Override
@@ -526,8 +520,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * @generated
 	 */
 	@Override
@@ -545,15 +538,24 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addECPProjectListener(ECPProjectListener listener) {
 		this.projectListeners.add(listener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean contains(EObject eObject) {
 		if(eObject == this) return true;
 		return getAllModelElements().contains(eObject);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void dispose() {
 		// remove all references to other objects
 		// so the garbage collector can remove this object
@@ -564,6 +566,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		listenerAdapter = null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<EObject> getAllModelElement() {
 		return getAllModelElements();
 	}
@@ -596,11 +601,17 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public EObject getRootObject() {
 		if(!objectInitialized) init();
 		return rootObject;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ECPWorkspace getWorkspace() {
 		return workspace;
 	}
@@ -625,6 +636,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void modelelementDeleted(EObject eobject) {
 		if(!objectInitialized) init();
 		// Remove model element from xmi-file -> just save it.
@@ -637,6 +651,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		TreeView.getTreeViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void projectChanged() {
 		if(!objectInitialized) init();
 		// Save all objects into the xmi-file
@@ -650,6 +667,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		TreeView.getTreeViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void projectDeleted() {
 		// tell listeners about the event
 		for(ECPProjectListener listener : projectListeners) {
@@ -658,16 +678,25 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		TreeView.getTreeViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeECPProjectListener(ECPProjectListener listener) {
 		this.projectListeners.remove(listener);
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setRootObject(EObject value) {
 		this.rootObject = value;
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setWorkspace(ECPWorkspace value) {
 		if(value instanceof XMIECPWorkspace) {
 			workspace = (XMIECPWorkspace) value;
@@ -677,6 +706,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<EObject> getAllModelElements() {
 		if(!objectInitialized) init();
 		// make new result list that no pointer is returned
@@ -702,11 +734,17 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		return null; // CAUTION: this feature is not supported by this plugin!
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public EditingDomain getEditingDomain() {
 		if(workspace == null) return null;
 		return workspace.getEditingDomain();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public MetaModelElementContext getMetaModelElementContext() {
 		if (metaContext == null){
 			metaContext = new XMIMetaModelElementContext();
@@ -721,6 +759,9 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		return false; // CAUTION: this feature is not supported by this plugin!
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addModelElementToRoot(EObject eObject) {
 		// add a listener adapter so all changes can be saved
 		eObject.eAdapters().add(listenerAdapter);
@@ -735,12 +776,18 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 		metaContext.addModel(eObject.eClass().getEPackage().getNsPrefix());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<EObject> getRootLevel() {
 		ArrayList<EObject> arrayList = new ArrayList<EObject>();
 		arrayList.addAll(baseElements);
 		return arrayList;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public PROJECT_STATUS getProjectStatus() {
 		return projectStatus;
 	}

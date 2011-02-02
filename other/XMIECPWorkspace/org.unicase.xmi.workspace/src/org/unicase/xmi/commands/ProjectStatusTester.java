@@ -16,10 +16,11 @@ public class ProjectStatusTester extends PropertyTester {
 	 * Return true when the project is a XMIECPFilePRoject and the project's status is "failed" or "duplicated".
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		
+		// cast the receiver to XMIECPProject
 		if (receiver instanceof XMIECPProject){
 			XMIECPFileProject project = (XMIECPFileProject) receiver;
 			
+			// if the status is failed or duplicated tell the menu to show the "resolve" entry
 			if (project.getProjectStatus() == PROJECT_STATUS.FAILED ||
 					project.getProjectStatus() == PROJECT_STATUS.DUPLICATED) {
 				return true;

@@ -31,6 +31,9 @@ public class XmiListViewer extends ListViewer {
 		contents = new HashMap<Integer, String>();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void add(Object o) {
 		super.add(o);

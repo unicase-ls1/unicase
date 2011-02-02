@@ -4,7 +4,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
- * A command that is used in XMIECPWorkspace
+ * A command that is used in the XMIECPWorkspace
+ * and which is similar to the UnicaseCommand
  * @author kraftm, maierma
  *
  */
@@ -44,7 +45,6 @@ public abstract class XmiCommand extends RecordingCommand {
 	
 	/**
 	 * Executes the command on the workspaces editing domain.
-	 * 
 	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
 	 */
 	public void run(boolean ignoreExceptions) {

@@ -3,6 +3,11 @@ package org.unicase.xmi.workspace;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+/**
+ * Activator that activated the plugin.
+ * @author matti, markus
+ *
+ */
 public class Activator implements BundleActivator {
 
 	private static BundleContext context;

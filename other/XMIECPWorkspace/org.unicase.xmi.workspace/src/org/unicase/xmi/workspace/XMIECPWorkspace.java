@@ -30,7 +30,11 @@ import org.unicase.xmi.workspace.XmiUtil.PROJECT_STATUS;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 
-
+/**
+ * Main class of this plugin. It manages the projects in the workspace.
+ * @author matti, markus
+ *
+ */
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	
 	/**
@@ -155,6 +159,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		return false;
 	}
 
+	/**
+	 * Creates the EContentAdapter that will be attached to each project in order to
+	 * listen to the project's changes.
+	 */
 	private void buildProjectListener() {
 		projectListener = new EContentAdapter() {
 			
@@ -164,11 +172,13 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 				Object changedObj = notification.getNotifier();
 				
 				if(changedObj instanceof EObject) {
-					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
+					// cast the object to an EObject
+					EObject changedEObj = (EObject) changedObj;
 					
 					// try to save object to the attached resource
 					try {
-						changedEObj.eResource().save(Collections.EMPTY_MAP); // save changes into resource
+						// save changes into resource
+						changedEObj.eResource().save(Collections.EMPTY_MAP);
 					} catch (IOException e) {
 						new XMIWorkspaceException("Unable to persist object to xmi resource.", e);
 					} catch (NullPointerException e) {
@@ -176,7 +186,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 					}
 				}
 				
-				// continue
+				// also inform the listeners registered on the super class
 				super.notifyChanged(notification);
 			}
 			
@@ -199,6 +209,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public EList<ECPProject> getProjects() {
 		if(projects == null) {

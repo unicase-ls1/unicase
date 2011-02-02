@@ -2,6 +2,11 @@ package org.unicase.xmi.exceptions;
 
 import org.unicase.ecp.model.Activator;
 
+/**
+ * General Exception for the XMIECPWorkspace
+ * @author matti, markus
+ *
+ */
 public abstract class XMIException extends Throwable {
 
 	/**

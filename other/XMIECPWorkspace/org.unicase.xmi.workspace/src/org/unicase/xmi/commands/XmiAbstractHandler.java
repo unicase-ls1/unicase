@@ -3,7 +3,13 @@ package org.unicase.xmi.commands;
 import java.io.File;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
+import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.workspace.XmiUtil;
+import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
+import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
 
 /**
  * Class needed to generalize dialogs
@@ -43,12 +49,10 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 		this.projectName = projectName;
 	}
 
-
 	public String getProjectDescription() {
 		if(projectDescription == null) return XmiUtil.DEFAULT_PROJECT_DESCRIPTION;
 		return projectDescription;
 	}
-
 
 	public void setProjectDescription(String projectDescription) {
 		this.projectDescription = projectDescription;
@@ -68,4 +72,40 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 	}
 	
 	// END GETTERS AND SETTERS
-}
+	
+	
+	/**
+	 * Building the command that will be executed when importing or adding a new project.
+	 */
+	protected XmiCommand buildCommand(ECPWorkspace workspace) {
+		final ECPWorkspace ws = workspace;
+		
+		// run the command on the editing domain of the workspace
+		return new XmiCommand((TransactionalEditingDomain) ws.getEditingDomain()) {
+
+			@Override
+			protected void doRun() {
+				if(ws instanceof XMIECPWorkspace && ws != null) {
+					// create a blank project
+					XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+					
+					// set the information of the project
+					project.setProjectName(getProjectName());
+					project.setXmiFilePath(getProjectLocation());
+					project.setProjectDescription(getProjectDescription());
+					
+					// load the project's content
+					project.loadContents();
+					
+					// add a new XMIFileProject to the workspace
+					((XMIECPWorkspace) ws).addProject(project);
+				}
+				else {
+					new XMIWorkspaceException("Unable to add the project to the workspace. The workspace is unknown.");
+				}
+			} // END doRun()
+			
+		}; // END return
+	} // END buildCommand(...)
+	
+} // END XmiAbstractHandler

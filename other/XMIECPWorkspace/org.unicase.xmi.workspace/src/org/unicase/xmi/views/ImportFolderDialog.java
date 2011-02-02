@@ -35,6 +35,14 @@ import org.unicase.xmi.commands.ImportFolderHandler;
 import org.unicase.xmi.exceptions.XMIFileTypeException;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
 
+/**
+ * Dialog that will ask for a path that will then be loaded
+ * and the available and loadable projects will be displayed
+ * to choose from.
+ * If the user clicks OK, his selection will be saved in the handler.
+ * @author matti, markus
+ *
+ */
 public class ImportFolderDialog extends TitleAreaDialog {
 
 	/**

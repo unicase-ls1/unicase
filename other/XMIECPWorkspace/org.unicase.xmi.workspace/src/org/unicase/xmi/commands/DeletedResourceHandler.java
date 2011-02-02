@@ -96,6 +96,7 @@ public class DeletedResourceHandler extends AbstractHandler {
 			break;
 		}
 		
+		// refresh the navigator so the deleted project vanishes
 		TreeView.getTreeViewer().refresh();
 			
 		return null;

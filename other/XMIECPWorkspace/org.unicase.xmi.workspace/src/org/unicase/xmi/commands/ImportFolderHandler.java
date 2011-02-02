@@ -30,6 +30,9 @@ public class ImportFolderHandler extends AbstractHandler {
 	 */
 	private List<String> files = new ArrayList<String>();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ImportFolderDialog dialog = new ImportFolderDialog(PlatformUI
 			.getWorkbench().getDisplay().getActiveShell(), this);
@@ -52,10 +55,13 @@ public class ImportFolderHandler extends AbstractHandler {
 						@Override
 						protected void doRun() {
 							if(ws instanceof XMIECPWorkspace && ws != null) {
-								XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject(); // create the project blank
-								project.setProjectName(projectName); // set name
-								project.setProjectDescription("Imported Project"); // set description
-								project.setXmiFilePath(projectLocation); // initialize it when setting the file
+								// create a blank project
+								XMIECPFileProject project = XmiworkspacestructureFactory.eINSTANCE.createXMIECPFileProject();
+								
+								// set project infos
+								project.setProjectName(projectName);
+								project.setProjectDescription("Imported Project");
+								project.setXmiFilePath(projectLocation);
 								
 								// add a new XMIFileProject to the workspace
 								((XMIECPWorkspace) ws).addProject(project);
