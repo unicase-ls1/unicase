@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.unicase.emfstore;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.emfstore.esmodel;bundle-version="1.0.0.qualifier";visibility:=reexport,
+Require-Bundle: org.unicase.emfstore.esmodel;bundle-version="1.0.0";visibility:=reexport,
  edu.tum.cs.cope.migration.execution;bundle-version="0.2.2";visibility:=reexport,
  org.apache.commons.codec;bundle-version="1.3.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
