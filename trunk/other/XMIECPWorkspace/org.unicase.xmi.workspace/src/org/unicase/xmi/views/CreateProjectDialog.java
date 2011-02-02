@@ -1,16 +1,20 @@
 package org.unicase.xmi.views;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.xmi.commands.NewProjectHandler;
+import org.unicase.xmi.workspace.XmiUtil;
 
 public class CreateProjectDialog extends XMIDialog {
 
@@ -38,6 +42,9 @@ public class CreateProjectDialog extends XMIDialog {
 				DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
 				
 				String path = dirDialog.open();
+				
+				// location saving
+				projectLocationPath = path;
 				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
 			}
 
@@ -63,7 +70,11 @@ public class CreateProjectDialog extends XMIDialog {
 					path = selectedFolders[0].getLocation().toOSString(); 
 				}
 				
-				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+				// location saving
+				if(path != null) {
+					projectLocationPath = path;
+					txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+				}
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -73,4 +84,38 @@ public class CreateProjectDialog extends XMIDialog {
 		};
 	}
 
+	@Override
+	protected void addInputListener() {
+		txtProjectName.addFocusListener(new FocusListener() {
+
+			public void focusGained(FocusEvent e) {
+				// do nothing
+			}
+
+			public void focusLost(FocusEvent e) {
+				// filter path and extension from current location content
+				String content = txtProjectLocation.getText(); 
+				
+				String extSeparator = ".";
+				int extPos = new StringBuilder(content).reverse().indexOf(extSeparator);
+				
+				String ext = ".ucw";
+				if(extPos != -1) {
+					ext = content.substring(content.length() - extPos -1);
+				}
+				
+				String path = projectLocationPath;
+				if(!XmiUtil.validate(path)) {
+					path = "";
+				}
+				else {
+					path += File.separator;
+				}
+				
+				txtProjectLocation.setText(path + txtProjectName.getText() + ext);
+			}
+			
+		});
+	}
+	
 }

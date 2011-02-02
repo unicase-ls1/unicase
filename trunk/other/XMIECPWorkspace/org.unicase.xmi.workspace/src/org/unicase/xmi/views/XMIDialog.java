@@ -49,6 +49,11 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	protected Text txtProjectLocation;
 	
 	/**
+	 * The path the user specified.
+	 */
+	protected String projectLocationPath;
+	
+	/**
 	 * Title of the dialog
 	 */
 	protected String dialogTitle;
@@ -112,8 +117,9 @@ public abstract class XMIDialog extends TitleAreaDialog {
 		txtProjectLocation = new Text(location, SWT.SINGLE | SWT.BORDER); 
 		txtProjectLocation.setSize(140, 20);
 		
-		//TODO add a listener to the text field, so if it changes the name will be changed too
-		
+		// add a listener to the text field, so if it changes the name
+		// will be changed too, but only in the case of a new project
+		addInputListener();
 		
 		Button browseButton = new Button(location, SWT.NONE);
 		browseButton.setText("Browse Filesystem...");
@@ -135,7 +141,7 @@ public abstract class XMIDialog extends TitleAreaDialog {
 
 		return contents;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -189,10 +195,15 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	protected abstract SelectionListener getBrowseFilesystemListener();
 	
 	/**
+	 * In the process of creating the dialog you can insert a listener.
+	 */
+	protected abstract void addInputListener();
+	
+	/**
 	 * Validates the name and path and builds the location of the project's resource.
 	 * @param name Name of the project
 	 * @param path Path to the directory the project resource is contained in.
-	 * @return Full path of the project's resource
+	 * @return Full path of the project's resource, if name was not set, only the path
 	 */
 	public static final String getResourceLocation(String name, String path) {
 		String location;
@@ -214,17 +225,9 @@ public abstract class XMIDialog extends TitleAreaDialog {
 		location += File.separator;
 		
 		// determine name
-		if(XmiUtil.validate(name)) location += name;
-		else {
-			//TODO name not set, but path -> see details
-			/*
-			 * return only path and set a listener on the name field to update the location field as soon as the name changes
-			 * make sure the listener attaches .ucw at the end of the name
-			 */
-			
-			location += System.currentTimeMillis(); // remove
+		if(XmiUtil.validate(name)) {
+			location += name + ".ucw";
 		}
-		location += ".ucw";
 		
 		return location;
 	}

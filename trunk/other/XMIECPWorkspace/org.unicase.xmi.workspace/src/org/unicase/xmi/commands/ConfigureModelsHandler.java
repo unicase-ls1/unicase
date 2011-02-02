@@ -39,10 +39,9 @@ public class ConfigureModelsHandler extends AbstractHandler {
 			new XMIWorkspaceException("No Workspace available.", e);
 		}
 		
-		// open dialog
+		// build dialog
 		ConfigureModelsDialog dialog = new ConfigureModelsDialog(PlatformUI
 			.getWorkbench().getDisplay().getActiveShell(), this, project);
-		
 		dialog.setTitle("Project Selection");
 		
 		//work with the result of the dialog to add or remove models from FileProject

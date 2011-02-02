@@ -83,7 +83,6 @@ public class ConfigureModelsDialog extends TitleAreaDialog {
 		viewer = new XmiListViewer(contents);
 		
 		// get all models
-		
 		List<String> allModels = XmiUtil.getAllModels();
 		
 		// sort models alphabetically 

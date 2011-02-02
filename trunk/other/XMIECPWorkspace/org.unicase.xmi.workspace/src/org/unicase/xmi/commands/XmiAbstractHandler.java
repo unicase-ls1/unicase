@@ -63,7 +63,6 @@ public abstract class XmiAbstractHandler extends AbstractHandler {
 		return XmiUtil.DEFAULT_LOCATION;
 	}
 
-
 	public void setProjectLocation(String projectLocation) {
 		this.projectLocation = projectLocation;
 	}
