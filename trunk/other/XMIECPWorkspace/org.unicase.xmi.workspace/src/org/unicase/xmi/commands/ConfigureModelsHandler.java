@@ -1,17 +1,19 @@
 package org.unicase.xmi.commands;
 
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.views.ConfigureModelsDialog;
 import org.unicase.xmi.workspace.XMIMetaModelElementContext;
+import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 /**
@@ -20,11 +22,6 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
  *
  */
 public class ConfigureModelsHandler extends AbstractHandler {
-
-	/**
-	 * The list of models that is selected from user to be added to project
-	 */
-	private List<String> list;
 
 	/**
 	 * {@inheritDoc}
@@ -39,34 +36,30 @@ public class ConfigureModelsHandler extends AbstractHandler {
 			new XMIWorkspaceException("No Workspace available.", e);
 		}
 		
-		// build dialog
-		ConfigureModelsDialog dialog = new ConfigureModelsDialog(PlatformUI
-			.getWorkbench().getDisplay().getActiveShell(), this, project);
-		dialog.setTitle("Project Selection");
+		// get the context from the project
+		XMIMetaModelElementContext context = (XMIMetaModelElementContext) project.getMetaModelElementContext();
 		
-		//work with the result of the dialog to add or remove models from FileProject
-		if (dialog.open() == Window.OK){
-			XMIMetaModelElementContext context = (XMIMetaModelElementContext) project.getMetaModelElementContext();
-			
+		// build dialog
+		Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+		
+		ListSelectionDialog dialog = new ListSelectionDialog(activeShell,
+				XmiUtil.getAllModels().toArray(), new ArrayContentProvider(), new LabelProvider(),
+				"Select the models for your project:");
+		dialog.setTitle("Model Selection");
+		dialog.setInitialSelections(context.getModels().toArray());
+		
+		// work with the result of the dialog to add or remove models from FileProject
+		if (dialog.open() == Window.OK) {
 			//remove all registered models
 			context.clearModels();
 			
 			//Add all selected models
-			for(String s : list){
-				context.addModel(s);
+			for(Object s : dialog.getResult()) {
+				if(s instanceof String)	context.addModel((String) s);
 			}
 		}
 		
 		return null;
-	}
-	
-	/**
-	 * Sets the selected models
-	 * @param list of selected models
-	 */
-	public void setModelList(List<String> list){
-		this.list = list;
-		
 	}
 
 }

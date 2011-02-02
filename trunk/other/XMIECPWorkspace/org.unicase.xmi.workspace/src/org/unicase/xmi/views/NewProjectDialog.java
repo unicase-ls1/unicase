@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.xmi.commands.NewProjectHandler;
 import org.unicase.xmi.workspace.XmiUtil;
 
-public class CreateProjectDialog extends XMIDialog {
+public class NewProjectDialog extends XMIDialog {
 
 	/**
 	 * Default constructor.
@@ -26,7 +26,7 @@ public class CreateProjectDialog extends XMIDialog {
 	 * @param handler
 	 *            the NewProjectHandler calling this dialog
 	 */
-	public CreateProjectDialog(Shell parent, NewProjectHandler handler) {
+	public NewProjectDialog(Shell parent, NewProjectHandler handler) {
 		super(parent, "Create New Project", "Please enter the name, the location and a description of the project.");
 		setHandler(handler);
 	}
