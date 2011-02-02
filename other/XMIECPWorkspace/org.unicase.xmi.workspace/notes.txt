@@ -51,14 +51,6 @@ are not relevant then.
 	- our solution -> requirements
 	- the biggest problems
 
-- Dialog -> Configure Models
-	- change the selection widget
-		- see more @ http://blog.cypal-solutions.com/2008/07/selection-dialogs-in-eclipse.html
-	- remove model check and auto adding
-
-- remove deprecated complete models from XMIFileProjectImpl
-	-> test it before you remove and commit it!
-
 @ OPTIONAL
 - Delete Dialog should appear for multiple marked projects
 
@@ -193,3 +185,11 @@ OK - FIXED - IMPORTANT
 	not selecting any file (canceling the Folder/File Selection-Dialog), a 
 	"12348638475817.ucw" file is selected from my workspace directory, even 
 	though the file doesn't exist (but is created after clicking Yes)
+	
+OK - Dialog -> Configure Models
+	- change the selection widget
+		- see more @ http://blog.cypal-solutions.com/2008/07/selection-dialogs-in-eclipse.html
+	- remove model check and auto adding
+
+OK - remove deprecated complete models from XMIFileProjectImpl
+	-> test it before you remove and commit it!
