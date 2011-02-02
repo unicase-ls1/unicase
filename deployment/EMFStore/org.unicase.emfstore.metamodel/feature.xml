@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.metamodel"
       label="EMFStore Metamodel"
-      version="0.6.2.nightly"
+      version="0.6.4.nightly"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -220,20 +220,30 @@ litigation.
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="org.unicase.metamodel"
          download-size="0"
          install-size="0"
-         version="0.6.2.nightly"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.branding"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.5.31.nightly"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.util"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>
