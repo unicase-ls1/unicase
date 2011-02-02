@@ -40,17 +40,6 @@ NullPointerException ("An unexpected exception was thrown" in the Error Log)
 - navigator does not update upon adding a new ME.
 => the case if there is no name yet -> send an email, no core issue
 
-@ FROM Matteo
-IMPORTANT
-- when creating a new project ("New Project...") and selecting the 
-Location before entering the name, the created file will be some kind of 
-serial number (123689317863.ucw), even when changing the name afterwards 
-+ in the "Create/Import Project"-Dialog when Browsing the Filesystem but 
-not selecting any file (canceling the Folder/File Selection-Dialog), a 
-"12348638475817.ucw" file is selected from my workspace directory, even 
-though the file doesn't exist (but is created after clicking Yes)
-=> created TODOs
-
 @ FROM Zardosht
 10. I can select multiple items in navigator. However the menu items 
 are not relevant then.
@@ -64,10 +53,6 @@ are not relevant then.
 
 - Dialog -> Configure Models
 	- change the selection widget
-		- e.g. ListSelectionDialog
-		ListSelectionDialog dlg = new ListSelectionDialog(window.getShell(), ResourcesPlugin.getWorkspace().getRoot(), new BaseWorkbenchContentProvider(), new WorkbenchLabelProvider(), "Select the Project:");
-		dlg.setTitle("Project Selection");
-		dlg.open();
 		- see more @ http://blog.cypal-solutions.com/2008/07/selection-dialogs-in-eclipse.html
 	- remove model check and auto adding
 
@@ -199,3 +184,12 @@ OK - If I enter two lines in the project description and then look at
 	the description after double clicking on the project in the navigator, 
 	there's only one line shown and there's even no space between "the 
 	lines".
+	
+OK - FIXED - IMPORTANT
+	- when creating a new project ("New Project...") and selecting the 
+	Location before entering the name, the created file will be some kind of 
+	serial number (123689317863.ucw), even when changing the name afterwards 
+	+ in the "Create/Import Project"-Dialog when Browsing the Filesystem but 
+	not selecting any file (canceling the Folder/File Selection-Dialog), a 
+	"12348638475817.ucw" file is selected from my workspace directory, even 
+	though the file doesn't exist (but is created after clicking Yes)

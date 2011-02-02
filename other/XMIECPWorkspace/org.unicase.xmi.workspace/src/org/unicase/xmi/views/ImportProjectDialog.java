@@ -72,4 +72,9 @@ public class ImportProjectDialog extends XMIDialog {
 			
 		};
 	}
+
+	@Override
+	protected void addInputListener() {
+		// do nothing, because listener is not needed in this case
+	}
 }
