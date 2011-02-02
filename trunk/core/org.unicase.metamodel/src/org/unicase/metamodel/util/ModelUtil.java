@@ -15,9 +15,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
@@ -30,9 +30,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -879,4 +880,69 @@ public final class ModelUtil {
 		}
 	}
 
+	/**
+	 * Delete all incoming cross references to the given model element from any other model element in the given
+	 * project.
+	 * 
+	 * @param modelElement the model element
+	 * @param project the project
+	 */
+	public static void deleteIncomingCrossReferencesFromProject(EObject modelElement, Project project) {
+		// delete all non containment cross references from other elements in the project
+		for (EObject otherModelElement : ModelUtil.getAllContainedModelElements(project, false)) {
+			for (EObject otherElementOpposite : otherModelElement.eCrossReferences()) {
+				if (otherElementOpposite == modelElement) {
+					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
+					for (EReference reference : references) {
+						if (!reference.isContainment() && !reference.isContainer() && reference.isChangeable()
+							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
+							if (reference.isMany()) {
+								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+							} else {
+								otherModelElement.eUnset(reference);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check of the two elements are linked by the given reference.
+	 * 
+	 * @param modelElement first model element
+	 * @param otherModelElement second modelelement
+	 * @param reference candidate reference feature of first element
+	 * @return true if the reference feature links the two elements
+	 */
+	private static boolean isCorrespondingReference(EObject modelElement, EObject otherModelElement,
+		EReference reference) {
+		if (reference.isMany()) {
+			if (otherModelElement.eGet(reference) == null) {
+				return false;
+			}
+			return ((List<?>) otherModelElement.eGet(reference)).contains(modelElement);
+		} else {
+			return modelElement.equals(otherModelElement.eGet(reference));
+		}
+	}
+
+	/**
+	 * Delete all outgoing cross references of the given model element.
+	 * 
+	 * @param modelElement the model element
+	 */
+	public static void deleteOutgoingCrossReferences(EObject modelElement) {
+		// delete all non containment cross references to other elments
+		for (EReference reference : modelElement.eClass().getEAllReferences()) {
+			EClassifier eType = reference.getEType();
+			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
+				continue;
+			}
+			if (eType instanceof EClass) {
+				modelElement.eUnset(reference);
+			}
+		}
+	}
 }
