@@ -5,18 +5,20 @@
  */
 package org.unicase.ui.urml.stakeholderview.reviewview.controls;
 
-import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.databinding.EMFDataBindingContext;
-import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.reviewview.AbstractControlBuilder;
+import org.unicase.ui.urml.stakeholderview.StakeholderView;
 
 /**
  * This is the control to edit boolean value of the reviewed field.
@@ -43,7 +45,7 @@ public class ReviewedDisplayControl extends AbstractControlBuilder {
 			UrmlModelElement urmlElement) 
 	 {
 		 Object feature = itemPropertyDescriptor.getFeature(urmlElement);
-			if (feature instanceof EAttribute && ((EAttribute) feature).getEType().getInstanceClass().equals(boolean.class)) {
+			if (feature instanceof EReference && ((EReference) feature).equals(UrmlPackage.eINSTANCE.getUrmlModelElement_Reviewed())) {
 
 				return PRIORITY;
 			}
@@ -63,17 +65,26 @@ public class ReviewedDisplayControl extends AbstractControlBuilder {
 	protected Control doCreateControl(Composite parent,
 			UrmlModelElement urmlElement) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
-		EAttribute attribute = (EAttribute) feature;
+		EReference attribute = (EReference) feature;
 		check = new Button(parent, SWT.CHECK);
+		EMap<EClass, EList<EStructuralFeature>> test = StakeholderView.getActiveRole().getReviewSet();
+		
+		EList<EStructuralFeature> referenceListFromElement = test.get(urmlElement.eClass());
+		
+		//to change the display name use the property descriptor
+		if(!referenceListFromElement.isEmpty()){
+			check.setText("(" + referenceListFromElement.get(0).getName() + ")");
+		}
 		
 		//implement set of properties for a certain element
 		if(!attribute.getName().equals("reviewed")){
 			check.setEnabled(false);
+			
 		}
 		
-		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
-		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
+//		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
+//		EMFDataBindingContext dbc = new EMFDataBindingContext();
+//		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
 		return check;
 
 	}

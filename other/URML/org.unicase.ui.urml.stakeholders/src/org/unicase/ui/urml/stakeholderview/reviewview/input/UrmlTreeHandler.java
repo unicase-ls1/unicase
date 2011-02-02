@@ -16,9 +16,7 @@ import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
-import org.unicase.model.urml.danger.DangerPackage;
 import org.unicase.model.urml.requirement.Requirement;
-import org.unicase.model.urml.requirement.RequirementPackage;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -51,12 +49,12 @@ public final class UrmlTreeHandler {
 	 * @param project the project
 	 * @return the basic list
 	 */
-	public static Collection<Requirement> getRequirementsFromProject(Project project) {
-		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE
-			.getRequirement(), new BasicEList<EObject>());
-		Collection<Requirement> newList = new ArrayList<Requirement>();
+	public static Collection<UrmlModelElement> getRequirementsFromProject(Project project) {
+		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
+			.getUrmlModelElement(), new BasicEList<EObject>());
+		Collection<UrmlModelElement> newList = new ArrayList<UrmlModelElement>();
 		for (EObject a : basicListReq) {
-			newList.add((Requirement) a);
+			newList.add( (UrmlModelElement) a);
 		}
 
 		return newList;
@@ -84,16 +82,13 @@ public final class UrmlTreeHandler {
 	 * @param project the project.
 	 * @return the list
 	 */
-	public static Collection<UrmlModelElement> getRequirementsfromProjects(Project project) {
+	public static Collection<UrmlModelElement> getUrmlElementsfromProjects(Project project) {
 		// project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
 		// return project.getAllModelElementsbyClass(GoalPackage.eINSTANCE.getGoal(), new BasicEList<EObject>());
-		Collection<EObject> dangerListReq = project.getAllModelElementsbyClass(DangerPackage.eINSTANCE.getDanger(),
+		Collection<EObject> elementList= project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(),
 			new BasicEList<EObject>());
-		Collection<EObject> basicListReq = project.getAllModelElementsbyClass(RequirementPackage.eINSTANCE
-			.getFunctionalRequirement(), new BasicEList<EObject>());
-		basicListReq.addAll(dangerListReq);
 		List<UrmlModelElement> list = new ArrayList<UrmlModelElement>();
-		for (EObject urmlElment : basicListReq) {
+		for (EObject urmlElment : elementList) {
 			list.add((UrmlModelElement) urmlElment);
 		}
 		return list;
@@ -105,7 +100,18 @@ public final class UrmlTreeHandler {
 	 * @param collection .
 	 * @return the result tree
 	 */
-	public static TreeNode[] createTree(Collection<Requirement> collection) {
+//	public static TreeNode[] createTree(Collection<UrmlModelElement> collection) {
+//		TreeNode[] result = new TreeNode[collection.size()];
+//		int i = 0;
+//
+//		for (EObject element : collection) {
+//			result[i] = new UrmlTreeNode((UrmlModelElement) element);
+//			i = i + 1;
+//		}
+//		return result;
+//	}
+
+	public static TreeNode[] createTree(Collection<UrmlModelElement> collection) {
 		TreeNode[] result = new TreeNode[collection.size()];
 		int i = 0;
 
