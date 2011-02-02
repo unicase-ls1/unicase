@@ -13,65 +13,61 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
-import org.unicase.model.urml.requirement.Requirement;
-import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 
 /**
- * Tracks the urml model elements for changes. 
+ * Tracks the urml model elements for changes.
+ * 
  * @author kterzieva
- *
  */
 
 public class ReviewedTracker extends Observable {
 
 	private Project project;
-	private Collection<Requirement> requirements;
-	
-	
+
 	/**
 	 * The construct.
+	 * 
 	 * @param project the project whose elements will be tracked
 	 */
-	public ReviewedTracker(Project project){
+	public ReviewedTracker(Project project) {
 		this.project = project;
 	}
-	
+
 	/**
 	 * .
 	 */
-	public void createListeners(){
-		Collection<EObject> urmlElements = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getUrmlModelElement(), new BasicEList<EObject>());
-		for (EObject eo: urmlElements){
+	public void createListeners() {
+		Collection<EObject> urmlElements = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
+			.getUrmlModelElement(), new BasicEList<EObject>());
+		for (EObject eo : urmlElements) {
 			UrmlModelElement urml = (UrmlModelElement) eo;
 			ReviewedListener revListener = new ReviewedListener(this, urml);
 			urml.addModelElementChangeListener(revListener);
 		}
 	}
-	
+
 	/**
 	 * Gets the number of elements in a project which are reviewed.
-	 * @param selectReviewed defines which elements are get. Only if it is true, 
-	 * the number of the reviewed elements will be return.
+	 * 
+	 * @param selectReviewed defines which elements are get. Only if it is true, the number of the reviewed elements
+	 *            will be return.
 	 * @return the value of the elements which are reviewed.
 	 */
-	public int getReviewedElements(boolean selectReviewed) {
-		requirements = UrmlTreeHandler.getRequirementsFromProject(project);
-		int reviewed = 0;
-		for (Requirement r : requirements){
-			if (r.isReviewed()== selectReviewed){
-				reviewed++;
-				
-			}
-		}
-		return reviewed;
-	}
-	
+//	public int getReviewedElements(boolean selectReviewed) {
+//		urmlElements = UrmlTreeHandler.getRequirementsFromProject(project);
+//		int reviewed = 0;
+//		for (UrmlModelElement r : urmlElements) {
+//			if (r.isReviewed() == selectReviewed) {
+//				reviewed++;
+//			}
+//		}
+//		return reviewed;
+//	}
 
-	
 	/**
 	 * Updates the observers.
 	 */
-	public void recalculate(){
+	public void recalculate() {
 		this.setChanged();
 		this.notifyObservers();
 	}

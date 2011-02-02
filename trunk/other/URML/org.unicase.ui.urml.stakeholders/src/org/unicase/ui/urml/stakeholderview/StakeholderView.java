@@ -8,12 +8,22 @@ package org.unicase.ui.urml.stakeholderview;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
@@ -21,8 +31,13 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -34,7 +49,6 @@ import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.reviewview.ReviewView;
-import org.unicase.ui.urml.reviewview.ReviewedTracker;
 import org.unicase.ui.urml.stakeholderview.reviewview.input.UrmlTreeHandler;
 import org.unicase.ui.urml.stakeholderview.roles.DefaultStakeholderRoles;
 
@@ -46,10 +60,11 @@ import org.unicase.ui.urml.stakeholderview.roles.DefaultStakeholderRoles;
 
 public class StakeholderView extends ViewPart implements Observer {
 
+	private static final String NO_STAKEHOLDER = "[no stakeholder]";
 	private static final String MANAGE_STAKEHOLDER_ROLES = "Manage stakeholder roles";
 	private static final String CHOOSE_STAKEHOLDER_ROLE = "Choose Stakeholder Role";
-	private static final String UNREVIEWED_REQUIREMENTS = "Unreviewed Requirements:";
-	private static final String REVIEWED_REQUIREMENTS = "Reviewed Requirements:";
+	private static final String UNREVIEWED_ELEMENTS = "Unreviewed Modelelements:";
+	private static final String REVIEWED_ELEMENTS = "Reviewed Modelelements:";
 	private static final String STATUS_VIEW_ID = "ReviewView";
 	private IWorkbenchPage page;
 	private Action openReviewView;
@@ -57,18 +72,26 @@ public class StakeholderView extends ViewPart implements Observer {
 	private FilterManager filterManager = new FilterManager();
 	private Project activeProject;
 	private Link unreviewedReqirements, reviewedReqirements;
-	public static StakeholderRole activeRole;
+	private static StakeholderRole activeRole;
+	private Text txtUser;
+	private Link link;
+	private Label label;
+	private ReviewView test;
 
 	@Override
 	public void createPartControl(Composite parent) {
 
 		try {
 			parent.setLayout(new GridLayout(1, false));
+			parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 			activeProject = UrmlTreeHandler.getTestProject();
 			Activator.getTracker().addObserver(this);
-			reviewedReqirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_REQUIREMENTS);
-			unreviewedReqirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_REQUIREMENTS);
+			reviewedReqirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, activeRole);
+			unreviewedReqirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_ELEMENTS,
+				activeRole);
 
+			createActiveRoleLabel(parent);
+			createShowPropertyRoleButton(parent);
 			createOpenReviewViewAction(UrmlTreeHandler.getTestProject());
 			createFilterAction(UrmlTreeHandler.getTestProject());
 
@@ -78,14 +101,44 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	}
 
+	private void createShowPropertyRoleButton(Composite parent) {
+		Button showProp = new Button(parent, SWT.NONE);
+		showProp.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
+		showProp.setText("Show role properties");
+		showProp.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Test", 
+					"Active role: " +
+					"\n\n" +
+					"Review set settings: \n" +
+					"\n\n" + 
+					"Filter set settings: \n\n" +
+					"");
+			}
+		});
+	}
+	
+	private void createActiveRoleLabel(Composite parent) {
+		label = new Label(parent, SWT.NONE);
+		label.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+		if (getActiveRole() == null) {
+			label.setText("Active role : " + NO_STAKEHOLDER);
+		} else {
+			label.setText("Active role : " + getActiveRole().getName().toString());
+		}
+
+	}
+
 	private Link reviewedRequirementSetup(Composite parent, Project project, final boolean selectReviewed,
-		String linkText) throws NoWorkspaceException {
-		Link link = new Link(parent, SWT.WRAP);
+		String linkText, StakeholderRole activeRole) throws NoWorkspaceException {
+		link = new Link(parent, SWT.WRAP);
 		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
-	//	data.widthHint = 300;
+		// data.widthHint = 300;
 		link.setLayoutData(data);
-		link.setText("<a>" + linkText + "</a> " + "<a>" + Activator.getTracker().getReviewedElements(selectReviewed)
-			+ "</a>");
+		//+ Activator.getTracker().getReviewedElements(selectReviewed)
+		link.setText("<a>" + linkText + "</a> ");
+
 		link.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -114,7 +167,7 @@ public class StakeholderView extends ViewPart implements Observer {
 				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
 				try {
-					page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+					test = (ReviewView) page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
 
 				} catch (PartInitException e) {
 					e.printStackTrace();
@@ -131,6 +184,7 @@ public class StakeholderView extends ViewPart implements Observer {
 	private void createFilterAction(final Project project) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
+		IToolBarManager toolbarManager = bars.getToolBarManager();
 
 		chooseRole = new MenuManager(CHOOSE_STAKEHOLDER_ROLE, Activator.getImageDescriptor("icons/Stakeholder.gif"),
 			"org.unicase.ui.urml.stakeholders.FilterToRole");
@@ -138,9 +192,30 @@ public class StakeholderView extends ViewPart implements Observer {
 
 		createDefaultRolesIfNotExist();
 		createFilterMenuItems();
-
 		createOtherItems();
+		
+		ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
 
+			@Override
+			protected Control createControl(Composite parent) {
+				Composite composite = new Composite(parent, SWT.NONE);
+				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
+				txtUser = new Text(composite, SWT.NONE);
+				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+				layoutData.widthHint = 100;
+				txtUser.setLayoutData(layoutData);
+				txtUser.setEditable(false);
+				if (activeRole != null) {
+					txtUser.setText(activeRole.getName());
+				} else {
+					txtUser.setText(NO_STAKEHOLDER);
+				}
+				return composite;
+			}
+
+		};
+
+		toolbarManager.add(userTextToolbarContribution);
 	}
 
 	private void createOtherItems() {
@@ -164,11 +239,17 @@ public class StakeholderView extends ViewPart implements Observer {
 			@Override
 			public void run() {
 				filterManager.removeFilters();
+				txtUser.setText(NO_STAKEHOLDER);
+				label.setText("Active role : " + NO_STAKEHOLDER);
+				
+				// TODO stakeholder view should be updated! Number of reviewed/unreviewed elem.is 0.
+
 			}
 		};
 		resetFilters.setText("Reset role settings");
 		resetFilters.setToolTipText("Reset maded role settings, hence showing all elements.");
 		chooseRole.add(resetFilters);
+
 	}
 
 	/**
@@ -192,36 +273,38 @@ public class StakeholderView extends ViewPart implements Observer {
 			.getStakeholderRole(), new BasicEList<EObject>());
 		for (EObject obj : defaultRoles) {
 			final StakeholderRole role = (StakeholderRole) obj;
-			Action a = createMenuAction(role);
+			Action a = createSelectedRoleAction(role);
 			a.setText(role.getName());
 			a.setToolTipText("Filter to elements that are important for the " + role.getName());
 			chooseRole.add(a);
 		}
 	}
 
-	private Action createMenuAction(final StakeholderRole role) {
+	private Action createSelectedRoleAction(final StakeholderRole role) {
 		Action a = new Action() {
 			@Override
 			public void run() {
-				activeRole = role;
+				setActiveRole(role);
+				label.setText("Active role : " + getActiveRole().getName());
+				txtUser.setText(activeRole.getName());
 				filterManager.applyFilter(new ViewerFilter() {
 					@Override
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
 						if (element instanceof UrmlModelElement) {
-							return role.getFilterSet().contains(((UrmlModelElement) element).eClass().getName());
+							EMap<EClass, EList<EStructuralFeature>> filterSet = role.getFilterSet();
+							for (Entry<EClass, EList<EStructuralFeature>> entry : filterSet) {		
+								 if(entry.getKey().getName().equals(((UrmlModelElement) element).eClass().getName())){
+									 return true;
+								 }
+							}
+							return false;
 						}
-						return true;	
+						return true;
 					}
-
-				});
-				ReviewView reviewView = null;
-				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				try {
-					reviewView = (ReviewView) page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
-				} catch (PartInitException e) {
-					e.printStackTrace();
+				});				
+				if(test != null){
+					test.setInputFromRole(activeProject, role);
 				}
-				reviewView.setInputFromRole(activeProject, role);
 			}
 		};
 		return a;
@@ -229,9 +312,11 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		ReviewedTracker tracker = (ReviewedTracker) o;
-		reviewedReqirements.setText(REVIEWED_REQUIREMENTS + tracker.getReviewedElements(true));
-		unreviewedReqirements.setText(UNREVIEWED_REQUIREMENTS + tracker.getReviewedElements(false));
+	//	ReviewedTracker tracker = (ReviewedTracker) o;
+		reviewedReqirements.setText(REVIEWED_ELEMENTS);
+		// + tracker.getReviewedElements(true)
+		unreviewedReqirements.setText(UNREVIEWED_ELEMENTS);
+		//tracker.getReviewedElements(false)
 
 	}
 
@@ -242,9 +327,20 @@ public class StakeholderView extends ViewPart implements Observer {
 
 	/**
 	 * Gets the current stakeholder role.
+	 * 
 	 * @return activeRole the active stakeholder role
 	 */
 	public static StakeholderRole getActiveRole() {
+		return activeRole;
+	}
+
+	/**
+	 * Sets the active role.
+	 * @param role the role to be set
+	 * @return activeRole the active role
+	 */
+	public static StakeholderRole setActiveRole(StakeholderRole role) {
+		activeRole = role;
 		return activeRole;
 	}
 

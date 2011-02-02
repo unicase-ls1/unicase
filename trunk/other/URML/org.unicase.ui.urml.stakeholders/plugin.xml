@@ -36,7 +36,7 @@
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.ReviewedDisplayControl"
             name="Stakeholders.ReviewedDisplay"
             showLabel="true"
-            type="java.lang.Boolean">
+            type="org.eclipse.emf.ecore.EStructuralFeature">
       </widget>
       <widget
             class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiReferenceControl"
@@ -44,6 +44,42 @@
             showLabel="false"
             type="org.unicase.model.urml.UrmlModelElement">
       </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Boolean">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Object">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Integer">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.referencecontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget2"
+            showLabel="false"
+            type="org.eclipse.emf.ecore.EObject">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.diagram.urmlDiagram.filters">
+      <filter
+            class="org.unicase.ui.urml.stakeholderview.StakeholderDiagramFilter">
+      </filter>
    </extension>
 
 

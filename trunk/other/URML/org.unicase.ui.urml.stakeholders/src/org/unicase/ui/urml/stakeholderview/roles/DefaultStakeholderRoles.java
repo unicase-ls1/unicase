@@ -5,10 +5,16 @@
  */
 package org.unicase.ui.urml.stakeholderview.roles;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.metamodel.Project;
-import org.unicase.model.urml.ReviewSetEntry;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.urml.UrmlFactory;
+import org.unicase.model.urml.danger.DangerPackage;
+import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -26,20 +32,21 @@ public class DefaultStakeholderRoles {
 	public void createDefaultRoles(final Project project){
 		final org.unicase.model.urml.StakeholderRole testEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		testEngineer.setName("Test Engineer");
-		final EList<ReviewSetEntry> reviewSet = testEngineer.getReviewSet();
-		createReviewSetEntry("Danger", null, reviewSet);
-		createReviewSetEntry("NonFunctionalRequirement", null, reviewSet);
-		createReviewSetEntry("FunctionalRequirement", null, reviewSet);
-		final EList<String> filterSet = testEngineer.getFilterSet();
-		filterSet.add("Goal");
+		final EMap<EClass, EList<EStructuralFeature>> reviewSet = testEngineer.getReviewSet();
+		createSetEntry(DangerPackage.eINSTANCE.getDanger(), null, reviewSet);
+		createSetEntry(RequirementPackage.eINSTANCE.getNonFunctionalRequirement(), null, reviewSet);
+		createSetEntry(RequirementPackage.eINSTANCE.getFunctionalRequirement(), null, reviewSet);
+		final EMap<EClass, EList<EStructuralFeature>> filterSet = testEngineer.getFilterSet();
+		createSetEntry(GoalPackage.eINSTANCE.getGoal(), null, filterSet);
+		
 		
 		final org.unicase.model.urml.StakeholderRole safetyEngineer = UrmlFactory.eINSTANCE.createStakeholderRole();
 		safetyEngineer.setName("Safety Engineer");
-		final EList<ReviewSetEntry> safetySet = safetyEngineer.getReviewSet();
-		createReviewSetEntry("Danger", null, reviewSet);
-		createReviewSetEntry("FunctionalRequirement", null, safetySet);
-		final EList<String> safetyFilterSet = testEngineer.getFilterSet();
-		safetyFilterSet.add("Mitigation");
+		final EMap<EClass, EList<EStructuralFeature>> safetySet = safetyEngineer.getReviewSet();
+		createSetEntry(DangerPackage.eINSTANCE.getDanger(), null, reviewSet);
+		createSetEntry(RequirementPackage.eINSTANCE.getFunctionalRequirement(), null, safetySet);
+		final EMap<EClass, EList<EStructuralFeature>> safetyFilterSet = testEngineer.getFilterSet();
+		createSetEntry(DangerPackage.eINSTANCE.getMitigation(), null, safetyFilterSet);
 		
 		
 		new UnicaseCommand() {
@@ -54,11 +61,12 @@ public class DefaultStakeholderRoles {
 	}
 
 
-	private void createReviewSetEntry(String className, String referenceToShow, EList<ReviewSetEntry> reviewSet){
-		ReviewSetEntry entry = UrmlFactory.eINSTANCE.createReviewSetEntry();
-		entry.setElementClass(className);
-		entry.setReferenceToShow(referenceToShow);
-		reviewSet.add(entry);
+	private void createSetEntry(EClass className, EStructuralFeature referenceToShow, EMap<EClass, EList<EStructuralFeature>> reviewSet){
+		EList<EStructuralFeature> referenceList = new BasicEList<EStructuralFeature>();
+		if(referenceToShow != null){
+			referenceList.add(referenceToShow);
+		}
+		reviewSet.put(className, referenceList);
 	}
 	
 }

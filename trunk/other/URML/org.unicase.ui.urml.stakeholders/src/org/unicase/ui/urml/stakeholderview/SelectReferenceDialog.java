@@ -8,9 +8,12 @@ package org.unicase.ui.urml.stakeholderview;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -35,25 +38,31 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class SelectReferenceDialog extends TitleDialogWithoutMinSize {
 
-	private String referenceName;
-	private EClass eClassName;
+	//private String referenceName;
 	private String displayReferenceName;
 	private ArrayList<Button> buttons;
-	private HashMap<String, String> mapping;
+	private boolean reviewSet;
+	private EList<EStructuralFeature> referenceList;
+	private EClass selectedClass;
+	private Map<Button, EStructuralFeature> buttonToFeatureMapping = new HashMap<Button, EStructuralFeature>();
 
 	/**
 	 * The construct.
 	 * 
 	 * @param parentShell the parent shell
-	 * @param eClass the class is used to represent the name of the references shown in this dialog
-	 * @param classNameToReferenceMapping list with the name/reference mapping
+	 * @param selectedClass the class is used to represent the name of the references shown in this dialog
+	 * @param referenceList list with the name/reference mapping
+	 * @param reviewSet
+	 * @param reviewSet .
 	 */
-	public SelectReferenceDialog(Shell parentShell, EClass eClass, HashMap<String, String> classNameToReferenceMapping) {
+	//, HashMap<EClass, EStructuralFeature> reviewMapping
+	public SelectReferenceDialog(Shell parentShell, EClass selectedClass, boolean reviewSet, EList<EStructuralFeature> referenceList) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
-		this.eClassName = eClass;
-		this.mapping = classNameToReferenceMapping;
-		referenceName = mapping.get(eClass.getName());
+		this.selectedClass = selectedClass;
+		this.reviewSet = reviewSet;
+		this.referenceList = referenceList;
+
 	}
 
 	@Override
@@ -63,9 +72,14 @@ public class SelectReferenceDialog extends TitleDialogWithoutMinSize {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
+		if (reviewSet) {
+			setTitle("Select one reference");
+			setMessage("Choose a reference for the review view");
+		} else {
+			setTitle("Select references");
+			setMessage("Choose references for the Unicase Navigator which can be shown in MEEditor");
+		}
 
-		setTitle("Test");
-		setMessage("Choose a reference for the review view");
 		// Create composite
 		Composite wrap = (Composite) super.createDialogArea(parent);
 
@@ -81,65 +95,94 @@ public class SelectReferenceDialog extends TitleDialogWithoutMinSize {
 		group.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
 		group.setText("Reference list");
 
-		EObject test = eClassName.getEPackage().getEFactoryInstance().create(eClassName);
+		//create instance of the selected class
+		EObject selectedClassInstance = selectedClass.getEPackage().getEFactoryInstance().create(selectedClass);
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(test);
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(selectedClassInstance);
 
 		buttons = new ArrayList<Button>();
-		
+
 		for (IItemPropertyDescriptor itemDescriptor : propertyDescriptors) {
-			final Button b = new Button(group, SWT.RADIO);
-			b.setLayoutData(new GridData());
-			buttons.add(b);
-			String currentName = itemDescriptor.getDisplayName(itemDescriptor);
-			b.setText(currentName);
-			
-			if(referenceName != null && referenceName.equals(b.getText())){
-				b.setSelection(true);
+			if (reviewSet) {
+				Button b = new Button(group, SWT.RADIO);
+				referenceButtonSetUp(itemDescriptor, b, selectedClassInstance, reviewSet);
+			} else {
+				Button b = new Button(group, SWT.CHECK);
+				referenceButtonSetUp(itemDescriptor, b, selectedClassInstance, reviewSet);
 			}
 			
-			b.addSelectionListener(new SelectionListener() {
-
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					displayReferenceName = b.getText();
-				}
-
-				@Override
-				public void widgetDefaultSelected(SelectionEvent e) {
-
-				}
-			});
 		}
 		Label titleBarSeparator = new Label(wrap, SWT.HORIZONTAL | SWT.SEPARATOR);
 		titleBarSeparator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		return group;
 	}
 
+	private void referenceButtonSetUp(IItemPropertyDescriptor itemDescriptor, final Button b, EObject selectedClassInstance, boolean isReviewSet) {
+		b.setLayoutData(new GridData());
+		buttons.add(b);
+		String currentName = itemDescriptor.getDisplayName(itemDescriptor);
+		Object feature = itemDescriptor.getFeature(selectedClassInstance);
+		buttonToFeatureMapping.put(b, (EStructuralFeature) feature);
+		b.setText(currentName);
+		
+		//read the reference list from model for the button settings
+		
+		if (referenceList.contains(feature)) {
+			b.setSelection(isReviewSet);
+		} else {
+			b.setSelection(!isReviewSet);
+		}
+
+		b.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				displayReferenceName = b.getText();
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+			}
+		});
+	}
+
 	/**
 	 * Writes the input made by the user into the model.
+	 * 
 	 * @param displayReferenceName the name of the reference
 	 */
 	protected void writeReferenceInputToModel(final String displayReferenceName) {
+		referenceList.clear();
+		
 		for (Button b : buttons) {
-			if (b.getSelection()) {
-				mapping.put(eClassName.getName(), b.getText());
+			if(reviewSet){
+				if (b.getSelection()) {
+					EStructuralFeature feature = buttonToFeatureMapping.get(b);
+					referenceList.add(feature);
+				}
+			} else {
+				if (!b.getSelection()) {
+					EStructuralFeature feature = buttonToFeatureMapping.get(b);
+					referenceList.add(feature);
+				}	
 			}
+			
 		}
+		
 	}
 
 	@Override
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == Window.OK) {
 			new UnicaseCommand() {
-				
+
 				@Override
 				protected void doRun() {
-					writeReferenceInputToModel(displayReferenceName);					
+					writeReferenceInputToModel(displayReferenceName);
 				}
 			}.run();
-			
+
 		}
 		super.buttonPressed(buttonId);
 	}

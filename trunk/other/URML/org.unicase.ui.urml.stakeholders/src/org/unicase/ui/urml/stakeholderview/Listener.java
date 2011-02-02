@@ -51,8 +51,8 @@ public abstract class Listener implements ModelElementChangeListener {
 		if (notification.getEventType() == Notification.RESOLVE) {
 			return;
 		}
-		if (wantResetReviewed(notification) && urmlElement.isReviewed()) {
-			urmlElement.setReviewed(false);
+		if (wantResetReviewed(notification)) {
+		//	urmlElement.setReviewed(false);
 			tracker.recalculate();
 		}
 		EStructuralFeature feature = getUrmlElement().eClass().getEStructuralFeature("reviewed");
