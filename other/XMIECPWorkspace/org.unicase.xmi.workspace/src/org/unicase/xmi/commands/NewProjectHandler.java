@@ -9,7 +9,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
-import org.unicase.xmi.views.CreateProjectDialog;
+import org.unicase.xmi.views.NewProjectDialog;
 import org.unicase.xmi.workspace.XMIECPWorkspace;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 import org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructureFactory;
@@ -30,7 +30,7 @@ public class NewProjectHandler extends XmiAbstractHandler {
 		
 		// open dialog
 		Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
-		CreateProjectDialog dialog = new CreateProjectDialog(activeShell, this);
+		NewProjectDialog dialog = new NewProjectDialog(activeShell, this);
 
 		// work with the results of the dialog and create the project
 		if(dialog.open() == Window.OK) {
