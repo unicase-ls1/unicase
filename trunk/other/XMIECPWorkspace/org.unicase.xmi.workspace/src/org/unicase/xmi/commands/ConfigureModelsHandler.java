@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -17,7 +22,7 @@ import org.unicase.xmi.workspace.XmiUtil;
 import org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject;
 
 /**
- * Handles the user's choice to add or remove a model from a FileProject
+ * Handles the user's choice to add or remove a model from a FileProject.
  * @author kraftm, maierma
  *
  */
@@ -55,7 +60,9 @@ public class ConfigureModelsHandler extends AbstractHandler {
 			
 			//Add all selected models
 			for(Object s : dialog.getResult()) {
-				if(s instanceof String)	context.addModel((String) s);
+				if(s instanceof String)	{
+					context.addModel((String) s);
+				}
 			}
 		}
 		

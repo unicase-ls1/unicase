@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.views;
 
 import java.io.File;
@@ -46,7 +51,7 @@ import org.unicase.xmi.exceptions.XMIWorkspaceException;
 public class ImportFolderDialog extends TitleAreaDialog {
 
 	/**
-	 * Location of the folder
+	 * Location of the folder.
 	 */
 	private Text txtFolderLocation;
 
@@ -61,10 +66,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	private XmiListViewer listViewer;
 	
 	/**
-	 * Default constructor.
-	 * 
-	 * @param parent
-	 *            the parent shell
+	 * Create a dialog to ask the user.
+	 * @param parent Shell in which the dialog is displayed.
+	 * @param handler Handler invoking the dialog.
 	 */
 	public ImportFolderDialog(Shell parent, ImportFolderHandler handler) {
 		super(parent);
@@ -194,7 +198,7 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	 * @param loadableFiles Files that can be loaded.
 	 * @param path Folder path containing the resources.
 	 */
-	private static final void tryLoadingProjects(List<String> loadableFiles, String path, Shell shell) {
+	private static void tryLoadingProjects(List<String> loadableFiles, String path, Shell shell) {
 		
 		final String dirPath = path;
 		final List<String> loadableProcessedFiles = new ArrayList<String>();
