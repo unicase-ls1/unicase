@@ -57,14 +57,14 @@ public final class ModelGeneratorUtil {
 	 * 
 	 * @see #getAllEClasses(EPackage)
 	 */
-	private static Map<EPackage, Set<EClass>> packageToModelElementEClasses = new LinkedHashMap<EPackage, Set<EClass>>();
+	private static Map<EPackage, List<EClass>> packageToModelElementEClasses = new LinkedHashMap<EPackage, List<EClass>>();
 	
 	/**
 	 * Map that maps EClasses to all possible EClasses that can be contained by them.
 	 * 
 	 * @see #getAllEContainments(EClass)
 	 */
-	private static Map<EClass, Set<EClass>> allEContainments = new LinkedHashMap<EClass, Set<EClass>>();
+	private static Map<EClass, List<EClass>> allEContainments = new LinkedHashMap<EClass, List<EClass>>();
 
 	/**
 	 * Map that maps EClasses to their subclasses.
@@ -118,15 +118,15 @@ public final class ModelGeneratorUtil {
 	 * @param ePackage the package to get contained EClasses from
 	 * @return a set of EClasses contained in <code>ePackage</code>
 	 */
-	public static Set<EClass> getAllEClasses(EPackage ePackage) {
+	public static List<EClass> getAllEClasses(EPackage ePackage) {
 		if(packageToModelElementEClasses.containsKey(ePackage)) {
 			return packageToModelElementEClasses.get(ePackage);
 		}
 		if(ePackage == null) {
-			packageToModelElementEClasses.put(ePackage, new LinkedHashSet<EClass>());
+			packageToModelElementEClasses.put(ePackage, new LinkedList<EClass>());
 			return packageToModelElementEClasses.get(ePackage);	
 		}
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		List<EClass> result = new LinkedList<EClass>();
 		for(EPackage subPackage : ePackage.getESubpackages()) {
 			result.addAll(getAllEClasses(subPackage));
 		}
@@ -167,15 +167,15 @@ public final class ModelGeneratorUtil {
 	 * @param eClass the EClass to get containable EClasses for
 	 * @return a set of all EClasses that can be contained in <code>eClass</code>
 	 */
-	public static Set<EClass> getAllEContainments(EClass eClass) {
+	public static List<EClass> getAllEContainments(EClass eClass) {
 		if(allEContainments.containsKey(eClass)) {
 			return allEContainments.get(eClass);
 		}
 		if(eClass == null) {
-			allEContainments.put(eClass, new LinkedHashSet<EClass>());
+			allEContainments.put(eClass, new LinkedList<EClass>());
 			return allEContainments.get(eClass);
 		}
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		List<EClass> result = new LinkedList<EClass>();
 		for(EReference reference : eClass.getEAllContainments()) {
 			EClass referenceType = reference.getEReferenceType();
 			if(!referenceType.isInterface() && !referenceType.isAbstract())
@@ -277,7 +277,8 @@ public final class ModelGeneratorUtil {
 	public static List<EReference> getValidReferences(EObject eObject) {
 		List<EReference> result = new LinkedList<EReference>();
 		for(EReference reference : eObject.eClass().getEAllReferences()) {
-			if(!reference.isContainer() && !reference.isContainment() && reference.isChangeable() && !reference.isVolatile() && !reference.isDerived() && (reference.isMany() || !eObject.eIsSet(reference))) {
+			if(!reference.isContainer() && !reference.isContainment() && reference.isChangeable() && !reference.isVolatile()
+				&& !reference.isDerived() && (reference.isMany() || !eObject.eIsSet(reference))) {
 				result.add(reference);
 			}
 		}
