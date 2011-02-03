@@ -3,9 +3,10 @@
 <plugin>
    <extension
          point="org.unicase.workspace.workspaceLocationProvider">
-      <LocationProvider
+             <LocationProvider
             providerClass="otherworkspacelocation.OtherLocationProvider">
       </LocationProvider>
    </extension>
+
 
 </plugin>
