@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.commands;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -5,7 +10,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * A command that is used in the XMIECPWorkspace
- * and which is similar to the UnicaseCommand
+ * and which is similar to the UnicaseCommand.
  * @author kraftm, maierma
  *
  */

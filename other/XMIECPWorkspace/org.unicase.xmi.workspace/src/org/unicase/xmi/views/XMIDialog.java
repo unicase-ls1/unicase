@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.views;
 
 import java.io.File;
@@ -33,18 +38,23 @@ import org.unicase.xmi.workspace.XmiUtil;
  */
 public abstract class XMIDialog extends TitleAreaDialog {
 	
+	/*
+	 * All attributes are protected, because they are needed
+	 * in the subclasses.
+	 */
+	
 	/**
-	 * Name of the Project
+	 * Name of the Project.
 	 */
 	protected Text txtProjectName;
 	
 	/**
-	 * Description of the Project
+	 * Description of the Project.
 	 */
 	protected Text txtProjectDescription;
 	
 	/**
-	 * Location of the Project's resource
+	 * Location of the Project's resource.
 	 */
 	protected Text txtProjectLocation;
 	
@@ -54,17 +64,17 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	protected String projectLocationPath;
 	
 	/**
-	 * Title of the dialog
+	 * Title of the dialog.
 	 */
 	protected String dialogTitle;
 	
 	/**
-	 * Message of the dialog
+	 * Message of the dialog.
 	 */
 	protected String dialogMessage;
 	
 	/**
-	 * Shell for listeners
+	 * Shell for listeners.
 	 */
 	protected final Shell shell;
 	
@@ -74,7 +84,7 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	private XmiAbstractHandler handler;
 	
 	/**
-	 * Creates a new Dialog to import or create a project
+	 * Creates a new Dialog to import or create a project.
 	 * @param parentShell Shell of the parent
 	 * @param title Title of the dialog
 	 * @param message Message for the dialog
@@ -87,6 +97,10 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	}
 	
 	// SETTER
+	/**
+	 * Sets the handler for the dialog(s).
+	 * @param h Handler which invoked the dialog.
+	 */
 	public void setHandler(XmiAbstractHandler h) {
 		this.handler = h;
 	}
@@ -182,14 +196,14 @@ public abstract class XMIDialog extends TitleAreaDialog {
 	
 	/**
 	 * Dialog dependent method that needs to be overwritten so it can either
-	 * implement a directory selection or file selection
+	 * implement a directory selection or file selection.
 	 * @return Listener that is called when the button is pressed.
 	 */
 	protected abstract SelectionListener getBrowseWorkspaceListener();
 	
 	/**
 	 * Dialog dependent method that needs to be overwritten so it can either
-	 * implement a directory selection or file selection
+	 * implement a directory selection or file selection.
 	 * @return Listener that is called when the button is pressed.
 	 */
 	protected abstract SelectionListener getBrowseFilesystemListener();
@@ -217,9 +231,13 @@ public abstract class XMIDialog extends TitleAreaDialog {
 			else if(projRes.isDirectory() && projRes.exists()) {
 				location = path;
 			}
-			else location = XmiUtil.DEFAULT_LOCATION; 
+			else {
+				location = XmiUtil.DEFAULT_LOCATION; 
+			}
 		}
-		else location = XmiUtil.DEFAULT_LOCATION;
+		else {
+			location = XmiUtil.DEFAULT_LOCATION;
+		}
 		
 		// add seperator after path
 		location += File.separator;

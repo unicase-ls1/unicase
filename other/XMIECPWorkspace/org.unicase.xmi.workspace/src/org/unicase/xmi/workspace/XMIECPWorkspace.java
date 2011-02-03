@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.workspace;
 
 import java.io.File;
@@ -38,7 +43,7 @@ import org.unicase.xmi.xmiworkspacestructure.XMIECPProject;
 public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	
 	/**
-	 * Copied transactional domain
+	 * Transactional domain.
 	 */
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 
@@ -148,7 +153,9 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	 */
 	public boolean projectPathExists(String path) {
 		// if projects is not set or null just return false
-		if(projects == null || projects.isEmpty()) return false;
+		if(projects == null || projects.isEmpty()) {
+			return false;
+		}
 		
 		// iterate over all projects and check for their path		
 		for(ECPProject p: projects) {
@@ -264,6 +271,7 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 	/**
 	 * Returns the project that the user is currently working in,
 	 * by checking where the current selection is.
+	 * @return Currently selected project.
 	 */
 	@Override
 	public ECPProject getActiveProject() {

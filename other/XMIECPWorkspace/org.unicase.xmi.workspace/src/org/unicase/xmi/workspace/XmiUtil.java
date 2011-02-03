@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmi.workspace;
 
 import java.util.ArrayList;
@@ -12,7 +17,7 @@ import org.unicase.util.UnicaseUtil;
  * This class offers useful constants and methods needed from several classes.
  * @author maierma, kraftm
  */
-public class XmiUtil {
+public final class XmiUtil {
 	
 	/**
 	 * Constant to set the project description if it was left empty or not set.
@@ -25,7 +30,7 @@ public class XmiUtil {
 	public static final String DEFAULT_LOCATION = Platform.getLocation().toOSString();
 
 	/**
-	 * Set the common workspacepath for all XMI related classes as the default location for a project
+	 * Set the common workspacepath for all XMI related classes as the default location for a project.
 	 */
 	public static final String WORKSPACE_PATH = DEFAULT_LOCATION;
 	
@@ -33,6 +38,13 @@ public class XmiUtil {
 	 * The name of the model the XMIECPProjects are contained in.
 	 */
 	public static final String XMI_MODELNAME = "org.unicase.xmi.structureModel";
+	
+	/**
+	 * Unused internal constructor.
+	 */
+	private XmiUtil() {
+		// do nothing
+	}
 	
 	/**
 	 * Returns whether a string is null or equals en empty string.
@@ -44,10 +56,28 @@ public class XmiUtil {
 	}
 	
 	/**
-	 * Contains the possible status of a project
+	 * Contains the possible status of a project.
 	 */
 	public enum PROJECT_STATUS {
-		LOADED, FAILED, NOTLOADED, DUPLICATED
+		/**
+		 * Project is loaded and resource can be read and written.
+		 */
+		LOADED,
+		
+		/**
+		 * The project cannot be loaded because the resource cannot be read.
+		 */
+		FAILED,
+		
+		/**
+		 * The project hasn't been loaded yet.
+		 */
+		NOTLOADED,
+		
+		/**
+		 * There is another project with the same resource in the workspace. 
+		 */
+		DUPLICATED
 	}
 	
 	/**

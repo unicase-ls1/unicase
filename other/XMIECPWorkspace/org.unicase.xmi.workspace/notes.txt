@@ -1,23 +1,11 @@
-# REPORTED BUGS
+# TODO
+- summary presentation (5 min)
 
-MARKUS
-- The menu item "export model element" is visible on project node. 
-Clicking it caused the following exception in error log: 
-java.lang.ArrayStoreException 
-        at org.eclipse.emf.common.util.BasicEList.assign(BasicEList.java:124) 
-        at org.eclipse.emf.common.util.BasicEList.addAllUnique(BasicEList.java:514) 
-        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.doAddAllUnique(NotifyingListImpl.java:506) 
-        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.addAllUnique(NotifyingListImpl.java:478) 
-        at org.eclipse.emf.common.notify.impl.NotifyingListImpl.addAllUnique(NotifyingListImpl.java:406) 
-        at org.eclipse.emf.common.util.AbstractEList.addAll(AbstractEList.java:374) 
-        at org.eclipse.emf.ecore.util.EcoreUtil$Copier.copyAttribute(EcoreUtil.java:614) 
-        at org.eclipse.emf.ecore.util.EcoreUtil$Copier.copy(EcoreUtil.java:479) 
-        at org.eclipse.emf.ecore.util.EcoreUtil.copy(EcoreUtil.java:360) 
-        at org.unicase.ui.navigator.handler.ExportModelHandler.getSelfContainedModelElementTree(ExportModelHandler.java:118) 
-        at org.unicase.ui.navigator.handler.ExportModelHandler.execute(ExportModelHandler.java:63) 
-        at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294) 
-        at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476)
-=> ask Jonas: Patch for ui.navigator? -> strip it out of the project node
+@ OPTIONAL
+- Delete Dialog should appear for multiple marked projects.
+- Make resource path relative to workspace, if chosen from workspace.
+
+# REPORTED BUGS
 
 - using the Delete-Shortcut (in my case CTRL+DEL) on Projects shows a 
 different Confirmation Dialog, asking me if I wanted to delete the 
@@ -40,40 +28,16 @@ NullPointerException ("An unexpected exception was thrown" in the Error Log)
 - navigator does not update upon adding a new ME.
 => the case if there is no name yet -> send an email, no core issue
 
-@ FROM Zardosht
-10. I can select multiple items in navigator. However the menu items 
-are not relevant then.
-=> only selecting one is handled
-
-# TODO
-- summary presentation (5 min)
-	- problem
-	- our solution -> requirements
-	- the biggest problems
-
-@ OPTIONAL
-- Delete Dialog should appear for multiple marked projects
-
-@ POSTPONED
-- Make resource path relative to workspace, if chosen from workspace.
-
-@ IGNORE
-- remove refresh from our implementation and change TreeView.refresh (also look for changes  in line 388 "addDropSupport")
-
-
 # Accepted plugins:
-# Message extract from Nov 15, 18.35h @ XMI/MemoryLeak Group Channel
+# Message extract from Nov 15, 18.35h @ XMI/MemoryLeak Google-Group Channel (unicase-labcourse)
 
 As your implementation is for emfcp only you can and must Close all   
 Plugins except Navigator Editor ui.Common navigatoreditor Bridge. I   
 hope i didnt forget one.
 
-
 # API Resources
 http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/
 http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/overview-summary.html
-	
-
 
 # Resolved:
 OK - Change Design -> Refactor, make the Commands do the work, not the Dialogs!
