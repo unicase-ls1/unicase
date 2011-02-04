@@ -23,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
+import org.eclipse.ui.services.IDisposable;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.util.ActionHelper;
@@ -39,9 +40,9 @@ import org.unicase.util.UnicaseUtil;
  */
 public class DynamicContainmentCommands extends CompoundContributionItem {
 
-	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-	// jc: open
+	private AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+		ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	// hkq: done
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
 	private EObject selectedME;
@@ -204,6 +205,20 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			commands.add(command);
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.action.ContributionItem#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (labelProvider.getAdapterFactory() instanceof IDisposable) {
+			((IDisposable) labelProvider.getAdapterFactory()).dispose();
+		}
+		labelProvider.dispose();
+		super.dispose();
 	}
 
 }
