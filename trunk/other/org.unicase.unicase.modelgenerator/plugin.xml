@@ -4,9 +4,9 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.unicase.modelgenerator.GenerateProjectHandler"
+            defaultHandler="org.unicase.unicase.modelgenerator.GenerateModelHandler"
             id="org.unicase.unicase.modelgenerator.generateModel"
-            name="Generate Project">
+            name="Generate Model">
       </command>
       <command
             defaultHandler="org.unicase.unicase.modelgenerator.GenerateChangesHandler"
@@ -20,8 +20,22 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.unicase.modelgenerator.generateModel"
-               label="Generate Project"
+               label="Generate Model"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="?">
+                  </count>
+                  <iterate
+                        ifEmpty="true">
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
          </command>
          <command
                commandId="org.unicase.unicase.modelgenerator.generateChanges"
@@ -29,15 +43,19 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate
-                     ifEmpty="false">
-                  <instanceof
-                        value="org.eclipse.emf.ecore.EObject">
-                  </instanceof>
-               </iterate>
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false">
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
+                  </iterate>
+               </and>
             </visibleWhen>
          </command>
       </menuContribution>
    </extension>
-
 </plugin>
