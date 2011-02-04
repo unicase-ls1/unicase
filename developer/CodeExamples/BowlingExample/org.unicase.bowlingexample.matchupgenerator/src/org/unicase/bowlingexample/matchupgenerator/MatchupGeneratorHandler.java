@@ -45,7 +45,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 				return null;
 			}
 		}
-		// implement - which command?
+
 		new ECPCommand(t) {
 
 			@Override
@@ -60,7 +60,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 						Matchup m = BowlingFactory.eINSTANCE.createMatchup();
 						m.setTournament(t);	
 						g1.setMatchup(m);
-						g2.setMatchup(m);			
+						g2.setMatchup(m);		
 						g1.setPlayer(p1);
 						g2.setPlayer(p2);
 					}
@@ -69,25 +69,6 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 			
 		}.run(true);
 		
-		/*
-		t.getMatchup().clear();
-		for (int i=0; i<playerlist.size(); i++) {
-			for (int j=i+1; j<playerlist.size(); j++) {
-				Player p1 = playerlist.get(i);
-				Player p2 = playerlist.get(j);
-				Game g1 = BowlingFactory.eINSTANCE.createGame();
-				Game g2 = BowlingFactory.eINSTANCE.createGame();
-				g1.setPlayer(p1);
-				g2.setPlayer(p2);
-				Matchup m = BowlingFactory.eINSTANCE.createMatchup();
-				g1.setMatchup(m);
-				g2.setMatchup(m);
-				m.setTournament(t);				
-			}
-		}
-		*/
-		
-		TreeView.getTreeViewer().refresh();
 		return null;
 	}
 
