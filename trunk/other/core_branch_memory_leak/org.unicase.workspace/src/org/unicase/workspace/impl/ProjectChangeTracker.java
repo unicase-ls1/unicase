@@ -163,17 +163,63 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		addToResource(modelElement);
 
 		// notify post creation listeners
-		for (PostCreationListener l : postCreationListeners) {
-			l.onCreation(projectSpace, modelElement);
-		}
+		notifyPostCreationListeners(modelElement);
 
 		if (isRecording) {
+			// setup change recorder, stop operation recording and destruct cross references
+			ChangeRecorder changeRecorder = new ChangeRecorder();
+			Set<EObject> rootObjects = new HashSet<EObject>();
+			rootObjects.add(project);
+			rootObjects.add(modelElement);
+			rootObjects.addAll(modelElement.eCrossReferences());
+			changeRecorder.beginRecording(rootObjects);
+			stopChangeRecording();
+			ModelUtil.deleteOutgoingCrossReferences(modelElement);
+			ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, project);
+			for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
+				ModelUtil.deleteOutgoingCrossReferences(child);
+				ModelUtil.deleteIncomingCrossReferencesFromProject(child, project);
+			}
+			// stop change recorder, start operation recorded and reapply reversed recorded changes
+			ChangeDescription changeDesc = changeRecorder.endRecording();
+			CompositeOperation oldCompositeOperation = this.compositeOperation;
+			this.compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
+			startChangeRecording();
+			changeDesc.apply();
+			changeRecorder.dispose();
+			// collect recorded operations and add to create operation
 			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
+			List<AbstractOperation> recordedOperations = compositeOperation.getSubOperations();
+			this.compositeOperation = oldCompositeOperation;
+			List<ReferenceOperation> recordedReferenceOperations = new ArrayList<ReferenceOperation>();
+			for (AbstractOperation operation : recordedOperations) {
+				if (operation instanceof ReferenceOperation) {
+					recordedReferenceOperations.add((ReferenceOperation) operation);
+				} else {
+					ModelUtil.logException(new IllegalStateException(
+						"Non Reference Operation detected in create operation recording."));
+				}
+			}
+			createDeleteOperation.getSubOperations().addAll(recordedReferenceOperations);
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(createDeleteOperation);
 			} else {
 				projectSpace.addOperation(createDeleteOperation);
 			}
+		}
+	}
+
+	private void notifyPostCreationListeners(EObject modelElement) {
+		// do not record changes since the creation listeners may only change attributes
+		boolean wasRecording = isRecording;
+		if (isRecording) {
+			stopChangeRecording();
+		}
+		for (PostCreationListener l : postCreationListeners) {
+			l.onCreation(projectSpace, modelElement);
+		}
+		if (wasRecording) {
+			startChangeRecording();
 		}
 	}
 
@@ -218,7 +264,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			startChangeRecording();
 			return false;
 		}
-
+		changeRecorder.dispose();
 		setModelElementIdAndChildrenIdOnResource(resource, modelElement);
 
 		return true;
@@ -328,7 +374,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 
 		save(modelElement);
-		notificationRecorder.record(notification);
+		if (isRecording) {
+			notificationRecorder.record(notification);
+		}
 		if (notificationRecorder.isRecordingComplete()) {
 			if (isRecording) {
 				recordingFinished();
