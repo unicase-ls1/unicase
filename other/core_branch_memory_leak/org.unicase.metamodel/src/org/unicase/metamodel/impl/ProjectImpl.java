@@ -23,15 +23,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -675,12 +674,12 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		// getDeletedEObjectsIdMap().put(modelElement, deletedModelElementId);
 		// getEobjectsIdMap().remove(modelElement);
 
-		deleteOutgoingCrossReferences(modelElement);
-		deleteIncomingCrossReferences(modelElement);
+		ModelUtil.deleteOutgoingCrossReferences(modelElement);
+		ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, this);
 
 		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
-			deleteOutgoingCrossReferences(child);
-			deleteIncomingCrossReferences(child);
+			ModelUtil.deleteOutgoingCrossReferences(child);
+			ModelUtil.deleteIncomingCrossReferencesFromProject(child, this);
 		}
 
 		// remove containment
@@ -697,51 +696,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			} else {
 				containerModelElement.eSet(containmentFeature, null);
 			}
-		}
-	}
-
-	private void deleteOutgoingCrossReferences(EObject modelElement) {
-		// delete all non containment cross references to other elments
-		for (EReference reference : modelElement.eClass().getEAllReferences()) {
-			EClassifier eType = reference.getEType();
-			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
-				continue;
-			}
-			if (eType instanceof EClass) {
-				modelElement.eUnset(reference);
-			}
-		}
-	}
-
-	private void deleteIncomingCrossReferences(EObject modelElement) {
-		// delete all non containment cross references from other elements in the project
-		for (EObject otherModelElement : ModelUtil.getAllContainedModelElements(this, false)) {
-			for (EObject otherElementOpposite : otherModelElement.eCrossReferences()) {
-				if (otherElementOpposite == modelElement) {
-					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
-					for (EReference reference : references) {
-						if (!reference.isContainment() && !reference.isContainer() && reference.isChangeable()
-							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
-							if (reference.isMany()) {
-								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
-							} else {
-								otherModelElement.eUnset(reference);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private boolean isCorrespondingReference(EObject modelElement, EObject otherModelElement, EReference reference) {
-		if (reference.isMany()) {
-			if (otherModelElement.eGet(reference) == null) {
-				return false;
-			}
-			return ((List<?>) otherModelElement.eGet(reference)).contains(modelElement);
-		} else {
-			return modelElement.equals(otherModelElement.eGet(reference));
 		}
 	}
 
