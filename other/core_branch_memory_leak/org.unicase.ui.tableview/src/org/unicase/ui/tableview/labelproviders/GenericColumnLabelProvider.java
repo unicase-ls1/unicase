@@ -5,15 +5,18 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
@@ -44,10 +47,10 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 		super();
 		this.feature = feature;
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		// hkq: done
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());
-		// jc: open
 
 	}
 
@@ -117,5 +120,23 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 	public EStructuralFeature getFeature() {
 		return feature;
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.BaseLabelProvider#dispose()
+	 */
+	@Override
+	public void dispose() {
+		ILabelProvider labelProvider = decoratingLabelProvider.getLabelProvider();
+		if (labelProvider instanceof AdapterFactoryLabelProvider && labelProvider != null) {
+			AdapterFactory adapterFactory = ((AdapterFactoryLabelProvider) labelProvider).getAdapterFactory();
+			if (adapterFactory instanceof IDisposable && adapterFactory != null) {
+				((IDisposable) adapterFactory).dispose();
+			}
+		}
+		decoratingLabelProvider.dispose();
+		super.dispose();
+	}
+
 }
