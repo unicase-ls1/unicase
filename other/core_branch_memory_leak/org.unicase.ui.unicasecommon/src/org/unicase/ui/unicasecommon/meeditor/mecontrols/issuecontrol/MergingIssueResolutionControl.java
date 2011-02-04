@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -19,6 +20,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.services.IDisposable;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
@@ -83,7 +85,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 	 * 
 	 * @author koegel
 	 */
-	private final class CreateMergingSolutionAction extends Action {
+	private final class CreateMergingSolutionAction extends Action implements IDisposable {
 
 		private AdapterFactoryLabelProvider provider;
 		private final MergingIssue mergingIssue;
@@ -92,9 +94,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			this.mergingIssue = modelElement;
 			provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			// jc: open
-			// in dieser inneren Klasse dispose methode schreiben
-			// hkq: geht nicht die Elternklassen haben keine dispose methode...
+			// hkq: done
 
 			setImageDescriptor(ImageDescriptor.createFromImage(provider.getImage(modelElement)));
 			setToolTipText("Set and create MergingSolution");
@@ -180,6 +180,15 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 				solution.getUnderlyingProposals().add((Proposal) result);
 				check(solution);
 			}
+		}
+
+		public void dispose() {
+			AdapterFactory adapterFactory = provider.getAdapterFactory();
+			if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+				((IDisposable) adapterFactory).dispose();
+
+			}
+			provider.dispose();
 		}
 
 	}
