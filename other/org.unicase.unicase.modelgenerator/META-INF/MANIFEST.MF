@@ -6,8 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.unicase.ui.common,
- org.unicase.ecpemfstorebridge,
  org.unicase.workspace,
  org.unicase.model,
  org.unicase.modelgenerator.common,
