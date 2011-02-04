@@ -57,12 +57,12 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 						Player p2 = playerlist.get(j);
 						Game g1 = BowlingFactory.eINSTANCE.createGame();
 						Game g2 = BowlingFactory.eINSTANCE.createGame();
+						Matchup m = BowlingFactory.eINSTANCE.createMatchup();
+						m.setTournament(t);	
+						g1.setMatchup(m);
+						g2.setMatchup(m);			
 						g1.setPlayer(p1);
 						g2.setPlayer(p2);
-						Matchup m = BowlingFactory.eINSTANCE.createMatchup();
-						g1.setMatchup(m);
-						g2.setMatchup(m);
-						m.setTournament(t);				
 					}
 				}
 			}
