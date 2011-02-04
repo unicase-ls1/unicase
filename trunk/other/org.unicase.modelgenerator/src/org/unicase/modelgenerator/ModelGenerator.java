@@ -32,7 +32,7 @@ public class ModelGenerator {
 	 * 
 	 * @see ModelGeneratorConfiguration
 	 */
-	static ModelGeneratorConfiguration config;
+	private static ModelGeneratorConfiguration config;
 	
 	/**
 	 * Private constructor.

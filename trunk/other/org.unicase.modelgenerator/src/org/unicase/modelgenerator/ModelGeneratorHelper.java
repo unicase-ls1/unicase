@@ -18,8 +18,23 @@ import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 import org.unicase.modelgenerator.common.attribute.AttributeHandler;
 
-public class ModelGeneratorHelper {
+/**
+ * Helper class that takes work from <code>ModelGenerator</code>.
+ * With the help of this class, <code>ModelGenerator</code> only
+ * has to be aware of its current configuration. All methods
+ * should be accessed in a static way and <code>init()</code>
+ * has to be called every time before starting a generation process. 
+ * 
+ * @see ModelGenerator
+ * @see #init(ModelGeneratorConfiguration)
+ */
+class ModelGeneratorHelper {
 	
+	/**
+	 * The configuration containing settings for the generation process.
+	 * 
+	 * @see ModelGeneratorConfiguration
+	 */
 	private static ModelGeneratorConfiguration configuration;
 	
 	/**
@@ -53,33 +68,36 @@ public class ModelGeneratorHelper {
 	private static Map<EClass, Integer> eClassToLastUsedIndex;
 
 	/**
-	 * Random-object to compute random values for deleting EObjects
+	 * Random-object to compute random values for creating EObjects
 	 * and setting their attributes and references.
 	 */
 	private static Random random;
 
+	/**
+	 * Private constructor.
+	 */
 	private ModelGeneratorHelper() {
+		// all methods should be accessed in a static way
 	}
 	
+	/**
+	 * Initializes the helper for the next generation process.
+	 * All private fields get new values, old ones are discarded.
+	 * This also initializes <code>AttributeHandler</code>.
+	 * 
+	 * @param config the new configuration to use
+	 * @see AttributeHandler#setRandom(Random)
+	 */
 	protected static void init(ModelGeneratorConfiguration config) {
 		configuration = config;
 		random = new Random(config.getSeed());
-		AttributeHandler.setRandom(random);
 		exceptionLog = new LinkedHashSet<RuntimeException>();
 		eClassesToIgnore = getEClassesToIgnore();
 		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
+		AttributeHandler.setRandom(random);
 	}
 	
-	/**
-	 * The configuration containing settings for the generation process.
-	 * 
-	 * @see ModelGeneratorConfiguration
-	 */
-	protected static void setConfiguration(ModelGeneratorConfiguration config) {
-		
-	}
-
 	/**
 	 * Computes the total amount of work to do (in units) during the generation process.
 	 * This number is used for the Progress Bar and is twice the number of all EObjects 
@@ -121,16 +139,12 @@ public class ModelGeneratorHelper {
 		}
 	}
 
-	protected static Set<RuntimeException> getExceptionLog() {
-		return exceptionLog;
-	}
-
 	/**
 	 * Validates <code>rootEObject</code> so the root is a valid EObject instance.
-	 * If <code>rootEObject</code> is valid already, it is just returned.
-	 * Otherwise, if <code>rootEObject</code> is an EClass (not abstract, no interface),
-	 * it is instantiated and its attributes are set.
-	 * If none of the above is true, null is returned.
+	 * If <code>rootEObject</code> is valid already, it is just returned. Otherwise, 
+	 * if <code>rootEObject</code> is an EClass (not abstract, no interface), it is 
+	 * instantiated and its attributes are set. If none of the above is true, null is returned.
+	 * 
 	 * @param rootEObject the EObject to validate
 	 * @return <code>null</code> if <code>rootEObject</code> is <code>null</code> or an
 	 * abstract EClass or interface,<br>
@@ -166,19 +180,17 @@ public class ModelGeneratorHelper {
 		return result;
 	}
 
-
-
 	/**
 	 * Returns all EClasses that can possibly created as children for <code>parentEClass</code>.
 	 * The result is shuffled before it is returned, so different seeds cause different result.
 	 * Only EClasses that are also contained in the configuration's <code>modelPackage</code>
 	 * and not in the <code>eClassesToIgnore</code>-collection are retained.
 	 * 
-	 * @param parentEClass
+	 * @param parentEClass the EClass to compute the possible child EClasses for 
 	 * @return all possible child-EClasses as a list
 	 * @see ModelGeneratorUtil#getAllEContainments(EClass)
 	 * @see ModelGeneratorUtil#getAllEClasses(EPackage)
-	 * @see getEClassesToIgnore
+	 * @see #getEClassesToIgnore()
 	 */
 	protected static List<EClass> getElementsToCreate(EClass parentEClass) {
 		if(ModelGeneratorHelper.eClassToElementsToCreate.containsKey(parentEClass)) {
@@ -213,12 +225,24 @@ public class ModelGeneratorHelper {
 	}
 
 	/**
+	 * Stores the last used index of <code>eClass</code> in the 
+	 * corresponding map for later use.
+	 * 
+	 * @param eClass the EClass to store the index for
+	 * @param index the latest used index for that EClass
+	 * @see #getStartingIndex(EClass)
+	 */
+	public static void updateIndex(EClass eClass, int index) {
+		eClassToLastUsedIndex.put(eClass, index);
+	}
+	
+	/**
 	 * Returns an index that hasn't been used before, if existent.
 	 * This prevents that an EClass always contains the same EClasses as children,
 	 * where <code>eClass</code> is the parentEObject's EClass.
 	 * 
 	 * @param eClass the EClass to get the index for 
-	 * @return the last used index or 0 if this EClass hasn't been instantiated yet
+	 * @return the last used index or 0 if this EClass hasn't been instantiated before
 	 */
 	protected static int getStartingIndex(EClass eClass) {
 		if(eClassToLastUsedIndex.containsKey(eClass)) {
@@ -252,14 +276,32 @@ public class ModelGeneratorHelper {
 		return result;
 	}
 
+	/**
+	 * Sets a reference using {@link ModelGeneratorUtil#setReference}.
+	 * 
+	 * @param eObject the EObject to set the reference for
+	 * @param referenceClass the EClass of EObjects that shall be referenced
+	 * @param reference the EReference that shall be set
+	 * @param allEObjects all possible EObjects that can be referenced
+	 * @see ModelGeneratorUtil#setReference(EObject, EClass, EReference, Random, Set, boolean, Map)
+	 */
 	public static void setReference(EObject eObject, EClass referenceClass, EReference reference,
 		Map<EClass, List<EObject>> allEObjects) {
-		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random, exceptionLog, configuration.getIgnoreAndLog(), allEObjects);
-	}
-
-	public static void updateIndex(EClass eClass, int index) {
-		eClassToLastUsedIndex.put(eClass, index);
+		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random,
+			exceptionLog, configuration.getIgnoreAndLog(), allEObjects);
 	}
 	
+	/**
+	 * Returns the Exception-Log of the <code>ModelGenerator</code>.
+	 * The log is cleared after every {@link #init(ModelGeneratorConfiguration)}-call,
+	 * i.e. before every generation process.
+	 * The log will be empty if no RuntimeException occurred or <code>ignoreAndLog</code>
+	 * was set to <code>false</code> in the last configuration used.
+	 * 
+	 * @return a set of RuntimeExceptions that occurred during the last generation process
+	 */
+	protected static Set<RuntimeException> getExceptionLog() {
+		return exceptionLog;
+	}
 	
 }
