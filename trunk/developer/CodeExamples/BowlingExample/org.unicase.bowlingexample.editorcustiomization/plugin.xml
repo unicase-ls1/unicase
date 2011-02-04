@@ -4,7 +4,7 @@
    <extension
          point="org.unicase.ui.meeditor.pages">
       <page
-            class="org.unicase.bowlingexample.editorcustiomization.EmptyPage"
+            class="org.unicase.bowlingexample.editorcustiomization.NewPage"
             name="org.unicase.bowlingexample.editorcustomization.page1">
       </page>
    </extension>
