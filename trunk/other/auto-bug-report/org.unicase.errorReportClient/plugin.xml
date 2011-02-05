@@ -2,7 +2,16 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.errorreport.filter">
+         point="org.unicase.errorreporting.filters">
+      <StackTraceFilters
+            filter-value="org.unicase.errorReportClient.StackTraceFilters8">
+      </StackTraceFilters>
+      <StackTraceFilters
+            filter-value="org.unicase.errorReportClient.StackTraceFilters9">
+      </StackTraceFilters>
+      <Severity
+            severity-value="Error">
+      </Severity>
    </extension>
 
 </plugin>
