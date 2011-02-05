@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.errorreport" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreport.filter" name="ErrorReportFilter"/>
+         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreporting.filters" name="filters"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,6 +17,10 @@
          </appinfo>
       </annotation>
       <complexType>
+         <sequence>
+            <element ref="StackTraceFilters" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="Severity" minOccurs="0" maxOccurs="1"/>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -40,6 +44,44 @@
                   <meta.attribute translatable="true"/>
                </appinfo>
             </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="StackTraceFilters">
+      <complexType>
+         <attribute name="filter-value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Error log entries, which have this filter value in their stack trace will be filtered. You can use * as wildcar for any character. A filter string containing only * will be ignored.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="Severity">
+      <complexType>
+         <attribute name="severity-value" use="default" value="Error">
+            <annotation>
+               <documentation>
+                  Error log entries with the specified severity will be filtered. The defualt severity is Error. If you do not specify severity for this extension point, the default severity will be used.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Error">
+                  </enumeration>
+                  <enumeration value="Warning">
+                  </enumeration>
+                  <enumeration value="Error-Warning">
+                  </enumeration>
+                  <enumeration value="Info">
+                  </enumeration>
+                  <enumeration value="All">
+                  </enumeration>
+               </restriction>
+            </simpleType>
          </attribute>
       </complexType>
    </element>
