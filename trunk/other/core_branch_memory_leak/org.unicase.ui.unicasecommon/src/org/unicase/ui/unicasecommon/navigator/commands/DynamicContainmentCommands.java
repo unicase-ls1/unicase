@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -39,12 +41,29 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class DynamicContainmentCommands extends CompoundContributionItem {
 
-	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-	// jc: open
-	// static
+	private AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+		ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	// hkq: done
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.action.ContributionItem#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (labelProvider != null) {
+			AdapterFactory adapterFactory = (labelProvider).getAdapterFactory();
+			if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+				((IDisposable) adapterFactory).dispose();
+			}
+		}
+		labelProvider.dispose();
+		super.dispose();
+	}
+
 	private EObject selectedME;
 
 	/**
