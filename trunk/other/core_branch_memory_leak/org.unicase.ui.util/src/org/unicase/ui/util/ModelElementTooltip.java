@@ -5,19 +5,21 @@
  */
 package org.unicase.ui.util;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.DefaultToolTip;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.ui.services.IDisposable;
 
 /**
  * Defines a tooltip support for the model element link widget.
  * 
  * @author Shterev
  */
-public class ModelElementTooltip extends DefaultToolTip {
+public class ModelElementTooltip extends DefaultToolTip implements IDisposable {
 
 	private AdapterFactoryLabelProvider labelProvider;
 
@@ -30,8 +32,7 @@ public class ModelElementTooltip extends DefaultToolTip {
 		super(control, ToolTip.NO_RECREATE, false);
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		//jc: open
-		//Superklasse hat kein dispose()
+		// hkq: done
 	}
 
 	/**
@@ -63,6 +64,17 @@ public class ModelElementTooltip extends DefaultToolTip {
 	 */
 	public static void enableFor(Control control) {
 		new ModelElementTooltip(control);
+	}
+
+	public void dispose() {
+		if (labelProvider != null) {
+			AdapterFactory adapterFactory =  labelProvider.getAdapterFactory();
+			if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+				((IDisposable) adapterFactory).dispose();
+			}
+		}
+		labelProvider.dispose();
+		
 	}
 	
 }
