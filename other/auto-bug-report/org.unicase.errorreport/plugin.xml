@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.errorreport.filter" name="ErrorReportFilter" schema="schema/org.unicase.errorreport.filter.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.errorreport.ViewPart1"
+            id="org.unicase.errorreport.view1"
+            name="name"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
