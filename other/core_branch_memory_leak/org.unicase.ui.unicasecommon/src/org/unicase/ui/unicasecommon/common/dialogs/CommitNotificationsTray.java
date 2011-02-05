@@ -223,6 +223,9 @@ public class CommitNotificationsTray extends CommitDialogTray {
 			add.dispose();
 			remove.dispose();
 		}
+		if (visualizationHelper != null) {
+			visualizationHelper.dispose();
+		}
 	}
 
 	/**
@@ -341,7 +344,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 				((IDisposable) userLabelProvider.getAdapterFactory()).dispose();
 
 			}
-
+			operationsHelper.dispose();
 			return root;
 
 		}
