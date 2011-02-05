@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -18,6 +19,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.services.IDisposable;
 import org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider;
 import org.unicase.emfstore.esmodel.provider.CustomOperationLabelProviderManager;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -44,7 +46,7 @@ import org.unicase.workspace.ui.Activator;
  * @author koegel
  * @author shterev
  */
-public class ChangePackageVisualizationHelper {
+public class ChangePackageVisualizationHelper implements IDisposable {
 
 	private static final int MAX_NAME_SIZE = 30;
 	private Project project;
@@ -68,8 +70,7 @@ public class ChangePackageVisualizationHelper {
 		this.project = project;
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: open
-		// Superklasse hat kein dispose()
+		// hkq: done
 		this.customLabelProviderManager = new CustomOperationLabelProviderManager();
 	}
 
@@ -318,6 +319,16 @@ public class ChangePackageVisualizationHelper {
 			}
 		}
 		return resultCollection;
+	}
+
+	public void dispose() {
+		if (adapterFactoryLabelProvider != null) {
+			AdapterFactory adapterFactory = adapterFactoryLabelProvider.getAdapterFactory();
+			if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+				((IDisposable) adapterFactory).dispose();
+			}
+		}
+		adapterFactoryLabelProvider.dispose();
 	}
 
 }
