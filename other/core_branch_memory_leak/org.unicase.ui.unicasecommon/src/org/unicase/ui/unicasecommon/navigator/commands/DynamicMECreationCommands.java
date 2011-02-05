@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -22,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
+import org.eclipse.ui.services.IDisposable;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -37,12 +39,29 @@ import org.unicase.ui.common.util.ActionHelper;
  */
 public class DynamicMECreationCommands extends CompoundContributionItem {
 
-	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-	// jc: open
-	// was tun bei static?
+	private AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+		ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	// hkq: done
 
 	private static final String COMMAND_ID = "org.unicase.ui.unicasecommon.navigator.createME";
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.action.ContributionItem#dispose()
+	 */
+	@Override
+	public void dispose() {
+
+		if (labelProvider != null) {
+			AdapterFactory adapterFactory = labelProvider.getAdapterFactory();
+			if (adapterFactory != null && adapterFactory instanceof IDisposable) {
+				((IDisposable) adapterFactory).dispose();
+			}
+		}
+		labelProvider.dispose();
+		super.dispose();
+	}
 
 	/**
 	 * . ({@inheritDoc})
