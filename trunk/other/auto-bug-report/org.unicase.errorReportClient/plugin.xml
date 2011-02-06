@@ -2,16 +2,13 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.errorreporting.filters">
-      <StackTraceFilter
-            filter-value="org.unicase.errorReportClient.StackTraceFilter3">
-      </StackTraceFilter>
-      <StackTraceFilter
-            filter-value="org.unicase.errorReportClient.StackTraceFilter4">
-      </StackTraceFilter>
-      <Severity
-            severity-value="Error">
-      </Severity>
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.errorreportclient.ViewPart1"
+            id="org.unicase.errorReportClient.view2"
+            name="name"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>
