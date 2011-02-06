@@ -11,7 +11,7 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		System.out.println("Application started.");
 		
-		new Startup().earlyStartup();
+		//new Startup().earlyStartup();
 		
 		return null;
 	}
