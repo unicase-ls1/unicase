@@ -176,6 +176,7 @@ public class TournamentItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BowlingPackage.Literals.TOURNAMENT__MATCHUP);
+			childrenFeatures.add(BowlingPackage.Literals.TOURNAMENT__PLAYERLIST);
 		}
 		return childrenFeatures;
 	}

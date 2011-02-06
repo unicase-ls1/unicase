@@ -544,6 +544,12 @@ public class BowlingPackageImpl extends EPackageImpl implements BowlingPackage {
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";		
 		addAnnotation
+		  (getPlayer_Height(), 
+		   source, 
+		   new String[] {
+			 "digits", "2"
+		   });		
+		addAnnotation
 		  (getPlayer_Games(), 
 		   source, 
 		   new String[] {

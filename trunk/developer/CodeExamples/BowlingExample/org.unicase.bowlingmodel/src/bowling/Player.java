@@ -278,7 +278,7 @@ public interface Player extends EObject {
 	 * @return the value of the '<em>Height</em>' attribute.
 	 * @see #setHeight(double)
 	 * @see bowling.BowlingPackage#getPlayer_Height()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor digits='2'"
 	 * @generated
 	 */
 	double getHeight();
