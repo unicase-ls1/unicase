@@ -19,10 +19,10 @@
    <extension
          point="org.unicase.errorreporting.reportHandlers">
       <DefaultReportHandler
-            email="mailme@me">
+            email="org.unicase.errorReportAnotherClient.DefaultReportHandler3">
       </DefaultReportHandler>
       <ReportHandler
-            class="org.unicase.errorreportanotherclient.RSSHandler">
+            class="org.unicase.errorreportanotherclient.reporthandlers.RSSHandler">
       </ReportHandler>
    </extension>
 

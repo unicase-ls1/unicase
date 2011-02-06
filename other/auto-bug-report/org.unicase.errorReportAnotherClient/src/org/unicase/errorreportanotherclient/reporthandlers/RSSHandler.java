@@ -1,4 +1,4 @@
-package org.unicase.errorreportanotherclient;
+package org.unicase.errorreportanotherclient.reporthandlers;
 
 import java.util.List;
 
