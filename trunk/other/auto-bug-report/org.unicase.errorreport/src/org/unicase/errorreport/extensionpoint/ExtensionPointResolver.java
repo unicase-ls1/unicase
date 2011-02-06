@@ -62,17 +62,21 @@ public class ExtensionPointResolver {
 				filtersMap.put(contributor, new ArrayList<String>());
 			}
 
-			filtersMap.get(contributor).add(
-					configElement
-							.getAttribute(STATCK_TRACE_FILTERS_ATTRIBUTE_NAME));
-			severitiesMap.put(contributor, configElement
-					.getAttribute(SEVERITY_ATTRIBUTE_NAME));
+			String filterValue = configElement
+					.getAttribute(STATCK_TRACE_FILTERS_ATTRIBUTE_NAME);
+			if(filterValue != null && !filterValue.equals("") && !filterValue.equals("*")){
+				filtersMap.get(contributor).add(filterValue);
+			}
+			String severityValue = configElement.getAttribute(SEVERITY_ATTRIBUTE_NAME);
+			if(severityValue != null && !severityValue.equals("")) {
+				severitiesMap.put(contributor, severityValue);
+			}
 		}
 
-		configElements = extensionRegistry
-				.getConfigurationElementsFor(REPORT_HANDLERS_EXTENSION_POINT_ID);
+		configElements = extensionRegistry.getConfigurationElementsFor(REPORT_HANDLERS_EXTENSION_POINT_ID);
 		for (IConfigurationElement configElement : configElements) {
 			String contributer = configElement.getContributor().getName();
+			System.out.println(configElement.getName() + " -- " + contributer);
 			contributorIds.add(contributer);
 			if (handlersMap.get(contributer) == null) {
 				handlersMap.put(contributer, new ArrayList<IReportHandler>());
