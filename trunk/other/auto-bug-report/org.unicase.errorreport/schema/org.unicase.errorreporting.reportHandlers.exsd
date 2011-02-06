@@ -18,8 +18,10 @@
       </annotation>
       <complexType>
          <choice>
-            <element ref="DefaultReportHandler"/>
-            <element ref="ReportHandler" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="DefaultReportHandler" minOccurs="0" maxOccurs="1"/>
+            <sequence>
+               <element ref="ReportHandler" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
