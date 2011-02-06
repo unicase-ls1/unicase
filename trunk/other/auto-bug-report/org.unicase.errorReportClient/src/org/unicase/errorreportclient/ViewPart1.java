@@ -24,7 +24,7 @@ public class ViewPart1 extends ViewPart {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Test test = new Test();
+				 new Test();
 			}
 			
 			@Override
