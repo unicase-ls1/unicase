@@ -2,13 +2,11 @@ package org.unicase.errorreport;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.ui.IStartup;
 import org.unicase.errorreport.extensionpoint.ExtensionPointResolver;
-import org.unicase.errorreport.reporthandler.DefaultReportHandler;
 import org.unicase.errorreport.reporthandler.IReportHandler;
 
 public class Startup implements IStartup {
@@ -32,19 +30,8 @@ public class Startup implements IStartup {
 					String severity = resolver.getSeverity(contributor);
 					boolean reportThis = isReportable(status, filters, severity);
 					if(reportThis){
-						IReportHandler reportHandler = null;
-						try {
-							reportHandler = resolver.getReportHandler(contributor);
-							
-						} catch (CoreException e) {
-							e.printStackTrace();
-						}
-						if(reportHandler == null){
-							String email = resolver.getEmail(contributor);
-							reportHandler = new DefaultReportHandler(email);
-						}
-						
-						handleReport(reportHandler, status);
+						List<IReportHandler> reportHandlers = resolver.getReportHandlers(contributor);
+						handleReport(reportHandlers, status);
 						
 					}
 				}
@@ -58,13 +45,14 @@ public class Startup implements IStartup {
 
 	/**
 	 * 
-	 * @param reportHandler
+	 * @param reportHandlers
 	 * @param status
 	 */
-	protected void handleReport(IReportHandler reportHandler, IStatus status) {
+	protected void handleReport(List<IReportHandler> reportHandlers, IStatus status) {
 		//simple implementation 
-		reportHandler.handleReport(status);
-		
+		for(IReportHandler reportHandler : reportHandlers){
+			reportHandler.handleReport(status);
+		}
 	}
 
 	/**

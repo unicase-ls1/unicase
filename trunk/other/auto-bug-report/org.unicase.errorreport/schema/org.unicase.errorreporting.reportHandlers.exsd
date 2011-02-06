@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.errorreport" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreporting.reportHandler" name="reportHandler"/>
+         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreporting.reportHandlers" name="reportHandlers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -19,7 +19,7 @@
       <complexType>
          <choice>
             <element ref="DefaultReportHandler"/>
-            <element ref="ReportHandler"/>
+            <element ref="ReportHandler" minOccurs="1" maxOccurs="unbounded"/>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -53,7 +53,7 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  This is the custom implementation for report handling. A client either uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation.
+                  This is the custom implementation for report handling. A client  uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation, or both.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.unicase.errorreport.reporthandler.IReportHandler"/>
@@ -68,7 +68,7 @@
          <attribute name="email" type="string" use="required">
             <annotation>
                <documentation>
-                  The default report handler from errror reporting plug-in will be used. The default report  handler is a dialog which sends error to the given email address. A client either uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation.
+                  The default report handler from errror reporting plug-in will be used. The default report  handler is a dialog which sends error to the given email address. A client can uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation, or both.
                </documentation>
             </annotation>
          </attribute>

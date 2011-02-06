@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="org.unicase.errorreporting.filters" name="filters" schema="schema/org.unicase.errorreporting.filters.exsd"/>
-   <extension-point id="org.unicase.errorreporting.reportHandler" name="reportHandler" schema="schema/org.unicase.errorreporting.reportHandler.exsd"/>
+   <extension-point id="org.unicase.errorreporting.reportHandlers" name="reportHandlers" schema="schema/org.unicase.errorreporting.reportHandlers.exsd"/>
    <extension
          point="org.eclipse.ui.startup">
       <startup
