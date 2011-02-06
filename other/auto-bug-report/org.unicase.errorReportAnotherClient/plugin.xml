@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.errorreporting.filters">
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter5">
+      </StackTraceFilter>
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter6">
+      </StackTraceFilter>
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter7">
+      </StackTraceFilter>
+      <Severity
+            severity-value="Error">
+      </Severity>
+   </extension>
+   <extension
+         point="org.unicase.errorreporting.reportHandler">
+      <DefaultReportHandler
+            email="mailme@me.com">
+      </DefaultReportHandler>
+   </extension>
+
+</plugin>

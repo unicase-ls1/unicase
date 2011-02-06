@@ -3,7 +3,7 @@
 <schema targetNamespace="org.unicase.errorreport" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreporting.filters" name="filters"/>
+         <meta.schema plugin="org.unicase.errorreport" id="org.unicase.errorreporting.reportHandler" name="reportHandler"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,10 +17,10 @@
          </appinfo>
       </annotation>
       <complexType>
-         <sequence>
-            <element ref="StackTraceFilter" minOccurs="1" maxOccurs="unbounded"/>
-            <element ref="Severity" minOccurs="0" maxOccurs="1"/>
-         </sequence>
+         <choice>
+            <element ref="DefaultReportHandler"/>
+            <element ref="ReportHandler"/>
+         </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -48,40 +48,29 @@
       </complexType>
    </element>
 
-   <element name="StackTraceFilter">
+   <element name="ReportHandler">
       <complexType>
-         <attribute name="filter-value" type="string" use="required">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  Error log entries, which have this filter value in their stack trace will be filtered. You can use * as wildcar for any character. A filter string containing only * will be ignored.
+                  This is the custom implementation for report handling. A client either uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.unicase.errorreport.reporthandler.IReportHandler"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <element name="Severity">
+   <element name="DefaultReportHandler">
       <complexType>
-         <attribute name="severity-value" use="default" value="Error">
+         <attribute name="email" type="string" use="required">
             <annotation>
                <documentation>
-                  Error log entries with the specified severity will be filtered. The defualt severity is Error. If you do not specify severity for this extension point, the default severity will be used.
+                  The default report handler from errror reporting plug-in will be used. The default report  handler is a dialog which sends error to the given email address. A client either uses ReportHandler element and implements handling mechanism himself, or uses the DefaultReportHandler and specifies an email address to use with default reporting implementation.
                </documentation>
             </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="Error">
-                  </enumeration>
-                  <enumeration value="Warning">
-                  </enumeration>
-                  <enumeration value="Error-Warning">
-                  </enumeration>
-                  <enumeration value="Info">
-                  </enumeration>
-                  <enumeration value="All">
-                  </enumeration>
-               </restriction>
-            </simpleType>
          </attribute>
       </complexType>
    </element>
