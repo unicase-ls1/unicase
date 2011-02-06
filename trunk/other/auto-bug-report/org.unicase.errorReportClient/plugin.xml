@@ -3,12 +3,12 @@
 <plugin>
    <extension
          point="org.unicase.errorreporting.filters">
-      <StackTraceFilters
-            filter-value="org.unicase.errorReportClient.StackTraceFilters8">
-      </StackTraceFilters>
-      <StackTraceFilters
-            filter-value="org.unicase.errorReportClient.StackTraceFilters9">
-      </StackTraceFilters>
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportClient.StackTraceFilter3">
+      </StackTraceFilter>
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportClient.StackTraceFilter4">
+      </StackTraceFilter>
       <Severity
             severity-value="Error">
       </Severity>
