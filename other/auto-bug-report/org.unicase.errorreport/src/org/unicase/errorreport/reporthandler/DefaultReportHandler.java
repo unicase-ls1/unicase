@@ -19,8 +19,8 @@ public class DefaultReportHandler implements IReportHandler {
 
 	@Override
 	public void handleReport(IStatus errorLogEntry) {
-//		String email = extensionPointResolver.get
-//		createReportingDialog(email);
+
+		System.out.println("defualt report hander called.");
 	}
 
 	@Override

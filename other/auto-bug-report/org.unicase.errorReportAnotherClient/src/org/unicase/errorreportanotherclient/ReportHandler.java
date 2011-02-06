@@ -12,7 +12,7 @@ public class ReportHandler implements IReportHandler {
 
 	@Override
 	public void handleReport(IStatus errorLogEntry) {
-		
+		System.out.println("report handler in another client called");
 	}
 
 	@Override

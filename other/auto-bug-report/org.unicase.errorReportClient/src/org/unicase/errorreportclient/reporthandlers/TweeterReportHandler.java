@@ -13,6 +13,7 @@ public class TweeterReportHandler implements IReportHandler {
 	@Override
 	public void handleReport(IStatus errorLogEntry) {
 		// tweet this entry
+		System.out.println("tweet report handler in client called");
 	}
 
 	@Override
