@@ -36,7 +36,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 		}
 		final EList<Player> playerlist = t.getPlayerlist().getPlayer();
 		// check existing matchups
-		if (!t.getMatchup().isEmpty()) {
+		if (!t.getMatchups().isEmpty()) {
 			// ask user if matchups shall be deleted
 			int userInput = JOptionPane.showConfirmDialog(null, "Do you really want to delete all existent matchups and create new ones?",
 					"Generate Matchups", JOptionPane.YES_NO_OPTION);
@@ -49,7 +49,7 @@ public class MatchupGeneratorHandler extends AbstractHandler {
 
 			@Override
 			protected void doRun() {
-				t.getMatchup().clear();
+				t.getMatchups().clear();
 				for (int i=0; i<playerlist.size(); i++) {
 					for (int j=i+1; j<playerlist.size(); j++) {
 						Player p1 = playerlist.get(i);
