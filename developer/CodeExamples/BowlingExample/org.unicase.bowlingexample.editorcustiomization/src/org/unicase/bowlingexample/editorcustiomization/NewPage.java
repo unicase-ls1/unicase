@@ -35,6 +35,7 @@ public class NewPage extends AbstractMEEditorPage {
 	public FormPage createPage(MEEditor editor, EditingDomain arg1, EObject arg2) {
 		
 		if (arg2 instanceof Tournament){
+			tournament = (Tournament) arg2;
 		MEFormPage page = new MEFormPage(editor, ID, NAME) {
 			/**
 			 * {@inheritDoc}
