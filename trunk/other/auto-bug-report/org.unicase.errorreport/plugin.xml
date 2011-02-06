@@ -9,17 +9,5 @@
             class="org.unicase.errorreport.Startup">
       </startup>
    </extension>
-   <extension
-         id="id2"
-         point="org.eclipse.core.runtime.applications">
-      <application
-            cardinality="singleton-global"
-            thread="main"
-            visible="true">
-         <run
-               class="org.unicase.errorreport.Application">
-         </run>
-      </application>
-   </extension>
 
 </plugin>

@@ -13,7 +13,7 @@ public class RSSHandler implements IReportHandler {
 
 	@Override
 	public void handleReport(IStatus errorLogEntry) {
-		// TODO Auto-generated method stub
+		System.out.println("rss report handler in another client called");
 
 	}
 

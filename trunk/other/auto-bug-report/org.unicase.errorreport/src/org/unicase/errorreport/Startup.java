@@ -1,6 +1,7 @@
 package org.unicase.errorreport;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
@@ -17,7 +18,10 @@ public class Startup implements IStartup {
 
 		final ExtensionPointResolver resolver = new ExtensionPointResolver();
 		// string list containing plugin id of plugins extending error reporting extension points.
-		final List<String> contributors = resolver.getContributors();
+		final Set<String> contributors = resolver.getContributors();
+		for(String contributor : contributors){
+			System.out.println(contributor);
+		}
 
 		Platform.addLogListener(new ILogListener() {
 
@@ -68,8 +72,8 @@ public class Startup implements IStartup {
 
 	protected boolean isReportable(IStatus status, List<String> filters,
 			String severity) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 }

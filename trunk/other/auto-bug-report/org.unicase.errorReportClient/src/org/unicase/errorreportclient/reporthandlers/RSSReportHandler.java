@@ -8,13 +8,12 @@ import org.unicase.errorreport.reporthandler.IReportHandler;
 public class RSSReportHandler implements IReportHandler {
 
 	public RSSReportHandler() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void handleReport(IStatus errorLogEntry) {
-		// TODO Auto-generated method stub
-
+		System.out.println("rss report handler in client called");
 	}
 
 	@Override
