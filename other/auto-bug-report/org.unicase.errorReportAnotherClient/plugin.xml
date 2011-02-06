@@ -17,10 +17,13 @@
       </Severity>
    </extension>
    <extension
-         point="org.unicase.errorreporting.reportHandler">
+         point="org.unicase.errorreporting.reportHandlers">
       <DefaultReportHandler
-            email="mailme@me.com">
+            email="mailme@me">
       </DefaultReportHandler>
+      <ReportHandler
+            class="org.unicase.errorreportanotherclient.RSSHandler">
+      </ReportHandler>
    </extension>
 
 </plugin>

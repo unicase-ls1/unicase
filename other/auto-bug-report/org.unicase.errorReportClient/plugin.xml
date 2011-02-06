@@ -10,5 +10,26 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.unicase.errorreporting.reportHandlers">
+      <ReportHandler
+            class="org.unicase.errorreportclient.reporthandlers.TweeterReportHandler">
+      </ReportHandler>
+      <ReportHandler
+            class="org.unicase.errorreportclient.reporthandlers.RSSReportHandler">
+      </ReportHandler>
+   </extension>
+   <extension
+         point="org.unicase.errorreporting.filters">
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportClient.StackTraceFilter2">
+      </StackTraceFilter>
+      <StackTraceFilter
+            filter-value="org.unicase.errorReportClient.StackTraceFilter3">
+      </StackTraceFilter>
+      <Severity
+            severity-value="Error-Warning">
+      </Severity>
+   </extension>
 
 </plugin>

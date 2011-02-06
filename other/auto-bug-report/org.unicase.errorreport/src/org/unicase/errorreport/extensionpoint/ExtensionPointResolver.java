@@ -4,16 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.unicase.errorreport.reporthandler.IReportHandler;
 
 public class ExtensionPointResolver {
 	
-	// private static final String FILTERS_EXTENSION_POINT_ID =
-	// "org.unicase.errorreporting.filters";
-	// private static final String STATCK_TRACE_FILTERS_ATTRIBUTE_NAME =
-	// "StackTraceFilter";
-	// private static final String SEVERITY_ATTRIBUTE_NAME = "Severity";
+	 private static final String FILTERS_EXTENSION_POINT_ID = "org.unicase.errorreporting.filters";
+	 private static final String REPORT_HANDLERS_EXTENSION_POINT_ID = "org.unicase.errorreporting.reportHandlers";
+	 private static final String STATCK_TRACE_FILTERS_ATTRIBUTE_NAME = "StackTraceFilter";
+	 private static final String SEVERITY_ATTRIBUTE_NAME = "Severity";
 
 	private List<String> contributorIds;
 	
@@ -27,7 +25,7 @@ public class ExtensionPointResolver {
 	private Map<String, String> emailsMap; 
 	
 	//if contributor has defined its own handler, this map holds it. 
-	private Map<String, IConfigurationElement> handlersMap;
+	private Map<String, List<IReportHandler>> handlersMap;
 	
 
 	
@@ -95,18 +93,10 @@ public class ExtensionPointResolver {
 	 * @return specific report handler or null
 	 * @throws CoreException
 	 */
-	public IReportHandler getReportHandler(String contributor) throws CoreException {
-		IConfigurationElement configurationElement = handlersMap.get(contributor);
-		if(configurationElement != null){
-			return createReportHandler(configurationElement);
-		}
-		return null;
+	public List<IReportHandler> getReportHandlers(String contributor)  {
+		return handlersMap.get(contributor);
 	}
 
-	private IReportHandler createReportHandler(
-			IConfigurationElement configurationElement) throws CoreException {
-		return (IReportHandler)configurationElement.createExecutableExtension("class");
-	}
 
 	public String getEmail(String contributor) {
 		return emailsMap.get(contributor);
