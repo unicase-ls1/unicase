@@ -5,10 +5,13 @@ Bundle-SymbolicName: org.unicase.bowlingexample.editorcustiomization;singleton:=
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.bowlingexample.editorcustiomization.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.unicase.bowlingmodel;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.eclipse.emf.ecore,
+Import-Package: bowling,
+ org.eclipse.emf.common.notify,
+ org.eclipse.emf.ecore,
  org.eclipse.emf.edit.domain,
  org.eclipse.emf.edit.provider,
  org.eclipse.ui.forms,

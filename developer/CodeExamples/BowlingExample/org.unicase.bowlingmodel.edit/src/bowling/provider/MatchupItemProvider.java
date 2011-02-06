@@ -68,6 +68,7 @@ public class MatchupItemProvider
 			super.getPropertyDescriptors(object);
 
 			addGamesPropertyDescriptor(object);
+			addTournamentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,28 @@ public class MatchupItemProvider
 				 getString("_UI_Matchup_games_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Matchup_games_feature", "_UI_Matchup_type"),
 				 BowlingPackage.Literals.MATCHUP__GAMES,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Tournament feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTournamentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Matchup_tournament_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Matchup_tournament_feature", "_UI_Matchup_type"),
+				 BowlingPackage.Literals.MATCHUP__TOURNAMENT,
 				 true,
 				 false,
 				 false,
