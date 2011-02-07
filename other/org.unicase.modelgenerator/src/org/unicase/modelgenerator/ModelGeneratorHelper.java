@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator;
 
 import java.util.Collections;
@@ -11,7 +16,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
@@ -28,7 +32,7 @@ import org.unicase.modelgenerator.common.attribute.AttributeHandler;
  * @see ModelGenerator
  * @see #init(ModelGeneratorConfiguration)
  */
-class ModelGeneratorHelper {
+final class ModelGeneratorHelper {
 	
 	/**
 	 * The configuration containing settings for the generation process.
@@ -115,7 +119,7 @@ class ModelGeneratorHelper {
 
 	/**
 	 * Creates a valid instance of <code>childClass</code> (includes setting attributes) and sets
-	 * it as a child of <code>parentEObject</code> using AddCommand/SetCommand
+	 * it as a child of <code>parentEObject</code> using AddCommand/SetCommand.
 	 * 
 	 * @param parentEObject the EObject that shall contain the new instance of <code>childClass</code>
 	 * @param childClass the EClass of the child that shall be contained in <code>parentEObject</code>
@@ -152,12 +156,14 @@ class ModelGeneratorHelper {
 	 * a new instance of <code>rootEObject</code> if it is an EClass
 	 */
 	protected static EObject validateRoot(EObject rootEObject) {
-		if(rootEObject == null)
+		if(rootEObject == null) {
 			throw new IllegalArgumentException("Root mustn't be null!");
+		}
 		if(rootEObject instanceof EClass) {
 			EClass parentClass = (EClass) rootEObject;
-			if(parentClass.isInterface() || parentClass.isAbstract())
+			if(parentClass.isInterface() || parentClass.isAbstract()) {
 				throw new IllegalArgumentException("Root mustn't be abstract or an interface!");
+			}
 			rootEObject = EcoreUtil.create(parentClass);
 			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptionLog, configuration.getIgnoreAndLog());
 		}
@@ -207,24 +213,6 @@ class ModelGeneratorHelper {
 	}
 
 	/**
-	 * Returns all valid containment references for a parent EObject and a child EClass.
-	 * A reference is valid if it is changeable and either many-valued or not already set.
-	 * 
-	 * @param childClass the EClass that shall be contained
-	 * @param parentEObject the EObject that shall be the container
-	 * @return all containment references between <code>parentEObject</code> and 
-	 * <code>childClass</code> that are valid 
-	 */
-	protected static List<EReference> getValidContainmentReferences(EClass childClass, EObject parentEObject) {
-		List<EReference> result = new LinkedList<EReference>();
-		for(EReference reference : ModelGeneratorUtil.getAllPossibleContainingReferences(childClass, parentEObject.eClass())) {
-			if(reference.isChangeable() && (reference.isMany() || !parentEObject.eIsSet(reference)))
-				result.add(reference);
-		}
-		return result;
-	}
-
-	/**
 	 * Stores the last used index of <code>eClass</code> in the 
 	 * corresponding map for later use.
 	 * 
@@ -262,14 +250,16 @@ class ModelGeneratorHelper {
 	 * @return the next valid EClass or <code>null</code> if there is none
 	 */
 	protected static EClass getNextClassToCreate(List<EClass> elementsToCreate, int index) {
-		if(elementsToCreate.isEmpty())
+		if(elementsToCreate.isEmpty()) {
 			return null;
+		}
 		index %= elementsToCreate.size();
 		EClass result = elementsToCreate.get(index);
 		while(result.isInterface()|| result.isAbstract()) {
 			elementsToCreate.remove(result);
-			if(elementsToCreate.isEmpty())
+			if(elementsToCreate.isEmpty()) {
 				return null;
+			}
 			index %= elementsToCreate.size();
 			result = elementsToCreate.get(index);
 		}

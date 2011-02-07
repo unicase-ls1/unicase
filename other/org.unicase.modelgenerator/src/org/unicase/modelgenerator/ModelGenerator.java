@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator;
 
 import java.util.LinkedList;
@@ -25,7 +30,7 @@ import org.unicase.modelgenerator.common.ModelGeneratorUtil;
  * @see #generateModel(ModelGeneratorConfiguration)
  * @see #generateModel(ModelGeneratorConfiguration, IProgressMonitor)
  */
-public class ModelGenerator {
+public final class ModelGenerator {
 
 	/**
 	 * The configuration containing settings for the generation process.
@@ -92,11 +97,13 @@ public class ModelGenerator {
 		EObject rootEObject = generateModel(monitor);
 		Map<EClass, List<EObject>> allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(rootEObject);
 		for(EClass eClass : allObjectsByEClass.keySet()) {
-			if(monitor.isCanceled())
+			if(monitor.isCanceled()) {
 				break;
+			}
 			for(EObject generatedEObject : allObjectsByEClass.get(eClass)) {
-				if(monitor.isCanceled())
+				if(monitor.isCanceled()) {
 					break;
+				}
 				generateReferences(generatedEObject, allObjectsByEClass);		
 			}
 		}
@@ -122,8 +129,9 @@ public class ModelGenerator {
 		while(!remainingObjects.isEmpty()) {
 			EObject nextParentEObject = remainingObjects.remove(0);
 			List<EObject> children = generateChildren(nextParentEObject); 
-			if(currentDepth < config.getDepth())
+			if(currentDepth < config.getDepth()) {
 				remainingObjects.addAll(children);
+			}
 			remainingElementsInThisDepth -= config.getWidth();
 			if(remainingElementsInThisDepth <= 0) {
 				currentDepth++;
@@ -156,8 +164,9 @@ public class ModelGenerator {
 			}
 			EObject nextParentEObject = remainingObjects.remove(0);
 			List<EObject> children = generateChildren(nextParentEObject); 
-			if(currentDepth < config.getDepth())
+			if(currentDepth < config.getDepth()) {
 				remainingObjects.addAll(children);
+			}
 			remainingElementsInThisDepth -= config.getWidth();
 			if(remainingElementsInThisDepth <= 0) {
 				currentDepth++;
@@ -181,12 +190,14 @@ public class ModelGenerator {
 		EClass currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, index);
 		int createdChildren = 0;
 		while(currentChildClass != null && createdChildren<config.getWidth()) {
-			List<EReference> validReferences = ModelGeneratorHelper.getValidContainmentReferences(currentChildClass, parentEObject);
-			if(validReferences.isEmpty())
+			List<EReference> validReferences = ModelGeneratorUtil.getValidContainmentReferences(currentChildClass, parentEObject);
+			if(validReferences.isEmpty()) {
 				elementsToCreate.remove(currentChildClass);
+			}
 			for(EReference reference : validReferences) {
-				if(createdChildren>=config.getWidth())
+				if(createdChildren>=config.getWidth()) {
 					break;
+				}
 				EObject newChild = ModelGeneratorHelper.setContainment(parentEObject, currentChildClass, reference);
 				createdChildren++;
 				if(newChild!=null) {
