@@ -47,7 +47,7 @@ public final class ModelGeneratorUtil {
 	 * 
 	 * @see #getAllEClasses()
 	 */
-	private static Set<EClass> allEClasses;
+	private static List<EClass> allEClasses;
 	
 	/**
 	 * Set of all EPackages that are currently registered in the 
@@ -76,7 +76,7 @@ public final class ModelGeneratorUtil {
 	 * 
 	 * @see #getAllSubEClasses(EClass)
 	 */
-	private static Map<EClass, Set<EClass>> eClassToSubEClasses = new LinkedHashMap<EClass, Set<EClass>>();
+	private static Map<EClass, List<EClass>> eClassToSubEClasses = new LinkedHashMap<EClass, List<EClass>>();
 	
 	/**
 	 * Private constructor.
@@ -153,11 +153,11 @@ public final class ModelGeneratorUtil {
 	 * @return a set of all EClasses that are contained in registered EPackages
 	 * @see Registry
 	 */
-	public static Set<EClass> getAllEClasses() {
+	public static List<EClass> getAllEClasses() {
 		if (allEClasses != null) {
 			return allEClasses;
 		}
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		List<EClass> result = new LinkedList<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : new LinkedHashSet<Entry<String, Object>>(registry.entrySet())) {
@@ -190,6 +190,9 @@ public final class ModelGeneratorUtil {
 		List<EClass> result = new LinkedList<EClass>();
 		for(EReference reference : eClass.getEAllContainments()) {
 			EClass referenceType = reference.getEReferenceType();
+			if(EcorePackage.eINSTANCE.getEObject().equals(referenceType)) {
+				return getAllEClasses();
+			}
 			if(canHaveInstance(referenceType)) {
 				result.add(referenceType);
 			}
@@ -210,19 +213,19 @@ public final class ModelGeneratorUtil {
 	 * @param eClass the EClass to get subclasses for
 	 * @return all subclasses of <code>eClass</code>
 	 */
-	public static Set<EClass> getAllSubEClasses(EClass eClass) {
+	public static List<EClass> getAllSubEClasses(EClass eClass) {
 		if(eClassToSubEClasses.containsKey(eClass)) {
 			return eClassToSubEClasses.get(eClass);
 		}
 		if(eClass == null) {
-			eClassToSubEClasses.put(eClass, new LinkedHashSet<EClass>());
+			eClassToSubEClasses.put(eClass, new LinkedList<EClass>());
 			return eClassToSubEClasses.get(eClass);
 		}
-		Set<EClass> allEClasses = getAllEClasses();
+		List<EClass> allEClasses = getAllEClasses();
 		if(EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
 			return allEClasses;
 		}
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		List<EClass> result = new LinkedList<EClass>();
 		for (EClass subClass : allEClasses) {
 			if (eClass.isSuperTypeOf(subClass) && canHaveInstance(subClass)) {
 				result.add(subClass);
