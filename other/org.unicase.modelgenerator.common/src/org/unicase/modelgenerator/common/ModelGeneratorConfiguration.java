@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.common;
 
 import java.util.Collection;
@@ -9,7 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Configuration class, allowing to define the configurations for generating
- * and changing Ecore models with the modelgenerator/modelchanger plugin.
+ * Ecore models with the <code>ModelGenerator</code>.
  * All fields can be accessed by either constructors or getters and setters.
  */
 public class ModelGeneratorConfiguration {
@@ -56,7 +61,7 @@ public class ModelGeneratorConfiguration {
 	 * Should exceptions be ignored and logged during the generation process?
 	 * Defaults to false.
 	 */
-	private boolean ignoreAndLog = false;
+	private boolean ignoreAndLog;
 	
 	/**
 	 * Constructor that only takes an EPackage and an EObject.
@@ -131,7 +136,7 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the width of this configuration to a new value
+	 * Sets the width of this configuration to a new value.
 	 * 
 	 * @param width the new value of <code>this.width</code>
 	 * @see #width
@@ -149,7 +154,7 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the depth of this configuration to a new value
+	 * Sets the depth of this configuration to a new value.
 	 * 
 	 * @param depth the new value of <code>this.depth</code>
 	 * @see #depth
@@ -167,7 +172,7 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the root of this configuration to a new value
+	 * Sets the root of this configuration to a new value.
 	 * 
 	 * @param rootEObject the new value of <code>this.rootEObject</code>
 	 * @see #rootEObject
@@ -185,7 +190,7 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the model package of this configuration to a new value
+	 * Sets the model package of this configuration to a new value.
 	 * 
 	 * @param modelPackage the new value of <code>this.modelPackage</code>
 	 * @see #modelPackage
@@ -225,7 +230,7 @@ public class ModelGeneratorConfiguration {
 	}
 
 	/**
-	 * Sets the seed of this configuration to a new value
+	 * Sets the seed of this configuration to a new value.
 	 * 
 	 * @param seed the new value of <code>this.seed</code>
 	 * @see #seed
@@ -243,7 +248,7 @@ public class ModelGeneratorConfiguration {
 	}
 	
 	/**
-	 * Sets the <code>ignoreAndLog</code>-value of this configuration to a new value
+	 * Sets the <code>ignoreAndLog</code>-value of this configuration to a new value.
 	 * 
 	 * @param ignoreAndLog the new value of <code>ignoreAndLog</code>
 	 * @see #ignoreAndLog

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.common.attribute;
 
 import java.util.LinkedHashMap;
@@ -6,20 +11,6 @@ import java.util.Random;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.unicase.modelgenerator.common.attribute.AttributSetterEString;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEBigDecimal;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEBigInteger;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEBoolean;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEByte;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEByteArray;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEChar;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEDate;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEDouble;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEFloat;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEInt;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterELong;
-import org.unicase.modelgenerator.common.attribute.AttributeSetterEShort;
-import org.unicase.modelgenerator.common.attribute.IAttributeSetter;
 
 /**
  * Class that grants access to the attribute setters in order to generate 
@@ -28,10 +19,10 @@ import org.unicase.modelgenerator.common.attribute.IAttributeSetter;
  * 
  * @see IAttributeSetter
  */
-public class AttributeHandler {
+public final class AttributeHandler {
 	
 	/**
-	 * The Random-object corresponding to the current map of AttributeSetters
+	 * The Random-object corresponding to the current map of AttributeSetters.
 	 * 
 	 * @see #setRandom(Random)
 	 */
@@ -45,7 +36,7 @@ public class AttributeHandler {
 	private static Map<EClassifier, IAttributeSetter<?>> attributeSetters;
 
 	/**
-	 * Private constructor
+	 * Private constructor.
 	 */
 	private AttributeHandler() {
 		// all methods should be accessed in a static way
@@ -59,8 +50,9 @@ public class AttributeHandler {
 	 * @see AttributeSetter
 	 */
 	public static Map<EClassifier, IAttributeSetter<?>> getAttributeSetters() {
-		if(attributeSetters != null)
+		if(attributeSetters != null) {
 			return attributeSetters;
+		}
 		EcorePackage ecoreInstance = EcorePackage.eINSTANCE;
 		
 		attributeSetters = new LinkedHashMap<EClassifier, IAttributeSetter<?>>();

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.common.attribute;
 
 import java.util.Collection;
@@ -16,20 +21,20 @@ public interface IAttributeSetter<E> {
 	/**
 	 * @return maximum number of attributes to create
 	 */
-	public abstract int getMaxObjects();
+	int getMaxObjects();
 
 	/**
-	 * Set the number of maximum attributes to create
+	 * Set the number of maximum attributes to create.
 	 * 
 	 * @param maxObjects the new value for 
 	 * <code>this.maxObjects</code>
 	 */
-	public abstract void setMaxObjects(int maxObjects);
+	void setMaxObjects(int maxObjects);
 
 	/**
 	 * @return the Random object used to create attributes
 	 */
-	public abstract Random getRandomObj();
+	Random getRandomObj();
 
 	/**
 	 * Sets the Random object used to create attributes.
@@ -37,7 +42,7 @@ public interface IAttributeSetter<E> {
 	 * @param randomObj the new value for 
 	 * <code>this.randomObj</code>
 	 */
-	public abstract void setRandomObj(Random randomObj);
+	void setRandomObj(Random randomObj);
 	
 	/**
 	 * Creates one attribute of type <code>E</code>.
@@ -45,7 +50,7 @@ public interface IAttributeSetter<E> {
 	 * 
 	 * @return the created attribute
 	 */
-	public abstract E createNewAttribute();
+	E createNewAttribute();
 
 	/**
 	 * Creates a collection of attributes of type <code>E</code>. 
@@ -53,6 +58,6 @@ public interface IAttributeSetter<E> {
 	 * 
 	 * @return all created attributes as a collection
 	 */
-	public abstract Collection<E> createNewAttributes();
+	Collection<E> createNewAttributes();
 
 }
