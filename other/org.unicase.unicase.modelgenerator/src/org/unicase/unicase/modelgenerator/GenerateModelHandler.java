@@ -16,9 +16,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.modelgenerator.ModelGenerator;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
@@ -31,8 +33,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  * Handler for the "Generate Model" context menu command.
  * The command is available if nothing or an EObject is selected.
  * This handler generates a model using values from the selection made,
- * the package defined in <code>MODEL_KEY</code> and width
- * and depth as defined in <code>WIDTH</code> and <code>DEPTH</code>.
+ * the package defined in <code>modelKey</code> and width
+ * and depth as defined in <code>width</code> and <code>depth</code>.
  */
 public class GenerateModelHandler extends AbstractHandler {
 	
@@ -67,62 +69,66 @@ public class GenerateModelHandler extends AbstractHandler {
 				EPackage pckge = getRootPackage(rootObject);
 				generate(rootObject, pckge);
 			}
-		}.run(false);
+		}.run();
 
 		return null;
 	}
 
 	/**
-	 * Creates a {@link ModelGeneratorConfiguration} and calls
-	 * {@link ModelGenerator#generateModel(ModelGeneratorConfiguration)} with it.
-	 * If <code>rootObject</code> is a Project, another method is called:
-	 * {@link #generateProject(Project, EPackage)}
+	 * Splits the actual generation process into <code>width</code> sub-processes,
+	 * due to performance issues. Every root of the performed sub-processes is added
+	 * to <code>rootObject</code> as a child.
 	 * 
 	 * @param rootObject the rootObject of the model to generate
 	 * @param pckge the EPackage to use for the generation process
-	 * @see #generateProject(Project, EPackage)
+	 * @see #addAsChild(EObject, EObject)
 	 */
 	private void generate(EObject rootObject, EPackage pckge) {
-		if(rootObject instanceof Project) {
-			generateProject((Project) rootObject, pckge);
-		} else {
-			List<EClass> ignoredClasses = new LinkedList<EClass>();
-			ignoredClasses.add((EClass) pckge.getEClassifier("Project"));
-			ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(pckge, rootObject, 
-				ignoredClasses, width, depth, System.currentTimeMillis(), true);
-			ModelGenerator.generateModel(config);
-		}
-	}
-
-	/**
-	 * Takes <code>WIDTH</code> random EClasses from <code>pckge</code> and
-	 * uses each as a root of a generation process. All these roots, and all
-	 * their children with them, are afterwards added to the Project.<p>
-	 * 
-	 * This procedure is necessary to ensure good performance. Using the 
-	 * project directly as the root of the generation process results in
-	 * very long generation time.
-	 * 
-	 * @param project the Project the generated models will be added to
-	 * @param pckge the EPackage to use for the generation process
-	 */
-	private void generateProject(Project project, EPackage pckge) {
 		List<EClass> ignoredClasses = new LinkedList<EClass>();
 		ignoredClasses.add((EClass) pckge.getEClassifier("Project"));
+		ignoredClasses.add((EClass) pckge.getEClassifier("Attachment"));
 		for(int i=0; i<width; i++) {
-			EClass subRootClass = getValidEClass(project, pckge);
+			EClass subRootClass = getValidEClass(rootObject, pckge, ignoredClasses);
 			if(subRootClass == null) {
 				return;
 			}
 			ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(pckge, subRootClass, 
 				ignoredClasses, width, depth-1, System.currentTimeMillis(), true);
-			(project).addModelElement(ModelGenerator.generateModel(config));
+			addAsChild(rootObject, ModelGenerator.generateModel(config));
 		}
 	}
 
 	/**
+	 * Adds/Sets <code>childObject</code> as a child to <code>parentEObject</code> using
+	 * Add/SetCommands, if <code>parentEObject</code> is no project. Otherwise, uses the
+	 * {@link Project#addModelElement(ModelElement)}-method to add a new ModelElement.
+	 * 
+	 * @param parentEObject the EObject <code>childObject</code> shall be added to
+	 * @param childObject the EObject that shall be added to <ode>parentEObject</code>
+	 */
+	private void addAsChild(EObject parentEObject, EObject childObject) {
+		if(parentEObject instanceof Project) {
+			((Project) parentEObject).addModelElement((ModelElement) childObject);
+			return;
+		}
+		for(EReference reference : ModelGeneratorUtil.getAllPossibleContainingReferences(childObject.eClass(), parentEObject.eClass())) {
+			if(reference.isMany()) {
+				if(ModelGeneratorUtil.addPerCommand(parentEObject, reference, childObject,
+					null, false) != null)
+					return;
+			}
+			else {
+				if(ModelGeneratorUtil.setPerCommand(parentEObject, reference, childObject,
+					null, false) != null)
+					return;
+			}
+		}
+		
+	}
+
+	/**
 	 * Returns the root EPackage of an EObject or the EPackage
-	 * specified by <code>MODEL_KEY</code> if <code>eObject</code>
+	 * specified by <code>modelKey</code> if <code>eObject</code>
 	 * is a Project.
 	 * 
 	 * @param eObject the EObject to get the root package for
@@ -172,14 +178,19 @@ public class GenerateModelHandler extends AbstractHandler {
 	/**
 	 * Returns the next valid EClass, that is an EClass that is neither
 	 * abstract, nor an interface, from a list of all possible EClasses.
+	 * @param ignoredClasses 
 	 * 
 	 * @param allEClasses all EClasses to choose from
 	 * @return the next EClass that can be instantiated or <code>null</code>
-	 * if there is no such EClass.
+	 * if there is no such EClass
 	 */
-	private EClass getValidEClass(EObject root, EPackage pckge) {
+	private EClass getValidEClass(EObject root, EPackage pckge, List<EClass> ignoredClasses) {
 		List<EClass> allEClasses = ModelGeneratorUtil.getAllEContainments(root.eClass());
 		allEClasses.retainAll(ModelGeneratorUtil.getAllEClasses(pckge));
+		for(EClass eClass : ignoredClasses) {
+			allEClasses.remove(eClass);
+			allEClasses.removeAll(ModelGeneratorUtil.getAllSubEClasses(eClass));
+		}
 		if(allEClasses.isEmpty()) {
 			return null;
 		}
