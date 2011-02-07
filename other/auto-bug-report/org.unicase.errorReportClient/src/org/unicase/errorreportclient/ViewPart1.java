@@ -22,12 +22,10 @@ public class ViewPart1 extends ViewPart {
 		button.setText("push me");
 		button.addSelectionListener(new SelectionListener() {
 			
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 				 new Test();
 			}
 			
-			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				
