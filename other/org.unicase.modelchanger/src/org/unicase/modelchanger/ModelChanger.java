@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelchanger;
 
 import java.util.LinkedHashSet;
@@ -23,7 +28,7 @@ import org.unicase.modelgenerator.common.ModelGeneratorUtil;
  * @see #generateChanges(EObject)
  * @see #generateChanges(EObject, long, boolean)
  */
-public class ModelChanger {
+public final class ModelChanger {
 	
 	/**
 	 * Private constructor.
@@ -100,8 +105,9 @@ public class ModelChanger {
 	private static void deleteRandomEObjects(Set<EObject> allChildren) {
 		Set<EObject> deletedChildren = new LinkedHashSet<EObject>();
 		for(EObject eObject : allChildren) {
-			if(deletedChildren.contains(eObject))
+			if(deletedChildren.contains(eObject)) {
 				continue;
+			}
 			if(ModelChangerHelper.randomDelete()) {
 				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
 				deletedChildren.addAll(deleteAllChildren(contentCopy));
@@ -163,8 +169,9 @@ public class ModelChanger {
 	private static void deleteRandomEObjects(Set<EObject> allChildren, IProgressMonitor monitor) {
 		Set<EObject> deletedChildren = new LinkedHashSet<EObject>();
 		for(EObject eObject : allChildren) {
-			if(monitor.isCanceled())
+			if(monitor.isCanceled()) {
 				return;
+			}
 			if(deletedChildren.contains(eObject)) {
 				monitor.worked(1);
 				continue;
@@ -193,11 +200,13 @@ public class ModelChanger {
 	private static void changeAttributesAndReferences(EObject root, IProgressMonitor monitor) {
 		Map<EClass, List<EObject>> allObjectsByEClass = ModelGeneratorUtil.getAllClassesAndObjects(root);
 		for(EClass eClass : allObjectsByEClass.keySet()) {
-			if(monitor.isCanceled())
+			if(monitor.isCanceled()) {
 				return;
+			}
 			for(EObject eObject : allObjectsByEClass.get(eClass)) {
-				if(monitor.isCanceled())
+				if(monitor.isCanceled()) {
 					return;
+				}
 				changeEObjectAttributes(eObject);
 				monitor.worked(1);
 				changeEObjectReferences(eObject, allObjectsByEClass);
