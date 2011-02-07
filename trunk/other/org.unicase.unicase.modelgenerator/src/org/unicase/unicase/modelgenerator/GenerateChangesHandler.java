@@ -37,7 +37,7 @@ public class GenerateChangesHandler extends AbstractHandler {
 				EObject rootObject = validateSelection(selection);
 				ModelChanger.generateChanges(rootObject);
 			}
-		}.run(false);
+		}.run();
 
 		return null;
 	}
