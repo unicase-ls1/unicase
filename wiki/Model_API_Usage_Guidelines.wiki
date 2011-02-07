@@ -1,6 +1,6 @@
 The Model API allows you to view, create, delete and modify model elements in a project. This page will list best practices and dos and donts in using this API:
 <p>
-       * A model element will be considered as deleted if it is removed from the containment tree of the project and if this is the case at the end of any command.
+       * Deletion: A model element will be considered as deleted if it is removed from the containment tree of the project and if this is the case at the end of any command.
 
      * *Containment Tree Preservation*: Do not create cross references to elements outside of the project. This would cause dangling references.
 
