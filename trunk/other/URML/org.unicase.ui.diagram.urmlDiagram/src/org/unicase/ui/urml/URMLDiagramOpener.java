@@ -2,8 +2,8 @@ package org.unicase.ui.urml;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.urml.URMLDiagram;
-import org.unicase.ui.common.ModelElementOpener;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
+import org.unicase.ui.util.ModelElementOpener;
 
 public class URMLDiagramOpener extends DiagramOpener implements ModelElementOpener {
 
