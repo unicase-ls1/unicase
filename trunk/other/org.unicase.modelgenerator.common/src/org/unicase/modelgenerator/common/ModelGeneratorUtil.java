@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.common;
 
 import java.util.LinkedList;
@@ -107,7 +112,9 @@ public final class ModelGeneratorUtil {
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
 			EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			if (model.getESuperPackage() == null) rootModelPackages.add(model);
+			if (model.getESuperPackage() == null){
+				rootModelPackages.add(model);
+			}
 		}
 		return rootModelPackages;
 	}
@@ -131,16 +138,17 @@ public final class ModelGeneratorUtil {
 			result.addAll(getAllEClasses(subPackage));
 		}
 		for(EClassifier classifier : ePackage.getEClassifiers()) {
-			if(classifier instanceof EClass)
+			if(classifier instanceof EClass) {
 				result.add((EClass) classifier);
+			}
 		}
 		packageToModelElementEClasses.put(ePackage, result);
 		return result;
 	}
 	
 	/**
-	 * Iterates over all registered EPackages in order to retrieve
-	 * all available EClasses and returns them as a Set.
+	 * Iterates over all registered EPackages in order to retrieve all available 
+	 * EClasses, excluding abstract classes and interfaces, and returns them as a Set. 
 	 * 
 	 * @return a set of all EClasses that are contained in registered EPackages
 	 * @see Registry
@@ -154,7 +162,11 @@ public final class ModelGeneratorUtil {
 
 		for (Entry<String, Object> entry : new LinkedHashSet<Entry<String, Object>>(registry.entrySet())) {
 			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			result.addAll(getAllEClasses(ePackage));
+			for(EClass eClass : getAllEClasses(ePackage)) {
+				if(canHaveInstance(eClass)) {
+					result.add(eClass);
+				}
+			}
 		}
 		allEClasses = result;
 		return result;
@@ -178,14 +190,19 @@ public final class ModelGeneratorUtil {
 		List<EClass> result = new LinkedList<EClass>();
 		for(EReference reference : eClass.getEAllContainments()) {
 			EClass referenceType = reference.getEReferenceType();
-			if(!referenceType.isInterface() && !referenceType.isAbstract())
+			if(canHaveInstance(referenceType)) {
 				result.add(referenceType);
+			}
 			result.addAll(getAllSubEClasses(referenceType));
 		}
 		allEContainments.put(eClass, result);
 		return result;
 	}
 	
+	private static boolean canHaveInstance(EClass eClass) {
+		return !eClass.isInterface() && !eClass.isAbstract();
+	}
+
 	/**
 	 * Returns all subclasses of an EClass, excluding abstract classes
 	 * and interfaces.
@@ -202,11 +219,12 @@ public final class ModelGeneratorUtil {
 			return eClassToSubEClasses.get(eClass);
 		}
 		Set<EClass> allEClasses = getAllEClasses();
-		if(EcorePackage.eINSTANCE.getEObject().equals(eClass))
+		if(EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
 			return allEClasses;
+		}
 		Set<EClass> result = new LinkedHashSet<EClass>();
 		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && !subClass.isAbstract() && !subClass.isInterface()) {
+			if (eClass.isSuperTypeOf(subClass) && canHaveInstance(subClass)) {
 				result.add(subClass);
 			}
 		}
@@ -227,8 +245,9 @@ public final class ModelGeneratorUtil {
 		Set<EReference> result = new LinkedHashSet<EReference>();
 		for(EReference reference : allReferences) {
 			EClass referenceType = reference.getEReferenceType();
-			if(referenceType == null)
+			if(referenceType == null) {
 				continue;
+			}
 			if(referenceType.equals(childClass)) {
 				result.add(reference);
 			} else if (referenceType.equals(EcorePackage.eINSTANCE.getEObject())
@@ -255,8 +274,9 @@ public final class ModelGeneratorUtil {
 		result.put(rootObject.eClass(), newList);
 		while(allContents.hasNext()) {
 			EObject eObject = allContents.next();
-			if(result.containsKey(eObject.eClass()))
+			if(result.containsKey(eObject.eClass())) {
 				result.get(eObject.eClass()).add(eObject);
+			}
 			else {
 				newList = new LinkedList<EObject>();
 				newList.add(eObject);
@@ -277,12 +297,43 @@ public final class ModelGeneratorUtil {
 	public static List<EReference> getValidReferences(EObject eObject) {
 		List<EReference> result = new LinkedList<EReference>();
 		for(EReference reference : eObject.eClass().getEAllReferences()) {
-			if(!reference.isContainer() && !reference.isContainment() && reference.isChangeable() && !reference.isVolatile()
-				&& !reference.isDerived() && (reference.isMany() || !eObject.eIsSet(reference))) {
+			if(!reference.isContainer() && !reference.isContainment() && isValid(reference, eObject)) {
 				result.add(reference);
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * Returns all valid containment references for a parent EObject and a child EClass.
+	 * A reference is valid if it is changeable and either many-valued or not already set.
+	 * 
+	 * @param childClass the EClass that shall be contained
+	 * @param parentEObject the EObject that shall be the container
+	 * @return all containment references between <code>parentEObject</code> and 
+	 * <code>childClass</code> that are valid 
+	 */
+	public static List<EReference> getValidContainmentReferences(EClass childClass, EObject parentEObject) {
+		List<EReference> result = new LinkedList<EReference>();
+		for(EReference reference : ModelGeneratorUtil.getAllPossibleContainingReferences(childClass, parentEObject.eClass())) {
+			if(isValid(reference, parentEObject)) {
+				result.add(reference);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns whether an EReference is valid for an EObject or not.
+	 * A reference is valid, if it can be set or added to.
+	 * 
+	 * @param reference the EReference in question
+	 * @param eObject the EObject to check the reference for
+	 * @return asuohd
+	 */
+	private static boolean isValid(EReference reference, EObject eObject) {
+		return reference.isChangeable() && !reference.isVolatile()&& !reference.isDerived()
+			&& (reference.isMany() || !eObject.eIsSet(reference));
 	}
 	
 	/**
@@ -293,14 +344,14 @@ public final class ModelGeneratorUtil {
 	 * @param exception the exception to handle
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
-	 * @throws RuntimeException only if <code>ignoreAndLog</code> is <code>false</code>
 	 */
 	private static void handle(RuntimeException exception, Set<RuntimeException> exceptionLog,
-		boolean ignoreAndLog) throws RuntimeException {
-		if(ignoreAndLog)
+		boolean ignoreAndLog) {
+		if(ignoreAndLog) {
 			exceptionLog.add(exception);
-		else
+		} else {
 			throw exception;
+		}
 	}
 	
 	/**
@@ -315,17 +366,18 @@ public final class ModelGeneratorUtil {
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>??
 	 * @return <code>newObject</code> if the <code>SetCommand</code> was performed successful
 	 * or <code>null</code> if it failed
-	 * @throws RuntimeException only if <code>ignoreAndLog</code> is <code>false</code>
 	 * @see SetCommand
 	 */
 	public static EObject setPerCommand(EObject parentEObject, EStructuralFeature feature, Object newObject,
-		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
+		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
 			new SetCommand(domain, parentEObject, feature, newObject).doExecute();
-			if(newObject instanceof EObject)
+			if(newObject instanceof EObject) {
 				return (EObject) newObject;
-			else return null;
+			} else {
+				return null;
+			}
 		} catch(RuntimeException e){
 			handle(e, exceptionLog, ignoreAndLog);
 			return null;
@@ -345,19 +397,21 @@ public final class ModelGeneratorUtil {
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
 	 * @return <code>newObject</code> if the <code>AddCommand</code> was performed successful
 	 * or <code>null</code> if it failed
-	 * @throws RuntimeException only if <code>ignoreAndLog</code> is <code>false</code>
 	 * @see AddCommand#AddCommand(EditingDomain, EObject, EStructuralFeature, Object)
 	 */
 	public static EObject addPerCommand(EObject parentEObject, EStructuralFeature feature, Object newObject,
-		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
-		if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(newObject))
+		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
+		if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(newObject)) {
 			return null;
+		}
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
 			new AddCommand(domain, parentEObject, feature, newObject).doExecute();
-			if(newObject instanceof EObject)
+			if(newObject instanceof EObject) {
 				return (EObject) newObject;
-			else return null;
+			} else {
+				return null;
+			}
 		} catch(RuntimeException e){
 			handle(e, exceptionLog, ignoreAndLog);
 			return null;
@@ -375,13 +429,13 @@ public final class ModelGeneratorUtil {
 	 * @param objects collection of objects that shall be added to <code>feature</code>
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
-	 * @throws RuntimeException only if <code>ignoreAndLog</code> is <code>false</code>
 	 */
 	public static void addPerCommand(EObject parentEObject, EStructuralFeature feature, Collection<?> objects,
-		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
+		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
 		for(Object object : objects) {
-			if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(object))
+			if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(object)) {
 				return;
+			}
 		}
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
@@ -401,11 +455,10 @@ public final class ModelGeneratorUtil {
 	 * @param objects collection of Objects that shall be removed
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
-	 * @throws RuntimeException only if <code>ignoreAndLog</code> is <code>false</code>
 	 * @see RemoveCommand
 	 */
 	public static void removePerCommand(EObject parentEObject, EStructuralFeature feature, Collection<?> objects,
-		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) throws RuntimeException {
+		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
 		try {
 			new RemoveCommand(domain, parentEObject, feature, objects).doExecute();
@@ -464,11 +517,15 @@ public final class ModelGeneratorUtil {
 			int index = 0;
 			if(reference.isMany()) {
 				int maxObjects = random.nextInt(3);
-				if(reference.isRequired()) maxObjects++;
+				if(reference.isRequired()) {
+					maxObjects++;
+				}
 				for(int i = 0; i < maxObjects; i++) {
 					ModelGeneratorUtil.addPerCommand(eObject, reference, possibleReferenceObjects.get(index),
 						exceptionLog, ignoreAndLog);
-					if(++index==possibleReferenceObjects.size()) break;
+					if(++index==possibleReferenceObjects.size()) {
+						break;
+					}
 				}
 			} else if (reference.isRequired() || random.nextBoolean()){
 				ModelGeneratorUtil.setPerCommand(eObject, reference, possibleReferenceObjects.get(index),
@@ -482,7 +539,6 @@ public final class ModelGeneratorUtil {
 	 * and SetCommands/AddCommands.
 	 * 
 	 * @param eObject the EObject to set attributes for
-	 * @param attrHandler the AttributeHandler that grants access to the AttributeSetters
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
 	 * @see IAttributeSetter
@@ -497,8 +553,9 @@ public final class ModelGeneratorUtil {
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
 			EClassifier attributeType = attribute.getEType();
 			
-			if(!attribute.isChangeable() || attribute.isDerived() || attribute.isVolatile())
+			if(!attribute.isChangeable() || attribute.isDerived() || attribute.isVolatile()) {
 				continue;
+			}
 			if (attributeSetters.containsKey(attributeType)) {
 				if (attribute.isMany()) {
 					addPerCommand(eObject, attribute,

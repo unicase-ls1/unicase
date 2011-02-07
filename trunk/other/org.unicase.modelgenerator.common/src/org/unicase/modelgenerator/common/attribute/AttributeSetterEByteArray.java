@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.common.attribute;
 
 import java.util.ArrayList;
@@ -15,16 +20,16 @@ public class AttributeSetterEByteArray implements IAttributeSetter<byte[]> {
 	/**
 	 * Maximum amount of attributes that are created by {@link #createNewAttributes()}.
 	 */
-	protected int maxObjects;
+	private int maxObjects;
 	
 	/**
 	 * Random object that is used to determine values for attributes created 
 	 * by {@link #createNewAttribute()} and {@link #createNewAttributes()}.
 	 */
-	protected Random randomObj;
+	private Random randomObj;
 	
 	/**
-	 * length of the Byte-array that is randomly filled
+	 * Length of the Byte-array that is randomly filled.
 	 */
 	private int bytesize;
 	
