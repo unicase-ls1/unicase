@@ -18,11 +18,11 @@ public class RSSReportHandler implements IReportHandler {
 		System.out.println("rss report handler in client called");
 		
 		//Testing opening an email client
-		reportError(errorLogEntry);
+//		reportError(errorLogEntry);
 		//Testing opening a MessageDialog
 //		new MessageDialog(null, "Error", null, "Testing Dialog", MessageDialog.ERROR, new String[] { "OK" }, 0).open();
 		//Testing opening the ErrorReportDialog
-//		new ErrorReportDialog (null, errorLogEntry).open();
+		new ErrorReportDialog (null, errorLogEntry, "").open();
 		
 	}
 
@@ -31,6 +31,7 @@ public class RSSReportHandler implements IReportHandler {
 
 	}
 	
+	// Only for testing, can be erased afterward.
 	private void reportError(IStatus status) {
 		StringBuilder sb = new StringBuilder("mailto:Ulli@java-tutor.com");
 		// email address will be used in the DefaultReportHandler.

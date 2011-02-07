@@ -11,15 +11,17 @@ import org.eclipse.core.runtime.IStatus;
  */
 public class DefaultReportHandler implements IReportHandler {
 	
-	
+	private String email;
 	
 	public DefaultReportHandler(String email) {
-
+		this.email = email;
 	}
 
 	public void handleReport(IStatus errorLogEntry) {
-
+		
+		
 		System.out.println("defualt report hander called.");
+		new ErrorReportDialog (null, errorLogEntry, email).open();
 	}
 
 	public void handleReport(List<IStatus> errorLogEntries) {

@@ -22,6 +22,7 @@ public class ErrorReportDialog extends MessageDialog {
 	private int detailButtonID = -1;
 	private int reportButtonID = -1;
 	private String detailText;
+	private String email;
 	
 	/**
 	 * Size of the text in lines.
@@ -33,10 +34,12 @@ public class ErrorReportDialog extends MessageDialog {
 	 * 
 	 * @param parentShell shell
 	 * @param status status
+	 * @param email 
 	 */
-	public ErrorReportDialog(Shell parentShell, IStatus status) {
+	public ErrorReportDialog(Shell parentShell, IStatus status, String email) {
 		super(parentShell, "Error", null, status.getMessage(), MessageDialog.ERROR, new String[] { "OK" }, 0);
 		this.status = status;
+		this.email = email;
 		if (status.getException() != null) {
 			setButtonLabels(new String[] { "OK", "Report", "&Details >>" });
 			reportButtonID = 1;
@@ -128,7 +131,7 @@ public class ErrorReportDialog extends MessageDialog {
 	private void reportError() {
 		StringBuilder sb = new StringBuilder("mailto:");
 		// email address will be used in the DefaultReportHandler.
-//		sb.append(email);
+		sb.append(email);
 		sb.append("?");
 		// subject
 		sb.append("subject=Error%20in%20");
