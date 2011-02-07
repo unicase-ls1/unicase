@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.unicase.modelgenerator;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -50,11 +55,15 @@ public class GenerateChangesHandler extends AbstractHandler {
 		if(selection != null && selection instanceof IStructuredSelection) {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object selectedElement = strucSel.getFirstElement();
-			if(selectedElement instanceof ProjectSpace)
+			if(selectedElement instanceof ProjectSpace) {
 				return ((ProjectSpace) selectedElement).getProject();
-			else if(selectedElement instanceof EObject)
+			} else if(selectedElement instanceof EObject) {
 				return (EObject) selectedElement;
-			else throw new IllegalArgumentException("No EObject selected!");
-		} else throw new IllegalArgumentException("Selection Error!");
+			} else {
+				throw new IllegalArgumentException("No EObject selected!");
+			}
+		} else {
+			throw new IllegalArgumentException("Selection Error!");
+		}
 	}
 }
