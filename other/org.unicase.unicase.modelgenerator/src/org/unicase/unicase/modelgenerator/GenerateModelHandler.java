@@ -104,7 +104,7 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * {@link Project#addModelElement(ModelElement)}-method to add a new ModelElement.
 	 * 
 	 * @param parentEObject the EObject <code>childObject</code> shall be added to
-	 * @param childObject the EObject that shall be added to <ode>parentEObject</code>
+	 * @param childObject the EObject that shall be added to <code>parentEObject</code>
 	 */
 	private void addAsChild(EObject parentEObject, EObject childObject) {
 		if(parentEObject instanceof Project) {
@@ -114,13 +114,15 @@ public class GenerateModelHandler extends AbstractHandler {
 		for(EReference reference : ModelGeneratorUtil.getAllPossibleContainingReferences(childObject.eClass(), parentEObject.eClass())) {
 			if(reference.isMany()) {
 				if(ModelGeneratorUtil.addPerCommand(parentEObject, reference, childObject,
-					null, false) != null)
+					null, false) != null) {
 					return;
+				}
 			}
 			else {
 				if(ModelGeneratorUtil.setPerCommand(parentEObject, reference, childObject,
-					null, false) != null)
+					null, false) != null) {
 					return;
+				}
 			}
 		}
 		
