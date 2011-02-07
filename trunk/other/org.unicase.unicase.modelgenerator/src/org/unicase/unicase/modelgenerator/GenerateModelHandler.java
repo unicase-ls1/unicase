@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.unicase.modelgenerator;
 
 
@@ -36,20 +41,20 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * This is only used if a project or nothing is selected,
 	 * otherwise the root package of the selected EObject will be used.
 	 */
-	private final String MODEL_KEY = "http://unicase.org/model";
+	private final String modelKey = "http://unicase.org/model";
 	
 	/**
 	 * The maximum number of children for each EObject.
 	 */
-	private final int WIDTH = 5;
+	private final int width = 5;
 	
 	/**
 	 * The maximum hierarchy depth of the project.
 	 */
-	private final int DEPTH = 5;
+	private final int depth = 5;
 
 	/**
-	 * ({@inheritDoc})
+	 * ({@inheritDoc}).
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 				
@@ -84,7 +89,7 @@ public class GenerateModelHandler extends AbstractHandler {
 			List<EClass> ignoredClasses = new LinkedList<EClass>();
 			ignoredClasses.add((EClass) pckge.getEClassifier("Project"));
 			ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(pckge, rootObject, 
-				ignoredClasses, WIDTH, DEPTH, System.currentTimeMillis(), true);
+				ignoredClasses, width, depth, System.currentTimeMillis(), true);
 			ModelGenerator.generateModel(config);
 		}
 	}
@@ -92,7 +97,7 @@ public class GenerateModelHandler extends AbstractHandler {
 	/**
 	 * Takes <code>WIDTH</code> random EClasses from <code>pckge</code> and
 	 * uses each as a root of a generation process. All these roots, and all
-	 * their children with them, are afterwards added to the Project.</p>
+	 * their children with them, are afterwards added to the Project.<p>
 	 * 
 	 * This procedure is necessary to ensure good performance. Using the 
 	 * project directly as the root of the generation process results in
@@ -102,17 +107,15 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * @param pckge the EPackage to use for the generation process
 	 */
 	private void generateProject(Project project, EPackage pckge) {
-		List<EClass> allEClasses = ModelGeneratorUtil.getAllEClasses(pckge);
 		List<EClass> ignoredClasses = new LinkedList<EClass>();
 		ignoredClasses.add((EClass) pckge.getEClassifier("Project"));
-		for(int i=0; i<WIDTH; i++) {
-			Collections.shuffle(allEClasses);
-			EClass subRootClass = getValidEClass(allEClasses);
+		for(int i=0; i<width; i++) {
+			EClass subRootClass = getValidEClass(project, pckge);
 			if(subRootClass == null) {
 				return;
 			}
 			ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(pckge, subRootClass, 
-				ignoredClasses, WIDTH, DEPTH-1, System.currentTimeMillis(), true);
+				ignoredClasses, width, depth-1, System.currentTimeMillis(), true);
 			(project).addModelElement(ModelGenerator.generateModel(config));
 		}
 	}
@@ -127,7 +130,7 @@ public class GenerateModelHandler extends AbstractHandler {
 	 */
 	private EPackage getRootPackage(EObject eObject) {
 		if(eObject instanceof Project) {
-			return ModelGeneratorUtil.getEPackage(MODEL_KEY);
+			return ModelGeneratorUtil.getEPackage(modelKey);
 		} else {
 			EPackage pckge;
 			pckge = eObject.eClass().getEPackage();
@@ -152,14 +155,18 @@ public class GenerateModelHandler extends AbstractHandler {
 		if(selection != null && selection instanceof IStructuredSelection) {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object selectedElement = strucSel.getFirstElement();
-			if(selectedElement instanceof ProjectSpace)
+			if(selectedElement instanceof ProjectSpace) {
 				return ((ProjectSpace) selectedElement).getProject();
-			else if(selectedElement instanceof EObject)
+			} else if(selectedElement instanceof EObject) {
 				return (EObject) selectedElement;
-			else if(selectedElement==null)
+			} else if(selectedElement==null) {
 				return WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-			else throw new IllegalArgumentException("No EObject selected!");
-		} else throw new IllegalArgumentException("Selection Error!");
+			} else {
+				throw new IllegalArgumentException("No EObject selected!");
+			}
+		} else {
+			throw new IllegalArgumentException("Selection Error!");
+		}
 	}
 	
 	/**
@@ -170,11 +177,13 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * @return the next EClass that can be instantiated or <code>null</code>
 	 * if there is no such EClass.
 	 */
-	private EClass getValidEClass(List<EClass> allEClasses) {
-		for(EClass eClass : allEClasses) {
-			if(!eClass.isInterface() && !eClass.isAbstract())
-				return eClass;
+	private EClass getValidEClass(EObject root, EPackage pckge) {
+		List<EClass> allEClasses = ModelGeneratorUtil.getAllEContainments(root.eClass());
+		allEClasses.retainAll(ModelGeneratorUtil.getAllEClasses(pckge));
+		if(allEClasses.isEmpty()) {
+			return null;
 		}
-		return null;
+		Collections.shuffle(allEClasses);
+		return allEClasses.get(0);
 	}
 }
