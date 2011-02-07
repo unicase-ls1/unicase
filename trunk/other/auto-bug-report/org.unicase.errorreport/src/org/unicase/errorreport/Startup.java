@@ -13,19 +13,18 @@ import org.unicase.errorreport.reporthandler.IReportHandler;
 public class Startup implements IStartup {
 
 
-	@Override
 	public void earlyStartup() {
 
 		final ExtensionPointResolver resolver = new ExtensionPointResolver();
 		// string list containing plugin id of plugins extending error reporting extension points.
 		final Set<String> contributors = resolver.getContributors();
 		for(String contributor : contributors){
+			System.out.println("contributor");
 			System.out.println(contributor);
 		}
 
 		Platform.addLogListener(new ILogListener() {
 
-			@Override
 			public void logging(IStatus status, String plugin) {
 				for (String contributor : contributors) {
 					// get filters
@@ -55,6 +54,7 @@ public class Startup implements IStartup {
 	protected void handleReport(List<IReportHandler> reportHandlers, IStatus status) {
 		//simple implementation 
 		for(IReportHandler reportHandler : reportHandlers){
+			System.out.println("reportHandlers");
 			reportHandler.handleReport(status);
 		}
 	}
