@@ -4,9 +4,8 @@ Bundle-Name: Modelgenerator
 Bundle-SymbolicName: org.unicase.modelgenerator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.commands,
- org.eclipse.emf.ecore,
- org.eclipse.emf.edit,
- org.unicase.modelgenerator.common
+Require-Bundle: org.unicase.modelgenerator.common,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
 Export-Package: org.unicase.modelgenerator
+Bundle-Vendor: unicase.org
