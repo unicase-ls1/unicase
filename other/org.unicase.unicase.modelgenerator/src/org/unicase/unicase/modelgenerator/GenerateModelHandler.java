@@ -125,7 +125,6 @@ public class GenerateModelHandler extends AbstractHandler {
 				}
 			}
 		}
-		
 	}
 
 	/**
@@ -179,9 +178,12 @@ public class GenerateModelHandler extends AbstractHandler {
 	
 	/**
 	 * Returns the next valid EClass, that is an EClass that is neither
-	 * abstract, nor an interface, from a list of all possible EClasses.
-	 * @param ignoredClasses 
+	 * abstract, nor an interface, from an EPackage. Any EClass that is contained in 
+	 * <code>ignoredClasses</code> or a subclass of any EClass contained in 
+	 * <code>ignoredClasses</code> won't be returned.
 	 * 
+	 * @param ignoredClasses list of all EClasses that shouldn't be instantiated. All
+	 * subClasses will be ignored as well 
 	 * @param allEClasses all EClasses to choose from
 	 * @return the next EClass that can be instantiated or <code>null</code>
 	 * if there is no such EClass
