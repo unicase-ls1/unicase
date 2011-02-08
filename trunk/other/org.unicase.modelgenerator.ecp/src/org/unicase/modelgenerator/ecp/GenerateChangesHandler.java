@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.modelgenerator.ecp;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -11,8 +16,17 @@ import org.unicase.modelchanger.ModelChanger;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.workspace.ProjectSpace;
 
+/**
+ * Handler for the "Generate Changes" context menu command for the ECP.
+ * The command is only available if one single EObject is selected.
+ * If the selected EObject is a ProjectSpace, the contained Project 
+ * is used as the root, otherwise the EObject itself will be the root.
+ */
 public class GenerateChangesHandler extends AbstractHandler {
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
@@ -43,12 +57,16 @@ public class GenerateChangesHandler extends AbstractHandler {
 		if(selection != null && selection instanceof IStructuredSelection) {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object selectedElement = strucSel.getFirstElement();
-			if(selectedElement instanceof ProjectSpace)
+			if(selectedElement instanceof ProjectSpace) {
 				return ((ProjectSpace) selectedElement).getProject();
-			else if(selectedElement instanceof EObject)
+			} else if(selectedElement instanceof EObject) {
 				return (EObject) selectedElement;
-			else throw new IllegalArgumentException("No EObject selected!");
-		} else throw new IllegalArgumentException("Selection Error!");
+			} else {
+				throw new IllegalArgumentException("No EObject selected!");
+			}
+		} else {
+			throw new IllegalArgumentException("Selection Error!");
+		}
 	}
 
 }
