@@ -5,10 +5,9 @@ Bundle-SymbolicName: org.unicase.unicase.modelgenerator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.unicase.workspace,
- org.unicase.model,
  org.unicase.modelgenerator.common,
- org.unicase.modelgenerator.ui,
  org.unicase.modelchanger,
- org.unicase.modelgenerator
+ org.unicase.modelgenerator,
+ org.eclipse.ui,
+ org.unicase.workspace
+Bundle-Vendor: unicase.org
