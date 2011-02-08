@@ -9,3 +9,4 @@ Export-Package: org.unicase.modelgenerator.common,
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: unicase.org
