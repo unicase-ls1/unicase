@@ -4,10 +4,9 @@ Bundle-Name: Modelchanger
 Bundle-SymbolicName: org.unicase.modelchanger;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.emf.edit,
- org.eclipse.emf,
- org.unicase.modelgenerator.common
+ org.unicase.modelgenerator.common,
+ org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.modelchanger
+Bundle-Vendor: unicase.org
