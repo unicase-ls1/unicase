@@ -38,45 +38,40 @@ import org.unicase.xmi.workspace.XmiUtil;
  */
 public abstract class XMIDialog extends TitleAreaDialog {
 	
-	/*
-	 * All attributes are protected, because they are needed
-	 * in the subclasses.
-	 */
-	
 	/**
 	 * Name of the Project.
 	 */
-	protected Text txtProjectName;
+	private Text txtProjectName;
 	
 	/**
 	 * Description of the Project.
 	 */
-	protected Text txtProjectDescription;
+	private Text txtProjectDescription;
 	
 	/**
 	 * Location of the Project's resource.
 	 */
-	protected Text txtProjectLocation;
+	private Text txtProjectLocation;
 	
 	/**
 	 * The path the user specified.
 	 */
-	protected String projectLocationPath;
+	private String projectLocationPath;
 	
 	/**
 	 * Title of the dialog.
 	 */
-	protected String dialogTitle;
+	private String dialogTitle;
 	
 	/**
 	 * Message of the dialog.
 	 */
-	protected String dialogMessage;
+	private String dialogMessage;
 	
 	/**
 	 * Shell for listeners.
 	 */
-	protected final Shell shell;
+	private final Shell shell;
 	
 	/**
 	 * The handler calling this dialog.
@@ -248,5 +243,103 @@ public abstract class XMIDialog extends TitleAreaDialog {
 		}
 		
 		return location;
+	}
+
+	/**
+	 * @return the txtProjectName
+	 */
+	public Text getTxtProjectName() {
+		return txtProjectName;
+	}
+
+	/**
+	 * @param txtProjectName the txtProjectName to set
+	 */
+	public void setTxtProjectName(Text txtProjectName) {
+		this.txtProjectName = txtProjectName;
+	}
+
+	/**
+	 * @return the txtProjectDescription
+	 */
+	public Text getTxtProjectDescription() {
+		return txtProjectDescription;
+	}
+
+	/**
+	 * @param txtProjectDescription the txtProjectDescription to set
+	 */
+	public void setTxtProjectDescription(Text txtProjectDescription) {
+		this.txtProjectDescription = txtProjectDescription;
+	}
+
+	/**
+	 * @return the txtProjectLocation
+	 */
+	public Text getTxtProjectLocation() {
+		return txtProjectLocation;
+	}
+
+	/**
+	 * @param txtProjectLocation the txtProjectLocation to set
+	 */
+	public void setTxtProjectLocation(Text txtProjectLocation) {
+		this.txtProjectLocation = txtProjectLocation;
+	}
+
+	/**
+	 * @return the projectLocationPath
+	 */
+	public String getProjectLocationPath() {
+		return projectLocationPath;
+	}
+
+	/**
+	 * @param projectLocationPath the projectLocationPath to set
+	 */
+	public void setProjectLocationPath(String projectLocationPath) {
+		this.projectLocationPath = projectLocationPath;
+	}
+
+	/**
+	 * @return the dialogTitle
+	 */
+	public String getDialogTitle() {
+		return dialogTitle;
+	}
+
+	/**
+	 * @param dialogTitle the dialogTitle to set
+	 */
+	public void setDialogTitle(String dialogTitle) {
+		this.dialogTitle = dialogTitle;
+	}
+
+	/**
+	 * @return the dialogMessage
+	 */
+	public String getDialogMessage() {
+		return dialogMessage;
+	}
+
+	/**
+	 * @param dialogMessage the dialogMessage to set
+	 */
+	public void setDialogMessage(String dialogMessage) {
+		this.dialogMessage = dialogMessage;
+	}
+
+	/**
+	 * @return the shell
+	 */
+	public Shell getShell() {
+		return shell;
+	}
+
+	/**
+	 * @return the handler
+	 */
+	public XmiAbstractHandler getHandler() {
+		return handler;
 	}
 }

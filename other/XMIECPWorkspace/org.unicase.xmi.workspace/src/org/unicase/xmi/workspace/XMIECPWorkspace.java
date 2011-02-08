@@ -175,12 +175,10 @@ public class XMIECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 			
 			@Override
 			public void notifyChanged(Notification notification) {
-				// save the changed objects
-				Object changedObj = notification.getNotifier();
+				Object changedObj = notification.getNotifier(); // save the changed objects
 				
 				if(changedObj instanceof EObject) {
-					// cast the object to an EObject
-					EObject changedEObj = (EObject) changedObj;
+					EObject changedEObj = (EObject) changedObj; // cast the object to an EObject
 					
 					// try to save object to the attached resource
 					try {

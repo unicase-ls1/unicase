@@ -21,8 +21,8 @@ public class XMIWorkspaceException extends XMIException {
 	 * @param msg Custom message to inform the user.
 	 */
 	public XMIWorkspaceException(String msg) {
-		message = msg;
-		exception = new Exception(msg);
+		setMessage(msg);
+		setException(new Exception(msg));
 		
 		log();
 	}
@@ -33,8 +33,8 @@ public class XMIWorkspaceException extends XMIException {
 	 * @param e Exception thrown
 	 */
 	public XMIWorkspaceException(String msg, Exception e) {
-		message = msg;
-		exception = e;
+		setMessage(msg);
+		setException(e);
 		
 		log();
 	}

@@ -5,24 +5,14 @@
  */
 package org.unicase.xmi.views;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -37,8 +27,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.xmi.commands.ImportFolderHandler;
-import org.unicase.xmi.exceptions.XMIFileTypeException;
 import org.unicase.xmi.exceptions.XMIWorkspaceException;
+import org.unicase.xmi.views.listeners.ImportFolderWorkspaceListener;
+import org.unicase.xmi.views.listeners.ProgressMonitorThread;
 
 /**
  * Dialog that will ask for a path that will then be loaded
@@ -123,7 +114,6 @@ public class ImportFolderDialog extends TitleAreaDialog {
 				if(path != null && path != "") {
 					txtFolderLocation.setText(path);
 					
-					// try to load contents
 					tryLoadingProjects(loadableFiles, path, getShell());
 					
 					// add projects to viewer
@@ -140,38 +130,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		});
 
 		// add action when browse workspace button is pressed
-		wsButton.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				// open up workspace folder selection
-				String title = "Select a folder";
-				String message = "Please select a folder from the workspace";
-				IContainer[] folders = WorkspaceResourceDialog.openFolderSelection(shell, title, message,
-					false, null, new ArrayList<ViewerFilter>());
-				
-				String path = null;
-				if(folders.length > 0) {
-					// select first entry -> multiple false
-					path = folders[0].getLocation().toOSString();
-					
-					// set the path to the text field
-					txtFolderLocation.setText(path);
-					
-					// try to load contents					
-					tryLoadingProjects(loadableFiles, path, getShell());
-					
-					// add projects to viewer
-					for(String s: loadableFiles) {
-						listViewer.add(s);
-					}
-				}
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				widgetSelected(e);				
-			}
-			
-		});
+		ImportFolderWorkspaceListener importFolderWorkspaceListener = new ImportFolderWorkspaceListener(
+				getShell(), txtFolderLocation, loadableFiles, listViewer);
+		wsButton.addSelectionListener(importFolderWorkspaceListener);
 		
 		// finaly layout
 		Point defaultMargins = LayoutConstants.getMargins();
@@ -197,8 +158,9 @@ public class ImportFolderDialog extends TitleAreaDialog {
 	 * resource to a global list of loadable paths. 
 	 * @param loadableFiles Files that can be loaded.
 	 * @param path Folder path containing the resources.
+	 * @param shell Shell where to create the progress bar dialog.
 	 */
-	private static void tryLoadingProjects(List<String> loadableFiles, String path, Shell shell) {
+	public static void tryLoadingProjects(List<String> loadableFiles, String path, Shell shell) {
 		
 		final String dirPath = path;
 		final List<String> loadableProcessedFiles = new ArrayList<String>();
@@ -207,41 +169,7 @@ public class ImportFolderDialog extends TitleAreaDialog {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(shell);
 		
 		try {
-			progressDialog.run(true, true, new IRunnableWithProgress() {
-
-				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					// open up the path
-					File dir = new File(dirPath);
-					ResourceSet resourceSet = new ResourceSetImpl();
-					
-					if(dir.isDirectory()) {
-						// open directory
-						File[] files = dir.listFiles();
-						int numFiles = files.length;
-						
-						monitor.beginTask("Loading files", numFiles);
-						
-						// Go through all files of the directory and try to load them
-						for(File f: files) {
-							String fullPath = f.getAbsolutePath();
-							
-							try {
-								resourceSet.getResource(URI.createFileURI(fullPath), true);
-								loadableProcessedFiles.add(fullPath); // adding to list
-							}
-							catch(WrappedException e) {
-								// ignore -> it's simply not loadable
-							}
-							monitor.worked(1);
-						}
-					}
-					else {
-						new XMIFileTypeException(dirPath + " is not a directory.");
-					}
-					monitor.done();
-				}
-				
-			});
+			progressDialog.run(true, true, new ProgressMonitorThread(dirPath, loadableProcessedFiles));
 		} catch (InvocationTargetException e1) {
 			new XMIWorkspaceException("Unable to load directory contents.", e1);
 		} catch (InterruptedException e1) {

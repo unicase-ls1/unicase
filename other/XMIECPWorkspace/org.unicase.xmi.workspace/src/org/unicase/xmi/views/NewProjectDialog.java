@@ -46,13 +46,13 @@ public class NewProjectDialog extends XMIDialog {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// select the folder where to save the file
-				DirectoryDialog dirDialog = new DirectoryDialog(shell, SWT.OPEN);
+				DirectoryDialog dirDialog = new DirectoryDialog(getShell(), SWT.OPEN);
 				
 				String path = dirDialog.open();
 				
 				// location saving
-				projectLocationPath = path;
-				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+				setProjectLocationPath(path);
+				getTxtProjectLocation().setText(getResourceLocation(getTxtProjectName().getText(), path));
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -69,12 +69,12 @@ public class NewProjectDialog extends XMIDialog {
 	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
 			public void widgetSelected(SelectionEvent e) {		
-				// opens up a new dialog to browse the "eclipse" workspace for folders
 				String title = "Select a folder";
 				String message = "Please select a folder where to save the file";
 				String path = null;
 				
-				IContainer[] selectedFolders = WorkspaceResourceDialog.openFolderSelection(shell, title, message, false, null, new ArrayList<ViewerFilter>());
+				IContainer[] selectedFolders = WorkspaceResourceDialog.openFolderSelection(getShell(),
+						title, message, false, null, new ArrayList<ViewerFilter>());
 				if(selectedFolders.length > 0) {
 					// index 0 because multi option is off and it can import only one or no files
 					path = selectedFolders[0].getLocation().toOSString(); 
@@ -82,8 +82,8 @@ public class NewProjectDialog extends XMIDialog {
 				
 				// location saving
 				if(path != null) {
-					projectLocationPath = path;
-					txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+					setProjectLocationPath(path);
+					getTxtProjectLocation().setText(getResourceLocation(getTxtProjectName().getText(), path));
 				}
 			}
 
@@ -99,33 +99,28 @@ public class NewProjectDialog extends XMIDialog {
 	 */
 	@Override
 	protected void addInputListener() {
-		txtProjectName.addFocusListener(new FocusListener() {
-
+		getTxtProjectName().addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				// do nothing
 			}
 
 			public void focusLost(FocusEvent e) {
 				// filter path and extension from current location content
-				String content = txtProjectLocation.getText(); 
-				
+				String content = getTxtProjectLocation().getText(); 
 				String extSeparator = ".";
 				int extPos = new StringBuilder(content).reverse().indexOf(extSeparator);
-				
 				String ext = ".ucw";
 				if(extPos != -1) {
 					ext = content.substring(content.length() - extPos -1);
 				}
-				
-				String path = projectLocationPath;
+				String path = getProjectLocationPath();
 				if(!XmiUtil.validate(path)) {
 					path = "";
 				}
 				else {
 					path += File.separator;
 				}
-				
-				txtProjectLocation.setText(path + txtProjectName.getText() + ext);
+				getTxtProjectLocation().setText(path + getTxtProjectName().getText() + ext);
 			}
 			
 		});
