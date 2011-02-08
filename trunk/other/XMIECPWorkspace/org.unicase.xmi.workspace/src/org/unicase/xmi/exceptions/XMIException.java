@@ -22,12 +22,12 @@ public abstract class XMIException extends Throwable {
 	/**
 	 * Message to be displayed.
 	 */
-	protected String message; // needs to be protected, because it's used in the subclasses
+	private String message;
 	
 	/**
 	 * Exception that has been thrown.
 	 */
-	protected Exception exception; // needs to be protected, because it's used in the subclasses
+	private Exception exception;
 	
 	/**
 	 * Writes the events to the message-log.
@@ -35,4 +35,38 @@ public abstract class XMIException extends Throwable {
 	protected void log() {
 		Activator.getDefault().logException(message, exception);
 	}
+
+	/**
+	 * Gets the exception's message.
+	 * @return human readable message.
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * Set's the exception's message.
+	 * @param message Human readable message.
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	/**
+	 * Gets the full exception.
+	 * @return Full exception for the error.
+	 */
+	public Exception getException() {
+		return exception;
+	}
+
+	/**
+	 * Sets the exception.
+	 * @param exception Full exception for the occured error.
+	 */
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
+	
+	
 }

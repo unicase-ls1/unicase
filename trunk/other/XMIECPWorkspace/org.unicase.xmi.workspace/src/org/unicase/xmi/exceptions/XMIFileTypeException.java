@@ -22,8 +22,8 @@ public class XMIFileTypeException extends XMIException {
 	 * @param e Exception thrown
 	 */
 	public XMIFileTypeException(String message, Exception e) {
-		this.message = message;
-		this.exception = e;
+		setMessage(message);
+		setException(e);
 		
 		log();
 	}
@@ -33,8 +33,8 @@ public class XMIFileTypeException extends XMIException {
 	 * @param message Custom message to inform the user.
 	 */
 	public XMIFileTypeException(String message) {
-		this.message = message;
-		this.exception = new Exception(message);
+		setMessage(message);
+		setException(new Exception(message));
 		
 		log();
 	}
