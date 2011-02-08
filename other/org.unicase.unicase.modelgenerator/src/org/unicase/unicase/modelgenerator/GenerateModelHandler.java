@@ -56,7 +56,7 @@ public class GenerateModelHandler extends AbstractHandler {
 	private final int depth = 5;
 
 	/**
-	 * ({@inheritDoc}).
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 				
