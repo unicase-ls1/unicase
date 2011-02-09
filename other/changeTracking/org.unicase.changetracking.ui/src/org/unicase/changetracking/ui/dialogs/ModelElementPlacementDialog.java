@@ -59,7 +59,18 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 
 
 	private ProjectSpace[] projects;
+
+
+	private String defaultName;
 	
+
+	public String getDefaultName() {
+		return defaultName;
+	}
+
+	public void setDefaultName(String defaultName) {
+		this.defaultName = defaultName;
+	}
 
 	private static final Image PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/select_model_location.png").createImage();
 
@@ -73,6 +84,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		setShellStyle(getShellStyle() | SWT.RESIZE);	
 		this.modelElement = modelElement;
 		this.allowNameChoosing = allowNameChoosing;
+		this.defaultName = "New " + modelElement.eClass().getName();
 	}
 	
 	public ModelElementPlacementDialog(Shell parentShell, UnicaseModelElement modelElement, boolean allowNameChoosing) {
@@ -94,10 +106,10 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		
 		if(allowNameChoosing){
 			setTitle("Select Name and Location");
-			setMessage("Select a name and location for the newly created model element");
+			setMessage("Select a name and location for the newly created " + modelElement.eClass().getName());
 		} else {
 			setTitle("Select Location");
-			setMessage("Select location for the newly created model element");
+			setMessage("Select location for the newly created " + modelElement.eClass().getName());
 		}
 		setTitleImage(PAGE_IMAGE);
 		
@@ -112,7 +124,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			nameLabel.setContent(labelProvider.getImage(modelElement), "Name:");
 			nameInput = new Text(wrap, SWT.BORDER);
 			GridDataFactory.fillDefaults().grab(true,false).applyTo(nameInput);
-			nameInput.setText("New " + modelElement.eClass().getName());
+			nameInput.setText(defaultName);
 			
 			wrap = createContentComposite(outerWrap, true, true);
 			GridLayoutFactory.swtDefaults().numColumns(2).applyTo(wrap);
