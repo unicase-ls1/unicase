@@ -16,10 +16,10 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.workspace.util.UnicaseCommand;
 
-public class CreateRepositoryActionDelegate extends ResourceSelectionActionDelegate {
+public class CreateRepoLocationAction {
 
 
-	public GitRepository createRepository(Repository repo, final Project project){
+	public GitRepository createRepoLocation(Repository repo, final Project project){
 		
 		InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(),
              "Repository Remote URL", "Enter the URL of the remote repository which should be associated with this local repository.", "", new InputValidator());
@@ -44,13 +44,7 @@ public class CreateRepositoryActionDelegate extends ResourceSelectionActionDeleg
 		return gitRepoModel;
 	}
 	
-	@Override
-	public void run(IAction action) {
-		
-		
-		errorMessage("not possible yet!");
 
-	}
 	
 	
 

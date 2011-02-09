@@ -1,13 +1,21 @@
 package org.unicase.changetracking.git.commands;
 
+import java.net.URISyntaxException;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.lib.RepositoryState;
+import org.eclipse.jgit.transport.RefSpec;
 import org.unicase.changetracking.git.Activator;
 import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.unicase.changetracking.git.GitUtil;
+import org.unicase.changetracking.git.SelectivePullOperation;
 import org.unicase.changetracking.git.exceptions.NoMatchingLocalRepositoryInWorkspace;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.model.changetracking.RepositoryLocation;
@@ -52,11 +60,24 @@ public class GitApplyChangePackageCommand extends UnicaseCommand {
 			throw new NoMatchingLocalRepositoryInWorkspace("Found no local repository associated with this git repository. Clone from it first.");
 		}
 		
-		//Check the repository state
-		//FIXME Do it (check for checkout and no modifications!)
+		//Make sure that the local repository is in a valid state
+		boolean indexClean = GitUtil.isIndexAndWorkDirClean(repo);
+		if(!indexClean){
+			throw new UnexpectedGitException("Cannot build release while working directory or index contains changes");
+		}
+		
+		//Check that it is in a safe state
+		if(RepositoryState.SAFE != repo.getRepositoryState()){
+			throw new UnexpectedGitException("Local repository is not in a safe state");
+		}
 		
 		//2. Pull the branch from remote
-		//TODO: The pull
+		try {
+			//FIXME correct progress monitor support
+				new SelectivePullOperation(repo, GitUtil.getUriFromRemote(gitRepoLocation), 20, GitUtil.getRefSpecFromGitBranch(branch)).execute(new NullProgressMonitor());
+		} catch (URISyntaxException e1) {
+			throw new UnexpectedGitException("The URL of the repository location '" + gitRepoLocation.getUrl() + "' is no valid URI");
+		}
 		
 		//3. Checkout the branch
 		try {

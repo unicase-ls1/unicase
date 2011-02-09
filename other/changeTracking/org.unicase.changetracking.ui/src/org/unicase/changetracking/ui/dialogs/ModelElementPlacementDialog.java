@@ -34,11 +34,10 @@ import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class ModelElementPlacementDialog extends TitleAreaDialog{
-
-	private ProjectSpace project;
 
 
 	private UnicaseModelElement modelElement;
@@ -54,6 +53,12 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 
 
 	private Text nameInput;
+
+
+	private String nameText;
+
+
+	private ProjectSpace[] projects;
 	
 
 	private static final Image PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/select_model_location.png").createImage();
@@ -61,14 +66,17 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 	private static final Image NO_IMAGE = Activator.getImageDescriptor("icons/empty.png").createImage();
 
 
-	public ModelElementPlacementDialog(Shell parentShell, ProjectSpace project, UnicaseModelElement modelElement, boolean allowNameChoosing) {
+	public ModelElementPlacementDialog(Shell parentShell, ProjectSpace[] projects, UnicaseModelElement modelElement, boolean allowNameChoosing) {
 		super(parentShell);
-		this.project = project;
+		this.projects = projects;
 		setBlockOnOpen(true);
 		setShellStyle(getShellStyle() | SWT.RESIZE);	
 		this.modelElement = modelElement;
 		this.allowNameChoosing = allowNameChoosing;
-
+	}
+	
+	public ModelElementPlacementDialog(Shell parentShell, UnicaseModelElement modelElement, boolean allowNameChoosing) {
+		this(parentShell,WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().toArray(new ProjectSpace[0]),modelElement,allowNameChoosing);
 	}
 
 	@Override
@@ -127,30 +135,35 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			private Object[] EMPTY = new Object[0];
 			@Override
 			public Object[] getElements(Object rootObject) {
-				ProjectSpace projectSpace;
-				if (rootObject instanceof ProjectSpace) {
-					projectSpace = (ProjectSpace) rootObject;
+				ProjectSpace[] projectSpaces;
+				if (rootObject instanceof ProjectSpace[]) {
+					projectSpaces = (ProjectSpace[]) rootObject;
 				} else {
 					return EMPTY;
 				}
-
-				final Project project = projectSpace.getProject();
-				if (project == null) {
-					return EMPTY;
-				}
-
-				Collection<EObject> ret = new ArrayList<EObject>();
-				EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-					new BasicEList<EObject>());
-				// FIXME: ugly hack to avoid dependency to model
-				for (EObject modelElement : modelElements) {
-					EObject econtainer = modelElement.eContainer();
-					if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
-						ret.add(modelElement);
-					}
-				}
-				ret.add(project);
-				return ret.toArray();
+				return projectSpaces;
+//				final Project project = projectSpace.getProject();
+//				if (project == null) {
+//					return EMPTY;
+//				}
+//				
+//				for(ProjectSpace p : projectSpaces){
+//
+//					Collection<EObject> ret = new ArrayList<EObject>();
+//					EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
+//						new BasicEList<EObject>());
+//					// ugly hack to avoid dependency to model
+//					for (EObject modelElement : modelElements) {
+//						EObject econtainer = modelElement.eContainer();
+//						if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
+//							ret.add(modelElement);
+//						}
+//					}
+//					ret.add(project);
+//				}
+//				return ret.toArray();
+				
+				
 
 			}
 		});
@@ -163,7 +176,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 
 		
 		}); 
-		viewer.setInput(project);
+		viewer.setInput(projects);
 	
 		currentSelectionLabel = new ImageAndTextLabel(wrap, SWT.NONE,labelProvider);
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2,1).applyTo(currentSelectionLabel);
@@ -214,6 +227,13 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			}
 		}
 	}
+	
+	@Override
+	public boolean close() {
+		//Save text so we can use it even after the widget is disposed
+		this.nameText = nameInput.getText();
+		return super.close();
+	}
 
 	public void doPlacement() {
 		new UnicaseCommand() {
@@ -221,7 +241,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			protected void doRun() {
 				String name;
 				if(allowNameChoosing){
-					name = nameInput.getText();
+					name = nameText;
 				} else {
 					name = "New " + modelElement.eClass().getName();
 				}
@@ -231,6 +251,9 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		}.run(false);
 	}
 	
+	public EObject getSelection() {
+		return selection;
+	}
 
 
 	

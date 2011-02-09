@@ -71,6 +71,7 @@ public class ApplyChangePackageHandler extends AbstractHandler {
 		} catch (NoMatchingLocalRepositoryInWorkspace e1) {
 			UIUtil.errorMessage("No matching local repository was found in workspace. Make sure you have cloned the remote repository of this change package.");
 		} catch (RuntimeException e){
+			UIUtil.errorMessage(e.getMessage());
 			ModelUtil.logException(e);
 		}
 	}

@@ -37,9 +37,9 @@
             name="Continue Release Building">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.CreateRepositoryLocationHandler"
-            id="org.unicase.changetracking.ui.createRepositoryLocationCommand"
-            name="Create Repository Location">
+            defaultHandler="org.unicase.changetracking.ui.commands.CreateStreamFromCurrentBranchHandler"
+            id="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
+            name="Create Stream From Current Branch">
       </command>
    </extension>
    <extension
@@ -135,10 +135,10 @@
                   tooltip="Continues a previously interrupted release building process.">
             </command>
             <command
-                  commandId="org.unicase.changetracking.ui.createRepositoryLocationCommand"
+                  commandId="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
                   helpContextId="variable_watch_action_context"
                   icon="icons/createRepositoryLocation.gif"
-                  label="Create Repository Location"
+                  label="Create Stream From Current Branch"
                   tooltip="Creates a repository location in unicase based on the repository of the selected resource">
             </command>
          </menu>

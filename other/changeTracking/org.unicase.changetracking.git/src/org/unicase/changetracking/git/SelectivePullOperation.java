@@ -79,10 +79,7 @@ public class SelectivePullOperation implements IEGitOperation {
 		this.repository = repository;
 	}
 
-	public void execute(IProgressMonitor m) throws CoreException {
-		if (pullResult != null)
-			throw new CoreException(new Status(IStatus.ERROR, Activator
-					.getPluginId(), CoreText.OperationAlreadyExecuted));
+	public void execute(IProgressMonitor m) {
 		IProgressMonitor monitor;
 		if (m == null)
 			monitor = new NullProgressMonitor();
@@ -162,7 +159,11 @@ public class SelectivePullOperation implements IEGitOperation {
 			}
 		};
 		// lock workspace to protect working tree changes
-		ResourcesPlugin.getWorkspace().run(action, monitor);
+		try {
+			ResourcesPlugin.getWorkspace().run(action, monitor);
+		} catch (CoreException e) {
+			throw new UnexpectedGitException(e);
+		}
 	}
 
 	/**

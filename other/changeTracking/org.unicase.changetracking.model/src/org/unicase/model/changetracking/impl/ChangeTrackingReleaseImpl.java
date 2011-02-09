@@ -33,6 +33,8 @@ import org.unicase.model.release.impl.ReleaseImpl;
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#isBuilt <em>Built</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getBuiltRevision <em>Built Revision</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getBuildDate <em>Build Date</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getSuccessor <em>Successor</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl#getPredecessor <em>Predecessor</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,6 +108,26 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 	 * @ordered
 	 */
 	protected Date buildDate = BUILD_DATE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSuccessor() <em>Successor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected ChangeTrackingRelease successor;
+
+	/**
+	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredecessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected ChangeTrackingRelease predecessor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,6 +360,168 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ChangeTrackingRelease getSuccessor() {
+		if (successor != null && successor.eIsProxy()) {
+			InternalEObject oldSuccessor = (InternalEObject) successor;
+			successor = (ChangeTrackingRelease) eResolveProxy(oldSuccessor);
+			if (successor != oldSuccessor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+							oldSuccessor, successor));
+			}
+		}
+		return successor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangeTrackingRelease basicGetSuccessor() {
+		return successor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuccessor(
+			ChangeTrackingRelease newSuccessor, NotificationChain msgs) {
+		ChangeTrackingRelease oldSuccessor = successor;
+		successor = newSuccessor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+					oldSuccessor, newSuccessor);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuccessor(ChangeTrackingRelease newSuccessor) {
+		if (newSuccessor != successor) {
+			NotificationChain msgs = null;
+			if (successor != null)
+				msgs = ((InternalEObject) successor)
+						.eInverseRemove(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+								ChangeTrackingRelease.class, msgs);
+			if (newSuccessor != null)
+				msgs = ((InternalEObject) newSuccessor)
+						.eInverseAdd(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+								ChangeTrackingRelease.class, msgs);
+			msgs = basicSetSuccessor(newSuccessor, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+					newSuccessor, newSuccessor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangeTrackingRelease getPredecessor() {
+		if (predecessor != null && predecessor.eIsProxy()) {
+			InternalEObject oldPredecessor = (InternalEObject) predecessor;
+			predecessor = (ChangeTrackingRelease) eResolveProxy(oldPredecessor);
+			if (predecessor != oldPredecessor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+							oldPredecessor, predecessor));
+			}
+		}
+		return predecessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChangeTrackingRelease basicGetPredecessor() {
+		return predecessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPredecessor(
+			ChangeTrackingRelease newPredecessor, NotificationChain msgs) {
+		ChangeTrackingRelease oldPredecessor = predecessor;
+		predecessor = newPredecessor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+					oldPredecessor, newPredecessor);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPredecessor(ChangeTrackingRelease newPredecessor) {
+		if (newPredecessor != predecessor) {
+			NotificationChain msgs = null;
+			if (predecessor != null)
+				msgs = ((InternalEObject) predecessor)
+						.eInverseRemove(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+								ChangeTrackingRelease.class, msgs);
+			if (newPredecessor != null)
+				msgs = ((InternalEObject) newPredecessor)
+						.eInverseAdd(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+								ChangeTrackingRelease.class, msgs);
+			msgs = basicSetPredecessor(newPredecessor, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+					newPredecessor, newPredecessor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -356,6 +540,22 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 								ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES,
 								RepositoryRevision.class, msgs);
 			return basicSetBuiltRevision((RepositoryRevision) otherEnd, msgs);
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			if (successor != null)
+				msgs = ((InternalEObject) successor)
+						.eInverseRemove(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+								ChangeTrackingRelease.class, msgs);
+			return basicSetSuccessor((ChangeTrackingRelease) otherEnd, msgs);
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			if (predecessor != null)
+				msgs = ((InternalEObject) predecessor)
+						.eInverseRemove(
+								this,
+								ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+								ChangeTrackingRelease.class, msgs);
+			return basicSetPredecessor((ChangeTrackingRelease) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -373,6 +573,10 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			return basicSetStream(null, msgs);
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT_REVISION:
 			return basicSetBuiltRevision(null, msgs);
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			return basicSetSuccessor(null, msgs);
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			return basicSetPredecessor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -397,6 +601,14 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			return basicGetBuiltRevision();
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
 			return getBuildDate();
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			if (resolve)
+				return getSuccessor();
+			return basicGetSuccessor();
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			if (resolve)
+				return getPredecessor();
+			return basicGetPredecessor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -420,6 +632,12 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 			return;
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
 			setBuildDate((Date) newValue);
+			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			setSuccessor((ChangeTrackingRelease) newValue);
+			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			setPredecessor((ChangeTrackingRelease) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -445,6 +663,12 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
 			setBuildDate(BUILD_DATE_EDEFAULT);
 			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			setSuccessor((ChangeTrackingRelease) null);
+			return;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			setPredecessor((ChangeTrackingRelease) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -466,6 +690,10 @@ public class ChangeTrackingReleaseImpl extends ReleaseImpl implements
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
 			return BUILD_DATE_EDEFAULT == null ? buildDate != null
 					: !BUILD_DATE_EDEFAULT.equals(buildDate);
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__SUCCESSOR:
+			return successor != null;
+		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__PREDECESSOR:
+			return predecessor != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -10,6 +10,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="builtRevision" eType="#//RepositoryRevision"
         eOpposite="#//RepositoryRevision/builtWithReleases"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//ChangeTrackingRelease"
+        eOpposite="#//ChangeTrackingRelease/predecessor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//ChangeTrackingRelease"
+        eOpposite="#//ChangeTrackingRelease/successor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stream" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"

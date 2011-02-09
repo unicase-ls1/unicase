@@ -16,7 +16,7 @@ import org.unicase.changetracking.git.GitRepoFindUtil;
 import org.unicase.changetracking.git.commands.GitBuildReleaseCommand;
 import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
-import org.unicase.changetracking.ui.CreateRepositoryActionDelegate;
+import org.unicase.changetracking.ui.CreateRepoLocationAction;
 import org.unicase.changetracking.ui.ResourceSelectionActionDelegate;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
