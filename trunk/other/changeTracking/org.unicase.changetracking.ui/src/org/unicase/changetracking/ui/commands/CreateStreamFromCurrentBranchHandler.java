@@ -97,10 +97,10 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 			return null;
 		}
 		
-		Stream stream = ChangetrackingFactory.eINSTANCE.createStream();
+		final Stream stream = ChangetrackingFactory.eINSTANCE.createStream();
 		
-		ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(shell, stream, true);
-		
+		final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(shell, stream, true);
+		placementDialog.setDefaultName(branchName);
 		if(placementDialog.open() != Window.OK){
 			return null;
 		}
@@ -111,7 +111,7 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		GitRepository remoteRepo = GitRepoFindUtil.findRemoteInProject(repo, project);
 		
 		//No repo found? Ask the user what to do...
-		if(remoteRepo != null){
+		if(remoteRepo == null){
 			NoRemoteRepoChoices choice = AdvancedMessageDialog.openNoRemoteRepoFoundDialog(shell);
 			switch(choice){
 			case CANCEL:
@@ -132,12 +132,22 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		//1. place the stream
 		placementDialog.doPlacement();
 		//2. create, link and place the branch (in the same folder)
-		GitBranch branch = GitFactory.eINSTANCE.createGitBranch();
-		branch.setName(branchName);
-		branch.setBranchName(branchName);
-		branch.setLocation(remoteRepo);
-		stream.setRepositoryStream(branch);
-		GitUtil.putInto(branch, placementDialog.getSelection());
+		final String branchNameFinal = branchName;
+		final GitRepository remoteRepoFinal = remoteRepo;
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				GitBranch branch = GitFactory.eINSTANCE.createGitBranch();
+				branch.setName(branchNameFinal);
+				branch.setBranchName(branchNameFinal);
+				branch.setLocation(remoteRepoFinal);
+				stream.setRepositoryStream(branch);
+				GitUtil.putInto(branch, placementDialog.getSelection());
+			}
+		}.run();
+		
+		//Finally, open the stream in the unicase perspective
+		UnicaseActionHelper.openModelElement(stream, "git.create.stream");
 		
 		return null;
 		
