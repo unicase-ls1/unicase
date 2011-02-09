@@ -85,9 +85,7 @@ final class ModelChangerHelper {
 	/**
 	 * Retrieves all children, direct and indirect, and returns them
 	 * as a set. The <code>amountOfWork</code> for the progress monitor
-	 * is also computed in this method. Every EObject is counted three times:
-	 * Once for the deletion process, once for changing its attributes
-	 * and once for changing its references.
+	 * is also computed in this method. 
 	 * 
 	 * @param root the root EObject of the hierarchy
 	 * @return all direct and indirect contents of <code>root</code>
@@ -96,7 +94,9 @@ final class ModelChangerHelper {
 		TreeIterator<EObject> allContents = root.eAllContents();
 		Set<EObject> result = new LinkedHashSet<EObject>();
 		while(allContents.hasNext()) {
-			result .add(allContents.next());
+			result.add(allContents.next());
+			// count every element three times: once for deletion,
+			// once for setting attributes, once for setting references
 			amountOfWork += 3;
 		}
 		return result;

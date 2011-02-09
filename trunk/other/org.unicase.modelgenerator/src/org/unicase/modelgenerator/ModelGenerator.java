@@ -129,11 +129,14 @@ public final class ModelGenerator {
 		while(!remainingObjects.isEmpty()) {
 			EObject nextParentEObject = remainingObjects.remove(0);
 			List<EObject> children = generateChildren(nextParentEObject); 
+			// will the just created EObjects have children?
 			if(currentDepth < config.getDepth()) {
 				remainingObjects.addAll(children);
 			}
 			remainingElementsInThisDepth -= config.getWidth();
+			// are there still elements to create in this depth?
 			if(remainingElementsInThisDepth <= 0) {
+				// proceed to the next level
 				currentDepth++;
 				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
 			}
@@ -164,11 +167,14 @@ public final class ModelGenerator {
 			}
 			EObject nextParentEObject = remainingObjects.remove(0);
 			List<EObject> children = generateChildren(nextParentEObject); 
+			// will the just created EObjects have children?
 			if(currentDepth < config.getDepth()) {
 				remainingObjects.addAll(children);
 			}
 			remainingElementsInThisDepth -= config.getWidth();
+			// are there still elements to create in this depth?
 			if(remainingElementsInThisDepth <= 0) {
+				// proceed to the next level
 				currentDepth++;
 				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
 			}
@@ -184,28 +190,35 @@ public final class ModelGenerator {
 	 * @return all generated children as a list
 	 */
 	private static List<EObject> generateChildren(EObject parentEObject) {
+		// initialize the generation process
 		List<EObject> result = new LinkedList<EObject>();
 		int index = ModelGeneratorHelper.getStartingIndex(parentEObject.eClass());
 		List<EClass> elementsToCreate = ModelGeneratorHelper.getElementsToCreate(parentEObject.eClass());
 		EClass currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, index);
 		int createdChildren = 0;
+		// repeat until no more child can be created or the goal-width has been reached  
 		while(currentChildClass != null && createdChildren<config.getWidth()) {
 			List<EReference> validReferences = ModelGeneratorUtil.getValidContainmentReferences(currentChildClass, parentEObject);
+			// are there no containment references between parent and child?
 			if(validReferences.isEmpty()) {
+				// then the child class mustn't be created 
 				elementsToCreate.remove(currentChildClass);
 			}
 			for(EReference reference : validReferences) {
+				// is the goal-width already reached?
 				if(createdChildren>=config.getWidth()) {
 					break;
 				}
 				EObject newChild = ModelGeneratorHelper.setContainment(parentEObject, currentChildClass, reference);
 				createdChildren++;
+				// was creating the child successful?
 				if(newChild!=null) {
 					result.add(newChild);
 				}
 			}
 			currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, ++index);
 		}
+		// remember the index for the next generateChildren-process
 		ModelGeneratorHelper.updateIndex(parentEObject.eClass(), index);
 		return result;
 	}
@@ -232,9 +245,7 @@ public final class ModelGenerator {
 	private static void generateReferences(EObject eObject, Map<EClass, List<EObject>> allObjectsByEClass) {
 		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
-				if(allObjectsByEClass.containsKey(nextReferenceClass)) {
-					ModelGeneratorHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
-				}
+				ModelGeneratorHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
 			}
 		}
 	}

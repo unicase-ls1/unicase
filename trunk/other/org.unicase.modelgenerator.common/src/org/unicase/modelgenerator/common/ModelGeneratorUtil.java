@@ -104,6 +104,7 @@ public final class ModelGeneratorUtil {
 	 * @see Registry
 	 */
 	public static Set<EPackage> getAllRootEPackages() {
+		// were the root packages computed before?
 		if(rootModelPackages != null) {
 			return rootModelPackages;
 		}
@@ -111,9 +112,10 @@ public final class ModelGeneratorUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 
 		for (Entry<String, Object> entry : registry.entrySet()) {
-			EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-			if (model.getESuperPackage() == null){
-				rootModelPackages.add(model);
+			EPackage ePackage = registry.getEPackage(entry.getKey());
+			// is the current EPackage a root package?
+			if (ePackage.getESuperPackage() == null){
+				rootModelPackages.add(ePackage);
 			}
 		}
 		return rootModelPackages;
@@ -134,14 +136,17 @@ public final class ModelGeneratorUtil {
 			return packageToModelElementEClasses.get(ePackage);	
 		}
 		List<EClass> result = new LinkedList<EClass>();
+		// obtain all EClasses from sub packages
 		for(EPackage subPackage : ePackage.getESubpackages()) {
 			result.addAll(getAllEClasses(subPackage));
 		}
+		// obtain all EClasses that are direct contents of the EPackage
 		for(EClassifier classifier : ePackage.getEClassifiers()) {
 			if(classifier instanceof EClass) {
 				result.add((EClass) classifier);
 			}
 		}
+		// save the result for upcoming method calls
 		packageToModelElementEClasses.put(ePackage, result);
 		return result;
 	}
@@ -154,22 +159,23 @@ public final class ModelGeneratorUtil {
 	 * @see Registry
 	 */
 	public static List<EClass> getAllEClasses() {
+		// were all EClasses computed before?
 		if (allEClasses != null) {
 			return allEClasses;
 		}
-		List<EClass> result = new LinkedList<EClass>();
+		allEClasses = new LinkedList<EClass>();
 		Registry registry = EPackage.Registry.INSTANCE;
-
-		for (Entry<String, Object> entry : new LinkedHashSet<Entry<String, Object>>(registry.entrySet())) {
-			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+		// for all registered EPackages
+		for (Entry<String, Object> entry : registry.entrySet()) {
+			EPackage ePackage = (EPackage) entry.getValue();
 			for(EClass eClass : getAllEClasses(ePackage)) {
+				// no abstracts or interfaces
 				if(canHaveInstance(eClass)) {
-					result.add(eClass);
+					allEClasses.add(eClass);
 				}
 			}
 		}
-		allEClasses = result;
-		return result;
+		return allEClasses;
 	}
 	
 	/**
@@ -190,19 +196,30 @@ public final class ModelGeneratorUtil {
 		List<EClass> result = new LinkedList<EClass>();
 		for(EReference reference : eClass.getEAllContainments()) {
 			EClass referenceType = reference.getEReferenceType();
+			// 'referenceType: EObject' allows all kinds of EObjects
 			if(EcorePackage.eINSTANCE.getEObject().equals(referenceType)) {
 				return getAllEClasses();
 			}
+			// no abstracts or interfaces
 			if(canHaveInstance(referenceType)) {
 				result.add(referenceType);
 			}
+			// all sub EClasses can be referenced as well
 			result.addAll(getAllSubEClasses(referenceType));
 		}
+		// save the result for upcoming method calls
 		allEContainments.put(eClass, result);
 		return result;
 	}
 	
-	private static boolean canHaveInstance(EClass eClass) {
+	/**
+	 * Returns whether <code>eClass</code> can be instantiated or not.
+	 * An EClass can be instantiated, if it is neither an interface nor abstract.
+	 * 
+	 * @param eClass the EClass in question
+	 * @return whether <code>eClass</code> can be instantiated or not. 
+	 */
+	public static boolean canHaveInstance(EClass eClass) {
 		return !eClass.isInterface() && !eClass.isAbstract();
 	}
 
@@ -222,15 +239,14 @@ public final class ModelGeneratorUtil {
 			return eClassToSubEClasses.get(eClass);
 		}
 		List<EClass> allEClasses = getAllEClasses();
-		if(EcorePackage.eINSTANCE.getEObject().equals(eClass)) {
-			return allEClasses;
-		}
 		List<EClass> result = new LinkedList<EClass>();
-		for (EClass subClass : allEClasses) {
-			if (eClass.isSuperTypeOf(subClass) && canHaveInstance(subClass)) {
-				result.add(subClass);
+		for (EClass possibleSubClass : allEClasses) {
+			// is the EClass really a subClass, while not being abstract or an interface?
+			if (eClass.isSuperTypeOf(possibleSubClass) && canHaveInstance(possibleSubClass)) {
+				result.add(possibleSubClass);
 			}
 		}
+		// save the result for upcoming method calls
 		eClassToSubEClasses.put(eClass, result);
 		return result;
 	}
@@ -251,8 +267,10 @@ public final class ModelGeneratorUtil {
 			if(referenceType == null) {
 				continue;
 			}
+			// is the reference type a perfect match?
 			if(referenceType.equals(childClass)) {
 				result.add(reference);
+			// is the reference type either EObject or a super type?
 			} else if (referenceType.equals(EcorePackage.eINSTANCE.getEObject())
 				|| referenceType.isSuperTypeOf(childClass)) {
 				result.add(reference);
@@ -270,17 +288,19 @@ public final class ModelGeneratorUtil {
 	 * @return all contents as a map from EClass to lists of EObjects
 	 */
 	public static Map<EClass, List<EObject>> getAllClassesAndObjects(EObject rootObject) {
+		// initialize the computation process
 		Map<EClass, List<EObject>> result = new LinkedHashMap<EClass, List<EObject>>();
 		TreeIterator<EObject> allContents = rootObject.eAllContents();
 		List<EObject> newList = new LinkedList<EObject>();
 		newList.add(rootObject);
 		result.put(rootObject.eClass(), newList);
+		// iterate over all direct and indirect contents
 		while(allContents.hasNext()) {
 			EObject eObject = allContents.next();
+			// did this EObject's EClass appear before? 
 			if(result.containsKey(eObject.eClass())) {
 				result.get(eObject.eClass()).add(eObject);
-			}
-			else {
+			} else {
 				newList = new LinkedList<EObject>();
 				newList.add(eObject);
 				result.put(eObject.eClass(), newList);
@@ -327,16 +347,16 @@ public final class ModelGeneratorUtil {
 	}
 
 	/**
-	 * Returns whether an EReference is valid for an EObject or not.
+	 * Returns whether an EStructuralFeature is valid for an EObject or not.
 	 * A reference is valid, if it can be set or added to.
 	 * 
-	 * @param reference the EReference in question
-	 * @param eObject the EObject to check the reference for
-	 * @return asuohd
+	 * @param feature the EStructuralFeature in question
+	 * @param eObject the EObject to check the feature for
+	 * @return if the feature can be set or added to
 	 */
-	private static boolean isValid(EReference reference, EObject eObject) {
-		return reference.isChangeable() && !reference.isVolatile()&& !reference.isDerived()
-			&& (reference.isMany() || !eObject.eIsSet(reference));
+	private static boolean isValid(EStructuralFeature feature, EObject eObject) {
+		return feature.isChangeable() && !feature.isVolatile() && !feature.isDerived()
+			&& (feature.isMany() || !eObject.eIsSet(feature));
 	}
 	
 	/**
@@ -358,26 +378,26 @@ public final class ModelGeneratorUtil {
 	}
 	
 	/**
-	 * Sets a feature between <code>parentEObject</code> and <code>newObject</code>
+	 * Sets a feature between <code>eObject</code> and <code>newValue</code>
 	 * using a SetCommand. Exceptions are caught if <code>ignoreAndLog</code> is
 	 * true, otherwise a RuntimeException might be thrown if the command fails.  
 	 * 
-	 * @param parentEObject the EObject for which <code>feature</code> shall be set
+	 * @param eObject the EObject for which <code>feature</code> shall be set
 	 * @param feature the EStructuralFeature that shall be set
-	 * @param newObject the Object that shall be set as a feature in <code>parentEObject</code>
+	 * @param newValue the Object that shall be set as a feature in <code>parentEObject</code>
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>??
-	 * @return <code>newObject</code> if the <code>SetCommand</code> was performed successful
+	 * @return <code>newValue</code> if the <code>SetCommand</code> was performed successful
 	 * or <code>null</code> if it failed
 	 * @see SetCommand
 	 */
-	public static EObject setPerCommand(EObject parentEObject, EStructuralFeature feature, Object newObject,
+	public static EObject setPerCommand(EObject eObject, EStructuralFeature feature, Object newValue,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		try {
-			new SetCommand(domain, parentEObject, feature, newObject).doExecute();
-			if(newObject instanceof EObject) {
-				return (EObject) newObject;
+			new SetCommand(domain, eObject, feature, newValue).doExecute();
+			if(newValue instanceof EObject) {
+				return (EObject) newValue;
 			} else {
 				return null;
 			}
@@ -388,30 +408,30 @@ public final class ModelGeneratorUtil {
 	}
 
 	/**
-	 * Adds <code>newObject</code> to the many-valued feature of 
-	 * <code>parentEObject</code> using an AddCommand. 
+	 * Adds <code>newValue</code> to the many-valued feature of 
+	 * <code>eObject</code> using an AddCommand. 
 	 * Exceptions are caught if <code>ignoreAndLog</code> is
 	 * true, otherwise a RuntimeException might be thrown if the command fails.  
 	 * 
-	 * @param parentEObject the EObject to which <code>newObject</code> shall be added
+	 * @param eObject the EObject to which <code>newObject</code> shall be added
 	 * @param feature the EStructuralFeature that <code>newObject</code> shall be added to
-	 * @param newObject the Object that shall be added to <code>feature</code>
+	 * @param newValue the Object that shall be added to <code>feature</code>
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
-	 * @return <code>newObject</code> if the <code>AddCommand</code> was performed successful
+	 * @return <code>newValue</code> if the <code>AddCommand</code> was performed successful
 	 * or <code>null</code> if it failed
 	 * @see AddCommand#AddCommand(EditingDomain, EObject, EStructuralFeature, Object)
 	 */
-	public static EObject addPerCommand(EObject parentEObject, EStructuralFeature feature, Object newObject,
+	public static EObject addPerCommand(EObject eObject, EStructuralFeature feature, Object newValue,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
-		if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(newObject)) {
+		if(feature.isUnique() && ((Collection<?>) eObject.eGet(feature)).contains(newValue)) {
 			return null;
 		}
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		try {
-			new AddCommand(domain, parentEObject, feature, newObject).doExecute();
-			if(newObject instanceof EObject) {
-				return (EObject) newObject;
+			new AddCommand(domain, eObject, feature, newValue).doExecute();
+			if(newValue instanceof EObject) {
+				return (EObject) newValue;
 			} else {
 				return null;
 			}
@@ -423,71 +443,71 @@ public final class ModelGeneratorUtil {
 	
 	/**
 	 * Adds all <code>objects</code> to the many-valued feature of 
-	 * <code>parentEObject</code> using an AddCommand. 
+	 * <code>eObject</code> using an AddCommand. 
 	 * Exceptions are caught if <code>ignoreAndLog</code> is
 	 * true, otherwise a RuntimeException might be thrown if the command fails.  
 	 * 
-	 * @param parentEObject the EObject to which <code>objects</code> shall be added
-	 * @param feature the EReference that <code>newEObject</code> shall be added to
+	 * @param eObject the EObject to which <code>objects</code> shall be added
+	 * @param feature the EReference that <code>objects</code> shall be added to
 	 * @param objects collection of objects that shall be added to <code>feature</code>
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
 	 */
-	public static void addPerCommand(EObject parentEObject, EStructuralFeature feature, Collection<?> objects,
+	public static void addPerCommand(EObject eObject, EStructuralFeature feature, Collection<?> objects,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
 		for(Object object : objects) {
-			if(feature.isUnique() && ((Collection<?>) parentEObject.eGet(feature)).contains(object)) {
+			if(feature.isUnique() && ((Collection<?>) eObject.eGet(feature)).contains(object)) {
 				return;
 			}
 		}
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		try {
-			new AddCommand(domain, parentEObject, feature, objects).doExecute();
+			new AddCommand(domain, eObject, feature, objects).doExecute();
 		} catch(RuntimeException e) {
 			handle(e, exceptionLog, ignoreAndLog);
 		}
 	}
 	
 	/**
-	 * Removes <code>objects</code> from a feature of <code>parentEObject</code>
+	 * Removes <code>objects</code> from a feature of <code>eObject</code>
 	 * using a RemoveCommand. Exceptions are caught if <code>ignoreAndLog</code> is
 	 * true, otherwise a RuntimeException might be thrown if the command fails.  
 	 * 
-	 * @param parentEObject the EObject to remove <code>objects</code> from
-	 * @param feature the EStructuralFeature <code>object</code> shall be removed from
+	 * @param eObject the EObject to remove <code>objects</code> from
+	 * @param feature the EStructuralFeature <code>objects</code> shall be removed from
 	 * @param objects collection of Objects that shall be removed
 	 * @param exceptionLog the current log of exceptions
 	 * @param ignoreAndLog should exceptions be ignored and added to <code>exceptionLog</code>?
 	 * @see RemoveCommand
 	 */
-	public static void removePerCommand(EObject parentEObject, EStructuralFeature feature, Collection<?> objects,
+	public static void removePerCommand(EObject eObject, EStructuralFeature feature, Collection<?> objects,
 		Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(parentEObject);
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		try {
-			new RemoveCommand(domain, parentEObject, feature, objects).doExecute();
+			new RemoveCommand(domain, eObject, feature, objects).doExecute();
 		} catch(RuntimeException e){
 			handle(e, exceptionLog, ignoreAndLog);
 		}
 	}
 	
 	/**
-	 * Retrieves all EClasses that can possibly be referenced by <code>reference</code>
-	 * from <code>allEClasses</code> and returns them as a list.
+	 * Retrieves all EClasses from <code>allEClasses</code> that can possibly be
+	 * referenced by <code>reference</code> and returns them as a list.
 	 * 
 	 * @param reference the EReference to get EClasses for
 	 * @param allEClasses set of all possible EClasses
 	 * @return list of all EClasses that can be referenced by <code>reference</code>
 	 */
-	public static List<EClass> getReferenceClasses(EReference reference, Set<EClass> allEClasses) {
-		List<EClass> result = new LinkedList<EClass>();
+	public static Set<EClass> getReferenceClasses(EReference reference, Set<EClass> allEClasses) {
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		EClass referenceType = reference.getEReferenceType();
-		result.add(referenceType);
+		// 'referenceType: EObject' allows all kinds of EObjects
 		if(referenceType.equals(EcorePackage.eINSTANCE.getEObject())) {
-			result.addAll(allEClasses);
-			return result;
+			return allEClasses;
 		}
 		for(EClass eClass : allEClasses) {
-			if(referenceType.isSuperTypeOf(eClass)) {
+			// can eClass be referenced by reference
+			if(referenceType.equals(eClass) || referenceType.isSuperTypeOf(eClass)) {
 				result.add(eClass);
 			}
 		}
@@ -519,13 +539,16 @@ public final class ModelGeneratorUtil {
 		if(!possibleReferenceObjects.isEmpty()) {
 			int index = 0;
 			if(reference.isMany()) {
+				// set 0-3 EObjects as references
 				int maxObjects = random.nextInt(3);
 				if(reference.isRequired()) {
+					// required reference -> set 1-4 EObjects as references
 					maxObjects++;
 				}
 				for(int i = 0; i < maxObjects; i++) {
 					ModelGeneratorUtil.addPerCommand(eObject, reference, possibleReferenceObjects.get(index),
 						exceptionLog, ignoreAndLog);
+					// ensures every EObject is set at most once
 					if(++index==possibleReferenceObjects.size()) {
 						break;
 					}
@@ -556,15 +579,15 @@ public final class ModelGeneratorUtil {
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
 			EClassifier attributeType = attribute.getEType();
 			
-			if(!attribute.isChangeable() || attribute.isDerived() || attribute.isVolatile()) {
+			if(!isValid(attribute, eObject)) {
 				continue;
 			}
+			// is there a setter for this attribute?
 			if (attributeSetters.containsKey(attributeType)) {
 				if (attribute.isMany()) {
 					addPerCommand(eObject, attribute,
 						attributeSetters.get(attributeType).createNewAttributes(), exceptionLog, ignoreAndLog);
-				}
-				else {
+				} else {
 					setPerCommand(eObject, attribute,
 						attributeSetters.get(attributeType).createNewAttribute(), exceptionLog, ignoreAndLog);
 				}

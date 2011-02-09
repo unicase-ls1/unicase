@@ -88,13 +88,16 @@ public class GenerateModelHandler extends AbstractHandler {
 	private void generate(EObject rootObject, EPackage pckge) {
 		List<EClass> ignoredClasses = new LinkedList<EClass>();
 		ignoredClasses.add((EClass) pckge.getEClassifier("EObject"));
+		// create width subroots
 		for(int i=0; i<width; i++) {
 			EClass subRootClass = getValidEClass(rootObject, pckge, ignoredClasses);
 			if(subRootClass == null) {
+				// no valid EClasses left -> cancel process
 				return;
 			}
 			ModelGeneratorConfiguration config = new ModelGeneratorConfiguration(pckge, subRootClass, 
 				ignoredClasses, width, depth-1, System.currentTimeMillis(), true);
+			// generate sub-hierarchy and add the new subroot as a child to the actual root
 			addAsChild(rootObject, ModelGenerator.generateModel(config));
 		}
 	}
@@ -114,14 +117,18 @@ public class GenerateModelHandler extends AbstractHandler {
 		}
 		for(EReference reference : ModelGeneratorUtil.getAllPossibleContainingReferences(childObject.eClass(), parentEObject.eClass())) {
 			if(reference.isMany()) {
+				// was the adding successful?
 				if(ModelGeneratorUtil.addPerCommand(parentEObject, reference, childObject,
 					null, false) != null) {
+					// then we are done
 					return;
 				}
 			}
 			else {
+				// was setting the reference successful?
 				if(ModelGeneratorUtil.setPerCommand(parentEObject, reference, childObject,
 					null, false) != null) {
+					// then we are done
 					return;
 				}
 			}
@@ -163,14 +170,18 @@ public class GenerateModelHandler extends AbstractHandler {
 		if(selection != null && selection instanceof IStructuredSelection) {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object selectedElement = strucSel.getFirstElement();
-			if(selectedElement instanceof ProjectSpace)
+			if(selectedElement instanceof ProjectSpace) {
 				return ((ProjectSpace) selectedElement).getProject();
-			else if(selectedElement instanceof EObject)
+			} else if(selectedElement instanceof EObject) {
 				return (EObject) selectedElement;
-			else if(selectedElement==null)
+			} else if(selectedElement==null) {
 				return WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject("Generated Project", "Generated").getProject();
-			else throw new IllegalArgumentException("No EObject selected!");
-		} else throw new IllegalArgumentException("Selection Error!");
+			} else {
+				throw new IllegalArgumentException("No EObject selected!");
+			}
+		} else {
+			throw new IllegalArgumentException("Selection Error!");
+		}
 	}
 	
 	/**
@@ -187,12 +198,15 @@ public class GenerateModelHandler extends AbstractHandler {
 	 */
 	private EClass getValidEClass(EObject root, EPackage pckge, List<EClass> ignoredClasses) {
 		List<EClass> allEClasses = ModelGeneratorUtil.getAllEContainments(root.eClass());
+		// only allow EClasses that appear in the specified EPackage
 		allEClasses.retainAll(ModelGeneratorUtil.getAllEClasses(pckge));
+		// don't allow any EClass or sub class of all EClasses specified in ignoredClasses
 		for(EClass eClass : ignoredClasses) {
 			allEClasses.remove(eClass);
 			allEClasses.removeAll(ModelGeneratorUtil.getAllSubEClasses(eClass));
 		}
 		if(allEClasses.isEmpty()) {
+			// no valid EClass left
 			return null;
 		}
 		Collections.shuffle(allEClasses);
