@@ -167,7 +167,7 @@ public final class ModelGeneratorUtil {
 		Registry registry = EPackage.Registry.INSTANCE;
 		// for all registered EPackages
 		for (Entry<String, Object> entry : registry.entrySet()) {
-			EPackage ePackage = (EPackage) entry.getValue();
+			EPackage ePackage = registry.getEPackage(entry.getKey());
 			for(EClass eClass : getAllEClasses(ePackage)) {
 				// no abstracts or interfaces
 				if(canHaveInstance(eClass)) {
