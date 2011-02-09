@@ -66,6 +66,8 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 			addBuiltPropertyDescriptor(object);
 			addBuiltRevisionPropertyDescriptor(object);
 			addBuildDatePropertyDescriptor(object);
+			addSuccessorPropertyDescriptor(object);
+			addPredecessorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -150,6 +152,47 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Successor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ChangeTrackingRelease_successor_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_ChangeTrackingRelease_successor_feature",
+								"_UI_ChangeTrackingRelease_type"),
+						ChangetrackingPackage.Literals.CHANGE_TRACKING_RELEASE__SUCCESSOR,
+						true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Predecessor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ChangeTrackingRelease_predecessor_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ChangeTrackingRelease_predecessor_feature",
+								"_UI_ChangeTrackingRelease_type"),
+						ChangetrackingPackage.Literals.CHANGE_TRACKING_RELEASE__PREDECESSOR,
+						true, false, true, null, null, null));
+	}
+
+	/**
 	 * This returns ChangeTrackingRelease.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -159,7 +202,7 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	public Object getImage(Object object) {
 		boolean built = ((ChangeTrackingRelease) object).isBuilt();
 		String path;
-		if(built){
+		if (built) {
 			path = "full/obj16/ReleaseBuilt";
 		} else {
 			path = "full/obj16/ReleaseNotBuilt";

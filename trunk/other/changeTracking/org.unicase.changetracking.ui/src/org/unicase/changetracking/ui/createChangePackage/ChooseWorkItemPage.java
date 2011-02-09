@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.GitRepoFindUtil;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.CreateRepositoryActionDelegate;
+import org.unicase.changetracking.ui.CreateRepoLocationAction;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
 import org.unicase.metamodel.Project;
@@ -144,7 +144,7 @@ public class ChooseWorkItemPage extends WizardPage{
 		createRepoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				selectedRepository = new CreateRepositoryActionDelegate().createRepository(localRepo, selectedProject);
+				selectedRepository = new CreateRepoLocationAction().createRepoLocation(localRepo, selectedProject);
 				updateFields();
 			}
 		});

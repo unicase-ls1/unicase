@@ -125,6 +125,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

@@ -9,7 +9,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.git.GitRepoFindUtil;
-import org.unicase.changetracking.ui.NoLocalRepoFoundDialog;
+import org.unicase.changetracking.ui.AdvancedMessageDialog;
+import org.unicase.changetracking.ui.AdvancedMessageDialog.NoLocalRepoChoices;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.RepositoryLocation;
@@ -47,15 +48,15 @@ public class LocalRepoFindHandler {
 		
 		Repository repo = GitRepoFindUtil.findAssociatedLocalRepo((GitRepository) location);
 		if(repo == null){
-			int userChoice = NoLocalRepoFoundDialog.openNoLocalRepoFoundDialog(PlatformUI.getWorkbench().
+			NoLocalRepoChoices userChoice = AdvancedMessageDialog.openNoLocalRepoFoundDialog(PlatformUI.getWorkbench().
 					getActiveWorkbenchWindow().getShell());
 			switch(userChoice){
-			case NoLocalRepoFoundDialog.CHOICE_CANCEL:
+			case CANCEL:
 				return null;
-			case NoLocalRepoFoundDialog.CHOICE_CLONE:
+			case CLONE:
 				//FIXME: Implement cloning
 				return null;
-			case NoLocalRepoFoundDialog.CHOICE_OPEN:
+			case OPEN:
 				return chooseRepoLocation();
 			}
 		}

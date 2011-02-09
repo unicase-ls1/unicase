@@ -21,6 +21,8 @@ import org.unicase.model.release.Release;
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#isBuilt <em>Built</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuiltRevision <em>Built Revision</em>}</li>
  *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate <em>Build Date</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor <em>Successor</em>}</li>
+ *   <li>{@link org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor <em>Predecessor</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,5 +145,61 @@ public interface ChangeTrackingRelease extends Release {
 	 * @generated
 	 */
 	void setBuildDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Successor</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor <em>Predecessor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Successor</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Successor</em>' reference.
+	 * @see #setSuccessor(ChangeTrackingRelease)
+	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getChangeTrackingRelease_Successor()
+	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor
+	 * @model opposite="predecessor"
+	 * @generated
+	 */
+	ChangeTrackingRelease getSuccessor();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor <em>Successor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Successor</em>' reference.
+	 * @see #getSuccessor()
+	 * @generated
+	 */
+	void setSuccessor(ChangeTrackingRelease value);
+
+	/**
+	 * Returns the value of the '<em><b>Predecessor</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor <em>Successor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predecessor</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predecessor</em>' reference.
+	 * @see #setPredecessor(ChangeTrackingRelease)
+	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getChangeTrackingRelease_Predecessor()
+	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor
+	 * @model opposite="successor"
+	 * @generated
+	 */
+	ChangeTrackingRelease getPredecessor();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor <em>Predecessor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Predecessor</em>' reference.
+	 * @see #getPredecessor()
+	 * @generated
+	 */
+	void setPredecessor(ChangeTrackingRelease value);
 
 } // ChangeTrackingRelease

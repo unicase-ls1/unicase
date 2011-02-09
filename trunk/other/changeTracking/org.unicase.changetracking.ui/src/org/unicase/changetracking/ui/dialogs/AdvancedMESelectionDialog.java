@@ -167,7 +167,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
 		
 		if(getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)){
-				ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedProjectSpace(), getSelectedModelElementNoCreate(), true);
+				ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
 				if(placementDialog.open() == Window.OK){
 					placementDialog.doPlacement();
 				} else {
@@ -256,6 +256,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		l.setLayoutData(new GridData(SWT.LEFT));
 		Combo combo = new Combo (subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
+		projectBar = new ComboView<ProjectSpace>(combo);
 		projectBar.addSelectionChangedListener(new ComboView.IComboChangeListener<ProjectSpace>() {
 			public void selectionChanged(ProjectSpace newSelection) {
 				populateUserBar(newSelection, userBar.getSelection(), true);

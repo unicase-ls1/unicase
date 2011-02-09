@@ -9,6 +9,7 @@ package org.unicase.model.changetracking.patch.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.model.ModelPackage;
@@ -98,6 +99,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

@@ -181,22 +181,13 @@ public interface ChangetrackingPackage extends EPackage {
 	int CHANGE_TRACKING_RELEASE__CREATOR = ReleasePackage.RELEASE__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
+	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__PREDECESSOR = ReleasePackage.RELEASE__PREDECESSOR;
-
-	/**
-	 * The feature id for the '<em><b>Successor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHANGE_TRACKING_RELEASE__SUCCESSOR = ReleasePackage.RELEASE__SUCCESSOR;
+	int CHANGE_TRACKING_RELEASE__APPLIED_PATCHES = ReleasePackage.RELEASE__APPLIED_PATCHES;
 
 	/**
 	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
@@ -244,13 +235,31 @@ public interface ChangetrackingPackage extends EPackage {
 	int CHANGE_TRACKING_RELEASE__BUILD_DATE = ReleasePackage.RELEASE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Successor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__SUCCESSOR = ReleasePackage.RELEASE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_TRACKING_RELEASE__PREDECESSOR = ReleasePackage.RELEASE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Change Tracking Release</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE_FEATURE_COUNT = ReleasePackage.RELEASE_FEATURE_COUNT + 4;
+	int CHANGE_TRACKING_RELEASE_FEATURE_COUNT = ReleasePackage.RELEASE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.
@@ -987,6 +996,28 @@ public interface ChangetrackingPackage extends EPackage {
 	EAttribute getChangeTrackingRelease_BuildDate();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor <em>Successor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Successor</em>'.
+	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor()
+	 * @see #getChangeTrackingRelease()
+	 * @generated
+	 */
+	EReference getChangeTrackingRelease_Successor();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor <em>Predecessor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Predecessor</em>'.
+	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor()
+	 * @see #getChangeTrackingRelease()
+	 * @generated
+	 */
+	EReference getChangeTrackingRelease_Predecessor();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.Stream <em>Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1202,6 +1233,24 @@ public interface ChangetrackingPackage extends EPackage {
 		 */
 		EAttribute CHANGE_TRACKING_RELEASE__BUILD_DATE = eINSTANCE
 				.getChangeTrackingRelease_BuildDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHANGE_TRACKING_RELEASE__SUCCESSOR = eINSTANCE
+				.getChangeTrackingRelease_Successor();
+
+		/**
+		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHANGE_TRACKING_RELEASE__PREDECESSOR = eINSTANCE
+				.getChangeTrackingRelease_Predecessor();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.

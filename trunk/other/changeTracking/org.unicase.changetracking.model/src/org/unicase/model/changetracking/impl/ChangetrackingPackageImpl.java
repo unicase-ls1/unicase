@@ -144,6 +144,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -222,6 +223,26 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	public EAttribute getChangeTrackingRelease_BuildDate() {
 		return (EAttribute) changeTrackingReleaseEClass
 				.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChangeTrackingRelease_Successor() {
+		return (EReference) changeTrackingReleaseEClass
+				.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChangeTrackingRelease_Predecessor() {
+		return (EReference) changeTrackingReleaseEClass
+				.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -394,6 +415,10 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				CHANGE_TRACKING_RELEASE__BUILT_REVISION);
 		createEAttribute(changeTrackingReleaseEClass,
 				CHANGE_TRACKING_RELEASE__BUILD_DATE);
+		createEReference(changeTrackingReleaseEClass,
+				CHANGE_TRACKING_RELEASE__SUCCESSOR);
+		createEReference(changeTrackingReleaseEClass,
+				CHANGE_TRACKING_RELEASE__PREDECESSOR);
 
 		streamEClass = createEClass(STREAM);
 		createEReference(streamEClass, STREAM__RELEASES);
@@ -501,6 +526,18 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getChangeTrackingRelease_Successor(), this
+				.getChangeTrackingRelease(), this
+				.getChangeTrackingRelease_Predecessor(), "successor", null, 0,
+				1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChangeTrackingRelease_Predecessor(), this
+				.getChangeTrackingRelease(), this
+				.getChangeTrackingRelease_Successor(), "predecessor", null, 0,
+				1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(streamEClass, Stream.class, "Stream", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -37,6 +37,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RefUpdate.Result;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
@@ -50,16 +51,20 @@ import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
 import org.unicase.util.UnicaseUtil;
 
-public class GitUtil {
+public final class GitUtil {
 
 	private GitUtil(){}
 	
 	public static MutableObjectId stringToObjectId(String s) {
 		MutableObjectId mo = new MutableObjectId();
-		mo.fromString("d02bb0fd99933e5cbc2c664c788b3acbbe3e2ab8");
+		mo.fromString(s);
 		return mo;
 	}
-
+	
+	public static RefSpec getRefSpecFromGitBranch(GitBranch branch){
+		return new RefSpec(Constants.R_HEADS + branch.getBranchName());
+	}
+	
 	public static RevCommit getCommitByHash(String hash, Repository repo) {
 		MutableObjectId objId = stringToObjectId(hash);
 		RevWalk r = new RevWalk(repo);
