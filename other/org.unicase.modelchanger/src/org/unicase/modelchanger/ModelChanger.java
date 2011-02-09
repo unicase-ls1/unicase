@@ -105,10 +105,12 @@ public final class ModelChanger {
 	private static void deleteRandomEObjects(Set<EObject> allChildren) {
 		Set<EObject> deletedChildren = new LinkedHashSet<EObject>();
 		for(EObject eObject : allChildren) {
+			// was the EObject already deleted?
 			if(deletedChildren.contains(eObject)) {
 				continue;
 			}
 			if(ModelChangerHelper.randomDelete()) {
+				// copy all children first to prevent concurrent modifications when deleting
 				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
 				deletedChildren.addAll(deleteAllChildren(contentCopy));
 				EcoreUtil.delete(eObject);
@@ -127,6 +129,7 @@ public final class ModelChanger {
 	private static Set<EObject> deleteAllChildren(Set<EObject> children) {
 		Set<EObject> allDeletedChildren = new LinkedHashSet<EObject>();
 		for(EObject child : children) {
+			// copy all children first to prevent concurrent modifications when deleting
 			Set<EObject> contentCopy = new LinkedHashSet<EObject>(child.eContents());
 			allDeletedChildren.addAll(deleteAllChildren(contentCopy));
 			EcoreUtil.delete(child);
@@ -172,18 +175,19 @@ public final class ModelChanger {
 			if(monitor.isCanceled()) {
 				return;
 			}
+			// was the EObject already deleted?
 			if(deletedChildren.contains(eObject)) {
 				monitor.worked(1);
 				continue;
 			}
 			if(ModelChangerHelper.randomDelete()) {
+				// copy all children first to prevent concurrent modifications when deleting
 				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
 				deletedChildren.addAll(deleteAllChildren(contentCopy));
 				EcoreUtil.delete(eObject);
-				monitor.worked(1);
 			}
+			monitor.worked(1);
 		}
-		monitor.worked(deletedChildren.size());
 	}
 	
 	/**
@@ -226,6 +230,7 @@ public final class ModelChanger {
 	 * @see ModelChangerHelper#setEObjectAttributes(EObject)
 	 */
 	private static void changeEObjectAttributes(EObject eObject) {
+		// remove all values from currently set attributes
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
 			ModelChangerHelper.clear(eObject, attribute);
 		}
@@ -245,9 +250,7 @@ public final class ModelChanger {
 		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
 			ModelChangerHelper.clear(eObject, reference);
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
-				if(allObjectsByEClass.containsKey(nextReferenceClass)) {
-					ModelChangerHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
-				}
+				ModelChangerHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
 			}
 		}
 	}

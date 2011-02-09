@@ -111,9 +111,11 @@ final class ModelGeneratorHelper {
 	 */
 	protected static int computeAmountOfWork() {
 		int result = 0;
+		// compute number of all elements
 		for(int i=1; i<=configuration.getDepth(); i++) {
 			result += (int) Math.pow(configuration.getWidth(), i);
 		}
+		// return double of the computed amount, once for creation, once for setting references
 		return result*2;
 	}
 
@@ -131,8 +133,10 @@ final class ModelGeneratorHelper {
 	 * @see ModelGeneratorUtil#setPerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Object, Set, boolean)
 	 */
 	protected static EObject setContainment(EObject parentEObject, EClass childClass, EReference reference) {
+		// create and set attributes
 		EObject newEObject = EcoreUtil.create(childClass);
 		ModelGeneratorUtil.setEObjectAttributes(newEObject,	exceptionLog, configuration.getIgnoreAndLog());
+		// reference created EObject to the parent
 		if(reference.isMany()) {
 			return ModelGeneratorUtil.addPerCommand(parentEObject, reference, newEObject,
 				exceptionLog, configuration.getIgnoreAndLog());
@@ -204,9 +208,11 @@ final class ModelGeneratorHelper {
 		} else {
 			List<EClass> result = new LinkedList<EClass>(ModelGeneratorUtil.getAllEContainments(parentEClass));
 			List<EClass> modelElementEClasses = ModelGeneratorUtil.getAllEClasses(configuration.getModelPackage());
+			// only retain EClasses that are not explicitly excluded and also appear in the specified EPackage
 			result.retainAll(modelElementEClasses);
 			result.removeAll(eClassesToIgnore);
-			Collections.shuffle(result, ModelGeneratorHelper.random);
+			Collections.shuffle(result, random);
+			// save the result for upcoming method-calls
 			ModelGeneratorHelper.eClassToElementsToCreate.put(parentEClass, result);
 			return result;
 		}
@@ -220,7 +226,7 @@ final class ModelGeneratorHelper {
 	 * @param index the latest used index for that EClass
 	 * @see #getStartingIndex(EClass)
 	 */
-	public static void updateIndex(EClass eClass, int index) {
+	protected static void updateIndex(EClass eClass, int index) {
 		eClassToLastUsedIndex.put(eClass, index);
 	}
 	
@@ -255,11 +261,14 @@ final class ModelGeneratorHelper {
 		}
 		index %= elementsToCreate.size();
 		EClass result = elementsToCreate.get(index);
-		while(result.isInterface()|| result.isAbstract()) {
+		// repeat until result can be instantiated
+		while(!ModelGeneratorUtil.canHaveInstance(result)) {
+			// current result can't be instantiated -> remove it
 			elementsToCreate.remove(result);
 			if(elementsToCreate.isEmpty()) {
 				return null;
 			}
+			// index might be out of bounds now
 			index %= elementsToCreate.size();
 			result = elementsToCreate.get(index);
 		}
@@ -275,7 +284,7 @@ final class ModelGeneratorHelper {
 	 * @param allEObjects all possible EObjects that can be referenced
 	 * @see ModelGeneratorUtil#setReference(EObject, EClass, EReference, Random, Set, boolean, Map)
 	 */
-	public static void setReference(EObject eObject, EClass referenceClass, EReference reference,
+	protected static void setReference(EObject eObject, EClass referenceClass, EReference reference,
 		Map<EClass, List<EObject>> allEObjects) {
 		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random,
 			exceptionLog, configuration.getIgnoreAndLog(), allEObjects);
