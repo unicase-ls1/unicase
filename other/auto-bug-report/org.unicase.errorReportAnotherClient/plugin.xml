@@ -4,13 +4,13 @@
    <extension
          point="org.unicase.errorreporting.filters">
       <StackTraceFilter
-            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter5">
+            filter-value="org.unicase.common.SomeSickDialog">
       </StackTraceFilter>
       <StackTraceFilter
-            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter6">
+            filter-value="org.unicase.workspace.*">
       </StackTraceFilter>
       <StackTraceFilter
-            filter-value="org.unicase.errorReportAnotherClient.StackTraceFilter7">
+            filter-value="org.unicase.model.*">
       </StackTraceFilter>
       <Severity
             severity-value="Error">
@@ -19,7 +19,7 @@
    <extension
          point="org.unicase.errorreporting.reportHandlers">
       <DefaultReportHandler
-            email="org.unicase.errorReportAnotherClient.DefaultReportHandler3">
+            email="mail@me.com">
       </DefaultReportHandler>
       <ReportHandler
             class="org.unicase.errorreportanotherclient.reporthandlers.RSSHandler">
