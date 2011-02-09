@@ -22,10 +22,10 @@
    <extension
          point="org.unicase.errorreporting.filters">
       <StackTraceFilter
-            filter-value="org.unicase.errorReportClient.StackTraceFilter2">
+            filter-value="org.unicase.*">
       </StackTraceFilter>
       <StackTraceFilter
-            filter-value="org.unicase.errorReportClient.StackTraceFilter3">
+            filter-value="*apache*">
       </StackTraceFilter>
       <Severity
             severity-value="Error-Warning">

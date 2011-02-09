@@ -18,7 +18,6 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
-//		throw new NullPointerException("test exception for error report activator constructor.");
 	}
 
 	/*
@@ -28,7 +27,6 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-//		throw new NullPointerException("test exception for error report from activator start.");
 	}
 
 	/*

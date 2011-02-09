@@ -65,10 +65,12 @@ public class ExtensionPointResolver {
 			String filterValue = configElement
 					.getAttribute(STATCK_TRACE_FILTERS_ATTRIBUTE_NAME);
 			if(filterValue != null && !filterValue.equals("") && !filterValue.equals("*")){
+				System.out.println(filterValue);
 				filtersMap.get(contributor).add(filterValue);
 			}
 			String severityValue = configElement.getAttribute(SEVERITY_ATTRIBUTE_NAME);
 			if(severityValue != null && !severityValue.equals("")) {
+				System.out.println(severityValue);
 				severitiesMap.put(contributor, severityValue);
 			}
 		}

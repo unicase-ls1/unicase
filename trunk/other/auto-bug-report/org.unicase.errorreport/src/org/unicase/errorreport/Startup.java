@@ -18,10 +18,12 @@ public class Startup implements IStartup {
 		final ExtensionPointResolver resolver = new ExtensionPointResolver();
 		// string list containing plugin id of plugins extending error reporting extension points.
 		final Set<String> contributors = resolver.getContributors();
+		System.out.println("************ contributors **********************");
 		for(String contributor : contributors){
 			System.out.println("contributor");
 			System.out.println(contributor);
 		}
+		System.out.println("************ end contributors **********************");
 
 		Platform.addLogListener(new ILogListener() {
 
