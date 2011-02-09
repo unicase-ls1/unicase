@@ -48,12 +48,12 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.modelgenerator.ecp.GenerateModelHandler"
+            defaultHandler="org.unicase.ecp.modelgenerator.GenerateModelHandler"
             id="org.unicase.modelgenerator.ecp.generateModel"
             name="Generate Model">
       </command>
       <command
-            defaultHandler="org.unicase.modelgenerator.ecp.GenerateChangesHandler"
+            defaultHandler="org.unicase.ecp.modelgenerator.GenerateChangesHandler"
             id="org.unicase.modelgenerator.ecp.generateChanges"
             name="Generate Changes">
       </command>
