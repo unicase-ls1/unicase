@@ -127,7 +127,8 @@ final class ModelChangerHelper {
 	protected static void setReference(EObject eObject, EClass referenceClass, EReference reference,
 		Map<EClass, List<EObject>> allEObjects) {
 		// check if the upper bound is reached
-		if(!ModelGeneratorUtil.isValid(reference, eObject, exceptionLog, ignoreAndLog)) {
+		if(!ModelGeneratorUtil.isValid(reference, eObject, exceptionLog, ignoreAndLog) ||
+				(!reference.isMany() && eObject.eIsSet(reference))) {
 			return;
 		}
 		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random,
