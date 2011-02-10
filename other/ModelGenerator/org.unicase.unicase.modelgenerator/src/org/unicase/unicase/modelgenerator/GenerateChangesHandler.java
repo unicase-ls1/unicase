@@ -35,7 +35,7 @@ public class GenerateChangesHandler extends AbstractHandler {
 			@Override
 			protected void doRun() {
 				EObject rootObject = validateSelection(selection);
-				ModelChanger.generateChanges(rootObject);
+				ModelChanger.generateChanges(rootObject, System.currentTimeMillis(), true);
 			}
 		}.run();
 

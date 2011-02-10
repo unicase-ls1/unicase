@@ -37,7 +37,7 @@ public class GenerateChangesHandler extends AbstractHandler {
 
 			@Override
 			protected void doRun() {
-				ModelChanger.generateChanges(rootObject);
+				ModelChanger.generateChanges(rootObject, System.currentTimeMillis(), true);
 			}
 		}.run();
 

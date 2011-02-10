@@ -87,7 +87,6 @@ public class GenerateModelHandler extends AbstractHandler {
 	 */
 	private void generate(EObject rootObject, EPackage pckge) {
 		List<EClass> ignoredClasses = new LinkedList<EClass>();
-		ignoredClasses.add((EClass) pckge.getEClassifier("EObject"));
 		// create width subroots
 		for(int i=0; i<width; i++) {
 			EClass subRootClass = getValidEClass(rootObject, pckge, ignoredClasses);
@@ -197,7 +196,10 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * if there is no such EClass
 	 */
 	private EClass getValidEClass(EObject root, EPackage pckge, List<EClass> ignoredClasses) {
-		List<EClass> allEClasses = ModelGeneratorUtil.getAllEContainments(root.eClass());
+		List<EClass> allEClasses = new LinkedList<EClass>();
+		for(EReference reference : root.eClass().getEAllContainments()) {
+			allEClasses.addAll(ModelGeneratorUtil.getAllEContainments(reference));
+		}
 		// only allow EClasses that appear in the specified EPackage
 		allEClasses.retainAll(ModelGeneratorUtil.getAllEClasses(pckge));
 		// don't allow any EClass or sub class of all EClasses specified in ignoredClasses
