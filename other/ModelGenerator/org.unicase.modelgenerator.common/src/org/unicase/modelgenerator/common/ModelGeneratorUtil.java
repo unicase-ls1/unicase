@@ -323,8 +323,8 @@ public final class ModelGeneratorUtil {
 			Set<RuntimeException> exceptionLog, boolean ignoreAndLog) {
 		List<EReference> result = new LinkedList<EReference>();
 		for(EReference reference : eObject.eClass().getEAllReferences()) {
-			if(!reference.isContainer() && !reference.isContainment() &&
-					isValid(reference, eObject, exceptionLog, ignoreAndLog)) {
+			if(!reference.isContainer() && !reference.isContainment() && isValid(reference, eObject, exceptionLog, ignoreAndLog)
+				&& (reference.isMany() || !eObject.eIsSet(reference))) {
 				result.add(reference);
 			}
 		}
@@ -353,8 +353,7 @@ public final class ModelGeneratorUtil {
 				}
 			} 
 			// can the feature be changed reflectively?
-			 result = feature.isChangeable() && !feature.isVolatile() && !feature.isDerived()
-			&& (feature.isMany() || !eObject.eIsSet(feature));
+			 result = feature.isChangeable() && !feature.isVolatile() && !feature.isDerived();
 		} catch(RuntimeException e) {
 			handle(e, exceptionLog, ignoreAndLog);
 		}
