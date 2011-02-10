@@ -96,10 +96,10 @@ public class NewPage extends AbstractMEEditorPage {
 			description = "Title: " + tournament.getTitle() + "\nType: " + tournament.getType() + "\n";
 			text.setText(description);
 		}
-		if(tournament.getMatchup() != null){
-			for (int i = 0; i <= tournament.getMatchup().size()-1; i++ ){
-			description += "\nMatchup " + (i+1) + ": " + tournament.getMatchup().get(i).getGames().get(0).getPlayer().getLastname()+ 
-			" vs. " + tournament.getMatchup().get(i).getGames().get(1).getPlayer().getLastname();
+		if(tournament.getMatchups() != null){
+			for (int i = 0; i <= tournament.getMatchups().size()-1; i++ ){
+			description += "\nMatchup " + (i+1) + ": " + tournament.getMatchups().get(i).getGame().get(0).getPlayer().getLastname()+ 
+			" vs. " + tournament.getMatchups().get(i).getGame().get(1).getPlayer().getLastname();
 			}
 			text.setText(description);
 			
