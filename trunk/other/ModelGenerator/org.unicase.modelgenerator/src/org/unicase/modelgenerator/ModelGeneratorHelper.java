@@ -277,6 +277,34 @@ final class ModelGeneratorHelper {
 		}
 		return result;
 	}
+	
+	/**
+	 * Returns random valid reference if there is any.
+	 *  
+	 * @param eObject the EObject belonging to the EReference
+	 * @param possibleReferences all possible references as a list
+	 * @return a random valid EReference or <code>null</code> if there is none
+	 */
+	protected static EReference getRandomReference(EObject eObject, List<EReference> possibleReferences) {
+		if(possibleReferences.isEmpty()) {
+			return null;
+		}
+		Collections.shuffle(possibleReferences, random);
+		int index = 0;
+		EReference result = possibleReferences.get(index);
+		// repeat until result is valid
+		while(!isValid(eObject, result)) {
+			// current result isn't valid -> remove it
+			possibleReferences.remove(result);
+			if(possibleReferences.isEmpty()) {
+				return null;
+			}
+			// index might be out of bounds now
+			index %= possibleReferences.size();
+			result = possibleReferences.get(index);
+		}
+		return result;
+	}
 
 	/**
 	 * Sets a reference, if it is valid,
@@ -322,15 +350,16 @@ final class ModelGeneratorHelper {
 	}
 
 	/**
-	 * Returns whether an EStructuralFeature is valid for a given EObject. This call
-	 * is delegated to {@link ModelGeneratorUtil#isValid(EStructuralFeature, EObject, Set, boolean)}.
+	 * Returns whether an EStructuralFeature is valid for a given EObject. This method
+	 * makes use of {@link ModelGeneratorUtil#isValid}.
 	 * 
 	 * @param eObject the EObject <code>feature</code> belongs to
-	 * @param feature the EStructuralFeature in question
-	 * @return whether <code>feature</code> is valid or not
+	 * @param reference the EReference in question
+	 * @return whether <code>reference</code> is valid or not
 	 */
-	protected static boolean isValid(EObject eObject, EStructuralFeature feature) {
-		return ModelGeneratorUtil.isValid(feature, eObject, exceptionLog, configuration.getIgnoreAndLog());
+	protected static boolean isValid(EObject eObject, EReference reference) {
+		boolean result = reference.isMany() || eObject.eIsSet(reference);
+		return result && ModelGeneratorUtil.isValid(reference, eObject, exceptionLog, configuration.getIgnoreAndLog());
 	}
-	
+
 }
