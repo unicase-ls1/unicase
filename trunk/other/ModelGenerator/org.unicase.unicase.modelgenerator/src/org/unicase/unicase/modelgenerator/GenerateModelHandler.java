@@ -192,7 +192,10 @@ public class GenerateModelHandler extends AbstractHandler {
 	 * if there is no such EClass
 	 */
 	private EClass getValidEClass(EObject root, EPackage pckge, List<EClass> ignoredClasses) {
-		List<EClass> allEClasses = ModelGeneratorUtil.getAllEContainments(root.eClass());
+		List<EClass> allEClasses = new LinkedList<EClass>();
+		for(EReference reference : root.eClass().getEAllContainments()) {
+			allEClasses.addAll(ModelGeneratorUtil.getAllEContainments(reference));
+		}
 		// only allow EClasses that appear in the specified EPackage
 		allEClasses.retainAll(ModelGeneratorUtil.getAllEClasses(pckge));
 		// don't allow any EClass or sub class of all EClasses specified in ignoredClasses
