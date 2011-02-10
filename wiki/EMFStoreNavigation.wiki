@@ -18,9 +18,8 @@ NEWS: Here you can find the [Models2010TutorialEMFStore slides and material] of 
 
   * [EMFStoreFeedback Reporting Bugs and Feature Requests]
 
-{{{
+
 <object width="1278" class="embeddedObject" height="978"> <param name="movie" value="http://content.screencast.com/users/MaximilianKoegel/folders/Jing/media/9444fd1b-54a8-4928-b2c9-8e0b74c08b3d/jingswfplayer.swf"> <param name="quality" value="high"> <param name="bgcolor" value="#FFFFFF"> <param name="flashVars" value="thumb=http://content.screencast.com/users/MaximilianKoegel/folders/Jing/media/9444fd1b-54a8-4928-b2c9-8e0b74c08b3d/FirstFrame.jpg&amp;containerwidth=1278&amp;containerheight=978&amp;content=http://content.screencast.com/users/MaximilianKoegel/folders/Jing/media/9444fd1b-54a8-4928-b2c9-8e0b74c08b3d/2011-02-10_1346.swf&amp;blurover=false"> <param name="allowFullScreen" value="true"> <param name="scale" value="showall"> <param name="allowScriptAccess" value="always"> <param name="base" value="http://content.screencast.com/users/MaximilianKoegel/folders/Jing/media/9444fd1b-54a8-4928-b2c9-8e0b74c08b3d/"> Unable to display content. Adobe Flash is required. </param></param></param></param></param></param></param></param></object>
-}}}
 
 More information and news also available on our [http://unicase.blogspot.com/ blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
 
