@@ -218,14 +218,6 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <includes
-         id="org.unicase.modelchanger"
-         version="0.0.0"/>
-
-   <includes
-         id="org.unicase.modelgenerator"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.unicase.modelgenerator.common" version="1.0.0" match="greaterOrEqual"/>
