@@ -202,17 +202,17 @@ public final class ModelGenerator {
 			// reference's lowerBound is the maximum amount -> only necessary EObjects are created
 			result.addAll(generateContainments(parentEObject, reference, reference.getLowerBound()));
 		}
-		// intermediate result: all EObjects created out of requirements
-		int createdChildren = result.size();
-		// set all possible references as until width EObjects were created
-		for(EReference reference : parentEObject.eClass().getEAllContainments()) {
-			if(!ModelGeneratorHelper.isValid(parentEObject, reference)) {
+		int index = 0;
+		List<EReference> possibleReferences = new LinkedList<EReference>(parentEObject.eClass().getEAllContainments()); 
+		// set all possible references until width EObjects are created
+		for(int i=result.size(); i<config.getWidth() && !possibleReferences.isEmpty(); i++) {
+			EReference reference = ModelGeneratorHelper.getRandomReference(parentEObject, possibleReferences);
+			if(reference==null) {
 				continue;
 			}
-			// remaining width is maximum amount
-			result.addAll(generateContainments(parentEObject, reference, config.getWidth()-createdChildren));
-			// update number of created children
-			createdChildren = result.size();
+			// create only one child to guarantee variety
+			result.addAll(generateContainments(parentEObject, reference, 1));
+			index = (index+1) % possibleReferences.size();
 		}
 		return result;
 	}
