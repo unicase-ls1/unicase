@@ -143,7 +143,7 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__IS_PROFESSIONAL = 7;
 
 	/**
-	 * The feature id for the '<em><b>Game</b></em>' reference.
+	 * The feature id for the '<em><b>Game</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -472,10 +472,10 @@ public interface BowlingPackage extends EPackage {
 	EAttribute getPlayer_IsProfessional();
 
 	/**
-	 * Returns the meta object for the reference '{@link bowling.Player#getGame <em>Game</em>}'.
+	 * Returns the meta object for the reference list '{@link bowling.Player#getGame <em>Game</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Game</em>'.
+	 * @return the meta object for the reference list '<em>Game</em>'.
 	 * @see bowling.Player#getGame()
 	 * @see #getPlayer()
 	 * @generated
@@ -783,7 +783,7 @@ public interface BowlingPackage extends EPackage {
 		EAttribute PLAYER__IS_PROFESSIONAL = eINSTANCE.getPlayer_IsProfessional();
 
 		/**
-		 * The meta object literal for the '<em><b>Game</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Game</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

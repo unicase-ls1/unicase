@@ -8,6 +8,7 @@ package bowling;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -245,7 +246,8 @@ public interface Player extends EObject {
 	void setIsProfessional(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Game</b></em>' reference.
+	 * Returns the value of the '<em><b>Game</b></em>' reference list.
+	 * The list contents are of type {@link bowling.Game}.
 	 * It is bidirectional and its opposite is '{@link bowling.Game#getPlayer <em>Player</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -253,25 +255,14 @@ public interface Player extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Game</em>' reference.
-	 * @see #setGame(Game)
+	 * @return the value of the '<em>Game</em>' reference list.
 	 * @see bowling.BowlingPackage#getPlayer_Game()
 	 * @see bowling.Game#getPlayer
 	 * @model opposite="player"
 	 *        annotation="org.unicase.ui.meeditor position='right'"
 	 * @generated
 	 */
-	Game getGame();
-
-	/**
-	 * Sets the value of the '{@link bowling.Player#getGame <em>Game</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Game</em>' reference.
-	 * @see #getGame()
-	 * @generated
-	 */
-	void setGame(Game value);
+	EList<Game> getGame();
 
 	/**
 	 * Returns the value of the '<em><b>Playerlist</b></em>' container reference.
