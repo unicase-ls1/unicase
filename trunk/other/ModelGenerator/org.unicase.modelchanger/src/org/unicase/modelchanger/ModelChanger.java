@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
 
 /**
@@ -113,7 +112,7 @@ public final class ModelChanger {
 				// copy all children first to prevent concurrent modifications when deleting
 				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
 				deletedChildren.addAll(deleteAllChildren(contentCopy));
-				EcoreUtil.delete(eObject);
+				ModelChangerHelper.delete(eObject);
 			}
 		}
 	}
@@ -132,7 +131,7 @@ public final class ModelChanger {
 			// copy all children first to prevent concurrent modifications when deleting
 			Set<EObject> contentCopy = new LinkedHashSet<EObject>(child.eContents());
 			allDeletedChildren.addAll(deleteAllChildren(contentCopy));
-			EcoreUtil.delete(child);
+			ModelChangerHelper.delete(child);
 			allDeletedChildren.add(child);
 		}
 		return allDeletedChildren;
@@ -184,7 +183,7 @@ public final class ModelChanger {
 				// copy all children first to prevent concurrent modifications when deleting
 				Set<EObject> contentCopy = new LinkedHashSet<EObject>(eObject.eContents());
 				deletedChildren.addAll(deleteAllChildren(contentCopy));
-				EcoreUtil.delete(eObject);
+				ModelChangerHelper.delete(eObject);
 			}
 			monitor.worked(1);
 		}
@@ -247,7 +246,7 @@ public final class ModelChanger {
 	 * @see ModelChangerHelper#setReference(EObject, EClass, EReference, Map)
 	 */
 	private static void changeEObjectReferences(EObject eObject, Map<EClass, List<EObject>> allObjectsByEClass) {
-		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
+		for(EReference reference : ModelChangerHelper.getValidReferences(eObject)) {
 			ModelChangerHelper.clear(eObject, reference);
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				ModelChangerHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
