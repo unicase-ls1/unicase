@@ -206,12 +206,12 @@ final class ModelChangerHelper {
 	}
 	
 	/**
-	 * Returns whether an EStructuralFeature is valid for a given EObject. This method
-	 * makes use of {@link ModelGeneratorUtil#isValid}.
+	 * Returns whether an EStructuralFeature is valid for a given EObject or not.
+	 * This method uses {@link ModelGeneratorUtil#isValid}.
 	 * 
 	 * @param eObject the EObject <code>feature</code> belongs to
-	 * @param feature the EReference in question
-	 * @return whether <code>reference</code> is valid or not
+	 * @param feature the EStructuralFeature in question
+	 * @return whether <code>feature</code> is valid or not
 	 */
 	protected static boolean isValid(EObject eObject, EStructuralFeature feature) {
 		return ModelGeneratorUtil.isValid(feature, eObject, exceptionLog, ignoreAndLog);

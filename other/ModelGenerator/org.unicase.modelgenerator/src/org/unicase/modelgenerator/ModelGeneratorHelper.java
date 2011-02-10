@@ -350,10 +350,10 @@ final class ModelGeneratorHelper {
 	}
 
 	/**
-	 * Returns whether an EStructuralFeature is valid for a given EObject. This method
-	 * makes use of {@link ModelGeneratorUtil#isValid}.
+	 * Returns whether an EReference is valid for a given EObject or not. 
+	 * This method uses {@link ModelGeneratorUtil#isValid}.
 	 * 
-	 * @param eObject the EObject <code>feature</code> belongs to
+	 * @param eObject the EObject <code>reference</code> belongs to
 	 * @param reference the EReference in question
 	 * @return whether <code>reference</code> is valid or not
 	 */
