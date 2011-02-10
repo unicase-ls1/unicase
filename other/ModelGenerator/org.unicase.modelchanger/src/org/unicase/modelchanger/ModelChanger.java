@@ -231,7 +231,9 @@ public final class ModelChanger {
 	private static void changeEObjectAttributes(EObject eObject) {
 		// remove all values from currently set attributes
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
-			ModelChangerHelper.clear(eObject, attribute);
+			if(ModelChangerHelper.isValid(eObject, attribute)) {
+				ModelChangerHelper.clear(eObject, attribute);
+			}
 		}
 		ModelChangerHelper.setEObjectAttributes(eObject);
 	}
@@ -247,7 +249,9 @@ public final class ModelChanger {
 	 */
 	private static void changeEObjectReferences(EObject eObject, Map<EClass, List<EObject>> allObjectsByEClass) {
 		for(EReference reference : ModelChangerHelper.getValidReferences(eObject)) {
-			ModelChangerHelper.clear(eObject, reference);
+			if(ModelChangerHelper.isValid(eObject, reference)) {
+				ModelChangerHelper.clear(eObject, reference);
+			}
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				ModelChangerHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
 			}

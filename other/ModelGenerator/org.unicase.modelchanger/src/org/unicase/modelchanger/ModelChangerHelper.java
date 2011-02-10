@@ -204,5 +204,17 @@ final class ModelChangerHelper {
 	protected static void delete(EObject eObject) {
 		ModelGeneratorUtil.delete(eObject, exceptionLog, ignoreAndLog);
 	}
+	
+	/**
+	 * Returns whether an EStructuralFeature is valid for a given EObject. This method
+	 * makes use of {@link ModelGeneratorUtil#isValid}.
+	 * 
+	 * @param eObject the EObject <code>feature</code> belongs to
+	 * @param feature the EReference in question
+	 * @return whether <code>reference</code> is valid or not
+	 */
+	protected static boolean isValid(EObject eObject, EStructuralFeature feature) {
+		return ModelGeneratorUtil.isValid(feature, eObject, exceptionLog, ignoreAndLog);
+	}
 
 }
