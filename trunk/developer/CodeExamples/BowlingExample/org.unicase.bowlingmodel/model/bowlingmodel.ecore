@@ -16,7 +16,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isProfessional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="game" eType="#//Game" eOpposite="#//Game/player">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="game" upperBound="-1" eType="#//Game"
+        eOpposite="#//Game/player">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="position" value="right"/>
       </eAnnotations>
@@ -46,7 +47,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Matchup">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="game" upperBound="-1" eType="#//Game"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="game" upperBound="2" eType="#//Game"
         containment="true" eOpposite="#//Game/matchup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tournament" eType="#//Tournament"
         eOpposite="#//Tournament/matchups">
