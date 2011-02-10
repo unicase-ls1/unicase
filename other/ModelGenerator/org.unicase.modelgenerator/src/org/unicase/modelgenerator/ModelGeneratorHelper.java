@@ -17,6 +17,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
@@ -60,14 +61,16 @@ final class ModelGeneratorHelper {
 	 * Map that maps every EClass to its corresponding list of EClasses,
 	 * that should be created during the generation process.
 	 * 
-	 * @see #getElementsToCreate(EClass)
+	 * @see #getElementsToCreate(EReference)
 	 */
-	private static Map<EClass, List<EClass>> eClassToElementsToCreate;
+	private static Map<EReference, List<EClass>> eClassToElementsToCreate;
 
 	/**
 	 * Map that saves the last used index for every EClass
 	 * to prevent that every instance of that EClass contains
 	 * the same EClasses as children.
+	 * 
+	 * @see #getStartingIndex(EClass)
 	 */
 	private static Map<EClass, Integer> eClassToLastUsedIndex;
 
@@ -97,7 +100,7 @@ final class ModelGeneratorHelper {
 		random = new Random(config.getSeed());
 		exceptionLog = new LinkedHashSet<RuntimeException>();
 		eClassesToIgnore = getEClassesToIgnore();
-		eClassToElementsToCreate = new LinkedHashMap<EClass, List<EClass>>();
+		eClassToElementsToCreate = new LinkedHashMap<EReference, List<EClass>>();
 		eClassToLastUsedIndex = new LinkedHashMap<EClass, Integer>();
 		AttributeHandler.setRandom(random);
 	}
@@ -129,13 +132,13 @@ final class ModelGeneratorHelper {
 	 * @return the instance of <code>childClass</code> that is contained in <code>parentEObject</code>
 	 * or <code>null</code> if the operation failed
 	 * 
-	 * @see ModelGeneratorUtil#addPerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Object, Set, boolean)
-	 * @see ModelGeneratorUtil#setPerCommand(EObject, org.eclipse.emf.ecore.EStructuralFeature, Object, Set, boolean)
+	 * @see ModelGeneratorUtil#addPerCommand(EObject, EStructuralFeature, Object, Set, boolean)
+	 * @see ModelGeneratorUtil#setPerCommand(EObject, EStructuralFeature, Object, Set, boolean)
 	 */
 	protected static EObject setContainment(EObject parentEObject, EClass childClass, EReference reference) {
 		// create and set attributes
 		EObject newEObject = EcoreUtil.create(childClass);
-		ModelGeneratorUtil.setEObjectAttributes(newEObject,	exceptionLog, configuration.getIgnoreAndLog());
+		ModelGeneratorUtil.setEObjectAttributes(newEObject, random,	exceptionLog, configuration.getIgnoreAndLog());
 		// reference created EObject to the parent
 		if(reference.isMany()) {
 			return ModelGeneratorUtil.addPerCommand(parentEObject, reference, newEObject,
@@ -169,7 +172,7 @@ final class ModelGeneratorHelper {
 				throw new IllegalArgumentException("Root mustn't be abstract or an interface!");
 			}
 			rootEObject = EcoreUtil.create(parentClass);
-			ModelGeneratorUtil.setEObjectAttributes(rootEObject, exceptionLog, configuration.getIgnoreAndLog());
+			ModelGeneratorUtil.setEObjectAttributes(rootEObject, random, exceptionLog, configuration.getIgnoreAndLog());
 		}
 		return rootEObject;
 	}
@@ -191,29 +194,29 @@ final class ModelGeneratorHelper {
 	}
 
 	/**
-	 * Returns all EClasses that can possibly created as children for <code>parentEClass</code>.
-	 * The result is shuffled before it is returned, so different seeds cause different result.
+	 * Returns all EClasses that can possibly be created as children for <code>reference</code>.
+	 * The result is shuffled before it is returned, so different seeds return different results.
 	 * Only EClasses that are also contained in the configuration's <code>modelPackage</code>
 	 * and not in the <code>eClassesToIgnore</code>-collection are retained.
 	 * 
-	 * @param parentEClass the EClass to compute the possible child EClasses for 
+	 * @param reference the EReference to compute the possible child EClasses for 
 	 * @return all possible child-EClasses as a list
-	 * @see ModelGeneratorUtil#getAllEContainments(EClass)
+	 * @see ModelGeneratorUtil#getAllEContainments(EReference)
 	 * @see ModelGeneratorUtil#getAllEClasses(EPackage)
-	 * @see #getEClassesToIgnore()
+	 * @see #eClassesToIgnore
 	 */
-	protected static List<EClass> getElementsToCreate(EClass parentEClass) {
-		if(ModelGeneratorHelper.eClassToElementsToCreate.containsKey(parentEClass)) {
-			return ModelGeneratorHelper.eClassToElementsToCreate.get(parentEClass);
+	protected static List<EClass> getElementsToCreate(EReference reference) {
+		if(eClassToElementsToCreate.containsKey(reference)) {
+			return eClassToElementsToCreate.get(reference);
 		} else {
-			List<EClass> result = new LinkedList<EClass>(ModelGeneratorUtil.getAllEContainments(parentEClass));
+			List<EClass> result = new LinkedList<EClass>(ModelGeneratorUtil.getAllEContainments(reference));
 			List<EClass> modelElementEClasses = ModelGeneratorUtil.getAllEClasses(configuration.getModelPackage());
 			// only retain EClasses that are not explicitly excluded and also appear in the specified EPackage
 			result.retainAll(modelElementEClasses);
 			result.removeAll(eClassesToIgnore);
 			Collections.shuffle(result, random);
 			// save the result for upcoming method-calls
-			ModelGeneratorHelper.eClassToElementsToCreate.put(parentEClass, result);
+			eClassToElementsToCreate.put(reference, result);
 			return result;
 		}
 	}
@@ -276,7 +279,8 @@ final class ModelGeneratorHelper {
 	}
 
 	/**
-	 * Sets a reference using {@link ModelGeneratorUtil#setReference}.
+	 * Sets a reference, if it is valid,
+	 * using {@link ModelGeneratorUtil#setReference}.
 	 * 
 	 * @param eObject the EObject to set the reference for
 	 * @param referenceClass the EClass of EObjects that shall be referenced
@@ -286,6 +290,9 @@ final class ModelGeneratorHelper {
 	 */
 	protected static void setReference(EObject eObject, EClass referenceClass, EReference reference,
 		Map<EClass, List<EObject>> allEObjects) {
+		if(!ModelGeneratorUtil.isValid(reference, eObject, exceptionLog, configuration.getIgnoreAndLog())) {
+			return;
+		}
 		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random,
 			exceptionLog, configuration.getIgnoreAndLog(), allEObjects);
 	}
@@ -301,6 +308,29 @@ final class ModelGeneratorHelper {
 	 */
 	protected static Set<RuntimeException> getExceptionLog() {
 		return exceptionLog;
+	}
+
+	/**
+	 * Returns all valid non-containment references for an EObject
+	 * using {@link ModelGeneratorUtil#getValidReferences}.
+	 * 
+	 * @param eObject the EObject to retrieve valid EReferences for
+	 * @return all valid non-containment references as a list
+	 */
+	protected static List<EReference> getValidReferences(EObject eObject) {
+		return ModelGeneratorUtil.getValidReferences(eObject, exceptionLog, configuration.getIgnoreAndLog());
+	}
+
+	/**
+	 * Returns whether an EStructuralFeature is valid for a given EObject. This call
+	 * is delegated to {@link ModelGeneratorUtil#isValid(EStructuralFeature, EObject, Set, boolean)}.
+	 * 
+	 * @param eObject the EObject <code>feature</code> belongs to
+	 * @param feature the EStructuralFeature in question
+	 * @return whether <code>feature</code> is valid or not
+	 */
+	protected static boolean isValid(EObject eObject, EStructuralFeature feature) {
+		return ModelGeneratorUtil.isValid(feature, eObject, exceptionLog, configuration.getIgnoreAndLog());
 	}
 	
 }

@@ -185,40 +185,68 @@ public final class ModelGenerator {
 	
 	/**
 	 * Generates children for a certain parent EObject. Generation includes
-	 * setting containment references and attributes.
+	 * setting containment references and attributes. All required references
+	 * are set first, thus the specified width might be exceeded.
+	 * 
 	 * @param parentEObject the EObject to generate children for
 	 * @return all generated children as a list
+	 * @see #generateContainments(EObject, EReference, int)
 	 */
 	private static List<EObject> generateChildren(EObject parentEObject) {
+		List<EObject> result = new LinkedList<EObject>();
+		// set all valid required references
+		for(EReference reference : parentEObject.eClass().getEAllContainments()) {
+			if(!ModelGeneratorHelper.isValid(parentEObject, reference)) {
+				continue;
+			}
+			// reference's lowerBound is the maximum amount -> only necessary EObjects are created
+			result.addAll(generateContainments(parentEObject, reference, reference.getLowerBound()));
+		}
+		// intermediate result: all EObjects created out of requirements
+		int createdChildren = result.size();
+		// set all possible references as until width EObjects were created
+		for(EReference reference : parentEObject.eClass().getEAllContainments()) {
+			if(!ModelGeneratorHelper.isValid(parentEObject, reference)) {
+				continue;
+			}
+			// remaining width is maximum amount
+			result.addAll(generateContainments(parentEObject, reference, config.getWidth()-createdChildren));
+			// update number of created children
+			createdChildren = result.size();
+		}
+		return result;
+	}
+	
+	/**
+	 * Creates <code>maxAmount</code> EObjects, if possible, and adds them as children
+	 * to <code>parentEObject</code>.
+	 * 
+	 * @param parentEObject the EObject to add the created children to
+	 * @param reference the reference used to add the created children
+	 * @param maxAmount the maxAmount of EObjects to create as children
+	 * @return all created children as a list
+	 */
+	private static List<EObject> generateContainments(EObject parentEObject, 
+			EReference reference, int maxAmount) {
 		// initialize the generation process
 		List<EObject> result = new LinkedList<EObject>();
 		int index = ModelGeneratorHelper.getStartingIndex(parentEObject.eClass());
-		List<EClass> elementsToCreate = ModelGeneratorHelper.getElementsToCreate(parentEObject.eClass());
-		EClass currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, index);
-		int createdChildren = 0;
-		// repeat until no more child can be created or the goal-width has been reached  
-		while(currentChildClass != null && createdChildren<config.getWidth()) {
-			List<EReference> validReferences = ModelGeneratorUtil.getValidContainmentReferences(currentChildClass, parentEObject);
-			// are there no containment references between parent and child?
-			if(validReferences.isEmpty()) {
-				// then the child class mustn't be created 
-				elementsToCreate.remove(currentChildClass);
+		List<EClass> elementsToCreate = ModelGeneratorHelper.getElementsToCreate(reference);
+		// repeat maxAmount times
+		for(int i=0; i<maxAmount; i++) {
+			EClass currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, index++);
+			if(currentChildClass==null) {
+				// no possible child left -> cancel the process
+				break;
 			}
-			for(EReference reference : validReferences) {
-				// is the goal-width already reached?
-				if(createdChildren>=config.getWidth()) {
-					break;
-				}
-				EObject newChild = ModelGeneratorHelper.setContainment(parentEObject, currentChildClass, reference);
-				createdChildren++;
-				// was creating the child successful?
-				if(newChild!=null) {
-					result.add(newChild);
-				}
+			// create child and add it to parentEObject
+			EObject newChild = ModelGeneratorHelper.setContainment(parentEObject, currentChildClass, reference);
+			// was creating the child successful?
+			if(newChild!=null) {
+				result.add(newChild);
 			}
-			currentChildClass = ModelGeneratorHelper.getNextClassToCreate(elementsToCreate, ++index);
 		}
-		// remember the index for the next generateChildren-process
+		// save index for later use
 		ModelGeneratorHelper.updateIndex(parentEObject.eClass(), index);
 		return result;
 	}
@@ -243,7 +271,7 @@ public final class ModelGenerator {
 	 * @see ModelGeneratorHelper#setReference(EObject, EClass, EReference, Map)
 	 */
 	private static void generateReferences(EObject eObject, Map<EClass, List<EObject>> allObjectsByEClass) {
-		for(EReference reference : ModelGeneratorUtil.getValidReferences(eObject)) {
+		for(EReference reference : ModelGeneratorHelper.getValidReferences(eObject)) {
 			for(EClass nextReferenceClass : ModelGeneratorUtil.getReferenceClasses(reference, allObjectsByEClass.keySet())) {
 				ModelGeneratorHelper.setReference(eObject, nextReferenceClass, reference, allObjectsByEClass);
 			}

@@ -115,7 +115,8 @@ final class ModelChangerHelper {
 	}
 
 	/**
-	 * Sets a reference using {@link ModelGeneratorUtil#setReference}.
+	 * Sets a reference, if the upper bound allows it,
+	 * using {@link ModelGeneratorUtil#setReference}.
 	 * 
 	 * @param eObject the EObject to set the reference for
 	 * @param referenceClass the EClass of EObjects that shall be referenced
@@ -125,6 +126,10 @@ final class ModelChangerHelper {
 	 */
 	protected static void setReference(EObject eObject, EClass referenceClass, EReference reference,
 		Map<EClass, List<EObject>> allEObjects) {
+		// check if the upper bound is reached
+		if(!ModelGeneratorUtil.isValid(reference, eObject, exceptionLog, ignoreAndLog)) {
+			return;
+		}
 		ModelGeneratorUtil.setReference(eObject, referenceClass, reference, random,
 			exceptionLog, ignoreAndLog, allEObjects);
 	}
@@ -137,9 +142,14 @@ final class ModelChangerHelper {
 	 * @param feature the EStructuralFeature that shall be cleared
 	 */
 	protected static void clear(EObject eObject, EStructuralFeature feature) {
-		if(feature.isMany() && eObject.eIsSet(feature)) {
-			ModelGeneratorUtil.removePerCommand(eObject, feature, (Collection<?>) eObject.eGet(feature),
-				exceptionLog, ignoreAndLog);
+		if(eObject.eIsSet(feature)) {
+			if(feature.isMany()) {
+				ModelGeneratorUtil.removePerCommand(eObject, feature, (Collection<?>) eObject.eGet(feature),
+						exceptionLog, ignoreAndLog);
+			} else {
+				ModelGeneratorUtil.setPerCommand(eObject, feature, null, 
+						exceptionLog, ignoreAndLog);
+			}
 		}
 		
 	}
@@ -148,10 +158,10 @@ final class ModelChangerHelper {
 	 * Sets attributes of an EObject using {@link ModelGeneratorUtil#setEObjectAttributes()}.
 	 * 
 	 * @param eObject the EObject to set attributes for
-	 * @see ModelGeneratorUtil#setEObjectAttributes(EObject, Set, boolean)
+	 * @see ModelGeneratorUtil#setEObjectAttributes(EObject, Random, Set, boolean)
 	 */
 	protected static void setEObjectAttributes(EObject eObject) {
-		ModelGeneratorUtil.setEObjectAttributes(eObject, exceptionLog, ignoreAndLog);
+		ModelGeneratorUtil.setEObjectAttributes(eObject, random, exceptionLog, ignoreAndLog);
 	}
 
 	/**
@@ -172,6 +182,26 @@ final class ModelChangerHelper {
 	 */
 	protected static Set<RuntimeException> getExceptionLog() {
 		return exceptionLog;
+	}
+
+	/**
+	 * Returns all valid non-containment references for an EObject
+	 * using {@link ModelGeneratorUtil#getValidReferences(EObject, Set, boolean)}.
+	 * 
+	 * @param eObject the EObject to retrieve valid EReferences for
+	 * @return all valid references as a list
+	 * @see ModelGeneratorUtil#getValidReferences(EObject, Set, boolean)
+	 */
+	protected static List<EReference> getValidReferences(EObject eObject) {
+		return ModelGeneratorUtil.getValidReferences(eObject, exceptionLog, ignoreAndLog);
+	}
+
+	/**
+	 * Deletes an EObject using {@link ModelGeneratorUtil#delete(EObject, Set, boolean)}.
+	 * @param eObject the EObject to delete
+	 */
+	protected static void delete(EObject eObject) {
+		ModelGeneratorUtil.delete(eObject, exceptionLog, ignoreAndLog);
 	}
 
 }
