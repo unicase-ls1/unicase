@@ -1,0 +1,29 @@
+#summary How to get in contact with us or receive news about EMFStore
+
+=== Mailinglists ===
+
+If you have feature requests, questions, bugs or if you want to discuss something, you can send us email to this mailinglist, where all EMF Client Platform framework developers are subscribed to the eclipse.emfclient newsgroup.
+
+=== Twitter ===
+
+We announce import news such as releases on Twitter:
+http://twitter.com/emfcp
+We always use the #emstore tag.
+
+=== Blog ===
+
+We write a blog were we announce news about the UNICASE project including the EMFStore and our experiences on technologies we use in EMFStore:
+http://unicase.blogspot.com
+
+=== Plain Email ===
+
+Of course you can also send direct email to one of the project leads:
+
+[http://www1.in.tum.de/MaximilianKoegel http://unicase.googlecode.com/files/img_3999_small.jpg]
+
+[mailto:koegel@headstrong.de Maximilian]
+
+<img src="http://unicase.googlecode.com/files/jonas.jpg" height =210 />
+
+
+[mailto:helming@in.tum.de Jonas]
