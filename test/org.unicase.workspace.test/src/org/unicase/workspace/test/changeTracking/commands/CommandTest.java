@@ -132,6 +132,7 @@ public class CommandTest extends WorkspaceTest {
 				createWorkPackage.getContainedWorkItems().add(createActionItem);
 				createActionItem.getComments().add(createComment);
 				createComment.getRecipients().add(createUser);
+				clearOperations();
 
 			}
 		}.run(false);
@@ -140,6 +141,8 @@ public class CommandTest extends WorkspaceTest {
 		Configuration.getEditingDomain().getCommandStack().execute(delete);
 
 		assertEquals(0, createComment.getRecipients().size());
+		assertEquals(1, getProjectSpace().getOperations().size());
+		assertEquals(true, getProjectSpace().getOperations().get(0) instanceof CreateDeleteOperation);
 
 	}
 
@@ -352,7 +355,7 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(useCaseId, createDeleteOperation.getModelElementId());
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
 
-		assertEquals(8, subOperations.size());
+		assertEquals(7, subOperations.size());
 		AbstractOperation suboperation0 = subOperations.get(0);
 		AbstractOperation suboperation1 = subOperations.get(1);
 		AbstractOperation suboperation2 = subOperations.get(2);
@@ -360,25 +363,23 @@ public class CommandTest extends WorkspaceTest {
 		AbstractOperation suboperation4 = subOperations.get(4);
 		AbstractOperation suboperation5 = subOperations.get(5);
 		AbstractOperation suboperation6 = subOperations.get(6);
-		AbstractOperation suboperation7 = subOperations.get(7);
 
 		assertEquals(true, suboperation0 instanceof SingleReferenceOperation);
 		assertEquals(true, suboperation1 instanceof MultiReferenceOperation);
-		assertEquals(true, suboperation2 instanceof SingleReferenceOperation);
-		assertEquals(true, suboperation3 instanceof MultiReferenceOperation);
+		assertEquals(true, suboperation2 instanceof MultiReferenceOperation);
+		assertEquals(true, suboperation3 instanceof SingleReferenceOperation);
 		assertEquals(true, suboperation4 instanceof MultiReferenceOperation);
 		assertEquals(true, suboperation5 instanceof MultiReferenceOperation);
 		assertEquals(true, suboperation6 instanceof MultiReferenceOperation);
-		assertEquals(true, suboperation7 instanceof MultiReferenceOperation);
 
 		SingleReferenceOperation mrSuboperation0 = (SingleReferenceOperation) suboperation0;
 		MultiReferenceOperation mrSuboperation1 = (MultiReferenceOperation) suboperation1;
-		MultiReferenceOperation mrSuboperation2 = (MultiReferenceOperation) suboperation3;
-		SingleReferenceOperation mrSuboperation3 = (SingleReferenceOperation) suboperation2;
-		MultiReferenceOperation mrSuboperation4 = (MultiReferenceOperation) suboperation5;
-		MultiReferenceOperation mrSuboperation5 = (MultiReferenceOperation) suboperation4;
-		MultiReferenceOperation mrSuboperation6 = (MultiReferenceOperation) suboperation6;
-		MultiReferenceOperation mrSuboperation7 = (MultiReferenceOperation) suboperation7;
+		MultiReferenceOperation mrSuboperation2 = (MultiReferenceOperation) suboperation2;
+		SingleReferenceOperation mrSuboperation3 = (SingleReferenceOperation) suboperation3;
+		MultiReferenceOperation mrSuboperation4 = (MultiReferenceOperation) suboperation4;
+		// careful ugly swap HERE!
+		MultiReferenceOperation mrSuboperation5 = (MultiReferenceOperation) suboperation6;
+		MultiReferenceOperation mrSuboperation6 = (MultiReferenceOperation) suboperation5;
 
 		ModelElementId sectionId = ModelUtil.getProject(section).getModelElementId(section);
 
@@ -401,16 +402,6 @@ public class CommandTest extends WorkspaceTest {
 
 		ModelElementId oldActorId = ModelUtil.getProject(oldActor).getModelElementId(oldActor);
 
-		assertEquals(oldActorId, mrSuboperation3.getOldValue());
-		assertEquals(null, mrSuboperation3.getNewValue());
-		assertEquals("initiatingActor", mrSuboperation3.getFeatureName());
-		assertEquals(useCaseId, mrSuboperation3.getModelElementId());
-		assertEquals("initiatedUseCases", mrSuboperation3.getOppositeFeatureName());
-		assertEquals(true, mrSuboperation3.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements = mrSuboperation3.getOtherInvolvedModelElements();
-		assertEquals(1, otherInvolvedModelElements.size());
-		assertEquals(oldActorId, otherInvolvedModelElements.iterator().next());
-
 		assertEquals("initiatedUseCases", mrSuboperation2.getFeatureName());
 		assertEquals(0, mrSuboperation2.getIndex());
 		assertEquals(oldActorId, mrSuboperation2.getModelElementId());
@@ -423,19 +414,17 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(1, referencedModelElements0.size());
 		assertEquals(useCaseId, referencedModelElements0.get(0));
 
-		ModelElementId newActorId = ModelUtil.getProject(newActor).getModelElementId(newActor);
+		assertEquals(oldActorId, mrSuboperation3.getOldValue());
+		assertEquals(null, mrSuboperation3.getNewValue());
+		assertEquals("initiatingActor", mrSuboperation3.getFeatureName());
+		assertEquals(useCaseId, mrSuboperation3.getModelElementId());
+		assertEquals("initiatedUseCases", mrSuboperation3.getOppositeFeatureName());
+		assertEquals(true, mrSuboperation3.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements = mrSuboperation3.getOtherInvolvedModelElements();
+		assertEquals(1, otherInvolvedModelElements.size());
+		assertEquals(oldActorId, otherInvolvedModelElements.iterator().next());
 
-		assertEquals("participatingActors", mrSuboperation5.getFeatureName());
-		assertEquals(0, mrSuboperation5.getIndex());
-		assertEquals(useCaseId, mrSuboperation5.getModelElementId());
-		assertEquals("participatedUseCases", mrSuboperation5.getOppositeFeatureName());
-		assertEquals(false, mrSuboperation5.isAdd());
-		assertEquals(true, mrSuboperation5.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements2 = mrSuboperation5.getOtherInvolvedModelElements();
-		assertEquals(1, otherInvolvedModelElements2.size());
-		EList<ModelElementId> referencedModelElements = mrSuboperation5.getReferencedModelElements();
-		assertEquals(1, referencedModelElements.size());
-		assertEquals(newActorId, referencedModelElements.get(0));
+		ModelElementId newActorId = ModelUtil.getProject(newActor).getModelElementId(newActor);
 
 		assertEquals(newActorId, mrSuboperation4.getModelElementId());
 		assertEquals("participatedUseCases", mrSuboperation4.getFeatureName());
@@ -443,25 +432,25 @@ public class CommandTest extends WorkspaceTest {
 		assertEquals(1, mrSuboperation4.getReferencedModelElements().size());
 		assertEquals(useCaseId, mrSuboperation4.getReferencedModelElements().get(0));
 
+		assertEquals("participatingActors", mrSuboperation5.getFeatureName());
+		assertEquals(-1, mrSuboperation5.getIndex());
+		assertEquals(useCaseId, mrSuboperation5.getModelElementId());
+		assertEquals("participatedUseCases", mrSuboperation5.getOppositeFeatureName());
+		assertEquals(false, mrSuboperation5.isAdd());
+		assertEquals(true, mrSuboperation5.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements2 = mrSuboperation5.getOtherInvolvedModelElements();
+		assertEquals(2, otherInvolvedModelElements2.size());
+		EList<ModelElementId> referencedModelElements = mrSuboperation5.getReferencedModelElements();
+		assertEquals(2, referencedModelElements.size());
+		assertEquals(newActorId, referencedModelElements.get(0));
 		ModelElementId otherActorId = ModelUtil.getProject(otherActor).getModelElementId(otherActor);
+		assertEquals(otherActorId, referencedModelElements.get(1));
 
-		assertEquals("participatingActors", mrSuboperation6.getFeatureName());
-		assertEquals(0, mrSuboperation6.getIndex());
-		assertEquals(useCaseId, mrSuboperation6.getModelElementId());
-		assertEquals("participatedUseCases", mrSuboperation6.getOppositeFeatureName());
+		assertEquals(otherActorId, mrSuboperation6.getModelElementId());
+		assertEquals("participatedUseCases", mrSuboperation6.getFeatureName());
 		assertEquals(false, mrSuboperation6.isAdd());
-		assertEquals(true, mrSuboperation6.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements2b = mrSuboperation6.getOtherInvolvedModelElements();
-		assertEquals(1, otherInvolvedModelElements2b.size());
-		EList<ModelElementId> referencedModelElements2b = mrSuboperation6.getReferencedModelElements();
-		assertEquals(1, referencedModelElements2b.size());
-		assertEquals(otherActorId, referencedModelElements2b.get(0));
-
-		assertEquals(otherActorId, mrSuboperation7.getModelElementId());
-		assertEquals("participatedUseCases", mrSuboperation7.getFeatureName());
-		assertEquals(false, mrSuboperation7.isAdd());
-		assertEquals(1, mrSuboperation7.getReferencedModelElements().size());
-		assertEquals(useCaseId, mrSuboperation7.getReferencedModelElements().get(0));
+		assertEquals(1, mrSuboperation6.getReferencedModelElements().size());
+		assertEquals(useCaseId, mrSuboperation6.getReferencedModelElements().get(0));
 
 	}
 
