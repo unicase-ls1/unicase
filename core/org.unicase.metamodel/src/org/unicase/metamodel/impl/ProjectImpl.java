@@ -668,19 +668,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (!this.containsInstance(modelElement)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
-		//
-		// ModelElementId deletedModelElementId = getModelElementId(modelElement);
-		// removeModelElementAndChildrenFromCache(modelElement);
-		// getDeletedEObjectsIdMap().put(modelElement, deletedModelElementId);
-		// getEobjectsIdMap().remove(modelElement);
 
-		ModelUtil.deleteOutgoingCrossReferences(modelElement);
-		ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, this);
-
-		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
-			ModelUtil.deleteOutgoingCrossReferences(child);
-			ModelUtil.deleteIncomingCrossReferencesFromProject(child, this);
-		}
+		// remove cross references
+		ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
+		ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, this, true, false);
 
 		// remove containment
 		EObject containerModelElement = ModelUtil.getContainerModelElement(modelElement);
