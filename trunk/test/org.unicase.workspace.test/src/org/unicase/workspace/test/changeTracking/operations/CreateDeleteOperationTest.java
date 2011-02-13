@@ -150,12 +150,12 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(false, createDeleteOperation.isDelete());
 
 		MultiReferenceOperation subOperation1 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
-			1);
+			0);
 		assertEquals(functionalRequirement, getProject().getModelElement(subOperation1.getModelElementId()));
 		assertEquals(useCase, getProject().getModelElement(subOperation1.getReferencedModelElements().get(0)));
 
 		MultiReferenceOperation subOperation2 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
-			0);
+			1);
 		assertEquals(useCase, getProject().getModelElement(subOperation2.getModelElementId()));
 		assertEquals(functionalRequirement,
 			getProject().getModelElement(subOperation2.getReferencedModelElements().get(0)));
@@ -324,7 +324,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, mrSubOperation3.getReferencedModelElements().get(0));
 
 		assertEquals("participatingActors", mrSubOperation4.getFeatureName());
-		assertEquals(-1, mrSubOperation4.getIndex());
+		assertEquals(0, mrSubOperation4.getIndex());
 		assertEquals(useCaseId, mrSubOperation4.getModelElementId());
 		assertEquals("participatedUseCases", mrSubOperation4.getOppositeFeatureName());
 		assertEquals(false, mrSubOperation4.isAdd());
@@ -431,7 +431,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, mrSubOperation3.getReferencedModelElements().get(0));
 
 		assertEquals("participatingActors", mrSubOperation4.getFeatureName());
-		assertEquals(-1, mrSubOperation4.getIndex());
+		assertEquals(0, mrSubOperation4.getIndex());
 		assertEquals(useCaseId, mrSubOperation4.getModelElementId());
 		assertEquals("participatedUseCases", mrSubOperation4.getOppositeFeatureName());
 		assertEquals(false, mrSubOperation4.isAdd());
@@ -597,7 +597,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, mrSubOperation3.getReferencedModelElements().get(0));
 
 		assertEquals("participatingActors", mrSubOperation4.getFeatureName());
-		assertEquals(-1, mrSubOperation4.getIndex());
+		assertEquals(0, mrSubOperation4.getIndex());
 		assertEquals(useCaseId, mrSubOperation4.getModelElementId());
 		assertEquals("participatedUseCases", mrSubOperation4.getOppositeFeatureName());
 		assertEquals(true, mrSubOperation4.isAdd());
@@ -762,17 +762,33 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
 	 */
-	@Test(expected = IllegalStateException.class)
 	public void createWithCrossReferencesTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase2);
-		useCase.getIncludedUseCases().add(useCase2);
+		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase2);
+				useCase.getIncludedUseCases().add(useCase2);
+				clearOperations();
+			}
+		}.run(false);
 
-		clearOperations();
-
-		getProject().addModelElement(useCase);
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(useCase);
+				assertEquals(true, getProject().containsInstance(useCase));
+				assertEquals(true, getProject().containsInstance(useCase2));
+				assertEquals(1, getProjectSpace().getOperations().size());
+				assertEquals(true, getProjectSpace().getOperations().get(0) instanceof CreateDeleteOperation);
+				CreateDeleteOperation operation = (CreateDeleteOperation) getProjectSpace().getOperations().get(0);
+				assertEquals(getProject().getModelElementId(useCase), operation.getModelElementId());
+				assertEquals(2, operation.getSubOperations().size());
+				assertEquals(true, operation.getSubOperations().get(0) instanceof MultiReferenceOperation);
+			}
+		}.run(false);
 
 	}
 
@@ -871,21 +887,23 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 	@Test
 	public void testECoreUtilCopyWithMeetings() {
+		// create a meeting with composite and subsections including intra - cross references
 		CompositeMeetingSection compMeetingSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
 		IssueMeetingSection issueMeeting = MeetingFactory.eINSTANCE.createIssueMeetingSection();
 		WorkItemMeetingSection workItemMeetingSecion = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
 		compMeetingSection.getSubsections().add(issueMeeting);
 		compMeetingSection.getSubsections().add(workItemMeetingSecion);
-
 		final Meeting meeting = MeetingFactory.eINSTANCE.createMeeting();
 		meeting.getSections().add(compMeetingSection);
 		meeting.setIdentifiedIssuesSection(issueMeeting);
 		meeting.setIdentifiedWorkItemsSection(workItemMeetingSecion);
 
+		// copy meeting and check if the intra cross references were actually copied
 		Meeting copiedMeeting = EcoreUtil.copy(meeting);
 		assertFalse(copiedMeeting.getIdentifiedIssuesSection() == meeting.getIdentifiedIssuesSection());
 		assertFalse(copiedMeeting.getIdentifiedWorkItemsSection() == meeting.getIdentifiedWorkItemsSection());
 
+		// add original element to project
 		new UnicaseCommand() {
 
 			@Override

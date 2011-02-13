@@ -1141,8 +1141,8 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(oldPack);
 		getProject().addModelElement(oldPack2);
 
-		BugReport[] actors = { br1, br2, br3, br4 };
-		oldPack.getContainedWorkItems().addAll(Arrays.asList(actors));
+		BugReport[] bugreports = { br1, br2, br3, br4 };
+		oldPack.getContainedWorkItems().addAll(Arrays.asList(bugreports));
 		oldPack2.getContainedWorkItems().add(br4); // relocate to other section
 		assertTrue(oldPack.getContainedWorkItems().contains(br1));
 		assertTrue(oldPack.getContainedWorkItems().contains(br2));
@@ -1152,7 +1152,7 @@ public class Topology1toNTest extends TopologyTest {
 
 		clearOperations();
 
-		section.getModelElements().addAll(Arrays.asList(actors));
+		section.getModelElements().addAll(Arrays.asList(bugreports));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
