@@ -29,5 +29,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit4;visibility:=reexport,
  org.unicase.workspace,
  org.unicase.model,
- org.unicase.ecpemfstorebridge
+ org.unicase.model.edit
 Bundle-ActivationPolicy: lazy
