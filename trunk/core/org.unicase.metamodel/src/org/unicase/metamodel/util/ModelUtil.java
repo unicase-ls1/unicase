@@ -886,13 +886,32 @@ public final class ModelUtil {
 	 * 
 	 * @param modelElement the model element
 	 * @param project the project
+	 * @param includeChildren set to true, if incoming cross references to any children of the given element should also
+	 *            be deleted
+	 * @param includeCrossReferencesFromChildren set to true, if incoming cross references to children from other
+	 *            children including the given element should also be removed. These are cross references within the
+	 *            containment tree of the given element)
 	 */
-	public static void deleteIncomingCrossReferencesFromProject(EObject modelElement, Project project) {
+	public static void deleteIncomingCrossReferencesFromProject(EObject modelElement, Project project,
+		boolean includeChildren, boolean includeCrossReferencesFromChildren) {
+
+		Set<EObject> allModelElements = new HashSet<EObject>();
+		allModelElements.add(modelElement);
+		if (includeChildren) {
+			allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
+		}
+
 		// delete all non containment cross references from other elements in the project
 		for (EObject otherModelElement : ModelUtil.getAllContainedModelElements(project, false)) {
+			// check if the element is one of the children and should not loose its cross references
+			if (!includeCrossReferencesFromChildren && allModelElements.contains(otherModelElement)) {
+				continue;
+			}
 			for (EObject otherElementOpposite : otherModelElement.eCrossReferences()) {
-				if (otherElementOpposite == modelElement) {
+				// check if the element references any of the target objects
+				if (allModelElements.contains(otherElementOpposite)) {
 					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
+					// cut of the reference
 					for (EReference reference : references) {
 						if (!reference.isContainment() && !reference.isContainer() && reference.isChangeable()
 							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
@@ -932,16 +951,46 @@ public final class ModelUtil {
 	 * Delete all outgoing cross references of the given model element.
 	 * 
 	 * @param modelElement the model element
+	 * @param includeChildren set to true, if outgoing cross references of any children of the given element should also
+	 *            be deleted
+	 * @param includeCrossReferencesToChildren set to true, if outgoing cross references to children (that is within the
+	 *            containment tree of the given element) should also be removed.
 	 */
-	public static void deleteOutgoingCrossReferences(EObject modelElement) {
-		// delete all non containment cross references to other elments
-		for (EReference reference : modelElement.eClass().getEAllReferences()) {
-			EClassifier eType = reference.getEType();
-			if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()) {
-				continue;
-			}
-			if (eType instanceof EClass) {
-				modelElement.eUnset(reference);
+	public static void deleteOutgoingCrossReferences(EObject modelElement, boolean includeChildren,
+		boolean includeCrossReferencesToChildren) {
+		Set<EObject> allModelElements = new HashSet<EObject>();
+		allModelElements.add(modelElement);
+		if (includeChildren) {
+			allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
+		}
+		for (EObject currentElement : allModelElements) {
+			// delete all non containment cross references to other elments
+			for (EReference reference : currentElement.eClass().getEAllReferences()) {
+				EClassifier eType = reference.getEType();
+				// sanity checks
+				if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()
+					|| (!(eType instanceof EClass))) {
+					continue;
+				}
+				// single references
+				if (!reference.isMany()) {
+					Object referencedElement = currentElement.eGet(reference);
+					if (includeCrossReferencesToChildren || !allModelElements.contains(referencedElement)) {
+						currentElement.eUnset(reference);
+					}
+				}
+				// multi references
+				else {
+					@SuppressWarnings("unchecked")
+					List<EObject> referencedElements = (List<EObject>) currentElement.eGet(reference);
+					Set<EObject> referencedElementsToRemove = new HashSet<EObject>();
+					for (EObject referencedElement : referencedElements) {
+						if (includeCrossReferencesToChildren || !allModelElements.contains(referencedElement)) {
+							referencedElementsToRemove.add(referencedElement);
+						}
+					}
+					referencedElements.removeAll(referencedElementsToRemove);
+				}
 			}
 		}
 	}

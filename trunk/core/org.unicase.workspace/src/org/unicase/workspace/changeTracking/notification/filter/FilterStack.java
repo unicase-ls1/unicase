@@ -21,14 +21,16 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 public final class FilterStack implements NotificationFilter {
 
 	private static final NotificationFilter[] DEFAULT_STACK = {
-	//
+		//
 		new TouchFilter(),
 		//
 		new TransientFilter(),
 		//
 		new EmptyRemovalsFilter(),
 		//
-		new IgnoreDatatypeFilter() };
+		new IgnoreDatatypeFilter(), // ,
+
+		new IgnoreOutsideProjectReferencesFilter() };
 
 	/**
 	 * The default filter stack.
