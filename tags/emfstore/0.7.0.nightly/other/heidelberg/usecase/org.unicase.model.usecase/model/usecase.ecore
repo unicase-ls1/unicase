@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="usecase"
+    nsURI="http://unicase.org/model/usecase" nsPrefix="org.unicase.model.usecase">
+  <eClassifiers xsi:type="ecore:EClass" name="UseCase" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//requirement/UseCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actorSteps" upperBound="-1"
+        eType="#//ActorStep" containment="true" eOpposite="#//ActorStep/useCase" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="systemSteps" upperBound="-1"
+        eType="#//SystemStep" containment="true" eOpposite="#//SystemStep/useCase"
+        eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.1"/>
+        <details key="position" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.3"/>
+        <details key="position" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rul" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.2"/>
+        <details key="position" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.4"/>
+        <details key="position" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sync" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCases" upperBound="-1"
+        eType="#//UseCase">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="1.1"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Option" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetStep" eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceStep" eType="#//ActorStep"
+        eOpposite="#//ActorStep/options" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCase" eType="#//UseCase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActorStep" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="options" upperBound="-1"
+        eType="#//Option" containment="true" eOpposite="#//Option/sourceStep" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#//UseCase"
+        eOpposite="#//UseCase/actorSteps" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SystemStep" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includedSystemFunction"
+        eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//requirement/SystemFunction"
+        eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkedStep" eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#//UseCase"
+        eOpposite="#//UseCase/systemSteps" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+  </eClassifiers>
+</ecore:EPackage>

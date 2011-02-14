@@ -1,0 +1,67 @@
+/*
+ * Copyright (c) 2006,2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«EXTENSION xpt::editor::Utils»
+
+«DEFINE Editor FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::copyright FOR editorGen-»
+package «packageName»;
+
+	«EXPAND xpt::Common::generatedClassComment»
+	«REM»modified extends«ENDREM»
+public class «className»  extends org.unicase.ui.common.diagram.part.ModelDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(this)» {
+	«REM»END modified extends«ENDREM»
+	«EXPAND attributes-»
+	
+	«EXPAND constructor-»
+	
+	«EXPAND getContextID-»
+	«EXPAND createPaletteRoot FOR editorGen.diagram.palette-»
+	
+	«EXPAND getPreferencesHint-»
+	
+	«EXPAND getContributorId-»
+	«EXPAND getAdapter-»
+	
+	«EXPAND getDocumentProvider-»
+	
+	«EXPAND getEditingDomain-»
+	
+	«EXPAND setDocumentProvider-»
+	«IF isIDEMode(this)-»
+	
+		«EXPAND gotoMarker-»
+		
+		«EXPAND isSaveAsAllowed-»
+		
+		«EXPAND doSaveAs-»
+		
+		«EXPAND performSaveAs-»
+		
+		«EXPAND getShowInContext-»
+		«EXPAND getNavigatorSelection FOR editorGen.navigator-»
+	«ENDIF-»
+
+	«EXPAND configureGraphicalViewer-»
+
+	«IF editorGen.diagram.generateCreateShortcutAction()-»
+	
+		«EXPAND initializeGraphicalViewer-»
+		
+		«EXPAND DropTargetListener-»
+	«ENDIF-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»

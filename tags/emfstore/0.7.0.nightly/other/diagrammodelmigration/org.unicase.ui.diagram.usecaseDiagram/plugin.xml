@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+  accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+  distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="Usecase_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="Usecase_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/DiagramDiagramFile.gif"
+         extensions="Usecase_diagram"
+         default="true"
+         class="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditor"
+         matchingStrategy="org.unicase.ui.diagram.usecaseDiagram.part.ModelMatchingStrategy"
+         contributorClass="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.unicase.ui.diagram.usecaseDiagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/DiagramDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="org.unicase.ui.diagram.usecaseDiagram.part.ModelCreationWizard"
+  	     id="org.unicase.ui.diagram.usecaseDiagram.part.ModelCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+      <extension point="org.eclipse.ui.actionSets" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <actionSet
+            label="%initDiagramActionLabel"
+            visible="true"
+            id="org.unicase.ui.diagram.usecaseDiagram.InitDiagram">
+         <action
+               label="%initDiagramActionLabel"
+               class="org.unicase.ui.diagram.usecaseDiagram.part.ModelInitDiagramFileAction"
+               menubarPath="file/additions"
+               id="org.unicase.ui.diagram.usecaseDiagram.InitDiagramAction">
+         </action>
+      </actionSet>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="UseCasePresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="UseCaseRender">
+         <Priority name="Lowest"/>
+         <ViewId id="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.unicase.diagram.general"
+            name="%prefpage.org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.appearance"
+            name="%prefpage.org.unicase.diagram.appearance"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.connections"
+            name="%prefpage.org.unicase.diagram.connections"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.printing"
+            name="%prefpage.org.unicase.diagram.printing"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.rulersAndGrid"
+            name="%prefpage.org.unicase.diagram.rulersAndGrid"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.usecaseDiagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.unicase.ui.diagram.usecaseDiagram"
+            labelProvider="org.unicase.ui.diagram.usecaseDiagram.sheet.ModelSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.unicase.ui.diagram.usecaseDiagram">
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.unicase.ui.diagram.usecaseDiagram">
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="org.unicase.ui.diagram.usecaseDiagram.sheet.ModelPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="UseCase"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001,4002,4003,4004"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5001,5002"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value=""/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart" id="UseCaseDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.ActorEditPart" id="Actor_2001"/>
+         <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseEditPart" id="UseCase_2002"/>
+         <context elements="UseCaseDiagram_1000,Actor_2001,UseCase_2002"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://unicase.org/model/diagram">
+         <metamodelType
+               id="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_1000"
+               name="%metatype.name.UseCaseDiagram_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UseCaseDiagram"
+               edithelper="org.unicase.ui.diagram.usecaseDiagram.edit.helpers.MEDiagramEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <metamodelType
+               id="org.unicase.ui.diagram.usecaseDiagram.Actor_2001"
+               name="%metatype.name.Actor_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Actor"
+               edithelper="org.unicase.ui.diagram.usecaseDiagram.edit.helpers.ActorEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <metamodelType
+               id="org.unicase.ui.diagram.usecaseDiagram.UseCase_2002"
+               name="%metatype.name.UseCase_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UseCase"
+               edithelper="org.unicase.ui.diagram.usecaseDiagram.edit.helpers.UseCaseEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.diagram.usecaseDiagram.ActorParticipatedUseCases_4001"
+               name="%metatype.name.ActorParticipatedUseCases_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.diagram.usecaseDiagram.ActorInitiatedUseCases_4002"
+               name="%metatype.name.ActorInitiatedUseCases_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.diagram.usecaseDiagram.UseCaseIncludedUseCases_4003"
+               name="%metatype.name.UseCaseIncludedUseCases_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.diagram.usecaseDiagram.UseCaseExtendedUseCases_4004"
+               name="%metatype.name.UseCaseExtendedUseCases_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4004"/>
+         </specializationType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.unicase.ui.diagram.usecaseDiagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.unicase.ui.diagram.usecaseDiagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.unicase.ui.diagram.usecaseDiagram.TypeContext">
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.Actor_2001"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCase_2002"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.ActorParticipatedUseCases_4001"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.ActorInitiatedUseCases_4002"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCaseIncludedUseCases_4003"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCaseExtendedUseCases_4004"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+<extension
+                  point="org.eclipse.core.expressions.propertyTesters">
+               <propertyTester
+                     class="org.unicase.ui.diagram.usecaseDiagram.part.DiagramTypeTester"
+                     id="org.unicase.ui.diagram.usecaseDiagram.part.DiagramTypeTester"
+                     namespace="org.unicase.ui.diagram.usecaseDiagram"
+                     properties="isDiagramType"
+                     type="org.eclipse.emf.ecore.EObject">
+               </propertyTester>
+            </extension>
+   <extension id="UseCaseApplication" point="org.eclipse.core.runtime.applications">
+      <?gmfgen generated="true"?>
+      <application>
+         <run class="org.unicase.ui.diagram.usecaseDiagram.application.ModelApplication"/>
+      </application>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectives" id="rcp-perspective">
+      <?gmfgen generated="true"?>
+      <perspective
+            id="org.unicase.ui.diagram.usecaseDiagram.UseCasePerspective"
+            name="%perspectiveName"
+            class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorPerspective">
+      </perspective>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="rcp-menu-commands">
+      <?gmfgen generated="true"?>
+      <command
+            name="%openURIActionLabel"
+            description="%openURIActionDescription"
+            categoryId="org.eclipse.ui.category.file"
+            id="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"/>  
+      <command
+            name="%openActionLabel"
+            description="%openActionDescription"
+            categoryId="org.eclipse.ui.category.file"
+            id="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"/>  
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings" id="rcp-command-bindings">
+      <?gmfgen generated="true"?>
+      <key
+            commandId="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"
+            sequence="M1+U"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"
+            sequence="M1+O"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets" id="rcp-actions">
+      <?gmfgen generated="true"?>
+      <actionSet
+            label="%applicationActionSetLabel"
+            visible="true"
+            id="org.unicase.ui.diagram.usecaseDiagram.ActionSet">
+         <action
+               label="%newDiagramActionLabel"
+               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
+               menubarPath="file/new/additions"
+               id="org.unicase.ui.diagram.usecaseDiagram.NewDiagramAction">
+         </action>
+         <action
+               label="%aboutActionLabel"
+               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="org.unicase.ui.diagram.usecaseDiagram.AboutAction">
+         </action>
+         <action
+               label="%openURIActionLabel"
+               definitionId="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"
+               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
+               menubarPath="file/additions"
+               id="org.unicase.ui.diagram.usecaseDiagram.OpenURIAction">
+         </action>
+         <action
+               label="%openActionLabel"
+               definitionId="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"
+               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="org.unicase.ui.diagram.usecaseDiagram.OpenAction">
+         </action>
+      </actionSet>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="org.unicase.ui.diagram.usecaseDiagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="org.unicase.ui.diagram.usecaseDiagram.updateDiagram"
+         contextId="org.unicase.ui.diagram.usecaseDiagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.unicase.ui.diagram.usecaseDiagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.unicase.ui.diagram.usecaseDiagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID"
+         defaultHandler="org.unicase.ui.diagram.usecaseDiagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.ui.usecaseDiagram.UseCaseDiagramOpener"
+            name="org.unicase.ui.MEDiagramEditor">
+      </ModelElementOpener>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.codetrace.feature_0.4.5.jar" id="org.unicase.codetrace.feature" version="0.4.5">
+      <category name="unicase"/>
+   </feature>
+   <feature url="features/org.unicase.ui.spellckeck.feature_0.4.5.jar" id="org.unicase.ui.spellckeck.feature" version="0.4.5">
+      <category name="unicase"/>
+   </feature>
+   <feature url="features/org.unicase.openUrl.feature_0.4.5.jar" id="org.unicase.openUrl.feature" version="0.4.5">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="unicase"/>
+</site>
