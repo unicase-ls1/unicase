@@ -19,8 +19,12 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
  * @author koegel
  */
 public class IgnoreOutsideProjectReferencesFilter implements NotificationFilter {
-	@SuppressWarnings("unchecked")
-	@Override
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#check(org.unicase.workspace.changeTracking.notification.NotificationInfo)
+	 */
 	public boolean check(NotificationInfo notificationInfo) {
 		ProjectImpl project = (ProjectImpl) ModelUtil.getProject(notificationInfo.getNotifierModelElement());
 		if (project == null) {
@@ -39,36 +43,50 @@ public class IgnoreOutsideProjectReferencesFilter implements NotificationFilter 
 
 		// we have a reference feature notification
 		if (notificationInfo.getNewValue() != null && notificationInfo.getNewValue() instanceof List) {
-			for (EObject referencedElement : ((List<EObject>) notificationInfo.getNewValue())) {
-				if (isOrWasInProject(project, referencedElement)) {
-					return false;
-				}
-			}
-			// all referenced elements are NOT in the project
-			return true;
+			return checkNewValueList(notificationInfo, project);
 		} else if (notificationInfo.getOldValue() != null && notificationInfo.getOldValue() instanceof List) {
-			for (EObject referencedElement : ((List<EObject>) notificationInfo.getOldValue())) {
-				if (isOrWasInProject(project, referencedElement)) {
-					return false;
-				}
-			}
-			// all referenced elements are NOT in the project
-			return true;
+			return checkOldValueList(notificationInfo, project);
 		} else {
-			// if new value is in project then do NOT filter
-			if (notificationInfo.getOldValue() != null && !notificationInfo.isMoveEvent()
-				&& isOrWasInProject(project, notificationInfo.getOldModelElementValue())) {
-				return false;
-			}
-			// if old value is in project then do NOT filter
-			if (notificationInfo.getNewValue() != null
-				&& isOrWasInProject(project, notificationInfo.getNewModelElementValue())) {
-				return false;
-			}
-			// neither old nor new value are in project => filter
-			return true;
+			return checkSingleReference(notificationInfo, project);
 		}
 
+	}
+
+	private boolean checkSingleReference(NotificationInfo notificationInfo, ProjectImpl project) {
+		// if new value is in project then do NOT filter
+		if (notificationInfo.getOldValue() != null && !notificationInfo.isMoveEvent()
+			&& isOrWasInProject(project, notificationInfo.getOldModelElementValue())) {
+			return false;
+		}
+		// if old value is in project then do NOT filter
+		if (notificationInfo.getNewValue() != null
+			&& isOrWasInProject(project, notificationInfo.getNewModelElementValue())) {
+			return false;
+		}
+		// neither old nor new value are in project => filter
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	private boolean checkOldValueList(NotificationInfo notificationInfo, ProjectImpl project) {
+		for (EObject referencedElement : ((List<EObject>) notificationInfo.getOldValue())) {
+			if (isOrWasInProject(project, referencedElement)) {
+				return false;
+			}
+		}
+		// all referenced elements are NOT in the project
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	private boolean checkNewValueList(NotificationInfo notificationInfo, ProjectImpl project) {
+		for (EObject referencedElement : ((List<EObject>) notificationInfo.getNewValue())) {
+			if (isOrWasInProject(project, referencedElement)) {
+				return false;
+			}
+		}
+		// all referenced elements are NOT in the project
+		return true;
 	}
 
 	private boolean isOrWasInProject(ProjectImpl project, EObject referencedElement) {

@@ -1,13 +1,26 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.workspace.changeTracking.commands;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 
+/**
+ * Basic Command Stack for EMFStore. Allows tracking of command start and end.
+ * 
+ * @author koegel
+ */
 public class EMFStoreBasicCommandStack extends BasicCommandStack implements EMFStoreCommandStack {
 
 	private EMFStoreCommandNotifier notifier;
 	private Command currentCommand;
 
+	/**
+	 * Default constructor.
+	 */
 	public EMFStoreBasicCommandStack() {
 		super();
 		notifier = new EMFStoreCommandNotifier();
@@ -37,12 +50,20 @@ public class EMFStoreBasicCommandStack extends BasicCommandStack implements EMFS
 		}
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#addCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
+	 */
 	public void addCommandStackObserver(CommandObserver observer) {
 		notifier.addCommandStackObserver(observer);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#removeCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
+	 */
 	public void removeCommandStackObserver(CommandObserver observer) {
 		notifier.removeCommandStackObserver(observer);
 	}
