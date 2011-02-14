@@ -3,8 +3,6 @@ package org.unicase.iterationplanner.assigneerecommender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
 import org.unicase.model.organization.User;
 
 public class AssigneePool {

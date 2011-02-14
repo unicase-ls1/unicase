@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-
 /**
  * Before planner algorithm can begin, it needs to know how long every developer (assignee) will be available during
  * each iteration. The sets these values before the planning starts.
@@ -25,7 +23,7 @@ public class AssigneeAvailabilityManager {
 		}
 	}
 
-	public void setAvailability(int iterationNumber, Assignee assignee, int availability) {
+	public void setAvailability(int iterationNumber, IAssignee assignee, int availability) {
 		List<AssigneeAvailability> avsForIter = assigneeAvailabilities.get(iterationNumber);
 		for (AssigneeAvailability aa : avsForIter) {
 			if (aa.getAssignee().equals(assignee)) {
@@ -37,7 +35,7 @@ public class AssigneeAvailabilityManager {
 		avsForIter.add(new AssigneeAvailability(assignee, availability));
 	}
 
-	public int getAvailability(int iterationNumber, Assignee assignee) {
+	public int getAvailability(int iterationNumber, IAssignee assignee) {
 		assert (iterationNumber < assigneeAvailabilities.keySet().size());
 		List<AssigneeAvailability> avsForIter = assigneeAvailabilities.get(iterationNumber);
 		for (AssigneeAvailability aa : avsForIter) {
@@ -50,10 +48,10 @@ public class AssigneeAvailabilityManager {
 
 	private class AssigneeAvailability {
 
-		private final Assignee assignee;
+		private final IAssignee assignee;
 		private int availability;
 
-		public AssigneeAvailability(Assignee assignee, int availability) {
+		public AssigneeAvailability(IAssignee assignee, int availability) {
 			this.assignee = assignee;
 			this.availability = availability;
 		}
@@ -66,7 +64,7 @@ public class AssigneeAvailabilityManager {
 			this.availability = availability;
 		}
 
-		public Assignee getAssignee() {
+		public IAssignee getAssignee() {
 			return assignee;
 		}
 	}

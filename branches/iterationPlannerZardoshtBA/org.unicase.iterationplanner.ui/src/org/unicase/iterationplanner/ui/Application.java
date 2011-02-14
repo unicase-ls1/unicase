@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner;
+package org.unicase.iterationplanner.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,24 +9,18 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommender;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.assigneerecommender.Assignee;
+import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
+import org.unicase.iterationplanner.assigneerecommender.AssigneeRecommender;
+import org.unicase.iterationplanner.assigneerecommender.TaskPool;
 import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.planner.Evaluator;
-import org.unicase.iterationplanner.planner.EvaluatorParameters;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
 import org.unicase.iterationplanner.planner.IterationPlan;
+import org.unicase.iterationplanner.planner.MyPlanner;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 import org.unicase.iterationplanner.planner.PlannerParameters;
-import org.unicase.iterationplanner.planner.Selector;
-import org.unicase.iterationplanner.planner.impl.MyEvaluator;
-import org.unicase.iterationplanner.planner.impl.MyPlanner;
-import org.unicase.iterationplanner.planner.impl.MySelector;
-import org.unicase.iterationplanner.planner.impl.PlannerUtil;
+import org.unicase.iterationplanner.planner.TaskPotentialAssigneeList;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
@@ -50,59 +44,11 @@ public class Application implements IApplication {
 
 		startPlanning();
 
-		// testGetIterationNumberProbabilistic();
-
-		// testGetAssigneeProbabilistic();
-
 		return null;
 	}
 
-	@SuppressWarnings("unused")
-	private void testGetAssigneeProbabilistic() {
-		Random random = new Random(1);
-		System.out.println("Iteration Planner started!");
 
-		Project project = getProject();
-		System.out.println("retrieved project: " + WorkspaceManager.getProjectSpace(project).getProjectName());
-		// init task pool
-		TaskPool.getInstance().setTasksToPlan(getTasksToPlan(project));
-		System.out.println("retrieved tasks: " + TaskPool.getInstance().getTasksToPlan().size() + " tasks.");
 
-		// init assignee pool
-		List<User> assignees = getAssignees(project);
-		AssigneePool.getInstance().setAssignees(assignees);
-		System.out.println("retrieved users: " + AssigneePool.getInstance().getAssignees().size() + " assignees.");
-
-		// start assignee recommender
-		AssigneeRecommender assigneeRecommender = new AssigneeRecommender();
-		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists = assigneeRecommender.getTaskPotenialAssigneeLists();
-
-		// print assignee recommandation results
-		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
-
-		for (TaskPotentialAssigneeList tpal : taskPotentialAssigneeLists) {
-			System.out.println();
-			System.out.println("========================================================================");
-			System.out.println(tpal.getTask().getWorkItem().getName());
-			PlannerUtil.getInstance(random).getAssigneeProbabilistic(tpal.getRecommendedAssignees());
-		}
-	}
-
-	@SuppressWarnings("unused")
-	private void testGetIterationNumberProbabilistic() {
-		Random random = new Random(1);
-
-		for (int i = 0; i < 10; i++) {
-			int numOfIterations = 4; // random.nextInt(5) + 1;
-			int prio = random.nextInt(11);
-			int iter = PlannerUtil.getInstance(random).testGetIterationNumberProbabilistic(prio, numOfIterations);
-			System.out.println("prio: " + prio + "; num of iter: " + numOfIterations + "; iter: "
-				+ (iter == numOfIterations ? "B" : iter));
-
-		}
-	}
-
-	@SuppressWarnings("unused")
 	private void startPlanning() throws Exception {
 		System.out.println("Iteration Planner started!");
 
@@ -131,12 +77,7 @@ public class Application implements IApplication {
 			AssigneePool.getInstance().getAssignees());
 
 		Random random = new Random(1234567256L);
-		double expertiesWeight = 1.0;
-		double priorityWeight = 1.0;
-		double developerLoadWeight = 1.0;
-		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
-			developerLoadWeight, random);
-		Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
+		
 
 		int populationSize = 10;
 		int resultSize = 5;
@@ -148,16 +89,18 @@ public class Application implements IApplication {
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
 		int percentOfTasksToMutate = 10;
+		
+		double expertiesWeight = 1.0;
+		double priorityWeight = 1.0;
+		double developerLoadWeight = 1.0;
 	
 		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
 			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
-			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random);
+			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random, expertiesWeight, priorityWeight, developerLoadWeight);
 
-		Selector selector = new MySelector(plannerParameters.getRandom());
 
 		// start planner
-		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager,
-			iterationPlanEvaluator, selector, plannerParameters);
+		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 		List<IterationPlan> result = myPlanner.start();
 
 		// output result
@@ -216,7 +159,7 @@ public class Application implements IApplication {
 			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", 
 								i, plannedTask.getAssigneeExpertise().getAssignee(), 
 								plannedTask.getAssigneeExpertise().getExpertise(), 
-								plannedTask.getTask().getWorkItem().getName(), 
+								plannedTask.getTask().getName(), 
 								plannedTask.getTask().getPriority(), 
 								plannedTask.getTask().getEstimate());
 			i++;
@@ -239,7 +182,7 @@ public class Application implements IApplication {
 		int i, j = 0;
 		for (TaskPotentialAssigneeList tpaList : taskPotentialAssigneeLists) {
 			i = 0;
-			System.out.println(j + ". " + tpaList.getTask().getWorkItem().getName());
+			System.out.println(j + ". " + tpaList.getTask().getName());
 			for (AssigneeExpertise ae : tpaList.getRecommendedAssignees()) {
 				// System.out.println("\t\t\t" + i + ". " + ae.getAssignee().getOrgUnit().getName() + "\t\t%8"
 				// + ae.getExpertise());

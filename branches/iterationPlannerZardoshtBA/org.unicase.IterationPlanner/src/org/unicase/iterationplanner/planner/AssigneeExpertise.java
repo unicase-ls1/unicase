@@ -1,7 +1,5 @@
-package org.unicase.iterationplanner.assigneerecommender;
+package org.unicase.iterationplanner.planner;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
 
 /**
  * This class is only for implementation reason. It has only in relation to a Task a semantic meaning, and expresses the
@@ -11,10 +9,10 @@ import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
  */
 public class AssigneeExpertise implements Comparable<AssigneeExpertise> {
 
-	private final Assignee assignee;
+	private final IAssignee assignee;
 	private final double expertise;
 
-	public AssigneeExpertise(Assignee assignee, double expertise) {
+	public AssigneeExpertise(IAssignee assignee, double expertise) {
 		this.assignee = assignee;
 		this.expertise = expertise;
 	}
@@ -23,7 +21,7 @@ public class AssigneeExpertise implements Comparable<AssigneeExpertise> {
 		return expertise;
 	}
 
-	public Assignee getAssignee() {
+	public IAssignee getAssignee() {
 		return assignee;
 	}
 

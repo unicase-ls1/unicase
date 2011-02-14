@@ -15,6 +15,21 @@ public final class PlannerParameters {
 	private final int percentOfCloneCandidates;
 	private final int percentOfTasksToMutate;
 	private final Random random;
+	private final double developerLoadWeight;
+	private final double priorityWeight;
+	private final double expertiseWeight;
+
+	public double getDeveloperLoadWeight() {
+		return developerLoadWeight;
+	}
+
+	public double getPriorityWeight() {
+		return priorityWeight;
+	}
+
+	public double getExpertiseWeight() {
+		return expertiseWeight;
+	}
 
 	/**
 	 * @param populationSize
@@ -26,10 +41,13 @@ public final class PlannerParameters {
 	 * @param percentOfCrossOverParents
 	 * @param percentOfMutationCandidates
 	 * @param percentOfCloneCandidates
+	 * @param developerLoadWeight 
+	 * @param priorityWeight 
+	 * @param expertiseWeight 
 	 */
 	public PlannerParameters(int populationSize, int resultSize, int maxNumOfGenerations,
 		int percentOfCrossOverChildren, int precentOfMutants, int percentOfClones, int percentOfCrossOverParents,
-		int percentOfMutationCandidates, int percentOfCloneCandidates, int percentOfTasksToMutate, Random random) {
+		int percentOfMutationCandidates, int percentOfCloneCandidates, int percentOfTasksToMutate, Random random, double expertiseWeight, double priorityWeight, double developerLoadWeight) {
 
 		this.populationSize = populationSize;
 		this.maxNumOfGenerations = maxNumOfGenerations;
@@ -42,6 +60,10 @@ public final class PlannerParameters {
 		this.percentOfCloneCandidates = percentOfCloneCandidates;
 		this.percentOfTasksToMutate = percentOfTasksToMutate;
 		this.random = random;
+		
+		this.expertiseWeight = expertiseWeight;
+		this.priorityWeight = priorityWeight;
+		this.developerLoadWeight = developerLoadWeight;
 	}
 
 	public int getPopulationSize() {

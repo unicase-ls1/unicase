@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
+import org.unicase.iterationplanner.planner.ITask;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 
@@ -62,7 +62,7 @@ public class PlannerUtil {
 	 * @param task
 	 * @return
 	 */
-	public int getIterationNumberProbabilistic(Task task, int numOfIterations) {
+	public int getIterationNumberProbabilistic(ITask task, int numOfIterations) {
 		if (task.getPriority() > 10) {
 			throw new RuntimeException("Task priority must be between 0 and 10.");
 		}
@@ -280,8 +280,8 @@ public class PlannerUtil {
 		return plannedTasks;
 	}
 
-	public Set<Task> getTasks(Set<PlannedTask> plannedTasks) {
-		Set<Task> result = new HashSet<Task>();
+	public Set<ITask> getTasks(Set<PlannedTask> plannedTasks) {
+		Set<ITask> result = new HashSet<ITask>();
 		for(PlannedTask pt : plannedTasks){
 			result.add(pt.getTask());
 		}

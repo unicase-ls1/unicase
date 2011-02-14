@@ -8,7 +8,7 @@ import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
@@ -47,7 +47,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 	protected Object getValue(Object element) {
 		PlannedTask pt = (PlannedTask)element;
 		
-		return getIndexOf(pt.getAssigneeExpertise().getAssignee().getOrgUnit().getName() + " (expertise: " + pt.getAssigneeExpertise().getExpertise() + ")");
+		return getIndexOf(pt.getAssigneeExpertise().getAssignee().getName() + " (expertise: " + pt.getAssigneeExpertise().getExpertise() + ")");
 	}
 
 	private Integer getIndexOf(String string) {
@@ -66,7 +66,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 		String[] result = new String[assigneeExpertiseList.size()];
 		int i = 0;
 		for(AssigneeExpertise ae : assigneeExpertiseList){
-			result[i] = ae.getAssignee().getOrgUnit().getName() + " (expertise: " + ae.getExpertise() + ")";
+			result[i] = ae.getAssignee().getName() + " (expertise: " + ae.getExpertise() + ")";
 			i++;
 		}
 		return result;
@@ -85,7 +85,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 		List<AssigneeExpertise> assigneeExpertiseList = planner.getTaskPotentialAssigneeListMap().get(pt.getTask());
 		String assigneeName = value.substring(0, value.indexOf("(") - 1);
 		for(AssigneeExpertise ae : assigneeExpertiseList){
-			if(ae.getAssignee().getOrgUnit().getName().trim().equalsIgnoreCase(assigneeName.trim())){
+			if(ae.getAssignee().getName().trim().equalsIgnoreCase(assigneeName.trim())){
 				return ae;
 			}
 		}

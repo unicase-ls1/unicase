@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner.impl;
+package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,24 +7,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.planner.Evaluator;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.PlannedTask;
-import org.unicase.iterationplanner.planner.Planner;
-import org.unicase.iterationplanner.planner.PlannerParameters;
-import org.unicase.iterationplanner.planner.Selector;
+import org.unicase.iterationplanner.planner.impl.PlannerUtil;
+
 
 public class MyPlanner extends Planner {
 
 	public MyPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
-		AssigneeAvailabilityManager assigneeAvailabilityManager, Evaluator iterationPlanEvaluator, Selector selector,
-		PlannerParameters plannerParameters) {
-		super(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, iterationPlanEvaluator,
-			selector, plannerParameters);
+		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters) {
+		super(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 	}
 
 	@Override
@@ -67,7 +57,7 @@ public class MyPlanner extends Planner {
 		Random random = getPlannerParameters().getRandom();
 		IterationPlan iterPlan = new IterationPlan(getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 
-		for (Task taskToPlan : getTaskPotentialAssigneeListMap().keySet()) {
+		for (ITask taskToPlan : getTaskPotentialAssigneeListMap().keySet()) {
 			// set assignee and put it into an iteration
 			PlannedTask plannedTask = new PlannedTask(taskToPlan);
 			// we must first add this task to planned tasks, so that it is considered for computing total estimate for

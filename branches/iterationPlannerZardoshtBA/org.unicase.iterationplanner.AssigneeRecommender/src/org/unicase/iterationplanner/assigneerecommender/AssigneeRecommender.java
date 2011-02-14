@@ -3,12 +3,8 @@ package org.unicase.iterationplanner.assigneerecommender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommendationStrategy;
-import org.unicase.iterationplanner.assigneerecommendation.ModelBasedAssigneeRecommendation;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
+import org.unicase.iterationplanner.planner.TaskPotentialAssigneeList;
 
 public class AssigneeRecommender {
 
