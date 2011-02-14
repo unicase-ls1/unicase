@@ -2,7 +2,7 @@ package org.unicase.iterationplanner.ui.wizard.output;
 
 import java.util.Set;
 
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.IPlannedTask;
 
 public class Iteration {
 
@@ -11,15 +11,15 @@ public class Iteration {
 		return iterationNumber;
 	}
 
-	private Set<PlannedTask> plannedTasks;
+	private Set<IPlannedTask> plannedTasks;
 
-	public Iteration(int iterationNumber, Set<PlannedTask> allPlannedTasksForIteration) {
+	public Iteration(int iterationNumber, Set<IPlannedTask> allPlannedTasksForIteration) {
 		this.plannedTasks = allPlannedTasksForIteration;
 		this.iterationNumber = iterationNumber;
 	
 	}
 
-	public Set<PlannedTask> getPlannedTasks() {
+	public Set<IPlannedTask> getPlannedTasks() {
 		return plannedTasks;
 	}
 

@@ -13,14 +13,14 @@ import org.unicase.iterationplanner.assigneerecommender.Assignee;
 import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommender.AssigneeRecommender;
 import org.unicase.iterationplanner.assigneerecommender.TaskPool;
-import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.planner.AssigneeExpertise;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.MyPlanner;
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.PlannerParameters;
+import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.Planner;
-import org.unicase.iterationplanner.planner.PlannerParameters;
-import org.unicase.iterationplanner.planner.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.PlannerFactory;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
@@ -100,8 +100,8 @@ public class Application implements IApplication {
 
 
 		// start planner
-		Planner myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
-		List<IterationPlan> result = myPlanner.start();
+		Planner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+		List<IIterationPlan> result = myPlanner.start();
 
 		// output result
 		outputIterationPlannerResults(result, myPlanner);
@@ -124,9 +124,9 @@ public class Application implements IApplication {
 		System.out.println("done!");
 	}
 
-	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
-		for (int i = 0; i < result.size(); i++) {
-			IterationPlan iterPlan = result.get(i);
+	private void outputIterationPlannerResults(List<IIterationPlan> iterationPlans, Planner myPlanner) {
+		for (int i = 0; i < iterationPlans.size(); i++) {
+			IIterationPlan iterPlan = iterationPlans.get(i);
 			System.out.println("\n");
 			System.out.println("======================================================");
 			System.out.println("=================== Iteration Plan " + i + " =================");
@@ -149,13 +149,13 @@ public class Application implements IApplication {
 
 	}
 
-	private void outputIteration(int iterationNumber, Set<PlannedTask> plannedTasks, String title) {
+	private void outputIteration(int iterationNumber, Set<IPlannedTask> set, String title) {
 		System.out.println();
 
 		System.out.println(title);
 		System.out.println("\t***********************************************************");
 		int i = 1;
-		for (PlannedTask plannedTask : plannedTasks) {
+		for (IPlannedTask plannedTask : set) {
 			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", 
 								i, plannedTask.getAssigneeExpertise().getAssignee(), 
 								plannedTask.getAssigneeExpertise().getExpertise(), 

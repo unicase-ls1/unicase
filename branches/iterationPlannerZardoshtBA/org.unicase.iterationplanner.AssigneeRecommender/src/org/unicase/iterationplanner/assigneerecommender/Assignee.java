@@ -1,6 +1,6 @@
 package org.unicase.iterationplanner.assigneerecommender;
 
-import org.unicase.iterationplanner.planner.IAssignee;
+import org.unicase.iterationplanner.entities.IAssignee;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 

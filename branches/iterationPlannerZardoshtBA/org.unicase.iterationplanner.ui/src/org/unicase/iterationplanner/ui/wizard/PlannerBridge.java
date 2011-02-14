@@ -17,14 +17,14 @@ import org.unicase.iterationplanner.assigneerecommender.Assignee;
 import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommender.AssigneeRecommender;
 import org.unicase.iterationplanner.assigneerecommender.TaskPool;
-import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.planner.AssigneeExpertise;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.MyPlanner;
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.PlannerParameters;
+import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.Planner;
-import org.unicase.iterationplanner.planner.PlannerParameters;
-import org.unicase.iterationplanner.planner.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.PlannerFactory;
 import org.unicase.iterationplanner.ui.wizard.input.UserAvailability;
 import org.unicase.iterationplanner.ui.wizard.output.IterationPlanningOutputWizard;
 import org.unicase.metamodel.Project;
@@ -34,8 +34,8 @@ import org.unicase.model.task.WorkItem;
 
 public class PlannerBridge {
 
-	private List<IterationPlan> result;
-	private Planner myPlanner;
+	private Planner planner;
+	private List<IIterationPlan> result;
 
 	private int numOfIterations;
 	private List<FunctionalRequirement> requirements;
@@ -109,8 +109,8 @@ public class PlannerBridge {
 				Random random = new Random(1234567256L);
 				PlannerParameters plannerParameters = getPlannerParameters(random);
 
-				myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
-				result = myPlanner.start();
+				planner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+				result = planner.start();
 
 //				if (isModal(this)) {
 //					// The progress dialog is still open so
@@ -142,13 +142,13 @@ public class PlannerBridge {
 		return new Action("View reservation status") {
 			@Override
 			public void run() {
-				openOutPutWizard(result.get(0), myPlanner);
+				openOutPutWizard(result.get(0), planner);
 			}
 		};
 
 	}
 
-	private void openOutPutWizard(IterationPlan iterationPlan, Planner planner) {
+	private void openOutPutWizard(IIterationPlan iterationPlan, Planner planner) {
 		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan, planner);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), outputWizard);
 		dialog.open();
@@ -162,9 +162,9 @@ public class PlannerBridge {
 	}
 
 	@SuppressWarnings("unused")
-	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
+	private void outputIterationPlannerResults(List<IIterationPlan> result, Planner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
-			IterationPlan iterPlan = result.get(i);
+			IIterationPlan iterPlan = result.get(i);
 			System.out.println("\n");
 			System.out.println("======================================================");
 			System.out.println("=================== Iteration Plan " + i + " =================");
@@ -185,13 +185,13 @@ public class PlannerBridge {
 
 	}
 
-	private void outputIteration(int iterationNumber, Set<PlannedTask> plannedTasks, String title) {
+	private void outputIteration(int iterationNumber, Set<IPlannedTask> plannedTasks, String title) {
 		System.out.println();
 
 		System.out.println(title);
 		System.out.println("\t***********************************************************");
 		int i = 1;
-		for (PlannedTask plannedTask : plannedTasks) {
+		for (IPlannedTask plannedTask : plannedTasks) {
 			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", i, plannedTask
 				.getAssigneeExpertise().getAssignee(), plannedTask.getAssigneeExpertise().getExpertise(), plannedTask
 				.getTask().getName(), plannedTask.getTask().getPriority(), plannedTask.getTask()
