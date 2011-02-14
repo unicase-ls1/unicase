@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner;
+package org.unicase.iterationplanner.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;

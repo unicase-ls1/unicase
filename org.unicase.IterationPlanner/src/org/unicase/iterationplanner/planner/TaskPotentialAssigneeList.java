@@ -1,9 +1,6 @@
-package org.unicase.iterationplanner.assigneerecommender;
+package org.unicase.iterationplanner.planner;
 
 import java.util.List;
-
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
 
 /**
  * This class represent a task along with a list of potential assignees. The assignee list is a list of (assignee,
@@ -16,9 +13,9 @@ import org.unicase.iterationplanner.assigneerecommendation.Task;
 public class TaskPotentialAssigneeList {
 
 	private final List<AssigneeExpertise> recommendedAssignees;
-	private final Task task;
+	private final ITask task;
 
-	public TaskPotentialAssigneeList(Task task, List<AssigneeExpertise> assignees) {
+	public TaskPotentialAssigneeList(ITask task, List<AssigneeExpertise> assignees) {
 		this.recommendedAssignees = assignees;
 		this.task = task;
 	}
@@ -27,7 +24,7 @@ public class TaskPotentialAssigneeList {
 		return recommendedAssignees;
 	}
 
-	public Task getTask() {
+	public ITask getTask() {
 		return task;
 	}
 

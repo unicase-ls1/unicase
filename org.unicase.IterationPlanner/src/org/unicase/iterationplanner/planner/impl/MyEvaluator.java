@@ -2,17 +2,17 @@ package org.unicase.iterationplanner.planner.impl;
 
 import java.util.Set;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
 import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.Evaluator;
-import org.unicase.iterationplanner.planner.EvaluatorParameters;
+import org.unicase.iterationplanner.planner.IAssignee;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.planner.PlannerParameters;
 
 public class MyEvaluator extends Evaluator {
 
-	public MyEvaluator(EvaluatorParameters evaluationParameters, AssigneeAvailabilityManager assigneeAvailabilityManager) {
-		super(evaluationParameters, assigneeAvailabilityManager);
+	public MyEvaluator(PlannerParameters plannerParams, AssigneeAvailabilityManager assigneeAvailabilityManager) {
+		super(plannerParams, assigneeAvailabilityManager);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class MyEvaluator extends Evaluator {
 		double sum = 0.0;
 		int count = 0;
 		for (int i = 0; i < numOfIterations; i++) {
-			for (Assignee assignee : iterPlan.getAssignees()) {
+			for (IAssignee assignee : iterPlan.getAssignees()) {
 				// get an average for on all scores for all assignees in all iterations. (normalize: 1.0 *
 				// numOfIterations * numOfAssignees)
 				// iteration, assignee
@@ -57,7 +57,7 @@ public class MyEvaluator extends Evaluator {
 	public double evaluateExpertise(IterationPlan iterPlan) {
 		// avg(all experties)
 		double sum = 0.0;
-		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getEvaluationParameters().getRandom()).getPlannedTasks(iterPlan);
+		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(iterPlan);
 		for (PlannedTask pt : plannedTasks) {
 			if (pt.isEvaluateExperties()) {
 				sum += pt.getAssigneeExpertise().getExpertise();
@@ -74,7 +74,7 @@ public class MyEvaluator extends Evaluator {
 
 	@Override
 	public double evaluteTaskPriorities(IterationPlan iterPlan) {
-		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getEvaluationParameters().getRandom()).getPlannedTasks(iterPlan);
+		Set<PlannedTask> plannedTasks = PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(iterPlan);
 		// t1.priority > t2.priority ==> t1.iterationNumber < t2.iterationNumber
 		// for every breaking this rule, give a -1
 		int violations = 0;
@@ -95,8 +95,8 @@ public class MyEvaluator extends Evaluator {
 	public double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore) {
 
 		// max value would be (1.0 * 1.0 + 1.0 * 1.0 + 1.0 * 1.0) = 3.0
-		return (expertiseScore * getEvaluationParameters().getExpertiesWeight() + taskPriorityScore
-			* getEvaluationParameters().getPriorityWeight() + devLoadScore
-			* getEvaluationParameters().getDeveloperLoadWeight()) / 3.0;
+		return (expertiseScore * getPlannerParameters().getExpertiseWeight() + taskPriorityScore
+			* getPlannerParameters().getPriorityWeight() + devLoadScore
+			* getPlannerParameters().getDeveloperLoadWeight()) / 3.0;
 	}
 }

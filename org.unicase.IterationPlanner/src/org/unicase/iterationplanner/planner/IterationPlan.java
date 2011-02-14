@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-
 /**
  * This represents single individuals in population. Hence, this is the representation of our genome. Our genome is a
  * set of Iterations. An Iteration is itself as set of PlannedTasks, i.e. IterationPlan = {(task, assignee, iteration)}.
@@ -116,7 +113,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return numOfIterations;
 	}
 
-	public List<PlannedTask> getAllPlannedTasksForIterationAndAssignee(int iterationNumber, Assignee assignee) {
+	public List<PlannedTask> getAllPlannedTasksForIterationAndAssignee(int iterationNumber, IAssignee assignee) {
 		Set<PlannedTask> ptsForIteration = getAllPlannedTasksForIteration(iterationNumber);
 		List<PlannedTask> ptsForIterAndAssignee = new ArrayList<PlannedTask>();
 		for (PlannedTask pt : ptsForIteration) {
@@ -135,14 +132,14 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	}
 
-	private void checkDevLoadInvariant(Assignee assignee) {
+	private void checkDevLoadInvariant(IAssignee assignee) {
 		for (int i = 0; i < numOfIterations; i++) {
 			assert (getSumOfEstimateForIterationAndAssignee(i, assignee) <= assigneeAvailabilityManager
 				.getAvailability(i, assignee));
 		}
 	}
 
-	private PlannedTask findLowestPriorityTaskInIterationForAssignee(int iterationNumber, Assignee assignee) {
+	private PlannedTask findLowestPriorityTaskInIterationForAssignee(int iterationNumber, IAssignee assignee) {
 		List<PlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(
 			iterationNumber, assignee);
 		PlannedTask lowestPrioTask = allPlannedTasksForIterationAndAssignee.get(0);
@@ -155,7 +152,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return lowestPrioTask;
 	}
 
-	public int getSumOfEstimateForIterationAndAssignee(int iterationNumber, Assignee assignee) {
+	public int getSumOfEstimateForIterationAndAssignee(int iterationNumber, IAssignee assignee) {
 		int sumOfEstimate = 0;
 		List<PlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(iterationNumber, assignee);
 		for (PlannedTask pt : allPlannedTasksForIterationAndAssignee) {
@@ -164,8 +161,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return sumOfEstimate;
 	}
 
-	public Set<Assignee> getAssignees() {
-		Set<Assignee> assignees = new HashSet<Assignee>();
+	public Set<IAssignee> getAssignees() {
+		Set<IAssignee> assignees = new HashSet<IAssignee>();
 		for (PlannedTask pt : plannedTasks) {
 			if(pt.getAssigneeExpertise() != null){
 				assignees.add(pt.getAssigneeExpertise().getAssignee());
@@ -209,9 +206,9 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		if(!isCheckInvariants()){
 			return;
 		}
-		Set<Assignee> assignees = getAssignees();
+		Set<IAssignee> assignees = getAssignees();
 		for(int i = 0; i < numOfIterations; i++){
-			for(Assignee assignee : assignees){
+			for(IAssignee assignee : assignees){
 				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
 					.getAvailability(i, assignee)) {
 					PlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
@@ -273,8 +270,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	private void checkDevLoadInvariantForAllAssignees() {
 		if(checkInvariants){
-			Set<Assignee> assignees = getAssignees();
-			for(Assignee assignee : assignees){
+			Set<IAssignee> assignees = getAssignees();
+			for(IAssignee assignee : assignees){
 				checkDevLoadInvariant(assignee);
 			}
 		}

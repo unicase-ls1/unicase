@@ -1,10 +1,10 @@
 package org.unicase.iterationplanner.assigneerecommender;
 
-import org.unicase.iterationplanner.assigneerecommendation.Task;
+import org.unicase.iterationplanner.planner.ITask;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-public class Task implements Comparable<Task> {
+public class Task implements Comparable<ITask>, ITask {
 	
 	private final WorkItem workItem;
 
@@ -25,9 +25,9 @@ public class Task implements Comparable<Task> {
 		return workItem.getPriority();
 	}
 
-	public int compareTo(Task o) {
+	public int compareTo(ITask otherTask) {
 
-		return this.getPriority() - o.getPriority();
+		return this.getPriority() - otherTask.getPriority();
 	}
 
 	public int getEstimate() {
@@ -42,6 +42,11 @@ public class Task implements Comparable<Task> {
 
 		return ((Task) obj).getWorkItem().equals(this.workItem);
 		
+	}
+
+
+	public String getName() {
+		return workItem.getName();
 	}
 
 	

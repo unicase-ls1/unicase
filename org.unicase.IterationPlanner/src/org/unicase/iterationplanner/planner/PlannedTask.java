@@ -1,7 +1,5 @@
 package org.unicase.iterationplanner.planner;
 
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
 
 /**
  * This represents a task along with the assigneeExpertise chosen by planner algorithm to do this task. The
@@ -11,14 +9,14 @@ import org.unicase.iterationplanner.assigneerecommendation.Task;
  * @author zardosht
  */
 public class PlannedTask {
-	private final Task task;
+	private final ITask task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
 	private boolean evaluateExperties = true;
 	private IterationPlan iterationPlan;
 	private boolean clonning;
 
-	public PlannedTask(Task task) {
+	public PlannedTask(ITask task) {
 		this.task = task;
 	}
 
@@ -40,7 +38,7 @@ public class PlannedTask {
 		return this.clonning;
 	}
 
-	public Task getTask() {
+	public ITask getTask() {
 		return task;
 	}
 
@@ -58,7 +56,7 @@ public class PlannedTask {
 	@Override
 	public String toString() {
 		String result = "Iteration: " + iterationNumber + " ---> " + assigneeExpertise.getAssignee().toString()
-			+ " ---> " + task.getWorkItem().getName() + " (Obejct: " + super.toString() + ")";
+			+ " ---> " + task.getName() + " (Obejct: " + super.toString() + ")";
 		return result;
 	}
 

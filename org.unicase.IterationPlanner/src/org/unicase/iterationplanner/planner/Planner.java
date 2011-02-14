@@ -7,14 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.impl.MyEvaluator;
+import org.unicase.iterationplanner.planner.impl.MySelector;
 
 public abstract class Planner {
 
 	private final int numOfIterations;
-	private final Map<Task, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
+	private final Map<ITask, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
 	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
 	private final Evaluator evaluator;
 	private final Selector selector;
@@ -26,26 +25,24 @@ public abstract class Planner {
 	 * @param numOfIterations
 	 * @param taskPotentialAssigneeLists
 	 * @param assigneeAvailabilities
-	 * @param iterationPlanEvaluator
-	 * @param selector
 	 * @param plannerParameters
 	 */
 	public Planner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
-		AssigneeAvailabilityManager assigneeAvailabilityManager, Evaluator iterationPlanEvaluator, Selector selector,
-		PlannerParameters plannerParameters) {
+		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
 		this.taskPotentialAssigneeListMap = initTaskPotenitalAssigneeListMap(taskPotentialAssigneeLists);
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
-		this.evaluator = iterationPlanEvaluator;
-		this.selector = selector;
+		
+		this.evaluator = new MyEvaluator(plannerParameters, assigneeAvailabilityManager);;
+		this.selector = new MySelector(plannerParameters.getRandom());
 		this.plannerParameters = plannerParameters;
 
 	}
 
-	private Map<Task, List<AssigneeExpertise>> initTaskPotenitalAssigneeListMap(
+	private Map<ITask, List<AssigneeExpertise>> initTaskPotenitalAssigneeListMap(
 		List<TaskPotentialAssigneeList> taskPotentialAssigneeLists) {
 
-		Map<Task, List<AssigneeExpertise>> result = new HashMap<Task, List<AssigneeExpertise>>();
+		Map<ITask, List<AssigneeExpertise>> result = new HashMap<ITask, List<AssigneeExpertise>>();
 		for (TaskPotentialAssigneeList tpal : taskPotentialAssigneeLists) {
 			result.put(tpal.getTask(), tpal.getRecommendedAssignees());
 		}
@@ -178,7 +175,7 @@ public abstract class Planner {
 		return selector;
 	}
 
-	public Map<Task, List<AssigneeExpertise>> getTaskPotentialAssigneeListMap() {
+	public Map<ITask, List<AssigneeExpertise>> getTaskPotentialAssigneeListMap() {
 		return taskPotentialAssigneeListMap;
 	}
 
@@ -189,7 +186,7 @@ public abstract class Planner {
 	 * @param taskToPlan
 	 * @return
 	 */
-	protected boolean isEvaluateExperties(Task taskToPlan) {
+	protected boolean isEvaluateExperties(ITask taskToPlan) {
 		// if all potential assignees for this task have the same expertise value, then this task should not be
 		// considered in evaluation of expertise for an iteration plan.
 		List<AssigneeExpertise> potentialAssigneeList = taskPotentialAssigneeListMap.get(taskToPlan);

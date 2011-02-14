@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommendationStrategy;
-import org.unicase.iterationplanner.assigneerecommendation.Task;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 

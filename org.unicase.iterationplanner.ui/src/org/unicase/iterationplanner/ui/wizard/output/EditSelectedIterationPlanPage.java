@@ -28,6 +28,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.iterationplanner.assigneerecommender.Assignee;
+import org.unicase.iterationplanner.assigneerecommender.Task;
 import org.unicase.iterationplanner.planner.IterationPlan;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
@@ -210,7 +212,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			public String getText(Object element) {
 				if(element instanceof PlannedTask){
 					PlannedTask pt = (PlannedTask) element;
-					return pt.getTask().getWorkItem().getName() + " (priority: " + pt.getTask().getPriority() + ", estimate: " + pt.getTask().getEstimate() + ")";
+					return pt.getTask().getName() + " (priority: " + pt.getTask().getPriority() + ", estimate: " + pt.getTask().getEstimate() + ")";
 				}
 				if(element instanceof Iteration){
 					if(((Iteration) element).getIterationNumber() == iterationPlan.getBacklogNumber()){
@@ -225,7 +227,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			@Override
 			public Image getImage(Object element) {
 				if(element instanceof PlannedTask){
-					return adapterFactoryLabelProvider.getImage(((PlannedTask) element).getTask().getWorkItem());
+					return adapterFactoryLabelProvider.getImage(((Task)((PlannedTask) element).getTask()).getWorkItem());
 					
 				}
 				return super.getImage(element);
@@ -240,7 +242,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			@Override
 			public String getText(Object element) {
 				if(element instanceof PlannedTask){
-					return ((PlannedTask) element).getAssigneeExpertise().getAssignee().getOrgUnit().getName() + " (expertise: " + ((PlannedTask) element).getAssigneeExpertise().getExpertise() + ")";
+					return ((PlannedTask) element).getAssigneeExpertise().getAssignee().getName() + " (expertise: " + ((PlannedTask) element).getAssigneeExpertise().getExpertise() + ")";
 				}
 				return "";
 			}
@@ -248,7 +250,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			@Override
 			public Image getImage(Object element) {
 				if(element instanceof PlannedTask){
-					return adapterFactoryLabelProvider.getImage(((PlannedTask) element).getAssigneeExpertise().getAssignee().getOrgUnit());
+					return adapterFactoryLabelProvider.getImage(((Assignee)((PlannedTask) element).getAssigneeExpertise().getAssignee()).getOrgUnit());
 					
 				}
 				return super.getImage(element);

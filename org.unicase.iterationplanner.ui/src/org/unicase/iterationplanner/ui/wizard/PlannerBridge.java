@@ -13,23 +13,18 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.progress.IProgressConstants;
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeExpertise;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneePool;
-import org.unicase.iterationplanner.assigneerecommendation.AssigneeRecommender;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPool;
-import org.unicase.iterationplanner.assigneerecommendation.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.assigneerecommender.Assignee;
+import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
+import org.unicase.iterationplanner.assigneerecommender.AssigneeRecommender;
+import org.unicase.iterationplanner.assigneerecommender.TaskPool;
 import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.planner.Evaluator;
-import org.unicase.iterationplanner.planner.EvaluatorParameters;
+import org.unicase.iterationplanner.planner.AssigneeExpertise;
 import org.unicase.iterationplanner.planner.IterationPlan;
+import org.unicase.iterationplanner.planner.MyPlanner;
 import org.unicase.iterationplanner.planner.PlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 import org.unicase.iterationplanner.planner.PlannerParameters;
-import org.unicase.iterationplanner.planner.Selector;
-import org.unicase.iterationplanner.planner.impl.MyEvaluator;
-import org.unicase.iterationplanner.planner.impl.MyPlanner;
-import org.unicase.iterationplanner.planner.impl.MySelector;
+import org.unicase.iterationplanner.planner.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.ui.wizard.input.UserAvailability;
 import org.unicase.iterationplanner.ui.wizard.output.IterationPlanningOutputWizard;
 import org.unicase.metamodel.Project;
@@ -112,15 +107,9 @@ public class PlannerBridge {
 					.getInstance().getAssignees());
 
 				Random random = new Random(1234567256L);
-				EvaluatorParameters evaluationParameters = getEvaluatioParameters(random);
-				Evaluator iterationPlanEvaluator = new MyEvaluator(evaluationParameters, assigneeAvailabilityManager);
-
 				PlannerParameters plannerParameters = getPlannerParameters(random);
 
-				Selector selector = new MySelector(plannerParameters.getRandom());
-
-				myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager,
-					iterationPlanEvaluator, selector, plannerParameters);
+				myPlanner = new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 				result = myPlanner.start();
 
 //				if (isModal(this)) {
@@ -172,6 +161,7 @@ public class PlannerBridge {
 		return isModal.booleanValue();
 	}
 
+	@SuppressWarnings("unused")
 	private void outputIterationPlannerResults(List<IterationPlan> result, Planner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
 			IterationPlan iterPlan = result.get(i);
@@ -204,7 +194,7 @@ public class PlannerBridge {
 		for (PlannedTask plannedTask : plannedTasks) {
 			System.out.printf("\t %d. %s (exp: %.3f) ----> %s (prio: %d, est: %d)%n", i, plannedTask
 				.getAssigneeExpertise().getAssignee(), plannedTask.getAssigneeExpertise().getExpertise(), plannedTask
-				.getTask().getWorkItem().getName(), plannedTask.getTask().getPriority(), plannedTask.getTask()
+				.getTask().getName(), plannedTask.getTask().getPriority(), plannedTask.getTask()
 				.getEstimate());
 			i++;
 		}
@@ -221,21 +211,19 @@ public class PlannerBridge {
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
 		int percentOfTasksToMutate = 10;
+		
+		//evaluator parameters
+		double expertiseWeight = 1.0;
+		double priorityWeight = 1.0;
+		double developerLoadWeight = 1.0;
+		
 
 		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
 			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
-			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random);
+			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random, expertiseWeight, priorityWeight, developerLoadWeight);
 		return plannerParameters;
 	}
 
-	private EvaluatorParameters getEvaluatioParameters(Random random) {
-		double expertiesWeight = 1.0;
-		double priorityWeight = 1.0;
-		double developerLoadWeight = 1.0;
-		EvaluatorParameters evaluationParameters = new EvaluatorParameters(expertiesWeight, priorityWeight,
-			developerLoadWeight, random);
-		return evaluationParameters;
-	}
 
 	private AssigneeAvailabilityManager createAssigneeAvailabilityManager(List<Assignee> assignees) {
 		AssigneeAvailabilityManager assigneeAvailabilityManager = new AssigneeAvailabilityManager(numOfIterations);
@@ -274,7 +262,7 @@ public class PlannerBridge {
 		int i, j = 0;
 		for (TaskPotentialAssigneeList tpaList : taskPotentialAssigneeLists) {
 			i = 0;
-			System.out.println(j + ". " + tpaList.getTask().getWorkItem().getName());
+			System.out.println(j + ". " + tpaList.getTask().getName());
 			for (AssigneeExpertise ae : tpaList.getRecommendedAssignees()) {
 				// System.out.println("\t\t\t" + i + ". " + ae.getAssignee().getOrgUnit().getName() + "\t\t%8"
 				// + ae.getExpertise());

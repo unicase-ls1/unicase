@@ -1,10 +1,10 @@
 package org.unicase.iterationplanner.assigneerecommender;
 
-import org.unicase.iterationplanner.assigneerecommendation.Assignee;
+import org.unicase.iterationplanner.planner.IAssignee;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 
-public class Assignee {
+public class Assignee implements IAssignee {
 
 	private OrgUnit orgUnit;
 
@@ -26,12 +26,16 @@ public class Assignee {
 		return ((Assignee) obj).getOrgUnit().equals(this.orgUnit);
 	}
 
-//	public OrgUnit getOrgUnit() {
-//		return orgUnit;
-//	}
+	public OrgUnit getOrgUnit() {
+		return orgUnit;
+	}
 
 	@Override
 	public String toString() {
+		return orgUnit.getName();
+	}
+
+	public String getName() {
 		return orgUnit.getName();
 	}
 

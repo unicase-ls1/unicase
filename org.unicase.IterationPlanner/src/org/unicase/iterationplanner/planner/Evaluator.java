@@ -8,12 +8,12 @@ package org.unicase.iterationplanner.planner;
  */
 public abstract class Evaluator {
 
-	private final EvaluatorParameters evaluationParameters;
+	private final PlannerParameters plannerParameters;
 	private IterationPlan iterationPlan;
 	private AssigneeAvailabilityManager assigneeAvailabilityManager;
 
-	public Evaluator(EvaluatorParameters evaluationParameters, AssigneeAvailabilityManager aam) {
-		this.evaluationParameters = evaluationParameters;
+	public Evaluator(PlannerParameters evaluationParameters, AssigneeAvailabilityManager aam) {
+		this.plannerParameters = evaluationParameters;
 		this.assigneeAvailabilityManager = aam;
 	}
 
@@ -35,8 +35,8 @@ public abstract class Evaluator {
 
 	public abstract double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore);
 
-	public EvaluatorParameters getEvaluationParameters() {
-		return evaluationParameters;
+	public PlannerParameters getPlannerParameters() {
+		return plannerParameters;
 	}
 
 	protected IterationPlan getIterationPlan() {
