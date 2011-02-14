@@ -77,12 +77,20 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 		}
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#addCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
+	 */
 	public void addCommandStackObserver(CommandObserver observer) {
 		notifier.addCommandStackObserver(observer);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#removeCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
+	 */
 	public void removeCommandStackObserver(CommandObserver observer) {
 		notifier.removeCommandStackObserver(observer);
 	}

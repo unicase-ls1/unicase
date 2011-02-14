@@ -285,14 +285,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			dateVersionSpec.setDate(calendar.getTime());
 			PrimaryVersionSpec sourceSpec;
 			try {
-				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectSpace
-					.getProjectId(), dateVersionSpec);
+				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
+					projectSpace.getProjectId(), dateVersionSpec);
 			} catch (InvalidVersionSpecException e) {
 				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				sourceSpec.setIdentifier(0);
 			}
-			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectSpace
-				.getProjectId(), sourceSpec, targetSpec);
+			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(),
+				projectSpace.getProjectId(), sourceSpec, targetSpec);
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance(projectSpace)
 				.generateNotifications(changes, usersession.getUsername());
 			projectSpace.getNotificationsFromComposite().addAll(newNotifications);
@@ -459,8 +459,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return null;
 	}
 
@@ -578,8 +577,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		Project clonedProject = ModelUtil.clone(projectSpace.getProject());
 		copiedProjectSpace.setProject(clonedProject);
 
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace, copiedProjectSpace
-			.getProject());
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace,
+			copiedProjectSpace.getProject());
 	}
 
 	/**
