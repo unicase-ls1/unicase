@@ -49,3 +49,6 @@ Bundle-ClassPath: .,
  lib/ujmp-mtj-0.2.4.jar,
  lib/weka-3.7.0-sources.jar,
  lib/weka-3.7.0.jar
+Export-Package: org.unicase.iterationplanner.assigneerecommendation,
+ org.unicase.iterationplanner.planner,
+ org.unicase.iterationplanner.planner.impl
