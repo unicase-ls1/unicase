@@ -30,24 +30,24 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.iterationplanner.assigneerecommender.Assignee;
 import org.unicase.iterationplanner.assigneerecommender.Task;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 
 public class EditSelectedIterationPlanPage extends WizardPage {
 
-	private IterationPlan iterationPlan;
+	private IIterationPlan iterationPlan;
 	private Planner planner;
-	private IterationPlan originalIterationPlan;
+	private IIterationPlan originalIterationPlan;
 	private TreeViewer iterationsTreeViewer;
 	private Text txtOverallScore;
 	private Text txtTaskPrioScore;
 	private Text txtExpertiseScore;
 	private Text txtDevLoad;
-	private PlannedTask dragSource;
+	private IPlannedTask dragSource;
 	private List<Iteration> iterations;
 
-	protected EditSelectedIterationPlanPage(String pageName, IterationPlan iterationPlan, Planner planner) {
+	protected EditSelectedIterationPlanPage(String pageName, IIterationPlan iterationPlan, Planner planner) {
 		super(pageName);
 		this.originalIterationPlan = iterationPlan;
 		this.iterationPlan = iterationPlan.clone();
@@ -77,8 +77,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			
 			public void dragStart(DragSourceEvent event) {
 				IStructuredSelection ssel = (IStructuredSelection) iterationsTreeViewer.getSelection();
-				if(ssel.getFirstElement() instanceof PlannedTask){
-					dragSource = (PlannedTask)ssel.getFirstElement();
+				if(ssel.getFirstElement() instanceof IPlannedTask){
+					dragSource = (IPlannedTask)ssel.getFirstElement();
 				}
 			}
 			
@@ -104,8 +104,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 						
 					}
 				}
-				if(event.item.getData() instanceof PlannedTask){
-					PlannedTask pt = (PlannedTask)event.item.getData();
+				if(event.item.getData() instanceof IPlannedTask){
+					IPlannedTask pt = (IPlannedTask)event.item.getData();
 					int targetIterationNumber = pt.getIterationNumber();
 					if(dragSource.getIterationNumber() != targetIterationNumber){
 						iterations.get(dragSource.getIterationNumber()).getPlannedTasks().remove(dragSource);
@@ -210,8 +210,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof PlannedTask){
-					PlannedTask pt = (PlannedTask) element;
+				if(element instanceof IPlannedTask){
+					IPlannedTask pt = (IPlannedTask) element;
 					return pt.getTask().getName() + " (priority: " + pt.getTask().getPriority() + ", estimate: " + pt.getTask().getEstimate() + ")";
 				}
 				if(element instanceof Iteration){
@@ -226,8 +226,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 
 			@Override
 			public Image getImage(Object element) {
-				if(element instanceof PlannedTask){
-					return adapterFactoryLabelProvider.getImage(((Task)((PlannedTask) element).getTask()).getWorkItem());
+				if(element instanceof IPlannedTask){
+					return adapterFactoryLabelProvider.getImage(((Task)((IPlannedTask) element).getTask()).getWorkItem());
 					
 				}
 				return super.getImage(element);
@@ -241,16 +241,16 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 
 			@Override
 			public String getText(Object element) {
-				if(element instanceof PlannedTask){
-					return ((PlannedTask) element).getAssigneeExpertise().getAssignee().getName() + " (expertise: " + ((PlannedTask) element).getAssigneeExpertise().getExpertise() + ")";
+				if(element instanceof IPlannedTask){
+					return ((IPlannedTask) element).getAssigneeExpertise().getAssignee().getName() + " (expertise: " + ((IPlannedTask) element).getAssigneeExpertise().getExpertise() + ")";
 				}
 				return "";
 			}
 
 			@Override
 			public Image getImage(Object element) {
-				if(element instanceof PlannedTask){
-					return adapterFactoryLabelProvider.getImage(((Assignee)((PlannedTask) element).getAssigneeExpertise().getAssignee()).getOrgUnit());
+				if(element instanceof IPlannedTask){
+					return adapterFactoryLabelProvider.getImage(((Assignee)((IPlannedTask) element).getAssigneeExpertise().getAssignee()).getOrgUnit());
 					
 				}
 				return super.getImage(element);

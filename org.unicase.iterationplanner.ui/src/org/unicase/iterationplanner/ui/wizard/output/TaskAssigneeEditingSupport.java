@@ -8,19 +8,19 @@ import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.iterationplanner.planner.AssigneeExpertise;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
 
 public class TaskAssigneeEditingSupport extends EditingSupport {
 
 	private Planner planner;
 	private ComboBoxCellEditor comboBoxCellEditor;
-	private IterationPlan iterationPlan;
+	private IIterationPlan iterationPlan;
 	private EditSelectedIterationPlanPage editingIterPlanWizardPage;
 
-	public TaskAssigneeEditingSupport(ColumnViewer viewer, Planner planner, IterationPlan iterationPlan, EditSelectedIterationPlanPage editSelectedIterationPlanPage) {
+	public TaskAssigneeEditingSupport(ColumnViewer viewer, Planner planner, IIterationPlan iterationPlan, EditSelectedIterationPlanPage editSelectedIterationPlanPage) {
 		super(viewer);
 		this.planner = planner;
 		this.iterationPlan = iterationPlan;
@@ -31,8 +31,8 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 
 	@Override
 	protected boolean canEdit(Object element) {
-		if(element instanceof PlannedTask){
-			comboBoxCellEditor.setItems(getAssigneeExpertiseStringArray((PlannedTask) element));
+		if(element instanceof IPlannedTask){
+			comboBoxCellEditor.setItems(getAssigneeExpertiseStringArray((IPlannedTask) element));
 			return true;
 		}
 		return false;
@@ -45,7 +45,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		PlannedTask pt = (PlannedTask)element;
+		IPlannedTask pt = (IPlannedTask)element;
 		
 		return getIndexOf(pt.getAssigneeExpertise().getAssignee().getName() + " (expertise: " + pt.getAssigneeExpertise().getExpertise() + ")");
 	}
@@ -61,7 +61,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 		return 0;
 	}
 
-	private String[] getAssigneeExpertiseStringArray(PlannedTask pt) {
+	private String[] getAssigneeExpertiseStringArray(IPlannedTask pt) {
 		List<AssigneeExpertise> assigneeExpertiseList = planner.getTaskPotentialAssigneeListMap().get(pt.getTask());
 		String[] result = new String[assigneeExpertiseList.size()];
 		int i = 0;
@@ -74,14 +74,14 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 
 	@Override
 	protected void setValue(Object element, Object value) {
-		PlannedTask pt = (PlannedTask)element;
+		IPlannedTask pt = (IPlannedTask)element;
 		AssigneeExpertise ae = findAssigneeExpertise(comboBoxCellEditor.getItems()[(Integer)value], pt);
 		iterationPlan.setAssigneeFor(pt, ae);
 		editingIterPlanWizardPage.update();
 		
 	}
 
-	private AssigneeExpertise findAssigneeExpertise(String value, PlannedTask pt) {
+	private AssigneeExpertise findAssigneeExpertise(String value, IPlannedTask pt) {
 		List<AssigneeExpertise> assigneeExpertiseList = planner.getTaskPotentialAssigneeListMap().get(pt.getTask());
 		String assigneeName = value.substring(0, value.indexOf("(") - 1);
 		for(AssigneeExpertise ae : assigneeExpertiseList){

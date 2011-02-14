@@ -8,7 +8,7 @@ package org.unicase.iterationplanner.assigneerecommender;
 
 import java.util.List;
 
-import org.unicase.iterationplanner.planner.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
 
 public abstract class AssigneeRecommendationStrategy {
 
