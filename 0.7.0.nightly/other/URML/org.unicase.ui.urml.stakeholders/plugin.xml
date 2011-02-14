@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.stakeholders.displaycontrols" name="Display Controls for the Identify Risk View" schema="schema/org.unicase.stakeholders.displaycontrols.exsd"/>
+   <extension-point id="org.unicase.stakeholders.roles" name="Stakeholder roles" schema="schema/org.unicase.stakeholders.roles.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.ui.urml.stakeholderview.StakeholderView"
+            id="Stakeholders.view1"
+            name="StakeholderView"
+            restorable="true">
+      </view>
+      <view
+            class="org.unicase.ui.urml.reviewview.ReviewView"
+            id="ReviewView"
+            name="ReviewView"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.unicase.stakeholders.displaycontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.SingleLineControl"
+            name="Stakeholders.SingleLineDisplay"
+            showLabel="true"
+            type="java.lang.String">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiLineControl"
+            name="Stakeholders.MultiLineControl"
+            showLabel="true"
+            type="java.lang.String">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.ReviewedDisplayControl"
+            name="Stakeholders.ReviewedDisplay"
+            showLabel="true"
+            type="org.eclipse.emf.ecore.EStructuralFeature">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MultiReferenceControl"
+            name="Stakeholders.MultiReferenceControl"
+            showLabel="false"
+            type="org.unicase.model.urml.UrmlModelElement">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Boolean">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Object">
+      </widget>
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget3"
+            showLabel="false"
+            type="java.lang.Integer">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.referencecontrols">
+      <widget
+            class="org.unicase.ui.urml.stakeholderview.reviewview.controls.MEEtest"
+            name="org.unicase.ui.urml.stakeholders.widget2"
+            showLabel="false"
+            type="org.eclipse.emf.ecore.EObject">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.diagram.urmlDiagram.filters">
+      <filter
+            class="org.unicase.ui.urml.stakeholderview.StakeholderDiagramFilter">
+      </filter>
+   </extension>
+
+
+</plugin>

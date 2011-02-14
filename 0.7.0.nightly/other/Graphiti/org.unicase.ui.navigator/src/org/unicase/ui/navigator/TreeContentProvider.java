@@ -1,0 +1,153 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+package org.unicase.ui.navigator;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.unicase.ui.common.ECPModelelementContext;
+
+/**
+ * Transactional and composed content provider with all registered label providers.
+ * 
+ * @author helming
+ */
+public class TreeContentProvider extends TransactionalAdapterFactoryContentProvider {
+
+	private HashMap<String, ContentProvider> contentProviders = new HashMap<String, ContentProvider>();
+
+	/**
+	 * Directly Transfer to project. {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#getChildren(java.lang.Object)
+	 */
+	@Override
+	public Object[] getChildren(Object object) {
+		String className = object.getClass().getCanonicalName();
+		ContentProvider replaceContentProvider = contentProviders.get(className);
+		Object[] preResult;
+		if (replaceContentProvider != null) {
+			preResult = replaceContentProvider.getChildren((EObject) object).toArray();
+		} else {
+			preResult = super.getChildren(object);
+		}
+		ECPModelelementContext context;
+		try {
+			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			if (context == null) {
+				return preResult;
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			return preResult;
+		}
+
+		// this removes all AssociationClass's from the result
+		LinkedList<Object> result = new LinkedList<Object>();
+		for (Object item : preResult) {
+			if (!(item instanceof EObject && context.isAssociationClassElement((EObject) item))
+				&& !(item instanceof DelegatingWrapperItemProvider && context
+					.isAssociationClassElement((EObject) ((DelegatingWrapperItemProvider) item).getValue()))) {
+				result.add(item);
+			}
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#hasChildren(java.lang.Object)
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		ECPModelelementContext context;
+		try {
+			context = WorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			if (context == null) {
+				return super.hasChildren(object);
+			}
+		} catch (NoWorkspaceException e) {
+			Activator.logException(e);
+			// if an exception is caught return the not modified result
+			return super.hasChildren(object);
+		}
+		EObject eObject = null;
+		if (object instanceof DelegatingWrapperItemProvider) {
+			eObject = (EObject) ((DelegatingWrapperItemProvider) object).getValue();
+		} else if (object instanceof EObject) {
+			eObject = (EObject) object;
+		}
+		if (eObject == null || eObject.eContents().isEmpty()) {
+			return super.hasChildren(object);
+		}
+		for (EObject child : eObject.eContents()) {
+			if (!context.isAssociationClassElement(child)) {
+				return super.hasChildren(object);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * default constructor.
+	 * 
+	 * @param editingDomain the transactional editing domain
+	 */
+	public TreeContentProvider(TransactionalEditingDomain editingDomain) {
+		super(editingDomain, new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.navigator.replaceContentProvider");
+		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();
+		list.addAll(Arrays.asList(confs));
+		for (IConfigurationElement element : list) {
+			String attribute = element.getAttribute("type");
+			if (contentProviders.get(attribute) != null) {
+				Activator.logException(new IllegalStateException("Duplicate RootObjectContent Provider registered"));
+				continue;
+			}
+			try {
+				ContentProvider contentProvider = (ContentProvider) element.createExecutableExtension("class");
+				contentProviders.put(attribute, contentProvider);
+
+			} catch (CoreException e) {
+				Activator.logException(e);
+			}
+
+		}
+
+	}
+
+	// /**
+	// * {@inheritDoc}
+	// *
+	// * @see
+	// org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider#getElements(java.lang.Object)
+	// */
+	// @Override
+	// public Object[] getElements(Object object) {
+	// ArrayList<EObject> ret = new ArrayList<EObject>();
+	// if (object instanceof ECPWorkspace) {
+	// ECPWorkspace ecpWorkspace = (ECPWorkspace) object;
+	// EList<ECPProject> projects = ecpWorkspace.getProjects();
+	// for (ECPProject project : projects) {
+	// ret.add(project.getRootObject());
+	// }
+	// }
+	// return ret.toArray();
+	// }
+
+}

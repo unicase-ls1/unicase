@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ecp.model.ecpWorkspaceProvider">
+      <WorkspaceProvider
+            class="org.unicase.xmi.workspace.XMIECPWorkspaceProvider">
+      </WorkspaceProvider>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package"> 
+    <package 
+       uri = "http://unicase.org/xmiworkspace/structureModel" 
+       class = "org.unicase.xmi.xmiworkspacestructure.XmiworkspacestructurePackage" 
+       genModel = "model/XMIWorkspace.genmodel" /> 
+   </extension>
+   
+   <extension point="org.unicase.ecp.model.ecpModelPackage">
+      <modelPackage
+            modelPackage="XmiworkspacestructurePackage">
+      
+      </modelPackage>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.NewProjectHandler"
+            description="create new local xmi-file-project"
+            id="org.unicase.xmi.workspace.NewLocalProject"
+            name="NewLocalProject">
+      </command>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.ImportProjectHandler"
+            description="import xmi-file-project"
+            id="org.unicase.xmi.workspace.ImportLocalProject"
+            name="ImportLocalProject">
+      </command>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.DeleteProjectHandler"
+            description="delete xmi-file-project"
+            id="org.unicase.xmi.workspace.deleteProject"
+            name="deleteProject">
+      </command>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.ImportFolderHandler"
+            description="import xmi-projects from folder"
+            id="org.unicase.xmi.workspace.NewFolder"
+            name="NewFolder">
+      </command>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.DeletedResourceHandler"
+            description="resolve problems with deleted file"
+            id="org.unicase.xmi.workspace.DeletedResourceHandler"
+            name="resolve file problems">
+      </command>
+      <category
+            id="org.unicase.xmi.workspace.commands"
+            name="xmicommands">
+      </category>
+      <command
+            categoryId="org.unicase.xmi.workspace.commands"
+            defaultHandler="org.unicase.xmi.commands.ConfigureModelsHandler"
+            description="adds or removes models form project"
+            id="org.unicase.xmi.workspace.ConfigureModels"
+            name="configure models">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+         <command
+               commandId="org.unicase.xmi.workspace.DeletedResourceHandler"
+               icon="icons/resolve.gif"
+               label="Resolve"
+               style="push"
+               tooltip="Click here to fix project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="org.unicase.xmi.commands.projectStatusTester">
+                     </test>
+                     <instanceof
+                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.NewLocalProject"
+               icon="icons/add.png"
+               label="New Project..."
+               style="push"
+               tooltip="Click here to create a new project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.ImportLocalProject"
+               icon="icons/import.png"
+               label="Import Project-File..."
+               style="push"
+               tooltip="Click here to import a project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.NewFolder"
+               icon="icons/folder-import.png"
+               label="Import Projects from Folder..."
+               style="push"
+               tooltip="Click here to import projects from a folder.">
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <count
+                        value="0">
+                  </count>
+                  <count
+                        value="1">
+                  </count>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.deleteProject"
+               icon="icons/delete.png"
+               label="Delete Project..."
+               style="push"
+               tooltip="Click here to delete a project.">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate>
+                     <instanceof
+                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.xmi.workspace.ConfigureModels"
+               icon="icons/configure.png"
+               label="Configure Models..."
+               style="push"
+               tooltip="Click to add or remove models from project">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <instanceof
+                           value="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.xmi.commands.ProjectStatusTester"
+            id="org.unicase.xmi.workspace.projectStatusTester"
+            namespace="org.unicase.xmi.commands"
+            properties="projectStatusTester"
+            type="org.unicase.xmi.xmiworkspacestructure.XMIECPFileProject">
+      </propertyTester>
+   </extension>
+
+</plugin>
