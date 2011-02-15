@@ -1193,24 +1193,6 @@
           </menuContribution>
   </extension>
   
-     <extension
-         point="org.eclipse.ui.views">
-      <category
-            id="org.unicase"
-            name="Unicase">
-      </category>
-      <view
-            allowMultiple="false"
-            category="org.unicase"
-            class="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
-            icon="icons/historyview.png"
-            id="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
-            name="History Browser"
-            restorable="false">
-      </view>
-   
-    
-   </extension>
  
      
      <extension
@@ -1319,6 +1301,15 @@
             class="org.unicase.workspace.ui.views.emfstorebrowser.views.ESBrowserView"
             id="org.unicase.ui.repository.views.RepositoryView">
       </view>
+      <view
+            allowMultiple="false"
+            category="org.unicase"
+            class="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
+            icon="icons/historyview.png"
+            id="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
+            name="History Browser"
+            restorable="false">
+      </view>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
@@ -1369,6 +1360,15 @@
             id="org.unicase.workspace.ui.historybrowserview.forcerevert"
             name="ForceRevertRevision">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.unicase.workspace.ui.EMFStorePerspective"
+            icon="icons/emfstore.png"
+            id="org.unicase.workspace.ui.EMFStorePerspective"
+            name="EMFStore">
+      </perspective>
    </extension>
 
 </plugin>
