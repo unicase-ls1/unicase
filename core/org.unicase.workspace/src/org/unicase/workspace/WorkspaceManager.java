@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.unicase.emfstore.migration.EMFStoreMigrationException;
+import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.Project;
@@ -40,11 +42,6 @@ import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
 import org.unicase.workspace.util.EditingDomainProvider;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
-
-import edu.tum.cs.cope.migration.execution.MigrationException;
-import edu.tum.cs.cope.migration.execution.Migrator;
-import edu.tum.cs.cope.migration.execution.MigratorRegistry;
-import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -293,6 +290,12 @@ public final class WorkspaceManager {
 		}
 
 		// we need to migrate
+		if (!EMFStoreMigratorUtil.isMigratorAvailable()) {
+			WorkspaceUtil.logException("Model requires migration, but no migrators are registered!",
+				new IllegalStateException());
+			return;
+		}
+
 		backupWorkspace(false);
 		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
 		for (File file : workspaceFile.listFiles()) {
@@ -321,7 +324,7 @@ public final class WorkspaceManager {
 				URI operationsURI = URI.createFileURI(operationsFilePath);
 				try {
 					migrate(projectURI, operationsURI, workspaceModelVersion.getReleaseNumber());
-				} catch (MigrationException e) {
+				} catch (EMFStoreMigrationException e) {
 					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
 						+ " failed!", e);
 					backupAndRecreateWorkspace(resourceSet);
@@ -334,21 +337,21 @@ public final class WorkspaceManager {
 
 	public void migrate(String absoluteFilename) {
 		URI projectURI = URI.createFileURI(absoluteFilename);
-		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
-		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
-		if (migrator == null) {
-			return;
-		}
+
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
-		// MK: build in progress monitor for migration here
+
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
+		if (!EMFStoreMigratorUtil.isMigratorAvailable()) {
+			ModelUtil.logWarning("No Migrator available to migrate imported file");
+			return;
+		}
 
 		try {
-			migrator.migrateAndSave(modelURIs, workspaceModelVersion.getReleaseNumber() - 1, Integer.MAX_VALUE,
+			EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs, workspaceModelVersion.getReleaseNumber() - 1,
 				new NullProgressMonitor());
-		} catch (MigrationException e) {
-			WorkspaceUtil.logException("The migration of the project in the file " + absoluteFilename + " failed!", e);
+		} catch (EMFStoreMigrationException e) {
+			WorkspaceUtil.logWarning("The migration of the project in the file " + absoluteFilename + " failed!", e);
 		}
 	}
 
@@ -419,19 +422,15 @@ public final class WorkspaceManager {
 	 * @param projectURI the uri of the project state
 	 * @param changesURI the uri of the local changes of the project state
 	 * @param sourceModelReleaseNumber
-	 * @throws ModelMigrationException
+	 * @throws EMFStoreMigrationException
 	 */
-	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
-		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
-		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
-		if (migrator == null) {
-			return;
-		}
+	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber)
+		throws EMFStoreMigrationException {
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
 		modelURIs.add(changesURI);
-		// MK: build in progress monitor for migration here
-		migrator.migrateAndSave(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
+		EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs, sourceModelReleaseNumber,
+			new NullProgressMonitor());
 	}
 
 	/**
