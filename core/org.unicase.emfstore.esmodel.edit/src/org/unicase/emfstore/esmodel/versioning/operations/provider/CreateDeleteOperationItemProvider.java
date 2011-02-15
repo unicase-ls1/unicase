@@ -78,8 +78,10 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 * @generated
 	 */
 	protected void addDeletePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CreateDeleteOperation_delete_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_CreateDeleteOperation_delete_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_CreateDeleteOperation_delete_feature",
 				"_UI_CreateDeleteOperation_type"), OperationsPackage.Literals.CREATE_DELETE_OPERATION__DELETE, true,
 			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -120,11 +122,18 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	/**
 	 * This returns CreateDeleteOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CreateDeleteOperation"));
+		CreateDeleteOperation op = (CreateDeleteOperation) object;
+		Object image = null;
+		if (op.isDelete()) {
+			image = getResourceLocator().getImage("full/obj16/DeleteOperation.png");
+		} else {
+			image = getResourceLocator().getImage("full/obj16/CreateOperation.png");
+		}
+		return overlayImage(object, image);
 	}
 
 	/**
@@ -435,20 +444,20 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			MetamodelFactory.eINSTANCE.createModelVersion()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createSingleReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createMultiReferenceSetOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createMultiReferenceOperation()));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP, OperationsFactory.eINSTANCE
-				.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+			OperationsPackage.Literals.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
 	}
 
 	/**
