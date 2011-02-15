@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.server"
       label="EMFStore Server Feature"
-      version="0.6.4.nightly"
+      version="1.0.0.qualifier"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -217,40 +217,42 @@ litigation.
    </license>
 
    <includes
-         id="edu.tum.cs.cope.runtime.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.unicase.emfstore.metamodel"
          version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.2" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
-      <import plugin="org.unicase.metamodel" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.unicase.metamodel" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="org.unicase.emfstore.branding"
          download-size="0"
          install-size="0"
-         version="0.5.31.nightly"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.unicase.emfstore.esmodel"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.migration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
