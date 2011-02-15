@@ -30,7 +30,6 @@ import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
  */
 public final class Configuration {
 
-	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
 	private static final String UPS = ".ups";
 	private static final String UOC = ".uoc";
