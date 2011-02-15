@@ -4,6 +4,6 @@ Bundle-Name: Ecore
 Bundle-SymbolicName: org.unicase.emfstore.ecore;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.ecore.Activator
-Require-Bundle: org.unicase.metamodel;bundle-version="1.0.0"
+Require-Bundle: org.unicase.metamodel
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
