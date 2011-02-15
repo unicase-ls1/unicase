@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.client"
       label="EMFStore Client Feature"
-      version="0.6.4.nightly"
+      version="1.0.0.qualifier"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 

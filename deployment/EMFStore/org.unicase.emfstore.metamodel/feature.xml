@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.metamodel"
       label="EMFStore Metamodel"
-      version="0.6.4.nightly"
+      version="1.0.0.qualifier"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -229,21 +229,21 @@ litigation.
          id="org.unicase.metamodel"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.emfstore.branding"
          download-size="0"
          install-size="0"
-         version="0.5.31.nightly"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.util"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
