@@ -29,10 +29,4 @@
            id="org.unicase.workspace.editingDomain">
      </editingDomain>
   </extension>
-  <extension
-        point="org.unicase.workspace.defaultConfigurationProvider">
-     <configurationProvider
-           providerClass="org.unicase.workspace.util.UnicaseConfigurationProvider">
-     </configurationProvider>
-  </extension>
 </plugin>

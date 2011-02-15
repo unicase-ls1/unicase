@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.util;
+package org.unicase.ui.unicasecommon;
 
 import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
 import static org.unicase.workspace.Configuration.isReleaseVersion;
@@ -19,6 +19,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.exceptions.CertificateStoreException;
+import org.unicase.workspace.util.ConfigurationProvider;
 
 /**
  * Default configuration provider for unicase. At the moment default {@link ServerInfo} can be set and certificates can
