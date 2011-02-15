@@ -1,5 +1,9 @@
 package org.unicase.iterationplanner.planner;
 
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.PlannerParameters;
+
 /**
  * The evaluator evaluates an IterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
  * an overall score for IterationPlan.
@@ -9,7 +13,7 @@ package org.unicase.iterationplanner.planner;
 public abstract class Evaluator {
 
 	private final PlannerParameters plannerParameters;
-	private IterationPlan iterationPlan;
+	private IIterationPlan iterationPlan;
 	private AssigneeAvailabilityManager assigneeAvailabilityManager;
 
 	public Evaluator(PlannerParameters evaluationParameters, AssigneeAvailabilityManager aam) {
@@ -17,7 +21,7 @@ public abstract class Evaluator {
 		this.assigneeAvailabilityManager = aam;
 	}
 
-	public double evaluate(final IterationPlan iterationPlan) {
+	public double evaluate(final IIterationPlan iterationPlan) {
 
 		this.iterationPlan = iterationPlan;
 		double expertiseScore = evaluateExpertise(getIterationPlan());
@@ -27,11 +31,11 @@ public abstract class Evaluator {
 		return overallScore;
 	}
 
-	public abstract double evaluateExpertise(IterationPlan iterPlan);
+	public abstract double evaluateExpertise(IIterationPlan iterPlan);
 
-	public abstract double evaluteTaskPriorities(IterationPlan iterPlan);
+	public abstract double evaluteTaskPriorities(IIterationPlan iterPlan);
 
-	public abstract double evaluateAssigneeLoad(IterationPlan iterPlan);
+	public abstract double evaluateAssigneeLoad(IIterationPlan iterPlan);
 
 	public abstract double getOverallScore(double expertiseScore, double taskPriorityScore, double devLoadScore);
 
@@ -39,7 +43,7 @@ public abstract class Evaluator {
 		return plannerParameters;
 	}
 
-	protected IterationPlan getIterationPlan() {
+	protected IIterationPlan getIterationPlan() {
 		return iterationPlan;
 	}
 

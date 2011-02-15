@@ -7,6 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.ITask;
+import org.unicase.iterationplanner.entities.PlannerParameters;
+import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.impl.IterationPlan;
 import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MySelector;
 
@@ -54,7 +61,7 @@ public abstract class Planner {
 	 * 
 	 * @return
 	 */
-	public List<IterationPlan> start() {
+	public List<IIterationPlan> start() {
 		
 		System.out.println("Starting GA: " + new Date().toString());
 		population = createInitialPopulation();
@@ -76,7 +83,7 @@ public abstract class Planner {
 			System.out.println("Finished Generation" + i + ": " + new Date().toString());
 		}
 
-		List<IterationPlan> result = new ArrayList<IterationPlan>();
+		List<IIterationPlan> result = new ArrayList<IIterationPlan>();
 		result.add(population.get(0));
 		for (int i = 1; i < population.size(); i++) {
 			if (result.size() == plannerParameters.getResultSize()) {

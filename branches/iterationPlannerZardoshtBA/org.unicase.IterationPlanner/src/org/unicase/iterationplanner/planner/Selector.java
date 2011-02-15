@@ -3,6 +3,8 @@ package org.unicase.iterationplanner.planner;
 import java.util.List;
 import java.util.Random;
 
+import org.unicase.iterationplanner.planner.impl.IterationPlan;
+
 public abstract class Selector {
 
 	private final Random random;

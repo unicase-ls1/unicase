@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner;
+package org.unicase.iterationplanner.planner.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IAssignee;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+
+
 /**
  * This represents single individuals in population. Hence, this is the representation of our genome. Our genome is a
  * set of Iterations. An Iteration is itself as set of PlannedTasks, i.e. IterationPlan = {(task, assignee, iteration)}.
@@ -14,13 +21,13 @@ import java.util.Set;
  * 
  * @author zardosht
  */
-public class IterationPlan implements Comparable<IterationPlan> {
+public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan {
 
 	// private final Iteration[] iterations;
 	private final int numOfIterations;
 	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
 	private double score;
-	private Set<PlannedTask> plannedTasks;
+	private Set<IPlannedTask> plannedTasks;
 	private boolean crossover = false;
 	private int numOfTasks;
 	private boolean checkInvariants;
@@ -45,7 +52,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	public IterationPlan clone() {
 		this.checkAllInvariants();
 		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
-		for(PlannedTask plannedTask : this.plannedTasks){
+		for(IPlannedTask plannedTask : this.plannedTasks){
 			clone.addPlannedTask(plannedTask.clone());
 		}
 		clone.checkAllInvariants();
@@ -64,16 +71,16 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return score;
 	}
 
-	public int compareTo(IterationPlan otherPlan) {
+	public int compareTo(IIterationPlan otherPlan) {
 		if (otherPlan.getScore() > this.score) {
 			return 1;
 		}
 		return -1;
 	}
 
-	private Set<PlannedTask> getPlannedTasks() {
+	private Set<IPlannedTask> getPlannedTasks() {
 		if (plannedTasks == null) {
-			plannedTasks = new HashSet<PlannedTask>();
+			plannedTasks = new HashSet<IPlannedTask>();
 		}
 		return plannedTasks;
 	}
@@ -87,7 +94,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return this.plannedTasks.equals(incomming.plannedTasks);
 	}
 
-	public void setIterationNumberFor(PlannedTask plannedTask, int newIterationNumber) {
+	public void setIterationNumberFor(IPlannedTask plannedTask, int newIterationNumber) {
 		
 		plannedTask.setIterationNumber(newIterationNumber);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
@@ -97,9 +104,9 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	}
 
-	public Set<PlannedTask> getAllPlannedTasksForIteration(int iterationNumber) {
-		Set<PlannedTask> result = new HashSet<PlannedTask>();
-		for (PlannedTask pt : getPlannedTasks()) {
+	public Set<IPlannedTask> getAllPlannedTasksForIteration(int iterationNumber) {
+		Set<IPlannedTask> result = new HashSet<IPlannedTask>();
+		for (IPlannedTask pt : getPlannedTasks()) {
 			if (pt.getIterationNumber() == iterationNumber) {
 				result.add(pt);
 			}
@@ -113,10 +120,10 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return numOfIterations;
 	}
 
-	public List<PlannedTask> getAllPlannedTasksForIterationAndAssignee(int iterationNumber, IAssignee assignee) {
-		Set<PlannedTask> ptsForIteration = getAllPlannedTasksForIteration(iterationNumber);
-		List<PlannedTask> ptsForIterAndAssignee = new ArrayList<PlannedTask>();
-		for (PlannedTask pt : ptsForIteration) {
+	public List<IPlannedTask> getAllPlannedTasksForIterationAndAssignee(int iterationNumber, IAssignee assignee) {
+		Set<IPlannedTask> ptsForIteration = getAllPlannedTasksForIteration(iterationNumber);
+		List<IPlannedTask> ptsForIterAndAssignee = new ArrayList<IPlannedTask>();
+		for (IPlannedTask pt : ptsForIteration) {
 			if (pt.getAssigneeExpertise() != null && assignee.equals(pt.getAssigneeExpertise().getAssignee())) {
 				ptsForIterAndAssignee.add(pt);
 			}
@@ -124,7 +131,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return ptsForIterAndAssignee;
 	}
 
-	public void setAssigneeFor(PlannedTask plannedTask, AssigneeExpertise assignee) {
+	public void setAssigneeFor(IPlannedTask plannedTask, AssigneeExpertise assignee) {
 		plannedTask.setAssigneeExpertise(assignee);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
@@ -139,11 +146,11 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		}
 	}
 
-	private PlannedTask findLowestPriorityTaskInIterationForAssignee(int iterationNumber, IAssignee assignee) {
-		List<PlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(
+	private IPlannedTask findLowestPriorityTaskInIterationForAssignee(int iterationNumber, IAssignee assignee) {
+		List<IPlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(
 			iterationNumber, assignee);
-		PlannedTask lowestPrioTask = allPlannedTasksForIterationAndAssignee.get(0);
-		for (PlannedTask pt : getAllPlannedTasksForIterationAndAssignee(iterationNumber, assignee)) {
+		IPlannedTask lowestPrioTask = allPlannedTasksForIterationAndAssignee.get(0);
+		for (IPlannedTask pt : getAllPlannedTasksForIterationAndAssignee(iterationNumber, assignee)) {
 			if (pt.getTask().getPriority() < lowestPrioTask.getTask().getPriority()) {
 				lowestPrioTask = pt;
 			}
@@ -154,8 +161,8 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	public int getSumOfEstimateForIterationAndAssignee(int iterationNumber, IAssignee assignee) {
 		int sumOfEstimate = 0;
-		List<PlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(iterationNumber, assignee);
-		for (PlannedTask pt : allPlannedTasksForIterationAndAssignee) {
+		List<IPlannedTask> allPlannedTasksForIterationAndAssignee = getAllPlannedTasksForIterationAndAssignee(iterationNumber, assignee);
+		for (IPlannedTask pt : allPlannedTasksForIterationAndAssignee) {
 			sumOfEstimate += pt.getTask().getEstimate();
 		}
 		return sumOfEstimate;
@@ -163,7 +170,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 
 	public Set<IAssignee> getAssignees() {
 		Set<IAssignee> assignees = new HashSet<IAssignee>();
-		for (PlannedTask pt : plannedTasks) {
+		for (IPlannedTask pt : plannedTasks) {
 			if(pt.getAssigneeExpertise() != null){
 				assignees.add(pt.getAssigneeExpertise().getAssignee());
 			}
@@ -172,15 +179,15 @@ public class IterationPlan implements Comparable<IterationPlan> {
 		return assignees;
 	}
 
-	public void addPlannedTask(PlannedTask plannedTask) {
+	public void addPlannedTask(IPlannedTask plannedTask) {
 		getPlannedTasks().add(plannedTask);
-		plannedTask.setIterationPlan(this);
+		((PlannedTask)plannedTask).setIterationPlan(this);
 	}
 	
-	public void addAll(Collection<PlannedTask> plannedTasks) {
-		for(PlannedTask pt : plannedTasks){
+	public void addAll(Collection<IPlannedTask> plannedTasks) {
+		for(IPlannedTask pt : plannedTasks){
 			getPlannedTasks().add(pt);
-			pt.setIterationPlan(this);
+			((PlannedTask)pt).setIterationPlan(this);
 		}
 	}
 
@@ -190,7 +197,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	 * Calling setCrossover(false) triggers an invariant correction on iteration plan.
 	 * For Invariant see setAssigneeFor() and setIterationNumberFor() methods. 
 	 */
-	public void setCrossover(boolean crossover) {
+	protected void setCrossover(boolean crossover) {
 		this.crossover = crossover;
 		if(crossover == false){
 			doInvariantCorrection();
@@ -211,7 +218,7 @@ public class IterationPlan implements Comparable<IterationPlan> {
 			for(IAssignee assignee : assignees){
 				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
 					.getAvailability(i, assignee)) {
-					PlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
+					IPlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
 					lowestPrioTask.setIterationNumber(i + 1);
 				}
 			}
@@ -249,14 +256,14 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	}
 
 	private void checkForTasksWithOutAssignee() {
-		for(PlannedTask pt : plannedTasks){
+		for(IPlannedTask pt : plannedTasks){
 			assert pt.getAssigneeExpertise() != null;
 		}
 	}
 
 	private void checkForDuplicateTasks() {
-		for(PlannedTask pt1 : plannedTasks){
-			for(PlannedTask pt2 : plannedTasks){
+		for(IPlannedTask pt1 : plannedTasks){
+			for(IPlannedTask pt2 : plannedTasks){
 				if(!pt1.equals(pt2)){
 					assert(!pt1.getTask().equals(pt2));
 				}
@@ -281,11 +288,11 @@ public class IterationPlan implements Comparable<IterationPlan> {
 	 * returns if this iteration plan is in the state of bing created through crossover.
 	 * In this state the invariants are not checked when setting iteration number and assignee for a task.
 	 */
-	public boolean isCrossover() {
+	protected boolean isCrossover() {
 		return crossover;
 	}
 	
-	public Set<PlannedTask> getAllPlannedTasks(){
+	public Set<IPlannedTask> getAllPlannedTasks(){
 		return Collections.unmodifiableSet(plannedTasks);
 	}
 	
