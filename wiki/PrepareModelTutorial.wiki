@@ -4,6 +4,6 @@
 <wiki:video url="http://www.youtube.com/watch?v=XgXm6LbBaKI"/> 
 
 Links to required resources:
-  * [http://help.eclipse.org/galileo/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl Eclipse Library Example Model]
+  * [http://help.eclipse.org/helios/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl Eclipse Library Example Model]
 
 Important Note: You must leave the "resolveProxies" property of References at its default value "true", otherwise EMFStore will not work correctly. Please see the [EMFStoreModelingGuidelines Modeling Guidelines] for details.
