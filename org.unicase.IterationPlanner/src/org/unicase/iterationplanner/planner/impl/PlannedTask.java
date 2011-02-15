@@ -1,4 +1,8 @@
-package org.unicase.iterationplanner.planner;
+package org.unicase.iterationplanner.planner.impl;
+
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.ITask;
 
 
 /**
@@ -8,7 +12,7 @@ package org.unicase.iterationplanner.planner;
  * 
  * @author zardosht
  */
-public class PlannedTask {
+public class PlannedTask implements IPlannedTask {
 	private final ITask task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
@@ -42,7 +46,7 @@ public class PlannedTask {
 		return task;
 	}
 
-	protected void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
+	public void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
 		checkIteartionPlann();
 		this.assigneeExpertise = assigneeExpertise;
 	}
@@ -64,7 +68,7 @@ public class PlannedTask {
 		return assigneeExpertise;
 	}
 
-	protected void setIterationNumber(int iterationNumber) {
+	public void setIterationNumber(int iterationNumber) {
 		checkIteartionPlann();
 		this.iterationNumber = iterationNumber;
 	}
@@ -126,7 +130,7 @@ public class PlannedTask {
 	 * 
 	 * @return
 	 */
-	public boolean isEvaluateExperties() {
+	public boolean isEvaluateExpertise() {
 		return evaluateExperties;
 	}
 

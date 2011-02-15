@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner.impl;
+package org.unicase.iterationplanner.planner;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.unicase.iterationplanner.planner.AssigneeExpertise;
-import org.unicase.iterationplanner.planner.ITask;
-import org.unicase.iterationplanner.planner.IterationPlan;
-import org.unicase.iterationplanner.planner.PlannedTask;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IIterationPlan;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.ITask;
+import org.unicase.iterationplanner.planner.impl.PlannedTask;
 
 public class PlannerUtil {
 
@@ -271,8 +272,8 @@ public class PlannerUtil {
 	 * @param iterPlan
 	 * @return
 	 */
-	public Set<PlannedTask> getPlannedTasks(IterationPlan iterPlan) {
-		Set<PlannedTask> plannedTasks = new HashSet<PlannedTask>();
+	public Set<IPlannedTask> getPlannedTasks(IIterationPlan iterPlan) {
+		Set<IPlannedTask> plannedTasks = new HashSet<IPlannedTask>();
 		//we consider the tasks in backlog too; therefore iterPlan.getNumOfIterations() + 1
 		for(int i = 0; i < iterPlan.getNumOfIterations() + 1; i++){
 			plannedTasks.addAll(iterPlan.getAllPlannedTasksForIteration(i));
@@ -299,13 +300,13 @@ public class PlannerUtil {
 	 * @param plannedTasks2
 	 * @return
 	 */
-	public Set<PlannedTask> unionOnTasks(Set<PlannedTask> plannedTasks1, Set<PlannedTask> plannedTasks2) {
-		Set<PlannedTask> union = new HashSet<PlannedTask>();
-		Set<PlannedTask> duplicates = new HashSet<PlannedTask>();
+	public Set<IPlannedTask> unionOnTasks(Set<IPlannedTask> plannedTasks1, Set<IPlannedTask> plannedTasks2) {
+		Set<IPlannedTask> union = new HashSet<IPlannedTask>();
+		Set<IPlannedTask> duplicates = new HashSet<IPlannedTask>();
 		union.addAll(plannedTasks1);
 		union.addAll(plannedTasks2);
-		for(PlannedTask pt1 : union){
-			for(PlannedTask pt2 : union){
+		for(IPlannedTask pt1 : union){
+			for(IPlannedTask pt2 : union){
 				if(pt1.getTask().equals(pt2.getTask())){
 					// set the PlannedTask with higher AssigneeExpertise for deletion
 					if(pt1.getAssigneeExpertise().getExpertise() > pt2.getAssigneeExpertise().getExpertise()){
@@ -328,13 +329,13 @@ public class PlannerUtil {
 	 * @param subtractSet
 	 * @return
 	 */
-	public Set<PlannedTask> subtractOnTasks(Set<PlannedTask> fromSet, Set<PlannedTask> subtractSet) {
-		Set<PlannedTask> result = new HashSet<PlannedTask>();
+	public Set<IPlannedTask> subtractOnTasks(Set<IPlannedTask> fromSet, Set<IPlannedTask> subtractSet) {
+		Set<IPlannedTask> result = new HashSet<IPlannedTask>();
 		result.addAll(fromSet);
 		
 		//remove from fromSet the intersection of fromSet and subtractSet
-		for(PlannedTask ptInFromSet : fromSet){
-			for(PlannedTask ptInSubtractSet : subtractSet){
+		for(IPlannedTask ptInFromSet : fromSet){
+			for(IPlannedTask ptInSubtractSet : subtractSet){
 				if(ptInFromSet.equalsTask(ptInSubtractSet)){
 					result.remove(ptInFromSet);
 				}

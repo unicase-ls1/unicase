@@ -3,7 +3,7 @@ package org.unicase.iterationplanner.planner.impl;
 import java.util.List;
 import java.util.Random;
 
-import org.unicase.iterationplanner.planner.IterationPlan;
+import org.unicase.iterationplanner.planner.PlannerUtil;
 import org.unicase.iterationplanner.planner.Selector;
 
 public class MySelector extends Selector {

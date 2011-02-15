@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner;
+package org.unicase.iterationplanner.planner.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,7 +7,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.unicase.iterationplanner.planner.impl.PlannerUtil;
+import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.ITask;
+import org.unicase.iterationplanner.entities.PlannerParameters;
+import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
+import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.PlannerUtil;
 
 
 public class MyPlanner extends Planner {
@@ -121,23 +128,23 @@ public class MyPlanner extends Planner {
 		IterationPlan clone1 = p1.clone();
 		IterationPlan clone2 = p2.clone();
 		
-		Set<PlannedTask> plannedTasksInP1I0 = new HashSet<PlannedTask>(); 
+		Set<IPlannedTask> plannedTasksInP1I0 = new HashSet<IPlannedTask>(); 
 		plannedTasksInP1I0.addAll(clone1.getAllPlannedTasksForIteration(0));
-		Set<PlannedTask> allPlannedTasksInP1 = new HashSet<PlannedTask>(); 
+		Set<IPlannedTask> allPlannedTasksInP1 = new HashSet<IPlannedTask>(); 
 		allPlannedTasksInP1.addAll(plannerUtil.getPlannedTasks(clone1));
 		
-		Set<PlannedTask> plannedTasksInP2I0 = new HashSet<PlannedTask>(); 
+		Set<IPlannedTask> plannedTasksInP2I0 = new HashSet<IPlannedTask>(); 
 		plannedTasksInP2I0.addAll(clone2.getAllPlannedTasksForIteration(0));
-		Set<PlannedTask> allPlannedTasksInP2 = new HashSet<PlannedTask>(); 
+		Set<IPlannedTask> allPlannedTasksInP2 = new HashSet<IPlannedTask>(); 
 		allPlannedTasksInP2.addAll(plannerUtil.getPlannedTasks(clone2));
 		
-		Set<PlannedTask> plannedTasksForI0 = plannerUtil.unionOnTasks(plannedTasksInP1I0, plannedTasksInP2I0);
+		Set<IPlannedTask> plannedTasksForI0 = plannerUtil.unionOnTasks(plannedTasksInP1I0, plannedTasksInP2I0);
 
 		IterationPlan c1 = new IterationPlan(clone1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		IterationPlan c2 = new IterationPlan(clone2.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		c1.setCrossover(true);
 		c2.setCrossover(true);
-		for(PlannedTask pt : plannedTasksForI0){
+		for(IPlannedTask pt : plannedTasksForI0){
 			c1.addPlannedTask(pt.clone());
 			c2.addPlannedTask(pt.clone());
 		}
@@ -146,8 +153,8 @@ public class MyPlanner extends Planner {
 		//remove from all tasks of p1 and p2 those that are in tasksForI0. 
 		//then add all remaining tasks of p1 to c1 and p2 to c2.
 		//Because tasksForI0 is union of I0 of both parents and we don't want these to be other iterations in children.
-		Set<PlannedTask> restTasksForC1 = plannerUtil.subtractOnTasks(allPlannedTasksInP1, plannedTasksForI0);
-		Set<PlannedTask> restTasksForC2 = plannerUtil.subtractOnTasks(allPlannedTasksInP2, plannedTasksForI0);
+		Set<IPlannedTask> restTasksForC1 = plannerUtil.subtractOnTasks(allPlannedTasksInP1, plannedTasksForI0);
+		Set<IPlannedTask> restTasksForC2 = plannerUtil.subtractOnTasks(allPlannedTasksInP2, plannedTasksForI0);
 		c1.addAll(restTasksForC1);
 		c2.addAll(restTasksForC2);
 		
@@ -198,9 +205,9 @@ public class MyPlanner extends Planner {
 		IterationPlan mutantIterationPlan = mutationCandidate.clone();
 		int percentOfTasksToMutate = getPlannerParameters().getPercentOfTasksToMutate();
 
-		Collection<PlannedTask> tasksToMutate = selectTasksToMutate(mutantIterationPlan, percentOfTasksToMutate);
+		Collection<IPlannedTask> tasksToMutate = selectTasksToMutate(mutantIterationPlan, percentOfTasksToMutate);
 		
-		for (PlannedTask taskToMutate : tasksToMutate) {
+		for (IPlannedTask taskToMutate : tasksToMutate) {
 			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToMutate.getTask());
 			AssigneeExpertise assigneeExpertise = findAssignee(potentialAssignees);
 			int iterationNumber = PlannerUtil.getInstance(getPlannerParameters().getRandom())
@@ -212,11 +219,11 @@ public class MyPlanner extends Planner {
 	}
 
 
-	private Collection<PlannedTask> selectTasksToMutate(IterationPlan mutantIterationPlan, int percentOfTasksToMutate) {
-		Set<PlannedTask> allPlannedTasksInMutantIterationPlan = PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(mutantIterationPlan);
+	private Collection<IPlannedTask> selectTasksToMutate(IterationPlan mutantIterationPlan, int percentOfTasksToMutate) {
+		Set<IPlannedTask> allPlannedTasksInMutantIterationPlan = PlannerUtil.getInstance(getPlannerParameters().getRandom()).getPlannedTasks(mutantIterationPlan);
 		int numOfTasksToMutate = (int) ((percentOfTasksToMutate / 100.0) * allPlannedTasksInMutantIterationPlan.size());
-		Set<PlannedTask> allPlannedTasksForBacklog = mutantIterationPlan.getAllPlannedTasksForIteration(mutantIterationPlan.getBacklogNumber());
-		List<PlannedTask> result = new ArrayList<PlannedTask>();
+		Set<IPlannedTask> allPlannedTasksForBacklog = mutantIterationPlan.getAllPlannedTasksForIteration(mutantIterationPlan.getBacklogNumber());
+		List<IPlannedTask> result = new ArrayList<IPlannedTask>();
 		for(int i = 0; i < numOfTasksToMutate; i++){
 			if(allPlannedTasksForBacklog.size() == 0){
 				return result;
@@ -224,16 +231,16 @@ public class MyPlanner extends Planner {
 			if(result.size() == allPlannedTasksForBacklog.size()){
 				return result;
 			}
-			PlannedTask highestPrioTask = selectHighestPrioTask(allPlannedTasksForBacklog);
+			IPlannedTask highestPrioTask = selectHighestPrioTask(allPlannedTasksForBacklog);
 			result.add(highestPrioTask);
 			allPlannedTasksForBacklog.remove(highestPrioTask);
 		}
 		return result;
 	}
 
-	private PlannedTask selectHighestPrioTask(Set<PlannedTask> allPlannedTasks) {
-		PlannedTask result = allPlannedTasks.toArray(new PlannedTask[allPlannedTasks.size()])[0];
-		for(PlannedTask pt : allPlannedTasks){
+	private IPlannedTask selectHighestPrioTask(Set<IPlannedTask> allPlannedTasks) {
+		IPlannedTask result = allPlannedTasks.toArray(new PlannedTask[allPlannedTasks.size()])[0];
+		for(IPlannedTask pt : allPlannedTasks){
 			if(pt.getTask().getPriority() > result.getTask().getPriority()){
 				result = pt;
 			}
