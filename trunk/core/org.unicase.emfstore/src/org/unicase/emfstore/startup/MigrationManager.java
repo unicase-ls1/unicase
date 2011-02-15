@@ -21,15 +21,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.migration.EMFStoreMigrationException;
+import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelVersion;
 import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
-
-import edu.tum.cs.cope.migration.execution.MigrationException;
-import edu.tum.cs.cope.migration.execution.Migrator;
-import edu.tum.cs.cope.migration.execution.MigratorRegistry;
-import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * Applies migrator to files on server.
@@ -78,6 +75,10 @@ public class MigrationManager {
 			return;
 		}
 
+		if (!EMFStoreMigratorUtil.isMigratorAvailable()) {
+			throw new FatalEmfStoreException("Model must be migrated to new version, but no migrators are available.");
+		}
+
 		// ask for confirmation
 		boolean doProcceed = askForConfirmationForMigration();
 		if (!doProcceed) {
@@ -123,7 +124,7 @@ public class MigrationManager {
 		try {
 			System.out.println("Migrating version 0...");
 			migrate(version0StateURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
-		} catch (MigrationException e) {
+		} catch (EMFStoreMigrationException e) {
 			throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
 		}
 	}
@@ -138,7 +139,7 @@ public class MigrationManager {
 				URI projectURI = URI.createFileURI(backUpState.getAbsolutePath());
 				try {
 					migrate(projectURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
-				} catch (MigrationException e) {
+				} catch (EMFStoreMigrationException e) {
 					throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
 				}
 			}
@@ -189,7 +190,7 @@ public class MigrationManager {
 						System.out.println("Migrating version " + versionSpec + " with its "
 							+ (changePackageURIs.size() - 1) + " previous versions...");
 						migrate(projectURI, changePackageURIs, modelVersion.getReleaseNumber());
-					} catch (MigrationException e) {
+					} catch (EMFStoreMigrationException e) {
 						throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
 					}
 					changePackageURIs.clear();
@@ -216,18 +217,16 @@ public class MigrationManager {
 	 * @param sourceModelReleaseNumber
 	 * @throws ModelMigrationException
 	 */
-	private void migrate(URI projectURI, List<URI> changesURIs, int sourceModelReleaseNumber) throws MigrationException {
-		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
-		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
-		if (migrator == null) {
-			return;
-		}
+	private void migrate(URI projectURI, List<URI> changesURIs, int sourceModelReleaseNumber)
+		throws EMFStoreMigrationException {
+
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
 		for (URI changeURI : changesURIs) {
 			modelURIs.add(changeURI);
 		}
-		migrator.migrateAndSave(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new ConsoleProgressMonitor());
+		EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs, sourceModelReleaseNumber,
+			new ConsoleProgressMonitor());
 	}
 
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
