@@ -22,8 +22,6 @@ NEWS: Here you can find the [Models2010TutorialEMFStore slides and material] of 
 
 More information and news also available on our [http://unicase.blogspot.com/ blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
 
-<a href="http://www.eclipsecon.org/2011/"><img border="0"
- src="http://www.eclipsecon.org/2011/static/image/friends/130x100_speaking.gif"
- height="100" width="130" alt="I'm speaking at EclipseCon 2011"/></a>
+[http://www.eclipsecon.org/2011/ http://www.eclipsecon.org/2011/static/image/friends/130x100_speaking.gif]
 
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
