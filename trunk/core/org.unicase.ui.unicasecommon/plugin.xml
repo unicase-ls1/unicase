@@ -945,4 +945,10 @@
            class="org.unicase.ui.unicasecommon.common.EditingDomainProvider">
      </provider>
   </extension>
+  <extension
+        point="org.unicase.workspace.defaultConfigurationProvider">
+     <configurationProvider
+           providerClass="org.unicase.ui.unicasecommon.UnicaseConfigurationProvider">
+     </configurationProvider>
+  </extension>
 </plugin>
