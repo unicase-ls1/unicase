@@ -91,6 +91,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 	private NotificationToOperationConverter converter;
 	private List<PostCreationListener> postCreationListeners;
+	private boolean commandIsRunning;
 
 	/**
 	 * @return the removedElements
@@ -374,7 +375,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			if (isRecording) {
 				recordingFinished();
 			}
-			saveDirtyResources();
+			if (!commandIsRunning) {
+				saveDirtyResources();
+			}
 		}
 	}
 
@@ -556,6 +559,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
+		commandIsRunning = false;
 		// means that we have not seen a command start yet
 		if (currentClipboard == null) {
 			return;
@@ -591,11 +595,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		// remove all deleted elements
 		newElementsOnClipboardAfterCommand.removeAll(deletedElements);
 
-		if (projectSpace.getProject() != null) {
-			saveDirtyResources();
-		} else {
-			saveDirtyResources();
-		}
+		saveDirtyResources();
 	}
 
 	private void cleanResources(EObject deletedElement) {
@@ -771,6 +771,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public void commandStarted(Command command) {
 		currentOperationListSize = projectSpace.getOperations().size();
 		currentClipboard = getModelElementsFromClipboard();
+		commandIsRunning = true;
 
 	}
 
