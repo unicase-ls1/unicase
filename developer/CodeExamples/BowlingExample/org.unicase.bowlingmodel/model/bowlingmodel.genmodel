@@ -30,7 +30,7 @@
     </genClasses>
     <genClasses ecoreClass="bowlingmodel.ecore#//Matchup">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Matchup/game"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Matchup/tournament"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Matchup/tournament"/>
     </genClasses>
     <genClasses ecoreClass="bowlingmodel.ecore#//Playerlist">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Playerlist/name"/>
@@ -40,7 +40,7 @@
     <genClasses ecoreClass="bowlingmodel.ecore#//Tournament">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Tournament/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowlingmodel.ecore#//Tournament/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Tournament/matchups"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Tournament/matchups"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bowlingmodel.ecore#//Tournament/playerlist"/>
     </genClasses>
   </genPackages>
