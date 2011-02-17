@@ -121,5 +121,12 @@
             class="org.unicase.ecpemfstorebridge.ECPObserver">
       </initiator>
    </extension>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.ecpemfstorebridge.ProjectSpaceOpener"
+            name="org.unicase.ecpemfstorebridge.ProjectSpaceOpener">
+      </ModelElementOpener>
+   </extension>
 
 </plugin>
