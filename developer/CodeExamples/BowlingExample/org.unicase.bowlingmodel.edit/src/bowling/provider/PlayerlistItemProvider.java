@@ -68,6 +68,7 @@ public class PlayerlistItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addPlayerPropertyDescriptor(object);
 			addTournamentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -91,6 +92,28 @@ public class PlayerlistItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Player feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlayerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Playerlist_player_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Playerlist_player_feature", "_UI_Playerlist_type"),
+				 BowlingPackage.Literals.PLAYERLIST__PLAYER,
+				 true,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}
