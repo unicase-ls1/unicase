@@ -5,6 +5,9 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.jface.action.MenuManager;
@@ -45,12 +48,75 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ESBrowserView extends ViewPart implements LoginObserver {
 
+	/**
+	 * Listener for changes in the workspace.
+	 * 
+	 * @author koegel
+	 */
+	private final class WorkspaceAdapter extends AdapterImpl {
+		@Override
+		public void notifyChanged(Notification msg) {
+			if (msg.getNewValue() instanceof ServerInfo) {
+				final ServerInfo serverInfo = (ServerInfo) msg.getNewValue();
+				AdapterImpl serverInfoAdapter = new ServerInfoAdapter(serverInfo);
+				serverInfo.eAdapters().add(serverInfoAdapter);
+				serverInfoAdapterMap.put(serverInfo, serverInfoAdapter);
+				viewer.refresh();
+			} else if (msg.getOldValue() instanceof ServerInfo) {
+				ServerInfo serverInfo = (ServerInfo) msg.getOldValue();
+				serverInfo.eAdapters().remove(serverInfoAdapterMap.get(serverInfo));
+				viewer.refresh();
+			}
+			if (msg.getFeature() != null
+				&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
+				if (msg.getEventType() == Notification.ADD) {
+					Usersession session = (Usersession) msg.getNewValue();
+					session.addLoginObserver(ESBrowserView.this);
+				} else if (msg.getEventType() == Notification.REMOVE) {
+					Usersession session = (Usersession) msg.getOldValue();
+					session.removeLoginObserver(ESBrowserView.this);
+				}
+			}
+			super.notifyChanged(msg);
+		}
+	}
+
+	/**
+	 * Listener for changes in the server infos.
+	 * 
+	 * @author koegel
+	 */
+	private final class ServerInfoAdapter extends AdapterImpl {
+		private final ServerInfo serverInfo;
+
+		private ServerInfoAdapter(ServerInfo serverInfo) {
+			this.serverInfo = serverInfo;
+		}
+
+		@Override
+		public void notifyChanged(final Notification msg) {
+			if (msg.getFeature() != null
+				&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getServerInfo_ProjectInfos())) {
+				Display.getCurrent().asyncExec(new Runnable() {
+					public void run() {
+						TreeNode element = new TreeNode(serverInfo);
+						if (msg.getEventType() == Notification.REMOVE_MANY || msg.getEventType() == Notification.REMOVE) {
+							viewer.collapseToLevel(element, 0);
+						}
+						viewer.refresh(element, true);
+					}
+				});
+			}
+		}
+	}
+
 	private TreeViewer viewer;
 
 	private ESBrowserContentProvider contentProvider;
 	private MenuManager menuMgr;
 	private AdapterImpl workspaceAdapter;
-	private AdapterImpl serverInfoAdapter;
+
+	private Map<ServerInfo, AdapterImpl> serverInfoAdapterMap = new HashMap<ServerInfo, AdapterImpl>();
 
 	/**
 	 * The constructor.
@@ -61,51 +127,11 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 			u.addLoginObserver(this);
 		}
 		for (final ServerInfo serverInfo : currentWorkspace.getServerInfos()) {
-			serverInfoAdapter = new AdapterImpl() {
-				@Override
-				public void notifyChanged(final Notification msg) {
-					if (msg.getFeature() != null
-						&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getServerInfo_ProjectInfos())) {
-						Display.getCurrent().asyncExec(new Runnable() {
-							public void run() {
-								TreeNode element = new TreeNode(serverInfo);
-								if (msg.getEventType() == Notification.REMOVE_MANY
-									|| msg.getEventType() == Notification.REMOVE) {
-									viewer.collapseToLevel(element, 0);
-								}
-								viewer.refresh(element, true);
-							}
-						});
-					}
-				}
-			};
+			AdapterImpl serverInfoAdapter = new ServerInfoAdapter(serverInfo);
 			serverInfo.eAdapters().add(serverInfoAdapter);
+			serverInfoAdapterMap.put(serverInfo, serverInfoAdapter);
 		}
-		workspaceAdapter = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getNewValue() instanceof ServerInfo) {
-					ServerInfo serverInfo = (ServerInfo) msg.getNewValue();
-					serverInfo.eAdapters().add(serverInfoAdapter);
-					viewer.refresh();
-				} else if (msg.getOldValue() instanceof ServerInfo) {
-					ServerInfo serverInfo = (ServerInfo) msg.getOldValue();
-					serverInfo.eAdapters().remove(serverInfoAdapter);
-					viewer.refresh();
-				}
-				if (msg.getFeature() != null
-					&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
-					if (msg.getEventType() == Notification.ADD) {
-						Usersession session = (Usersession) msg.getNewValue();
-						session.addLoginObserver(ESBrowserView.this);
-					} else if (msg.getEventType() == Notification.REMOVE) {
-						Usersession session = (Usersession) msg.getOldValue();
-						session.removeLoginObserver(ESBrowserView.this);
-					}
-				}
-				super.notifyChanged(msg);
-			}
-		};
+		workspaceAdapter = new WorkspaceAdapter();
 		currentWorkspace.eAdapters().add(workspaceAdapter);
 	}
 
@@ -212,7 +238,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 			u.removeLoginObserver(this);
 		}
 		for (ServerInfo s : currentWorkspace.getServerInfos()) {
-			s.eAdapters().remove(serverInfoAdapter);
+			s.eAdapters().remove(serverInfoAdapterMap.get(s));
 		}
 
 	}
