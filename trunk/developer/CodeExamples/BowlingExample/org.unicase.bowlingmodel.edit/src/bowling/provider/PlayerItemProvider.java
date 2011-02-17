@@ -73,6 +73,7 @@ public class PlayerItemProvider
 			addHeightPropertyDescriptor(object);
 			addIsProfessionalPropertyDescriptor(object);
 			addGamePropertyDescriptor(object);
+			addPlayerlistPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -270,6 +271,28 @@ public class PlayerItemProvider
 				 true,
 				 false,
 				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Playerlist feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlayerlistPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Player_playerlist_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Player_playerlist_feature", "_UI_Player_type"),
+				 BowlingPackage.Literals.PLAYER__PLAYERLIST,
+				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
