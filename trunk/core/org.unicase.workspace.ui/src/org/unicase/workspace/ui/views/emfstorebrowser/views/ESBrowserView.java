@@ -136,7 +136,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 						ServerInfo serverInfo = (ServerInfo) value;
 						LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
 							serverInfo);
-						if (dialog.open() == Window.OK) {
+						if (dialog.open() == Window.OK && !event.getTreeViewer().isBusy()) {
 							event.getTreeViewer().refresh(value, true);
 						}
 
