@@ -19,7 +19,7 @@ public class MEDropAdaptorPlayer extends MEDropAdapter {
 	}
 	
 	public void drop(DropTargetEvent event, EObject target, List<EObject> source){
-		if(source.get(0) instanceof Game | target instanceof Player){
+		if(source.get(0) instanceof Game && target instanceof Player){
 			((Game)source.get(0)).setPlayer((Player)target);
 		}
 	}
