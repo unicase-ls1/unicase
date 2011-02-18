@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.5"?>
+<?pde version="3.6"?>
 
 <target name="EMFstore">
 <locations>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.tptp.platform.commons.logging.feature.group" version="4.4.100.v200912101900-2-37w311A1517336A"/>
-<unit id="org.eclipse.tptp.platform.jakarta.log4j.feature.group" version="4.4.100.v200912101900-217C7w311A14183138"/>
-<repository location="http://download.eclipse.org/releases/galileo"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.equinox.executable.feature.group" version="3.3.200.R35x_v20090724-7M-FneFF9aMTyz0pw04ONXn"/>
-<unit id="org.eclipse.sdk.feature.group" version="3.5.1.R35x_v20090811-7Q7bAIBPVUBVbKSMTyyfpOteKTem7_g2paS1__z-Rrmf4"/>
-<unit id="org.eclipse.sdk.ide" version="3.5.1.M20090917-0800"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.5.0.v200906151043"/>
-<unit id="org.eclipse.equinox.core.sdk.feature.group" version="3.5.1.R35x_v20090811-7sF9-FRFFR1En_CEJqJkQv5n3BB7"/>
-<unit id="org.eclipse.equinox.p2.sdk.feature.group" version="3.5.1.R35x_v20090811-8q7BGDeG9lvdam1k4a8lAK-7PD93"/>
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.5.1.r351_v20090901-7G7MAA7lQiEeE7LKsaYgOK58fdAa"/>
-<unit id="org.eclipse.gef.sdk.feature.group" version="3.5.1.v20090724-1146-7G7O2A5WNWaQLaPUaUkgjJfXcQKM"/>
-<unit id="org.eclipse.gmf.sdk.feature.group" version="2.2.1.v20090814-1000-7C7F1BLxlfAqjMDHunFV5S-_YY-Q"/>
-<repository location="http://download.eclipse.org/releases/galileo"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.2"/>
-<repository location="http://unicase.googlecode.com/svn/updatesite/internal/"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.platform.ide" version="3.5.1.M20090917-0800"/>
-<unit id="org.eclipse.sdk.feature.group" version="3.5.1.R35x_v20090811-7Q7bAIBPVUBVbKSMTyyfpOteKTem7_g2paS1__z-Rrmf4"/>
-<unit id="org.eclipse.gmf.feature.group" version="1.2.1.v20090729-2029-7d8D7CFXwnKwGb_GGuSCBqELpPk0"/>
-<repository location="http://download.eclipse.org/releases/galileo"/>
-</location>
-<location path="/home/unicase/Desktop/delta-pack/eclipse/plugins" type="Directory"/>
 <location path="/home/unicase/Desktop/eclipsemodelling" type="Directory"/>
+<location path="/home/unicase/Desktop/delta-pack/eclipse/plugins" type="Directory"/>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="org.eclipse.gef.examples.feature.group" version="3.6.1.v20100908-1100-7G7T1BgJ9E99iCg4FPEO"/>
+<unit id="org.eclipse.gef.sdk.feature.group" version="3.6.1.v20100908-1100-7G7R2A5WNcBQPZgXAHiSXMXYaKPI"/>
+<unit id="org.eclipse.zest.sdk.feature.group" version="1.2.0.v20100519-2050-67908COKMFAKPYIEUdUVWhXYN8VN"/>
+<unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.4.1.v20100909-1000-47B28xGC7DxS9Q69KFQ3AHJL9t84"/>
+<unit id="org.eclipse.gmf.feature.group" version="1.4.1.v20100909-1300-7d9A78FYnmMD7VBZOqOghp2tsgXc"/>
+<unit id="org.eclipse.gmf.examples.runtime.feature.group" version="1.4.1.v20100909-1300-7B7L1F8NcJP-Jz-Qb9Sz0mY"/>
+<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.4.1.v20100909-1300-67G29E9QYAZrXowmYt08ti7x8V1i"/>
+<unit id="org.eclipse.gmf.sdk.feature.group" version="2.3.0.v20100508-1742-7779-95sDcLbMSsdu7Xz-xO-z0oe"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="edu.tum.cs.cope.feature.feature.group" version="0.2.14"/>
+<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.14"/>
+<repository location="http://cope.in.tum.de/update-site/site.xml"/>
+</location>
 </locations>
 </target>
-
