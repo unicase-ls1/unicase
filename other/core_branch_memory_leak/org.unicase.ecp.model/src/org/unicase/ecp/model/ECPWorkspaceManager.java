@@ -52,10 +52,8 @@ public final class ECPWorkspaceManager {
 					exception);
 		}
 		if (confs.length < 1) {
-			Exception exception = new IllegalStateException(
+			throw new IllegalStateException(
 					"No Workspace registered");
-			Activator.getDefault().logException(exception.getMessage(),
-					exception);
 		}
 		try {
 			currentWorkspace = ((ECPWorkspaceProvider) confs[0]

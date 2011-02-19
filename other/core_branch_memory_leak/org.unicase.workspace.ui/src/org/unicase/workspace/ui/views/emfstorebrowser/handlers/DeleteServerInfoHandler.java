@@ -48,7 +48,8 @@ public class DeleteServerInfoHandler extends AbstractHandler {
 		EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 		ArrayList<ProjectSpace> usedSpaces = new ArrayList<ProjectSpace>();
 		for (ProjectSpace projectSpace : projectSpaces) {
-			if (projectSpace.getUsersession().getServerInfo().equals(serverInfo)) {
+			if (projectSpace.getUsersession() != null
+				&& projectSpace.getUsersession().getServerInfo().equals(serverInfo)) {
 				usedSpaces.add(projectSpace);
 			}
 		}

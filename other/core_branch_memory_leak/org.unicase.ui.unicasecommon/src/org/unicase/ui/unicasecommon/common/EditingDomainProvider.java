@@ -22,6 +22,11 @@ public class EditingDomainProvider implements org.unicase.workspace.util.Editing
 
 	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.util.EditingDomainProvider#getEditingDomain(org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
 	public EditingDomain getEditingDomain(ResourceSet resourceSet) {
 		TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreTransactionalCommandStack(), resourceSet);

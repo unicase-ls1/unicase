@@ -28,6 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -201,7 +202,12 @@ public final class NotificationToOperationConverter {
 			if (id == null) {
 				id = ((ProjectImpl) project).getDeletedModelElementId(valueElement);
 			}
-			referencedModelElements.add(id);
+			if (id != null) {
+				referencedModelElements.add(id);
+			} else if (ModelUtil.getProject(valueElement) == project) {
+				throw new IllegalStateException("Element in Project does not have an ID: " + valueElement);
+			}
+			// ignore value elements outside of the current project, they are not tracked
 		}
 		return op;
 

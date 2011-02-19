@@ -21,5 +21,5 @@ public interface EditingDomainProvider {
 	 * @param resourceSet resource set
 	 * @return domain
 	 */
-	public EditingDomain getEditingDomain(ResourceSet resourceSet);
+	EditingDomain getEditingDomain(ResourceSet resourceSet);
 }

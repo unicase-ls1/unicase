@@ -20,6 +20,11 @@ public abstract class AbstractUnicaseCommand {
 
 	private RuntimeException runtimeException;
 
+	/**
+	 * Create a command to run the command body.
+	 * 
+	 * @return the command
+	 */
 	protected Command createCommand() {
 		if (Configuration.getEditingDomain() instanceof TransactionalEditingDomain) {
 			return new RecordingCommand((TransactionalEditingDomain) Configuration.getEditingDomain()) {
@@ -58,6 +63,9 @@ public abstract class AbstractUnicaseCommand {
 		}
 	}
 
+	/**
+	 * Content of the actual command.
+	 */
 	protected abstract void commandBody();
 
 	/**
