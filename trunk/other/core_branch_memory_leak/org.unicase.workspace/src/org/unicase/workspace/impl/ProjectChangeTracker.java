@@ -52,7 +52,7 @@ import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
 import org.unicase.workspace.changeTracking.commands.CommandObserver;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
+import org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
@@ -82,7 +82,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
 	private DirtyResourceSet dirtyResourceSet;
-	private EMFStoreTransactionalCommandStack emfStoreTransactionalCommandStack;
+	private EMFStoreCommandStack emfStoreCommandStack;
 	private int currentOperationListSize;
 	private EditingDomain editingDomain;
 	private Set<EObject> currentClipboard;
@@ -91,6 +91,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 	private NotificationToOperationConverter converter;
 	private List<PostCreationListener> postCreationListeners;
+	private boolean commandIsRunning;
 
 	/**
 	 * @return the removedElements
@@ -116,15 +117,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 			CommandStack commandStack = editingDomain.getCommandStack();
 
-			// TODO DOD - can we ignore this?
-
-			// if (!(commandStack instanceof EMFStoreTransactionalCommandStack)) {
-			// throw new IllegalStateException(
-			// "Setup of ResourceSet is invalid, there is no EMFStoreTransactionalCommandStack!");
-			// }
-			if (commandStack instanceof EMFStoreTransactionalCommandStack) {
-				emfStoreTransactionalCommandStack = (EMFStoreTransactionalCommandStack) commandStack;
-				emfStoreTransactionalCommandStack.addCommandStackObserver(this);
+			if (commandStack instanceof EMFStoreCommandStack) {
+				emfStoreCommandStack = (EMFStoreCommandStack) commandStack;
+				emfStoreCommandStack.addCommandStackObserver(this);
+			} else {
+				throw new IllegalStateException("Setup of ResourceSet is invalid, there is no EMFStoreCommandStack!");
 			}
 		}
 		operations = projectSpace.getOperations();
@@ -174,12 +171,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			rootObjects.addAll(modelElement.eCrossReferences());
 			changeRecorder.beginRecording(rootObjects);
 			stopChangeRecording();
-			ModelUtil.deleteOutgoingCrossReferences(modelElement);
-			ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, project);
-			for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
-				ModelUtil.deleteOutgoingCrossReferences(child);
-				ModelUtil.deleteIncomingCrossReferencesFromProject(child, project);
-			}
+			ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
+			ModelUtil.deleteIncomingCrossReferencesFromProject(modelElement, project, true, false);
+
 			// stop change recorder, start operation recorded and reapply reversed recorded changes
 			ChangeDescription changeDesc = changeRecorder.endRecording();
 			CompositeOperation oldCompositeOperation = this.compositeOperation;
@@ -381,7 +375,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 			if (isRecording) {
 				recordingFinished();
 			}
-			saveDirtyResources();
+			if (!commandIsRunning) {
+				saveDirtyResources();
+			}
 		}
 	}
 
@@ -411,7 +407,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		// add resulting operations as suboperations to composite or top-level operations
 		if (compositeOperation != null) {
 			compositeOperation.getSubOperations().addAll(ops);
-			projectSpace.saveResource(compositeOperation.eResource());
+			// FIXME: ugly hack for recording of create operation cross references
+			if (compositeOperation.eResource() != null) {
+				projectSpace.saveResource(compositeOperation.eResource());
+			}
 		} else {
 			if (ops.size() > 1) {
 				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
@@ -539,8 +538,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
 	public void projectDeleted(Project project) {
-		if (emfStoreTransactionalCommandStack != null) {
-			emfStoreTransactionalCommandStack.removeCommandStackObserver(this);
+		if (emfStoreCommandStack != null) {
+			emfStoreCommandStack.removeCommandStackObserver(this);
 		}
 	}
 
@@ -560,6 +559,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
+		commandIsRunning = false;
 		// means that we have not seen a command start yet
 		if (currentClipboard == null) {
 			return;
@@ -595,11 +595,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		// remove all deleted elements
 		newElementsOnClipboardAfterCommand.removeAll(deletedElements);
 
-		if (projectSpace.getProject() != null) {
-			saveDirtyResources();
-		} else {
-			saveDirtyResources();
-		}
+		saveDirtyResources();
 	}
 
 	private void cleanResources(EObject deletedElement) {
@@ -775,6 +771,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	public void commandStarted(Command command) {
 		currentOperationListSize = projectSpace.getOperations().size();
 		currentClipboard = getModelElementsFromClipboard();
+		commandIsRunning = true;
 
 	}
 

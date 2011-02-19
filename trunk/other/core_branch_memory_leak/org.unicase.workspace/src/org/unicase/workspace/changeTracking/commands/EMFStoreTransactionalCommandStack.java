@@ -5,31 +5,26 @@
  */
 package org.unicase.workspace.changeTracking.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Command Stack with additional support for command listing.
  * 
  * @author koegel
  */
-public class EMFStoreTransactionalCommandStack extends TransactionalCommandStackImpl {
+public class EMFStoreTransactionalCommandStack extends TransactionalCommandStackImpl implements EMFStoreCommandStack {
 
 	private Command currentCommand;
-
-	private List<CommandObserver> commandObservers;
+	private EMFStoreCommandNotifier notifier;
 
 	/**
 	 * Dafault Constructor.
 	 */
 	public EMFStoreTransactionalCommandStack() {
-		commandObservers = new ArrayList<CommandObserver>();
+		notifier = new EMFStoreCommandNotifier();
 	}
 
 	/**
@@ -43,36 +38,25 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 		// check if we are already inside of a command, if not then notify.
 		if (currentCommand == null) {
 			currentCommand = command;
-			notifiyListenersAboutStart(command);
+			notifier.notifiyListenersAboutStart(command);
 		}
 
 		try {
 			super.basicExecute(command);
 		} catch (OperationCanceledException e) {
-			this.notifiyListenersAboutCommandFailed(command, e);
+			notifier.notifiyListenersAboutCommandFailed(command, e);
 			this.currentCommand = null;
 			throw e;
 		}
+
 		// Notify someone that the command is done.
 		// Check if we are really at the end of the most outer command.
 		if (currentCommand == command) {
 			// check again if command was really completed.
 			if (mostRecentCommand == command) {
-				this.notifiyListenersAboutCommandCompleted(command);
+				notifier.notifiyListenersAboutCommandCompleted(command);
 			}
 			currentCommand = null;
-		}
-	}
-
-	private void notifiyListenersAboutStart(Command command) {
-		for (CommandObserver commandObservers : this.commandObservers) {
-			try {
-				commandObservers.commandStarted(command);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException e) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.logWarning("Command Observer threw exception", e);
-			}
 		}
 	}
 
@@ -85,52 +69,29 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 	@Override
 	protected void handleRollback(Command command, RollbackException rbe) {
 		super.handleRollback(command, rbe);
-		notifiyListenersAboutCommandFailed(command, (rbe.getCause() instanceof Exception) ? (Exception) rbe.getCause()
+		notifier.notifiyListenersAboutCommandFailed(command, (rbe.getCause() != null) ? (Exception) rbe.getCause()
 			: rbe);
+
 		if (currentCommand == command) {
 			currentCommand = null;
 		}
 	}
 
-	private void notifiyListenersAboutCommandFailed(Command command, Exception exception) {
-		for (CommandObserver commandObservers : this.commandObservers) {
-			try {
-				commandObservers.commandFailed(command, exception);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException e) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.logWarning("Command Observer threw exception", e);
-			}
-		}
-	}
-
-	private void notifiyListenersAboutCommandCompleted(Command command) {
-		for (CommandObserver commandObservers : this.commandObservers) {
-			try {
-				commandObservers.commandCompleted(command);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (RuntimeException e) {
-				// END SUPRESS CATCH EXCEPTION
-				ModelUtil.logWarning("Command Observer threw exception", e);
-			}
-		}
-	}
-
 	/**
-	 * Add a command stack observer.
+	 * {@inheritDoc}
 	 * 
-	 * @param observer the observer
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#addCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
 	 */
 	public void addCommandStackObserver(CommandObserver observer) {
-		commandObservers.add(observer);
+		notifier.addCommandStackObserver(observer);
 	}
 
 	/**
-	 * Remove COmmand stack observer.
+	 * {@inheritDoc}
 	 * 
-	 * @param observer the observer
+	 * @see org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack#removeCommandStackObserver(org.unicase.workspace.changeTracking.commands.CommandObserver)
 	 */
 	public void removeCommandStackObserver(CommandObserver observer) {
-		commandObservers.remove(observer);
+		notifier.removeCommandStackObserver(observer);
 	}
 }

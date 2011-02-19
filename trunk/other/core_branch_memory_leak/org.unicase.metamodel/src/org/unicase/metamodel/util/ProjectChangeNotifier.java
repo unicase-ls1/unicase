@@ -24,6 +24,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	private boolean isInitializing;
 	private EObject removedModelElement;
 	private Notification currentNotification;
+	private int reentrantCallToAddAdapterCounter;
 
 	/**
 	 * Constructor. Attaches the Adapter to the given {@link ProjectImpl}.
@@ -35,6 +36,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		isInitializing = true;
 		projectImpl.eAdapters().add(this);
 		isInitializing = false;
+		reentrantCallToAddAdapterCounter = 0;
 
 	}
 
@@ -45,9 +47,20 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	 */
 	@Override
 	protected void addAdapter(Notifier notifier) {
-		if (!notifier.eAdapters().contains(this)) {
-			super.addAdapter(notifier);
+
+		try {
+			reentrantCallToAddAdapterCounter += 1;
+			if (!notifier.eAdapters().contains(this)) {
+				super.addAdapter(notifier);
+			}
+		} finally {
+			reentrantCallToAddAdapterCounter -= 1;
 		}
+		if (reentrantCallToAddAdapterCounter > 0) {
+			// any other than the first call in re-entrant calls to addAdapter are going to call the project
+			return;
+		}
+
 		if (!isInitializing && notifier instanceof EObject && !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
 			if (!projectImpl.containsInstance(modelElement) && isInProject(modelElement)) {
