@@ -77,9 +77,6 @@ public class AdapterFactoryLabelProviderDisposeTest extends UITestSetup {
 		}
 		openModelElement(actionItem);
 
-		/*
-		 * When open a actionItem there is more than one ActionItemItemProvider with a reference to an ActionItem?!!??
-		 */
 		// collect all ActionItemItemProvider from actionItem:
 		for (Adapter adapter : actionItem.eAdapters()) {
 			if (adapter instanceof ActionItemItemProvider && adapter.getTarget() == actionItem) {
@@ -87,14 +84,6 @@ public class AdapterFactoryLabelProviderDisposeTest extends UITestSetup {
 					actionItemProviders.add((ActionItemItemProvider) adapter);
 			}
 		}
-
-		/*
-		 * try { editorInput = getBot().activeEditor().getReference().getEditorInput(); } catch (PartInitException e) {
-		 * } DecoratingLabelProvider decoratingLabelProvider = ((MEEditorInput) editorInput).getLabelProvider();
-		 * AdapterFactoryLabelProvider labelProvider = (AdapterFactoryLabelProvider) decoratingLabelProvider
-		 * .getLabelProvider(); ComposedAdapterFactory adapterFactory = (ComposedAdapterFactory)
-		 * labelProvider.getAdapterFactory();
-		 */
 
 		try {
 			Thread.sleep(5000);
@@ -105,20 +94,12 @@ public class AdapterFactoryLabelProviderDisposeTest extends UITestSetup {
 		getBot().activeEditor().close();
 
 		/*
-		 * After closing there must be one ActionItemItemProvider disposed at least. Therefore we have to find one
-		 * ActionItemItemProvider that is not referenced by actionItem.eAdapters() . And this instance of
-		 * ActionItemItemProvider mustn't have a reference to the Actionitem.
+		 * After closing all ActionItemItemProvider have to be disposed.
 		 */
 
-		boolean oneActionItemProviderDisposed = false;
 		for (ActionItemItemProvider itemprovider : actionItemProviders) {
-			if (!actionItem.eAdapters().contains(itemprovider)) {
-				oneActionItemProviderDisposed = true;
-				assertTrue(itemprovider.getTarget() == null);
-				break;
-			}
+			assertTrue(itemprovider.getTarget() == null);
 		}
-		assertTrue(oneActionItemProviderDisposed);
 
 	}
 }
