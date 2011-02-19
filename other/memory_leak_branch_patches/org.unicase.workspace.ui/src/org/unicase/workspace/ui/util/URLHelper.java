@@ -51,11 +51,6 @@ public final class URLHelper {
 	 */
 	public static final int MAXLIMIT = 1000;
 
-	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-	// jc: open
-	// Superklasse hat kein dispose() und static labelProvider
 	private URLHelper() {
 
 	}
@@ -99,10 +94,13 @@ public final class URLHelper {
 			ret.append(projectSpace.getProjectId().getId());
 		}
 		ret.append("/");
-		String name = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getText(modelElement);
-		// jc: open
-		// Superklasse hat kein dispose()
+		// hkq: done
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		String name = adapterFactoryLabelProvider.getText(modelElement);
+		adapterFactory.dispose();
+		adapterFactoryLabelProvider.dispose();
 		ModelElementId modelElementId = projectSpace.getProject().getModelElementId(modelElement);
 
 		if (name != null) {
@@ -167,7 +165,12 @@ public final class URLHelper {
 		icon.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
 				Rectangle area = icon.getClientArea();
-				e.gc.drawImage(labelProvider.getImage(modelElement), area.x, area.y);
+				// hkq: done
+				ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+				AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+					adapterFactory);
+				e.gc.drawImage(adapterFactoryLabelProvider.getImage(modelElement), area.x, area.y);
 			}
 		});
 

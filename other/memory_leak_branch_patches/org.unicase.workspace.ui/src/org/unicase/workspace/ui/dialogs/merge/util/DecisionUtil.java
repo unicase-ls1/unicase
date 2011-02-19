@@ -100,11 +100,10 @@ public final class DecisionUtil {
 	 * @return provider
 	 */
 	public static AdapterFactoryLabelProvider getLabelProvider() {
+		// hkq: done (no changes)
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return provider;
-		// jc: open
-		// Superklasse hat kein dispose()
 	}
 
 	/**
@@ -192,10 +191,9 @@ public final class DecisionUtil {
 	 * @return label proivder
 	 */
 	public static AdapterFactoryLabelProvider getAdapterFactory() {
+		// hkq: done (no changes)
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider;
-		// jc: open
-		// Superklasse hat kein dispose()
 	}
 }
