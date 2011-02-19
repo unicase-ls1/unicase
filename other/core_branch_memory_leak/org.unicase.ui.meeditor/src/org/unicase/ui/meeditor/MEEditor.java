@@ -261,8 +261,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private void updateCreatorHint() {
 		if (statusMessageProvider != null) {
-			getEditorSite().getActionBars().getStatusLineManager()
-				.setMessage(statusMessageProvider.getMessage(modelElement));
+			getEditorSite().getActionBars().getStatusLineManager().setMessage(
+				statusMessageProvider.getMessage(modelElement));
 		}
 	}
 
@@ -307,7 +307,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 		modelElementChangeListener.remove();
 		modelElementContext.removeModelElementContextListener(modelElementContextListener);
 		modelElementContext.dispose();
-		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
+		// ((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
+		((MEEditorInput) getEditorInput()).dispose();
 		super.dispose();
 	}
 
