@@ -183,7 +183,6 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	private void showReviewerSelectionDialog(WorkItem workItem) {
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
 		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer().getControl()
 			.getShell(), labelProvider, workItem);
 		reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);

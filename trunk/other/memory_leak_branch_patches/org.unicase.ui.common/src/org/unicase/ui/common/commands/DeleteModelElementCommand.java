@@ -45,7 +45,6 @@ public final class DeleteModelElementCommand {
 	 * {@inheritDoc}
 	 */
 	public void run() {
-		// hkq: done
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		String modelElementName = adapterFactoryLabelProvider.getText(me);
