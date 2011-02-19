@@ -220,7 +220,7 @@ public class MEEditorInput implements IEditorInput, IDisposable {
 		ComposedAdapterFactory adapterFactory = (ComposedAdapterFactory) adapterFactoryLabelProvider
 			.getAdapterFactory();
 		adapterFactory.dispose();
-		// adapterFactoryLabelProvider.dispose();
+		adapterFactoryLabelProvider.dispose();
 		labelProvider.dispose();
 	}
 
