@@ -41,10 +41,12 @@ public final class UiUtil {
 	public static Object[] showMESelectionDialog(Shell shell, Collection<?> initialContent, String title,
 		boolean multiSelection) {
 
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactoryLabelProvider factoryLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
-			new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		//jc: open
+			factoryLabelProvider);
+		//hkq: done
 
 		dlg.setElements(initialContent.toArray(new Object[initialContent.size()]));
 		dlg.setTitle(title);
@@ -54,10 +56,12 @@ public final class UiUtil {
 		if (dlg.open() == Window.OK) {
 			result = dlg.getResult();
 		}
+		dlg.close();
+		adapterFactory.dispose();
+		factoryLabelProvider.dispose();
 		return result;
 	}
 
-	private static AdapterFactoryLabelProvider labelProvider;
 
 	/**
 	 * Get the name of a model element.
@@ -66,13 +70,16 @@ public final class UiUtil {
 	 * @return the name for the model element
 	 */
 	public static String getNameForModelElement(EObject modelElement) {
-		if (labelProvider == null) {
-			labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		}
-		return labelProvider.getText(modelElement);
-		//jc: open
-		// static und keine Superklasse mit dispose()
+		AdapterFactoryLabelProvider labelProvider;
+		String result;
+		//hkq: done
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		
+		result = labelProvider.getText(modelElement);
+		adapterFactory.dispose();
+		labelProvider.dispose();
+		return result;
 	}
 
 }
