@@ -86,7 +86,6 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
 		List<WorkItemMeetingSection> workItemMeetingSections = getAllWorkItemMeetingSections(meeting);
 
 		for (WorkItemMeetingSection workItemMeetingSection : workItemMeetingSections) {
