@@ -223,37 +223,34 @@ litigation.
          version="0.0.0"/>
 
    <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import plugin="org.eclipse.ocl.ecore"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
+      <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
       <import plugin="org.eclipse.core.databinding"/>
       <import plugin="org.eclipse.jface.databinding"/>
       <import plugin="org.eclipse.core.databinding.beans"/>
       <import plugin="org.eclipse.core.filesystem"/>
-      <import plugin="edu.tum.cs.cope.migration.execution"/>
+      <import plugin="org.eclipse.ui"/>
       <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
-      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.emf.ecore.editor"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="edu.tum.cs.cope.declaration.registry"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.emf.databinding.edit"/>
-      <import plugin="org.eclipse.emf.transaction.ui"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
@@ -265,10 +262,16 @@ litigation.
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.forms"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
+      <import plugin="org.eclipse.emf.databinding.edit"/>
+      <import plugin="org.eclipse.emf.transaction.ui"/>
       <import plugin="org.eclipse.emf.validation"/>
+      <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.13" match="greaterOrEqual"/>
+      <import plugin="org.unicase.ui.tableview" version="1.0.0.qualifier" match="greaterOrEqual"/>
+      <import plugin="org.unicase.ui.navigator" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
