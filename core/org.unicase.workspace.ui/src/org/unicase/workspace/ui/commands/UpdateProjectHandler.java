@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -33,7 +32,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class UpdateProjectHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
-	private Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 	private Usersession usersession;
 
 	/**
@@ -53,7 +51,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information", "You must select the Project");
+				MessageDialog.openInformation(getShell(), "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
@@ -73,7 +71,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	public void update(final ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
-			MessageDialog.openInformation(shell, null,
+			MessageDialog.openInformation(getShell(), null,
 				"This project is not yet shared with a server, you cannot update.");
 			return;
 		}
@@ -88,14 +86,14 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 			// (as opposed to committing where the dirty property is being set)
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update(
-						"org.unicase.ui.common.decorators.VersionDecorator");
+					PlatformUI.getWorkbench().getDecoratorManager()
+						.update("org.unicase.ui.common.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
-			MessageDialog.openInformation(shell, "No need to update",
+			MessageDialog.openInformation(getShell(), "No need to update",
 				"Your project is up to date, you do not need to update.");
 		}
 	}
@@ -114,7 +112,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	 * {@inheritDoc}
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		UpdateDialog updateDialog = new UpdateDialog(shell, projectSpace, changePackages);
+		UpdateDialog updateDialog = new UpdateDialog(getShell(), projectSpace, changePackages);
 		int returnCode = updateDialog.open();
 
 		// IWorkbenchPage page =
