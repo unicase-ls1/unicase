@@ -9,8 +9,6 @@ import java.util.Date;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -32,7 +30,6 @@ import org.unicase.workspace.ui.dialogs.CommitDialog;
  */
 public class CommitProjectHandler extends ServerRequestCommandHandler implements CommitObserver {
 
-	private Shell shell;
 	private Usersession usersession;
 	private LogMessage logMessage;
 	private String predefinedCommitMessage;
@@ -43,7 +40,6 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	public CommitProjectHandler() {
 		super();
 		setTaskTitle("Commit project...");
-		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 	}
 
@@ -59,7 +55,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information", "You must select the Project");
+				MessageDialog.openInformation(getShell(), "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
@@ -99,7 +95,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		usersession = projectSpace.getUsersession();
 
 		if (usersession == null) {
-			MessageDialog.openInformation(shell, null,
+			MessageDialog.openInformation(getShell(), null,
 				"This project is not yet shared with a server, you cannot commit.");
 		}
 
@@ -110,7 +106,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 			return handleBaseVersionException(projectSpace);
 
 		} catch (NoLocalChangesException e) {
-			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
+			MessageDialog.openInformation(getShell(), null, "No local changes in your project. No need to commit.");
 			throw new CommitCanceledException("No local changes in project space.");
 		}
 	}
@@ -123,11 +119,10 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * @param changePackage a change package
 	 * @throws EmfStoreException if any error in the EmfStore occurs
 	 */
-	public void handleFinalizeCommit(ProjectSpace projectSpace, ChangePackage changePackage)
-		throws EmfStoreException {
+	public void handleFinalizeCommit(ProjectSpace projectSpace, ChangePackage changePackage) throws EmfStoreException {
 		projectSpace.finalizeCommit(changePackage, logMessage, CommitProjectHandler.this);
 	}
-	
+
 	/**
 	 * Sets a predefined message to the CommitDialog.
 	 * 
@@ -137,7 +132,8 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 		this.predefinedCommitMessage = predefinedCommitMessage;
 	}
 
-	private ChangePackage handleBaseVersionException(final ProjectSpace projectSpace) throws CommitCanceledException, EmfStoreException {
+	private ChangePackage handleBaseVersionException(final ProjectSpace projectSpace) throws CommitCanceledException,
+		EmfStoreException {
 		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
 			"Your project is outdated, you need to update before commit. Do you want to update now?",
 			MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
@@ -150,22 +146,23 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
-	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace, org.unicase.emfstore.esmodel.versioning.ChangePackage)
+	 * 
+	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		if (changePackage.getOperations().isEmpty()) {
-			MessageDialog.openInformation(shell, "No local changes",
+			MessageDialog.openInformation(getShell(), "No local changes",
 				"Your local changes were mutually exclusive.\nThey are no changes pending for commit.");
 			return false;
 		}
-		CommitDialog commitDialog = new CommitDialog(shell, changePackage, projectSpace);
+		CommitDialog commitDialog = new CommitDialog(getShell(), changePackage, projectSpace);
 		if (predefinedCommitMessage != null) {
-			if( changePackage.getLogMessage() == null ) {
+			if (changePackage.getLogMessage() == null) {
 				changePackage.setLogMessage(logMessage);
 			}
-			
+
 			changePackage.getLogMessage().setMessage(predefinedCommitMessage);
 		}
 		int returnCode = commitDialog.open();
