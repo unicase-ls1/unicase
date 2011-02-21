@@ -16,4 +16,8 @@
       [Enter License Description here.]
    </license>
 
+   <includes
+         id="org.unicase.client.updatesite.feature"
+         version="0.0.0"/>
+
 </feature>
