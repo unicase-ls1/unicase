@@ -16,8 +16,4 @@
       [Enter License Description here.]
    </license>
 
-   <includes
-         id="edu.tum.cs.cope.runtime.feature"
-         version="0.0.0"/>
-
 </feature>
