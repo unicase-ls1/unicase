@@ -218,10 +218,6 @@ litigation.
       <update label="UNICASE update site" url="http://unicase.googlecode.com/svn/updatesite/internal/"/>
    </url>
 
-   <includes
-         id="edu.tum.cs.cope.runtime.feature"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
