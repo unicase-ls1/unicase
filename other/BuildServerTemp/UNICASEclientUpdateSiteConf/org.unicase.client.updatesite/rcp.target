@@ -19,12 +19,11 @@
 <unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.14"/>
 <repository location="http://cope.in.tum.de/update-site/site.xml"/>
 </location>
-<location path="/home/unicase/Desktop/eclipsemodelling" type="Directory"/>
-<location path="/home/unicase/Desktop/delta-pack/eclipse/plugins" type="Directory"/>
 <location includeAllPlatforms="true" includeMode="slicer" type="InstallableUnit">
 <unit id="org.eclipse.rcp.source.feature.group" version="3.6.1.r361_v20100827-9OArFLdFjY-ThSQXmKvKz0_T"/>
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
+<location path="/home/unicase/Desktop/delta-pack" type="Profile"/>
+<location path="/home/unicase/Desktop/eclipsemodelling" type="Profile"/>
 </locations>
 </target>
-
