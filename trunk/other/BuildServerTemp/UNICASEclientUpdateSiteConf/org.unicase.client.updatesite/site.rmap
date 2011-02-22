@@ -6,9 +6,7 @@
     xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
     xmlns:pp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
-    
-      <locator searchPathRef="resources"/>
-    <searchPath name="resources">
+        <searchPath name="resources">
         <provider readerType="local" componentTypes="osgi.bundle,eclipse.feature"
                   mutable="false" source="false">
             <uri format="file:{0}/{1}/">
@@ -17,5 +15,14 @@
             </uri>
         </provider>
     </searchPath>
+    <locator searchPathRef="resources"/>
+    
+  
+  <searchPath name="edu.tum.cs.cope.runtime.feature">
+		<provider readerType="eclipse.import" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
+			<uri format="http://cope.in.tum.de/update-site"/>
+		</provider>
+	</searchPath>
+	<locator searchPathRef="edu.tum.cs.cope.runtime.feature"/>
   
 </rmap>
