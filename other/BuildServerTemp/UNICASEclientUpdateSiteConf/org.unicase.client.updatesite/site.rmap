@@ -8,7 +8,7 @@
 
     <locator searchPathRef="externalBinaries"/>
     <searchPath name="externalBinaries">
-    <provider componentTypes="eclipse.feature,jar" readerType="p2" source="false" mutable="false">
+    <provider componentTypes="jar" readerType="p2" source="false" mutable="false">
     <uri format="http://cope.in.tum.de/update-site"/>
     </provider>
     </searchPath>
