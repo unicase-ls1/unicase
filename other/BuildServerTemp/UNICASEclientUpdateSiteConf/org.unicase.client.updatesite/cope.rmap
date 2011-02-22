@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
+	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0"
+	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+	
+	
+	<searchPath name="edu.tum.cs.cope.runtime.feature">
+		<provider readerType="eclipse.import" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
+			<uri format="http://cope.in.tum.de/update-site"/>
+		</provider>
+	</searchPath>
+	<locator searchPathRef="edu.tum.cs.cope.runtime.feature"/>
+</rmap>
