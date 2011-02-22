@@ -16,13 +16,5 @@
         </provider>
     </searchPath>
     <locator searchPathRef="resources"/>
-    
-  
-  <searchPath name="edu.tum.cs.cope.runtime.feature">
-		<provider readerType="p2" componentTypes="p2" mutable="false" source="false">
-			<uri format="http://cope.in.tum.de/update-site"/>
-		</provider>
-	</searchPath>
-	<locator searchPathRef="edu.tum.cs.cope.runtime.feature"/>
   
 </rmap>
