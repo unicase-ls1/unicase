@@ -20,8 +20,8 @@
          id="org.unicase.client.updatesite.feature"
          version="0.0.0"/>
 
-   <includes
-         id="edu.tum.cs.cope.runtime.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="edu.tum.cs.cope.runtime.feature" version="0.2.14" match="greaterOrEqual"/>
+   </requires>
 
 </feature>
