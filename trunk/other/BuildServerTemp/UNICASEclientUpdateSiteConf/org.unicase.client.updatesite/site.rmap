@@ -6,12 +6,6 @@
     xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
     xmlns:pp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
-    <locator searchPathRef="externalBinaries"/>
-    <searchPath name="externalBinaries">
-    <provider componentTypes="jar" readerType="p2" source="false" mutable="false">
-    <uri format="http://cope.in.tum.de/update-site"/>
-    </provider>
-    </searchPath>
     
       <locator searchPathRef="resources"/>
     <searchPath name="resources">
