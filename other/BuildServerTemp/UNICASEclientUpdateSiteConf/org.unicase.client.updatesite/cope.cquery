@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="cope.rmap">
+<cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="site.rmap">
     <cq:rootRequest name="edu.tum.cs.cope.runtime.feature" componentType="eclipse.feature"/>
     <cq:advisorNode namePattern=".*" useTargetPlatform="false" useWorkspace="false"/>
  </cq:componentQuery>
