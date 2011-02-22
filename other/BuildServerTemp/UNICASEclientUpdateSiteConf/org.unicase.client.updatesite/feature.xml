@@ -21,10 +21,6 @@
          version="0.0.0"/>
 
    <includes
-         id="edu.tum.cs.cope.feature"
-         version="0.0.0"/>
-
-   <includes
          id="edu.tum.cs.cope.runtime.feature"
          version="0.0.0"/>
 
