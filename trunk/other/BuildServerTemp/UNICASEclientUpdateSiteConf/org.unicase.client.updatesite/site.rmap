@@ -7,7 +7,7 @@
     xmlns:pp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
         <searchPath name="resources">
-        <provider readerType="local" componentTypes="osgi.bundle"
+        <provider readerType="local" componentTypes="osgi.bundle,eclipse.feature"
                   mutable="false" source="false">
             <uri format="file:{0}/{1}/">
                 <bc:propertyRef key="workspace.root" />
@@ -19,7 +19,7 @@
     
   
   <searchPath name="edu.tum.cs.cope.runtime.feature">
-		<provider readerType="p2" componentTypes="eclipse.feature" mutable="false" source="false">
+		<provider readerType="p2" componentTypes="p2" mutable="false" source="false">
 			<uri format="http://cope.in.tum.de/update-site"/>
 		</provider>
 	</searchPath>
