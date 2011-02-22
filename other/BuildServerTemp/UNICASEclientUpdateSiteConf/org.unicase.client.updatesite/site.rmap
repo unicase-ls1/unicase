@@ -8,9 +8,20 @@
 
     <locator searchPathRef="externalBinaries"/>
     <searchPath name="externalBinaries">
-    <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+    <provider componentTypes="eclipse.feature,jar" readerType="p2" source="false" mutable="false">
     <uri format="http://cope.in.tum.de/update-site"/>
     </provider>
     </searchPath>
     
+      <locator searchPathRef="resources"/>
+    <searchPath name="resources">
+        <provider readerType="local" componentTypes="osgi.bundle,eclipse.feature"
+                  mutable="false" source="false">
+            <uri format="file:{0}/{1}/">
+                <bc:propertyRef key="workspace.root" />
+                <bc:propertyRef key="buckminster.component" />
+            </uri>
+        </provider>
+    </searchPath>
+  
 </rmap>
