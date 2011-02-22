@@ -239,7 +239,6 @@ litigation.
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.transaction"/>
-      <import plugin="edu.tum.cs.cope.declaration.registry"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.ui.ide"/>
@@ -263,11 +262,11 @@ litigation.
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
       <import plugin="org.eclipse.emf.databinding.edit"/>
       <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="edu.tum.cs.cope.migration.execution" version="0.2.13" match="greaterOrEqual"/>
-      <import plugin="org.unicase.ui.tableview" version="1.0.0.qualifier" match="greaterOrEqual"/>
       <import plugin="org.unicase.ui.navigator" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.unicase.ui.tableview" version="1.0.0.qualifier" match="greaterOrEqual"/>
+      <import feature="edu.tum.cs.cope.runtime.feature" version="0.2.14"/>
    </requires>
 
    <plugin
