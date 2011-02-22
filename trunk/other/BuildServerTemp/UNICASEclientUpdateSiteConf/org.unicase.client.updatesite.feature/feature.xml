@@ -266,7 +266,6 @@ litigation.
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.unicase.ui.tableview" version="1.0.0.qualifier" match="greaterOrEqual"/>
-      <import feature="edu.tum.cs.cope.runtime.feature" version="0.2.14"/>
    </requires>
 
    <plugin
