@@ -1,6 +1,7 @@
 #summary Downloads and Update Site of the EMFStore
 
 This site contains releases and nightly builds of the EMFStore. Also we provide new and noteworthy information on the releases and nightly builds here. Currently there are only nightly builds. 
+All builds are distruíbuted under the [http://www.eclipse.org/legal/epl-v10.html Eclipse Public License (EPL)]
 
 ==Nightly builds==
 
