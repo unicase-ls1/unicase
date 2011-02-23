@@ -12,7 +12,7 @@ Sub-projects:
    * [ECP What is the ECP?]
    * [ECPFeatures Why should I use the ECP?]
    * [GettingStartedWithEMFCP Getting Started with EMF Client Platform]
-   * [ECPCommunication Get in contact with the developers]
+   * [ECPCommunication Get in Contact with the Developers]
    * [ECPDownloads Downloads]
    * [ECPDocumentation Documentation and Tutorials]
    * [http://twitter.com/emfcp ECP Twitter].
