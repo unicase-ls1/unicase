@@ -11,6 +11,12 @@ We also have a mailinglist to announce news about the EMFStore such as new relea
 
 [http://groups.google.com/group/emfstore http://groups.google.com/group/emfstore]
 
+=== Bug Reports ===
+
+You can report bugs to the [mailto:emfstore-dev@googlegroups.com developer mailinglist].
+
+Also you can report bugs in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-store bugzilla of Eclipse].
+
 === Twitter ===
 
 We announce import news such as releases on Twitter:
