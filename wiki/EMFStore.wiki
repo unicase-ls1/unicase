@@ -25,4 +25,6 @@ Features:
      * Navigator showing local models
      * Reflective Editor showing model elements
 
+EMFStore is distributed under the [http://www.eclipse.org/legal/epl-v10.html Eclipse Public License (EPL)] and is an [http://www.eclipse.org/emf-store/ Eclipse project].
+
 To get started with EMFStore please goto the [EMFStoreNavigation EMFStore Wiki].
