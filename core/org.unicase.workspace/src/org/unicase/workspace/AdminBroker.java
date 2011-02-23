@@ -208,7 +208,7 @@ public interface AdminBroker {
 	void removeParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
 
 	/**
-	 *Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
 	 * 
 	 * @see org.unicase.emfstore.AdminEmfStore#getRole(org.unicase.emfstore.esmodel.SessionId, ProjectId, ACOrgUnitId)
 	 * @param projectId project id

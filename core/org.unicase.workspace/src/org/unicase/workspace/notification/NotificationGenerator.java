@@ -66,8 +66,8 @@ public final class NotificationGenerator {
 					try {
 						allProvidersMap.put(provider, new Integer(position));
 					} catch (NumberFormatException ex) {
-						WorkspaceUtil.logException("Wrong priority parameter for NotificationProvider: "
-							+ provider.getName(), ex);
+						WorkspaceUtil.logException(
+							"Wrong priority parameter for NotificationProvider: " + provider.getName(), ex);
 					}
 				}
 			} catch (CoreException e1) {

@@ -32,8 +32,8 @@ public class FileUploadJob extends FileTransferJob {
 	 */
 	public FileUploadJob(FileTransferManager transferManager, FileIdentifier fileId, boolean transferVisibleToUser)
 		throws FileTransferException {
-		super(transferManager, new FileTransferInformation(fileId, (int) transferManager.getCache().getCachedFile(
-			fileId).length()), "File Upload");
+		super(transferManager, new FileTransferInformation(fileId, (int) transferManager.getCache()
+			.getCachedFile(fileId).length()), "File Upload");
 		setUser(transferVisibleToUser);
 		setFile(getCache().getCachedFile(fileId));
 	}

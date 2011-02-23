@@ -64,10 +64,13 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	protected void addProjectSpacesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_Workspace_projectSpaces_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_Workspace_projectSpaces_feature", "_UI_Workspace_type"),
-				WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES, true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Workspace_projectSpaces_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Workspace_projectSpaces_feature",
+					"_UI_Workspace_type"), WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES, true, false, true,
+				null, null, null));
 	}
 
 	/**

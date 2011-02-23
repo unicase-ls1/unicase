@@ -67,9 +67,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -80,9 +81,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_url_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_url_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
@@ -93,9 +95,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addPortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_port_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_port_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__PORT, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
@@ -106,8 +109,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addProjectInfosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_projectInfos_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_projectInfos_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_projectInfos_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__PROJECT_INFOS, true, false, true, null,
 			null, null));
@@ -119,8 +124,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addLastUsersessionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_lastUsersession_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_lastUsersession_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_lastUsersession_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__LAST_USERSESSION, true, false, true,
 			null, null, null));
@@ -132,8 +139,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addCertificateAliasPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_certificateAlias_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_certificateAlias_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_certificateAlias_feature",
 				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
