@@ -8,7 +8,7 @@ NEWS: Here you can find the [Models2010TutorialEMFStore slides and material] of 
 
   * [EMFStoreGettingStarted Getting Started with the EMFStore]
 
-  * [EMFStoreCommunication Get in contact with the developers]
+  * [EMFStoreCommunication Get in Contact with the Developers]
 
   * [EMFStoreArchitecture Architecture]
 
