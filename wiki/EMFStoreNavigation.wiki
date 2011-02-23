@@ -1,6 +1,6 @@
 #summary EMFStore subproject navigational page.
 
-NEWS: EMFStore is now an Eclipse Project, [[http://www.eclipse.org/emf-store/ see here].
+NEWS: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here].
 
   * [EMFStore What is EMFStore?]
 
