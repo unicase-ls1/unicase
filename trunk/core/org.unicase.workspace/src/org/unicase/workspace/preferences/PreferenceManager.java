@@ -41,17 +41,17 @@ public final class PreferenceManager {
 		defaultsMap.put(DashboardKey.PUSHED_PROVIDER, createProperty(DashboardKey.PUSHED_PROVIDER, true));
 		defaultsMap.put(DashboardKey.UPDATE_PROVIDER, createProperty(DashboardKey.UPDATE_PROVIDER, true));
 
-		defaultsMap.put(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS, createProperty(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
-			true));
-		defaultsMap.put(DashboardKey.SHOW_CONTAINMENT_REPLIES, createProperty(DashboardKey.SHOW_CONTAINMENT_REPLIES,
-			true));
+		defaultsMap.put(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
+			createProperty(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS, true));
+		defaultsMap.put(DashboardKey.SHOW_CONTAINMENT_REPLIES,
+			createProperty(DashboardKey.SHOW_CONTAINMENT_REPLIES, true));
 
 		defaultsMap.put(DashboardKey.SHOW_AI_TASKS, createProperty(DashboardKey.SHOW_AI_TASKS, true));
 		defaultsMap.put(DashboardKey.SHOW_BR_TASKS, createProperty(DashboardKey.SHOW_BR_TASKS, true));
 		defaultsMap.put(DashboardKey.SHOW_ISSUE_TASKS, createProperty(DashboardKey.SHOW_ISSUE_TASKS, true));
 		defaultsMap.put(DashboardKey.SHOW_WP_TASKS, createProperty(DashboardKey.SHOW_WP_TASKS, true));
-		defaultsMap.put(DashboardKey.SHOW_ONLY_READYFORREVIEW, createProperty(DashboardKey.SHOW_ONLY_READYFORREVIEW,
-			false));
+		defaultsMap.put(DashboardKey.SHOW_ONLY_READYFORREVIEW,
+			createProperty(DashboardKey.SHOW_ONLY_READYFORREVIEW, false));
 
 		defaultsMap.put(DashboardKey.SUBSCRIPTIONS, createProperty(DashboardKey.SUBSCRIPTIONS, new String[0]));
 

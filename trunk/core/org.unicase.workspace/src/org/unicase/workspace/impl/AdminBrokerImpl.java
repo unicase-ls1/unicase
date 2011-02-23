@@ -57,8 +57,8 @@ public class AdminBrokerImpl implements AdminBroker {
 	 */
 	public void addParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException {
 
-		WorkspaceManager.getInstance().getAdminConnectionManager().addParticipant(getSessionId(), projectId,
-			participant);
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.addParticipant(getSessionId(), projectId, participant);
 
 	}
 
@@ -174,8 +174,8 @@ public class AdminBrokerImpl implements AdminBroker {
 	 */
 	public void removeParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException {
 
-		WorkspaceManager.getInstance().getAdminConnectionManager().removeParticipant(getSessionId(), projectId,
-			participant);
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.removeParticipant(getSessionId(), projectId, participant);
 
 	}
 
@@ -251,8 +251,8 @@ public class AdminBrokerImpl implements AdminBroker {
 	 *      java.lang.String, java.lang.String)
 	 */
 	public void changeOrgUnit(ACOrgUnitId orgUnitId, String name, String description) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager().changeOrgUnit(getSessionId(), orgUnitId, name,
-			description);
+		WorkspaceManager.getInstance().getAdminConnectionManager()
+			.changeOrgUnit(getSessionId(), orgUnitId, name, description);
 	}
 
 	/**

@@ -81,8 +81,8 @@ public abstract class FileTransferJob extends Job {
 	 * @param monitor monitor
 	 */
 	protected void setTotalWork(IProgressMonitor monitor) {
-		monitor.beginTask("Transfering ", (int) (Math.ceil(fileInformation.getFileSize()) / FilePartitionerUtil
-			.getChunkSize()));
+		monitor.beginTask("Transfering ",
+			(int) (Math.ceil(fileInformation.getFileSize()) / FilePartitionerUtil.getChunkSize()));
 	}
 
 	/**

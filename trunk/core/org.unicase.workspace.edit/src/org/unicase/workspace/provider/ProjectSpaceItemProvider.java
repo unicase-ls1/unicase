@@ -80,10 +80,14 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addProjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_project_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ProjectSpace_project_feature", "_UI_ProjectSpace_type"),
-			WorkspacePackage.Literals.PROJECT_SPACE__PROJECT, true, false, true, null, null, null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ProjectSpace_project_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_project_feature",
+					"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__PROJECT, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -92,8 +96,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_projectName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_projectName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectName_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -106,8 +112,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_projectDescription_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_projectDescription_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectDescription_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -119,8 +127,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addUsersessionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_usersession_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_usersession_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_usersession_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__USERSESSION, true, false, true,
 			null, null, null));
@@ -132,8 +142,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addLastUpdatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_lastUpdated_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_lastUpdated_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_lastUpdated_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__LAST_UPDATED, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -145,8 +157,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addResourceCountPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_resourceCount_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_resourceCount_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_resourceCount_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__RESOURCE_COUNT, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -158,9 +172,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addDirtyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_dirty_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ProjectSpace_dirty_feature", "_UI_ProjectSpace_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ProjectSpace_dirty_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_dirty_feature", "_UI_ProjectSpace_type"),
 			WorkspacePackage.Literals.PROJECT_SPACE__DIRTY, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
@@ -171,8 +186,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addOldLogMessagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_oldLogMessages_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_oldLogMessages_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_oldLogMessages_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__OLD_LOG_MESSAGES, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -184,8 +201,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	 * @generated
 	 */
 	protected void addNotificationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_notifications_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_notifications_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_notifications_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATIONS, true, false, true,
 			null, null, null));
