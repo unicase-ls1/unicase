@@ -139,14 +139,16 @@ public class ErrorReportDialog extends MessageDialog {
 		sb.append("&");
 		// body
 		// There is still a problem with inserting the body. Maybe it is depended on the program. I used Thunderbird.
-		sb.append("body=");
-		sb.append("Stack%20trace:%0A");
-		// detailText has a blank space. The email client will not start.
+		sb.append("body=test");
+//		sb.append("Stack%20trace:%0D%0A");
+		// detailText should have a blank space. The email client will not start.
 //		sb.append(detailText);
 
 		String message = sb.toString();
 		
 		// open an external email client, ProcessBuilder used because java.awt.Desktop is included up Java 6.
+		
+		MessageDialog.openInformation(null, "Further Instruction", "We are working to improve this function. Please copy the problem description to the email client manually.");
 		try {
 			new ProcessBuilder( "cmd", "/c", "start", "/B", message).start();
 		} catch (IOException e) {
@@ -154,7 +156,7 @@ public class ErrorReportDialog extends MessageDialog {
 			MessageDialog.openInformation(
 				null,
 				"Error",
-				"An error occurred when trying to launch your email client. You can click on details button to copy the problem description and then send it to ");
+				"An error occurred when trying to launch your email client. You can click on details button to copy the problem description and then send it to "+email);
 		}
 	}
 

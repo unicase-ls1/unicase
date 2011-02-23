@@ -12,6 +12,9 @@
    </extension>
    <extension
          point="org.unicase.errorreporting.reportHandlers">
+      <DefaultReportHandler
+            email="test@test.test">
+      </DefaultReportHandler>
       <ReportHandler
             class="org.unicase.errorreportclient.reporthandlers.TweeterReportHandler">
       </ReportHandler>
