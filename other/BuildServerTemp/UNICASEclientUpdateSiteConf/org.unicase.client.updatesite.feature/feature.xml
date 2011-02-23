@@ -268,7 +268,6 @@ litigation.
       <import plugin="org.eclipse.emf.transaction.ui"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
-      <import plugin="org.unicase.ui.navigator" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
