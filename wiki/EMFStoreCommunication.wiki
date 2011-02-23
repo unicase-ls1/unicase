@@ -2,6 +2,8 @@
 
 === Mailinglists ===
 
+Since EMFStore is a Eclipse project, we have an [http://www.eclipse.org/forums/eclipse.emfstore EMFStore Eclipse newsgroup].
+
 If you have feature requests, questions, bugs or if you want to discuss something, you can send us email to this mailinglist, where all EMFStore framework developers are subscribed to:
 
 [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com]
