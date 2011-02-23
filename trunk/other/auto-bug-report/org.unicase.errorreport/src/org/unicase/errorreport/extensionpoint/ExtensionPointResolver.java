@@ -19,7 +19,7 @@ public class ExtensionPointResolver {
 	private static final String FILTERS_EXTENSION_POINT_ID = "org.unicase.errorreporting.filters";
 	private static final String REPORT_HANDLERS_EXTENSION_POINT_ID = "org.unicase.errorreporting.reportHandlers";
 
-	private static final String STATCK_TRACE_FILTERS_ATTRIBUTE_NAME = "filter-value";
+	private static final String STACK_TRACE_FILTERS_ATTRIBUTE_NAME = "filter-value";
 	private static final String SEVERITY_ATTRIBUTE_NAME = "severity-value";
 
 	private static final String EMAIL_ATTRIBUTE_NAME = "email";
@@ -27,14 +27,14 @@ public class ExtensionPointResolver {
 
 	private Set<String> contributorIds;
 
-	// maps contributor id to filters it defines. A contributor is a plugin
-	// extendin error reporting extension points.
+	// maps contributor id to filters it defines. A contributor is a plug-in
+	// Extending error reporting extension points.
 	private Map<String, List<String>> filtersMap;
 
 	// maps contributor id to log severities they are interested to report.
 	private Map<String, String> severitiesMap;
 
-	// if contributor hasn't define its own implemenatation for handling
+	// if contributor hasn't define its own implementation for handling
 	// reports, it has specified an email to be used by default report handling.
 	private Map<String, String> emailsMap;
 
@@ -63,7 +63,7 @@ public class ExtensionPointResolver {
 			}
 
 			String filterValue = configElement
-					.getAttribute(STATCK_TRACE_FILTERS_ATTRIBUTE_NAME);
+					.getAttribute(STACK_TRACE_FILTERS_ATTRIBUTE_NAME);
 			if(filterValue != null && !filterValue.equals("") && !filterValue.equals("*")){
 				System.out.println(filterValue);
 				filtersMap.get(contributor).add(filterValue);
@@ -128,7 +128,7 @@ public class ExtensionPointResolver {
 	}
 
 	/**
-	 * If contributor plugin has defined a report handler, it will be
+	 * If contributor plug-in has defined a report handler, it will be
 	 * instantiated and returned. Otherwise null is returned.
 	 * 
 	 * @param contributor
