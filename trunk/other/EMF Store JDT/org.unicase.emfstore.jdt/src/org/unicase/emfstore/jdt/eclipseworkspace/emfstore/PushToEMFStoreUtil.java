@@ -50,7 +50,7 @@ public final class PushToEMFStoreUtil {
 	 */
 	private static EObject iFileToEObject(IFile file) throws CannotConvertToEObjectException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		// TODO: CHECK ist das wirklich nötig?
+		// TODO: CHECK ob das wirklich nötig ist?
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI(file.getLocationURI()
 			.toString());
