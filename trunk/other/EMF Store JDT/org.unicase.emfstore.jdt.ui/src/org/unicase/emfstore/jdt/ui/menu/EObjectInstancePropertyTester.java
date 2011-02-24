@@ -7,6 +7,7 @@ package org.unicase.emfstore.jdt.ui.menu;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.core.resources.IFile;
+import org.unicase.emfstore.jdt.ui.PreferenceManager;
 
 /**
  * A PropertyTester that returns true if the selected file matches to one of the supported file extensions. It
@@ -25,39 +26,10 @@ public class EObjectInstancePropertyTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		if (receiver instanceof IFile) {
 			IFile file = (IFile) receiver;
-			return testForFileExtension(file);
+			String fileExtension = file.getFileExtension();
+			return PreferenceManager.isExtensionRegistered(fileExtension);
 
 		}
 		return false;
 	}
-
-	//
-	// /**
-	// * Checks whether IFile is of type EObject.
-	// */
-	// private boolean testForEObject(IFile file) {
-	// try {
-	// PushToEMFStoreUtil.iFileToEObject(file);
-	// return true;
-	//
-	// } catch (CannotContertToEObjectException e) {
-	// return false;
-	// }
-	// }
-
-	/**
-	 * Checks for right file extension. Currently only "ecore" and "genmodel" are supported.
-	 */
-	private boolean testForFileExtension(IFile file) {
-		String fileExtension = file.getFileExtension();
-		if (fileExtension.equals("ecore")) {
-			return true;
-		}
-		if (fileExtension.equals("genmodel")) {
-			return true;
-		}
-
-		return false;
-	}
-
 }
