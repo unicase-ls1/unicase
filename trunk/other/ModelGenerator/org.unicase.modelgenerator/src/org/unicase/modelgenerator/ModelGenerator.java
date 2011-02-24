@@ -5,6 +5,7 @@
  */
 package org.unicase.modelgenerator;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -122,24 +123,24 @@ public final class ModelGenerator {
 	 */
 	private static EObject generateModel() {
 		EObject rootEObject = ModelGeneratorHelper.validateRoot(config.getRootEObject());
-		List<EObject> remainingObjects = new LinkedList<EObject>();
-		remainingObjects.add(rootEObject);
+		Map<Integer, List<EObject>> depthToParentObjects = new LinkedHashMap<Integer, List<EObject>>();
+		List<EObject> parentsInThisDepth = new LinkedList<EObject>();
+		parentsInThisDepth.add(rootEObject);
 		int currentDepth = 1;
-		int remainingElementsInThisDepth = config.getWidth();
-		while(!remainingObjects.isEmpty()) {
-			EObject nextParentEObject = remainingObjects.remove(0);
-			List<EObject> children = generateChildren(nextParentEObject); 
-			// will the just created EObjects have children?
-			if(currentDepth < config.getDepth()) {
-				remainingObjects.addAll(children);
+		depthToParentObjects.put(2, new LinkedList<EObject>());
+		while(currentDepth <= config.getDepth()) {
+			// for all parent EObjects in this depth
+			for(EObject nextParentEObject : parentsInThisDepth) {
+				List<EObject> children = generateChildren(nextParentEObject); 
+				// will the just created EObjects have children?
+				if(currentDepth < config.getDepth()) {
+					depthToParentObjects.get(currentDepth+1).addAll(children);
+				}
 			}
-			remainingElementsInThisDepth -= config.getWidth();
-			// are there still elements to create in this depth?
-			if(remainingElementsInThisDepth <= 0) {
-				// proceed to the next level
-				currentDepth++;
-				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
-			}
+			// proceed to the next level
+			currentDepth++;
+			parentsInThisDepth = depthToParentObjects.get(currentDepth);
+			depthToParentObjects.put((currentDepth+1), new LinkedList<EObject>());
 		}
 		return rootEObject;
 	}
@@ -157,28 +158,31 @@ public final class ModelGenerator {
 	 */
 	private static EObject generateModel(IProgressMonitor monitor) {
 		EObject rootEObject = ModelGeneratorHelper.validateRoot(config.getRootEObject());
-		List<EObject> remainingObjects = new LinkedList<EObject>();
-		remainingObjects.add(rootEObject);
+		Map<Integer, List<EObject>> depthToParentObjects = new LinkedHashMap<Integer, List<EObject>>();
+		List<EObject> parentsInThisDepth = new LinkedList<EObject>();
+		parentsInThisDepth.add(rootEObject);
 		int currentDepth = 1;
-		int remainingElementsInThisDepth = config.getWidth();
-		while(!remainingObjects.isEmpty()) {
+		depthToParentObjects.put(2, new LinkedList<EObject>());
+		while(currentDepth <= config.getDepth()) {
 			if(monitor.isCanceled()) {
 				break;
 			}
-			EObject nextParentEObject = remainingObjects.remove(0);
-			List<EObject> children = generateChildren(nextParentEObject); 
-			// will the just created EObjects have children?
-			if(currentDepth < config.getDepth()) {
-				remainingObjects.addAll(children);
+			// for all parent EObjects in this depth
+			for(EObject nextParentEObject : parentsInThisDepth) {
+				if(monitor.isCanceled()) {
+					break;
+				}
+				List<EObject> children = generateChildren(nextParentEObject); 
+				// will the just created EObjects have children?
+				if(currentDepth < config.getDepth()) {
+					depthToParentObjects.get(currentDepth+1).addAll(children);
+				}
+				monitor.worked(config.getWidth());
 			}
-			remainingElementsInThisDepth -= config.getWidth();
-			// are there still elements to create in this depth?
-			if(remainingElementsInThisDepth <= 0) {
-				// proceed to the next level
-				currentDepth++;
-				remainingElementsInThisDepth = (int) Math.pow(config.getWidth(), currentDepth);
-			}
-			monitor.worked(config.getWidth());
+			// proceed to the next level
+			currentDepth++;
+			parentsInThisDepth = depthToParentObjects.get(currentDepth);
+			depthToParentObjects.put((currentDepth+1), new LinkedList<EObject>());
 		}
 		return rootEObject;
 	}
@@ -202,17 +206,22 @@ public final class ModelGenerator {
 			// reference's lowerBound is the maximum amount -> only necessary EObjects are created
 			result.addAll(generateContainments(parentEObject, reference, reference.getLowerBound()));
 		}
-		int index = 0;
 		List<EReference> possibleReferences = new LinkedList<EReference>(parentEObject.eClass().getEAllContainments()); 
 		// set all possible references until width EObjects are created
 		for(int i=result.size(); i<config.getWidth() && !possibleReferences.isEmpty(); i++) {
 			EReference reference = ModelGeneratorHelper.getRandomReference(parentEObject, possibleReferences);
 			if(reference==null) {
+				possibleReferences.remove(reference);
+				i--;
 				continue;
 			}
 			// create only one child to guarantee variety
-			result.addAll(generateContainments(parentEObject, reference, 1));
-			index = (index+1) % possibleReferences.size();
+			List<EObject> newChildren = generateContainments(parentEObject, reference, 1);
+			if(newChildren.isEmpty()) {
+				possibleReferences.remove(reference);
+				i--;
+			}
+			result.addAll(newChildren);
 		}
 		return result;
 	}
