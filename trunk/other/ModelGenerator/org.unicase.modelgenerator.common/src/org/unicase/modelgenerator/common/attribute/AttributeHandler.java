@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EcorePackage;
 
 /**
@@ -58,47 +59,47 @@ public final class AttributeHandler {
 		attributeSetters = new LinkedHashMap<EClassifier, IAttributeSetter<?>>();
 		IAttributeSetter<?> oAttributeSetter;
 		
-		oAttributeSetter = new AttributeSetterEBoolean(3, random);
+		oAttributeSetter = new AttributeSetterEBoolean(random);
 		attributeSetters.put(ecoreInstance.getEBoolean(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEBooleanObject(), oAttributeSetter);
 	
-		attributeSetters.put(ecoreInstance.getEByteArray(), new AttributeSetterEByteArray(3, random, 100));
+		attributeSetters.put(ecoreInstance.getEByteArray(), new AttributeSetterEByteArray(random, 100));
 		
-		attributeSetters.put(ecoreInstance.getEString(), new AttributSetterEString(3, random));
+		attributeSetters.put(ecoreInstance.getEString(), new AttributSetterEString(random));
 		
-		oAttributeSetter = new AttributeSetterEInt(3, random);
+		oAttributeSetter = new AttributeSetterEInt(random);
 		attributeSetters.put(ecoreInstance.getEInt(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEIntegerObject(), oAttributeSetter);
 		
-		attributeSetters.put(ecoreInstance.getEDate(), new AttributeSetterEDate(3, random));
+		attributeSetters.put(ecoreInstance.getEDate(), new AttributeSetterEDate(random));
 		
-		oAttributeSetter = new AttributeSetterELong(3, random);
+		oAttributeSetter = new AttributeSetterELong(random);
 		attributeSetters.put(ecoreInstance.getELong(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getELongObject(), oAttributeSetter);
 		
-		oAttributeSetter = new AttributeSetterEByte(3, random);
+		oAttributeSetter = new AttributeSetterEByte(random);
 		attributeSetters.put(ecoreInstance.getEByte(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEByteObject(), oAttributeSetter);
 		
-		oAttributeSetter = new AttributeSetterEChar(3, random);
+		oAttributeSetter = new AttributeSetterEChar(random);
 		attributeSetters.put(ecoreInstance.getEChar(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getECharacterObject(), oAttributeSetter);
 		
-		oAttributeSetter = new AttributeSetterEDouble(3, random);
+		oAttributeSetter = new AttributeSetterEDouble(random);
 		attributeSetters.put(ecoreInstance.getEDouble(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEDoubleObject(), oAttributeSetter);
 		
-		oAttributeSetter = new AttributeSetterEFloat(3, random);
+		oAttributeSetter = new AttributeSetterEFloat(random);
 		attributeSetters.put(ecoreInstance.getEFloat(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEFloatObject(), oAttributeSetter);
 		
-		oAttributeSetter = new AttributeSetterEShort(3, random);
+		oAttributeSetter = new AttributeSetterEShort(random);
 		attributeSetters.put(ecoreInstance.getEShort(), oAttributeSetter);
 		attributeSetters.put(ecoreInstance.getEShortObject(), oAttributeSetter);
 		
-		attributeSetters.put(ecoreInstance.getEBigInteger(),new AttributeSetterEBigInteger(3, random));
+		attributeSetters.put(ecoreInstance.getEBigInteger(),new AttributeSetterEBigInteger(random));
 		
-		attributeSetters.put(ecoreInstance.getEBigDecimal(),new AttributeSetterEBigDecimal(3, random));
+		attributeSetters.put(ecoreInstance.getEBigDecimal(),new AttributeSetterEBigDecimal(random));
 		
 		return attributeSetters;
 		
@@ -114,5 +115,16 @@ public final class AttributeHandler {
 	public static void setRandom(Random newRandom) {
 		attributeSetters = null;
 		random = newRandom;
+	}
+
+	/**
+	 * Returns an instance of the EEnum AttributeSetter belonging to the 
+	 * EEnum specified by eEnum.
+	 * 
+	 * @param eEnum the EEnum to create the AttributeSetter for
+	 * @return a new AttributeSetterEEnum instance
+	 */
+	public static AttributeSetterEEnum getEEnumSetter(EEnum eEnum) {
+		return new AttributeSetterEEnum(eEnum, random);
 	}
 }

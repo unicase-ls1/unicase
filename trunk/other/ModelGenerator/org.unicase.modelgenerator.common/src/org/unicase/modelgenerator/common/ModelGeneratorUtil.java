@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -585,25 +586,44 @@ public final class ModelGeneratorUtil {
 		Map<EClassifier, IAttributeSetter<?>> attributeSetters = AttributeHandler.getAttributeSetters();
 		
 		for(EAttribute attribute : eObject.eClass().getEAllAttributes()) {
-			EClassifier attributeType = attribute.getEType();
-			
+			EClassifier attributeType = attribute.getEAttributeType();
+
 			if(!isValid(attribute, eObject, exceptionLog, ignoreAndLog)) {
 				continue;
 			}
-			// is there a setter for this attribute?
-			if (attributeSetters.containsKey(attributeType)) {
+			
+			// the attribute setter used to create new attributes
+			IAttributeSetter<?> attributeSetter = null;
+			
+			// is there a setter for this attribute? 
+			if(attributeSetters.containsKey(attributeType)) {
+				attributeSetter = attributeSetters.get(attributeType);
+			} else if(isEnum(attributeType)) {
+				attributeSetter = AttributeHandler.getEEnumSetter((EEnum) attributeType);
+			}
+			
+			// was there a fitting attribute setter?
+			if(attributeSetter != null) {
 				if (attribute.isMany()) {
 					int numberOfAttributes = computeFeatureAmount(attribute, random);
-					for(int i=0; i<numberOfAttributes; i++) {
-						addPerCommand(eObject, attribute,
-								attributeSetters.get(attributeType).createNewAttributes(), exceptionLog, ignoreAndLog);
-					}
+					addPerCommand(eObject, attribute,
+						attributeSetter.createNewAttributes(numberOfAttributes), exceptionLog, ignoreAndLog);
 				} else {
-					setPerCommand(eObject, attribute,
-						attributeSetters.get(attributeType).createNewAttribute(), exceptionLog, ignoreAndLog);
+					setPerCommand(eObject, attribute, 
+						attributeSetter.createNewAttribute(), exceptionLog, ignoreAndLog);
 				}
-			}				
+			}
 		}
+	}
+	
+	/**
+	 * Returns whether <code>attributeType</code> is an instance of EEnum.
+	 * 
+	 * @param attributeType the EClassifier in question
+	 * @return is <code>attributeType</code> an instance of EEnum?
+	 */
+	private static boolean isEnum(EClassifier attributeType) {
+		return EcorePackage.eINSTANCE.getEEnum().isInstance(attributeType);
 	}
 	
 	/**
@@ -612,8 +632,8 @@ public final class ModelGeneratorUtil {
 	 * @param feature the feature to compute the amount of objects for
 	 * @param random the Random object used to obtain random values 
 	 * @return 1 if the feature is single valued,<br>
-	 * a random value from 0 to 10 if the feature is many-valued and has no upper bound<br>
-	 * a random value between the feature's lower and upper bound
+	 * a random value from 0 to 10 if the feature is many-valued and has no upper bound,<br>
+	 * a random value between the feature's lower and upper bound otherwise
 	 */
 	private static int computeFeatureAmount(EStructuralFeature feature, Random random) {
 		if(!feature.isMany()) {
