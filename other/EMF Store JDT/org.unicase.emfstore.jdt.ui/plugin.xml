@@ -3,21 +3,25 @@
 <plugin>
     <extension
        point="org.eclipse.ui.commands">
+       <command
+             id="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderCommitCommandID"
+             name="Commit">
+       </command>
+       <command
+             id="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderUpdateCommandID"
+             name="Update">
+       </command>
     <command
           id="org.unicase.emfstore.jdt.ui.menu.PushToEMFStoreEcoreCommandID"
-          name="Push to EMF Store">
+          name="Push to EMFStore">
+    </command>
+    <command
+          id="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreCommandID"
+          name="Pull from EMFStore">
     </command>
     <command
           id="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreCommandID"
-          name="Reject from EMF Store">
-    </command>
-    <command
-          id="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderCommitCommandID"
-          name="Commit">
-    </command>
-    <command
-          id="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderUpdateCommandID"
-          name="Update">
+          name="Reject from EMFStore">
     </command>
  </extension>
  
@@ -72,6 +76,10 @@
        </enabledWhen>
     </handler>
     <handler
+          class="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreHandler"
+          commandId="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreCommandID">
+    </handler>
+    <handler
           class="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreCommandID">
        <enabledWhen>
@@ -94,30 +102,20 @@
     <menuContribution
           locationURI="popup:org.eclipse.ui.popup.any?after=additions">
        <menu
-             label="EMF Store">
-          <visibleWhen>
-             <with
-                   variable="activeMenuSelection">
-                <iterate
-                      ifEmpty="false"
-                      operator="and">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester.type">
-                   </test>
-                </iterate>
-             </with>
-          </visibleWhen>
+             label="EMFStore">
           <command
                 commandId="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderCommitCommandID"
                 style="push">
-             <visibleWhen
-                   checkEnabled="false">
+             <visibleWhen>
                 <with
-                      variable="selection">
+                      variable="activeMenuSelection">
                    <iterate
                          ifEmpty="false"
                          operator="and">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester.type">
+                      </test>
                       <not>
                          <test
                                forcePluginActivation="true"
@@ -131,13 +129,16 @@
           <command
                 commandId="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderUpdateCommandID"
                 style="push">
-             <visibleWhen
-                   checkEnabled="false">
+             <visibleWhen>
                 <with
-                      variable="selection">
+                      variable="activeMenuSelection">
                    <iterate
                          ifEmpty="false"
                          operator="and">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester.type">
+                      </test>
                       <not>
                          <test
                                forcePluginActivation="true"
@@ -155,10 +156,60 @@
           <command
                 commandId="org.unicase.emfstore.jdt.ui.menu.PushToEMFStoreEcoreCommandID"
                 style="push">
+             <visibleWhen>
+                <with
+                      variable="activeMenuSelection">
+                   <iterate
+                         ifEmpty="false"
+                         operator="and">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester.type">
+                      </test>
+                   </iterate>
+                </with>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreCommandID"
+                style="push">
+             <visibleWhen>
+                <with
+                      variable="activeMenuSelection">
+                   <count
+                         value="1">
+                   </count>
+                   <iterate
+                         ifEmpty="false"
+                         operator="and">
+                      <or>
+                         <instanceof
+                               value="org.eclipse.core.resources.IFolder">
+                         </instanceof>
+                         <instanceof
+                               value="org.eclipse.core.resources.IProjectNature">
+                         </instanceof>
+                      </or>
+                   </iterate>
+                </with>
+             </visibleWhen>
           </command>
           <command
                 commandId="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreCommandID"
                 style="push">
+             <visibleWhen>
+                <with
+                      variable="activeMenuSelection">
+                   <iterate
+                         ifEmpty="false"
+                         operator="and">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester.type">
+                      </test>
+                   </iterate>
+                </with>
+             </visibleWhen>
           </command>
        </menu>
     </menuContribution>
@@ -227,6 +278,15 @@
              </objectClass>
           </enablement>
        </decorator>
+    </extension>
+    
+    <extension point="org.eclipse.ui.preferencePages">
+       
+       <page
+             class="org.unicase.emfstore.jdt.ui.preferences.FileExtensionPreferencePage"
+             id="EDTFileExtensionPreferencePage"
+             name="EMF Development Toolkit">
+       </page>
     </extension>
 
 </plugin>

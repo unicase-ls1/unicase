@@ -18,11 +18,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.TeamSynchronizerRegistry;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
+import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
+import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceDeltaVisitor;
 import org.unicase.emfstore.jdt.eclipseworkspace.Synchronizer;
 import org.unicase.emfstore.jdt.exception.CannotSyncFileException;
+import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
+import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.metamodel.util.ModelUtil;
@@ -47,48 +51,68 @@ public class WorkspaceListener implements IResourceChangeListener {
 		try {
 			delta.accept(visitor);
 
-			Collection<IFile> changedResources = visitor.getChangedResources();
-			// Collection<IFile> removedResources = visitor.getRemovedResources();
-
-			// whole projects to sync
-			Set<IProject> projectsToSync = getProjectsToSync(changedResources);
-			for (IProject projectToSync : projectsToSync) {
+			// remove resource from emfstoreconf
+			Collection<IFile> removedResources = visitor.getRemovedResources();
+			for (IFile removedResource : removedResources) {
 				try {
-					ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(projectToSync);
-					try {
-						Synchronizer.sync(projectToSync, teamSynchronizer);
+					EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager
+						.getConfiguration(removedResource.getProject());
+					Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, removedResource);
+					ConfigurationManager.rejectEntry(emfStoreJDTConfiguration, entry);
+					emfStoreJDTConfiguration.save();
 
-					} catch (CannotSyncFileException e) {
-						if (!e.wasHarmless()) {
-							ModelUtil.logException(e);
-						}
-					}
-
-				} catch (NoSuitableTeamSynchronizerException e) {
-					// can be ignored, not suitable team synchronizer registered
+				} catch (NoEMFStoreJDTConfigurationException e) {
+					// can be ignored
+				} catch (EntryNotFoundException e) {
+					// can be ignored
 				}
 			}
 
 			// files to sync
-			Set<IFile> filesToSync = getIFilesNotIncludedInProject(projectsToSync, changedResources);
-			Set<IFileEntryTuple> emfStoreManagedIFileEntryTuplesWithStatusChanged = new ResourceCommitHolder(
-				filesToSync.toArray(new IFile[0])).getEMFStoreManagedFETuples();
+			Collection<IFile> changedResources = visitor.getChangedResources();
 
-			for (IFileEntryTuple tuple : emfStoreManagedIFileEntryTuplesWithStatusChanged) {
-				try {
-					ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(tuple.getFile()
-						.getProject());
+			// whole projects to sync
+			{
+				Set<IProject> projectsToSync = getProjectsToSync(changedResources);
+				for (IProject projectToSync : projectsToSync) {
 					try {
-						Synchronizer.sync(tuple.getFile(), teamSynchronizer);
+						ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry
+							.getTeamSynchronizer(projectToSync);
+						try {
+							Synchronizer.sync(projectToSync, teamSynchronizer);
 
-					} catch (CannotSyncFileException e) {
-						if (!e.wasHarmless()) {
-							ModelUtil.logException(e);
+						} catch (CannotSyncFileException e) {
+							if (!e.wasHarmless()) {
+								ModelUtil.logException(e);
+							}
 						}
-					}
 
-				} catch (NoSuitableTeamSynchronizerException e) {
-					// can be ignored, not suitable team synchronizer registered
+					} catch (NoSuitableTeamSynchronizerException e) {
+						// can be ignored, not suitable team synchronizer registered
+					}
+				}
+
+				// files to sync
+				Set<IFile> filesToSync = getIFilesNotIncludedInProject(projectsToSync, changedResources);
+				Set<IFileEntryTuple> emfStoreManagedIFileEntryTuplesWithStatusChanged = new ResourceCommitHolder(
+					filesToSync.toArray(new IFile[0])).getEMFStoreManagedFETuples();
+
+				for (IFileEntryTuple tuple : emfStoreManagedIFileEntryTuplesWithStatusChanged) {
+					try {
+						ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(tuple
+							.getFile().getProject());
+						try {
+							Synchronizer.sync(tuple.getFile(), teamSynchronizer);
+
+						} catch (CannotSyncFileException e) {
+							if (!e.wasHarmless()) {
+								ModelUtil.logException(e);
+							}
+						}
+
+					} catch (NoSuitableTeamSynchronizerException e) {
+						// can be ignored, not suitable team synchronizer registered
+					}
 				}
 			}
 
