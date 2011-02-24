@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.modelchanger_1.0.0.201102101525.jar" id="org.unicase.modelchanger" version="1.0.0.201102101525">
+   <feature url="features/org.unicase.modelchanger_1.0.0.201102241747.jar" id="org.unicase.modelchanger" version="1.0.0.201102241747">
       <category name="org.unicase.modelgenerator"/>
    </feature>
-   <feature url="features/org.unicase.modelgenerator_1.0.0.201102101525.jar" id="org.unicase.modelgenerator" version="1.0.0.201102101525">
+   <feature url="features/org.unicase.modelgenerator_1.0.0.201102241747.jar" id="org.unicase.modelgenerator" version="1.0.0.201102241747">
       <category name="org.unicase.modelgenerator"/>
    </feature>
-   <feature url="features/org.unicase.unicase.modelgenerator_1.0.0.201102101525.jar" id="org.unicase.unicase.modelgenerator" version="1.0.0.201102101525">
+   <feature url="features/org.unicase.unicase.modelgenerator_1.0.0.201102241747.jar" id="org.unicase.unicase.modelgenerator" version="1.0.0.201102241747">
       <category name="org.unicase.unicase.modelgenerator"/>
    </feature>
-   <feature url="features/org.unicase.ecp.modelgenerator_1.0.0.201102101526.jar" id="org.unicase.ecp.modelgenerator" version="1.0.0.201102101526">
+   <feature url="features/org.unicase.ecp.modelgenerator_1.0.0.201102241803.jar" id="org.unicase.ecp.modelgenerator" version="1.0.0.201102241803">
       <category name="org.unicase.ecp.modelgenerator"/>
    </feature>
    <category-def name="org.unicase.modelgenerator" label="ModelGenerator_Base">
