@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.jdt.git;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -13,9 +13,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egit.ui.CommitObserver;
-import org.eclipse.egit.ui.internal.dialogs.CommitDialog;
 import org.unicase.emfstore.jdt.CommitHelper;
-import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
@@ -31,16 +29,6 @@ import org.unicase.metamodel.util.ModelUtil;
  * @author Adrian Staudt
  */
 public class GitCommitObserver implements CommitObserver {
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.egit.ui.CommitObserver#prepareCommit(org.eclipse.egit.ui.internal.dialogs.CommitDialog)
-	 */
-	@SuppressWarnings( { "restriction" })
-	public void prepareCommit(CommitDialog commitDialog) {
-		commitDialog.setCommitMessage("Adrian Staudt on EGit");
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -66,15 +54,15 @@ public class GitCommitObserver implements CommitObserver {
 		// will be dirty and a commit is needed.
 		Set<IFile> allFiles = resourceCommitHolder.getAllFiles();
 		// TODO .emfstoreconf is index, is tracked ??
-		ArrayList<IFile> notIndexedFiles = commitOperation.getNotIndexedFiles();
-		ArrayList<IFile> notTrackedFiles = commitOperation.getNotTrackedFiles();
-		// commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
-		for (IProject project : resourceCommitHolder.getReleatedProjects()) {
-			IFile confFile = project.getFile(ConfigurationManager.EMFSTORECONF);
-			notIndexedFiles.add(confFile);
-			notTrackedFiles.add(confFile);
-		}
+		Collection<IFile> notIndexedFiles = commitOperation.getNotIndexedFiles();
+		Collection<IFile> notTrackedFiles = commitOperation.getNotTrackedFiles();
 		commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
+		// for (IProject project : resourceCommitHolder.getReleatedProjects()) {
+		// IFile confFile = project.getFile(ConfigurationManager.EMFSTORECONF);
+		// notIndexedFiles.add(confFile);
+		// notTrackedFiles.add(confFile);
+		// }
+		// commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
 
 		// TODO, get outdated files
 		Set<IFileEntryTuple> emfStoreManagedFETuples = resourceCommitHolder.getEMFStoreManagedFETuples();
