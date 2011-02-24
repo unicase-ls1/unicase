@@ -17,7 +17,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.modelgenerator.common.ModelGeneratorConfiguration;
 import org.unicase.modelgenerator.common.ModelGeneratorUtil;
@@ -290,8 +289,7 @@ final class ModelGeneratorHelper {
 			return null;
 		}
 		Collections.shuffle(possibleReferences, random);
-		int index = 0;
-		EReference result = possibleReferences.get(index);
+		EReference result = possibleReferences.get(0);
 		// repeat until result is valid
 		while(!isValid(eObject, result)) {
 			// current result isn't valid -> remove it
@@ -299,9 +297,7 @@ final class ModelGeneratorHelper {
 			if(possibleReferences.isEmpty()) {
 				return null;
 			}
-			// index might be out of bounds now
-			index %= possibleReferences.size();
-			result = possibleReferences.get(index);
+			result = possibleReferences.get(0);
 		}
 		return result;
 	}
