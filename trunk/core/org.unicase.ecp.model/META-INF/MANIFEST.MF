@@ -12,3 +12,4 @@ Export-Package: org.unicase.ecp.model,
  org.unicase.ecp.model.workSpaceModel.impl,
  org.unicase.ecp.model.workSpaceModel.provider,
  org.unicase.ecp.model.workSpaceModel.util
+Bundle-Vendor: unicase.org

@@ -338,14 +338,6 @@
       </application>
    </extension>
 
-   <extension point="org.eclipse.ui.perspectives" id="rcp-perspective">
-      <?gmfgen generated="true"?>
-      <perspective
-            id="org.unicase.ui.diagram.usecaseDiagram.UseCasePerspective"
-            name="%perspectiveName"
-            class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorPerspective">
-      </perspective>
-   </extension>
 
    <extension point="org.eclipse.ui.commands" id="rcp-menu-commands">
       <?gmfgen generated="true"?>

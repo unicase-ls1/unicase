@@ -21,3 +21,4 @@ Export-Package: org.sharemedia.ui.sat,
  org.unicase.ui.util
 Bundle-ClassPath: lib/org.sharemedia.ui.sat.jar,
  .
+Bundle-Vendor: unicase.org

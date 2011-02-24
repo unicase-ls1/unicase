@@ -6,6 +6,6 @@ Bundle-Version: 0.4.8.qualifier
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.emfstore.migration,
- edu.tum.cs.cope.migration.execution;bundle-version="0.2.13"
+ edu.tum.cs.cope.migration.execution
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
