@@ -16,7 +16,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.core,
  org.eclipse.emf.ecore.editor,
  org.eclipse.emf.codegen.ecore,
- org.unicase.ui.workpackagetransfer,
  org.unicase.ecp.model,
  org.unicase.ecpemfstorebridge,
  org.unicase.ui.common
