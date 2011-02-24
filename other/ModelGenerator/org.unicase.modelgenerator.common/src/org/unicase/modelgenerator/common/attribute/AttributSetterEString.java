@@ -15,56 +15,21 @@ import java.util.Random;
  * 
  * @see IAttributeSetter
  */
-public class AttributSetterEString implements IAttributeSetter<String> {
-	
-	/**
-	 * Maximum amount of attributes that are created by {@link #createNewAttributes()}.
-	 */
-	private int maxObjects;
+class AttributSetterEString implements IAttributeSetter<String> {
 	
 	/**
 	 * Random object that is used to determine values for attributes created 
 	 * by {@link #createNewAttribute()} and {@link #createNewAttributes()}.
 	 */
-	private Random randomObj;	
+	private Random random;	
 	
 	/**
 	 * Creates a new AttributeSetter for String attributes.
 	 * 
-	 * @param maxObjects maximum amount of attributes to create
-	 * @param randomObj Random object used to create attribute values
+	 * @param random Random object used to create attribute values
 	 */
-	public AttributSetterEString(int maxObjects, Random randomObj) {
-		this.maxObjects = maxObjects;
-		this.randomObj = randomObj;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getMaxObjects() {
-		return maxObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setMaxObjects(int maxObjects) {
-		this.maxObjects = maxObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Random getRandomObj() {
-		return randomObj;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setRandomObj(Random randomObj) {
-		this.randomObj = randomObj;
+	AttributSetterEString(Random random) {
+		this.random = random;
 	}
 
 	/**
@@ -73,8 +38,8 @@ public class AttributSetterEString implements IAttributeSetter<String> {
 	public String createNewAttribute() {
 		 StringBuffer string = new StringBuffer();
 		 string.delete(0, string.length());
-			for(int j = -5; j<randomObj.nextInt(10); j++) {
-				string.append((char)(randomObj.nextInt(94) + 33));
+			for(int j = -5; j<random.nextInt(10); j++) {
+				string.append((char)(random.nextInt(94) + 33));
 			}
 		return string.toString();
 	}
@@ -82,12 +47,12 @@ public class AttributSetterEString implements IAttributeSetter<String> {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<String> createNewAttributes(){
-		List<String> newAttrs = new ArrayList<String>(maxObjects);
-		for (int i=0; i<maxObjects;i++) {
-			newAttrs.add(createNewAttribute());
+	public Collection<String> createNewAttributes(int maxAmount) {
+		List<String> result = new ArrayList<String>(maxAmount);
+		for (int i=0; i<maxAmount; i++) {
+			result.add(createNewAttribute());
 		}
-		return newAttrs;
+		return result;
 	}
 
 }

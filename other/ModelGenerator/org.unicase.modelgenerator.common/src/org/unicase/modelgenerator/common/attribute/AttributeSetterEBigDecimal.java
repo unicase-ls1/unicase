@@ -16,74 +16,39 @@ import java.util.Random;
  * 
  * @see IAttributeSetter
  */
-public class AttributeSetterEBigDecimal implements IAttributeSetter<BigDecimal> {
-	
-	/**
-	 * Maximum amount of attributes that are created by {@link #createNewAttributes()}.
-	 */
-	private int maxObjects;
+class AttributeSetterEBigDecimal implements IAttributeSetter<BigDecimal> {
 	
 	/**
 	 * Random object that is used to determine values for attributes created 
 	 * by {@link #createNewAttribute()} and {@link #createNewAttributes()}.
 	 */
-	private Random randomObj;
+	private Random random;
 	
 	/**
 	 * Creates a new AttributeSetter for BigDecimal attributes.
 	 * 
-	 * @param maxObjects maximum amount of attributes to create
-	 * @param randomObj Random object used to create attribute values
+	 * @param random Random object used to create attribute values
 	 */
-	public AttributeSetterEBigDecimal(int maxObjects, Random randomObj) {
-		this.maxObjects = maxObjects;
-		this.randomObj = randomObj;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getMaxObjects() {
-		return maxObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setMaxObjects(int maxObjects) {
-		this.maxObjects = maxObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Random getRandomObj() {
-		return randomObj;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setRandomObj(Random randomObj) {
-		this.randomObj = randomObj;
+	AttributeSetterEBigDecimal(Random random) {
+		this.random = random;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public BigDecimal createNewAttribute() {
-		return new BigDecimal(randomObj.nextDouble()*randomObj.nextInt());
+		return new BigDecimal(random.nextDouble()*random.nextInt());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<BigDecimal> createNewAttributes(){
-		List<BigDecimal> newAttrs = new ArrayList<BigDecimal>(maxObjects);
-		for (int i=0; i<maxObjects;i++) {
-			newAttrs.add(createNewAttribute());
+	public Collection<BigDecimal> createNewAttributes(int maxAmount) {
+		List<BigDecimal> result = new ArrayList<BigDecimal>(maxAmount);
+		for (int i=0; i<maxAmount; i++) {
+			result.add(createNewAttribute());
 		}
-		return newAttrs;
+		return result;
 	}
 
 }

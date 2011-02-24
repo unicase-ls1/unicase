@@ -6,7 +6,6 @@
 package org.unicase.modelgenerator.common.attribute;
 
 import java.util.Collection;
-import java.util.Random;
 
 /**
  * Interface that defines methods for creating attributes in order
@@ -17,36 +16,9 @@ import java.util.Random;
  */
 public interface IAttributeSetter<E> {
 	
-	
-	/**
-	 * @return maximum number of attributes to create
-	 */
-	int getMaxObjects();
-
-	/**
-	 * Set the number of maximum attributes to create.
-	 * 
-	 * @param maxObjects the new value for 
-	 * <code>this.maxObjects</code>
-	 */
-	void setMaxObjects(int maxObjects);
-
-	/**
-	 * @return the Random object used to create attributes
-	 */
-	Random getRandomObj();
-
-	/**
-	 * Sets the Random object used to create attributes.
-	 * 
-	 * @param randomObj the new value for 
-	 * <code>this.randomObj</code>
-	 */
-	void setRandomObj(Random randomObj);
-	
 	/**
 	 * Creates one attribute of type <code>E</code>.
-	 * The result is determined by <code>randomObj</code>.
+	 * The result is determined by <code>random</code>.
 	 * 
 	 * @return the created attribute
 	 */
@@ -54,10 +26,11 @@ public interface IAttributeSetter<E> {
 
 	/**
 	 * Creates a collection of attributes of type <code>E</code>. 
-	 * The result is determined by <code>randomObj</code>.
+	 * The result is determined by <code>random</code>.
 	 * 
+	 * @param maxAmount the maximum amount of attributes to create
 	 * @return all created attributes as a collection
 	 */
-	Collection<E> createNewAttributes();
+	Collection<E> createNewAttributes(int maxAmount);
 
 }
