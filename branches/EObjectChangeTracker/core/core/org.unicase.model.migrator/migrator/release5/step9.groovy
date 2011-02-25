@@ -1,1 +1,0 @@
-inlineSuperClass(model.NonDomainElement)
