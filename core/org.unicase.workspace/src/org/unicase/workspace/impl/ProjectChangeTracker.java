@@ -50,6 +50,7 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.util.UnicaseUtil;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.OperationConsumer;
 import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
 import org.unicase.workspace.changeTracking.commands.CommandObserver;
 import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
@@ -92,6 +93,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private NotificationToOperationConverter converter;
 	private List<PostCreationListener> postCreationListeners;
 
+	private List<OperationConsumer> operationConsumer;
+
 	/**
 	 * @return the removedElements
 	 */
@@ -110,6 +113,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		this.autoSave = true;
 		this.splitResource = true;
 		dirtyResourceSet = new DirtyResourceSet();
+
+		operationConsumer = new ArrayList<OperationConsumer>();
 
 		if (!projectSpace.isTransient()) {
 			editingDomain = Configuration.getEditingDomain();
@@ -766,6 +771,29 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	 */
 	public boolean isSplitResource() {
 		return splitResource;
+	}
+
+	public void modelElementAdded(EObject modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void modelElementRemoved(EObject modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void notify(Notification notification, EObject modelElement) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void addOperationConsumer(OperationConsumer operationConsumer) {
+		this.operationConsumer.add(operationConsumer);
+	}
+
+	public void removeOperationConsumer(OperationConsumer operationConsumer) {
+		this.operationConsumer.remove(operationConsumer);
 	}
 
 }
