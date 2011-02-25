@@ -6,11 +6,12 @@
 package org.unicase.emfstore.jdt;
 
 import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.unicase.emfstore.jdt.emf.resource.EMFStoreResourceFactoryRegistry;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -50,10 +51,12 @@ public class Activator extends AbstractUIPlugin {
 		EMFStoreResourceFactoryRegistry.replaceSupportedFactories();
 
 		// Save changes from CommandStack to local resources
-		TransactionalEditingDomain unicaseEditingDomain = WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getEditingDomain();
+		EditingDomain unicaseEditingDomain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		CommandStack commandStack = unicaseEditingDomain.getCommandStack();
-		commandStack.addCommandStackListener(new UnicaseCommandStackListener());
+		if (commandStack instanceof EMFStoreCommandStack) {
+			EMFStoreCommandStack emfStoreCommandStack = (EMFStoreCommandStack) commandStack;
+			emfStoreCommandStack.addCommandStackObserver(new EMFStoreCommandStackObserver());
+		}
 	}
 
 	/*
