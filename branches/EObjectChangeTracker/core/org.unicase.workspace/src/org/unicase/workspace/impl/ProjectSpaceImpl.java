@@ -69,6 +69,7 @@ import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.ModifiedModelElementsCache;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
+import org.unicase.workspace.OperationConsumer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -126,7 +127,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver, OperationConsumer {
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
@@ -1525,6 +1526,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		this.fileTransferManager = new FileTransferManager(this);
 		this.changeTracker = new ProjectChangeTracker(this);
+		this.changeTracker.addOperationConsumer(this);
+		// this.changeTracker.addOperationConsumer(new FunnyOperationConsumer());
+
 		this.getProject().addProjectChangeObserver(this.changeTracker);
 		if (project instanceof ProjectImpl) {
 			((ProjectImpl) this.getProject()).setUndetachable(changeTracker);
@@ -2527,6 +2531,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public FileInformation getFileInfo(FileIdentifier fileIdentifier) {
 		return fileTransferManager.getFileInfo(fileIdentifier);
+	}
+
+	public void handleOperations(List<AbstractOperation> operations) {
+		for (AbstractOperation operation : operations) {
+			addOperation(operation);
+		}
 	}
 
 } // ProjectContainerImpl

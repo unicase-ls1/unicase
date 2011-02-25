@@ -25,9 +25,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOpera
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.metamodel.IdProvider;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -37,15 +36,15 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
  */
 public final class NotificationToOperationConverter {
 
-	private Project project;
+	private IdProvider idProvider;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param project project
 	 */
-	public NotificationToOperationConverter(Project project) {
-		this.project = project;
+	public NotificationToOperationConverter(IdProvider idProvider) {
+		this.idProvider = idProvider;
 	}
 
 	/**
@@ -197,9 +196,9 @@ public final class NotificationToOperationConverter {
 		}
 
 		for (EObject valueElement : list) {
-			ModelElementId id = project.getModelElementId(valueElement);
+			ModelElementId id = idProvider.getModelElementId(valueElement);
 			if (id == null) {
-				id = ((ProjectImpl) project).getDeletedModelElementId(valueElement);
+				id = idProvider.getDeletedModelElementId(valueElement);
 			}
 			referencedModelElements.add(id);
 		}
@@ -212,7 +211,7 @@ public final class NotificationToOperationConverter {
 		MultiReferenceMoveOperation op = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
 		setCommonValues(op, n.getNotifierModelElement());
 		op.setFeatureName(n.getReference().getName());
-		op.setReferencedModelElementId(project.getModelElementId(n.getNewModelElementValue()));
+		op.setReferencedModelElementId(idProvider.getModelElementId(n.getNewModelElementValue()));
 		op.setNewIndex(n.getPosition());
 		op.setOldIndex((Integer) n.getOldValue());
 
@@ -260,15 +259,15 @@ public final class NotificationToOperationConverter {
 
 	private AbstractOperation handleSetReference(NotificationInfo n) {
 
-		ModelElementId oldModelElementId = project.getModelElementId(n.getOldModelElementValue());
-		ModelElementId newModelElementId = project.getModelElementId(n.getNewModelElementValue());
+		ModelElementId oldModelElementId = idProvider.getModelElementId(n.getOldModelElementValue());
+		ModelElementId newModelElementId = idProvider.getModelElementId(n.getNewModelElementValue());
 
 		if (oldModelElementId == null) {
-			oldModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getOldModelElementValue());
+			oldModelElementId = idProvider.getDeletedModelElementId(n.getOldModelElementValue());
 		}
 
 		if (newModelElementId == null) {
-			newModelElementId = ((ProjectImpl) project).getDeletedModelElementId(n.getNewModelElementValue());
+			newModelElementId = idProvider.getDeletedModelElementId(n.getNewModelElementValue());
 		}
 
 		if (!n.getReference().isMany()) {
@@ -310,9 +309,9 @@ public final class NotificationToOperationConverter {
 	// utility methods
 	private void setCommonValues(AbstractOperation operation, EObject modelElement) {
 		operation.setClientDate(new Date());
-		ModelElementId id = project.getModelElementId(modelElement);
+		ModelElementId id = idProvider.getModelElementId(modelElement);
 		if (id == null) {
-			id = ((ProjectImpl) project).getDeletedModelElementId(modelElement);
+			id = idProvider.getDeletedModelElementId(modelElement);
 		}
 		if (id == null) {
 			throw new IllegalStateException("Model element doesn't have an ID.");
