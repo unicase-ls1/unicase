@@ -217,7 +217,7 @@ litigation.
    </license>
 
    <includes
-         id="org.unicase.emfstore.metamodel"
+         id="org.unicase.emfstore.common"
          version="0.0.0"/>
 
    <requires>

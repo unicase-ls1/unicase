@@ -221,9 +221,6 @@ litigation.
          id="org.unicase.emfstore.server.source"
          version="0.0.0"/>
 
-   <includes
-         id="org.unicase.emfstore.metamodel.source"
-         version="0.0.0"/>
 
    <includes
          id="org.unicase.emfstore.client.ui.source"
@@ -242,13 +239,17 @@ litigation.
          version="0.0.0"/>
 
    <includes
-         id="org.unicase.emfstore.metamodel"
-         version="0.0.0"/>
-
-   <includes
          id="org.unicase.emfstore.server"
          version="0.0.0"/>
 
+   <includes
+         id="org.unicase.emfstore.common"
+         version="0.0.0"/>
+
+   <includes
+         id="org.unicase.emfstore.common.source"
+         version="0.0.0"/>
+         
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
