@@ -61,7 +61,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 
 			// String gitEntryPath = file.getFullPath().makeRelative().toPortableString();
 			DirCacheEntry dirCacheEntry = dirCache.getEntry(gitEntryPath);
-			if (dirCacheEntry != null) {
+			if (dirCacheEntry == null) {
 				throw new TeamSynchronizerException("Git entry not found.");
 			}
 			return dirCacheEntry;
