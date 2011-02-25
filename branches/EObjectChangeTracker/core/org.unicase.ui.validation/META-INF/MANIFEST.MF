@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UNICASE Validation Plugin
+Bundle-SymbolicName: org.unicase.ui.validation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.ui.validation.Activator
+Require-Bundle: org.unicase.ui.navigator;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.emf.validation.model
+Export-Package: org.unicase.ui.validation.filter,
+ org.unicase.ui.validation.refactoring.strategy
+Bundle-Vendor: unicase.org
