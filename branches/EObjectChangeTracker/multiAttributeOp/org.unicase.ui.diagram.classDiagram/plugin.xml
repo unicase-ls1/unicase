@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes">
+      <?gmfgen generated="true"?>
+      <fileTypes
+         type="text"
+         extension="model_diagram">
+      </fileTypes>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <?gmfgen generated="true"?>
+      <parser
+         type="model_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <?gmfgen generated="true"?>
+      <editor
+         id="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/DiagramDiagramFile.gif"
+         extensions="model_diagram"
+         default="true"
+         class="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditor"
+         matchingStrategy="org.unicase.ui.diagram.classDiagram.part.ModelMatchingStrategy"
+         contributorClass="org.unicase.ui.diagram.classDiagram.part.ModelDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.unicase.ui.diagram.classDiagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/DiagramDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="org.unicase.ui.diagram.classDiagram.part.ModelCreationWizard"
+  	     id="org.unicase.ui.diagram.classDiagram.part.ModelCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.classDiagram.LoadResource"
+            objectClass="org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart">
+         <action
+               class="org.unicase.ui.diagram.classDiagram.part.ModelLoadResourceAction"
+               enablesFor="1"
+               id="org.unicase.classDiagram.LoadResourceAction"
+               label="%loadResourceActionLabel"
+               menubarPath="additions">
+         </action>
+      </objectContribution>           
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.unicase.classDiagram.InitDiagram"
+            nameFilter="*.model"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="org.unicase.ui.diagram.classDiagram.part.ModelInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.unicase.classDiagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="ModelPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="ModelPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="ModelRender">
+         <Priority name="Lowest"/>
+         <ViewId id="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+   
+
+   <extension point="org.eclipse.core.runtime.preferences">
+      <?gmfgen generated="true"?>
+      <initializer class="org.unicase.ui.diagram.classDiagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.unicase.diagram.general"
+            name="%preference.page.title.org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.classDiagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.appearance"
+            name="%preference.page.title.org.unicase.diagram.appearance"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.classDiagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.connections"
+            name="%preference.page.title.org.unicase.diagram.connections"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.classDiagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.printing"
+            name="%preference.page.title.org.unicase.diagram.printing"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.classDiagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.rulersAndGrid"
+            name="%preference.page.title.org.unicase.diagram.rulersAndGrid"
+            category="org.unicase.diagram.general"
+            class="org.unicase.ui.diagram.classDiagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+      <page
+            id="org.unicase.diagram.pathmaps"
+            name="%preference.page.title.org.unicase.diagram.pathmaps"
+            category="org.unicase.diagram.general"
+            class="org.eclipse.gmf.runtime.emf.ui.preferences.PathmapsPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.unicase.classDiagram"
+            labelProvider="org.unicase.ui.diagram.classDiagram.sheet.ModelSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.unicase.classDiagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.unicase.classDiagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="org.unicase.ui.diagram.classDiagram.sheet.ModelPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+      <?gmfgen generated="true"?>
+      <viewProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Model"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints=""/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
+      </viewProvider>
+   </extension>
+
+  
+	<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelEditPartProvider">
+         <Priority name="Lowest"/>
+      </editpartProvider>
+   </extension>
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+      <?gmfgen generated="false"?>
+      <modelingAssistantProvider class="org.unicase.ui.diagram.classDiagram.providers.ClassModelingAssistantProvider">
+         <Priority name="Lowest"/>
+      </modelingAssistantProvider>
+   </extension>
+	<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+      <?gmfgen generated="false"?>
+      <modelingAssistantProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelModelingAssistantProvider">
+         <Priority name="Lowest"/>
+      </modelingAssistantProvider>
+   </extension>
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
+      <?gmfgen generated="true"?>
+      <IconProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://unicase.org/model/diagram">
+         <metamodelType
+               id="org.unicase.classDiagram.MEDiagram_88"
+               name="%metatype.name.MEDiagram_88"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MEDiagram"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.MEDiagramEditHelper">
+            <param name="semanticHint" value="88"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Class_2001"
+               name="%metatype.name.Class_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Class"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.ClassEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Package_2002"
+               name="%metatype.name.Package_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Package"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.PackageEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Attribute_3001"
+               name="%metatype.name.Attribute_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Attribute"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.AttributeEditHelper">
+            <param name="semanticHint" value="3001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Method_3002"
+               name="%metatype.name.Method_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Method"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.MethodEditHelper">
+            <param name="semanticHint" value="3002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Association_4001"
+               name="%metatype.name.Association_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Association"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.AssociationEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.Association_4002"
+               name="%metatype.name.Association_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.Association_4003"
+               name="%metatype.name.Association_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.Association_4004"
+               name="%metatype.name.Association_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.classDiagram.Association_4001"/>
+            <param name="semanticHint" value="4004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <specializationType
+               id="org.unicase.classDiagram.ClassSuperClasses_4007"
+               name="%metatype.name.ClassSuperClasses_4007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/classes">
+         <metamodelType
+               id="org.unicase.classDiagram.Dependency_4006"
+               name="%metatype.name.Dependency_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Dependency"
+               edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.DependencyEditHelper">
+            <param name="semanticHint" value="4006"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+  
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.classDiagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.classDiagram"
+           properties="isURIEditorInput"
+           class="org.unicase.ui.diagram.classDiagram.part.ModelUriEditorInputTester">
+       </propertyTester>
+   </extension>
+	
+	   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.classDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.classDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.diagram.classDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="org.unicase.classDiagram.resourceContent"/>
+			<contentExtension pattern="org.unicase.classDiagram.domainResourceContent"/>
+            <contentExtension pattern="org.unicase.classDiagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="org.unicase.classDiagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.unicase.classDiagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="org.unicase.ui.diagram.classDiagram.navigator.ModelNavigatorContentProvider" 
+            labelProvider="org.unicase.ui.diagram.classDiagram.navigator.ModelNavigatorLabelProvider"
+            icon="icons/obj16/DiagramDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="model_diagram"/>
+               </and>
+               <instanceof value="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.unicase.classDiagram.navigatorSorter" 
+               class="org.unicase.ui.diagram.classDiagram.navigator.ModelNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="model_diagram"/>
+                  </and>
+                  <instanceof value="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="org.unicase.classDiagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="org.unicase.ui.diagram.classDiagram.navigator.ModelDomainNavigatorContentProvider" 
+            labelProvider="org.unicase.ui.diagram.classDiagram.navigator.ModelDomainNavigatorLabelProvider"
+            icon="icons/obj16/DiagramDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="model"/>
+               </and>
+               <and>
+                  <instanceof value="org.eclipse.emf.ecore.EObject"/>
+                  <test property="org.unicase.classDiagram.isDomainModelElement"/>
+               </and>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <and>
+       	       <instanceof value="org.eclipse.emf.ecore.EObject"/>
+       	       <test property="org.unicase.classDiagram.isDomainModelElement"/>
+       	    </and>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.unicase.classDiagram.navigatorActionProvider"
+            class="org.unicase.ui.diagram.classDiagram.navigator.ModelNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.unicase.classDiagram.navigatorLinkHelper"
+            class="org.unicase.ui.diagram.classDiagram.navigator.ModelNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.unicase.classDiagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="org.unicase.ui.diagram.classDiagram.navigator.ModelAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.unicase.ui.diagram.classDiagram.part.ModelDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="org.unicase.ui.diagram.classDiagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="org.unicase.ui.diagram.classDiagram.updateDiagram"
+         contextId="org.unicase.ui.diagram.classDiagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+	<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+	<Priority name="Low"/>
+	<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+	<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart"/>
+	<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+	</popupContribution>
+	</contributionItemProvider>
+	
+</extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <?gmfgen generated="false"?>
+      <clientContext id="ModelClientContext">
+		 <enablement>
+      <and>
+         <instanceof
+               value="org.unicase.metamodel.ModelElement">
+         </instanceof>
+         <test
+               property="org.unicase.classDiagram.isDiagramType"
+               value="CLASS_DIAGRAM">
+         </test>
+      </and>
+         </enablement>
+      </clientContext> 
+      <binding context="ModelClientContext">
+         <elementType ref="org.unicase.classDiagram.MEDiagram_88"/>
+         <elementType ref="org.unicase.classDiagram.Class_2001"/>
+         <elementType ref="org.unicase.classDiagram.Package_2002"/>
+         <elementType ref="org.unicase.classDiagram.Attribute_3001"/>
+         <elementType ref="org.unicase.classDiagram.Method_3002"/>
+         <elementType ref="org.unicase.classDiagram.Association_4001"/>
+         <elementType ref="org.unicase.classDiagram.Association_4002"/>
+         <elementType ref="org.unicase.classDiagram.Association_4003"/>
+         <elementType ref="org.unicase.classDiagram.Association_4004"/>
+         <elementType ref="org.unicase.classDiagram.ClassSubClasses_4005"/>
+         <elementType ref="org.unicase.classDiagram.Dependency_4006"/>
+         <advice
+               ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents">
+         </advice>
+      </binding>
+   </extension>
+            <extension
+                  point="org.eclipse.core.expressions.propertyTesters">
+               <propertyTester
+                     class="org.unicase.ui.diagram.classDiagram.part.DiagramTypeTester"
+                     id="org.unicase.ui.diagram.classDiagram.part.DiagramTypeTester"
+                     namespace="org.unicase.classDiagram"
+                     properties="isDiagramType"
+                     type="org.unicase.metamodel.ModelElement">
+               </propertyTester>
+            </extension>
+            <extension
+                  point="org.eclipse.ui.popupMenus">
+               <objectContribution
+                     adaptable="false"
+                     id="org.unicase.classDiagram.ShowRelatedElementsAction"
+                     objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+                  <action
+                        class="org.unicase.ui.diagram.classDiagram.part.ShowRelatedElementsAction"
+                        enablesFor="1"
+                        icon="icons/incomingLinksNavigatorGroup.gif"
+                        id="org.unicase.classDiagram.ShowRelatedElementsAction"
+                        label="Show related elements">
+                  </action>
+               </objectContribution>
+            </extension>
+            <extension
+                  point="org.unicase.ui.common.modelelementopener">
+               <ModelElementOpener
+                     class="org.unicase.ui.classDiagram.ClassDiagramOpener"
+                     name="org.unicase.ui.MEDiagramEditor">
+               </ModelElementOpener>
+            </extension>
+
+</plugin>

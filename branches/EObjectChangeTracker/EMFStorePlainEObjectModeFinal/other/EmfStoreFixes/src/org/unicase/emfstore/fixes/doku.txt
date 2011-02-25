@@ -1,0 +1,38 @@
+manueller logmessage fix von 55-57 und 334 (manuelles umkopieren der logmessage)
+
+delete all deleteoperations with fixdelete (+manuell in version 5: __q0UYJUkEd2FG-kzr70dNg)
+
+bis 324: doppelte Logmessages
+
+78: setdescription funktioniert nicht obwohl me da ist, kann apply es nicht finden
+
+-> create meeting auseinander nehmen: (MeetingCreationFix)
+fixing meeting in version 76
+fixing meeting in version 88
+fixing meeting in version 92
+fixing meeting in version 105
+fixing meeting in version 110
+fixing meeting in version 115
+fixing meeting in version 118
+fixing meeting in version 121
+fixing meeting in version 122
+fixing meeting in version 123
+fixing meeting in version 124
+fixing meeting in version 128
+fixing meeting in version 146
+fixing meeting in version 156
+fixing meeting in version 159
+fixing meeting in version 165
+fixing meeting in version 193
+
+manuelle löschungen (-> manualdeletefix)
+
+projectstate 150 bei identifier="_TiEHYKvpEd2COKzHNm-aQg" bis auf 2 alle included usecases gelöscht.
+ - " -       200
+projectstate fix geschrieben (aber nicht programmatisch, weil der usecase bug noch nicht gefixt ist)
+------> UseCaseCleaner
+ 
+ 
+deletebug gefixt (zufällige references wurden gelöscht)
+
+500: added multirefrence to match projectstate

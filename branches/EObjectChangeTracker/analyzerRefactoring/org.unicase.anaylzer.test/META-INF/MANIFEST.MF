@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: org.unicase.anaylzer.test;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: org.unicase.anaylzer.test.Activator
+Require-Bundle: org.unicase.workspace.test;visibility:=reexport,
+ org.unicase.analyzer;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.anaylzer.test

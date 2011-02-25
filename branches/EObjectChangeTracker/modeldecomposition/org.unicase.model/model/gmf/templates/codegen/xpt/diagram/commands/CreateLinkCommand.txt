@@ -1,0 +1,122 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::diagram::Utils»
+
+«DEFINE CreateLinkCommand FOR gmfgen::GenLink-»
+«EXPAND xpt::Common::copyright FOR diagram.editorGen-»
+package «diagram.editCommandsPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «createCommandClassName» extends org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand {
+	«EXPAND xpt::diagram::commands::CreateLinkUtils::fields FOR modelFacet-»
+
+	«REM»modified«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest request,
+			org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target) {
+		super(request);
+		throw new UnsupportedOperationException();
+	}
+	«REM»new«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest request,
+			org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target, org.eclipse.emf.ecore.EObject eContainer) {
+		super(request);
+		this.source = source;
+		this.target = target;
+		if (request.getContainmentFeature() == null) {
+			setContainmentFeature(org.unicase.model.diagram.DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
+		}
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (org.eclipse.emf.ecore.EObject element = container; element != null; element = element.eContainer()) {
+			if (element instanceof org.unicase.model.diagram.MEDiagram) {
+				container =  (org.unicase.model.diagram.MEDiagram) element; 
+				super.setElementToEdit(container);
+				break;
+			}
+		}
+	}
+	
+	«EXPAND xpt::diagram::commands::CreateLinkUtils::canCreate(this) FOR modelFacet-»
+	«EXPAND body(this) FOR modelFacet-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(
+			org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info)
+			throws org.eclipse.core.commands.ExecutionException {
+		if (!canExecute()) {
+			throw new org.eclipse.core.commands.ExecutionException("Invalid arguments in create link command"); «EXPAND xpt::Common::nonNLS»
+		}
+		return super.doExecuteWithResult(monitor, info);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest createConfigureRequest() {
+		org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest request = super.createConfigureRequest();
+		request.setParameter(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest.SOURCE, getSource());
+		request.setParameter(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest.TARGET, getTarget());
+		return request;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void setElementToEdit(org.eclipse.emf.ecore.EObject element) {
+		throw new UnsupportedOperationException();
+	}
+	«EXPAND xpt::diagram::commands::CreateLinkUtils::accessors FOR modelFacet-»
+}
+«ENDDEFINE»
+
+«DEFINE body(gmfgen::GenLink link) FOR gmfgen::LinkModelFacet-»
+«ENDDEFINE»
+
+
+«DEFINE body(gmfgen::GenLink link) FOR gmfgen::TypeLinkModelFacet-»
+
+	«REM»modified«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.emf.ecore.EObject doDefaultElementCreation() {
+		«EXPAND MetaModel::NewInstance("newElement") FOR metaClass-»
+		«EXPAND CreateLinkUtils::addValue(sourceMetaFeature != null ? "getContainer()" : "getSource()", containmentMetaFeature.genClass, "newElement") FOR containmentMetaFeature-»
+		«REM»added«ENDREM»getContainer().getElements().add(newElement);
+		«IF sourceMetaFeature != null-»
+			«EXPAND CreateLinkUtils::addValue("newElement", metaClass, "getSource()") FOR sourceMetaFeature-»
+		«ENDIF-»
+		«EXPAND CreateLinkUtils::addValue("newElement", metaClass, "getTarget()") FOR targetMetaFeature-»
+		«IF hasExplicitChildFeature()-»
+			«IF sourceMetaFeature != null-»
+				«EXPAND CreateLinkUtils::addValue("getContainer()", containmentMetaFeature.genClass, "newElement") FOR childMetaFeature-»
+			«ELSE-»
+				«EXPAND CreateLinkUtils::addValue("getSource()", getSourceType(), "newElement") FOR childMetaFeature-»
+			«ENDIF-»
+		«ENDIF-»
+		«EXPAND initialize(link, "newElement")-»
+		return «EXPAND MetaModel::DowncastToEObject("newElement") FOR metaClass»;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.emf.ecore.EClass getEClassToEdit() {
+		return «EXPAND MetaModel::MetaClass FOR containmentMetaFeature.genClass»;
+	}
+«ENDDEFINE»
+
+«DEFINE initialize(GenLink link, String newElementvVar) FOR TypeModelFacet»«IF modelElementInitializer != null-»
+«link.diagram.getElementTypesQualifiedClassName()».init_«link.getUniqueIdentifier()»(«newElementvVar»);
+«ENDIF»«ENDDEFINE»

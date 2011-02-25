@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.unicase.proxyclient.notifier.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="org.unicase.proxyclient.notifier.Perspective"
+            id="org.unicase.proxyclient.notifier.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="org.unicase.proxyclient.notfier.workspaceLocationProviderID"
+         name="ProxyNotifier"
+         point="org.unicase.workspace.workspaceLocationProvider">
+      <LocationProvider
+            providerClass="org.unicase.proxyclient.notifier.location.WorkspaceLocationProvider">
+      </LocationProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.proxyclient.notifier.client.View"
+            id="org.unicase.proxyclient.notifier.client.view"
+            name="View">
+      </view>
+   </extension>
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="platform:/plugin/org.unicase.proxyclient.notifier/model/ProxyClientModel.ecore"
+            class="org.unicase.proxyclient.notifier.store.model.NPCPackage"
+            genModel="model/ProxyClientModel.genmodel"/>
+   </extension>
+</plugin>

@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"»
+«EXTENSION xpt::editor::Utils»
+
+«DEFINE DocumentProvider FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «editorGen.editor.packageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+«REM»modified extends«ENDREM»
+public class «documentProviderClassName» extends org.unicase.ui.unicasecommon.diagram.part.ModelDocumentProvider implements org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider {
+«REM»END modified«ENDREM»	
+	«EXPAND createElementInfo-»
+	
+	«EXPAND createDocument-»
+	
+	«EXPAND setupDocument-»
+	
+	«EXPAND computeModificationStamp-»
+	«REM»Removed method createEditingDomain «ENDREM»
+	«REM»Removed method createEmptyDocument «ENDREM»
+	«REM»Removed method setupDocumentContent «ENDREM»	
+	«EXPAND getModificationStamp-»
+	
+	«EXPAND isDeleted-»
+	
+	«EXPAND getResourceSetInfo-»
+	«REM»Removed method disposeElementInfo «ENDREM»
+	«IF null = editorGen.application-»
+
+		«EXPAND doValidateState-»
+	«ENDIF-»
+	
+	«EXPAND isReadOnly-»
+	
+	«EXPAND isModifiable-»
+	
+	«EXPAND updateCache-»
+	
+	«EXPAND doUpdateStateCache-»
+	
+	«EXPAND isSynchronized-»
+	«IF null = editorGen.application-»
+		
+		«EXPAND getResetRule-»
+	
+		«EXPAND getSaveRule-»
+	
+		«EXPAND getSynchronizeRule-»
+	
+		«EXPAND getValidateStateRule-»
+	
+		«EXPAND computeSchedulingRule-»
+	«ENDIF-»
+	
+	«EXPAND doSynchronize-»
+	
+	«EXPAND doSaveDocument-»
+	
+	«EXPAND handleElementChanged-»
+
+	«EXPAND handleElementMoved-»
+
+	«EXPAND createInputWithEditingDomain-»
+
+	«EXPAND getDiagramDocument-»
+	
+	«EXPAND getOperationRunner-»
+	«IF null <> editorGen.application-»
+
+		«EXPAND getFile-»
+	«ENDIF-»
+	
+	«EXPAND xpt::editor::ResourceSetInfo::ResourceSetInfo-»
+	
+	«EXPAND xpt::editor::ResourceSetModificationListener::ResourceSetModificationListener-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»

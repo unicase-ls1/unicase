@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Workspace Plug-in
+Bundle-SymbolicName: org.unicase.workspace; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.workspace,
+ org.unicase.workspace.accesscontrol,
+ org.unicase.workspace.changeTracking,
+ org.unicase.workspace.changeTracking.notification,
+ org.unicase.workspace.changeTracking.notification.filter,
+ org.unicase.workspace.changeTracking.notification.recording,
+ org.unicase.workspace.connectionmanager,
+ org.unicase.workspace.connectionmanager.rmi,
+ org.unicase.workspace.exceptions,
+ org.unicase.workspace.filetransfer,
+ org.unicase.workspace.impl,
+ org.unicase.workspace.notification,
+ org.unicase.workspace.observers,
+ org.unicase.workspace.preferences,
+ org.unicase.workspace.util
+Require-Bundle: org.unicase.emfstore;visibility:=reexport,
+ org.eclipse.emf.transaction;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.unicase.workspace.Activator
