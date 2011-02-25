@@ -95,6 +95,10 @@
           </with>
        </enabledWhen>
     </handler>
+    <handler
+          class="org.unicase.emfstore.jdt.ui.menu.AddStandaloneEMFStoreManagementHandler"
+          commandId="org.unicase.emfstore.jdt.ui.menu.AddStandaloneEMFStoreManagementCommandID">
+    </handler>
  </extension>
  
  <extension

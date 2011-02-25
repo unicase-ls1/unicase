@@ -6,6 +6,7 @@
 package org.unicase.emfstore.jdt.ui.editor;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IEditorInput;
@@ -15,6 +16,7 @@ import org.unicase.emfstore.jdt.TeamSynchronizerRegistry;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 import org.unicase.emfstore.jdt.eclipseworkspace.Synchronizer;
 import org.unicase.emfstore.jdt.exception.CannotSyncFileException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
@@ -23,8 +25,8 @@ import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
 
 /**
  * This class can be used for the EMFStoreJDT editors to decide which editor input should be used. If the requested file
- * is "pushed" the editor input will different than the usual FileEditorInput. The editor input is substantial for the
- * data and the manner how the content will be loaded.
+ * is "pushed" the editor input will be different than the usual FileEditorInput. The editor input is substantial for
+ * the data and the manner how the content will be loaded.
  * 
  * @author Adrian Staudt
  */
@@ -44,18 +46,33 @@ public class EditorInputDecider {
 		if (editorInput instanceof FileEditorInput) {
 			FileEditorInput fileEditorInput = (FileEditorInput) editorInput;
 			IFile file = fileEditorInput.getFile();
+			IProject project = file.getProject();
 
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
-					.getProject());
-				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
-				URI emfStoreURI = ConfigurationManager.getEMFStoreURI(entry).getEMFURI();
+				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+
+				URI emfStoreURI = null;
+				try {
+					Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
+					emfStoreURI = ConfigurationManager.getEMFStoreURI(entry).getEMFURI();
+
+				} catch (EntryNotFoundException e) {
+					try {
+						StandaloneEntry standaloneEntry = ConfigurationManager.getStandaloneEntry(
+							emfStoreJDTConfiguration, file);
+						emfStoreURI = ConfigurationManager.getEMFStoreURI(project, standaloneEntry).getEMFURI();
+
+					} catch (EntryNotFoundException ex) {
+						// ignore, keep editorInput
+						return;
+					}
+
+				}
 				this.suitableEditorInput = new URIEditorInput(emfStoreURI, fileEditorInput.getName());
 				isSuitableEditorInputEMFStoreCompatible = true;
 
 				try {
-					ITeamSynchronizer teamsynchronizer = TeamSynchronizerRegistry
-						.getTeamSynchronizer(file.getProject());
+					ITeamSynchronizer teamsynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(project);
 					try {
 						Synchronizer.sync(file, teamsynchronizer, true);
 
@@ -70,8 +87,6 @@ public class EditorInputDecider {
 				}
 
 			} catch (NoEMFStoreJDTConfigurationException e) {
-				// ignored, keep editorInput
-			} catch (EntryNotFoundException e) {
 				// ignored, keep editorInput
 			}
 		}
