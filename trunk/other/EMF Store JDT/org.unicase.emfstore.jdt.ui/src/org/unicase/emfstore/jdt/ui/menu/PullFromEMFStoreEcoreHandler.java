@@ -146,6 +146,7 @@ public class PullFromEMFStoreEcoreHandler extends AbstractEMFStoreInteractionHan
 			} else {
 				file.create(eObjectAsInputStream, IResource.FORCE, new NullProgressMonitor());
 			}
+			refreshUI(file);
 
 		} catch (CannotOpenEObjectException e) {
 			ModelUtil.logException(e);

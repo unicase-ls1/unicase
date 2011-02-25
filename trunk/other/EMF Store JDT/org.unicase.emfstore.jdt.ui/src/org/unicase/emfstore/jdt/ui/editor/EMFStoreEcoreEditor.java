@@ -14,7 +14,7 @@ import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -48,7 +48,7 @@ public class EMFStoreEcoreEditor extends EcoreEditor {
 			// reset editingDomain
 			EMFStoreResourceSet resourceSet = new EMFStoreResourceSet();
 
-			TransactionalEditingDomain unicaseEditingDomain = WorkspaceManager.getInstance().getCurrentWorkspace()
+			EditingDomain unicaseEditingDomain = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getEditingDomain();
 			CommandStack commandStack = unicaseEditingDomain.getCommandStack();
 			editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet);
