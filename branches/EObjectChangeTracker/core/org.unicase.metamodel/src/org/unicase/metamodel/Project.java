@@ -29,7 +29,7 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  * @model
  * @generated
  */
-public interface Project extends EObject, IAdaptable {
+public interface Project extends EObject, IAdaptable, IdProvider {
 
 	/**
 	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
