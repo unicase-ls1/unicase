@@ -1,7 +1,0 @@
-# Tracing options for the org.unicase.ui.activityDiagram plug-in
-
-# Common issues
-org.unicase.ui.activityDiagram/debug=false
-
-# Visual IDs
-org.unicase.ui.activityDiagram/debug/visualID=false
