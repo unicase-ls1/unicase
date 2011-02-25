@@ -5,21 +5,36 @@
  */
 package org.unicase.emfstore.jdt.git;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egit.ui.CommitObserver;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.jdt.CommitHelper;
+import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
+import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreCommit;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.StandaloneUtil;
 import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
+import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
+import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
+import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
+import org.unicase.emfstore.jdt.operationstore.OperationSet;
+import org.unicase.emfstore.jdt.operationstore.OperationStore;
+import org.unicase.emfstore.jdt.operationstore.OperationstorePackage;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -28,6 +43,7 @@ import org.unicase.metamodel.util.ModelUtil;
  * 
  * @author Adrian Staudt
  */
+@SuppressWarnings("restriction")
 public class GitCommitObserver implements CommitObserver {
 
 	/**
@@ -38,7 +54,7 @@ public class GitCommitObserver implements CommitObserver {
 	public boolean finaliceCommit(org.eclipse.egit.core.op.CommitOperation commitOperation) {
 		String commitMessage = commitOperation.getMessage();
 
-		// GitTeamSynchronizer gitTeamSynchronizer = new GitTeamSynchronizer();
+		GitTeamSynchronizer gitTeamSynchronizer = new GitTeamSynchronizer();
 
 		IFile[] filesToCommit = commitOperation.getFilesToCommit();
 		ResourceCommitHolder resourceCommitHolder = new ResourceCommitHolder(filesToCommit);
@@ -95,6 +111,45 @@ public class GitCommitObserver implements CommitObserver {
 
 			// remove committed forced files
 			resourceCommitHolder.cleanForcedEMFStoresToCommit();
+
+			// handle standalone pushed files
+			for (IFile fileToCommit : filesToCommit) {
+				EMFStoreJDTConfiguration emfStoreJDTConfiguration;
+				IProject project = fileToCommit.getProject();
+				try {
+					emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+					StandaloneEntry standaloneEntry = ConfigurationManager.getStandaloneEntry(emfStoreJDTConfiguration,
+						fileToCommit);
+					IFile originalResourceFile = project.getFile(standaloneEntry.getProjectRelativeLocation());
+					IPath operationStoreFilePath = StandaloneUtil.handOperationStoreFilePath(originalResourceFile);
+					// IPath metadataOperationStoreFilePath = StandaloneUtil
+					// .handMetadataOperationStoreFilePath(originalResourceFile);
+					URI operationStoreURI = StandaloneUtil.getOperationStoreURI(operationStoreFilePath, true);
+					// URI metadataOperationStoreURI = StandaloneUtil.getOperationStoreURI(operationStoreFilePath,
+					// false);
+					EClass operationStoreEClass = OperationstorePackage.eINSTANCE.getOperationStore();
+					OperationStore operationStore = ModelUtil.loadEObjectFromResource(operationStoreEClass,
+						operationStoreURI, false);
+					// OperationStore metadataOperationStore = ModelUtil.loadEObjectFromResource(operationStoreEClass,
+					// metadataOperationStoreURI, false);
+					EList<OperationSet> operationSets = operationStore.getOperationSets();
+					if (operationSets.size() > 1) {
+						// set to second last OperationSet entry the current working copy revision
+						OperationSet operationSet = operationSets.get(operationSets.size() - 2);
+						String workingCopyRevision = gitTeamSynchronizer.getWorkingCopyRevision(fileToCommit);
+						operationSet.setBaseVersion(workingCopyRevision);
+					}
+
+				} catch (NoEMFStoreJDTConfigurationException e) {
+					// ignore
+				} catch (EntryNotFoundException e) {
+					// ignore
+				} catch (IOException e) {
+					ModelUtil.logException(e);
+				} catch (TeamSynchronizerException e) {
+					ModelUtil.logException(e);
+				}
+			}
 
 			try {
 				// Commit Git Commit
