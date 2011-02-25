@@ -4,35 +4,47 @@
    <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
       Update Site for the EMFStore
    </description>
-   <feature url="features/org.unicase.emfstore.backchannel_1.0.0.qualifier.jar" id="org.unicase.emfstore.backchannel" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.other"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.client_1.0.0.qualifier.jar" id="org.unicase.emfstore.client" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.core"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.client.ui_1.0.0.qualifier.jar" id="org.unicase.emfstore.client.ui" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.core"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.metamodel_1.0.0.qualifier.jar" id="org.unicase.emfstore.metamodel" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.core"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.SDK_1.0.0.qualifier.jar" id="org.unicase.emfstore.SDK" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.sdk"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.server_1.0.0.qualifier.jar" id="org.unicase.emfstore.server" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.core"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.copeMigration_1.0.0.qualifier.jar" id="org.unicase.emfstore.copeMigration" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.other"/>
-   </feature>
-   <feature url="features/org.unicase.emfstore.backchannel.SDK_1.0.0.qualifier.jar" id="org.unicase.emfstore.backchannel.SDK" version="1.0.0.qualifier">
-      <category name="org.unicase.emfstore.sdk"/>
-   </feature>
    <feature url="features/edu.tum.cs.cope.runtime.feature_0.2.13.jar" id="edu.tum.cs.cope.runtime.feature" version="0.2.13">
       <category name="org.unicase.emfstore.other"/>
    </feature>
    <feature url="features/edu.tum.cs.cope.feature_0.2.13.jar" id="edu.tum.cs.cope.feature" version="0.2.13">
       <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.client_1.0.0.201102161132.jar" id="org.unicase.emfstore.client" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.client.ui_1.0.0.201102161132.jar" id="org.unicase.emfstore.client.ui" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.common_1.0.0.201102161132.jar" id="org.unicase.emfstore.common" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.server_1.0.0.201102161132.jar" id="org.unicase.emfstore.server" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.backchannel_1.0.0.201102161132.jar" id="org.unicase.emfstore.backchannel" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.copeMigration_1.0.0.201102161132.jar" id="org.unicase.emfstore.copeMigration" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.backchannel.SDK_1.0.0.201102161132.jar" id="org.unicase.emfstore.backchannel.SDK" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.SDK_1.0.0.201102161132.jar" id="org.unicase.emfstore.SDK" version="1.0.0.201102161132">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.common_1.0.0.201102161132.jar" id="org.unicase.ecp.common" version="1.0.0.201102161132">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.meeditor_1.0.0.201102161132.jar" id="org.unicase.ecp.meeditor" version="1.0.0.201102161132">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.navigator_1.0.0.201102161132.jar" id="org.unicase.ecp.navigator" version="1.0.0.201102161132">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.navigatorMEEditorBridge_1.0.0.201102161132.jar" id="org.unicase.ecp.navigatorMEEditorBridge" version="1.0.0.201102161132">
+      <category name="org.unicase.ecp"/>
    </feature>
    <category-def name="org.unicase.emfstore.core" label="EMFStore Core Features">
       <description>
@@ -49,4 +61,5 @@
          SDK of EMFStore, a model repository for EMF.
       </description>
    </category-def>
+   <category-def name="org.unicase.ecp" label="EMF Client Platform"/>
 </site>
