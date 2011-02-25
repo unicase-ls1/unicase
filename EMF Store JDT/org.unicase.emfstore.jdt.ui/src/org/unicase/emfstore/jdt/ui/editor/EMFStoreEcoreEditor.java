@@ -8,7 +8,6 @@ package org.unicase.emfstore.jdt.ui.editor;
 import java.util.EventObject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -86,13 +85,15 @@ public class EMFStoreEcoreEditor extends EcoreEditor {
 	 */
 	@Override
 	public boolean isDirty() {
-		if (isInEMFStoreMode) {
-			return false;
+		// if (isInEMFStoreMode) {
+		// return false;
+		//
+		// } else {
+		// BasicCommandStack commandStack = (BasicCommandStack) editingDomain.getCommandStack();
+		// return commandStack.isSaveNeeded();
+		// }
 
-		} else {
-			BasicCommandStack commandStack = (BasicCommandStack) editingDomain.getCommandStack();
-			return commandStack.isSaveNeeded();
-		}
+		return super.isDirty();
 	}
 
 	/**

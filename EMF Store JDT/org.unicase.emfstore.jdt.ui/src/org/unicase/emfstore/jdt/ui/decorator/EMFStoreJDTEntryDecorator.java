@@ -67,37 +67,14 @@ public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightwe
 
 		fileToDecorate = (IFile) element;
 		try {
-			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(fileToDecorate
-				.getProject());
-			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, fileToDecorate);
-			if (!entry.isMarkedForDeletion()) {
-				decoration.addPrefix("@emfstore ");
-				teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(fileToDecorate.getProject());
-				boolean isFileShared = teamSynchronizer.isFileShared(fileToDecorate);
-				if (!isFileShared) {
-					// nothing more to decorate yet
-					return;
-				}
-
-				// get current ProjectSpace revision
-				VersionMapping versionMapping = entry.getVersionMapping();
-				if (versionMapping instanceof SimpleVersionMapping) {
-					SimpleVersionMapping simpleVersionMapping = (SimpleVersionMapping) versionMapping;
-					int emfStoreRevision = simpleVersionMapping.getEMFStoreRevision();
-					decoration.addSuffix(" [v" + emfStoreRevision + "]");
-
-				} else if (versionMapping instanceof HistoryVersionMapping) {
-					HistoryVersionMapping historyVersionMapping = (HistoryVersionMapping) versionMapping;
-					decorateHistoryVersionMapping(historyVersionMapping);
-				}
-			}
-
-		} catch (NoEMFStoreJDTConfigurationException e) {
-			// Can be ignored. File is not pushed.
+			decorateEntry(fileToDecorate);
 		} catch (EntryNotFoundException e) {
-			// will be thrown for pushed files, so ignore
-		} catch (NoSuitableTeamSynchronizerException e) {
-			// will be thrown for unsupported team provider, so ignore
+			try {
+				decorateStandaloneEntry(fileToDecorate);
+
+			} catch (EntryNotFoundException ex) {
+				// ignore, no decoration needed
+			}
 		}
 	}
 
@@ -133,4 +110,52 @@ public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightwe
 
 	}
 
+	private void decorateEntry(IFile fileToDecorate) throws EntryNotFoundException {
+		try {
+			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(fileToDecorate
+				.getProject());
+			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, fileToDecorate);
+			if (entry.isMarkedForDeletion()) {
+				// do not decorate
+				return;
+			}
+
+			decoration.addPrefix("@emfstore ");
+			teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(fileToDecorate.getProject());
+			boolean isFileShared = teamSynchronizer.isFileShared(fileToDecorate);
+			if (!isFileShared) {
+				// nothing more to decorate yet
+				return;
+			}
+
+			// get current ProjectSpace revision
+			VersionMapping versionMapping = entry.getVersionMapping();
+			if (versionMapping instanceof SimpleVersionMapping) {
+				SimpleVersionMapping simpleVersionMapping = (SimpleVersionMapping) versionMapping;
+				int emfStoreRevision = simpleVersionMapping.getEMFStoreRevision();
+				decoration.addSuffix(" [v" + emfStoreRevision + "]");
+
+			} else if (versionMapping instanceof HistoryVersionMapping) {
+				HistoryVersionMapping historyVersionMapping = (HistoryVersionMapping) versionMapping;
+				decorateHistoryVersionMapping(historyVersionMapping);
+			}
+
+		} catch (NoEMFStoreJDTConfigurationException e) {
+			// Can be ignored. File is not pushed.
+		} catch (NoSuitableTeamSynchronizerException e) {
+			// will be thrown for unsupported team provider, so ignore
+		}
+	}
+
+	private void decorateStandaloneEntry(IFile fileToDecorate) throws EntryNotFoundException {
+		try {
+			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(fileToDecorate
+				.getProject());
+			ConfigurationManager.getStandaloneEntry(emfStoreJDTConfiguration, fileToDecorate);
+			decoration.addPrefix("@emfstore ");
+
+		} catch (NoEMFStoreJDTConfigurationException e) {
+			// Can be ignored. File is not pushed.
+		}
+	}
 }

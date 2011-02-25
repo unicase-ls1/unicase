@@ -20,6 +20,7 @@ import org.unicase.emfstore.jdt.TeamSynchronizerRegistry;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceDeltaVisitor;
@@ -28,6 +29,7 @@ import org.unicase.emfstore.jdt.exception.CannotSyncFileException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
+import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -147,5 +149,39 @@ public class WorkspaceListener implements IResourceChangeListener {
 		}
 
 		return filesToSync;
+	}
+
+	private Set<IFile> getStandaloneFilesToMerge(Collection<IFile> files) {
+		Set<IFile> filesToMerge = new HashSet<IFile>();
+
+		for (IFile file : files) {
+			IProject project = file.getProject();
+
+			try {
+				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				StandaloneEntry standaloneEntry = ConfigurationManager.getStandaloneEntry(emfStoreJDTConfiguration,
+					file);
+				String trackedTeamRevision = standaloneEntry.getCurrentTeamRevision();
+
+				ITeamSynchronizer teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(project);
+				String currentTeamRevision = teamSynchronizer.getWorkingCopyRevision(file);
+
+				if (trackedTeamRevision == null || currentTeamRevision == null
+					|| !trackedTeamRevision.equals(currentTeamRevision)) {
+					filesToMerge.add(file);
+				}
+
+			} catch (NoEMFStoreJDTConfigurationException e) {
+				// ignore
+			} catch (EntryNotFoundException e) {
+				// ignore
+			} catch (NoSuitableTeamSynchronizerException e) {
+				ModelUtil.logException(e);
+			} catch (TeamSynchronizerException e) {
+				ModelUtil.logException(e);
+			}
+		}
+
+		return filesToMerge;
 	}
 }
