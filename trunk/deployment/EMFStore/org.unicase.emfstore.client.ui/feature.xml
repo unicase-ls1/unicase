@@ -221,6 +221,22 @@ litigation.
          id="org.unicase.emfstore.client"
          version="0.0.0"/>
 
+   <includes
+         id="org.unicase.ecp.common"
+         version="0.0.0"/>
+
+   <includes
+         id="org.unicase.ecp.meeditor"
+         version="0.0.0"/>
+
+   <includes
+         id="org.unicase.ecp.navigator"
+         version="0.0.0"/>
+
+   <includes
+         id="org.unicase.ecp.navigatorMEEditorBridge"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.unicase.workspace"/>
@@ -238,27 +254,6 @@ litigation.
       <import plugin="org.eclipse.emf.transaction.ui"/>
       <import plugin="org.unicase.util"/>
    </requires>
-
-   <plugin
-         id="org.unicase.ui.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.meeditor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.navigator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.unicase.workspace.ui"
@@ -296,21 +291,7 @@ litigation.
          unpack="false"/>
 
    <plugin
-         id="org.unicase.ecp.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.unicase.ecpemfstorebridge"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.util"
          download-size="0"
          install-size="0"
          version="0.0.0"

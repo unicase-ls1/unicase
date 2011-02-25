@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.emfstore.metamodel"
-      label="EMFStore Metamodel"
+      id="org.unicase.emfstore.common"
+      label="EMFStore Common"
       version="1.0.0.qualifier"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
    <description url="http://emfstore.org">
-      The EMFStore Metamodel feature includes all plugins to create
-a model that can be stored in the EMFStore repository.
+      Contains common plugins of EMFStore that are used by other EMFStore features.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
