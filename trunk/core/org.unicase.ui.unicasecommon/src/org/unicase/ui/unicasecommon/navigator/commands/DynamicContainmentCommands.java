@@ -95,6 +95,11 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				continue;
 			}
 
+			// do not create commands for raw EObjects
+			if (containment.getEReferenceType().equals(EcoreFactory.eINSTANCE.getEcorePackage().getEObject())) {
+				continue;
+			}
+
 			// if containment type is abstract, create a list of
 			// commands for its subclasses
 			if (containment.getEReferenceType().isAbstract() || containment.getEReferenceType().isInterface()) {
