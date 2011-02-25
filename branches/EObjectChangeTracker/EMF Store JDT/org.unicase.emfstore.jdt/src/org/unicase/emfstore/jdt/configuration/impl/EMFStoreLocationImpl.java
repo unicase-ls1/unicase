@@ -69,9 +69,9 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 	protected int port = PORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCertificate() <em>Certificate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCertificate() <em>Certificate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCertificate()
 	 * @generated
 	 * @ordered
@@ -79,9 +79,9 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 	protected static final String CERTIFICATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCertificate() <em>Certificate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCertificate() <em>Certificate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCertificate()
 	 * @generated
 	 * @ordered
@@ -89,9 +89,9 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 	protected String certificate = CERTIFICATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProjectID() <em>Project ID</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProjectID() <em>Project ID</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectID()
 	 * @generated
 	 * @ordered
@@ -99,9 +99,9 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 	protected static final String PROJECT_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectID() <em>Project ID</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectID() <em>Project ID</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectID()
 	 * @generated
 	 * @ordered
@@ -110,7 +110,6 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EMFStoreLocationImpl() {
@@ -119,7 +118,6 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +127,6 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getHost() {
@@ -138,20 +135,17 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHost(String newHost) {
 		String oldHost = host;
 		host = newHost;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__HOST,
-				oldHost, host));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__HOST, oldHost, host));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getPort() {
@@ -160,20 +154,17 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPort(int newPort) {
 		int oldPort = port;
 		port = newPort;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__PORT,
-				oldPort, port));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__PORT, oldPort, port));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCertificate() {
@@ -182,20 +173,17 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCertificate(String newCertificate) {
 		String oldCertificate = certificate;
 		certificate = newCertificate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE,
-				oldCertificate, certificate));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE, oldCertificate, certificate));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectID() {
@@ -204,114 +192,106 @@ public class EMFStoreLocationImpl extends EObjectImpl implements EMFStoreLocatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectID(String newProjectID) {
 		String oldProjectID = projectID;
 		projectID = newProjectID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID,
-				oldProjectID, projectID));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID, oldProjectID, projectID));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
-			return getHost();
-		case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
-			return getPort();
-		case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
-			return getCertificate();
-		case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
-			return getProjectID();
+			case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
+				return getHost();
+			case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
+				return getPort();
+			case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
+				return getCertificate();
+			case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
+				return getProjectID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
-			setHost((String) newValue);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
-			setPort((Integer) newValue);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
-			setCertificate((String) newValue);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
-			setProjectID((String) newValue);
-			return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
+				setHost((String)newValue);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
+				setPort((Integer)newValue);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
+				setCertificate((String)newValue);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
+				setProjectID((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
-			setHost(HOST_EDEFAULT);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
-			setPort(PORT_EDEFAULT);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
-			setCertificate(CERTIFICATE_EDEFAULT);
-			return;
-		case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
-			setProjectID(PROJECT_ID_EDEFAULT);
-			return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
+				setHost(HOST_EDEFAULT);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
+				setPort(PORT_EDEFAULT);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
+				setCertificate(CERTIFICATE_EDEFAULT);
+				return;
+			case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
+				setProjectID(PROJECT_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
-			return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
-		case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
-			return port != PORT_EDEFAULT;
-		case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
-			return CERTIFICATE_EDEFAULT == null ? certificate != null : !CERTIFICATE_EDEFAULT.equals(certificate);
-		case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
-			return PROJECT_ID_EDEFAULT == null ? projectID != null : !PROJECT_ID_EDEFAULT.equals(projectID);
+			case ConfigurationPackage.EMF_STORE_LOCATION__HOST:
+				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+			case ConfigurationPackage.EMF_STORE_LOCATION__PORT:
+				return port != PORT_EDEFAULT;
+			case ConfigurationPackage.EMF_STORE_LOCATION__CERTIFICATE:
+				return CERTIFICATE_EDEFAULT == null ? certificate != null : !CERTIFICATE_EDEFAULT.equals(certificate);
+			case ConfigurationPackage.EMF_STORE_LOCATION__PROJECT_ID:
+				return PROJECT_ID_EDEFAULT == null ? projectID != null : !PROJECT_ID_EDEFAULT.equals(projectID);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (Host: ");

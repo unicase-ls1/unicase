@@ -26,10 +26,10 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.jdt.configuration.impl.HistoryVersionMappingImpl#getHvmEntry <em>Hvm Entry</em>}</li>
+ *   <li>{@link org.unicase.emfstore.jdt.configuration.impl.HistoryVersionMappingImpl#getHvmEntry <em>Hvm Entry</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class HistoryVersionMappingImpl extends VersionMappingImpl implements HistoryVersionMapping {
@@ -45,7 +45,6 @@ public class HistoryVersionMappingImpl extends VersionMappingImpl implements His
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryVersionMappingImpl() {
@@ -54,7 +53,6 @@ public class HistoryVersionMappingImpl extends VersionMappingImpl implements His
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,87 +62,80 @@ public class HistoryVersionMappingImpl extends VersionMappingImpl implements His
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<HistoryVersionMappingEntry> getHvmEntry() {
 		if (hvmEntry == null) {
-			hvmEntry = new EObjectContainmentEList<HistoryVersionMappingEntry>(HistoryVersionMappingEntry.class, this,
-				ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY);
+			hvmEntry = new EObjectContainmentEList<HistoryVersionMappingEntry>(HistoryVersionMappingEntry.class, this, ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY);
 		}
 		return hvmEntry;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
-			return ((InternalEList<?>) getHvmEntry()).basicRemove(otherEnd, msgs);
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
+				return ((InternalEList<?>)getHvmEntry()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
-			return getHvmEntry();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
+				return getHvmEntry();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
-			getHvmEntry().clear();
-			getHvmEntry().addAll((Collection<? extends HistoryVersionMappingEntry>) newValue);
-			return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
+				getHvmEntry().clear();
+				getHvmEntry().addAll((Collection<? extends HistoryVersionMappingEntry>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
-			getHvmEntry().clear();
-			return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
+				getHvmEntry().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
-			return hvmEntry != null && !hvmEntry.isEmpty();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING__HVM_ENTRY:
+				return hvmEntry != null && !hvmEntry.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

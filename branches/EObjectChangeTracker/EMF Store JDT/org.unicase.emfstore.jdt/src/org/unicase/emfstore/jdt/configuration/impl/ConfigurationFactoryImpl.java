@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.jdt.configuration.*;
 import org.unicase.emfstore.jdt.configuration.ConfigurationFactory;
 import org.unicase.emfstore.jdt.configuration.ConfigurationPackage;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
@@ -19,34 +20,34 @@ import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMapping;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ConfigurationFactoryImpl extends EFactoryImpl implements ConfigurationFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ConfigurationFactory init() {
 		try {
-			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://emfstore.org/jdt");
+			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://emfstore.org/jdt"); 
 			if (theConfigurationFactory != null) {
 				return theConfigurationFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ConfigurationFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ConfigurationFactoryImpl() {
@@ -55,34 +56,26 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ConfigurationPackage.EMF_STORE_JDT_CONFIGURATION:
-			return createEMFStoreJDTConfiguration();
-		case ConfigurationPackage.EMF_STORE_LOCATION:
-			return createEMFStoreLocation();
-		case ConfigurationPackage.ENTRY:
-			return createEntry();
-		case ConfigurationPackage.EOBJECT_LOCATION:
-			return createEObjectLocation();
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING:
-			return createHistoryVersionMapping();
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY:
-			return createHistoryVersionMappingEntry();
-		case ConfigurationPackage.SIMPLE_VERSION_MAPPING:
-			return createSimpleVersionMapping();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case ConfigurationPackage.EMF_STORE_JDT_CONFIGURATION: return createEMFStoreJDTConfiguration();
+			case ConfigurationPackage.EMF_STORE_LOCATION: return createEMFStoreLocation();
+			case ConfigurationPackage.ENTRY: return createEntry();
+			case ConfigurationPackage.EOBJECT_LOCATION: return createEObjectLocation();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING: return createHistoryVersionMapping();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY: return createHistoryVersionMappingEntry();
+			case ConfigurationPackage.SIMPLE_VERSION_MAPPING: return createSimpleVersionMapping();
+			case ConfigurationPackage.STANDALONE_ENTRY: return createStandaloneEntry();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EMFStoreJDTConfiguration createEMFStoreJDTConfiguration() {
@@ -92,7 +85,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Entry createEntry() {
@@ -102,7 +94,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EMFStoreLocation createEMFStoreLocation() {
@@ -112,7 +103,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObjectLocation createEObjectLocation() {
@@ -122,7 +112,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryVersionMapping createHistoryVersionMapping() {
@@ -132,7 +121,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryVersionMappingEntry createHistoryVersionMappingEntry() {
@@ -142,7 +130,6 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SimpleVersionMapping createSimpleVersionMapping() {
@@ -152,16 +139,23 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ConfigurationPackage getConfigurationPackage() {
-		return (ConfigurationPackage) getEPackage();
+	public StandaloneEntry createStandaloneEntry() {
+		StandaloneEntryImpl standaloneEntry = new StandaloneEntryImpl();
+		return standaloneEntry;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public ConfigurationPackage getConfigurationPackage() {
+		return (ConfigurationPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */

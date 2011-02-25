@@ -19,69 +19,68 @@ import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMapping;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 import org.unicase.emfstore.jdt.configuration.VersionMapping;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ConfigurationPackageImpl extends EPackageImpl implements ConfigurationPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass emfStoreJDTConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass emfStoreLocationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass entryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eObjectLocationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass versionMappingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass historyVersionMappingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass historyVersionMappingEntryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass simpleVersionMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass standaloneEntryEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -102,7 +101,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -120,13 +118,10 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 	 * @generated
 	 */
 	public static ConfigurationPackage init() {
-		if (isInited)
-			return (ConfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(ConfigurationPackage.eNS_URI);
+		if (isInited) return (ConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(ConfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ConfigurationPackageImpl theConfigurationPackage = (ConfigurationPackageImpl) (EPackage.Registry.INSTANCE
-			.get(eNS_URI) instanceof ConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-			: new ConfigurationPackageImpl());
+		ConfigurationPackageImpl theConfigurationPackage = (ConfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ConfigurationPackageImpl());
 
 		isInited = true;
 
@@ -139,6 +134,7 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		// Mark meta-data to indicate it can't be changed
 		theConfigurationPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ConfigurationPackage.eNS_URI, theConfigurationPackage);
 		return theConfigurationPackage;
@@ -146,7 +142,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEMFStoreJDTConfiguration() {
@@ -155,25 +150,31 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEMFStoreJDTConfiguration_Entry() {
-		return (EReference) emfStoreJDTConfigurationEClass.getEStructuralFeatures().get(0);
+		return (EReference)emfStoreJDTConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEMFStoreJDTConfiguration_StandaloneEntry() {
+		return (EReference)emfStoreJDTConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEMFStoreJDTConfiguration_AnywayCommit() {
-		return (EReference) emfStoreJDTConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EReference)emfStoreJDTConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEMFStoreLocation() {
@@ -182,43 +183,38 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEMFStoreLocation_Host() {
-		return (EAttribute) emfStoreLocationEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)emfStoreLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEMFStoreLocation_Port() {
-		return (EAttribute) emfStoreLocationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)emfStoreLocationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEMFStoreLocation_Certificate() {
-		return (EAttribute) emfStoreLocationEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)emfStoreLocationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEMFStoreLocation_ProjectID() {
-		return (EAttribute) emfStoreLocationEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)emfStoreLocationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEntry() {
@@ -227,52 +223,46 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEntry_Configuration() {
-		return (EReference) entryEClass.getEStructuralFeatures().get(0);
+		return (EReference)entryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEntry_ProjectRelativeLocation() {
-		return (EAttribute) entryEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)entryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEntry_EObjectLocation() {
-		return (EReference) entryEClass.getEStructuralFeatures().get(2);
+		return (EReference)entryEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEntry_VersionMapping() {
-		return (EReference) entryEClass.getEStructuralFeatures().get(3);
+		return (EReference)entryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEntry_MarkedForDeletion() {
-		return (EAttribute) entryEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)entryEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEObjectLocation() {
@@ -281,25 +271,22 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEObjectLocation_EMFStoreLocation() {
-		return (EReference) eObjectLocationEClass.getEStructuralFeatures().get(0);
+		return (EReference)eObjectLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEObjectLocation_EObjectID() {
-		return (EAttribute) eObjectLocationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)eObjectLocationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVersionMapping() {
@@ -308,7 +295,6 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getHistoryVersionMapping() {
@@ -317,16 +303,14 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getHistoryVersionMapping_HvmEntry() {
-		return (EReference) historyVersionMappingEClass.getEStructuralFeatures().get(0);
+		return (EReference)historyVersionMappingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getHistoryVersionMappingEntry() {
@@ -335,25 +319,22 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getHistoryVersionMappingEntry_TeamProviderRevision() {
-		return (EAttribute) historyVersionMappingEntryEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)historyVersionMappingEntryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getHistoryVersionMappingEntry_EMFStoreRevision() {
-		return (EAttribute) historyVersionMappingEntryEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)historyVersionMappingEntryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSimpleVersionMapping() {
@@ -362,43 +343,76 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSimpleVersionMapping_EMFStoreRevision() {
-		return (EAttribute) simpleVersionMappingEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)simpleVersionMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStandaloneEntry() {
+		return standaloneEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStandaloneEntry_Configuration() {
+		return (EReference)standaloneEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStandaloneEntry_ProjectRelativeLocation() {
+		return (EAttribute)standaloneEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStandaloneEntry_CurrentTeamRevision() {
+		return (EAttribute)standaloneEntryEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConfigurationFactory getConfigurationFactory() {
-		return (ConfigurationFactory) getEFactoryInstance();
+		return (ConfigurationFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
 		emfStoreJDTConfigurationEClass = createEClass(EMF_STORE_JDT_CONFIGURATION);
 		createEReference(emfStoreJDTConfigurationEClass, EMF_STORE_JDT_CONFIGURATION__ENTRY);
+		createEReference(emfStoreJDTConfigurationEClass, EMF_STORE_JDT_CONFIGURATION__STANDALONE_ENTRY);
 		createEReference(emfStoreJDTConfigurationEClass, EMF_STORE_JDT_CONFIGURATION__ANYWAY_COMMIT);
 
 		emfStoreLocationEClass = createEClass(EMF_STORE_LOCATION);
@@ -429,24 +443,27 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 
 		simpleVersionMappingEClass = createEClass(SIMPLE_VERSION_MAPPING);
 		createEAttribute(simpleVersionMappingEClass, SIMPLE_VERSION_MAPPING__EMF_STORE_REVISION);
+
+		standaloneEntryEClass = createEClass(STANDALONE_ENTRY);
+		createEReference(standaloneEntryEClass, STANDALONE_ENTRY__CONFIGURATION);
+		createEAttribute(standaloneEntryEClass, STANDALONE_ENTRY__PROJECT_RELATIVE_LOCATION);
+		createEAttribute(standaloneEntryEClass, STANDALONE_ENTRY__CURRENT_TEAM_REVISION);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -463,79 +480,44 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		simpleVersionMappingEClass.getESuperTypes().add(this.getVersionMapping());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(emfStoreJDTConfigurationEClass, EMFStoreJDTConfiguration.class, "EMFStoreJDTConfiguration",
-			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEMFStoreJDTConfiguration_Entry(), this.getEntry(), this.getEntry_Configuration(), "Entry",
-			null, 0, -1, EMFStoreJDTConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEMFStoreJDTConfiguration_AnywayCommit(), this.getEMFStoreLocation(), null, "AnywayCommit",
-			null, 0, -1, EMFStoreJDTConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(emfStoreJDTConfigurationEClass, EMFStoreJDTConfiguration.class, "EMFStoreJDTConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEMFStoreJDTConfiguration_Entry(), this.getEntry(), this.getEntry_Configuration(), "Entry", null, 0, -1, EMFStoreJDTConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEMFStoreJDTConfiguration_StandaloneEntry(), this.getStandaloneEntry(), this.getStandaloneEntry_Configuration(), "StandaloneEntry", null, 0, -1, EMFStoreJDTConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEMFStoreJDTConfiguration_AnywayCommit(), this.getEMFStoreLocation(), null, "AnywayCommit", null, 0, -1, EMFStoreJDTConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(emfStoreLocationEClass, EMFStoreLocation.class, "EMFStoreLocation", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEMFStoreLocation_Host(), ecorePackage.getEString(), "Host", null, 1, 1,
-			EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEMFStoreLocation_Port(), ecorePackage.getEInt(), "Port", null, 1, 1, EMFStoreLocation.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEMFStoreLocation_Certificate(), ecorePackage.getEString(), "Certificate", null, 1, 1,
-			EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEMFStoreLocation_ProjectID(), ecorePackage.getEString(), "ProjectID", null, 1, 1,
-			EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(emfStoreLocationEClass, EMFStoreLocation.class, "EMFStoreLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEMFStoreLocation_Host(), ecorePackage.getEString(), "Host", null, 1, 1, EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFStoreLocation_Port(), ecorePackage.getEInt(), "Port", null, 1, 1, EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFStoreLocation_Certificate(), ecorePackage.getEString(), "Certificate", null, 1, 1, EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFStoreLocation_ProjectID(), ecorePackage.getEString(), "ProjectID", null, 1, 1, EMFStoreLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEntry_Configuration(), this.getEMFStoreJDTConfiguration(), this
-			.getEMFStoreJDTConfiguration_Entry(), "Configuration", null, 1, 1, Entry.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		initEAttribute(getEntry_ProjectRelativeLocation(), ecorePackage.getEString(), "ProjectRelativeLocation", null,
-			1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getEntry_EObjectLocation(), this.getEObjectLocation(), null, "EObjectLocation", null, 1, 1,
-			Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEntry_VersionMapping(), this.getVersionMapping(), null, "VersionMapping", null, 0, 1,
-			Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEntry_MarkedForDeletion(), ecorePackage.getEBoolean(), "MarkedForDeletion", null, 0, 1,
-			Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getEntry_Configuration(), this.getEMFStoreJDTConfiguration(), this.getEMFStoreJDTConfiguration_Entry(), "Configuration", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntry_ProjectRelativeLocation(), ecorePackage.getEString(), "ProjectRelativeLocation", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntry_EObjectLocation(), this.getEObjectLocation(), null, "EObjectLocation", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntry_VersionMapping(), this.getVersionMapping(), null, "VersionMapping", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntry_MarkedForDeletion(), ecorePackage.getEBoolean(), "MarkedForDeletion", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eObjectLocationEClass, EObjectLocation.class, "EObjectLocation", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEObjectLocation_EMFStoreLocation(), this.getEMFStoreLocation(), null, "EMFStoreLocation",
-			null, 1, 1, EObjectLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEObjectLocation_EObjectID(), ecorePackage.getEString(), "EObjectID", null, 1, 1,
-			EObjectLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(eObjectLocationEClass, EObjectLocation.class, "EObjectLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEObjectLocation_EMFStoreLocation(), this.getEMFStoreLocation(), null, "EMFStoreLocation", null, 1, 1, EObjectLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEObjectLocation_EObjectID(), ecorePackage.getEString(), "EObjectID", null, 1, 1, EObjectLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(versionMappingEClass, VersionMapping.class, "VersionMapping", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(versionMappingEClass, VersionMapping.class, "VersionMapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(historyVersionMappingEClass, HistoryVersionMapping.class, "HistoryVersionMapping", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHistoryVersionMapping_HvmEntry(), this.getHistoryVersionMappingEntry(), null, "hvmEntry",
-			null, 0, -1, HistoryVersionMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(historyVersionMappingEClass, HistoryVersionMapping.class, "HistoryVersionMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHistoryVersionMapping_HvmEntry(), this.getHistoryVersionMappingEntry(), null, "hvmEntry", null, 0, -1, HistoryVersionMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(historyVersionMappingEntryEClass, HistoryVersionMappingEntry.class, "HistoryVersionMappingEntry",
-			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getHistoryVersionMappingEntry_TeamProviderRevision(), ecorePackage.getEString(),
-			"TeamProviderRevision", null, 1, 1, HistoryVersionMappingEntry.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getHistoryVersionMappingEntry_EMFStoreRevision(), ecorePackage.getEInt(), "EMFStoreRevision",
-			null, 1, 1, HistoryVersionMappingEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(historyVersionMappingEntryEClass, HistoryVersionMappingEntry.class, "HistoryVersionMappingEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getHistoryVersionMappingEntry_TeamProviderRevision(), ecorePackage.getEString(), "TeamProviderRevision", null, 1, 1, HistoryVersionMappingEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHistoryVersionMappingEntry_EMFStoreRevision(), ecorePackage.getEInt(), "EMFStoreRevision", null, 1, 1, HistoryVersionMappingEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(simpleVersionMappingEClass, SimpleVersionMapping.class, "SimpleVersionMapping", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleVersionMapping_EMFStoreRevision(), ecorePackage.getEInt(), "EMFStoreRevision", null, 1,
-			1, SimpleVersionMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(simpleVersionMappingEClass, SimpleVersionMapping.class, "SimpleVersionMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleVersionMapping_EMFStoreRevision(), ecorePackage.getEInt(), "EMFStoreRevision", null, 1, 1, SimpleVersionMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(standaloneEntryEClass, StandaloneEntry.class, "StandaloneEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStandaloneEntry_Configuration(), this.getEMFStoreJDTConfiguration(), this.getEMFStoreJDTConfiguration_StandaloneEntry(), "Configuration", null, 1, 1, StandaloneEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStandaloneEntry_ProjectRelativeLocation(), ecorePackage.getEString(), "ProjectRelativeLocation", null, 1, 1, StandaloneEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStandaloneEntry_CurrentTeamRevision(), ecorePackage.getEString(), "CurrentTeamRevision", null, 0, 1, StandaloneEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -161,6 +161,20 @@ public final class ConfigurationManager {
 		throw new EntryNotFoundException();
 	}
 
+	public static StandaloneEntry getStandaloneEntry(EMFStoreJDTConfiguration emfStoreJDTConfiguration, IFile file)
+		throws EntryNotFoundException {
+
+		EList<StandaloneEntry> standloneEntryList = emfStoreJDTConfiguration.getStandaloneEntry();
+		for (StandaloneEntry standaloneEntry : standloneEntryList) {
+			String fileLocation = standaloneEntry.getProjectRelativeLocation();
+			if (fileLocation.equals(file.getProjectRelativePath().toString())) {
+				return standaloneEntry;
+			}
+		}
+
+		throw new EntryNotFoundException();
+	}
+
 	/**
 	 * Returns an EMF Store URI that can identify an EObject in an EMF Store.
 	 * 
@@ -181,6 +195,12 @@ public final class ConfigurationManager {
 		return structuredEMFStoreURI;
 	}
 
+	public static StructuredEMFStoreURI getEMFStoreURI(IProject project, StandaloneEntry standaloneEntry) {
+		StructuredEMFStoreURI structuredEMFStoreURI = new StructuredEMFStoreURI(project, standaloneEntry
+			.getProjectRelativeLocation());
+		return structuredEMFStoreURI;
+	}
+
 	/**
 	 * Removes an entry from an EMF Store JDT configuration. The corresponding file gets than un-managed.
 	 * 
@@ -191,4 +211,5 @@ public final class ConfigurationManager {
 		emfStoreJDTConfiguration.getEntry().remove(entry);
 		emfStoreJDTConfiguration.save();
 	}
+
 }

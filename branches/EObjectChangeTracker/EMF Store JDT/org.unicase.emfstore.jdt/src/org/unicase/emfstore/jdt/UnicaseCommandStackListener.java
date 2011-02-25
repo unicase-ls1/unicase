@@ -78,7 +78,13 @@ public class UnicaseCommandStackListener implements CommandStackListener {
 	 * @param eObject
 	 */
 	private void handleEObjectIfPossible(EObject eObject) {
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(eObject);
+		ProjectSpace projectSpace;
+		try {
+			projectSpace = WorkspaceManager.getProjectSpace(eObject);
+		} catch (IllegalArgumentException e) {
+			// will be thrown if eObject has no project (e.g. in stand-alone mode)
+			return;
+		}
 		ServerInfo serverInfo = projectSpace.getUsersession().getServerInfo();
 		Project project = projectSpace.getProject();
 		ModelElementId modelElementId = project.getModelElementId(eObject);

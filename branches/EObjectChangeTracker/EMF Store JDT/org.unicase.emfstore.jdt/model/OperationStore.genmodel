@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the&#xD;&#xA;accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this&#xD;&#xA;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>"
+    modelDirectory="/org.unicase.emfstore.jdt/src" modelPluginID="org.unicase.emfstore.jdt"
+    modelName="OperationStore" editPluginClass="org.unicase.emfstore.jdt.operationstore.provider.OperationStoreEditPlugin"
+    editorPluginClass="org.unicase.emfstore.jdt.operationstore.presentation.OperationStoreEditorPlugin"
+    reflectiveDelegation="true" testSuiteClass="org.unicase.emfstore.jdt.operationstore.tests.OperationStoreAllTests"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
+  <foreignModel>OperationStore.ecore</foreignModel>
+  <genPackages prefix="Operationstore" basePackage="org.unicase.emfstore.jdt" disposableProviderFactory="true"
+      ecorePackage="OperationStore.ecore#/">
+    <genClasses ecoreClass="OperationStore.ecore#//OperationStore">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OperationStore.ecore#//OperationStore/OperationSets"/>
+    </genClasses>
+    <genClasses ecoreClass="OperationStore.ecore#//OperationSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OperationStore.ecore#//OperationSet/version"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OperationStore.ecore#//OperationSet/operations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

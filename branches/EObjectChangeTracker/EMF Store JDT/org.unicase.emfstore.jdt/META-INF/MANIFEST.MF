@@ -14,7 +14,8 @@ Export-Package: org.unicase.emfstore.jdt,
  org.unicase.emfstore.jdt.eclipseworkspace,
  org.unicase.emfstore.jdt.eclipseworkspace.emfstore,
  org.unicase.emfstore.jdt.emf.resource,
- org.unicase.emfstore.jdt.exception
+ org.unicase.emfstore.jdt.exception,
+ org.unicase.emfstore.jdt.operationstore
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.team.core,

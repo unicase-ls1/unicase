@@ -11,27 +11,28 @@ import org.unicase.emfstore.jdt.ITeamSynchronizer;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>History Version Mapping</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.emfstore.jdt.configuration.HistoryVersionMapping#getHvmEntry <em>Hvm Entry</em>}</li>
+ *   <li>{@link org.unicase.emfstore.jdt.configuration.HistoryVersionMapping#getHvmEntry <em>Hvm Entry</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.emfstore.jdt.configuration.ConfigurationPackage#getHistoryVersionMapping()
  * @model
  * @generated
  */
 public interface HistoryVersionMapping extends VersionMapping {
 	/**
-	 * Returns the value of the '<em><b>Hvm Entry</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Hvm Entry</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Hvm Entry</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Hvm Entry</em>' containment reference list.
 	 * @see org.unicase.emfstore.jdt.configuration.ConfigurationPackage#getHistoryVersionMapping_HvmEntry()
 	 * @model containment="true"

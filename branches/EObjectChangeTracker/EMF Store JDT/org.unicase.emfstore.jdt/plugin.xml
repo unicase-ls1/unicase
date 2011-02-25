@@ -16,5 +16,12 @@
             class="org.unicase.emfstore.jdt.configuration.ConfigurationPackage"
             genModel="model/Configuration.genmodel"/>
    </extension>
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://emfstore.org/jdt/operationstore"
+            class="org.unicase.emfstore.jdt.operationstore.OperationstorePackage"
+            genModel="model/OperationStore.genmodel"/>
+   </extension>
 
 </plugin>
