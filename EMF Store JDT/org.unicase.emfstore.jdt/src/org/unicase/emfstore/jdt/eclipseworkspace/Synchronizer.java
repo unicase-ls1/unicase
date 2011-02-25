@@ -19,6 +19,7 @@ import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
 import org.unicase.emfstore.jdt.configuration.VersionMapping;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.StandaloneUtil;
 import org.unicase.emfstore.jdt.exception.CannotSyncFileException;
 import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
@@ -32,8 +33,8 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 
 /**
- * Synchronizer will take care that the file in the eclipse workspace will have the same state as the EObject in the EMF
- * Store.
+ * Synchronizer will take care that the EObject in the EMF Store will have the same state (version) as the file in the
+ * eclipse workspace.
  * 
  * @author Adrian Staudt
  */
@@ -85,6 +86,13 @@ public final class Synchronizer {
 	 */
 	public static void sync(final IFile file, final ITeamSynchronizer teamSynchronizer,
 		boolean handlePureTeamProviderChanges) throws CannotSyncFileException {
+
+		boolean isStandaloneEntry = StandaloneUtil.isStandaloneEntry(file);
+		if (isStandaloneEntry) {
+			// don't sync stand-alone entries
+			return;
+		}
+
 		IProject project = file.getProject();
 		try {
 			// sync without shared files

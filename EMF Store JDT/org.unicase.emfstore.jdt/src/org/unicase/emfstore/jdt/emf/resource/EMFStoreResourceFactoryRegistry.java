@@ -5,22 +5,32 @@
  */
 package org.unicase.emfstore.jdt.emf.resource;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.StandaloneUtil;
+import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
+import org.unicase.emfstore.jdt.operationstore.OperationStore;
+import org.unicase.emfstore.jdt.operationstore.OperationstorePackage;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This ResourceFactroy wrapper is used to loaded another resource than the default one. Ecore files have often links to
@@ -94,9 +104,9 @@ public class EMFStoreResourceFactoryRegistry implements Resource.Factory, Resour
 	 * 
 	 * @see org.eclipse.emf.ecore.resource.Resource.Factory#createResource(org.eclipse.emf.common.util.URI)
 	 */
-	public Resource createResource(final URI uri) {
+	public Resource createResource(URI uri) {
 		if (uri != null && uri.scheme() != null && uri.scheme().equals("emfstore")) {
-			return new EMFStoreResource(uri);
+			return createEMFStoreResource(uri);
 		}
 
 		if (uri.isPlatformResource()) {
@@ -110,7 +120,7 @@ public class EMFStoreResourceFactoryRegistry implements Resource.Factory, Resour
 				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 				StructuredEMFStoreURI structuredEMFStoreURI = new StructuredEMFStoreURI(entry.getEObjectLocation());
 				URI emfuri = structuredEMFStoreURI.getEMFURI();
-				return new EMFStoreResource(emfuri);
+				return createEMFStoreResource(emfuri);
 
 			} catch (NoEMFStoreJDTConfigurationException e) {
 				// can be ignored
@@ -132,6 +142,70 @@ public class EMFStoreResourceFactoryRegistry implements Resource.Factory, Resour
 		}
 
 		return factory.createResource(uri);
+	}
+
+	/**
+	 * Create an EMFStoreResource and adds all necessary objects to track changes on that resource.
+	 * 
+	 * @param uri
+	 * @return
+	 */
+	/**
+	 * @param uri
+	 * @return
+	 */
+	/**
+	 * @param uri
+	 * @return
+	 */
+	private EMFStoreResource createEMFStoreResource(URI uri) {
+		EMFStoreResource emfStoreResource = new EMFStoreResource(uri);
+
+		// add an OperationConsumer is this is an EMFStore stand-alone URI.
+		try {
+			StructuredEMFStoreURI structuredEMFStoreURI = new StructuredEMFStoreURI(uri);
+			if (structuredEMFStoreURI.isStandaloneURI()) {
+				EClass operationStoreEClass = OperationstorePackage.eINSTANCE.getOperationStore();
+				IFile originalResourceFile = structuredEMFStoreURI.getRelativeLocationAsFile();
+
+				IPath operationStorePath = StandaloneUtil.handOperationStoreFilePath(originalResourceFile);
+				URI operationStoreURI = StandaloneUtil.getOperationStoreURI(operationStorePath, true);
+				OperationStore operationStore = ModelUtil.loadEObjectFromResource(operationStoreEClass,
+					operationStoreURI, false);
+
+				IPath metadataOperationStorePath = StandaloneUtil
+					.handMetadataOperationStoreFilePath(originalResourceFile);
+				URI metadataOperationStoreURI = StandaloneUtil.getOperationStoreURI(metadataOperationStorePath, false);
+				OperationStore metadataOperationStore = ModelUtil.loadEObjectFromResource(operationStoreEClass,
+					metadataOperationStoreURI, false);
+
+				emfStoreResource.load(null);
+				EList<EObject> contents = emfStoreResource.getContents();
+				for (EObject content : contents) {
+					JDTIdProvider idProvider = new JDTIdProvider(content);
+
+					JDTEObjectTracker jdtEObjectTracker = new JDTEObjectTracker(idProvider, content);
+					jdtEObjectTracker.startChangeRecording();
+
+					JDTOperationConsumer jdtWorkspaceOperationConsumer = new JDTOperationConsumer(operationStore);
+					jdtEObjectTracker.addOperationConsumer(jdtWorkspaceOperationConsumer);
+					emfStoreResource.addSaveObserver(jdtWorkspaceOperationConsumer);
+
+					JDTOperationConsumer jdtMetadataOperationConsumer = new JDTOperationConsumer(metadataOperationStore);
+					jdtEObjectTracker.addOperationConsumer(jdtMetadataOperationConsumer);
+					emfStoreResource.addSaveObserver(jdtMetadataOperationConsumer);
+				}
+			}
+
+		} catch (EMFStoreURIMalformedException e) {
+			ModelUtil.logException(e);
+		} catch (IOException e) {
+			ModelUtil.logException(e);
+			// } catch (CoreException e) {
+			// ModelUtil.logException(e);
+		}
+
+		return emfStoreResource;
 	}
 
 	/**
@@ -182,4 +256,5 @@ public class EMFStoreResourceFactoryRegistry implements Resource.Factory, Resour
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

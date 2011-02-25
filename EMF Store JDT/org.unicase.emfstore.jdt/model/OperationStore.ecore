@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="operationstore"
+    nsURI="http://emfstore.org/jdt/operationstore" nsPrefix="org.unicase.emfstore.jdt.operationstore">
+  <eClassifiers xsi:type="ecore:EClass" name="OperationStore">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OperationSets" upperBound="-1"
+        eType="#//OperationSet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationSet">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="BaseVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Operations" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

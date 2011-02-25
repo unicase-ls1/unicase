@@ -5,6 +5,12 @@
  */
 package org.unicase.emfstore.jdt.eclipseworkspace;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -21,6 +27,9 @@ import org.unicase.workspace.ServerInfo;
  */
 public class StructuredEMFStoreURI {
 
+	private boolean isStandaloneURI;
+	private String relativeLocation;
+
 	private String host;
 	private int port;
 	private String certificate;
@@ -33,7 +42,7 @@ public class StructuredEMFStoreURI {
 	 * @param uri A general URI.
 	 * @throws EMFStoreURIMalformedException Will be thrown if the URI is not an EMF Store URI:
 	 */
-	public StructuredEMFStoreURI(org.eclipse.emf.common.util.URI uri) throws EMFStoreURIMalformedException {
+	public StructuredEMFStoreURI(URI uri) throws EMFStoreURIMalformedException {
 		String schema = uri.scheme();
 		String specificPath = uri.devicePath();
 
@@ -84,10 +93,31 @@ public class StructuredEMFStoreURI {
 		this.eObjectID = eObjectLocation.getEObjectID();
 	}
 
+	public StructuredEMFStoreURI(IProject project, String projectRelativeLocation) {
+		isStandaloneURI = true;
+		this.relativeLocation = project.getFile(projectRelativeLocation).getFullPath().toPortableString();
+	}
+
 	private void resolveURI(String schema, String specificPath) throws EMFStoreURIMalformedException {
 		if (schema.equals("emfstore")) {
 			String[] specificParts = specificPath.split("/");
-			if (specificParts.length == 6) {
+
+			// is stand-alone emfstore URI
+			if (specificParts.length > 2 && specificParts[2].equals("standalone")) {
+				isStandaloneURI = true;
+				String relativPath = null;
+				for (int i = 3; i < specificParts.length; i++) {
+					if (relativPath == null) {
+						relativPath = "";
+					} else {
+						relativPath += "/";
+					}
+					relativPath += specificParts[i];
+				}
+				this.relativeLocation = relativPath;
+				return;
+
+			} else if (specificParts.length == 6) {
 				String location = specificParts[2];
 				String[] locationParts = location.split(":");
 				host = locationParts[0];
@@ -95,11 +125,11 @@ public class StructuredEMFStoreURI {
 				certificate = specificParts[3];
 				projectID = specificParts[4];
 				eObjectID = specificParts[5];
+				return;
 			}
-
-		} else {
-			throw new EMFStoreURIMalformedException(schema, specificPath);
 		}
+
+		throw new EMFStoreURIMalformedException(schema, specificPath);
 	}
 
 	/**
@@ -107,10 +137,32 @@ public class StructuredEMFStoreURI {
 	 * 
 	 * @return An EMF URI.
 	 */
-	public org.eclipse.emf.common.util.URI getEMFURI() {
-		org.eclipse.emf.common.util.URI emfURI = org.eclipse.emf.common.util.URI.createURI("emfstore://" + host + ":"
-			+ port + "/" + certificate + "/" + projectID + "/" + eObjectID);
-		return emfURI;
+	public URI getEMFURI() {
+		if (!isStandaloneURI) {
+			return URI.createURI("emfstore://" + host + ":" + port + "/" + certificate + "/" + projectID + "/"
+				+ eObjectID);
+		} else {
+			return URI.createURI("emfstore://standalone/" + relativeLocation);
+		}
+	}
+
+	public boolean isStandaloneURI() {
+		return isStandaloneURI;
+	}
+
+	public String getRelativeLocation() {
+		// IPath path = new Path(relativeLocation);
+		// IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+		// return URI.createPlatformResourceURI(file.toString(), true).toString();
+
+		return relativeLocation;
+	}
+
+	public IFile getRelativeLocationAsFile() {
+		IPath path = new Path(relativeLocation);
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+
+		return file;
 	}
 
 	/**

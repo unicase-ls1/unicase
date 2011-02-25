@@ -23,6 +23,7 @@ import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.EMFStoreLocation;
 import org.unicase.emfstore.jdt.configuration.EObjectLocation;
 import org.unicase.emfstore.jdt.configuration.Entry;
+import org.unicase.emfstore.jdt.configuration.StandaloneEntry;
 import org.unicase.emfstore.jdt.exception.CannotConvertToEObjectException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -114,6 +115,20 @@ public final class PushToEMFStoreUtil {
 
 		EMFStoreLocation emfStoreLocationClone = ModelUtil.clone(emfStoreLocation);
 		ConfigurationManager.addToAnywayCommit(emfStoreJDTConfiguration, emfStoreLocationClone);
+		emfStoreJDTConfiguration.save();
+	}
+
+	/**
+	 * A file will be managed by a standalone EMFStore.
+	 * 
+	 * @param emfStoreJDTConfiguration An EMF Store JDT configuration.
+	 * @param file An eclipse workspace file.
+	 */
+	public static void addEntry(EMFStoreJDTConfiguration emfStoreJDTConfiguration, IFile file) {
+		String fileLocation = file.getProjectRelativePath().toString();
+		StandaloneEntry standaloneEntry = ConfigurationFactory.eINSTANCE.createStandaloneEntry();
+		standaloneEntry.setProjectRelativeLocation(fileLocation);
+		emfStoreJDTConfiguration.getStandaloneEntry().add(standaloneEntry);
 		emfStoreJDTConfiguration.save();
 	}
 
