@@ -7,7 +7,6 @@ package org.unicase.emfstore.jdt;
 
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -15,7 +14,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
@@ -32,39 +30,49 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.changeTracking.commands.EMFStoreTransactionalCommandStack;
+import org.unicase.workspace.changeTracking.commands.CommandObserver;
 
 /**
- * A listener for the Unicase command stack. If the stack fires a "change event" the change will be written to the
- * corresponding local file.
+ * An observer for the EMFStoreCommandStack. If the command invokes a commandCompleted the affected EObjects will be
+ * written to the corresponding local file.
  * 
  * @author Adrian Staudt
  */
-public class UnicaseCommandStackListener implements CommandStackListener {
+public class EMFStoreCommandStackObserver implements CommandObserver {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.common.command.CommandStackListener#commandStackChanged(java.util.EventObject)
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
+	 *      java.lang.Exception)
 	 */
-	public void commandStackChanged(EventObject event) {
-		Object source = event.getSource();
-		if (source instanceof EMFStoreTransactionalCommandStack) {
-			EMFStoreTransactionalCommandStack emfStoreTransactionalCommandStack = (EMFStoreTransactionalCommandStack) source;
-			Command mostRecentCommand = emfStoreTransactionalCommandStack.getMostRecentCommand();
-			if (mostRecentCommand == null) {
-				return;
-			}
+	public void commandFailed(Command command, Exception exception) {
+		// uninteresting
+	}
 
-			Collection<?> affectedObjects = mostRecentCommand.getAffectedObjects();
-			if (!affectedObjects.isEmpty()) {
-				for (Object ob : affectedObjects) {
-					if (ob instanceof EObject) {
-						EObject eObject = (EObject) ob;
-						while (!(eObject == null) && !(eObject instanceof org.unicase.metamodel.Project)) {
-							handleEObjectIfPossible(eObject);
-							eObject = eObject.eContainer();
-						}
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
+	 */
+	public void commandStarted(Command command) {
+		// uninteresting
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
+	 */
+	public void commandCompleted(Command command) {
+		Collection<?> affectedObjects = command.getAffectedObjects();
+		if (!affectedObjects.isEmpty()) {
+			for (Object ob : affectedObjects) {
+				if (ob instanceof EObject) {
+					EObject eObject = (EObject) ob;
+					while (!(eObject == null) && !(eObject instanceof org.unicase.metamodel.Project)) {
+						handleEObjectIfPossible(eObject);
+						eObject = eObject.eContainer();
 					}
 				}
 			}
@@ -134,5 +142,4 @@ public class UnicaseCommandStackListener implements CommandStackListener {
 		}
 
 	}
-
 }
