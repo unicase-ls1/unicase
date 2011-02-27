@@ -40,6 +40,18 @@ public class PlannerUtil {
 		return result;
 
 	}
+	
+	public <T> List<T> selectFirstElementsFromSortedList(List<T> list, int percentOfReturnElements) {
+		List<T> result = new ArrayList<T>();
+		int numOfElements = (int) ((percentOfReturnElements / 100.0) * list.size());
+		for (int i = 0; i < numOfElements; i++) {
+			T selectedElement = list.get(i);
+			result.add(selectedElement);
+		}
+		return result;
+
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public <T> Set<T> selectRandomElementsFromSet(Set<T> set, int percentOfReturnElements) {
@@ -232,7 +244,7 @@ public class PlannerUtil {
 	/**
 	 * @return
 	 */
-	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees) {
+	public AssigneeExpertise getAssigneeProbabilistic(List<AssigneeExpertise> potentialAssignees, AssigneeExpertise currentAssignee) {
 		double p[] = new double[potentialAssignees.size()];
 		double sumExpertise = 0.0;
 		for (AssigneeExpertise ae : potentialAssignees) {
@@ -242,18 +254,27 @@ public class PlannerUtil {
 			// nobody is expert! everybody has expertise == 0
 			return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));
 		}
+		
+		//assign to each assignee a probability base on his expertise
 		for (int i = 0; i < potentialAssignees.size(); i++) {
 			AssigneeExpertise ae = potentialAssignees.get(i);
 			p[i] = ae.getExpertise() / sumExpertise;
+			
+		}
+		//if this task had already an assignee, give this assignee probability 0.0
+		if(currentAssignee != null){
+			int indexOfCurrentAssignee = potentialAssignees.indexOf(currentAssignee);
+			p[indexOfCurrentAssignee] = 0.0;
 		}
 
+		
 		double measure = getRandom().nextDouble();
 		double sum = 0.0;
 		for (int i = 0; i < p.length; i++) {
-			if (measure >= sum && measure < sumExpertise + p[i]) {
+			if (measure >= sum && measure < sum + p[i]) {
 				return potentialAssignees.get(i);
 			}
-			sumExpertise += p[i];
+			sum += p[i];
 		}
 
 		return potentialAssignees.get(getRandom().nextInt(potentialAssignees.size()));

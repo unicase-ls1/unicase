@@ -80,7 +80,7 @@ public abstract class Planner {
 			Collections.sort(population);
 			checkInvariants(population);
 
-			System.out.println("Finished Generation" + i + ": " + new Date().toString());
+			System.out.println("Finished Generation" + i + ": " + new Date().toString() + " -- Average fitness: " + getAverageFitness(population) + "; best individual fitness: " + getBestIndividualFitness(population));
 		}
 
 		List<IIterationPlan> result = new ArrayList<IIterationPlan>();
@@ -96,6 +96,21 @@ public abstract class Planner {
 		return result;
 	}
 	
+	private double getBestIndividualFitness(List<IterationPlan> population2) {
+		Collections.sort(population2);
+		return population2.get(0).getScore();
+	}
+
+	private double getAverageFitness(List<IterationPlan> population2) {
+		double result = 0.0;
+		double sum = 0.0;
+		for(IterationPlan iterPlan : population2){
+			sum += iterPlan.getScore();
+		}
+		result = sum / population2.size();
+		return result;
+	}
+
 	protected void addToNextGeneration(IterationPlan iterPlan){
 		iterPlan.checkAllInvariants();
 		nextGeneration.add(iterPlan);
