@@ -86,7 +86,7 @@ public class PlannerUtil {
 		double sum = 0.0;
 		for (int i = 0; i < p.length; i++) {
 			if (measure >= sum && measure < sum + p[i]) {
-				return i;
+				return 0;
 			}
 			sum += p[i];
 		}
