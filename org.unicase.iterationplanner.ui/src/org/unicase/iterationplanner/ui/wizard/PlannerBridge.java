@@ -201,16 +201,20 @@ public class PlannerBridge {
 	}
 
 	private PlannerParameters getPlannerParameters(Random random) {
-		int populationSize = 10;
+		int populationSize = 100;
 		int resultSize = 5;
-		int maxNumOfGenerations = 10;
+		int maxNumOfGenerations = 100;
+		
 		int percentOfCrossOverChildren = 30;
 		int precentOfMutants = 60;
 		int percentOfClones = 10;
+		
+		int percentOfTasksToExchange = 10;
+		int percentOfTasksToMutate = 10;
+		
 		int percentOfCrossOverParents = 30;
 		int percentOfMutationCandidates = 30;
 		int percentOfCloneCandidates = 30;
-		int percentOfTasksToMutate = 10;
 		
 		//evaluator parameters
 		double expertiseWeight = 1.0;
