@@ -7,14 +7,18 @@ public final class PlannerParameters {
 	private final int populationSize;
 	private final int resultSize;
 	private final int maxNumOfGenerations;
+
 	private final int percentOfCrossOverChildren;
 	private final int precentOfMutants;
 	private final int percentOfClones;
+	private final int percentOfTasksToMutate;
+	
 	private final int percentOfCrossOverParents;
 	private final int percentOfMutationCandidates;
 	private final int percentOfCloneCandidates;
-	private final int percentOfTasksToMutate;
+	
 	private final Random random;
+	
 	private final double developerLoadWeight;
 	private final double priorityWeight;
 	private final double expertiseWeight;
@@ -52,13 +56,16 @@ public final class PlannerParameters {
 		this.populationSize = populationSize;
 		this.maxNumOfGenerations = maxNumOfGenerations;
 		this.resultSize = resultSize;
+	
 		this.percentOfCrossOverChildren = percentOfCrossOverChildren;
 		this.precentOfMutants = precentOfMutants;
 		this.percentOfClones = percentOfClones;
+		this.percentOfTasksToMutate = percentOfTasksToMutate;
+	
 		this.percentOfCrossOverParents = percentOfCrossOverParents;
 		this.percentOfMutationCandidates = percentOfMutationCandidates;
 		this.percentOfCloneCandidates = percentOfCloneCandidates;
-		this.percentOfTasksToMutate = percentOfTasksToMutate;
+		
 		this.random = random;
 		
 		this.expertiseWeight = expertiseWeight;

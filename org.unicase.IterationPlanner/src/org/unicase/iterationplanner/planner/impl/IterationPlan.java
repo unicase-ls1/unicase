@@ -96,7 +96,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 
 	public void setIterationNumberFor(IPlannedTask plannedTask, int newIterationNumber) {
 		
-		plannedTask.setIterationNumber(newIterationNumber);
+		((PlannedTask)plannedTask).setIterationNumber(newIterationNumber);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		// find the the lowest priority task in this iteration for this assignee and move it one iteration downward.
@@ -132,7 +132,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 	}
 
 	public void setAssigneeFor(IPlannedTask plannedTask, AssigneeExpertise assignee) {
-		plannedTask.setAssigneeExpertise(assignee);
+		((PlannedTask)plannedTask).setAssigneeExpertise(assignee);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		doInvariantCorrection();
@@ -219,7 +219,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
 					.getAvailability(i, assignee)) {
 					IPlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
-					lowestPrioTask.setIterationNumber(i + 1);
+					((PlannedTask)lowestPrioTask).setIterationNumber(i + 1);
 				}
 			}
 		}

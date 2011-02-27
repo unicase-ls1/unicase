@@ -46,7 +46,7 @@ public class PlannedTask implements IPlannedTask {
 		return task;
 	}
 
-	public void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
+	protected void setAssigneeExpertise(AssigneeExpertise assigneeExpertise) {
 		checkIteartionPlann();
 		this.assigneeExpertise = assigneeExpertise;
 	}
@@ -68,7 +68,7 @@ public class PlannedTask implements IPlannedTask {
 		return assigneeExpertise;
 	}
 
-	public void setIterationNumber(int iterationNumber) {
+	protected void setIterationNumber(int iterationNumber) {
 		checkIteartionPlann();
 		this.iterationNumber = iterationNumber;
 	}

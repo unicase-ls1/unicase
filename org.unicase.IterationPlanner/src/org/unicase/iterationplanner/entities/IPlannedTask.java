@@ -12,9 +12,6 @@ public interface IPlannedTask {
 
 	int getIterationNumber();
 	
-	void setIterationNumber(int iterationNumber);
-	
-	void setAssigneeExpertise(AssigneeExpertise assigneeExpertise);
 
 	/**
 	 * true if Task, AssigneeExpertise, and iterationNumber are equal.
@@ -27,9 +24,21 @@ public interface IPlannedTask {
 	 */
 	boolean equalsTask(Object obj);
 	
-	
+	/**
+	 * if this planned task must be considered in expertise evaluation of iteration plan. When all 
+	 * assignees have 0.0 expertise regarding a task, it should not be considered in evaluation of
+	 * expertise criteria of iteration plan. 
+	 * @return
+	 */
 	boolean isEvaluateExpertise();
 	
+	
+	/**
+	 * if this planned task must be considered in expertise evaluation of iteration plan. When all 
+	 * assignees have 0.0 expertise regarding a task, it should not be considered in evaluation of
+	 * expertise criteria of iteration plan. 
+	 * @param evaluateExpertise
+	 */
 	void setEvaluateExperties(boolean evaluateExpertise);
 
 }

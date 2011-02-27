@@ -76,7 +76,7 @@ public class MyPlanner extends Planner {
 
 			plannedTask.setEvaluateExperties(isEvaluateExperties(taskToPlan));
 			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToPlan);
-			AssigneeExpertise assignee = findAssignee(potentialAssignees);
+			AssigneeExpertise assignee = findAssignee(potentialAssignees, null);
 			iterPlan.setAssigneeFor(plannedTask, assignee);
 
 		}
@@ -84,9 +84,9 @@ public class MyPlanner extends Planner {
 		return iterPlan;
 	}
 
-	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees) {
+	private AssigneeExpertise findAssignee(List<AssigneeExpertise> potentialAssignees, AssigneeExpertise currentAssignee) {
 
-		return PlannerUtil.getInstance(getPlannerParameters().getRandom()).getAssigneeProbabilistic(potentialAssignees);
+		return PlannerUtil.getInstance(getPlannerParameters().getRandom()).getAssigneeProbabilistic(potentialAssignees, currentAssignee);
 	}
 
 	@Override
@@ -209,7 +209,7 @@ public class MyPlanner extends Planner {
 		
 		for (IPlannedTask taskToMutate : tasksToMutate) {
 			List<AssigneeExpertise> potentialAssignees = getTaskPotentialAssigneeListMap().get(taskToMutate.getTask());
-			AssigneeExpertise assigneeExpertise = findAssignee(potentialAssignees);
+			AssigneeExpertise assigneeExpertise = findAssignee(potentialAssignees, taskToMutate.getAssigneeExpertise());
 			int iterationNumber = PlannerUtil.getInstance(getPlannerParameters().getRandom())
 				.getIterationNumberProbabilistic(taskToMutate.getTask(), getNumOfIterations());
 			mutantIterationPlan.setIterationNumberFor(taskToMutate, iterationNumber);

@@ -24,13 +24,14 @@ public class MySelector extends Selector {
 	 */
 	@Override
 	public List<IterationPlan> selectForCrossover(List<IterationPlan> population, int percentOfCrossOverParents) {
-		return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfCrossOverParents);
+		//return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfCrossOverParents);
+		return PlannerUtil.getInstance(getRandom()).selectFirstElementsFromSortedList(population, percentOfCrossOverParents);
 	}
 
 	@Override
 	public List<IterationPlan> selectForMutation(List<IterationPlan> population, int percentOfMutationsCandidates) {
-		return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population,
-			percentOfMutationsCandidates);
+		//return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfMutationsCandidates);
+		return PlannerUtil.getInstance(getRandom()).selectFirstElementsFromSortedList(population, percentOfMutationsCandidates);
 	}
 
 }
