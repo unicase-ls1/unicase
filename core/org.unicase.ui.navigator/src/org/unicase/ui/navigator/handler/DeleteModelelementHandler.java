@@ -5,12 +5,14 @@
  */
 package org.unicase.ui.navigator.handler;
 
+import java.util.Set;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
@@ -26,19 +28,17 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		EObject me = ActionHelper.getModelElement(event);
-		if (me == null) {
-			return null;
+		Set<EObject> eObjects = ActionHelper.getSelectedEObjects(event);
+		if (!eObjects.isEmpty()) {
+			deleteModelElement(eObjects);
 		}
-
-		deleteModelElement(me);
-
 		return null;
 	}
 
-	private void deleteModelElement(final EObject me) {
+	private void deleteModelElement(final Set<EObject> eObjects) {
 		try {
-			new DeleteModelElementCommand(me, ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me)).run();
+			new DeleteModelElementCommand(eObjects, ECPWorkspaceManager.getInstance().getWorkSpace()
+				.getProject(eObjects.iterator().next())).run();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
 		}
