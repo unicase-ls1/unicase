@@ -112,13 +112,13 @@ public abstract class Planner {
 	}
 
 	protected void addToNextGeneration(IterationPlan iterPlan){
-		iterPlan.checkAllInvariants();
+		//iterPlan.checkAllInvariants();
 		nextGeneration.add(iterPlan);
 	}
 
 	private void checkInvariants(List<IterationPlan> iterPlans) {
 		for(IterationPlan iterPlan : iterPlans){
-			iterPlan.checkAllInvariants();
+			//iterPlan.checkAllInvariants();
 		}
 		
 	}

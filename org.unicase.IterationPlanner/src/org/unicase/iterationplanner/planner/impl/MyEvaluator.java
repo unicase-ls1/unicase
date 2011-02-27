@@ -16,43 +16,9 @@ public class MyEvaluator extends Evaluator {
 		super(plannerParams, assigneeAvailabilityManager);
 	}
 
-	@Override
-	public double evaluateAssigneeLoad(IIterationPlan iterPlan) {
-		// for assignee wie viele tasks in iter? sum(estimate for tasks for assignee)
-		// compare estimate sum with avail. of dev.
-		int numOfIterations = getIterationPlan().getNumOfIterations();
-		double sum = 0.0;
-		int count = 0;
-		for (int i = 0; i < numOfIterations; i++) {
-			for (IAssignee assignee : iterPlan.getAssignees()) {
-				// get an average for on all scores for all assignees in all iterations. (normalize: 1.0 *
-				// numOfIterations * numOfAssignees)
-				// iteration, assignee
-				// getEstimateForAssignee(iteration, assignee)
-				// compare estimateForAssignee with assigneeAvailability
-				// if(estimate > avail.) ==> return score 0 //just one violation (violation in one iteration) is enough
-				// to get you out
-				// else score = estimate / availability
-				// sum += score
-				int estimateForAssigneeInIteration = iterPlan.getSumOfEstimateForIterationAndAssignee(i, assignee);
-				int availability = getAssigneeAvailabilityManager().getAvailability(i, assignee);
-				if (estimateForAssigneeInIteration > availability) {
-					System.out.println("dev load delta: " + (availability - estimateForAssigneeInIteration));
-					return 0.0;
-				} else {
-					double scoreForAssigneeInIteration = (double) estimateForAssigneeInIteration
-						/ (double) availability;
-					sum += scoreForAssigneeInIteration;
-				}
-				count++;
-			}
-		}
 
-		double avg = sum / count;
-		// avg is already between 0 and 1. Because max scoreForAssigneeInIteration is 1.0, then the
-		// highest possible value of sum would be 1.0 * count
-		return avg;
-	}
+
+	
 
 	@Override
 	public double evaluateExpertise(IIterationPlan iterPlan) {
@@ -100,4 +66,68 @@ public class MyEvaluator extends Evaluator {
 			* getPlannerParameters().getPriorityWeight() + devLoadScore
 			* getPlannerParameters().getDeveloperLoadWeight()) / 3.0;
 	}
+
+
+
+
+
+	@Override
+	public double evaluateAssigneeLoad(IIterationPlan iterPlan) {
+		//for each assignee a get its workload, compare it with its availability
+		//if (workload(a) > availability(a)), give a -1 penalty
+		
+		Set<IAssignee> assignees = iterPlan.getAssignees();
+		int violations = 0;
+		for(int i = 0; i < iterPlan.getNumOfIterations(); i++){
+			for(IAssignee assignee : assignees){
+				int workload = iterPlan.getSumOfEstimateForIterationAndAssignee(i, assignee);
+				int availability = getAssigneeAvailabilityManager().getAvailability(i, assignee);
+				if(workload > availability){
+					violations ++;
+				}
+				
+			}
+		}
+		// normalize.
+		return violations == 0 ? 1.0 : 1 / (double) violations;
+	}
 }
+
+//
+//@Override
+//public double evaluateAssigneeLoad(IIterationPlan iterPlan) {
+//	// for assignee wie viele tasks in iter? sum(estimate for tasks for assignee)
+//	// compare estimate sum with avail. of dev.
+//	int numOfIterations = getIterationPlan().getNumOfIterations();
+//	double sum = 0.0;
+//	int count = 0;
+//	for (int i = 0; i < numOfIterations; i++) {
+//		for (IAssignee assignee : iterPlan.getAssignees()) {
+//			// get an average for on all scores for all assignees in all iterations. (normalize: 1.0 *
+//			// numOfIterations * numOfAssignees)
+//			// iteration, assignee
+//			// getEstimateForAssignee(iteration, assignee)
+//			// compare estimateForAssignee with assigneeAvailability
+//			// if(estimate > avail.) ==> return score 0 //just one violation (violation in one iteration) is enough
+//			// to get you out
+//			// else score = estimate / availability
+//			// sum += score
+//			int estimateForAssigneeInIteration = iterPlan.getSumOfEstimateForIterationAndAssignee(i, assignee);
+//			int availability = getAssigneeAvailabilityManager().getAvailability(i, assignee);
+//			if (estimateForAssigneeInIteration > availability) {
+//				System.out.println("dev load delta: " + (availability - estimateForAssigneeInIteration));
+//				return 0.0;
+//			} else {
+//				double scoreForAssigneeInIteration = (double) estimateForAssigneeInIteration
+//					/ (double) availability;
+//				sum += scoreForAssigneeInIteration;
+//			}
+//			count++;
+//		}
+//	}
+//
+//	double avg = sum / count;
+//	// avg is already between 0 and 1. Because max scoreForAssigneeInIteration is 1.0, then the
+//	// highest possible value of sum would be 1.0 * count
+//	return avg;
+//}

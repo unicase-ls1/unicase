@@ -36,10 +36,10 @@ public interface IIterationPlan {
 
 	void addAll(Collection<IPlannedTask> plannedTasks);
 
-	void checkAllInvariants();
+	//void checkAllInvariants();
 
 	Set<IPlannedTask> getAllPlannedTasks();
 	
-	void setCheckInvariants(boolean checkInvariants);
+//	void setCheckInvariants(boolean checkInvariants);
 
 }

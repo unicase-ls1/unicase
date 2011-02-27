@@ -203,7 +203,7 @@ public class PlannerBridge {
 	private PlannerParameters getPlannerParameters(Random random) {
 		int populationSize = 100;
 		int resultSize = 5;
-		int maxNumOfGenerations = 100;
+		int maxNumOfGenerations = 20;
 		
 		int percentOfCrossOverChildren = 30;
 		int precentOfMutants = 60;
