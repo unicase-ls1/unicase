@@ -49,9 +49,6 @@
               			 </not>
         			   </and>     
                  </iterate>
-                 <count
-                       value="1">
-                 </count>
               </and>
            </visibleWhen>
         </command>

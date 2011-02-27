@@ -6,6 +6,10 @@
 
 package org.unicase.ui.common.util;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
@@ -173,8 +177,8 @@ public final class ActionHelper {
 			openModelElement(me, sourceView, context);
 		}
 
-		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView,
-			"org.unicase.ui.meeditor.MEEditor");
+		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class)
+			.onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
@@ -226,6 +230,32 @@ public final class ActionHelper {
 			result = (EObject) obj;
 		}
 
+		return result;
+	}
+
+	/**
+	 * Extract the selected ModelElements from a viewer which is selection provider. This will be called from Handler
+	 * classes, which pass the ExecutionEvent.
+	 * 
+	 * @param event ExecutionEvent to extract the selection from.
+	 * @return the selected EObjects set (may be an empty set).
+	 */
+	public static Set<EObject> getSelectedEObjects(ExecutionEvent event) {
+		Set<EObject> result = Collections.emptySet();
+		ISelection sel = HandlerUtil.getCurrentSelection(event);
+		if (!(sel instanceof IStructuredSelection)) {
+			return result;
+		}
+		IStructuredSelection ssel = (IStructuredSelection) sel;
+		if (ssel.isEmpty()) {
+			return result;
+		}
+		result = new HashSet<EObject>();
+		for (Object object : ssel.toArray()) {
+			if (object instanceof EObject) {
+				result.add((EObject) object);
+			}
+		}
 		return result;
 	}
 
