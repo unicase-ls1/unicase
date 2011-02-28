@@ -14,6 +14,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
@@ -62,11 +63,10 @@ public class OpenModelElementHandler extends AbstractHandler {
 				input = new MEEditorInput(me, context, problemFeature);
 			}
 			try {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-					"org.unicase.ui.meeditor", true);
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.openEditor(input, "org.unicase.ui.meeditor", true);
 			} catch (PartInitException e) {
-				// JH Auto-generated catch block
-				e.printStackTrace();
+				Activator.logException(e);
 			}
 		}
 
