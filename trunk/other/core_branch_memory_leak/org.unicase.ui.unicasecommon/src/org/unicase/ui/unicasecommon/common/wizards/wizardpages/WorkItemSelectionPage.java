@@ -92,7 +92,7 @@ public class WorkItemSelectionPage extends WizardPage {
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
+		
 		for (WorkItem workItem : workItems) {
 			TableItem item = new TableItem(table, SWT.NONE);
 			item.setData(workItem);

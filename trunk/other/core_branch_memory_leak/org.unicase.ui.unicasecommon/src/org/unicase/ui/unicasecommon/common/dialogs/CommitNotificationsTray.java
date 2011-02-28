@@ -252,7 +252,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 
 			final AdapterFactoryLabelProvider userLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			// jc: done
+			
 			Composite root = new Composite(parent, SWT.NONE);
 			GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 5).applyTo(root);
 			GridDataFactory.fillDefaults().grab(true, true).applyTo(root);

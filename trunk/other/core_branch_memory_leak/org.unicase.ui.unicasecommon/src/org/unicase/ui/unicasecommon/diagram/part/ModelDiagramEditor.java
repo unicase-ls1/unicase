@@ -296,7 +296,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 			labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 			this.setTitleImage(labelProvider.getImage(this.getDiagram().getElement()));
-			// hkq: done
+			
 		} catch (CoreException x) {
 			// dengler: show in error log
 			WorkspaceUtil.logException("Set diagram content failed", x);

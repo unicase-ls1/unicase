@@ -139,7 +139,7 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
-		// jc: done
+		
 
 		// first add all work items identified in the last meeting and check
 		// them per default
