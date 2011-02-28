@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Unicasecommon
 Bundle-SymbolicName: org.unicase.ui.unicasecommon;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.4.8.qualifier
 Bundle-Activator: org.unicase.ui.unicasecommon.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -39,3 +39,4 @@ Export-Package: org.unicase.ui.unicasecommon,
 Import-Package: org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.ui.unicasecommon.common
+Bundle-Vendor: unicase.org

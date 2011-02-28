@@ -926,7 +926,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */

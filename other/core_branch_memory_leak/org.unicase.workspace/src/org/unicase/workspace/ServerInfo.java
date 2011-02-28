@@ -114,7 +114,7 @@ public interface ServerInfo extends EObject {
 	 * 
 	 * @return the value of the '<em>Project Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_ProjectInfos()
-	 * @model containment="true" resolveProxies="true" transient="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<ProjectInfo> getProjectInfos();

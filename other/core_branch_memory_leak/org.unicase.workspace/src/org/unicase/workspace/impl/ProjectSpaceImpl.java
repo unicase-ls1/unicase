@@ -956,9 +956,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
 			// migration code: existing notifications in the notification feature are added to the composite
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
+				".nff");
 			this.setNotificationComposite(notificationComposite);
 			if (getNotifications().size() > 0) {
 				notificationList.addAll(getNotifications());
@@ -967,9 +967,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (notificationList == null) {
 			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
-				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "notifications",
+				".nff");
 		}
 		return notificationList;
 	}
@@ -1311,9 +1311,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		if (operationsList == null) {
 			operationsList = new AutoSplitAndSaveResourceContainmentList<AbstractOperation>(operationComposite,
-				operationComposite.getOperations(), this.eResource().getResourceSet(), Configuration
-					.getWorkspaceDirectory()
-					+ "ps-" + getIdentifier() + File.separatorChar + "operations", ".off");
+				operationComposite.getOperations(), this.eResource().getResourceSet(),
+				Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar + "operations",
+				".off");
 		}
 		return operationsList;
 	}
@@ -1995,9 +1995,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changeTracker.saveDirtyResources();
 		startChangeRecording();
 
-		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
-			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
-			this.getProject());
+		createdProject = WorkspaceManager
+			.getInstance()
+			.getConnectionManager()
+			.createProject(usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
+				this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
@@ -2459,8 +2461,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ListIterator<OrgUnitProperty> iterator = temp.listIterator();
 		while (iterator.hasNext()) {
 			try {
-				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
-					iterator.next(), getUsersession().getACUser(), getProjectId());
+				WorkspaceManager
+					.getInstance()
+					.getConnectionManager()
+					.transmitProperty(getUsersession().getSessionId(), iterator.next(), getUsersession().getACUser(),
+						getProjectId());
 				iterator.remove();
 			} catch (EmfStoreException e) {
 				WorkspaceUtil.logException("Transmission of properties failed with exception", e);
