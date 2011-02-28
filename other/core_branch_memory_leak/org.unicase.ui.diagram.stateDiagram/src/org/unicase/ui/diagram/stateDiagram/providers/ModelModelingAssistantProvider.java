@@ -207,7 +207,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		// hkq: done (generated)
+		
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 			org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory());
