@@ -550,7 +550,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		currentEnd = -1;
 		String label = "History for ";
 		Project project = projectSpace.getProject();
-		if (me != null) {
+		if (me != null && project.containsInstance(me)) {
 			label += UiUtil.getNameForModelElement(me);
 			groupByMe.setChecked(false);
 			showRoots.setChecked(false);
@@ -627,8 +627,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			// TODO: add a feature "hide local revision"
 			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE.createHistoryInfo();
 			ChangePackage changePackage = projectSpace.getLocalChangePackage(false);
-			// filter for modelelement
-			if (modelElement != null) {
+			// filter for modelelement, do additional sanity check as the project space could've been also selected
+			if (modelElement != null && projectSpace.getProject().containsInstance(modelElement)) {
 				Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
 				for (AbstractOperation ao : changePackage.getOperations()) {
 					if (!ao.getAllInvolvedModelElements().contains(

@@ -137,8 +137,8 @@ public class FileTransferManager {
 				IStatus result = job.run(progress);
 
 				if (job.getException() != null) {
-					WorkspaceUtil.logException("An exception occurred while trying to upload a file to the server", job
-						.getException());
+					WorkspaceUtil.logException("An exception occurred while trying to upload a file to the server",
+						job.getException());
 					return;
 				}
 
@@ -164,8 +164,8 @@ public class FileTransferManager {
 
 		// If the file is cached locally, get it
 		if (cacheManager.hasCachedFile(fileIdentifier)) {
-			return FileDownloadStatus.Factory.createAlreadyFinished(projectSpace, fileIdentifier, cacheManager
-				.getCachedFile(fileIdentifier));
+			return FileDownloadStatus.Factory.createAlreadyFinished(projectSpace, fileIdentifier,
+				cacheManager.getCachedFile(fileIdentifier));
 		}
 
 		// Otherwise, start a download

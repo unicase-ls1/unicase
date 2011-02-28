@@ -125,12 +125,17 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 		if (modelelement == null) {
 			return;
 		}
+
 		final ProjectSpace projectSpace;
-		if (modelelement instanceof EObject) {
-			EObject me = modelelement;
-			projectSpace = org.unicase.workspace.WorkspaceManager.getProjectSpace(me);
-		} else if (modelelement instanceof ProjectSpace) {
+
+		if (modelelement instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) modelelement;
+		} else if (modelelement instanceof EObject) {
+			try {
+				projectSpace = org.unicase.workspace.WorkspaceManager.getProjectSpace(modelelement);
+			} catch (IllegalArgumentException exception) {
+				return;
+			}
 		} else {
 			projectSpace = null;
 		}
@@ -150,8 +155,8 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 
 			@Override
 			protected void doRun() {
-				org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace()
-					.setActiveProjectSpace(projectSpace);
+				org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(
+					projectSpace);
 			}
 		}.run();
 

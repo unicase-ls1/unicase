@@ -68,8 +68,10 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addFileVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_fileVersion_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_fileVersion_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileVersion_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -81,8 +83,10 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addChunkNumberPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_chunkNumber_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_chunkNumber_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_chunkNumber_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
@@ -94,8 +98,10 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addUploadPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_upload_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_upload_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_upload_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
@@ -107,8 +113,10 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_fileName_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_fileName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileName_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true,
 			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -121,10 +129,11 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addPreliminaryFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_PendingFileTransfer_preliminaryFileName_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_preliminaryFileName_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_preliminaryFileName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_preliminaryFileName_feature",
 				"_UI_PendingFileTransfer_type"),
 			WorkspacePackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));

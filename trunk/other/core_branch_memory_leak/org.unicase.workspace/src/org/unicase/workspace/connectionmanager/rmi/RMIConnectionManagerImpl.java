@@ -98,8 +98,8 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-			for (String str : facade.getHistoryInfo(SerializationUtil.eObjectToString(sessionId), SerializationUtil
-				.eObjectToString(projectId), SerializationUtil.eObjectToString(historyQuery))) {
+			for (String str : facade.getHistoryInfo(SerializationUtil.eObjectToString(sessionId),
+				SerializationUtil.eObjectToString(projectId), SerializationUtil.eObjectToString(historyQuery))) {
 				result.add((HistoryInfo) SerializationUtil.stringToEObject(str));
 			}
 			return result;
@@ -309,8 +309,8 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 		throws EmfStoreException {
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
-			return facade.uploadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
-				.eObjectToString(projectId), fileChunk);
+			return facade.uploadFileChunk(SerializationUtil.eObjectToString(sessionId),
+				SerializationUtil.eObjectToString(projectId), fileChunk);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -323,8 +323,8 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 		throws EmfStoreException, ConnectionException {
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
-			return facade.downloadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
-				.eObjectToString(projectId), fileInformation);
+			return facade.downloadFileChunk(SerializationUtil.eObjectToString(sessionId),
+				SerializationUtil.eObjectToString(projectId), fileInformation);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -337,9 +337,9 @@ public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfSt
 		throws EmfStoreException, ConnectionException {
 		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
-			facade.transmitProperty(SerializationUtil.eObjectToString(sessionId), SerializationUtil
-				.eObjectToString(changedProperty), SerializationUtil.eObjectToString(user), SerializationUtil
-				.eObjectToString(projectId));
+			facade.transmitProperty(SerializationUtil.eObjectToString(sessionId),
+				SerializationUtil.eObjectToString(changedProperty), SerializationUtil.eObjectToString(user),
+				SerializationUtil.eObjectToString(projectId));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
