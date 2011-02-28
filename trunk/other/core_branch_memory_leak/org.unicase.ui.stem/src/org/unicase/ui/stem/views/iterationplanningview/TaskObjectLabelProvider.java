@@ -28,7 +28,7 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	 */
 	public TaskObjectLabelProvider() {
 		super();
-		// hkq: done
+		
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
