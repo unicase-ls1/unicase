@@ -93,7 +93,6 @@ public class ModelElementSelectionPage extends WizardPage {
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(
 			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory()));
-		// hkq: done (generated)
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(
 			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory()));
