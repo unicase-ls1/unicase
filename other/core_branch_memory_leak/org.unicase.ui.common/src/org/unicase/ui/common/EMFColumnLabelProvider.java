@@ -31,7 +31,6 @@ public class EMFColumnLabelProvider extends ColumnLabelProvider implements IColo
 	public EMFColumnLabelProvider() {
 		super();
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		// hkq: done
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());

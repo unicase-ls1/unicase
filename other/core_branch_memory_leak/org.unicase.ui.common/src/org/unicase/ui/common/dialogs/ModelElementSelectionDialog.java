@@ -74,7 +74,6 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	 * @return a label provider for the dialog
 	 */
 	protected ILabelProvider createLabelProvider() {
-		// hkq: done
 		return new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
