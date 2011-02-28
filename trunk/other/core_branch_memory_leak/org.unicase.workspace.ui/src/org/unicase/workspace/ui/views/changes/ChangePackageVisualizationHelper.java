@@ -70,7 +70,7 @@ public class ChangePackageVisualizationHelper implements IDisposable {
 		this.project = project;
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// hkq: done
+		
 		this.customLabelProviderManager = new CustomOperationLabelProviderManager();
 	}
 

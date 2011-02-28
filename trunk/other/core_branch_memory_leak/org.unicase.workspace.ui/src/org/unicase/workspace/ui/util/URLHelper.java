@@ -94,7 +94,7 @@ public final class URLHelper {
 			ret.append(projectSpace.getProjectId().getId());
 		}
 		ret.append("/");
-		// hkq: done
+		
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
@@ -165,7 +165,7 @@ public final class URLHelper {
 		icon.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
 				Rectangle area = icon.getClientArea();
-				// hkq: done
+				
 				ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 				AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(

@@ -357,7 +357,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			composedAdapterFactory);
-		// jc: done
+		
 
 		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
 			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));

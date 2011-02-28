@@ -49,7 +49,7 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, labelProvider);
-		// hkq: done
+		
 		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		Collection<Usersession> allSessions = currentWorkspace.getUsersessions();
 		dlg.setElements(allSessions.toArray());
