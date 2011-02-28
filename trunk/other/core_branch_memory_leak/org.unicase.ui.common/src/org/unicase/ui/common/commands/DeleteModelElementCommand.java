@@ -71,8 +71,8 @@ public final class DeleteModelElementCommand {
 				.getActiveWorkbenchWindow().getShell());
 			progressDialog.open();
 			try {
-				context.getEditingDomain().getCommandStack()
-					.execute(DeleteCommand.create(context.getEditingDomain(), toBeDeleted));
+				context.getEditingDomain().getCommandStack().execute(
+					DeleteCommand.create(context.getEditingDomain(), toBeDeleted));
 			} finally {
 				progressDialog.getProgressMonitor().done();
 				progressDialog.close();
@@ -104,7 +104,6 @@ public final class DeleteModelElementCommand {
 	private boolean askConfirmation() {
 		String question = null;
 		if (toBeDeleted.size() == 1) {
-			// hkq: done
 			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			((IDisposable) adapterFactoryLabelProvider.getAdapterFactory()).dispose();
