@@ -32,7 +32,7 @@ public class ModelElementTooltip extends DefaultToolTip implements IDisposable {
 		super(control, ToolTip.NO_RECREATE, false);
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// hkq: done
+		
 	}
 
 	/**
