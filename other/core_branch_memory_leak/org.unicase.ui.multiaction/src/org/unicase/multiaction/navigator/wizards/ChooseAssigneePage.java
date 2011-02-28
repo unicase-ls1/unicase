@@ -81,7 +81,7 @@ public class ChooseAssigneePage extends WizardPage {
 		parentWizard = multiactionWizard;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
+		
 		listener = new AssigneePageListener();
 	}
 
@@ -220,7 +220,7 @@ public class ChooseAssigneePage extends WizardPage {
 				updateUI();
 			} else if (w == removeSelectedButton) {
 
-				// O(n²) complexity, but we won't have more than a dozen users in the table, so it's okay I guess
+				// O(nï¿½) complexity, but we won't have more than a dozen users in the table, so it's okay I guess
 				// Otherwise, we could refactor it to a linked hashmap or something similar
 				TableItem[] selects = table.getSelection();
 				for (TableItem t : selects) {
