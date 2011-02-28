@@ -73,7 +73,7 @@ public class ChooseWorkItemPage extends WizardPage {
 
 		composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		labelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
-		// jc: done
+		
 		listener = new ChooseWorkItemPageListener();
 		treeHandler = new TreeHandler(labelProvider, parentWizard.getSelectedWorkPackage());
 	}
