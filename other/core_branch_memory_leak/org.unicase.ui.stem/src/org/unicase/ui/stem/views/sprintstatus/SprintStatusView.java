@@ -189,7 +189,7 @@ public class SprintStatusView extends ViewPart {
 
 		adapterFactoryLabelProvider.dispose();
 		composedAdapterFactory.dispose();
-		// jc: done
+		
 	}
 
 	/**

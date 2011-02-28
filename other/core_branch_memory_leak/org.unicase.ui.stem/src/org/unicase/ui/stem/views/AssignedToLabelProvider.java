@@ -29,7 +29,7 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 		super();
 		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
+		
 	}
 
 	/**
