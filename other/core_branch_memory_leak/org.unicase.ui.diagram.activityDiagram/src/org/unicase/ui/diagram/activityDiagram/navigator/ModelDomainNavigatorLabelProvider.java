@@ -20,7 +20,6 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	// hkq: done (generated code)
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
 			.getItemProvidersAdapterFactory());
