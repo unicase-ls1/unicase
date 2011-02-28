@@ -23,8 +23,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
@@ -115,24 +115,12 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			}
 
 			try {
-				if (ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME).getMetaModelElementContext()
-					.isNonDomainElement(containment.getEReferenceType())) {
+				if (ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME)
+					.getMetaModelElementContext().isNonDomainElement(containment.getEReferenceType())) {
 					continue;
 				}
 			} catch (NoWorkspaceException e) {
-				// TODO: ChainSaw exception handling
-				// Do NOT catch all Exceptions ("catch (Exception e)")
-				// Log AND handle Exceptions if possible
-				//
-				// You can just uncomment one of the lines below to log an exception:
-				// logException will show the logged excpetion to the user
-				// ModelUtil.logException(e);
-				// ModelUtil.logException("YOUR MESSAGE HERE", e);
-				// logWarning will only add the message to the error log
-				// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-				// ModelUtil.logWarning("YOUR MESSAGE HERE");
-				//			
-				// If handling is not possible declare and rethrow Exception
+				Activator.getDefault().logException(e.getMessage(), e);
 			}
 
 			// if containment type is abstract, create a list of
@@ -147,8 +135,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				continue;
 			}
 
-			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
-				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
+				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 
@@ -189,8 +177,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		Set<EClass> eClazz = UnicaseUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);
 		for (EClass eClass : eClazz) {
-			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
-				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
+				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 			commandParams.put(CreateContainmentHandler.COMMAND_ECLASS_PARAM, eClass);

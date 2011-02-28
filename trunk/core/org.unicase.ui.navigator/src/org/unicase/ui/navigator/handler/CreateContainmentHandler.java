@@ -52,7 +52,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 					@Override
 					protected void doRun() {
 						Object object = selectedME.eGet(eReference);
-						if ((eReference.getUpperBound() == -1)) {
+						if ((eReference.isMany())) {
 							EList<EObject> eList = (EList<EObject>) object;
 							eList.add(newMEInstance);
 						} else {
@@ -60,7 +60,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 						}
 						ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 					}
-				};
+				}.run(false);
 			}
 		}
 		return null;
