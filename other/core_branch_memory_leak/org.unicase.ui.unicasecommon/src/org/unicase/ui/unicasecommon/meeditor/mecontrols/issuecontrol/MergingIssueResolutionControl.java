@@ -94,7 +94,7 @@ public class MergingIssueResolutionControl extends MESingleLinkControl {
 			this.mergingIssue = modelElement;
 			provider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			// hkq: done
+			
 
 			setImageDescriptor(ImageDescriptor.createFromImage(provider.getImage(modelElement)));
 			setToolTipText("Set and create MergingSolution");

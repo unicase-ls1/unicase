@@ -126,7 +126,7 @@ public class MECommentReplyWidget extends Composite {
 		listeners = new HashSet<MECommentWidgetListener>();
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// jc: done
+		
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(this);
 
 		inputComposite = new Composite(this, SWT.NONE);
