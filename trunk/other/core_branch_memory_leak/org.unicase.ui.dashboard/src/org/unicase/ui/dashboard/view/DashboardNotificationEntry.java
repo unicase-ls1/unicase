@@ -195,7 +195,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		// hkq: done
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		comments = getComments();
