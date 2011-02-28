@@ -29,7 +29,7 @@ public class ValidationLabelProvider extends ColumnLabelProvider {
 		super();
 		composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
-		// jc: done
+		
 	}
 
 	/**
