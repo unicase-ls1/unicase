@@ -86,7 +86,6 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 	public AbstractDashboardWidget() {
 		display = Display.getCurrent();
 		bg = new Color(display, 233, 244, 255);
-		// hkq: done
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
