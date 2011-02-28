@@ -81,7 +81,7 @@ public class AddAssociationClassAction extends Action {
 			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
 				eReference.getEReferenceType());
 		}
-		// hkq: done
+		
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider labelprovider = new AdapterFactoryLabelProvider(adapterFactory);
