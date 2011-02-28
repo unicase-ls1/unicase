@@ -45,7 +45,7 @@ public class MEEditorInput implements IEditorInput, IDisposable {
 	 */
 	public MEEditorInput(EObject me, ModelElementContext context) {
 		super();
-		// hkq: done
+		
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();

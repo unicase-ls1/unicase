@@ -101,7 +101,7 @@ public class MELinkControl {
 	}
 
 	protected void createHyperlink(final Composite parent, int style) {
-		// hkq: done
+		
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();

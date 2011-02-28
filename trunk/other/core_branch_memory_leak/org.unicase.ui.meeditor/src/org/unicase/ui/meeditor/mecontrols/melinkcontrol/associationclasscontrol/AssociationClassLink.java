@@ -168,7 +168,7 @@ public class AssociationClassLink extends MELinkControl {
 		delAssociationListener = new MEHyperLinkDeleteAdapter(modelElement, eReference, association, getContext());
 		// listen for changes of the goal reference instance
 		associationChangeListener = new AssociationChangeListener(association);
-		// hkq: done
+		
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
