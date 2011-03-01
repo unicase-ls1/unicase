@@ -20,10 +20,18 @@ import org.unicase.emfstore.jdt.configuration.HistoryVersionMapping;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
 import org.unicase.emfstore.jdt.configuration.VersionMapping;
+import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
+import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * Decorator to show visually to the user for each resource if it is pushed or not.
@@ -71,33 +79,73 @@ public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightwe
 				.getProject());
 			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, fileToDecorate);
 			if (!entry.isMarkedForDeletion()) {
-				decoration.addPrefix("@emfstore ");
-				teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(fileToDecorate.getProject());
-				boolean isFileShared = teamSynchronizer.isFileShared(fileToDecorate);
-				if (!isFileShared) {
-					// nothing more to decorate yet
-					return;
+				try {
+					// check for team provider
+					teamSynchronizer = TeamSynchronizerRegistry.getTeamSynchronizer(fileToDecorate.getProject());
+
+					// prefix
+					StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
+					ProjectSpace projectSpace = ProjectSpaceUtil.getProjectSpace(structuredEMFStoreURI.getProjectID());
+					decoratePrefix(projectSpace, entry);
+
+					boolean isFileShared = teamSynchronizer.isFileShared(fileToDecorate);
+					if (!isFileShared) {
+						// nothing more to decorate yet
+						return;
+					}
+
+					// get current ProjectSpace revision
+					VersionMapping versionMapping = entry.getVersionMapping();
+					if (versionMapping instanceof SimpleVersionMapping) {
+						SimpleVersionMapping simpleVersionMapping = (SimpleVersionMapping) versionMapping;
+						int emfStoreRevision = simpleVersionMapping.getEMFStoreRevision();
+						decoration.addSuffix(" [v" + emfStoreRevision + "]");
+
+					} else if (versionMapping instanceof HistoryVersionMapping) {
+						HistoryVersionMapping historyVersionMapping = (HistoryVersionMapping) versionMapping;
+						decorateHistoryVersionMapping(historyVersionMapping);
+					}
+
+				} catch (NoSuitableTeamSynchronizerException e) {
+					try {
+						StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
+						ProjectSpace projectSpace = ProjectSpaceUtil.getProjectSpace(structuredEMFStoreURI
+							.getProjectID());
+						// prefix
+						decoratePrefix(projectSpace, entry);
+
+						// suffix
+						int emfStoreRevision = EMFStoreUtil.getLocalProjectSpaceRevision(projectSpace);
+						decoration.addSuffix(" [v" + emfStoreRevision + "]");
+
+					} catch (ProjectSpaceNotFoundException ex) {
+						ModelUtil.logException(ex);
+					}
 				}
 
-				// get current ProjectSpace revision
-				VersionMapping versionMapping = entry.getVersionMapping();
-				if (versionMapping instanceof SimpleVersionMapping) {
-					SimpleVersionMapping simpleVersionMapping = (SimpleVersionMapping) versionMapping;
-					int emfStoreRevision = simpleVersionMapping.getEMFStoreRevision();
-					decoration.addSuffix(" [v" + emfStoreRevision + "]");
-
-				} else if (versionMapping instanceof HistoryVersionMapping) {
-					HistoryVersionMapping historyVersionMapping = (HistoryVersionMapping) versionMapping;
-					decorateHistoryVersionMapping(historyVersionMapping);
-				}
 			}
 
 		} catch (NoEMFStoreJDTConfigurationException e) {
 			// Can be ignored. File is not pushed.
 		} catch (EntryNotFoundException e) {
 			// will be thrown for pushed files, so ignore
-		} catch (NoSuitableTeamSynchronizerException e) {
-			// will be thrown for unsupported team provider, so ignore
+		} catch (ProjectSpaceNotFoundException e) {
+			// should not occur
+			ModelUtil.logException(e);
+		}
+	}
+
+	private void decoratePrefix(ProjectSpace projectSpace, Entry entry) {
+		StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
+		String eObjectStringID = structuredEMFStoreURI.getEObjectID();
+		ModelElementId eObjectID = MetamodelFactory.eINSTANCE.createModelElementId();
+		eObjectID.setId(eObjectStringID);
+
+		boolean modelElementDirty = projectSpace.getModifiedModelElementsCache().isModelElementDirty(eObjectID);
+		if (modelElementDirty) {
+			decoration.addPrefix("*@emfstore ");
+		} else {
+			decoration.addPrefix("@emfstore ");
 		}
 	}
 

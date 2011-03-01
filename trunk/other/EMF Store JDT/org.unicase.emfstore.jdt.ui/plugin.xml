@@ -184,7 +184,7 @@
                          operator="and">
                       <or>
                          <instanceof
-                               value="org.eclipse.core.resources.IFolder">
+                               value="org.eclipse.core.resources.IContainer">
                          </instanceof>
                          <instanceof
                                value="org.eclipse.core.resources.IProjectNature">
