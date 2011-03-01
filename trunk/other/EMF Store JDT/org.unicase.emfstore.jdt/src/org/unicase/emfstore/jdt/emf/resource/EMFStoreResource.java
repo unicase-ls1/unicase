@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
 import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
@@ -153,6 +156,10 @@ public class EMFStoreResource extends ResourceImpl implements Resource, Resource
 					ModelUtil.logException(e);
 				} catch (EObjectNotFoundException e) {
 					ModelUtil.logException(e);
+					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+					MessageDialog.openError(shell, "Cannot load model",
+						"The model cannot be found in the EMFStore project.");
+
 				} catch (ProjectSpaceNotFoundException e) {
 					ModelUtil.logException(e);
 				}
