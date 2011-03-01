@@ -5,21 +5,14 @@
  */
 package org.unicase.emfstore.jdt.ui.menu;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
 import org.unicase.emfstore.jdt.exception.ProjectInfoNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
-import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.emfstore.jdt.ui.dialog.SelectionDialog;
 import org.unicase.emfstore.jdt.ui.exception.NoProjectSelectedException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -30,7 +23,7 @@ import org.unicase.workspace.Usersession;
  * 
  * @author Adrian Staudt
  */
-public abstract class AbstractEMFStoreInteractionHandler extends AbstractHandler {
+public abstract class AbstractEMFStoreInteractionHandler extends AbstractCommanHandler {
 
 	private ProjectInfo selectedProjectInfo;
 	private ServerInfo selectedServerInfo;
@@ -102,22 +95,5 @@ public abstract class AbstractEMFStoreInteractionHandler extends AbstractHandler
 		}
 
 		return projectSpace;
-	}
-
-	/**
-	 * Updates the UI.
-	 * 
-	 * @param file The location where the update should be performed.
-	 */
-	protected void refreshUI(IFile file) {
-		// refresh UI
-		try {
-			file.getProject().getFile(".emfstoreconf").refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
-			file.getProject().refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
-		} catch (CoreException e) {
-			ModelUtil.logException(e);
-		}
-
-		EMFStoreJDTEntryDecorator.refreshDecorator();
 	}
 }

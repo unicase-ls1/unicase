@@ -11,6 +11,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -24,8 +25,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
@@ -38,7 +37,6 @@ import org.unicase.emfstore.jdt.ui.dialog.JDTModelElementSelectDialog;
 import org.unicase.emfstore.jdt.ui.exception.NoProjectSelectedException;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 
@@ -58,15 +56,28 @@ public class PullFromEMFStoreEcoreHandler extends AbstractEMFStoreInteractionHan
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
 		IStructuredSelection selection = (IStructuredSelection) HandlerUtil.getCurrentSelectionChecked(event);
 		IContainer selectedContainer = null;
 		Object[] selectedObjects = selection.toArray();
 		for (Object selectedObject : selectedObjects) {
-			if (selectedObject instanceof IContainer) {
+			// The view "PackageExplorer" has the selection set to IProjectNature, whereas
+			// the view "Navigator" provides directly an IContainer when selecting a project.
+			// Folder are returned from both as IContainer.
+			if (selectedObject instanceof IProjectNature) {
+				IProjectNature iProjectNature = (IProjectNature) selectedObject;
+				selectedContainer = iProjectNature.getProject();
+				break;
+
+			} else if (selectedObject instanceof IContainer) {
 				selectedContainer = (IContainer) selectedObject;
 				break;
+			} else {
+				ModelUtil.logWarning("No resource container has been provided, but a container was expected.");
+				MessageDialog.openError(shell, "Error",
+					"No resource container has been provided, but a container was expected.");
+				return null;
 			}
 		}
 
@@ -76,7 +87,6 @@ public class PullFromEMFStoreEcoreHandler extends AbstractEMFStoreInteractionHan
 			selectProjectSpace = selectProject(shell);
 			EObject selectEObject = selectModelElementToPull(selectProjectSpace);
 			if (selectEObject != null) {
-
 				InputDialog inputDialog = new InputDialog(shell, "File name",
 					"Please enter the name of the output file.", "name.ecore", null);
 				inputDialog.create();
@@ -104,9 +114,8 @@ public class PullFromEMFStoreEcoreHandler extends AbstractEMFStoreInteractionHan
 	}
 
 	private EObject selectModelElementToPull(ProjectSpace selectProjectSpace) {
-		ECPModelelementContext context = new EMFStoreModelelementContext((EObject) selectProjectSpace.getProject());
-		ModelElementSelectionDialog meSelectionDialog = new JDTModelElementSelectDialog(context);
-		meSelectionDialog.create();
+		JDTModelElementSelectDialog meSelectionDialog = new JDTModelElementSelectDialog(shell, selectProjectSpace
+			.getProject());
 		if (meSelectionDialog.open() == Window.OK) {
 			if (meSelectionDialog.getFirstResult() != null) {
 				return (EObject) meSelectionDialog.getFirstResult();

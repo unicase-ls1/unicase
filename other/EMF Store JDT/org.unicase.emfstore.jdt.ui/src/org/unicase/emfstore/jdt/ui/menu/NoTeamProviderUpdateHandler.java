@@ -13,6 +13,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ui.commands.UpdateProjectHandler;
@@ -39,6 +40,11 @@ public class NoTeamProviderUpdateHandler extends AbstractNoTeamProviderHandler {
 
 		new UpdateUnicaseCommand(projectSpaces).run(false);
 
+		// after commit, update decorator
+		for (IFile file : selectedFiles) {
+			refreshUI(file);
+		}
+
 		return null;
 	}
 
@@ -55,6 +61,11 @@ public class NoTeamProviderUpdateHandler extends AbstractNoTeamProviderHandler {
 
 		@Override
 		protected void doRun() {
+			// check that all usersessions are valid
+			for (ProjectSpace projectSpace : projectSpaces) {
+				EMFStoreUtil.checkSanity(projectSpace.getUsersession());
+			}
+
 			for (ProjectSpace projectSpace : projectSpaces) {
 				// try to update
 				try {

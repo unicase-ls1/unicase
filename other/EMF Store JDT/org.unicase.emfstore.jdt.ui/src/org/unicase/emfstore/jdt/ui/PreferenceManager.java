@@ -69,7 +69,7 @@ public final class PreferenceManager {
 	 * @return An array of supported extensions.
 	 */
 	public static String[] getDefaultExtensionPreference() {
-		return new String[] { "ecore", "genmodel" };
+		return new String[] { "*.ecore", "*.genmodel" };
 	}
 
 	/**
@@ -105,12 +105,12 @@ public final class PreferenceManager {
 	public static boolean isExtensionRegistered(String fileExtension) {
 		String[] extensions = getExtensionPreference();
 		for (String extension : extensions) {
-			if (extension.equals(fileExtension)) {
+			String[] extensionParts = extension.split("\\.");
+			if (extensionParts.length == 2 && extensionParts[1].equalsIgnoreCase(fileExtension)) {
 				return true;
 			}
 		}
 
 		return false;
 	}
-
 }

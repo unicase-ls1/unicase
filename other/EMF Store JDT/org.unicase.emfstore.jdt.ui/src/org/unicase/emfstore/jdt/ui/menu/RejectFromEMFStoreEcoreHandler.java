@@ -8,13 +8,9 @@ package org.unicase.emfstore.jdt.ui.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -26,7 +22,6 @@ import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
-import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.emfstore.jdt.ui.editor.EditorHelper;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -35,7 +30,7 @@ import org.unicase.metamodel.util.ModelUtil;
  * 
  * @author Adrian Staudt
  */
-public class RejectFromEMFStoreEcoreHandler extends AbstractHandler {
+public class RejectFromEMFStoreEcoreHandler extends AbstractCommanHandler {
 
 	/**
 	 * {@inheritDoc}
@@ -95,16 +90,5 @@ public class RejectFromEMFStoreEcoreHandler extends AbstractHandler {
 		}
 
 		return null;
-	}
-
-	private void refreshUI(IFile file) {
-		try {
-			file.getProject().getFile(".emfstoreconf").refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
-			file.getProject().refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
-		} catch (CoreException e) {
-			ModelUtil.logException(e);
-		}
-
-		EMFStoreJDTEntryDecorator.refreshDecorator();
 	}
 }

@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.resources.IFile;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
@@ -28,11 +27,11 @@ import org.unicase.workspace.ServerInfo;
 
 /**
  * An abstract handler that provides some helper classes for the handler that has to deal if no suitable team provider
- * is registred.
+ * is registered.
  * 
  * @author Adrian Staudt
  */
-public abstract class AbstractNoTeamProviderHandler extends AbstractHandler {
+public abstract class AbstractNoTeamProviderHandler extends AbstractCommanHandler {
 
 	/**
 	 * The selection provider provides instances of an object. We are only interested in files.
