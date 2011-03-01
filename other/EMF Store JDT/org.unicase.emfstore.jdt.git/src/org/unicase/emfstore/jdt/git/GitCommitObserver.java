@@ -35,7 +35,7 @@ public class GitCommitObserver implements CommitObserver {
 	 * 
 	 * @see org.eclipse.egit.ui.CommitObserver#finaliceCommit(org.eclipse.egit.core.op.CommitOperation)
 	 */
-	public boolean finaliceCommit(org.eclipse.egit.core.op.CommitOperation commitOperation) {
+	public boolean finalizeCommit(org.eclipse.egit.core.op.CommitOperation commitOperation) {
 		String commitMessage = commitOperation.getMessage();
 
 		// GitTeamSynchronizer gitTeamSynchronizer = new GitTeamSynchronizer();
