@@ -231,8 +231,8 @@ public class ServerTests {
 	 */
 	public static HistoryQuery createHistoryQuery(PrimaryVersionSpec ver1, PrimaryVersionSpec ver2) {
 		HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
-		historyQuery.setSource(EcoreUtil.copy(ver1));
-		historyQuery.setTarget(EcoreUtil.copy(ver2));
+		historyQuery.setSource((PrimaryVersionSpec) EcoreUtil.copy(ver1));
+		historyQuery.setTarget((PrimaryVersionSpec) EcoreUtil.copy(ver2));
 		return historyQuery;
 	}
 
