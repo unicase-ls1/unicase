@@ -157,8 +157,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		MultiReferenceOperation subOperation2 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
 			1);
 		assertEquals(useCase, getProject().getModelElement(subOperation2.getModelElementId()));
-		assertEquals(functionalRequirement,
-			getProject().getModelElement(subOperation2.getReferencedModelElements().get(0)));
+		assertEquals(functionalRequirement, getProject().getModelElement(
+			subOperation2.getReferencedModelElements().get(0)));
 	}
 
 	/**
@@ -354,8 +354,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, referencedModelElements3.get(0));
 
 		// ((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
-			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 		Project loadedProject = loadedProjectSpace.getProject();
 
 		assertEquals(false, loadedProject.containsInstance(useCase));
@@ -685,8 +685,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(230, getProjectSpace().getOperations().size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
-			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
 	}
@@ -743,8 +743,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(2, subOperations.size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
-			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -840,8 +840,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(sectionId, multiReferenceOperation.getModelElementId());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
-			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -878,8 +878,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
-			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
+			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -899,7 +899,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		meeting.setIdentifiedWorkItemsSection(workItemMeetingSecion);
 
 		// copy meeting and check if the intra cross references were actually copied
-		Meeting copiedMeeting = EcoreUtil.copy(meeting);
+		Meeting copiedMeeting = (Meeting) EcoreUtil.copy(meeting);
 		assertFalse(copiedMeeting.getIdentifiedIssuesSection() == meeting.getIdentifiedIssuesSection());
 		assertFalse(copiedMeeting.getIdentifiedWorkItemsSection() == meeting.getIdentifiedWorkItemsSection());
 
