@@ -24,7 +24,7 @@ public class AnalyzerModelController {
 
 	private Exporter exporter;
 
-	private final int flag;
+	private final int analyzerType;
 
 	private IProgressMonitor monitor;
 
@@ -41,7 +41,7 @@ public class AnalyzerModelController {
 		this.analyzers = analyzers;
 		this.setExporter(exporter);
 
-		flag = checkAnalyzerTypes(analyzers);
+		analyzerType = checkAnalyzerTypes(analyzers);
 	}
 
 	private int checkAnalyzerTypes(List<DataAnalyzer> analyzers) {
@@ -80,7 +80,7 @@ public class AnalyzerModelController {
 	 */
 	public void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
-		switch (flag) {
+		switch (analyzerType) {
 		case 2:
 			List<List<Object>> lines = new ArrayList<List<Object>>();
 			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
