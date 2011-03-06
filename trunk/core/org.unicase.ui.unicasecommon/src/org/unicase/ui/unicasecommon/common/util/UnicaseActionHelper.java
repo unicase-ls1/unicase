@@ -26,7 +26,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
@@ -199,7 +199,7 @@ public final class UnicaseActionHelper {
 	 * @param me the model lement
 	 * @return the context
 	 */
-	public static ModelElementContext getContext(EObject me) {
+	public static ECPModelelementContext getContext(EObject me) {
 		return new EMFStoreModelelementContext(me);
 	}
 

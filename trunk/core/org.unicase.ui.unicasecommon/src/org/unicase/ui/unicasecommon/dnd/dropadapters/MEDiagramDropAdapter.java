@@ -56,7 +56,8 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			}
 			LinkedList<EObject> elements = new LinkedList<EObject>();
 			elements.addAll(diagram.getElements());
-			mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context));
+			mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
+				.getMetaModelElementContext()));
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
@@ -72,7 +73,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 						} catch (ExecutionException e) {
 							ModelUtil.logException("Could not create a view for the droped content.", e);
 						}
-						if (!context.isAssociationClassElement(me)) {
+						if (!context.getMetaModelElementContext().isAssociationClassElement(me)) {
 							counter++;
 						}
 					}
