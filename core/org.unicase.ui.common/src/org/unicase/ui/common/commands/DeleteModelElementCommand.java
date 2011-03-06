@@ -61,7 +61,8 @@ public final class DeleteModelElementCommand {
 		// collect all association classes to be deleted
 		Set<EObject> additionalMEs = new HashSet<EObject>();
 		for (EObject eObject : toBeDeleted) {
-			additionalMEs.addAll(AssociationClassHelper.getRelatedAssociationClassToDelete(eObject, context));
+			additionalMEs.addAll(AssociationClassHelper.getRelatedAssociationClassToDelete(eObject, context
+				.getMetaModelElementContext()));
 		}
 		toBeDeleted.addAll(additionalMEs);
 		// now delete
@@ -70,8 +71,8 @@ public final class DeleteModelElementCommand {
 				.getActiveWorkbenchWindow().getShell());
 			progressDialog.open();
 			try {
-				context.getEditingDomain().getCommandStack()
-					.execute(DeleteCommand.create(context.getEditingDomain(), toBeDeleted));
+				context.getEditingDomain().getCommandStack().execute(
+					DeleteCommand.create(context.getEditingDomain(), toBeDeleted));
 			} finally {
 				progressDialog.getProgressMonitor().done();
 				progressDialog.close();

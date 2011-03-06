@@ -31,8 +31,8 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.util.DialogHandler;
@@ -112,7 +112,7 @@ public final class ActionHelper {
 	 * @deprecated
 	 */
 	@Deprecated
-	public static void openModelElement(final EObject me, final String sourceView, ModelElementContext context) {
+	public static void openModelElement(final EObject me, final String sourceView, ECPModelelementContext context) {
 		openModelElement(me, sourceView);
 	}
 
@@ -169,7 +169,7 @@ public final class ActionHelper {
 	 * @param context the context of the model element
 	 */
 	public static void openModelElement(final EObject me, EStructuralFeature problemFeature, final String sourceView,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		if (me == null) {
 			return;
 		}
@@ -177,13 +177,13 @@ public final class ActionHelper {
 			openModelElement(me, sourceView, context);
 		}
 
-		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class)
-			.onOpen(me, sourceView, "org.unicase.ui.meeditor.MEEditor");
+		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView,
+			"org.unicase.ui.meeditor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
 	private static void openAndMarkMEWithMEEditor(EObject me, EStructuralFeature problemFeature,
-		ModelElementContext context2) {
+		ECPModelelementContext context2) {
 		// this method works as the one above but in addition marks a feature as having a problem
 
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);

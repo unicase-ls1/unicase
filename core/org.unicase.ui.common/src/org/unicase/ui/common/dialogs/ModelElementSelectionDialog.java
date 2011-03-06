@@ -22,11 +22,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.Activator;
 
 /**
- * Abstract Dialog as pattern for all dialogs which show ModelElements for selection.
+ * Abstract Dialog as pattern for all dialogs which show ModelElements for selection. A
  * 
  * @author mkagel
  */
@@ -67,23 +66,14 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	}
 
 	/**
-	 * Creates a new label provider to be used for this dialog.
+	 * Default constructor, here will be done the main work.
 	 * 
-	 * @return a label provider for the dialog
-	 */
-	protected ILabelProvider createLabelProvider() {
-		return new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-	}
-
-	/**
-	 * Main-Constructor, here will be done the main work.
-	 * 
-	 * @param context The context from where the modelelements come from, is null if no context is set an the
-	 *            modelelements come from outside the dialog
+	 * @param context The context from where the model elements come from, is null if no context is set an the model
+	 *            elements come from outside the dialog
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
 	public ModelElementSelectionDialog(ECPModelelementContext context, boolean multiSelection) {
+
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), multiSelection);
 
 		if (context != null) {
@@ -101,26 +91,36 @@ public abstract class ModelElementSelectionDialog extends FilteredItemsSelection
 	}
 
 	/**
-	 * Constructor which calls another constructor and sets the modelElements-Collection of the dialog only to a
+	 * Constructor which calls another constructor and sets the model elements collection of the dialog only to a
 	 * specified class type.
 	 * 
-	 * @param context from where the modelelements come from
+	 * @param context from where the model elements come from
 	 * @param classType which should be shown in the dialog
 	 * @param multiSelection indicates whether dialog allows to select more than one item
 	 */
-	public ModelElementSelectionDialog(ModelElementContext context, EClass classType, boolean multiSelection) {
+	public ModelElementSelectionDialog(ECPModelelementContext context, EClass classType, boolean multiSelection) {
 		this(multiSelection);
-		modelElements = context.getAllModelElementsbyClass(classType);
+		modelElements = context.getAllModelElementsbyClass(classType, true);
 	}
 
 	/**
 	 * Constructor which calls another constructor.
 	 * 
-	 * @param context from where the modelelements come from
-	 * @param classType of the modelelements which should be shown in the dialog
+	 * @param context from where the model elements come from
+	 * @param classType of the model elements which should be shown in the dialog
 	 */
-	public ModelElementSelectionDialog(ModelElementContext context, EClass classType) {
+	public ModelElementSelectionDialog(ECPModelelementContext context, EClass classType) {
 		this(context, classType, false);
+	}
+
+	/**
+	 * Creates a new label provider to be used for this dialog.
+	 * 
+	 * @return a label provider for the dialog
+	 */
+	protected ILabelProvider createLabelProvider() {
+		return new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
