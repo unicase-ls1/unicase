@@ -56,7 +56,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -237,9 +236,7 @@ public class ValidationView extends ViewPart {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						// TODO: Chainsaw cast ok?
-						ActionHelper.openModelElement(me, errorLocation, viewId, (ModelElementContext) workspace
-							.getProject(me));
+						ActionHelper.openModelElement(me, errorLocation, viewId, workspace.getProject(me));
 					} else {
 						ActionHelper.openModelElement(me, viewId);
 					}
