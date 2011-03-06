@@ -14,12 +14,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -109,17 +107,8 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * 
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getMetaModelElementContext()
 	 */
-	public MetaModelElementContext getMetaModelElementContext() {
+	public ECPMetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#isNonDomainElement(org.eclipse.emf.ecore.EObject)
-	 */
-	public boolean isNonDomainElement(EObject eObject) {
-		return getMetaModelElementContext().isNonDomainElement(eObject);
 	}
 
 	/**
@@ -174,29 +163,6 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	public void projectDeleted(Project project) {
 		super.projectDeleted();
 
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
-	 */
-	public boolean isAssociationClassElement(EObject eObject) {
-		return (eObject instanceof AssociationClassElement);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
-	 */
-	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		if (isAssociationClassElement(eObject)) {
-			AssociationClassElement ace = (AssociationClassElement) eObject;
-			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
-				.getAssociationFeatures());
-		}
-		return null;
 	}
 
 	/**

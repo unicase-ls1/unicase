@@ -6,25 +6,29 @@
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.ecp.model.MetaModelElementContext;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.AbstractECPMetaModelElementContext;
+import org.unicase.ecp.model.ECPAssociationClassElement;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
+import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
- * {@link MetaModelElementContext} for the EMFStore.
+ * {@link AbstractECPMetaModelElementContext} for the EMFStore.
  * 
  * @author helming
  */
-public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
+public class EMFStoreMetaModelElementContext extends AbstractECPMetaModelElementContext {
 
-	private static MetaModelElementContext instance;
+	private static ECPMetaModelElementContext instance;
 
 	/**
 	 * Singleton.
 	 * 
 	 * @return the instance
 	 */
-	public static MetaModelElementContext getInstance() {
+	public static ECPMetaModelElementContext getInstance() {
 		if (instance == null) {
 			instance = new EMFStoreMetaModelElementContext();
 		}
@@ -34,9 +38,8 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.MetaModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EClass)
+	 * @see org.unicase.ecp.model.ECPMetaModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EClass)
 	 */
-	@Override
 	public boolean isAssociationClassElement(EClass eClazz) {
 		return ModelUtil.isAssociationClassElement(eClazz);
 	}
@@ -44,7 +47,32 @@ public class EMFStoreMetaModelElementContext extends MetaModelElementContext {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.MetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
+	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+
+		if (isAssociationClassElement(eObject)) {
+			AssociationClassElement ace = (AssociationClassElement) eObject;
+			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
+				.getAssociationFeatures());
+		}
+
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ecp.model.ECPMetaModelElementContext#isAssociationClassElement(org.eclipse.emf.ecore.EObject)
+	 */
+	public boolean isAssociationClassElement(EObject eObject) {
+		return isAssociationClassElement(eObject.eClass());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ecp.model.AbstractECPMetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
 	 */
 	@Override
 	public boolean isNonDomainElement(EClass eClass) {

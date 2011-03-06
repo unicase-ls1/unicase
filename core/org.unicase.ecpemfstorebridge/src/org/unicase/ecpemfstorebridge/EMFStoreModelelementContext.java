@@ -9,12 +9,11 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.unicase.ecp.model.AbstractECPModelElementContext;
 import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
@@ -27,7 +26,7 @@ import org.unicase.workspace.Configuration;
  * 
  * @author helming
  */
-public class EMFStoreModelelementContext extends ModelElementContext implements ProjectChangeObserver {
+public class EMFStoreModelelementContext extends AbstractECPModelElementContext implements ProjectChangeObserver {
 
 	private final Project project;
 	private EObject modelelement;
@@ -57,9 +56,8 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#getEditingDomain()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#getEditingDomain()
 	 */
-	@Override
 	public EditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
 	}
@@ -67,9 +65,8 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#getAllModelElements()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#getAllModelElements()
 	 */
-	@Override
 	public Collection<EObject> getAllModelElements() {
 		Collection<EObject> ret = new BasicEList<EObject>();
 		ret.addAll(project.getAllModelElements());
@@ -79,26 +76,8 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
-	 *      org.eclipse.emf.common.util.BasicEList)
+	 * @see org.unicase.ecp.model.ECPModelelementContext#isNonDomainElement(org.eclipse.emf.ecore.EObject)
 	 */
-	@Override
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
-		Collection<EObject> ret = new BasicEList<EObject>();
-		for (EObject element : project.getAllModelElements()) {
-			if (association || !isAssociationClassElement(element)) {
-				ret.add(element);
-			}
-		}
-		return ret;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EObject)
-	 */
-	@Override
 	public boolean isNonDomainElement(EObject eObject) {
 		return (eObject instanceof NonDomainElement);
 	}
@@ -106,11 +85,12 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#contains(org.eclipse.emf.ecore.EObject)
+	 * @see org.unicase.ecp.model.ECPModelelementContext#contains(org.eclipse.emf.ecore.EObject)
 	 */
-	@Override
 	public boolean contains(EObject dropee) {
+
 		Project p = ModelUtil.getProject(dropee);
+
 		if (p != null) {
 			return p.equals(project);
 		}
@@ -121,9 +101,9 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#getMetaModelElementContext()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#getMetaModelElementContext()
 	 */
-	public MetaModelElementContext getMetaModelElementContext() {
+	public ECPMetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
 	}
 
@@ -135,7 +115,6 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 */
 	public void modelElementAdded(Project project, EObject modelElement) {
 		// Do nothing.
-
 	}
 
 	/**
@@ -148,7 +127,6 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 		if (modelElement.equals(this.modelelement)) {
 			modelElementDeleted();
 		}
-
 	}
 
 	/**
@@ -159,7 +137,6 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing
-
 	}
 
 	/**
@@ -168,19 +145,16 @@ public class EMFStoreModelelementContext extends ModelElementContext implements 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
 	public void projectDeleted(Project project) {
-		contextDeleted();
-
+		modelElementDeleted();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ModelElementContext#dispose()
+	 * @see org.unicase.ecp.model.ECPModelelementContext#dispose()
 	 */
-	@Override
 	public void dispose() {
 		project.removeProjectChangeObserver(this);
-
 	}
 
 	/**
