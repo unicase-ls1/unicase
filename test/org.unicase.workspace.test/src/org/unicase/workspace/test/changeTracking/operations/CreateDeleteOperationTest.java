@@ -15,10 +15,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -943,6 +946,50 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		Project p = ((ProjectImpl) getProject()).copy();
 		assertNotNull(p);
+	}
+
+	@Test
+	public void testRemoveChildFromParentWithSplittedResource() throws IOException {
+		final CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getProject().addModelElement(compositeSection);
+			}
+		}.run(false);
+
+		final LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		ResourceSet rs = getProjectSpace().eResource().getResourceSet();
+		Resource compositeResource = compositeSection.eResource();
+		final Resource leafResource = rs.createResource(URI.createFileURI(compositeResource.getURI().toFileString()
+			+ "leaf"));
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				leafResource.getContents().add(leafSection);
+			}
+		}.run(true);
+
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				compositeSection.getSubsections().add(leafSection);
+			}
+		}.run(false);
+
+		assertTrue(compositeSection.eResource() != leafSection.eResource());
+
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				getProject().deleteModelElement(compositeSection);
+			}
+		}.run(false);
+
+		assertTrue(getProject().getModelElements().size() == 0);
+		assertTrue(leafResource.getContents().size() == 0);
 	}
 
 	/**
