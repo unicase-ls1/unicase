@@ -41,7 +41,7 @@ public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
 		progressMonitor.beginTask("Searching", getModelElements().size());
 		for (EObject modelElement : getModelElements()) {
 			ECPProject project = ECPWorkspaceManager.getECPProject(modelElement);
-			if (!(project.isNonDomainElement(modelElement))) {
+			if (!(project.getMetaModelElementContext().isNonDomainElement(modelElement.eClass()))) {
 				contentProvider.add(modelElement, itemsFilter);
 				progressMonitor.worked(1);
 			}

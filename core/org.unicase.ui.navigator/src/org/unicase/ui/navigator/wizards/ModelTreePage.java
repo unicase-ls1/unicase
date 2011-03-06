@@ -24,9 +24,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.navigator.Activator;
 
@@ -71,8 +71,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 		filterInput.setMessage("Model Element class");
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(filterInput);
 		try {
-			MetaModelElementContext metaContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-				.getMetaModelElementContext();
+			ECPMetaModelElementContext metaContext = ECPWorkspaceManager.getInstance().getWorkSpace()
+				.getActiveProject().getMetaModelElementContext();
 			if (metaContext.isGuessed()) {
 				Label label = new Label(composite, SWT.None);
 				label.setText("No registered Package found. EMF Client Platform has tried to guess your model package."

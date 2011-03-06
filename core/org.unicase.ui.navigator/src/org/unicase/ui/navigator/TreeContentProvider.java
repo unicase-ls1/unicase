@@ -59,8 +59,9 @@ public class TreeContentProvider extends AdapterFactoryContentProvider {
 		// this removes all AssociationClass's from the result
 		LinkedList<Object> result = new LinkedList<Object>();
 		for (Object item : preResult) {
-			if (!(item instanceof EObject && context.isAssociationClassElement((EObject) item))
-				&& !(item instanceof DelegatingWrapperItemProvider && context
+			if (!(item instanceof EObject && context.getMetaModelElementContext().isAssociationClassElement(
+				(EObject) item))
+				&& !(item instanceof DelegatingWrapperItemProvider && context.getMetaModelElementContext()
 					.isAssociationClassElement((EObject) ((DelegatingWrapperItemProvider) item).getValue()))) {
 				result.add(item);
 			}
@@ -96,7 +97,7 @@ public class TreeContentProvider extends AdapterFactoryContentProvider {
 			return super.hasChildren(object);
 		}
 		for (EObject child : eObject.eContents()) {
-			if (!context.isAssociationClassElement(child)) {
+			if (!context.getMetaModelElementContext().isAssociationClassElement(child)) {
 				return super.hasChildren(object);
 			}
 		}

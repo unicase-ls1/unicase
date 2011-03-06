@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.navigator.Activator;
 
 /**
@@ -27,7 +27,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	private Set<EPackage> packages = new HashSet<EPackage>();
 	private HashSet<EClass> modelElementClasses;
 	private Set<EPackage> rootPackages;
-	private MetaModelElementContext metaContext;
+	private ECPMetaModelElementContext metaContext;
 
 	/**
 	 * Constructor.
@@ -38,7 +38,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		Set<EClass> eClasses;
 		try {
-			metaContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getMetaModelElementContext();
+			metaContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
+				.getMetaModelElementContext();
 			eClasses = metaContext.getAllModelElementEClasses(false);
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
