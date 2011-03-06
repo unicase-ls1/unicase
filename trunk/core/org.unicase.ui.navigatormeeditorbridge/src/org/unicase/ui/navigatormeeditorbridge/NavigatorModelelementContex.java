@@ -7,15 +7,12 @@ package org.unicase.ui.navigatormeeditorbridge;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.MetaModelElementContext;
-import org.unicase.ecp.model.ModelElementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.AbstractECPModelElementContext;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ui.navigator.Activator;
@@ -25,7 +22,8 @@ import org.unicase.ui.navigator.Activator;
  * 
  * @author helming
  */
-public class NavigatorModelelementContex extends ModelElementContext implements ECPProjectListener {
+public class NavigatorModelelementContex extends AbstractECPModelElementContext implements ECPProjectListener {
+	
 	private ECPProject project;
 	private final EObject modelElement;
 
@@ -48,7 +46,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public boolean contains(EObject eObject) {
 		return project.contains(eObject);
 	}
@@ -56,7 +53,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public void dispose() {
 		project.removeECPProjectListener(this);
 
@@ -65,7 +61,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public Collection<EObject> getAllModelElements() {
 		return project.getAllModelElements();
 	}
@@ -73,21 +68,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
-		Collection<EObject> ret = new BasicEList<EObject>();
-		for (EObject element : project.getAllModelElementsbyClass(clazz, new BasicEList<EObject>())) {
-			if (association || !isAssociationClassElement(element)) {
-				ret.add(element);
-			}
-		}
-		return ret;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public EditingDomain getEditingDomain() {
 		try {
 			return ECPWorkspaceManager.getInstance().getWorkSpace().getEditingDomain();
@@ -100,17 +80,10 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	public MetaModelElementContext getMetaModelElementContext() {
+	public ECPMetaModelElementContext getMetaModelElementContext() {
 		return project.getMetaModelElementContext();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isNonDomainElement(EObject eObject) {
-		return project.isNonDomainElement(eObject);
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -134,20 +107,6 @@ public class NavigatorModelelementContex extends ModelElementContext implements 
 	 * {@inheritDoc}
 	 */
 	public void projectDeleted() {
-		super.contextDeleted();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean isAssociationClassElement(EObject eObject) {
-		return project.isAssociationClassElement(eObject);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		return project.getAssociationClassElement(eObject);
+		super.modelElementDeleted();
 	}
 }
