@@ -16,7 +16,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
@@ -28,7 +28,12 @@ import org.unicase.ui.util.OverlayImageDescriptor;
  * @author Michael Haeger
  */
 public class AddAssociationClassAction extends Action {
+
 	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
+
+	private EReference eReference;
+	private EObject modelElement;
+	private final ECPModelelementContext context;
 
 	/**
 	 * The link command.
@@ -49,19 +54,16 @@ public class AddAssociationClassAction extends Action {
 			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					for (Object result : dlg.getResult()) {
-						AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) result, context);
+						AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) result, context
+							.getMetaModelElementContext());
 					}
 				} else {
 					AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) dlg.getFirstResult(),
-						context);
+						context.getMetaModelElementContext());
 				}
 			}
 		}
 	}
-
-	private EReference eReference;
-	private EObject modelElement;
-	private final ModelElementContext context;
 
 	/**
 	 * Default constructor.
@@ -72,7 +74,7 @@ public class AddAssociationClassAction extends Action {
 	 * @param context model element context
 	 */
 	public AddAssociationClassAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 		this.context = context;

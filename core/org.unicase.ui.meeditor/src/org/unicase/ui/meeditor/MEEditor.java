@@ -26,7 +26,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ModelElementContextListener;
 import org.unicase.ui.common.util.ShortLabelProvider;
 
@@ -53,7 +53,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private ModelElementChangeListener modelElementChangeListener;
 
-	private ModelElementContext modelElementContext;
+	private ECPModelelementContext modelElementContext;
 
 	private ModelElementContextListener modelElementContextListener;
 
@@ -197,12 +197,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 					close(false);
 
 				}
-
-				@Override
-				public void onContextDeleted() {
-					onModelElementDeleted();
-
-				}
 			};
 			modelElementContext.addModelElementContextListener(modelElementContextListener);
 			modelElementChangeListener = new ModelElementChangeListener(modelElement) {
@@ -261,8 +255,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private void updateCreatorHint() {
 		if (statusMessageProvider != null) {
-			getEditorSite().getActionBars().getStatusLineManager()
-				.setMessage(statusMessageProvider.getMessage(modelElement));
+			getEditorSite().getActionBars().getStatusLineManager().setMessage(
+				statusMessageProvider.getMessage(modelElement));
 		}
 	}
 
@@ -270,9 +264,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * Initializes the editing domain for this model element.
 	 */
 	protected void initializeEditingDomain() {
-
 		this.editingDomain = modelElementContext.getEditingDomain();
-
 	}
 
 	/**
@@ -303,7 +295,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-
 		modelElementChangeListener.remove();
 		modelElementContext.removeModelElementContextListener(modelElementContextListener);
 		modelElementContext.dispose();
@@ -319,12 +310,12 @@ public class MEEditor extends SharedHeaderFormEditor {
 			try {
 				mePage.getManagedForm().getForm().setImage(titleImage);
 			} catch (SWTException e) {
-				// Catch in case Editor is directly closed after Change.
+				// Catch in case Editor is directly closed after change.
 			}
 		}
 	}
 
-	public ModelElementContext getModelElementContext() {
+	public ECPModelelementContext getModelElementContext() {
 		return modelElementContext;
 	}
 }

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
 
@@ -24,7 +24,7 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 	private EObject modelElement;
 	private EReference reference;
 	private EObject opposite;
-	private final ModelElementContext context;
+	private final ECPModelelementContext context;
 
 	/**
 	 * Default constructor.
@@ -32,9 +32,10 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 	 * @param modelElement the model element
 	 * @param reference the reference link
 	 * @param opposite the model element on the other side of the link
+	 * @param context the model element context
 	 */
 	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference, EObject opposite,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
@@ -46,8 +47,8 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 	 */
 	@Override
 	public void mouseUp(MouseEvent e) {
-		if ((reference.isContainment() && context.isNonDomainElement(opposite))
-			|| context.isAssociationClassElement(opposite)) {
+		if ((reference.isContainment() && context.getMetaModelElementContext().isNonDomainElement(opposite.eClass()))
+			|| context.getMetaModelElementContext().isAssociationClassElement(opposite)) {
 			new DeleteModelElementCommand(opposite, context).run();
 		} else {
 			new DeleteReferenceCommand(modelElement, reference, opposite, context.getEditingDomain()).run();

@@ -29,8 +29,9 @@ public class AssociationClassLinkNoDelete extends MELinkControl {
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link, EObject contextModelElement) {
 		if (getContext() != null) {
-			if (getContext().isAssociationClassElement(contextModelElement)) {
-				ECPAssociationClassElement association = getContext().getAssociationClassElement(contextModelElement);
+			if (getContext().getMetaModelElementContext().isAssociationClassElement(contextModelElement)) {
+				ECPAssociationClassElement association = getContext().getMetaModelElementContext()
+					.getAssociationClassElement(contextModelElement);
 				// display if given reference is equal to source or target feature
 				if (association.getSourceFeature().equals(itemPropertyDescriptor.getFeature(link))
 					|| association.getTargetFeature().equals(itemPropertyDescriptor.getFeature(link))) {

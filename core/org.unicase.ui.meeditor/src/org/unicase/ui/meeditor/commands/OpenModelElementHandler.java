@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditorInput;
 
@@ -43,7 +43,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 
 		EObject me = (EObject) o;
 
-		ModelElementContext context = (ModelElementContext) HandlerUtil.getVariableChecked(event,
+		ECPModelelementContext context = (ECPModelelementContext) HandlerUtil.getVariableChecked(event,
 			MECONTEXT_EVALUATIONCONTEXT_VARIABLE);
 
 		EStructuralFeature problemFeature;

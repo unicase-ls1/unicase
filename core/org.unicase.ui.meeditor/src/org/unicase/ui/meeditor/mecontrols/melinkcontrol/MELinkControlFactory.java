@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.meeditor.Activator;
 
 public class MELinkControlFactory {
@@ -56,7 +56,7 @@ public class MELinkControlFactory {
 	}
 
 	public MELinkControl createMELinkControl(IItemPropertyDescriptor itemPropertyDescriptor, final EObject link,
-		EObject contextModelElement, ModelElementContext context) {
+		EObject contextModelElement, ECPModelelementContext context) {
 		ArrayList<MELinkControl> candidates = new ArrayList<MELinkControl>();
 		Set<Class<?>> keySet = controlRegistry.keySet();
 		for (Class<?> clazz : keySet) {
@@ -82,7 +82,7 @@ public class MELinkControlFactory {
 
 	private MELinkControl getBestCandidate(ArrayList<MELinkControl> candidates,
 		IItemPropertyDescriptor itemPropertyDescriptor, final EObject link, EObject contextModelElement,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		int bestValue = 0;
 		MELinkControl bestCandidate = null;
 		for (MELinkControl abstractMEControl : candidates) {

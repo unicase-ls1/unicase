@@ -11,7 +11,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * Abstract class for the ME controls.
@@ -42,7 +42,7 @@ public abstract class AbstractMEControl {
 
 	private IItemPropertyDescriptor itemPropertyDescriptor;
 
-	private ModelElementContext context;
+	private ECPModelelementContext context;
 
 	/**
 	 * @return the toolkit
@@ -121,14 +121,14 @@ public abstract class AbstractMEControl {
 	 * 
 	 * @param parent the parent composite
 	 * @param itemPropertyDescriptor the {@link IItemPropertyDescriptor}
-	 * @param modelElement the modelelement
-	 * @param context the context of the modelelement
+	 * @param modelElement the model element
+	 * @param context the context of the model element
 	 * @param toolkit the {@link FormToolkit}
 	 * @param style the style
 	 * @return the widget
 	 */
 	public Control createControl(Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		EObject modelElement, ModelElementContext context, FormToolkit toolkit) {
+		EObject modelElement, ECPModelelementContext context, FormToolkit toolkit) {
 		this.setContext(context);
 		this.editingDomain = context.getEditingDomain();
 		this.modelElement = modelElement;
@@ -182,20 +182,20 @@ public abstract class AbstractMEControl {
 	}
 
 	/**
-	 * Setter for the {@link ModelElementContext}.
+	 * Setter for the {@link ECPModelelementContext}.
 	 * 
-	 * @param context the {@link ModelElementContext}
+	 * @param context the {@link ECPModelelementContext}
 	 */
-	public void setContext(ModelElementContext context) {
+	public void setContext(ECPModelelementContext context) {
 		this.context = context;
 	}
 
 	/**
-	 * Getter for the {@link ModelElementContext}.
+	 * Getter for the {@link ECPModelelementContext}.
 	 * 
-	 * @return the {@link ModelElementContext}
+	 * @return the {@link ECPModelelementContext}
 	 */
-	public ModelElementContext getContext() {
+	public ECPModelelementContext getContext() {
 		return context;
 	}
 

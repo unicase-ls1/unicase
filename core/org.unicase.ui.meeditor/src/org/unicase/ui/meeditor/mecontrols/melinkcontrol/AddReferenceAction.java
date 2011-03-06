@@ -24,7 +24,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.MESuggestedSelectionDialog;
 import org.unicase.ui.util.OverlayImageDescriptor;
@@ -37,6 +37,10 @@ import org.unicase.ui.util.OverlayImageDescriptor;
 public class AddReferenceAction extends Action {
 
 	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
+
+	private EReference eReference;
+	private EObject modelElement;
+	private final ECPModelelementContext context;
 
 	/**
 	 * Command to add a new reference.
@@ -119,19 +123,16 @@ public class AddReferenceAction extends Action {
 		}
 	}
 
-	private EReference eReference;
-	private EObject modelElement;
-	private final ModelElementContext context;
-
 	/**
 	 * Default constructor.
 	 * 
 	 * @param modelElement the source model element
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
+	 * @param context the context of the model element
 	 */
 	public AddReferenceAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 		this.context = context;

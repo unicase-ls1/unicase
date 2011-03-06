@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
@@ -31,16 +31,16 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	private EObject target;
 	private EReference reference;
 	private EditingDomain editingDomain;
-	private final ModelElementContext modelElementContext;
+	private final ECPModelelementContext modelElementContext;
 
 	/**
 	 * @param editingDomain editing domain
 	 * @param me MEEditor input
 	 * @param reference EReference being shown in the section
-	 * @param modelElementContext the {@link ModelElementContext}
+	 * @param modelElementContext the {@link ECPModelelementContext}
 	 */
 	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference,
-		ModelElementContext modelElementContext) {
+		ECPModelelementContext modelElementContext) {
 
 		this.reference = reference;
 		this.editingDomain = editingDomain;

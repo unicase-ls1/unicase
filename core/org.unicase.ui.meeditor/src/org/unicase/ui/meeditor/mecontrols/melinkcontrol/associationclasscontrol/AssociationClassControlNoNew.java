@@ -57,8 +57,10 @@ public class AssociationClassControlNoNew extends MESingleLinkControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EReference && !((EReference) feature).isMany()) {
-			if (getContext() != null && getContext().isAssociationClassElement(modelElement)) {
-				ECPAssociationClassElement association = getContext().getAssociationClassElement(modelElement);
+			if (getContext() != null
+				&& getContext().getMetaModelElementContext().isAssociationClassElement(modelElement)) {
+				ECPAssociationClassElement association = getContext().getMetaModelElementContext()
+					.getAssociationClassElement(modelElement);
 				// display if given reference is equal to source or target feature
 				if (association.getSourceFeature().equals(feature) || association.getTargetFeature().equals(feature)) {
 					return PRIORITY;
