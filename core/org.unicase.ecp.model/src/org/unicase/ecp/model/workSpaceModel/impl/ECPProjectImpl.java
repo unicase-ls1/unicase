@@ -6,15 +6,18 @@
 package org.unicase.ecp.model.workSpaceModel.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.ecp.model.ModelElementContextListener;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -43,35 +46,66 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 	 */
 	protected EObject rootObject;
 	private ArrayList<ECPProjectListener> listeners = new ArrayList<ECPProjectListener>();
+	private ArrayList<ModelElementContextListener> contextListeners = new ArrayList<ModelElementContextListener>();
 
 	public void addECPProjectListener(ECPProjectListener listener) {
 		listeners.add(listener);
-
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeECPProjectListener(ECPProjectListener listener) {
+		listeners.remove(listener);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public void modelelementDeleted(EObject eobject) {
 		for (ECPProjectListener listener : listeners) {
 			listener.modelelementDeleted(eobject);
 		}
-
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void projectDeleted() {
 		for (ECPProjectListener listener : listeners) {
 			listener.projectDeleted();
 		}
 
+		for (ModelElementContextListener listener : contextListeners) {
+			listener.onModelElementDeleted();
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void projectChanged() {
 		for (ECPProjectListener listener : listeners) {
 			listener.projectChanged();
 		}
-
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addModelElementContextListener(ModelElementContextListener modelElementContextListener) { 
+		contextListeners.add(modelElementContextListener);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeModelElementContextListener(ModelElementContextListener modelElementContextListener) {
+		contextListeners.remove(modelElementContextListener);
 	}
 
-	public void removeECPProjectListener(ECPProjectListener listener) {
-		listeners.remove(listener);
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
+		return getAllModelElementsbyClass(clazz, new BasicEList<EObject>());
 	}
 
 	/**

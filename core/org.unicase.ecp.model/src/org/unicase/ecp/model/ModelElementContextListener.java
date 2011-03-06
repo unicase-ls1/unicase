@@ -11,13 +11,10 @@ package org.unicase.ecp.model;
  * @author helming
  */
 public abstract class ModelElementContextListener {
+	
 	/**
 	 * Called if the model element is deleted.
 	 */
 	public abstract void onModelElementDeleted();
-
-	/**
-	 * Called if the context is deleted.
-	 */
-	public abstract void onContextDeleted();
+	
 }

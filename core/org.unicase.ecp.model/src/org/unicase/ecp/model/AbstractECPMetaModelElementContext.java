@@ -26,99 +26,125 @@ import org.eclipse.emf.ecore.EPackage.Registry;
  * 
  * @author helming
  */
-public abstract class MetaModelElementContext {
+public abstract class AbstractECPMetaModelElementContext implements ECPMetaModelElementContext {
 
 	private Set<EClass> modelElementEClasses;
 	private static Set<EClass> guessedPackages;
 
 	/**
-	 * Retrieve all EClasses from the ECore package registry that are subclasses of the given EClass. Does not include
-	 * abstract classes or interfaces.
-	 * 
-	 * @param eClass the superClass of the subClasses to retrieve
-	 * @return a set of EClasses
+	 * {@inheritDoc}
 	 */
-	public Set<EClass> getAllSubEClasses(EClass eClass) {
-		return getAllSubEClasses(eClass, true);
-	}
-
-	public abstract boolean isNonDomainElement(EClass eClass);
-
 	public boolean isNonDomainElement(EObject eObject) {
 		return isNonDomainElement(eObject.eClass());
 	}
 
 	/**
-	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
-	 * abstract classes or interfaces. Could exclude {@link AssociationClassElement}'s.
+	 * {@inheritDoc}
 	 * 
-	 * @param eClass the superClass of the subClasses to retrieve
-	 * @param association whether to include {@link AssociationClassElement}
-	 * @return a set of EClasses
+	 * @see org.unicase.ecp.model.MetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
+	 */
+	public abstract boolean isNonDomainElement(EClass eClass);
+
+	/**
+	 * {@inheritDoc}
 	 */
 	public Set<EClass> getAllSubEClasses(EClass eClass, boolean association) {
+		
 		Set<EClass> allEClasses = getAllModelElementEClasses(association);
 		Set<EClass> result = new HashSet<EClass>();
+		
 		for (EClass subClass : allEClasses) {
 			if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass.isSuperTypeOf(subClass))
 				&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
+		
 		return result;
 	}
 
 	/**
-	 * Returns all types of model elements in this context.
-	 * 
-	 * @return a set of eclasses
-	 */
-	public Set<EClass> getAllModelElementEClasses() {
-		return getAllModelElementEClasses(true);
-	}
-
-	/**
-	 * Returns all types of model elements in this context. Could exclude {@link AssociationClassElement}'s.
-	 * 
-	 * @param association whether to include {@link AssociationClassElement}
-	 * @return a set of eclasses
+	 * {@inheritDoc}
 	 */
 	public Set<EClass> getAllModelElementEClasses(boolean association) {
+		
 		Set<EClass> result = new HashSet<EClass>();
+		
 		for (EClass subClass : getAllModelElementEClassesImpl()) {
 			if (association || !isAssociationClassElement(subClass)) {
 				result.add(subClass);
 			}
 		}
+		
 		return result;
+	}
+	
+	/**
+	 * @param newMEInstance {@link EObject} the new modelElement instance.
+	 * @return EReference the Container
+	 * @param parent The EObject to get containment references from
+	 */
+	public EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
+		// the value of the 'EAll Containments' reference list.
+		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		EReference reference = null;
+		for (EReference containmentitem : eallcontainments) {
+
+			EClass eReferenceType = containmentitem.getEReferenceType();
+			if (eReferenceType.equals(newMEInstance)) {
+				reference = containmentitem;
+
+				break;
+			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
+				|| eReferenceType.isSuperTypeOf(newMEInstance.eClass())) {
+				reference = containmentitem;
+				break;
+			}
+		}
+		return reference;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isGuessed() {
+		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ecp.model.ecpModelPackage");
+		return (packages.length == 0);
 	}
 
 	/**
 	 * Returns all types of model elements in this context.
 	 * 
-	 * @return a set of eclasses
+	 * @return a set of {@link EClass}es
 	 */
 	protected Set<EClass> getAllModelElementEClassesImpl() {
+		
 		if (modelElementEClasses != null) {
 			return new HashSet<EClass>(modelElementEClasses);
 		}
+		
+		Set<EClass> result = new HashSet<EClass>();
 		Set<String> registeredPackages = new HashSet<String>();
+		Registry registry = EPackage.Registry.INSTANCE;
 		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.ecp.model.ecpModelPackage");
+		
 		for (IConfigurationElement element : packages) {
 			String packageName = element.getAttribute("modelPackage");
 			registeredPackages.add(packageName);
 		}
-		Set<EClass> result = new HashSet<EClass>();
-		Registry registry = EPackage.Registry.INSTANCE;
+		
 		if (registeredPackages.isEmpty()) {
 			return guessPackages(new HashSet<Entry<String, Object>>(registry.entrySet()));
 		}
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
+			
 			if (!registeredPackages.contains(entry.getKey())) {
 				continue;
 			}
+			
 			try {
 				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				result.addAll(getAllModelElementEClasses(ePackage));
@@ -129,8 +155,8 @@ public abstract class MetaModelElementContext {
 				String message = "Failed to load model package " + entry.getKey();
 				Activator.getDefault().logException(message, exception);
 			}
-
 		}
+		
 		modelElementEClasses = result;
 		return result;
 	}
@@ -214,41 +240,7 @@ public abstract class MetaModelElementContext {
 		return knownPackages.contains(key);
 	}
 
-	/**
-	 * Whether a {@link EClass} is a association class. Association classes are not displayed as dedicated elements. A
-	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
-	 * widgets allows to trace transparently without seeing the association class.
-	 * 
-	 * @param eClazz the {@link EClass}
-	 * @return if it is an association
-	 */
-	public abstract boolean isAssociationClassElement(EClass eClazz);
-
-	/**
-	 * @param newMEInstance {@link EObject} the new modelElement instance.
-	 * @return EReference the Container
-	 * @param parent The EObject to get containment references from
-	 */
-	public EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent) {
-		// the value of the 'EAll Containments' reference list.
-		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
-		EReference reference = null;
-		for (EReference containmentitem : eallcontainments) {
-
-			EClass eReferenceType = containmentitem.getEReferenceType();
-			if (eReferenceType.equals(newMEInstance)) {
-				reference = containmentitem;
-
-				break;
-			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
-				|| eReferenceType.isSuperTypeOf(newMEInstance.eClass())) {
-				reference = containmentitem;
-				break;
-			}
-		}
-		return reference;
-	}
-
+	
 	/**
 	 * Retrieve all EClasses from the Ecore package that are model element subclasses.
 	 * 
@@ -267,17 +259,5 @@ public abstract class MetaModelElementContext {
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * If the meta model context is guessing the packages. Happens if no model package is registered for EMF Client
-	 * Platform.
-	 * 
-	 * @return if the context is guessed.
-	 */
-	public boolean isGuessed() {
-		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ecp.model.ecpModelPackage");
-		return (packages.length == 0);
 	}
 }

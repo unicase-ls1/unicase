@@ -7,6 +7,7 @@ package org.unicase.ecp.model;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -16,12 +17,37 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * @author helming
  */
 public interface ECPModelelementContext {
+	
 	/**
-	 * returns all model elements in a context.
+	 * Adds a {@link ModelElementContextListener}.
+	 * 
+	 * @param modelElementContextListener the {@link ModelElementContextListener}
+	 */
+	void addModelElementContextListener(ModelElementContextListener modelElementContextListener);
+	
+	/**
+	 * Removes a {@link ModelElementContextListener}.
+	 * 
+	 * @param modelElementContextListener the {@link ModelElementContextListener}
+	 */
+	void removeModelElementContextListener(ModelElementContextListener modelElementContextListener);
+	
+	/**
+	 * Returns all model elements in this context.
 	 * 
 	 * @return a list of model elements
 	 */
 	Collection<EObject> getAllModelElements();
+	
+	/**
+	 * Returns all {@link EObject} in the context, which are of a certain type. Could exclude
+	 * {@link AssociationClassElement}'s.
+	 * 
+	 * @param clazz the type
+	 * @param association whether to include {@link AssociationClassElement}
+	 * @return a {@link Collection} of {@link EObject}
+	 */
+	Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association);
 
 	/**
 	 * Returns the editing domain.
@@ -31,27 +57,24 @@ public interface ECPModelelementContext {
 	EditingDomain getEditingDomain();
 
 	/**
-	 * Whether a {@link EObject} is a association class. Association classes are not displayed as dedicated elements. A
-	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
-	 * widgets allows to trace transparently without seeing the association class.
+	 * Returns the {@link ECPMetaModelElementContext}.
+	 * 
+	 * @return the {@link ECPMetaModelElementContext}.
+	 */
+	ECPMetaModelElementContext getMetaModelElementContext();
+	
+	/**
+	 * If a {@link EObject} is contained in this context and can be therefore referenced by the
+	 * {@link EObject} defining the context.
 	 * 
 	 * @param eObject the {@link EObject}
-	 * @return if it is an association
+	 * @return if the {@link EObject} is contained in the context
 	 */
-	boolean isAssociationClassElement(EObject eObject);
+	boolean contains(EObject eObject);
+	
 
 	/**
-	 * Returns an {@link ECPAssociationClassElement} wrapper for a {@link EObject}.
-	 * 
-	 * @param eObject the {@link EObject}
-	 * @return the wrapper, {@code null} if {@link EObject} not exists
+	 * Called if the context is not used anymore. Use for cleanup.
 	 */
-	ECPAssociationClassElement getAssociationClassElement(EObject eObject);
-
-	/**
-	 * Returns the {@link MetaModelElementContext}.
-	 * 
-	 * @return the {@link MetaModelElementContext}.
-	 */
-	MetaModelElementContext getMetaModelElementContext();
+	void dispose();
 }
