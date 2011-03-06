@@ -104,20 +104,6 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	Collection<EObject> getAllModelElementsbyClass(EClass clazz,
 			BasicEList<EObject> basicEList);
 
-	/**
-	 * Specifies whether an element is a NonDomainElement (NDE). If the
-	 * underlying layer doesn't support NDE, returns true. NDEs are model
-	 * elements that are part of the model but shouldn't be visible to the user
-	 * via the default UI. E.g. their are faded out in the navigator or you
-	 * can't create them over the new model element dialog.F
-	 * 
-	 * @param eObject
-	 *            object to test
-	 * @return true if is NonDomainElement, false otherwise
-	 * @generated not
-	 */
-	boolean isNonDomainElement(EObject eObject);
-
 	void dispose();
 
 	/**
