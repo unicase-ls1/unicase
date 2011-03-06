@@ -57,7 +57,8 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		if (context == null) {
 			return CommandResult.newErrorCommandResult("Could not compute association classes to delete.");
 		}
-		List<EObject> additionalMEs = AssociationClassHelper.getRelatedAssociationClassToDelete(destructee, context);
+		List<EObject> additionalMEs = AssociationClassHelper.getRelatedAssociationClassToDelete(destructee, context
+			.getMetaModelElementContext());
 		EditPart diagramEditPart = EditPartUtility.getDiagramEditPart(this.editPart);
 		MEDiagram diag = (MEDiagram) EditPartUtility.getElement(diagramEditPart);
 		diag.getElements().remove(destructee);

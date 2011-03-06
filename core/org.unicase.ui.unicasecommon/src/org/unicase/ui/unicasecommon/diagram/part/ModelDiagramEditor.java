@@ -127,7 +127,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			@Override
 			protected void doRun() {
 				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
-					context)) {
+					context.getMetaModelElementContext())) {
 					// add reference to the element
 					diagram.getElements().add((UnicaseModelElement) association);
 					// create the View for the element
@@ -248,7 +248,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				}
 				LinkedList<EObject> elements = new LinkedList<EObject>();
 				elements.addAll(diagram.getElements());
-				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context));
+				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
+					.getMetaModelElementContext()));
 				new UnicaseCommand() {
 
 					@Override
@@ -266,7 +267,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 							} catch (ExecutionException e) {
 								ModelUtil.logException("Could not create a view for the droped content.", e);
 							}
-							if (!context.isAssociationClassElement(me)) {
+							if (!context.getMetaModelElementContext().isAssociationClassElement(me)) {
 								counter++;
 							}
 						}
