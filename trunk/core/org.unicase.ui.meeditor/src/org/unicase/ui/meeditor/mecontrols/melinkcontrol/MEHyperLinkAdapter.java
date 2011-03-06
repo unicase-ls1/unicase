@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContext;
 import org.unicase.ui.common.observer.TraceObserver;
 import org.unicase.ui.common.util.ActionHelper;
 
@@ -24,7 +24,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	private EObject target;
 	private final EObject source;
 	private final String featureName;
-	private final ModelElementContext context;
+	private final ECPModelelementContext context;
 
 	/**
 	 * Default constructor.
@@ -32,9 +32,9 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 * @param source the source of the model link
 	 * @param target the target of the model link
 	 * @param featureName the feature of the model link
-	 * @param context the {@link ModelElementContext}
+	 * @param context the {@link ECPModelelementContext}
 	 */
-	public MEHyperLinkAdapter(EObject target, EObject source, String featureName, ModelElementContext context) {
+	public MEHyperLinkAdapter(EObject target, EObject source, String featureName, ECPModelelementContext context) {
 		super();
 		this.target = target;
 		this.source = source;

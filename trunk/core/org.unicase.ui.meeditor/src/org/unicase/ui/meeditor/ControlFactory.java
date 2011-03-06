@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -88,7 +88,7 @@ public class ControlFactory {
 	 * @return the {@link AbstractMEControl}
 	 */
 	public AbstractMEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 
 		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
@@ -101,7 +101,7 @@ public class ControlFactory {
 	}
 
 	private AbstractMEControl createReferenceControl(IItemPropertyDescriptor itemPropertyDescriptor,
-		EReference feature, EObject modelElement, ModelElementContext context) {
+		EReference feature, EObject modelElement, ECPModelelementContext context) {
 		Class<?> instanceClass = feature.getEType().getInstanceClass();
 		Set<Class<?>> keySet = controlRegistry.keySet();
 		ArrayList<AbstractMEControl> candidates = new ArrayList<AbstractMEControl>();
@@ -127,7 +127,7 @@ public class ControlFactory {
 	}
 
 	private AbstractMEControl createAttribute(IItemPropertyDescriptor itemPropertyDescriptor,
-		EStructuralFeature feature, EObject modelElement, ModelElementContext context) {
+		EStructuralFeature feature, EObject modelElement, ECPModelelementContext context) {
 		Class<?> instanceClass = ((EAttribute) feature).getEAttributeType().getInstanceClass();
 		// Test which controls have a fitting type
 		// TODO: could be chached?
@@ -174,7 +174,7 @@ public class ControlFactory {
 
 	private AbstractMEControl getBestCandidate(ArrayList<AbstractMEControl> candidates,
 		IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature, EObject modelElement,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		int bestValue = 0;
 		AbstractMEControl bestCandidate = null;
 		for (AbstractMEControl abstractMEControl : candidates) {

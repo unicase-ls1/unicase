@@ -21,7 +21,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
@@ -113,7 +113,7 @@ public class NewReferenceAction extends Action {
 
 	private EReference eReference;
 	private EObject modelElement;
-	private final ModelElementContext modelElementContext;
+	private final ECPModelelementContext modelElementContext;
 
 	/**
 	 * Default constructor.
@@ -121,10 +121,10 @@ public class NewReferenceAction extends Action {
 	 * @param modelElement the source model element
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
-	 * @param modelElementContext
+	 * @param modelElementContext the model element context
 	 */
 	public NewReferenceAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext modelElementContext) {
+		ECPModelelementContext modelElementContext) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 		this.modelElementContext = modelElementContext;
@@ -166,11 +166,9 @@ public class NewReferenceAction extends Action {
 			return;
 		}
 		new NewReferenceCommand(modelElement).run();
-
 	}
 
 	private boolean isMultiReference() {
 		return eReference.getUpperBound() == -1;
 	}
-
 }

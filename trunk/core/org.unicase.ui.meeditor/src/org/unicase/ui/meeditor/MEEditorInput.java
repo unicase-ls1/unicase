@@ -20,7 +20,7 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
@@ -34,7 +34,19 @@ public class MEEditorInput implements IEditorInput {
 	private EObject modelElement;
 	private EStructuralFeature problemFeature;
 	private DecoratingLabelProvider labelProvider;
-	private ModelElementContext modelElementContext;
+	private ECPModelelementContext modelElementContext;
+
+	/**
+	 * Constructor to add a probleFeature.
+	 * 
+	 * @param me the model element to open
+	 * @param context context of the model element
+	 * @param problemFeature the problem feature
+	 */
+	public MEEditorInput(EObject me, ECPModelelementContext context, EStructuralFeature problemFeature) {
+		this(me, context);
+		this.problemFeature = problemFeature;
+	}
 
 	/**
 	 * Default constructor.
@@ -42,7 +54,7 @@ public class MEEditorInput implements IEditorInput {
 	 * @param me the modelElement
 	 * @param context context of the modelelement
 	 */
-	public MEEditorInput(EObject me, ModelElementContext context) {
+	public MEEditorInput(EObject me, ECPModelelementContext context) {
 		super();
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -68,18 +80,6 @@ public class MEEditorInput implements IEditorInput {
 
 			}
 		}
-	}
-
-	/**
-	 * Constructor to add a probleFeature.
-	 * 
-	 * @param me the model lement to open
-	 * @param context context of the model element
-	 * @param problemFeature the problem feature
-	 */
-	public MEEditorInput(EObject me, ModelElementContext context, EStructuralFeature problemFeature) {
-		this(me, context);
-		this.problemFeature = problemFeature;
 	}
 
 	/**
@@ -198,11 +198,11 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	/**
-	 * Returns the {@link ModelElementContext}.
+	 * Returns the {@link ECPModelelemenContext}.
 	 * 
-	 * @return {@link ModelElementContext}
+	 * @return {@link ECPModelelementContext}
 	 */
-	public ModelElementContext getModelElementContext() {
+	public ECPModelelementContext getModelElementContext() {
 		return modelElementContext;
 	}
 

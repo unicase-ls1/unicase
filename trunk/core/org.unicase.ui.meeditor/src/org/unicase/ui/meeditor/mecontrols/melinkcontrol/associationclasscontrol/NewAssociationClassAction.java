@@ -21,7 +21,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -35,7 +35,12 @@ import org.unicase.ui.util.OverlayImageDescriptor;
  * @author Michael Haeger
  */
 public class NewAssociationClassAction extends Action {
+
 	private static final String DIALOG_MESSAGE = "Select a model element type to be created:";
+
+	private EReference eReference;
+	private EObject modelElement;
+	private final ECPModelelementContext context;
 
 	/**
 	 * The create command.
@@ -92,14 +97,11 @@ public class NewAssociationClassAction extends Action {
 				}
 			}
 			// create the association
-			AssociationClassHelper.createAssociation(eReference, modelElement, relatedModelElement, context);
+			AssociationClassHelper.createAssociation(eReference, modelElement, relatedModelElement, context
+				.getMetaModelElementContext());
 			ActionHelper.openModelElement(relatedModelElement, this.getClass().getName(), context);
 		}
 	}
-
-	private EReference eReference;
-	private EObject modelElement;
-	private final ModelElementContext context;
 
 	/**
 	 * Default constructor.
@@ -110,7 +112,7 @@ public class NewAssociationClassAction extends Action {
 	 * @param context model element context
 	 */
 	public NewAssociationClassAction(EObject modelElement, EReference eReference, IItemPropertyDescriptor descriptor,
-		ModelElementContext context) {
+		ECPModelelementContext context) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 		this.context = context;

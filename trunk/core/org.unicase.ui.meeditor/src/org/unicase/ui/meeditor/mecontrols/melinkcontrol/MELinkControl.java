@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
 
@@ -51,13 +51,13 @@ public class MELinkControl {
 	protected EObject contextModelElement;
 	protected FormToolkit toolkit;
 	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
-	private ModelElementContext context;
+	private ECPModelelementContext context;
 
-	public ModelElementContext getContext() {
+	public ECPModelelementContext getContext() {
 		return context;
 	}
 
-	public void setContext(ModelElementContext context) {
+	public void setContext(ECPModelelementContext context) {
 		this.context = context;
 	}
 
@@ -65,7 +65,7 @@ public class MELinkControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		final EObject link, EObject contextModelElement, FormToolkit toolkit, ModelElementContext context) {
+		final EObject link, EObject contextModelElement, FormToolkit toolkit, ECPModelelementContext context) {
 		this.context = context;
 		Object feature = itemPropertyDescriptor.getFeature(link);
 		this.eReference = (EReference) feature;
@@ -88,7 +88,7 @@ public class MELinkControl {
 	protected void createDeleteAction(int style) {
 		ImageHyperlink deleteLink = toolkit.createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
-		if (eReference.isContainment() && (context.isNonDomainElement(link))) {
+		if (eReference.isContainment() && (context.getMetaModelElementContext().isNonDomainElement(link.eClass()))) {
 			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
 		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);

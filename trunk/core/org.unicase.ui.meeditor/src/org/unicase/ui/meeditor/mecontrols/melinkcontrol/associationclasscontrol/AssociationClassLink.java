@@ -30,7 +30,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.ModelElementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ShortLabelProvider;
@@ -77,8 +77,9 @@ public class AssociationClassLink extends MELinkControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link, EObject contextModelElement) {
 		Object ref = itemPropertyDescriptor.getFeature(contextModelElement);
 		if (getContext() != null) {
-			if (getContext().isAssociationClassElement(link) && ref instanceof EReference) {
-				ECPAssociationClassElement association = getContext().getAssociationClassElement(link);
+			if (getContext().getMetaModelElementContext().isAssociationClassElement(link) && ref instanceof EReference) {
+				ECPAssociationClassElement association = getContext().getMetaModelElementContext()
+					.getAssociationClassElement(link);
 				if (association.getSourceFeature().equals(((EReference) ref).getEOpposite())
 					|| association.getTargetFeature().equals(((EReference) ref).getEOpposite())) {
 					return PRIORITY;
@@ -94,15 +95,15 @@ public class AssociationClassLink extends MELinkControl {
 	 * @see org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl#createControl(org.eclipse.swt.widgets.Composite,
 	 *      int, org.eclipse.emf.edit.provider.IItemPropertyDescriptor, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject, org.eclipse.ui.forms.widgets.FormToolkit,
-	 *      org.unicase.ecp.model.ModelElementContext)
+	 *      org.unicase.ecp.model.ECPModelelementContext)
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
-		final EObject link, EObject contextModelElement, FormToolkit toolkit, ModelElementContext context) {
+		final EObject link, EObject contextModelElement, FormToolkit toolkit, ECPModelelementContext context) {
 		association = link;
 		modelElement = contextModelElement;
 		eReference = (EReference) itemPropertyDescriptor.getFeature(association);
-		eAttribute = AssociationClassHelper.getAssociationFeatures(association, context);
+		eAttribute = AssociationClassHelper.getAssociationFeatures(association, context.getMetaModelElementContext());
 		this.toolkit = toolkit;
 		setContext(context);
 		this.parent = parent;
@@ -184,7 +185,8 @@ public class AssociationClassLink extends MELinkControl {
 			associationLink.addHyperlinkListener(new MEHyperLinkAdapter(association, modelElement,
 				eReference.getName(), getContext()));
 		}
-		if (eReference.isContainment() && (getContext().isNonDomainElement(association))) {
+		if (eReference.isContainment()
+			&& (getContext().getMetaModelElementContext().isNonDomainElement(association.eClass()))) {
 			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
 		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);

@@ -33,8 +33,9 @@ public class AssociationClassLinkNotShow extends MELinkControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link, EObject contextModelElement) {
 		if (getContext() != null) {
 			Object ref = itemPropertyDescriptor.getFeature(contextModelElement);
-			if (getContext().isAssociationClassElement(link) && ref instanceof EReference) {
-				ECPAssociationClassElement association = getContext().getAssociationClassElement(link);
+			if (getContext().getMetaModelElementContext().isAssociationClassElement(link) && ref instanceof EReference) {
+				ECPAssociationClassElement association = getContext().getMetaModelElementContext()
+					.getAssociationClassElement(link);
 				// display if the given reference opposite is not source or target feature: the given object can not be
 				// source or target of the association
 				if (!(association.getSourceFeature().equals(((EReference) ref).getEOpposite()) || association
