@@ -15,11 +15,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.ecp.model.ECPModelelementContext;
@@ -34,7 +32,7 @@ import org.unicase.ui.util.OverlayImageDescriptor;
  * 
  * @author shterev
  */
-public class NewReferenceAction extends Action {
+public class NewReferenceAction extends ReferenceAction {
 
 	private static final String DIALOG_MESSAGE = "Select a model element type to be created:";
 
@@ -53,7 +51,7 @@ public class NewReferenceAction extends Action {
 		@Override
 		protected void doRun() {
 
-			if (!checkMultiplicity()) {
+			if (!checkMultiplicity(false)) {
 				return;
 			}
 
@@ -115,29 +113,8 @@ public class NewReferenceAction extends Action {
 			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
-		private boolean checkMultiplicity() {
-			Object object = modelElement.eGet(eReference);
-			if (object instanceof EList<?>) {
-				EList<EObject> eList = (EList<EObject>) object;
-				if (eList.size() < eReference.getUpperBound()) {
-					return true;
-				} else {
-					MessageBox box = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-					box.setMessage("Reference " + eReference.getName() + " has a multiplicity of "
-						+ eReference.getUpperBound() + ". Please remove referenced elements before you add new.");
-					box.open();
-					return false;
-				}
-
-			}
-			return false;
-
-		}
-
 	}
 
-	private EReference eReference;
-	private EObject modelElement;
 	private final ECPModelelementContext modelElementContext;
 
 	/**
