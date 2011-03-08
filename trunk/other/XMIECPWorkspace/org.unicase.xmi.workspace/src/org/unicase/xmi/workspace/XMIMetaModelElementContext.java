@@ -5,14 +5,16 @@
  */
 package org.unicase.xmi.workspace;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.ecp.model.MetaModelElementContext;
+import org.eclipse.emf.ecore.EObject;
+import org.unicase.ecp.model.AbstractECPMetaModelElementContext;
+import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.util.UnicaseUtil;
 
 /**
@@ -22,7 +24,7 @@ import org.unicase.util.UnicaseUtil;
  * @author matti, markus
  *
  */
-public class XMIMetaModelElementContext extends MetaModelElementContext {
+public class XMIMetaModelElementContext extends AbstractECPMetaModelElementContext {
 	
 	/**
 	 * Project specific model.
@@ -40,15 +42,6 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	public boolean isAssociationClassElement(EClass eClazz) {
-		return false; // CAUTION: this feature is not supported by this plugin!
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public Set<EClass> getAllModelElementEClassesImpl() {
 		// filter all classes for the registered ones.
 		Set<EClass> result = new HashSet<EClass>();
@@ -82,7 +75,6 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public boolean isNonDomainElement(EClass eClass) {
 		return false; // CAUTION: this feature is not supported by this plugin!
 	}
@@ -120,5 +112,28 @@ public class XMIMetaModelElementContext extends MetaModelElementContext {
 	 */
 	public void clearModels() {
 		this.model.clear();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
+		return null;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isAssociationClassElement(EClass clazz) {
+		// CAUTION: this feature is not supported by this plugin!
+		return false;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isAssociationClassElement(EObject eObject) {
+		// CAUTION: this feature is not supported by this plugin!
+		return false;
 	}
 }

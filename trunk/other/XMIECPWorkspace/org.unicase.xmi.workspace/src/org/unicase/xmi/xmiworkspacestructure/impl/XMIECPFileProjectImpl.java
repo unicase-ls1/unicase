@@ -33,7 +33,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 
 import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.MetaModelElementContext;
+import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
@@ -744,7 +744,7 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements XMIECPFileP
 	/**
 	 * {@inheritDoc}
 	 */
-	public MetaModelElementContext getMetaModelElementContext() {
+	public ECPMetaModelElementContext getMetaModelElementContext() {
 		if (metaContext == null){
 			metaContext = new XMIMetaModelElementContext();
 		}
