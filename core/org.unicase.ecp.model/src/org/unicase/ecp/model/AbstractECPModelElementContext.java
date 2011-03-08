@@ -5,12 +5,9 @@
  */
 package org.unicase.ecp.model;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -48,24 +45,5 @@ public abstract class AbstractECPModelElementContext implements ECPModelelementC
 		for (ModelElementContextListener modelElementContextListener : modelElementContextListeners) {
 			modelElementContextListener.onModelElementDeleted();
 		}
-	}
-	
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.ECPModelelementContext#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
-	 *      org.eclipse.emf.common.util.BasicEList)
-	 */
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
-		Collection<EObject> ret = new BasicEList<EObject>();
-
-		for (EObject element : getAllModelElements()) {
-			if (association || !getMetaModelElementContext().isAssociationClassElement(element)) {
-				ret.add(element);
-			}
-		}
-
-		return ret;
 	}
 }

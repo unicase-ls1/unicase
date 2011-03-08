@@ -104,8 +104,20 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 		contextListeners.remove(modelElementContextListener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
-		return getAllModelElementsbyClass(clazz, new BasicEList<EObject>());
+		Collection<EObject> ret = new BasicEList<EObject>();
+		
+		for (EObject element : getAllModelElements()) {
+			if (element.eClass() == clazz && 
+					(association || !getMetaModelElementContext().isAssociationClassElement(element))) {
+				ret.add(element);
+			}
+		}
+
+		return ret;
 	}
 
 	/**

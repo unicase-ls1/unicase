@@ -9,13 +9,11 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.unicase.ecp.model.AbstractECPModelElementContext;
-import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.ECPMetaModelElementContext;
-import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.NonDomainElement;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -75,11 +73,18 @@ public class EMFStoreModelelementContext extends AbstractECPModelElementContext 
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.ECPModelelementContext#isNonDomainElement(org.eclipse.emf.ecore.EObject)
 	 */
-	public boolean isNonDomainElement(EObject eObject) {
-		return (eObject instanceof NonDomainElement);
+	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, boolean association) {
+		Collection<EObject> ret = new BasicEList<EObject>();
+
+		for (EObject element : getAllModelElements()) {
+			if (element.eClass() == clazz
+				&& (association || !getMetaModelElementContext().isAssociationClassElement(element))) {
+				ret.add(element);
+			}
+		}
+
+		return ret;
 	}
 
 	/**
@@ -155,24 +160,5 @@ public class EMFStoreModelelementContext extends AbstractECPModelElementContext 
 	 */
 	public void dispose() {
 		project.removeProjectChangeObserver(this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean isAssociationClassElement(EObject eObject) {
-		return (eObject instanceof AssociationClassElement);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public ECPAssociationClassElement getAssociationClassElement(EObject eObject) {
-		if (isAssociationClassElement(eObject)) {
-			AssociationClassElement ace = (AssociationClassElement) eObject;
-			return new ECPAssociationClassElement(ace.getSourceFeature(), ace.getTargetFeature(), ace
-				.getAssociationFeatures());
-		}
-		return null;
 	}
 }
