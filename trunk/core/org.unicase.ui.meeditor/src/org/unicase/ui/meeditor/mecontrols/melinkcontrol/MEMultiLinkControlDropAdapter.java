@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
@@ -30,7 +29,6 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	private EObject dropee;
 	private EObject target;
 	private EReference reference;
-	private EditingDomain editingDomain;
 	private final ECPModelelementContext modelElementContext;
 
 	/**
@@ -39,11 +37,9 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @param reference EReference being shown in the section
 	 * @param modelElementContext the {@link ECPModelelementContext}
 	 */
-	public MEMultiLinkControlDropAdapter(EditingDomain editingDomain, EObject me, EReference reference,
-		ECPModelelementContext modelElementContext) {
+	public MEMultiLinkControlDropAdapter(EObject me, EReference reference, ECPModelelementContext modelElementContext) {
 
 		this.reference = reference;
-		this.editingDomain = editingDomain;
 
 		target = me;
 		this.modelElementContext = modelElementContext;

@@ -54,8 +54,8 @@ public class AddAssociationClassAction extends Action {
 			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					for (Object result : dlg.getResult()) {
-						AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) result, context
-							.getMetaModelElementContext());
+						AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) result,
+							context.getMetaModelElementContext());
 					}
 				} else {
 					AssociationClassHelper.createAssociation(eReference, modelElement, (EObject) dlg.getFirstResult(),
@@ -80,8 +80,8 @@ public class AddAssociationClassAction extends Action {
 		this.context = context;
 		Object obj = null;
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
-				eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance()
+				.create(eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
@@ -104,6 +104,6 @@ public class AddAssociationClassAction extends Action {
 	 */
 	@Override
 	public void run() {
-		new AddAssociationClassCommand(modelElement).run();
+		new AddAssociationClassCommand(modelElement).run(true);
 	}
 }

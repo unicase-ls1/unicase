@@ -85,7 +85,7 @@ public class MEDateControl extends AbstractMEControl {
 					protected void doRun() {
 						getModelElement().eSet(attribute, null);
 					}
-				}.run();
+				}.run(true);
 			}
 		});
 		return cDateWidget;

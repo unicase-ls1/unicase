@@ -53,7 +53,7 @@ public class NewAssociationClassAction extends Action {
 			super(eObject);
 		}
 
-		@SuppressWarnings( { "unchecked", "deprecation" })
+		@SuppressWarnings({ "unchecked", "deprecation" })
 		@Override
 		protected void doRun() {
 			EClass relatedModelElementClass = null;
@@ -97,8 +97,8 @@ public class NewAssociationClassAction extends Action {
 				}
 			}
 			// create the association
-			AssociationClassHelper.createAssociation(eReference, modelElement, relatedModelElement, context
-				.getMetaModelElementContext());
+			AssociationClassHelper.createAssociation(eReference, modelElement, relatedModelElement,
+				context.getMetaModelElementContext());
 			ActionHelper.openModelElement(relatedModelElement, this.getClass().getName(), context);
 		}
 	}
@@ -118,8 +118,8 @@ public class NewAssociationClassAction extends Action {
 		this.context = context;
 		Object obj = null;
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
-				eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance()
+				.create(eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
@@ -142,6 +142,6 @@ public class NewAssociationClassAction extends Action {
 	 */
 	@Override
 	public void run() {
-		new NewAssociationClassCommand(modelElement).run();
+		new NewAssociationClassCommand(modelElement).run(true);
 	}
 }
