@@ -5,6 +5,8 @@
  */
 package org.unicase.ecp.model;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * Listens to the changes of a context.
  * 
@@ -13,8 +15,13 @@ package org.unicase.ecp.model;
 public abstract class ModelElementContextListener {
 	
 	/**
-	 * Called if the model element is deleted.
+	 * Called if a model element is deleted.
 	 */
-	public abstract void onModelElementDeleted();
+	public abstract void onModelElementDeleted(EObject deleted);
+
+	/**
+	 * Call if the context gets deleted.
+	 */
+	public abstract void onContextDeleted();
 	
 }

@@ -193,8 +193,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 			modelElementContextListener = new ModelElementContextListener() {
 
 				@Override
-				public void onModelElementDeleted() {
-					close(false);
+				public void onModelElementDeleted(EObject deleted) {
+					if (modelElement == deleted) {
+						close(false);
+					}
+
+				}
+
+				@Override
+				public void onContextDeleted() {
+					onModelElementDeleted(modelElement);
 
 				}
 			};
