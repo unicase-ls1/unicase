@@ -15,6 +15,6 @@ Some things are explained faster and better in a video showing the contents of y
     * [http://www.jingproject.com/ Jing]: Desktop application that shares a video via screencast with on mouse click, very easy to use
     * [http://www.youtube.com/watch?v=-rv5vvwCYMU Windows Problem Steps Reporter]: If you are a Windows 7 user, it already ships with a tool for this purpose.
 
-Please send your report to the developer mailinglist at [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com].
+Please add your reports to the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-store bugzilla of Eclipse] or send your report to the developer mailinglist at [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com].
 
 Thank you!
