@@ -80,7 +80,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					protected void doRun() {
 						project.addModelElementToRoot(newMEInstance);
 					}
-				}.run();
+				}.run(true);
 
 			} else {
 				final EReference possibleContainingReference = UnicaseUtil.getPossibleContainingReference(

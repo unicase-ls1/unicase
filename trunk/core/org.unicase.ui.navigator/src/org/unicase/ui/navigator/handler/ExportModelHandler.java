@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -50,8 +48,6 @@ public class ExportModelHandler extends AbstractHandler {
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
 
 	private static final String EXPORT_MODEL_PATH = "org.unicase.workspace.ui.exportModelPath";
-
-	private EditingDomain domain;
 
 	/**
 	 * {@inheritDoc}
@@ -113,7 +109,6 @@ public class ExportModelHandler extends AbstractHandler {
 			strucSel = (IStructuredSelection) selection;
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof EObject) {
-				domain = AdapterFactoryEditingDomain.getEditingDomainFor(firstElement);
 				// TODO: ChainSaw - check whether specific clone functionality of ModelUtil is needed here
 				copyModelElement = EcoreUtil.copy((EObject) firstElement);
 				// copyModelElement = ModelUtil.clone((EObject) firstElement);
