@@ -17,4 +17,6 @@ Some things are explained faster and better in a video showing the contents of y
 
 Please add your reports to the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-store bugzilla of Eclipse] or send your report to the developer mailinglist at [mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com].
 
+A list of open bug reports is available [https://bugs.eclipse.org/bugs/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__open__&product=EMFT.emf-store here].
+
 Thank you!
