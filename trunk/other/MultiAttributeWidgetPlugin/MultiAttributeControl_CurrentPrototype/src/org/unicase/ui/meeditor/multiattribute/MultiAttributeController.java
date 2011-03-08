@@ -85,7 +85,7 @@ public class MultiAttributeController<T> implements IChangeListener {
 			protected void doRun() {
 				data.add(value);
 			};
-		}.run();
+		}.run(false);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class MultiAttributeController<T> implements IChangeListener {
 			protected void doRun() {
 				data.remove(index);
 			};
-		}.run();
+		}.run(false);
 		return true;
 	}
 
@@ -125,7 +125,7 @@ public class MultiAttributeController<T> implements IChangeListener {
 			protected void doRun() {
 				data.set(index, newValue);
 			};
-		}.run();
+		}.run(false);
 		return true;
 	}
 
