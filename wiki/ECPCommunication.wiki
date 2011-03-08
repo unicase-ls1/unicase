@@ -6,7 +6,7 @@ If you have feature requests, questions, bugs or if you want to discuss somethin
 
 === Bug Reports and Feature Requests ===
 
-You can report bugs and feature requests in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-client bugzilla of Eclipse].
+You can report bugs and feature requests in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emfclient bugzilla of Eclipse].
 
 
 === Twitter ===
