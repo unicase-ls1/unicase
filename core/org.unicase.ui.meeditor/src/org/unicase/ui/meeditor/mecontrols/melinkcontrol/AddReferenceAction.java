@@ -18,12 +18,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -35,12 +33,10 @@ import org.unicase.ui.util.OverlayImageDescriptor;
  * 
  * @author shterev
  */
-public class AddReferenceAction extends Action {
+public class AddReferenceAction extends ReferenceAction {
 
 	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
 
-	private EReference eReference;
-	private EObject modelElement;
 	private final ECPModelelementContext context;
 
 	/**
@@ -128,26 +124,6 @@ public class AddReferenceAction extends Action {
 			}
 		}
 
-	}
-
-	private boolean checkMultiplicity(boolean silent) {
-		Object object = modelElement.eGet(eReference);
-		if (object instanceof EList<?>) {
-			EList<EObject> eList = (EList<EObject>) object;
-			if (eList.size() < eReference.getUpperBound()) {
-				return true;
-			} else {
-				if (!silent) {
-					MessageBox box = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-					box.setMessage("Reference " + eReference.getName() + " has a multiplicity of "
-						+ eReference.getUpperBound() + ". Please remove referenced elements before you add new.");
-					box.open();
-					return false;
-				}
-			}
-
-		}
-		return false;
 	}
 
 	/**

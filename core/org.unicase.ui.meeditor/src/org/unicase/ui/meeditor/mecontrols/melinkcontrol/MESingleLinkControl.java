@@ -100,7 +100,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
 			getItemPropertyDescriptor(), getContext());
 		result.add(addAction);
-		NewReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
+		ReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
 			getItemPropertyDescriptor(), getContext());
 		result.add(newAction);
 		return result;
