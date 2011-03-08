@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
+import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -33,8 +33,8 @@ public class ChooseWorkPackagePage extends ModelElementSelectionDialog {
 	 * @param project the project from which the WorkPackes should be listed and selected
 	 * @param sourceWorkPackage from which the WorkItems come from
 	 */
-	public ChooseWorkPackagePage(Project project, WorkPackage sourceWorkPackage) {
-		super(new EMFStoreModelelementContext(sourceWorkPackage), TaskPackage.Literals.WORK_PACKAGE, false);
+	public ChooseWorkPackagePage(ECPModelelementContext context, Project project, WorkPackage sourceWorkPackage) {
+		super(context, TaskPackage.Literals.WORK_PACKAGE, false);
 		excludeWorkPackages = getExcludeWorkPackages(sourceWorkPackage);
 
 		this.setBlockOnOpen(true);

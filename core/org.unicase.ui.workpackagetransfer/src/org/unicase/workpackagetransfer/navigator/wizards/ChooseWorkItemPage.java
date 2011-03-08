@@ -24,9 +24,13 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.workpackagetransfer.TreeHandler;
 
 /**
@@ -166,24 +170,31 @@ public class ChooseWorkItemPage extends WizardPage {
 		 * shows the dialog for choosing the target workPackage of the move-operation.
 		 */
 		private void showChooseWorkPackageDialog() {
-			ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(ModelUtil.getProject(parentWizard
-				.getSelectedWorkPackage()), parentWizard.getSelectedWorkPackage());
+			WorkPackage workPackage = parentWizard.getSelectedWorkPackage();
+			ECPModelelementContext context;
 
-			if (dialog.open() == Window.OK) {
-				Object[] result = dialog.getResult();
+			try {
+				context = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(workPackage);
+				ChooseWorkPackagePage dialog = new ChooseWorkPackagePage(context, ModelUtil.getProject(workPackage),
+					workPackage);
 
-				if (result.length == 1) {
-					if (result[0] instanceof WorkPackage) {
-						targetWorkPackage = (WorkPackage) result[0];
+				if (dialog.open() == Window.OK) {
+					Object[] result = dialog.getResult();
 
-						workPackageLabel.setImage(labelProvider.getImage(targetWorkPackage));
-						workPackageLabel.setText(labelProvider.getText(targetWorkPackage));
+					if (result.length == 1) {
+						if (result[0] instanceof WorkPackage) {
+							targetWorkPackage = (WorkPackage) result[0];
 
-						parentWizard.setCanFinish(true);
-						setPageComplete(true);
+							workPackageLabel.setImage(labelProvider.getImage(targetWorkPackage));
+							workPackageLabel.setText(labelProvider.getText(targetWorkPackage));
+
+							parentWizard.setCanFinish(true);
+							setPageComplete(true);
+						}
 					}
 				}
-
+			} catch (NoWorkspaceException e) {
+				DialogHandler.showExceptionDialog(e);
 			}
 		}
 
