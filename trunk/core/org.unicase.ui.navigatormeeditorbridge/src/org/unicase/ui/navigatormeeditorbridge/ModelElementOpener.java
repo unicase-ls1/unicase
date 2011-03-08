@@ -13,11 +13,13 @@ import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.util.DialogHandler;
 
 /**
- * Openeer for the meeditor.
+ * Opener for the meeditor.
  * 
  * @author helming
  */
@@ -44,9 +46,11 @@ public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpene
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ActionHelper.ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, modelElement);
-		context.addVariable(ActionHelper.MECONTEXT_EVALUATIONCONTEXT_VARIABLE, new NavigatorModelelementContex(modelElement));
+	
 
 		try {
+			context.addVariable(ActionHelper.MECONTEXT_EVALUATIONCONTEXT_VARIABLE, 
+					ECPWorkspaceManager.getInstance().getWorkSpace().getProject(modelElement));
 			handlerService.executeCommand(ActionHelper.MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
 
 		} catch (ExecutionException e) {
@@ -57,9 +61,8 @@ public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpene
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
+		} catch (NoWorkspaceException e) {
+			DialogHandler.showExceptionDialog(e);
 		}
-
-
 	}
-
 }
