@@ -25,7 +25,7 @@ public final class CollectionFilter {
 	 * @return A filtered {@link Collection}
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> List<T> filter(Collection objects, java.lang.Class<T> classType) {
+	public static <T> List<T> filter(@SuppressWarnings("rawtypes") Collection objects, java.lang.Class<T> classType) {
 		List<T> filteredObjects = new ArrayList<T>();
 		for (Object object : objects) {
 			if (classType.isInstance(object)) {

@@ -43,7 +43,7 @@ public final class DragSourcePlaceHolder {
 	 * 
 	 * @param dragSource the drag source
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static void setDragSource(Object dragSource) {
 		if ((dragSource instanceof List) && ((List) dragSource).size() == 0) {
 			DragSourcePlaceHolder.dragSource = null;
