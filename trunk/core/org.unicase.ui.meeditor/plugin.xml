@@ -116,4 +116,22 @@
             type="java.lang.Double">
       </widget>
    </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.multiattributecontrol.StringMultiAttributeControl"
+            name="org.unicase.ui.meeditor.multistringcontrol"
+            showLabel="true"
+            type="java.lang.String">
+      </widget>
+   </extension>
+   <extension
+         point="org.unicase.ui.meeditor.attributecontrols">
+      <widget
+            class="org.unicase.ui.meeditor.mecontrols.multiattributecontrol.IntegerMultiAttributeControl"
+            name="org.unicase.ui.meeditor.multiintegercontrol"
+            showLabel="true"
+            type="java.lang.Integer">
+      </widget>
+   </extension>
 </plugin>
