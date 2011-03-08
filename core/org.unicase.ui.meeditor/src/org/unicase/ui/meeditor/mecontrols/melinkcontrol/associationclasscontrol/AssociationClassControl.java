@@ -213,6 +213,6 @@ public class AssociationClassControl extends AbstractMEControl {
 			linkArea.dispose();
 		}
 		linkControls.clear();
-		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run(true);
 	}
 }

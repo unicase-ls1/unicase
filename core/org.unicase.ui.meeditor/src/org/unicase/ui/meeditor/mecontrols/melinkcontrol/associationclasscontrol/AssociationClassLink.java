@@ -129,8 +129,7 @@ public class AssociationClassLink extends MELinkControl {
 					hyperlink.removeHyperlinkListener(linkToMEListener);
 				}
 				// add new listeners
-				linkToMEListener = new MEHyperLinkAdapter(relatedModelElement, modelElement, eReference.getName(),
-					getContext());
+				linkToMEListener = new MEHyperLinkAdapter(relatedModelElement, modelElement, eReference.getName());
 				imgHyperlink.addHyperlinkListener(linkToMEListener);
 				hyperlink.addHyperlinkListener(linkToMEListener);
 				if (meChangeListener != null) {
@@ -182,8 +181,8 @@ public class AssociationClassLink extends MELinkControl {
 			meControl.createControl(composite, style, itemPropertyDescriptor, association, getContext(), toolkit);
 		} else if (eAttribute.size() > 1) {
 			Hyperlink associationLink = toolkit.createHyperlink(composite, "[edit]", style);
-			associationLink.addHyperlinkListener(new MEHyperLinkAdapter(association, modelElement,
-				eReference.getName(), getContext()));
+			associationLink
+				.addHyperlinkListener(new MEHyperLinkAdapter(association, modelElement, eReference.getName()));
 		}
 		if (eReference.isContainment()
 			&& (getContext().getMetaModelElementContext().isNonDomainElement(association.eClass()))) {

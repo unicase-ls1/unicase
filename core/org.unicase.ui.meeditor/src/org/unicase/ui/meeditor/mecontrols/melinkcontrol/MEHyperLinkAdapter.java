@@ -24,7 +24,6 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	private EObject target;
 	private final EObject source;
 	private final String featureName;
-	private final ECPModelelementContext context;
 
 	/**
 	 * Default constructor.
@@ -34,12 +33,11 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 * @param featureName the feature of the model link
 	 * @param context the {@link ECPModelelementContext}
 	 */
-	public MEHyperLinkAdapter(EObject target, EObject source, String featureName, ECPModelelementContext context) {
+	public MEHyperLinkAdapter(EObject target, EObject source, String featureName) {
 		super();
 		this.target = target;
 		this.source = source;
 		this.featureName = featureName;
-		this.context = context;
 	}
 
 	/**
@@ -47,9 +45,9 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
-		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor", context);
-		ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class).onTrace(source, target, featureName,
-			"org.unicase.ui.meeditor");
+		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor");
+		ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class)
+			.onTrace(source, target, featureName, "org.unicase.ui.meeditor");
 
 		super.linkActivated(event);
 	}

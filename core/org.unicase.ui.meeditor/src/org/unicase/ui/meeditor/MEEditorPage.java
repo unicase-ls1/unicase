@@ -126,21 +126,21 @@ public class MEEditorPage extends FormPage {
 		topSash.setSashWidth(4);
 
 		leftColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5).applyTo(
-			leftColumnComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5)
+			.applyTo(leftColumnComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(leftColumnComposite);
 
 		rightColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5).applyTo(
-			rightColumnComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5)
+			.applyTo(rightColumnComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(rightColumnComposite);
 
 		int[] topWeights = { 50, 50 };
 		topSash.setWeights(topWeights);
 
 		bottomComposite = toolkit.createComposite(topComposite);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0).applyTo(
-			bottomComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0)
+			.applyTo(bottomComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(bottomComposite);
 		// updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -178,7 +178,7 @@ public class MEEditorPage extends FormPage {
 			public void dispose() {
 			}
 
-			@SuppressWarnings("unchecked")
+			@SuppressWarnings("rawtypes")
 			public Map getCurrentState() {
 				HashMap<Object, Object> map = new HashMap<Object, Object>();
 				map.put(activeModelelement, modelElement);
@@ -233,8 +233,8 @@ public class MEEditorPage extends FormPage {
 			final HashMap<IItemPropertyDescriptor, Double> priorityMap = new HashMap<IItemPropertyDescriptor, Double>();
 			AnnotationPriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
 			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				priorityMap.put(itemPropertyDescriptor, priorityDescriptor.getValue(itemPropertyDescriptor,
-					modelElement));
+				priorityMap.put(itemPropertyDescriptor,
+					priorityDescriptor.getValue(itemPropertyDescriptor, modelElement));
 			}
 
 			Comparator<IItemPropertyDescriptor> comparator = new Comparator<IItemPropertyDescriptor>() {
@@ -253,8 +253,8 @@ public class MEEditorPage extends FormPage {
 	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
 		Composite attributeComposite = toolkit.createComposite(column);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
-		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
-			attributeComposite);
+		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).indent(10, 0)
+			.applyTo(attributeComposite);
 
 		ControlFactory controlFactory = new ControlFactory();
 
@@ -267,15 +267,15 @@ public class MEEditorPage extends FormPage {
 			meControls.add(meControl);
 			Control control;
 			if (meControl.getShowLabel()) {
-				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
-					.getDisplayName(modelElement));
+				Label label = toolkit.createLabel(attributeComposite,
+					itemPropertyDescriptor.getDisplayName(modelElement));
 				label.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
 					modelElementContext, toolkit);
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
-				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
-					control);
+				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0)
+					.applyTo(control);
 				meControl.applyCustomLayoutData();
 			} else {
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,

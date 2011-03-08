@@ -106,7 +106,7 @@ public class NewReferenceAction extends Action {
 				modelElement.eSet(eReference, newMEInstance);
 			}
 
-			ActionHelper.openModelElement(newMEInstance, this.getClass().getName(), modelElementContext);
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 	}
@@ -133,8 +133,8 @@ public class NewReferenceAction extends Action {
 		// Only create a temporary object in order to get the correct icon from the label provider
 		// the actual ME is created later on.
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
-				eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance()
+				.create(eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
@@ -165,7 +165,7 @@ public class NewReferenceAction extends Action {
 			DialogHandler.showErrorDialog("Operation not permitted for container references!");
 			return;
 		}
-		new NewReferenceCommand(modelElement).run();
+		new NewReferenceCommand(modelElement).run(true);
 	}
 
 	private boolean isMultiReference() {

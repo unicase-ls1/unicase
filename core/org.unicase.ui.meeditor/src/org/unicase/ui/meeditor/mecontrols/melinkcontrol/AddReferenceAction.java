@@ -139,8 +139,8 @@ public class AddReferenceAction extends Action {
 
 		Object obj = null;
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
-				eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance()
+				.create(eReference.getEReferenceType());
 		}
 		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
@@ -170,7 +170,7 @@ public class AddReferenceAction extends Action {
 	 */
 	@Override
 	public void run() {
-		new AddReferenceCommand(this.modelElement).run();
+		new AddReferenceCommand(this.modelElement).run(true);
 	}
 
 }

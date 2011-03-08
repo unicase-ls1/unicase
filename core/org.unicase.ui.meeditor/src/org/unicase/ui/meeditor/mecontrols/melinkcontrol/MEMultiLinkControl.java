@@ -197,8 +197,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		sectionDropTarget = new DropTarget(section, DND.DROP_COPY);
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 		sectionDropTarget.setTransfer(transfers);
-		sectionDropTarget.addDropListener(new MEMultiLinkControlDropAdapter(getEditingDomain(), getModelElement(),
-			eReference, getContext()));
+		sectionDropTarget
+			.addDropListener(new MEMultiLinkControlDropAdapter(getModelElement(), eReference, getContext()));
 
 	}
 
@@ -219,7 +219,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		}
 		linkControls.clear();
 		// JH: TransactionUtil.getEditingDomain(modelElement);
-		new RebuildLinksCommand(getModelElement(), sizeLimit).run();
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run(true);
 	}
 
 	/**

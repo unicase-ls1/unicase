@@ -149,7 +149,7 @@ public class MERichTextControl extends AbstractMEControl {
 			protected void doRun() {
 				getModelElement().eSet(attribute, text.getText());
 			}
-		}.run();
+		}.run(true);
 	}
 
 	private void load() {
@@ -165,7 +165,7 @@ public class MERichTextControl extends AbstractMEControl {
 					value.append(getModelElement().eGet(attribute));
 				}
 			}
-		}.run();
+		}.run(true);
 		txt = value.toString();
 		text.setText(txt);
 	}

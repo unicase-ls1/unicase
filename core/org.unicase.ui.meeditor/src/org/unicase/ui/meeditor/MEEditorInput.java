@@ -188,8 +188,7 @@ public class MEEditorInput implements IEditorInput {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class clazz) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class clazz) {
 
 		if (clazz.equals(EObject.class)) {
 			return getModelElement();
