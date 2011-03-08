@@ -27,7 +27,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
@@ -190,7 +191,6 @@ public final class UnicaseActionHelper {
 	 */
 	public static void openModelElement(EObject me, String identifier) {
 		ActionHelper.openModelElement(me, identifier, getContext(me));
-
 	}
 
 	/**
@@ -200,7 +200,13 @@ public final class UnicaseActionHelper {
 	 * @return the context
 	 */
 	public static ECPModelelementContext getContext(EObject me) {
-		return new EMFStoreModelelementContext(me);
+		try {
+			return ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me);
+		} catch (NoWorkspaceException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+
+		return null;
 	}
 
 	/**

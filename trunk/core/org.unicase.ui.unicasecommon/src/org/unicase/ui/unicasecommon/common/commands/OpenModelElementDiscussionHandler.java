@@ -13,12 +13,14 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecpemfstorebridge.EMFStoreModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.meeditor.MEFormPage;
 import org.unicase.ui.unicasecommon.meeditor.METhreadPage;
+import org.unicase.ui.util.DialogHandler;
 
 /**
  * This handler is to be executed indirectly using IHandlerService.executeCommand() method. The Command itself does not
@@ -55,9 +57,9 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		if (o == null) {
 			return null;
 		}
-		MEEditorInput input;
-		input = new MEEditorInput(me, new EMFStoreModelelementContext(me));
+
 		try {
+			MEEditorInput input = new MEEditorInput(me, ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me));
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
 				"org.unicase.ui.meeditor", true);
 
@@ -77,8 +79,10 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 				}
 			}
 		} catch (PartInitException e) {
-			// JH Auto-generated catch block
+			// TODO: handle exception
 			e.printStackTrace();
+		} catch (NoWorkspaceException e) {
+			DialogHandler.showExceptionDialog(e);
 		}
 
 		return null;
