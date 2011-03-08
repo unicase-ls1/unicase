@@ -39,11 +39,11 @@ public abstract class AbstractECPModelElementContext implements ECPModelelementC
 	}
 
 	/**
-	 * Call if the model element is deleted.
+	 * Call if a model element is deleted.
 	 */
-	protected void modelElementDeleted() {
+	protected void modelElementDeleted(EObject deleted) {
 		for (ModelElementContextListener modelElementContextListener : modelElementContextListeners) {
-			modelElementContextListener.onModelElementDeleted();
+			modelElementContextListener.onModelElementDeleted(deleted);
 		}
 	}
 }

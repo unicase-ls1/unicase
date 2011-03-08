@@ -66,6 +66,9 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 		for (ECPProjectListener listener : listeners) {
 			listener.modelelementDeleted(eobject);
 		}
+		for (ModelElementContextListener listener : contextListeners) {
+			listener.onModelElementDeleted(eobject);
+		}
 	}
 
 	/**
@@ -77,7 +80,7 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 		}
 
 		for (ModelElementContextListener listener : contextListeners) {
-			listener.onModelElementDeleted();
+			listener.onContextDeleted();
 		}
 	}
 
