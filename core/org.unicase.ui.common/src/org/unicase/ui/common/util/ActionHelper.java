@@ -103,7 +103,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * Note: this method is deprecated. use openModelElement(EObject, String) insetad. you do not have to pass a context
+	 * Note: this method is deprecated. use openModelElement(EObject, String) instead. You do not have to pass a context
 	 * anymore.
 	 * 
 	 * @param me ModelElement to open
