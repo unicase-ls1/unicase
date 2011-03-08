@@ -23,6 +23,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -56,6 +57,11 @@ public class AddReferenceAction extends Action {
 		@SuppressWarnings("unchecked")
 		@Override
 		protected void doRun() {
+
+			if (!checkMultiplicity(false)) {
+				return;
+			}
+
 			EClass clazz = eReference.getEReferenceType();
 			Collection<EObject> allElements = context.getAllModelElementsbyClass(clazz, true);
 			allElements.remove(modelElement);
@@ -121,6 +127,27 @@ public class AddReferenceAction extends Action {
 
 			}
 		}
+
+	}
+
+	private boolean checkMultiplicity(boolean silent) {
+		Object object = modelElement.eGet(eReference);
+		if (object instanceof EList<?>) {
+			EList<EObject> eList = (EList<EObject>) object;
+			if (eList.size() < eReference.getUpperBound()) {
+				return true;
+			} else {
+				if (!silent) {
+					MessageBox box = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+					box.setMessage("Reference " + eReference.getName() + " has a multiplicity of "
+						+ eReference.getUpperBound() + ". Please remove referenced elements before you add new.");
+					box.open();
+					return false;
+				}
+			}
+
+		}
+		return false;
 	}
 
 	/**
