@@ -6,7 +6,7 @@
 package org.unicase.util.observer;
 
 /**
- * Universel observer superinterface. To be used with {@link ObserverBus}.
+ * Universal observer super interface. To be used with {@link ObserverBus}.
  * 
  * @author wesendon
  */
