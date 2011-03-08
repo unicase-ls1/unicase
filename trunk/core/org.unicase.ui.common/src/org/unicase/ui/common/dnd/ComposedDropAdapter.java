@@ -108,7 +108,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 			}
 
-		}.run();
+		}.run(true);
 
 	}
 
