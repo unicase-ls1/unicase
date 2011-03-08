@@ -4,8 +4,7 @@ Bundle-Name: Workspace
 Bundle-SymbolicName: org.unicase.xmi.workspace;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.xmi.workspace.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.unicase.ecp.model,
  org.unicase.ui.navigator;bundle-version="0.4.8"
