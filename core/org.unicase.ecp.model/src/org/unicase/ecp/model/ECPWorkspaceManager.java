@@ -45,22 +45,31 @@ public final class ECPWorkspaceManager {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(
 						"org.unicase.ecp.model.ecpWorkspaceProvider");
+		if (confs.length == 1) {
+			try {
+				currentWorkspace = ((ECPWorkspaceProvider) confs[0]
+						.createExecutableExtension("class")).getECPWorkspace();
+			} catch (CoreException e) {
+				Activator.getDefault().logException(e.getMessage(), e);
+			}
+		}
 		if (confs.length > 1) {
-			Exception exception = new IllegalStateException(
-					"Duplicate Workspace registered");
-			Activator.getDefault().logException(exception.getMessage(),
-					exception);
+			try {
+				currentWorkspace = ((ECPWorkspaceProvider) confs[0]
+						.createExecutableExtension("class")).getECPWorkspace();
+				Exception exception = new IllegalStateException(
+						"Duplicate Workspace registered. Default selected: "+currentWorkspace.getClass().getName()+" Please make sure to only include one Workspace in your target platform.");
+				Activator.getDefault().logException(exception.getMessage(),
+						exception);
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (confs.length < 1) {
-			throw new IllegalStateException(
-					"No Workspace registered");
+			throw new IllegalStateException("No Workspace registered");
 		}
-		try {
-			currentWorkspace = ((ECPWorkspaceProvider) confs[0]
-					.createExecutableExtension("class")).getECPWorkspace();
-		} catch (CoreException e) {
-			Activator.getDefault().logException(e.getMessage(), e);
-		}
+
 		initObserverBus();
 	}
 
@@ -102,18 +111,20 @@ public final class ECPWorkspaceManager {
 		}
 		return currentWorkspace;
 	}
-	
+
 	/**
-	 * Uses the Workspace to lookup a modelement. This method delegates to {@link ECPWorkspace#getProject(EObject)}.
+	 * Uses the Workspace to lookup a modelement. This method delegates to
+	 * {@link ECPWorkspace#getProject(EObject)}.
 	 * 
-	 * @param modelElement me
+	 * @param modelElement
+	 *            me
 	 * @return project or null
 	 */
 	public static ECPProject getECPProject(EObject modelElement) {
 		try {
 			return getInstance().getWorkSpace().getProject(modelElement);
 		} catch (NoWorkspaceException e) {
-			//TODO make NoWorkspaceException a runtime exception?
+			// TODO make NoWorkspaceException a runtime exception?
 			throw new RuntimeException(e);
 		}
 	}
