@@ -1,8 +1,13 @@
-#summary How to get in contact with us or receive news about EMFStore
+#summary How to get in contact with us or receive news about EMF Client Platform.
 
 === Mailinglists ===
 
 If you have feature requests, questions, bugs or if you want to discuss something, you can send us email to this mailinglist, where all EMF Client Platform framework developers are subscribed to the eclipse.emfclient newsgroup.
+
+=== Bug Reports and Feature Requests ===
+
+You can report bugs and feature requests in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-client bugzilla of Eclipse].
+
 
 === Twitter ===
 
