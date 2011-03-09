@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site
+      mirrorsURL="http://www1.in.tum.de/static/unicase/emfstoreNightly/">
+   <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
+      Update Site for the EMFStore
+   </description>
+   <feature url="features/org.unicase.ecp.common_0.7.0.jar" id="org.unicase.ecp.common" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.meeditor_0.7.0.jar" id="org.unicase.ecp.meeditor" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.navigator_0.7.0.jar" id="org.unicase.ecp.navigator" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.navigatorMEEditorBridge_0.7.0.jar" id="org.unicase.ecp.navigatorMEEditorBridge" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.validation_0.7.0.jar" id="org.unicase.ecp.validation" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.backchannel.SDK_0.7.0.jar" id="org.unicase.emfstore.backchannel.SDK" version="0.7.0">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.SDK_0.7.0.jar" id="org.unicase.emfstore.SDK" version="0.7.0">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/edu.tum.cs.cope.feature_0.2.14.jar" id="edu.tum.cs.cope.feature" version="0.2.14">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/edu.tum.cs.cope.runtime.feature_0.2.14.jar" id="edu.tum.cs.cope.runtime.feature" version="0.2.14">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.copeMigration_0.7.0.jar" id="org.unicase.emfstore.copeMigration" version="0.7.0">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.backchannel_0.7.0.jar" id="org.unicase.emfstore.backchannel" version="0.7.0">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.client_0.7.0.jar" id="org.unicase.emfstore.client" version="0.7.0">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.client.ui_0.7.0.jar" id="org.unicase.emfstore.client.ui" version="0.7.0">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.common_0.7.0.jar" id="org.unicase.emfstore.common" version="0.7.0">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.emfstore.server_0.7.0.jar" id="org.unicase.emfstore.server" version="0.7.0">
+      <category name="org.unicase.emfstore.core"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.all_0.7.0.jar" id="org.unicase.ecp.all" version="0.7.0">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <category-def name="org.unicase.emfstore.core" label="EMFStore Core Features">
+      <description>
+         Core Features of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.emfstore.other" label="EMFStore Additional Features">
+      <description>
+         Addtional Features of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.emfstore.sdk" label="EMFStore SDK">
+      <description>
+         SDK of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.ecp" label="EMF Client Platform"/>
+</site>
