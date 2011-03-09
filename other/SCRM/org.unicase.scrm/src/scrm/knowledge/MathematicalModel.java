@@ -20,6 +20,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinedModel <em>Refined Model</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getSubMathematicalModel <em>Sub Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getContainingMathematicalModel <em>Containing Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,5 +124,121 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
+
+	/**
+	 * Returns the value of the '<em><b>Theory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Theory</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Theory</em>' attribute.
+	 * @see #setTheory(String)
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Theory()
+	 * @model
+	 * @generated
+	 */
+	String getTheory();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Theory</em>' attribute.
+	 * @see #getTheory()
+	 * @generated
+	 */
+	void setTheory(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Mathematical Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mathematical Expression</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mathematical Expression</em>' attribute.
+	 * @see #setMathematicalExpression(String)
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_MathematicalExpression()
+	 * @model
+	 * @generated
+	 */
+	String getMathematicalExpression();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mathematical Expression</em>' attribute.
+	 * @see #getMathematicalExpression()
+	 * @generated
+	 */
+	void setMathematicalExpression(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Sub Mathematical Model</b></em>' containment reference list.
+	 * The list contents are of type {@link scrm.knowledge.MathematicalModel}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getContainingMathematicalModel <em>Containing Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sub Mathematical Model</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sub Mathematical Model</em>' containment reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_SubMathematicalModel()
+	 * @see scrm.knowledge.MathematicalModel#getContainingMathematicalModel
+	 * @model opposite="containingMathematicalModel" containment="true"
+	 * @generated
+	 */
+	EList<MathematicalModel> getSubMathematicalModel();
+
+	/**
+	 * Returns the value of the '<em><b>Containing Mathematical Model</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getSubMathematicalModel <em>Sub Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Containing Mathematical Model</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Containing Mathematical Model</em>' container reference.
+	 * @see #setContainingMathematicalModel(MathematicalModel)
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_ContainingMathematicalModel()
+	 * @see scrm.knowledge.MathematicalModel#getSubMathematicalModel
+	 * @model opposite="subMathematicalModel" transient="false"
+	 * @generated
+	 */
+	MathematicalModel getContainingMathematicalModel();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getContainingMathematicalModel <em>Containing Mathematical Model</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Containing Mathematical Model</em>' container reference.
+	 * @see #getContainingMathematicalModel()
+	 * @generated
+	 */
+	void setContainingMathematicalModel(MathematicalModel value);
+
+	/**
+	 * Returns the value of the '<em><b>Numerical Methods</b></em>' reference list.
+	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Numerical Methods</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Numerical Methods</em>' reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_NumericalMethods()
+	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel
+	 * @model opposite="mathematicalModel"
+	 * @generated
+	 */
+	EList<NumericalMethod> getNumericalMethods();
 
 } // MathematicalModel

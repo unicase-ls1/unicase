@@ -23,6 +23,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.requirements.Feature#getRequiredSoftwareInterface <em>Required Software Interface</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getProvidedSoftwareInterfaces <em>Provided Software Interfaces</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getDetailedRequirements <em>Detailed Requirements</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getRequiringFeatures <em>Requiring Features</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getExcludedFeatures <em>Excluded Features</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getExcludingFeatures <em>Excluding Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,5 +182,123 @@ public interface Feature extends IRequirement {
 	 * @generated
 	 */
 	EList<Requirement> getDetailedRequirements();
+
+	/**
+	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list.
+	 * The list contents are of type {@link scrm.requirements.Feature}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sub Features</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sub Features</em>' containment reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_SubFeatures()
+	 * @see scrm.requirements.Feature#getContainingFeature
+	 * @model opposite="containingFeature" containment="true"
+	 * @generated
+	 */
+	EList<Feature> getSubFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Containing Feature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Containing Feature</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Containing Feature</em>' container reference.
+	 * @see #setContainingFeature(Feature)
+	 * @see scrm.requirements.RequirementsPackage#getFeature_ContainingFeature()
+	 * @see scrm.requirements.Feature#getSubFeatures
+	 * @model opposite="subFeatures" transient="false"
+	 * @generated
+	 */
+	Feature getContainingFeature();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Containing Feature</em>' container reference.
+	 * @see #getContainingFeature()
+	 * @generated
+	 */
+	void setContainingFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Required Features</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.Feature}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getRequiringFeatures <em>Requiring Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Required Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Features</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredFeatures()
+	 * @see scrm.requirements.Feature#getRequiringFeatures
+	 * @model opposite="requiringFeatures"
+	 * @generated
+	 */
+	EList<Feature> getRequiredFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Requiring Features</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.Feature}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Requiring Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Requiring Features</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiringFeatures()
+	 * @see scrm.requirements.Feature#getRequiredFeatures
+	 * @model opposite="requiredFeatures"
+	 * @generated
+	 */
+	EList<Feature> getRequiringFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Excluded Features</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.Feature}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getExcludingFeatures <em>Excluding Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Excluded Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Excluded Features</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludedFeatures()
+	 * @see scrm.requirements.Feature#getExcludingFeatures
+	 * @model opposite="excludingFeatures"
+	 * @generated
+	 */
+	EList<Feature> getExcludedFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Excluding Features</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.Feature}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getExcludedFeatures <em>Excluded Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Excluding Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Excluding Features</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludingFeatures()
+	 * @see scrm.requirements.Feature#getExcludedFeatures
+	 * @model opposite="excludedFeatures"
+	 * @generated
+	 */
+	EList<Feature> getExcludingFeatures();
 
 } // Feature

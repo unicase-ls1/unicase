@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import scrm.knowledge.KnowledgePackage;
@@ -41,6 +42,9 @@ import scrm.requirements.UserInterface;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getName <em>Name</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getDependencies <em>Dependencies</em>}</li>
@@ -49,12 +53,78 @@ import scrm.requirements.UserInterface;
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getRequiredSoftwareInterface <em>Required Software Interface</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getProvidedSoftwareInterfaces <em>Provided Software Interfaces</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getDetailedRequirements <em>Detailed Requirements</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getSubFeatures <em>Sub Features</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getContainingFeature <em>Containing Feature</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getRequiredFeatures <em>Required Features</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getRequiringFeatures <em>Requiring Features</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getExcludedFeatures <em>Excluded Features</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getExcludingFeatures <em>Excluding Features</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class FeatureImpl extends EObjectImpl implements Feature {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getUsedKnowledge() <em>Used Knowledge</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -136,6 +206,56 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	protected EList<Requirement> detailedRequirements;
 
 	/**
+	 * The cached value of the '{@link #getSubFeatures() <em>Sub Features</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> subFeatures;
+
+	/**
+	 * The cached value of the '{@link #getRequiredFeatures() <em>Required Features</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> requiredFeatures;
+
+	/**
+	 * The cached value of the '{@link #getRequiringFeatures() <em>Requiring Features</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiringFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> requiringFeatures;
+
+	/**
+	 * The cached value of the '{@link #getExcludedFeatures() <em>Excluded Features</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExcludedFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> excludedFeatures;
+
+	/**
+	 * The cached value of the '{@link #getExcludingFeatures() <em>Excluding Features</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExcludingFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> excludingFeatures;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -152,6 +272,69 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	@Override
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.FEATURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -317,6 +500,107 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Feature> getSubFeatures() {
+		if (subFeatures == null) {
+			subFeatures = new EObjectContainmentWithInverseEList<Feature>(Feature.class, this, RequirementsPackage.FEATURE__SUB_FEATURES, RequirementsPackage.FEATURE__CONTAINING_FEATURE);
+		}
+		return subFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getContainingFeature() {
+		if (eContainerFeatureID() != RequirementsPackage.FEATURE__CONTAINING_FEATURE) return null;
+		return (Feature)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingFeature(Feature newContainingFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingFeature, RequirementsPackage.FEATURE__CONTAINING_FEATURE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingFeature(Feature newContainingFeature) {
+		if (newContainingFeature != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.FEATURE__CONTAINING_FEATURE && newContainingFeature != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingFeature))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingFeature != null)
+				msgs = ((InternalEObject)newContainingFeature).eInverseAdd(this, RequirementsPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
+			msgs = basicSetContainingFeature(newContainingFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__CONTAINING_FEATURE, newContainingFeature, newContainingFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getRequiredFeatures() {
+		if (requiredFeatures == null) {
+			requiredFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, RequirementsPackage.FEATURE__REQUIRED_FEATURES, RequirementsPackage.FEATURE__REQUIRING_FEATURES);
+		}
+		return requiredFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getRequiringFeatures() {
+		if (requiringFeatures == null) {
+			requiringFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, RequirementsPackage.FEATURE__REQUIRING_FEATURES, RequirementsPackage.FEATURE__REQUIRED_FEATURES);
+		}
+		return requiringFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getExcludedFeatures() {
+		if (excludedFeatures == null) {
+			excludedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, RequirementsPackage.FEATURE__EXCLUDED_FEATURES, RequirementsPackage.FEATURE__EXCLUDING_FEATURES);
+		}
+		return excludedFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getExcludingFeatures() {
+		if (excludingFeatures == null) {
+			excludingFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, RequirementsPackage.FEATURE__EXCLUDING_FEATURES, RequirementsPackage.FEATURE__EXCLUDED_FEATURES);
+		}
+		return excludingFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -341,6 +625,20 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProvidedSoftwareInterfaces()).basicAdd(otherEnd, msgs);
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDetailedRequirements()).basicAdd(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubFeatures()).basicAdd(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingFeature((Feature)otherEnd, msgs);
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRequiredFeatures()).basicAdd(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRequiringFeatures()).basicAdd(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExcludedFeatures()).basicAdd(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExcludingFeatures()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -369,6 +667,18 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 				return ((InternalEList<?>)getProvidedSoftwareInterfaces()).basicRemove(otherEnd, msgs);
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 				return ((InternalEList<?>)getDetailedRequirements()).basicRemove(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				return ((InternalEList<?>)getSubFeatures()).basicRemove(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				return basicSetContainingFeature(null, msgs);
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				return ((InternalEList<?>)getRequiredFeatures()).basicRemove(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				return ((InternalEList<?>)getRequiringFeatures()).basicRemove(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				return ((InternalEList<?>)getExcludedFeatures()).basicRemove(otherEnd, msgs);
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				return ((InternalEList<?>)getExcludingFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -379,8 +689,28 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case RequirementsPackage.FEATURE__NAME:
+				return getName();
+			case RequirementsPackage.FEATURE__DESCRIPTION:
+				return getDescription();
+			case RequirementsPackage.FEATURE__IDENTIFIER:
+				return getIdentifier();
 			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
 				return getUsedKnowledge();
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
@@ -397,6 +727,18 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 				return getProvidedSoftwareInterfaces();
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 				return getDetailedRequirements();
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				return getSubFeatures();
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				return getContainingFeature();
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				return getRequiredFeatures();
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				return getRequiringFeatures();
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				return getExcludedFeatures();
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				return getExcludingFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -410,6 +752,15 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case RequirementsPackage.FEATURE__NAME:
+				setName((String)newValue);
+				return;
+			case RequirementsPackage.FEATURE__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case RequirementsPackage.FEATURE__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
 				getUsedKnowledge().clear();
 				getUsedKnowledge().addAll((Collection<? extends ScientificKnowledge>)newValue);
@@ -440,6 +791,29 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 				getDetailedRequirements().clear();
 				getDetailedRequirements().addAll((Collection<? extends Requirement>)newValue);
 				return;
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				getSubFeatures().clear();
+				getSubFeatures().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				setContainingFeature((Feature)newValue);
+				return;
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				getRequiredFeatures().clear();
+				getRequiredFeatures().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				getRequiringFeatures().clear();
+				getRequiringFeatures().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				getExcludedFeatures().clear();
+				getExcludedFeatures().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				getExcludingFeatures().clear();
+				getExcludingFeatures().addAll((Collection<? extends Feature>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -452,6 +826,15 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.FEATURE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case RequirementsPackage.FEATURE__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case RequirementsPackage.FEATURE__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
 				getUsedKnowledge().clear();
 				return;
@@ -476,6 +859,24 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 				getDetailedRequirements().clear();
 				return;
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				getSubFeatures().clear();
+				return;
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				setContainingFeature((Feature)null);
+				return;
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				getRequiredFeatures().clear();
+				return;
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				getRequiringFeatures().clear();
+				return;
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				getExcludedFeatures().clear();
+				return;
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				getExcludingFeatures().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -488,6 +889,12 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.FEATURE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RequirementsPackage.FEATURE__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case RequirementsPackage.FEATURE__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
 				return usedKnowledge != null && !usedKnowledge.isEmpty();
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
@@ -504,8 +911,40 @@ public class FeatureImpl extends EObjectImpl implements Feature {
 				return providedSoftwareInterfaces != null && !providedSoftwareInterfaces.isEmpty();
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 				return detailedRequirements != null && !detailedRequirements.isEmpty();
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
+				return subFeatures != null && !subFeatures.isEmpty();
+			case RequirementsPackage.FEATURE__CONTAINING_FEATURE:
+				return getContainingFeature() != null;
+			case RequirementsPackage.FEATURE__REQUIRED_FEATURES:
+				return requiredFeatures != null && !requiredFeatures.isEmpty();
+			case RequirementsPackage.FEATURE__REQUIRING_FEATURES:
+				return requiringFeatures != null && !requiringFeatures.isEmpty();
+			case RequirementsPackage.FEATURE__EXCLUDED_FEATURES:
+				return excludedFeatures != null && !excludedFeatures.isEmpty();
+			case RequirementsPackage.FEATURE__EXCLUDING_FEATURES:
+				return excludingFeatures != null && !excludingFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", identifier: ");
+		result.append(identifier);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FeatureImpl

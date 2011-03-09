@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 
 import scrm.requirements.IRequirement;
@@ -39,17 +40,85 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getName <em>Name</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinedModel <em>Refined Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getTheory <em>Theory</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getMathematicalExpression <em>Mathematical Expression</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getSubMathematicalModel <em>Sub Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getContainingMathematicalModel <em>Containing Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getNumericalMethods <em>Numerical Methods</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class MathematicalModelImpl extends EObjectImpl implements MathematicalModel {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -81,6 +150,66 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	protected EList<Assumption> dependencies;
 
 	/**
+	 * The default value of the '{@link #getTheory() <em>Theory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTheory()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String THEORY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTheory() <em>Theory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTheory()
+	 * @generated
+	 * @ordered
+	 */
+	protected String theory = THEORY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMathematicalExpression() <em>Mathematical Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMathematicalExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MATHEMATICAL_EXPRESSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMathematicalExpression() <em>Mathematical Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMathematicalExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mathematicalExpression = MATHEMATICAL_EXPRESSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSubMathematicalModel() <em>Sub Mathematical Model</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubMathematicalModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MathematicalModel> subMathematicalModel;
+
+	/**
+	 * The cached value of the '{@link #getNumericalMethods() <em>Numerical Methods</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumericalMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NumericalMethod> numericalMethods;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,6 +226,69 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	@Override
 	protected EClass eStaticClass() {
 		return KnowledgePackage.Literals.MATHEMATICAL_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -222,6 +414,113 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTheory() {
+		return theory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTheory(String newTheory) {
+		String oldTheory = theory;
+		theory = newTheory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__THEORY, oldTheory, theory));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMathematicalExpression() {
+		return mathematicalExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMathematicalExpression(String newMathematicalExpression) {
+		String oldMathematicalExpression = mathematicalExpression;
+		mathematicalExpression = newMathematicalExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION, oldMathematicalExpression, mathematicalExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<MathematicalModel> getSubMathematicalModel() {
+		if (subMathematicalModel == null) {
+			subMathematicalModel = new EObjectContainmentWithInverseEList<MathematicalModel>(MathematicalModel.class, this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL);
+		}
+		return subMathematicalModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MathematicalModel getContainingMathematicalModel() {
+		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL) return null;
+		return (MathematicalModel)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingMathematicalModel(MathematicalModel newContainingMathematicalModel, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingMathematicalModel, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingMathematicalModel(MathematicalModel newContainingMathematicalModel) {
+		if (newContainingMathematicalModel != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL && newContainingMathematicalModel != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingMathematicalModel))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingMathematicalModel != null)
+				msgs = ((InternalEObject)newContainingMathematicalModel).eInverseAdd(this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL, MathematicalModel.class, msgs);
+			msgs = basicSetContainingMathematicalModel(newContainingMathematicalModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL, newContainingMathematicalModel, newContainingMathematicalModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NumericalMethod> getNumericalMethods() {
+		if (numericalMethods == null) {
+			numericalMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(NumericalMethod.class, this, KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS, KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL);
+		}
+		return numericalMethods;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -240,6 +539,14 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				return basicSetRefinedModel((MathematicalModel)otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependencies()).basicAdd(otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubMathematicalModel()).basicAdd(otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingMathematicalModel((MathematicalModel)otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNumericalMethods()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -262,6 +569,12 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				return basicSetRefinedModel(null, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				return ((InternalEList<?>)getSubMathematicalModel()).basicRemove(otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				return basicSetContainingMathematicalModel(null, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				return ((InternalEList<?>)getNumericalMethods()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -278,6 +591,8 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, ScientificProblem.class, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				return eInternalContainer().eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS, MathematicalModel.class, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL, MathematicalModel.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -290,6 +605,12 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case KnowledgePackage.MATHEMATICAL_MODEL__NAME:
+				return getName();
+			case KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION:
+				return getDescription();
+			case KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER:
+				return getIdentifier();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
 				return getRequirements();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
@@ -300,6 +621,16 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				return getRefinedModel();
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				return getDependencies();
+			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+				return getTheory();
+			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+				return getMathematicalExpression();
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				return getSubMathematicalModel();
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				return getContainingMathematicalModel();
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				return getNumericalMethods();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -313,6 +644,15 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case KnowledgePackage.MATHEMATICAL_MODEL__NAME:
+				setName((String)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
 				getRequirements().clear();
 				getRequirements().addAll((Collection<? extends IRequirement>)newValue);
@@ -331,6 +671,23 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				getDependencies().clear();
 				getDependencies().addAll((Collection<? extends Assumption>)newValue);
 				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+				setTheory((String)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+				setMathematicalExpression((String)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				getSubMathematicalModel().clear();
+				getSubMathematicalModel().addAll((Collection<? extends MathematicalModel>)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				setContainingMathematicalModel((MathematicalModel)newValue);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				getNumericalMethods().clear();
+				getNumericalMethods().addAll((Collection<? extends NumericalMethod>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -343,6 +700,15 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case KnowledgePackage.MATHEMATICAL_MODEL__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
 				getRequirements().clear();
 				return;
@@ -358,6 +724,21 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				getDependencies().clear();
 				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+				setTheory(THEORY_EDEFAULT);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+				setMathematicalExpression(MATHEMATICAL_EXPRESSION_EDEFAULT);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				getSubMathematicalModel().clear();
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				setContainingMathematicalModel((MathematicalModel)null);
+				return;
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				getNumericalMethods().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -370,6 +751,12 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case KnowledgePackage.MATHEMATICAL_MODEL__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
 				return requirements != null && !requirements.isEmpty();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
@@ -380,8 +767,42 @@ public class MathematicalModelImpl extends EObjectImpl implements MathematicalMo
 				return getRefinedModel() != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
+			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+				return THEORY_EDEFAULT == null ? theory != null : !THEORY_EDEFAULT.equals(theory);
+			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+				return MATHEMATICAL_EXPRESSION_EDEFAULT == null ? mathematicalExpression != null : !MATHEMATICAL_EXPRESSION_EDEFAULT.equals(mathematicalExpression);
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
+				return subMathematicalModel != null && !subMathematicalModel.isEmpty();
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL:
+				return getContainingMathematicalModel() != null;
+			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
+				return numericalMethods != null && !numericalMethods.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", identifier: ");
+		result.append(identifier);
+		result.append(", theory: ");
+		result.append(theory);
+		result.append(", mathematicalExpression: ");
+		result.append(mathematicalExpression);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MathematicalModelImpl

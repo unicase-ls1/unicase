@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import scrm.SCRMModelElement;
+
 import scrm.knowledge.*;
 
 /**
@@ -90,6 +92,7 @@ public class KnowledgeSwitch<T> {
 			case KnowledgePackage.SCIENTIFIC_KNOWLEDGE: {
 				ScientificKnowledge scientificKnowledge = (ScientificKnowledge)theEObject;
 				T result = caseScientificKnowledge(scientificKnowledge);
+				if (result == null) result = caseSCRMModelElement(scientificKnowledge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -97,6 +100,7 @@ public class KnowledgeSwitch<T> {
 				ScientificProblem scientificProblem = (ScientificProblem)theEObject;
 				T result = caseScientificProblem(scientificProblem);
 				if (result == null) result = caseScientificKnowledge(scientificProblem);
+				if (result == null) result = caseSCRMModelElement(scientificProblem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,6 +108,7 @@ public class KnowledgeSwitch<T> {
 				MathematicalModel mathematicalModel = (MathematicalModel)theEObject;
 				T result = caseMathematicalModel(mathematicalModel);
 				if (result == null) result = caseScientificKnowledge(mathematicalModel);
+				if (result == null) result = caseSCRMModelElement(mathematicalModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,6 +116,7 @@ public class KnowledgeSwitch<T> {
 				NumericalMethod numericalMethod = (NumericalMethod)theEObject;
 				T result = caseNumericalMethod(numericalMethod);
 				if (result == null) result = caseScientificKnowledge(numericalMethod);
+				if (result == null) result = caseSCRMModelElement(numericalMethod);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,6 +124,7 @@ public class KnowledgeSwitch<T> {
 				Assumption assumption = (Assumption)theEObject;
 				T result = caseAssumption(assumption);
 				if (result == null) result = caseScientificKnowledge(assumption);
+				if (result == null) result = caseSCRMModelElement(assumption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -197,6 +204,21 @@ public class KnowledgeSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssumption(Assumption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SCRM Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SCRM Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSCRMModelElement(SCRMModelElement object) {
 		return null;
 	}
 

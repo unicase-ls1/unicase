@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import scrm.SCRMModelElement;
+
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.DataFlow;
@@ -100,6 +102,7 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.IREQUIREMENT: {
 				IRequirement iRequirement = (IRequirement)theEObject;
 				T result = caseIRequirement(iRequirement);
+				if (result == null) result = caseSCRMModelElement(iRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,6 +110,7 @@ public class RequirementsSwitch<T> {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
 				if (result == null) result = caseIRequirement(feature);
+				if (result == null) result = caseSCRMModelElement(feature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,6 +118,7 @@ public class RequirementsSwitch<T> {
 				Hardware hardware = (Hardware)theEObject;
 				T result = caseHardware(hardware);
 				if (result == null) result = caseIRequirement(hardware);
+				if (result == null) result = caseSCRMModelElement(hardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,6 +126,7 @@ public class RequirementsSwitch<T> {
 				Constraint constraint = (Constraint)theEObject;
 				T result = caseConstraint(constraint);
 				if (result == null) result = caseIRequirement(constraint);
+				if (result == null) result = caseSCRMModelElement(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +134,7 @@ public class RequirementsSwitch<T> {
 				Requirement requirement = (Requirement)theEObject;
 				T result = caseRequirement(requirement);
 				if (result == null) result = caseIRequirement(requirement);
+				if (result == null) result = caseSCRMModelElement(requirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -135,6 +142,7 @@ public class RequirementsSwitch<T> {
 				UserInterface userInterface = (UserInterface)theEObject;
 				T result = caseUserInterface(userInterface);
 				if (result == null) result = caseIRequirement(userInterface);
+				if (result == null) result = caseSCRMModelElement(userInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -142,6 +150,7 @@ public class RequirementsSwitch<T> {
 				SoftwareInterface softwareInterface = (SoftwareInterface)theEObject;
 				T result = caseSoftwareInterface(softwareInterface);
 				if (result == null) result = caseIRequirement(softwareInterface);
+				if (result == null) result = caseSCRMModelElement(softwareInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,6 +159,7 @@ public class RequirementsSwitch<T> {
 				T result = caseProcess(process);
 				if (result == null) result = caseRequirement(process);
 				if (result == null) result = caseIRequirement(process);
+				if (result == null) result = caseSCRMModelElement(process);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -158,6 +168,7 @@ public class RequirementsSwitch<T> {
 				T result = casePerformance(performance);
 				if (result == null) result = caseRequirement(performance);
 				if (result == null) result = caseIRequirement(performance);
+				if (result == null) result = caseSCRMModelElement(performance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -339,6 +350,21 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseDataDefinition(DataDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SCRM Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SCRM Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSCRMModelElement(SCRMModelElement object) {
 		return null;
 	}
 

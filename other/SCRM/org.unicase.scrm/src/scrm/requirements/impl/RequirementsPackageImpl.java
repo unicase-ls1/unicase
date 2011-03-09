@@ -6,11 +6,18 @@
  */
 package scrm.requirements.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+
+import scrm.ScrmPackage;
+
+import scrm.impl.ScrmPackageImpl;
 
 import scrm.knowledge.KnowledgePackage;
 
@@ -28,6 +35,10 @@ import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
 import scrm.requirements.UserInterface;
+
+import scrm.requirements.dataProcessing.DataProcessingPackage;
+
+import scrm.requirements.dataProcessing.impl.DataProcessingPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -159,16 +170,25 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		NotationPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
+		ScrmPackageImpl theScrmPackage = (ScrmPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ScrmPackage.eNS_URI) instanceof ScrmPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ScrmPackage.eNS_URI) : ScrmPackage.eINSTANCE);
 		KnowledgePackageImpl theKnowledgePackage = (KnowledgePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI) instanceof KnowledgePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI) : KnowledgePackage.eINSTANCE);
+		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DataProcessingPackage.eNS_URI) : DataProcessingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementsPackage.createPackageContents();
+		theScrmPackage.createPackageContents();
 		theKnowledgePackage.createPackageContents();
+		theDataProcessingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementsPackage.initializePackageContents();
+		theScrmPackage.initializePackageContents();
 		theKnowledgePackage.initializePackageContents();
+		theDataProcessingPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementsPackage.freeze();
@@ -274,6 +294,60 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFeature_SubFeatures() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeature_ContainingFeature() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeature_RequiredFeatures() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeature_RequiringFeatures() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeature_ExcludedFeatures() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeature_ExcludingFeatures() {
+		return (EReference)featureEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getHardware() {
 		return hardwareEClass;
 	}
@@ -285,6 +359,33 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 */
 	public EReference getHardware_DependingFeature() {
 		return (EReference)hardwareEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getHardware_Processor() {
+		return (EAttribute)hardwareEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getHardware_Platform() {
+		return (EAttribute)hardwareEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getHardware_Memory() {
+		return (EAttribute)hardwareEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -418,6 +519,15 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSoftwareInterface_DataTypes() {
+		return (EAttribute)softwareInterfaceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProcess() {
 		return processEClass;
 	}
@@ -438,6 +548,24 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 */
 	public EClass getPerformance() {
 		return performanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPerformance_NumericalMethod() {
+		return (EReference)performanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPerformance_ProblemSize() {
+		return (EAttribute)performanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -481,6 +609,42 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDataDefinition_Accuracy() {
+		return (EAttribute)dataDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataDefinition_Format() {
+		return (EAttribute)dataDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataDefinition_Range() {
+		return (EAttribute)dataDefinitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataDefinition_DataType() {
+		return (EAttribute)dataDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RequirementsFactory getRequirementsFactory() {
 		return (RequirementsFactory)getEFactoryInstance();
 	}
@@ -515,9 +679,18 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		createEReference(featureEClass, FEATURE__REQUIRED_SOFTWARE_INTERFACE);
 		createEReference(featureEClass, FEATURE__PROVIDED_SOFTWARE_INTERFACES);
 		createEReference(featureEClass, FEATURE__DETAILED_REQUIREMENTS);
+		createEReference(featureEClass, FEATURE__SUB_FEATURES);
+		createEReference(featureEClass, FEATURE__CONTAINING_FEATURE);
+		createEReference(featureEClass, FEATURE__REQUIRED_FEATURES);
+		createEReference(featureEClass, FEATURE__REQUIRING_FEATURES);
+		createEReference(featureEClass, FEATURE__EXCLUDED_FEATURES);
+		createEReference(featureEClass, FEATURE__EXCLUDING_FEATURES);
 
 		hardwareEClass = createEClass(HARDWARE);
 		createEReference(hardwareEClass, HARDWARE__DEPENDING_FEATURE);
+		createEAttribute(hardwareEClass, HARDWARE__PROCESSOR);
+		createEAttribute(hardwareEClass, HARDWARE__PLATFORM);
+		createEAttribute(hardwareEClass, HARDWARE__MEMORY);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__RESTRICTED_FEATURE);
@@ -536,17 +709,24 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		softwareInterfaceEClass = createEClass(SOFTWARE_INTERFACE);
 		createEReference(softwareInterfaceEClass, SOFTWARE_INTERFACE__REQUIRING_FEATURE);
 		createEReference(softwareInterfaceEClass, SOFTWARE_INTERFACE__PROVIDING_FEATURE);
+		createEAttribute(softwareInterfaceEClass, SOFTWARE_INTERFACE__DATA_TYPES);
 
 		processEClass = createEClass(PROCESS);
 		createEReference(processEClass, PROCESS__DATA_FLOW);
 
 		performanceEClass = createEClass(PERFORMANCE);
+		createEReference(performanceEClass, PERFORMANCE__NUMERICAL_METHOD);
+		createEAttribute(performanceEClass, PERFORMANCE__PROBLEM_SIZE);
 
 		dataFlowEClass = createEClass(DATA_FLOW);
 		createEReference(dataFlowEClass, DATA_FLOW__SPECIFIED_PROCESS);
 
 		dataDefinitionEClass = createEClass(DATA_DEFINITION);
 		createEReference(dataDefinitionEClass, DATA_DEFINITION__DEFINED_REQUIREMENT);
+		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__ACCURACY);
+		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__FORMAT);
+		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__RANGE);
+		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__DATA_TYPE);
 	}
 
 	/**
@@ -573,13 +753,19 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		DataProcessingPackage theDataProcessingPackage = (DataProcessingPackage)EPackage.Registry.INSTANCE.getEPackage(DataProcessingPackage.eNS_URI);
+		ScrmPackage theScrmPackage = (ScrmPackage)EPackage.Registry.INSTANCE.getEPackage(ScrmPackage.eNS_URI);
 		KnowledgePackage theKnowledgePackage = (KnowledgePackage)EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theDataProcessingPackage);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		iRequirementEClass.getESuperTypes().add(theScrmPackage.getSCRMModelElement());
 		featureEClass.getESuperTypes().add(this.getIRequirement());
 		hardwareEClass.getESuperTypes().add(this.getIRequirement());
 		constraintEClass.getESuperTypes().add(this.getIRequirement());
@@ -601,9 +787,18 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEReference(getFeature_RequiredSoftwareInterface(), this.getSoftwareInterface(), this.getSoftwareInterface_RequiringFeature(), "requiredSoftwareInterface", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_ProvidedSoftwareInterfaces(), this.getSoftwareInterface(), this.getSoftwareInterface_ProvidingFeature(), "providedSoftwareInterfaces", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_DetailedRequirements(), this.getRequirement(), this.getRequirement_SpecifiedFeature(), "detailedRequirements", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_SubFeatures(), this.getFeature(), this.getFeature_ContainingFeature(), "subFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_ContainingFeature(), this.getFeature(), this.getFeature_SubFeatures(), "containingFeature", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_RequiredFeatures(), this.getFeature(), this.getFeature_RequiringFeatures(), "requiredFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_RequiringFeatures(), this.getFeature(), this.getFeature_RequiredFeatures(), "requiringFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_ExcludedFeatures(), this.getFeature(), this.getFeature_ExcludingFeatures(), "excludedFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_ExcludingFeatures(), this.getFeature(), this.getFeature_ExcludedFeatures(), "excludingFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hardwareEClass, Hardware.class, "Hardware", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHardware_DependingFeature(), this.getFeature(), this.getFeature_Dependencies(), "dependingFeature", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHardware_Processor(), ecorePackage.getEString(), "processor", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHardware_Platform(), ecorePackage.getEString(), "platform", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHardware_Memory(), ecorePackage.getEInt(), "memory", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraint_RestrictedFeature(), this.getFeature(), this.getFeature_Constraints(), "restrictedFeature", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -622,20 +817,24 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEClass(softwareInterfaceEClass, SoftwareInterface.class, "SoftwareInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSoftwareInterface_RequiringFeature(), this.getFeature(), this.getFeature_RequiredSoftwareInterface(), "requiringFeature", null, 0, 1, SoftwareInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSoftwareInterface_ProvidingFeature(), this.getFeature(), this.getFeature_ProvidedSoftwareInterfaces(), "providingFeature", null, 0, 1, SoftwareInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSoftwareInterface_DataTypes(), ecorePackage.getEString(), "dataTypes", null, 0, 1, SoftwareInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processEClass, scrm.requirements.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProcess_DataFlow(), this.getDataFlow(), this.getDataFlow_SpecifiedProcess(), "dataFlow", null, 0, 1, scrm.requirements.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(performanceEClass, Performance.class, "Performance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPerformance_NumericalMethod(), theKnowledgePackage.getNumericalMethod(), theKnowledgePackage.getNumericalMethod_Performance(), "numericalMethod", null, 0, 1, Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerformance_ProblemSize(), ecorePackage.getEInt(), "problemSize", null, 0, 1, Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlow_SpecifiedProcess(), this.getProcess(), this.getProcess_DataFlow(), "specifiedProcess", null, 0, 1, DataFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataDefinitionEClass, DataDefinition.class, "DataDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataDefinition_DefinedRequirement(), this.getRequirement(), this.getRequirement_DefiningData(), "definedRequirement", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Create resource
-		createResource(eNS_URI);
+		initEAttribute(getDataDefinition_Accuracy(), ecorePackage.getEDouble(), "accuracy", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDefinition_Format(), ecorePackage.getEString(), "format", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDefinition_Range(), ecorePackage.getEString(), "range", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDefinition_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //RequirementsPackageImpl
