@@ -219,7 +219,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		}
 		linkControls.clear();
 		// JH: TransactionUtil.getEditingDomain(modelElement);
-		new RebuildLinksCommand(getModelElement(), sizeLimit).run(true);
+		new RebuildLinksCommand(getModelElement(), sizeLimit).run(false);
 	}
 
 	/**
