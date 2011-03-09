@@ -1,8 +1,0 @@
-#Fri Dec 10 10:38:29 CET 2010
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.unicase.orgChart/model/orga.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.unicase.orgChart/model/orga.ecore
-gmf_dashboard/generationModel=platform\:/resource/org.unicase.orgChart/model/orga.gmfgen
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.unicase.orgChart/model/orga.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.unicase.orgChart/model/orga.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.unicase.orgChart/model/orga.gmftool

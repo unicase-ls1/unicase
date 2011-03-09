@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: MultAttribWidget_quach
-Bundle-SymbolicName: MultAttribWidget_quach;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.unicase.ui.meeditor;bundle-version="0.6.4",
- exampleModel;bundle-version="1.0.0"
