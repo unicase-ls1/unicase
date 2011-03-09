@@ -6,14 +6,16 @@ This site contains releases and nightly builds of the ECP. Currently there are o
 
 The ECP features can be installed from this update site:
 
-*Please note, the the ECP installation is not compatible with the latest nightly EMFStore Release.*
+*EMF Client Platform requires a workspace persistency layer. Please install the feature "EMF Client Platform" , which includes the EMFStore Workspace as a default. We will release an XMI persistence workspace soon.*
 
-
-*Please turn "Group items by category" off and install all plugins from the website.*
-
-[http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/ecpNightly]
+[http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/emfstorenightly]
 
 ==New and Noteworthy==
+
+0.7.0.nightly
+
+  * Added support for multi-attribute types
+  * refactored workspace model
 
 0.6.3.nightly:
 
