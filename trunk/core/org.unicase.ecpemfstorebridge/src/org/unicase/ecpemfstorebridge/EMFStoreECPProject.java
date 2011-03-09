@@ -19,7 +19,6 @@ import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -87,7 +86,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean contains(EObject eObject) {
-		return ModelUtil.getProject(eObject).equals(projectSpace.getProject());
+		return projectSpace.getProject().containsInstance(eObject);
 	}
 
 	/**
