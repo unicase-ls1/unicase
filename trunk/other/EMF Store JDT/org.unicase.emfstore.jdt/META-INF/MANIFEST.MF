@@ -15,13 +15,8 @@ Export-Package: org.unicase.emfstore.jdt,
  org.unicase.emfstore.jdt.eclipseworkspace.emfstore,
  org.unicase.emfstore.jdt.emf.resource,
  org.unicase.emfstore.jdt.exception
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources,
- org.eclipse.team.core,
- org.eclipse.jface,
+Require-Bundle: org.eclipse.team.core,
  org.eclipse.ui,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.workspace,
  org.unicase.workspace.ui
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.emfstore.jdt.Activator
