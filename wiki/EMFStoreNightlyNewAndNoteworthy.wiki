@@ -4,6 +4,8 @@
   * Plain EObject Support: Custom EObjects no longer need to inherit from ModelElement in the Ecore. Any EMF model now works out of the box with EMFStore.
   * Editing Domain is now by default an AdapterFactoryEditingDomain. No more need to use commands for changing or reading the model. Editing Domain can be configured by an extension point (EditingDomainProvider)
   * Support for complex creates: EObjects are now allowed to have cross-references even before they are added to the containment tree of a project. EMFStore will track these references when and iff the EObject is added.
+  * Multi-Attributes: Support for Attributes with multiplicity greater than 1 added.
+  * Reference set changes: Support for references set changes added. These can be trigger by List.set().
   * No dependency to Groovy anymore: Model migration is now a sperate feature including the dependency to Groovy. The core plugins therefore no longer need a dependency to Groovy.
   * EMF Client Platform is now a released as seperate features and can be installed in parallel.
   * Performance improvements
