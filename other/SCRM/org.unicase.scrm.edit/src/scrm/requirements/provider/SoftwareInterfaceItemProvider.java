@@ -22,11 +22,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.knowledge.provider.ScrmEditPlugin;
+import scrm.ScrmPackage;
+
+import scrm.provider.ScrmEditPlugin;
 
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.SoftwareInterface;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.SoftwareInterface} object.
@@ -63,9 +68,79 @@ public class SoftwareInterfaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 			addUsedKnowledgePropertyDescriptor(object);
+			addDataTypesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,6 +166,28 @@ public class SoftwareInterfaceItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Types feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataTypesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SoftwareInterface_dataTypes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SoftwareInterface_dataTypes_feature", "_UI_SoftwareInterface_type"),
+				 RequirementsPackage.Literals.SOFTWARE_INTERFACE__DATA_TYPES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns SoftwareInterface.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +206,10 @@ public class SoftwareInterfaceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SoftwareInterface_type");
+		String label = ((SoftwareInterface)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SoftwareInterface_type") :
+			getString("_UI_SoftwareInterface_type") + " " + label;
 	}
 
 	/**
@@ -122,6 +222,15 @@ public class SoftwareInterfaceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(SoftwareInterface.class)) {
+			case RequirementsPackage.SOFTWARE_INTERFACE__NAME:
+			case RequirementsPackage.SOFTWARE_INTERFACE__DESCRIPTION:
+			case RequirementsPackage.SOFTWARE_INTERFACE__IDENTIFIER:
+			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

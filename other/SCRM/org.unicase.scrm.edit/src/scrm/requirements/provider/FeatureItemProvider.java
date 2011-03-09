@@ -24,14 +24,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.knowledge.provider.ScrmEditPlugin;
+import scrm.ScrmPackage;
+
+import scrm.provider.ScrmEditPlugin;
 
 import scrm.requirements.Feature;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
+
+import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.Feature} object.
@@ -68,9 +73,82 @@ public class FeatureItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 			addUsedKnowledgePropertyDescriptor(object);
+			addRequiredFeaturesPropertyDescriptor(object);
+			addRequiringFeaturesPropertyDescriptor(object);
+			addExcludedFeaturesPropertyDescriptor(object);
+			addExcludingFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,6 +165,94 @@ public class FeatureItemProvider
 				 getString("_UI_IRequirement_usedKnowledge_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_usedKnowledge_feature", "_UI_IRequirement_type"),
 				 RequirementsPackage.Literals.IREQUIREMENT__USED_KNOWLEDGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Required Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiredFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_requiredFeatures_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiredFeatures_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__REQUIRED_FEATURES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Requiring Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiringFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_requiringFeatures_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiringFeatures_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__REQUIRING_FEATURES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Excluded Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExcludedFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_excludedFeatures_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_excludedFeatures_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__EXCLUDED_FEATURES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Excluding Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExcludingFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_excludingFeatures_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_excludingFeatures_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__EXCLUDING_FEATURES,
 				 true,
 				 false,
 				 true,
@@ -114,6 +280,7 @@ public class FeatureItemProvider
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__REQUIRED_SOFTWARE_INTERFACE);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_SOFTWARE_INTERFACES);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS);
+			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__SUB_FEATURES);
 		}
 		return childrenFeatures;
 	}
@@ -150,7 +317,10 @@ public class FeatureItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Feature_type");
+		String label = ((Feature)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Feature_type") :
+			getString("_UI_Feature_type") + " " + label;
 	}
 
 	/**
@@ -165,6 +335,11 @@ public class FeatureItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
+			case RequirementsPackage.FEATURE__NAME:
+			case RequirementsPackage.FEATURE__DESCRIPTION:
+			case RequirementsPackage.FEATURE__IDENTIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 			case RequirementsPackage.FEATURE__DEPENDENCIES:
 			case RequirementsPackage.FEATURE__REQUIRED_USER_INTERFACE:
@@ -172,6 +347,7 @@ public class FeatureItemProvider
 			case RequirementsPackage.FEATURE__REQUIRED_SOFTWARE_INTERFACE:
 			case RequirementsPackage.FEATURE__PROVIDED_SOFTWARE_INTERFACES:
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
+			case RequirementsPackage.FEATURE__SUB_FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -233,6 +409,36 @@ public class FeatureItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
 				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
+				 RequirementsFactory.eINSTANCE.createFeature()));
 	}
 
 	/**

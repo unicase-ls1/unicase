@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package scrm.requirements.provider;
+package scrm.requirements.dataProcessing.provider;
 
 
 import java.util.Collection;
@@ -21,18 +21,21 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import scrm.provider.ScrmEditPlugin;
 
+import scrm.requirements.dataProcessing.ResultsOutput;
+
+import scrm.requirements.provider.RequirementItemProvider;
+
 /**
- * This is the item provider adapter for a {@link scrm.requirements.DataFlow} object.
+ * This is the item provider adapter for a {@link scrm.requirements.dataProcessing.ResultsOutput} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataFlowItemProvider
-	extends ItemProviderAdapter
+public class ResultsOutputItemProvider
+	extends RequirementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -45,7 +48,7 @@ public class DataFlowItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataFlowItemProvider(AdapterFactory adapterFactory) {
+	public ResultsOutputItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,14 +68,14 @@ public class DataFlowItemProvider
 	}
 
 	/**
-	 * This returns DataFlow.gif.
+	 * This returns ResultsOutput.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataFlow"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResultsOutput"));
 	}
 
 	/**
@@ -83,7 +86,10 @@ public class DataFlowItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataFlow_type");
+		String label = ((ResultsOutput)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ResultsOutput_type") :
+			getString("_UI_ResultsOutput_type") + " " + label;
 	}
 
 	/**

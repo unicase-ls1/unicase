@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package scrm.knowledge.provider;
+package scrm.provider;
 
 
 import java.util.Collection;
@@ -28,21 +28,24 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+
+import scrm.SCRMDiagram;
 import scrm.ScrmPackage;
 
 import scrm.knowledge.KnowledgeFactory;
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificProblem;
 
-import scrm.provider.ScrmEditPlugin;
+import scrm.requirements.RequirementsFactory;
+
+import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
- * This is the item provider adapter for a {@link scrm.knowledge.ScientificProblem} object.
+ * This is the item provider adapter for a {@link scrm.SCRMDiagram} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ScientificProblemItemProvider
+public class SCRMDiagramItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +59,7 @@ public class ScientificProblemItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScientificProblemItemProvider(AdapterFactory adapterFactory) {
+	public SCRMDiagramItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,121 +74,52 @@ public class ScientificProblemItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
-			addRequirementsPropertyDescriptor(object);
-			addInfluencedFeaturePropertyDescriptor(object);
+			addElementsPropertyDescriptor(object);
+			addDiagramLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Elements feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 getString("_UI_SCRMDiagram_elements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMDiagram_elements_feature", "_UI_SCRMDiagram_type"),
+				 ScrmPackage.Literals.SCRM_DIAGRAM__ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Diagram Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDiagramLayoutPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMDiagram_diagramLayout_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMDiagram_diagramLayout_feature", "_UI_SCRMDiagram_type"),
+				 ScrmPackage.Literals.SCRM_DIAGRAM__DIAGRAM_LAYOUT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Requirements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_requirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_requirements_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Influenced Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInfluencedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificProblem_influencedFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_influencedFeature_feature", "_UI_ScientificProblem_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -202,8 +136,8 @@ public class ScientificProblemItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHOD);
+			childrenFeatures.add(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS);
+			childrenFeatures.add(ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM);
 		}
 		return childrenFeatures;
 	}
@@ -222,14 +156,14 @@ public class ScientificProblemItemProvider
 	}
 
 	/**
-	 * This returns ScientificProblem.gif.
+	 * This returns SCRMDiagram.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ScientificProblem"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SCRMDiagram"));
 	}
 
 	/**
@@ -240,10 +174,10 @@ public class ScientificProblemItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ScientificProblem)object).getName();
+		String label = ((SCRMDiagram)object).getDiagramLayout();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ScientificProblem_type") :
-			getString("_UI_ScientificProblem_type") + " " + label;
+			getString("_UI_SCRMDiagram_type") :
+			getString("_UI_SCRMDiagram_type") + " " + label;
 	}
 
 	/**
@@ -257,14 +191,12 @@ public class ScientificProblemItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ScientificProblem.class)) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__NAME:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__DESCRIPTION:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__IDENTIFIER:
+		switch (notification.getFeatureID(SCRMDiagram.class)) {
+			case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
+			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -284,13 +216,98 @@ public class ScientificProblemItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 KnowledgeFactory.eINSTANCE.createScientificProblem()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHOD,
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 KnowledgeFactory.eINSTANCE.createNumericalMethod()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 KnowledgeFactory.eINSTANCE.createAssumption()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createHardware()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createUserInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 DataProcessingFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM,
+				 NotationFactory.eINSTANCE.createDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM,
+				 NotationFactory.eINSTANCE.createStandardDiagram()));
 	}
 
 	/**
