@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="scrm"
+    nsURI="http://unicase.org/model/scrm" nsPrefix="org.unicase.model.scrm">
+  <eSubpackages name="knowledge" nsURI="http://unicase.org/model/scrm/knowledge" nsPrefix="org.unicase.model.scrm.knowledge">
+    <eClassifiers xsi:type="ecore:EClass" name="ScientificKnowledge" abstract="true"
+        interface="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
+          eType="#//requirements/IRequirement" eOpposite="#//requirements/IRequirement/usedKnowledge"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ScientificProblem" eSuperTypes="#//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="representingModel" eType="#//knowledge/MathematicalModel"
+          containment="true" eOpposite="#//knowledge/MathematicalModel/representedProblem"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="solvingMethod" eType="#//knowledge/NumericalMethod"
+          containment="true" eOpposite="#//knowledge/NumericalMethod/solvedProblem"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="influencedFeature" eType="#//requirements/Feature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MathematicalModel" eSuperTypes="#//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="representedProblem" eType="#//knowledge/ScientificProblem"
+          eOpposite="#//knowledge/ScientificProblem/representingModel"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinements" upperBound="-1"
+          eType="#//knowledge/MathematicalModel" containment="true" eOpposite="#//knowledge/MathematicalModel/refinedModel"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedModel" eType="#//knowledge/MathematicalModel"
+          eOpposite="#//knowledge/MathematicalModel/refinements"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+          eType="#//knowledge/Assumption" containment="true" eOpposite="#//knowledge/Assumption/dependingModel"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NumericalMethod" eSuperTypes="#//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="solvedProblem" eType="#//knowledge/ScientificProblem"
+          eOpposite="#//knowledge/ScientificProblem/solvingMethod"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+          eType="#//knowledge/Assumption" containment="true" eOpposite="#//knowledge/Assumption/dependingMethod"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="realizingRequirement"
+          eType="#//requirements/Requirement" eOpposite="#//requirements/Requirement/realizedMethod"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Assumption" eSuperTypes="#//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependingModel" eType="#//knowledge/MathematicalModel"
+          eOpposite="#//knowledge/MathematicalModel/dependencies"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependingMethod" eType="#//knowledge/NumericalMethod"
+          eOpposite="#//knowledge/NumericalMethod/dependencies"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="requirements" nsURI="http://unicase.org/model/scrm/requirements"
+      nsPrefix="org.unicase.model.scrm.requirements">
+    <eClassifiers xsi:type="ecore:EClass" name="IRequirement" abstract="true" interface="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="usedKnowledge" upperBound="-1"
+          eType="#//knowledge/ScientificKnowledge" eOpposite="#//knowledge/ScientificKnowledge/requirements"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+          eType="#//requirements/Constraint" containment="true" eOpposite="#//requirements/Constraint/restrictedFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+          eType="#//requirements/Hardware" containment="true" eOpposite="#//requirements/Hardware/dependingFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredUserInterface"
+          eType="#//requirements/UserInterface" containment="true" eOpposite="#//requirements/UserInterface/requiringFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedUserInterfaces"
+          upperBound="-1" eType="#//requirements/UserInterface" containment="true"
+          eOpposite="#//requirements/UserInterface/providingFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredSoftwareInterface"
+          eType="#//requirements/SoftwareInterface" containment="true" eOpposite="#//requirements/SoftwareInterface/requiringFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedSoftwareInterfaces"
+          upperBound="-1" eType="#//requirements/SoftwareInterface" containment="true"
+          eOpposite="#//requirements/SoftwareInterface/providingFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="detailedRequirements"
+          upperBound="-1" eType="#//requirements/Requirement" containment="true" eOpposite="#//requirements/Requirement/specifiedFeature"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Hardware" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependingFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/dependencies"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/constraints"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Requirement" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinements" upperBound="-1"
+          eType="#//requirements/Requirement" containment="true" eOpposite="#//requirements/Requirement/refinedRequirement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirements/Requirement"
+          eOpposite="#//requirements/Requirement/refinements"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/detailedRequirements"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingData" upperBound="-1"
+          eType="#//requirements/DataDefinition" containment="true" eOpposite="#//requirements/DataDefinition/definedRequirement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="realizedMethod" eType="#//knowledge/NumericalMethod"
+          eOpposite="#//knowledge/NumericalMethod/realizingRequirement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserInterface" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiringFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/requiredUserInterface"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providingFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/providedUserInterfaces"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SoftwareInterface" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiringFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/requiredSoftwareInterface"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providingFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/providedSoftwareInterfaces"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//requirements/Requirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlow" eType="#//requirements/DataFlow"
+          containment="true" eOpposite="#//requirements/DataFlow/specifiedProcess"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Performance" eSuperTypes="#//requirements/Requirement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataFlow">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedProcess" eType="#//requirements/Process"
+          eOpposite="#//requirements/Process/dataFlow"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataDefinition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definedRequirement" eType="#//requirements/Requirement"
+          eOpposite="#//requirements/Requirement/definingData"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

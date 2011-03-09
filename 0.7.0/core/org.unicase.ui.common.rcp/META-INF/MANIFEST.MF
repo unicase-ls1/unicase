@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.unicase.ui.common.rcp
+Bundle-Version: 0.7.0
+Fragment-Host: org.unicase.ui.common
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Name: unicase Common UI Plug-in RCP
+Bundle-Vendor: unicase.org

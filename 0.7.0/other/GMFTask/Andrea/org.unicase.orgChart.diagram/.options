@@ -1,0 +1,7 @@
+# Tracing options for the org.unicase.orgChart.diagram plug-in
+
+# Common issues
+org.unicase.orgChart.diagram/debug=false
+
+# Visual IDs
+org.unicase.orgChart.diagram/debug/visualID=false

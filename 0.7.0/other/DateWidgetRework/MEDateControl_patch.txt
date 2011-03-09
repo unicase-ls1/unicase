@@ -1,0 +1,271 @@
+Index: MEDateControl.java
+===================================================================
+--- MEDateControl.java	(revision 9608)
++++ MEDateControl.java	(working copy)
+@@ -7,16 +7,19 @@
+ 
+ import java.util.Date;
+ 
+-import org.eclipse.emf.common.notify.Notification;
+-import org.eclipse.emf.common.notify.impl.AdapterImpl;
++import org.eclipse.core.databinding.observable.Diffs;
++import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
++import org.eclipse.core.databinding.observable.value.IObservableValue;
++import org.eclipse.emf.databinding.EMFDataBindingContext;
++import org.eclipse.emf.databinding.edit.EMFEditObservables;
+ import org.eclipse.emf.ecore.EAttribute;
+ import org.eclipse.emf.ecore.EObject;
+ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+ import org.eclipse.jface.layout.GridDataFactory;
+ import org.eclipse.jface.layout.GridLayoutFactory;
+ import org.eclipse.swt.SWT;
+-import org.eclipse.swt.events.FocusEvent;
+-import org.eclipse.swt.events.FocusListener;
++import org.eclipse.swt.events.ModifyEvent;
++import org.eclipse.swt.events.ModifyListener;
+ import org.eclipse.swt.events.MouseAdapter;
+ import org.eclipse.swt.events.MouseEvent;
+ import org.eclipse.swt.layout.GridData;
+@@ -24,7 +27,6 @@
+ import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Control;
+-import org.eclipse.swt.widgets.Label;
+ import org.eclipse.ui.ISharedImages;
+ import org.eclipse.ui.PlatformUI;
+ import org.eclipse.ui.forms.widgets.ImageHyperlink;
+@@ -34,16 +36,14 @@
+  * Standard widgets to edit a date attribute.
+  * 
+  * @author shterev
++ * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
+  */
+ public class MEDateControl extends AbstractMEControl {
+ 
+-	private AdapterImpl adapterImpl;
+ 	private EAttribute attribute;
+ 	private Composite dateComposite;
+-
+-	private CDateTime dateWidget;
++	private CDateTime cDateWidget;
+ 	private ImageHyperlink dateDeleteButton;
+-	private Label dateDummy;
+ 
+ 	private static final int PRIORITY = 1;
+ 
+@@ -53,67 +53,27 @@
+ 	@Override
+ 	public Control createControl(Composite parent, int style) {
+ 		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(getModelElement());
+-		adapterImpl = new AdapterImpl() {
+-			@Override
+-			public void notifyChanged(Notification msg) {
+-				if (msg.getFeature() != null && msg.getFeature().equals(MEDateControl.this.attribute)) {
+-					update();
+-				}
+-				super.notifyChanged(msg);
+-			}
+-
+-		};
+-		getModelElement().eAdapters().add(adapterImpl);
+ 		dateComposite = getToolkit().createComposite(parent);
+ 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(dateComposite);
+ 		GridDataFactory.fillDefaults().grab(true, false).applyTo(dateComposite);
+ 		dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
+-		update();
+-		return dateComposite;
+-	}
+ 
+-	private void createDateHint() {
+-		dateDummy = getToolkit().createLabel(dateComposite, "(Not Set)");
+-		dateDummy.setForeground(dateComposite.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+-		dateDummy.addMouseListener(new MouseAdapter() {
++		createDateWidget();
+ 
+-			@Override
+-			public void mouseUp(MouseEvent e) {
++		// data binding
++		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
++		EMFDataBindingContext dbc = new EMFDataBindingContext();
++		dbc.bindValue(new CDateTimeObservableValue(cDateWidget), model, null, null);
+ 
+-				new ECPCommand(getModelElement()) {
++		return dateComposite;
++	}
+ 
+-					@Override
+-					protected void doRun() {
+-						getModelElement().eSet(attribute, new Date());
+-					}
+-				}.run();
+-			}
+-
+-		});
+-	};
+-
+ 	private CDateTime createDateWidget() {
+ 		// The picker (CDT.DROP_DOWN) is deactivated on purpose
+-		dateWidget = new CDateTime(dateComposite, CDT.BORDER);
+-		dateWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+-		dateWidget.setPattern("dd.MM.yyyy HH:mm");
+-		dateWidget.addFocusListener(new FocusListener() {
+-
+-			public void focusGained(FocusEvent e) {
+-				// nothing to do here
+-			}
+-
+-			public void focusLost(FocusEvent e) {
+-				new ECPCommand(getModelElement()) {
+-
+-					@Override
+-					protected void doRun() {
+-						getModelElement().eSet(attribute, dateWidget.getSelection());
+-					}
+-				}.run();
+-			}
+-
+-		});
++		cDateWidget = new CDateTime(dateComposite, CDT.BORDER);
++		cDateWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
++		cDateWidget.setPattern("dd.MM.yyyy HH:mm");
++		cDateWidget.setSelection(null);
+ 		dateDeleteButton = new ImageHyperlink(dateComposite, SWT.TOP);
+ 		dateDeleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
+ 		dateDeleteButton.addMouseListener(new MouseAdapter() {
+@@ -128,7 +88,7 @@
+ 				}.run();
+ 			}
+ 		});
+-		return dateWidget;
++		return cDateWidget;
+ 	}
+ 
+ 	/**
+@@ -136,37 +96,9 @@
+ 	 */
+ 	@Override
+ 	public void dispose() {
+-		getModelElement().eAdapters().remove(adapterImpl);
+ 		super.dispose();
+ 	}
+ 
+-	private void update() {
+-
+-		new ECPCommand(getModelElement()) {
+-
+-			@Override
+-			protected void doRun() {
+-				Date newDate = (Date) getModelElement().eGet(attribute);
+-				if (newDate == null) { // delete the date widget if it is present.
+-					if (dateWidget != null) {
+-						dateWidget.dispose();
+-						dateDeleteButton.dispose();
+-					}
+-					createDateHint(); // create a dummy
+-				} else if (dateWidget == null || dateWidget.isDisposed()) {
+-					if (dateDummy != null) { // delete the dummy if it is present.
+-						dateDummy.dispose();
+-					}
+-					createDateWidget(); // create a date widget and set its date.
+-					dateWidget.setSelection(newDate);
+-				}
+-				dateComposite.layout(true);
+-				dateComposite.getParent().layout(true);
+-				dateComposite.getParent().getParent().layout(true);
+-			}
+-		}.run();
+-	}
+-
+ 	/**
+ 	 * {@inheritDoc}
+ 	 * 
+@@ -177,4 +109,89 @@
+ 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+ 		return PRIORITY;
+ 	}
++
++	/**
++	 * Implements DataBinding feature for the Nebula CDateTime control.
++	 * 
++	 * @author Christian Kroemer (christian.kroemer@z-corp-online.de)
++	 */
++	private class CDateTimeObservableValue extends AbstractObservableValue {
++
++		private Date date;
++		private final CDateTime widget;
++		private boolean currentlyUpdatingFlag;
++
++		private ModifyListener widgetListener = new ModifyListener() {
++			public void modifyText(ModifyEvent e) {
++				if (!currentlyUpdatingFlag) {
++					// change from widget not handled right now
++					Date newDate = widget.getSelection();
++					fireValueChange(Diffs.createValueDiff(date, newDate));
++					date = newDate;
++				}
++			}
++		};
++
++		/**
++		 * Constructor.
++		 * 
++		 * @param widget the control to observe
++		 */
++		public CDateTimeObservableValue(CDateTime widget) {
++			this.widget = widget;
++			date = widget.getSelection();
++			this.widget.addModifyListener(widgetListener);
++		}
++
++		/**
++		 * {@inheritDoc}
++		 */
++		@Override
++		public synchronized void dispose() {
++			widget.removeModifyListener(widgetListener);
++			super.dispose();
++		}
++
++		/**
++		 * {@inheritDoc}
++		 */
++		@Override
++		protected Object doGetValue() {
++			if (!widget.isDisposed()) {
++				return widget.getSelection();
++			}
++			return null;
++		}
++
++		/**
++		 * {@inheritDoc}
++		 */
++		@Override
++		protected void doSetValue(Object value) {
++			if (value == null) {
++				widget.setSelection(null);
++			} else if (value instanceof Date && !widget.isDisposed()) {
++				Date oldDate;
++				Date newDate;
++				try {
++					currentlyUpdatingFlag = true;
++					oldDate = widget.getSelection();
++					newDate = (Date) value;
++					widget.setSelection(newDate);
++					date = newDate;
++					fireValueChange(Diffs.createValueDiff(oldDate, newDate));
++				} finally {
++					currentlyUpdatingFlag = false;
++				}
++			}
++		}
++
++		/**
++		 * {@inheritDoc}
++		 */
++		public Object getValueType() {
++			return Date.class;
++		}
++
++	}
+ }

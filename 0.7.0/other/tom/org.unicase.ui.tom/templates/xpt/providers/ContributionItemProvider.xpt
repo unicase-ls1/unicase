@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+
+«DEFINE ContributionItemProvider FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «providersPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «contributionItemProviderClassName»
+		extends org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider {
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.jface.action.IAction createAction(String actionId,
+			org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor partDescriptor) {
+		if (actionId.equals(org.eclipse.gmf.runtime.diagram.ui.printing.actions.PrintPreviewAction.ID)) {
+			return new org.eclipse.gmf.runtime.diagram.ui.printing.render.actions.RenderedPrintPreviewAction(
+					new org.eclipse.gmf.runtime.diagram.ui.printing.render.actions.EnhancedPrintActionHelper());
+		}
+		return super.createAction(actionId, partDescriptor);
+	}
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»

@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2006 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+
+Boolean isStoringChildPositions(gmfgen::GenNode node) :
+	 node.getLayoutType().value == gmfgen::ViewmapLayoutType::XY_LAYOUT.value
+;
+
+List[gmfgen::GenExternalNodeLabel] getExternalLabels(gmfgen::GenNode node) :
+	node.labels.typeSelect(gmfgen::GenExternalNodeLabel)
+;
+
+List[gmfgen::GenChildSideAffixedNode] getSideAffixedChildren(gmfgen::GenNode node) :
+	node.childNodes.typeSelect(gmfgen::GenChildSideAffixedNode)
+;
+
+List[gmfgen::GenLabel] getInnerFixedLabels(gmfgen::GenNode node) :
+	node.labels.without(node.labels.typeSelect(gmfgen::GenExternalNodeLabel)).
+		select(e | { ((gmfgen::GenLabel) e).viewmap }.typeSelect(gmfgen::ParentAssignedViewmap).size() > 0)
+;
+
+List[gmfgen::GenCompartment] getPinnedCompartments(gmfgen::GenNode node) :
+	node.compartments.select(e | { e.viewmap }.typeSelect(gmfgen::ParentAssignedViewmap).size() > 0)
+;
+
+Boolean hasFixedChildren(gmfgen::GenNode node) :
+	getInnerFixedLabels(node).size() > 0 || getPinnedCompartments(node).size() > 0
+;
+
+Boolean hasChildren(gmfgen::GenNode node) :
+	!node.childNodes.isEmpty()
+;
+
+Boolean listCompartmentHasChildren(gmfgen::GenCompartment compartment) :
+	compartment.listLayout && compartment.childNodes.size() > 0
+;
+
+Boolean hasChildrenInListCompartments(gmfgen::GenNode node) :
+	node.compartments.exists(e | listCompartmentHasChildren(e))
+;
+
+Boolean hasBorderItems(gmfgen::GenNode node) :
+	getSideAffixedChildren(node).size() > 0 || getExternalLabels(node).size() > 0
+;
+
+Boolean needsGraphicalNodeEditPolicy(gmfgen::GenNode node) :
+	null != node.modelFacet && node.reorientedIncomingLinks.size() > 0
+;
+
+String i18nKeyForCompartmentTitle(gmfgen::GenCompartment compartment) :
+    compartment.editPartClassName+".title"
+;
+
+
+boolean shouldGenerateDiagramViewmap(gmfgen::GenDiagram genDiagram) :
+	!{gmfgen::ViewmapLayoutType::UNKNOWN.value, gmfgen::ViewmapLayoutType::XY_LAYOUT.value}.contains(genDiagram.viewmap.layoutType.value)
+;

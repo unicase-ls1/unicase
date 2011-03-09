@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Subclipse Team Adapter for Unicase Patch Attachment Plugin
+Bundle-SymbolicName: org.unicase.patchAttachment.adapter.subclipse;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.patchAttachment.adapter.subclipse.Activator
+Require-Bundle: org.tigris.subversion.subclipse.ui,
+ org.tigris.subversion.clientadapter,
+ org.tigris.subversion.subclipse.core,
+ org.unicase.patchAttachment
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.debug.core.sourcelookup.containers
