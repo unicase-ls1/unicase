@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp.validation"
       label="Validation"
-      version="1.0.0.qualifier"
+      version="0.7.0"
       provider-name="unicase.org">
 
    <description url="http://emfcp.org">
@@ -214,5 +214,12 @@ Agreement more than one year after the cause of action arose.
 Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
+
+   <plugin
+         id="org.unicase.ui.validation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.SDK"
       label="EMFStore SDK"
-      version="1.0.0.qualifier"
+      version="0.7.0"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
@@ -221,7 +221,6 @@ litigation.
          id="org.unicase.emfstore.server.source"
          version="0.0.0"/>
 
-
    <includes
          id="org.unicase.emfstore.client.ui.source"
          version="0.0.0"/>
@@ -249,7 +248,7 @@ litigation.
    <includes
          id="org.unicase.emfstore.common.source"
          version="0.0.0"/>
-         
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>

@@ -2,7 +2,7 @@
 <feature
       id="edu.tum.cs.cope.runtime.feature"
       label="COPE Runtime Feature"
-      version="0.2.13">
+      version="0.2.14">
 
    <description url="http://cope.in.tum.de">
       COPE eases the coupled evolution of EMF metamodels and models.
@@ -109,35 +109,35 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="edu.tum.cs.cope.migration"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.migration.execution"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.declaration"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.declaration.registry"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.common"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
