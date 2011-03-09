@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class ModelElementContextListener {
 	
 	/**
-	 * Called if a model element is deleted.
+	 * Called if a model element is deleted. Is only called for the root node if a tree of model elements is deleted.
 	 */
 	public abstract void onModelElementDeleted(EObject deleted);
 
