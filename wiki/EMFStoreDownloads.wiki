@@ -9,10 +9,6 @@ The EMFStore features can be installed from this update site:
 
 [http://unicase.googlecode.com/svn/updatesite/emfstoreNightly http://unicase.googlecode.com/svn/updatesite/emfstoreNightly]
 
-There is also a backup update site for the nightly builds:
-
-[http://www1.in.tum.de/static/unicase/emfstoreNightly http://www1.in.tum.de/static/unicase/emfstoreNightly]
-
 <wiki:comment>
 You can also download a standalone version as a product from the links given below.
   * [http://www1.in.tum.de/static/shared/unicase/products/0.5.1.nightly/emfstore-model-independent/linux.gtk.x86.zip 0.5.1.nightly for Linux gtk x86]
