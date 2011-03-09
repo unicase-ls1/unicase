@@ -24,12 +24,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import scrm.ScrmPackage;
 
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.MathematicalModel;
+
+import scrm.provider.ScrmEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.MathematicalModel} object.
@@ -66,9 +71,81 @@ public class MathematicalModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 			addRequirementsPropertyDescriptor(object);
+			addTheoryPropertyDescriptor(object);
+			addMathematicalExpressionPropertyDescriptor(object);
+			addNumericalMethodsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,6 +171,72 @@ public class MathematicalModelItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Theory feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTheoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_theory_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_theory_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__THEORY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mathematical Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMathematicalExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_mathematicalExpression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_mathematicalExpression_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Numerical Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNumericalMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_numericalMethods_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_numericalMethods_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -107,6 +250,7 @@ public class MathematicalModelItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS);
 			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES);
+			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL);
 		}
 		return childrenFeatures;
 	}
@@ -143,7 +287,10 @@ public class MathematicalModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_MathematicalModel_type");
+		String label = ((MathematicalModel)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MathematicalModel_type") :
+			getString("_UI_MathematicalModel_type") + " " + label;
 	}
 
 	/**
@@ -158,8 +305,16 @@ public class MathematicalModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MathematicalModel.class)) {
+			case KnowledgePackage.MATHEMATICAL_MODEL__NAME:
+			case KnowledgePackage.MATHEMATICAL_MODEL__DESCRIPTION:
+			case KnowledgePackage.MATHEMATICAL_MODEL__IDENTIFIER:
+			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
+			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,6 +341,34 @@ public class MathematicalModelItemProvider
 			(createChildParameter
 				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
 				 KnowledgeFactory.eINSTANCE.createAssumption()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL,
+				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS ||
+			childFeature == KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

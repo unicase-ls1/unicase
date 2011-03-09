@@ -24,12 +24,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import scrm.ScrmPackage;
 
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
+
+import scrm.provider.ScrmEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.NumericalMethod} object.
@@ -66,10 +71,83 @@ public class NumericalMethodItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 			addRequirementsPropertyDescriptor(object);
 			addRealizingRequirementPropertyDescriptor(object);
+			addMathematicalModelPropertyDescriptor(object);
+			addTheoryPropertyDescriptor(object);
+			addAlgorithmPropertyDescriptor(object);
+			addPerformancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -108,6 +186,94 @@ public class NumericalMethodItemProvider
 				 getString("_UI_NumericalMethod_realizingRequirement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_realizingRequirement_feature", "_UI_NumericalMethod_type"),
 				 KnowledgePackage.Literals.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mathematical Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMathematicalModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NumericalMethod_mathematicalModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_mathematicalModel_feature", "_UI_NumericalMethod_type"),
+				 KnowledgePackage.Literals.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Theory feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTheoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NumericalMethod_theory_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_theory_feature", "_UI_NumericalMethod_type"),
+				 KnowledgePackage.Literals.NUMERICAL_METHOD__THEORY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Algorithm feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAlgorithmPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NumericalMethod_algorithm_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_algorithm_feature", "_UI_NumericalMethod_type"),
+				 KnowledgePackage.Literals.NUMERICAL_METHOD__ALGORITHM,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Performance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPerformancePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NumericalMethod_performance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_performance_feature", "_UI_NumericalMethod_type"),
+				 KnowledgePackage.Literals.NUMERICAL_METHOD__PERFORMANCE,
 				 true,
 				 false,
 				 true,
@@ -165,7 +331,10 @@ public class NumericalMethodItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_NumericalMethod_type");
+		String label = ((NumericalMethod)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_NumericalMethod_type") :
+			getString("_UI_NumericalMethod_type") + " " + label;
 	}
 
 	/**
@@ -180,6 +349,13 @@ public class NumericalMethodItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NumericalMethod.class)) {
+			case KnowledgePackage.NUMERICAL_METHOD__NAME:
+			case KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION:
+			case KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER:
+			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
+			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
