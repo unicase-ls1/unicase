@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UNICASE OpenURL Plugin
+Bundle-SymbolicName: org.unicase.openUrl;singleton:=true
+Bundle-Version: 0.4.5
+Bundle-Activator: org.unicase.openurl.Activator
+Require-Bundle: org.eclipse.ui;bundle-version="3.4.2",
+ org.eclipse.core.runtime;bundle-version="3.4.0",
+ org.unicase.workspace.ui;bundle-version="0.3.44"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: .,
+ lib/junique-1.0.4.jar
+Import-Package: org.unicase.model
+Bundle-Vendor: unicase.org

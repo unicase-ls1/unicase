@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ecp.model.ecpWorkspaceProvider">
+      <WorkspaceProvider
+            class="org.unicase.ecpemfstorebridge.EMFStoreECPWorkspaceProvider">
+      </WorkspaceProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.ecpemfstorebridge.xmiAdd"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.unicase.ecpemfstorebridge.actions.AddXMIAction"
+               id="org.unicase.ecpemfstorebridge.addXMI"
+               label="Add to EMF Client Platform">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.unicase.ecpemfstorebridge.xmiImport"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.unicase.ecpemfstorebridge.actions.ImportXMIAction"
+               id="org.unicase.ecpemfstorebridge.xmiImport"
+               label="Import to EMF Client Platform">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.VersionDecorator"
+            id="org.unicase.ecpemfstorebridge.decorators.VersionDecorator"
+            label="Version Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows version of current project.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.UsernameDecorator"
+            id="org.unicase.ui.common.decorators.UsernameDecorator"
+            label="Username Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows the username for the current session.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ProjectSpaceDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
+            label="ProjectSpaceDirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.workspace.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            If the porject has local changes.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ModelElementDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
+            label="ModelElement Dirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.ecore.EObject">
+            </objectClass>
+         </enablement>
+         <description>
+            If the project has local changes.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.unicase.workspace.ui.decorators.ProjectDirtyDecorator"
+            id="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
+            label="Project Dirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.unicase.metamodel.Project">
+            </objectClass>
+         </enablement>
+         <description>
+            If the porject has local changes.
+         </description>
+      </decorator>
+   </extension>
+   <extension
+         point="org.unicase.ecp.model.postinit">
+      <initiator
+            class="org.unicase.ecpemfstorebridge.ECPObserver">
+      </initiator>
+   </extension>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.ecpemfstorebridge.ProjectSpaceOpener"
+            name="org.unicase.ecpemfstorebridge.ProjectSpaceOpener">
+      </ModelElementOpener>
+   </extension>
+
+</plugin>
