@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp.meeditor"
       label="ECP ModelElement Editor"
-      version="1.0.0.qualifier"
+      version="0.7.0"
       provider-name="unicase.org">
 
    <description url="http://emfcp.org">

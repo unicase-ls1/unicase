@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.backchannel.SDK"
       label="EMFStore Backchannel SDK"
-      version="1.0.0.qualifier"
+      version="0.7.0"
       provider-name="unicase.org">
 
    <description url="http://www.example.com/description">
@@ -20,7 +20,9 @@
    <includes
          id="org.unicase.emfstore.backchannel"
          version="0.0.0"/>
+
    <includes
          id="org.unicase.emfstore.backchannel.source"
          version="0.0.0"/>
+
 </feature>

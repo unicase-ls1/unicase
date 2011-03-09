@@ -2,7 +2,7 @@
 <feature
       id="edu.tum.cs.cope.feature"
       label="COPE Feature"
-      version="0.2.13">
+      version="0.2.14">
 
    <description url="http://cope.in.tum.de">
       COPE eases the coupled evolution of EMF metamodels and models.
@@ -113,77 +113,77 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="edu.tum.cs.cope.history"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.edit"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.editor"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.instantiation"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.reconstruction"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.recorder"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.migration.test"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.declaration.edit"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.declaration.editor"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.declaration.parser"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.common.ui"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
@@ -263,14 +263,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="edu.tum.cs.cope.migration.ui"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
    <plugin
          id="edu.tum.cs.cope.history.migrator"
          download-size="0"
          install-size="0"
-         version="0.2.13"
+         version="0.2.14"
          unpack="false"/>
 
 </feature>
