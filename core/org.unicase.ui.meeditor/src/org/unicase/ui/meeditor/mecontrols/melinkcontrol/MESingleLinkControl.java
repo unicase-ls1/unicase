@@ -82,7 +82,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 			@Override
 			public void onChange(Notification notification) {
-				updateLink();
+				if (notification.getFeature() == eReference) {
+					updateLink();
+				}
 
 			}
 		};
@@ -100,8 +102,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 		AddReferenceAction addAction = new AddReferenceAction(getModelElement(), eReference,
 			getItemPropertyDescriptor(), getContext());
 		result.add(addAction);
-		ReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference,
-			getItemPropertyDescriptor(), getContext());
+		ReferenceAction newAction = new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor(),
+			getContext());
 		result.add(newAction);
 		return result;
 	}
