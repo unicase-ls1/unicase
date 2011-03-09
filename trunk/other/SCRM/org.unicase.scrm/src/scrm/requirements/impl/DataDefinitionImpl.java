@@ -29,12 +29,96 @@ import scrm.requirements.RequirementsPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDefinedRequirement <em>Defined Requirement</em>}</li>
+ *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getAccuracy <em>Accuracy</em>}</li>
+ *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getFormat <em>Format</em>}</li>
+ *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getRange <em>Range</em>}</li>
+ *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
+	/**
+	 * The default value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccuracy()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double ACCURACY_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccuracy()
+	 * @generated
+	 * @ordered
+	 */
+	protected double accuracy = ACCURACY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FORMAT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected String format = FORMAT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRange() <em>Range</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRange()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RANGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRange() <em>Range</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRange()
+	 * @generated
+	 * @ordered
+	 */
+	protected String range = RANGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataType = DATA_TYPE_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,6 +184,90 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getAccuracy() {
+		return accuracy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAccuracy(double newAccuracy) {
+		double oldAccuracy = accuracy;
+		accuracy = newAccuracy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__ACCURACY, oldAccuracy, accuracy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFormat() {
+		return format;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFormat(String newFormat) {
+		String oldFormat = format;
+		format = newFormat;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__FORMAT, oldFormat, format));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRange() {
+		return range;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRange(String newRange) {
+		String oldRange = range;
+		range = newRange;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__RANGE, oldRange, range));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDataType() {
+		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataType(String newDataType) {
+		String oldDataType = dataType;
+		dataType = newDataType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__DATA_TYPE, oldDataType, dataType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -149,6 +317,14 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 		switch (featureID) {
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				return getDefinedRequirement();
+			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+				return getAccuracy();
+			case RequirementsPackage.DATA_DEFINITION__FORMAT:
+				return getFormat();
+			case RequirementsPackage.DATA_DEFINITION__RANGE:
+				return getRange();
+			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+				return getDataType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,6 +339,18 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 		switch (featureID) {
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				setDefinedRequirement((Requirement)newValue);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+				setAccuracy((Double)newValue);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__FORMAT:
+				setFormat((String)newValue);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__RANGE:
+				setRange((String)newValue);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+				setDataType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,6 +367,18 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				setDefinedRequirement((Requirement)null);
 				return;
+			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+				setAccuracy(ACCURACY_EDEFAULT);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__FORMAT:
+				setFormat(FORMAT_EDEFAULT);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__RANGE:
+				setRange(RANGE_EDEFAULT);
+				return;
+			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+				setDataType(DATA_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -193,8 +393,38 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 		switch (featureID) {
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				return getDefinedRequirement() != null;
+			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+				return accuracy != ACCURACY_EDEFAULT;
+			case RequirementsPackage.DATA_DEFINITION__FORMAT:
+				return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
+			case RequirementsPackage.DATA_DEFINITION__RANGE:
+				return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
+			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+				return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (accuracy: ");
+		result.append(accuracy);
+		result.append(", format: ");
+		result.append(format);
+		result.append(", range: ");
+		result.append(range);
+		result.append(", dataType: ");
+		result.append(dataType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DataDefinitionImpl

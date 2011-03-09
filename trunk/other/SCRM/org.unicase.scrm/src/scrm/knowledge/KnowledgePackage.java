@@ -6,9 +6,12 @@
  */
 package scrm.knowledge;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import scrm.ScrmPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,13 +72,40 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_KNOWLEDGE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__NAME = ScrmPackage.SCRM_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__DESCRIPTION = ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__IDENTIFIER = ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCIENTIFIC_KNOWLEDGE__REQUIREMENTS = 0;
+	int SCIENTIFIC_KNOWLEDGE__REQUIREMENTS = ScrmPackage.SCRM_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Scientific Knowledge</em>' class.
@@ -84,7 +114,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT = 1;
+	int SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT = ScrmPackage.SCRM_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link scrm.knowledge.impl.ScientificProblemImpl <em>Scientific Problem</em>}' class.
@@ -95,6 +125,33 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int SCIENTIFIC_PROBLEM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
@@ -152,6 +209,33 @@ public interface KnowledgePackage extends EPackage {
 	int MATHEMATICAL_MODEL = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,13 +281,58 @@ public interface KnowledgePackage extends EPackage {
 	int MATHEMATICAL_MODEL__DEPENDENCIES = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Theory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__THEORY = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Mathematical Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Sub Mathematical Model</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Containing Mathematical Model</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Numerical Methods</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__NUMERICAL_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Mathematical Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
+	int MATHEMATICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link scrm.knowledge.impl.NumericalMethodImpl <em>Numerical Method</em>}' class.
@@ -214,6 +343,33 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int NUMERICAL_METHOD = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
@@ -252,13 +408,49 @@ public interface KnowledgePackage extends EPackage {
 	int NUMERICAL_METHOD__REALIZING_REQUIREMENT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Mathematical Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__MATHEMATICAL_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Theory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__THEORY = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Algorithm</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__ALGORITHM = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Performance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__PERFORMANCE = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Numerical Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERICAL_METHOD_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
+	int NUMERICAL_METHOD_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link scrm.knowledge.impl.AssumptionImpl <em>Assumption</em>}' class.
@@ -269,6 +461,33 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int ASSUMPTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
@@ -426,6 +645,61 @@ public interface KnowledgePackage extends EPackage {
 	EReference getMathematicalModel_Dependencies();
 
 	/**
+	 * Returns the meta object for the attribute '{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Theory</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getTheory()
+	 * @see #getMathematicalModel()
+	 * @generated
+	 */
+	EAttribute getMathematicalModel_Theory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mathematical Expression</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getMathematicalExpression()
+	 * @see #getMathematicalModel()
+	 * @generated
+	 */
+	EAttribute getMathematicalModel_MathematicalExpression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.MathematicalModel#getSubMathematicalModel <em>Sub Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sub Mathematical Model</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getSubMathematicalModel()
+	 * @see #getMathematicalModel()
+	 * @generated
+	 */
+	EReference getMathematicalModel_SubMathematicalModel();
+
+	/**
+	 * Returns the meta object for the container reference '{@link scrm.knowledge.MathematicalModel#getContainingMathematicalModel <em>Containing Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Containing Mathematical Model</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getContainingMathematicalModel()
+	 * @see #getMathematicalModel()
+	 * @generated
+	 */
+	EReference getMathematicalModel_ContainingMathematicalModel();
+
+	/**
+	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Numerical Methods</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getNumericalMethods()
+	 * @see #getMathematicalModel()
+	 * @generated
+	 */
+	EReference getMathematicalModel_NumericalMethods();
+
+	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.NumericalMethod <em>Numerical Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,6 +741,50 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNumericalMethod_RealizingRequirement();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mathematical Model</em>'.
+	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel()
+	 * @see #getNumericalMethod()
+	 * @generated
+	 */
+	EReference getNumericalMethod_MathematicalModel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link scrm.knowledge.NumericalMethod#getTheory <em>Theory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Theory</em>'.
+	 * @see scrm.knowledge.NumericalMethod#getTheory()
+	 * @see #getNumericalMethod()
+	 * @generated
+	 */
+	EAttribute getNumericalMethod_Theory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Algorithm</em>'.
+	 * @see scrm.knowledge.NumericalMethod#getAlgorithm()
+	 * @see #getNumericalMethod()
+	 * @generated
+	 */
+	EAttribute getNumericalMethod_Algorithm();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Performance</em>'.
+	 * @see scrm.knowledge.NumericalMethod#getPerformance()
+	 * @see #getNumericalMethod()
+	 * @generated
+	 */
+	EReference getNumericalMethod_Performance();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.Assumption <em>Assumption</em>}'.
@@ -617,6 +935,46 @@ public interface KnowledgePackage extends EPackage {
 		EReference MATHEMATICAL_MODEL__DEPENDENCIES = eINSTANCE.getMathematicalModel_Dependencies();
 
 		/**
+		 * The meta object literal for the '<em><b>Theory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MATHEMATICAL_MODEL__THEORY = eINSTANCE.getMathematicalModel_Theory();
+
+		/**
+		 * The meta object literal for the '<em><b>Mathematical Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION = eINSTANCE.getMathematicalModel_MathematicalExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub Mathematical Model</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL = eINSTANCE.getMathematicalModel_SubMathematicalModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Containing Mathematical Model</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL = eINSTANCE.getMathematicalModel_ContainingMathematicalModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Numerical Methods</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MATHEMATICAL_MODEL__NUMERICAL_METHODS = eINSTANCE.getMathematicalModel_NumericalMethods();
+
+		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.NumericalMethodImpl <em>Numerical Method</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -649,6 +1007,38 @@ public interface KnowledgePackage extends EPackage {
 		 * @generated
 		 */
 		EReference NUMERICAL_METHOD__REALIZING_REQUIREMENT = eINSTANCE.getNumericalMethod_RealizingRequirement();
+
+		/**
+		 * The meta object literal for the '<em><b>Mathematical Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUMERICAL_METHOD__MATHEMATICAL_MODEL = eINSTANCE.getNumericalMethod_MathematicalModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Theory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUMERICAL_METHOD__THEORY = eINSTANCE.getNumericalMethod_Theory();
+
+		/**
+		 * The meta object literal for the '<em><b>Algorithm</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUMERICAL_METHOD__ALGORITHM = eINSTANCE.getNumericalMethod_Algorithm();
+
+		/**
+		 * The meta object literal for the '<em><b>Performance</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUMERICAL_METHOD__PERFORMANCE = eINSTANCE.getNumericalMethod_Performance();
 
 		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.AssumptionImpl <em>Assumption</em>}' class.

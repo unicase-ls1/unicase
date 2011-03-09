@@ -38,6 +38,9 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getDependingModel <em>Depending Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getDependingMethod <em>Depending Method</em>}</li>
@@ -47,6 +50,66 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class AssumptionImpl extends EObjectImpl implements Assumption {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -74,6 +137,69 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 	@Override
 	protected EClass eStaticClass() {
 		return KnowledgePackage.Literals.ASSUMPTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -235,6 +361,12 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case KnowledgePackage.ASSUMPTION__NAME:
+				return getName();
+			case KnowledgePackage.ASSUMPTION__DESCRIPTION:
+				return getDescription();
+			case KnowledgePackage.ASSUMPTION__IDENTIFIER:
+				return getIdentifier();
 			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
 				return getRequirements();
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
@@ -254,6 +386,15 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case KnowledgePackage.ASSUMPTION__NAME:
+				setName((String)newValue);
+				return;
+			case KnowledgePackage.ASSUMPTION__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case KnowledgePackage.ASSUMPTION__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
 				getRequirements().clear();
 				getRequirements().addAll((Collection<? extends IRequirement>)newValue);
@@ -276,6 +417,15 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case KnowledgePackage.ASSUMPTION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case KnowledgePackage.ASSUMPTION__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case KnowledgePackage.ASSUMPTION__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
 				getRequirements().clear();
 				return;
@@ -297,6 +447,12 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case KnowledgePackage.ASSUMPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case KnowledgePackage.ASSUMPTION__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case KnowledgePackage.ASSUMPTION__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
 				return requirements != null && !requirements.isEmpty();
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
@@ -305,6 +461,26 @@ public class AssumptionImpl extends EObjectImpl implements Assumption {
 				return getDependingMethod() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", identifier: ");
+		result.append(identifier);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AssumptionImpl

@@ -8,7 +8,7 @@ package scrm.requirements;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
+import scrm.SCRMModelElement;
 
 import scrm.knowledge.ScientificKnowledge;
 
@@ -28,7 +28,7 @@ import scrm.knowledge.ScientificKnowledge;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface IRequirement extends EObject {
+public interface IRequirement extends SCRMModelElement {
 	/**
 	 * Returns the value of the '<em><b>Used Knowledge</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.ScientificKnowledge}.

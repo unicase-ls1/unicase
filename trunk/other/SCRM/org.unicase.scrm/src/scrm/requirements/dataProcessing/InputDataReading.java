@@ -1,0 +1,21 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package scrm.requirements.dataProcessing;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Input Data Reading</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see scrm.requirements.dataProcessing.DataProcessingPackage#getInputDataReading()
+ * @model
+ * @generated
+ */
+public interface InputDataReading extends DataProcessing {
+} // InputDataReading

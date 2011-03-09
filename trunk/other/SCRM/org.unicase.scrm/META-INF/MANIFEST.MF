@@ -7,12 +7,19 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: scrm.knowledge,
+Export-Package: scrm,
+ scrm.impl,
+ scrm.knowledge,
  scrm.knowledge.impl,
  scrm.knowledge.util,
  scrm.requirements,
+ scrm.requirements.dataProcessing,
+ scrm.requirements.dataProcessing.impl,
+ scrm.requirements.dataProcessing.util,
  scrm.requirements.impl,
- scrm.requirements.util
+ scrm.requirements.util,
+ scrm.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.gmf.runtime.notation;visibility:=reexport
 Bundle-ActivationPolicy: lazy

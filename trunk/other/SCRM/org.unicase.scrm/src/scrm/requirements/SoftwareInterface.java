@@ -17,6 +17,7 @@ package scrm.requirements;
  * <ul>
  *   <li>{@link scrm.requirements.SoftwareInterface#getRequiringFeature <em>Requiring Feature</em>}</li>
  *   <li>{@link scrm.requirements.SoftwareInterface#getProvidingFeature <em>Providing Feature</em>}</li>
+ *   <li>{@link scrm.requirements.SoftwareInterface#getDataTypes <em>Data Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,5 +81,31 @@ public interface SoftwareInterface extends IRequirement {
 	 * @generated
 	 */
 	void setProvidingFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Types</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Types</em>' attribute.
+	 * @see #setDataTypes(String)
+	 * @see scrm.requirements.RequirementsPackage#getSoftwareInterface_DataTypes()
+	 * @model
+	 * @generated
+	 */
+	String getDataTypes();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.SoftwareInterface#getDataTypes <em>Data Types</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Types</em>' attribute.
+	 * @see #getDataTypes()
+	 * @generated
+	 */
+	void setDataTypes(String value);
 
 } // SoftwareInterface

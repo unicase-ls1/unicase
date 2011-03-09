@@ -13,6 +13,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import scrm.SCRMModelElement;
+
 import scrm.knowledge.*;
 
 /**
@@ -90,6 +92,10 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAssumption(Assumption object) {
 				return createAssumptionAdapter();
+			}
+			@Override
+			public Adapter caseSCRMModelElement(SCRMModelElement object) {
+				return createSCRMModelElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -178,6 +184,20 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssumptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link scrm.SCRMModelElement <em>SCRM Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see scrm.SCRMModelElement
+	 * @generated
+	 */
+	public Adapter createSCRMModelElementAdapter() {
 		return null;
 	}
 

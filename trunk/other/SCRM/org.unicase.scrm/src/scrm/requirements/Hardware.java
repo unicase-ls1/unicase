@@ -16,6 +16,9 @@ package scrm.requirements;
  * The following features are supported:
  * <ul>
  *   <li>{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}</li>
+ *   <li>{@link scrm.requirements.Hardware#getProcessor <em>Processor</em>}</li>
+ *   <li>{@link scrm.requirements.Hardware#getPlatform <em>Platform</em>}</li>
+ *   <li>{@link scrm.requirements.Hardware#getMemory <em>Memory</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,5 +54,83 @@ public interface Hardware extends IRequirement {
 	 * @generated
 	 */
 	void setDependingFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Processor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Processor</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Processor</em>' attribute.
+	 * @see #setProcessor(String)
+	 * @see scrm.requirements.RequirementsPackage#getHardware_Processor()
+	 * @model
+	 * @generated
+	 */
+	String getProcessor();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Hardware#getProcessor <em>Processor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Processor</em>' attribute.
+	 * @see #getProcessor()
+	 * @generated
+	 */
+	void setProcessor(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Platform</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Platform</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Platform</em>' attribute.
+	 * @see #setPlatform(String)
+	 * @see scrm.requirements.RequirementsPackage#getHardware_Platform()
+	 * @model
+	 * @generated
+	 */
+	String getPlatform();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Hardware#getPlatform <em>Platform</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Platform</em>' attribute.
+	 * @see #getPlatform()
+	 * @generated
+	 */
+	void setPlatform(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Memory</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Memory</em>' attribute.
+	 * @see #setMemory(int)
+	 * @see scrm.requirements.RequirementsPackage#getHardware_Memory()
+	 * @model
+	 * @generated
+	 */
+	int getMemory();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Hardware#getMemory <em>Memory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Memory</em>' attribute.
+	 * @see #getMemory()
+	 * @generated
+	 */
+	void setMemory(int value);
 
 } // Hardware

@@ -40,6 +40,9 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.requirements.impl.RequirementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link scrm.requirements.impl.RequirementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.requirements.impl.RequirementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
@@ -52,6 +55,66 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class RequirementImpl extends EObjectImpl implements Requirement {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getUsedKnowledge() <em>Used Knowledge</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -109,6 +172,69 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.REQUIREMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -368,6 +494,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case RequirementsPackage.REQUIREMENT__NAME:
+				return getName();
+			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
+				return getDescription();
+			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
+				return getIdentifier();
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				return getUsedKnowledge();
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
@@ -394,6 +526,15 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case RequirementsPackage.REQUIREMENT__NAME:
+				setName((String)newValue);
+				return;
+			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				getUsedKnowledge().clear();
 				getUsedKnowledge().addAll((Collection<? extends ScientificKnowledge>)newValue);
@@ -427,6 +568,15 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.REQUIREMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				getUsedKnowledge().clear();
 				return;
@@ -457,6 +607,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.REQUIREMENT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				return usedKnowledge != null && !usedKnowledge.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
@@ -471,6 +627,26 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				return realizedMethod != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", identifier: ");
+		result.append(identifier);
+		result.append(')');
+		return result.toString();
 	}
 
 } //RequirementImpl
