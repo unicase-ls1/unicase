@@ -1,7 +1,7 @@
 #summary Tutorial on how to prepare a model for the EMFStore
 
 
-<wiki:video url="http://www.youtube.com/watch?v=XgXm6LbBaKI"/> 
+<wiki:video url="http://www.youtube.com/watch?v=VJlgnGbAdE0"/> 
 
 Links to required resources:
   * [http://help.eclipse.org/helios/topic/org.eclipse.emf.doc/tutorials/rosepkg/library.mdl Eclipse Library Example Model]
