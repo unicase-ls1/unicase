@@ -196,6 +196,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 				public void onModelElementDeleted(EObject deleted) {
 					if (modelElement == deleted) {
 						close(false);
+					} else {
+						if (!modelElementContext.contains(modelElement)) {
+							close(false);
+						}
 					}
 
 				}
