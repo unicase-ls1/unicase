@@ -6,7 +6,7 @@ This site contains releases and nightly builds of the ECP. Currently there are o
 
 The ECP features can be installed from this update site:
 
-*EMF Client Platform requires a workspace persistency layer. Please install the feature "EMF Client Platform" , which includes the EMFStore Workspace as a default. We will release an XMI persistence workspace soon.*
+*EMF Client Platform requires a workspace persistency layer. Please install the feature "EMF Client Platform (complete with EMFStore Workspace persistence)" , which includes the EMFStore Workspace as a default. We will release an XMI persistence workspace soon.*
 
 [http://unicase.googlecode.com/svn/updatesite/ecpNightly http://unicase.googlecode.com/svn/updatesite/emfstoreNightly]
 
