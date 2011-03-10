@@ -119,15 +119,18 @@ public final class Synchronizer {
 				String workingCopyTeamRevision = teamSynchronizer.getWorkingCopyRevision(file);
 				HistoryVersionMappingEntry versionMapping4TeamRevision = historyVersionMapping
 					.getVersionMapping4TeamRevision(workingCopyTeamRevision);
-				if (versionMapping4TeamRevision == null) {
+				if (versionMapping4TeamRevision != null) {
+					emfStoreRevision = versionMapping4TeamRevision.getEMFStoreRevision();
+
+				} else {
 					HistoryVersionMappingEntry lowestTeamVersionMapping = historyVersionMapping
 						.getLowestTeamVersionMapping(teamSynchronizer);
 					if (lowestTeamVersionMapping == null) {
 						// file has been pushed right now.
 						throw new CannotSyncFileException(true);
 
-					} else if (teamSynchronizer.compare(workingCopyTeamRevision, lowestTeamVersionMapping
-						.getTeamProviderRevision()) == 1) {
+					} else if (teamSynchronizer.compare(workingCopyTeamRevision,
+						lowestTeamVersionMapping.getTeamProviderRevision()) == 1) {
 						// the current file revision is smaller than the lowest from the VersionMapping history.
 						throw new CannotSyncFileException(true);
 
@@ -220,8 +223,11 @@ public final class Synchronizer {
 
 		try {
 			String fileWorkingCopyRevision = teamSynchronizer.getWorkingCopyRevision(file);
-			String fileWorkingCopyEMFStoreConfRevision = teamSynchronizer.getWorkingCopyRevision(emfStoreConfFile);
-			if (fileWorkingCopyEMFStoreConfRevision == null) {
+			String fileWorkingCopyEMFStoreConfRevision;
+			try {
+				fileWorkingCopyEMFStoreConfRevision = teamSynchronizer.getWorkingCopyRevision(emfStoreConfFile);
+
+			} catch (TeamSynchronizerException e) {
 				// an update is not possible, so assume emfstoreconf is update to date enough
 				return true;
 			}
