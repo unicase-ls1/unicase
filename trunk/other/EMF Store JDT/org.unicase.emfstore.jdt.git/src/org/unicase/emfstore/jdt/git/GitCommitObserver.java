@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egit.ui.CommitObserver;
 import org.unicase.emfstore.jdt.CommitHelper;
+import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
 import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
@@ -38,8 +39,6 @@ public class GitCommitObserver implements CommitObserver {
 	public boolean finalizeCommit(org.eclipse.egit.core.op.CommitOperation commitOperation) {
 		String commitMessage = commitOperation.getMessage();
 
-		// GitTeamSynchronizer gitTeamSynchronizer = new GitTeamSynchronizer();
-
 		IFile[] filesToCommit = commitOperation.getFilesToCommit();
 		ResourceCommitHolder resourceCommitHolder = new ResourceCommitHolder(filesToCommit);
 
@@ -53,18 +52,15 @@ public class GitCommitObserver implements CommitObserver {
 		// is currently unmodified, a VersionMapping will be created and at least then the .emfstoreconf file
 		// will be dirty and a commit is needed.
 		Set<IFile> allFiles = resourceCommitHolder.getAllFiles();
-		// TODO .emfstoreconf is index, is tracked ??
 		Collection<IFile> notIndexedFiles = commitOperation.getNotIndexedFiles();
 		Collection<IFile> notTrackedFiles = commitOperation.getNotTrackedFiles();
-		commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
-		// for (IProject project : resourceCommitHolder.getReleatedProjects()) {
-		// IFile confFile = project.getFile(ConfigurationManager.EMFSTORECONF);
-		// notIndexedFiles.add(confFile);
-		// notTrackedFiles.add(confFile);
-		// }
-		// commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
 
-		// TODO, get outdated files
+		for (IProject project : releatedProjects) {
+			IFile emfStoreConfFile = project.getFile(ConfigurationManager.EMFSTORECONF);
+			notTrackedFiles.add(emfStoreConfFile);
+		}
+		commitOperation.setNewFilesToCommit(allFiles.toArray(new IFile[0]), notIndexedFiles, notTrackedFiles);
+
 		Set<IFileEntryTuple> emfStoreManagedFETuples = resourceCommitHolder.getEMFStoreManagedFETuples();
 
 		EMFStoreCommit emfStoreCommit = new EMFStoreCommit(resourceCommitHolder, commitMessage);
