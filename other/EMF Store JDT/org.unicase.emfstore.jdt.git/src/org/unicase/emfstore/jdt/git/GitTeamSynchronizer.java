@@ -13,10 +13,18 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.egit.core.project.RepositoryMapping;
 import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.dircache.DirCacheEntry;
+import org.eclipse.jgit.errors.IncorrectObjectTypeException;
+import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.errors.NoWorkTreeException;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.revwalk.RevSort;
+import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.treewalk.filter.PathFilter;
 import org.eclipse.team.core.history.IFileRevision;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
@@ -46,14 +54,12 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @return A git entry.
 	 * @throws TeamSynchronizerException Will be thrown if no git entry can be found.
 	 */
-	private DirCacheEntry getGitEntry(IFile file) throws TeamSynchronizerException {
+	public DirCacheEntry getGitEntry(IFile file) throws TeamSynchronizerException {
 		IProject project = file.getProject();
 		RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(project);
 		Repository repository = repositoryMapping.getRepository();
 		String gitEntryPath = repositoryMapping.getRepoRelativePath(file);
 
-		// RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(file);
-		// Repository repository = repositoryMapping.getRepository();
 		try {
 			File gitDirectory = repository.getDirectory();
 			FileRepository fileRepository = new FileRepositoryBuilder().setGitDir(gitDirectory).build();
@@ -61,17 +67,10 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 
 			// String gitEntryPath = file.getFullPath().makeRelative().toPortableString();
 			DirCacheEntry dirCacheEntry = dirCache.getEntry(gitEntryPath);
-			if (dirCacheEntry != null) {
+			if (dirCacheEntry == null) {
 				throw new TeamSynchronizerException("Git entry not found.");
 			}
 			return dirCacheEntry;
-
-			// @SuppressWarnings("deprecation")
-			// org.eclipse.jgit.lib.GitIndex.Entry entry = repository.getIndex().getEntry(
-			// file.getProjectRelativePath().toString());
-			// if (entry != null) {
-			// return true;
-			// }
 
 		} catch (NoWorkTreeException e) {
 			throw new TeamSynchronizerException(e);
@@ -102,8 +101,36 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getWorkingCopyRevision(org.eclipse.core.resources.IFile)
 	 */
 	public String getWorkingCopyRevision(IFile file) throws TeamSynchronizerException {
+		IProject project = file.getProject();
+		RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(project);
+		Repository repository = repositoryMapping.getRepository();
+
 		DirCacheEntry gitEntry = getGitEntry(file);
-		return gitEntry.getObjectId().getName();
+
+		try {
+			final RevWalk walk = new RevWalk(repository);
+			walk.sort(RevSort.TOPO, true);
+			walk.sort(RevSort.COMMIT_TIME_DESC, true);
+
+			walk.setTreeFilter(PathFilter.create(gitEntry.getPathString()));
+
+			final ObjectId start = repository.resolve(Constants.HEAD);
+			walk.markStart(walk.parseCommit(start));
+
+			RevCommit commit = walk.next();
+			if (commit != null) {
+				return commit.getId().getName();
+			}
+
+			throw new TeamSynchronizerException("Revision cannot be found.");
+
+		} catch (MissingObjectException e) {
+			throw new TeamSynchronizerException(e);
+		} catch (IncorrectObjectTypeException e) {
+			throw new TeamSynchronizerException(e);
+		} catch (IOException e) {
+			throw new TeamSynchronizerException(e);
+		}
 	}
 
 	/**
