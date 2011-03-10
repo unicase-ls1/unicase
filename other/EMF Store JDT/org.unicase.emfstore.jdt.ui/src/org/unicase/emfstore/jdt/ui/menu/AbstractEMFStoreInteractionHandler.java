@@ -87,6 +87,7 @@ public abstract class AbstractEMFStoreInteractionHandler extends AbstractCommanH
 			// project is locally not available - check it out
 			try {
 				Usersession usersession = selectedServerInfo.getLastUsersession();
+				EMFStoreUtil.checkSanity(usersession);
 				projectSpace = EMFStoreUtil.checkout(usersession, selectedProjectInfo);
 
 			} catch (ProjectInfoNotFoundException ex) {

@@ -285,7 +285,7 @@
        <page
              class="org.unicase.emfstore.jdt.ui.preferences.FileExtensionPreferencePage"
              id="EDTFileExtensionPreferencePage"
-             name="EMF Development Toolkit">
+             name="EMFStore TeamProvider">
        </page>
     </extension>
 

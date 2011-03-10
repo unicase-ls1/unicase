@@ -10,6 +10,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 import org.unicase.metamodel.util.ModelUtil;
 
@@ -28,7 +29,8 @@ public abstract class AbstractCommanHandler extends AbstractHandler {
 	protected void refreshUI(IFile file) {
 		// refresh UI
 		try {
-			file.getProject().getFile(".emfstoreconf").refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
+			file.getProject().getFile(ConfigurationManager.EMFSTORECONF)
+				.refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
 			file.getProject().refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
 		} catch (CoreException e) {
 			ModelUtil.logException(e);
