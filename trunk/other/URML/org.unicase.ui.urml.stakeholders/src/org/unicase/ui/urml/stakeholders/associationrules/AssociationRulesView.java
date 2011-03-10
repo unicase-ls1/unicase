@@ -20,8 +20,6 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -50,7 +48,6 @@ public class AssociationRulesView extends ViewPart {
 	private ArrayList<EClass> sortedElementNames;
 	private HashMap<EClass, ArrayList<EClass>> associationMap;
 	private ArrayList<EClass> rowElementReferenceListe;
-	private boolean icon;
 
 	
 	@Override
@@ -183,7 +180,6 @@ public class AssociationRulesView extends ViewPart {
 			@Override
 			public Image getImage(Object element) {
 				if (!hasAssociation(columnClass, (EClass) element) && !hasAssociation((EClass) element, columnClass)) {
-					icon = false;
 					return UNCHECKED;
 				}
 				return CHECKEDDISABLED;

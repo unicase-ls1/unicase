@@ -25,6 +25,9 @@ import org.unicase.ui.urml.UrmlDiagramFilter;
  */
 public class StakeholderDiagramFilter implements UrmlDiagramFilter{
 
+	/**
+	 * The construct.
+	 */
 	public StakeholderDiagramFilter() {
 		// TODO Auto-generated constructor stub
 	}
@@ -39,6 +42,7 @@ public class StakeholderDiagramFilter implements UrmlDiagramFilter{
 			
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List filter(List elements) {
 		StakeholderRole role = StakeholderView.getActiveRole();

@@ -206,6 +206,7 @@ public class MultiReferenceControl extends AbstractControlBuilder {
 	/**
 	 * Refresh (rebuilding) the composite section.
 	 */
+	@SuppressWarnings("deprecation")
 	private void rebuildLinkSection() {
 		final int sizeLimit = 5;
 

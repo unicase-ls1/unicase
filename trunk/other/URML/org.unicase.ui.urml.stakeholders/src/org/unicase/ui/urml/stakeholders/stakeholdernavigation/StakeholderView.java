@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Map.Entry;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -284,9 +283,7 @@ public class StakeholderView extends ViewPart implements Observer {
 		Action a = new Action() {
 			@Override
 			public void run() {
-				setActiveRole(role);
-				label.setText("Active role : " + getActiveRole().getName());
-				txtUser.setText(activeRole.getName());
+				setRoleProperties(role);
 				filterManager.applyFilter(new ViewerFilter() {
 					@Override
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -310,6 +307,12 @@ public class StakeholderView extends ViewPart implements Observer {
 		return a;
 	}
 
+	private void setRoleProperties(final StakeholderRole role) {
+		setActiveRole(role);
+		label.setText("Active role : " + getActiveRole().getName());
+		txtUser.setText(activeRole.getName());
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 	//	ReviewedTracker tracker = (ReviewedTracker) o;
