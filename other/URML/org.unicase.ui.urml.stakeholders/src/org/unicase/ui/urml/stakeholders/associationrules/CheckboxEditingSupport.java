@@ -65,6 +65,9 @@ public class CheckboxEditingSupport extends EditingSupport {
 
 	@Override
 	protected void setValue(final Object element, Object value) {
+		//schreibt ins datenmodel TODO
+		//refresh ruft der label provider noch mal auf, 
+		//dieser muss für jede zelle die info aus dem model lesen TODO
 		if(!rulesView.hasAssociation(columnClass, (EClass) element )&& ! rulesView.hasAssociation((EClass) element, columnClass )){		
 			tableViewerColumn.setLabelProvider(new CellLabelProvider() {
 				
