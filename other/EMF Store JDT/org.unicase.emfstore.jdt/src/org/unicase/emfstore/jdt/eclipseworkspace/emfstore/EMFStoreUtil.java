@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -69,8 +68,8 @@ public final class EMFStoreUtil {
 			}
 
 			// projectID match together - check also if it is the same user name
-			isSame = localProjectSpace.getUsersession().getUsername().equals(
-				serverInfo.getLastUsersession().getUsername())
+			isSame = localProjectSpace.getUsersession().getUsername()
+				.equals(serverInfo.getLastUsersession().getUsername())
 				& isSame;
 			if (!isSame) {
 				continue;
@@ -214,8 +213,12 @@ public final class EMFStoreUtil {
 	 * 
 	 * @param usersession The usersession that has to be verified.
 	 */
-	public static void checkSanity(Usersession usersession) {
-		new SanityCheckCommand(usersession).run(false);
+	public static void checkSanity(final Usersession usersession) {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				new SanityCheckCommand(usersession).run(false);
+			}
+		});
 	}
 
 	/**
@@ -242,14 +245,14 @@ public final class EMFStoreUtil {
 					if (remoteProjectInfo.getProjectId().getId().equals(projectID)) {
 						ProjectSpace projectSpace;
 						if (emfStoreRevision == null) {
-							projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession,
-								remoteProjectInfo);
+							projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+								.checkout(usersession, remoteProjectInfo);
 
 						} else {
 							PrimaryVersionSpec version = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 							version.setIdentifier(emfStoreRevision);
-							projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession,
-								remoteProjectInfo, version);
+							projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+								.checkout(usersession, remoteProjectInfo, version);
 						}
 
 						return projectSpace;
@@ -321,7 +324,7 @@ public final class EMFStoreUtil {
 
 		@Override
 		protected void doRun() {
-			Shell activeShell = PlatformUI.createDisplay().getActiveShell();
+			Shell activeShell = Display.getDefault().getActiveShell();
 
 			try {
 				// usersession.isLoggedIn() is not enough,
@@ -336,15 +339,15 @@ public final class EMFStoreUtil {
 
 					} catch (AccessControlException ex) {
 						if (ex.getMessage().equals("Username or Password not set!")) {
-							LoginDialog loginDialog = new LoginDialog(activeShell, usersession, usersession
-								.getServerInfo());
+							LoginDialog loginDialog = new LoginDialog(activeShell, usersession,
+								usersession.getServerInfo());
 							loginDialog.open();
 						}
 
 					} catch (EmfStoreException ex) {
 						if (ex.getMessage().equals("Server could not be reached.")) {
-							LoginDialog loginDialog = new LoginDialog(activeShell, usersession, usersession
-								.getServerInfo());
+							LoginDialog loginDialog = new LoginDialog(activeShell, usersession,
+								usersession.getServerInfo());
 							loginDialog.open();
 						}
 					}
