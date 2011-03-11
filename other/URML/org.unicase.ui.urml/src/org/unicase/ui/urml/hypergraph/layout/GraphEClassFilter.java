@@ -62,7 +62,7 @@ public class GraphEClassFilter {
 		this(graph);
 		EClass projectEClass = null;
 		for (ECPProject project : projects) {
-			classes.addAll(project.getMetaModelElementContext().getAllModelElementEClasses());
+			classes.addAll(project.getMetaModelElementContext().getAllModelElementEClasses(true));
 			if (projectEClass == null) {
 				// manually collect the class information for project class
 				projectEClass = ((ProjectSpace) project.getRootObject()).getProject().eClass();

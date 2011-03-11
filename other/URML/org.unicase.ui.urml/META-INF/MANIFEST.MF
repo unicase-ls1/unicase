@@ -6,10 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.urml.hypergraph.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.unicase.ui.unicasecommon;bundle-version="1.0.0",
- org.unicase.urml;bundle-version="1.0.0",
- org.unicase.ui.navigatormeeditorbridge;bundle-version="1.0.0",
- org.unicase.diagram;bundle-version="1.0.0"
+ org.unicase.ui.unicasecommon,
+ org.unicase.urml,
+ org.unicase.ui.navigatormeeditorbridge,
+ org.unicase.diagram
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: unicase.org
