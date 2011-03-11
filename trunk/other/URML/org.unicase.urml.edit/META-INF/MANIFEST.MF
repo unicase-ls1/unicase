@@ -28,5 +28,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
- org.unicase.diagram.edit;bundle-version="1.0.0"
+ org.unicase.diagram.edit
 Bundle-ActivationPolicy: lazy
