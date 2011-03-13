@@ -1,42 +1,36 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package library;
 
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Book</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Book</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link library.Book#getAuthor <em>Author</em>}</li>
- *   <li>{@link library.Book#getTitle <em>Title</em>}</li>
- *   <li>{@link library.Book#getPages <em>Pages</em>}</li>
- *   <li>{@link library.Book#getCategory <em>Category</em>}</li>
+ * <li>{@link library.Book#getAuthor <em>Author</em>}</li>
+ * <li>{@link library.Book#getTitle <em>Title</em>}</li>
+ * <li>{@link library.Book#getPages <em>Pages</em>}</li>
+ * <li>{@link library.Book#getCategory <em>Category</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see library.LibraryPackage#getBook()
  * @model
  * @generated
  */
 public interface Book extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Author</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link library.Writer#getBooks <em>Books</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Author</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link library.Writer#getBooks <em>Books</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Author</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Author</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Author</em>' reference.
 	 * @see #setAuthor(Writer)
 	 * @see library.LibraryPackage#getBook_Author()
@@ -47,9 +41,9 @@ public interface Book extends EObject {
 	Writer getAuthor();
 
 	/**
-	 * Sets the value of the '{@link library.Book#getAuthor <em>Author</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link library.Book#getAuthor <em>Author</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Author</em>' reference.
 	 * @see #getAuthor()
 	 * @generated
@@ -57,13 +51,13 @@ public interface Book extends EObject {
 	void setAuthor(Writer value);
 
 	/**
-	 * Returns the value of the '<em><b>Title</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Title</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Title</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Title</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Title</em>' attribute.
 	 * @see #setTitle(String)
 	 * @see library.LibraryPackage#getBook_Title()
@@ -73,9 +67,9 @@ public interface Book extends EObject {
 	String getTitle();
 
 	/**
-	 * Sets the value of the '{@link library.Book#getTitle <em>Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link library.Book#getTitle <em>Title</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Title</em>' attribute.
 	 * @see #getTitle()
 	 * @generated
@@ -83,13 +77,13 @@ public interface Book extends EObject {
 	void setTitle(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Pages</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pages</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pages</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Pages</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Pages</em>' attribute.
 	 * @see #setPages(int)
 	 * @see library.LibraryPackage#getBook_Pages()
@@ -99,9 +93,9 @@ public interface Book extends EObject {
 	int getPages();
 
 	/**
-	 * Sets the value of the '{@link library.Book#getPages <em>Pages</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link library.Book#getPages <em>Pages</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Pages</em>' attribute.
 	 * @see #getPages()
 	 * @generated
@@ -109,14 +103,14 @@ public interface Book extends EObject {
 	void setPages(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Category</b></em>' attribute.
-	 * The literals are from the enumeration {@link library.BookCategory}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Category</b></em>' attribute. The literals are from the enumeration
+	 * {@link library.BookCategory}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Category</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Category</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Category</em>' attribute.
 	 * @see library.BookCategory
 	 * @see #setCategory(BookCategory)
@@ -127,9 +121,9 @@ public interface Book extends EObject {
 	BookCategory getCategory();
 
 	/**
-	 * Sets the value of the '{@link library.Book#getCategory <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link library.Book#getCategory <em>Category</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Category</em>' attribute.
 	 * @see library.BookCategory
 	 * @see #getCategory()

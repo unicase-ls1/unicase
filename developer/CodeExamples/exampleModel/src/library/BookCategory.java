@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package library;
 
@@ -13,19 +10,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Book Category</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Book Category</b></em>', and
+ * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see library.LibraryPackage#getBookCategory()
  * @model
  * @generated
  */
 public enum BookCategory implements Enumerator {
 	/**
-	 * The '<em><b>Mystery</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Mystery</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #MYSTERY_VALUE
 	 * @generated
 	 * @ordered
@@ -33,9 +28,8 @@ public enum BookCategory implements Enumerator {
 	MYSTERY(0, "Mystery", "Mystery"),
 
 	/**
-	 * The '<em><b>Science Fiction</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Science Fiction</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #SCIENCE_FICTION_VALUE
 	 * @generated
 	 * @ordered
@@ -43,9 +37,8 @@ public enum BookCategory implements Enumerator {
 	SCIENCE_FICTION(1, "ScienceFiction", "ScienceFiction"),
 
 	/**
-	 * The '<em><b>Biography</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Biography</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #BIOGRAPHY_VALUE
 	 * @generated
 	 * @ordered
@@ -53,13 +46,13 @@ public enum BookCategory implements Enumerator {
 	BIOGRAPHY(2, "Biography", "Biography");
 
 	/**
-	 * The '<em><b>Mystery</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Mystery</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Mystery</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Mystery</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #MYSTERY
 	 * @model name="Mystery"
 	 * @generated
@@ -68,13 +61,13 @@ public enum BookCategory implements Enumerator {
 	public static final int MYSTERY_VALUE = 0;
 
 	/**
-	 * The '<em><b>Science Fiction</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Science Fiction</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Science Fiction</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Science Fiction</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SCIENCE_FICTION
 	 * @model name="ScienceFiction"
 	 * @generated
@@ -83,13 +76,13 @@ public enum BookCategory implements Enumerator {
 	public static final int SCIENCE_FICTION_VALUE = 1;
 
 	/**
-	 * The '<em><b>Biography</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Biography</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Biography</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Biography</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #BIOGRAPHY
 	 * @model name="Biography"
 	 * @generated
@@ -98,30 +91,24 @@ public enum BookCategory implements Enumerator {
 	public static final int BIOGRAPHY_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Book Category</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>Book Category</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final BookCategory[] VALUES_ARRAY =
-		new BookCategory[] {
-			MYSTERY,
-			SCIENCE_FICTION,
-			BIOGRAPHY,
-		};
+	private static final BookCategory[] VALUES_ARRAY = new BookCategory[] { MYSTERY, SCIENCE_FICTION, BIOGRAPHY, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Book Category</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Book Category</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<BookCategory> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Book Category</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Book Category</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BookCategory get(String literal) {
@@ -135,9 +122,9 @@ public enum BookCategory implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Book Category</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Book Category</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BookCategory getByName(String name) {
@@ -151,45 +138,47 @@ public enum BookCategory implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Book Category</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Book Category</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BookCategory get(int value) {
 		switch (value) {
-			case MYSTERY_VALUE: return MYSTERY;
-			case SCIENCE_FICTION_VALUE: return SCIENCE_FICTION;
-			case BIOGRAPHY_VALUE: return BIOGRAPHY;
+		case MYSTERY_VALUE:
+			return MYSTERY;
+		case SCIENCE_FICTION_VALUE:
+			return SCIENCE_FICTION;
+		case BIOGRAPHY_VALUE:
+			return BIOGRAPHY;
 		}
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private BookCategory(int value, String name, String literal) {
@@ -199,41 +188,41 @@ public enum BookCategory implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
-} //BookCategory
+
+} // BookCategory

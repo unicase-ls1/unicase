@@ -11,33 +11,26 @@ import org.eclipse.emf.validation.IValidationContext;
 
 public class BookValidation extends AbstractModelConstraint {
 
-
-	 
-
-	
-
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		EObject eObj = ctx.getTarget();
 
-		   EMFEventType eType = ctx.getEventType();
+		EMFEventType eType = ctx.getEventType();
 
-		 
+		if (eType == EMFEventType.NULL) {
 
-		   if (eType == EMFEventType.NULL) {
+			if (eObj instanceof Book) {
+				Book book = (Book) eObj;
+				if (book.getTitle() == null || book.getTitle().equals("")) {
+					ctx.addResult(LibraryPackage.eINSTANCE.getBook_Title());
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() });
+				}
+			}
 
-		     if (eObj instanceof Book) {
-		    	 Book book = (Book) eObj;
-		       if(book.getTitle()==null||book.getTitle().equals("")){
-		    	   ctx.addResult(LibraryPackage.eINSTANCE.getBook_Title());
-		           return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() });}
-		       }
+		}
 
-		   }
-
-		   return ctx.createSuccessStatus();
+		return ctx.createSuccessStatus();
 
 	}
 
-	
 }
