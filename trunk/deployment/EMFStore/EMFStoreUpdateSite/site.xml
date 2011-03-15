@@ -52,6 +52,9 @@
    <feature url="features/org.unicase.ecp.all_0.7.0.jar" id="org.unicase.ecp.all" version="0.7.0">
       <category name="org.unicase.ecp"/>
    </feature>
+   <feature url="features/org.unicase.emfstore.transaction.feature_0.7.0.jar" id="org.unicase.emfstore.transaction.feature" version="0.7.0">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
    <category-def name="org.unicase.emfstore.core" label="EMFStore Core Features">
       <description>
          Core Features of EMFStore, a model repository for EMF.
