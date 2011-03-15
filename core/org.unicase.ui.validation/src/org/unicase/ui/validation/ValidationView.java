@@ -424,7 +424,7 @@ public class ValidationView extends ViewPart {
 								EObject target = status.getTarget();
 								EcoreUtil.delete(target);
 							}
-						}.run();
+						}.run(false);
 					}
 					removeAllTableItemsForEObject(status);
 				}
