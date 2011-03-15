@@ -6,9 +6,6 @@
 package org.unicase.workspace.util;
 
 import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -16,51 +13,76 @@ import org.unicase.workspace.Configuration;
  * 
  * @author wesendon
  */
-public abstract class AbstractUnicaseCommand {
+public abstract class AbstractUnicaseCommand extends AbstractCommand {
 
 	private RuntimeException runtimeException;
 
 	/**
-	 * Create a command to run the command body.
+	 * Get the runtime exception that occurred during command execution. Returns null if there was no exception
 	 * 
-	 * @return the command
+	 * @return the exception or null
 	 */
-	protected Command createCommand() {
-		if (Configuration.getEditingDomain() instanceof TransactionalEditingDomain) {
-			return new RecordingCommand((TransactionalEditingDomain) Configuration.getEditingDomain()) {
-				@Override
-				protected void doExecute() {
-					runCommandBody();
-				}
-			};
-		} else {
-			// TODO DOD - think of using Changecommand mit Changerecorder
-			return new AbstractCommand() {
-				public void redo() {
-					throw new UnsupportedOperationException();
-				}
-
-				public void execute() {
-					runCommandBody();
-				}
-
-				@Override
-				protected boolean prepare() {
-					return true;
-				}
-			};
-		}
+	public RuntimeException getRuntimeException() {
+		return runtimeException;
 	}
 
-	private void runCommandBody() {
+	private boolean ignoreExceptions;
+
+	/**
+	 * Return whether the command should ignore exceptions during command execution.
+	 * 
+	 * @return true, if exceptions should be ignored.
+	 */
+	public boolean shouldIgnoreExceptions() {
+		return ignoreExceptions;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
+	 */
+	@Override
+	public boolean canUndo() {
+		// return false as default, override method to implement undo.
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#execute()
+	 */
+	public void execute() {
 		try {
 			commandBody();
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
+			// record exception
 			runtimeException = e;
 			throw e;
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
+	 */
+	@Override
+	protected boolean prepare() {
+		// return true as default, override method to implement preparation.
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#redo()
+	 */
+	public void redo() {
+		throw new UnsupportedOperationException("Redo is not implemented in this command!");
 	}
 
 	/**
@@ -74,12 +96,8 @@ public abstract class AbstractUnicaseCommand {
 	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
 	 */
 	protected void aRun(boolean ignoreExceptions) {
-		runtimeException = null;
+		this.ignoreExceptions = ignoreExceptions;
+		Configuration.getEditingDomain().getCommandStack().execute(this);
 
-		Configuration.getEditingDomain().getCommandStack().execute(createCommand());
-
-		if (!ignoreExceptions && runtimeException != null) {
-			throw runtimeException;
-		}
 	}
 }
