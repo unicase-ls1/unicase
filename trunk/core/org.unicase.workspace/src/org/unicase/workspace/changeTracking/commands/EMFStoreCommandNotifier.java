@@ -33,7 +33,7 @@ public class EMFStoreCommandNotifier {
 	 * 
 	 * @param command the command
 	 */
-	protected void notifiyListenersAboutStart(Command command) {
+	public void notifiyListenersAboutStart(Command command) {
 		for (CommandObserver commandObservers : this.commandObservers) {
 			try {
 				commandObservers.commandStarted(command);
@@ -51,7 +51,7 @@ public class EMFStoreCommandNotifier {
 	 * @param command the command
 	 * @param exception the exception that triggered the failure
 	 */
-	protected void notifiyListenersAboutCommandFailed(Command command, Exception exception) {
+	public void notifiyListenersAboutCommandFailed(Command command, Exception exception) {
 		for (CommandObserver commandObservers : this.commandObservers) {
 			try {
 				commandObservers.commandFailed(command, exception);
@@ -68,7 +68,7 @@ public class EMFStoreCommandNotifier {
 	 * 
 	 * @param command the command
 	 */
-	protected void notifiyListenersAboutCommandCompleted(Command command) {
+	public void notifiyListenersAboutCommandCompleted(Command command) {
 		for (CommandObserver commandObservers : this.commandObservers) {
 			try {
 				commandObservers.commandCompleted(command);
