@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -29,14 +27,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.SingletonIdResolver;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeNotifier;
 import org.unicase.metamodel.util.ProjectChangeObserver;
@@ -89,8 +86,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private ProjectChangeNotifier changeNotifier;
 
-	private Set<SingletonIdResolver> singletonIdResolvers;
-
 	/**
 	 * Will be used to cache all model elements of a project in order to avoid fetching those multiple times when trying
 	 * to retrieve a model element ID.
@@ -117,20 +112,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		newEObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		eObjectsCache = new HashSet<EObject>();
 		idToEObjectCache = new HashMap<ModelElementId, EObject>();
-
-		// collect singleton ID resolvers
-		singletonIdResolvers = new HashSet<SingletonIdResolver>();
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.metamodel.singletonidresolver");
-		for (IConfigurationElement extension : config) {
-			SingletonIdResolver resolver;
-			try {
-				resolver = (SingletonIdResolver) extension.createExecutableExtension("class");
-				singletonIdResolvers.add(resolver);
-			} catch (CoreException e) {
-				ModelUtil.logWarning("Couldn't instantiate Singleton ID resolver:" + e.getMessage());
-			}
-		}
 	}
 
 	// end of custom code
@@ -609,20 +590,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		EObject eObject = getIdToEObjectCache().get(modelElementId);
 
-		if (eObject != null) {
-			return eObject;
-		}
-
-		// lookup singleton ID resolvers
-		for (SingletonIdResolver resolver : singletonIdResolvers) {
-			eObject = resolver.getSingleton(modelElementId);
-
-			if (eObject != null) {
-				return eObject;
-			}
-		}
-
-		return null;
+		return eObject != null ? eObject : ModelUtil.getSingleton(modelElementId);
 	}
 
 	/**
@@ -779,18 +747,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		ModelElementId id = eObjectToIdCache.get(eObject);
 
-		if (id != null) {
-			return ModelUtil.clone(id);
-		}
-
-		for (SingletonIdResolver resolver : singletonIdResolvers) {
-			ModelElementId singletonId = resolver.getSingletonModelElementId(eObject);
-			if (singletonId != null) {
-				return ModelUtil.clone(singletonId);
-			}
-		}
-
-		return null;
+		return id != null ? ModelUtil.clone(id) : ModelUtil.getSingletonModelElementId(eObject);
 	}
 
 	/**
@@ -800,20 +757,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @return the {@link ModelElementId}
 	 */
 	public ModelElementId getDeletedModelElementId(EObject deletedModelElement) {
+
 		ModelElementId id = deletedEObjectToIdMap.get(deletedModelElement);
 
-		if (id != null) {
-			return ModelUtil.clone(id);
-		}
-
-		for (SingletonIdResolver resolver : singletonIdResolvers) {
-			id = resolver.getSingletonModelElementId(deletedModelElement);
-			if (id != null) {
-				return ModelUtil.clone(id);
-			}
-		}
-
-		return null;
+		return id != null ? ModelUtil.clone(id) : ModelUtil.getSingletonModelElementId(deletedModelElement);
 	}
 
 	/**
@@ -829,16 +776,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 		}
 
-		// lookup singleton ID resolvers
-		for (SingletonIdResolver resolver : singletonIdResolvers) {
-			EObject eObject = resolver.getSingleton(modelElementId);
-
-			if (eObject != null) {
-				return eObject;
-			}
-		}
-
-		return null;
+		return ModelUtil.getSingleton(modelElementId);
 	}
 
 	/**
