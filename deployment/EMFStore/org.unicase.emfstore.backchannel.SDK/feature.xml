@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.backchannel.SDK"
       label="EMFStore Backchannel SDK"
-      version="0.7.0"
+      version="0.7.1"
       provider-name="unicase.org">
 
    <description url="http://www.example.com/description">

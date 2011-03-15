@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.transaction.feature"
       label="EMFStore Transaction Support"
-      version="0.7.0"
+      version="0.7.1"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">

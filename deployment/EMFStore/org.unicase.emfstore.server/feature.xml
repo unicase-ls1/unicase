@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.server"
       label="EMFStore Server Feature"
-      version="0.7.0"
+      version="0.7.1"
       provider-name="unicase.org"
       plugin="org.unicase.emfstore.branding">
 
