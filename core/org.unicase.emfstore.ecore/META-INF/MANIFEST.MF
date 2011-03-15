@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ecore
 Bundle-SymbolicName: org.unicase.emfstore.ecore;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.1
 Bundle-Activator: org.unicase.emfstore.ecore.Activator
 Require-Bundle: org.unicase.metamodel
 Bundle-ActivationPolicy: lazy

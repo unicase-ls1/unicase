@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Cope Migration Integration
 Bundle-SymbolicName: org.unicase.emfstore.migration.cope;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.1
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.emfstore.migration,
