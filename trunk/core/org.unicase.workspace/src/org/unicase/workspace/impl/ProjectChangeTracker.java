@@ -714,8 +714,11 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 		}
 		allDeletedElementsIds.add(((ProjectImpl) projectSpace.getProject()).getDeletedModelElementId(deletedElement));
 
-		List<AbstractOperation> newOperations = operations.subList(currentOperationListSize, operations.size());
 		List<ReferenceOperation> referenceOperationsForDelete = new ArrayList<ReferenceOperation>();
+		if (currentOperationListSize >= operations.size()) {
+			return referenceOperationsForDelete;
+		}
+		List<AbstractOperation> newOperations = operations.subList(currentOperationListSize, operations.size());
 		for (int i = newOperations.size() - 1; i >= 0; i--) {
 			AbstractOperation operation = newOperations.get(i);
 			if (belongsToDelete(operation, allDeletedElementsIds)) {
