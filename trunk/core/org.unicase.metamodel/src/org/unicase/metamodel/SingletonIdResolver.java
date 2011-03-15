@@ -18,7 +18,8 @@ public interface SingletonIdResolver {
 	 * Returns the ID for the given singleton {@link EObject}.
 	 * 
 	 * @param singleton the singleton {@link EObject} whose {@link ModelElementId} should get retrieved
-	 * @return the {@link ModelElementId} of the the singleton object
+	 * @return the {@link ModelElementId} of the the singleton object or <code>null</code> if the given {@link EObject}
+	 *         is not a singleton or if it is <code>null</code>
 	 */
 	ModelElementId getSingletonModelElementId(EObject singleton);
 
@@ -29,4 +30,12 @@ public interface SingletonIdResolver {
 	 * @return the singleton {@link EObject} that belongs to the given {@link ModelElementId}
 	 */
 	EObject getSingleton(ModelElementId singletonId);
+
+	/**
+	 * Determines whether the given {@link EObject} is a singleton.
+	 * 
+	 * @param eObject the EObject to check
+	 * @return true, iff the given {@link EObject} is a singleton
+	 */
+	boolean isSingleton(EObject eObject);
 }

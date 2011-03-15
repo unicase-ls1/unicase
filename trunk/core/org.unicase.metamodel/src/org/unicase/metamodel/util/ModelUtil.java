@@ -15,10 +15,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
@@ -30,10 +31,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -44,6 +45,7 @@ import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.SingletonIdResolver;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.util.UnicaseUtil;
 
@@ -68,6 +70,11 @@ public final class ModelUtil {
 	 * Contains the canonical names of classes which will be ignored.
 	 */
 	private static Set<String> ignoredDataTypes;
+
+	/**
+	 * Contains all ID resolvers for singleton datatypes.
+	 */
+	private static Set<SingletonIdResolver> singletonIdResolvers;
 
 	/**
 	 * Private constructor.
@@ -120,12 +127,12 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Converts an EObject to a String.
+	 * Converts an {@link EObject} to a {@link String}.
 	 * 
-	 * @param object the eObject
-	 * @param overrideContainmentCheck if true, no containment check
-	 * @param overrideHrefCheck checks whether there is a href in the serialized text
-	 * @return String representation of the EObject
+	 * @param object the {@link EObject}
+	 * @param overrideContainmentCheck if true, no containment check is performed
+	 * @param overrideHrefCheck checks whether there is a <code>href</code> in the serialized text
+	 * @return String representation of the {@link EObject}
 	 * @throws SerializationException if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object, boolean overrideContainmentCheck, boolean overrideHrefCheck)
@@ -212,11 +219,11 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Converts a String to an EObject. Note: String must be the result of
-	 * {@link SerializationUtil#eObjectToString(EObject)}
+	 * Converts a {@link String} to an {@link EObject}. <b>Note</b>: {@link String} must be the result of
+	 * {@link ModelUtil#eObjectToString(EObject)}
 	 * 
-	 * @param object the String representation of the EObject
-	 * @return the deserialized EObject
+	 * @param object the {@link String} representation of the {@link EObject}
+	 * @return the deserialized {@link EObject}
 	 * @throws SerializationException if deserialization fails
 	 */
 	public static EObject stringToEObject(String object) throws SerializationException {
@@ -791,9 +798,23 @@ public final class ModelUtil {
 	 * @return a set of contained model elements
 	 */
 	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments) {
+		return getAllContainedModelElements(modelElement, includeTransientContainments, false);
+	}
+
+	/**
+	 * Get all contained elements of a given element.
+	 * 
+	 * @param modelElement the model element
+	 * @param includeTransientContainments true if transient containments should be included in the result
+	 * @param ignoreSingletonDatatypes whether to ignore singleton datatypes like, for example, EString
+	 * @return a set of contained model elements
+	 */
+	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments,
+		boolean ignoreSingletonDatatypes) {
 		Set<EObject> result = new HashSet<EObject>();
 		for (EObject containee : modelElement.eContents()) {
-			if (!containee.eContainingFeature().isTransient() || includeTransientContainments) {
+			if (!isSingleton(containee) || !containee.eContainingFeature().isTransient()
+				|| includeTransientContainments) {
 				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
 				result.add(containee);
 				result.addAll(elements);
@@ -974,8 +995,8 @@ public final class ModelUtil {
 				}
 				// single references
 				if (!reference.isMany()) {
-					Object referencedElement = currentElement.eGet(reference);
-					if (includeCrossReferencesToChildren || !allModelElements.contains(referencedElement)) {
+					EObject referencedElement = (EObject) currentElement.eGet(reference);
+					if (shouldBeDeleted(includeCrossReferencesToChildren, allModelElements, referencedElement)) {
 						currentElement.eUnset(reference);
 					}
 				}
@@ -985,11 +1006,100 @@ public final class ModelUtil {
 					List<EObject> referencedElements = (List<EObject>) currentElement.eGet(reference);
 					Set<EObject> referencedElementsToRemove = new HashSet<EObject>();
 					for (EObject referencedElement : referencedElements) {
-						if (includeCrossReferencesToChildren || !allModelElements.contains(referencedElement)) {
+						if (shouldBeDeleted(includeCrossReferencesToChildren, allModelElements, referencedElement)) {
 							referencedElementsToRemove.add(referencedElement);
 						}
 					}
 					referencedElements.removeAll(referencedElementsToRemove);
+				}
+			}
+		}
+	}
+
+	private static boolean shouldBeDeleted(boolean includeCrossReferencesToChildren, Set<EObject> allModelElements,
+		EObject referencedElement) {
+
+		if (referencedElement == null) {
+			return false;
+		}
+
+		return (!ModelUtil.isSingleton(referencedElement) && !ModelUtil.isIgnoredDatatype(referencedElement))
+			&& (includeCrossReferencesToChildren || !allModelElements.contains(referencedElement));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.SingletonIdResolver#getSingleton(org.unicase.metamodel.ModelElementId)
+	 */
+	public static EObject getSingleton(ModelElementId singletonId) {
+
+		initSingletonIdResolvers();
+
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			EObject singleton = resolver.getSingleton(singletonId);
+			if (singleton != null) {
+				return singleton;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.SingletonIdResolver#getSingletonModelElementId(org.eclipse.emf.ecore.EObject)
+	 */
+	public static ModelElementId getSingletonModelElementId(EObject singleton) {
+
+		initSingletonIdResolvers();
+
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			ModelElementId id = resolver.getSingletonModelElementId(singleton);
+			if (id != null) {
+				return clone(id);
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.metamodel.SingletonIdResolver#isSingleton(org.eclipse.emf.ecore.EObject)
+	 */
+	public static boolean isSingleton(EObject eObject) {
+
+		initSingletonIdResolvers();
+
+		for (SingletonIdResolver resolver : singletonIdResolvers) {
+			if (resolver.isSingleton(eObject)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Initializes all available {@link SingletonIdResolver}.
+	 */
+	private static void initSingletonIdResolvers() {
+		if (singletonIdResolvers == null) {
+			// collect singleton ID resolvers
+			singletonIdResolvers = new HashSet<SingletonIdResolver>();
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.metamodel.singletonidresolver");
+
+			for (IConfigurationElement extension : config) {
+				SingletonIdResolver resolver;
+				try {
+					resolver = (SingletonIdResolver) extension.createExecutableExtension("class");
+					singletonIdResolvers.add(resolver);
+				} catch (CoreException e) {
+					ModelUtil.logWarning("Couldn't instantiate Singleton ID resolver:" + e.getMessage());
 				}
 			}
 		}
