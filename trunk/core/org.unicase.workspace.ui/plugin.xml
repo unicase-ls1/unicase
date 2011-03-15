@@ -195,12 +195,7 @@
            id="org.unicase.ui.stem.ShowHistory"
            name="Show History">
      </command>
-     <command
-           defaultHandler="org.unicase.workspace.ui.commands.ValidateHandler"
-           id="org.unicase.workspace.ui.validate"
-           name="Validate">
-     </command>
-          <command
+      <command
            defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.AddServerHandler"
            id="org.unicase.workspace.ui.repositorybrowser.AddServer"
            name="AddServer">
@@ -476,27 +471,6 @@
                  <count
                        value="1">
                  </count>
-              </and>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.workspace.ui.validate"
-              icon="icons/validation.png"
-              label="Validate"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <and>
-                 <count
-                       value="1">
-                 </count>
-                 <iterate
-                       ifEmpty="false"
-                       operator="and">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
               </and>
            </visibleWhen>
         </command>
@@ -1220,12 +1194,6 @@
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+E">
-        </key>
-        <key
-              commandId="org.unicase.workspace.ui.validate"
-              contextId="org.eclipse.ui.contexts.window"
-              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+V">
         </key>
      </extension>
      <extension
