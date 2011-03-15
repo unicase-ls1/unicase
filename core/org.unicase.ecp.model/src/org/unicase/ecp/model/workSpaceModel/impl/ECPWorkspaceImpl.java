@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
@@ -233,7 +232,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	}
 
-	public void setEditingDomain(TransactionalEditingDomain editingDomain) {
+	public void setEditingDomain(EditingDomain editingDomain) {
 		this.editingDomain = editingDomain;
 
 	}

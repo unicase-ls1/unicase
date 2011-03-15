@@ -8,7 +8,6 @@ package org.unicase.ecp.model.workSpaceModel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ECP Workspace</b></em>'. <!-- end-user-doc -->
@@ -62,18 +61,18 @@ public interface ECPWorkspace extends EObject {
 	public void setActiveModelelement(EObject eobject);
 
 	/**
-	 * Returns the transaction editing domain.
+	 * Returns the editing domain.
 	 * 
 	 * @return the editing domain
 	 */
 	public EditingDomain getEditingDomain();
 
 	/**
-	 * Sets the transaction editing domain.
+	 * Sets the editing domain.
 	 * 
 	 * @param editingDomain the editing domain
 	 */
-	public void setEditingDomain(TransactionalEditingDomain editingDomain);
+	public void setEditingDomain(EditingDomain editingDomain);
 
 	/**
 	 * Checks if the eobject is a root object in this workspace. Root objects are not the ECPProjects, but the wrapper
