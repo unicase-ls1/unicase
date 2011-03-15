@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,6 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -157,6 +159,9 @@ public final class ModelUtil {
 			if (res instanceof XMIResource) {
 				XMIResource xmiRes = (XMIResource) res;
 				for (ModelElementId modelElementId : project.getAllModelElementIds()) {
+					if (isIgnoredDatatype(project.getModelElement(modelElementId))) {
+						continue;
+					}
 					xmiRes.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
 				}
 			}
@@ -255,6 +260,16 @@ public final class ModelUtil {
 					id = MetamodelFactory.eINSTANCE.createModelElementId().getId();
 				} else {
 					id = xmiRes.getID(me);
+				}
+
+				// EM: temporary hack to support serialization of EAnnotations, see
+				// ProjectChangeTracker#createCreateDeleteOperation
+				if (me instanceof EAnnotation) {
+					try {
+						((EAnnotation) me).setSource(URLDecoder.decode(((EAnnotation) me).getSource(), "UTF-8"));
+					} catch (UnsupportedEncodingException e) {
+						ModelUtil.logException(e);
+					}
 				}
 
 				if (id == null) {
