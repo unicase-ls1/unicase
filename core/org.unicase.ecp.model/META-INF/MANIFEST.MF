@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Model
 Bundle-SymbolicName: org.unicase.ecp.model;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.1
 Bundle-Activator: org.unicase.ecp.model.Activator
 Require-Bundle: org.unicase.ui.util;visibility:=reexport
 Bundle-ActivationPolicy: lazy
