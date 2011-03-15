@@ -36,6 +36,15 @@ import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
  * @generated
  */
 public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public EObject getRootContainer() {
+		//default implementation returns root object
+		return getRootObject();
+	}
+
 	/**
 	 * The cached value of the '{@link #getRootObject() <em>Root Object</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
