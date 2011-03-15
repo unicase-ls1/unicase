@@ -13,19 +13,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>ECP Project</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>ECP Project</b></em>'.
  * 
  * @implements ECPModelelementContext <!-- end-user-doc -->
  *             <p>
  *             The following features are supported:
  *             <ul>
  *             <li>
- *             {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getWorkspace
- *             <em>Workspace</em>}</li>
+ *             {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}</li>
  *             <li>
- *             {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getRootObject
- *             <em>Root Object</em>}</li>
+ *             {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}</li>
  *             </ul>
  *             </p>
  * @see org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage#getECPProject()
@@ -35,13 +32,12 @@ import org.unicase.ecp.model.ECPModelelementContext;
 public interface ECPProject extends EObject, ECPModelelementContext {
 
 	/**
-	 * Returns the value of the '<em><b>Workspace</b></em>' container reference.
-	 * It is bidirectional and its opposite is '
-	 * {@link org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getProjects
-	 * <em>Projects</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Workspace</b></em>' container reference. It is bidirectional and its opposite is
+	 * ' {@link org.unicase.ecp.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}'. <!-- begin-user-doc
+	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Workspace</em>' container reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Workspace</em>' container reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -55,13 +51,10 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	ECPWorkspace getWorkspace();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getWorkspace
-	 * <em>Workspace</em>} ' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the ' {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>} '
+	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Workspace</em>' container reference.
+	 * @param value the new value of the '<em>Workspace</em>' container reference.
 	 * @see #getWorkspace()
 	 * @generated
 	 */
@@ -70,18 +63,15 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	/**
 	 * Checks whether an EObject is contained in the project.
 	 * 
-	 * @param eObject
-	 *            EObject
+	 * @param eObject EObject
 	 * @return true if is contained
 	 * @generated not
 	 */
 	boolean contains(EObject eObject);
 
 	/**
-	 * Returns all model elements contained in the project. Don't add elements
-	 * to this collection. Instead use {@link #addModelElementToRoot(EObject)}
-	 * or attach it as a child of an element of this collection.
-	 * 
+	 * Returns all model elements contained in the project. Don't add elements to this collection. Instead use
+	 * {@link #addModelElementToRoot(EObject)} or attach it as a child of an element of this collection.
 	 * 
 	 * @return all model elements
 	 * @generated not
@@ -89,28 +79,22 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	Collection<EObject> getAllModelElements();
 
 	/**
-	 * Returns all elements contained in the project that have the specified
-	 * class type or one of its subtypes.
+	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
 	 * 
-	 * @param clazz
-	 *            specified class type
-	 * @param basicEList
-	 *            list containing the results
-	 * @return resulting list (is the same as the basicEList parameter, API will
-	 *         be changed)
+	 * @param clazz specified class type
+	 * @param basicEList list containing the results
+	 * @return resulting list (is the same as the basicEList parameter, API will be changed)
 	 * @generated not
 	 */
 	// TODO: encapsulate 2nd parameter in the API
-	Collection<EObject> getAllModelElementsbyClass(EClass clazz,
-			BasicEList<EObject> basicEList);
+	Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList);
 
 	void dispose();
 
 	/**
 	 * Allows to add an {@link ECPProjectListener}.
 	 * 
-	 * @param listener
-	 *            listener
+	 * @param listener listener
 	 * @generated not
 	 */
 	void addECPProjectListener(ECPProjectListener listener);
@@ -118,8 +102,7 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	/**
 	 * Allows to remove an {@link ECPProjectListener}.
 	 * 
-	 * @param listener
-	 *            listener
+	 * @param listener listener
 	 * @generated not
 	 */
 	void removeECPProjectListener(ECPProjectListener listener);
@@ -146,8 +129,8 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	void modelelementDeleted(EObject eobject);
 
 	/**
-	 * Lets you add an element to the RootObject. This method is necessary since
-	 * you don't know which feature of the RootObject to use.
+	 * Lets you add an element to the RootObject. This method is necessary since you don't know which feature of the
+	 * RootObject to use.
 	 * 
 	 * @param eObject
 	 * @generated not
@@ -155,21 +138,25 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	void addModelElementToRoot(EObject eObject);
 
 	/**
-	 * Returns the root object of the model, which is visible to the user. In
-	 * general it is some sort of project.
+	 * Returns the root object of the model, which is visible to the user. In general it is some sort of project.
 	 * 
 	 * @return eobject
 	 */
 	EObject getRootObject();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getRootObject
-	 * <em>Root Object</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns the root container of all EObjects contained in the project. This can but does not need to be identical
+	 * with the root object return by getRootObject().
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Root Object</em>' reference.
+	 * @return
+	 */
+	EObject getRootContainer();
+
+	/**
+	 * Sets the value of the ' {@link org.unicase.ecp.model.workSpaceModel.ECPProject#getRootObject
+	 * <em>Root Object</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Root Object</em>' reference.
 	 * @see #getRootObject()
 	 * @generated
 	 */
