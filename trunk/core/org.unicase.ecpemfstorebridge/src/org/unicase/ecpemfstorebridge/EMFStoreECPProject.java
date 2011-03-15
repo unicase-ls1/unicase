@@ -31,6 +31,11 @@ import org.unicase.workspace.observers.SimpleOperationListener;
  */
 public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, ProjectChangeObserver {
 
+	@Override
+	public EObject getRootContainer() {
+		return projectSpace.getProject();
+	}
+
 	private final ProjectSpace projectSpace;
 	private SimpleOperationListener simpleOperationListener;
 
