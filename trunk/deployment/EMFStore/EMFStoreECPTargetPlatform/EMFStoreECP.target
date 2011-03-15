@@ -4,12 +4,12 @@
 <target name="EMFStoreECP">
 <locations>
 <location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
-<unit id="EMFStoreECPTargetPlatform.feature.group" version="0.7.0"/>
-<repository location="http://unicase.googlecode.com/svn/updatesite/EMFStoreECPTargetPlatform"/>
-</location>
-<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
 <unit id="org.unicase.target.deltapack361.feature.group" version="1.0.0.qualifier"/>
 <repository location="https://unicase.googlecode.com/svn/updatesite/DeltaPack"/>
+</location>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="EMFStoreECPTargetPlatform.feature.group" version="0.7.0"/>
+<repository location="https://unicase.googlecode.com/svn/updatesite/EMFStoreECPTargetPlatform"/>
 </location>
 </locations>
 </target>
