@@ -6,6 +6,8 @@
 package org.unicase.workspace.impl;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,6 +25,7 @@ import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -482,8 +485,24 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 		for (int i = 0; i < allContainedModelElements.size(); i++) {
 			EObject child = allContainedModelElements.get(i);
+
+			if (ModelUtil.isIgnoredDatatype(child)) {
+				continue;
+			}
+
 			EObject copiedChild = copiedAllContainedModelElements.get(i);
 			ModelElementId childId = projectSpace.getProject().getModelElementId(child);
+
+			// EM: temporary hack to support serialization of EAnnotations
+			if (copiedChild instanceof EAnnotation) {
+				try {
+					((EAnnotation) copiedChild).setSource(URLEncoder.encode(((EAnnotation) copiedChild).getSource(),
+						"UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					ModelUtil.logException(e);
+				}
+			}
+
 			((CreateDeleteOperationImpl) createDeleteOperation).getEObjectToIdMap().put(copiedChild, childId);
 		}
 
