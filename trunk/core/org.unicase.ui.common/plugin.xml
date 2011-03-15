@@ -159,14 +159,5 @@
           sequence="Ctrl+Delete">
     </key>
  </extension>
-    <extension
-         point="org.eclipse.emf.validation.constraintBindings">
-      <clientContext
-            id="context">
-         <selector
-               class="org.unicase.ui.util.ValidationClientSelector">
-         </selector>
-      </clientContext>
-   </extension>
 </plugin>
 
