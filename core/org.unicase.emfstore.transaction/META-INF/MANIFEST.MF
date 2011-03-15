@@ -6,4 +6,4 @@ Bundle-Version: 0.7.0
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.unicase.workspace,
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction;visibility:=reexport
