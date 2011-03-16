@@ -123,7 +123,7 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 		Collection<EObject> ret = new BasicEList<EObject>();
 		
 		for (EObject element : getAllModelElements()) {
-			if (element.eClass() == clazz && 
+			if ( (element.eClass() == clazz || clazz.isInstance(element)) && 
 					(association || !getMetaModelElementContext().isAssociationClassElement(element))) {
 				ret.add(element);
 			}

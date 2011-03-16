@@ -7,8 +7,6 @@ package org.unicase.ecp.model.workSpaceModel;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ecp.model.ECPModelelementContext;
 
@@ -77,17 +75,6 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	 * @generated not
 	 */
 	Collection<EObject> getAllModelElements();
-
-	/**
-	 * Returns all elements contained in the project that have the specified class type or one of its subtypes.
-	 * 
-	 * @param clazz specified class type
-	 * @param basicEList list containing the results
-	 * @return resulting list (is the same as the basicEList parameter, API will be changed)
-	 * @generated not
-	 */
-	// TODO: encapsulate 2nd parameter in the API
-	Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList);
 
 	void dispose();
 
