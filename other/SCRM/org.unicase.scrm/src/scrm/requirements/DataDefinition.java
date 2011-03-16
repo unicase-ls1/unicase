@@ -6,7 +6,6 @@
  */
 package scrm.requirements;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DataDefinition extends EObject {
+public interface DataDefinition extends Requirement {
 	/**
 	 * Returns the value of the '<em><b>Defined Requirement</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
@@ -66,12 +65,12 @@ public interface DataDefinition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Accuracy</em>' attribute.
-	 * @see #setAccuracy(double)
+	 * @see #setAccuracy(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Accuracy()
 	 * @model
 	 * @generated
 	 */
-	double getAccuracy();
+	String getAccuracy();
 
 	/**
 	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getAccuracy <em>Accuracy</em>}' attribute.
@@ -81,7 +80,7 @@ public interface DataDefinition extends EObject {
 	 * @see #getAccuracy()
 	 * @generated
 	 */
-	void setAccuracy(double value);
+	void setAccuracy(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute.

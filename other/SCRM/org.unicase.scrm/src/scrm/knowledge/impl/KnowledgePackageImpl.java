@@ -247,7 +247,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMathematicalModel_Dependencies() {
+	public EReference getMathematicalModel_SubMathematicalModels() {
 		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -256,35 +256,8 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMathematicalModel_Theory() {
-		return (EAttribute)mathematicalModelEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMathematicalModel_MathematicalExpression() {
-		return (EAttribute)mathematicalModelEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMathematicalModel_SubMathematicalModel() {
-		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMathematicalModel_ContainingMathematicalModel() {
-		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(7);
+	public EReference getMathematicalModel_SuperMathematicalModel() {
+		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -293,7 +266,34 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * @generated
 	 */
 	public EReference getMathematicalModel_NumericalMethods() {
-		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(8);
+		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMathematicalModel_Dependencies() {
+		return (EReference)mathematicalModelEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMathematicalModel_Theory() {
+		return (EAttribute)mathematicalModelEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMathematicalModel_MathematicalExpression() {
+		return (EAttribute)mathematicalModelEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -346,8 +346,8 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNumericalMethod_Theory() {
-		return (EAttribute)numericalMethodEClass.getEStructuralFeatures().get(4);
+	public EReference getNumericalMethod_Performance() {
+		return (EReference)numericalMethodEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -355,7 +355,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNumericalMethod_Algorithm() {
+	public EAttribute getNumericalMethod_Theory() {
 		return (EAttribute)numericalMethodEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -364,8 +364,8 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNumericalMethod_Performance() {
-		return (EReference)numericalMethodEClass.getEStructuralFeatures().get(6);
+	public EAttribute getNumericalMethod_Algorithm() {
+		return (EAttribute)numericalMethodEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -435,21 +435,21 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__REPRESENTED_PROBLEM);
 		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__REFINEMENTS);
 		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__REFINED_MODEL);
+		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS);
+		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL);
+		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__NUMERICAL_METHODS);
 		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__DEPENDENCIES);
 		createEAttribute(mathematicalModelEClass, MATHEMATICAL_MODEL__THEORY);
 		createEAttribute(mathematicalModelEClass, MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION);
-		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODEL);
-		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__CONTAINING_MATHEMATICAL_MODEL);
-		createEReference(mathematicalModelEClass, MATHEMATICAL_MODEL__NUMERICAL_METHODS);
 
 		numericalMethodEClass = createEClass(NUMERICAL_METHOD);
 		createEReference(numericalMethodEClass, NUMERICAL_METHOD__SOLVED_PROBLEM);
 		createEReference(numericalMethodEClass, NUMERICAL_METHOD__DEPENDENCIES);
 		createEReference(numericalMethodEClass, NUMERICAL_METHOD__REALIZING_REQUIREMENT);
 		createEReference(numericalMethodEClass, NUMERICAL_METHOD__MATHEMATICAL_MODEL);
+		createEReference(numericalMethodEClass, NUMERICAL_METHOD__PERFORMANCE);
 		createEAttribute(numericalMethodEClass, NUMERICAL_METHOD__THEORY);
 		createEAttribute(numericalMethodEClass, NUMERICAL_METHOD__ALGORITHM);
-		createEReference(numericalMethodEClass, NUMERICAL_METHOD__PERFORMANCE);
 
 		assumptionEClass = createEClass(ASSUMPTION);
 		createEReference(assumptionEClass, ASSUMPTION__DEPENDING_MODEL);
@@ -496,32 +496,32 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(scientificKnowledgeEClass, ScientificKnowledge.class, "ScientificKnowledge", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getScientificKnowledge_Requirements(), theRequirementsPackage.getIRequirement(), theRequirementsPackage.getIRequirement_UsedKnowledge(), "requirements", null, 0, -1, ScientificKnowledge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getScientificKnowledge_Requirements(), theRequirementsPackage.getIRequirement(), theRequirementsPackage.getIRequirement_UsedKnowledge(), "requirements", null, 0, -1, ScientificKnowledge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scientificProblemEClass, ScientificProblem.class, "ScientificProblem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScientificProblem_RepresentingModel(), this.getMathematicalModel(), this.getMathematicalModel_RepresentedProblem(), "representingModel", null, 0, 1, ScientificProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getScientificProblem_SolvingMethod(), this.getNumericalMethod(), this.getNumericalMethod_SolvedProblem(), "solvingMethod", null, 0, 1, ScientificProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getScientificProblem_InfluencedFeature(), theRequirementsPackage.getFeature(), null, "influencedFeature", null, 0, 1, ScientificProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getScientificProblem_InfluencedFeature(), theRequirementsPackage.getFeature(), theRequirementsPackage.getFeature_InfluencingProblem(), "influencedFeature", null, 0, 1, ScientificProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mathematicalModelEClass, MathematicalModel.class, "MathematicalModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMathematicalModel_RepresentedProblem(), this.getScientificProblem(), this.getScientificProblem_RepresentingModel(), "representedProblem", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMathematicalModel_Refinements(), this.getMathematicalModel(), this.getMathematicalModel_RefinedModel(), "refinements", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMathematicalModel_RefinedModel(), this.getMathematicalModel(), this.getMathematicalModel_Refinements(), "refinedModel", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMathematicalModel_SubMathematicalModels(), this.getMathematicalModel(), this.getMathematicalModel_SuperMathematicalModel(), "subMathematicalModels", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMathematicalModel_SuperMathematicalModel(), this.getMathematicalModel(), this.getMathematicalModel_SubMathematicalModels(), "superMathematicalModel", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMathematicalModel_NumericalMethods(), this.getNumericalMethod(), this.getNumericalMethod_MathematicalModel(), "numericalMethods", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMathematicalModel_Dependencies(), this.getAssumption(), this.getAssumption_DependingModel(), "dependencies", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMathematicalModel_Theory(), ecorePackage.getEString(), "theory", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMathematicalModel_MathematicalExpression(), ecorePackage.getEString(), "mathematicalExpression", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMathematicalModel_SubMathematicalModel(), this.getMathematicalModel(), this.getMathematicalModel_ContainingMathematicalModel(), "subMathematicalModel", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMathematicalModel_ContainingMathematicalModel(), this.getMathematicalModel(), this.getMathematicalModel_SubMathematicalModel(), "containingMathematicalModel", null, 0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMathematicalModel_NumericalMethods(), this.getNumericalMethod(), this.getNumericalMethod_MathematicalModel(), "numericalMethods", null, 0, -1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(numericalMethodEClass, NumericalMethod.class, "NumericalMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNumericalMethod_SolvedProblem(), this.getScientificProblem(), this.getScientificProblem_SolvingMethod(), "solvedProblem", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNumericalMethod_Dependencies(), this.getAssumption(), this.getAssumption_DependingMethod(), "dependencies", null, 0, -1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNumericalMethod_RealizingRequirement(), theRequirementsPackage.getRequirement(), theRequirementsPackage.getRequirement_RealizedMethod(), "realizingRequirement", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNumericalMethod_MathematicalModel(), this.getMathematicalModel(), this.getMathematicalModel_NumericalMethods(), "mathematicalModel", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNumericalMethod_Performance(), theRequirementsPackage.getPerformance(), theRequirementsPackage.getPerformance_NumericalMethod(), "performance", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNumericalMethod_Theory(), ecorePackage.getEString(), "theory", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNumericalMethod_Algorithm(), ecorePackage.getEString(), "algorithm", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNumericalMethod_Performance(), theRequirementsPackage.getPerformance(), theRequirementsPackage.getPerformance_NumericalMethod(), "performance", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assumptionEClass, Assumption.class, "Assumption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssumption_DependingModel(), this.getMathematicalModel(), this.getMathematicalModel_Dependencies(), "dependingModel", null, 0, 1, Assumption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

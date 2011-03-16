@@ -19,6 +19,7 @@ import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
+import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementsPackage;
@@ -106,6 +107,14 @@ public class RequirementsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RequirementsPackage.INTERFACE: {
+				Interface interface_ = (Interface)theEObject;
+				T result = caseInterface(interface_);
+				if (result == null) result = caseIRequirement(interface_);
+				if (result == null) result = caseSCRMModelElement(interface_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case RequirementsPackage.FEATURE: {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
@@ -141,6 +150,7 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.USER_INTERFACE: {
 				UserInterface userInterface = (UserInterface)theEObject;
 				T result = caseUserInterface(userInterface);
+				if (result == null) result = caseInterface(userInterface);
 				if (result == null) result = caseIRequirement(userInterface);
 				if (result == null) result = caseSCRMModelElement(userInterface);
 				if (result == null) result = defaultCase(theEObject);
@@ -149,6 +159,7 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.SOFTWARE_INTERFACE: {
 				SoftwareInterface softwareInterface = (SoftwareInterface)theEObject;
 				T result = caseSoftwareInterface(softwareInterface);
+				if (result == null) result = caseInterface(softwareInterface);
 				if (result == null) result = caseIRequirement(softwareInterface);
 				if (result == null) result = caseSCRMModelElement(softwareInterface);
 				if (result == null) result = defaultCase(theEObject);
@@ -175,12 +186,18 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.DATA_FLOW: {
 				DataFlow dataFlow = (DataFlow)theEObject;
 				T result = caseDataFlow(dataFlow);
+				if (result == null) result = caseRequirement(dataFlow);
+				if (result == null) result = caseIRequirement(dataFlow);
+				if (result == null) result = caseSCRMModelElement(dataFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RequirementsPackage.DATA_DEFINITION: {
 				DataDefinition dataDefinition = (DataDefinition)theEObject;
 				T result = caseDataDefinition(dataDefinition);
+				if (result == null) result = caseRequirement(dataDefinition);
+				if (result == null) result = caseIRequirement(dataDefinition);
+				if (result == null) result = caseSCRMModelElement(dataDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,6 +217,21 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseIRequirement(IRequirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterface(Interface object) {
 		return null;
 	}
 

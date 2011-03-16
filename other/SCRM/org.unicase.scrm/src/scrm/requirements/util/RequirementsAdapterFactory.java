@@ -21,6 +21,7 @@ import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
+import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementsPackage;
@@ -86,6 +87,10 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseIRequirement(IRequirement object) {
 				return createIRequirementAdapter();
+			}
+			@Override
+			public Adapter caseInterface(Interface object) {
+				return createInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseFeature(Feature object) {
@@ -162,6 +167,20 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link scrm.requirements.Interface <em>Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see scrm.requirements.Interface
+	 * @generated
+	 */
+	public Adapter createInterfaceAdapter() {
 		return null;
 	}
 

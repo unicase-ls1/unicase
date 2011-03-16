@@ -8,6 +8,8 @@ package scrm.requirements;
 
 import org.eclipse.emf.common.util.EList;
 
+import scrm.knowledge.ScientificProblem;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Feature</b></em>'.
@@ -18,13 +20,12 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link scrm.requirements.Feature#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getRequiredUserInterface <em>Required User Interface</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getProvidedUserInterfaces <em>Provided User Interfaces</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getRequiredSoftwareInterface <em>Required Software Interface</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getProvidedSoftwareInterfaces <em>Provided Software Interfaces</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getRequiredInterfaces <em>Required Interfaces</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getProvidedInterfaces <em>Provided Interfaces</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getDetailedRequirements <em>Detailed Requirements</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getInfluencingProblem <em>Influencing Problem</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiringFeatures <em>Requiring Features</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getExcludedFeatures <em>Excluded Features</em>}</li>
@@ -74,96 +75,40 @@ public interface Feature extends IRequirement {
 	EList<Hardware> getDependencies();
 
 	/**
-	 * Returns the value of the '<em><b>Required User Interface</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.UserInterface#getRequiringFeature <em>Requiring Feature</em>}'.
+	 * Returns the value of the '<em><b>Required Interfaces</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.Interface}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getRequiringFeatures <em>Requiring Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Required User Interface</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Required Interfaces</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Required User Interface</em>' containment reference.
-	 * @see #setRequiredUserInterface(UserInterface)
-	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredUserInterface()
-	 * @see scrm.requirements.UserInterface#getRequiringFeature
-	 * @model opposite="requiringFeature" containment="true"
+	 * @return the value of the '<em>Required Interfaces</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredInterfaces()
+	 * @see scrm.requirements.Interface#getRequiringFeatures
+	 * @model opposite="requiringFeatures"
 	 * @generated
 	 */
-	UserInterface getRequiredUserInterface();
+	EList<Interface> getRequiredInterfaces();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Feature#getRequiredUserInterface <em>Required User Interface</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Required User Interface</em>' containment reference.
-	 * @see #getRequiredUserInterface()
-	 * @generated
-	 */
-	void setRequiredUserInterface(UserInterface value);
-
-	/**
-	 * Returns the value of the '<em><b>Provided User Interfaces</b></em>' containment reference list.
-	 * The list contents are of type {@link scrm.requirements.UserInterface}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.UserInterface#getProvidingFeature <em>Providing Feature</em>}'.
+	 * Returns the value of the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * The list contents are of type {@link scrm.requirements.Interface}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getProvidingFeature <em>Providing Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Provided User Interfaces</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Provided Interfaces</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provided User Interfaces</em>' containment reference list.
-	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedUserInterfaces()
-	 * @see scrm.requirements.UserInterface#getProvidingFeature
+	 * @return the value of the '<em>Provided Interfaces</em>' containment reference list.
+	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedInterfaces()
+	 * @see scrm.requirements.Interface#getProvidingFeature
 	 * @model opposite="providingFeature" containment="true"
 	 * @generated
 	 */
-	EList<UserInterface> getProvidedUserInterfaces();
-
-	/**
-	 * Returns the value of the '<em><b>Required Software Interface</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.SoftwareInterface#getRequiringFeature <em>Requiring Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Required Software Interface</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Required Software Interface</em>' containment reference.
-	 * @see #setRequiredSoftwareInterface(SoftwareInterface)
-	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredSoftwareInterface()
-	 * @see scrm.requirements.SoftwareInterface#getRequiringFeature
-	 * @model opposite="requiringFeature" containment="true"
-	 * @generated
-	 */
-	SoftwareInterface getRequiredSoftwareInterface();
-
-	/**
-	 * Sets the value of the '{@link scrm.requirements.Feature#getRequiredSoftwareInterface <em>Required Software Interface</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Required Software Interface</em>' containment reference.
-	 * @see #getRequiredSoftwareInterface()
-	 * @generated
-	 */
-	void setRequiredSoftwareInterface(SoftwareInterface value);
-
-	/**
-	 * Returns the value of the '<em><b>Provided Software Interfaces</b></em>' containment reference list.
-	 * The list contents are of type {@link scrm.requirements.SoftwareInterface}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.SoftwareInterface#getProvidingFeature <em>Providing Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Provided Software Interfaces</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provided Software Interfaces</em>' containment reference list.
-	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedSoftwareInterfaces()
-	 * @see scrm.requirements.SoftwareInterface#getProvidingFeature
-	 * @model opposite="providingFeature" containment="true"
-	 * @generated
-	 */
-	EList<SoftwareInterface> getProvidedSoftwareInterfaces();
+	EList<Interface> getProvidedInterfaces();
 
 	/**
 	 * Returns the value of the '<em><b>Detailed Requirements</b></em>' containment reference list.
@@ -184,9 +129,37 @@ public interface Feature extends IRequirement {
 	EList<Requirement> getDetailedRequirements();
 
 	/**
+	 * Returns the value of the '<em><b>Influencing Problem</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getInfluencedFeature <em>Influenced Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Influencing Problem</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Influencing Problem</em>' reference.
+	 * @see #setInfluencingProblem(ScientificProblem)
+	 * @see scrm.requirements.RequirementsPackage#getFeature_InfluencingProblem()
+	 * @see scrm.knowledge.ScientificProblem#getInfluencedFeature
+	 * @model opposite="influencedFeature"
+	 * @generated
+	 */
+	ScientificProblem getInfluencingProblem();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Feature#getInfluencingProblem <em>Influencing Problem</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Influencing Problem</em>' reference.
+	 * @see #getInfluencingProblem()
+	 * @generated
+	 */
+	void setInfluencingProblem(ScientificProblem value);
+
+	/**
 	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.Feature}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Features</em>' containment reference list isn't clear,
@@ -195,39 +168,39 @@ public interface Feature extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Features</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_SubFeatures()
-	 * @see scrm.requirements.Feature#getContainingFeature
-	 * @model opposite="containingFeature" containment="true"
+	 * @see scrm.requirements.Feature#getSupeFeature
+	 * @model opposite="supeFeature" containment="true"
 	 * @generated
 	 */
 	EList<Feature> getSubFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Containing Feature</b></em>' container reference.
+	 * Returns the value of the '<em><b>Supe Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Containing Feature</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Supe Feature</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containing Feature</em>' container reference.
-	 * @see #setContainingFeature(Feature)
-	 * @see scrm.requirements.RequirementsPackage#getFeature_ContainingFeature()
+	 * @return the value of the '<em>Supe Feature</em>' container reference.
+	 * @see #setSupeFeature(Feature)
+	 * @see scrm.requirements.RequirementsPackage#getFeature_SupeFeature()
 	 * @see scrm.requirements.Feature#getSubFeatures
 	 * @model opposite="subFeatures" transient="false"
 	 * @generated
 	 */
-	Feature getContainingFeature();
+	Feature getSupeFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Feature#getContainingFeature <em>Containing Feature</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Containing Feature</em>' container reference.
-	 * @see #getContainingFeature()
+	 * @param value the new value of the '<em>Supe Feature</em>' container reference.
+	 * @see #getSupeFeature()
 	 * @generated
 	 */
-	void setContainingFeature(Feature value);
+	void setSupeFeature(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>Required Features</b></em>' reference list.

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -38,7 +37,7 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
+public class DataDefinitionImpl extends RequirementImpl implements DataDefinition {
 	/**
 	 * The default value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,7 +46,7 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double ACCURACY_EDEFAULT = 0.0;
+	protected static final String ACCURACY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
@@ -57,7 +56,7 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 	 * @generated
 	 * @ordered
 	 */
-	protected double accuracy = ACCURACY_EDEFAULT;
+	protected String accuracy = ACCURACY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
@@ -184,7 +183,7 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getAccuracy() {
+	public String getAccuracy() {
 		return accuracy;
 	}
 
@@ -193,8 +192,8 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAccuracy(double newAccuracy) {
-		double oldAccuracy = accuracy;
+	public void setAccuracy(String newAccuracy) {
+		String oldAccuracy = accuracy;
 		accuracy = newAccuracy;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__ACCURACY, oldAccuracy, accuracy));
@@ -341,7 +340,7 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 				setDefinedRequirement((Requirement)newValue);
 				return;
 			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				setAccuracy((Double)newValue);
+				setAccuracy((String)newValue);
 				return;
 			case RequirementsPackage.DATA_DEFINITION__FORMAT:
 				setFormat((String)newValue);
@@ -394,7 +393,7 @@ public class DataDefinitionImpl extends EObjectImpl implements DataDefinition {
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				return getDefinedRequirement() != null;
 			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				return accuracy != ACCURACY_EDEFAULT;
+				return ACCURACY_EDEFAULT == null ? accuracy != null : !ACCURACY_EDEFAULT.equals(accuracy);
 			case RequirementsPackage.DATA_DEFINITION__FORMAT:
 				return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
 			case RequirementsPackage.DATA_DEFINITION__RANGE:

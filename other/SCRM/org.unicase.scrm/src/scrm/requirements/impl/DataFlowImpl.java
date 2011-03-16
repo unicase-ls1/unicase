@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -33,7 +32,7 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class DataFlowImpl extends EObjectImpl implements DataFlow {
+public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -23,9 +23,9 @@ import scrm.requirements.Requirement;
  *   <li>{@link scrm.knowledge.NumericalMethod#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getRealizingRequirement <em>Realizing Requirement</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getTheory <em>Theory</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}</li>
- *   <li>{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}</li>
  * </ul>
  * </p>
  *
@@ -137,6 +137,34 @@ public interface NumericalMethod extends ScientificKnowledge {
 	void setMathematicalModel(MathematicalModel value);
 
 	/**
+	 * Returns the value of the '<em><b>Performance</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Performance</em>' reference.
+	 * @see #setPerformance(Performance)
+	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
+	 * @see scrm.requirements.Performance#getNumericalMethod
+	 * @model opposite="numericalMethod"
+	 * @generated
+	 */
+	Performance getPerformance();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Performance</em>' reference.
+	 * @see #getPerformance()
+	 * @generated
+	 */
+	void setPerformance(Performance value);
+
+	/**
 	 * Returns the value of the '<em><b>Theory</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -187,33 +215,5 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @generated
 	 */
 	void setAlgorithm(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Performance</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Performance</em>' reference.
-	 * @see #setPerformance(Performance)
-	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
-	 * @see scrm.requirements.Performance#getNumericalMethod
-	 * @model opposite="numericalMethod"
-	 * @generated
-	 */
-	Performance getPerformance();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Performance</em>' reference.
-	 * @see #getPerformance()
-	 * @generated
-	 */
-	void setPerformance(Performance value);
 
 } // NumericalMethod

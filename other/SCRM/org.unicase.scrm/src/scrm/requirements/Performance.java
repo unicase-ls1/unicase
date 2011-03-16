@@ -63,12 +63,12 @@ public interface Performance extends Requirement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Problem Size</em>' attribute.
-	 * @see #setProblemSize(int)
+	 * @see #setProblemSize(String)
 	 * @see scrm.requirements.RequirementsPackage#getPerformance_ProblemSize()
 	 * @model
 	 * @generated
 	 */
-	int getProblemSize();
+	String getProblemSize();
 
 	/**
 	 * Sets the value of the '{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}' attribute.
@@ -78,6 +78,6 @@ public interface Performance extends Requirement {
 	 * @see #getProblemSize()
 	 * @generated
 	 */
-	void setProblemSize(int value);
+	void setProblemSize(String value);
 
 } // Performance

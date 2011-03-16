@@ -97,7 +97,7 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_PROCESSING__IDENTIFIER = RequirementsPackage.REQUIREMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -197,7 +197,7 @@ public interface DataProcessingPackage extends EPackage {
 	int INPUT_DATA_READING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -297,7 +297,7 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -397,7 +397,7 @@ public interface DataProcessingPackage extends EPackage {
 	int RESULTS_OUTPUT__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -497,7 +497,7 @@ public interface DataProcessingPackage extends EPackage {
 	int ERROR_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -597,7 +597,7 @@ public interface DataProcessingPackage extends EPackage {
 	int STATUS_MONITORING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Used Knowledge</b></em>' reference list.
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

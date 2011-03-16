@@ -290,8 +290,8 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(scrmModelElementEClass, SCRMModelElement.class, "SCRMModelElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSCRMModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(scrmModelElementEClass, SCRMModelElement.class, "SCRMModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSCRMModelElement_Name(), ecorePackage.getEString(), "name", "", 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSCRMModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSCRMModelElement_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

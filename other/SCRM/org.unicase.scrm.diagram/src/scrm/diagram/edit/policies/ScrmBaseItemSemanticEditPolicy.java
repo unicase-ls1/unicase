@@ -34,8 +34,21 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.helpers.ScrmBaseEditHelper;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
+import scrm.knowledge.Assumption;
 import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
+import scrm.knowledge.ScientificKnowledge;
+import scrm.knowledge.ScientificProblem;
+import scrm.requirements.Constraint;
+import scrm.requirements.DataDefinition;
+import scrm.requirements.DataFlow;
+import scrm.requirements.Feature;
+import scrm.requirements.Hardware;
+import scrm.requirements.IRequirement;
+import scrm.requirements.Interface;
+import scrm.requirements.Performance;
+import scrm.requirements.Process;
+import scrm.requirements.Requirement;
 
 /**
  * @generated
@@ -287,25 +300,517 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateNumericalMethodMathematicalModel_4003(NumericalMethod source,
-			MathematicalModel target) {
+		public static boolean canCreateScientificKnowledgeRequirements_4005(ScientificKnowledge source,
+			IRequirement target) {
 			if (source != null) {
-				if (source.getMathematicalModel() != null) {
+				if (source.getRequirements().contains(target)) {
+					return false;
+				}
+				if (source == target) {
 					return false;
 				}
 			}
-			if (target != null && (target.getNumericalMethods().contains(target))) {
+			if (target != null && (target.getUsedKnowledge() != null)) {
 				return false;
 			}
 
-			return canExistNumericalMethodMathematicalModel_4003(source, target);
+			return canExistScientificKnowledgeRequirements_4005(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistNumericalMethodMathematicalModel_4003(NumericalMethod source,
+		public static boolean canCreateScientificProblemRepresentingModel_4006(ScientificProblem source,
 			MathematicalModel target) {
+			if (source != null) {
+				if (source.getRepresentingModel() != null) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRepresentedProblem() != null)) {
+				return false;
+			}
+
+			return canExistScientificProblemRepresentingModel_4006(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateScientificProblemSolvingMethod_4007(ScientificProblem source,
+			NumericalMethod target) {
+			if (source != null) {
+				if (source.getSolvingMethod() != null) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSolvedProblem() != null)) {
+				return false;
+			}
+
+			return canExistScientificProblemSolvingMethod_4007(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateScientificProblemInfluencedFeature_4008(ScientificProblem source, Feature target) {
+			if (source != null) {
+				if (source.getInfluencedFeature() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getInfluencingProblem() != null)) {
+				return false;
+			}
+
+			return canExistScientificProblemInfluencedFeature_4008(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateMathematicalModel_4004(MathematicalModel container, MathematicalModel source,
+			MathematicalModel target) {
+			return canExistMathematicalModel_4004(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateMathematicalModel_4010(MathematicalModel container, MathematicalModel source,
+			MathematicalModel target) {
+			return canExistMathematicalModel_4010(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateMathematicalModelNumericalMethods_4011(MathematicalModel source,
+			NumericalMethod target) {
+			if (source != null) {
+				if (source.getNumericalMethods().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getMathematicalModel() != null)) {
+				return false;
+			}
+
+			return canExistMathematicalModelNumericalMethods_4011(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateMathematicalModelDependencies_4012(MathematicalModel source, Assumption target) {
+			if (source != null) {
+				if (source.getDependencies().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDependingModel() != null)) {
+				return false;
+			}
+
+			return canExistMathematicalModelDependencies_4012(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateNumericalMethodDependencies_4015(NumericalMethod source, Assumption target) {
+			if (source != null) {
+				if (source.getDependencies().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDependingMethod() != null)) {
+				return false;
+			}
+
+			return canExistNumericalMethodDependencies_4015(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateNumericalMethodRealizingRequirement_4016(NumericalMethod source,
+			Requirement target) {
+			if (source != null) {
+				if (source.getRealizingRequirement() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRealizedMethod() != null)) {
+				return false;
+			}
+
+			return canExistNumericalMethodRealizingRequirement_4016(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateNumericalMethodPerformance_4017(NumericalMethod source, Performance target) {
+			if (source != null) {
+				if (source.getPerformance() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getNumericalMethod() != null)) {
+				return false;
+			}
+
+			return canExistNumericalMethodPerformance_4017(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureRequiredInterfaces_4023(Feature source, Interface target) {
+			if (source != null) {
+				if (source.getRequiredInterfaces().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRequiringFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureRequiredInterfaces_4023(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureProvidedInterfaces_4024(Feature source, Interface target) {
+			if (source != null) {
+				if (source.getProvidedInterfaces().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getProvidingFeature() != null)) {
+				return false;
+			}
+
+			return canExistFeatureProvidedInterfaces_4024(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureConstraints_4025(Feature source, Constraint target) {
+			if (source != null) {
+				if (source.getConstraints().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRestrictedFeature() != null)) {
+				return false;
+			}
+
+			return canExistFeatureConstraints_4025(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureDependencies_4026(Feature source, Hardware target) {
+			if (source != null) {
+				if (source.getDependencies().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDependingFeature() != null)) {
+				return false;
+			}
+
+			return canExistFeatureDependencies_4026(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureDetailedRequirements_4027(Feature source, Requirement target) {
+			if (source != null) {
+				if (source.getDetailedRequirements().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSpecifiedFeature() != null)) {
+				return false;
+			}
+
+			return canExistFeatureDetailedRequirements_4027(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeature_4029(Feature container, Feature source, Feature target) {
+			return canExistFeature_4029(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureRequiredFeatures_4030(Feature source, Feature target) {
+			if (source != null) {
+				if (source.getRequiredFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRequiringFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureRequiredFeatures_4030(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateFeatureExcludedFeatures_4032(Feature source, Feature target) {
+			if (source != null) {
+				if (source.getExcludedFeatures().contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getExcludingFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureExcludedFeatures_4032(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateRequirement_4036(Requirement container, Requirement source, Requirement target) {
+			return canExistRequirement_4036(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateRequirementDefiningData_4038(Requirement source, DataDefinition target) {
+			if (source != null) {
+				if (source.getDefiningData().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getDefinedRequirement() != null)) {
+				return false;
+			}
+
+			return canExistRequirementDefiningData_4038(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateProcessDataFlow_4040(Process source, DataFlow target) {
+			if (source != null) {
+				if (source.getDataFlow() != null) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSpecifiedProcess() != null)) {
+				return false;
+			}
+
+			return canExistProcessDataFlow_4040(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistScientificKnowledgeRequirements_4005(ScientificKnowledge source,
+			IRequirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistScientificProblemRepresentingModel_4006(ScientificProblem source,
+			MathematicalModel target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistScientificProblemSolvingMethod_4007(ScientificProblem source,
+			NumericalMethod target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistScientificProblemInfluencedFeature_4008(ScientificProblem source, Feature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMathematicalModel_4004(MathematicalModel container, MathematicalModel source,
+			MathematicalModel target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMathematicalModel_4010(MathematicalModel container, MathematicalModel source,
+			MathematicalModel target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMathematicalModelNumericalMethods_4011(MathematicalModel source,
+			NumericalMethod target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistMathematicalModelDependencies_4012(MathematicalModel source, Assumption target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistNumericalMethodDependencies_4015(NumericalMethod source, Assumption target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistNumericalMethodRealizingRequirement_4016(NumericalMethod source,
+			Requirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistNumericalMethodPerformance_4017(NumericalMethod source, Performance target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureRequiredInterfaces_4023(Feature source, Interface target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureProvidedInterfaces_4024(Feature source, Interface target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureConstraints_4025(Feature source, Constraint target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureDependencies_4026(Feature source, Hardware target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureDetailedRequirements_4027(Feature source, Requirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeature_4029(Feature container, Feature source, Feature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureRequiredFeatures_4030(Feature source, Feature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFeatureExcludedFeatures_4032(Feature source, Feature target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistRequirement_4036(Requirement container, Requirement source, Requirement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistRequirementDefiningData_4038(Requirement source, DataDefinition target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistProcessDataFlow_4040(Process source, DataFlow target) {
 			return true;
 		}
 	}

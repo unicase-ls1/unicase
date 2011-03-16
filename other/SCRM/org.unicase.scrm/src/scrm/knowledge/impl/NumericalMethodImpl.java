@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
@@ -42,85 +42,22 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getName <em>Name</em>}</li>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getSolvedProblem <em>Solved Problem</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getRealizingRequirement <em>Realizing Requirement</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getMathematicalModel <em>Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getPerformance <em>Performance</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getTheory <em>Theory</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getAlgorithm <em>Algorithm</em>}</li>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getPerformance <em>Performance</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod {
+public class NumericalMethodImpl extends SCRMModelElementImpl implements NumericalMethod {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' reference list.
+	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRequirements()
@@ -158,6 +95,16 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	 * @ordered
 	 */
 	protected MathematicalModel mathematicalModel;
+
+	/**
+	 * The cached value of the '{@link #getPerformance() <em>Performance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPerformance()
+	 * @generated
+	 * @ordered
+	 */
+	protected Performance performance;
 
 	/**
 	 * The default value of the '{@link #getTheory() <em>Theory</em>}' attribute.
@@ -200,16 +147,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	protected String algorithm = ALGORITHM_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPerformance() <em>Performance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPerformance()
-	 * @generated
-	 * @ordered
-	 */
-	protected Performance performance;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -233,72 +170,9 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION, oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIdentifier(String newIdentifier) {
-		String oldIdentifier = identifier;
-		identifier = newIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER, oldIdentifier, identifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<IRequirement> getRequirements() {
 		if (requirements == null) {
-			requirements = new EObjectWithInverseResolvingEList.ManyInverse<IRequirement>(IRequirement.class, this, KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS, RequirementsPackage.IREQUIREMENT__USED_KNOWLEDGE);
+			requirements = new EObjectContainmentWithInverseEList<IRequirement>(IRequirement.class, this, KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS, RequirementsPackage.IREQUIREMENT__USED_KNOWLEDGE);
 		}
 		return requirements;
 	}
@@ -481,48 +355,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTheory() {
-		return theory;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTheory(String newTheory) {
-		String oldTheory = theory;
-		theory = newTheory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__THEORY, oldTheory, theory));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAlgorithm() {
-		return algorithm;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAlgorithm(String newAlgorithm) {
-		String oldAlgorithm = algorithm;
-		algorithm = newAlgorithm;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__ALGORITHM, oldAlgorithm, algorithm));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Performance getPerformance() {
 		if (performance != null && performance.eIsProxy()) {
 			InternalEObject oldPerformance = (InternalEObject)performance;
@@ -576,6 +408,48 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE, newPerformance, newPerformance));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTheory() {
+		return theory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTheory(String newTheory) {
+		String oldTheory = theory;
+		theory = newTheory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__THEORY, oldTheory, theory));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAlgorithm() {
+		return algorithm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlgorithm(String newAlgorithm) {
+		String oldAlgorithm = algorithm;
+		algorithm = newAlgorithm;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__ALGORITHM, oldAlgorithm, algorithm));
 	}
 
 	/**
@@ -657,12 +531,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KnowledgePackage.NUMERICAL_METHOD__NAME:
-				return getName();
-			case KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION:
-				return getDescription();
-			case KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER:
-				return getIdentifier();
 			case KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS:
 				return getRequirements();
 			case KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM:
@@ -675,13 +543,13 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 			case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 				if (resolve) return getMathematicalModel();
 				return basicGetMathematicalModel();
+			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+				if (resolve) return getPerformance();
+				return basicGetPerformance();
 			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
 				return getTheory();
 			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
 				return getAlgorithm();
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				if (resolve) return getPerformance();
-				return basicGetPerformance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -695,15 +563,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KnowledgePackage.NUMERICAL_METHOD__NAME:
-				setName((String)newValue);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER:
-				setIdentifier((String)newValue);
-				return;
 			case KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS:
 				getRequirements().clear();
 				getRequirements().addAll((Collection<? extends IRequirement>)newValue);
@@ -721,14 +580,14 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 			case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 				setMathematicalModel((MathematicalModel)newValue);
 				return;
+			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+				setPerformance((Performance)newValue);
+				return;
 			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
 				setTheory((String)newValue);
 				return;
 			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
 				setAlgorithm((String)newValue);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				setPerformance((Performance)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -742,15 +601,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.NUMERICAL_METHOD__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
 			case KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS:
 				getRequirements().clear();
 				return;
@@ -766,14 +616,14 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 			case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 				setMathematicalModel((MathematicalModel)null);
 				return;
+			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+				setPerformance((Performance)null);
+				return;
 			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
 				setTheory(THEORY_EDEFAULT);
 				return;
 			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
 				setAlgorithm(ALGORITHM_EDEFAULT);
-				return;
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				setPerformance((Performance)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -787,12 +637,6 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.NUMERICAL_METHOD__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case KnowledgePackage.NUMERICAL_METHOD__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case KnowledgePackage.NUMERICAL_METHOD__IDENTIFIER:
-				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS:
 				return requirements != null && !requirements.isEmpty();
 			case KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM:
@@ -803,12 +647,12 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 				return realizingRequirement != null;
 			case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 				return mathematicalModel != null;
+			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+				return performance != null;
 			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
 				return THEORY_EDEFAULT == null ? theory != null : !THEORY_EDEFAULT.equals(theory);
 			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
 				return ALGORITHM_EDEFAULT == null ? algorithm != null : !ALGORITHM_EDEFAULT.equals(algorithm);
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				return performance != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -823,13 +667,7 @@ public class NumericalMethodImpl extends EObjectImpl implements NumericalMethod 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
-		result.append(description);
-		result.append(", identifier: ");
-		result.append(identifier);
-		result.append(", theory: ");
+		result.append(" (theory: ");
 		result.append(theory);
 		result.append(", algorithm: ");
 		result.append(algorithm);

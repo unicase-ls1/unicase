@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
@@ -40,9 +40,6 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.RequirementImpl#getName <em>Name</em>}</li>
- *   <li>{@link scrm.requirements.impl.RequirementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link scrm.requirements.impl.RequirementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
@@ -54,77 +51,7 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class RequirementImpl extends EObjectImpl implements Requirement {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getUsedKnowledge() <em>Used Knowledge</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedKnowledge()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ScientificKnowledge> usedKnowledge;
-
+public class RequirementImpl extends SCRMModelElementImpl implements Requirement {
 	/**
 	 * The cached value of the '{@link #getRefinements() <em>Refinements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -179,8 +106,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public ScientificKnowledge getUsedKnowledge() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE) return null;
+		return (ScientificKnowledge)eContainer();
 	}
 
 	/**
@@ -188,11 +116,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__NAME, oldName, name));
+	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -200,53 +126,20 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__DESCRIPTION, oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIdentifier(String newIdentifier) {
-		String oldIdentifier = identifier;
-		identifier = newIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__IDENTIFIER, oldIdentifier, identifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ScientificKnowledge> getUsedKnowledge() {
-		if (usedKnowledge == null) {
-			usedKnowledge = new EObjectWithInverseResolvingEList.ManyInverse<ScientificKnowledge>(ScientificKnowledge.class, this, RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
+	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
+		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE && newUsedKnowledge != null)) {
+			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newUsedKnowledge != null)
+				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return usedKnowledge;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
 	}
 
 	/**
@@ -425,7 +318,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsedKnowledge()).basicAdd(otherEnd, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefinements()).basicAdd(otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
@@ -455,7 +350,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
-				return ((InternalEList<?>)getUsedKnowledge()).basicRemove(otherEnd, msgs);
+				return basicSetUsedKnowledge(null, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return ((InternalEList<?>)getRefinements()).basicRemove(otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
@@ -478,6 +373,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
 				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT__REFINEMENTS, Requirement.class, msgs);
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
@@ -494,12 +391,6 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__NAME:
-				return getName();
-			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
-				return getDescription();
-			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
-				return getIdentifier();
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				return getUsedKnowledge();
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
@@ -526,18 +417,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__NAME:
-				setName((String)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
-				setIdentifier((String)newValue);
-				return;
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
-				getUsedKnowledge().clear();
-				getUsedKnowledge().addAll((Collection<? extends ScientificKnowledge>)newValue);
+				setUsedKnowledge((ScientificKnowledge)newValue);
 				return;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				getRefinements().clear();
@@ -568,17 +449,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
-				getUsedKnowledge().clear();
+				setUsedKnowledge((ScientificKnowledge)null);
 				return;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				getRefinements().clear();
@@ -607,14 +479,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case RequirementsPackage.REQUIREMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case RequirementsPackage.REQUIREMENT__IDENTIFIER:
-				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
-				return usedKnowledge != null && !usedKnowledge.isEmpty();
+				return getUsedKnowledge() != null;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return refinements != null && !refinements.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
@@ -627,26 +493,6 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				return realizedMethod != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
-		result.append(description);
-		result.append(", identifier: ");
-		result.append(identifier);
-		result.append(')');
-		return result.toString();
 	}
 
 } //RequirementImpl
