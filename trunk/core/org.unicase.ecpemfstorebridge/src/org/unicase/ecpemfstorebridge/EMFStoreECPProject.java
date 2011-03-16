@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.swt.widgets.Display;
@@ -92,18 +90,6 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 */
 	public boolean contains(EObject eObject) {
 		return projectSpace.getProject().containsInstance(eObject);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass,
-	 *      org.eclipse.emf.common.util.BasicEList)
-	 */
-	public Collection<EObject> getAllModelElementsbyClass(EClass clazz, BasicEList<EObject> basicEList) {
-		Collection<EObject> ret = new BasicEList<EObject>();
-		ret.addAll(projectSpace.getProject().getAllModelElementsbyClass(clazz, new BasicEList<EObject>()));
-		return ret;
 	}
 
 	/**
