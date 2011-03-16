@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.emfstore.copeMigration"
       label="EMFStore CopeMigration"
-      version="0.7.1"
+      version="0.7.2"
       provider-name="unicase.org">
 
    <description url="http://emfstore.org">
