@@ -24,17 +24,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import scrm.ScrmPackage;
 
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.ScientificProblem;
 
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
+
+import scrm.requirements.RequirementsFactory;
+
+import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.ScientificProblem} object.
@@ -43,7 +44,7 @@ import scrm.provider.ScrmEditPlugin;
  * @generated
  */
 public class ScientificProblemItemProvider
-	extends ItemProviderAdapter
+	extends SCRMModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -71,101 +72,9 @@ public class ScientificProblemItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
-			addRequirementsPropertyDescriptor(object);
 			addInfluencedFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Requirements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_requirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_requirements_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -202,6 +111,7 @@ public class ScientificProblemItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
 			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL);
 			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHOD);
 		}
@@ -258,11 +168,7 @@ public class ScientificProblemItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ScientificProblem.class)) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__NAME:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__DESCRIPTION:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__IDENTIFIER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__REQUIREMENTS:
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -281,6 +187,86 @@ public class ScientificProblemItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createHardware()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createUserInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
 
 		newChildDescriptors.add
 			(createChildParameter

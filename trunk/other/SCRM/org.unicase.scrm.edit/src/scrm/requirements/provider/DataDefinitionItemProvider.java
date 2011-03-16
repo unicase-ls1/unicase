@@ -13,8 +13,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,10 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import scrm.provider.ScrmEditPlugin;
 
 import scrm.requirements.DataDefinition;
 import scrm.requirements.RequirementsPackage;
@@ -38,7 +33,7 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class DataDefinitionItemProvider
-	extends ItemProviderAdapter
+	extends RequirementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -91,7 +86,7 @@ public class DataDefinitionItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -181,8 +176,10 @@ public class DataDefinitionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		DataDefinition dataDefinition = (DataDefinition)object;
-		return getString("_UI_DataDefinition_type") + " " + dataDefinition.getAccuracy();
+		String label = ((DataDefinition)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataDefinition_type") :
+			getString("_UI_DataDefinition_type") + " " + label;
 	}
 
 	/**
@@ -220,14 +217,26 @@ public class DataDefinitionItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return ScrmEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

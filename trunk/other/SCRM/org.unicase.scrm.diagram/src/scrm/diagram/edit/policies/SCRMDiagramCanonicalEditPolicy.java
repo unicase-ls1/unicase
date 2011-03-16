@@ -26,9 +26,29 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
 import scrm.ScrmPackage;
+import scrm.diagram.edit.parts.AssumptionEditPart;
+import scrm.diagram.edit.parts.ConstraintEditPart;
+import scrm.diagram.edit.parts.DataDefinitionEditPart;
+import scrm.diagram.edit.parts.DataFlowEditPart;
+import scrm.diagram.edit.parts.DataHandlingEditPart;
+import scrm.diagram.edit.parts.ErrorHandlingEditPart;
+import scrm.diagram.edit.parts.Feature2EditPart;
+import scrm.diagram.edit.parts.FeatureEditPart;
+import scrm.diagram.edit.parts.HardwareEditPart;
+import scrm.diagram.edit.parts.InputDataReadingEditPart;
+import scrm.diagram.edit.parts.MathematicalModel2EditPart;
+import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
+import scrm.diagram.edit.parts.PerformanceEditPart;
+import scrm.diagram.edit.parts.ProcessEditPart;
+import scrm.diagram.edit.parts.RequirementEditPart;
+import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
+import scrm.diagram.edit.parts.ScientificProblemEditPart;
+import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
+import scrm.diagram.edit.parts.StatusMonitoringEditPart;
+import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.part.ScrmDiagramUpdater;
 import scrm.diagram.part.ScrmLinkDescriptor;
 import scrm.diagram.part.ScrmNodeDescriptor;
@@ -69,8 +89,24 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = ScrmVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
+		case ScientificProblemEditPart.VISUAL_ID:
 		case MathematicalModelEditPart.VISUAL_ID:
 		case NumericalMethodEditPart.VISUAL_ID:
+		case AssumptionEditPart.VISUAL_ID:
+		case FeatureEditPart.VISUAL_ID:
+		case HardwareEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case UserInterfaceEditPart.VISUAL_ID:
+		case SoftwareInterfaceEditPart.VISUAL_ID:
+		case ProcessEditPart.VISUAL_ID:
+		case PerformanceEditPart.VISUAL_ID:
+		case DataFlowEditPart.VISUAL_ID:
+		case DataDefinitionEditPart.VISUAL_ID:
+		case InputDataReadingEditPart.VISUAL_ID:
+		case DataHandlingEditPart.VISUAL_ID:
+		case ResultsOutputEditPart.VISUAL_ID:
+		case ErrorHandlingEditPart.VISUAL_ID:
+		case StatusMonitoringEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -204,9 +240,18 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 			}
 			break;
 		}
+		case ScientificProblemEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getScientificProblem_2007ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		case MathematicalModelEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(ScrmDiagramUpdater.getMathematicalModel_2001ContainedLinks(view));
+				result.addAll(ScrmDiagramUpdater.getMathematicalModel_2005ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -215,7 +260,178 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolic
 		}
 		case NumericalMethodEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(ScrmDiagramUpdater.getNumericalMethod_2002ContainedLinks(view));
+				result.addAll(ScrmDiagramUpdater.getNumericalMethod_2006ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case AssumptionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getAssumption_2008ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case FeatureEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getFeature_2009ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case HardwareEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getHardware_2010ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ConstraintEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getConstraint_2011ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case UserInterfaceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getUserInterface_2012ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case SoftwareInterfaceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getSoftwareInterface_2013ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ProcessEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getProcess_2014ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PerformanceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getPerformance_2015ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case DataFlowEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getDataFlow_2016ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case DataDefinitionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getDataDefinition_2017ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case InputDataReadingEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getInputDataReading_2018ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case DataHandlingEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getDataHandling_2019ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ResultsOutputEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getResultsOutput_2020ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ErrorHandlingEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getErrorHandling_2021ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case StatusMonitoringEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getStatusMonitoring_2022ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case MathematicalModel2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getMathematicalModel_4004ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case MathematicalModel3EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getMathematicalModel_4010ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case Feature2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getFeature_4029ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case RequirementEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater.getRequirement_4036ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

@@ -23,12 +23,13 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see scrm.ScrmPackage#getSCRMModelElement()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface SCRMModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -38,7 +39,7 @@ public interface SCRMModelElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see scrm.ScrmPackage#getSCRMModelElement_Name()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
 	String getName();

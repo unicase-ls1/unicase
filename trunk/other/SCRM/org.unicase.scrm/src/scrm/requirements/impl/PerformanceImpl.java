@@ -53,7 +53,7 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int PROBLEM_SIZE_EDEFAULT = 0;
+	protected static final String PROBLEM_SIZE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getProblemSize() <em>Problem Size</em>}' attribute.
@@ -63,7 +63,7 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * @generated
 	 * @ordered
 	 */
-	protected int problemSize = PROBLEM_SIZE_EDEFAULT;
+	protected String problemSize = PROBLEM_SIZE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,7 +149,7 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getProblemSize() {
+	public String getProblemSize() {
 		return problemSize;
 	}
 
@@ -158,8 +158,8 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProblemSize(int newProblemSize) {
-		int oldProblemSize = problemSize;
+	public void setProblemSize(String newProblemSize) {
+		String oldProblemSize = problemSize;
 		problemSize = newProblemSize;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.PERFORMANCE__PROBLEM_SIZE, oldProblemSize, problemSize));
@@ -224,7 +224,7 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 				setNumericalMethod((NumericalMethod)newValue);
 				return;
 			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				setProblemSize((Integer)newValue);
+				setProblemSize((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -259,7 +259,7 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 			case RequirementsPackage.PERFORMANCE__NUMERICAL_METHOD:
 				return numericalMethod != null;
 			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				return problemSize != PROBLEM_SIZE_EDEFAULT;
+				return PROBLEM_SIZE_EDEFAULT == null ? problemSize != null : !PROBLEM_SIZE_EDEFAULT.equals(problemSize);
 		}
 		return super.eIsSet(featureID);
 	}

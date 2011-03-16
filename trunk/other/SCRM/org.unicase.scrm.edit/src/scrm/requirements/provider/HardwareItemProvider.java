@@ -23,11 +23,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.ScrmPackage;
-
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
 import scrm.requirements.Hardware;
@@ -40,7 +38,7 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class HardwareItemProvider
-	extends ItemProviderAdapter
+	extends SCRMModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -68,103 +66,11 @@ public class HardwareItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
-			addUsedKnowledgePropertyDescriptor(object);
 			addProcessorPropertyDescriptor(object);
 			addPlatformPropertyDescriptor(object);
 			addMemoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Used Knowledge feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsedKnowledgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_usedKnowledge_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_usedKnowledge_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__USED_KNOWLEDGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -228,7 +134,7 @@ public class HardwareItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -270,9 +176,6 @@ public class HardwareItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Hardware.class)) {
-			case RequirementsPackage.HARDWARE__NAME:
-			case RequirementsPackage.HARDWARE__DESCRIPTION:
-			case RequirementsPackage.HARDWARE__IDENTIFIER:
 			case RequirementsPackage.HARDWARE__PROCESSOR:
 			case RequirementsPackage.HARDWARE__PLATFORM:
 			case RequirementsPackage.HARDWARE__MEMORY:

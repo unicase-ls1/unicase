@@ -85,6 +85,7 @@ public interface ScientificProblem extends ScientificKnowledge {
 
 	/**
 	 * Returns the value of the '<em><b>Influenced Feature</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getInfluencingProblem <em>Influencing Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Influenced Feature</em>' reference isn't clear,
@@ -94,7 +95,8 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * @return the value of the '<em>Influenced Feature</em>' reference.
 	 * @see #setInfluencedFeature(Feature)
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_InfluencedFeature()
-	 * @model
+	 * @see scrm.requirements.Feature#getInfluencingProblem
+	 * @model opposite="influencingProblem"
 	 * @generated
 	 */
 	Feature getInfluencedFeature();

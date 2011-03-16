@@ -7,16 +7,70 @@
       title="SCRMPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="SCRM">
+        title="Knowledge"
+        description=""
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MathModel"/>
+          title="ScientificProblem"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="NumMethod"/>
+          title="MathematicalModel"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="modelToMethod"/>
+          title="NumericalMethod"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Assumption"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Requirements"
+        description=""
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Feature"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Hardware"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Constraint"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="UserInterface"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="SoftwareInterface"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Process"
+          description=""/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Performance"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DataFlow"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DataDefinition"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InputDataReading"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DataHandling"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ResultsOutput"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ErrorHandling"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="StatusMonitoring"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

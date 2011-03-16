@@ -6,8 +6,6 @@
  */
 package scrm.requirements;
 
-import org.eclipse.emf.common.util.EList;
-
 import scrm.SCRMModelElement;
 
 import scrm.knowledge.ScientificKnowledge;
@@ -30,21 +28,31 @@ import scrm.knowledge.ScientificKnowledge;
  */
 public interface IRequirement extends SCRMModelElement {
 	/**
-	 * Returns the value of the '<em><b>Used Knowledge</b></em>' reference list.
-	 * The list contents are of type {@link scrm.knowledge.ScientificKnowledge}.
+	 * Returns the value of the '<em><b>Used Knowledge</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificKnowledge#getRequirements <em>Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Used Knowledge</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Used Knowledge</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Used Knowledge</em>' reference list.
+	 * @return the value of the '<em>Used Knowledge</em>' container reference.
+	 * @see #setUsedKnowledge(ScientificKnowledge)
 	 * @see scrm.requirements.RequirementsPackage#getIRequirement_UsedKnowledge()
 	 * @see scrm.knowledge.ScientificKnowledge#getRequirements
-	 * @model opposite="requirements"
+	 * @model opposite="requirements" transient="false"
 	 * @generated
 	 */
-	EList<ScientificKnowledge> getUsedKnowledge();
+	ScientificKnowledge getUsedKnowledge();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.IRequirement#getUsedKnowledge <em>Used Knowledge</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used Knowledge</em>' container reference.
+	 * @see #getUsedKnowledge()
+	 * @generated
+	 */
+	void setUsedKnowledge(ScientificKnowledge value);
 
 } // IRequirement

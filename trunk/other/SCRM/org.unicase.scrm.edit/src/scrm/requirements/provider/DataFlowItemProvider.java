@@ -13,17 +13,15 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import scrm.provider.ScrmEditPlugin;
+import scrm.requirements.DataFlow;
+import scrm.requirements.RequirementsPackage;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.DataFlow} object.
@@ -32,7 +30,7 @@ import scrm.provider.ScrmEditPlugin;
  * @generated
  */
 public class DataFlowItemProvider
-	extends ItemProviderAdapter
+	extends RequirementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -83,7 +81,10 @@ public class DataFlowItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataFlow_type");
+		String label = ((DataFlow)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataFlow_type") :
+			getString("_UI_DataFlow_type") + " " + label;
 	}
 
 	/**
@@ -112,14 +113,26 @@ public class DataFlowItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return ScrmEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

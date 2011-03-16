@@ -116,12 +116,12 @@ public interface Hardware extends IRequirement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Memory</em>' attribute.
-	 * @see #setMemory(int)
+	 * @see #setMemory(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Memory()
 	 * @model
 	 * @generated
 	 */
-	int getMemory();
+	String getMemory();
 
 	/**
 	 * Sets the value of the '{@link scrm.requirements.Hardware#getMemory <em>Memory</em>}' attribute.
@@ -131,6 +131,6 @@ public interface Hardware extends IRequirement {
 	 * @see #getMemory()
 	 * @generated
 	 */
-	void setMemory(int value);
+	void setMemory(String value);
 
 } // Hardware

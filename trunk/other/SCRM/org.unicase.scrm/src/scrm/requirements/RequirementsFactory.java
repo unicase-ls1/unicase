@@ -26,6 +26,15 @@ public interface RequirementsFactory extends EFactory {
 	RequirementsFactory eINSTANCE = scrm.requirements.impl.RequirementsFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface</em>'.
+	 * @generated
+	 */
+	Interface createInterface();
+
+	/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -24,12 +24,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.ScrmPackage;
-
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
 import scrm.requirements.Feature;
@@ -45,7 +42,7 @@ import scrm.requirements.dataProcessing.DataProcessingFactory;
  * @generated
  */
 public class FeatureItemProvider
-	extends ItemProviderAdapter
+	extends SCRMModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -73,10 +70,8 @@ public class FeatureItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
-			addUsedKnowledgePropertyDescriptor(object);
+			addRequiredInterfacesPropertyDescriptor(object);
+			addInfluencingProblemPropertyDescriptor(object);
 			addRequiredFeaturesPropertyDescriptor(object);
 			addRequiringFeaturesPropertyDescriptor(object);
 			addExcludedFeaturesPropertyDescriptor(object);
@@ -86,85 +81,41 @@ public class FeatureItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Required Interfaces feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addRequiredInterfacesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
+				 getString("_UI_Feature_requiredInterfaces_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiredInterfaces_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__REQUIRED_INTERFACES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Influencing Problem feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addInfluencingProblemPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Used Knowledge feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUsedKnowledgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_usedKnowledge_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_usedKnowledge_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__USED_KNOWLEDGE,
+				 getString("_UI_Feature_influencingProblem_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_influencingProblem_feature", "_UI_Feature_type"),
+				 RequirementsPackage.Literals.FEATURE__INFLUENCING_PROBLEM,
 				 true,
 				 false,
 				 true,
@@ -275,10 +226,7 @@ public class FeatureItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__CONSTRAINTS);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DEPENDENCIES);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__REQUIRED_USER_INTERFACE);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_USER_INTERFACES);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__REQUIRED_SOFTWARE_INTERFACE);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_SOFTWARE_INTERFACES);
+			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__SUB_FEATURES);
 		}
@@ -335,17 +283,9 @@ public class FeatureItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
-			case RequirementsPackage.FEATURE__NAME:
-			case RequirementsPackage.FEATURE__DESCRIPTION:
-			case RequirementsPackage.FEATURE__IDENTIFIER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 			case RequirementsPackage.FEATURE__DEPENDENCIES:
-			case RequirementsPackage.FEATURE__REQUIRED_USER_INTERFACE:
-			case RequirementsPackage.FEATURE__PROVIDED_USER_INTERFACES:
-			case RequirementsPackage.FEATURE__REQUIRED_SOFTWARE_INTERFACE:
-			case RequirementsPackage.FEATURE__PROVIDED_SOFTWARE_INTERFACES:
+			case RequirementsPackage.FEATURE__PROVIDED_INTERFACES:
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 			case RequirementsPackage.FEATURE__SUB_FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -377,22 +317,17 @@ public class FeatureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__REQUIRED_USER_INTERFACE,
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				 RequirementsFactory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
 				 RequirementsFactory.eINSTANCE.createUserInterface()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_USER_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__REQUIRED_SOFTWARE_INTERFACE,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_SOFTWARE_INTERFACES,
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
 				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
 
 		newChildDescriptors.add
@@ -409,6 +344,16 @@ public class FeatureItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
 				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -439,31 +384,6 @@ public class FeatureItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
 				 RequirementsFactory.eINSTANCE.createFeature()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == RequirementsPackage.Literals.FEATURE__REQUIRED_USER_INTERFACE ||
-			childFeature == RequirementsPackage.Literals.FEATURE__PROVIDED_USER_INTERFACES ||
-			childFeature == RequirementsPackage.Literals.FEATURE__REQUIRED_SOFTWARE_INTERFACE ||
-			childFeature == RequirementsPackage.Literals.FEATURE__PROVIDED_SOFTWARE_INTERFACES;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

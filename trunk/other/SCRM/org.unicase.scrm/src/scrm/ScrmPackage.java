@@ -60,10 +60,10 @@ public interface ScrmPackage extends EPackage {
 	ScrmPackage eINSTANCE = scrm.impl.ScrmPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link scrm.SCRMModelElement <em>SCRM Model Element</em>}' class.
+	 * The meta object id for the '{@link scrm.impl.SCRMModelElementImpl <em>SCRM Model Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see scrm.SCRMModelElement
+	 * @see scrm.impl.SCRMModelElementImpl
 	 * @see scrm.impl.ScrmPackageImpl#getSCRMModelElement()
 	 * @generated
 	 */
@@ -281,10 +281,10 @@ public interface ScrmPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link scrm.SCRMModelElement <em>SCRM Model Element</em>}' class.
+		 * The meta object literal for the '{@link scrm.impl.SCRMModelElementImpl <em>SCRM Model Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see scrm.SCRMModelElement
+		 * @see scrm.impl.SCRMModelElementImpl
 		 * @see scrm.impl.ScrmPackageImpl#getSCRMModelElement()
 		 * @generated
 		 */

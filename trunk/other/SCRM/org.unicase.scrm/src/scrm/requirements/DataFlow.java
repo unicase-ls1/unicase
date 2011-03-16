@@ -6,7 +6,6 @@
  */
 package scrm.requirements;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DataFlow extends EObject {
+public interface DataFlow extends Requirement {
 	/**
 	 * Returns the value of the '<em><b>Specified Process</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Process#getDataFlow <em>Data Flow</em>}'.

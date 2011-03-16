@@ -15,23 +15,25 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import scrm.ScrmPackage;
 
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
+
+import scrm.requirements.RequirementsFactory;
+
+import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.Assumption} object.
@@ -40,7 +42,7 @@ import scrm.provider.ScrmEditPlugin;
  * @generated
  */
 public class AssumptionItemProvider
-	extends ItemProviderAdapter
+	extends SCRMModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -68,100 +70,38 @@ public class AssumptionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
-			addRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Requirements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_requirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_requirements_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -201,10 +141,8 @@ public class AssumptionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Assumption.class)) {
-			case KnowledgePackage.ASSUMPTION__NAME:
-			case KnowledgePackage.ASSUMPTION__DESCRIPTION:
-			case KnowledgePackage.ASSUMPTION__IDENTIFIER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -220,6 +158,86 @@ public class AssumptionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createHardware()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createRequirement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createUserInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
+				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
 	}
 
 	/**

@@ -21,9 +21,25 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
+import scrm.diagram.edit.parts.AssumptionEditPart;
+import scrm.diagram.edit.parts.ConstraintEditPart;
+import scrm.diagram.edit.parts.DataDefinitionEditPart;
+import scrm.diagram.edit.parts.DataFlowEditPart;
+import scrm.diagram.edit.parts.DataHandlingEditPart;
+import scrm.diagram.edit.parts.ErrorHandlingEditPart;
+import scrm.diagram.edit.parts.FeatureEditPart;
+import scrm.diagram.edit.parts.HardwareEditPart;
+import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
+import scrm.diagram.edit.parts.PerformanceEditPart;
+import scrm.diagram.edit.parts.ProcessEditPart;
+import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
+import scrm.diagram.edit.parts.ScientificProblemEditPart;
+import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
+import scrm.diagram.edit.parts.StatusMonitoringEditPart;
+import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.part.Messages;
 import scrm.diagram.part.ScrmDiagramEditorPlugin;
 
@@ -38,9 +54,25 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof SCRMDiagramEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(ScrmElementTypes.MathematicalModel_2001);
-			types.add(ScrmElementTypes.NumericalMethod_2002);
+			ArrayList types = new ArrayList(18);
+			types.add(ScrmElementTypes.ScientificProblem_2007);
+			types.add(ScrmElementTypes.MathematicalModel_2005);
+			types.add(ScrmElementTypes.NumericalMethod_2006);
+			types.add(ScrmElementTypes.Assumption_2008);
+			types.add(ScrmElementTypes.Feature_2009);
+			types.add(ScrmElementTypes.Hardware_2010);
+			types.add(ScrmElementTypes.Constraint_2011);
+			types.add(ScrmElementTypes.UserInterface_2012);
+			types.add(ScrmElementTypes.SoftwareInterface_2013);
+			types.add(ScrmElementTypes.Process_2014);
+			types.add(ScrmElementTypes.Performance_2015);
+			types.add(ScrmElementTypes.DataFlow_2016);
+			types.add(ScrmElementTypes.DataDefinition_2017);
+			types.add(ScrmElementTypes.InputDataReading_2018);
+			types.add(ScrmElementTypes.DataHandling_2019);
+			types.add(ScrmElementTypes.ResultsOutput_2020);
+			types.add(ScrmElementTypes.ErrorHandling_2021);
+			types.add(ScrmElementTypes.StatusMonitoring_2022);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -51,8 +83,47 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ScientificProblemEditPart) {
+			return ((ScientificProblemEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof MathematicalModelEditPart) {
+			return ((MathematicalModelEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		if (sourceEditPart instanceof NumericalMethodEditPart) {
 			return ((NumericalMethodEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof AssumptionEditPart) {
+			return ((AssumptionEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ProcessEditPart) {
+			return ((ProcessEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof PerformanceEditPart) {
+			return ((PerformanceEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof DataFlowEditPart) {
+			return ((DataFlowEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof InputDataReadingEditPart) {
+			return ((InputDataReadingEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof DataHandlingEditPart) {
+			return ((DataHandlingEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ResultsOutputEditPart) {
+			return ((ResultsOutputEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ErrorHandlingEditPart) {
+			return ((ErrorHandlingEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof StatusMonitoringEditPart) {
+			return ((StatusMonitoringEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -65,6 +136,54 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof MathematicalModelEditPart) {
 			return ((MathematicalModelEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
+		if (targetEditPart instanceof NumericalMethodEditPart) {
+			return ((NumericalMethodEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof AssumptionEditPart) {
+			return ((AssumptionEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof HardwareEditPart) {
+			return ((HardwareEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof UserInterfaceEditPart) {
+			return ((UserInterfaceEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof SoftwareInterfaceEditPart) {
+			return ((SoftwareInterfaceEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ProcessEditPart) {
+			return ((ProcessEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof PerformanceEditPart) {
+			return ((PerformanceEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof DataFlowEditPart) {
+			return ((DataFlowEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof InputDataReadingEditPart) {
+			return ((InputDataReadingEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof DataHandlingEditPart) {
+			return ((DataHandlingEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ResultsOutputEditPart) {
+			return ((ResultsOutputEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ErrorHandlingEditPart) {
+			return ((ErrorHandlingEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof StatusMonitoringEditPart) {
+			return ((StatusMonitoringEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -74,8 +193,47 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ScientificProblemEditPart) {
+			return ((ScientificProblemEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof MathematicalModelEditPart) {
+			return ((MathematicalModelEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof NumericalMethodEditPart) {
 			return ((NumericalMethodEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof AssumptionEditPart) {
+			return ((AssumptionEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ProcessEditPart) {
+			return ((ProcessEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof PerformanceEditPart) {
+			return ((PerformanceEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof DataFlowEditPart) {
+			return ((DataFlowEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof InputDataReadingEditPart) {
+			return ((InputDataReadingEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof DataHandlingEditPart) {
+			return ((DataHandlingEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ResultsOutputEditPart) {
+			return ((ResultsOutputEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ErrorHandlingEditPart) {
+			return ((ErrorHandlingEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof StatusMonitoringEditPart) {
+			return ((StatusMonitoringEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -88,6 +246,54 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof MathematicalModelEditPart) {
 			return ((MathematicalModelEditPart) targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof NumericalMethodEditPart) {
+			return ((NumericalMethodEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof AssumptionEditPart) {
+			return ((AssumptionEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof HardwareEditPart) {
+			return ((HardwareEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof UserInterfaceEditPart) {
+			return ((UserInterfaceEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof SoftwareInterfaceEditPart) {
+			return ((SoftwareInterfaceEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ProcessEditPart) {
+			return ((ProcessEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof PerformanceEditPart) {
+			return ((PerformanceEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof DataFlowEditPart) {
+			return ((DataFlowEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof InputDataReadingEditPart) {
+			return ((InputDataReadingEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof DataHandlingEditPart) {
+			return ((DataHandlingEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ResultsOutputEditPart) {
+			return ((ResultsOutputEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ErrorHandlingEditPart) {
+			return ((ErrorHandlingEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof StatusMonitoringEditPart) {
+			return ((StatusMonitoringEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -96,8 +302,47 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ScientificProblemEditPart) {
+			return ((ScientificProblemEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof MathematicalModelEditPart) {
+			return ((MathematicalModelEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if (sourceEditPart instanceof NumericalMethodEditPart) {
 			return ((NumericalMethodEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof AssumptionEditPart) {
+			return ((AssumptionEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof FeatureEditPart) {
+			return ((FeatureEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ProcessEditPart) {
+			return ((ProcessEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof PerformanceEditPart) {
+			return ((PerformanceEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof DataFlowEditPart) {
+			return ((DataFlowEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof InputDataReadingEditPart) {
+			return ((InputDataReadingEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof DataHandlingEditPart) {
+			return ((DataHandlingEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ResultsOutputEditPart) {
+			return ((ResultsOutputEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ErrorHandlingEditPart) {
+			return ((ErrorHandlingEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof StatusMonitoringEditPart) {
+			return ((StatusMonitoringEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
