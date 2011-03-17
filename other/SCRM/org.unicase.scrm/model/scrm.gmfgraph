@@ -9,10 +9,15 @@
         name="ScientificProblemFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="255"/>
-        <maximumSize
+        <preferredSize
             dx="160"
             dy="65"/>
         <children
