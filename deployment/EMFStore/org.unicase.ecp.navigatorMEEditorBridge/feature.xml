@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp.navigatorMEEditorBridge"
       label="ECP Navigator ModelElement Editor Bridge"
-      version="0.7.2"
+      version="0.7.3"
       provider-name="unicase.org">
 
    <description url="http://emfcp.org">
