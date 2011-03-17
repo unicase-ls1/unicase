@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.ecp.all"
       label="EMF Client Platform (complete with EMFStore Workspace persitence)"
-      version="0.7.2"
+      version="0.7.3"
       provider-name="unicase.org">
 
    <description url="http://emfcp.org">
