@@ -215,6 +215,11 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <requires>
+      <import plugin="org.unicase.ui.navigator"/>
+      <import plugin="org.eclipse.emf.validation"/>
+   </requires>
+
    <plugin
          id="org.unicase.ui.validation"
          download-size="0"

@@ -215,6 +215,18 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <requires>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jface.databinding"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.emf.databinding.edit"/>
+      <import plugin="org.unicase.util"/>
+      <import plugin="org.eclipse.ui.ide.application"/>
+   </requires>
+
    <plugin
          id="org.unicase.ui.common"
          download-size="0"

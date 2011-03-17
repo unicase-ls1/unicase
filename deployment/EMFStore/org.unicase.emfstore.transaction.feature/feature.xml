@@ -20,6 +20,11 @@ which accompanies this distribution, and is available at http://www.eclipse.org/
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import plugin="org.unicase.workspace"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+   </requires>
+
    <plugin
          id="org.unicase.emfstore.transaction"
          download-size="0"

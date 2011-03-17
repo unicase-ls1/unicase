@@ -238,7 +238,6 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.unicase.workspace"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.unicase.emfstore.esmodel" version="0.5.13.nightly" match="greaterOrEqual"/>
@@ -246,13 +245,8 @@ litigation.
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.jface.databinding"/>
-      <import plugin="org.eclipse.emf.databinding.edit"/>
-      <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.unicase.util"/>
+      <import plugin="org.unicase.ui.util"/>
+      <import plugin="org.unicase.ui.common"/>
    </requires>
 
    <plugin
