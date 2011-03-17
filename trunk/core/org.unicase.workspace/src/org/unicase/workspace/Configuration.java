@@ -164,7 +164,7 @@ public final class Configuration {
 	 * @return the maximum number
 	 */
 	public static int getMaxMECountPerResource() {
-		return 100;
+		return 1000;
 	}
 
 	/**

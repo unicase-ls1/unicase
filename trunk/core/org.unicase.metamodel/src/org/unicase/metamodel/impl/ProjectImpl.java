@@ -184,7 +184,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	private boolean isCacheInitialized() {
-
 		if (changeNotifier == null) {
 			changeNotifier = new ProjectChangeNotifier(this);
 		}
@@ -839,10 +838,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @return the copied project
 	 */
 	public Project copy() {
+		if (changeNotifier != null) {
+			changeNotifier.disableNotifications(true);
+		}
 		Copier copier = new ProjectCopier();
 		ProjectImpl result = (ProjectImpl) copier.copy(this);
+		result.changeNotifier.disableNotifications(true);
 		result.cachesInitialized = true;
 		copier.copyReferences();
+		if (changeNotifier != null) {
+			changeNotifier.disableNotifications(false);
+		}
+		result.changeNotifier.disableNotifications(false);
 		return result;
 	}
 }

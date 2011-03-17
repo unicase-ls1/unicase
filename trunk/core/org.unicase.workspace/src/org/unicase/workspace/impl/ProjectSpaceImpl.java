@@ -14,12 +14,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -1523,6 +1523,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void init() {
 		initCompleted = true;
 
+		// getProject().initCaches();
+
 		this.fileTransferManager = new FileTransferManager(this);
 		this.changeTracker = new ProjectChangeTracker(this);
 		this.getProject().addProjectChangeObserver(this.changeTracker);
@@ -1550,7 +1552,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		for (EObject cutElement : getProject().getCutElements()) {
 			project.deleteModelElement(cutElement);
 		}
-
 	}
 
 	/**
@@ -1611,7 +1612,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<EObject> modelElements = this.getProject().getModelElements();
+		Set<EObject> modelElements = this.getProject().getAllModelElements();
+
+		// TODO: OW, MK: make configurable
+		boolean crossResourceProxy = true;
 
 		// int counter = Configuration.getMaxMECountPerResource() + 1;
 		int counter = 0;
@@ -1630,26 +1634,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			counter++;
 
 			if (splitResource) {
-				EObject parent = modelElement.eContainer();
-				ChangeRecorder changeRecorder = new ChangeRecorder();
-				changeRecorder.beginRecording(Collections.singleton(parent));
-				// try to pin resource
-				resource.getContents().add(modelElement);
-				ChangeDescription changeDesc = changeRecorder.endRecording();
-				if (modelElement.eContainer() != parent) {
-					splitResource = false;
-					resource = oldResource;
-					// model element lost its parent, revert changes
-					changeDesc.apply();
+				if (!crossResourceProxy) {
+					EObject parent = modelElement.eContainer();
+					ChangeRecorder changeRecorder = new ChangeRecorder();
+					changeRecorder.beginRecording(Collections.singleton(parent));
+					// try to pin resource
+					resource.getContents().add(modelElement);
+					ChangeDescription changeDesc = changeRecorder.endRecording();
+					if (modelElement.eContainer() != parent) {
+						splitResource = false;
+						resource = oldResource;
+						// model element lost its parent, revert changes
+						changeDesc.apply();
+					}
+				} else {
+					resource.getContents().add(modelElement);
 				}
-			}
-
-			TreeIterator<EObject> it = modelElement.eAllContents();
-			while (it.hasNext()) {
-				EObject child = it.next();
-				counter++;
-				((XMIResource) resource).setID(child, getProject().getModelElementId(child).getId());
-
 			}
 
 			((XMIResource) resource).setID(modelElement, getProject().getModelElementId(modelElement).getId());
@@ -1984,22 +1984,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changeTracker.setAutoSave(false);
 
 		// TODO: PlainEObjectMode: Set user as creator when sharing a project
-		for (EObject me : this.getProject().getAllModelElements()) {
-			// if (me.getCreator() == null || me.getCreator().equals("")
-			// || me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
-			// me.setCreator(usersession.getUsername());
-			// changeTracker.save(me);
-			// }
-		}
-		changeTracker.setAutoSave(true);
-		changeTracker.saveDirtyResources();
-		startChangeRecording();
+		// for (EObject me : this.getProject().getAllModelElements()) {
+		// if (me.getCreator() == null || me.getCreator().equals("")
+		// || me.getCreator().equals(ProjectChangeTracker.UNKOWN_CREATOR)) {
+		// me.setCreator(usersession.getUsername());
+		// changeTracker.save(me);
+		// }
+		// }
 
 		createdProject = WorkspaceManager
 			.getInstance()
 			.getConnectionManager()
 			.createProject(usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
 				this.getProject());
+		changeTracker.setAutoSave(true);
+		changeTracker.saveDirtyResources();
+		startChangeRecording();
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());

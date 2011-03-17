@@ -6,6 +6,7 @@
 package org.unicase.workspace.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 
@@ -35,18 +37,25 @@ public final class ResourceHelper {
 	 * @param <T> type of element
 	 * @param absoluteFileName filepath of resource
 	 * @param type .class from type
+	 * @param options resource options
 	 * @param index index of element in resource
 	 * @return selected element
 	 * @throws IOException in case of failure
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getElementFromResource(String absoluteFileName, Class<T> type, int index)
-		throws IOException {
+	public static <T extends EObject> T getElementFromResource(String absoluteFileName, Class<T> type,
+		Map<?, ?> options, int index) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
+		// Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), false);
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		if (options != null) {
+			resource.load(options);
+		} else {
+			resource.load(ModelUtil.getResourceLoadOptions());
+		}
 		EList<EObject> directContents = resource.getContents();
-		// sanity check
 
+		// sanity check
 		if (directContents.size() != 1 && (!type.isInstance(directContents.get(0)))) {
 			throw new IOException("File is corrupt, does not contain a " + type.getName() + " .");
 		}
@@ -55,6 +64,21 @@ public final class ResourceHelper {
 		resource.getContents().remove(object);
 
 		return object;
+	}
+
+	/**
+	 * Gets an element from a resource.
+	 * 
+	 * @param <T> type of element
+	 * @param absoluteFileName filepath of resource
+	 * @param type .class from type
+	 * @param index index of element in resource
+	 * @return selected element
+	 * @throws IOException in case of failure
+	 */
+	public static <T extends EObject> T getElementFromResource(String absoluteFileName, Class<T> type, int index)
+		throws IOException {
+		return getElementFromResource(absoluteFileName, type, null, index);
 	}
 
 	/**
@@ -90,9 +114,7 @@ public final class ResourceHelper {
 
 		if (resource instanceof XMIResource) {
 			XMIResource xmiResource = (XMIResource) resource;
-			TreeIterator<EObject> it = project.eAllContents();
-			while (it.hasNext()) {
-				EObject modelElement = it.next();
+			for (EObject modelElement : project.getAllModelElements()) {
 				String modelElementId = project.getModelElementId(modelElement).getId();
 				xmiResource.setID(modelElement, modelElementId);
 			}

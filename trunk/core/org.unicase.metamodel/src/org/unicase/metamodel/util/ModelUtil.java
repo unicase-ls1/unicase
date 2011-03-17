@@ -5,9 +5,9 @@
  */
 package org.unicase.metamodel.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -33,15 +33,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -50,6 +51,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.SingletonIdResolver;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.util.UnicaseUtil;
+import org.xml.sax.InputSource;
 
 /**
  * Utility class for ModelElements.
@@ -77,6 +79,8 @@ public final class ModelUtil {
 	 * Contains all ID resolvers for singleton datatypes.
 	 */
 	private static Set<SingletonIdResolver> singletonIdResolvers;
+
+	private static HashMap<Object, Object> resourceLoadOptions;
 
 	/**
 	 * Private constructor.
@@ -142,9 +146,7 @@ public final class ModelUtil {
 		if (object == null) {
 			return null;
 		}
-
-		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 
 		if (!overrideContainmentCheck && !(object instanceof EClass)) {
 			if (!UnicaseUtil.isSelfContained(object)) {
@@ -156,14 +158,11 @@ public final class ModelUtil {
 			Project project = (Project) object;
 			Project copiedProject = (Project) clone(object);
 
-			if (res instanceof XMIResource) {
-				XMIResource xmiRes = (XMIResource) res;
-				for (ModelElementId modelElementId : project.getAllModelElementIds()) {
-					if (isIgnoredDatatype(project.getModelElement(modelElementId))) {
-						continue;
-					}
-					xmiRes.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
+			for (ModelElementId modelElementId : project.getAllModelElementIds()) {
+				if (isIgnoredDatatype(project.getModelElement(modelElementId))) {
+					continue;
 				}
+				res.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
 			}
 			res.getContents().add(copiedProject);
 		} else {
@@ -171,16 +170,23 @@ public final class ModelUtil {
 			res.getContents().add(copy);
 		}
 
+		int step = 200;
+		int initialSize = step;
+		if (object instanceof Project) {
+			Project project = (Project) object;
+			initialSize = project.getAllModelElements().size() * step;
+		}
+		StringWriter stringWriter = new StringWriter(initialSize);
 		try {
-			res.save(out, null);
+			res.save(stringWriter, null);
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-		String result = out.toString();
+		String result = stringWriter.toString();
 		// TODO: EM
-		// if (!overrideHrefCheck) {
-		// hrefCheck(result);
-		// }
+		if (!overrideHrefCheck) {
+			hrefCheck(result);
+		}
 		return result;
 	}
 
@@ -235,9 +241,10 @@ public final class ModelUtil {
 		if (object == null) {
 			return null;
 		}
-		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
+		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
+
 		try {
-			res.load(new ByteArrayInputStream(object.getBytes("UTF-8")), null);
+			res.load(new InputSource(new StringReader(object)), getResourceLoadOptions());
 		} catch (UnsupportedEncodingException e) {
 			throw new SerializationException(e);
 		} catch (IOException e) {
@@ -245,9 +252,8 @@ public final class ModelUtil {
 		}
 
 		EObject result = res.getContents().get(0);
-		if (res instanceof XMIResource && result instanceof Project) {
+		if (result instanceof Project) {
 			Project project = (Project) result;
-			XMIResource xmiRes = (XMIResource) res;
 			Map<EObject, ModelElementId> eObjectToIdMap = new HashMap<EObject, ModelElementId>();
 			Map<ModelElementId, EObject> idToEObjectMap = new HashMap<ModelElementId, EObject>();
 			TreeIterator<EObject> it = ((Project) result).eAllContents();
@@ -259,7 +265,7 @@ public final class ModelUtil {
 					// create random ID for generic types, won't get serialized anyway
 					id = MetamodelFactory.eINSTANCE.createModelElementId().getId();
 				} else {
-					id = xmiRes.getID(me);
+					id = res.getID(me);
 				}
 
 				// EM: temporary hack to support serialization of EAnnotations, see
@@ -281,12 +287,26 @@ public final class ModelUtil {
 				eObjectToIdMap.put(me, meId);
 				idToEObjectMap.put(meId, me);
 			}
-
 			project.initCaches(eObjectToIdMap, idToEObjectMap);
 		}
 
 		res.getContents().remove(result);
 		return result;
+	}
+
+	/**
+	 * Delivers a map of options for loading resources. Especially {@link XMLResource#OPTION_DEFER_IDREF_RESOLUTION}
+	 * which speeds up loading due to our id based resources.
+	 * 
+	 * @return map of options for {@link XMIResource} or {@link XMLResource}.
+	 */
+	public static Map<Object, Object> getResourceLoadOptions() {
+		if (resourceLoadOptions == null) {
+			resourceLoadOptions = new HashMap<Object, Object>();
+			// options.put(XMLResource.OPTION_CONFIGURATION_CACHE, true);
+			resourceLoadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+		}
+		return resourceLoadOptions;
 	}
 
 	/**
@@ -492,10 +512,10 @@ public final class ModelUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T clone(T eObject) {
-		EObject clone = EcoreUtil.copy(eObject);
 		if (eObject instanceof ProjectImpl) {
 			return (T) ((ProjectImpl) eObject).copy();
 		}
+		EObject clone = EcoreUtil.copy(eObject);
 		return (T) clone;
 	}
 

@@ -169,7 +169,15 @@ public final class WorkspaceManager {
 			// check if a migration is needed
 			migrateModel(resourceSet);
 
-			resource = resourceSet.getResource(fileURI, true);
+			// resource = resourceSet.getResource(fileURI, true);
+			resource = resourceSet.createResource(fileURI);
+
+			try {
+				resource.load(ModelUtil.getResourceLoadOptions());
+			} catch (IOException e) {
+				WorkspaceUtil.logException("Error while loading workspace.", e);
+			}
+
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
 			workspace = (Workspace) directContents.get(0);
