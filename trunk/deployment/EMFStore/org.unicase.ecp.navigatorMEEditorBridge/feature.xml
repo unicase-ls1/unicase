@@ -223,6 +223,13 @@ litigation.
          id="org.unicase.ecp.navigator"
          version="0.0.0"/>
 
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.unicase.ui.meeditor"/>
+      <import plugin="org.unicase.ui.navigator"/>
+   </requires>
+
    <plugin
          id="org.unicase.ui.navigatormeeditorbridge"
          download-size="0"

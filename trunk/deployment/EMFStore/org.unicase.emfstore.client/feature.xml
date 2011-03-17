@@ -222,9 +222,9 @@ litigation.
 
    <requires>
       <import plugin="org.unicase.emfstore"/>
-      <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.edit"/>
    </requires>
 
    <plugin

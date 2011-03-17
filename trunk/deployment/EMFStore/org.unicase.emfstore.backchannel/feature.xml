@@ -221,6 +221,8 @@ litigation.
    <requires>
       <import plugin="org.unicase.workspace"/>
       <import plugin="org.unicase.emfstore"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
    </requires>
 
    <plugin

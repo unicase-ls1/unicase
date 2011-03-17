@@ -219,6 +219,11 @@ litigation.
          id="org.unicase.ecp.common"
          version="0.0.0"/>
 
+   <requires>
+      <import plugin="org.unicase.ui.common"/>
+      <import plugin="org.eclipse.jface.text"/>
+   </requires>
+
    <plugin
          id="org.unicase.ui.meeditor"
          download-size="0"
