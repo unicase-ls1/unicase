@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Navigatormeeditorbridge
 Bundle-SymbolicName: org.unicase.ui.navigatormeeditorbridge;singleton:=true
-Bundle-Version: 0.7.2
+Bundle-Version: 0.7.3
 Bundle-Activator: org.unicase.ui.navigatormeeditorbridge.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
