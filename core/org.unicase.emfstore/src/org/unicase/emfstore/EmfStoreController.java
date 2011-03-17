@@ -236,9 +236,9 @@ public class EmfStoreController implements IApplication, Runnable {
 		ResourceStorage storage = initStorage();
 		URI resourceUri = storage.init(properties);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resource = resourceSet.getResource(resourceUri, true);
+		resource = resourceSet.createResource(resourceUri);
 		try {
-			resource.load(resourceSet.getLoadOptions());
+			resource.load(ModelUtil.getResourceLoadOptions());
 
 			if (properties.getProperty(ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART, "true").equals("true")) {
 				ModelUtil.logInfo("Validating serverspace ...");

@@ -25,6 +25,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	private EObject removedModelElement;
 	private Notification currentNotification;
 	private int reentrantCallToAddAdapterCounter;
+	private boolean notificationDisabled;
 
 	/**
 	 * Constructor. Attaches the Adapter to the given {@link ProjectImpl}.
@@ -37,6 +38,7 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		projectImpl.eAdapters().add(this);
 		isInitializing = false;
 		reentrantCallToAddAdapterCounter = 0;
+		notificationDisabled = false;
 
 	}
 
@@ -122,6 +124,10 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	@Override
 	public void notifyChanged(Notification notification) {
 
+		if (notificationDisabled) {
+			return;
+		}
+
 		currentNotification = notification;
 		Object feature = notification.getFeature();
 		Object notifier = notification.getNotifier();
@@ -162,6 +168,13 @@ public class ProjectChangeNotifier extends EContentAdapter {
 				removeAdapter((Notifier) notification.getNotifier());
 			}
 		}
+	}
+
+	/**
+	 * @param notificationDisabled the notificationDisabled to set
+	 */
+	public void disableNotifications(boolean notificationDisabled) {
+		this.notificationDisabled = notificationDisabled;
 	}
 
 }
