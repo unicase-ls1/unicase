@@ -28,9 +28,9 @@ We currently use the following development tools:
 
 
 
+<br><br>
 
-
-Getting started as developer in 7 easy steps:
+*Getting started as developer in 7 easy steps:*
 
 1. Download and install [http://java.sun.com/javase/downloads/index_jdk5.jsp Java].
 
