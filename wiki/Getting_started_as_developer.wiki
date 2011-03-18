@@ -31,7 +31,7 @@ We currently use the following development tools:
 
 <br><br>
 
-*Getting started as developer in 7 easy steps:*
+*Getting started as developer in 8 easy steps:*
 
 1. Download and install [http://java.sun.com/javase/downloads/index_jdk5.jsp Java].
 
@@ -39,13 +39,15 @@ We currently use the following development tools:
 
 3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout) into your Eclipse workspace using Subclipse. Please see also this [CheckoutTutorial Tutorial]
 
-4. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
+4. Configure Target Platform as described in [Target Platform]
 
-5. Start the UNICASE server from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunServerTutorial video tutorial].
+5. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
-6. Start the UNICASE client from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunClientTutorial video tutorial].
+6. Start the UNICASE server from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunServerTutorial video tutorial].
 
-7. Register for our [http://code.google.com/p/unicase/wiki/Mailinglist mailinglists].
+7. Start the UNICASE client from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunClientTutorial video tutorial].
+
+8. Register for our [http://code.google.com/p/unicase/wiki/Mailinglist mailinglists].
 
 
 If you have any questions please consider the FAQ and Developer FAQ and do not hesitate to use our mailinglist.
