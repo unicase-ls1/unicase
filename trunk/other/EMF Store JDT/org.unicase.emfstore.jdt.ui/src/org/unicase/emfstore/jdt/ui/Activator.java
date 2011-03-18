@@ -44,7 +44,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 
 		// sync ProjectSpace on changes to the eclipse workbench
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(new WorkspaceListener());
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(new WorkspaceObserver());
 	}
 
 	/*

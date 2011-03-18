@@ -38,7 +38,7 @@ import org.unicase.metamodel.util.ModelUtil;
  * 
  * @author Adrian Staudt
  */
-public class WorkspaceListener implements IResourceChangeListener {
+public class WorkspaceObserver implements IResourceChangeListener {
 
 	/**
 	 * {@inheritDoc}
