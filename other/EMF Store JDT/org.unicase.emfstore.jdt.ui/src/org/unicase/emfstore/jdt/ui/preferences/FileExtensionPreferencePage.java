@@ -124,6 +124,11 @@ public class FileExtensionPreferencePage extends PreferencePage implements IWork
 		removeButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
+				if (extensionList.getSelectionIndex() == -1) {
+					// no item selected, but button pressed.
+					return;
+				}
+
 				extensionList.remove(extensionList.getSelectionIndex());
 			}
 		});
