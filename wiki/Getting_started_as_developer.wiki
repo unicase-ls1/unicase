@@ -7,13 +7,14 @@ We currently use the following development tools:
           o EMF <br>
           o Ecore Tools <br>
 
-    * Eclipse Plugins (install via Update Manager)
-          o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
+    * *Eclipse Plugins (install via Update Manager)*
+      
+       o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
             NOTE: If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL <br>
 
-          o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
+                  o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
 
-          o EMFStore and EMFCP : http://unicase.googlecode.com/svn/updatesite/emfstoreNightly <br>
+                  o EMFStore and EMFCP : http://unicase.googlecode.com/svn/updatesite/emfstoreNightly <br>
 
           o GMF : http://download.eclipse.org/releases/helios <br>
 
