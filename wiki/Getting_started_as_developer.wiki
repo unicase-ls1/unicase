@@ -39,7 +39,7 @@ We currently use the following development tools:
 
 3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout) into your Eclipse workspace using Subclipse. Please see also this [CheckoutTutorial Tutorial]
 
-4. Configure Target Platform as described in [Target Platform]
+4. Configure Target Platform as described in [http://code.google.com/p/unicase/wiki/Target_Platform Target Platform]
 
 5. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
