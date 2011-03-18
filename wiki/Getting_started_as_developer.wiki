@@ -3,15 +3,15 @@ We develop UNICASE for the Eclipse platform with the Eclipse Java IDE.
 We currently use the following development tools:
 
     * [http://java.sun.com/javase/downloads/index_jdk5.jsp Java 5 SE]
-    * [http://phoenix.eclipse.org/packages/ Eclipse 3.5: Modeling Tools Edition] (Galileo)
+    * [http://www.eclipse.org/downloads/ Eclipse 3.6: Modeling Tools Edition] (Helios)
           o EMF <br>
-          o GEF, GMF <br>
           o Ecore Tools <br>
 
     * Eclipse Plugins (install via Update Manager)
           o Subclipse: http://subclipse.tigris.org/update_1.6.x<br>
             o If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL <br>
           o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
+          o EMFStore and EMFCP : http://unicase.googlecode.com/svn/updatesite/emfstoreNightly <br>
           o COPE: http://cope.in.tum.de/update-site/site.xml<br>
             o NOTE: If you have already installed the runtime feature from the UNICASE update site, you will be notified.<br>
           o Checkstyle (the previously used version 4.4.x is no longer available at the update site. So, download the latest 5.x release.): - http://eclipse-cs.sf.net/update/<br>
@@ -23,7 +23,7 @@ Getting started as developer in 7 easy steps:
 
 1. Download and install [http://java.sun.com/javase/downloads/index_jdk5.jsp Java].
 
-2. Download [http://phoenix.eclipse.org/packages/ Eclipse] and install the required plugins (see above).
+2. Download [http://www.eclipse.org/downloads/ Eclipse] and install the required plugins (see above).
 
 3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout) into your Eclipse workspace using Subclipse. Please see also this [CheckoutTutorial Tutorial]
 
