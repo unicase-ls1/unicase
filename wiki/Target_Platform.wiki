@@ -6,7 +6,7 @@ We use target platform for UNICASE development which allows all the developers t
 
 
 
-= Steps to use UNICASE target platform =
+=== Steps to use UNICASE target platform ===
 
 
 o In order to get the target platform defintion, checkout [http://unicase.googlecode.com/svn/trunk/deployment/UNICASETargetPlatform/ targetDefinition] folder using subclipse in your eclipse workspace.
