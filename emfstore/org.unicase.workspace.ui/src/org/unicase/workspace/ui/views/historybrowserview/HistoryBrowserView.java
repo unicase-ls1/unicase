@@ -19,6 +19,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.util.ProjectSpaceContainer;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -66,15 +69,12 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.UiUtil;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.util.ElementOpenerHelper;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
-import org.unicase.workspace.util.ProjectSpaceContainer;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This the History Browser view.
@@ -671,7 +671,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.util.ProjectSpaceContainer#getProjectSpace()
+	 * @see org.eclipse.emf.emfstore.client.util.ProjectSpaceContainer#getProjectSpace()
 	 */
 	public ProjectSpace getProjectSpace() {
 		if (isUnlinkedFromNavigator) {

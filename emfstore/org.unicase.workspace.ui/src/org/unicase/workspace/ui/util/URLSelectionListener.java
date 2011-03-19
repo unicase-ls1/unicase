@@ -10,6 +10,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.exceptions.MEUrlResolutionException;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
@@ -18,10 +22,6 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A singleton selection listener that resolves unicase URLs and opens the element in a MEEditor.

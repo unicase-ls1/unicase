@@ -11,6 +11,8 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
@@ -18,8 +20,6 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.util.ActionHelper;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . ExportChangesHandler

@@ -8,11 +8,11 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.unicase.ui.util.ActionHelper;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A super class to handle all requests made to the server that require a RecordingCommand.

@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.exceptions.ChangeConflictException;
+import org.eclipse.emf.emfstore.client.observers.ConflictResolver;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
@@ -15,8 +17,6 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
-import org.unicase.workspace.exceptions.ChangeConflictException;
-import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;
 import org.unicase.workspace.ui.dialogs.merge.MergeWizard;
 import org.unicase.workspace.ui.dialogs.merge.util.CaseStudySwitch;
@@ -45,7 +45,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getAcceptedMine() {
 		return acceptedMine;
@@ -54,7 +54,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getRejectedTheirs() {
 		return rejectedTheirs;
@@ -63,7 +63,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public boolean resolveConflicts(Project project,
 			List<ChangePackage> theirChangePackages,

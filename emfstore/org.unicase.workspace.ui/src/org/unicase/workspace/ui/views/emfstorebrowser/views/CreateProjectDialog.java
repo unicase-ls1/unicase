@@ -5,6 +5,9 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -19,9 +22,6 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Create project dialog.

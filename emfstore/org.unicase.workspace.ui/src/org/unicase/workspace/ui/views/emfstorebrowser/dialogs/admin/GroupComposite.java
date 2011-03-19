@@ -10,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
@@ -22,7 +23,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.AdminBroker;
 
 /**
  * This shows attributes of a ACGroup (name, description) and show a list of its

@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -23,7 +24,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.wizard.AcUserImportAction;
 

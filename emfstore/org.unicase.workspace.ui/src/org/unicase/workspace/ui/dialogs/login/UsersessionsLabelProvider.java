@@ -7,7 +7,7 @@ package org.unicase.workspace.ui.dialogs.login;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.unicase.workspace.Usersession;
+import org.eclipse.emf.emfstore.client.Usersession;
 
 /**
  * Label provider for the saved sessions for a server info.

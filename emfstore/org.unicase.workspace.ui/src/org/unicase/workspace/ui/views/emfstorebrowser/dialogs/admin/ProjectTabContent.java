@@ -8,6 +8,7 @@ package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -17,7 +18,6 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.AdminBroker;
 
 /**
  * @author gurcankarakoc, deser

@@ -18,11 +18,11 @@ import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author deser

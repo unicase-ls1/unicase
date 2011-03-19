@@ -10,6 +10,13 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.Workspace;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.WorkspacePackage;
+import org.eclipse.emf.emfstore.client.observers.LoginObserver;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
@@ -29,17 +36,10 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.ui.dialogs.login.LoginDialog;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserViewerSorter;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * View containing the remote repositories.

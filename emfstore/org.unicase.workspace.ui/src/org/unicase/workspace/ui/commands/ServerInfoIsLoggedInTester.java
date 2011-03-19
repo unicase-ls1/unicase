@@ -7,10 +7,10 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Property tester to test if the server info has been logged in.

@@ -9,6 +9,12 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.observers.CheckoutObserver;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -20,13 +26,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.observers.CheckoutObserver;
 import org.unicase.workspace.ui.views.emfstorebrowser.views.ESBrowserView;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Handler for a project checkout.

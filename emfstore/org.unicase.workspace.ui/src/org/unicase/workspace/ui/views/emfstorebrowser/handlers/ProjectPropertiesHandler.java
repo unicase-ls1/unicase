@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.views.emfstorebrowser.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -19,8 +21,6 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
 
 /**
  * Handler to show the properties of a project.

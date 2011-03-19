@@ -6,11 +6,11 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * This property tester checks if current user is ACUser.

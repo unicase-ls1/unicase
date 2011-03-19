@@ -7,6 +7,13 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.exceptions.ChangeConflictException;
+import org.eclipse.emf.emfstore.client.exceptions.NoChangesOnServerException;
+import org.eclipse.emf.emfstore.client.observers.UpdateObserver;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
@@ -15,14 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.ChangeConflictException;
-import org.unicase.workspace.exceptions.NoChangesOnServerException;
-import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.ui.dialogs.UpdateDialog;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This handlers handles UpdateWorkspace command. This command is shown in UC View context menu only for Projects
@@ -138,7 +138,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
+	 * @see org.eclipse.emf.emfstore.client.observers.UpdateObserver#updateCompleted()
 	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
 		// ChainSaw - dashboard now listens on its own.

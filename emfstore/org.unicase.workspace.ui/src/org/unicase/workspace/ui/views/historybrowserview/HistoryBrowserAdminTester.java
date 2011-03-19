@@ -6,7 +6,7 @@
 package org.unicase.workspace.ui.views.historybrowserview;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.unicase.workspace.ProjectSpace;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
 import org.unicase.workspace.ui.commands.IsAdminTester;
 import org.unicase.workspace.ui.views.scm.SCMTreeNode;
 

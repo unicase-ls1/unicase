@@ -17,6 +17,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -29,10 +33,6 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Action to import project history to server.

@@ -5,16 +5,16 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Workspace;
+import org.eclipse.emf.emfstore.client.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Wizard for adding a new repository.

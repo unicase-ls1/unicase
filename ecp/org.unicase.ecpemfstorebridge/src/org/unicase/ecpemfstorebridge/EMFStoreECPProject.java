@@ -11,6 +11,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.Configuration;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.observers.SimpleOperationListener;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
@@ -18,9 +21,6 @@ import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.observers.SimpleOperationListener;
 
 /**
  * ECPproject for the EMFStore.

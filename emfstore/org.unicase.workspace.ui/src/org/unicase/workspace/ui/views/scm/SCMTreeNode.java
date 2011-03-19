@@ -5,8 +5,8 @@
  */
 package org.unicase.workspace.ui.views.scm;
 
+import org.eclipse.emf.emfstore.client.ProjectSpace;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * A TreeNode class which also contains a reference to the ProjectSpace.

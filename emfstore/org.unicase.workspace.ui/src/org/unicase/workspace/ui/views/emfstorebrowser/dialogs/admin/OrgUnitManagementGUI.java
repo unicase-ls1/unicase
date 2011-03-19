@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -15,7 +16,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.workspace.AdminBroker;
 
 /**
  * This class provides the contents of ManageOrgUnitsDialog. It contains a

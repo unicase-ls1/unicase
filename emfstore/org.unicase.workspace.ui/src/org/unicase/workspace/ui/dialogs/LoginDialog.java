@@ -8,6 +8,10 @@ package org.unicase.workspace.ui.dialogs;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -32,10 +36,6 @@ import org.eclipse.swt.widgets.Text;
 import org.sharemedia.ui.sat.SATRunner;
 import org.sharemedia.ui.sat.movement.SinusVariation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Class for the login dialog.

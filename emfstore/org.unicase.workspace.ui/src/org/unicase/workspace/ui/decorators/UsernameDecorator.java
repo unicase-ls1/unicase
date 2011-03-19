@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * Decorator to show the username for a ProjectSpace.

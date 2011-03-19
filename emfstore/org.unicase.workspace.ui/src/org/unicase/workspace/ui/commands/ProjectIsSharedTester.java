@@ -7,9 +7,9 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
 
 /**
  * Property tester to test if a project is Shared with a server already.

@@ -7,6 +7,10 @@ package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.client.exceptions.CertificateStoreException;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
@@ -23,10 +27,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.exceptions.CertificateStoreException;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The main page of the wizard.

@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeNode;
@@ -32,7 +33,6 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.UiUtil;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 

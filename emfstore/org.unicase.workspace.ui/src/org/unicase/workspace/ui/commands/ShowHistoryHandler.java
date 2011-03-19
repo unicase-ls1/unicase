@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.commands;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -16,8 +18,6 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 
 /**

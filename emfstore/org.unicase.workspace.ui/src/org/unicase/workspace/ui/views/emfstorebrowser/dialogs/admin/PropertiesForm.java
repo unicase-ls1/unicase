@@ -6,6 +6,7 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -16,7 +17,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.AdminBroker;
 
 /**
  * This is the right side of OrgUnitManagementGUI. It shows the properties of
