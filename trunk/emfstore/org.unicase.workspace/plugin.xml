@@ -20,7 +20,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 
-       class = "org.unicase.workspace.WorkspacePackage"
+       class = "org.eclipse.emf.emfstore.client.WorkspacePackage"
        genModel = "model/workspace.genmodel" /> 
   </extension>
   <extension

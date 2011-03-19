@@ -1,29 +1,29 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: unicase Workspace Plug-in
-Bundle-SymbolicName: org.unicase.workspace; singleton:=true
+Bundle-Name: EMFStore Client
+Bundle-SymbolicName: org.eclipse.emf.emfstore.client;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-ClassPath: .
-Bundle-Vendor: unicase.org
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.workspace,
- org.unicase.workspace.accesscontrol,
- org.unicase.workspace.changeTracking,
- org.unicase.workspace.changeTracking.commands,
- org.unicase.workspace.changeTracking.notification,
- org.unicase.workspace.changeTracking.notification.filter,
- org.unicase.workspace.changeTracking.notification.recording,
- org.unicase.workspace.connectionmanager,
- org.unicase.workspace.connectionmanager.rmi,
- org.unicase.workspace.exceptions,
- org.unicase.workspace.filetransfer,
- org.unicase.workspace.impl,
- org.unicase.workspace.notification,
- org.unicase.workspace.observers,
- org.unicase.workspace.preferences,
- org.unicase.workspace.util
-Require-Bundle: org.unicase.emfstore;visibility:=reexport,
+Export-Package: org.eclipse.emf.emfstore.client,
+ org.eclipse.emf.emfstore.client.accesscontrol,
+ org.eclipse.emf.emfstore.client.changeTracking,
+ org.eclipse.emf.emfstore.client.changeTracking.commands,
+ org.eclipse.emf.emfstore.client.changeTracking.notification,
+ org.eclipse.emf.emfstore.client.changeTracking.notification.filter,
+ org.eclipse.emf.emfstore.client.changeTracking.notification.recording,
+ org.eclipse.emf.emfstore.client.connectionmanager,
+ org.eclipse.emf.emfstore.client.connectionmanager.rmi,
+ org.eclipse.emf.emfstore.client.exceptions,
+ org.eclipse.emf.emfstore.client.filetransfer,
+ org.eclipse.emf.emfstore.client.impl,
+ org.eclipse.emf.emfstore.client.notification,
+ org.eclipse.emf.emfstore.client.observers,
+ org.eclipse.emf.emfstore.client.preferences,
+ org.eclipse.emf.emfstore.client.util
+Require-Bundle: org.eclipse.emf.emfstore.server;visibility:=reexport,
  org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.unicase.workspace.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.client.Activator

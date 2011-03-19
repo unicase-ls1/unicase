@@ -8,6 +8,10 @@ package org.unicase.ecpemfstorebridge;
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.PostECPWorkspaceInitiator;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
@@ -22,10 +26,6 @@ import org.unicase.ui.common.observer.ModelElementOpenObserver;
 import org.unicase.ui.common.observer.PresentationSwitchObserver;
 import org.unicase.ui.common.observer.StatusViewDropEventObserver;
 import org.unicase.ui.common.observer.TraceObserver;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author emueller

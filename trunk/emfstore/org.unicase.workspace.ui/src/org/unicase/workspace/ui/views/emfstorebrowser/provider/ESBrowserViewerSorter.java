@@ -5,11 +5,11 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
+import org.eclipse.emf.emfstore.client.ServerInfo;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.workspace.ServerInfo;
 
 /**
  * Sort alphabetically the repository browser viewer.

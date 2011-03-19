@@ -8,9 +8,9 @@ package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.wi
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
-import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportController;
 import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.acimport.ImportItemWrapper;
 

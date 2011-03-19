@@ -9,18 +9,18 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Workspace;
+import org.eclipse.emf.emfstore.client.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.impl.WorkspaceImpl;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IActionDelegate;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.WorkspaceImpl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Action for adding XMI files to workspace.

@@ -7,6 +7,12 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.Date;
 
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.exceptions.CommitCanceledException;
+import org.eclipse.emf.emfstore.client.exceptions.NoLocalChangesException;
+import org.eclipse.emf.emfstore.client.observers.CommitObserver;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -15,12 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.CommitCanceledException;
-import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.ui.dialogs.CommitDialog;
 
 /**
@@ -148,7 +148,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 * @see org.eclipse.emf.emfstore.client.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
@@ -178,7 +178,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted()
+	 * @see org.eclipse.emf.emfstore.client.observers.CommitObserver#commitCompleted()
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 	}

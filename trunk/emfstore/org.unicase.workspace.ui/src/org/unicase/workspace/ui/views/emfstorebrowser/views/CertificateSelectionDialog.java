@@ -9,6 +9,9 @@ package org.unicase.workspace.ui.views.emfstorebrowser.views;
 import java.security.cert.X509Certificate;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.client.exceptions.CertificateStoreException;
+import org.eclipse.emf.emfstore.client.exceptions.InvalidCertificateException;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -31,9 +34,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.exceptions.CertificateStoreException;
-import org.unicase.workspace.exceptions.InvalidCertificateException;
 
 /**
  * The modified ElementListSelectionDialog. Includes further functionality to

@@ -6,13 +6,13 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.Usersession;
+import org.eclipse.emf.emfstore.client.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
 import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Checks if the user has admin access to the server.

@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.jface.databinding;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.emf.databinding.edit;visibility:=reexport,
- org.unicase.util;visibility:=reexport,
+ org.eclipse.emf.emfstore.common;visibility:=reexport,
  org.eclipse.ui.ide.application
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

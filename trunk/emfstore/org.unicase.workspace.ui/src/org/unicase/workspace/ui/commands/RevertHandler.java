@@ -8,15 +8,15 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.util.ActionHelper;
 import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 // MK: document whats this exactly does
 /**

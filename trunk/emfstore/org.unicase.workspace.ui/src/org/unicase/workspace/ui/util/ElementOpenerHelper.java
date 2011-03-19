@@ -9,8 +9,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
 import org.unicase.ui.util.ModelElementOpener;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Allows to open model elements from workspace ui.

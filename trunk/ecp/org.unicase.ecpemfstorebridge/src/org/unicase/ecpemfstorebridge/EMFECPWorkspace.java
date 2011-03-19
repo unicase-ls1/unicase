@@ -12,15 +12,15 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.Configuration;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.Workspace;
+import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.WorkspacePackage;
+import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.unicase.util.observer.ObserverBus;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Provides an ECPWorspace for the EMFStore.
@@ -112,7 +112,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 	 * @return observerbus
 	 */
 	public ObserverBus getObserverBus() {
-		return org.unicase.workspace.WorkspaceManager.getObserverBus();
+		return org.eclipse.emf.emfstore.client.WorkspaceManager.getObserverBus();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 			projectSpace = (ProjectSpace) modelelement;
 		} else if (modelelement instanceof EObject) {
 			try {
-				projectSpace = org.unicase.workspace.WorkspaceManager.getProjectSpace(modelelement);
+				projectSpace = org.eclipse.emf.emfstore.client.WorkspaceManager.getProjectSpace(modelelement);
 			} catch (IllegalArgumentException exception) {
 				return;
 			}
@@ -145,8 +145,8 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 			return;
 		}
 
-		if (org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null) {
-			if (org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+		if (org.eclipse.emf.emfstore.client.WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null) {
+			if (org.eclipse.emf.emfstore.client.WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 				.equals(projectSpace)) {
 				return;
 			}
@@ -155,7 +155,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.unicase.ecp
 
 			@Override
 			protected void doRun() {
-				org.unicase.workspace.WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(
+				org.eclipse.emf.emfstore.client.WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(
 					projectSpace);
 			}
 		}.run();

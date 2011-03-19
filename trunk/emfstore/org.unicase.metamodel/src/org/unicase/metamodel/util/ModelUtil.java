@@ -60,6 +60,8 @@ import org.xml.sax.InputSource;
  */
 public final class ModelUtil {
 
+	private static final String ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL = "org.eclipse.emf.emfstore.common.model";
+
 	/**
 	 * Text marker for the begin of the plaintext in rich text attributes.
 	 */
@@ -451,9 +453,9 @@ public final class ModelUtil {
 	 * @throws LoggedException
 	 */
 	public static void log(String message, Throwable exception, int statusInt) {
-		Status status = new Status(statusInt, Platform.getBundle("org.unicase.metamodel").getSymbolicName(), statusInt,
-			message, exception);
-		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).log(status);
+		Status status = new Status(statusInt, Platform.getBundle(ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL)
+			.getSymbolicName(), statusInt, message, exception);
+		Platform.getLog(Platform.getBundle(ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL)).log(status);
 	}
 
 	/**

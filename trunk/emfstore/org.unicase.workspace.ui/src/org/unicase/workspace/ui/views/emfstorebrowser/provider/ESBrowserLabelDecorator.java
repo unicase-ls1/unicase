@@ -5,11 +5,11 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
+import org.eclipse.emf.emfstore.client.ServerInfo;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.ui.Activator;
 
 /**

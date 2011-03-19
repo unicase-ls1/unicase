@@ -1,8 +1,8 @@
 package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ProjectSpace;
 import org.unicase.ui.util.ModelElementOpener;
-import org.unicase.workspace.ProjectSpace;
 
 public class ProjectSpaceOpener implements ModelElementOpener {
 

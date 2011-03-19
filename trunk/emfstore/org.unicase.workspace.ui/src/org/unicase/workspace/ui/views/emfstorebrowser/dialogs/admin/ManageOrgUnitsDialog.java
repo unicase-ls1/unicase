@@ -5,12 +5,12 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
+import org.eclipse.emf.emfstore.client.AdminBroker;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.workspace.AdminBroker;
 
 /**
  * This is a dialog to manage users and groups (OrgUnits) and their access
