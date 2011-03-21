@@ -8,16 +8,17 @@ package org.unicase.model.changetracking.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
-
-import org.unicase.model.changetracking.*;
-
+import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.ChangetrackingPackage;
+import org.unicase.model.changetracking.RepositoryLocation;
+import org.unicase.model.changetracking.RepositoryRevision;
+import org.unicase.model.changetracking.RepositoryStream;
+import org.unicase.model.changetracking.Stream;
 import org.unicase.model.release.Release;
 
 /**

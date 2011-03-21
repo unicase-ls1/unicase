@@ -8,11 +8,9 @@ package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
-
 import org.unicase.model.changetracking.impl.RepositoryLocationImpl;
 
 /**
