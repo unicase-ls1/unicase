@@ -11,7 +11,7 @@ public class AdvancedMessageDialog extends MessageDialog {
 	private static final String NO_LOCAL_REPO_MESSAGE = "No local repository matching the remote repository found!\n\nPress clone to clone from the remote repository.\nOpen will allow you to specify another location for the local repository, in the case you have already cloned it, but outside your workspace.";
 	private static final String NO_REMOTE_REPO_CAPTION = "No matching remote repository found";
 	private static final String NO_REMOTE_REPO_MESSAGE = "No repository location matching the local repository found in the selected UNICASE project!\n\nPress \"create\" to create a new repository location, \"don't create\" to leave this branch without a repository location or \"cancel\" to abort the process.";
-	
+	 
 	public static enum NoLocalRepoChoices{
 		CLONE, OPEN, CANCEL;
 	}

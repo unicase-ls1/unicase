@@ -1,43 +1,33 @@
 package org.unicase.changetracking.ui.createChangePackage;
 
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.unicase.changetracking.common.ChangeTrackingUtil;
+import org.unicase.changetracking.exceptions.CancelledByUserException;
+import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.CreateRepoLocationAction;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
+import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
+import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.changetracking.git.GitRepository;
+import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.navigator.ContentProvider;
 
 public class ChooseWorkItemPage extends WizardPage{
 
@@ -46,7 +36,6 @@ public class ChooseWorkItemPage extends WizardPage{
 	private static final String WORK_ITEM_TOOLTIP = "Select a work item to which the change package will be attached.";
 	private static final String PROJECT_TOOLTIP = "The Unicase project to which the change package will be added.\n\nIs automatically inferred from the work item to which the change package will be attached";
 	private static final String REPOSITORY_TOOLTIP = "The remote repository in the Unicase project.\n\nThe repository must match the local repository from which the change package is created.\nIf the project contains no matching repository, you can create one here.";
-	private ChangeTrackingRelease release;
 	private ImageAndTextLabel workItemLabel;
 	private ImageAndTextLabel projectLabel;
 	private ImageAndTextLabel remoteRepoLabel;
@@ -54,11 +43,12 @@ public class ChooseWorkItemPage extends WizardPage{
 	private Project selectedProject;
 	private UnicaseModelElement selectedWorkItem;
 	private ILabelProvider labelProvider;
-	private GitRepository selectedRepository;
+	private RepositoryLocation selectedRepository;
 	private Composite composite;
 	private Button createRepoButton;
 	private String selectedProjectName;
-	private Repository localRepo;
+	private VCSAdapter vcs;
+	private IProject workspaceProject;
 	
 	
 
@@ -70,7 +60,7 @@ public class ChooseWorkItemPage extends WizardPage{
 		return (WorkItem) selectedWorkItem;
 	}
 
-	public GitRepository getSelectedRepository() {
+	public RepositoryLocation getSelectedRepository() {
 		return selectedRepository;
 	}
 
@@ -79,11 +69,12 @@ public class ChooseWorkItemPage extends WizardPage{
 	}
 
 	protected ChooseWorkItemPage(String pageName, String title,
-			ImageDescriptor titleImage, Repository localRepo) {
+			ImageDescriptor titleImage, VCSAdapter vcs, IProject workspaceProject) {
 		super(pageName, title, titleImage);
-		this.release = release;
+		
 		attacheeDialog = new AttacheeSelectionDialog("Choose work item","Choose a work item to attach the change package to.");
-		this.localRepo = localRepo;
+		this.vcs = vcs;
+		this.workspaceProject = workspaceProject;
 		labelProvider = attacheeDialog.getLabelProvider();
 		
 	}
@@ -144,8 +135,15 @@ public class ChooseWorkItemPage extends WizardPage{
 		createRepoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				selectedRepository = new CreateRepoLocationAction().createRepoLocation(localRepo, selectedProject);
-				updateFields();
+				try {
+					selectedRepository = vcs.createRepositoryLocation(workspaceProject);
+					ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem , true);
+					updateFields();
+				} catch (VCSException e1) {
+					UIUtil.handleException("The repository could not be created", e1);
+				} catch (CancelledByUserException e1) {
+				}
+				
 			}
 		});
 		createRepoButton.setEnabled(false);
@@ -161,7 +159,11 @@ public class ChooseWorkItemPage extends WizardPage{
 			selectedProject = attacheeDialog.getSelectedProjectSpace().getProject();
 			selectedProjectName = attacheeDialog.getSelectedProjectSpace().getProjectName();
 			selectedWorkItem = attacheeDialog.getSelectedModelElementNoCreate();
-			selectedRepository = GitRepoFindUtil.findRemoteInProject(localRepo, selectedProject);;
+			try {
+				selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
+			} catch (VCSException e) {
+				UIUtil.handleException(e);
+			}
 		}
 		updateFields();
 	}

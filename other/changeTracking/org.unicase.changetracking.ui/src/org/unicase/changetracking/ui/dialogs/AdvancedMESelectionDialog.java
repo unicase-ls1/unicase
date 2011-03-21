@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
@@ -52,6 +53,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The attachee selection dialog allows to select a work item to attach a source change to.
@@ -164,12 +166,18 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	
 	@Override
 	public boolean close() {
-		UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
+		final UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
 		
 		if(getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)){
-				ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
+				final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
 				if(placementDialog.open() == Window.OK){
-					placementDialog.doPlacement();
+					new UnicaseCommand() {
+						@Override
+						protected void doRun() {
+							ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
+							selectedElement.setName(placementDialog.getSelectedName());
+						}
+					};
 				} else {
 					setReturnCode(Window.CANCEL);
 				}
@@ -281,6 +289,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 			public void selectionChanged(User newSelection) {
 				populateEntries(projectBar.getSelection(), getSelectedUserOrNoUser(newSelection));
 				doRefresh();
+			}
+		});
+		userBar.setLabelProvider(new LabelProvider(){
+			@Override
+			public String getText(Object element) {
+				return ((User)element).getName();
 			}
 		});
 		

@@ -5,33 +5,34 @@ import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jgit.lib.Repository;
-import org.unicase.changetracking.git.commands.GitBuildReleaseCommand;
+import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.release.ReleaseCheckReport;
-import org.unicase.changetracking.release.ReleaseUtil;
 import org.unicase.changetracking.ui.UIUtil;
+import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.RepositoryLocation;
 
 public class BuildReleaseWizard extends Wizard{
 
 	private ChangeTrackingRelease release;
 	private ReleaseCheckReport report;
-	private Repository localRepo;
 	private boolean canFinish;
 	private BuildSettingsPage buildSettingsPage;
-	public BuildReleaseWizard(ChangeTrackingRelease release, ReleaseCheckReport report, Repository localRepo) {
+	private RepositoryLocation repoLocation;
+	private VCSAdapter vcs;
+	public BuildReleaseWizard(ChangeTrackingRelease release, ReleaseCheckReport report, VCSAdapter vcs) {
 		this.release = release;
 		this.report = report;
-		this.localRepo = localRepo;
 		canFinish = false;
-		
+		this.repoLocation = report.getRepoLocation();
+		this.vcs = vcs;
 	}
 	
 	@Override
 	public void addPages() {
 		ReviewReleasePage reviewReleasePage = new ReviewReleasePage("Build Release", "Review Release", null, release, report);
 		addPage(reviewReleasePage);
-		buildSettingsPage = new BuildSettingsPage("Build Release", "Review Release", null, release, report, localRepo);
+		buildSettingsPage = new BuildSettingsPage("Build Release", "Review Release", null, release, report, vcs, repoLocation);
 		addPage(buildSettingsPage);
 		
 	}
@@ -63,7 +64,8 @@ public class BuildReleaseWizard extends Wizard{
 		}
 		
 		if(wantBuild){
-			GitBuildReleaseCommand command = new GitBuildReleaseCommand(release, localRepo, report.getReleaseBase().getRef(), ReleaseUtil.buildMergeSetFromReport(report), buildSettingsPage.getTagName());
+			
+			BuildReleaseCommand command = vcs.buildRelease(release, buildSettingsPage.getTagName(), report);
 			new BuildReleaseOperation(command,false).run();
 		}
 		return true;

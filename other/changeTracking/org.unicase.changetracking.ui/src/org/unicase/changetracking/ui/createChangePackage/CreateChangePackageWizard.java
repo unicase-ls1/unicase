@@ -1,53 +1,52 @@
 package org.unicase.changetracking.ui.createChangePackage;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.changetracking.git.Test;
-import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.Result;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.task.WorkItem;
+import org.unicase.changetracking.vcs.VCSAdapter;
 
 public class CreateChangePackageWizard extends Wizard{
 
 	private boolean canFinish;
-	private Repository localRepository;
 	private ChooseWorkItemPage chooseWorkItemPage;
 	private ChooseNameAndDescriptionPage chooseNamePage;
+	private VCSAdapter vcs;
+	private IProject selectedProject;
 	private static final ImageDescriptor PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/create_change_package_wiz.png");
 
-	public CreateChangePackageWizard(Repository localRepository) {
+	public CreateChangePackageWizard(VCSAdapter vcs, IProject selectedProject) {
 		setFinishable(false);
 		setWindowTitle("Create Change Package");
-		this.localRepository = localRepository;
+		this.vcs = vcs;
+		this.selectedProject = selectedProject;
 	}
+	
 	
 	@Override
 	public void addPages() {
-		chooseWorkItemPage = new ChooseWorkItemPage("Choose Work Item", "Choose Work Item", PAGE_IMAGE, localRepository);
+		chooseWorkItemPage = new ChooseWorkItemPage("Choose Work Item", "Choose Work Item", PAGE_IMAGE, vcs, selectedProject);
 		addPage(chooseWorkItemPage);
 
-		chooseNamePage = new ChooseNameAndDescriptionPage("Choose Work Item", "Set name and description for the change package", PAGE_IMAGE, localRepository);
+		chooseNamePage = new ChooseNameAndDescriptionPage("Choose Work Item", "Set name and description for the change package", PAGE_IMAGE);
 		addPage(chooseNamePage);
 	}
 	@Override
 	public boolean performFinish() {
-		UIUtil.runProgressMonitorCommand(new GitCreateChangePackageCommand(
-				localRepository,
+		if(UIUtil.runCommand(vcs.createChangePackage(
+				selectedProject,
 				chooseWorkItemPage.getSelectedWorkItem(),
 				chooseWorkItemPage.getSelectedRepository(),
 				chooseNamePage.getSelectedName(),
 				chooseNamePage.getSelectedShortDescription(),
-				chooseNamePage.getSelectedLongDescription(),
-				 Test.getTestCredentials()
-			), "Change package was created successfully.");
+				chooseNamePage.getSelectedLongDescription()
+			)).getResult() == Result.SUCCESS){
+			
+			UIUtil.openUnicaseAndModelElement(chooseWorkItemPage.getSelectedWorkItem());
+			
+		}
 		return true;
 
 	}
