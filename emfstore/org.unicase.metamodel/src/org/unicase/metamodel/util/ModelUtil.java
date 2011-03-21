@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,7 +27,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -83,6 +81,8 @@ public final class ModelUtil {
 	private static Set<SingletonIdResolver> singletonIdResolvers;
 
 	private static HashMap<Object, Object> resourceLoadOptions;
+
+	private static HashMap<Object, Object> resourceSaveOptions;
 
 	/**
 	 * Private constructor.
@@ -148,6 +148,7 @@ public final class ModelUtil {
 		if (object == null) {
 			return null;
 		}
+
 		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 
 		if (!overrideContainmentCheck && !(object instanceof EClass)) {
@@ -180,7 +181,7 @@ public final class ModelUtil {
 		}
 		StringWriter stringWriter = new StringWriter(initialSize);
 		try {
-			res.save(stringWriter, null);
+			res.save(stringWriter, getResourceSaveOptions());
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
@@ -243,6 +244,7 @@ public final class ModelUtil {
 		if (object == null) {
 			return null;
 		}
+
 		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 
 		try {
@@ -270,16 +272,6 @@ public final class ModelUtil {
 					id = res.getID(me);
 				}
 
-				// EM: temporary hack to support serialization of EAnnotations, see
-				// ProjectChangeTracker#createCreateDeleteOperation
-				if (me instanceof EAnnotation) {
-					try {
-						((EAnnotation) me).setSource(URLDecoder.decode(((EAnnotation) me).getSource(), "UTF-8"));
-					} catch (UnsupportedEncodingException e) {
-						ModelUtil.logException(e);
-					}
-				}
-
 				if (id == null) {
 					throw new SerializationException("Failed to retrieve ID for EObject contained in project: " + me);
 				}
@@ -291,6 +283,10 @@ public final class ModelUtil {
 			}
 			project.initCaches(eObjectToIdMap, idToEObjectMap);
 		}
+
+		// TODO: added to resolve model element map in a CreateDeleteOp
+		// check whether we can generalize this
+		EcoreUtil.resolveAll(result);
 
 		res.getContents().remove(result);
 		return result;
@@ -305,10 +301,24 @@ public final class ModelUtil {
 	public static Map<Object, Object> getResourceLoadOptions() {
 		if (resourceLoadOptions == null) {
 			resourceLoadOptions = new HashMap<Object, Object>();
-			// options.put(XMLResource.OPTION_CONFIGURATION_CACHE, true);
+			// options.put(XMLResource.OPTION_CONFIGURATION_CACHE, true)
+			resourceLoadOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
 			resourceLoadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		}
 		return resourceLoadOptions;
+	}
+
+	/**
+	 * Delivers a map of mandatory options for saving resources.
+	 * 
+	 * @return map of options for {@link XMIResource} or {@link XMLResource}.
+	 */
+	public static Map<Object, Object> getResourceSaveOptions() {
+		if (resourceSaveOptions == null) {
+			resourceSaveOptions = new HashMap<Object, Object>();
+			resourceSaveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+		}
+		return resourceSaveOptions;
 	}
 
 	/**

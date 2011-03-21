@@ -6,7 +6,6 @@
 package org.unicase.emfstore.core.helper;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -232,8 +231,9 @@ public class ResourceHelper {
 	 * 
 	 * @param eObject the EObject to be saved
 	 * @param project the project, that is used to set the IDs of all model elements within the project on the resource
+	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public void saveWithProject(EObject eObject, Project project) {
+	public void saveWithProject(EObject eObject, Project project) throws FatalEmfStoreException {
 		Resource resource = eObject.eResource();
 
 		if (resource instanceof XMIResource) {
@@ -244,11 +244,7 @@ public class ResourceHelper {
 			}
 		}
 
-		try {
-			eObject.eResource().save(null);
-		} catch (IOException e1) {
-			ModelUtil.logException("Saving of resource failed.", e1);
-		}
+		save(eObject);
 	}
 
 	/**
@@ -259,7 +255,7 @@ public class ResourceHelper {
 	 */
 	public void save(EObject object) throws FatalEmfStoreException {
 		try {
-			object.eResource().save(null);
+			object.eResource().save(ModelUtil.getResourceSaveOptions());
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
@@ -276,7 +272,7 @@ public class ResourceHelper {
 		for (Resource res : serverSpace.eResource().getResourceSet().getResources()) {
 			if (res.isLoaded() && res.isModified()) {
 				try {
-					res.save(null);
+					res.save(ModelUtil.getResourceSaveOptions());
 					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (Exception e) {
 					throw new FatalEmfStoreException(StorageException.NOSAVE, e);
