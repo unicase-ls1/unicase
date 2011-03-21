@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.unicase.git.model
 Bundle-SymbolicName: org.unicase.changetracking.model;singleton:=true
 Bundle-Version: 0.1.0
-Require-Bundle: org.eclipse.emf.ecore,
- org.unicase.model
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.unicase.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model.changetracking,
