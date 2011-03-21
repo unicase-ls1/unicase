@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
-import org.unicase.changetracking.release.BranchState;
+import org.unicase.changetracking.release.ChangePackageState;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.ReleaseUtil;
 import org.unicase.model.changetracking.ChangePackage;
@@ -22,7 +22,6 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	private static final ImageData ERROR_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/error.gif").getImageData();
 	private static final ImageData MERGED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/merged.gif").getImageData();
 	private static final ImageData UNMERGED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/unmerged.gif").getImageData();
-	private static final ImageData UNCONNECTED_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/error.gif").getImageData();
 	private static final ImageData OPEN_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/open.png").getImageData();
 	private static final ImageData WARNING_DECORATION_IMAGE = Activator.getImageDescriptor("icons/decorators/warning.gif").getImageData();
 	
@@ -30,15 +29,14 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	
 	
 	
-	private static final Map<BranchState, ImageData> decorationMapping = new HashMap<BranchState, ImageData>();
+	private static final Map<ChangePackageState, ImageData> decorationMapping = new HashMap<ChangePackageState, ImageData>();
 	static{
-		decorationMapping.put(BranchState.ERROR, ERROR_DECORATION_IMAGE);
-		decorationMapping.put(BranchState.MERGED, MERGED_DECORATION_IMAGE);
-		decorationMapping.put(BranchState.UNMERGED, UNMERGED_DECORATION_IMAGE);
-		decorationMapping.put(BranchState.UNCONNECTED, UNCONNECTED_DECORATION_IMAGE);
+		decorationMapping.put(ChangePackageState.ERROR, ERROR_DECORATION_IMAGE);
+		decorationMapping.put(ChangePackageState.MERGED, MERGED_DECORATION_IMAGE);
+		decorationMapping.put(ChangePackageState.UNMERGED, UNMERGED_DECORATION_IMAGE);
 	}
 	
-	public Image generateImage(BranchState state){
+	public Image generateImage(ChangePackageState state){
 		return new Image(CHANGE_PACKAGE_IMAGE.getDevice(),new DecorationImageDescriptor(CHANGE_PACKAGE_IMAGE,state).getImageData());
 	}
 	
@@ -55,9 +53,9 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 	public Image getImage(Object element) {
 		if(element instanceof ChangePackage){
 			Image img = wrappedProvider.getImage(element);
-			BranchState state = report.getChangePackageResults().get(element).getState();
+			ChangePackageState state = report.getChangePackageResults().get(element);
 			if(state == null){
-				state = BranchState.ERROR;
+				state = ChangePackageState.ERROR;
 			}
 			img = new Image(img.getDevice(), new DecorationImageDescriptor(img,state).getImageData());
 			return img;
@@ -110,7 +108,7 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 		private ImageData imageData;
 		private ImageData decorationData;
 
-		private DecorationImageDescriptor(Image image, BranchState state){
+		private DecorationImageDescriptor(Image image, ChangePackageState state){
 			this.imageData = image.getImageData();
 			this.decorationData = decorationMapping.get(state);
 		}

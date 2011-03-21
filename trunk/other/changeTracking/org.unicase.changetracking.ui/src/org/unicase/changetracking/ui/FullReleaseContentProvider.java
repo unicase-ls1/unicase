@@ -7,16 +7,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.Attachment;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.release.Release;
 import org.unicase.model.task.WorkItem;
 
 public class FullReleaseContentProvider implements ITreeContentProvider{
 	
 	private static final Object[] EMPTY = new Object[0];
-	private Object input;
 	private boolean showRoot = false;
 	private boolean showWorkItems = true;
 	
@@ -53,23 +50,6 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 	@Override
 	public Object getParent(Object element) {
 		return null;
-//		if(element instanceof ChangePackage){
-//			EList<UnicaseModelElement> elems = ((ChangePackage) element).getReferringModelElements();
-//			if(elems.isEmpty()){
-//				return null;
-//			} else {
-//				return elems.get(0);
-//			}
-//		} else if(element instanceof WorkItem){
-//			EList<Release> elems = ((WorkItem) element).getIncludingReleases();
-//			for(Release e : elems){
-//				if(e.equals(input)){
-//					return e;
-//				}
-//			}
-//			return null;
-//		}
-//		return null;
 	}
 
 	@Override
@@ -127,7 +107,6 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		input = newInput;
 	}
 
 	public void setShowRoot(boolean show) {
