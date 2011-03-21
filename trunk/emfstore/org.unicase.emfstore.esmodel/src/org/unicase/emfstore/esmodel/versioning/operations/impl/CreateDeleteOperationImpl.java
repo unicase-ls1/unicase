@@ -5,8 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -80,8 +77,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
 			allContainedModelElements.add(element);
 			EObject copiedElement = EcoreUtil.copy(element);
-			// createDeleteOperation.setModelElement(copiedElement);
-			// createDeleteOperation.setModelElementId(ModelUtil.clone(this.getModelElementId()));
 			List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
 				false);
 			copiedAllContainedModelElements.add(copiedElement);
@@ -94,17 +89,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 				if (ModelUtil.isIgnoredDatatype(child)) {
 					continue;
-				}
-
-				// EM: temporary hack to support serialization of EAnnotations, see
-				// ProjectChangeTracker#createCreateDeleteOperation
-				if (child instanceof EAnnotation) {
-					try {
-						((EAnnotation) copiedChild).setSource(URLDecoder.decode(
-							((EAnnotation) copiedChild).getSource(), "UTF-8"));
-					} catch (UnsupportedEncodingException e) {
-						ModelUtil.logException(e);
-					}
 				}
 
 				if (childId.equals(clone.getModelElementId())) {
