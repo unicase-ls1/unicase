@@ -1,4 +1,5 @@
-#summary EMFStore subproject navigational page.[http://unicase.googlecode.com/files/emfstoreSmall.png]
+#summary EMFStore subproject navigational page.
+[http://unicase.googlecode.com/files/emfstoreSmall.png]
 
 *NEWS*: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here].
 
