@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
-import org.eclipse.emf.emfstore.client.AdminBroker;
+import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;

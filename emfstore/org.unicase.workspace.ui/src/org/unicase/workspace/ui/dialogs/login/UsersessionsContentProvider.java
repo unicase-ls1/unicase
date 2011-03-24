@@ -9,10 +9,10 @@ import java.util.HashSet;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.Workspace;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 
 /**
  * Content provider to load the saved sessions for a server info.

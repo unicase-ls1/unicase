@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.util.ProjectSpaceContainer;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.ProjectSpaceContainer;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -671,7 +671,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.util.ProjectSpaceContainer#getProjectSpace()
+	 * @see org.eclipse.emf.emfstore.client.model.util.ProjectSpaceContainer#getProjectSpace()
 	 */
 	public ProjectSpace getProjectSpace() {
 		if (isUnlinkedFromNavigator) {

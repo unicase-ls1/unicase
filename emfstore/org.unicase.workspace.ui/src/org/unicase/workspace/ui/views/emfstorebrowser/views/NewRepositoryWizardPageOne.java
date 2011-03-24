@@ -7,10 +7,10 @@ package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.connectionmanager.KeyStoreManager;
-import org.eclipse.emf.emfstore.client.exceptions.CertificateStoreException;
-import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;

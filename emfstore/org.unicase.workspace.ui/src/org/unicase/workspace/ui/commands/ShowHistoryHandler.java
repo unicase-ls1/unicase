@@ -8,8 +8,8 @@ package org.unicase.workspace.ui.commands;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;

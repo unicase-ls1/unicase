@@ -10,10 +10,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.exceptions.MEUrlResolutionException;
-import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;

@@ -6,10 +6,10 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.accesscontrol.AccessControlHelper;
-import org.eclipse.emf.emfstore.client.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
 import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.AccessControlException;

@@ -5,11 +5,11 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.Workspace;
-import org.eclipse.emf.emfstore.client.WorkspaceFactory;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;

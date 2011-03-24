@@ -9,11 +9,11 @@ import java.util.Collection;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.Workspace;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;

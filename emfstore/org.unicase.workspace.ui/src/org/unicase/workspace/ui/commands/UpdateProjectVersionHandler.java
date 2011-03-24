@@ -7,13 +7,13 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.List;
 
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.exceptions.ChangeConflictException;
-import org.eclipse.emf.emfstore.client.exceptions.NoChangesOnServerException;
-import org.eclipse.emf.emfstore.client.observers.UpdateObserver;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.ChangeConflictException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoChangesOnServerException;
+import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
@@ -147,7 +147,7 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.UpdateObserver#updateCompleted()
+	 * @see org.eclipse.emf.emfstore.client.model.observers.UpdateObserver#updateCompleted()
 	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
 	}

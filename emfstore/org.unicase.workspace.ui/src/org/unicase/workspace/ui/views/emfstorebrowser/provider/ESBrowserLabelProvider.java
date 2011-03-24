@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
-import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeNode;

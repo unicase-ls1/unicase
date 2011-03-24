@@ -23,9 +23,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.WorkspaceFactory;
-import org.eclipse.emf.emfstore.client.WorkspacePackage;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
@@ -35,7 +35,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.ProjectSpace} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated

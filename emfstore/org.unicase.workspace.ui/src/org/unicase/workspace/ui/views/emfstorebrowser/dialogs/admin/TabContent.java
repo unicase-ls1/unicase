@@ -8,7 +8,7 @@ package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.AdminBroker;
+import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;

@@ -8,10 +8,10 @@ package org.unicase.workspace.ui.dialogs;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.WorkspaceFactory;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;

@@ -21,11 +21,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.WorkspacePackage;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.ServerInfo} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ServerInfo} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated

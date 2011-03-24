@@ -7,7 +7,7 @@ package org.unicase.workspace.ui.dialogs;
 
 import java.util.List;
 
-import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
