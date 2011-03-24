@@ -1,7 +1,8 @@
 #summary EMFStore subproject navigational page.
 
+<img src="http://unicase.googlecode.com/files/emfstoreSmall.png" alt="EMF Logo" align="right" />
 
-||*NEWS*: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here]. || [http://unicase.googlecode.com/files/emfstoreSmall.png]||
+*NEWS*: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here].
 
   * [EMFStore What is EMFStore?]
 
