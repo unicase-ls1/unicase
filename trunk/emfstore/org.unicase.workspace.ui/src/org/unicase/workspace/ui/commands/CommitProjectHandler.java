@@ -7,12 +7,12 @@ package org.unicase.workspace.ui.commands;
 
 import java.util.Date;
 
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.Usersession;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.exceptions.CommitCanceledException;
-import org.eclipse.emf.emfstore.client.exceptions.NoLocalChangesException;
-import org.eclipse.emf.emfstore.client.observers.CommitObserver;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.CommitCanceledException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoLocalChangesException;
+import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -148,7 +148,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.ProjectSpace,
+	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
 	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
@@ -178,7 +178,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.CommitObserver#commitCompleted()
+	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted()
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 	}

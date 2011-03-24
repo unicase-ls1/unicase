@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.ui.views.scm;
 
-import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.jface.viewers.TreeNode;
 
 /**

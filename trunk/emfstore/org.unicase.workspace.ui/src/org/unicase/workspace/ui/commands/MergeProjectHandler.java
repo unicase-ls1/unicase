@@ -8,8 +8,8 @@ package org.unicase.workspace.ui.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.emfstore.client.exceptions.ChangeConflictException;
-import org.eclipse.emf.emfstore.client.observers.ConflictResolver;
+import org.eclipse.emf.emfstore.client.model.exceptions.ChangeConflictException;
+import org.eclipse.emf.emfstore.client.model.observers.ConflictResolver;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
@@ -45,7 +45,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.model.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getAcceptedMine() {
 		return acceptedMine;
@@ -54,7 +54,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.model.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getRejectedTheirs() {
 		return rejectedTheirs;
@@ -63,7 +63,7 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.observers.ConflictResolver#getAcceptedMine()
+	 * @see org.eclipse.emf.emfstore.client.model.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public boolean resolveConflicts(Project project,
 			List<ChangePackage> theirChangePackages,

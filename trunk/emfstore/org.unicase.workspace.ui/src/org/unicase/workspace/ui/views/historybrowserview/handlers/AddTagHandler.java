@@ -7,7 +7,7 @@ package org.unicase.workspace.ui.views.historybrowserview.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.TreeNode;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;

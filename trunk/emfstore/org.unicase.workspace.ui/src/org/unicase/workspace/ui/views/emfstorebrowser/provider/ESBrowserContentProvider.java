@@ -6,9 +6,9 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.emfstore.client.ServerInfo;
-import org.eclipse.emf.emfstore.client.Workspace;
-import org.eclipse.emf.emfstore.client.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.client.model.provider.WorkspaceItemProviderAdapterFactory;
 import org.eclipse.jface.viewers.TreeNode;
 

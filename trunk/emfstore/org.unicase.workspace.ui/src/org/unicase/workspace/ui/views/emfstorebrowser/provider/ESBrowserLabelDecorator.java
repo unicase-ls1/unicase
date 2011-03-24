@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
-import org.eclipse.emf.emfstore.client.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;

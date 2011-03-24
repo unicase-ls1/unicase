@@ -6,7 +6,7 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.AdminBroker;
+import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;

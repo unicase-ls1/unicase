@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.workspace.ui.dialogs.merge.DecisionManager;

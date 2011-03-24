@@ -8,10 +8,10 @@ package org.unicase.ecpemfstorebridge;
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.ProjectSpace;
-import org.eclipse.emf.emfstore.client.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.PostECPWorkspaceInitiator;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;

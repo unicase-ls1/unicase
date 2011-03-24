@@ -8,11 +8,11 @@ package org.unicase.emfstore.transaction;
 
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.emfstore.client.Configuration;
-import org.eclipse.emf.emfstore.client.changeTracking.commands.CommandObserver;
-import org.eclipse.emf.emfstore.client.changeTracking.commands.EMFStoreCommandNotifier;
-import org.eclipse.emf.emfstore.client.changeTracking.commands.EMFStoreCommandStack;
-import org.eclipse.emf.emfstore.client.util.AbstractUnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver;
+import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandNotifier;
+import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack;
+import org.eclipse.emf.emfstore.client.model.util.AbstractUnicaseCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -114,7 +114,7 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.changeTracking.commands.EMFStoreCommandStack#addCommandStackObserver(org.eclipse.emf.emfstore.client.changeTracking.commands.CommandObserver)
+	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack#addCommandStackObserver(org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver)
 	 */
 	public void addCommandStackObserver(CommandObserver observer) {
 		notifier.addCommandStackObserver(observer);
@@ -123,7 +123,7 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.changeTracking.commands.EMFStoreCommandStack#removeCommandStackObserver(org.eclipse.emf.emfstore.client.changeTracking.commands.CommandObserver)
+	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack#removeCommandStackObserver(org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver)
 	 */
 	public void removeCommandStackObserver(CommandObserver observer) {
 		notifier.removeCommandStackObserver(observer);
