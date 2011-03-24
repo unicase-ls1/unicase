@@ -3,14 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Unicase Workspace UI Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.ui;singleton:=true
 Bundle-Version: 0.7.3
-Bundle-Activator: org.unicase.workspace.ui.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.client.ui.Activator
 Require-Bundle: org.eclipse.emf.emfstore.client.model.edit;visibility:=reexport,
  org.unicase.ui.util
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: diff.match.patch,
- org.unicase.workspace.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.plugin,org.osgi.framework",
- org.unicase.workspace.ui.commands;
+ org.eclipse.emf.emfstore.client.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.plugin,org.osgi.framework",
+ org.eclipse.emf.emfstore.client.ui.commands;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.core.expressions,
    org.unicase.workspace.exceptions,
@@ -20,14 +20,14 @@ Export-Package: diff.match.patch,
    org.unicase.emfstore.esmodel.versioning,
    org.unicase.workspace.observers,
    org.unicase.workspace",
- org.unicase.workspace.ui.decorators;uses:="org.eclipse.emf.common.notify.impl,org.eclipse.jface.viewers,org.eclipse.emf.common.notify",
- org.unicase.workspace.ui.dialogs;
+ org.eclipse.emf.emfstore.client.ui.decorators;uses:="org.eclipse.emf.common.notify.impl,org.eclipse.jface.viewers,org.eclipse.emf.common.notify",
+ org.eclipse.emf.emfstore.client.ui.dialogs;
   uses:="org.eclipse.swt.events,
    org.eclipse.swt.widgets,
    org.unicase.emfstore.esmodel.versioning,
    org.unicase.workspace,
    org.eclipse.jface.dialogs",
- org.unicase.workspace.ui.dialogs.merge;
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge;
   uses:="org.eclipse.jface.wizard,
    org.eclipse.emf.ecore,
    org.unicase.workspace.ui.dialogs.merge.util,
@@ -37,26 +37,26 @@ Export-Package: diff.match.patch,
    org.unicase.emfstore.esmodel.versioning.operations,
    org.unicase.emfstore.esmodel.versioning,
    org.unicase.workspace.ui.views.changes",
- org.unicase.workspace.ui.dialogs.merge.conflict;uses:="org.eclipse.emf.ecore,org.unicase.workspace.ui.dialogs.merge,org.unicase.emfstore.esmodel.versioning.operations",
- org.unicase.workspace.ui.dialogs.merge.conflict.conflicts;uses:="org.unicase.workspace.ui.dialogs.merge.conflict,org.unicase.workspace.ui.dialogs.merge",
- org.unicase.workspace.ui.dialogs.merge.conflict.options;uses:="org.unicase.workspace.ui.dialogs.merge.conflict",
- org.unicase.workspace.ui.dialogs.merge.ui;
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict;uses:="org.eclipse.emf.ecore,org.unicase.workspace.ui.dialogs.merge,org.unicase.emfstore.esmodel.versioning.operations",
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.conflicts;uses:="org.unicase.workspace.ui.dialogs.merge.conflict,org.unicase.workspace.ui.dialogs.merge",
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.options;uses:="org.unicase.workspace.ui.dialogs.merge.conflict",
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.ui;
   uses:="org.unicase.workspace.ui.dialogs.merge.conflict,
    org.eclipse.swt.graphics,
    org.unicase.workspace.ui.dialogs.merge,
    org.eclipse.swt.widgets",
- org.unicase.workspace.ui.dialogs.merge.ui.components;
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.ui.components;
   uses:="org.unicase.workspace.ui.dialogs.merge.conflict,
    org.eclipse.swt.widgets,
    org.unicase.workspace.ui.dialogs.merge.ui,
    org.eclipse.ui.forms.widgets",
- org.unicase.workspace.ui.dialogs.merge.ui.widgets;
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.ui.widgets;
   uses:="org.unicase.workspace.ui.dialogs.merge.conflict,
    org.unicase.workspace.ui.dialogs.merge,
    org.unicase.workspace.ui.dialogs.merge.ui.components,
    org.unicase.workspace.ui.dialogs.merge.ui,
    org.eclipse.swt.widgets",
- org.unicase.workspace.ui.dialogs.merge.util;
+ org.eclipse.emf.emfstore.client.ui.dialogs.merge.util;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.jface.resource,
    org.eclipse.emf.edit.ui.provider,
@@ -64,13 +64,13 @@ Export-Package: diff.match.patch,
    org.eclipse.swt.graphics,
    org.unicase.metamodel,
    org.unicase.emfstore.esmodel.versioning",
- org.unicase.workspace.ui.util;
+ org.eclipse.emf.emfstore.client.ui.util;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.swt.events,
    org.unicase.metamodel,
    org.eclipse.swt.widgets,
    org.unicase.workspace",
- org.unicase.workspace.ui.views.changes;
+ org.eclipse.emf.emfstore.client.ui.views.changes;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.jface.resource,
    org.eclipse.jface.viewers,
@@ -78,7 +78,7 @@ Export-Package: diff.match.patch,
    org.unicase.metamodel,
    org.eclipse.swt.widgets,
    org.unicase.emfstore.esmodel.versioning.operations",
- org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.jface.viewers,
    org.eclipse.jface.util,
@@ -87,12 +87,12 @@ Export-Package: diff.match.patch,
    org.eclipse.jface.dialogs,
    org.eclipse.ui.forms.widgets,
    org.unicase.workspace",
- org.unicase.workspace.ui.views.emfstorebrowser.provider;
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider;
   uses:="org.eclipse.emf.edit.ui.provider,
    org.eclipse.jface.viewers,
    org.eclipse.swt.graphics,
    org.unicase.workspace.accesscontrol",
- org.unicase.workspace.ui.views.emfstorebrowser.views;
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views;
   uses:="org.eclipse.jface.wizard,
    org.eclipse.swt.events,
    org.eclipse.ui,
@@ -105,7 +105,7 @@ Export-Package: diff.match.patch,
    org.eclipse.swt.widgets,
    org.eclipse.jface.dialogs,
    org.unicase.workspace.observers",
- org.unicase.workspace.ui.views.historybrowserview;
+ org.eclipse.emf.emfstore.client.ui.views.historybrowserview;
   uses:="org.unicase.workspace.util,
    org.eclipse.emf.ecore,
    org.eclipse.emf.edit.ui.provider,
@@ -114,7 +114,7 @@ Export-Package: diff.match.patch,
    org.unicase.emfstore.esmodel.versioning,
    org.unicase.workspace.ui.views.changes,
    org.unicase.workspace",
- org.unicase.workspace.ui.views.scm;
+ org.eclipse.emf.emfstore.client.ui.views.scm;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.swt.graphics,
    org.unicase.metamodel,
