@@ -1,5 +1,13 @@
 #summary Describes New and noteworthy information on the EMFStore nightly builds
 
+0.7.3.nightly: removed dependency to EMF Transaction, it is now in a sperate non-core feature
+
+0.7.2.nightly: 
+  * removed dependency to EMF validation
+
+0.7.1.nightly: 
+  * updated ECP version to avoid bug in previous ECP version when linking elements in the reflective editor
+
 0.7.0.nightly:
   * Plain EObject Support: Custom EObjects no longer need to inherit from ModelElement in the Ecore. Any EMF model now works out of the box with EMFStore.
   * Editing Domain is now by default an AdapterFactoryEditingDomain. No more need to use commands for changing or reading the model. Editing Domain can be configured by an extension point (EditingDomainProvider)
