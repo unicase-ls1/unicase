@@ -4,7 +4,7 @@
    <extension
          point="org.unicase.workspace.editingDomainProvider">
       <provider
-            class="org.unicase.emfstore.transaction.TransactionalEditingDomainProvider">
+            class="org.eclipse.emf.emfstore.client.transaction.TransactionalEditingDomainProvider">
       </provider>
    </extension>
 
