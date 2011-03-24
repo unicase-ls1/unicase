@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
@@ -67,13 +68,13 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
@@ -137,7 +138,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -146,56 +146,51 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkspacePackage.Literals.WORKSPACE;
+		return ModelPackage.Literals.WORKSPACE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
 			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(ProjectSpace.class, this,
-				WorkspacePackage.WORKSPACE__PROJECT_SPACES);
+				ModelPackage.WORKSPACE__PROJECT_SPACES);
 		}
 		return projectSpaces;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
 			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(ServerInfo.class, this,
-				WorkspacePackage.WORKSPACE__SERVER_INFOS);
+				ModelPackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
 		if (usersessions == null) {
 			usersessions = new EObjectContainmentEList.Resolving<Usersession>(Usersession.class, this,
-				WorkspacePackage.WORKSPACE__USERSESSIONS);
+				ModelPackage.WORKSPACE__USERSESSIONS);
 		}
 		return usersessions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectSpace getActiveProjectSpace() {
@@ -205,7 +200,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			if (activeProjectSpace != oldActiveProjectSpace) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE, oldActiveProjectSpace, activeProjectSpace));
+						ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE, oldActiveProjectSpace, activeProjectSpace));
 			}
 		}
 		return activeProjectSpace;
@@ -213,7 +208,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectSpace basicGetActiveProjectSpace() {
@@ -222,14 +216,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setActiveProjectSpace(ProjectSpace newActiveProjectSpace) {
 		ProjectSpace oldActiveProjectSpace = activeProjectSpace;
 		activeProjectSpace = newActiveProjectSpace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
 				oldActiveProjectSpace, activeProjectSpace));
 	}
 
@@ -334,17 +327,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			return ((InternalEList<?>) getProjectSpaces()).basicRemove(otherEnd, msgs);
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd, msgs);
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -352,19 +344,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			return getProjectSpaces();
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			return getServerInfos();
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			return getUsersessions();
-		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+		case ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			if (resolve)
 				return getActiveProjectSpace();
 			return basicGetActiveProjectSpace();
@@ -374,26 +365,25 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			getProjectSpaces().clear();
 			getProjectSpaces().addAll((Collection<? extends ProjectSpace>) newValue);
 			return;
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			getServerInfos().clear();
 			getServerInfos().addAll((Collection<? extends ServerInfo>) newValue);
 			return;
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			getUsersessions().clear();
 			getUsersessions().addAll((Collection<? extends Usersession>) newValue);
 			return;
-		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+		case ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			setActiveProjectSpace((ProjectSpace) newValue);
 			return;
 		}
@@ -402,22 +392,21 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			getProjectSpaces().clear();
 			return;
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			getServerInfos().clear();
 			return;
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			getUsersessions().clear();
 			return;
-		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+		case ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			setActiveProjectSpace((ProjectSpace) null);
 			return;
 		}
@@ -426,19 +415,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			return projectSpaces != null && !projectSpaces.isEmpty();
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			return serverInfos != null && !serverInfos.isEmpty();
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			return usersessions != null && !usersessions.isEmpty();
-		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
+		case ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			return activeProjectSpace != null;
 		}
 		return super.eIsSet(featureID);

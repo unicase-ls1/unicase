@@ -21,9 +21,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.Workspace} object. <!--
@@ -52,25 +52,25 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProjectSpacesPropertyDescriptor(object);
+			addActiveProjectSpacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Spaces feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Active Project Space feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addProjectSpacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Workspace_projectSpaces_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Workspace_projectSpaces_feature",
-					"_UI_Workspace_type"), WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES, true, false, true,
-				null, null, null));
+	protected void addActiveProjectSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Workspace_activeProjectSpace_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Workspace_activeProjectSpace_feature",
+				"_UI_Workspace_type"), ModelPackage.Literals.WORKSPACE__ACTIVE_PROJECT_SPACE, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -85,9 +85,9 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS);
-			childrenFeatures.add(WorkspacePackage.Literals.WORKSPACE__USERSESSIONS);
+			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__PROJECT_SPACES);
+			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__SERVER_INFOS);
+			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__USERSESSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -137,12 +137,9 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Workspace.class)) {
-		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-		case WorkspacePackage.WORKSPACE__USERSESSIONS:
+		case ModelPackage.WORKSPACE__PROJECT_SPACES:
+		case ModelPackage.WORKSPACE__SERVER_INFOS:
+		case ModelPackage.WORKSPACE__USERSESSIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -159,14 +156,14 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.WORKSPACE__PROJECT_SPACES,
-			WorkspaceFactory.eINSTANCE.createProjectSpace()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__PROJECT_SPACES,
+			ModelFactory.eINSTANCE.createProjectSpace()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.WORKSPACE__SERVER_INFOS,
-			WorkspaceFactory.eINSTANCE.createServerInfo()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__SERVER_INFOS,
+			ModelFactory.eINSTANCE.createServerInfo()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.WORKSPACE__USERSESSIONS,
-			WorkspaceFactory.eINSTANCE.createUsersession()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__USERSESSIONS,
+			ModelFactory.eINSTANCE.createUsersession()));
 	}
 
 	/**
@@ -176,7 +173,7 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 	@Override

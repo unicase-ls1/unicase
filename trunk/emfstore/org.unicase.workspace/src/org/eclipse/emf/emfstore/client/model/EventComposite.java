@@ -18,7 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getEventComposite()
+ * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getEventComposite()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface EventComposite extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Events</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getEventComposite_Events()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getEventComposite_Events()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

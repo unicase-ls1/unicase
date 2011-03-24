@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.OperationComposite;
 import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -24,10 +25,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class OperationCompositeImpl extends EObjectImpl implements OperationComposite {
@@ -43,7 +44,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationCompositeImpl() {
@@ -52,36 +52,33 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkspacePackage.Literals.OPERATION_COMPOSITE;
+		return ModelPackage.Literals.OPERATION_COMPOSITE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
 			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS);
+				ModelPackage.OPERATION_COMPOSITE__OPERATIONS);
 		}
 		return operations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -89,13 +86,12 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			return getOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,14 +99,13 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			getOperations().clear();
 			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
 			return;
@@ -120,13 +115,12 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			getOperations().clear();
 			return;
 		}
@@ -135,13 +129,12 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			return operations != null && !operations.isEmpty();
 		}
 		return super.eIsSet(featureID);

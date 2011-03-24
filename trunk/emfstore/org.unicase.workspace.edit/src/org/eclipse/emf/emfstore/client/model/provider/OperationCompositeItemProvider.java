@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.OperationComposite;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
@@ -67,7 +67,7 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS);
+			childrenFeatures.add(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -117,7 +117,7 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OperationComposite.class)) {
-		case WorkspacePackage.OPERATION_COMPOSITE__OPERATIONS:
+		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -134,37 +134,37 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 	}
 
@@ -175,7 +175,7 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

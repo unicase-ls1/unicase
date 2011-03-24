@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.NotificationComposite;
 import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
@@ -24,10 +25,10 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class NotificationCompositeImpl extends EObjectImpl implements NotificationComposite {
@@ -43,7 +44,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationCompositeImpl() {
@@ -52,36 +52,33 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkspacePackage.Literals.NOTIFICATION_COMPOSITE;
+		return ModelPackage.Literals.NOTIFICATION_COMPOSITE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
 			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
-				WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
+				ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
 		}
 		return notifications;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -89,13 +86,12 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			return getNotifications();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,14 +99,13 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			getNotifications().clear();
 			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
@@ -120,13 +115,12 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			getNotifications().clear();
 			return;
 		}
@@ -135,13 +129,12 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			return notifications != null && !notifications.isEmpty();
 		}
 		return super.eIsSet(featureID);

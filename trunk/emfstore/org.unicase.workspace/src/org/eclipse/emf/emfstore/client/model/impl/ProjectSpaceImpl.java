@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.EventComposite;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ModifiedModelElementsCache;
 import org.eclipse.emf.emfstore.client.model.NotificationComposite;
 import org.eclipse.emf.emfstore.client.model.OperationComposite;
@@ -101,37 +102,36 @@ import org.unicase.metamodel.util.ModelUtil;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
  * 
  * @implements LoginObserver <!-- end-user-doc -->
- *             <p>
- *             The following features are implemented:
- *             <ul>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description
- *             </em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification
- *             Composite</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getWaitingUploads <em>Waiting Uploads</em>}</li>
- *             </ul>
- *             </p>
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification Composite</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getWaitingUploads <em>Waiting Uploads</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -139,9 +139,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -149,9 +149,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -159,9 +159,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -189,9 +189,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -199,9 +199,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EList<Event> events;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getUsersession()
 	 * @generated
 	 * @ordered
@@ -209,9 +209,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected Usersession usersession;
 
 	/**
-	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -219,9 +219,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final Date LAST_UPDATED_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -239,9 +239,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -249,9 +249,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected static final int RESOURCE_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -319,9 +319,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EventComposite eventComposite;
 
 	/**
-	 * The cached value of the '{@link #getNotificationComposite() <em>Notification Composite</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getNotificationComposite() <em>Notification Composite</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNotificationComposite()
 	 * @generated
 	 * @ordered
@@ -392,17 +391,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkspacePackage.Literals.PROJECT_SPACE;
+		return ModelPackage.Literals.PROJECT_SPACE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project getProject() {
@@ -412,15 +409,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (project != oldProject) {
 				InternalEObject newProject = (InternalEObject) project;
 				NotificationChain msgs = oldProject.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, null);
+					- ModelPackage.PROJECT_SPACE__PROJECT, null, null);
 				if (newProject.eInternalContainer() == null) {
-					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
+					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.PROJECT_SPACE__PROJECT,
+						null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__PROJECT,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.PROJECT_SPACE__PROJECT,
 						oldProject, project));
 			}
 		}
@@ -429,7 +426,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project basicGetProject() {
@@ -438,7 +434,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
@@ -446,7 +441,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		project = newProject;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__PROJECT, oldProject, newProject);
+				ModelPackage.PROJECT_SPACE__PROJECT, oldProject, newProject);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -457,7 +452,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
@@ -465,21 +459,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (project != null)
 				msgs = ((InternalEObject) project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
+					- ModelPackage.PROJECT_SPACE__PROJECT, null, msgs);
 			if (newProject != null)
 				msgs = ((InternalEObject) newProject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
+					- ModelPackage.PROJECT_SPACE__PROJECT, null, msgs);
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT, newProject,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__PROJECT, newProject,
 				newProject));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -489,16 +482,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (projectId != oldProjectId) {
 				InternalEObject newProjectId = (InternalEObject) projectId;
 				NotificationChain msgs = oldProjectId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, null);
+					- ModelPackage.PROJECT_SPACE__PROJECT_ID, null, null);
 				if (newProjectId.eInternalContainer() == null) {
 					msgs = newProjectId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
+						- ModelPackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, projectId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.PROJECT_SPACE__PROJECT_ID,
+						oldProjectId, projectId));
 			}
 		}
 		return projectId;
@@ -506,7 +499,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectId basicGetProjectId() {
@@ -515,7 +507,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
@@ -523,7 +514,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		projectId = newProjectId;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, newProjectId);
+				ModelPackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, newProjectId);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -534,7 +525,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
@@ -542,21 +532,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (projectId != null)
 				msgs = ((InternalEObject) projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
+					- ModelPackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 			if (newProjectId != null)
 				msgs = ((InternalEObject) newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
+					- ModelPackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 			msgs = basicSetProjectId(newProjectId, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-				newProjectId, newProjectId));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__PROJECT_ID, newProjectId,
+				newProjectId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -565,20 +554,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
 		String oldProjectName = projectName;
 		projectName = newProjectName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_NAME,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__PROJECT_NAME,
 				oldProjectName, projectName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -587,27 +574,24 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
 		String oldProjectDescription = projectDescription;
 		projectDescription = newProjectDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION,
 				oldProjectDescription, projectDescription));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Deprecated
 	public EList<Event> getEvents() {
 		if (events == null) {
-			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
-				WorkspacePackage.PROJECT_SPACE__EVENTS);
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this, ModelPackage.PROJECT_SPACE__EVENTS);
 		}
 		return events;
 	}
@@ -652,7 +636,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession getUsersession() {
@@ -661,8 +644,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			usersession = (Usersession) eResolveProxy(oldUsersession);
 			if (usersession != oldUsersession) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__USERSESSION, oldUsersession, usersession));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.PROJECT_SPACE__USERSESSION,
+						oldUsersession, usersession));
 			}
 		}
 		return usersession;
@@ -670,7 +653,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Usersession basicGetUsersession() {
@@ -679,20 +661,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
 		Usersession oldUsersession = usersession;
 		usersession = newUsersession;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__USERSESSION,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__USERSESSION,
 				oldUsersession, usersession));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getLastUpdated() {
@@ -701,20 +681,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastUpdated(Date newLastUpdated) {
 		Date oldLastUpdated = lastUpdated;
 		lastUpdated = newLastUpdated;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LAST_UPDATED,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__LAST_UPDATED,
 				oldLastUpdated, lastUpdated));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -724,16 +702,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
 				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, null);
+					- ModelPackage.PROJECT_SPACE__BASE_VERSION, null, null);
 				if (newBaseVersion.eInternalContainer() == null) {
 					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+						- ModelPackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, baseVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.PROJECT_SPACE__BASE_VERSION,
+						oldBaseVersion, baseVersion));
 			}
 		}
 		return baseVersion;
@@ -741,7 +719,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -750,7 +727,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -758,7 +734,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		baseVersion = newBaseVersion;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, newBaseVersion);
+				ModelPackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -769,7 +745,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -777,21 +752,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (baseVersion != null)
 				msgs = ((InternalEObject) baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+					- ModelPackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 			if (newBaseVersion != null)
 				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
+					- ModelPackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 			msgs = basicSetBaseVersion(newBaseVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__BASE_VERSION,
 				newBaseVersion, newBaseVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getResourceCount() {
@@ -800,20 +774,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setResourceCount(int newResourceCount) {
 		int oldResourceCount = resourceCount;
 		resourceCount = newResourceCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__RESOURCE_COUNT,
 				oldResourceCount, resourceCount));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDirty() {
@@ -822,33 +794,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDirty(boolean newDirty) {
 		boolean oldDirty = dirty;
 		dirty = newDirty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__DIRTY, oldDirty,
-				dirty));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__DIRTY, oldDirty, dirty));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<String> getOldLogMessages() {
 		if (oldLogMessages == null) {
 			oldLogMessages = new EDataTypeUniqueEList<String>(String.class, this,
-				WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES);
+				ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES);
 		}
 		return oldLogMessages;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationComposite getLocalOperations() {
@@ -858,16 +826,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (localOperations != oldLocalOperations) {
 				InternalEObject newLocalOperations = (InternalEObject) localOperations;
 				NotificationChain msgs = oldLocalOperations.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, null);
+					- ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, null);
 				if (newLocalOperations.eInternalContainer() == null) {
 					msgs = newLocalOperations.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+						- ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, localOperations));
+						ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, localOperations));
 			}
 		}
 		return localOperations;
@@ -875,7 +843,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationComposite basicGetLocalOperations() {
@@ -884,7 +851,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalOperations(OperationComposite newLocalOperations, NotificationChain msgs) {
@@ -892,7 +858,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		localOperations = newLocalOperations;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, newLocalOperations);
+				ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, newLocalOperations);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -903,7 +869,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLocalOperations(OperationComposite newLocalOperations) {
@@ -911,28 +876,27 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (localOperations != null)
 				msgs = ((InternalEObject) localOperations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+					- ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
 			if (newLocalOperations != null)
 				msgs = ((InternalEObject) newLocalOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+					- ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
 			msgs = basicSetLocalOperations(newLocalOperations, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS,
 				newLocalOperations, newLocalOperations));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Deprecated
 	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
 			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
-				WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS);
+				ModelPackage.PROJECT_SPACE__NOTIFICATIONS);
 		}
 		return notifications;
 	}
@@ -976,7 +940,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventComposite getEventComposite() {
@@ -986,16 +949,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (eventComposite != oldEventComposite) {
 				InternalEObject newEventComposite = (InternalEObject) eventComposite;
 				NotificationChain msgs = oldEventComposite.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, null, null);
+					- ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, null, null);
 				if (newEventComposite.eInternalContainer() == null) {
 					msgs = newEventComposite.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
+						- ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, oldEventComposite, eventComposite));
+						ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, oldEventComposite, eventComposite));
 			}
 		}
 		return eventComposite;
@@ -1003,7 +966,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventComposite basicGetEventComposite() {
@@ -1012,7 +974,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEventComposite(EventComposite newEventComposite, NotificationChain msgs) {
@@ -1020,7 +981,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		eventComposite = newEventComposite;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, oldEventComposite, newEventComposite);
+				ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, oldEventComposite, newEventComposite);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -1031,7 +992,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEventComposite(EventComposite newEventComposite) {
@@ -1039,21 +999,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (eventComposite != null)
 				msgs = ((InternalEObject) eventComposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
+					- ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
 			if (newEventComposite != null)
 				msgs = ((InternalEObject) newEventComposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
+					- ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE, null, msgs);
 			msgs = basicSetEventComposite(newEventComposite, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE,
 				newEventComposite, newEventComposite));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationComposite getNotificationComposite() {
@@ -1063,16 +1022,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (notificationComposite != oldNotificationComposite) {
 				InternalEObject newNotificationComposite = (InternalEObject) notificationComposite;
 				NotificationChain msgs = oldNotificationComposite.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, null);
+					- ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, null);
 				if (newNotificationComposite.eInternalContainer() == null) {
 					msgs = newNotificationComposite.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+						- ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite,
+						ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite,
 						notificationComposite));
 			}
 		}
@@ -1081,7 +1040,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationComposite basicGetNotificationComposite() {
@@ -1090,7 +1048,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNotificationComposite(NotificationComposite newNotificationComposite,
@@ -1099,8 +1056,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		notificationComposite = newNotificationComposite;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite,
-				newNotificationComposite);
+				ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite, newNotificationComposite);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -1111,7 +1067,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNotificationComposite(NotificationComposite newNotificationComposite) {
@@ -1119,28 +1074,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			NotificationChain msgs = null;
 			if (notificationComposite != null)
 				msgs = ((InternalEObject) notificationComposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+					- ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
 			if (newNotificationComposite != null)
 				msgs = ((InternalEObject) newNotificationComposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+					- ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
 			msgs = basicSetNotificationComposite(newNotificationComposite, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, newNotificationComposite,
-				newNotificationComposite));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
+				newNotificationComposite, newNotificationComposite));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<FileIdentifier> getWaitingUploads() {
 		if (waitingUploads == null) {
 			waitingUploads = new EObjectContainmentEList.Resolving<FileIdentifier>(FileIdentifier.class, this,
-				WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS);
+				ModelPackage.PROJECT_SPACE__WAITING_UPLOADS);
 		}
 		return waitingUploads;
 	}
@@ -1681,29 +1634,28 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.PROJECT_SPACE__PROJECT:
+		case ModelPackage.PROJECT_SPACE__PROJECT:
 			return basicSetProject(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
 			return basicSetProjectId(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+		case ModelPackage.PROJECT_SPACE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
-		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case ModelPackage.PROJECT_SPACE__BASE_VERSION:
 			return basicSetBaseVersion(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+		case ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			return basicSetLocalOperations(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATIONS:
 			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
-		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return basicSetEventComposite(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			return basicSetNotificationComposite(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return ((InternalEList<?>) getWaitingUploads()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -1711,57 +1663,56 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkspacePackage.PROJECT_SPACE__PROJECT:
+		case ModelPackage.PROJECT_SPACE__PROJECT:
 			if (resolve)
 				return getProject();
 			return basicGetProject();
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
 			if (resolve)
 				return getProjectId();
 			return basicGetProjectId();
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+		case ModelPackage.PROJECT_SPACE__PROJECT_NAME:
 			return getProjectName();
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+		case ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			return getProjectDescription();
-		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+		case ModelPackage.PROJECT_SPACE__EVENTS:
 			return getEvents();
-		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
+		case ModelPackage.PROJECT_SPACE__USERSESSION:
 			if (resolve)
 				return getUsersession();
 			return basicGetUsersession();
-		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+		case ModelPackage.PROJECT_SPACE__LAST_UPDATED:
 			return getLastUpdated();
-		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case ModelPackage.PROJECT_SPACE__BASE_VERSION:
 			if (resolve)
 				return getBaseVersion();
 			return basicGetBaseVersion();
-		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+		case ModelPackage.PROJECT_SPACE__RESOURCE_COUNT:
 			return getResourceCount();
-		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+		case ModelPackage.PROJECT_SPACE__DIRTY:
 			return isDirty();
-		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+		case ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			return getOldLogMessages();
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+		case ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			if (resolve)
 				return getLocalOperations();
 			return basicGetLocalOperations();
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATIONS:
 			return getNotifications();
-		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			if (resolve)
 				return getEventComposite();
 			return basicGetEventComposite();
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			if (resolve)
 				return getNotificationComposite();
 			return basicGetNotificationComposite();
-		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return getWaitingUploads();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -1769,62 +1720,61 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkspacePackage.PROJECT_SPACE__PROJECT:
+		case ModelPackage.PROJECT_SPACE__PROJECT:
 			setProject((Project) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
 			setProjectId((ProjectId) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+		case ModelPackage.PROJECT_SPACE__PROJECT_NAME:
 			setProjectName((String) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+		case ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			setProjectDescription((String) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+		case ModelPackage.PROJECT_SPACE__EVENTS:
 			getEvents().clear();
 			getEvents().addAll((Collection<? extends Event>) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
+		case ModelPackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+		case ModelPackage.PROJECT_SPACE__LAST_UPDATED:
 			setLastUpdated((Date) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case ModelPackage.PROJECT_SPACE__BASE_VERSION:
 			setBaseVersion((PrimaryVersionSpec) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+		case ModelPackage.PROJECT_SPACE__RESOURCE_COUNT:
 			setResourceCount((Integer) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+		case ModelPackage.PROJECT_SPACE__DIRTY:
 			setDirty((Boolean) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+		case ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			getOldLogMessages().clear();
 			getOldLogMessages().addAll((Collection<? extends String>) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+		case ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			setLocalOperations((OperationComposite) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATIONS:
 			getNotifications().clear();
 			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			setNotificationComposite((NotificationComposite) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			getWaitingUploads().clear();
 			getWaitingUploads().addAll((Collection<? extends FileIdentifier>) newValue);
 			return;
@@ -1834,58 +1784,57 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.PROJECT_SPACE__PROJECT:
+		case ModelPackage.PROJECT_SPACE__PROJECT:
 			setProject((Project) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
 			setProjectId((ProjectId) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+		case ModelPackage.PROJECT_SPACE__PROJECT_NAME:
 			setProjectName(PROJECT_NAME_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+		case ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+		case ModelPackage.PROJECT_SPACE__EVENTS:
 			getEvents().clear();
 			return;
-		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
+		case ModelPackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+		case ModelPackage.PROJECT_SPACE__LAST_UPDATED:
 			setLastUpdated(LAST_UPDATED_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case ModelPackage.PROJECT_SPACE__BASE_VERSION:
 			setBaseVersion((PrimaryVersionSpec) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+		case ModelPackage.PROJECT_SPACE__RESOURCE_COUNT:
 			setResourceCount(RESOURCE_COUNT_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+		case ModelPackage.PROJECT_SPACE__DIRTY:
 			setDirty(DIRTY_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+		case ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			getOldLogMessages().clear();
 			return;
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+		case ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			setLocalOperations((OperationComposite) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATIONS:
 			getNotifications().clear();
 			return;
-		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			setNotificationComposite((NotificationComposite) null);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			getWaitingUploads().clear();
 			return;
 		}
@@ -1894,44 +1843,43 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.PROJECT_SPACE__PROJECT:
+		case ModelPackage.PROJECT_SPACE__PROJECT:
 			return project != null;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
+		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
 			return projectId != null;
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
+		case ModelPackage.PROJECT_SPACE__PROJECT_NAME:
 			return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
-		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
+		case ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT
 				.equals(projectDescription);
-		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+		case ModelPackage.PROJECT_SPACE__EVENTS:
 			return events != null && !events.isEmpty();
-		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
+		case ModelPackage.PROJECT_SPACE__USERSESSION:
 			return usersession != null;
-		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
+		case ModelPackage.PROJECT_SPACE__LAST_UPDATED:
 			return LAST_UPDATED_EDEFAULT == null ? lastUpdated != null : !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
-		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case ModelPackage.PROJECT_SPACE__BASE_VERSION:
 			return baseVersion != null;
-		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
+		case ModelPackage.PROJECT_SPACE__RESOURCE_COUNT:
 			return resourceCount != RESOURCE_COUNT_EDEFAULT;
-		case WorkspacePackage.PROJECT_SPACE__DIRTY:
+		case ModelPackage.PROJECT_SPACE__DIRTY:
 			return dirty != DIRTY_EDEFAULT;
-		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
+		case ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			return oldLogMessages != null && !oldLogMessages.isEmpty();
-		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+		case ModelPackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			return localOperations != null;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATIONS:
 			return notifications != null && !notifications.isEmpty();
-		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return eventComposite != null;
-		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			return notificationComposite != null;
-		case WorkspacePackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return waitingUploads != null && !waitingUploads.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -1939,7 +1887,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
