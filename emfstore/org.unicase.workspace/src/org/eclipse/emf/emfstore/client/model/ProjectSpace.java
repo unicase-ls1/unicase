@@ -85,8 +85,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	Project getProject();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
@@ -111,8 +111,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId <em>Project Id</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId
+	 * <em>Project Id</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
@@ -137,8 +137,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName <em>Project Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName
+	 * <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
@@ -205,8 +205,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	Usersession getUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession <em>Usersession</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession
+	 * <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Usersession</em>' reference.
 	 * @see #getUsersession()
@@ -231,8 +231,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	Date getLastUpdated();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated <em>Last Updated</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated
+	 * <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Last Updated</em>' attribute.
 	 * @see #getLastUpdated()
@@ -257,8 +257,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion <em>Base Version</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion
+	 * <em>Base Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
@@ -283,8 +283,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	int getResourceCount();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount <em>Resource Count</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount
+	 * <em>Resource Count</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Resource Count</em>' attribute.
 	 * @see #getResourceCount()
@@ -309,8 +309,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isDirty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>Dirty</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>Dirty</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Dirty</em>' attribute.
 	 * @see #isDirty()
@@ -351,8 +351,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	OperationComposite getLocalOperations();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations <em>Local Operations</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations
+	 * <em>Local Operations</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Local Operations</em>' containment reference.
 	 * @see #getLocalOperations()
@@ -393,8 +393,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	EventComposite getEventComposite();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite <em>Event Composite</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite
+	 * <em>Event Composite</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Event Composite</em>' containment reference.
 	 * @see #getEventComposite()

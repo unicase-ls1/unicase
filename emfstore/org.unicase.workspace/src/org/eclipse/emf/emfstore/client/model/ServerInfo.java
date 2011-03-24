@@ -44,8 +44,8 @@ public interface ServerInfo extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getName <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -69,8 +69,8 @@ public interface ServerInfo extends EObject {
 	String getUrl();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getUrl <em>Url</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getUrl <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Url</em>' attribute.
 	 * @see #getUrl()
@@ -94,8 +94,8 @@ public interface ServerInfo extends EObject {
 	int getPort();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getPort <em>Port</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getPort <em>Port</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Port</em>' attribute.
 	 * @see #getPort()
@@ -136,8 +136,8 @@ public interface ServerInfo extends EObject {
 	Usersession getLastUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getLastUsersession <em>Last Usersession</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getLastUsersession
+	 * <em>Last Usersession</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Last Usersession</em>' reference.
 	 * @see #getLastUsersession()
@@ -162,8 +162,8 @@ public interface ServerInfo extends EObject {
 	String getCertificateAlias();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getCertificateAlias <em>Certificate Alias</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getCertificateAlias
+	 * <em>Certificate Alias</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Certificate Alias</em>' attribute.
 	 * @see #getCertificateAlias()

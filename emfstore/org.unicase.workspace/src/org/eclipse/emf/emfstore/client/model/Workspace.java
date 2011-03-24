@@ -34,7 +34,8 @@ import org.unicase.metamodel.Project;
  *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
  *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getServerInfos <em>Server Infos</em>}</li>
  *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getUsersessions <em>Usersessions</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
+ *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space
+ *             </em>}</li>
  *             </ul>
  *             </p>
  * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace()

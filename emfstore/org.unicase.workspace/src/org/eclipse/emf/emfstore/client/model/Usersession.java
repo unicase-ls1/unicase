@@ -60,8 +60,8 @@ public interface Usersession extends EObject {
 	String getUsername();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Username</em>' attribute.
 	 * @see #getUsername()
@@ -86,8 +86,8 @@ public interface Usersession extends EObject {
 	String getPassword();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
@@ -112,8 +112,8 @@ public interface Usersession extends EObject {
 	SessionId getSessionId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}
+	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
@@ -164,8 +164,8 @@ public interface Usersession extends EObject {
 	ServerInfo getServerInfo();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo <em>Server Info</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo
+	 * <em>Server Info</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
@@ -190,8 +190,8 @@ public interface Usersession extends EObject {
 	boolean isSavePassword();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword <em>Save Password</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword
+	 * <em>Save Password</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
@@ -216,8 +216,8 @@ public interface Usersession extends EObject {
 	ACUser getACUser();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>AC User</em>' containment reference.
 	 * @see #getACUser()

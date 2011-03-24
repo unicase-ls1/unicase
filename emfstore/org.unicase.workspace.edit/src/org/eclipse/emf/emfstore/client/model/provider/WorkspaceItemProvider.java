@@ -26,8 +26,8 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
 import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.Workspace} object. <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.Workspace} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
