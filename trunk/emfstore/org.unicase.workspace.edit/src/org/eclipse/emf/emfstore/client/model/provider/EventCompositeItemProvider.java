@@ -26,8 +26,8 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.EventComposite} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.EventComposite} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */

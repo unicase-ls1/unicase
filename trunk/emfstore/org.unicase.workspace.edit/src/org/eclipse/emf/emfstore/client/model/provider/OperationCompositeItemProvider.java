@@ -25,8 +25,8 @@ import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.OperationComposite} object. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.OperationComposite} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */

@@ -35,8 +35,8 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */

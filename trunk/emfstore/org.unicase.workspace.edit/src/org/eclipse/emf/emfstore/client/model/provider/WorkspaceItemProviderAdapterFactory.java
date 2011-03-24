@@ -72,16 +72,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.Workspace} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.Workspace}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected WorkspaceItemProvider workspaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.Workspace}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.Workspace}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -95,16 +95,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.ServerInfo} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.ServerInfo}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ServerInfoItemProvider serverInfoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.ServerInfo}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.ServerInfo}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -118,16 +118,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.Usersession} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.Usersession}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected UsersessionItemProvider usersessionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.Usersession}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.Usersession}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -141,16 +141,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.ProjectSpace}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ProjectSpaceItemProvider projectSpaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -164,16 +164,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.OperationComposite} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.OperationComposite}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected OperationCompositeItemProvider operationCompositeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.OperationComposite}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.OperationComposite}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -187,16 +187,17 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer} instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected PendingFileTransferItemProvider pendingFileTransferItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -210,16 +211,16 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.EventComposite} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.EventComposite}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected EventCompositeItemProvider eventCompositeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.EventComposite}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.EventComposite}. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -233,16 +234,17 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.client.model.NotificationComposite} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.eclipse.emf.emfstore.client.model.NotificationComposite} instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected NotificationCompositeItemProvider notificationCompositeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.NotificationComposite}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.client.model.NotificationComposite}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
