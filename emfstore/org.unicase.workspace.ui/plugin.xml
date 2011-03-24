@@ -7,7 +7,7 @@
   <extension
         point="org.eclipse.ui.handlers">
       <handler
-            class="org.unicase.workspace.ui.commands.RevertHandler"
+            class="org.eclipse.emf.emfstore.client.ui.commands.RevertHandler"
             commandId="org.unicase.workspace.ui.revert">
          <enabledWhen>
             <and>
@@ -27,7 +27,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="org.unicase.workspace.ui.commands.UndoLastOperationHandler"
+            class="org.eclipse.emf.emfstore.client.ui.commands.UndoLastOperationHandler"
             commandId="org.unicase.workspace.ui.undoLastOperation">
          <enabledWhen>
             <and>
@@ -47,7 +47,7 @@
          </enabledWhen>
       </handler>
      <handler
-           class="org.unicase.workspace.ui.commands.ImportChangesHandler"
+           class="org.eclipse.emf.emfstore.client.ui.commands.ImportChangesHandler"
            commandId="org.unicase.workspace.ui.importChanges">
         <enabledWhen>
            <and>
@@ -67,7 +67,7 @@
         </enabledWhen>
      </handler>
      <handler
-           class="org.unicase.workspace.ui.commands.CommitProjectHandler"
+           class="org.eclipse.emf.emfstore.client.ui.commands.CommitProjectHandler"
            commandId="org.unicase.workspace.ui.commitProject">
         <enabledWhen>
            <and>
@@ -113,145 +113,145 @@
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.UpdateProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectHandler"
            id="org.unicase.workspace.ui.updateProject"
            name="update">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.ShareProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ShareProjectHandler"
            id="org.unicase.workspace.ui.shareProject"
            name="share">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.ImportProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ImportProjectHandler"
            id="org.unicase.workspace.ui.importProject"
            name="import">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.ExportProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ExportProjectHandler"
            id="org.unicase.workspace.ui.exportProject"
            name="export">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.DeleteProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.DeleteProjectHandler"
            id="org.unicase.workspace.ui.deleteProject"
            name="deleteProject">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ShowHistoryHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ShowHistoryHandler"
            id="org.unicase.workspace.ui.showHistory"
            name="showHistory">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.CompareProjectsHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.CompareProjectsHandler"
            id="org.unicase.workspace.ui.compareProjects"
            name="compareProjects">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ExportChangesHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ExportChangesHandler"
            id="org.unicase.workspace.ui.exportChanges"
            name="exportChanges">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ExportProjectSpaceHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ExportProjectSpaceHandler"
            id="org.unicase.workspace.ui.exportProjectSpace"
            name="exportProjectSpace">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ExportWorkSpaceHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ExportWorkSpaceHandler"
            id="org.unicase.workspace.ui.exportWorkSpace"
            name="exportWorkSpace">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ImportProjectSpaceHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ImportProjectSpaceHandler"
            id="org.unicase.workspace.ui.importProjectSpace"
            name="importProjectSpace">
      </command>
  
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.UpdateProjectVersionHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler"
            id="org.unicase.workspace.ui.updateProjectVersion"
            name="updateToVersion">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.ProjectPropertiesHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ProjectPropertiesHandler"
            id="org.unicase.workspace.ui.projectProperties"
            name="properties">
      </command>
      <command
            categoryId="org.unicase.workspace.ui.project"
-           defaultHandler="org.unicase.workspace.ui.commands.NewLocalProjectHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.NewLocalProjectHandler"
            id="org.unicase.workspace.ui.NewLocalProject"
            name="NewLocalProject">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.commands.ShowHistoryHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ShowHistoryHandler"
            id="org.unicase.ui.stem.ShowHistory"
            name="Show History">
      </command>
       <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.AddServerHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.AddServerHandler"
            id="org.unicase.workspace.ui.repositorybrowser.AddServer"
            name="AddServer">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ServerLoginHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ServerLoginHandler"
            id="org.unicase.workspace.ui.repositorybrowser.Login"
            name="Login">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ChangeSessionHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ChangeSessionHandler"
            id="org.unicase.workspace.ui.repositorybrowser.Logout"
            name="Logout">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.CreateProjectOnServerHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.CreateProjectOnServerHandler"
            id="org.unicase.workspace.ui.repositorybrowser.CreateProjectOnServer"
            name="CreateProjectOnServer">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.DeleteProjectOnServerHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.DeleteProjectOnServerHandler"
            id="org.unicase.workspace.ui.repositorybrowser.DeleteProjectOnServer"
            name="DeleteProjectOnServer">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.DeleteServerInfoHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.DeleteServerInfoHandler"
            id="org.unicase.workspace.ui.repositorybrowser.RemoveServer"
            name="RemoveServer">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ExportProjectHistoryHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ExportProjectHistoryHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ExportProjectHistory"
            name="ExportProjectHistory">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ImportProjectHistoryHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ImportProjectHistoryHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ImportProjectHistory"
            name="ImportProjectHistory">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ManageOrgUnitsHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ManageOrgUnitsHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ManageOrgUnits"
            name="ManageOrgUnits">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ProjectCheckoutHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ProjectCheckoutHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ProjectCheckout"
            name="ProjectCheckout">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ProjectPropertiesHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ProjectPropertiesHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ProjectProperties"
            name="ProjectProperties">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.ui.views.emfstorebrowser.handlers.ServerPropertiesHandler"
+           defaultHandler="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers.ServerPropertiesHandler"
            id="org.unicase.workspace.ui.repositorybrowser.ServerProperties"
            name="ServerProperties">
      </command>
@@ -1199,56 +1199,56 @@
      <extension
            point="org.eclipse.core.expressions.propertyTesters">
         <propertyTester
-              class="org.unicase.workspace.ui.commands.ProjectIsSharedTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.ProjectIsSharedTester"
               id="org.unicase.workspace.ui.commands.projectIsSharedTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="projectIsShared"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.commands.ProjectHasLocalChangesTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.ProjectHasLocalChangesTester"
               id="org.unicase.workspace.ui.commands.projectHasLocalChangesTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="projectHasLocalChanges"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.commands.IsAdminTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.IsAdminTester"
               id="org.unicase.workspace.ui.commands.isAdminTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="isAdmin"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserAdminTester"
+              class="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserAdminTester"
               id="org.unicase.workspace.ui.commands.historyBrowserAdminTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="historyBrowserAdminTester"
-              type="org.unicase.workspace.ui.views.scm.SCMTreeNode">
+              type="org.eclipse.emf.emfstore.client.ui.views.scm.SCMTreeNode">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.commands.IsACUserTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.IsACUserTester"
               id="org.unicase.workspace.ui.commands.isACUserTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="isACUser"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.commands.IsServerAdminTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.IsServerAdminTester"
               id="org.unicase.workspace.ui.commands.isServerAdminTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="isServerAdmin"
               type="org.eclipse.jface.viewers.TreeNode">
         </propertyTester>
         <propertyTester
-              class="org.unicase.workspace.ui.commands.ServerInfoIsLoggedInTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.ServerInfoIsLoggedInTester"
               id="org.unicase.workspace.ui.commands.ServerInfoIsLoggedIn"
               namespace="org.unicase.workspace.ui.commands"
               properties="ServerInfoIsLoggedIn"
               type="org.eclipse.jface.viewers.TreeNode">
         </propertyTester>
               <propertyTester
-              class="org.unicase.workspace.ui.commands.TreeNodeClassTester"
+              class="org.eclipse.emf.emfstore.client.ui.commands.TreeNodeClassTester"
               id="org.unicase.workspace.ui.commands.treeNodeClassTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="treeNodeClassTester"
@@ -1266,13 +1266,13 @@
             name="EmfStore Browser"
             icon="icons/serverDB.png"
             category="org.unicase"
-            class="org.unicase.workspace.ui.views.emfstorebrowser.views.ESBrowserView"
+            class="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views.ESBrowserView"
             id="org.unicase.ui.repository.views.RepositoryView">
       </view>
       <view
             allowMultiple="false"
             category="org.unicase"
-            class="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
+            class="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"
             id="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
             name="History Browser"
@@ -1289,7 +1289,7 @@
         point="org.eclipse.ui.decorators">
      <decorator
            adaptable="true"
-           class="org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelDecorator"
+           class="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserLabelDecorator"
            id="org.unicase.ui.emfstorebrowser.LoginDecorator"
            label="Login Decorator"
            lightweight="true"
@@ -1304,27 +1304,27 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.workspace.ui.views.historybrowserview.handlers.CheckoutProjectHandler"
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.CheckoutProjectHandler"
             id="org.unicase.workspace.ui.historybrowserview.checkout"
             name="CheckoutRevision">
       </command>
       <command
-            defaultHandler="org.unicase.workspace.ui.views.historybrowserview.handlers.AddTagHandler"
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.AddTagHandler"
             id="org.unicase.workspace.ui.historybrowserview.addtag"
             name="AddTag">
       </command>
       <command
-            defaultHandler="org.unicase.workspace.ui.views.historybrowserview.handlers.RemoveTagHandler"
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.RemoveTagHandler"
             id="org.unicase.workspace.ui.historybrowserview.removetag"
             name="RemoveTag">
       </command>
       <command
-            defaultHandler="org.unicase.workspace.ui.views.historybrowserview.handlers.RevertHandler"
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.RevertHandler"
             id="org.unicase.workspace.ui.historybrowserview.revert"
             name="RevertRevision">
       </command>
       <command
-            defaultHandler="org.unicase.workspace.ui.views.historybrowserview.handlers.ForceRevertHandler"
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.ForceRevertHandler"
             id="org.unicase.workspace.ui.historybrowserview.forcerevert"
             name="ForceRevertRevision">
       </command>
@@ -1332,7 +1332,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.unicase.workspace.ui.EMFStorePerspective"
+            class="org.eclipse.emf.emfstore.client.ui.EMFStorePerspective"
             icon="icons/emfstore.png"
             id="org.unicase.workspace.ui.EMFStorePerspective"
             name="EMFStore">
