@@ -6,7 +6,7 @@
 package org.unicase.ui.common.observer;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.util.observer.IObserver;
+import org.eclipse.emf.emfstore.common.observer.IObserver;
 
 /**
  * Listens of an open event of Model Element.

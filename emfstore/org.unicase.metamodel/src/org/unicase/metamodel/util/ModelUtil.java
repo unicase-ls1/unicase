@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.emfstore.common.UnicaseUtil;
 import org.unicase.metamodel.AssociationClassElement;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.MetamodelPackage;
@@ -48,7 +49,6 @@ import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.SingletonIdResolver;
 import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.util.UnicaseUtil;
 import org.xml.sax.InputSource;
 
 /**

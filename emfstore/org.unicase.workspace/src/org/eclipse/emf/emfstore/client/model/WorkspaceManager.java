@@ -32,6 +32,8 @@ import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcConn
 import org.eclipse.emf.emfstore.client.model.util.EditingDomainProvider;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 import org.unicase.emfstore.migration.EMFStoreMigrationException;
 import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
 import org.unicase.metamodel.MetamodelFactory;
@@ -40,8 +42,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.metamodel.util.MalformedModelVersionException;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.util.UnicaseUtil;
-import org.unicase.util.observer.ObserverBus;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.

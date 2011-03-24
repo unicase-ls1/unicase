@@ -6,7 +6,7 @@
 package org.eclipse.emf.emfstore.client.model.observers;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.util.observer.IObserver;
+import org.eclipse.emf.emfstore.common.observer.IObserver;
 
 /**
  * Observer that notifies on new checkouts.
