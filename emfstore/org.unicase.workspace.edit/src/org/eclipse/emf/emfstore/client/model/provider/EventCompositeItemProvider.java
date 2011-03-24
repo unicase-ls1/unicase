@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.emfstore.client.model.EventComposite;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
 
@@ -68,7 +68,7 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS);
+			childrenFeatures.add(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EventComposite.class)) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -135,85 +135,85 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createReadEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createCheckoutEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createExceptionEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createPluginStartEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createUpdateEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createAnnotationEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createRevertEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createShowHistoryEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createPerspectiveEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createDNDEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createLinkEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createTraceEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createPluginFocusEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createUndoEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createValidate()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createShowChangesEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createNotificationReadEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createURLEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.EVENT_COMPOSITE__EVENTS,
 			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
 	}
 
@@ -224,7 +224,7 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

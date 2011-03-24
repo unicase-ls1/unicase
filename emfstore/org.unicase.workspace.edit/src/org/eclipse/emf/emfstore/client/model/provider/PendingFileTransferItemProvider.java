@@ -22,8 +22,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.PendingFileTransfer;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.metamodel.MetamodelFactory;
 
 /**
@@ -73,7 +73,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getResourceLocator(),
 			getString("_UI_PendingFileTransfer_fileVersion_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileVersion_feature",
-				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION, true,
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -88,7 +88,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getResourceLocator(),
 			getString("_UI_PendingFileTransfer_chunkNumber_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_chunkNumber_feature",
-				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER, true,
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -103,7 +103,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getResourceLocator(),
 			getString("_UI_PendingFileTransfer_upload_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_upload_feature",
-				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true, false,
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -118,8 +118,8 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getResourceLocator(),
 			getString("_UI_PendingFileTransfer_fileName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileName_feature",
-				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -134,9 +134,8 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getResourceLocator(),
 			getString("_UI_PendingFileTransfer_preliminaryFileName_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_preliminaryFileName_feature",
-				"_UI_PendingFileTransfer_type"),
-			WorkspacePackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME,
+			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -151,7 +150,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID);
+			childrenFeatures.add(ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID);
 		}
 		return childrenFeatures;
 	}
@@ -203,14 +202,14 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PendingFileTransfer.class)) {
-		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION:
-		case WorkspacePackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
-		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
-		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
-		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
+		case ModelPackage.PENDING_FILE_TRANSFER__FILE_VERSION:
+		case ModelPackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
+		case ModelPackage.PENDING_FILE_TRANSFER__UPLOAD:
+		case ModelPackage.PENDING_FILE_TRANSFER__FILE_NAME:
+		case ModelPackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case WorkspacePackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
+		case ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -227,7 +226,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
 			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
@@ -238,7 +237,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

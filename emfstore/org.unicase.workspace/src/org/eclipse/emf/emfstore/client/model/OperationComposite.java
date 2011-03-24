@@ -34,7 +34,7 @@ public interface OperationComposite extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getOperationComposite_Operations()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getOperationComposite_Operations()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

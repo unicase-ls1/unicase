@@ -38,7 +38,7 @@ import org.unicase.metamodel.Project;
  *             </em>}</li>
  *             </ul>
  *             </p>
- * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace()
+ * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace()
  * @model
  * @generated
  */
@@ -53,7 +53,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace_ProjectSpaces()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace_ServerInfos()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -85,7 +85,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace_Usersessions()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -101,7 +101,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 * 
 	 * @return the value of the '<em>Active Project Space</em>' reference.
 	 * @see #setActiveProjectSpace(ProjectSpace)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getWorkspace_ActiveProjectSpace()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ActiveProjectSpace()
 	 * @model keys="identifier" transient="true"
 	 * @generated
 	 */

@@ -19,7 +19,7 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getNotificationComposite()
+ * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getNotificationComposite()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface NotificationComposite extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getNotificationComposite_Notifications()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getNotificationComposite_Notifications()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

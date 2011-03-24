@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.NotificationComposite;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 
 /**
@@ -67,7 +67,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
+			childrenFeatures.add(ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -117,7 +117,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NotificationComposite.class)) {
-		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
+		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -134,7 +134,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
 			NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
@@ -145,7 +145,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

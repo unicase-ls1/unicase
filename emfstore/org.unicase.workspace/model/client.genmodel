@@ -8,7 +8,8 @@
     containmentProxies="true" complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.emfstore.client.model.edit"
     editorPluginID="org.eclipse.emf.emfstore.client.model.editor" language="" usedGenPackages="../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
   <foreignModel>client.ecore</foreignModel>
-  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="client.ecore#/">
+  <genPackages prefix="Model" basePackage="org.eclipse.emf.emfstore.client" disposableProviderFactory="true"
+      ecorePackage="client.ecore#/">
     <genClasses ecoreClass="client.ecore#//Workspace">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//Workspace/projectSpaces"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//Workspace/serverInfos"/>

@@ -38,7 +38,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession()
+ * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession()
  * @model
  * @generated
  */
@@ -53,7 +53,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Username</em>' attribute.
 	 * @see #setUsername(String)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_Username()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_Username()
 	 * @model
 	 * @generated
 	 */
@@ -79,7 +79,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_Password()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_Password()
 	 * @model transient="true"
 	 * @generated
 	 */
@@ -105,7 +105,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Session Id</em>' reference.
 	 * @see #setSessionId(SessionId)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_SessionId()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_SessionId()
 	 * @model transient="true"
 	 * @generated
 	 */
@@ -131,7 +131,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Persistent Password</em>' attribute.
 	 * @see #setPersistentPassword(String)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_PersistentPassword()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_PersistentPassword()
 	 * @model
 	 * @generated
 	 */
@@ -157,7 +157,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Server Info</em>' reference.
 	 * @see #setServerInfo(ServerInfo)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_ServerInfo()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ServerInfo()
 	 * @model
 	 * @generated
 	 */
@@ -183,7 +183,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>Save Password</em>' attribute.
 	 * @see #setSavePassword(boolean)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_SavePassword()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_SavePassword()
 	 * @model
 	 * @generated
 	 */
@@ -209,7 +209,7 @@ public interface Usersession extends EObject {
 	 * 
 	 * @return the value of the '<em>AC User</em>' containment reference.
 	 * @see #setACUser(ACUser)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_ACUser()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ACUser()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -235,7 +235,7 @@ public interface Usersession extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Changed Properties</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getUsersession_ChangedProperties()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ChangedProperties()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

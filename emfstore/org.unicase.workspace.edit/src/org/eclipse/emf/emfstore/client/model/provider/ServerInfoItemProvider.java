@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,8 +22,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ServerInfo} object. <!--
@@ -54,7 +56,6 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			addNamePropertyDescriptor(object);
 			addUrlPropertyDescriptor(object);
 			addPortPropertyDescriptor(object);
-			addProjectInfosPropertyDescriptor(object);
 			addLastUsersessionPropertyDescriptor(object);
 			addCertificateAliasPropertyDescriptor(object);
 		}
@@ -71,8 +72,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 			getString("_UI_ServerInfo_name_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
-			WorkspacePackage.Literals.SERVER_INFO__NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			ModelPackage.Literals.SERVER_INFO__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 			getString("_UI_ServerInfo_url_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
-			WorkspacePackage.Literals.SERVER_INFO__URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			ModelPackage.Literals.SERVER_INFO__URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 			null, null));
 	}
 
@@ -99,22 +100,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 			getString("_UI_ServerInfo_port_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
-			WorkspacePackage.Literals.SERVER_INFO__PORT, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Project Infos feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addProjectInfosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ServerInfo_projectInfos_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_projectInfos_feature",
-				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__PROJECT_INFOS, true, false, true, null,
+			ModelPackage.Literals.SERVER_INFO__PORT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}
 
@@ -129,8 +115,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			getResourceLocator(),
 			getString("_UI_ServerInfo_lastUsersession_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_lastUsersession_feature",
-				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__LAST_USERSESSION, true, false, true,
-			null, null, null));
+				"_UI_ServerInfo_type"), ModelPackage.Literals.SERVER_INFO__LAST_USERSESSION, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -144,8 +130,38 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			getResourceLocator(),
 			getString("_UI_ServerInfo_certificateAlias_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_certificateAlias_feature",
-				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
+				"_UI_ServerInfo_type"), ModelPackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -182,11 +198,14 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ServerInfo.class)) {
-		case WorkspacePackage.SERVER_INFO__NAME:
-		case WorkspacePackage.SERVER_INFO__URL:
-		case WorkspacePackage.SERVER_INFO__PORT:
-		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
+		case ModelPackage.SERVER_INFO__NAME:
+		case ModelPackage.SERVER_INFO__URL:
+		case ModelPackage.SERVER_INFO__PORT:
+		case ModelPackage.SERVER_INFO__CERTIFICATE_ALIAS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ModelPackage.SERVER_INFO__PROJECT_INFOS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -201,6 +220,9 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS,
+			EsmodelFactory.eINSTANCE.createProjectInfo()));
 	}
 
 	/**
@@ -210,7 +232,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

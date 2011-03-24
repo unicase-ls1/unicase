@@ -22,9 +22,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 
 /**
@@ -76,7 +76,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 				getResourceLocator(),
 				getString("_UI_Usersession_username_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_username_feature",
-					"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__USERNAME, true, false, false,
+					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__USERNAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -92,7 +92,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 				getResourceLocator(),
 				getString("_UI_Usersession_password_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_password_feature",
-					"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__PASSWORD, true, false, false,
+					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__PASSWORD, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -108,8 +108,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 				getResourceLocator(),
 				getString("_UI_Usersession_sessionId_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_sessionId_feature",
-					"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__SESSION_ID, true, false, true,
-				null, null, null));
+					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SESSION_ID, true, false, true, null,
+				null, null));
 	}
 
 	/**
@@ -124,8 +124,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 			getResourceLocator(),
 			getString("_UI_Usersession_persistentPassword_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_persistentPassword_feature",
-				"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__PERSISTENT_PASSWORD, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__PERSISTENT_PASSWORD, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -139,8 +139,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 			getResourceLocator(),
 			getString("_UI_Usersession_serverInfo_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_serverInfo_feature",
-				"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__SERVER_INFO, true, false, true, null,
-			null, null));
+				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SERVER_INFO, true, false, true, null, null,
+			null));
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 			getResourceLocator(),
 			getString("_UI_Usersession_savePassword_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_savePassword_feature",
-				"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__SAVE_PASSWORD, true, false, false,
+				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SAVE_PASSWORD, true, false, false,
 			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -170,8 +170,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkspacePackage.Literals.USERSESSION__AC_USER);
-			childrenFeatures.add(WorkspacePackage.Literals.USERSESSION__CHANGED_PROPERTIES);
+			childrenFeatures.add(ModelPackage.Literals.USERSESSION__AC_USER);
+			childrenFeatures.add(ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
@@ -225,14 +225,14 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Usersession.class)) {
-		case WorkspacePackage.USERSESSION__USERNAME:
-		case WorkspacePackage.USERSESSION__PASSWORD:
-		case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
-		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
+		case ModelPackage.USERSESSION__USERNAME:
+		case ModelPackage.USERSESSION__PASSWORD:
+		case ModelPackage.USERSESSION__PERSISTENT_PASSWORD:
+		case ModelPackage.USERSESSION__SAVE_PASSWORD:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case WorkspacePackage.USERSESSION__AC_USER:
-		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+		case ModelPackage.USERSESSION__AC_USER:
+		case ModelPackage.USERSESSION__CHANGED_PROPERTIES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -249,10 +249,10 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.USERSESSION__AC_USER,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.USERSESSION__AC_USER,
 			AccesscontrolFactory.eINSTANCE.createACUser()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.USERSESSION__CHANGED_PROPERTIES,
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES,
 			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
 	}
 
@@ -263,7 +263,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return WorkspaceEditPlugin.INSTANCE;
+		return ClientModelEditPlugin.INSTANCE;
 	}
 
 }

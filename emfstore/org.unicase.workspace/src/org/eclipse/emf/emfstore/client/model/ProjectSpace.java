@@ -78,7 +78,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_Project()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Project()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -104,7 +104,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_ProjectId()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ProjectId()
 	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
@@ -130,7 +130,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Project Name</em>' attribute.
 	 * @see #setProjectName(String)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_ProjectName()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ProjectName()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -156,7 +156,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_ProjectDescription()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ProjectDescription()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -182,7 +182,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Events</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_Events()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Events()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -198,7 +198,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Usersession</em>' reference.
 	 * @see #setUsersession(Usersession)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_Usersession()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Usersession()
 	 * @model
 	 * @generated
 	 */
@@ -224,7 +224,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Last Updated</em>' attribute.
 	 * @see #setLastUpdated(Date)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_LastUpdated()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_LastUpdated()
 	 * @model
 	 * @generated
 	 */
@@ -250,7 +250,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_BaseVersion()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_BaseVersion()
 	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
@@ -276,7 +276,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Resource Count</em>' attribute.
 	 * @see #setResourceCount(int)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_ResourceCount()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ResourceCount()
 	 * @model
 	 * @generated
 	 */
@@ -302,7 +302,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Dirty</em>' attribute.
 	 * @see #setDirty(boolean)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_Dirty()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Dirty()
 	 * @model
 	 * @generated
 	 */
@@ -328,7 +328,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Old Log Messages</em>' attribute list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_OldLogMessages()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_OldLogMessages()
 	 * @model
 	 * @generated
 	 */
@@ -344,7 +344,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Local Operations</em>' containment reference.
 	 * @see #setLocalOperations(OperationComposite)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_LocalOperations()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_LocalOperations()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -370,7 +370,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_Notifications()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Notifications()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -386,7 +386,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Event Composite</em>' containment reference.
 	 * @see #setEventComposite(EventComposite)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_EventComposite()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_EventComposite()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -412,7 +412,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * 
 	 * @return the value of the '<em>Notification Composite</em>' containment reference.
 	 * @see #setNotificationComposite(NotificationComposite)
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_NotificationComposite()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_NotificationComposite()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
@@ -438,7 +438,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Waiting Uploads</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace_WaitingUploads()
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_WaitingUploads()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

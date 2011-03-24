@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.model.EventComposite;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 
@@ -32,9 +33,9 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
  */
 public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -43,7 +44,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EventCompositeImpl() {
@@ -52,36 +52,33 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkspacePackage.Literals.EVENT_COMPOSITE;
+		return ModelPackage.Literals.EVENT_COMPOSITE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
 		if (events == null) {
 			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
-				WorkspacePackage.EVENT_COMPOSITE__EVENTS);
+				ModelPackage.EVENT_COMPOSITE__EVENTS);
 		}
 		return events;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -89,13 +86,12 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,14 +99,13 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			getEvents().clear();
 			getEvents().addAll((Collection<? extends Event>) newValue);
 			return;
@@ -120,13 +115,12 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			getEvents().clear();
 			return;
 		}
@@ -135,13 +129,12 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WorkspacePackage.EVENT_COMPOSITE__EVENTS:
+		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
