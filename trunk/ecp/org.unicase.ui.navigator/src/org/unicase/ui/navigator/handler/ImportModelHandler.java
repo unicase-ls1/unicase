@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.common.UnicaseUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -30,7 +31,6 @@ import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * Handles the import of ModelElements into a project.

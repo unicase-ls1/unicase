@@ -1,4 +1,4 @@
-package org.unicase.util;
+package org.eclipse.emf.emfstore.common;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;

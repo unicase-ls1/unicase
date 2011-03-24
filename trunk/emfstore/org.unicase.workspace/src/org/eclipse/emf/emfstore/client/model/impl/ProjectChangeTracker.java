@@ -43,6 +43,7 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecorder;
 import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.UnicaseUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -57,7 +58,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.metamodel.util.ProjectChangeObserver;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * Tracks changes on a project that is contained in a project space.

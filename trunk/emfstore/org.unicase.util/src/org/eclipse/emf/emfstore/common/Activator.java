@@ -1,4 +1,4 @@
-package org.unicase.util;
+package org.eclipse.emf.emfstore.common;
 
 import org.osgi.framework.BundleContext;
 

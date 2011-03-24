@@ -6,7 +6,7 @@
 package org.unicase.ui.common.observer;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.util.observer.IObserver;
+import org.eclipse.emf.emfstore.common.observer.IObserver;
 
 /**
  * Listens on a trace from one model element to another one over a certain feature.

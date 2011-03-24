@@ -1,4 +1,4 @@
-package org.unicase.util;
+package org.eclipse.emf.emfstore.common;
 
 
 public interface IUnicaseLog {

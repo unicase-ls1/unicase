@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.common.UnicaseUtil;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -29,7 +30,6 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.Activator;
 import org.unicase.ui.navigator.handler.CreateContainmentHandler;
 import org.unicase.ui.navigator.handler.NewModelElementWizardHandler;
-import org.unicase.util.UnicaseUtil;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.

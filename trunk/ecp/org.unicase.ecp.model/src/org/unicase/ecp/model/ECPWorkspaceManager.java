@@ -11,10 +11,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
-import org.unicase.util.observer.ObserverBus;
 
 /**
  * Class to provide access to a registered Workspace.

@@ -1,8 +1,8 @@
 package org.unicase.ui.util;
 
+import org.eclipse.emf.emfstore.common.IUnicaseLog;
+import org.eclipse.emf.emfstore.common.UnicaseLogAdapter;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.unicase.util.IUnicaseLog;
-import org.unicase.util.UnicaseLogAdapter;
 
 public abstract class AbstractUnicaseUIPlugin extends AbstractUIPlugin implements IUnicaseLog {
 	private UnicaseLogAdapter logAdapter;

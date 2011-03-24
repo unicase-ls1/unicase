@@ -18,9 +18,9 @@ import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
-import org.unicase.util.observer.ObserverBus;
 
 /**
  * Provides an ECPWorspace for the EMFStore.
