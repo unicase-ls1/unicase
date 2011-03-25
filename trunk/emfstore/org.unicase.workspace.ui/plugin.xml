@@ -15,7 +15,7 @@
                      ifEmpty="true"
                      operator="and">
                   <instanceof
-                        value="org.unicase.workspace.ProjectSpace">
+                        value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                   </instanceof>
                   <test
                         forcePluginActivation="true"
@@ -35,7 +35,7 @@
                      ifEmpty="true"
                      operator="and">
                   <instanceof
-                        value="org.unicase.workspace.ProjectSpace">
+                        value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                   </instanceof>
                   <test
                         forcePluginActivation="true"
@@ -55,7 +55,7 @@
                     ifEmpty="true"
                     operator="and">
                  <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
+                       value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                  </instanceof>
                  <test
                        forcePluginActivation="true"
@@ -75,7 +75,7 @@
                     ifEmpty="true"
                     operator="and">
                  <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
+                       value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                  </instanceof>
                  <test
                        forcePluginActivation="true"
@@ -273,7 +273,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -299,7 +299,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -325,7 +325,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -356,7 +356,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -387,7 +387,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
                  <count
@@ -409,7 +409,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
                  <count
@@ -434,7 +434,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -465,7 +465,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
                  <count
@@ -493,7 +493,7 @@
                              ifEmpty="false"
                              operator="and">
                           	<instanceof
-                                value="org.unicase.workspace.ProjectSpace">
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                           	</instanceof>
                        </iterate>
                        <count
@@ -514,7 +514,7 @@
                              ifEmpty="false"
                              operator="and">
                           <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                           </instanceof>
                           <test
                                 forcePluginActivation="true"
@@ -540,7 +540,7 @@
                              ifEmpty="false"
                              operator="and">
                           <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                           </instanceof>
                        </iterate>
                        <count
@@ -591,7 +591,7 @@
                              ifEmpty="false"
                              operator="and">
                           <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                           </instanceof>
                           <test
                                 forcePluginActivation="true"
@@ -662,7 +662,7 @@
                              ifEmpty="false"
                              operator="and">
                           <instanceof
-                                value="org.unicase.workspace.ProjectSpace">
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                           </instanceof>
                        </iterate>
                        <count
@@ -685,7 +685,7 @@
                           ifEmpty="false"
                           operator="and">
                        <instanceof
-                             value="org.unicase.workspace.ProjectSpace">
+                             value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                        </instanceof>
                     </iterate>
                     <count
@@ -713,7 +713,7 @@
                     <iterate>
                        <or>
                           <instanceof
-                                value="org.unicase.workspace.ProjectSpace" />
+                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
                           <instanceof
                                 value="org.unicase.metamodel.Project" />
                        </or>
@@ -740,7 +740,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -1203,21 +1203,21 @@
               id="org.unicase.workspace.ui.commands.projectIsSharedTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="projectIsShared"
-              type="org.unicase.workspace.ProjectSpace">
+              type="org.eclipse.emf.emfstore.client.model.ProjectSpace">
         </propertyTester>
         <propertyTester
               class="org.eclipse.emf.emfstore.client.ui.commands.ProjectHasLocalChangesTester"
               id="org.unicase.workspace.ui.commands.projectHasLocalChangesTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="projectHasLocalChanges"
-              type="org.unicase.workspace.ProjectSpace">
+              type="org.eclipse.emf.emfstore.client.model.ProjectSpace">
         </propertyTester>
         <propertyTester
               class="org.eclipse.emf.emfstore.client.ui.commands.IsAdminTester"
               id="org.unicase.workspace.ui.commands.isAdminTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="isAdmin"
-              type="org.unicase.workspace.ProjectSpace">
+              type="org.eclipse.emf.emfstore.client.model.ProjectSpace">
         </propertyTester>
         <propertyTester
               class="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserAdminTester"
@@ -1231,7 +1231,7 @@
               id="org.unicase.workspace.ui.commands.isACUserTester"
               namespace="org.unicase.workspace.ui.commands"
               properties="isACUser"
-              type="org.unicase.workspace.ProjectSpace">
+              type="org.eclipse.emf.emfstore.client.model.ProjectSpace">
         </propertyTester>
         <propertyTester
               class="org.eclipse.emf.emfstore.client.ui.commands.IsServerAdminTester"
