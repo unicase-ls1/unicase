@@ -2,16 +2,15 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.metamodel.ignoredatatype">
+         point="org.eclipse.emf.emfstore.common.model.singletonidresolver">
+	  <singletonidresolver
+            class="org.unicase.emfstore.ecore.EDatatypeIdResolver">
+      </singletonidresolver>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.common.model.ignoredatatype">
       <ignoredatatype
             type="org.eclipse.emf.ecore.EGenericType">
       </ignoredatatype>
    </extension>
-   <extension
-         point="org.unicase.metamodel.singletonidresolver">
-      <singletonidresolver
-            class="org.unicase.emfstore.ecore.EDatatypeIdResolver">
-      </singletonidresolver>
-   </extension>
-
 </plugin>

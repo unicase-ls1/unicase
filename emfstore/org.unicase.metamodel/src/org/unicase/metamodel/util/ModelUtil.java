@@ -222,7 +222,7 @@ public final class ModelUtil {
 		if (ignoredDataTypes == null) {
 			ignoredDataTypes = new HashSet<String>();
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.metamodel.ignoredatatype");
+				"org.eclipse.emf.emfstore.common.model.ignoredatatype");
 			for (IConfigurationElement extension : config) {
 				String className = extension.getAttribute("type");
 				ignoredDataTypes.add(className);
@@ -1138,7 +1138,7 @@ public final class ModelUtil {
 			// collect singleton ID resolvers
 			singletonIdResolvers = new HashSet<SingletonIdResolver>();
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.metamodel.singletonidresolver");
+				"org.eclipse.emf.emfstore.common.model.singletonidresolver");
 
 			for (IConfigurationElement extension : config) {
 				SingletonIdResolver resolver;
