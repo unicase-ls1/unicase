@@ -319,7 +319,7 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 				scrmDiagram.setGmfdiagram(diagram);
 			}
 
-		}.run();
+		}.run(true);
 	}
 
 	/**
