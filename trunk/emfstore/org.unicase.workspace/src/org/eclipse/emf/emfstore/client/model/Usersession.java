@@ -10,17 +10,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.observers.LoginObserver;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
@@ -227,7 +227,7 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list. The list contents are
-	 * of type {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
+	 * of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Changed Properties</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...

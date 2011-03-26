@@ -7,10 +7,10 @@ package org.eclipse.emf.emfstore.client.model.observers;
 
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Represents a controller that can merge conflicting changes resulting in a list of changes that is not conflicting any

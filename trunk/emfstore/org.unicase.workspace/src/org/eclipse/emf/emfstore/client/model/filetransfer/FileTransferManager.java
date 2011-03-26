@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
 
 /**
  * The main managing class on the client side for file transfers. Each project space has an associated
@@ -64,7 +64,7 @@ public class FileTransferManager {
 		}
 
 		// Create the file identifier
-		FileIdentifier identifier = EsmodelFactory.eINSTANCE.createFileIdentifier();
+		FileIdentifier identifier = ModelFactory.eINSTANCE.createFileIdentifier();
 
 		// Move file to cache
 		try {

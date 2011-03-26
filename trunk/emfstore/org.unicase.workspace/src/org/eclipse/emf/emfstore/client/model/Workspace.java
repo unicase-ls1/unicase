@@ -17,12 +17,12 @@ import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager
 import org.eclipse.emf.emfstore.client.model.exceptions.ProjectUrlResolutionException;
 import org.eclipse.emf.emfstore.client.model.exceptions.ServerUrlResolutionException;
 import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
-import org.unicase.emfstore.esmodel.url.ServerUrl;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment;
+import org.eclipse.emf.emfstore.server.model.url.ServerUrl;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.

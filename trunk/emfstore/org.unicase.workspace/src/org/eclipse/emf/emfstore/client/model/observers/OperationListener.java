@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.client.model.observers;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Operation listeners are added to a project space and informed whenever an operation is executed of undone.

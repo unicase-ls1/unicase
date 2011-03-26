@@ -7,8 +7,8 @@ package org.eclipse.emf.emfstore.client.model;
 
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
 /**
  * Controller class to carry out the session procedures.

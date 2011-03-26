@@ -19,8 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
-import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Server Info</b></em>'. <!-- end-user-doc -->

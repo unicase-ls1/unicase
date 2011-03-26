@@ -8,7 +8,7 @@ package org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
 /**
  * Filters notifications which come from datatypes that should be ignored.

@@ -6,8 +6,8 @@
 package org.eclipse.emf.emfstore.client.model.observers;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 
 /**
  * An observer which waits for commit notifications and authorizes the commit procedure.

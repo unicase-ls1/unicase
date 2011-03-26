@@ -44,20 +44,20 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recordi
 import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.UnicaseUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 
 /**
  * Tracks changes on a project that is contained in a project space.

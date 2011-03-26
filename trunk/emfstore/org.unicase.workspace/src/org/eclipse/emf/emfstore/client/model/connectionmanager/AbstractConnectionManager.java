@@ -8,8 +8,8 @@ package org.eclipse.emf.emfstore.client.model.connectionmanager;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.UnknownSessionException;
+import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 
 /**
  * Superclass for all connection manager which maps session ids to the relative connection simply by using a generic

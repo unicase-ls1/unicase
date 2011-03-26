@@ -14,7 +14,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 
 /**
  * Utility methods for the file transfer interface. Important notice regarding the terminology used: construct means

@@ -11,8 +11,8 @@ import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
 import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 
 /**
  * Command for executing semantic operations on a project.

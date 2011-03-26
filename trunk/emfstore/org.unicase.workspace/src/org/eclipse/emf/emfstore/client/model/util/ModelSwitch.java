@@ -10,10 +10,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.emfstore.client.model.*;
-
-import org.unicase.metamodel.IdentifiableElement;
+import org.eclipse.emf.emfstore.client.model.EventComposite;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.client.model.NotificationComposite;
+import org.eclipse.emf.emfstore.client.model.OperationComposite;
+import org.eclipse.emf.emfstore.client.model.PendingFileTransfer;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->

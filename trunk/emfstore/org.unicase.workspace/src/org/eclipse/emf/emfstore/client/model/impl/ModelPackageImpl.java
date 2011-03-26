@@ -10,9 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.emfstore.client.model.EventComposite;
 import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
@@ -23,20 +21,11 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-
-import org.unicase.emfstore.esmodel.notification.NotificationPackage;
-
-import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-
-import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -150,7 +139,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		org.eclipse.emf.emfstore.server.model.ModelPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -739,10 +728,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_2 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.server.model.ModelPackage theModelPackage_1 = (org.eclipse.emf.emfstore.server.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.server.model.ModelPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI);
 		EventsPackage theEventsPackage = (EventsPackage) EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
@@ -758,7 +747,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		projectSpaceEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
+		projectSpaceEClass.getESuperTypes().add(theModelPackage_2.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE,
@@ -766,7 +755,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(), null, "projectSpaces", null, 0, -1,
 			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkspace_ProjectSpaces().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		getWorkspace_ProjectSpaces().getEKeys().add(theModelPackage_2.getIdentifiableElement_Identifier());
 		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1,
 			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -776,7 +765,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getWorkspace_ActiveProjectSpace(), this.getProjectSpace(), null, "activeProjectSpace", null, 0,
 			1, Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkspace_ActiveProjectSpace().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
+		getWorkspace_ActiveProjectSpace().getEKeys().add(theModelPackage_2.getIdentifiableElement_Identifier());
 
 		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -786,7 +775,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServerInfo_Port(), ecorePackage.getEInt(), "port", null, 1, 1, ServerInfo.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServerInfo_ProjectInfos(), theEsmodelPackage.getProjectInfo(), null, "projectInfos", null, 0,
+		initEReference(getServerInfo_ProjectInfos(), theModelPackage_1.getProjectInfo(), null, "projectInfos", null, 0,
 			-1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getServerInfo_LastUsersession(), this.getUsersession(), null, "lastUsersession", null, 0, 1,
@@ -802,7 +791,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUsersession_Password(), ecorePackage.getEString(), "password", null, 0, 1, Usersession.class,
 			IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUsersession_SessionId(), theEsmodelPackage.getSessionId(), null, "sessionId", null, 0, 1,
+		initEReference(getUsersession_SessionId(), theModelPackage_1.getSessionId(), null, "sessionId", null, 0, 1,
 			Usersession.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUsersession_PersistentPassword(), ecorePackage.getEString(), "persistentPassword", null, 0,
@@ -823,10 +812,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectSpace_Project(), theMetamodelPackage.getProject(), null, "project", null, 0, 1,
+		initEReference(getProjectSpace_Project(), theModelPackage_2.getProject(), null, "project", null, 0, 1,
 			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 1, 1,
+		initEReference(getProjectSpace_ProjectId(), theModelPackage_1.getProjectId(), null, "projectId", null, 1, 1,
 			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjectSpace_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1,
@@ -867,7 +856,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getProjectSpace_NotificationComposite(), this.getNotificationComposite(), null,
 			"notificationComposite", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_WaitingUploads(), theEsmodelPackage.getFileIdentifier(), null, "waitingUploads",
+		initEReference(getProjectSpace_WaitingUploads(), theModelPackage_1.getFileIdentifier(), null, "waitingUploads",
 			null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -879,7 +868,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(pendingFileTransferEClass, PendingFileTransfer.class, "PendingFileTransfer", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPendingFileTransfer_AttachmentId(), theMetamodelPackage.getModelElementId(), null,
+		initEReference(getPendingFileTransfer_AttachmentId(), theModelPackage_2.getModelElementId(), null,
 			"attachmentId", null, 0, 1, PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEInt(), "fileVersion", null, 0, 1,

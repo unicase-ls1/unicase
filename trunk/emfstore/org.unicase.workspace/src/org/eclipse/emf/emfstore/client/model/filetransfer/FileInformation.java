@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.client.model.filetransfer;
 
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
 
 /**
  * This is a facade class to execute different actions and queries on files that a project space has. An instance of

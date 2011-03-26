@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.common.observer.IObserver;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 
 /**
  * Notifies the UI that a list of changes will be automatically merged with the current model state.

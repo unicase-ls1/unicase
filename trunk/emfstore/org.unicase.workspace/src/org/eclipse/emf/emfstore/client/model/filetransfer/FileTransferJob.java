@@ -14,12 +14,12 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
 import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
-import org.unicase.emfstore.filetransfer.FileTransferInformation;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.filetransfer.FilePartitionerUtil;
+import org.eclipse.emf.emfstore.server.filetransfer.FileTransferInformation;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 
 /**
  * Abstract class for the file transfer job encapsulating methods used for downloads and uploads.

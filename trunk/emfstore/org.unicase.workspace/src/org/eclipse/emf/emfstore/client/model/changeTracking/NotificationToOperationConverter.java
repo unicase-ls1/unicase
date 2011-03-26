@@ -14,22 +14,22 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 
 /**
  * Converts an EMF notification to an Operation.

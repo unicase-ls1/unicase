@@ -10,8 +10,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
-import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
 /**
  * Filter to ignore Reference Notifications to Elements outside of the project.

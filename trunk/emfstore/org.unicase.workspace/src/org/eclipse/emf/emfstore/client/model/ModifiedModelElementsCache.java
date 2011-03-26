@@ -15,11 +15,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.model.observers.OperationListener;
 import org.eclipse.emf.emfstore.client.model.observers.ShareObserver;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Caches all modified model elements.
@@ -163,7 +162,8 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * @return the model element for the model element id passed as reference
 	 */
 	private EObject getModelElementForId(String modelElementIdString) {
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+			.createModelElementId();
 		modelElementId.setId(modelElementIdString);
 		return projectSpace.getProject().getModelElement(modelElementId);
 	}

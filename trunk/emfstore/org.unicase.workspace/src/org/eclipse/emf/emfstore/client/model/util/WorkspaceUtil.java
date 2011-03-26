@@ -20,16 +20,16 @@ import org.eclipse.emf.emfstore.client.model.Activator;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
-import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent;
 
 /**
  * Workspace utility class.

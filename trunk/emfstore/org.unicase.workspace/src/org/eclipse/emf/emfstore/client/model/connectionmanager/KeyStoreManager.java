@@ -45,7 +45,7 @@ import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreExceptio
 import org.eclipse.emf.emfstore.client.model.exceptions.InvalidCertificateException;
 import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.unicase.metamodel.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 
 /**
  * The KeyStoreManager manages the client's KeyStore in which the SSL certificates for multiple unicase server can be
