@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: unicase Emf Store Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.server;singleton:=true
 Bundle-Version: 0.7.3
-Bundle-Activator: org.unicase.emfstore.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.server.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.emf.emfstore.server.model;visibility:=reexport,
  org.apache.commons.codec;bundle-version="1.3.0";visibility:=reexport,
@@ -27,23 +27,23 @@ Export-Package:
  org.apache.xmlrpc.server,
  org.apache.xmlrpc.util,
  org.apache.xmlrpc.webserver,
- org.unicase.emfstore,
- org.unicase.emfstore.accesscontrol,
- org.unicase.emfstore.accesscontrol.authentication,
- org.unicase.emfstore.conflictDetection,
- org.unicase.emfstore.connection,
- org.unicase.emfstore.connection.rmi,
- org.unicase.emfstore.connection.xmlrpc,
- org.unicase.emfstore.connection.xmlrpc.util,
- org.unicase.emfstore.core,
- org.unicase.emfstore.core.helper,
- org.unicase.emfstore.core.subinterfaces,
- org.unicase.emfstore.eventmanager,
- org.unicase.emfstore.exceptions,
- org.unicase.emfstore.filetransfer,
- org.unicase.emfstore.startup,
- org.unicase.emfstore.storage,
- org.unicase.emfstore.taskmanager,
- org.unicase.emfstore.taskmanager.tasks
+ org.eclipse.emf.emfstore.server,
+ org.eclipse.emf.emfstore.server.accesscontrol,
+ org.eclipse.emf.emfstore.server.accesscontrol.authentication,
+ org.eclipse.emf.emfstore.server.conflictDetection,
+ org.eclipse.emf.emfstore.server.connection,
+ org.eclipse.emf.emfstore.server.connection.rmi,
+ org.eclipse.emf.emfstore.server.connection.xmlrpc,
+ org.eclipse.emf.emfstore.server.connection.xmlrpc.util,
+ org.eclipse.emf.emfstore.server.core,
+ org.eclipse.emf.emfstore.server.core.helper,
+ org.eclipse.emf.emfstore.server.core.subinterfaces,
+ org.eclipse.emf.emfstore.server.eventmanager,
+ org.eclipse.emf.emfstore.server.exceptions,
+ org.eclipse.emf.emfstore.server.filetransfer,
+ org.eclipse.emf.emfstore.server.startup,
+ org.eclipse.emf.emfstore.server.storage,
+ org.eclipse.emf.emfstore.server.taskmanager,
+ org.eclipse.emf.emfstore.server.taskmanager.tasks
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.logging

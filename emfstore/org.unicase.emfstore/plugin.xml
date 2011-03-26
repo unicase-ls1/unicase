@@ -15,7 +15,7 @@
             thread="main"
             visible="true">
          <run
-               class="org.unicase.emfstore.EmfStoreController">
+               class="org.eclipse.emf.emfstore.server.EmfStoreController">
          </run>
       </application>
    </extension>
