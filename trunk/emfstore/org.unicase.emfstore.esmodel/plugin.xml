@@ -12,65 +12,65 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/emfstore/esmodel"
-            class="org.unicase.emfstore.esmodel.EsmodelPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model"
+            class="org.eclipse.emf.emfstore.server.model.ModelPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/versioning"
-            class="org.unicase.emfstore.esmodel.versioning.VersioningPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/versioning"
+            class="org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/versioning/operations"
-            class="org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/versioning/operations"
+            class="org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/versioning/events"
-            class="org.unicase.emfstore.esmodel.versioning.events.EventsPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/versioning/events"
+            class="org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/accesscontrol"
-            class="org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/accesscontrol"
+            class="org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/accesscontrol/roles"
-            class="org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/roles"
+            class="org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/esmodel/notification"
-            class="org.unicase.emfstore.esmodel.notification.NotificationPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/notification"
+            class="org.eclipse.emf.emfstore.server.model.notification.NotificationPackage"
+            genModel="model/server.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/emfstore/esmodel/url"
-            class="org.unicase.emfstore.esmodel.url.UrlPackage"
-            genModel="model/esmodel.genmodel"/>
+            uri="http://eclipse.org/emf/emfstore/server/model/url"
+            class="org.eclipse.emf.emfstore.server.model.url.UrlPackage"
+            genModel="model/server.genmodel"/>
    </extension>
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticPackage"
-            genModel="model/esmodel.genmodel"
-            uri="http://unicase.org/esmodel/versioning/operations/semantic">
+            class="org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticPackage"
+            genModel="model/server.genmodel"
+            uri="http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic">
       </package>
    </extension>
 
