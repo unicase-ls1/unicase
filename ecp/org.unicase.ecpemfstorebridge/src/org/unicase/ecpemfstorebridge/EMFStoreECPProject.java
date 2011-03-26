@@ -14,13 +14,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.observers.SimpleOperationListener;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.workSpaceModel.ECPProject;
 import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 
 /**
  * ECPproject for the EMFStore.
@@ -115,7 +115,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementAdded(Project project, EObject modelElement) {
@@ -126,7 +126,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementRemoved(org.eclipse.emf.emfstore.common.model.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, EObject modelElement) {
@@ -137,8 +137,8 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing
@@ -148,7 +148,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#projectDeleted(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	public void projectDeleted(Project project) {
 		super.projectDeleted();

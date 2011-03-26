@@ -36,14 +36,14 @@
          point="org.eclipse.ui.decorators">
       <decorator
             adaptable="true"
-            class="org.unicase.workspace.ui.decorators.VersionDecorator"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
             id="org.unicase.ecpemfstorebridge.decorators.VersionDecorator"
             label="Version Decorator"
             lightweight="true"
             state="true">
          <enablement>
             <objectClass
-                  name="org.unicase.workspace.ProjectSpace">
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
             </objectClass>
          </enablement>
          <description>
@@ -52,14 +52,14 @@
       </decorator>
       <decorator
             adaptable="true"
-            class="org.unicase.workspace.ui.decorators.UsernameDecorator"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
             id="org.unicase.ui.common.decorators.UsernameDecorator"
             label="Username Decorator"
             lightweight="true"
             state="true">
          <enablement>
             <objectClass
-                  name="org.unicase.workspace.ProjectSpace">
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
             </objectClass>
          </enablement>
          <description>
@@ -68,14 +68,14 @@
       </decorator>
       <decorator
             adaptable="true"
-            class="org.unicase.workspace.ui.decorators.ProjectSpaceDirtyDecorator"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
             id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
             label="ProjectSpaceDirty Decorator"
             lightweight="true"
             state="true">
          <enablement>
             <objectClass
-                  name="org.unicase.workspace.ProjectSpace">
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
             </objectClass>
          </enablement>
          <description>
@@ -84,7 +84,7 @@
       </decorator>
       <decorator
             adaptable="true"
-            class="org.unicase.workspace.ui.decorators.ModelElementDirtyDecorator"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
             id="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
             label="ModelElement Dirty Decorator"
             lightweight="true"
@@ -100,14 +100,14 @@
       </decorator>
       <decorator
             adaptable="true"
-            class="org.unicase.workspace.ui.decorators.ProjectDirtyDecorator"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectDirtyDecorator"
             id="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
             label="Project Dirty Decorator"
             lightweight="true"
             state="true">
          <enablement>
             <objectClass
-                  name="org.unicase.metamodel.Project">
+                  name="org.eclipse.emf.emfstore.common.model.Project">
             </objectClass>
          </enablement>
          <description>

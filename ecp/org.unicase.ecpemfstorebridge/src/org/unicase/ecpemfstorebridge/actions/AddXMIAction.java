@@ -9,18 +9,17 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IActionDelegate;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
 
 /**
  * Action for adding XMI files to workspace.
@@ -62,12 +61,12 @@ public class AddXMIAction implements IActionDelegate {
 			ResourceSet resourceSet = currentWorkspace.eResource().getResourceSet();
 			Resource resource = resourceSet.getResource(fileURI, true);
 
-			ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-			Project project = MetamodelFactory.eINSTANCE.createProject();
+			ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
+			Project project = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject();
 			projectSpace.setProject(project);
 			projectSpace.setProjectName(file.getName());
 			projectSpace.setProjectDescription("Imported.");
-			projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+			projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
 
 			project.getModelElements().addAll(resource.getContents());
 			((WorkspaceImpl) currentWorkspace).addProjectSpace(projectSpace);
