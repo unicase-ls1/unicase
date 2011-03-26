@@ -23,17 +23,14 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.provider.IdentifiableElementItemProvider;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!--
@@ -301,10 +298,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT,
-			MetamodelFactory.eINSTANCE.createProject()));
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID,
-			EsmodelFactory.eINSTANCE.createProjectId()));
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
 			EventsFactory.eINSTANCE.createEvent()));
@@ -391,19 +388,19 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS,
-			ModelFactory.eINSTANCE.createOperationComposite()));
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createOperationComposite()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATIONS,
 			NotificationFactory.eINSTANCE.createESNotification()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE,
-			ModelFactory.eINSTANCE.createEventComposite()));
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createEventComposite()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
-			ModelFactory.eINSTANCE.createNotificationComposite()));
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createNotificationComposite()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS,
-			EsmodelFactory.eINSTANCE.createFileIdentifier()));
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createFileIdentifier()));
 	}
 
 	/**
