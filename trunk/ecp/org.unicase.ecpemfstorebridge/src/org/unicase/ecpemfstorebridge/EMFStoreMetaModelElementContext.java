@@ -7,12 +7,12 @@ package org.unicase.ecpemfstorebridge;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.ecp.model.AbstractECPMetaModelElementContext;
 import org.unicase.ecp.model.ECPAssociationClassElement;
 import org.unicase.ecp.model.ECPMetaModelElementContext;
-import org.unicase.metamodel.AssociationClassElement;
-import org.unicase.metamodel.NonDomainElement;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * {@link AbstractECPMetaModelElementContext} for the EMFStore.
