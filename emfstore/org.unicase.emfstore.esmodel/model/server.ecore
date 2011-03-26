@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
-    nsURI="http://unicase.org/emfstore/esmodel" nsPrefix="org.unicase.emfstore.esmodel">
+    nsURI="http://eclipse.org/emf/emfstore/server/model" nsPrefix="org.eclipse.emf.emfstore.server.model">
   <eClassifiers xsi:type="ecore:EClass" name="ProjectHistory">
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
         containment="true"/>
