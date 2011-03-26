@@ -6,11 +6,11 @@
 package org.unicase.emfstore.core;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.helper.ResourceHelper;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.metamodel.Project;
 
 /**
  * This is the super class for all subinterfaces of emfstore. Main interfaces, such as {@link EmfStoreImpl}, check and

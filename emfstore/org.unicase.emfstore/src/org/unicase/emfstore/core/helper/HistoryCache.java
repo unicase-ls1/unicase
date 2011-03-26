@@ -13,13 +13,13 @@ import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This cache maps modelelements on verions, where these modelelements where changed. This is needed for the getHistory

@@ -9,11 +9,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * A connection handler implementation using RMI as transport layer.

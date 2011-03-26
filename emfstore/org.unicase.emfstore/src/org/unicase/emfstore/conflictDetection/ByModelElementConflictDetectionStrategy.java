@@ -7,8 +7,8 @@ package org.unicase.emfstore.conflictDetection;
 
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * Detects conflicts by single elements.

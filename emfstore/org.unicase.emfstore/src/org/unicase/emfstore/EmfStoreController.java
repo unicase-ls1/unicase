@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
@@ -50,8 +52,6 @@ import org.unicase.emfstore.startup.MigrationManager;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the EmfStore.

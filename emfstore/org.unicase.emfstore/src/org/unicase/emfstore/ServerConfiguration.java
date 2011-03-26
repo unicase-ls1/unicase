@@ -12,8 +12,8 @@ import java.util.Properties;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.osgi.framework.Bundle;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Represents the current server configuration.

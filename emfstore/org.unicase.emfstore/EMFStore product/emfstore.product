@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="EMFStore Server" uid="org.unicase.emfstore.server" id="org.unicase.emfstore.server" application="org.unicase.emfstore.server" version="1.0.4" useFeatures="true" includeLaunchers="true">
+<product name="EMFStore Server" uid="org.unicase.emfstore.server" id="org.unicase.emfstore.server" application="org.unicase.emfstore.server" version="1.0.4" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -23,6 +23,19 @@
    </vm>
 
    <plugins>
+      <plugin id="org.eclipse.emf.emfstore.client"/>
+      <plugin id="org.eclipse.emf.emfstore.client.model.edit"/>
+      <plugin id="org.eclipse.emf.emfstore.client.transaction"/>
+      <plugin id="org.eclipse.emf.emfstore.client.ui"/>
+      <plugin id="org.eclipse.emf.emfstore.common"/>
+      <plugin id="org.eclipse.emf.emfstore.common.model"/>
+      <plugin id="org.eclipse.emf.emfstore.common.model.edit"/>
+      <plugin id="org.eclipse.emf.emfstore.ecore"/>
+      <plugin id="org.eclipse.emf.emfstore.migration"/>
+      <plugin id="org.eclipse.emf.emfstore.migration.cope"/>
+      <plugin id="org.eclipse.emf.emfstore.server"/>
+      <plugin id="org.eclipse.emf.emfstore.server.model"/>
+      <plugin id="org.eclipse.emf.emfstore.server.model.edit"/>
    </plugins>
 
    <features>

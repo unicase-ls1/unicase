@@ -13,6 +13,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
@@ -34,9 +37,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This subinterfaces implements all version related functionality for the

@@ -7,6 +7,7 @@ package org.unicase.emfstore.conflictDetection;
 
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -17,7 +18,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.
