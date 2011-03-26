@@ -15,11 +15,11 @@ import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.ServerKeyStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Custom SocketFactory for rmi with encryption.

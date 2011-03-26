@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.ModelVersion;
+import org.eclipse.emf.emfstore.common.model.util.MalformedModelVersionException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.migration.EMFStoreMigrationException;
 import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.util.MalformedModelVersionException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Applies migrator to files on server.
@@ -67,7 +67,7 @@ public class MigrationManager {
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			// resource can not be loaded, assume version number before metamodel split
-			modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
+			modelVersion = ModelFactory.eINSTANCE.createModelVersion();
 			modelVersion.setReleaseNumber(4);
 		}
 
@@ -232,7 +232,7 @@ public class MigrationManager {
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
 		URI versionFileUri = URI.createFileURI(ServerConfiguration.getModelReleaseNumberFileName());
 		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
-		ModelVersion modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
+		ModelVersion modelVersion = ModelFactory.eINSTANCE.createModelVersion();
 		modelVersion.setReleaseNumber(modelReleaseNumber);
 		versionResource.getContents().add(modelVersion);
 		try {

@@ -12,9 +12,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This verifyer can be used to store user and passwords in a property file. Entries in the property file look should

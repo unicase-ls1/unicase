@@ -19,6 +19,7 @@ import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
 import org.apache.xmlrpc.server.XmlRpcServerConfigImpl;
 import org.apache.xmlrpc.webserver.WebServer;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
@@ -26,7 +27,6 @@ import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeConverterFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.ServerKeyStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Manages the webserver for XML RPC connections.

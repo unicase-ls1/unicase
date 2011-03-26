@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -26,7 +27,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileTransferInformation;
-import org.unicase.metamodel.Project;
 
 /**
  * An EMF store is responsible for storing projects, change management on projects and for persisting projects.

@@ -6,8 +6,8 @@
 package org.unicase.emfstore.connection.xmlrpc.util;
 
 import org.apache.xmlrpc.parser.AtomicParser;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.xml.sax.SAXException;
 
 /**

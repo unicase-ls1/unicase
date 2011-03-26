@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
@@ -21,7 +22,6 @@ import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
 import org.unicase.emfstore.filetransfer.FileTransferInformation;
-import org.unicase.metamodel.util.FileUtil;
 
 /**
  * The file transfer subinterface.

@@ -7,9 +7,9 @@ package org.unicase.emfstore.connection.xmlrpc.util;
 
 import org.apache.xmlrpc.serializer.TypeSerializerImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 

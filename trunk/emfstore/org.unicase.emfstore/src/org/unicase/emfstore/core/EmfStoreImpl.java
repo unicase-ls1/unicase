@@ -7,6 +7,7 @@ package org.unicase.emfstore.core;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.subinterfaces.FileTransferSubInterfaceImpl;
@@ -37,7 +38,6 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileTransferInformation;
-import org.unicase.metamodel.Project;
 
 /**
  * This is the main implementation of {@link EmfStore}.

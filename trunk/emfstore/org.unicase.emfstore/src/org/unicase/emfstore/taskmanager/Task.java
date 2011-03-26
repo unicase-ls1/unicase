@@ -7,7 +7,7 @@ package org.unicase.emfstore.taskmanager;
 
 import java.util.Date;
 
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
 /**
  * Tasks are managed by the Taskmanager and are used to run certain tasks periodically.

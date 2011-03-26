@@ -7,8 +7,8 @@ package org.unicase.emfstore.taskmanager.tasks;
 
 import java.util.Date;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.taskmanager.Task;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Dev task which plotts available memory.

@@ -12,6 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -29,10 +33,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * This subinterfaces implements all project related functionality for the
@@ -243,7 +243,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				deleteProject2(projectHistory.getProjectId(), true, false);
 				throw new StorageException(StorageException.NOSAVE);
 			}
-			return (ProjectId) EcoreUtil.copy(projectHistory.getProjectId());
+			return EcoreUtil.copy(projectHistory.getProjectId());
 		}
 	}
 
@@ -252,7 +252,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	public ProjectHistory exportProjectHistoryFromServer(ProjectId projectId) throws EmfStoreException {
 		synchronized (getMonitor()) {
-			return (ProjectHistory) EcoreUtil.copy(getProject(projectId));
+			return EcoreUtil.copy(getProject(projectId));
 		}
 	}
 
@@ -273,7 +273,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		firstVersion.setPrimarySpec(primary);
 
 		// create initial project
-		Project project = MetamodelFactory.eINSTANCE.createProject();
+		Project project = ModelFactory.eINSTANCE.createProject();
 		firstVersion.setProjectState(project);
 		getResourceHelper().createResourceForProject(project, firstVersion.getPrimarySpec(),
 			projectHistory.getProjectId());
@@ -291,8 +291,8 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
-		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
-		info.setVersion((PrimaryVersionSpec) EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
+		info.setProjectId(EcoreUtil.copy(project.getProjectId()));
+		info.setVersion(EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
 		return info;
 	}
 }

@@ -15,9 +15,9 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Verifies username/password using LDAP.
