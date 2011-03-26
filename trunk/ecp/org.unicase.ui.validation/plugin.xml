@@ -81,7 +81,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
               </and>
