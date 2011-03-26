@@ -12,81 +12,92 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
-import org.eclipse.emf.emfstore.common.model.MetamodelFactory;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPackage {
+public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass projectEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass uniqueIdentifierEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass identifiableElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass modelElementIdEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass modelVersionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass associationClassElementEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
-	 * EPackage.Registry} by the package package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
-	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#eNS_URI
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private MetamodelPackageImpl() {
-		super(eNS_URI, MetamodelFactory.eINSTANCE);
+	private ModelPackageImpl() {
+		super(eNS_URI, ModelFactory.eINSTANCE);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -94,42 +105,42 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link MetamodelPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static MetamodelPackage init() {
+	public static ModelPackage init() {
 		if (isInited)
-			return (MetamodelPackage) EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
-			: new MetamodelPackageImpl());
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI) : new ModelPackageImpl());
 
 		isInited = true;
 
 		// Create package meta-data objects
-		theMetamodelPackage.createPackageContents();
+		theModelPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theMetamodelPackage.initializePackageContents();
+		theModelPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theMetamodelPackage.freeze();
+		theModelPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(MetamodelPackage.eNS_URI, theMetamodelPackage);
-		return theMetamodelPackage;
+		EPackage.Registry.INSTANCE.put(ModelPackage.eNS_URI, theModelPackage);
+		return theModelPackage;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getProject() {
@@ -137,7 +148,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getProject_ModelElements() {
@@ -145,7 +157,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getProject_CutElements() {
@@ -153,7 +166,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getUniqueIdentifier() {
@@ -161,7 +175,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getUniqueIdentifier_Id() {
@@ -169,7 +184,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getIdentifiableElement() {
@@ -177,7 +193,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getIdentifiableElement_Identifier() {
@@ -185,7 +202,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getModelElementId() {
@@ -193,7 +211,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getModelVersion() {
@@ -201,7 +220,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getModelVersion_ReleaseNumber() {
@@ -209,7 +229,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getNonDomainElement() {
@@ -217,7 +238,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAssociationClassElement() {
@@ -225,16 +247,17 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelFactory getMetamodelFactory() {
-		return (MetamodelFactory) getEFactoryInstance();
+	public ModelFactory getModelFactory() {
+		return (ModelFactory) getEFactoryInstance();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -242,7 +265,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -272,7 +296,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -280,7 +305,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -338,6 +364,22 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.cs.tum.edu/cope
+		createCopeAnnotations();
 	}
 
-} // MetamodelPackageImpl
+	/**
+	 * Initializes the annotations for <b>http://www.cs.tum.edu/cope</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCopeAnnotations() {
+		String source = "http://www.cs.tum.edu/cope";
+		addAnnotation(this, source, new String[] { "historyURI",
+			"../../../resource/org.unicase.model/model/model.history" });
+	}
+
+} //ModelPackageImpl

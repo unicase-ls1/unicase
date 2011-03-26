@@ -6,8 +6,8 @@
 package org.eclipse.emf.emfstore.common.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Element Id</b></em>'. <!-- end-user-doc -->
@@ -31,7 +31,7 @@ public class ModelElementIdImpl extends UniqueIdentifierImpl implements ModelEle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.MODEL_ELEMENT_ID;
+		return ModelPackage.Literals.MODEL_ELEMENT_ID;
 	}
 
 } // ModelElementIdImpl

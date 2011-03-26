@@ -9,7 +9,7 @@ package org.eclipse.emf.emfstore.common.model;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element Id</b></em>'. <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getModelElementId()
+ * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getModelElementId()
  * @model
  * @generated
  */

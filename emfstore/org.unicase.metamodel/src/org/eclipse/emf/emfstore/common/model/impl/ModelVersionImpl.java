@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 
 /**
@@ -58,7 +58,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.MODEL_VERSION;
+		return ModelPackage.Literals.MODEL_VERSION;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 		int oldReleaseNumber = releaseNumber;
 		releaseNumber = newReleaseNumber;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_VERSION__RELEASE_NUMBER,
 				oldReleaseNumber, releaseNumber));
 	}
 
@@ -88,7 +88,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
 			return getReleaseNumber();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -101,7 +101,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
 			setReleaseNumber((Integer) newValue);
 			return;
 		}
@@ -115,7 +115,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
 			setReleaseNumber(RELEASE_NUMBER_EDEFAULT);
 			return;
 		}
@@ -129,7 +129,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
 			return releaseNumber != RELEASE_NUMBER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

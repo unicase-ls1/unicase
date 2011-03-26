@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -31,7 +30,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -43,9 +41,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.emfstore.common.UnicaseUtil;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
-import org.eclipse.emf.emfstore.common.model.MetamodelFactory;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.SingletonIdResolver;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
@@ -98,7 +95,7 @@ public final class ModelUtil {
 	 * @return id as object
 	 */
 	public static ModelElementId createModelElementId(String id) {
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(id);
 		return modelElementId;
 	}
@@ -267,7 +264,7 @@ public final class ModelUtil {
 
 				if (ModelUtil.isIgnoredDatatype(me)) {
 					// create random ID for generic types, won't get serialized anyway
-					id = MetamodelFactory.eINSTANCE.createModelElementId().getId();
+					id = ModelFactory.eINSTANCE.createModelElementId().getId();
 				} else {
 					id = res.getID(me);
 				}
@@ -276,7 +273,7 @@ public final class ModelUtil {
 					throw new SerializationException("Failed to retrieve ID for EObject contained in project: " + me);
 				}
 
-				ModelElementId meId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId meId = ModelFactory.eINSTANCE.createModelElementId();
 				meId.setId(id);
 				eObjectToIdMap.put(me, meId);
 				idToEObjectMap.put(meId, me);
@@ -321,35 +318,6 @@ public final class ModelUtil {
 		return resourceSaveOptions;
 	}
 
-	/**
-	 * Returns all non-abstract, non-interface subclasses of the given input class in the given package. In other words
-	 * returns all classes that have direct instances.
-	 * 
-	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
-	 *         ModelElement
-	 */
-	public static Set<EClass> getSubclasses(EClass clazz) {
-		return getSubclasses(clazz, false);
-	}
-
-	/**
-	 * Returns all subclasses of the given input class in the given package.
-	 * 
-	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the
-	 *            result
-	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
-	 *         ModelElement
-	 */
-	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
-		Set<EClass> ret = new HashSet<EClass>();
-		for (EPackage ePackage : getAllModelPackages()) {
-			getSubclasses(clazz, ret, ePackage, includeAbstractClassesAndInterfaces);
-		}
-		return ret;
-	}
-
 	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage,
 		boolean includeAbstractClassesAndInterfaces) {
 
@@ -370,42 +338,6 @@ public final class ModelUtil {
 	private static boolean canHaveInstances(EClass eClass) {
 		return !(eClass.isAbstract() || eClass.isInterface());
 	}
-
-	/**
-	 * Retrieve all EPackages that are model packages for unicase starting with the unicase model prefix as defined in
-	 * {@link MetamodelPackage}.
-	 * 
-	 * @return a set of EPackages
-	 */
-	public static Set<EPackage> getAllModelPackages() {
-		Set<EPackage> result = new HashSet<EPackage>();
-		Registry registry = EPackage.Registry.INSTANCE;
-
-		for (Entry<String, Object> entry : registry.entrySet()) {
-			if (entry.getKey().startsWith(MetamodelPackage.MODEL_URL_PREFIX)) {
-				try {
-					EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
-					result.add(model);
-				}
-				// BEGIN SUPRESS CATCH EXCEPTION
-				catch (RuntimeException exception) {
-					// END SUPRESS CATCH EXCEPTION
-					logException("Failed to load model package " + entry.getKey(), exception);
-				}
-			}
-		}
-		return result;
-	}
-
-	// /**
-	// * @param clazz the input super class
-	// * @return Returns all non-abstract, non-interface subclasses of the given input. Looks in whole graph starting
-	// from
-	// * the root package - i.e. ModelPackage.
-	// */
-	// public static ArrayList<EClass> getSubclasses(EClass clazz) {
-	// return getSubclasses(clazz, MetamodelPackage.eINSTANCE);
-	// }
 
 	/**
 	 * Recursively goes through model and create a list of all non-Abstract classes.
@@ -686,7 +618,7 @@ public final class ModelUtil {
 			TreeIterator<EObject> it = project.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
-				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId objId = ModelFactory.eINSTANCE.createModelElementId();
 				String id = xmiResource.getID(obj);
 				if (id != null) {
 					objId.setId(id);

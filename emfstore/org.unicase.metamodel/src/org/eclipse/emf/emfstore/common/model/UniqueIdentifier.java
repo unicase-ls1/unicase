@@ -33,7 +33,7 @@ public interface UniqueIdentifier extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getUniqueIdentifier_Id()
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getUniqueIdentifier_Id()
 	 * @model default="Default Value Literal\t" required="true"
 	 * @generated
 	 */

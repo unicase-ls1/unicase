@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Identifiable Element</b></em>'. <!--
@@ -62,7 +62,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.IDENTIFIABLE_ELEMENT;
+		return ModelPackage.Literals.IDENTIFIABLE_ELEMENT;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER,
 				oldIdentifier, identifier));
 	}
 
@@ -92,7 +92,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
 			return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -105,7 +105,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
 		}
@@ -119,7 +119,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
 		}
@@ -133,7 +133,7 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
 			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);

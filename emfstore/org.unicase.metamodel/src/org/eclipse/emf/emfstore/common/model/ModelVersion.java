@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getModelVersion()
+ * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getModelVersion()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface ModelVersion extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Release Number</em>' attribute.
 	 * @see #setReleaseNumber(int)
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getModelVersion_ReleaseNumber()
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getModelVersion_ReleaseNumber()
 	 * @model
 	 * @generated
 	 */
