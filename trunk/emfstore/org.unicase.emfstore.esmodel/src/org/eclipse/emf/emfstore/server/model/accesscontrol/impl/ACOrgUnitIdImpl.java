@@ -6,9 +6,9 @@
 package org.eclipse.emf.emfstore.server.model.accesscontrol.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.common.model.impl.UniqueIdentifierImpl;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
-import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC Org Unit Id</b></em>'. <!-- end-user-doc
@@ -21,7 +21,6 @@ import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitIdImpl() {
@@ -30,7 +29,6 @@ public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

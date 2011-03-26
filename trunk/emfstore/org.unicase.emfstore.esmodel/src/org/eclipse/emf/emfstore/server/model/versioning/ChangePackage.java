@@ -10,11 +10,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Change Package</b></em>'. <!-- end-user-doc -->
@@ -25,7 +25,8 @@ import org.unicase.metamodel.Project;
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getEvents <em>Events</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getLogMessage <em>Log Message</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getNotifications <em>Notifications</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getVersionProperties <em>Version Properties</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getVersionProperties <em>Version Properties
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +38,8 @@ public interface ChangePackage extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_Operations()

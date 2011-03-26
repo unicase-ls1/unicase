@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.server.model.EsmodelFactory;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
@@ -20,8 +21,6 @@ import org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment;
 import org.eclipse.emf.emfstore.server.model.url.ServerUrl;
 import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
 import org.eclipse.emf.emfstore.server.model.url.UrlPackage;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -161,7 +160,7 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 					throw new MalformedURLException(EXCEPTION_MESSAGE);
 				}
 				projectFragment.setName(project[0]);
-				ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
+				ProjectId projectId = ModelFactory.eINSTANCE.createProjectId();
 				projectId.setId(project[1]);
 				projectFragment.setProjectId(projectId);
 
@@ -175,7 +174,8 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 					throw new MalformedURLException(EXCEPTION_MESSAGE);
 				}
 				modelFragment.setName(string.substring(0, p));
-				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId modelElementId = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+					.createModelElementId();
 				modelElementId.setId(string.substring(p + 1));
 				modelFragment.setModelElementId(modelElementId);
 			}

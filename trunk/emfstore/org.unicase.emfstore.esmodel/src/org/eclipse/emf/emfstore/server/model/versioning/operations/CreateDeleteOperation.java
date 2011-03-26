@@ -8,8 +8,8 @@ package org.eclipse.emf.emfstore.server.model.versioning.operations;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Create Delete Operation</b></em>'. <!--
@@ -17,13 +17,14 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete <em>Delete</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement <em>Model Element
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete <em>Delete
  * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement <em>
+ * Model Element</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
  * Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getEObjectToIdMap <em>EObject To
- * Id Map</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getEObjectToIdMap <em>
+ * EObject To Id Map</em>}</li>
  * </ul>
  * </p>
  * 
@@ -49,7 +50,8 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	boolean isDelete();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete
 	 * <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Delete</em>' attribute.
@@ -87,7 +89,8 @@ public interface CreateDeleteOperation extends AbstractOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list. The list contents are of
-	 * type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation}. <!-- begin-user-doc -->
+	 * type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation}. <!-- begin-user-doc
+	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Operations</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
@@ -103,8 +106,8 @@ public interface CreateDeleteOperation extends AbstractOperation {
 
 	/**
 	 * Returns the value of the '<em><b>EObject To Id Map</b></em>' map. The key is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type {@link org.unicase.metamodel.ModelElementId},
-	 * <!-- begin-user-doc -->
+	 * {@link org.eclipse.emf.ecore.EObject}, and the value is of type
+	 * {@link org.eclipse.emf.emfstore.common.model.ModelElementId}, <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>EObject To Id Map</em>' map isn't clear, there really should be more of a description
 	 * here...
@@ -114,7 +117,7 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * @return the value of the '<em>EObject To Id Map</em>' map.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation_EObjectToIdMap()
 	 * @model mapType=
-	 *        "org.unicase.emfstore.esmodel.versioning.operations.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.unicase.metamodel.ModelElementId>"
+	 *        "org.eclipse.emf.emfstore.server.model.versioning.operations.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.eclipse.emf.emfstore.common.model.ModelElementId>"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getEObjectToIdMap();

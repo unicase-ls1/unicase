@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
@@ -30,8 +32,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Change Package</b></em>'. <!-- end-user-doc
@@ -39,9 +39,11 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}
+ * </li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.ChangePackageImpl#getEvents <em>Events</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.ChangePackageImpl#getLogMessage <em>Log Message</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.ChangePackageImpl#getLogMessage <em>Log Message
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -439,7 +441,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	public List<AbstractOperation> getCopyOfOperations() {
 		List<AbstractOperation> copiedOperations = new ArrayList<AbstractOperation>();
 		for (AbstractOperation operation : getOperations()) {
-			copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+			copiedOperations.add(EcoreUtil.copy(operation));
 		}
 		return copiedOperations;
 	}

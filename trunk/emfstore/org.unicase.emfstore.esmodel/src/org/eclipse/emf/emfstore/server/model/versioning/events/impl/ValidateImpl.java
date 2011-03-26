@@ -13,13 +13,12 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.Validate;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Validate</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ValidateImpl extends EventImpl implements Validate {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ValidateImpl() {
@@ -28,7 +27,6 @@ public class ValidateImpl extends EventImpl implements Validate {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

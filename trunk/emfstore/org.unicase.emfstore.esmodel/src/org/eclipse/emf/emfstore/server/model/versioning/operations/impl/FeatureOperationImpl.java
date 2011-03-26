@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
@@ -27,8 +27,8 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.FeatureOperationImpl#getFeatureName <em>Feature
- * Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.FeatureOperationImpl#getFeatureName <em>
+ * Feature Name</em>}</li>
  * </ul>
  * </p>
  * 

@@ -29,9 +29,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
  */
 public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent {
 	/**
-	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -39,9 +39,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected static final String PLUGIN_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -49,9 +49,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected String pluginId = PLUGIN_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
@@ -59,9 +59,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected static final Date START_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
@@ -70,7 +70,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PluginFocusEventImpl() {
@@ -79,7 +78,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,7 +87,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPluginId() {
@@ -98,20 +95,17 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPluginId(String newPluginId) {
 		String oldPluginId = pluginId;
 		pluginId = newPluginId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID,
-				oldPluginId, pluginId));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID, oldPluginId, pluginId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getStartDate() {
@@ -120,94 +114,86 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStartDate(Date newStartDate) {
 		Date oldStartDate = startDate;
 		startDate = newStartDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE,
-				oldStartDate, startDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE, oldStartDate, startDate));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			return getPluginId();
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			return getStartDate();
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				return getPluginId();
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				return getStartDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			setPluginId((String) newValue);
-			return;
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			setStartDate((Date) newValue);
-			return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				setPluginId((String)newValue);
+				return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				setStartDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			setPluginId(PLUGIN_ID_EDEFAULT);
-			return;
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			setStartDate(START_DATE_EDEFAULT);
-			return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				setPluginId(PLUGIN_ID_EDEFAULT);
+				return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				setStartDate(START_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pluginId: ");

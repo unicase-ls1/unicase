@@ -9,7 +9,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Event</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPackage#getServerEvent()
  * @model abstract="true"
  * @generated

@@ -6,21 +6,20 @@
 package org.eclipse.emf.emfstore.server.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.emfstore.server.model.EsmodelPackage;
+import org.eclipse.emf.emfstore.common.model.impl.UniqueIdentifierImpl;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
-import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectIdImpl() {
@@ -29,12 +28,11 @@ public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EsmodelPackage.Literals.PROJECT_ID;
+		return ModelPackage.Literals.PROJECT_ID;
 	}
 
 } // ProjectIdImpl

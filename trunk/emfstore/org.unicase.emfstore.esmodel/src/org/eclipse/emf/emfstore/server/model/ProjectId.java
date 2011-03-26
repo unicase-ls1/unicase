@@ -5,12 +5,13 @@
  */
 package org.eclipse.emf.emfstore.server.model;
 
-import org.unicase.metamodel.UniqueIdentifier;
+import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Id</b></em>'. <!-- end-user-doc -->
- * 
- * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#getProjectId()
+ *
+ *
+ * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectId()
  * @model
  * @generated
  */

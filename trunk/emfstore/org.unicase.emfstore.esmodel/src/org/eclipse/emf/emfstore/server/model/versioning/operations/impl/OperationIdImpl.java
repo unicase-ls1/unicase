@@ -6,21 +6,20 @@
 package org.eclipse.emf.emfstore.server.model.versioning.operations.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.common.model.impl.UniqueIdentifierImpl;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
-import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Operation Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class OperationIdImpl extends UniqueIdentifierImpl implements OperationId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationIdImpl() {
@@ -29,7 +28,6 @@ public class OperationIdImpl extends UniqueIdentifierImpl implements OperationId
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

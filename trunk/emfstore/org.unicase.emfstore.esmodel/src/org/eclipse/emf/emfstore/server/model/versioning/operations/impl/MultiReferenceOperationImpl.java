@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
@@ -36,9 +36,10 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add
  * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>
+ * Index</em>}</li>
  * <li>
  * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
  * <em>Referenced Model Elements</em>}</li>

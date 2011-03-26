@@ -5,8 +5,8 @@
  */
 package org.eclipse.emf.emfstore.server.model.versioning.operations.semantic;
 
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Composite Operation</b></em>'. <!-- end-user-doc

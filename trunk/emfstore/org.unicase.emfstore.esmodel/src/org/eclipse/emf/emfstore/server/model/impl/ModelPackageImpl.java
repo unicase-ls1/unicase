@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
-import org.eclipse.emf.emfstore.server.model.EsmodelFactory;
-import org.eclipse.emf.emfstore.server.model.EsmodelPackage;
 import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.eclipse.emf.emfstore.server.model.ProjectHistory;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
@@ -38,14 +38,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.OperationsPackageImpl;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticPackageImpl;
-import org.unicase.metamodel.MetamodelPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of themodel <b>Package</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
-public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
+public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -111,12 +110,12 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#eNS_URI
+	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private EsmodelPackageImpl() {
-		super(eNS_URI, EsmodelFactory.eINSTANCE);
+	private ModelPackageImpl() {
+		super(eNS_URI, ModelFactory.eINSTANCE);
 	}
 
 	/**
@@ -129,27 +128,27 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * <p>
-	 * This method is used to initialize {@link EsmodelPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static EsmodelPackage init() {
+	public static ModelPackage init() {
 		if (isInited)
-			return (EsmodelPackage) EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new EsmodelPackageImpl());
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI) : new ModelPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
+		org.eclipse.emf.emfstore.common.model.ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
@@ -180,7 +179,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 			.getEPackage(UrlPackage.eNS_URI) : UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theEsmodelPackage.createPackageContents();
+		theModelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
 		theSemanticPackage.createPackageContents();
@@ -192,7 +191,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theUrlPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theEsmodelPackage.initializePackageContents();
+		theModelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
 		theSemanticPackage.initializePackageContents();
@@ -204,11 +203,11 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theUrlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theEsmodelPackage.freeze();
+		theModelPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(EsmodelPackage.eNS_URI, theEsmodelPackage);
-		return theEsmodelPackage;
+		EPackage.Registry.INSTANCE.put(ModelPackage.eNS_URI, theModelPackage);
+		return theModelPackage;
 	}
 
 	/**
@@ -423,8 +422,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * 
 	 * @generated
 	 */
-	public EsmodelFactory getEsmodelFactory() {
-		return (EsmodelFactory) getEFactoryInstance();
+	public ModelFactory getModelFactory() {
+		return (ModelFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -509,8 +508,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		NotificationPackage theNotificationPackage = (NotificationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI);
 		UrlPackage theUrlPackage = (UrlPackage) EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_1 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
@@ -523,9 +522,9 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		sessionIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
-		projectIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
-		fileIdentifierEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
+		sessionIdEClass.getESuperTypes().add(theModelPackage_1.getUniqueIdentifier());
+		projectIdEClass.getESuperTypes().add(theModelPackage_1.getUniqueIdentifier());
+		fileIdentifierEClass.getESuperTypes().add(theModelPackage_1.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE,
@@ -600,4 +599,4 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		createResource(eNS_URI);
 	}
 
-} // EsmodelPackageImpl
+} // ModelPackageImpl

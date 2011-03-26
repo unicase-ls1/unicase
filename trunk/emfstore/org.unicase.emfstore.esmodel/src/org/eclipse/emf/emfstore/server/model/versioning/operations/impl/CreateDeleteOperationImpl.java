@@ -25,15 +25,15 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Create Delete Operation</b></em>'. <!--
@@ -41,14 +41,17 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement <em>
- * Model Element</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
- * Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getEObjectToIdMap <em>
- * EObject To Id Map</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>
+ * Delete</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement
+ * <em>Model Element</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations
+ * <em>Sub Operations</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getEObjectToIdMap
+ * <em>EObject To Id Map</em>}</li>
  * </ul>
  * </p>
  * 

@@ -15,14 +15,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class SemanticCompositeOperationImpl extends CompositeOperationImpl implements
 	SemanticCompositeOperation {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SemanticCompositeOperationImpl() {
@@ -31,7 +30,6 @@ public abstract class SemanticCompositeOperationImpl extends CompositeOperationI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

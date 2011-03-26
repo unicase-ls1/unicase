@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Composite Operation</b></em>'. <!--
@@ -33,16 +33,17 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getSubOperations <em>Sub
- * Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getMainOperation <em>Main
- * Operation</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeName <em>
- * Composite Name</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeDescription
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getSubOperations
+ * <em>Sub Operations</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getMainOperation
+ * <em>Main Operation</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeName
+ * <em>Composite Name</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeDescription
  * <em>Composite Description</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#isReversed <em>Reversed
- * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#isReversed <em>
+ * Reversed</em>}</li>
  * </ul>
  * </p>
  * 

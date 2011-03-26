@@ -8,16 +8,17 @@ package org.eclipse.emf.emfstore.server.model.impl;
 import java.io.Serializable;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.emfstore.server.model.EsmodelPackage;
+import org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl;
 import org.eclipse.emf.emfstore.server.model.FileIdentifier;
-import org.unicase.metamodel.impl.IdentifiableElementImpl;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Identifier</b></em>'.
  * 
  * @implements Serializable <!-- end-user-doc -->
- *             <p>
- *             </p>
+ * <p>
+ * </p>
+ *
  * @generated
  */
 public class FileIdentifierImpl extends IdentifiableElementImpl implements FileIdentifier, Serializable {
@@ -25,7 +26,6 @@ public class FileIdentifierImpl extends IdentifiableElementImpl implements FileI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FileIdentifierImpl() {
@@ -34,12 +34,11 @@ public class FileIdentifierImpl extends IdentifiableElementImpl implements FileI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EsmodelPackage.Literals.FILE_IDENTIFIER;
+		return ModelPackage.Literals.FILE_IDENTIFIER;
 	}
 
 } // FileIdentifierImpl
