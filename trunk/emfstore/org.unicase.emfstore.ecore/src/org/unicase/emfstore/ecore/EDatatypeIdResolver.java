@@ -5,9 +5,9 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.SingletonIdResolver;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.SingletonIdResolver;
 
 /**
  * An implementation of a {@link SingletonIdResolver} that treats all {@link EDataType}s as singletons.
@@ -95,7 +95,7 @@ public class EDatatypeIdResolver implements SingletonIdResolver {
 			}
 			
 			// TODO: don't create IDs on the fly rather put them directly into the map
-			ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
+			ModelElementId id = ModelFactory.eINSTANCE.createModelElementId();
 			id.setId(entry.getKey());
 			return id;
 		}
