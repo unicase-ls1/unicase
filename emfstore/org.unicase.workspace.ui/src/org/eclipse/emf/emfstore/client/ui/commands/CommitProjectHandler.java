@@ -14,14 +14,14 @@ import org.eclipse.emf.emfstore.client.model.exceptions.CommitCanceledException;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoLocalChangesException;
 import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
+import org.eclipse.emf.emfstore.server.exceptions.BaseVersionOutdatedException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * @author Hodaie

@@ -715,7 +715,7 @@
                           <instanceof
                                 value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
                           <instanceof
-                                value="org.unicase.metamodel.Project" />
+                                value="org.eclipse.emf.emfstore.common.model.Project" />
                        </or>
                     </iterate>
                  </and>

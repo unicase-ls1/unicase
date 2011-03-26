@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 
 /**
  * . This is the content provider for versions table on HistroyBrowser's browser

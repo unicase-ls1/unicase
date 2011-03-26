@@ -11,11 +11,11 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.ui.commands.ServerRequestCommandHandler;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 
 /**

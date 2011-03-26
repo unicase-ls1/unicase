@@ -7,12 +7,12 @@ package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.ui.Activator;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.ProjectInfo;
 
 /**
  * Label provider for the ESBrowser TreeViewer.

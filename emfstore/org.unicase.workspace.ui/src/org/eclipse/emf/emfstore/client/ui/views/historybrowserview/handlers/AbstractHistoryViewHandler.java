@@ -9,13 +9,13 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 
 /**
  * Abstract class for the context menu handlers for the History view.

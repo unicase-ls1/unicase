@@ -21,9 +21,9 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictDescrip
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
 
 public class MultiReferenceSetConflict extends Conflict {
 

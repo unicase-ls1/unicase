@@ -11,7 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.DecisionManager;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * Container for the conflict description. The description contains placeholder marked through surrounding [ ]. The

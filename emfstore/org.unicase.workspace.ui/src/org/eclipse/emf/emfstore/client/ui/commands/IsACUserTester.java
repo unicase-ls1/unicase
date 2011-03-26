@@ -10,7 +10,7 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
-import org.unicase.emfstore.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 
 /**
  * This property tester checks if current user is ACUser.

@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.ui.util.DialogHandler;
 import org.unicase.ui.util.PreferenceHelper;
 

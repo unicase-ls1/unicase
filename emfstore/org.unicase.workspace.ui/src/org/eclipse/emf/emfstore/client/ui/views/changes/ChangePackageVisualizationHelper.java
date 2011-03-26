@@ -16,26 +16,26 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.ui.Activator;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.provider.AbstractOperationCustomLabelProvider;
+import org.eclipse.emf.emfstore.server.model.provider.CustomOperationLabelProviderManager;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.AbstractOperationItemProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider;
-import org.unicase.emfstore.esmodel.provider.CustomOperationLabelProviderManager;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.UiUtil;
 
 /**
@@ -247,7 +247,7 @@ public class ChangePackageVisualizationHelper {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < strings.length; i++) {
 			if (i % 2 == 1) {
-				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 				modelElementId.setId(strings[i]);
 				if (devider.equals(AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR)) {
 					stringBuilder.append(getModelElementClassAndName(modelElementId));

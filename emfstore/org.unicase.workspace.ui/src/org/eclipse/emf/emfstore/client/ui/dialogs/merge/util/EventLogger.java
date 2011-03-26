@@ -15,19 +15,19 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.Conflict;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.options.MergeTextOption;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.events.Event;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent;
-import org.unicase.emfstore.esmodel.versioning.events.MergeChoiceSelection;
-import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
-import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent;
-import org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceSelection;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceSelection;
+import org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceSelection;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
 
 /**
  * Helper class for logging events in merge dialog.
@@ -58,11 +58,11 @@ public class EventLogger {
 	public void createMergeEvent(PrimaryVersionSpec base, PrimaryVersionSpec target, int numberOfConflicts,
 		List<AbstractOperation> localChanges) {
 		MergeEvent mergeEvent = EventsFactory.eINSTANCE.createMergeEvent();
-		mergeEvent.setBaseVersion((PrimaryVersionSpec) EcoreUtil.copy(base));
-		mergeEvent.setTargetVersion((PrimaryVersionSpec) EcoreUtil.copy(target));
+		mergeEvent.setBaseVersion(EcoreUtil.copy(base));
+		mergeEvent.setTargetVersion(EcoreUtil.copy(target));
 		mergeEvent.setNumberOfConflicts(numberOfConflicts);
 		for (AbstractOperation op : localChanges) {
-			mergeEvent.getLocalChanges().add((AbstractOperation) EcoreUtil.copy(op));
+			mergeEvent.getLocalChanges().add(EcoreUtil.copy(op));
 		}
 		addEvent(mergeEvent);
 	}

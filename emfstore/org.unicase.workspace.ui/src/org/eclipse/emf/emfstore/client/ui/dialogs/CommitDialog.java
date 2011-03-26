@@ -17,6 +17,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.Activator;
 import org.eclipse.emf.emfstore.client.ui.views.changes.TabbedChangesComposite;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -37,10 +41,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
  * This class shows a ChangesTreeComposite and a Text control to enter commit message.

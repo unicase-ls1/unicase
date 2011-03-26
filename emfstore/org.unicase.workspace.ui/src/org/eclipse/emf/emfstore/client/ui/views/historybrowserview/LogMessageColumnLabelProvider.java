@@ -6,10 +6,10 @@
 package org.eclipse.emf.emfstore.client.ui.views.historybrowserview;
 
 import org.eclipse.emf.emfstore.client.ui.views.scm.SCMLabelProvider;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.metamodel.Project;
 
 /**
  * Column LabelProvider to show info from the log message, such as commiter, date, etc.

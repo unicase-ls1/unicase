@@ -9,6 +9,7 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.DecisionManager;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
 import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Image;
@@ -16,11 +17,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.TableWrapData;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
- * This details widget shows other involved operations using default
- * representation.
+ * This details widget shows other involved operations using default representation.
  * 
  * @author wesendon
  */
@@ -31,15 +30,11 @@ public class OtherInvolvedWidget extends Composite {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            parent
-	 * @param decisionManager
-	 *            decisionManager
-	 * @param option
-	 *            option
+	 * @param parent parent
+	 * @param decisionManager decisionManager
+	 * @param option option
 	 */
-	public OtherInvolvedWidget(Composite parent,
-			DecisionManager decisionManager, ConflictOption option) {
+	public OtherInvolvedWidget(Composite parent, DecisionManager decisionManager, ConflictOption option) {
 		super(parent, SWT.None);
 		TableWrapLayout wrapLayout = new TableWrapLayout();
 		wrapLayout.numColumns = COLUMNS;
@@ -54,12 +49,10 @@ public class OtherInvolvedWidget extends Composite {
 		wrapData.colspan = COLUMNS;
 		label.setLayoutData(wrapData);
 
-		ChangePackageVisualizationHelper visualizationHelper = decisionManager
-				.getChangePackageVisualizationHelper();
+		ChangePackageVisualizationHelper visualizationHelper = decisionManager.getChangePackageVisualizationHelper();
 
 		for (AbstractOperation ao : option.getOperations()) {
-			Image image = visualizationHelper.getImage(DecisionUtil
-					.getAdapterFactory(), ao);
+			Image image = visualizationHelper.getImage(DecisionUtil.getAdapterFactory(), ao);
 
 			CLabel meLabel = new CLabel(this, SWT.WRAP);
 			if (image != null) {

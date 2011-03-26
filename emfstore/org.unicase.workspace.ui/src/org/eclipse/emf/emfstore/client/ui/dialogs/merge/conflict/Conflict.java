@@ -17,8 +17,8 @@ import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.DecisionManager;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation;
 
 /**
  * Main class representing a conflict. it offers all kind of convenience methods and organizes the conflicts

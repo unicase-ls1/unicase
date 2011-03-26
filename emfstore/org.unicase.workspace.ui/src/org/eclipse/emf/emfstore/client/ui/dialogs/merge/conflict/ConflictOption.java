@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * This class represents an option/solution for a conflict. A conflict may have several options.

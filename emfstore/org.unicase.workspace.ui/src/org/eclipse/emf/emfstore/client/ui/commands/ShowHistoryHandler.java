@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 
 /**

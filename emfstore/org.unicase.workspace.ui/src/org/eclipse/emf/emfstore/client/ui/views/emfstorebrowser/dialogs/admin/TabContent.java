@@ -9,6 +9,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.AdminBroker;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -40,11 +45,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
 
 /**

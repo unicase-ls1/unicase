@@ -10,11 +10,11 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
 import org.eclipse.emf.emfstore.client.model.observers.LoginObserver;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
@@ -67,8 +67,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 				serverInfo.eAdapters().remove(serverInfoAdapterMap.get(serverInfo));
 				viewer.refresh();
 			}
-			if (msg.getFeature() != null
-				&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getWorkspace_Usersessions())) {
+			if (msg.getFeature() != null && msg.getFeature().equals(ModelPackage.eINSTANCE.getWorkspace_Usersessions())) {
 				if (msg.getEventType() == Notification.ADD) {
 					Usersession session = (Usersession) msg.getNewValue();
 					session.addLoginObserver(ESBrowserView.this);
@@ -96,7 +95,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 		@Override
 		public void notifyChanged(final Notification msg) {
 			if (msg.getFeature() != null
-				&& msg.getFeature().equals(WorkspacePackage.eINSTANCE.getServerInfo_ProjectInfos())) {
+				&& msg.getFeature().equals(ModelPackage.eINSTANCE.getServerInfo_ProjectInfos())) {
 				Display.getCurrent().asyncExec(new Runnable() {
 					public void run() {
 						TreeNode element = new TreeNode(serverInfo);

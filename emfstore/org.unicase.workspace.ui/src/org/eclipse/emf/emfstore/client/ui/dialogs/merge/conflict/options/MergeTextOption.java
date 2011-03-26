@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionConfig;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 
 /**
  * Special option to merge longer texts.
@@ -35,11 +35,9 @@ public class MergeTextOption extends ConflictOption {
 	}
 
 	/**
-	 * Add options which should be merged. ATM: only "my" and "their" are
-	 * supported
+	 * Add options which should be merged. ATM: only "my" and "their" are supported
 	 * 
-	 * @param option
-	 *            other option
+	 * @param option other option
 	 */
 	public void add(ConflictOption option) {
 		list.add(option);
@@ -63,8 +61,7 @@ public class MergeTextOption extends ConflictOption {
 	 * @return text
 	 */
 	public String getMyText() {
-		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
-				OptionType.MyOperation);
+		ConflictOption option = DecisionUtil.getConflictOptionByType(list, OptionType.MyOperation);
 		return (option == null) ? "" : option.getFullOptionLabel();
 	}
 
@@ -74,8 +71,7 @@ public class MergeTextOption extends ConflictOption {
 	 * @return text
 	 */
 	public String getTheirString() {
-		ConflictOption option = DecisionUtil.getConflictOptionByType(list,
-				OptionType.TheirOperation);
+		ConflictOption option = DecisionUtil.getConflictOptionByType(list, OptionType.TheirOperation);
 		return (option == null) ? "" : option.getFullOptionLabel();
 	}
 
@@ -93,8 +89,7 @@ public class MergeTextOption extends ConflictOption {
 					AbstractOperation tmp = option.getOperations().get(0);
 					if (tmp instanceof AttributeOperation) {
 						option.getOperations().remove(0);
-						AttributeOperation mergedOp = (AttributeOperation) EcoreUtil
-								.copy(tmp);
+						AttributeOperation mergedOp = (AttributeOperation) EcoreUtil.copy(tmp);
 						mergedOp.setIdentifier(EcoreUtil.generateUUID());
 						mergedOp.setNewValue(text);
 						option.getOperations().add(0, mergedOp);
@@ -110,8 +105,7 @@ public class MergeTextOption extends ConflictOption {
 	/**
 	 * Set resulted merged text.
 	 * 
-	 * @param text
-	 *            text
+	 * @param text text
 	 */
 	public void setMergedText(String text) {
 		this.text = text;

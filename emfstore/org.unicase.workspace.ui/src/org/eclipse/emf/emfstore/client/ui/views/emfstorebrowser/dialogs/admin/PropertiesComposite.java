@@ -13,6 +13,11 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.emf.emfstore.client.ui.Activator;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -42,11 +47,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * This is the super class of property composites shown on properties form (right side of OrgUnitManagmentGUI). It

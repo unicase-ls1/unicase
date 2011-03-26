@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.views.changes.TabbedChangesComposite;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
@@ -17,7 +18,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
  * This is the update dialog. It shows just a ChangesTreeComposite.
@@ -55,11 +55,10 @@ public class UpdateDialog extends TitleAreaDialog {
 
 		// changes tree
 		if (changes != null) {
-			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
-					contents, SWT.BORDER, changes, projectSpace.getProject());
+			TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changes,
+				projectSpace.getProject());
 			changesComposite.setReverseNodes(false);
-			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-					true, true, 2, 1));
+			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		}
 
 		// show number of changes on dialog title
@@ -79,8 +78,7 @@ public class UpdateDialog extends TitleAreaDialog {
 		Rectangle area = newShell.getShell().getParent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2,
-				(area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
 	}
 
 	/**

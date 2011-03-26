@@ -10,14 +10,14 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.commands.ServerRequestCommandHandler;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.util.DialogHandler;
 
 /**

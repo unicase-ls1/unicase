@@ -15,10 +15,10 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictDescrip
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption.OptionType;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
 
 /**
  * Conflict for two {@link SingleReferenceOperation}.
@@ -87,14 +87,14 @@ public class SingleReferenceConflict extends Conflict {
 
 		// My Option
 		ModelElementId newValue = getMyOperation(SingleReferenceOperation.class).getNewValue();
-		ConflictOption myOption = new ConflictOption((newValue == null) ? "(unset)" : DecisionUtil
-			.getClassAndName(getDecisionManager().getModelElement(newValue)), OptionType.MyOperation);
+		ConflictOption myOption = new ConflictOption((newValue == null) ? "(unset)"
+			: DecisionUtil.getClassAndName(getDecisionManager().getModelElement(newValue)), OptionType.MyOperation);
 		myOption.addOperations(getMyOperations());
 
 		// Their Option
 		ModelElementId theirNewValue = getTheirOperation(SingleReferenceOperation.class).getNewValue();
-		ConflictOption theirOption = new ConflictOption(DecisionUtil.getLabel(DecisionUtil
-			.getClassAndName(getDecisionManager().getModelElement(theirNewValue)), "(unset)"),
+		ConflictOption theirOption = new ConflictOption(DecisionUtil.getLabel(
+			DecisionUtil.getClassAndName(getDecisionManager().getModelElement(theirNewValue)), "(unset)"),
 			OptionType.TheirOperation);
 		theirOption.addOperations(getTheirOperations());
 

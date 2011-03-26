@@ -5,9 +5,9 @@
  */
 package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views;
 
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,11 +58,11 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @param workbench the workbench
 	 * @param selection the selection

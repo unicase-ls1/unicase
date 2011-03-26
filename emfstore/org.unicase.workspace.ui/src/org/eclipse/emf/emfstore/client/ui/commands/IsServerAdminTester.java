@@ -10,9 +10,9 @@ import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.exceptions.AccessControlException;
 
 /**
  * Checks if the user has admin access to the server.
@@ -24,11 +24,10 @@ public class IsServerAdminTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
-	 *      java.lang.String, java.lang.Object[], java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
+	 *      java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args,
-			final Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 		if (receiver instanceof TreeNode && expectedValue instanceof Boolean) {
 
 			TreeNode treeNode = (TreeNode) receiver;
@@ -44,12 +43,10 @@ public class IsServerAdminTester extends PropertyTester {
 			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
-					Usersession usersession = finalServerInfo
-							.getLastUsersession();
+					Usersession usersession = finalServerInfo.getLastUsersession();
 					boolean isAdmin = false;
 					if (usersession != null && usersession.getACUser() != null) {
-						AccessControlHelper accessControlHelper = new AccessControlHelper(
-								usersession);
+						AccessControlHelper accessControlHelper = new AccessControlHelper(usersession);
 						try {
 							accessControlHelper.checkServerAdminAccess();
 							isAdmin = true;
