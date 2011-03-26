@@ -8,10 +8,10 @@ package org.unicase.emfstore.accesscontrol;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.AccessControlException;
 
 /**

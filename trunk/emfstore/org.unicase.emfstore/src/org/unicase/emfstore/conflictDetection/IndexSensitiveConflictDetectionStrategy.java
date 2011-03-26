@@ -5,34 +5,34 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isAttribute;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isCreateDelete;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAtt;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttMove;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttSet;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRef;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRefSet;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isSingleRef;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isAttribute;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isCreateDelete;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAtt;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAttMove;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAttSet;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiRef;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiRefSet;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isSingleRef;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ContainmentType;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.
@@ -46,8 +46,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 
@@ -686,8 +686,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	/**
 	 * {@inheritDoc} TODO multiattribute and mulitreferenceset operations are not yet considerered
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 
@@ -847,8 +847,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	}
 
 	private boolean sameFeatureAndId(FeatureOperation operationA, FeatureOperation operationB) {
-		return (isSame(operationA.getModelElementId(), operationB.getModelElementId()) && isSame(operationA
-			.getFeatureName(), operationB.getFeatureName()));
+		return (isSame(operationA.getModelElementId(), operationB.getModelElementId()) && isSame(
+			operationA.getFeatureName(), operationB.getFeatureName()));
 	}
 
 	private boolean between(int index, int lower, int upper) {

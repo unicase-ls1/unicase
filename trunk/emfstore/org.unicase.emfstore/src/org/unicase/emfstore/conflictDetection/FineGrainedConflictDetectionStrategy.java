@@ -8,16 +8,16 @@ package org.unicase.emfstore.conflictDetection;
 import java.util.Set;
 
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.DiagramLayoutOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.
@@ -29,8 +29,8 @@ public class FineGrainedConflictDetectionStrategy implements ConflictDetectionSt
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		if (operationA instanceof DiagramLayoutOperation) {
@@ -106,8 +106,8 @@ public class FineGrainedConflictDetectionStrategy implements ConflictDetectionSt
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 		if (requiredOperation instanceof CreateDeleteOperation) {

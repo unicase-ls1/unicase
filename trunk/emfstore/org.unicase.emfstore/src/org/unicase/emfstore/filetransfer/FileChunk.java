@@ -8,7 +8,7 @@ package org.unicase.emfstore.filetransfer;
 
 import java.io.Serializable;
 
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
 
 /**
  * @author pfeifferc

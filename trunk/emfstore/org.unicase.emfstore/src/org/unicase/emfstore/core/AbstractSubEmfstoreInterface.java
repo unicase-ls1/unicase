@@ -7,9 +7,9 @@ package org.unicase.emfstore.core;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.helper.ResourceHelper;
-import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**

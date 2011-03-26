@@ -150,8 +150,9 @@ public final class ServerKeyStoreManager {
 	}
 
 	private char[] getKeyStorePassword() {
-		return ServerConfiguration.getProperties().getProperty(ServerConfiguration.KEYSTORE_PASSWORD,
-			ServerConfiguration.KEYSTORE_PASSWORD_DEFAULT).toCharArray();
+		return ServerConfiguration.getProperties()
+			.getProperty(ServerConfiguration.KEYSTORE_PASSWORD, ServerConfiguration.KEYSTORE_PASSWORD_DEFAULT)
+			.toCharArray();
 	}
 
 	private String getKeyStoreAlias() {

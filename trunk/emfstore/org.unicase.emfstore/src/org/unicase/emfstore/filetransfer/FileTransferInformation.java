@@ -8,8 +8,8 @@ package org.unicase.emfstore.filetransfer;
 
 import java.io.Serializable;
 
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
 
 /**
  * Data object for file transfer information.
@@ -61,7 +61,7 @@ public class FileTransferInformation implements Serializable {
 	 */
 
 	public FileIdentifier getFileIdentifier() {
-		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
+		FileIdentifier fid = ModelFactory.eINSTANCE.createFileIdentifier();
 		fid.setIdentifier(fileIdentifier);
 		return fid;
 	}

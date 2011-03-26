@@ -256,8 +256,8 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 * @throws RemoteException if any remote error occurs
 	 */
-	FileTransferInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk) throws EmfStoreException,
-		RemoteException;
+	FileTransferInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk)
+		throws EmfStoreException, RemoteException;
 
 	/**
 	 * @param sessionId session id

@@ -6,12 +6,12 @@
 package org.unicase.emfstore.accesscontrol.authentication;
 
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.ServerKeyStoreException;
@@ -44,7 +44,7 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 		checkClientVersion(clientVersionInfo);
 		password = preparePassword(password);
 		if (verifySuperUser(username, password) || verifyPassword(username, password)) {
-			return EsmodelFactory.eINSTANCE.createSessionId();
+			return ModelFactory.eINSTANCE.createSessionId();
 		}
 		throw new AccessControlException();
 	}

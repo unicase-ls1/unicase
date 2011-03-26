@@ -5,8 +5,8 @@
  */
 package org.unicase.emfstore.core;
 
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.SessionId;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 
 /**
  * Internal command, in order to avoid accesscontrol.
@@ -44,7 +44,7 @@ public abstract class InternalCommand<T extends AbstractEmfstoreInterface> {
 	 * @return SessionId
 	 */
 	protected SessionId fakeSessionId() {
-		SessionId sessionId = EsmodelFactory.eINSTANCE.createSessionId();
+		SessionId sessionId = ModelFactory.eINSTANCE.createSessionId();
 		sessionId.setId("-FAKE-");
 		return sessionId;
 	}

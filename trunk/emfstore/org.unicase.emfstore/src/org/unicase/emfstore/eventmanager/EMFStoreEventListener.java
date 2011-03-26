@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.eventmanager;
 
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
 
 /**
  * Interface in order to listen to the {@link EventManager}.

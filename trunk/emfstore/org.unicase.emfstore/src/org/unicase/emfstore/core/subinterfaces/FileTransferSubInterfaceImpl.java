@@ -11,11 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.core.MonitorProvider;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.FileNotOnServerException;
 import org.unicase.emfstore.exceptions.FileTransferException;
