@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.*;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ProjectUpdatedEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPackage;
@@ -26,7 +27,7 @@ public class ServerFactoryImpl extends EFactoryImpl implements ServerFactory {
 	 */
 	public static ServerFactory init() {
 		try {
-			ServerFactory theServerFactory = (ServerFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/events/server/"); 
+			ServerFactory theServerFactory = (ServerFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/events/server/"); 
 			if (theServerFactory != null) {
 				return theServerFactory;
 			}

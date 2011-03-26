@@ -35,7 +35,7 @@ public interface SemanticPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/esmodel/versioning/operations/semantic";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic";
 
 	/**
 	 * The package namespace name.

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.*;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ProjectAdminRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ReaderRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesFactory;
@@ -29,7 +30,7 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	 */
 	public static RolesFactory init() {
 		try {
-			RolesFactory theRolesFactory = (RolesFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/accesscontrol/roles"); 
+			RolesFactory theRolesFactory = (RolesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/roles"); 
 			if (theRolesFactory != null) {
 				return theRolesFactory;
 			}

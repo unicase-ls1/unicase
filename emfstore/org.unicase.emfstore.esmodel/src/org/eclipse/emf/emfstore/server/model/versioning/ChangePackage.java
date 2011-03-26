@@ -18,18 +18,18 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Change Package</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getOperations <em>Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getEvents <em>Events</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getLogMessage <em>Log Message</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getNotifications <em>Notifications</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getVersionProperties <em>Version Properties
- * </em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getLogMessage <em>Log Message</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getNotifications <em>Notifications</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getVersionProperties <em>Version Properties</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage()
  * @model
  * @generated
@@ -37,10 +37,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 public interface ChangePackage extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_Operations()
 	 * @model containment="true" resolveProxies="true"
@@ -49,14 +49,14 @@ public interface ChangePackage extends EObject {
 	EList<AbstractOperation> getOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Events</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Events</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_Events()
 	 * @model containment="true" resolveProxies="true"
@@ -65,13 +65,13 @@ public interface ChangePackage extends EObject {
 	EList<Event> getEvents();
 
 	/**
-	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Log Message</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Log Message</em>' containment reference.
 	 * @see #setLogMessage(LogMessage)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_LogMessage()
@@ -81,9 +81,8 @@ public interface ChangePackage extends EObject {
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getLogMessage
-	 * <em>Log Message</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.ChangePackage#getLogMessage <em>Log Message</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Log Message</em>' containment reference.
 	 * @see #getLogMessage()
 	 * @generated
@@ -91,14 +90,14 @@ public interface ChangePackage extends EObject {
 	void setLogMessage(LogMessage value);
 
 	/**
-	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list. The list contents are of
-	 * type {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_Notifications()
 	 * @model containment="true" resolveProxies="true"
@@ -107,14 +106,14 @@ public interface ChangePackage extends EObject {
 	EList<ESNotification> getNotifications();
 
 	/**
-	 * Returns the value of the '<em><b>Version Properties</b></em>' containment reference list. The list contents are
-	 * of type {@link org.eclipse.emf.emfstore.server.model.versioning.VersionProperty}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Version Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.VersionProperty}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Version Properties</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Version Properties</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getChangePackage_VersionProperties()
 	 * @model containment="true" resolveProxies="true"

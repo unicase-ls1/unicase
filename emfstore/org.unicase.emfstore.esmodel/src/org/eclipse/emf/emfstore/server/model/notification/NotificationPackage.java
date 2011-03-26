@@ -37,7 +37,7 @@ public interface NotificationPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/esmodel/notification";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/server/model/notification";
 
 	/**
 	 * The package namespace name.

@@ -35,7 +35,7 @@ public interface RolesPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/esmodel/accesscontrol/roles";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/server/model/roles";
 
 	/**
 	 * The package namespace name.

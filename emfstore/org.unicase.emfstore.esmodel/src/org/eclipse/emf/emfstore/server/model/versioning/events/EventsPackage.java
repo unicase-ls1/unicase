@@ -37,7 +37,7 @@ public interface EventsPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/esmodel/versioning/events";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/server/model/versioning/events";
 
 	/**
 	 * The package namespace name.
