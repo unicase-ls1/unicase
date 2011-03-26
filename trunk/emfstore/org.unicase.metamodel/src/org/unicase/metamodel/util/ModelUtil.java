@@ -762,7 +762,7 @@ public final class ModelUtil {
 	 */
 	public static int getModelVersionNumber() throws MalformedModelVersionException {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.metamodel.modelversion");
+			"org.eclipse.emf.emfstore.common.model.modelversion");
 		if (rawExtensions.length != 1) {
 			String message = "There is " + rawExtensions.length
 				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
