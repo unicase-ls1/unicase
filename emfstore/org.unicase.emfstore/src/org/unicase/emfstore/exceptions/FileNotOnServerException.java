@@ -6,8 +6,8 @@
 
 package org.unicase.emfstore.exceptions;
 
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.esmodel.ProjectId;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
 
 /**
  * Exception class for file transfers that indicates that a requested file was not found on the server.

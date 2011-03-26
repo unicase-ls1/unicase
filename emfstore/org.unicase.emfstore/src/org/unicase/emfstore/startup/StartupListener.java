@@ -7,7 +7,7 @@ package org.unicase.emfstore.startup;
 
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
 
 /**
  * Interface for the startup listener extension point.

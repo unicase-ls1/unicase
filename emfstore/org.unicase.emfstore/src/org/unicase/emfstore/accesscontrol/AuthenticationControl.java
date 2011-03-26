@@ -5,8 +5,8 @@
  */
 package org.unicase.emfstore.accesscontrol;
 
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.SessionId;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 
 /**

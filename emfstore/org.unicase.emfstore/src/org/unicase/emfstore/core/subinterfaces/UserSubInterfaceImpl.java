@@ -5,11 +5,11 @@
  */
 package org.unicase.emfstore.core.subinterfaces;
 
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 

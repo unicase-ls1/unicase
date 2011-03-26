@@ -11,7 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Detects conflicts by documents.
@@ -35,8 +35,8 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		Set<ModelElementId> allInvolvedModelElementsA = operationA.getAllInvolvedModelElements();
@@ -63,8 +63,8 @@ public class ByDocumentConflictDetectionStrategy implements ConflictDetectionStr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 		return this.doConflict(requiredOperation, operation);

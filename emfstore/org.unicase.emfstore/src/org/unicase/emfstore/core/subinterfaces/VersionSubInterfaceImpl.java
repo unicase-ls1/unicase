@@ -16,22 +16,22 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.HeadVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.Version;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.core.helper.HistoryCache;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.Version;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
@@ -87,8 +87,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				return ((PrimaryVersionSpec) versionSpec);
 				// HeadVersionSpec
 			} else if (versionSpec instanceof HeadVersionSpec) {
-				return (PrimaryVersionSpec) EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class).getProject(
-					projectId).getLastVersion().getPrimarySpec());
+				return (PrimaryVersionSpec) EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class)
+					.getProject(projectId).getLastVersion().getPrimarySpec());
 				// DateVersionSpec
 			} else if (versionSpec instanceof DateVersionSpec) {
 				for (Version version : projectHistory.getVersions()) {

@@ -10,23 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
@@ -93,8 +93,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		throws RemoteException, EmfStoreException {
 		List<String> result = new ArrayList<String>();
 		for (ChangePackage cp : emfStore.getChanges((SessionId) SerializationUtil.stringToEObject(sessionId),
-			(ProjectId) SerializationUtil.stringToEObject(projectId), (VersionSpec) SerializationUtil
-				.stringToEObject(source), (VersionSpec) SerializationUtil.stringToEObject(target))) {
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
+			(VersionSpec) SerializationUtil.stringToEObject(source),
+			(VersionSpec) SerializationUtil.stringToEObject(target))) {
 
 			result.add(SerializationUtil.eObjectToString(cp));
 		}
@@ -108,8 +109,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		EmfStoreException {
 		List<String> result = new ArrayList<String>();
 		for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) SerializationUtil.stringToEObject(sessionId),
-			(ProjectId) SerializationUtil.stringToEObject(projectId), (HistoryQuery) SerializationUtil
-				.stringToEObject(query))) {
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
+			(HistoryQuery) SerializationUtil.stringToEObject(query))) {
 			result.add(SerializationUtil.eObjectToString(info));
 		}
 		return result;
@@ -120,8 +121,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public void addTag(String sessionId, String projectId, String versionSpec, String tag) throws RemoteException,
 		EmfStoreException {
-		emfStore.addTag((SessionId) SerializationUtil.stringToEObject(sessionId), (ProjectId) SerializationUtil
-			.stringToEObject(projectId), (PrimaryVersionSpec) SerializationUtil.stringToEObject(versionSpec),
+		emfStore.addTag((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
+			(PrimaryVersionSpec) SerializationUtil.stringToEObject(versionSpec),
 			(TagVersionSpec) SerializationUtil.stringToEObject(tag));
 	}
 
@@ -130,8 +132,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public void removeTag(String sessionId, String projectId, String versionSpec, String tag) throws RemoteException,
 		EmfStoreException {
-		emfStore.removeTag((SessionId) SerializationUtil.stringToEObject(sessionId), (ProjectId) SerializationUtil
-			.stringToEObject(projectId), (PrimaryVersionSpec) SerializationUtil.stringToEObject(versionSpec),
+		emfStore.removeTag((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
+			(PrimaryVersionSpec) SerializationUtil.stringToEObject(versionSpec),
 			(TagVersionSpec) SerializationUtil.stringToEObject(tag));
 	}
 
@@ -143,8 +146,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public String getProject(String sessionId, String projectId, String versionSpec) throws RemoteException,
 		EmfStoreException {
-		return SerializationUtil.eObjectToString(emfStore.getProject((SessionId) SerializationUtil
-			.stringToEObject(sessionId), (ProjectId) SerializationUtil.stringToEObject(projectId),
+		return SerializationUtil.eObjectToString(emfStore.getProject(
+			(SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
 			(VersionSpec) SerializationUtil.stringToEObject(versionSpec)));
 	}
 
@@ -198,8 +202,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public String resolveVersionSpec(String sessionId, String projectId, String versionSpec) throws RemoteException,
 		EmfStoreException {
-		return SerializationUtil.eObjectToString(emfStore.resolveVersionSpec((SessionId) SerializationUtil
-			.stringToEObject(sessionId), (ProjectId) SerializationUtil.stringToEObject(projectId),
+		return SerializationUtil.eObjectToString(emfStore.resolveVersionSpec(
+			(SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId),
 			(VersionSpec) SerializationUtil.stringToEObject(versionSpec)));
 	}
 
@@ -211,9 +216,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public String createProject(String sessionId, String name, String description, String logMessage)
 		throws RemoteException, EmfStoreException {
-		return SerializationUtil
-			.eObjectToString(emfStore.createEmptyProject((SessionId) SerializationUtil.stringToEObject(sessionId),
-				name, description, (LogMessage) SerializationUtil.stringToEObject(logMessage)));
+		return SerializationUtil.eObjectToString(emfStore.createEmptyProject(
+			(SessionId) SerializationUtil.stringToEObject(sessionId), name, description,
+			(LogMessage) SerializationUtil.stringToEObject(logMessage)));
 	}
 
 	/**
@@ -221,8 +226,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public String createProject(String sessionId, String name, String description, String logMessage, String project)
 		throws EmfStoreException, RemoteException {
-		return SerializationUtil.eObjectToString(emfStore.createProject((SessionId) SerializationUtil
-			.stringToEObject(sessionId), name, description, (LogMessage) SerializationUtil.stringToEObject(logMessage),
+		return SerializationUtil.eObjectToString(emfStore.createProject(
+			(SessionId) SerializationUtil.stringToEObject(sessionId), name, description,
+			(LogMessage) SerializationUtil.stringToEObject(logMessage),
 			(Project) SerializationUtil.stringToEObject(project)));
 	}
 
@@ -231,34 +237,37 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public void deleteProject(String sessionId, String projectId, boolean deleteFiles) throws EmfStoreException,
 		RemoteException {
-		emfStore.deleteProject((SessionId) SerializationUtil.stringToEObject(sessionId), (ProjectId) SerializationUtil
-			.stringToEObject(projectId), deleteFiles);
+		emfStore.deleteProject((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId), deleteFiles);
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String exportProjectHistoryFromServer(String sessionId, String projectId) throws EmfStoreException,
 		RemoteException {
-		return SerializationUtil.eObjectToString(emfStore.exportProjectHistoryFromServer((SessionId) SerializationUtil
-			.stringToEObject(sessionId), (ProjectId) SerializationUtil.stringToEObject(projectId)));
+		return SerializationUtil.eObjectToString(emfStore.exportProjectHistoryFromServer(
+			(SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId)));
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String importProjectHistoryToServer(String sessionId, String projectHistory) throws EmfStoreException,
 		RemoteException {
-		return SerializationUtil.eObjectToString(emfStore.importProjectHistoryToServer((SessionId) SerializationUtil
-			.stringToEObject(sessionId), (ProjectHistory) SerializationUtil.stringToEObject(projectHistory)));
+		return SerializationUtil.eObjectToString(emfStore.importProjectHistoryToServer(
+			(SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectHistory) SerializationUtil.stringToEObject(projectHistory)));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public String resolveUser(String sessionId, String orgUnitId) throws EmfStoreException, RemoteException {
-		return SerializationUtil.eObjectToString(emfStore.resolveUser((SessionId) SerializationUtil
-			.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil.stringToEObject(orgUnitId)));
+		return SerializationUtil.eObjectToString(emfStore.resolveUser(
+			(SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ACOrgUnitId) SerializationUtil.stringToEObject(orgUnitId)));
 	}
 
 	/**
@@ -285,7 +294,7 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	public void transmitProperty(String sessionId, String changedProperty, String user, String projectId)
 		throws EmfStoreException, RemoteException {
 		emfStore.transmitProperty((SessionId) SerializationUtil.stringToEObject(sessionId),
-			(OrgUnitProperty) SerializationUtil.stringToEObject(changedProperty), (ACUser) SerializationUtil
-				.stringToEObject(user), (ProjectId) SerializationUtil.stringToEObject(projectId));
+			(OrgUnitProperty) SerializationUtil.stringToEObject(changedProperty),
+			(ACUser) SerializationUtil.stringToEObject(user), (ProjectId) SerializationUtil.stringToEObject(projectId));
 	}
 }

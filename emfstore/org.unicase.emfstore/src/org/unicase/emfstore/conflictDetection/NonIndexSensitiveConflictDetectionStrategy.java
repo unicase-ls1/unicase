@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Conflict Detection Strategy that considers index conflicts as hard conflicts.
@@ -26,8 +26,8 @@ public class NonIndexSensitiveConflictDetectionStrategy implements ConflictDetec
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		if (indexSensitiveConflictDetectionStrategy.doConflict(operationA, operationB)) {
@@ -39,8 +39,8 @@ public class NonIndexSensitiveConflictDetectionStrategy implements ConflictDetec
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 		return (indexSensitiveConflictDetectionStrategy.isRequired(requiredOperation, operation));

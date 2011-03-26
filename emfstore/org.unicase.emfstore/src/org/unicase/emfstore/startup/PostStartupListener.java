@@ -7,10 +7,10 @@ package org.unicase.emfstore.startup;
 
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
 import org.unicase.emfstore.EmfStoreInterface;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.ConnectionHandler;
-import org.unicase.emfstore.esmodel.ServerSpace;
 
 /**
  * Interface for post startup listener. Can be used for server plugins.

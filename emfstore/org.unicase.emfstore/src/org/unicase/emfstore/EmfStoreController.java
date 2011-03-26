@@ -28,6 +28,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesFactory;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
@@ -39,11 +44,6 @@ import org.unicase.emfstore.connection.xmlrpc.XmlRpcConnectionHandler;
 import org.unicase.emfstore.core.AdminEmfStoreImpl;
 import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.core.helper.HistoryCache;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.startup.EmfStoreValidator;
@@ -263,7 +263,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		} else {
 			// if no serverspace can be loaded, create one
 			ModelUtil.logInfo("Creating initial server space...");
-			result = EsmodelFactory.eINSTANCE.createServerSpace();
+			result = ModelFactory.eINSTANCE.createServerSpace();
 
 			result.setResource(resource);
 			resource.getContents().add(result);

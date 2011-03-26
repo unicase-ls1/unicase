@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
+import org.eclipse.emf.emfstore.server.model.versioning.Version;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.versioning.Version;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 

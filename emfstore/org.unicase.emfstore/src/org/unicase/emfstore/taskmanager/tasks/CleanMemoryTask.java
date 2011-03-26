@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.Version;
 import org.unicase.emfstore.core.MonitorProvider;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.taskmanager.Task;
 
 /**

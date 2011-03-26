@@ -10,9 +10,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerProjectEvent;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerProjectEvent;
 
 /**
  * EventManager accepts events and distributes them to the listeners. EventManger runs in it's own thread. -TODO: Enable

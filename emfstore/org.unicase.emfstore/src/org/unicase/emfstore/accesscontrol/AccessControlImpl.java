@@ -16,21 +16,21 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
 import org.unicase.emfstore.accesscontrol.authentication.factory.AuthenticationControlFactory;
 import org.unicase.emfstore.accesscontrol.authentication.factory.AuthenticationControlFactoryImpl;
 import org.unicase.emfstore.core.MonitorProvider;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.SessionTimedOutException;
@@ -99,7 +99,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logout(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logout(org.eclipse.emf.emfstore.server.model.SessionId)
 	 */
 	public void logout(SessionId sessionId) throws AccessControlException {
 		synchronized (MonitorProvider.getInstance().getMonitor("authentication")) {
@@ -131,7 +131,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkSession(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkSession(org.eclipse.emf.emfstore.server.model.SessionId)
 	 */
 	public void checkSession(SessionId sessionId) throws AccessControlException {
 		if (!sessionUserMap.containsKey(sessionId)) {
@@ -280,7 +280,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkServerAdminAccess(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkServerAdminAccess(org.eclipse.emf.emfstore.server.model.SessionId)
 	 */
 	public void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);

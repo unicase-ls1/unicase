@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Very basic conflict detection strategy. Will only check if same model element is touched.
@@ -17,8 +17,8 @@ public class BasicConflictDetectionStrategy implements ConflictDetectionStrategy
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		return operationA.getModelElementId().equals(operationB.getModelElementId());
@@ -27,8 +27,8 @@ public class BasicConflictDetectionStrategy implements ConflictDetectionStrategy
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 		return doConflict(requiredOperation, operation);

@@ -8,11 +8,11 @@ package org.unicase.emfstore.eventmanager;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerFactory;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ProjectUpdatedEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
 
 /**
  * Helper for creating events.

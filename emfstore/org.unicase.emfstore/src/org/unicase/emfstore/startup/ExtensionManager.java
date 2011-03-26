@@ -11,11 +11,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
 import org.unicase.emfstore.EmfStoreInterface;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.ConnectionHandler;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ServerSpace;
 
 /**
  * This class calls the startup listeners, registered at the extension point.

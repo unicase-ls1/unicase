@@ -12,22 +12,21 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.Version;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.Version;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
@@ -219,7 +218,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			ProjectHistory projectOrNull = getProjectOrNull(projectHistory.getProjectId());
 			if (projectOrNull != null) {
 				// if project with same id exists, create a new id.
-				projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+				projectHistory.setProjectId(ModelFactory.eINSTANCE.createProjectId());
 			}
 			try {
 				getResourceHelper().createResourceForProjectHistory(projectHistory);
@@ -260,10 +259,10 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		throws FatalEmfStoreException {
 
 		// create initial ProjectHistory
-		ProjectHistory projectHistory = EsmodelFactory.eINSTANCE.createProjectHistory();
+		ProjectHistory projectHistory = ModelFactory.eINSTANCE.createProjectHistory();
 		projectHistory.setProjectName(name);
 		projectHistory.setProjectDescription(description);
-		projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+		projectHistory.setProjectId(ModelFactory.eINSTANCE.createProjectId());
 
 		// create a initial version without previous and change package
 		Version firstVersion = VersioningFactory.eINSTANCE.createVersion();
@@ -273,7 +272,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		firstVersion.setPrimarySpec(primary);
 
 		// create initial project
-		Project project = ModelFactory.eINSTANCE.createProject();
+		Project project = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject();
 		firstVersion.setProjectState(project);
 		getResourceHelper().createResourceForProject(project, firstVersion.getPrimarySpec(),
 			projectHistory.getProjectId());
@@ -288,7 +287,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	}
 
 	private ProjectInfo createProjectInfo(ProjectHistory project) {
-		ProjectInfo info = EsmodelFactory.eINSTANCE.createProjectInfo();
+		ProjectInfo info = ModelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
 		info.setProjectId(EcoreUtil.copy(project.getProjectId()));
