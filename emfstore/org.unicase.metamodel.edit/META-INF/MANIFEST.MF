@@ -4,7 +4,7 @@ Bundle-Name: UNICASE metamodel edit plugin
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common.model.edit;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.emf.emfstore.common.model.provider.MetamodelEditPlugin$Implementation
+Bundle-Activator: org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -20,11 +20,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelVersion;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelVersion;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.metamodel.ModelVersion} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.ModelVersion} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -61,10 +61,12 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	 * @generated
 	 */
 	protected void addReleaseNumberPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelVersion_releaseNumber_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ModelVersion_releaseNumber_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_ModelVersion_releaseNumber_feature",
-				"_UI_ModelVersion_type"), MetamodelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true, false, false,
+				"_UI_ModelVersion_type"), ModelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -101,7 +103,7 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelVersion.class)) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
@@ -126,7 +128,7 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return CommonEditPlugin.INSTANCE;
 	}
 
 }

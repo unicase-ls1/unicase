@@ -9,37 +9,42 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Metamodel edit plugin.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the central singleton for the Common edit plugin.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public final class MetamodelEditPlugin extends EMFPlugin {
+public final class CommonEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MetamodelEditPlugin INSTANCE = new MetamodelEditPlugin();
+	public static final CommonEditPlugin INSTANCE = new CommonEditPlugin();
 
 	/**
 	 * Keep track of the singleton.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static Implementation plugin;
 
 	/**
 	 * Create the instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelEditPlugin() {
+	public CommonEditPlugin() {
 		super(new ResourceLocator[] {});
 	}
 
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -50,7 +55,8 @@ public final class MetamodelEditPlugin extends EMFPlugin {
 
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -60,13 +66,15 @@ public final class MetamodelEditPlugin extends EMFPlugin {
 
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static class Implementation extends EclipsePlugin {
 		/**
 		 * Creates an instance.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public Implementation() {

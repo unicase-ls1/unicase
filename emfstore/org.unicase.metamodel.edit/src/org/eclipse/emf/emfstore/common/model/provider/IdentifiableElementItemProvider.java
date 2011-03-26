@@ -20,11 +20,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.MetamodelPackage;
+import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.metamodel.IdentifiableElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.IdentifiableElement} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
@@ -61,11 +61,13 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_IdentifiableElement_identifier_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_IdentifiableElement_identifier_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_IdentifiableElement_identifier_feature",
-				"_UI_IdentifiableElement_type"), MetamodelPackage.Literals.IDENTIFIABLE_ELEMENT__IDENTIFIER, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				"_UI_IdentifiableElement_type"), ModelPackage.Literals.IDENTIFIABLE_ELEMENT__IDENTIFIER, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IdentifiableElement.class)) {
-		case MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
+		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
@@ -117,7 +119,7 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return CommonEditPlugin.INSTANCE;
 	}
 
 }
