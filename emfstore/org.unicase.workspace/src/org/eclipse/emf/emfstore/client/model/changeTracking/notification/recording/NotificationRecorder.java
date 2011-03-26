@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
 /**
  * A Notification recorder is meant to generate a NotificationRecording. To create the recording just repeatedly call

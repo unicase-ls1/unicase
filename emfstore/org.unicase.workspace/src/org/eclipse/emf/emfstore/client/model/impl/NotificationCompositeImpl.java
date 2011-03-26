@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.NotificationComposite;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Notification Composite</b></em>'. <!--

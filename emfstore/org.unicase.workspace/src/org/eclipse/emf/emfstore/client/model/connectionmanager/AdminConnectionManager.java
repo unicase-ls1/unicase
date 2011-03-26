@@ -6,9 +6,9 @@
 package org.eclipse.emf.emfstore.client.model.connectionmanager;
 
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.unicase.emfstore.AdminEmfStore;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.ConnectionException;
+import org.eclipse.emf.emfstore.server.AdminEmfStore;
+import org.eclipse.emf.emfstore.server.exceptions.ConnectionException;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 
 /**
  * An admin connection manager connects to the server for administrative services.

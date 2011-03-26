@@ -6,11 +6,11 @@
 package org.eclipse.emf.emfstore.client.model.accesscontrol;
 
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
-import org.unicase.emfstore.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ServerAdmin;
 
 /**
  * Helper class for access control checks.

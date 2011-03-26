@@ -6,9 +6,9 @@
 package org.eclipse.emf.emfstore.client.model.observers;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Clients (like GUI classes) who are not interested if an operation has been run forward or backward (i.e. undone) can

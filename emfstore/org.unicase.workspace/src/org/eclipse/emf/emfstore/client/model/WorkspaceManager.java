@@ -33,15 +33,14 @@ import org.eclipse.emf.emfstore.client.model.util.EditingDomainProvider;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.model.ModelVersion;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.MalformedModelVersionException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 import org.unicase.emfstore.migration.EMFStoreMigrationException;
 import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.MalformedModelVersionException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -230,7 +229,7 @@ public final class WorkspaceManager {
 		final Resource resource;
 		// no workspace content found, create a workspace
 		resource = resourceSet.createResource(fileURI);
-		workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
+		workspace = ModelFactory.eINSTANCE.createWorkspace();
 		workspace.getServerInfos().addAll(Configuration.getDefaultServerInfos());
 		EList<Usersession> usersessions = workspace.getUsersessions();
 		for (ServerInfo serverInfo : workspace.getServerInfos()) {
@@ -266,7 +265,7 @@ public final class WorkspaceManager {
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
 		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
 		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
-		ModelVersion modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
+		ModelVersion modelVersion = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createModelVersion();
 		modelVersion.setReleaseNumber(modelReleaseNumber);
 		versionResource.getContents().add(modelVersion);
 		try {
@@ -417,7 +416,8 @@ public final class WorkspaceManager {
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			// resource can not be loaded, assume version number before metamodel split
-			ModelVersion modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
+			ModelVersion modelVersion = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+				.createModelVersion();
 			modelVersion.setReleaseNumber(4);
 			return modelVersion;
 		}
@@ -510,7 +510,7 @@ public final class WorkspaceManager {
 			throw new IllegalArgumentException("The project is null");
 		}
 		// check if my container is a project space
-		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
+		if (ModelPackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
 			return (ProjectSpace) project.eContainer();
 		} else {
 			throw new IllegalStateException("Project is not contained by any project space");

@@ -23,24 +23,24 @@ import org.eclipse.emf.emfstore.client.model.observers.ConflictResolver;
 import org.eclipse.emf.emfstore.client.model.observers.OperationListener;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.esmodel.versioning.events.Event;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.exceptions.BaseVersionOutdatedException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc
@@ -174,7 +174,7 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Events</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.Event}. <!-- begin-user-doc -->
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
@@ -362,7 +362,7 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.emfstore.esmodel.notification.ESNotification}. <!-- begin-user-doc -->
+	 * type {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Notifications</em>' reference list isn't clear, there really should be more of a
 	 * description here...
@@ -430,7 +430,7 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Waiting Uploads</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.emfstore.esmodel.FileIdentifier}. <!-- begin-user-doc -->
+	 * type {@link org.eclipse.emf.emfstore.server.model.FileIdentifier}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Waiting Uploads</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...

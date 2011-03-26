@@ -9,8 +9,8 @@ import static org.eclipse.emf.emfstore.client.model.Configuration.isInternalRele
 import static org.eclipse.emf.emfstore.client.model.Configuration.isReleaseVersion;
 import static org.eclipse.emf.emfstore.client.model.Configuration.isTesting;
 
-import org.unicase.emfstore.DefaultServerWorkspaceLocationProvider;
-import org.unicase.emfstore.LocationProvider;
+import org.eclipse.emf.emfstore.server.DefaultServerWorkspaceLocationProvider;
+import org.eclipse.emf.emfstore.server.LocationProvider;
 
 /**
  * This is the default workspace location provider. If no other location provider is registered, this provider is used.
@@ -26,7 +26,7 @@ public class DefaultWorkspaceLocationProvider extends DefaultServerWorkspaceLoca
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.DefaultServerWorkspaceLocationProvider#getRootDirectory()
+	 * @see org.eclipse.emf.emfstore.server.DefaultServerWorkspaceLocationProvider#getRootDirectory()
 	 */
 	@Override
 	protected String getRootDirectory() {
@@ -36,7 +36,7 @@ public class DefaultWorkspaceLocationProvider extends DefaultServerWorkspaceLoca
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.DefaultServerWorkspaceLocationProvider#getSelectedProfile()
+	 * @see org.eclipse.emf.emfstore.server.DefaultServerWorkspaceLocationProvider#getSelectedProfile()
 	 */
 	@Override
 	protected String getSelectedProfile() {

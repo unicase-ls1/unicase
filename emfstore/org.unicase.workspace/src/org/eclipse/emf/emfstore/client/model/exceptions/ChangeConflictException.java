@@ -8,8 +8,8 @@ package org.eclipse.emf.emfstore.client.model.exceptions;
 import java.util.List;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 
 /**
  * Represents the exception that there are conflicting changes.

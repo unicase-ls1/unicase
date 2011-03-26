@@ -17,11 +17,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
 import org.eclipse.emf.emfstore.client.model.util.DefaultWorkspaceLocationProvider;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.LocationProvider;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
 import org.osgi.framework.Bundle;
-import org.unicase.emfstore.LocationProvider;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Represents the current Workspace Configuration.
@@ -142,13 +141,13 @@ public final class Configuration {
 	}
 
 	private static ServerInfo getLocalhostServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("Localhost Server");
 		serverInfo.setPort(8080);
 		serverInfo.setUrl("localhost");
 		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_DEV_CERTIFICATE);
 
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		Usersession superUsersession = ModelFactory.eINSTANCE.createUsersession();
 		superUsersession.setServerInfo(serverInfo);
 		superUsersession.setPassword("super");
 		superUsersession.setSavePassword(true);
@@ -182,7 +181,8 @@ public final class Configuration {
 	 * @return the client version number
 	 */
 	public static ClientVersionInfo getClientVersion() {
-		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
+		ClientVersionInfo clientVersionInfo = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
+			.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
 
 		Bundle emfStoreBundle = Platform.getBundle("org.eclipse.emf.emfstore.client");

@@ -8,18 +8,18 @@ package org.eclipse.emf.emfstore.client.model;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
 
 /**
  * Interface for administrative services of the EMFStore. The Adminbroker delegates the method calls to the server (
- * {@link org.unicase.emfstore.AdminEmfStore}) via {@link org.unicase.emfstore.AdminConnectionManager}.
+ * {@link org.eclipse.emf.emfstore.server.AdminEmfStore}) via {@link org.unicase.emfstore.AdminConnectionManager}.
  * 
  * @author Hodaie
  * @author Wesendonk
@@ -27,35 +27,35 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 public interface AdminBroker {
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getProjectInfos(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getProjectInfos(org.unicase.emfstore.esmodel.SessionId)
 	 * @return list of project infos
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
 	List<ProjectInfo> getProjectInfos() throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId)
 	 * @return list of groups
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
 	List<ACGroup> getGroups() throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getUsers(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getUsers(org.unicase.emfstore.esmodel.SessionId)
 	 * @return list of users
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
 	List<ACUser> getUsers() throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
-	 * {@link org.unicase.emfstore.AdminEmfStore#getOrgUnits(org.unicase.emfstore.esmodel.SessionId)}
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
+	 * {@link org.eclipse.emf.emfstore.server.AdminEmfStore#getOrgUnits(org.unicase.emfstore.esmodel.SessionId)}
 	 * 
 	 * @return list of orgUnits
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -63,9 +63,9 @@ public interface AdminBroker {
 	List<ACOrgUnit> getOrgUnits() throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#createGroup(org.unicase.emfstore.esmodel.SessionId, String)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#createGroup(org.unicase.emfstore.esmodel.SessionId, String)
 	 * @param name new name
 	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -73,18 +73,18 @@ public interface AdminBroker {
 	ACOrgUnitId createGroup(String name) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#deleteGroup(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#deleteGroup(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
 	 * @param group orgUnit id
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
 	void deleteGroup(ACOrgUnitId group) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
 	 * @param user orgUnit id
 	 * @return list of groups
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -92,9 +92,9 @@ public interface AdminBroker {
 	List<ACGroup> getGroups(ACOrgUnitId user) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#removeGroup(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#removeGroup(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
 	 *      ACOrgUnitId)
 	 * @param user orgUnit id
 	 * @param group group id
@@ -103,9 +103,9 @@ public interface AdminBroker {
 	void removeGroup(ACOrgUnitId user, ACOrgUnitId group) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#createUser(org.unicase.emfstore.esmodel.SessionId, String)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#createUser(org.unicase.emfstore.esmodel.SessionId, String)
 	 * @param name user's name
 	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -113,18 +113,18 @@ public interface AdminBroker {
 	ACOrgUnitId createUser(String name) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#deleteUser(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#deleteUser(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
 	 * @param user user id
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
 	void deleteUser(ACOrgUnitId user) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getMembers(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getMembers(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
 	 * @param groupId group id
 	 * @return list of members
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -132,9 +132,9 @@ public interface AdminBroker {
 	List<ACOrgUnit> getMembers(ACOrgUnitId groupId) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getOrgUnit(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getOrgUnit(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId)
 	 * @param orgUnitId orgUnit id
 	 * @return orgUnit
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -142,9 +142,9 @@ public interface AdminBroker {
 	ACOrgUnit getOrgUnit(ACOrgUnitId orgUnitId) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#addMember(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#addMember(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
 	 *      ACOrgUnitId)
 	 * @param group group id
 	 * @param member member id
@@ -153,9 +153,9 @@ public interface AdminBroker {
 	void addMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#removeMember(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#removeMember(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
 	 *      ACOrgUnitId)
 	 * @param group group id
 	 * @param member member id
@@ -164,9 +164,9 @@ public interface AdminBroker {
 	void removeMember(ACOrgUnitId group, ACOrgUnitId member) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#changeOrgUnit(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#changeOrgUnit(org.unicase.emfstore.esmodel.SessionId, ACOrgUnitId,
 	 *      String, String)
 	 * @param orgUnitId orgUnit id
 	 * @param name new name
@@ -176,9 +176,9 @@ public interface AdminBroker {
 	void changeOrgUnit(ACOrgUnitId orgUnitId, String name, String description) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getParticipants(org.unicase.emfstore.esmodel.SessionId, ProjectId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getParticipants(org.unicase.emfstore.esmodel.SessionId, ProjectId)
 	 * @param projectId project id
 	 * @return list of participating orgUnits
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
@@ -186,9 +186,9 @@ public interface AdminBroker {
 	List<ACOrgUnit> getParticipants(ProjectId projectId) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#addParticipant(org.unicase.emfstore.esmodel.SessionId, ProjectId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#addParticipant(org.unicase.emfstore.esmodel.SessionId, ProjectId,
 	 *      ACOrgUnitId)
 	 * @param projectId project id
 	 * @param participant orgUnit id
@@ -197,9 +197,9 @@ public interface AdminBroker {
 	void addParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#removeParticipant(org.unicase.emfstore.esmodel.SessionId, ProjectId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#removeParticipant(org.unicase.emfstore.esmodel.SessionId, ProjectId,
 	 *      ACOrgUnitId)
 	 * @param projectId project id
 	 * @param participant orgUnit id
@@ -208,9 +208,9 @@ public interface AdminBroker {
 	void removeParticipant(ProjectId projectId, ACOrgUnitId participant) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#getRole(org.unicase.emfstore.esmodel.SessionId, ProjectId, ACOrgUnitId)
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#getRole(org.unicase.emfstore.esmodel.SessionId, ProjectId, ACOrgUnitId)
 	 * @param projectId project id
 	 * @param orgUnit orgUnit id
 	 * @return the role
@@ -219,9 +219,9 @@ public interface AdminBroker {
 	Role getRole(ProjectId projectId, ACOrgUnitId orgUnit) throws EmfStoreException;
 
 	/**
-	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
+	 * Delegates call to method in {@link org.eclipse.emf.emfstore.server.AdminEmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.AdminEmfStore#changeRole(org.unicase.emfstore.esmodel.SessionId, ProjectId,
+	 * @see org.eclipse.emf.emfstore.server.AdminEmfStore#changeRole(org.unicase.emfstore.esmodel.SessionId, ProjectId,
 	 *      ACOrgUnitId, EClass)
 	 * @param projectId the project id
 	 * @param orgUnit orgUnit id

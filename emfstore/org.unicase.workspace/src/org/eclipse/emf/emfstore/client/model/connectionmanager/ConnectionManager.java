@@ -6,10 +6,10 @@
 package org.eclipse.emf.emfstore.client.model.connectionmanager;
 
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.EmfStore;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ClientVersionInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
 
 /**
  * The connection manager manages the connection to the EmfStore. It will initiate, reinitiate and terminate the

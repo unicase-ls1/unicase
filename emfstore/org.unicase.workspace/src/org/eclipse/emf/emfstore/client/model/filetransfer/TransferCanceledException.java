@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.client.model.filetransfer;
 
-import org.unicase.emfstore.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 
 /**
  * Exception that is thrown when a transfer is canceled.

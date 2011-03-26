@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * NotificationInfo is a type safe wrapper for EMF Notifications. It wraps a org.eclipse.emf.common.notify.Notification

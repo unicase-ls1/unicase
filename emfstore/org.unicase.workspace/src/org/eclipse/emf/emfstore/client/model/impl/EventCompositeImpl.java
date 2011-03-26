@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.model.EventComposite;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
-import org.unicase.emfstore.esmodel.versioning.events.Event;
+import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Event Composite</b></em>'. <!-- end-user-doc

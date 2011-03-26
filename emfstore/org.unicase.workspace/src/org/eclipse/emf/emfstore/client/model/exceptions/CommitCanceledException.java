@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.client.model.exceptions;
 
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
 /**
  * If the preparation phase of the commit fails, this exception will be thrown. This is usually the case if the user

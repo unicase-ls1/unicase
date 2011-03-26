@@ -5,14 +5,14 @@
  */
 package org.eclipse.emf.emfstore.client.model.util;
 
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
 /**
  * Util class for EMFStore clients to ease connecting to the server.
@@ -62,7 +62,7 @@ public final class EMFStoreClientUtil {
 	 * @return a server info
 	 */
 	private static ServerInfo createServerInfo(String url, int port, String certificateAlias) {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName(LOCALHOST_GENERATED_ENTRY_NAME);
 		serverInfo.setUrl(url);
 		serverInfo.setPort(port);
@@ -105,7 +105,7 @@ public final class EMFStoreClientUtil {
 				}
 			}
 		}
-		Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		Usersession usersession = ModelFactory.eINSTANCE.createUsersession();
 		usersession.setServerInfo(giveServerInfo(serverUrl, serverPort));
 		usersession.setUsername(username);
 		usersession.setPassword(password);
@@ -127,7 +127,7 @@ public final class EMFStoreClientUtil {
 	 */
 	public static boolean dryLogin(String username, String password, String serverUrl, int serverPort,
 		String certificateAlias) throws EmfStoreException {
-		Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		Usersession usersession = ModelFactory.eINSTANCE.createUsersession();
 		usersession.setServerInfo(createServerInfo(serverUrl, serverPort, certificateAlias));
 		usersession.setUsername(username);
 		usersession.setPassword(password);

@@ -7,7 +7,7 @@ package org.eclipse.emf.emfstore.client.model;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Operation Composite</b></em>'. <!-- end-user-doc
@@ -25,14 +25,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  */
 public interface OperationComposite extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getOperationComposite_Operations()
 	 * @model containment="true" resolveProxies="true"

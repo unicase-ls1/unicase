@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.PendingFileTransfer;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Pending File Transfer</b></em>'. <!--

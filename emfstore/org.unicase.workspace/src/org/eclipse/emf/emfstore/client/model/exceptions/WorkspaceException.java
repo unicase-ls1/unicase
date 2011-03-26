@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.client.model.exceptions;
 
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
 /**
  * Indicates that an exception occured in the workspace.

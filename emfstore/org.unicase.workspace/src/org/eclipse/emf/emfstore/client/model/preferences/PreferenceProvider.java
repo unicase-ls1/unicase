@@ -7,7 +7,7 @@ package org.eclipse.emf.emfstore.client.model.preferences;
 
 import java.util.HashMap;
 
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
 
 /**
  * Provides default properties.

@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.OperationComposite;
-import org.eclipse.emf.emfstore.client.model.WorkspacePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Operation Composite</b></em>'. <!--

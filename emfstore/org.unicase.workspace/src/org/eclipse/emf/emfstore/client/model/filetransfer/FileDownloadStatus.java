@@ -10,9 +10,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
 
 /**
  * An object of this class is returned from any workspace method that starts a file transfer. It provides information
