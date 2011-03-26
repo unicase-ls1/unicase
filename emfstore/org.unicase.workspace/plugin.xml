@@ -19,14 +19,14 @@
    <extension-point id="org.unicase.workspace.editingDomainProvider" name="EditingDomain Provider" schema="schema/org.unicase.workspace.editingDomainProvider.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://unicase.org/workspace" 
-       class = "org.eclipse.emf.emfstore.client.model.WorkspacePackage"
-       genModel = "model/workspace.genmodel" /> 
+       uri = "http://eclipse.org/emf/emfstore/client/model" 
+       class = "org.eclipse.emf.emfstore.client.model.ModelPackage"
+       genModel = "model/client.genmodel" /> 
   </extension>
   <extension
         point="org.eclipse.emf.transaction.editingDomains">
      <editingDomain
-           id="org.unicase.workspace.editingDomain">
+           id="org.eclipse.emf.emfstore.client.editingDomain">
      </editingDomain>
   </extension>
 </plugin>
