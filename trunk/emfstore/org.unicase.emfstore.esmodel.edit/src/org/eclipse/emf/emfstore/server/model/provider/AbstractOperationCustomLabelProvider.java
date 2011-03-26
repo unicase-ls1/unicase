@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.emfstore.server.model.provider;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Interface for a custom LabelProvider for {@link AbstractOperation}s.

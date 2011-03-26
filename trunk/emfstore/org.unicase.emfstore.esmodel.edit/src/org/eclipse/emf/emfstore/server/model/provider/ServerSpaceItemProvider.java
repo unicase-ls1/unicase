@@ -20,22 +20,22 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ServerSpace;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ServerSpace} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.ServerSpace} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServerSpaceItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,26 +59,25 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__GROUPS);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS);
-			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__USERS);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_SPACE__GROUPS);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_SPACE__PROJECTS);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_SPACE__USERS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,8 +89,8 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
-	 * This returns ServerSpace.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ServerSpace.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,8 +99,8 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,47 +120,55 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ServerSpace.class)) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ModelPackage.SERVER_SPACE__GROUPS:
+			case ModelPackage.SERVER_SPACE__PROJECTS:
+			case ModelPackage.SERVER_SPACE__OPEN_SESSIONS:
+			case ModelPackage.SERVER_SPACE__USERS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.SERVER_SPACE__GROUPS,
-			AccesscontrolFactory.eINSTANCE.createACGroup()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.SERVER_SPACE__GROUPS,
+				 AccesscontrolFactory.eINSTANCE.createACGroup()));
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS,
-			EsmodelFactory.eINSTANCE.createProjectHistory()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.SERVER_SPACE__PROJECTS,
+				 ModelFactory.eINSTANCE.createProjectHistory()));
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS,
-			EsmodelFactory.eINSTANCE.createSessionId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.SERVER_SPACE__OPEN_SESSIONS,
+				 ModelFactory.eINSTANCE.createSessionId()));
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.SERVER_SPACE__USERS,
-			AccesscontrolFactory.eINSTANCE.createACUser()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.SERVER_SPACE__USERS,
+				 AccesscontrolFactory.eINSTANCE.createACUser()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

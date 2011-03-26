@@ -20,21 +20,20 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class PresentationSwitchEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PresentationSwitchEventItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,39 +57,50 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Read View feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Read View feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PresentationSwitchEvent_readView_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_readView_feature",
-				"_UI_PresentationSwitchEvent_type"), EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PresentationSwitchEvent_readView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_readView_feature", "_UI_PresentationSwitchEvent_type"),
+				 EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the New Presentation feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the New Presentation feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewPresentationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PresentationSwitchEvent_newPresentation_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature",
-				"_UI_PresentationSwitchEvent_type"),
-			EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PresentationSwitchEvent_newPresentation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature", "_UI_PresentationSwitchEvent_type"),
+				 EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns PresentationSwitchEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PresentationSwitchEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,16 +109,17 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PresentationSwitchEvent) object).getTimestamp();
+		Date labelValue = ((PresentationSwitchEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PresentationSwitchEvent_type")
-			: getString("_UI_PresentationSwitchEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PresentationSwitchEvent_type") :
+			getString("_UI_PresentationSwitchEvent_type") + " " + label;
 	}
 
 	/**
@@ -123,18 +134,18 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PresentationSwitchEvent.class)) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

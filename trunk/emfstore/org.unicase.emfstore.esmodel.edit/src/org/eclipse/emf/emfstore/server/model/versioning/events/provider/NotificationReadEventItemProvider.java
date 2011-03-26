@@ -20,20 +20,19 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class NotificationReadEventItemProvider extends ReadEventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationReadEventItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class NotificationReadEventItemProvider extends ReadEventItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,23 +55,29 @@ public class NotificationReadEventItemProvider extends ReadEventItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Notification Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Notification Id feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNotificationIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NotificationReadEvent_notificationId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NotificationReadEvent_notificationId_feature",
-				"_UI_NotificationReadEvent_type"), EventsPackage.Literals.NOTIFICATION_READ_EVENT__NOTIFICATION_ID,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NotificationReadEvent_notificationId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NotificationReadEvent_notificationId_feature", "_UI_NotificationReadEvent_type"),
+				 EventsPackage.Literals.NOTIFICATION_READ_EVENT__NOTIFICATION_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns NotificationReadEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns NotificationReadEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,16 +86,17 @@ public class NotificationReadEventItemProvider extends ReadEventItemProvider imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((NotificationReadEvent) object).getTimestamp();
+		Date labelValue = ((NotificationReadEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_NotificationReadEvent_type")
-			: getString("_UI_NotificationReadEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_NotificationReadEvent_type") :
+			getString("_UI_NotificationReadEvent_type") + " " + label;
 	}
 
 	/**
@@ -105,17 +111,17 @@ public class NotificationReadEventItemProvider extends ReadEventItemProvider imp
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NotificationReadEvent.class)) {
-		case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

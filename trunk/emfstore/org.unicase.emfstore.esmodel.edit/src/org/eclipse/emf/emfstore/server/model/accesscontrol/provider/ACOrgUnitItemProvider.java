@@ -21,11 +21,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
+import org.eclipse.emf.emfstore.common.model.provider.IdentifiableElementItemProvider;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit} object. <!--
@@ -36,8 +36,8 @@ import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ACOrgUnitItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,52 +62,74 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_name_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_name_feature", "_UI_ACOrgUnit_type"),
-			AccesscontrolPackage.Literals.AC_ORG_UNIT__NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACOrgUnit_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_name_feature", "_UI_ACOrgUnit_type"),
+				 AccesscontrolPackage.Literals.AC_ORG_UNIT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Roles feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Roles feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addRolesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_roles_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_roles_feature", "_UI_ACOrgUnit_type"),
-			AccesscontrolPackage.Literals.AC_ORG_UNIT__ROLES, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACOrgUnit_roles_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_roles_feature", "_UI_ACOrgUnit_type"),
+				 AccesscontrolPackage.Literals.AC_ORG_UNIT__ROLES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ACOrgUnit_description_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_description_feature", "_UI_ACOrgUnit_type"),
-			AccesscontrolPackage.Literals.AC_ORG_UNIT__DESCRIPTION, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACOrgUnit_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACOrgUnit_description_feature", "_UI_ACOrgUnit_type"),
+				 AccesscontrolPackage.Literals.AC_ORG_UNIT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,7 +143,6 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,8 +154,8 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	}
 
 	/**
-	 * This returns ACOrgUnit.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ACOrgUnit.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,15 +164,16 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ACOrgUnit) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ACOrgUnit_type") : getString("_UI_ACOrgUnit_type")
-			+ " " + label;
+		String label = ((ACOrgUnit)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ACOrgUnit_type") :
+			getString("_UI_ACOrgUnit_type") + " " + label;
 	}
 
 	/**
@@ -166,39 +188,41 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ACOrgUnit.class)) {
-		case AccesscontrolPackage.AC_ORG_UNIT__NAME:
-		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
+			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(AccesscontrolPackage.Literals.AC_ORG_UNIT__PROPERTIES,
-			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
+		newChildDescriptors.add
+			(createChildParameter
+				(AccesscontrolPackage.Literals.AC_ORG_UNIT__PROPERTIES,
+				 AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

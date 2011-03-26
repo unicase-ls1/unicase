@@ -21,25 +21,24 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationGroup;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class CompositeOperationItemProvider extends AbstractOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public CompositeOperationItemProvider(AdapterFactory adapterFactory) {
@@ -76,8 +75,8 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -94,33 +93,45 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	}
 
 	/**
-	 * This adds a property descriptor for the Main Operation feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Main Operation feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addMainOperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CompositeOperation_mainOperation_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_mainOperation_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__MAIN_OPERATION, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_mainOperation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_mainOperation_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__MAIN_OPERATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Composite Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Composite Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCompositeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CompositeOperation_compositeName_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeName_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_NAME, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_compositeName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeName_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -130,36 +141,48 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addCompositeDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CompositeOperation_compositeDescription_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_compositeDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Reversed feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Reversed feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReversedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_CompositeOperation_reversed_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_reversed_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__REVERSED, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_reversed_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_reversed_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__REVERSED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,7 +196,6 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,60 +245,82 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeOperation.class)) {
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 	}
 
 }

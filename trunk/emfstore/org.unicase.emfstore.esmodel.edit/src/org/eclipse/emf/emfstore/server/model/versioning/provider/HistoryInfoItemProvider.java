@@ -23,11 +23,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.HistoryInfo} object. <!--
@@ -211,7 +211,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

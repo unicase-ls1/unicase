@@ -22,10 +22,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ProjectHistory;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.ProjectHistory} object. <!--
@@ -36,8 +36,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 public class ProjectHistoryItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectHistoryItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,18 +61,24 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Project Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ProjectHistory_projectName_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature",
-				"_UI_ProjectHistory_type"), EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectHistory_projectName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature", "_UI_ProjectHistory_type"),
+				 ModelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -82,36 +88,41 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ProjectHistory_projectDescription_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature",
-				"_UI_ProjectHistory_type"), EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectHistory_projectDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature", "_UI_ProjectHistory_type"),
+				 ModelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_ID);
-			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_HISTORY__PROJECT_ID);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,8 +134,8 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns ProjectHistory.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ProjectHistory.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -133,15 +144,16 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProjectHistory) object).getProjectName();
-		return label == null || label.length() == 0 ? getString("_UI_ProjectHistory_type")
-			: getString("_UI_ProjectHistory_type") + " " + label;
+		String label = ((ProjectHistory)object).getProjectName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProjectHistory_type") :
+			getString("_UI_ProjectHistory_type") + " " + label;
 	}
 
 	/**
@@ -156,43 +168,47 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectHistory.class)) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ModelPackage.PROJECT_HISTORY__PROJECT_NAME:
+			case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ModelPackage.PROJECT_HISTORY__PROJECT_ID:
+			case ModelPackage.PROJECT_HISTORY__VERSIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_ID,
-			EsmodelFactory.eINSTANCE.createProjectId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT_HISTORY__PROJECT_ID,
+				 ModelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add(createChildParameter(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS,
-			VersioningFactory.eINSTANCE.createVersion()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS,
+				 VersioningFactory.eINSTANCE.createVersion()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

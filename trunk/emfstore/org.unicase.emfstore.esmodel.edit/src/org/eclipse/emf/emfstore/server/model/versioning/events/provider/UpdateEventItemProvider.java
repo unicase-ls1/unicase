@@ -19,21 +19,20 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UpdateEvent} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UpdateEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UpdateEventItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,9 +56,9 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,7 +73,6 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,8 +84,8 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns UpdateEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns UpdateEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,16 +94,17 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((UpdateEvent) object).getTimestamp();
+		Date labelValue = ((UpdateEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_UpdateEvent_type")
-			: getString("_UI_UpdateEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_UpdateEvent_type") :
+			getString("_UI_UpdateEvent_type") + " " + label;
 	}
 
 	/**
@@ -120,35 +119,39 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UpdateEvent.class)) {
-		case EventsPackage.UPDATE_EVENT__BASE_VERSION:
-		case EventsPackage.UPDATE_EVENT__TARGET_VERSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
+			case EventsPackage.UPDATE_EVENT__TARGET_VERSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,12 +159,14 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION
-			|| childFeature == EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION;
+		boolean qualify =
+			childFeature == EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION ||
+			childFeature == EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
