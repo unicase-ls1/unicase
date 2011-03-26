@@ -13,15 +13,20 @@
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory
-          class="org.unicase.emfstore.esmodel.provider.EsmodelItemProviderAdapterFactory"
-          supportedTypes="org.unicaseorg.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource.model.edit.factory1"
-          uri="http://unicase.org/emfstore/esmodel"/>
+          class="org.eclipse.emf.emfstore.server.model.provider.ModelItemProviderAdapterFactory"
+          supportedTypes=
+          	"org.eclipse.emf.edit.provider.IEditingDomainItemProvider  
+          	 org.eclipse.emf.edit.provider.IStructuredItemContentProvider  
+          	 org.eclipse.emf.edit.provider.ITreeItemContentProvider  
+          	 org.eclipse.emf.edit.provider.IItemLabelProvider 
+          	 org.eclipse.emf.edit.provider.IItemPropertySource"
+          uri="http://eclipse.org/emf/emfstore/server/model"/>
   </extension>
     
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
-       uri = "http://unicase.org/esmodel/accesscontrol" 
-       class = "org.unicase.emfstore.esmodel.accesscontrol.provider.AccesscontrolItemProviderAdapterFactory" 
+       uri = "http://eclipse.org/emf/emfstore/server/model/accesscontrol" 
+       class = "org.eclipse.emf.emfstore.server.model.accesscontrol.provider.AccesscontrolItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -31,8 +36,8 @@
   </extension>
   <extension  point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
-           uri = "http://unicase.org/esmodel/accesscontrol/roles"
-           class = "org.unicase.emfstore.esmodel.accesscontrol.roles.provider.RolesItemProviderAdapterFactory"
+           uri = "http://eclipse.org/emf/emfstore/server/model/accesscontrol/roles"
+           class = "org.eclipse.emf.emfstore.server.model.accesscontrol.roles.provider.RolesItemProviderAdapterFactory"
            supportedTypes = 
 	         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
 	          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -42,16 +47,26 @@
   </extension>
   <extension  point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
-           class="org.unicase.emfstore.esmodel.versioning.provider.VersioningItemProviderAdapterFactory"
-           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
-           uri="http://unicase.org/esmodel/versioning">
+           class="org.eclipse.emf.emfstore.server.model.versioning.provider.VersioningItemProviderAdapterFactory"
+           supportedTypes=
+           	"org.eclipse.emf.edit.provider.IEditingDomainItemProvider  
+           	 org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+           	 org.eclipse.emf.edit.provider.ITreeItemContentProvider
+           	 org.eclipse.emf.edit.provider.IItemLabelProvider
+           	 org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://eclipse.org/emf/emfstore/server/model/versioning">
      </factory>
   </extension>
   <extension  point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
-           class="org.unicase.emfstore.esmodel.versioning.operations.provider.OperationsItemProviderAdapterFactory"
-           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
-           uri="http://unicase.org/esmodel/versioning/operations">
+           class="org.eclipse.emf.emfstore.server.model.versioning.operations.provider.OperationsItemProviderAdapterFactory"
+           supportedTypes=
+           	"org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+           	org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+           	org.eclipse.emf.edit.provider.ITreeItemContentProvider
+           	org.eclipse.emf.edit.provider.IItemLabelProvider
+           	org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://eclipse.org/emf/emfstore/server/model/versioning/operations">
      </factory>
   </extension>
 
