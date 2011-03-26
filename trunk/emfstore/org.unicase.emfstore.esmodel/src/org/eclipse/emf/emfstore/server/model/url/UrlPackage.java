@@ -36,7 +36,7 @@ public interface UrlPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/emfstore/esmodel/url";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/server/model/url";
 
 	/**
 	 * The package namespace name.

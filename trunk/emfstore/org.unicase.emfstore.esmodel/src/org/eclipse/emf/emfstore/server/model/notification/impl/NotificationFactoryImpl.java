@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.server.model.notification.*;
 import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.notification.NotificationPackage;
@@ -26,7 +27,7 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 	 */
 	public static NotificationFactory init() {
 		try {
-			NotificationFactory theNotificationFactory = (NotificationFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/notification"); 
+			NotificationFactory theNotificationFactory = (NotificationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/notification"); 
 			if (theNotificationFactory != null) {
 				return theNotificationFactory;
 			}

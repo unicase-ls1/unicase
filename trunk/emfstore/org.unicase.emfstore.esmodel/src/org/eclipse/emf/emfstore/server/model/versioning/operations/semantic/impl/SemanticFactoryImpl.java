@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.*;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticPackage;
 
@@ -25,7 +26,7 @@ public class SemanticFactoryImpl extends EFactoryImpl implements SemanticFactory
 	 */
 	public static SemanticFactory init() {
 		try {
-			SemanticFactory theSemanticFactory = (SemanticFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/operations/semantic"); 
+			SemanticFactory theSemanticFactory = (SemanticFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic"); 
 			if (theSemanticFactory != null) {
 				return theSemanticFactory;
 			}
