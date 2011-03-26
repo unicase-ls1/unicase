@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
  * This is the item provider adapter for a {@link java.util.Map.Entry} object. <!-- begin-user-doc --> <!-- end-user-doc
@@ -32,8 +32,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EObjectToModelElementIdMapItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,38 +57,50 @@ public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter 
 	}
 
 	/**
-	 * This adds a property descriptor for the Key feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Key feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addKeyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_EObjectToModelElementIdMap_key_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_EObjectToModelElementIdMap_key_feature",
-				"_UI_EObjectToModelElementIdMap_type"),
-			OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EObjectToModelElementIdMap_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectToModelElementIdMap_key_feature", "_UI_EObjectToModelElementIdMap_type"),
+				 OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP__KEY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_EObjectToModelElementIdMap_value_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_EObjectToModelElementIdMap_value_feature",
-				"_UI_EObjectToModelElementIdMap_type"),
-			OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EObjectToModelElementIdMap_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectToModelElementIdMap_value_feature", "_UI_EObjectToModelElementIdMap_type"),
+				 OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP__VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns EObjectToModelElementIdMap.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns EObjectToModelElementIdMap.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,13 +109,13 @@ public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Map.Entry<?, ?> eObjectToModelElementIdMap = (Map.Entry<?, ?>) object;
+		Map.Entry<?, ?> eObjectToModelElementIdMap = (Map.Entry<?, ?>)object;
 		return "" + eObjectToModelElementIdMap.getKey() + " -> " + eObjectToModelElementIdMap.getValue();
 	}
 
@@ -121,9 +133,9 @@ public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,13 +144,13 @@ public class EObjectToModelElementIdMapItemProvider extends ItemProviderAdapter 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

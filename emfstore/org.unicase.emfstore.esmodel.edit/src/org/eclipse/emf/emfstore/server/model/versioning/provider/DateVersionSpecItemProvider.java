@@ -22,9 +22,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec} object. <!--
@@ -35,8 +35,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 public class DateVersionSpecItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DateVersionSpecItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +44,8 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,23 +59,29 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Date feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_DateVersionSpec_date_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature",
-				"_UI_DateVersionSpec_type"), VersioningPackage.Literals.DATE_VERSION_SPEC__DATE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DateVersionSpec_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature", "_UI_DateVersionSpec_type"),
+				 VersioningPackage.Literals.DATE_VERSION_SPEC__DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns DateVersionSpec.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns DateVersionSpec.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,16 +90,17 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((DateVersionSpec) object).getDate();
+		Date labelValue = ((DateVersionSpec)object).getDate();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_DateVersionSpec_type")
-			: getString("_UI_DateVersionSpec_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_DateVersionSpec_type") :
+			getString("_UI_DateVersionSpec_type") + " " + label;
 	}
 
 	/**
@@ -108,17 +115,17 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DateVersionSpec.class)) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,13 +134,13 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

@@ -20,12 +20,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ModelElementGroup;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationGroup;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.CompositeOperationItemProvider;
-import org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 
 /**
  * This is the item provider adapter for a
@@ -103,7 +104,7 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 	/**
@@ -119,7 +120,7 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 			SemanticCompositeOperation operation = (SemanticCompositeOperation) object;
 			ArrayList<Object> result = new ArrayList<Object>();
 
-			org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory factory = org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory.eINSTANCE;
+			OperationsFactory factory = OperationsFactory.eINSTANCE;
 			for (EStructuralFeature feature : operation.eClass().getEStructuralFeatures()) {
 				if (feature instanceof EReference) {
 					EReference reference = (EReference) feature;

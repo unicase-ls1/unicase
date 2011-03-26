@@ -20,10 +20,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.server.model.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.emfstore.esmodel.url.UrlFactory;
-import org.unicase.emfstore.esmodel.url.UrlPackage;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
+import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.emfstore.server.model.url.UrlPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrl} object. <!--
@@ -34,8 +34,8 @@ import org.unicase.emfstore.esmodel.url.UrlPackage;
 public class ModelElementUrlItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElementUrlItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,9 +59,9 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +77,6 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,8 +88,8 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns ModelElementUrl.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ModelElementUrl.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,8 +98,8 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -120,43 +119,49 @@ public class ModelElementUrlItemProvider extends ItemProviderAdapter implements 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElementUrl.class)) {
-		case UrlPackage.MODEL_ELEMENT_URL__SERVER_URL:
-		case UrlPackage.MODEL_ELEMENT_URL__PROJECT_URL_FRAGMENT:
-		case UrlPackage.MODEL_ELEMENT_URL__MODEL_ELEMENT_URL_FRAGMENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case UrlPackage.MODEL_ELEMENT_URL__SERVER_URL:
+			case UrlPackage.MODEL_ELEMENT_URL__PROJECT_URL_FRAGMENT:
+			case UrlPackage.MODEL_ELEMENT_URL__MODEL_ELEMENT_URL_FRAGMENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UrlPackage.Literals.MODEL_ELEMENT_URL__SERVER_URL,
-			UrlFactory.eINSTANCE.createServerUrl()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UrlPackage.Literals.MODEL_ELEMENT_URL__SERVER_URL,
+				 UrlFactory.eINSTANCE.createServerUrl()));
 
-		newChildDescriptors.add(createChildParameter(UrlPackage.Literals.MODEL_ELEMENT_URL__PROJECT_URL_FRAGMENT,
-			UrlFactory.eINSTANCE.createProjectUrlFragment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UrlPackage.Literals.MODEL_ELEMENT_URL__PROJECT_URL_FRAGMENT,
+				 UrlFactory.eINSTANCE.createProjectUrlFragment()));
 
-		newChildDescriptors.add(createChildParameter(UrlPackage.Literals.MODEL_ELEMENT_URL__MODEL_ELEMENT_URL_FRAGMENT,
-			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UrlPackage.Literals.MODEL_ELEMENT_URL__MODEL_ELEMENT_URL_FRAGMENT,
+				 UrlFactory.eINSTANCE.createModelElementUrlFragment()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EsmodelEditPlugin.INSTANCE;
+		return ServerEditPlugin.INSTANCE;
 	}
 
 }

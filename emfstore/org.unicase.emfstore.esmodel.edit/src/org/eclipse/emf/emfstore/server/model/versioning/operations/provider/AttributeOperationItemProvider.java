@@ -19,21 +19,20 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class AttributeOperationItemProvider extends FeatureOperationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttributeOperationItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,33 +56,45 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Old Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AttributeOperation_oldValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AttributeOperation_oldValue_feature",
-				"_UI_AttributeOperation_type"), OperationsPackage.Literals.ATTRIBUTE_OPERATION__OLD_VALUE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeOperation_oldValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeOperation_oldValue_feature", "_UI_AttributeOperation_type"),
+				 OperationsPackage.Literals.ATTRIBUTE_OPERATION__OLD_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the New Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the New Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AttributeOperation_newValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AttributeOperation_newValue_feature",
-				"_UI_AttributeOperation_type"), OperationsPackage.Literals.ATTRIBUTE_OPERATION__NEW_VALUE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeOperation_newValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeOperation_newValue_feature", "_UI_AttributeOperation_type"),
+				 OperationsPackage.Literals.ATTRIBUTE_OPERATION__NEW_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	// begin of custom code
@@ -148,18 +159,18 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeOperation.class)) {
-		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
+			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

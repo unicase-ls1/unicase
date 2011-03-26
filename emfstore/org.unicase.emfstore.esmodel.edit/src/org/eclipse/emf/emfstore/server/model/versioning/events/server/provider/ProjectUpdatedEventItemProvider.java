@@ -19,23 +19,22 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent;
-import org.unicase.emfstore.esmodel.versioning.events.server.ServerPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ProjectUpdatedEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.events.server.ProjectUpdatedEvent} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.server.ProjectUpdatedEvent} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectUpdatedEventItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,9 +58,9 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +74,6 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,8 +85,8 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	}
 
 	/**
-	 * This returns ProjectUpdatedEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ProjectUpdatedEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,16 +95,17 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ProjectUpdatedEvent) object).getTimestamp();
+		Date labelValue = ((ProjectUpdatedEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ProjectUpdatedEvent_type")
-			: getString("_UI_ProjectUpdatedEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProjectUpdatedEvent_type") :
+			getString("_UI_ProjectUpdatedEvent_type") + " " + label;
 	}
 
 	/**
@@ -121,25 +120,27 @@ public class ProjectUpdatedEventItemProvider extends ServerProjectEventItemProvi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectUpdatedEvent.class)) {
-		case ServerPackage.PROJECT_UPDATED_EVENT__NEW_VERSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ServerPackage.PROJECT_UPDATED_EVENT__NEW_VERSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ServerPackage.Literals.PROJECT_UPDATED_EVENT__NEW_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ServerPackage.Literals.PROJECT_UPDATED_EVENT__NEW_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 }
