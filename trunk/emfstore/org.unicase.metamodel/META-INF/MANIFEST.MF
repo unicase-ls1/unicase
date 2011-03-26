@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.metamodel,
- org.unicase.metamodel.impl,
- org.unicase.metamodel.util
+Export-Package: org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.common.model.impl,
+ org.eclipse.emf.emfstore.common.model.util
 Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.emfstore.common;visibility:=reexport
 Bundle-ActivationPolicy: lazy
