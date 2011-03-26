@@ -8,7 +8,7 @@ package org.unicase.emfstore.migration;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
 /**
  * Controller for migrating models in EMFStore. Manages all registered migrators.
