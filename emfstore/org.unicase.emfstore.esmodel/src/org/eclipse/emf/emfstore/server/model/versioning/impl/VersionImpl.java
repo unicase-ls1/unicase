@@ -24,6 +24,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
@@ -32,10 +36,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.Version;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Version</b></em>'. <!-- end-user-doc -->
@@ -46,7 +46,8 @@ import org.unicase.metamodel.impl.ProjectImpl;
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getPrimarySpec <em>Primary Spec</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getTagSpecs <em>Tag Specs</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getNextVersion <em>Next Version</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getPreviousVersion <em>Previous Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getPreviousVersion <em>Previous Version
+ * </em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getChanges <em>Changes</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.VersionImpl#getLogMessage <em>Log Message</em>}</li>
  * </ul>
@@ -549,7 +550,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 				EObject obj = it.next();
 				String objId = xmiResource.getID(obj);
 				if (objId != null) {
-					ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+					ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 					modelElementId.setId(objId);
 					eObjectToIdMap.put(obj, modelElementId);
 				}

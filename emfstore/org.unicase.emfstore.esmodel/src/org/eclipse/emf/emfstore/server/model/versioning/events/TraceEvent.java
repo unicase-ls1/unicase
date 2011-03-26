@@ -5,32 +5,33 @@
  */
 package org.eclipse.emf.emfstore.server.model.versioning.events;
 
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Trace Event</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent()
  * @model
  * @generated
  */
 public interface TraceEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Source Element</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Element</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Element</em>' containment reference.
 	 * @see #setSourceElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_SourceElement()
@@ -40,9 +41,8 @@ public interface TraceEvent extends Event {
 	ModelElementId getSourceElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement
-	 * <em>Source Element</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source Element</em>' containment reference.
 	 * @see #getSourceElement()
 	 * @generated
@@ -50,13 +50,13 @@ public interface TraceEvent extends Event {
 	void setSourceElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Element</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Element</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Element</em>' containment reference.
 	 * @see #setTargetElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_TargetElement()
@@ -66,9 +66,8 @@ public interface TraceEvent extends Event {
 	ModelElementId getTargetElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement
-	 * <em>Target Element</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Element</em>' containment reference.
 	 * @see #getTargetElement()
 	 * @generated
@@ -76,13 +75,13 @@ public interface TraceEvent extends Event {
 	void setTargetElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Feature Name</em>' attribute.
 	 * @see #setFeatureName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_FeatureName()
@@ -92,9 +91,8 @@ public interface TraceEvent extends Event {
 	String getFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName
-	 * <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature Name</em>' attribute.
 	 * @see #getFeatureName()
 	 * @generated

@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Abstract Operation</b></em>'. <!-- end-user-doc
@@ -20,11 +20,14 @@ import org.unicase.metamodel.Project;
  * The following features are supported:
  * <ul>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId <em>Model Element
- * Id</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getDescription <em>
+ * Description</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId <em>Model
+ * Element Id</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted <em>Accepted
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate <em>Client
+ * Date</em>}</li>
  * </ul>
  * </p>
  * 
@@ -107,7 +110,8 @@ public interface AbstractOperation extends IdentifiableElement {
 	boolean isAccepted();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted
 	 * <em>Accepted</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Accepted</em>' attribute.
@@ -133,7 +137,8 @@ public interface AbstractOperation extends IdentifiableElement {
 	Date getClientDate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate
 	 * <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Client Date</em>' attribute.

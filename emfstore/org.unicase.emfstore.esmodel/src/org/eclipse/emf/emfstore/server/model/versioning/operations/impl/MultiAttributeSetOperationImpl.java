@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Attribute Set Operation</b></em>'. <!--
@@ -24,12 +24,14 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getIndex <em>Index
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getOldValue <em>Old
- * Value</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getNewValue <em>New
- * Value</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getIndex
+ * <em>Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getOldValue
+ * <em>Old Value</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeSetOperationImpl#getNewValue
+ * <em>New Value</em>}</li>
  * </ul>
  * </p>
  * 

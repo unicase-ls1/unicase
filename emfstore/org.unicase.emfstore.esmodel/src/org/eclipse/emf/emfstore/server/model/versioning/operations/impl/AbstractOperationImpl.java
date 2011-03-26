@@ -14,14 +14,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.IdentifiableElementImpl;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Abstract Operation</b></em>'. <!-- end-user-doc
@@ -29,15 +29,16 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getName <em>Name
+ * </em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getDescription <em>
  * Description</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model
- * Element Id</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#isAccepted <em>Accepted
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getClientDate <em>Client
- * Date</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getModelElementId
+ * <em>Model Element Id</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#isAccepted <em>
+ * Accepted </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl#getClientDate <em>
+ * Client Date</em>}</li>
  * </ul>
  * </p>
  * 

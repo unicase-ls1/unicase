@@ -7,7 +7,7 @@ package org.eclipse.emf.emfstore.server.model.versioning.operations;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
@@ -15,7 +15,8 @@ import org.unicase.metamodel.Project;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeatureName <em>Feature
+ * Name</em>}</li>
  * </ul>
  * </p>
  * 
@@ -42,7 +43,8 @@ public interface FeatureOperation extends AbstractOperation {
 	String getFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeatureName
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeatureName
 	 * <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Feature Name</em>' attribute.

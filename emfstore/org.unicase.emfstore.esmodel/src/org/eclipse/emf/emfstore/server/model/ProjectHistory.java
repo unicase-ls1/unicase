@@ -28,25 +28,24 @@ import org.eclipse.emf.emfstore.server.model.versioning.Version;
  */
 public interface ProjectHistory extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
-	 * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#getProjectHistory_ProjectId()
+	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectHistory_ProjectId()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectId <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectId <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
@@ -54,16 +53,16 @@ public interface ProjectHistory extends EObject {
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.Version}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Versions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.Version}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Versions</em>' containment reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Versions</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#getProjectHistory_Versions()
+	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectHistory_Versions()
 	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
@@ -78,25 +77,24 @@ public interface ProjectHistory extends EObject {
 	Version getLastVersion();
 
 	/**
-	 * Returns the value of the '<em><b>Project Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Name</em>' attribute.
 	 * @see #setProjectName(String)
-	 * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#getProjectHistory_ProjectName()
+	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectHistory_ProjectName()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectName <em>Project Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectName <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
 	 * @generated
@@ -104,25 +102,24 @@ public interface ProjectHistory extends EObject {
 	void setProjectName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Description</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
-	 * @see org.eclipse.emf.emfstore.server.model.EsmodelPackage#getProjectHistory_ProjectDescription()
+	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectHistory_ProjectDescription()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getProjectDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectDescription
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getProjectDescription <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Description</em>' attribute.
 	 * @see #getProjectDescription()
 	 * @generated

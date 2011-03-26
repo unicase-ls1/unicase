@@ -21,12 +21,12 @@ package org.eclipse.emf.emfstore.server.model.versioning;
  */
 public interface TagVersionSpec extends VersionSpec {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getTagVersionSpec_Name()
@@ -36,9 +36,8 @@ public interface TagVersionSpec extends VersionSpec {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec#getName <em>Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated

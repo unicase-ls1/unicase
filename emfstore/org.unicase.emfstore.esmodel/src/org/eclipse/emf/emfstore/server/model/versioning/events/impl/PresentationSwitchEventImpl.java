@@ -17,20 +17,18 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitc
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.PresentationSwitchEventImpl#getNewPresentation <em>New
- * Presentation</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.PresentationSwitchEventImpl#getNewPresentation <em>New Presentation</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PresentationSwitchEventImpl extends EventImpl implements PresentationSwitchEvent {
 	/**
-	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -38,9 +36,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected static final String READ_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -48,9 +46,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected String readView = READ_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -58,9 +56,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected static final String NEW_PRESENTATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -69,7 +67,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PresentationSwitchEventImpl() {
@@ -78,7 +75,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +84,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getReadView() {
@@ -97,20 +92,17 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReadView(String newReadView) {
 		String oldReadView = readView;
 		readView = newReadView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW,
-				oldReadView, readView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW, oldReadView, readView));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getNewPresentation() {
@@ -119,95 +111,86 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewPresentation(String newNewPresentation) {
 		String oldNewPresentation = newPresentation;
 		newPresentation = newNewPresentation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, oldNewPresentation, newPresentation));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, oldNewPresentation, newPresentation));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-			return getReadView();
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			return getNewPresentation();
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+				return getReadView();
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				return getNewPresentation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-			setReadView((String) newValue);
-			return;
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			setNewPresentation((String) newValue);
-			return;
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+				setReadView((String)newValue);
+				return;
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				setNewPresentation((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-			setReadView(READ_VIEW_EDEFAULT);
-			return;
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			setNewPresentation(NEW_PRESENTATION_EDEFAULT);
-			return;
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+				setReadView(READ_VIEW_EDEFAULT);
+				return;
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				setNewPresentation(NEW_PRESENTATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-			return READ_VIEW_EDEFAULT == null ? readView != null : !READ_VIEW_EDEFAULT.equals(readView);
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			return NEW_PRESENTATION_EDEFAULT == null ? newPresentation != null : !NEW_PRESENTATION_EDEFAULT
-				.equals(newPresentation);
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+				return READ_VIEW_EDEFAULT == null ? readView != null : !READ_VIEW_EDEFAULT.equals(readView);
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				return NEW_PRESENTATION_EDEFAULT == null ? newPresentation != null : !NEW_PRESENTATION_EDEFAULT.equals(newPresentation);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (readView: ");

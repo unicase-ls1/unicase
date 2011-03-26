@@ -11,12 +11,12 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Canonizes a list of operations. Removes all operations that are not necessary to achieve the same result when the

@@ -7,7 +7,8 @@ package org.eclipse.emf.emfstore.server.model.versioning.events;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Validate</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getValidate()
  * @model
  * @generated

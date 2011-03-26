@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Org Unit Properties</b></em>'. <!--

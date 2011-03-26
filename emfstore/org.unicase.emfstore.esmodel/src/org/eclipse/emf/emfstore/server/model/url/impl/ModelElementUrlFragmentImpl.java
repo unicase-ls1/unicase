@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
 import org.eclipse.emf.emfstore.server.model.url.UrlPackage;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element Url Fragment</b></em>'. <!--
@@ -21,12 +21,11 @@ import org.unicase.metamodel.ModelElementId;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.url.impl.ModelElementUrlFragmentImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.url.impl.ModelElementUrlFragmentImpl#getModelElementId <em>Model Element Id
- * </em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.url.impl.ModelElementUrlFragmentImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.url.impl.ModelElementUrlFragmentImpl#getModelElementId <em>Model Element Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelElementUrlFragment {
@@ -62,7 +61,6 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementUrlFragmentImpl() {
@@ -71,7 +69,6 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +78,6 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -90,39 +86,32 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME, oldName,
-				name));
+			eNotify(new ENotificationImpl(this, Notification.SET, UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getModelElementId() {
 		if (modelElementId != null && modelElementId.eIsProxy()) {
-			InternalEObject oldModelElementId = (InternalEObject) modelElementId;
-			modelElementId = (ModelElementId) eResolveProxy(oldModelElementId);
+			InternalEObject oldModelElementId = (InternalEObject)modelElementId;
+			modelElementId = (ModelElementId)eResolveProxy(oldModelElementId);
 			if (modelElementId != oldModelElementId) {
-				InternalEObject newModelElementId = (InternalEObject) modelElementId;
-				NotificationChain msgs = oldModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, null);
+				InternalEObject newModelElementId = (InternalEObject)modelElementId;
+				NotificationChain msgs = oldModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, null);
 				if (newModelElementId.eInternalContainer() == null) {
-					msgs = newModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
+					msgs = newModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, oldModelElementId, modelElementId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, oldModelElementId, modelElementId));
 			}
 		}
 		return modelElementId;
@@ -130,7 +119,6 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetModelElementId() {
@@ -139,138 +127,121 @@ public class ModelElementUrlFragmentImpl extends EObjectImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElementId(ModelElementId newModelElementId, NotificationChain msgs) {
 		ModelElementId oldModelElementId = modelElementId;
 		modelElementId = newModelElementId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, oldModelElementId, newModelElementId);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, oldModelElementId, newModelElementId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElementId(ModelElementId newModelElementId) {
 		if (newModelElementId != modelElementId) {
 			NotificationChain msgs = null;
 			if (modelElementId != null)
-				msgs = ((InternalEObject) modelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)modelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
 			if (newModelElementId != null)
-				msgs = ((InternalEObject) newModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)newModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, null, msgs);
 			msgs = basicSetModelElementId(newModelElementId, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, newModelElementId, newModelElementId));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID, newModelElementId, newModelElementId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
-			return basicSetModelElementId(null, msgs);
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
+				return basicSetModelElementId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
-			return getName();
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
-			if (resolve)
-				return getModelElementId();
-			return basicGetModelElementId();
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
+				return getName();
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
+				if (resolve) return getModelElementId();
+				return basicGetModelElementId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
-			setName((String) newValue);
-			return;
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
-			setModelElementId((ModelElementId) newValue);
-			return;
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
+				setName((String)newValue);
+				return;
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
+				setModelElementId((ModelElementId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
-			setModelElementId((ModelElementId) null);
-			return;
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
+				setModelElementId((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
-			return modelElementId != null;
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID:
+				return modelElementId != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

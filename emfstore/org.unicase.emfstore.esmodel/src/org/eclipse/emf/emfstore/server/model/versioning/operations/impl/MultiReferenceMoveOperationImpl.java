@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Move Operation</b></em>'. <!--
@@ -31,10 +31,12 @@ import org.unicase.metamodel.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex <em>
- * Old Index</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex <em>
- * New Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex
+ * <em>Old Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex
+ * <em>New Index</em>}</li>
  * <li>
  * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getReferencedModelElementId
  * <em>Referenced Model Element Id</em>}</li>
