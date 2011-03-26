@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.metamodel.provider;
+package org.eclipse.emf.emfstore.common.model.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,22 +21,22 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.UniqueIdentifier;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.metamodel.ModelVersion} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.metamodel.UniqueIdentifier} object.
+ * <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
  * @generated
  */
-public class ModelVersionItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
+public class UniqueIdentifierItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelVersionItemProvider(AdapterFactory adapterFactory) {
+	public UniqueIdentifierItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,32 +50,22 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addReleaseNumberPropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Release Number feature.
+	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReleaseNumberPropertyDescriptor(Object object) {
+	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelVersion_releaseNumber_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ModelVersion_releaseNumber_feature",
-				"_UI_ModelVersion_type"), MetamodelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This returns ModelVersion.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelVersion"));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UniqueIdentifier_id_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
+			MetamodelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -85,8 +75,9 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		ModelVersion modelVersion = (ModelVersion) object;
-		return getString("_UI_ModelVersion_type") + " " + modelVersion.getReleaseNumber();
+		String label = ((UniqueIdentifier) object).getId();
+		return label == null || label.length() == 0 ? getString("_UI_UniqueIdentifier_type")
+			: getString("_UI_UniqueIdentifier_type") + " " + label;
 	}
 
 	/**
@@ -100,8 +91,8 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelVersion.class)) {
-		case MetamodelPackage.MODEL_VERSION__RELEASE_NUMBER:
+		switch (notification.getFeatureID(UniqueIdentifier.class)) {
+		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
