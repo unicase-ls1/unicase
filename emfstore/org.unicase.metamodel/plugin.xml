@@ -16,8 +16,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/metamodel"
+            uri="http://eclipse.org/emf/emfstore/common/model"
             class="org.eclipse.emf.emfstore.common.model.ModelPackage"
-            genModel="model/metamodel.genmodel"/>
+            genModel="model/common.genmodel"/>
    </extension>
 </plugin>
