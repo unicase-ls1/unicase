@@ -20,11 +20,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.UniqueIdentifier;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
+import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.metamodel.UniqueIdentifier} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.UniqueIdentifier} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
@@ -61,10 +61,12 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UniqueIdentifier_id_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
-			MetamodelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UniqueIdentifier_id_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature",
+				"_UI_UniqueIdentifier_type"), ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -92,7 +94,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UniqueIdentifier.class)) {
-		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
@@ -117,7 +119,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return CommonEditPlugin.INSTANCE;
 	}
 
 }
