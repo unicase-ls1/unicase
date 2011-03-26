@@ -5,14 +5,10 @@
    <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
-     
-   
-   
         <category
               id="org.unicase.ui.common"
               name="org.unicase.ui.common">
         </category>
-   
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -42,10 +38,10 @@
                        <and>
           				 <instanceof value="org.eclipse.emf.ecore.EObject" />
           				 <not>
-          				 	<instanceof value="org.unicase.workspace.ProjectSpace" />
+          				 	<instanceof value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
           				 </not>
            				 <not>
-           					<instanceof value="org.unicase.metamodel.Project"/>
+           					<instanceof value="org.eclipse.emf.emfstore.common.model.Project"/>
               			 </not>
         			   </and>     
                  </iterate>
@@ -90,20 +86,20 @@
                        ifEmpty="false"
                        operator="and">
                     <and>
-                  <instanceof
-                        value="org.eclipse.emf.ecore.EObject">
-                  </instanceof>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.metamodel.Project">
-                  	</instanceof>
-                  </not>
-                  <not>
-                  	<instanceof
-                         value="org.unicase.workspace.ProjectSpace">
-                  	</instanceof>
-                  </not>
-	            </and>
+	                  <instanceof
+	                        value="org.eclipse.emf.ecore.EObject">
+	                  </instanceof>
+	                  <not>
+	                  	<instanceof
+	                         value="org.eclipse.emf.emfstore.common.model.Project">
+	                  	</instanceof>
+	                  </not>
+	                  <not>
+	                  	<instanceof
+	                         value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+	                  	</instanceof>
+	                  </not>
+	            	</and>
                  </iterate>
                  <count
                        value="1">
@@ -126,12 +122,12 @@
            </instanceof>
            <not>
               <instanceof
-                    value="org.unicase.workspace.ProjectSpace">
+                    value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
               </instanceof>
            </not>
            <not>
               <instanceof
-                    value="org.unicase.metamodel.Project">
+                    value="org.eclipse.emf.emfstore.common.model.Project">
               </instanceof>
            </not>
         </and>     </definition>
