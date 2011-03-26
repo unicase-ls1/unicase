@@ -5,17 +5,17 @@
  */
 package org.eclipse.emf.emfstore.client.ui.dialogs.merge;
 
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isAttribute;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isComposite;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isCompositeRef;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isDelete;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isDiagramLayout;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAtt;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttMove;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiAttSet;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRef;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isMultiRefSet;
-import static org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil.isSingleRef;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isAttribute;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isComposite;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isCompositeRef;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isDelete;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isDiagramLayout;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAtt;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAttMove;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiAttSet;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiRef;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isMultiRefSet;
+import static org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil.isSingleRef;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,18 +46,18 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.conflicts.Singl
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.EventLogger;
 import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 
 /**
  * DecisionManager is the controller for the merge dialog and therefore it's main component. It calculates the conflicts
@@ -335,11 +335,11 @@ public class DecisionManager {
 
 	private Conflict createReferenceCompVSSingleMulti(Conflicting conf) {
 		if (isCompositeRef(conf.getMyOperation())) {
-			return createRefFromSub(conf, ((CompositeOperation) conf.getMyOperation()).getSubOperations(), Arrays
-				.asList(conf.getTheirOperation()));
+			return createRefFromSub(conf, ((CompositeOperation) conf.getMyOperation()).getSubOperations(),
+				Arrays.asList(conf.getTheirOperation()));
 		} else {
-			return createRefFromSub(conf, Arrays.asList(conf.getMyOperation()), ((CompositeOperation) conf
-				.getTheirOperation()).getSubOperations());
+			return createRefFromSub(conf, Arrays.asList(conf.getMyOperation()),
+				((CompositeOperation) conf.getTheirOperation()).getSubOperations());
 		}
 	}
 

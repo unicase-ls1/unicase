@@ -7,7 +7,7 @@ package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin.a
 
 import java.util.ArrayList;
 
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
 
 /**
  * This class is necessary for at least some import sources, e.g. LDAP. If we do

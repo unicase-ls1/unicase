@@ -5,13 +5,14 @@
  */
 package org.eclipse.emf.emfstore.client.ui.dialogs.login;
 
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceFactory;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.ui.Activator;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -42,7 +43,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.sharemedia.ui.sat.SATRunner;
 import org.sharemedia.ui.sat.movement.SinusVariation;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * Creates a new login dialog.
@@ -200,7 +200,7 @@ public class LoginDialog extends TitleAreaDialog {
 	}
 
 	private Usersession createNewSession() {
-		final Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
+		final Usersession session = ModelFactory.eINSTANCE.createUsersession();
 		session.setUsername(NEW_SESSION_NAME);
 		new UnicaseCommand() {
 			@Override

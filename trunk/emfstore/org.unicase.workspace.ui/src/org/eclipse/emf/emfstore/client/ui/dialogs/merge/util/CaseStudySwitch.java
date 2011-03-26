@@ -7,12 +7,12 @@ package org.eclipse.emf.emfstore.client.ui.dialogs.merge.util;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationUtil;
 
 /**
  * Switch for case study.
@@ -24,17 +24,12 @@ public class CaseStudySwitch {
 	/**
 	 * Flatten changepackages.
 	 * 
-	 * @param myChangePackage
-	 *            my cp
-	 * @param theirChangePackages
-	 *            their cps
+	 * @param myChangePackage my cp
+	 * @param theirChangePackages their cps
 	 */
-	public void flattenChangePackages(ChangePackage myChangePackage,
-			List<ChangePackage> theirChangePackages) {
-		boolean openQuestion = MessageDialog
-				.openQuestion(Display.getCurrent().getActiveShell(),
-						"Remove CompositeOperations?",
-						"Do you want to remove the composite operations for testing purposes?");
+	public void flattenChangePackages(ChangePackage myChangePackage, List<ChangePackage> theirChangePackages) {
+		boolean openQuestion = MessageDialog.openQuestion(Display.getCurrent().getActiveShell(),
+			"Remove CompositeOperations?", "Do you want to remove the composite operations for testing purposes?");
 
 		if (!openQuestion) {
 			return;

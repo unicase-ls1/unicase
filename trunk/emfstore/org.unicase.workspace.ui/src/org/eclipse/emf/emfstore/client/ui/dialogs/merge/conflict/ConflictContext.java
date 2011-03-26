@@ -7,8 +7,8 @@ package org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.DecisionManager;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation;
 
 /**
  * Holding the data for the context of an conflict.

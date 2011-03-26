@@ -9,7 +9,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
-import org.eclipse.emf.emfstore.client.model.provider.WorkspaceItemProviderAdapterFactory;
+import org.eclipse.emf.emfstore.client.model.provider.ModelItemProviderAdapterFactory;
 import org.eclipse.jface.viewers.TreeNode;
 
 /**
@@ -25,7 +25,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	 * Default constructor.
 	 */
 	public ESBrowserContentProvider() {
-		super(new WorkspaceItemProviderAdapterFactory());
+		super(new ModelItemProviderAdapterFactory());
 	}
 
 	/**

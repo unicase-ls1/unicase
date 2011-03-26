@@ -7,8 +7,8 @@ package org.eclipse.emf.emfstore.client.ui.views.historybrowserview;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
 
 /**
  * . This is the LabelProvider for versions table on HistroyBrowser's browser

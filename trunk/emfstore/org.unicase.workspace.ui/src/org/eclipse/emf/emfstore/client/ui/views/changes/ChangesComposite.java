@@ -7,7 +7,7 @@ package org.eclipse.emf.emfstore.client.ui.views.changes;
 
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 
 /**
  * An interface for all types of chnages tree composites.
@@ -26,8 +26,7 @@ public interface ChangesComposite {
 	/**
 	 * Sets the input for this composite.
 	 * 
-	 * @param changes
-	 *            the new ChangePackages
+	 * @param changes the new ChangePackages
 	 */
 	void setInput(List<ChangePackage> changes);
 

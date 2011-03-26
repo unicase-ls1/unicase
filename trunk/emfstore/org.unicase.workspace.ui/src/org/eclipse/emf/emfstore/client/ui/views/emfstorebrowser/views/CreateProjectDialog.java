@@ -8,6 +8,8 @@ package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -19,8 +21,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
 
 /**
@@ -37,10 +37,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent shell
-	 * @param session
-	 *            the target usersession
+	 * @param parent the parent shell
+	 * @param session the target usersession
 	 */
 	public CreateProjectDialog(Shell parent, Usersession session) {
 		super(parent);
@@ -69,8 +67,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(
-				defaultMargins.x, defaultMargins.y).generateLayout(contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y)
+			.generateLayout(contents);
 
 		return contents;
 	}
@@ -86,12 +84,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 				try {
 
 					if (session != null) {
-						session.createProject(txtProjectName.getText(),
-								txtProjectDesc.getText());
+						session.createProject(txtProjectName.getText(), txtProjectDesc.getText());
 					} else {
 						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.createLocalProject(txtProjectName.getText(),
-										txtProjectDesc.getText());
+							.createLocalProject(txtProjectName.getText(), txtProjectDesc.getText());
 					}
 
 				} catch (AccessControlException e) {

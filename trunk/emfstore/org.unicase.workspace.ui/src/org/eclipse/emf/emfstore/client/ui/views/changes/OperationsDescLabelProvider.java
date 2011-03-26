@@ -5,12 +5,12 @@
  */
 package org.eclipse.emf.emfstore.client.ui.views.changes;
 
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
@@ -26,13 +26,10 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param emfProvider
-	 *            the default label provider.
-	 * @param visualizationHelper
-	 *            the visualizationHelper
+	 * @param emfProvider the default label provider.
+	 * @param visualizationHelper the visualizationHelper
 	 */
-	public OperationsDescLabelProvider(ILabelProvider emfProvider,
-			ChangePackageVisualizationHelper visualizationHelper) {
+	public OperationsDescLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 	}
@@ -55,8 +52,8 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 			Image image = visualizationHelper.getImage(emfProvider, op);
 			ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
 			if (image != null && overlay != null) {
-				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
-						image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
+				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, overlay,
+					OverlayImageDescriptor.LOWER_RIGHT);
 				cell.setImage(imageDescriptor.createImage());
 			}
 		} else {

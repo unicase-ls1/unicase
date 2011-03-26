@@ -6,10 +6,10 @@
 package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
-import org.unicase.emfstore.esmodel.ProjectInfo;
 
 /**
  * Sort alphabetically the repository browser viewer.
@@ -27,11 +27,11 @@ public class ESBrowserViewerSorter extends ViewerSorter {
 			Object node1 = ((TreeNode) o1).getValue();
 			Object node2 = ((TreeNode) o2).getValue();
 			if (node1 instanceof ServerInfo && node2 instanceof ServerInfo) {
-				return ((ServerInfo) node1).getName().toLowerCase().compareTo(
-					((ServerInfo) node2).getName().toLowerCase());
+				return ((ServerInfo) node1).getName().toLowerCase()
+					.compareTo(((ServerInfo) node2).getName().toLowerCase());
 			} else if (node1 instanceof ProjectInfo && node2 instanceof ProjectInfo) {
-				return ((ProjectInfo) node1).getName().toLowerCase().compareTo(
-					((ProjectInfo) node2).getName().toLowerCase());
+				return ((ProjectInfo) node1).getName().toLowerCase()
+					.compareTo(((ProjectInfo) node2).getName().toLowerCase());
 			}
 		}
 

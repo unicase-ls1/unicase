@@ -10,6 +10,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -17,9 +20,6 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.util.DialogHandler;
 
 /**
@@ -33,25 +33,18 @@ public class ProjectPropertiesHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
-		TreeNode treeNode = (TreeNode) ((IStructuredSelection) selection)
-				.getFirstElement();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
+		TreeNode treeNode = (TreeNode) ((IStructuredSelection) selection).getFirstElement();
 		ProjectInfo projectInfo = (ProjectInfo) treeNode.getValue();
 		ServerInfo serverInfo = (ServerInfo) treeNode.getParent().getValue();
 		Usersession session = serverInfo.getLastUsersession();
 		int revision;
 		try {
-			revision = session.resolveVersionSpec(
-					VersioningFactory.eINSTANCE.createHeadVersionSpec(),
-					projectInfo.getProjectId()).getIdentifier();
-			MessageDialog.openInformation(
-					Display.getCurrent().getActiveShell(),
-					"Project information", "Current revision: " + revision
-							+ "\nProjectId: "
-							+ projectInfo.getProjectId().getId());
+			revision = session.resolveVersionSpec(VersioningFactory.eINSTANCE.createHeadVersionSpec(),
+				projectInfo.getProjectId()).getIdentifier();
+			MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Project information",
+				"Current revision: " + revision + "\nProjectId: " + projectInfo.getProjectId().getId());
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
 		}

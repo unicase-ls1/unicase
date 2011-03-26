@@ -14,14 +14,14 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
+import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
-import org.unicase.emfstore.esmodel.url.UrlFactory;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.metamodel.ModelElementId;
 
 /**
  * A singleton selection listener that resolves unicase URLs and opens the element in a MEEditor.
