@@ -2,11 +2,13 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;&#xD;&#xD;"
-    modelDirectory="/org.unicase.emfstore.esmodel/src" modelPluginID="org.unicase.emfstore.esmodel"
-    modelName="Esmodel" importerID="org.eclipse.emf.importer.ecore" containmentProxies="true"
-    complianceLevel="5.0" copyrightFields="false" language="" usedGenPackages="../../org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model">
+    modelDirectory="/org.eclipse.emf.emfstore.server.model/src" editDirectory="/org.eclipse.emf.emfstore.server.model.edit/src"
+    editorDirectory="/org.eclipse.emf.emfstore.server.model.editor/src" modelPluginID="org.eclipse.emf.emfstore.server.model"
+    modelName="Server" importerID="org.eclipse.emf.importer.ecore" containmentProxies="true"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.emfstore.server.model.edit"
+    editorPluginID="org.eclipse.emf.emfstore.server.model.editor" language="" usedGenPackages="../../org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model">
   <foreignModel>server.ecore</foreignModel>
-  <genPackages prefix="Esmodel" basePackage="org.unicase.emfstore" disposableProviderFactory="true"
+  <genPackages prefix="Model" basePackage="org.eclipse.emf.emfstore.server" disposableProviderFactory="true"
       ecorePackage="server.ecore#/">
     <genClasses ecoreClass="server.ecore#//ProjectHistory">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ProjectHistory/projectId"/>
@@ -36,7 +38,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ClientVersionInfo/name"/>
     </genClasses>
     <genClasses ecoreClass="server.ecore#//FileIdentifier"/>
-    <nestedGenPackages prefix="Versioning" basePackage="org.unicase.emfstore.esmodel"
+    <nestedGenPackages prefix="Versioning" basePackage="org.eclipse.emf.emfstore.server.model"
         disposableProviderFactory="true" ecorePackage="server.ecore#//versioning">
       <genClasses ecoreClass="server.ecore#//versioning/TagVersionSpec">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/TagVersionSpec/name"/>
@@ -94,7 +96,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/VersionProperty/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/VersionProperty/value"/>
       </genClasses>
-      <nestedGenPackages prefix="Operations" basePackage="org.unicase.emfstore.esmodel.versioning"
+      <nestedGenPackages prefix="Operations" basePackage="org.eclipse.emf.emfstore.server.model.versioning"
           disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/operations">
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="server.ecore#//versioning/operations/ContainmentType">
           <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/operations/ContainmentType/NONE"/>
@@ -190,12 +192,12 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference server.ecore#//versioning/operations/EObjectToModelElementIdMap/value"/>
         </genClasses>
-        <nestedGenPackages prefix="Semantic" basePackage="org.unicase.emfstore.esmodel.versioning.operations"
+        <nestedGenPackages prefix="Semantic" basePackage="org.eclipse.emf.emfstore.server.model.versioning.operations"
             disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/operations/semantic">
           <genClasses image="false" ecoreClass="server.ecore#//versioning/operations/semantic/SemanticCompositeOperation"/>
         </nestedGenPackages>
       </nestedGenPackages>
-      <nestedGenPackages prefix="Events" basePackage="org.unicase.emfstore.esmodel.versioning"
+      <nestedGenPackages prefix="Events" basePackage="org.eclipse.emf.emfstore.server.model.versioning"
           disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/events">
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="server.ecore#//versioning/events/MergeChoiceSelection">
           <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeChoiceSelection/Mine"/>
@@ -327,7 +329,7 @@
         <genClasses ecoreClass="server.ecore#//versioning/events/MergeGlobalChoiceEvent">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeGlobalChoiceEvent/selection"/>
         </genClasses>
-        <nestedGenPackages prefix="Server" basePackage="org.unicase.emfstore.esmodel.versioning.events"
+        <nestedGenPackages prefix="Server" basePackage="org.eclipse.emf.emfstore.server.model.versioning.events"
             disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/events/server">
           <genClasses image="false" ecoreClass="server.ecore#//versioning/events/server/ServerEvent"/>
           <genClasses image="false" ecoreClass="server.ecore#//versioning/events/server/ServerProjectEvent">
@@ -339,7 +341,7 @@
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"
+    <nestedGenPackages prefix="Accesscontrol" basePackage="org.eclipse.emf.emfstore.server.model"
         disposableProviderFactory="true" ecorePackage="server.ecore#//accesscontrol">
       <genClasses ecoreClass="server.ecore#//accesscontrol/ACUser">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACUser/firstName"/>
@@ -363,7 +365,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/OrgUnitProperty/value"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//accesscontrol/OrgUnitProperty/project"/>
       </genClasses>
-      <nestedGenPackages prefix="Roles" basePackage="org.unicase.emfstore.esmodel.accesscontrol"
+      <nestedGenPackages prefix="Roles" basePackage="org.eclipse.emf.emfstore.server.model.accesscontrol"
           disposableProviderFactory="true" ecorePackage="server.ecore#//accesscontrol/roles">
         <genClasses image="false" ecoreClass="server.ecore#//accesscontrol/roles/Role">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -394,7 +396,7 @@
         <genClasses ecoreClass="server.ecore#//accesscontrol/roles/ServerAdmin"/>
       </nestedGenPackages>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Notification" basePackage="org.unicase.emfstore.esmodel"
+    <nestedGenPackages prefix="Notification" basePackage="org.eclipse.emf.emfstore.server.model"
         disposableProviderFactory="true" ecorePackage="server.ecore#//notification">
       <genClasses ecoreClass="server.ecore#//notification/ESNotification">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/name"/>
@@ -410,8 +412,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//notification/ESNotification/relatedOperations"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Url" basePackage="org.unicase.emfstore.esmodel" disposableProviderFactory="true"
-        ecorePackage="server.ecore#//url">
+    <nestedGenPackages prefix="Url" basePackage="org.eclipse.emf.emfstore.server.model"
+        disposableProviderFactory="true" ecorePackage="server.ecore#//url">
       <genClasses ecoreClass="server.ecore#//url/ServerUrl">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ServerUrl/hostName"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ServerUrl/port"/>
