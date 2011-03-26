@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
@@ -63,7 +63,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.UNIQUE_IDENTIFIER;
+		return ModelPackage.Literals.UNIQUE_IDENTIFIER;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.UNIQUE_IDENTIFIER__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNIQUE_IDENTIFIER__ID, oldId, id));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
 			return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -105,7 +105,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
 			setId((String) newValue);
 			return;
 		}
@@ -119,7 +119,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
 			setId(ID_EDEFAULT);
 			return;
 		}
@@ -133,7 +133,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.UNIQUE_IDENTIFIER__ID:
+		case ModelPackage.UNIQUE_IDENTIFIER__ID:
 			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);

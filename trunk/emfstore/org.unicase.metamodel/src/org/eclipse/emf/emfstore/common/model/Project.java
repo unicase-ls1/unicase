@@ -18,30 +18,32 @@ import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.eclipse.emf.emfstore.common.model.Project#getModelElements <em>Model Elements</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.common.model.Project#getCutElements <em>Cut Elements</em>}</li>
- *             </ul>
- *             </p>
- * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getProject()
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.emf.emfstore.common.model.Project#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.common.model.Project#getCutElements <em>Cut Elements</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getProject()
  * @model
  * @generated
  */
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
-	 * type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getProject_ModelElements()
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
 	 */
@@ -58,16 +60,16 @@ public interface Project extends EObject, IAdaptable {
 	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap);
 
 	/**
-	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cut Elements</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Cut Elements</em>' containment reference list.
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getProject_CutElements()
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getProject_CutElements()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */

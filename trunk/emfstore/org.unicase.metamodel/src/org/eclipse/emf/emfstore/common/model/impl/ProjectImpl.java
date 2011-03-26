@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.emfstore.common.model.MetamodelFactory;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeNotifier;
@@ -123,7 +123,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.PROJECT;
+		return ModelPackage.Literals.PROJECT;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public EList<EObject> getModelElements() {
 		if (modelElements == null) {
 			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
-				MetamodelPackage.PROJECT__MODEL_ELEMENTS);
+				ModelPackage.PROJECT__MODEL_ELEMENTS);
 		}
 		return modelElements;
 	}
@@ -147,7 +147,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	public EList<EObject> getCutElements() {
 		if (cutElements == null) {
 			cutElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
-				MetamodelPackage.PROJECT__CUT_ELEMENTS);
+				ModelPackage.PROJECT__CUT_ELEMENTS);
 		}
 		return cutElements;
 	}
@@ -259,9 +259,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case ModelPackage.PROJECT__CUT_ELEMENTS:
 			return ((InternalEList<?>) getCutElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -275,9 +275,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			return getModelElements();
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case ModelPackage.PROJECT__CUT_ELEMENTS:
 			return getCutElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -292,11 +292,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			getModelElements().clear();
 			getModelElements().addAll((Collection<? extends EObject>) newValue);
 			return;
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case ModelPackage.PROJECT__CUT_ELEMENTS:
 			getCutElements().clear();
 			getCutElements().addAll((Collection<? extends EObject>) newValue);
 			return;
@@ -312,10 +312,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			getModelElements().clear();
 			return;
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case ModelPackage.PROJECT__CUT_ELEMENTS:
 			getCutElements().clear();
 			return;
 		}
@@ -330,9 +330,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MetamodelPackage.PROJECT__MODEL_ELEMENTS:
+		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
-		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
+		case ModelPackage.PROJECT__CUT_ELEMENTS:
 			return cutElements != null && !cutElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -491,7 +491,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		if (id == null) {
 			// if not, create a new ID
-			id = MetamodelFactory.eINSTANCE.createModelElementId();
+			id = ModelFactory.eINSTANCE.createModelElementId();
 		} else {
 			removableIds.add(id);
 		}
@@ -506,7 +506,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 			if (childId == null) {
 				// if not, create a new ID
-				childId = MetamodelFactory.eINSTANCE.createModelElementId();
+				childId = ModelFactory.eINSTANCE.createModelElementId();
 			} else {
 				removableIds.add(childId);
 			}
@@ -725,7 +725,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 				XMIResource xmiResource = (XMIResource) resource;
 				xmiResource.load(null);
-				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 
 				String id = xmiResource.getID(eObject);
 				if (id != null) {
@@ -781,7 +781,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#addModelElement(org.eclipse.emf.ecore.EObject, java.util.Collection)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#addModelElement(org.eclipse.emf.ecore.EObject,
+	 *      java.util.Collection)
 	 */
 	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
@@ -822,14 +823,14 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			}
 			String id = xmiResource.getID(modelElement);
 			if (id != null) {
-				ModelElementId objId = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId objId = ModelFactory.eINSTANCE.createModelElementId();
 				objId.setId(id);
 				return objId;
 			}
 		}
 
 		// create new ID
-		return MetamodelFactory.eINSTANCE.createModelElementId();
+		return ModelFactory.eINSTANCE.createModelElementId();
 	}
 
 	/**

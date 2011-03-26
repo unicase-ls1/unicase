@@ -10,56 +10,62 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.common.model.MetamodelFactory;
-import org.eclipse.emf.emfstore.common.model.MetamodelPackage;
+import org.eclipse.emf.emfstore.common.model.*;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFactory {
+public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MetamodelFactory init() {
+	public static ModelFactory init() {
 		try {
-			MetamodelFactory theMetamodelFactory = (MetamodelFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/metamodel");
-			if (theMetamodelFactory != null) {
-				return theMetamodelFactory;
+			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://eclipse.org/emf/emfstore/common/model");
+			if (theModelFactory != null) {
+				return theModelFactory;
 			}
 		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new MetamodelFactoryImpl();
+		return new ModelFactoryImpl();
 	}
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelFactoryImpl() {
+	public ModelFactoryImpl() {
 		super();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case MetamodelPackage.PROJECT:
+		case ModelPackage.PROJECT:
 			return createProject();
-		case MetamodelPackage.MODEL_ELEMENT_ID:
+		case ModelPackage.MODEL_ELEMENT_ID:
 			return createModelElementId();
-		case MetamodelPackage.MODEL_VERSION:
+		case ModelPackage.MODEL_VERSION:
 			return createModelVersion();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -67,7 +73,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Project createProject() {
@@ -76,7 +83,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElementId createModelElementId() {
@@ -85,7 +93,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelVersion createModelVersion() {
@@ -94,31 +103,23 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	// public ModelElementEObjectWrapper createModelElementEObjectWrapper() {
-	// ModelElementEObjectWrapperImpl modelElementEObjectWrapper = new ModelElementEObjectWrapperImpl();
-	// return modelElementEObjectWrapper;
-	// }
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MetamodelPackage getMetamodelPackage() {
-		return (MetamodelPackage) getEPackage();
+	public ModelPackage getModelPackage() {
+		return (ModelPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static MetamodelPackage getPackage() {
-		return MetamodelPackage.eINSTANCE;
+	public static ModelPackage getPackage() {
+		return ModelPackage.eINSTANCE;
 	}
 
-} // MetamodelFactoryImpl
+} //ModelFactoryImpl

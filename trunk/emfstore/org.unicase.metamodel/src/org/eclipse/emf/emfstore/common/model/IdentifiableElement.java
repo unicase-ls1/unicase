@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getIdentifiableElement()
+ * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getIdentifiableElement()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface IdentifiableElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
-	 * @see org.eclipse.emf.emfstore.common.model.MetamodelPackage#getIdentifiableElement_Identifier()
+	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getIdentifiableElement_Identifier()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
