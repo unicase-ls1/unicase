@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.configuration.ConfigurationPackage;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.EMFStoreLocation;
 import org.unicase.emfstore.jdt.configuration.Entry;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EMF Store JDT Configuration</b></em>'. <!--

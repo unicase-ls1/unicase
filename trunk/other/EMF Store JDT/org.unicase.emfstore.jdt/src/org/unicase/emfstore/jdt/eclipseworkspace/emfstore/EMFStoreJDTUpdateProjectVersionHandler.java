@@ -7,9 +7,9 @@ package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.commands.UpdateProjectVersionHandler;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 
 /**
  * You can update to a certain project version. This is implemented by the super class. But the user shouldn't see a

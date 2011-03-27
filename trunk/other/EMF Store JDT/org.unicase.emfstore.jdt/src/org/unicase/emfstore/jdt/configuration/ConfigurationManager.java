@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Manager class to handle with EMFStoreJDTConfigurations. A EMFStoreJDTConfiguration is only responsible for a project.

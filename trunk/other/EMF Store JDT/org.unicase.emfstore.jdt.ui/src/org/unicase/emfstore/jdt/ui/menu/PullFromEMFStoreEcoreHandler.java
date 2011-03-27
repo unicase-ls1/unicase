@@ -18,6 +18,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,7 +30,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
@@ -35,10 +39,6 @@ import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.ui.dialog.JDTModelElementSelectDialog;
 import org.unicase.emfstore.jdt.ui.exception.NoProjectSelectedException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
 
 /**
  * The handler that pushes a file to an EMF Store. This handler is independent from the used team provider.

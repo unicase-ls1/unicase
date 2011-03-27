@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -23,7 +24,6 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Helper that finds out the right and adapted editor reference.

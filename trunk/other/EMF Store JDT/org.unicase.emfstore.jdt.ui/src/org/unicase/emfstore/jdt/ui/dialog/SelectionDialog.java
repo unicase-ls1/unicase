@@ -5,6 +5,12 @@
  */
 package org.unicase.emfstore.jdt.ui.dialog;
 
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
+import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
+import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserViewerSorter;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -21,28 +27,20 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.menus.IMenuService;
-import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.ui.exception.NoProjectSelectedException;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
-import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
-import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserViewerSorter;
 
 /**
- * The SelectionDialog provides the same information as the "EmfStore Browser" view.
- * But it is represented in a dialog. This dialog is used to select a target project
- * where the chosen EObject should be pushed.
+ * The SelectionDialog provides the same information as the "EmfStore Browser" view. But it is represented in a dialog.
+ * This dialog is used to select a target project where the chosen EObject should be pushed.
  * 
  * @author Adrian Staudt
- *
  */
 public class SelectionDialog extends Dialog {
 
 	private TreeViewer viewer;
 	private ProjectInfo finallyChosenProjectInfo;
 	private ServerInfo finallyChosenServerInfo;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -51,24 +49,26 @@ public class SelectionDialog extends Dialog {
 	public SelectionDialog(Shell parentShell) {
 		super(parentShell);
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	protected Control createDialogArea(final Composite parent) {
 		final Composite composite = (Composite) super.createDialogArea(parent);
 		composite.getShell().setSize(composite.getShell().computeSize(400, 200));
 		composite.setLayout(new FillLayout());
 
 		viewer = new TreeViewer(composite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL);
-		viewer.setContentProvider( new ESBrowserContentProvider() );
+		viewer.setContentProvider(new ESBrowserContentProvider());
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new ESBrowserLabelProvider(), decoratorManager.getLabelDecorator()));
+		viewer.setLabelProvider(new DecoratingLabelProvider(new ESBrowserLabelProvider(), decoratorManager
+			.getLabelDecorator()));
 		viewer.setSorter(new ESBrowserViewerSorter());
 		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
-		
+
 		final MenuManager menuMgr = new MenuManager();
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench().getService(IMenuService.class);
 		menuService.populateContributionManager(menuMgr, "popup:org.unicase.ui.repository.views.RepositoryView");
@@ -77,50 +77,53 @@ public class SelectionDialog extends Dialog {
 		parent.pack();
 		return composite;
 	}
-	
 
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, true);
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
 	 */
+	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setText("EMF Store Browser");
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#isResizable()
 	 */
+	@Override
 	protected boolean isResizable() {
 		return true;
 	}
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 */
+	@Override
 	protected void okPressed() {
 		saveSelection();
 		super.okPressed();
 	}
-	
+
 	/**
-	 * If the Dialog is closed, the SWT objects get disposed, and it is not longer possible to
-	 * access these fields. Therefore user entered input must be saved into other objects.
+	 * If the Dialog is closed, the SWT objects get disposed, and it is not longer possible to access these fields.
+	 * Therefore user entered input must be saved into other objects.
 	 */
 	private void saveSelection() {
 		ISelection selection = viewer.getSelection();
@@ -139,7 +142,7 @@ public class SelectionDialog extends Dialog {
 			}
 		}
 	}
-	
+
 	/**
 	 * Retrieves the selected ServerInfo from the SelectionDialog.
 	 * 
@@ -147,20 +150,20 @@ public class SelectionDialog extends Dialog {
 	 * @throws NoProjectSelectedException if no project has been selected in the dialog
 	 */
 	public ServerInfo getSelectedServerInfo() throws NoProjectSelectedException {
-		if( finallyChosenServerInfo == null ) {
+		if (finallyChosenServerInfo == null) {
 			throw new NoProjectSelectedException();
 		}
 		return finallyChosenServerInfo;
 	}
-	
+
 	/**
 	 * Retrieves the selected ProjectInfo from the SelectionDialog.
 	 * 
 	 * @return the selected ProjectInfo
 	 * @throws NoProjectSelectedException if no project has been selected in the dialog
 	 */
-	public ProjectInfo getSelectedProjectInfo() throws NoProjectSelectedException{
-		if( finallyChosenProjectInfo == null ) {
+	public ProjectInfo getSelectedProjectInfo() throws NoProjectSelectedException {
+		if (finallyChosenProjectInfo == null) {
 			throw new NoProjectSelectedException();
 		}
 		return finallyChosenProjectInfo;

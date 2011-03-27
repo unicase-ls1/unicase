@@ -10,9 +10,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Common handler, that provides all handler the possibility to refresh the UI.

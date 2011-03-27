@@ -5,13 +5,13 @@
  */
 package org.unicase.emfstore.jdt.eclipseworkspace;
 
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.unicase.emfstore.jdt.configuration.EMFStoreLocation;
 import org.unicase.emfstore.jdt.configuration.EObjectLocation;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
-import org.unicase.workspace.ServerInfo;
 
 /**
  * Parses an URI to an structured URI, so that it is possible to access the several parts directly by invoking a method
@@ -164,10 +164,10 @@ public class StructuredEMFStoreURI {
 	 * @return An ProjectInfo.
 	 */
 	public ProjectInfo getProjectInfo() {
-		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
+		ProjectId projectId = ModelFactory.eINSTANCE.createProjectId();
 		projectId.setId(this.projectID);
 
-		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+		ProjectInfo projectInfo = ModelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setProjectId(projectId);
 
 		return projectInfo;

@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -23,7 +24,6 @@ import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.ui.editor.EditorHelper;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * The handler that rejects a file from an EMF Store. This handler is independent from the used team provider.

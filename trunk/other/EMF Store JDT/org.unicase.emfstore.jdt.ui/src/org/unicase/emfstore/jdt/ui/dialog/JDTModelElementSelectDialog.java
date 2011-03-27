@@ -5,9 +5,9 @@
  */
 package org.unicase.emfstore.jdt.ui.dialog;
 
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.navigator.TreeContentProvider;
 import org.unicase.ui.navigator.TreeLabelProvider;
 

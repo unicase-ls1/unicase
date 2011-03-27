@@ -5,9 +5,9 @@
  */
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.commands.CommitProjectHandler;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.ui.commands.CommitProjectHandler;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 
 /**
  * This class carries three information. The CommitProjectHandler that involved the prepare commit phase. The involved

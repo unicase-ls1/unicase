@@ -12,9 +12,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.team.core.RepositoryProvider;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Registry hat organizes all TeamSynchronizer.

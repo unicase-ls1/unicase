@@ -7,11 +7,11 @@ package org.unicase.emfstore.jdt;
 
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.unicase.emfstore.jdt.emf.resource.EMFStoreResourceFactoryRegistry;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.changeTracking.commands.EMFStoreCommandStack;
 
 /**
  * The activator class controls the plug-in life cycle.

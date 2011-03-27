@@ -16,7 +16,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.unicase.emfstore.esmodel.ProjectId;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.unicase.emfstore.jdt.configuration.ConfigurationFactory;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
@@ -24,12 +30,6 @@ import org.unicase.emfstore.jdt.configuration.EMFStoreLocation;
 import org.unicase.emfstore.jdt.configuration.EObjectLocation;
 import org.unicase.emfstore.jdt.configuration.Entry;
 import org.unicase.emfstore.jdt.exception.CannotConvertToEObjectException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Utility class to add a file to an EMF Store.

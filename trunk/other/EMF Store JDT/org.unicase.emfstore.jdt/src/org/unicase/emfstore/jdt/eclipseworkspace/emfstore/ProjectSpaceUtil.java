@@ -11,19 +11,19 @@ import java.io.InputStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.CannotOpenEObjectException;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
 import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * A utility class to handle with project spaces.
@@ -85,7 +85,7 @@ public final class ProjectSpaceUtil {
 	}
 
 	private static EObject getEObject(ProjectSpace projectSpace, String eObjectID) throws EObjectNotFoundException {
-		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(eObjectID);
 
 		EObject eObject = projectSpace.getProject().getModelElement(modelElementId);
@@ -109,7 +109,7 @@ public final class ProjectSpaceUtil {
 
 			return new ByteArrayInputStream(eObjectToString.getBytes());
 
-		} catch (org.unicase.metamodel.util.SerializationException e) {
+		} catch (org.eclipse.emf.emfstore.common.model.util.SerializationException e) {
 			throw new CannotOpenEObjectException();
 		}
 	}
@@ -138,8 +138,8 @@ public final class ProjectSpaceUtil {
 		protected void doRun() {
 			ServerInfo serverInfo = EMFStoreUtil.getServerInfo(structuredEMFStoreURI);
 			try {
-				ProjectSpace projectSpace = EMFStoreUtil.getProjectSpace(serverInfo, structuredEMFStoreURI
-					.getProjectInfo());
+				ProjectSpace projectSpace = EMFStoreUtil.getProjectSpace(serverInfo,
+					structuredEMFStoreURI.getProjectInfo());
 				EObject eObject = ProjectSpaceUtil.getEObject(structuredEMFStoreURI);
 				Project project = projectSpace.getProject();
 				project.deleteModelElement(eObject);

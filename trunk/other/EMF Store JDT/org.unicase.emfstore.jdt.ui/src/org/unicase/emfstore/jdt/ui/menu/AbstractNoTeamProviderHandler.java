@@ -12,7 +12,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
@@ -21,9 +24,6 @@ import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
 
 /**
  * An abstract handler that provides some helper classes for the handler that has to deal if no suitable team provider
