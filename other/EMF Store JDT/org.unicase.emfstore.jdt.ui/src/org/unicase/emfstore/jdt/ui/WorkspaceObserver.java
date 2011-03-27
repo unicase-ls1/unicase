@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.TeamSynchronizerRegistry;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
@@ -29,7 +30,6 @@ import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * The available team provider offers to insufficient extension points. It is not possible to get be directly informed

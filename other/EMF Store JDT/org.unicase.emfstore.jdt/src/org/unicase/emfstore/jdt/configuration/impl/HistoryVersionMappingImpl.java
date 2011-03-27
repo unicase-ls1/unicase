@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.configuration.ConfigurationPackage;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMapping;
 import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>History Version Mapping</b></em>'. <!--

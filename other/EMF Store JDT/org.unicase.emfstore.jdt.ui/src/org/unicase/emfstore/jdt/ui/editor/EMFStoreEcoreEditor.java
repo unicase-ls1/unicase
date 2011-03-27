@@ -15,11 +15,11 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.unicase.emfstore.jdt.emf.resource.EMFStoreResourceSet;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Modified EcoreEditor which adapts the original EcoreEditor to be able to load the content from the EMFStore. For that

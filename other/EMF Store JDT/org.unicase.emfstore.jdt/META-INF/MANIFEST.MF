@@ -17,6 +17,6 @@ Export-Package: org.unicase.emfstore.jdt,
  org.unicase.emfstore.jdt.exception
 Require-Bundle: org.eclipse.team.core,
  org.eclipse.ui,
- org.unicase.workspace.ui
+ org.eclipse.emf.emfstore.client.ui;bundle-version="0.7.3"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.emfstore.jdt.Activator

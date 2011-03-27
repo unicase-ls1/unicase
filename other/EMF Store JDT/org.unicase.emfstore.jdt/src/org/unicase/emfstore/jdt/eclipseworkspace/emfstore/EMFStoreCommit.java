@@ -17,8 +17,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.CommitCanceledException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoLocalChangesException;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.ui.commands.CommitProjectHandler;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
@@ -29,13 +36,6 @@ import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CommitCanceledException;
-import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.ui.commands.CommitProjectHandler;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Helper to be able to commit the involved ProjectSpaces dependent from the selected resources.

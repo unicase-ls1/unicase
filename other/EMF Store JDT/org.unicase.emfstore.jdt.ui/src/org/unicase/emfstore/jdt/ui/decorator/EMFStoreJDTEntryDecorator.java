@@ -6,6 +6,10 @@
 package org.unicase.emfstore.jdt.ui.decorator;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -28,10 +32,6 @@ import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.NoSuitableTeamSynchronizerException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * Decorator to show visually to the user for each resource if it is pushed or not.
@@ -138,7 +138,7 @@ public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightwe
 	private void decoratePrefix(ProjectSpace projectSpace, Entry entry) {
 		StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
 		String eObjectStringID = structuredEMFStoreURI.getEObjectID();
-		ModelElementId eObjectID = MetamodelFactory.eINSTANCE.createModelElementId();
+		ModelElementId eObjectID = ModelFactory.eINSTANCE.createModelElementId();
 		eObjectID.setId(eObjectStringID);
 
 		boolean modelElementDirty = projectSpace.getModifiedModelElementsCache().isModelElementDirty(eObjectID);

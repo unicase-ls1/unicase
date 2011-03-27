@@ -11,11 +11,11 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.unicase.emfstore.jdt.emf.resource.EMFStoreResourceSet;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Modified GenModelEditor which adapts the original GenModelEditor to be able to load the content from the EMFStore.
