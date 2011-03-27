@@ -41,7 +41,7 @@ public final class ServerConfiguration {
 	/**
 	 * Constant for the Default Resource Storage.
 	 */
-	public static final String RESOURCE_STORAGE_DEFAULT = "org.unicase.emfstore.storage.XMLStorage";
+	public static final String RESOURCE_STORAGE_DEFAULT = "org.eclipse.emf.emfstore.server.storage.XMLStorage";
 
 	/**
 	 * RMI encryption property, possible values are true and false.
@@ -245,9 +245,9 @@ public final class ServerConfiguration {
 	 * Sets the level of validation. The level is set via bitmask, use the values
 	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#RESOLVEALL},
 	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#MODELELEMENTID} and
-	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#PROJECTGENERATION}. E.g.: If you want to resolve all
-	 * elements and check use the modelelement id validation, you have to set the level to <code>1 | 2</code>, which is
-	 * 3.
+	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#PROJECTGENERATION}. E.g.: If you want to resolve
+	 * all elements and check use the modelelement id validation, you have to set the level to <code>1 | 2</code>, which
+	 * is 3.
 	 */
 	public static final String VALIDATION_LEVEL = "emfstore.validation.level";
 
