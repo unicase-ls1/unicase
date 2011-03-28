@@ -1,3 +1,15 @@
 This wiki page contains various tutorials and documentation for UNICASE development and certain features. 
 
-* [AnalysisFramework How to use and extend the empirical project analysis framework provided by UNICASE.]
+How Tos for Modeling:
+ * [UNICASE_Diagram_Editor_Document How to create a custom diagram editor in UNICASE based on GMF]<br>
+ * [Generating_code_from_UNICASE_class_model How to create a custom model/generate code from a UNICASE class model]
+ * [Editor_hints_guidelines How to change the attribute layout in MEEditor - a.k.a Editor Hints]
+ * [Design_Model_Element How to change the icon and label of a model element]
+ * [Validation_rule_implementation How to implement a validation rule]
+ * [Copyright_text How to get rid of the $Id$ in generated copyright text]
+
+
+Others (including UNICASE provided features and frameworks):
+ * [AnalysisFramework How to use and extend the empirical project analysis framework provided by UNICASE]
+ * [Eclipse_Configuration_for_RAP Eclipse Configuration for RAP]
+ * [UI_Test_Cases UI Testing]
