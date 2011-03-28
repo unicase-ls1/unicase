@@ -14,7 +14,7 @@ How Tos:
  * [Creating_keystores_for_encryption How to creating keystores for EMFStore]
  * [Use_External_Library How to use an external library]
  * [Direct_URLs Search Wiki Pages and Upload Files to Wiki]
- * [AnalysisFramework How to use the analysis framework to perform an empirical study]
+
 
 Additional information:
  * [Deployement_Environment_Troubleshooting Development Environment Troubleshooting]
