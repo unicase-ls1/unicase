@@ -1,5 +1,3 @@
 This wiki page contains various tutorials and documentation for UNICASE development and certain features. 
 
-* [Generating_code_from_UNICASE_class_model How to create an EMF model project and generate model code.]
-
 * [AnalysisFramework How to use and extend the empirical project analysis framework provided by UNICASE.]
