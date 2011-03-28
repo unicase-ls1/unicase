@@ -43,7 +43,7 @@ General Content:
  * [BuildReleaseDeploy Build, Release and Deploy]
  * [Process]
  * [Mailinglist Mailinglist and Calendar]
- * [Tutorials_and_Documentation Tutorials and Documentation]
+ * [Tutorials_and_Documentation Other Tutorials and Documentation]
  * [Video_Tutorials Video Tutorials]
  * [Links_and_References Links and References]
  * [FAQ FAQ]
