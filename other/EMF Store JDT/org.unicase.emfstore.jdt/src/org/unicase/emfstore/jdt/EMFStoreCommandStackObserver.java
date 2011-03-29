@@ -43,7 +43,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
+	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
 	 *      java.lang.Exception)
 	 */
 	public void commandFailed(Command command, Exception exception) {
@@ -53,7 +53,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
+	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandStarted(Command command) {
 		// uninteresting
@@ -62,7 +62,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
+	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
 		Collection<?> affectedObjects = command.getAffectedObjects();
