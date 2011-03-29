@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.emfstore" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.emfstore.server" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.unicase.emfstore" id="poststartuplistener" name="PostStartupListener"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.server" id="org.eclipse.emf.emfstore.server.authenticationfactory" name="Authentication Factory"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,8 +17,8 @@
          </appInfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="listener"/>
+         <sequence>
+            <element ref="factory"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,7 +47,7 @@
       </complexType>
    </element>
 
-   <element name="listener">
+   <element name="factory">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
@@ -55,15 +55,8 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.emfstore.startup.PostStartupListener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.server.accesscontrol.authentication.factory.AuthenticationControlFactory"/>
                </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
             </annotation>
          </attribute>
       </complexType>

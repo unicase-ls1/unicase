@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="org.unicase.emfstore.startuplistener" name="StartupListener" schema="schema/startuplistener.exsd"/>
-   <extension-point id="org.unicase.emfstore.poststartuplistener" name="PostStartupListener" schema="schema/poststartuplistener.exsd"/>
-   <extension-point id="org.unicase.emfstore.authenticationfactory" name="Authentication Factory" schema="schema/authenticationfactory.exsd"/>
-   <extension-point id="locationprovider" name="Location Provider" schema="schema/locationprovider.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.server.startuplistener" name="StartupListener" schema="schema/org.eclipse.emf.emfstore.server.startuplistener.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.server.poststartuplistener" name="PostStartupListener" schema="schema/org.eclipse.emf.emfstore.server.poststartuplistener.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.server.authenticationfactory" name="Authentication Factory" schema="schema/org.eclipse.emf.emfstore.server.authenticationfactory.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.server.locationprovider" name="Location Provider" schema="schema/org.eclipse.emf.emfstore.server.locationprovider.exsd"/>
    <extension
          id="server"
          name="EMFStore server"
