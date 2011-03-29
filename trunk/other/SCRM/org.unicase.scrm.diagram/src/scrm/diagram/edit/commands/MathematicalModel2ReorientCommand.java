@@ -74,9 +74,9 @@ public class MathematicalModel2ReorientCommand extends EditElementCommand {
 		}
 		MathematicalModel container = (MathematicalModel) getLink()
 				.eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistMathematicalModel_4010(container, getNewSource(),
-						target);
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistMathematicalModel_4010(container, getLink(),
+						getNewSource(), target);
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class MathematicalModel2ReorientCommand extends EditElementCommand {
 		}
 		MathematicalModel container = (MathematicalModel) getLink()
 				.eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistMathematicalModel_4010(container, source,
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistMathematicalModel_4010(container, getLink(), source,
 						getNewTarget());
 	}
 

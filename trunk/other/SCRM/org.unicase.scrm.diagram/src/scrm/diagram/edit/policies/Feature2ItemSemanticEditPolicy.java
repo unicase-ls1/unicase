@@ -93,12 +93,12 @@ public class Feature2ItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
-			return getGEFWrapper(new FeatureConstraintsCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
-			return getGEFWrapper(new FeatureDependenciesCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureDependenciesCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
 				.getElementType()) {

@@ -74,7 +74,7 @@ public class MathematicalModelNumericalMethodsReorientCommand extends
 		if (!(oldEnd instanceof NumericalMethod && newEnd instanceof MathematicalModel)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistMathematicalModelNumericalMethods_4011(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class MathematicalModelNumericalMethodsReorientCommand extends
 		if (!(oldEnd instanceof NumericalMethod && newEnd instanceof NumericalMethod)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistMathematicalModelNumericalMethods_4011(getOldSource(),
 						getNewTarget());
 	}

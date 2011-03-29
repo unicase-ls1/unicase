@@ -214,7 +214,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Scrm"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4006,4007,4008,4004,4010,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4006,4041,4008,4004,4010,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
       </viewProvider>
    </extension>
 
@@ -229,10 +229,10 @@
             <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4005,4006,4007,4008,4004,4010,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
+            <method name="getType()" value="4005,4006,4041,4008,4004,4010,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5019,5001,5002,5004,5005,5006,5007,5008,5009,5010,5011,5012,5013,5014,5015,5016,5017,5018"/>
+            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5010,5036,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5014,5045,5015,5046,5016,5047,5017,5048,5018,5049"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -487,11 +487,11 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
          <specializationType
-               id="org.unicase.scrm.diagram.ScientificProblemSolvingMethod_4007"
-               name="%metatype.name.ScientificProblemSolvingMethod_4007"
+               id="org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"
+               name="%metatype.name.ScientificProblemSolvingMethods_4041"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4007"/>
+            <param name="semanticHint" value="4041"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
@@ -699,7 +699,7 @@
          <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2022"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificKnowledgeRequirements_4005"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemRepresentingModel_4006"/>
-         <elementType ref="org.unicase.scrm.diagram.ScientificProblemSolvingMethod_4007"/>
+         <elementType ref="org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemInfluencedFeature_4008"/>
          <elementType ref="org.unicase.scrm.diagram.MathematicalModel_4004"/>
          <elementType ref="org.unicase.scrm.diagram.MathematicalModel_4010"/>

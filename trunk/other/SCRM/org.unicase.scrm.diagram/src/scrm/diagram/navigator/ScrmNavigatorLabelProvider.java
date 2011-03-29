@@ -17,51 +17,38 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 import scrm.SCRMDiagram;
-import scrm.diagram.edit.parts.AssumptionDescriptionNameEditPart;
+import scrm.diagram.edit.parts.*;
 import scrm.diagram.edit.parts.AssumptionEditPart;
-import scrm.diagram.edit.parts.ConstraintDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ConstraintEditPart;
-import scrm.diagram.edit.parts.DataDefinitionDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataDefinitionEditPart;
-import scrm.diagram.edit.parts.DataFlowDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
-import scrm.diagram.edit.parts.DataHandlingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataHandlingEditPart;
-import scrm.diagram.edit.parts.ErrorHandlingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
 import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
-import scrm.diagram.edit.parts.FeatureDescriptionNameEditPart;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.HardwareDescriptionNameEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
-import scrm.diagram.edit.parts.InputDataReadingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
 import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
-import scrm.diagram.edit.parts.MathematicalModelDescriptionNameEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodDescriptionNameEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
-import scrm.diagram.edit.parts.PerformanceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
-import scrm.diagram.edit.parts.ProcessDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.ResultsOutputDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
 import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
@@ -69,12 +56,8 @@ import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemNameEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodEditPart;
-import scrm.diagram.edit.parts.SoftwareInterfaceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
-import scrm.diagram.edit.parts.StatusMonitoringDescriptionNameEditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
-import scrm.diagram.edit.parts.UserInterfaceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.edit.parts.WrappingLabel10EditPart;
 import scrm.diagram.edit.parts.WrappingLabel11EditPart;
@@ -116,13 +99,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 		ScrmDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
-				.put(
-						"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+				.put("Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 		ScrmDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
-				.put(
-						"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+				.put("Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
@@ -164,129 +145,129 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
-		case SCRMDiagramEditPart.VISUAL_ID:
+		case MathematicalModelDependenciesEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/scrm?SCRMDiagram", ScrmElementTypes.SCRMDiagram_1000); //$NON-NLS-1$
-		case ScientificProblemEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?ScientificProblem", ScrmElementTypes.ScientificProblem_2007); //$NON-NLS-1$
-		case MathematicalModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_2005); //$NON-NLS-1$
-		case NumericalMethodEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?NumericalMethod", ScrmElementTypes.NumericalMethod_2006); //$NON-NLS-1$
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?dependencies", ScrmElementTypes.MathematicalModelDependencies_4012); //$NON-NLS-1$
 		case AssumptionEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?Assumption", ScrmElementTypes.Assumption_2008); //$NON-NLS-1$
-		case FeatureEditPart.VISUAL_ID:
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_2009); //$NON-NLS-1$
-		case HardwareEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Hardware", ScrmElementTypes.Hardware_2010); //$NON-NLS-1$
-		case ConstraintEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Constraint", ScrmElementTypes.Constraint_2011); //$NON-NLS-1$
-		case UserInterfaceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?UserInterface", ScrmElementTypes.UserInterface_2012); //$NON-NLS-1$
-		case SoftwareInterfaceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?SoftwareInterface", ScrmElementTypes.SoftwareInterface_2013); //$NON-NLS-1$
-		case ProcessEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Process", ScrmElementTypes.Process_2014); //$NON-NLS-1$
-		case PerformanceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Performance", ScrmElementTypes.Performance_2015); //$NON-NLS-1$
-		case DataFlowEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataFlow", ScrmElementTypes.DataFlow_2016); //$NON-NLS-1$
-		case DataDefinitionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataDefinition", ScrmElementTypes.DataDefinition_2017); //$NON-NLS-1$
-		case InputDataReadingEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?InputDataReading", ScrmElementTypes.InputDataReading_2018); //$NON-NLS-1$
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?excludedFeatures", ScrmElementTypes.FeatureExcludedFeatures_4032); //$NON-NLS-1$
 		case DataHandlingEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?DataHandling", ScrmElementTypes.DataHandling_2019); //$NON-NLS-1$
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredInterfaces", ScrmElementTypes.FeatureRequiredInterfaces_4023); //$NON-NLS-1$
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?realizingRequirement", ScrmElementTypes.NumericalMethodRealizingRequirement_4016); //$NON-NLS-1$
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4004); //$NON-NLS-1$
+		case RequirementEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement", ScrmElementTypes.Requirement_4036); //$NON-NLS-1$
+		case PerformanceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Performance", ScrmElementTypes.Performance_2015); //$NON-NLS-1$
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?providedInterfaces", ScrmElementTypes.FeatureProvidedInterfaces_4024); //$NON-NLS-1$
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredFeatures", ScrmElementTypes.FeatureRequiredFeatures_4030); //$NON-NLS-1$
+		case ConstraintEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Constraint", ScrmElementTypes.Constraint_2011); //$NON-NLS-1$
+		case SoftwareInterfaceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?SoftwareInterface", ScrmElementTypes.SoftwareInterface_2013); //$NON-NLS-1$
+		case FeatureEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_2009); //$NON-NLS-1$
 		case ResultsOutputEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?ResultsOutput", ScrmElementTypes.ResultsOutput_2020); //$NON-NLS-1$
-		case ErrorHandlingEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?ErrorHandling", ScrmElementTypes.ErrorHandling_2021); //$NON-NLS-1$
-		case StatusMonitoringEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?StatusMonitoring", ScrmElementTypes.StatusMonitoring_2022); //$NON-NLS-1$
 		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificKnowledge?requirements", ScrmElementTypes.ScientificKnowledgeRequirements_4005); //$NON-NLS-1$
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?representingModel", ScrmElementTypes.ScientificProblemRepresentingModel_4006); //$NON-NLS-1$
-		case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
+		case ProcessEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?solvingMethod", ScrmElementTypes.ScientificProblemSolvingMethod_4007); //$NON-NLS-1$
-		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Process", ScrmElementTypes.Process_2014); //$NON-NLS-1$
+		case DataDefinitionEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?influencedFeature", ScrmElementTypes.ScientificProblemInfluencedFeature_4008); //$NON-NLS-1$
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4004); //$NON-NLS-1$
-		case MathematicalModel3EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4010); //$NON-NLS-1$
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?numericalMethods", ScrmElementTypes.MathematicalModelNumericalMethods_4011); //$NON-NLS-1$
-		case MathematicalModelDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?dependencies", ScrmElementTypes.MathematicalModelDependencies_4012); //$NON-NLS-1$
-		case NumericalMethodDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?dependencies", ScrmElementTypes.NumericalMethodDependencies_4015); //$NON-NLS-1$
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?realizingRequirement", ScrmElementTypes.NumericalMethodRealizingRequirement_4016); //$NON-NLS-1$
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?performance", ScrmElementTypes.NumericalMethodPerformance_4017); //$NON-NLS-1$
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredInterfaces", ScrmElementTypes.FeatureRequiredInterfaces_4023); //$NON-NLS-1$
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?providedInterfaces", ScrmElementTypes.FeatureProvidedInterfaces_4024); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataDefinition", ScrmElementTypes.DataDefinition_2017); //$NON-NLS-1$
 		case FeatureConstraintsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?constraints", ScrmElementTypes.FeatureConstraints_4025); //$NON-NLS-1$
-		case FeatureDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?dependencies", ScrmElementTypes.FeatureDependencies_4026); //$NON-NLS-1$
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?detailedRequirements", ScrmElementTypes.FeatureDetailedRequirements_4027); //$NON-NLS-1$
-		case Feature2EditPart.VISUAL_ID:
+		case NumericalMethodDependenciesEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_4029); //$NON-NLS-1$
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?dependencies", ScrmElementTypes.NumericalMethodDependencies_4015); //$NON-NLS-1$
+		case SCRMDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredFeatures", ScrmElementTypes.FeatureRequiredFeatures_4030); //$NON-NLS-1$
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
+					"Navigator?Diagram?http://unicase.org/model/scrm?SCRMDiagram", ScrmElementTypes.SCRMDiagram_1000); //$NON-NLS-1$
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?excludedFeatures", ScrmElementTypes.FeatureExcludedFeatures_4032); //$NON-NLS-1$
-		case RequirementEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement", ScrmElementTypes.Requirement_4036); //$NON-NLS-1$
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?solvingMethods", ScrmElementTypes.ScientificProblemSolvingMethods_4041); //$NON-NLS-1$
 		case RequirementDefiningDataEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement?definingData", ScrmElementTypes.RequirementDefiningData_4038); //$NON-NLS-1$
+		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?influencedFeature", ScrmElementTypes.ScientificProblemInfluencedFeature_4008); //$NON-NLS-1$
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?numericalMethods", ScrmElementTypes.MathematicalModelNumericalMethods_4011); //$NON-NLS-1$
+		case HardwareEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Hardware", ScrmElementTypes.Hardware_2010); //$NON-NLS-1$
+		case MathematicalModelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_2005); //$NON-NLS-1$
+		case ScientificProblemEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?ScientificProblem", ScrmElementTypes.ScientificProblem_2007); //$NON-NLS-1$
+		case StatusMonitoringEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?StatusMonitoring", ScrmElementTypes.StatusMonitoring_2022); //$NON-NLS-1$
+		case DataFlowEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataFlow", ScrmElementTypes.DataFlow_2016); //$NON-NLS-1$
+		case UserInterfaceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?UserInterface", ScrmElementTypes.UserInterface_2012); //$NON-NLS-1$
+		case MathematicalModel3EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4010); //$NON-NLS-1$
+		case FeatureDependenciesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?dependencies", ScrmElementTypes.FeatureDependencies_4026); //$NON-NLS-1$
+		case InputDataReadingEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?InputDataReading", ScrmElementTypes.InputDataReading_2018); //$NON-NLS-1$
 		case ProcessDataFlowEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/requirements?Process?dataFlow", ScrmElementTypes.ProcessDataFlow_4040); //$NON-NLS-1$
+		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?performance", ScrmElementTypes.NumericalMethodPerformance_4017); //$NON-NLS-1$
+		case NumericalMethodEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?NumericalMethod", ScrmElementTypes.NumericalMethod_2006); //$NON-NLS-1$
+		case Feature2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_4029); //$NON-NLS-1$
+		case ErrorHandlingEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?ErrorHandling", ScrmElementTypes.ErrorHandling_2021); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -339,88 +320,88 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
-		case SCRMDiagramEditPart.VISUAL_ID:
-			return getSCRMDiagram_1000Text(view);
-		case ScientificProblemEditPart.VISUAL_ID:
-			return getScientificProblem_2007Text(view);
-		case MathematicalModelEditPart.VISUAL_ID:
-			return getMathematicalModel_2005Text(view);
-		case NumericalMethodEditPart.VISUAL_ID:
-			return getNumericalMethod_2006Text(view);
+		case MathematicalModelDependenciesEditPart.VISUAL_ID:
+			return getMathematicalModelDependencies_4012Text(view);
 		case AssumptionEditPart.VISUAL_ID:
 			return getAssumption_2008Text(view);
-		case FeatureEditPart.VISUAL_ID:
-			return getFeature_2009Text(view);
-		case HardwareEditPart.VISUAL_ID:
-			return getHardware_2010Text(view);
-		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_2011Text(view);
-		case UserInterfaceEditPart.VISUAL_ID:
-			return getUserInterface_2012Text(view);
-		case SoftwareInterfaceEditPart.VISUAL_ID:
-			return getSoftwareInterface_2013Text(view);
-		case ProcessEditPart.VISUAL_ID:
-			return getProcess_2014Text(view);
-		case PerformanceEditPart.VISUAL_ID:
-			return getPerformance_2015Text(view);
-		case DataFlowEditPart.VISUAL_ID:
-			return getDataFlow_2016Text(view);
-		case DataDefinitionEditPart.VISUAL_ID:
-			return getDataDefinition_2017Text(view);
-		case InputDataReadingEditPart.VISUAL_ID:
-			return getInputDataReading_2018Text(view);
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
+			return getFeatureExcludedFeatures_4032Text(view);
 		case DataHandlingEditPart.VISUAL_ID:
 			return getDataHandling_2019Text(view);
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+			return getFeatureRequiredInterfaces_4023Text(view);
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return getNumericalMethodRealizingRequirement_4016Text(view);
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return getMathematicalModel_4004Text(view);
+		case RequirementEditPart.VISUAL_ID:
+			return getRequirement_4036Text(view);
+		case PerformanceEditPart.VISUAL_ID:
+			return getPerformance_2015Text(view);
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+			return getFeatureProvidedInterfaces_4024Text(view);
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+			return getFeatureRequiredFeatures_4030Text(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_2011Text(view);
+		case SoftwareInterfaceEditPart.VISUAL_ID:
+			return getSoftwareInterface_2013Text(view);
+		case FeatureEditPart.VISUAL_ID:
+			return getFeature_2009Text(view);
 		case ResultsOutputEditPart.VISUAL_ID:
 			return getResultsOutput_2020Text(view);
-		case ErrorHandlingEditPart.VISUAL_ID:
-			return getErrorHandling_2021Text(view);
-		case StatusMonitoringEditPart.VISUAL_ID:
-			return getStatusMonitoring_2022Text(view);
 		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
 			return getScientificKnowledgeRequirements_4005Text(view);
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return getScientificProblemRepresentingModel_4006Text(view);
-		case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
-			return getScientificProblemSolvingMethod_4007Text(view);
-		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-			return getScientificProblemInfluencedFeature_4008Text(view);
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return getMathematicalModel_4004Text(view);
-		case MathematicalModel3EditPart.VISUAL_ID:
-			return getMathematicalModel_4010Text(view);
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
-			return getMathematicalModelNumericalMethods_4011Text(view);
-		case MathematicalModelDependenciesEditPart.VISUAL_ID:
-			return getMathematicalModelDependencies_4012Text(view);
-		case NumericalMethodDependenciesEditPart.VISUAL_ID:
-			return getNumericalMethodDependencies_4015Text(view);
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getNumericalMethodRealizingRequirement_4016Text(view);
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getNumericalMethodPerformance_4017Text(view);
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-			return getFeatureRequiredInterfaces_4023Text(view);
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getFeatureProvidedInterfaces_4024Text(view);
+		case ProcessEditPart.VISUAL_ID:
+			return getProcess_2014Text(view);
+		case DataDefinitionEditPart.VISUAL_ID:
+			return getDataDefinition_2017Text(view);
 		case FeatureConstraintsEditPart.VISUAL_ID:
 			return getFeatureConstraints_4025Text(view);
-		case FeatureDependenciesEditPart.VISUAL_ID:
-			return getFeatureDependencies_4026Text(view);
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
 			return getFeatureDetailedRequirements_4027Text(view);
-		case Feature2EditPart.VISUAL_ID:
-			return getFeature_4029Text(view);
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
-			return getFeatureRequiredFeatures_4030Text(view);
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
-			return getFeatureExcludedFeatures_4032Text(view);
-		case RequirementEditPart.VISUAL_ID:
-			return getRequirement_4036Text(view);
+		case NumericalMethodDependenciesEditPart.VISUAL_ID:
+			return getNumericalMethodDependencies_4015Text(view);
+		case SCRMDiagramEditPart.VISUAL_ID:
+			return getSCRMDiagram_1000Text(view);
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return getScientificProblemSolvingMethods_4041Text(view);
 		case RequirementDefiningDataEditPart.VISUAL_ID:
 			return getRequirementDefiningData_4038Text(view);
+		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+			return getScientificProblemInfluencedFeature_4008Text(view);
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+			return getMathematicalModelNumericalMethods_4011Text(view);
+		case HardwareEditPart.VISUAL_ID:
+			return getHardware_2010Text(view);
+		case MathematicalModelEditPart.VISUAL_ID:
+			return getMathematicalModel_2005Text(view);
+		case ScientificProblemEditPart.VISUAL_ID:
+			return getScientificProblem_2007Text(view);
+		case StatusMonitoringEditPart.VISUAL_ID:
+			return getStatusMonitoring_2022Text(view);
+		case DataFlowEditPart.VISUAL_ID:
+			return getDataFlow_2016Text(view);
+		case UserInterfaceEditPart.VISUAL_ID:
+			return getUserInterface_2012Text(view);
+		case MathematicalModel3EditPart.VISUAL_ID:
+			return getMathematicalModel_4010Text(view);
+		case FeatureDependenciesEditPart.VISUAL_ID:
+			return getFeatureDependencies_4026Text(view);
+		case InputDataReadingEditPart.VISUAL_ID:
+			return getInputDataReading_2018Text(view);
 		case ProcessDataFlowEditPart.VISUAL_ID:
 			return getProcessDataFlow_4040Text(view);
+		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+			return getNumericalMethodPerformance_4017Text(view);
+		case NumericalMethodEditPart.VISUAL_ID:
+			return getNumericalMethod_2006Text(view);
+		case Feature2EditPart.VISUAL_ID:
+			return getFeature_4029Text(view);
+		case ErrorHandlingEditPart.VISUAL_ID:
+			return getErrorHandling_2021Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -463,12 +444,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getMathematicalModel_2005Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.MathematicalModel_2005,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(MathematicalModelDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.MathematicalModel_2005,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -484,12 +464,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getNumericalMethod_2006Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.NumericalMethod_2006,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(NumericalMethodDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.NumericalMethod_2006,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -508,8 +487,7 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 		IParser parser = ScrmParserProvider.getParser(
 				ScrmElementTypes.Assumption_2008,
 				view.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry
-						.getType(AssumptionDescriptionNameEditPart.VISUAL_ID));
+				ScrmVisualIDRegistry.getType(AssumptionNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -526,9 +504,9 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getFeature_2009Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.Feature_2009, view.getElement() != null ? view
-						.getElement() : view, ScrmVisualIDRegistry
-						.getType(FeatureDescriptionNameEditPart.VISUAL_ID));
+				ScrmElementTypes.Feature_2009,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry.getType(FeatureNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -547,8 +525,7 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 		IParser parser = ScrmParserProvider.getParser(
 				ScrmElementTypes.Hardware_2010,
 				view.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry
-						.getType(HardwareDescriptionNameEditPart.VISUAL_ID));
+				ScrmVisualIDRegistry.getType(HardwareNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -567,8 +544,7 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 		IParser parser = ScrmParserProvider.getParser(
 				ScrmElementTypes.Constraint_2011,
 				view.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry
-						.getType(ConstraintDescriptionNameEditPart.VISUAL_ID));
+				ScrmVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -584,12 +560,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getUserInterface_2012Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.UserInterface_2012,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(UserInterfaceDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.UserInterface_2012,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(UserInterfaceNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -605,12 +580,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getSoftwareInterface_2013Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.SoftwareInterface_2013,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(SoftwareInterfaceDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.SoftwareInterface_2013,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -627,9 +601,9 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getProcess_2014Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.Process_2014, view.getElement() != null ? view
-						.getElement() : view, ScrmVisualIDRegistry
-						.getType(ProcessDescriptionNameEditPart.VISUAL_ID));
+				ScrmElementTypes.Process_2014,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry.getType(ProcessNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -645,11 +619,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPerformance_2015Text(View view) {
-		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.Performance_2015,
-				view.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry
-						.getType(PerformanceDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider
+				.getParser(ScrmElementTypes.Performance_2015,
+						view.getElement() != null ? view.getElement() : view,
+						ScrmVisualIDRegistry
+								.getType(PerformanceNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -668,8 +642,7 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 		IParser parser = ScrmParserProvider.getParser(
 				ScrmElementTypes.DataFlow_2016,
 				view.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry
-						.getType(DataFlowDescriptionNameEditPart.VISUAL_ID));
+				ScrmVisualIDRegistry.getType(DataFlowNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -685,12 +658,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getDataDefinition_2017Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.DataDefinition_2017,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(DataDefinitionDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.DataDefinition_2017,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -706,12 +678,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getInputDataReading_2018Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.InputDataReading_2018,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(InputDataReadingDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.InputDataReading_2018,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(InputDataReadingNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -727,12 +698,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getDataHandling_2019Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.DataHandling_2019,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(DataHandlingDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.DataHandling_2019,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(DataHandlingNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -748,12 +718,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getResultsOutput_2020Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.ResultsOutput_2020,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(ResultsOutputDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.ResultsOutput_2020,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(ResultsOutputNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -769,12 +738,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getErrorHandling_2021Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.ErrorHandling_2021,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(ErrorHandlingDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.ErrorHandling_2021,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(ErrorHandlingNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -790,12 +758,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getStatusMonitoring_2022Text(View view) {
-		IParser parser = ScrmParserProvider
-				.getParser(
-						ScrmElementTypes.StatusMonitoring_2022,
-						view.getElement() != null ? view.getElement() : view,
-						ScrmVisualIDRegistry
-								.getType(StatusMonitoringDescriptionNameEditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.StatusMonitoring_2022,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry
+						.getType(StatusMonitoringNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -812,8 +779,8 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getScientificKnowledgeRequirements_4005Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.ScientificKnowledgeRequirements_4005, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.ScientificKnowledgeRequirements_4005,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -831,8 +798,8 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getScientificProblemRepresentingModel_4006Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.ScientificProblemRepresentingModel_4006, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.ScientificProblemRepresentingModel_4006,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -848,29 +815,10 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getScientificProblemSolvingMethod_4007Text(View view) {
-		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.ScientificProblemSolvingMethod_4007, view
-						.getElement() != null ? view.getElement() : view,
-				ScrmVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			ScrmDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 6005); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	private String getScientificProblemInfluencedFeature_4008Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.ScientificProblemInfluencedFeature_4008, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.ScientificProblemInfluencedFeature_4008,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -905,6 +853,25 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
+	private String getScientificProblemSolvingMethods_4041Text(View view) {
+		IParser parser = ScrmParserProvider.getParser(
+				ScrmElementTypes.ScientificProblemSolvingMethods_4041,
+				view.getElement() != null ? view.getElement() : view,
+				ScrmVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			ScrmDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 6039); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getMathematicalModel_4010Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
 				ScrmElementTypes.MathematicalModel_4010,
@@ -926,8 +893,8 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getMathematicalModelNumericalMethods_4011Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.MathematicalModelNumericalMethods_4011, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.MathematicalModelNumericalMethods_4011,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -945,8 +912,8 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getMathematicalModelDependencies_4012Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.MathematicalModelDependencies_4012, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.MathematicalModelDependencies_4012,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -964,8 +931,8 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getNumericalMethodDependencies_4015Text(View view) {
 		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.NumericalMethodDependencies_4015, view
-						.getElement() != null ? view.getElement() : view,
+				ScrmElementTypes.NumericalMethodDependencies_4015,
+				view.getElement() != null ? view.getElement() : view,
 				ScrmVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
@@ -1123,10 +1090,11 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getFeature_4029Text(View view) {
-		IParser parser = ScrmParserProvider.getParser(
-				ScrmElementTypes.Feature_4029, view.getElement() != null ? view
-						.getElement() : view, ScrmVisualIDRegistry
-						.getType(WrappingLabel17EditPart.VISUAL_ID));
+		IParser parser = ScrmParserProvider
+				.getParser(ScrmElementTypes.Feature_4029,
+						view.getElement() != null ? view.getElement() : view,
+						ScrmVisualIDRegistry
+								.getType(WrappingLabel17EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),

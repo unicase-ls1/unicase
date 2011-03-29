@@ -61,7 +61,7 @@ public class InputDataReadingItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -121,7 +121,7 @@ public class InputDataReadingItemSemanticEditPolicy extends
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
@@ -192,8 +192,8 @@ public class InputDataReadingItemSemanticEditPolicy extends
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {
@@ -224,8 +224,8 @@ public class InputDataReadingItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {

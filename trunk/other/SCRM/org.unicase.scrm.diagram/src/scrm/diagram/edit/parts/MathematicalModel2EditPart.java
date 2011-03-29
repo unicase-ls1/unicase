@@ -57,7 +57,7 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public MathematicalModel_RefinementsFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

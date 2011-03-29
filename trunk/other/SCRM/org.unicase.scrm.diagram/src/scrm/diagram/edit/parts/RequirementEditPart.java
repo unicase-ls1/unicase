@@ -58,7 +58,7 @@ public class RequirementEditPart extends ConnectionNodeEditPart implements
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class RequirementEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public Requirements_RefinementsFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

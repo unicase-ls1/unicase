@@ -548,17 +548,8 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPerformance_NumericalMethod() {
-		return (EReference)performanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getPerformance_ProblemSize() {
-		return (EAttribute)performanceEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)performanceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -707,7 +698,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		createEReference(processEClass, PROCESS__DATA_FLOW);
 
 		performanceEClass = createEClass(PERFORMANCE);
-		createEReference(performanceEClass, PERFORMANCE__NUMERICAL_METHOD);
 		createEAttribute(performanceEClass, PERFORMANCE__PROBLEM_SIZE);
 
 		dataFlowEClass = createEClass(DATA_FLOW);
@@ -775,7 +765,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEClass(iRequirementEClass, IRequirement.class, "IRequirement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIRequirement_UsedKnowledge(), theKnowledgePackage.getScientificKnowledge(), theKnowledgePackage.getScientificKnowledge_Requirements(), "usedKnowledge", null, 0, 1, IRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(interfaceEClass, Interface.class, "Interface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInterface_ProvidingFeature(), this.getFeature(), this.getFeature_ProvidedInterfaces(), "providingFeature", null, 0, 1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInterface_RequiringFeatures(), this.getFeature(), this.getFeature_RequiredInterfaces(), "requiringFeatures", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -818,7 +808,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEReference(getProcess_DataFlow(), this.getDataFlow(), this.getDataFlow_SpecifiedProcess(), "dataFlow", null, 0, 1, scrm.requirements.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(performanceEClass, Performance.class, "Performance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPerformance_NumericalMethod(), theKnowledgePackage.getNumericalMethod(), theKnowledgePackage.getNumericalMethod_Performance(), "numericalMethod", null, 0, 1, Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPerformance_ProblemSize(), theEcorePackage.getEString(), "problemSize", null, 0, 1, Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

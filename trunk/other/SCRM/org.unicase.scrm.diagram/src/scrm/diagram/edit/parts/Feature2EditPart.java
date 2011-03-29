@@ -58,7 +58,7 @@ public class Feature2EditPart extends ConnectionNodeEditPart implements
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class Feature2EditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public Feature_SubFeaturesFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

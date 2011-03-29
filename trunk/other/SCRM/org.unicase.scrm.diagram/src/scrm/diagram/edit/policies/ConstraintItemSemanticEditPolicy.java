@@ -51,7 +51,7 @@ public class ConstraintItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -144,8 +144,8 @@ public class ConstraintItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
-			return getGEFWrapper(new FeatureConstraintsCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}

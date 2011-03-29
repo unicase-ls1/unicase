@@ -44,104 +44,194 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case MathematicalModelEditPart.VISUAL_ID:
 				return new MathematicalModelEditPart(view);
 
-			case MathematicalModelDescriptionNameEditPart.VISUAL_ID:
-				return new MathematicalModelDescriptionNameEditPart(view);
+			case MathematicalModelNameEditPart.VISUAL_ID:
+				return new MathematicalModelNameEditPart(view);
+
+			case MathematicalModelDescriptionEditPart.VISUAL_ID:
+				return new MathematicalModelDescriptionEditPart(view);
+
+			case MathematicalModelTheoryEditPart.VISUAL_ID:
+				return new MathematicalModelTheoryEditPart(view);
+
+			case MathematicalModelMathematicalExpressionEditPart.VISUAL_ID:
+				return new MathematicalModelMathematicalExpressionEditPart(view);
 
 			case NumericalMethodEditPart.VISUAL_ID:
 				return new NumericalMethodEditPart(view);
 
-			case NumericalMethodDescriptionNameEditPart.VISUAL_ID:
-				return new NumericalMethodDescriptionNameEditPart(view);
+			case NumericalMethodNameEditPart.VISUAL_ID:
+				return new NumericalMethodNameEditPart(view);
+
+			case NumericalMethodDescriptionEditPart.VISUAL_ID:
+				return new NumericalMethodDescriptionEditPart(view);
+
+			case NumericalMethodTheoryEditPart.VISUAL_ID:
+				return new NumericalMethodTheoryEditPart(view);
+
+			case NumericalMethodAlgorithmEditPart.VISUAL_ID:
+				return new NumericalMethodAlgorithmEditPart(view);
 
 			case AssumptionEditPart.VISUAL_ID:
 				return new AssumptionEditPart(view);
 
-			case AssumptionDescriptionNameEditPart.VISUAL_ID:
-				return new AssumptionDescriptionNameEditPart(view);
+			case AssumptionNameEditPart.VISUAL_ID:
+				return new AssumptionNameEditPart(view);
+
+			case AssumptionDescriptionEditPart.VISUAL_ID:
+				return new AssumptionDescriptionEditPart(view);
 
 			case FeatureEditPart.VISUAL_ID:
 				return new FeatureEditPart(view);
 
-			case FeatureDescriptionNameEditPart.VISUAL_ID:
-				return new FeatureDescriptionNameEditPart(view);
+			case FeatureNameEditPart.VISUAL_ID:
+				return new FeatureNameEditPart(view);
+
+			case FeatureDescriptionEditPart.VISUAL_ID:
+				return new FeatureDescriptionEditPart(view);
 
 			case HardwareEditPart.VISUAL_ID:
 				return new HardwareEditPart(view);
 
-			case HardwareDescriptionNameEditPart.VISUAL_ID:
-				return new HardwareDescriptionNameEditPart(view);
+			case HardwareNameEditPart.VISUAL_ID:
+				return new HardwareNameEditPart(view);
+
+			case HardwareDescriptionEditPart.VISUAL_ID:
+				return new HardwareDescriptionEditPart(view);
+
+			case HardwareProcessorEditPart.VISUAL_ID:
+				return new HardwareProcessorEditPart(view);
+
+			case HardwarePlatformEditPart.VISUAL_ID:
+				return new HardwarePlatformEditPart(view);
+
+			case HardwareMemoryEditPart.VISUAL_ID:
+				return new HardwareMemoryEditPart(view);
 
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
 
-			case ConstraintDescriptionNameEditPart.VISUAL_ID:
-				return new ConstraintDescriptionNameEditPart(view);
+			case ConstraintNameEditPart.VISUAL_ID:
+				return new ConstraintNameEditPart(view);
+
+			case ConstraintDescriptionEditPart.VISUAL_ID:
+				return new ConstraintDescriptionEditPart(view);
 
 			case UserInterfaceEditPart.VISUAL_ID:
 				return new UserInterfaceEditPart(view);
 
-			case UserInterfaceDescriptionNameEditPart.VISUAL_ID:
-				return new UserInterfaceDescriptionNameEditPart(view);
+			case UserInterfaceNameEditPart.VISUAL_ID:
+				return new UserInterfaceNameEditPart(view);
+
+			case UserInterfaceDescriptionEditPart.VISUAL_ID:
+				return new UserInterfaceDescriptionEditPart(view);
 
 			case SoftwareInterfaceEditPart.VISUAL_ID:
 				return new SoftwareInterfaceEditPart(view);
 
-			case SoftwareInterfaceDescriptionNameEditPart.VISUAL_ID:
-				return new SoftwareInterfaceDescriptionNameEditPart(view);
+			case SoftwareInterfaceNameEditPart.VISUAL_ID:
+				return new SoftwareInterfaceNameEditPart(view);
+
+			case SoftwareInterfaceDescriptionEditPart.VISUAL_ID:
+				return new SoftwareInterfaceDescriptionEditPart(view);
+
+			case SoftwareInterfaceDataTypesEditPart.VISUAL_ID:
+				return new SoftwareInterfaceDataTypesEditPart(view);
 
 			case ProcessEditPart.VISUAL_ID:
 				return new ProcessEditPart(view);
 
-			case ProcessDescriptionNameEditPart.VISUAL_ID:
-				return new ProcessDescriptionNameEditPart(view);
+			case ProcessNameEditPart.VISUAL_ID:
+				return new ProcessNameEditPart(view);
+
+			case ProcessDescriptionEditPart.VISUAL_ID:
+				return new ProcessDescriptionEditPart(view);
 
 			case PerformanceEditPart.VISUAL_ID:
 				return new PerformanceEditPart(view);
 
-			case PerformanceDescriptionNameEditPart.VISUAL_ID:
-				return new PerformanceDescriptionNameEditPart(view);
+			case PerformanceNameEditPart.VISUAL_ID:
+				return new PerformanceNameEditPart(view);
+
+			case PerformanceDescriptionEditPart.VISUAL_ID:
+				return new PerformanceDescriptionEditPart(view);
+
+			case PerformanceProblemSizeEditPart.VISUAL_ID:
+				return new PerformanceProblemSizeEditPart(view);
 
 			case DataFlowEditPart.VISUAL_ID:
 				return new DataFlowEditPart(view);
 
-			case DataFlowDescriptionNameEditPart.VISUAL_ID:
-				return new DataFlowDescriptionNameEditPart(view);
+			case DataFlowNameEditPart.VISUAL_ID:
+				return new DataFlowNameEditPart(view);
+
+			case DataFlowDescriptionEditPart.VISUAL_ID:
+				return new DataFlowDescriptionEditPart(view);
 
 			case DataDefinitionEditPart.VISUAL_ID:
 				return new DataDefinitionEditPart(view);
 
-			case DataDefinitionDescriptionNameEditPart.VISUAL_ID:
-				return new DataDefinitionDescriptionNameEditPart(view);
+			case DataDefinitionNameEditPart.VISUAL_ID:
+				return new DataDefinitionNameEditPart(view);
+
+			case DataDefinitionDescriptionEditPart.VISUAL_ID:
+				return new DataDefinitionDescriptionEditPart(view);
+
+			case DataDefinitionAccuracyEditPart.VISUAL_ID:
+				return new DataDefinitionAccuracyEditPart(view);
+
+			case DataDefinitionFormatEditPart.VISUAL_ID:
+				return new DataDefinitionFormatEditPart(view);
+
+			case DataDefinitionRangeEditPart.VISUAL_ID:
+				return new DataDefinitionRangeEditPart(view);
+
+			case DataDefinitionDataTypeEditPart.VISUAL_ID:
+				return new DataDefinitionDataTypeEditPart(view);
 
 			case InputDataReadingEditPart.VISUAL_ID:
 				return new InputDataReadingEditPart(view);
 
-			case InputDataReadingDescriptionNameEditPart.VISUAL_ID:
-				return new InputDataReadingDescriptionNameEditPart(view);
+			case InputDataReadingNameEditPart.VISUAL_ID:
+				return new InputDataReadingNameEditPart(view);
+
+			case InputDataReadingDescriptionEditPart.VISUAL_ID:
+				return new InputDataReadingDescriptionEditPart(view);
 
 			case DataHandlingEditPart.VISUAL_ID:
 				return new DataHandlingEditPart(view);
 
-			case DataHandlingDescriptionNameEditPart.VISUAL_ID:
-				return new DataHandlingDescriptionNameEditPart(view);
+			case DataHandlingNameEditPart.VISUAL_ID:
+				return new DataHandlingNameEditPart(view);
+
+			case DataHandlingDescriptionEditPart.VISUAL_ID:
+				return new DataHandlingDescriptionEditPart(view);
 
 			case ResultsOutputEditPart.VISUAL_ID:
 				return new ResultsOutputEditPart(view);
 
-			case ResultsOutputDescriptionNameEditPart.VISUAL_ID:
-				return new ResultsOutputDescriptionNameEditPart(view);
+			case ResultsOutputNameEditPart.VISUAL_ID:
+				return new ResultsOutputNameEditPart(view);
+
+			case ResultsOutputDescriptionEditPart.VISUAL_ID:
+				return new ResultsOutputDescriptionEditPart(view);
 
 			case ErrorHandlingEditPart.VISUAL_ID:
 				return new ErrorHandlingEditPart(view);
 
-			case ErrorHandlingDescriptionNameEditPart.VISUAL_ID:
-				return new ErrorHandlingDescriptionNameEditPart(view);
+			case ErrorHandlingNameEditPart.VISUAL_ID:
+				return new ErrorHandlingNameEditPart(view);
+
+			case ErrorHandlingDescriptionEditPart.VISUAL_ID:
+				return new ErrorHandlingDescriptionEditPart(view);
 
 			case StatusMonitoringEditPart.VISUAL_ID:
 				return new StatusMonitoringEditPart(view);
 
-			case StatusMonitoringDescriptionNameEditPart.VISUAL_ID:
-				return new StatusMonitoringDescriptionNameEditPart(view);
+			case StatusMonitoringNameEditPart.VISUAL_ID:
+				return new StatusMonitoringNameEditPart(view);
+
+			case StatusMonitoringDescriptionEditPart.VISUAL_ID:
+				return new StatusMonitoringDescriptionEditPart(view);
 
 			case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
 				return new ScientificKnowledgeRequirementsEditPart(view);
@@ -155,8 +245,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel2EditPart.VISUAL_ID:
 				return new WrappingLabel2EditPart(view);
 
-			case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
-				return new ScientificProblemSolvingMethodEditPart(view);
+			case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+				return new ScientificProblemSolvingMethodsEditPart(view);
 
 			case WrappingLabel3EditPart.VISUAL_ID:
 				return new WrappingLabel3EditPart(view);
@@ -331,15 +421,17 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
-			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!text.getFont().isDisposed()) {
+				if (getWrapLabel().isTextWrapOn()
+						&& getWrapLabel().getText().length() > 0) {
+					rect.setSize(new Dimension(text.computeSize(rect.width,
+							SWT.DEFAULT)));
+				} else {
+					int avr = FigureUtilities.getFontMetrics(text.getFont())
+							.getAverageCharWidth();
+					rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+							SWT.DEFAULT)).expand(avr * 2, 0));
+				}
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -378,10 +470,12 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!text.getFont().isDisposed()) {
+				int avr = FigureUtilities.getFontMetrics(text.getFont())
+						.getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+						SWT.DEFAULT)).expand(avr * 2, 0));
+			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

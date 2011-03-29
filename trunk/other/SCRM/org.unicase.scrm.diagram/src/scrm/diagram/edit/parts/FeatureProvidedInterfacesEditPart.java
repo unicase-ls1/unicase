@@ -58,7 +58,7 @@ public class FeatureProvidedInterfacesEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class FeatureProvidedInterfacesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public Feature_ProvidedInterfacesFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

@@ -71,7 +71,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RequirementsPackage.INTERFACE: return createInterface();
 			case RequirementsPackage.FEATURE: return createFeature();
 			case RequirementsPackage.HARDWARE: return createHardware();
 			case RequirementsPackage.CONSTRAINT: return createConstraint();
@@ -85,16 +84,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Interface createInterface() {
-		InterfaceImpl interface_ = new InterfaceImpl();
-		return interface_;
 	}
 
 	/**

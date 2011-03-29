@@ -1,6 +1,7 @@
 package scrm.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -28,7 +29,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
 import scrm.diagram.edit.policies.ScientificProblemItemSemanticEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.opener.MEEditorOpenerPolicy;
@@ -98,8 +98,7 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ScientificProblemFigure figure = new ScientificProblemFigure();
-		return primaryShape = figure;
+		return primaryShape = new ScientificProblemFigure();
 	}
 
 	/**
@@ -113,16 +112,16 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ScientificProblemDescriptionEditPart) {
-			((ScientificProblemDescriptionEditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureScientificProblem_description());
-			return true;
-		}
 		if (childEditPart instanceof ScientificProblemNameEditPart) {
 			((ScientificProblemNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureScientificProblem_name());
+			return true;
+		}
+		if (childEditPart instanceof ScientificProblemDescriptionEditPart) {
+			((ScientificProblemDescriptionEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureScientificProblem_description());
 			return true;
 		}
 		return false;
@@ -132,10 +131,10 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ScientificProblemDescriptionEditPart) {
+		if (childEditPart instanceof ScientificProblemNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ScientificProblemNameEditPart) {
+		if (childEditPart instanceof ScientificProblemDescriptionEditPart) {
 			return true;
 		}
 		return false;
@@ -265,11 +264,11 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
-		types.add(ScrmElementTypes.ScientificProblemSolvingMethod_4007);
+		types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
 		types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
 		return types;
 	}
@@ -277,9 +276,9 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		}
@@ -326,7 +325,7 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 			types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
 		}
 		if (targetEditPart instanceof NumericalMethodEditPart) {
-			types.add(ScrmElementTypes.ScientificProblemSolvingMethod_4007);
+			types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
 		}
 		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
@@ -337,58 +336,28 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Feature_2009);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Hardware_2010);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Constraint_2011);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.UserInterface_2012);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.SoftwareInterface_2013);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Process_2014);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Performance_2015);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataFlow_2016);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataDefinition_2017);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.InputDataReading_2018);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataHandling_2019);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.ResultsOutput_2020);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.ErrorHandling_2021);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.StatusMonitoring_2022);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
+		} else if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethod_4007) {
+		} else if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethods_4041) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
+		} else if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
 			types.add(ScrmElementTypes.Feature_2009);
 		}
 		return types;
@@ -422,7 +391,6 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setLineWidth(1);
 			this.setBackgroundColor(THIS_BACK);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
 					getMapMode().DPtoLP(65)));
@@ -436,6 +404,7 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 
 			fFigureScientificProblem_name = new WrappingLabel();
 			fFigureScientificProblem_name.setText("");
+			fFigureScientificProblem_name.setTextWrap(true);
 
 			fFigureScientificProblem_name
 					.setFont(FFIGURESCIENTIFICPROBLEM_NAME_FONT);
@@ -444,28 +413,10 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 
 			fFigureScientificProblem_description = new WrappingLabel();
 			fFigureScientificProblem_description.setText("");
+			fFigureScientificProblem_description.setTextWrap(true);
 
 			this.add(fFigureScientificProblem_description);
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**
@@ -492,7 +443,7 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESCIENTIFICPROBLEM_NAME_FONT = new Font(Display
-			.getCurrent(), "Arial", 9, SWT.BOLD);
+	static final Font FFIGURESCIENTIFICPROBLEM_NAME_FONT = new Font(
+			Display.getCurrent(), "Arial", 9, SWT.BOLD);
 
 }

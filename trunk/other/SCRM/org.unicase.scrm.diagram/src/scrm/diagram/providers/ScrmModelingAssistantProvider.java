@@ -55,7 +55,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof SCRMDiagramEditPart) {
-			ArrayList types = new ArrayList(18);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(18);
 			types.add(ScrmElementTypes.ScientificProblem_2007);
 			types.add(ScrmElementTypes.MathematicalModel_2005);
 			types.add(ScrmElementTypes.NumericalMethod_2006);
@@ -431,8 +431,8 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public EObject selectExistingElementForSource(IAdaptable target,
 			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+		return selectExistingElement(target,
+				getTypesForSource(target, relationshipType));
 	}
 
 	/**
@@ -440,8 +440,8 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public EObject selectExistingElementForTarget(IAdaptable source,
 			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+		return selectExistingElement(source,
+				getTypesForTarget(source, relationshipType));
 	}
 
 	/**
@@ -457,9 +457,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
+			EObject element = it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}

@@ -67,7 +67,8 @@ public class Feature2CreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy
+				.getLinkConstraints()
 				.canCreateFeature_4029(getContainer(), getSource(), getTarget());
 	}
 

@@ -58,7 +58,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public NumericalMethod_PerformanceFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

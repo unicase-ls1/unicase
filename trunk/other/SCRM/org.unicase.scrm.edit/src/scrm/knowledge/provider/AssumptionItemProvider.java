@@ -162,11 +162,6 @@ public class AssumptionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
 				 RequirementsFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add

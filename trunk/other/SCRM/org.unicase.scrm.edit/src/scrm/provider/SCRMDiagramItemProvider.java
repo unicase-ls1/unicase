@@ -237,11 +237,6 @@ public class SCRMDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
-				 RequirementsFactory.eINSTANCE.createInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 RequirementsFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add

@@ -67,7 +67,7 @@ public class MathematicalModel2CreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateMathematicalModel_4004(getContainer(), getSource(),
 						getTarget());
 	}

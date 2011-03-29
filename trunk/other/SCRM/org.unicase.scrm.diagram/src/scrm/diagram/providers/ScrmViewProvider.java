@@ -41,51 +41,38 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
-import scrm.diagram.edit.parts.AssumptionDescriptionNameEditPart;
+import scrm.diagram.edit.parts.*;
 import scrm.diagram.edit.parts.AssumptionEditPart;
-import scrm.diagram.edit.parts.ConstraintDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ConstraintEditPart;
-import scrm.diagram.edit.parts.DataDefinitionDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataDefinitionEditPart;
-import scrm.diagram.edit.parts.DataFlowDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
-import scrm.diagram.edit.parts.DataHandlingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.DataHandlingEditPart;
-import scrm.diagram.edit.parts.ErrorHandlingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
 import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
-import scrm.diagram.edit.parts.FeatureDescriptionNameEditPart;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.HardwareDescriptionNameEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
-import scrm.diagram.edit.parts.InputDataReadingDescriptionNameEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
 import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
-import scrm.diagram.edit.parts.MathematicalModelDescriptionNameEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodDescriptionNameEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
-import scrm.diagram.edit.parts.PerformanceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
-import scrm.diagram.edit.parts.ProcessDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.ResultsOutputDescriptionNameEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
 import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
@@ -94,12 +81,8 @@ import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemNameEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodEditPart;
-import scrm.diagram.edit.parts.SoftwareInterfaceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
-import scrm.diagram.edit.parts.StatusMonitoringDescriptionNameEditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
-import scrm.diagram.edit.parts.UserInterfaceDescriptionNameEditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.edit.parts.WrappingLabel10EditPart;
 import scrm.diagram.edit.parts.WrappingLabel11EditPart;
@@ -189,8 +172,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			if (elementType != null || domainElement == null) {
 				return false;
 			}
-			visualID = ScrmVisualIDRegistry.getNodeVisualID(op
-					.getContainerView(), domainElement);
+			visualID = ScrmVisualIDRegistry.getNodeVisualID(
+					op.getContainerView(), domainElement);
 		} else {
 			visualID = ScrmVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
@@ -204,8 +187,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
 				if (domainElement != null
-						&& visualID != ScrmVisualIDRegistry.getNodeVisualID(op
-								.getContainerView(), domainElement)) {
+						&& visualID != ScrmVisualIDRegistry.getNodeVisualID(
+								op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
@@ -392,8 +375,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return createScientificProblemRepresentingModel_4006(containerView,
 					index, persisted, preferencesHint);
-		case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
-			return createScientificProblemSolvingMethod_4007(containerView,
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return createScientificProblemSolvingMethods_4041(containerView,
 					index, persisted, preferencesHint);
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return createScientificProblemInfluencedFeature_4008(containerView,
@@ -484,9 +467,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -501,10 +484,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5003 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ScientificProblemNameEditPart.VISUAL_ID));
-		Node label5019 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ScientificProblemDescriptionEditPart.VISUAL_ID));
+		Node label5003 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ScientificProblemNameEditPart.VISUAL_ID));
+		Node label5019 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(ScientificProblemDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -533,9 +519,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -550,8 +536,20 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5001 = createLabel(node, ScrmVisualIDRegistry
-				.getType(MathematicalModelDescriptionNameEditPart.VISUAL_ID));
+		Node label5001 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelNameEditPart.VISUAL_ID));
+		Node label5020 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelDescriptionEditPart.VISUAL_ID));
+		Node label5021 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelTheoryEditPart.VISUAL_ID));
+		Node label5022 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelMathematicalExpressionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -580,9 +578,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -597,8 +595,18 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5002 = createLabel(node, ScrmVisualIDRegistry
-				.getType(NumericalMethodDescriptionNameEditPart.VISUAL_ID));
+		Node label5002 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodNameEditPart.VISUAL_ID));
+		Node label5023 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodDescriptionEditPart.VISUAL_ID));
+		Node label5024 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodTheoryEditPart.VISUAL_ID));
+		Node label5025 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodAlgorithmEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -616,9 +624,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node
-				.setType(ScrmVisualIDRegistry
-						.getType(AssumptionEditPart.VISUAL_ID));
+		node.setType(ScrmVisualIDRegistry.getType(AssumptionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -628,9 +634,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -645,8 +651,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5004 = createLabel(node, ScrmVisualIDRegistry
-				.getType(AssumptionDescriptionNameEditPart.VISUAL_ID));
+		Node label5004 = createLabel(node,
+				ScrmVisualIDRegistry.getType(AssumptionNameEditPart.VISUAL_ID));
+		Node label5026 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(AssumptionDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -673,9 +682,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -690,8 +699,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5005 = createLabel(node, ScrmVisualIDRegistry
-				.getType(FeatureDescriptionNameEditPart.VISUAL_ID));
+		Node label5005 = createLabel(node,
+				ScrmVisualIDRegistry.getType(FeatureNameEditPart.VISUAL_ID));
+		Node label5027 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(FeatureDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -718,9 +730,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -735,8 +747,19 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5006 = createLabel(node, ScrmVisualIDRegistry
-				.getType(HardwareDescriptionNameEditPart.VISUAL_ID));
+		Node label5006 = createLabel(node,
+				ScrmVisualIDRegistry.getType(HardwareNameEditPart.VISUAL_ID));
+		Node label5028 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwareDescriptionEditPart.VISUAL_ID));
+		Node label5029 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwareProcessorEditPart.VISUAL_ID));
+		Node label5030 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwarePlatformEditPart.VISUAL_ID));
+		Node label5031 = createLabel(node,
+				ScrmVisualIDRegistry.getType(HardwareMemoryEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -754,9 +777,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node
-				.setType(ScrmVisualIDRegistry
-						.getType(ConstraintEditPart.VISUAL_ID));
+		node.setType(ScrmVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -766,9 +787,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -783,8 +804,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5007 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ConstraintDescriptionNameEditPart.VISUAL_ID));
+		Node label5007 = createLabel(node,
+				ScrmVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
+		Node label5032 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ConstraintDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -813,9 +837,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -830,8 +854,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5008 = createLabel(node, ScrmVisualIDRegistry
-				.getType(UserInterfaceDescriptionNameEditPart.VISUAL_ID));
+		Node label5008 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(UserInterfaceNameEditPart.VISUAL_ID));
+		Node label5033 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(UserInterfaceDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -860,9 +888,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -877,8 +905,16 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5009 = createLabel(node, ScrmVisualIDRegistry
-				.getType(SoftwareInterfaceDescriptionNameEditPart.VISUAL_ID));
+		Node label5009 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceNameEditPart.VISUAL_ID));
+		Node label5034 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceDescriptionEditPart.VISUAL_ID));
+		Node label5035 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceDataTypesEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -905,9 +941,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -922,8 +958,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5010 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ProcessDescriptionNameEditPart.VISUAL_ID));
+		Node label5010 = createLabel(node,
+				ScrmVisualIDRegistry.getType(ProcessNameEditPart.VISUAL_ID));
+		Node label5036 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ProcessDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -952,9 +991,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -969,8 +1008,14 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5011 = createLabel(node, ScrmVisualIDRegistry
-				.getType(PerformanceDescriptionNameEditPart.VISUAL_ID));
+		Node label5011 = createLabel(node,
+				ScrmVisualIDRegistry.getType(PerformanceNameEditPart.VISUAL_ID));
+		Node label5037 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(PerformanceDescriptionEditPart.VISUAL_ID));
+		Node label5038 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(PerformanceProblemSizeEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -997,9 +1042,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1014,8 +1059,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5012 = createLabel(node, ScrmVisualIDRegistry
-				.getType(DataFlowDescriptionNameEditPart.VISUAL_ID));
+		Node label5012 = createLabel(node,
+				ScrmVisualIDRegistry.getType(DataFlowNameEditPart.VISUAL_ID));
+		Node label5039 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataFlowDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1044,9 +1092,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1061,8 +1109,24 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5013 = createLabel(node, ScrmVisualIDRegistry
-				.getType(DataDefinitionDescriptionNameEditPart.VISUAL_ID));
+		Node label5013 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionNameEditPart.VISUAL_ID));
+		Node label5040 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionDescriptionEditPart.VISUAL_ID));
+		Node label5041 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionAccuracyEditPart.VISUAL_ID));
+		Node label5042 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionFormatEditPart.VISUAL_ID));
+		Node label5043 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionRangeEditPart.VISUAL_ID));
+		Node label5044 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionDataTypeEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1091,9 +1155,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1108,8 +1172,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5014 = createLabel(node, ScrmVisualIDRegistry
-				.getType(InputDataReadingDescriptionNameEditPart.VISUAL_ID));
+		Node label5014 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(InputDataReadingNameEditPart.VISUAL_ID));
+		Node label5045 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(InputDataReadingDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1138,9 +1206,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1155,8 +1223,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5015 = createLabel(node, ScrmVisualIDRegistry
-				.getType(DataHandlingDescriptionNameEditPart.VISUAL_ID));
+		Node label5015 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataHandlingNameEditPart.VISUAL_ID));
+		Node label5046 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataHandlingDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1185,9 +1257,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1202,8 +1274,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5016 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ResultsOutputDescriptionNameEditPart.VISUAL_ID));
+		Node label5016 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ResultsOutputNameEditPart.VISUAL_ID));
+		Node label5047 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ResultsOutputDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1232,9 +1308,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1249,8 +1325,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5017 = createLabel(node, ScrmVisualIDRegistry
-				.getType(ErrorHandlingDescriptionNameEditPart.VISUAL_ID));
+		Node label5017 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ErrorHandlingNameEditPart.VISUAL_ID));
+		Node label5048 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ErrorHandlingDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1279,9 +1359,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -1296,8 +1376,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5018 = createLabel(node, ScrmVisualIDRegistry
-				.getType(StatusMonitoringDescriptionNameEditPart.VISUAL_ID));
+		Node label5018 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(StatusMonitoringNameEditPart.VISUAL_ID));
+		Node label5049 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(StatusMonitoringDescriptionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1310,7 +1394,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1325,9 +1410,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1345,16 +1430,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6003 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label6003 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
 		label6003.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6003 = (Location) label6003.getLayoutConstraint();
 		location6003.setX(0);
-		location6003.setY(40);
+		location6003.setY(10);
 		return edge;
 	}
 
@@ -1368,7 +1454,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1383,9 +1470,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1403,33 +1490,38 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6004 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel2EditPart.VISUAL_ID));
+		Node label6004 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
 		label6004.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
+		Location location6004 = (Location) label6004.getLayoutConstraint();
+		location6004.setX(0);
+		location6004.setY(10);
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createScientificProblemSolvingMethod_4007(View containerView,
+	public Edge createScientificProblemSolvingMethods_4041(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(ScientificProblemSolvingMethodEditPart.VISUAL_ID));
+				.getType(ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -1437,9 +1529,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1457,16 +1549,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6005 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel3EditPart.VISUAL_ID));
-		label6005.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6039 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		label6039.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6005 = (Location) label6005.getLayoutConstraint();
-		location6005.setX(0);
-		location6005.setY(40);
+		Location location6039 = (Location) label6039.getLayoutConstraint();
+		location6039.setX(0);
+		location6039.setY(10);
 		return edge;
 	}
 
@@ -1480,7 +1573,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1495,9 +1589,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1515,16 +1609,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6006 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel4EditPart.VISUAL_ID));
+		Node label6006 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
 		label6006.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6006 = (Location) label6006.getLayoutConstraint();
 		location6006.setX(0);
-		location6006.setY(40);
+		location6006.setY(10);
 		return edge;
 	}
 
@@ -1538,7 +1633,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1553,9 +1649,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1573,16 +1669,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6002 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel5EditPart.VISUAL_ID));
+		Node label6002 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
 		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6002 = (Location) label6002.getLayoutConstraint();
 		location6002.setX(0);
-		location6002.setY(40);
+		location6002.setY(10);
 		return edge;
 	}
 
@@ -1596,7 +1693,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1611,9 +1709,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1631,16 +1729,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6008 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel6EditPart.VISUAL_ID));
+		Node label6008 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
 		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6008 = (Location) label6008.getLayoutConstraint();
 		location6008.setX(0);
-		location6008.setY(40);
+		location6008.setY(10);
 		return edge;
 	}
 
@@ -1654,7 +1753,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1669,9 +1769,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1689,16 +1789,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6009 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel7EditPart.VISUAL_ID));
+		Node label6009 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
 		label6009.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6009 = (Location) label6009.getLayoutConstraint();
 		location6009.setX(0);
-		location6009.setY(40);
+		location6009.setY(10);
 		return edge;
 	}
 
@@ -1711,7 +1812,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1726,9 +1828,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1746,16 +1848,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6010 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel8EditPart.VISUAL_ID));
+		Node label6010 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
 		label6010.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6010 = (Location) label6010.getLayoutConstraint();
 		location6010.setX(0);
-		location6010.setY(40);
+		location6010.setY(10);
 		return edge;
 	}
 
@@ -1768,7 +1871,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1783,9 +1887,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1803,16 +1907,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6013 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel9EditPart.VISUAL_ID));
+		Node label6013 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
 		label6013.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6013 = (Location) label6013.getLayoutConstraint();
 		location6013.setX(0);
-		location6013.setY(40);
+		location6013.setY(10);
 		return edge;
 	}
 
@@ -1826,15 +1931,15 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge
-				.setType(ScrmVisualIDRegistry
-						.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+		edge.setType(ScrmVisualIDRegistry
+				.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -1842,9 +1947,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1862,16 +1967,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6014 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel10EditPart.VISUAL_ID));
+		Node label6014 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
 		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6014 = (Location) label6014.getLayoutConstraint();
 		location6014.setX(0);
-		location6014.setY(40);
+		location6014.setY(10);
 		return edge;
 	}
 
@@ -1884,7 +1990,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1899,9 +2006,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1919,16 +2026,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6015 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel11EditPart.VISUAL_ID));
+		Node label6015 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
 		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6015 = (Location) label6015.getLayoutConstraint();
 		location6015.setX(0);
-		location6015.setY(40);
+		location6015.setY(10);
 		return edge;
 	}
 
@@ -1941,7 +2049,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1956,9 +2065,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -1976,16 +2085,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6021 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel12EditPart.VISUAL_ID));
+		Node label6021 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
 		label6021.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6021 = (Location) label6021.getLayoutConstraint();
 		location6021.setX(0);
-		location6021.setY(40);
+		location6021.setY(10);
 		return edge;
 	}
 
@@ -1998,7 +2108,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2013,9 +2124,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2033,16 +2144,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6022 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel13EditPart.VISUAL_ID));
+		Node label6022 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
 		label6022.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6022 = (Location) label6022.getLayoutConstraint();
 		location6022.setX(0);
-		location6022.setY(40);
+		location6022.setY(10);
 		return edge;
 	}
 
@@ -2055,7 +2167,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2070,9 +2183,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2090,16 +2203,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6023 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel14EditPart.VISUAL_ID));
+		Node label6023 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
 		label6023.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6023 = (Location) label6023.getLayoutConstraint();
 		location6023.setX(0);
-		location6023.setY(40);
+		location6023.setY(10);
 		return edge;
 	}
 
@@ -2112,7 +2226,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2127,9 +2242,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2147,16 +2262,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6024 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel15EditPart.VISUAL_ID));
+		Node label6024 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
 		label6024.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6024 = (Location) label6024.getLayoutConstraint();
 		location6024.setX(0);
-		location6024.setY(40);
+		location6024.setY(10);
 		return edge;
 	}
 
@@ -2169,7 +2285,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2184,9 +2301,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2204,16 +2321,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6025 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel16EditPart.VISUAL_ID));
+		Node label6025 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel16EditPart.VISUAL_ID));
 		label6025.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6025 = (Location) label6025.getLayoutConstraint();
 		location6025.setX(0);
-		location6025.setY(40);
+		location6025.setY(10);
 		return edge;
 	}
 
@@ -2226,7 +2344,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2240,9 +2359,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2260,16 +2379,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6027 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel17EditPart.VISUAL_ID));
+		Node label6027 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel17EditPart.VISUAL_ID));
 		label6027.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6027 = (Location) label6027.getLayoutConstraint();
 		location6027.setX(0);
-		location6027.setY(40);
+		location6027.setY(10);
 		return edge;
 	}
 
@@ -2282,7 +2402,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2297,9 +2418,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2317,16 +2438,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6028 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel18EditPart.VISUAL_ID));
+		Node label6028 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
 		label6028.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6028 = (Location) label6028.getLayoutConstraint();
 		location6028.setX(0);
-		location6028.setY(40);
+		location6028.setY(10);
 		return edge;
 	}
 
@@ -2339,7 +2461,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2354,9 +2477,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2374,16 +2497,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6030 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel19EditPart.VISUAL_ID));
+		Node label6030 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
 		label6030.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6030 = (Location) label6030.getLayoutConstraint();
 		location6030.setX(0);
-		location6030.setY(40);
+		location6030.setY(10);
 		return edge;
 	}
 
@@ -2397,7 +2521,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2412,9 +2537,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2432,16 +2557,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6034 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel20EditPart.VISUAL_ID));
+		Node label6034 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
 		label6034.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6034 = (Location) label6034.getLayoutConstraint();
 		location6034.setX(0);
-		location6034.setY(40);
+		location6034.setY(10);
 		return edge;
 	}
 
@@ -2454,7 +2580,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2469,9 +2596,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2489,16 +2616,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6036 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel21EditPart.VISUAL_ID));
+		Node label6036 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel21EditPart.VISUAL_ID));
 		label6036.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6036 = (Location) label6036.getLayoutConstraint();
 		location6036.setX(0);
-		location6036.setY(40);
+		location6036.setY(10);
 		return edge;
 	}
 
@@ -2511,7 +2639,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -2526,9 +2655,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle edgeFontStyle = (FontStyle) edge
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
@@ -2546,16 +2675,17 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6038 = createLabel(edge, ScrmVisualIDRegistry
-				.getType(WrappingLabel22EditPart.VISUAL_ID));
+		Node label6038 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel22EditPart.VISUAL_ID));
 		label6038.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6038 = (Location) label6038.getLayoutConstraint();
 		location6038.setX(0);
-		location6038.setY(40);
+		location6038.setY(10);
 		return edge;
 	}
 
@@ -2593,8 +2723,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
-			return EMFCoreUtil.resolve(TransactionUtil
-					.getEditingDomain(eObject), eObject);
+			return EMFCoreUtil.resolve(
+					TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
 	}

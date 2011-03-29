@@ -72,8 +72,8 @@ public class RequirementItemSemanticEditPolicy extends
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {
@@ -104,8 +104,8 @@ public class RequirementItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {

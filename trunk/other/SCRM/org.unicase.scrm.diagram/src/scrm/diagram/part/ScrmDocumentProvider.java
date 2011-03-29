@@ -2,10 +2,10 @@ package scrm.diagram.part;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +49,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.EditorStatus
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
@@ -60,7 +59,6 @@ import org.unicase.ui.common.commands.ECPCommand;
 
 import scrm.SCRMDiagram;
 import scrm.diagram.opener.SCRMDiagramOpener;
-import scrm.diagram.providers.ScrmViewProvider;
 
 /**
  * @generated
@@ -80,12 +78,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ScrmDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ScrmDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.ScrmDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
@@ -108,12 +105,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ScrmDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ScrmDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.ScrmDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 		IDocument document = createEmptyDocument();
@@ -140,9 +136,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
+			Resource nextResource = it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
 				if (file.getLocation() != null) {
@@ -172,12 +168,10 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 				.getInstance().createEditingDomain();
 		editingDomain.setID("org.unicase.scrm.diagram.EditingDomain"); //$NON-NLS-1$
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
-				.createNotifierFilter(editingDomain.getResourceSet()).and(
-						NotificationFilter
-								.createEventTypeFilter(Notification.ADD)).and(
-						NotificationFilter.createFeatureFilter(
-								ResourceSet.class,
-								ResourceSet.RESOURCE_SET__RESOURCES));
+				.createNotifierFilter(editingDomain.getResourceSet())
+				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
+				.and(NotificationFilter.createFeatureFilter(ResourceSet.class,
+						ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -232,8 +226,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 				}
 				if (!resource.isLoaded()) {
 					try {
-						Map options = new HashMap(GMFResourceFactory
-								.getDefaultLoadOptions());
+						Map options = new HashMap(
+								GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060 
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
@@ -290,32 +284,31 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ScrmDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ScrmDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.ScrmDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 	}
 
 	private void createDiagram(final SCRMDiagram scrmDiagram) {
 
-		if(scrmDiagram.getGmfdiagram() != null) {
-				return;
+		if (scrmDiagram.getGmfdiagram() != null) {
+			return;
 		}
-		
+
 		final Diagram diagram = ViewService.createDiagram(scrmDiagram, "Scrm",
 				PreferencesHint.USE_DEFAULTS);
 
 		diagram.setElement(scrmDiagram);
-		
+
 		new ECPCommand(scrmDiagram) {
 
 			@Override
 			protected void doRun() {
-				
+
 				scrmDiagram.setGmfdiagram(diagram);
 			}
 
@@ -374,10 +367,10 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
 					files2Validate.add(file);
@@ -443,9 +436,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
@@ -487,18 +480,19 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
 							.modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule(
+					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
+							.size()]));
 		}
 		return null;
 	}
@@ -509,17 +503,18 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule(
+					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
+							.size()]));
 		}
 		return null;
 	}
@@ -530,18 +525,19 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
 							.refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule(
+					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
+							.size()]));
 		}
 		return null;
 	}
@@ -552,16 +548,18 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					files.add(file);
 				}
 			}
-			return ResourcesPlugin.getWorkspace().getRuleFactory()
+			return ResourcesPlugin
+					.getWorkspace()
+					.getRuleFactory()
 					.validateEditRule(
 							(IFile[]) files.toArray(new IFile[files.size()]));
 		}
@@ -573,8 +571,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if (toCreateOrModify.exists())
-			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(
-					toCreateOrModify);
+			return ResourcesPlugin.getWorkspace().getRuleFactory()
+					.modifyRule(toCreateOrModify);
 
 		IResource parent = toCreateOrModify;
 		do {
@@ -588,8 +586,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			parent = toCreateOrModify.getParent();
 		} while (parent != null && !parent.exists());
 
-		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(
-				toCreateOrModify);
+		return ResourcesPlugin.getWorkspace().getRuleFactory()
+				.createRule(toCreateOrModify);
 	}
 
 	/**
@@ -599,9 +597,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -631,9 +629,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 				monitor.beginTask(
 						Messages.ScrmDocumentProvider_SaveDiagramTask, info
 								.getResourceSet().getResources().size() + 1); //"Saving diagram"
-				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-						.getLoadedResourcesIterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+						.hasNext();) {
+					Resource nextResource = it.next();
 					monitor.setTaskName(NLS.bind(
 							Messages.ScrmDocumentProvider_SaveNextResourceTask,
 							nextResource.getURI()));
@@ -647,8 +645,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 							fireElementStateChangeFailed(element);
 							throw new CoreException(new Status(IStatus.ERROR,
 									ScrmDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE, e
-											.getLocalizedMessage(), null));
+									EditorStatusCodes.RESOURCE_FAILURE,
+									e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -663,7 +661,7 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
+			List<IFile> affectedFiles = null;
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
@@ -678,12 +676,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 								IStatus.ERROR,
 								ScrmDiagramEditorPlugin.ID,
 								0,
-								NLS
-										.bind(
-												Messages.ScrmDocumentProvider_IncorrectInputError,
-												new Object[] {
-														element,
-														"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+								NLS.bind(
+										Messages.ScrmDocumentProvider_IncorrectInputError,
+										new Object[] {
+												element,
+												"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 								null));
 			}
 			if (false == document instanceof IDiagramDocument) {
@@ -701,10 +698,10 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			final Diagram diagramCopy = (Diagram) EcoreUtil
 					.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument
-						.getEditingDomain(), NLS.bind(
-						Messages.ScrmDocumentProvider_SaveAsOperation,
-						diagramCopy.getName()), affectedFiles) {
+				new AbstractTransactionalCommand(
+						diagramDocument.getEditingDomain(), NLS.bind(
+								Messages.ScrmDocumentProvider_SaveAsOperation,
+								diagramCopy.getName()), affectedFiles) {
 					protected CommandResult doExecuteWithResult(
 							IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
@@ -768,8 +765,12 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if (input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			IFile newFile = ResourcesPlugin
+					.getWorkspace()
+					.getRoot()
+					.getFile(
+							new Path(URI.decode(uri.path()))
+									.removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null
 					: new FileEditorInput(newFile));
 			return;
@@ -822,7 +823,7 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
 
 		/**
 		 * @generated
@@ -898,9 +899,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
-					getResourceSet().getResources()).iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources())
+					.iterator();
 		}
 
 		/**
@@ -916,9 +917,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
 					.hasNext();) {
-				Resource resource = (Resource) it.next();
+				Resource resource = it.next();
 				resource.unload();
 			}
 			getEditingDomain().dispose();
@@ -1067,8 +1068,9 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
-							handleElementMoved(ResourceSetInfo.this
-									.getEditorInput(), newURI);
+							handleElementMoved(
+									ResourceSetInfo.this.getEditorInput(),
+									newURI);
 						}
 					});
 				} else {
@@ -1101,11 +1103,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(
-					Notification.SET).or(
-					NotificationFilter
-							.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class,
+			myModifiedFilter = NotificationFilter
+					.createEventTypeFilter(Notification.SET)
+					.or(NotificationFilter
+							.createEventTypeFilter(Notification.UNSET))
+					.and(NotificationFilter.createFeatureFilter(Resource.class,
 							Resource.RESOURCE__IS_MODIFIED));
 		}
 
@@ -1141,12 +1143,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo
-									.getEditorInput(), modified);
+							fireElementDirtyStateChanged(
+									myInfo.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo
-										.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}

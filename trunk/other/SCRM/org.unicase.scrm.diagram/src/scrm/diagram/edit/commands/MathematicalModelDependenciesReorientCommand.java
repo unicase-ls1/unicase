@@ -74,7 +74,7 @@ public class MathematicalModelDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof MathematicalModel)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistMathematicalModelDependencies_4012(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class MathematicalModelDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof Assumption)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistMathematicalModelDependencies_4012(getOldSource(),
 						getNewTarget());
 	}

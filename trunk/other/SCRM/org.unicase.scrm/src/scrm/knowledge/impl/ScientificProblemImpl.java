@@ -41,7 +41,7 @@ import scrm.requirements.RequirementsPackage;
  * <ul>
  *   <li>{@link scrm.knowledge.impl.ScientificProblemImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.ScientificProblemImpl#getRepresentingModel <em>Representing Model</em>}</li>
- *   <li>{@link scrm.knowledge.impl.ScientificProblemImpl#getSolvingMethod <em>Solving Method</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.ScientificProblemImpl#getSolvingMethods <em>Solving Methods</em>}</li>
  *   <li>{@link scrm.knowledge.impl.ScientificProblemImpl#getInfluencedFeature <em>Influenced Feature</em>}</li>
  * </ul>
  * </p>
@@ -70,14 +70,14 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	protected MathematicalModel representingModel;
 
 	/**
-	 * The cached value of the '{@link #getSolvingMethod() <em>Solving Method</em>}' containment reference.
+	 * The cached value of the '{@link #getSolvingMethods() <em>Solving Methods</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSolvingMethod()
+	 * @see #getSolvingMethods()
 	 * @generated
 	 * @ordered
 	 */
-	protected NumericalMethod solvingMethod;
+	protected EList<NumericalMethod> solvingMethods;
 
 	/**
 	 * The cached value of the '{@link #getInfluencedFeature() <em>Influenced Feature</em>}' reference.
@@ -168,42 +168,11 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NumericalMethod getSolvingMethod() {
-		return solvingMethod;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSolvingMethod(NumericalMethod newSolvingMethod, NotificationChain msgs) {
-		NumericalMethod oldSolvingMethod = solvingMethod;
-		solvingMethod = newSolvingMethod;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD, oldSolvingMethod, newSolvingMethod);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<NumericalMethod> getSolvingMethods() {
+		if (solvingMethods == null) {
+			solvingMethods = new EObjectContainmentWithInverseEList<NumericalMethod>(NumericalMethod.class, this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS, KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSolvingMethod(NumericalMethod newSolvingMethod) {
-		if (newSolvingMethod != solvingMethod) {
-			NotificationChain msgs = null;
-			if (solvingMethod != null)
-				msgs = ((InternalEObject)solvingMethod).eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM, NumericalMethod.class, msgs);
-			if (newSolvingMethod != null)
-				msgs = ((InternalEObject)newSolvingMethod).eInverseAdd(this, KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM, NumericalMethod.class, msgs);
-			msgs = basicSetSolvingMethod(newSolvingMethod, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD, newSolvingMethod, newSolvingMethod));
+		return solvingMethods;
 	}
 
 	/**
@@ -281,10 +250,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 				if (representingModel != null)
 					msgs = ((InternalEObject)representingModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, null, msgs);
 				return basicSetRepresentingModel((MathematicalModel)otherEnd, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				if (solvingMethod != null)
-					msgs = ((InternalEObject)solvingMethod).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD, null, msgs);
-				return basicSetSolvingMethod((NumericalMethod)otherEnd, msgs);
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSolvingMethods()).basicAdd(otherEnd, msgs);
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				if (influencedFeature != null)
 					msgs = ((InternalEObject)influencedFeature).eInverseRemove(this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM, Feature.class, msgs);
@@ -305,8 +272,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				return basicSetRepresentingModel(null, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				return basicSetSolvingMethod(null, msgs);
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				return ((InternalEList<?>)getSolvingMethods()).basicRemove(otherEnd, msgs);
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				return basicSetInfluencedFeature(null, msgs);
 		}
@@ -325,8 +292,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 				return getRequirements();
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				return getRepresentingModel();
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				return getSolvingMethod();
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				return getSolvingMethods();
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				if (resolve) return getInfluencedFeature();
 				return basicGetInfluencedFeature();
@@ -350,8 +317,9 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				setRepresentingModel((MathematicalModel)newValue);
 				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				setSolvingMethod((NumericalMethod)newValue);
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				getSolvingMethods().clear();
+				getSolvingMethods().addAll((Collection<? extends NumericalMethod>)newValue);
 				return;
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				setInfluencedFeature((Feature)newValue);
@@ -374,8 +342,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				setRepresentingModel((MathematicalModel)null);
 				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				setSolvingMethod((NumericalMethod)null);
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				getSolvingMethods().clear();
 				return;
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				setInfluencedFeature((Feature)null);
@@ -396,8 +364,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 				return requirements != null && !requirements.isEmpty();
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				return representingModel != null;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
-				return solvingMethod != null;
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+				return solvingMethods != null && !solvingMethods.isEmpty();
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
 				return influencedFeature != null;
 		}

@@ -57,7 +57,7 @@ public class ScientificKnowledgeRequirementsEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class ScientificKnowledgeRequirementsEditPart extends
 		 * @generated
 		 */
 		public ScientificKnowledge_RequirementsFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

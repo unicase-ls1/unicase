@@ -72,8 +72,9 @@ public class RequirementReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Requirement container = (Requirement) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistRequirement_4036(container, getNewSource(), target);
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistRequirement_4036(container, getLink(), getNewSource(),
+						target);
 	}
 
 	/**
@@ -88,8 +89,9 @@ public class RequirementReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Requirement container = (Requirement) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistRequirement_4036(container, source, getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistRequirement_4036(container, getLink(), source,
+						getNewTarget());
 	}
 
 	/**

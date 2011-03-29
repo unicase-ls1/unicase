@@ -22,7 +22,7 @@
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//knowledge/ScientificProblem">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/representingModel"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/solvingMethod"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/solvingMethods"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/influencedFeature"/>
       </genClasses>
@@ -59,7 +59,7 @@
       <genClasses image="false" ecoreClass="scrm.ecore#//requirements/IRequirement">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/IRequirement/usedKnowledge"/>
       </genClasses>
-      <genClasses ecoreClass="scrm.ecore#//requirements/Interface">
+      <genClasses image="false" ecoreClass="scrm.ecore#//requirements/Interface">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/providingFeature"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/requiringFeatures"/>
@@ -109,8 +109,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Process/dataFlow"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/Performance">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Performance/numericalMethod"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/Performance/problemSize"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/DataFlow">

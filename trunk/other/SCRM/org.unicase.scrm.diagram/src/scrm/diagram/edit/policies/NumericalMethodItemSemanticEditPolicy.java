@@ -31,14 +31,14 @@ import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementCreateComma
 import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementReorientCommand;
 import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
 import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
-import scrm.diagram.edit.commands.ScientificProblemSolvingMethodCreateCommand;
-import scrm.diagram.edit.commands.ScientificProblemSolvingMethodReorientCommand;
+import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsCreateCommand;
+import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsReorientCommand;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -63,9 +63,9 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificProblemSolvingMethodEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificProblemSolvingMethodsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -95,7 +95,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -188,7 +188,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.ScientificProblemSolvingMethod_4007 == req
+		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
 				.getElementType()) {
 			return null;
 		}
@@ -223,9 +223,9 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.ScientificProblemSolvingMethod_4007 == req
+		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
 				.getElementType()) {
-			return getGEFWrapper(new ScientificProblemSolvingMethodCreateCommand(
+			return getGEFWrapper(new ScientificProblemSolvingMethodsCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
@@ -260,8 +260,8 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
 			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(
 					req));
-		case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificProblemSolvingMethodReorientCommand(
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificProblemSolvingMethodsReorientCommand(
 					req));
 		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			return getGEFWrapper(new MathematicalModelNumericalMethodsReorientCommand(

@@ -74,7 +74,7 @@ public class NumericalMethodRealizingRequirementReorientCommand extends
 		if (!(oldEnd instanceof Requirement && newEnd instanceof NumericalMethod)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodRealizingRequirement_4016(
 						getNewSource(), getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class NumericalMethodRealizingRequirementReorientCommand extends
 		if (!(oldEnd instanceof Requirement && newEnd instanceof Requirement)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodRealizingRequirement_4016(
 						getOldSource(), getNewTarget());
 	}

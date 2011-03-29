@@ -58,7 +58,7 @@ public class NumericalMethodRealizingRequirementEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -116,7 +116,6 @@ public class NumericalMethodRealizingRequirementEditPart extends
 		 * @generated
 		 */
 		public NumericalMethod_RealizingRequirementFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

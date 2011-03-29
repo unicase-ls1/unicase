@@ -58,7 +58,7 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public Process_DataFlowFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

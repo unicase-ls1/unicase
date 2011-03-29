@@ -74,7 +74,7 @@ public class ScientificKnowledgeRequirementsReorientCommand extends
 		if (!(oldEnd instanceof IRequirement && newEnd instanceof ScientificKnowledge)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificKnowledgeRequirements_4005(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class ScientificKnowledgeRequirementsReorientCommand extends
 		if (!(oldEnd instanceof IRequirement && newEnd instanceof IRequirement)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificKnowledgeRequirements_4005(getOldSource(),
 						getNewTarget());
 	}
