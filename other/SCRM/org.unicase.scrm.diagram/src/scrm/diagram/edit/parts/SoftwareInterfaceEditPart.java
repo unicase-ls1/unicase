@@ -335,7 +335,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
 
