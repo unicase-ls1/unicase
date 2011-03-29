@@ -22,7 +22,7 @@ public class EMFStoreJDTUpdateProjectVersionHandler extends UpdateProjectVersion
 	/**
 	 * All changes are getting accepted, without asking the user. {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 * @see org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
 	 *      java.util.List)
 	 */
 	@Override
