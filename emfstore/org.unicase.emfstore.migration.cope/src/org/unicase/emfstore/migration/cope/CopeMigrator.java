@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.unicase.emfstore.migration.EMFStoreMigrationException;
-import org.unicase.emfstore.migration.EMFStoreMigrator;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigrationException;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigrator;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
@@ -27,7 +27,7 @@ public class CopeMigrator implements EMFStoreMigrator {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.emfstore.migration.EMFStoreMigrator#migrate(java.util.List, int)
+	 * @see org.eclipse.emf.emfstore.migration.EMFStoreMigrator#migrate(java.util.List, int)
 	 */
 	public void migrate(List<URI> resources, int sourceModelReleaseNumber, IProgressMonitor monitor) throws EMFStoreMigrationException {
 		if (resources.size() < 1) {

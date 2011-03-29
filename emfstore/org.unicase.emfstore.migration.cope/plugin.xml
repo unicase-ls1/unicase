@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.emfstore.migration.migrator">
+         point="org.eclipse.emf.emfstore.migration.migrator">
       <Migrator
             migratorClass="org.unicase.emfstore.migration.cope.CopeMigrator">
       </Migrator>
