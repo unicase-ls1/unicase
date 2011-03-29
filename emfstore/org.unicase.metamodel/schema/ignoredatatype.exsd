@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.emf.emfstore.common.model" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.emfstore.common.model" id="ignoredatatype" name="Ignore Datatype"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.common.model" id="org.eclipse.emf.emfstore.common.model.ignoredatatype" name="Ignore Datatype"/>
       </appInfo>
       <documentation>
-         Enables to add datatypes in order to ignore datatypes.
+         Enables to add datatypes in order to ignore them.
       </documentation>
    </annotation>
 
