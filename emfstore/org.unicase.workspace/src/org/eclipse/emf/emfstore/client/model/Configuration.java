@@ -176,7 +176,7 @@ public final class Configuration {
 	}
 
 	/**
-	 * Get the client version as in the org.unicase.workspace manifest file.
+	 * Get the client version as in the org.eclipse.emf.emfstore.client manifest file.
 	 * 
 	 * @return the client version number
 	 */
