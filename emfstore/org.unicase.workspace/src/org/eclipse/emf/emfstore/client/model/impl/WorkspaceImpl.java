@@ -617,7 +617,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.unicase.emfstore.esmodel.url.ProjectUrlFragment)
+	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment)
 	 */
 	public Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment) throws ProjectUrlResolutionException {
 		Set<ProjectSpace> result = new HashSet<ProjectSpace>();
@@ -635,7 +635,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.unicase.emfstore.esmodel.url.ServerUrl)
+	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.eclipse.emf.emfstore.server.model.url.ServerUrl)
 	 */
 	public Set<ServerInfo> resolve(ServerUrl serverUrl) throws ServerUrlResolutionException {
 		Set<ServerInfo> result = new HashSet<ServerInfo>();
@@ -655,7 +655,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpace(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpace(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	public ProjectSpace getProjectSpace(Project project) throws UnkownProjectException {
 		ProjectSpace projectSpace = projectToProjectSpaceMap.get(project);
