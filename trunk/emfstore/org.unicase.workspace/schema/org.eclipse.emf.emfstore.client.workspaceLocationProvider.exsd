@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.emfstore.LocationProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.server.LocationProvider"/>
                </appInfo>
             </annotation>
          </attribute>
