@@ -53,7 +53,7 @@ public final class NotificationGenerator {
 		allProviders = new ArrayList<NotificationProvider>();
 		final HashMap<NotificationProvider, Integer> allProvidersMap = new HashMap<NotificationProvider, Integer>();
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notification.providers");
+			"org.eclipse.emf.emfstore.client.notification.providers");
 
 		// get all providers from the extension points
 		for (IConfigurationElement e : config) {

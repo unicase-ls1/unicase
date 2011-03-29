@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ModelElementWrapperDescriptor {
 
-	private static final String EP_ID = "org.unicase.workspace.wrapperfactories";
+	private static final String EP_ID = "org.eclipse.emf.emfstore.client.wrapperfactories";
 	private static final String NON_URI = "NON_URI";
 	private static final String ATT_CLASS = "class";
 	private static final String ATT_URI = "nsURI";

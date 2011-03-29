@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.workspace.editingDomainProvider">
+         point="org.eclipse.emf.emfstore.client.editingDomainProvider">
       <provider
             class="org.eclipse.emf.emfstore.client.transaction.TransactionalEditingDomainProvider">
       </provider>

@@ -88,7 +88,7 @@ public final class KeyStoreManager {
 
 	private void loadConfiguration() {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.defaultConfigurationProvider");
+			"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
 		ConfigurationProvider provider = null;
 		for (IConfigurationElement extension : rawExtensions) {
 			try {

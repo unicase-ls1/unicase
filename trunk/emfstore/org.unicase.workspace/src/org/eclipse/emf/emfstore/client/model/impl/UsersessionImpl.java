@@ -596,7 +596,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 		// BEGIN SUPRESS CATCH EXCEPTION
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notify.login");
+			"org.eclipse.emf.emfstore.client.notify.login");
 		for (IConfigurationElement e : config) {
 			try {
 				Object o = e.createExecutableExtension("class");
