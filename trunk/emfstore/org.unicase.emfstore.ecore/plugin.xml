@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.emf.emfstore.common.model.singletonidresolver">
 	  <singletonidresolver
-            class="org.unicase.emfstore.ecore.EDatatypeIdResolver">
+            class="org.eclipse.emf.emfstore.ecore.EDatatypeIdResolver">
       </singletonidresolver>
    </extension>
    <extension

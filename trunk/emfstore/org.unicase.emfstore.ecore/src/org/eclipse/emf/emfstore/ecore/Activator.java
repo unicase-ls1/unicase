@@ -1,4 +1,4 @@
-package org.unicase.emfstore.ecore;
+package org.eclipse.emf.emfstore.ecore;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.unicase.emfstore.ecore";
+	public static final String PLUGIN_ID = "org.eclipse.emf.emfstore.ecore";
 
 	// The shared instance
 	private static Activator plugin;
