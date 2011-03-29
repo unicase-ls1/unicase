@@ -69,7 +69,7 @@ public final class Configuration {
 	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
 			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.workspace.workspaceLocationProvider");
+				"org.eclipse.emf.emfstore.client.workspaceLocationProvider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
 					Object executableExtension = extension.createExecutableExtension("providerClass");
@@ -121,7 +121,7 @@ public final class Configuration {
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.defaultConfigurationProvider");
+			"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				ConfigurationProvider provider = (ConfigurationProvider) extension

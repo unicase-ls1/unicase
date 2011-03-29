@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.workspace" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.emfstore.client" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.unicase.workspace" id="org.unicase.workspace.workspaceLocationProvider" name="Workspace Location Provider"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.client" id="org.eclipse.emf.emfstore.client.workspaceLocationProvider" name="Workspace Location Provider"/>
       </appInfo>
       <documentation>
          Allows to configure the location of the local workspace for models.

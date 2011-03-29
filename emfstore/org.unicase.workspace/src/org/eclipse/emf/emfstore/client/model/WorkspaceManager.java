@@ -105,7 +105,7 @@ public final class WorkspaceManager {
 
 	private void notifyPostWorkspaceInitiators() {
 		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notify.postinit");
+			"org.eclipse.emf.emfstore.client.notify.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
 				PostWorkspaceInitiator workspaceObserver = (PostWorkspaceInitiator) element
@@ -210,7 +210,7 @@ public final class WorkspaceManager {
 
 	private EditingDomainProvider getDomainProvider() {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.editingDomainProvider");
+			"org.eclipse.emf.emfstore.client.editingDomainProvider");
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				EditingDomainProvider provider = (EditingDomainProvider) extension.createExecutableExtension("class");

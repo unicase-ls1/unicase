@@ -131,7 +131,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 
 		// BEGIN SUPRESS CATCH EXCEPTION
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.notify.postcreationlistener");
+			"org.eclipse.emf.emfstore.client.notify.postcreationlistener");
 		for (IConfigurationElement e : config) {
 			try {
 				PostCreationListener l = (PostCreationListener) e.createExecutableExtension("class");
