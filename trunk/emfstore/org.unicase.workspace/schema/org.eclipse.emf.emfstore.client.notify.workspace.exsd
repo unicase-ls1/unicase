@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.workspace.PostWorkspaceInitiator"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.client.model.PostWorkspaceInitiator"/>
                </appInfo>
             </annotation>
          </attribute>

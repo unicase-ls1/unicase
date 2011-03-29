@@ -62,7 +62,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.workspace.util.IModelElementWrapperFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.client.model.util.IModelElementWrapperFactory"/>
                </appInfo>
             </annotation>
          </attribute>

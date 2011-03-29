@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.workspace.util.EditingDomainProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.client.model.util.EditingDomainProvider"/>
                </appInfo>
             </annotation>
          </attribute>
