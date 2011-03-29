@@ -19,7 +19,7 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
- * Conflict with an {@link org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation} involved.
+ * Conflict with an {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation} involved.
  * 
  * @author wesendon
  */

@@ -1161,7 +1161,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#commit(org.unicase.emfstore.esmodel.versioning.LogMessage,
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#commit(org.eclipse.emf.emfstore.server.model.versioning.LogMessage,
 	 *      org.eclipse.emf.emfstore.client.model.observers.CommitObserver)
 	 * @generated NOT
 	 */
@@ -1219,8 +1219,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#finalizeCommit(org.unicase.emfstore.esmodel.versioning.ChangePackage,
-	 *      org.unicase.emfstore.esmodel.versioning.LogMessage,
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#finalizeCommit(org.eclipse.emf.emfstore.server.model.versioning.ChangePackage,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.LogMessage,
 	 *      org.eclipse.emf.emfstore.client.model.observers.CommitObserver)
 	 * @generated NOT
 	 */
@@ -1336,7 +1336,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#update(org.eclipse.emf.emfstore.server.model.versioning.VersionSpec)
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec update(final VersionSpec version) throws EmfStoreException {
@@ -1362,7 +1362,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * {@inheritDoc}
 	 * 
 	 * @throws EmfStoreException
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#update(org.eclipse.emf.emfstore.server.model.versioning.VersionSpec)
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec update(final VersionSpec version, final UpdateObserver observer) throws EmfStoreException {
@@ -1577,7 +1577,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#resolveVersionSpec(org.unicase.emfstore.esmodel.versioning.VersionSpec)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#resolveVersionSpec(org.eclipse.emf.emfstore.server.model.versioning.VersionSpec)
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
@@ -2121,7 +2121,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#addEvent(org.unicase.emfstore.esmodel.versioning.events.Event)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#addEvent(org.eclipse.emf.emfstore.server.model.versioning.events.Event)
 	 */
 	public void addEvent(Event event) {
 		if (event.getTimestamp() == null) {
@@ -2153,7 +2153,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#resolve(org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment)
 	 */
 	public EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
@@ -2523,7 +2523,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getFile(org.unicase.emfstore.esmodel.FileIdentifier,
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getFile(org.eclipse.emf.emfstore.server.model.FileIdentifier,
 	 *      org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	public FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException {
@@ -2533,7 +2533,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getFileInfo(org.unicase.emfstore.esmodel.FileIdentifier)
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getFileInfo(org.eclipse.emf.emfstore.server.model.FileIdentifier)
 	 */
 	public FileInformation getFileInfo(FileIdentifier fileIdentifier) {
 		return fileTransferManager.getFileInfo(fileIdentifier);

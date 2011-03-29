@@ -14,8 +14,8 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption.
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
- * Conflict between two {@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation} . Special case
- * of {@link AttributeConflict}.
+ * Conflict between two {@link org.eclipse.emf.emfstore.server.model.versioning.operations.DiagramLayoutOperation} .
+ * Special case of {@link AttributeConflict}.
  * 
  * @author wesendon
  */

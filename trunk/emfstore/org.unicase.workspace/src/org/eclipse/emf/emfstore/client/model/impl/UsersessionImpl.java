@@ -667,7 +667,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.Usersession#checkout(org.unicase.emfstore.esmodel.ProjectIfo)
+	 * @see org.eclipse.emf.emfstore.client.model.Usersession#checkout(org.eclipse.emf.emfstore.server.model.ProjectIfo)
 	 * @generated NOT
 	 */
 	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
@@ -890,7 +890,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.Usersession#deleteProject(org.unicase.emfstore.esmodel.ProjectId,
+	 * @see org.eclipse.emf.emfstore.client.model.Usersession#deleteProject(org.eclipse.emf.emfstore.server.model.ProjectId,
 	 *      boolean)
 	 */
 	public void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException {

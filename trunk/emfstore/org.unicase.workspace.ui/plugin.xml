@@ -1063,7 +1063,7 @@
                       <test
                             forcePluginActivation="true"
                             property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                            value="org.unicase.emfstore.esmodel.versioning.HistoryInfo">
+                            value="org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo">
                       </test>
                       <test
                             forcePluginActivation="true"
@@ -1086,7 +1086,7 @@
                       <test
                             forcePluginActivation="true"
                             property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                            value="org.unicase.emfstore.esmodel.versioning.HistoryInfo">
+                            value="org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo">
                       </test>
                       <test
                             forcePluginActivation="true"
@@ -1113,7 +1113,7 @@
                       <test
                             forcePluginActivation="true"
                             property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                            value="org.unicase.emfstore.esmodel.versioning.HistoryInfo">
+                            value="org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo">
                       </test>
                    </iterate>
                 </visibleWhen>
@@ -1131,7 +1131,7 @@
                       <test
                             forcePluginActivation="true"
                             property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                            value="org.unicase.emfstore.esmodel.versioning.HistoryInfo">
+                            value="org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo">
                       </test>
                       <test
                             forcePluginActivation="true"
@@ -1154,7 +1154,7 @@
                       <test
                             forcePluginActivation="true"
                             property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                            value="org.unicase.emfstore.esmodel.versioning.HistoryInfo">
+                            value="org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo">
                       </test>
                       <test
                             forcePluginActivation="true"

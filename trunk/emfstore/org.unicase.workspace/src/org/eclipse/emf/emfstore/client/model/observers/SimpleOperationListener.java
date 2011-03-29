@@ -22,7 +22,7 @@ public abstract class SimpleOperationListener implements OperationListener, Comm
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationExecuted(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationExecuted(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public void operationExecuted(AbstractOperation operation) {
 		operationPerformed(operation);
@@ -35,7 +35,7 @@ public abstract class SimpleOperationListener implements OperationListener, Comm
 	 * NULL!
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec)
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
 		operationPerformed(null);
@@ -45,7 +45,7 @@ public abstract class SimpleOperationListener implements OperationListener, Comm
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
+	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		return true;
@@ -54,7 +54,7 @@ public abstract class SimpleOperationListener implements OperationListener, Comm
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationUnDone(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationUnDone(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public void operationUnDone(AbstractOperation operation) {
 		operationPerformed(operation.reverse());
