@@ -523,7 +523,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
 		eObjectToIdCache.put(modelElement, modelElementId);
 		idToEObjectCache.put(modelElementId, modelElement);
-		// TODO: PlainEObjectMode, why is cache filled automatically?
 		if (!eObjectsCache.contains(modelElement)) {
 			eObjectsCache.add(modelElement);
 		}
