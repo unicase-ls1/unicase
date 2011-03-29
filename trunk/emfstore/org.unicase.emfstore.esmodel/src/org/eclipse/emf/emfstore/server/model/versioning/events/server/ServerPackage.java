@@ -43,7 +43,7 @@ public interface ServerPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.esmodel.versioning.events.server";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.server.model.versioning.events.server";
 
 	/**
 	 * The singleton instance of the package.

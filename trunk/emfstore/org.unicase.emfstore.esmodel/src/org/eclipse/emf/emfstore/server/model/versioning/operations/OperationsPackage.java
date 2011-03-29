@@ -45,7 +45,7 @@ public interface OperationsPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.emfstore.esmodel.versioning.operations";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.server.model.versioning.operations";
 
 	/**
 	 * The singleton instance of the package.

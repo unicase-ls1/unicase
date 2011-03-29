@@ -44,7 +44,7 @@ public interface NotificationPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.notification";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.server.model.notification";
 
 	/**
 	 * The singleton instance of the package.

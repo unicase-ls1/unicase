@@ -44,7 +44,7 @@ public interface EventsPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.emfstore.esmodel.versioning.events";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.server.model.versioning.events";
 
 	/**
 	 * The singleton instance of the package.
