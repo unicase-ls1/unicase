@@ -23,7 +23,7 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesPackage;
 import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

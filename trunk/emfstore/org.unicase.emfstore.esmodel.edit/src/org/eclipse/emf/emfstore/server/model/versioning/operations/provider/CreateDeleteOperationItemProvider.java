@@ -121,7 +121,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	}
 
 	/**
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.provider.AbstractOperationItemProvider#getChildren(java.lang.Object)
 	 */
 	@Override
 	public Collection<?> getChildren(Object object) {

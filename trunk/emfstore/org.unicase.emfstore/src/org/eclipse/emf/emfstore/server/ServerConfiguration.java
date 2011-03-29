@@ -425,7 +425,7 @@ public final class ServerConfiguration {
 	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
 			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.emfstore.locationprovider");
+				"org.eclipse.emf.emfstore.server.locationprovider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
 					Object executableExtension = extension.createExecutableExtension("providerClass");
@@ -550,7 +550,7 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * Get the server version as in the org.unicase.emfstore manifest file.
+	 * Get the server version as in the org.eclipse.emf.emfstore.server manifest file.
 	 * 
 	 * @return the server version number
 	 */

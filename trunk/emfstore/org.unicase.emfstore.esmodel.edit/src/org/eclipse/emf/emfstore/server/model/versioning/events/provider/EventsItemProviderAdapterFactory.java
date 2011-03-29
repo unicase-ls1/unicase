@@ -101,7 +101,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected ReadEventItemProvider readEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -124,7 +124,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected MergeEventItemProvider mergeEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -147,7 +147,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected CheckoutEventItemProvider checkoutEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -170,7 +170,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected ExceptionEventItemProvider exceptionEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -193,7 +193,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected PluginStartEventItemProvider pluginStartEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -216,7 +216,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected UpdateEventItemProvider updateEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UpdateEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -239,7 +239,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected AnnotationEventItemProvider annotationEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -262,7 +262,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected RevertEventItemProvider revertEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.RevertEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -285,7 +285,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected ShowHistoryEventItemProvider showHistoryEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -308,7 +308,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected PerspectiveEventItemProvider perspectiveEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -330,7 +330,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected DNDEventItemProvider dndEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -352,7 +352,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected LinkEventItemProvider linkEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.LinkEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -375,7 +375,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected TraceEventItemProvider traceEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.TraceEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -398,7 +398,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected NavigatorCreateEventItemProvider navigatorCreateEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -421,7 +421,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected PluginFocusEventItemProvider pluginFocusEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -465,7 +465,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected UndoEventItemProvider undoEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -487,7 +487,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected ValidateItemProvider validateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.Validate}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -510,7 +510,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected ShowChangesEventItemProvider showChangesEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -533,7 +533,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected NotificationReadEventItemProvider notificationReadEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -599,7 +599,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected URLEventItemProvider urlEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -622,7 +622,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected MergeChoiceEventItemProvider mergeChoiceEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeChoiceEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -645,7 +645,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	protected MergeGlobalChoiceEventItemProvider mergeGlobalChoiceEventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeGlobalChoiceEvent}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

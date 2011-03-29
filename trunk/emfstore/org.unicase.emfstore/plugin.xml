@@ -24,7 +24,7 @@
          name="EMFStore"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.unicase.emfstore.server"
+            application="org.eclipse.emf.emfstore.server"
             description="Server Application of EMFStore"
             name="EMFStore Server">
          <property

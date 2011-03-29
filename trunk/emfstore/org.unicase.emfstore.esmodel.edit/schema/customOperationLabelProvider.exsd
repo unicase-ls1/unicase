@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.emfstore.esmodel.edit" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.emfstore.server.model.edit" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.unicase.emfstore.esmodel.edit" id="customLabelProvider" name="customLabelProvider"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.server.model.edit" id="org.eclipse.emf.emfstore.server.model.edit.customLabelProvider" name="customLabelProvider"/>
       </appInfo>
       <documentation>
-         Allows to add custom label providers for operations (org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation). 
+         Allows to add custom label providers for operations (org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation).
       </documentation>
    </annotation>
 
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.emfstore.server.model.provider.AbstractOperationCustomLabelProvider"/>
                </appInfo>
             </annotation>
          </attribute>

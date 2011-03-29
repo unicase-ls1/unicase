@@ -80,7 +80,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected CompositeOperationItemProvider compositeOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -125,7 +125,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected AttributeOperationItemProvider attributeOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -163,7 +163,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation} instances. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -187,7 +187,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation} instances. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeMoveOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -211,7 +211,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} instances. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -234,7 +234,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation} instances. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -280,7 +280,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation} instances. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -333,7 +333,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected OperationIdItemProvider operationIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -356,7 +356,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected OperationGroupItemProvider operationGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.OperationGroup}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.OperationGroup}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -379,7 +379,7 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	protected ModelElementGroupItemProvider modelElementGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ModelElementGroup}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ModelElementGroup}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

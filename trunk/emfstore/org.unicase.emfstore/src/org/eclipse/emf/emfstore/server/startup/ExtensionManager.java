@@ -34,7 +34,7 @@ public final class ExtensionManager {
 	 */
 	public static void notifyStartupListener(EList<ProjectHistory> projects) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.startuplistener");
+			"org.eclipse.emf.emfstore.server.startuplistener");
 
 		// get all providers from the extension points
 		for (IConfigurationElement e : config) {
@@ -60,7 +60,7 @@ public final class ExtensionManager {
 	public static void notifyPostStartupListener(ServerSpace serverspace, AccessControlImpl accessControl,
 		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.poststartuplistener");
+			"org.eclipse.emf.emfstore.server.poststartuplistener");
 
 		// get all providers from the extension points
 		for (IConfigurationElement e : config) {

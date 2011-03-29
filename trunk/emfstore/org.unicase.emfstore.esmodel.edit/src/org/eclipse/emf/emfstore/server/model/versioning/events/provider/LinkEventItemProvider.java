@@ -24,7 +24,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.LinkEvent} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

@@ -27,7 +27,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

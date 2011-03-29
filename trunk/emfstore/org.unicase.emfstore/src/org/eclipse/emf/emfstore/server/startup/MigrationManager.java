@@ -23,10 +23,10 @@ import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.util.MalformedModelVersionException;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigrationException;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigratorUtil;
 import org.eclipse.emf.emfstore.server.ServerConfiguration;
 import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
-import org.unicase.emfstore.migration.EMFStoreMigrationException;
-import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
 
 /**
  * Applies migrator to files on server.

@@ -101,7 +101,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	protected DateVersionSpecItemProvider dateVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -124,7 +124,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	protected PrimaryVersionSpecItemProvider primaryVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -256,7 +256,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	protected HeadVersionSpecItemProvider headVersionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.HeadVersionSpec}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -278,7 +278,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	protected VersionPropertyItemProvider versionPropertyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.VersionProperty}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.VersionProperty}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

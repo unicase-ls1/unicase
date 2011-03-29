@@ -30,7 +30,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
 
 /**
  * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation} object. <!--
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

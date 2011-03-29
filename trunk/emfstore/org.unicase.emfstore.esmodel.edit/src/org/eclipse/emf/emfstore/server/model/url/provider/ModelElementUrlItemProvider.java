@@ -26,7 +26,7 @@ import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
 import org.eclipse.emf.emfstore.server.model.url.UrlPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrl} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrl} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

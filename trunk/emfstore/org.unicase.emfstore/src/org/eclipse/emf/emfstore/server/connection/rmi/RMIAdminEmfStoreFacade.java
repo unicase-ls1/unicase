@@ -24,7 +24,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getProjectInfos(org.unicase.emfstore.esmodel.SessionId)
+	 * @see AdminEmfStore#getProjectInfos(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @param sessionId the session id
 	 * @return list of projects
 	 * @throws RemoteException transport related exception
@@ -35,7 +35,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId)
+	 * @see AdminEmfStore#getGroups(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @param sessionId the session id
 	 * @return list of groups
 	 * @throws RemoteException transport related exception
@@ -46,7 +46,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getUsers(org.unicase.emfstore.esmodel.SessionId)
+	 * @see AdminEmfStore#getUsers(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @param sessionid the session id
 	 * @return list of user
 	 * @throws RemoteException transport related exception
@@ -57,7 +57,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getOrgUnits(org.unicase.emfstore.esmodel.SessionId)
+	 * @see AdminEmfStore#getOrgUnits(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @param sessionId the session id
 	 * @return list of orgUnits
 	 * @throws RemoteException transport related exception
@@ -68,8 +68,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getGroups(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#getGroups(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param user the user
 	 * @return list of groups
@@ -81,9 +81,9 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#removeGroup(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#removeGroup(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param user the user
 	 * @param group the group
@@ -95,8 +95,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getParticipants(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 * @see AdminEmfStore#getParticipants(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @return list of orgUnits
@@ -108,8 +108,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#addParticipant(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#addParticipant(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param participant the orgUnit
@@ -122,8 +122,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#removeParticipant(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#removeParticipant(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId, org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param participant the orgUnit
@@ -136,8 +136,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getRole(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#getRole(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param orgUnitId the orgUnit id
@@ -150,8 +150,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#changeRole(org.unicase.emfstore.esmodel.SessionId, org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId, org.eclipse.emf.ecore.EClass)
+	 * @see AdminEmfStore#changeRole(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId, org.eclipse.emf.ecore.EClass)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param orgUnitId the orgUnit id
@@ -165,7 +165,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#createGroup(org.unicase.emfstore.esmodel.SessionId, String)
+	 * @see AdminEmfStore#createGroup(org.eclipse.emf.emfstore.server.model.SessionId, String)
 	 * @param sessionId the session id
 	 * @param name the name
 	 * @return String id of created user
@@ -177,8 +177,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#deleteGroup(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#deleteGroup(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param id the orgUnit id
 	 * @throws RemoteException transport related exception
@@ -189,7 +189,7 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#createUser(org.unicase.emfstore.esmodel.SessionId, String)e
+	 * @see AdminEmfStore#createUser(org.eclipse.emf.emfstore.server.model.SessionId, String)e
 	 * @param sessionId the session id
 	 * @param name the name
 	 * @return String
@@ -201,8 +201,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#deleteUser(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#deleteUser(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param id the orgUnit id
 	 * @throws RemoteException transport related exception
@@ -213,8 +213,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getMembers(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#getMembers(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the sessionId
 	 * @param groupId the group Id
 	 * @return list of member
@@ -226,9 +226,9 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#addMember(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#addMember(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param group the group id
 	 * @param member the user id
@@ -240,9 +240,9 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#removeMember(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#removeMember(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param group the group id
 	 * @param member the member id
@@ -254,8 +254,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#changeOrgUnit(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId, String, String)
+	 * @see AdminEmfStore#changeOrgUnit(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId, String, String)
 	 * @param sessionId the session i d
 	 * @param orgUnitId the orgUnit id
 	 * @param name the name
@@ -269,8 +269,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getOrgUnit(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see AdminEmfStore#getOrgUnit(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param orgUnitId the orgUnit id
 	 * @return an orgUnit
