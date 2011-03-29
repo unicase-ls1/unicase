@@ -24,7 +24,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

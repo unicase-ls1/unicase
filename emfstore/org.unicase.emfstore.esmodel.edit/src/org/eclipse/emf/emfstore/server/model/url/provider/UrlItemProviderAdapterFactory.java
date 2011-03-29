@@ -123,7 +123,7 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	protected ModelElementUrlFragmentItemProvider modelElementUrlFragmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

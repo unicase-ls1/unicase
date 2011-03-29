@@ -79,7 +79,7 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	protected ESNotificationItemProvider esNotificationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.notification.ESNotification}. <!--
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

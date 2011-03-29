@@ -62,7 +62,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 
 	private AuthenticationControlFactory getAuthenticationFactory() {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.authenticationfactory");
+			"org.eclipse.emf.emfstore.server.authenticationfactory");
 
 		// get all providers from the extension points
 		for (IConfigurationElement e : config) {
@@ -84,7 +84,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.accesscontrol.AuthenticationControl#logIn(java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.accesscontrol.AuthenticationControl#logIn(java.lang.String,
+	 *      java.lang.String)
 	 */
 	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
 		throws AccessControlException {
@@ -142,9 +143,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see 
-	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId
-	 *      , � � �org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 * @see org.eclipse.emf.emfstore.server.accesscontrol.AuthorizationControl#checkWriteAccess(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId, java.util.Set)
 	 */
 	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
 		throws AccessControlException {
@@ -235,9 +235,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see 
-	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId
-	 *      , � � �org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 * @see org.eclipse.emf.emfstore.server.accesscontrol.AuthorizationControl#checkReadAccess(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId, java.util.Set)
 	 */
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<EObject> modelElements)
 		throws AccessControlException {
@@ -259,9 +258,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see 
-	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.
-	 *      SessionId, � � �org.unicase.emfstore.esmodel.ProjectId)
+	 * @see org.eclipse.emf.emfstore.server.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
 	 */
 	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId) throws AccessControlException {
 		checkSession(sessionId);
@@ -303,9 +301,9 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	public ACUser resolveUser(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
-		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
+		ACUser user = EcoreUtil.copy(tmpUser);
 		for (Role role : getRolesFromGroups(tmpUser)) {
-			user.getRoles().add((Role) EcoreUtil.copy(role));
+			user.getRoles().add(EcoreUtil.copy(role));
 		}
 		return user;
 	}
@@ -315,9 +313,9 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 */
 	public ACUser resolveUser(ACOrgUnitId id) throws AccessControlException {
 		ACUser tmpUser = getUser(id);
-		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
+		ACUser user = EcoreUtil.copy(tmpUser);
 		for (Role role : getRolesFromGroups(tmpUser)) {
-			user.getRoles().add((Role) EcoreUtil.copy(role));
+			user.getRoles().add(EcoreUtil.copy(role));
 		}
 		return user;
 	}

@@ -24,7 +24,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

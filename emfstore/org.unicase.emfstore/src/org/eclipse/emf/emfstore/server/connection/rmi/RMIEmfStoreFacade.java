@@ -27,7 +27,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#getProjectList(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @param sessionId session id
 	 * @return list of projects
 	 * @throws RemoteException if RMI remote invocation fails
@@ -38,8 +38,9 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#getProject(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec).
+	 * @see org.eclipse.emf.emfstore.server.model.EmfStore#getProject(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.VersionSpec).
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param versionSpec the version spec
@@ -52,10 +53,11 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.EmfStore#createVersion(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.PrimaryVersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.ChangePackage,
-	 *      org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#createVersion(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.LogMessage)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param baseVersionSpec the base version
@@ -71,8 +73,9 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#resolveVersionSpec(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec))
+	 * @see org.eclipse.emf.emfstore.server.model.EmfStore#resolveVersionSpec(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.VersionSpec))
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param versionSpec the version spec
@@ -86,9 +89,10 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.EmfStore#getChanges(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.changemanagment.VersionSpec,
-	 *      org.unicase.emfstore.esmodel.changemanagment.VersionSpec)
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#getChanges(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.VersionSpec,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.VersionSpec)
 	 * @param sessionId the session
 	 * @param projectId the project id
 	 * @param source the source version
@@ -103,8 +107,9 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.HistoryQuery);
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#getHistoryInfo(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery);
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param query the history query
@@ -118,9 +123,10 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#addTag(org.unicase.emfstore.esmodel. SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
-	 *      org.unicase.emfstore.esmodel.versioning.TagVersionSpec);
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#addTag(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec);
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param versionSpec the version spec
@@ -134,9 +140,10 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.EmfStore#removeTag(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
-	 *      org.unicase.emfstore.esmodel.versioning.TagVersionSpec)
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#removeTag(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param versionSpec the version spec
@@ -150,8 +157,8 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.EmfStore#createEmptyProject(org.unicase.emfstore.esmodel.SessionId, String, String,
-	 *      org.unicase.emfstore.esmodel.changemanagment.LogMessage)
+	 * @see org.eclipse.emf.emfstore.server.EmfStore#createEmptyProject(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      String, String, org.eclipse.emf.emfstore.server.model.versioning.LogMessage)
 	 * @param sessionId the session id
 	 * @param name the name
 	 * @param description the description

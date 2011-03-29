@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.HeadVersionSpec} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

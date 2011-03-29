@@ -29,7 +29,7 @@ import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.notification.ESNotification} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

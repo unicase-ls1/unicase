@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.emfstore.server.model.versioning.events.ReadDiagramEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent}
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadDiagramEvent}
  * object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
