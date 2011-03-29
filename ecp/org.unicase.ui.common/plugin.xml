@@ -75,7 +75,7 @@
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.deleteModelelement">
         <command
-              commandId="org.unicase.workspace.ui.validate"
+              commandId="org.eclipse.emf.emfstore.client.ui.validate"
               icon="icons/validation.png"
               label="Validate"
               style="push">

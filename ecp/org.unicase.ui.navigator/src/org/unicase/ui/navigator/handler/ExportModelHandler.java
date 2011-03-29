@@ -47,7 +47,7 @@ public class ExportModelHandler extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
 
-	private static final String EXPORT_MODEL_PATH = "org.unicase.workspace.ui.exportModelPath";
+	private static final String EXPORT_MODEL_PATH = "org.eclipse.emf.emfstore.client.ui.exportModelPath";
 
 	/**
 	 * {@inheritDoc}
