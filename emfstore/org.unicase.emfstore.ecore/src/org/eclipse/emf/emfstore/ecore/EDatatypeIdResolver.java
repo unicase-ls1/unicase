@@ -1,4 +1,4 @@
-package org.unicase.emfstore.ecore;
+package org.eclipse.emf.emfstore.ecore;
 import java.util.HashMap;
 import java.util.Map;
 

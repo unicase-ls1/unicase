@@ -56,7 +56,7 @@ public final class EMFStoreMigratorUtil {
 
 	private static EMFStoreMigrator loadMigrator() throws EMFStoreMigrationException {
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.emfstore.migrator");
+			"org.eclipse.emf.emfstore.migration.migrator");
 		if (rawExtensions.length > 1) {
 			ModelUtil
 				.logWarning("Multiple EMFStore Migrators are registered. EMFStore will default to first loadable migrator.");
