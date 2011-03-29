@@ -156,7 +156,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 	}
 
-	private static final String VIEW_ID = "org.unicase.workspace.ui.views.historybrowserview";
+	private static final String VIEW_ID = "org.eclipse.emf.emfstore.client.ui.views.historybrowserview";
 
 	private List<HistoryInfo> historyInfos;
 

@@ -30,7 +30,7 @@ import org.unicase.ui.util.PreferenceHelper;
  */
 public class ImportProjectSpaceHandler extends AbstractHandler {
 
-	private static final String IMPORT_PROJECTSPACE_PATH = "org.unicase.workspace.ui.importProjectSpacePath";
+	private static final String IMPORT_PROJECTSPACE_PATH = "org.eclipse.emf.emfstore.client.ui.importProjectSpacePath";
 
 	/**
 	 * {@inheritDoc}

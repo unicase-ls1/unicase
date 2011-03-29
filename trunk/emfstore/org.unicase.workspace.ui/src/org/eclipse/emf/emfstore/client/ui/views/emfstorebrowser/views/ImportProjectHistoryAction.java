@@ -46,7 +46,7 @@ public class ImportProjectHistoryAction extends Action {
 	 */
 	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
 
-	private static final String IMPORT_PROJECT_HISTORY_PATH = "org.unicase.workspace.ui.importProjectHistoryPath";
+	private static final String IMPORT_PROJECT_HISTORY_PATH = "org.eclipse.emf.emfstore.client.ui.importProjectHistoryPath";
 
 	private Usersession usersession;
 

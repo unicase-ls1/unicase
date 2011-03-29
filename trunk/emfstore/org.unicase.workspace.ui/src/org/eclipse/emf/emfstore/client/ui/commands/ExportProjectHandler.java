@@ -29,7 +29,7 @@ import org.unicase.ui.util.PreferenceHelper;
  */
 public class ExportProjectHandler extends AbstractHandler {
 
-	private static final String EXPORT_PROJECT_PATH = "org.unicase.workspace.ui.exportProjectPath";
+	private static final String EXPORT_PROJECT_PATH = "org.eclipse.emf.emfstore.client.ui.exportProjectPath";
 
 	/**
 	 * These filter names are used to filter which files are displayed.

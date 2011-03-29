@@ -203,7 +203,7 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		WorkspaceUtil.logFocusEvent("org.unicase.workspace.ui.repositorybrowser");
+		WorkspaceUtil.logFocusEvent("org.eclipse.emf.emfstore.client.ui.repositorybrowser");
 	}
 
 	/**

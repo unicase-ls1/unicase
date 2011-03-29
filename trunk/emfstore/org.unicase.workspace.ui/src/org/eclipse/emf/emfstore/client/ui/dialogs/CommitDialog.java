@@ -72,7 +72,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		this.activeProjectSpace = activeProjectSpace;
 		trays = new HashMap<String, CommitDialogTray>();
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.ui.commitdialog.tray");
+			"org.eclipse.emf.emfstore.client.ui.commitdialog.tray");
 		for (IConfigurationElement c : config) {
 			try {
 				CommitDialogTray tray = (CommitDialogTray) c.createExecutableExtension("class");
@@ -262,7 +262,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	protected void createButtonsForButtonBar(Composite parent) {
 		// final String notifyUsers = "Notify users";
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.ui.commitdialog.tray");
+			"org.eclipse.emf.emfstore.client.ui.commitdialog.tray");
 		for (IConfigurationElement c : config) {
 			final String name = c.getAttribute("name");
 			final CommitDialogTray tray = trays.get(name);

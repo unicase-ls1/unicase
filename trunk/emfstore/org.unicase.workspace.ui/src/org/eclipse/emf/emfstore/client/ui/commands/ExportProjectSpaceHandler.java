@@ -40,7 +40,7 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucc", "*.*" };
 
-	private static final String EXPORT_PROJECTSPACE_PATH = "org.unicase.workspace.ui.exportProjectSpacePath";
+	private static final String EXPORT_PROJECTSPACE_PATH = "org.eclipse.emf.emfstore.client.ui.exportProjectSpacePath";
 
 	/**
 	 * {@inheritDoc}

@@ -28,7 +28,7 @@ import org.unicase.ui.util.PreferenceHelper;
  */
 public class ExportWorkSpaceHandler extends AbstractHandler {
 
-	private static final String EXPORT_WORKSPACE_PATH = "org.unicase.workspace.ui.exportWorkSpacePath";
+	private static final String EXPORT_WORKSPACE_PATH = "org.eclipse.emf.emfstore.client.ui.exportWorkSpacePath";
 
 	/**
 	 * {@inheritDoc}

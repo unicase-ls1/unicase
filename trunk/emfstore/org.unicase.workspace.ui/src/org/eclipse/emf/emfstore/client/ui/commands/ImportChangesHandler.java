@@ -29,7 +29,7 @@ import org.unicase.ui.util.PreferenceHelper;
  */
 public class ImportChangesHandler extends AbstractHandler {
 
-	private static final String IMPORT_CHANGES_PATH = "org.unicase.workspace.ui.importChangesPath";
+	private static final String IMPORT_CHANGES_PATH = "org.eclipse.emf.emfstore.client.ui.importChangesPath";
 
 	/**
 	 * . {@inheritDoc}
