@@ -105,7 +105,7 @@ public abstract class Conflict extends Observable {
 			return;
 		}
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.workspace.ui.merge.customoption");
+			"org.eclipse.emf.emfstore.client.ui.merge.customoption");
 
 		for (IConfigurationElement e : config) {
 			try {

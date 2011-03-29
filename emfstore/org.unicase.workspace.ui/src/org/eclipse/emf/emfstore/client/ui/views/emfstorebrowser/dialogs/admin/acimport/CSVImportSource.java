@@ -32,7 +32,7 @@ import org.unicase.ui.util.PreferenceHelper;
 
 public class CSVImportSource extends ImportSource {
 
-	private static final String CSV_IMPORT_SOURCE_PATH = "org.unicase.workspace.ui.CSVImportSourcePath";
+	private static final String CSV_IMPORT_SOURCE_PATH = "org.eclipse.emf.emfstore.client.ui.CSVImportSourcePath";
 
 	private HashMap<String, ImportItemWrapper> groupMap = new HashMap<String, ImportItemWrapper>();
 

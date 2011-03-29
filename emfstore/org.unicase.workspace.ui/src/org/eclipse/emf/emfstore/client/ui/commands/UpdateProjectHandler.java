@@ -117,7 +117,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 
 		// IWorkbenchPage page =
 		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		// String viewId = "org.unicase.workspace.ui.views.CompareView";
+		// String viewId = "org.eclipse.emf.emfstore.client.ui.views.CompareView";
 		// CompareView compareView = null;
 		// try {
 		// compareView = (CompareView) page.showView(viewId);

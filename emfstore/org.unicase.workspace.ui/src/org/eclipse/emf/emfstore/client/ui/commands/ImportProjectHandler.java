@@ -34,7 +34,7 @@ import org.unicase.ui.util.PreferenceHelper;
  */
 public class ImportProjectHandler extends AbstractHandler {
 
-	private static final String IMPORT_PROJECT_PATH = "org.unicase.workspace.ui.importProjectPath";
+	private static final String IMPORT_PROJECT_PATH = "org.eclipse.emf.emfstore.client.ui.importProjectPath";
 
 	/**
 	 * These filter names are used to filter which files are displayed.

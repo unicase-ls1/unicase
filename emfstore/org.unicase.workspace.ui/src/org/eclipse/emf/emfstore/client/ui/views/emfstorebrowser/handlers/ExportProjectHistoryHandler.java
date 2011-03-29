@@ -52,7 +52,7 @@ public class ExportProjectHistoryHandler extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
 
-	private static final String EXPORT_PROJECT_HISTORY_PATH = "org.unicase.workspace.ui.exportProjectHistoryPath";
+	private static final String EXPORT_PROJECT_HISTORY_PATH = "org.eclipse.emf.emfstore.client.ui.exportProjectHistoryPath";
 
 	private Usersession usersession;
 	private ProjectInfo projectInfo;
