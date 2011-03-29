@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.emf.emfstore.migration.migrator">
       <Migrator
-            migratorClass="org.unicase.emfstore.migration.cope.CopeMigrator">
+            migratorClass="org.eclipse.emf.emfstore.migration.cope.CopeMigrator">
       </Migrator>
    </extension>
 
