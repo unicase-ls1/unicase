@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.emfstore.common.model" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.emfstore.common.model" id="recommendationstrategy" name="RecommendationStrategy"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.common.model" id="org.eclipse.emf.emfstore.common.model.recommendationstrategy" name="RecommendationStrategy"/>
       </appInfo>
       <documentation>
          This extension point is created for offering developers to create their own recommendation strategies.
