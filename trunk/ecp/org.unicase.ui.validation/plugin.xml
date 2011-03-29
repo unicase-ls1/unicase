@@ -51,12 +51,12 @@
  <extension
         point="org.eclipse.ui.commands">
      <category
-           id="org.unicase.workspace.ui.project"
+           id="org.eclipse.emf.emfstore.client.ui.project"
            name="Unicase">
      </category>
       <command
            defaultHandler="org.unicase.ui.validation.ValidateHandler"
-           id="org.unicase.workspace.ui.validate"
+           id="org.eclipse.emf.emfstore.client.ui.validate"
            name="Validate">
                 </command>
            
@@ -67,7 +67,7 @@
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
             <command
-              commandId="org.unicase.workspace.ui.validate"
+              commandId="org.eclipse.emf.emfstore.client.ui.validate"
               icon="icons/validation.png"
               label="Validate"
               style="push">
@@ -93,7 +93,7 @@
   <extension
            point="org.eclipse.ui.bindings">             
          <key
-              commandId="org.unicase.workspace.ui.validate"
+              commandId="org.eclipse.emf.emfstore.client.ui.validate"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+V">

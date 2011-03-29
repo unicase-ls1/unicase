@@ -47,7 +47,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
 
-	private static final String IMPORT_MODEL_PATH = "org.unicase.workspace.ui.importModelPath";
+	private static final String IMPORT_MODEL_PATH = "org.eclipse.emf.emfstore.client.ui.importModelPath";
 
 	/**
 	 * {@inheritDoc}
