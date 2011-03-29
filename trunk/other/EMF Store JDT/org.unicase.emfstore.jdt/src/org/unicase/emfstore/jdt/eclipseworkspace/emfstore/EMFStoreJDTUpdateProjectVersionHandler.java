@@ -22,7 +22,7 @@ public class EMFStoreJDTUpdateProjectVersionHandler extends UpdateProjectVersion
 	/**
 	 * All changes are getting accepted, without asking the user. {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ui.commands.UpdateProjectVersionHandler#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 * @see org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler#inspectChanges(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List)
 	 */
 	@Override
@@ -33,7 +33,7 @@ public class EMFStoreJDTUpdateProjectVersionHandler extends UpdateProjectVersion
 	/**
 	 * The dash board will not be opened. {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ui.commands.UpdateProjectVersionHandler#updateCompleted()
+	 * @see org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler#updateCompleted()
 	 */
 	@Override
 	public void updateCompleted(ProjectSpace projectSpace) {
