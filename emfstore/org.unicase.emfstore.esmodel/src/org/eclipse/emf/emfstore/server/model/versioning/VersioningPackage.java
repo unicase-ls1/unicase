@@ -43,7 +43,7 @@ public interface VersioningPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.emfstore.esmodel.versioning";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.server.model.versioning";
 
 	/**
 	 * The singleton instance of the package.

@@ -43,7 +43,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FileIdentifier" eSuperTypes="../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"/>
   <eSubpackages name="versioning" nsURI="http://eclipse.org/emf/emfstore/server/model/versioning"
-      nsPrefix="org.unicase.emfstore.esmodel.versioning">
+      nsPrefix="org.eclipse.emf.emfstore.server.model.versioning">
     <eClassifiers xsi:type="ecore:EClass" name="TagVersionSpec" eSuperTypes="#//versioning/VersionSpec">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -123,7 +123,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eSubpackages name="operations" nsURI="http://eclipse.org/emf/emfstore/server/model/versioning/operations"
-        nsPrefix="org.unicase.emfstore.esmodel.versioning.operations">
+        nsPrefix="org.eclipse.emf.emfstore.server.model.versioning.operations">
       <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation" abstract="true"
           eSuperTypes="../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -239,13 +239,13 @@
             containment="true"/>
       </eClassifiers>
       <eSubpackages name="semantic" nsURI="http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic"
-          nsPrefix="org.unicase.emfstore.esmodel.versioning.operations.semantic">
+          nsPrefix="org.eclipse.emf.emfstore.server.model.versioning.operations.semantic">
         <eClassifiers xsi:type="ecore:EClass" name="SemanticCompositeOperation" abstract="true"
             eSuperTypes="#//versioning/operations/CompositeOperation"/>
       </eSubpackages>
     </eSubpackages>
     <eSubpackages name="events" nsURI="http://eclipse.org/emf/emfstore/server/model/versioning/events"
-        nsPrefix="org.unicase.emfstore.esmodel.versioning.events">
+        nsPrefix="org.eclipse.emf.emfstore.server.model.versioning.events">
       <eClassifiers xsi:type="ecore:EClass" name="Event">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </eClassifiers>
@@ -408,7 +408,7 @@
         <eLiterals name="OKFinished" value="4" literal="OKFinished"/>
       </eClassifiers>
       <eSubpackages name="server" nsURI="http://eclipse.org/emf/emfstore/server/model/versioning/events/server/"
-          nsPrefix="org.unicase.esmodel.versioning.events.server">
+          nsPrefix="org.eclipse.emf.emfstore.server.model.versioning.events.server">
         <eClassifiers xsi:type="ecore:EClass" name="ServerEvent" abstract="true" eSuperTypes="#//versioning/events/Event"/>
         <eClassifiers xsi:type="ecore:EClass" name="ServerProjectEvent" abstract="true"
             eSuperTypes="#//versioning/events/server/ServerEvent">
@@ -423,7 +423,7 @@
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://eclipse.org/emf/emfstore/server/model/accesscontrol"
-      nsPrefix="org.unicase.accesscontrol">
+      nsPrefix="org.eclipse.emf.emfstore.server.model.accesscontrol">
     <eClassifiers xsi:type="ecore:EClass" name="ACUser" eSuperTypes="#//accesscontrol/ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -450,7 +450,7 @@
           containment="true" eKeys="../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id"/>
     </eClassifiers>
     <eSubpackages name="roles" nsURI="http://eclipse.org/emf/emfstore/server/model/roles"
-        nsPrefix="org.unicase.accesscontrol.roles">
+        nsPrefix="org.eclipse.emf.emfstore.server.model.accesscontrol.roles">
       <eClassifiers xsi:type="ecore:EClass" name="Role" abstract="true">
         <eOperations name="canAdministrate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="projectId" eType="#//ProjectId"/>
@@ -481,7 +481,7 @@
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="notification" nsURI="http://eclipse.org/emf/emfstore/server/model/notification"
-      nsPrefix="org.unicase.notification">
+      nsPrefix="org.eclipse.emf.emfstore.server.model.notification">
     <eClassifiers xsi:type="ecore:EClass" name="ESNotification" eSuperTypes="../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -501,7 +501,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="url" nsURI="http://eclipse.org/emf/emfstore/server/model/url"
-      nsPrefix="org.unicase.emfstore.esmodel.url">
+      nsPrefix="org.eclipse.emf.emfstore.server.model.url">
     <eClassifiers xsi:type="ecore:EClass" name="ServerUrl">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
