@@ -57,7 +57,7 @@ public class MathematicalModelDependenciesEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class MathematicalModelDependenciesEditPart extends
 		 * @generated
 		 */
 		public MathematicalModel_DependenciesFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

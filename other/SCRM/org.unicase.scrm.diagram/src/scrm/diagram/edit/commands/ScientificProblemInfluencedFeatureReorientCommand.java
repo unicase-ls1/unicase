@@ -74,7 +74,7 @@ public class ScientificProblemInfluencedFeatureReorientCommand extends
 		if (!(oldEnd instanceof Feature && newEnd instanceof ScientificProblem)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificProblemInfluencedFeature_4008(
 						getNewSource(), getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class ScientificProblemInfluencedFeatureReorientCommand extends
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificProblemInfluencedFeature_4008(
 						getOldSource(), getNewTarget());
 	}

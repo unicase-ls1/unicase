@@ -210,7 +210,7 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSolvedProblem != null)
-				msgs = ((InternalEObject)newSolvedProblem).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD, ScientificProblem.class, msgs);
+				msgs = ((InternalEObject)newSolvedProblem).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS, ScientificProblem.class, msgs);
 			msgs = basicSetSolvedProblem(newSolvedProblem, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -381,33 +381,11 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPerformance(Performance newPerformance, NotificationChain msgs) {
+	public void setPerformance(Performance newPerformance) {
 		Performance oldPerformance = performance;
 		performance = newPerformance;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE, oldPerformance, newPerformance);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPerformance(Performance newPerformance) {
-		if (newPerformance != performance) {
-			NotificationChain msgs = null;
-			if (performance != null)
-				msgs = ((InternalEObject)performance).eInverseRemove(this, RequirementsPackage.PERFORMANCE__NUMERICAL_METHOD, Performance.class, msgs);
-			if (newPerformance != null)
-				msgs = ((InternalEObject)newPerformance).eInverseAdd(this, RequirementsPackage.PERFORMANCE__NUMERICAL_METHOD, Performance.class, msgs);
-			msgs = basicSetPerformance(newPerformance, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE, newPerformance, newPerformance));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE, oldPerformance, performance));
 	}
 
 	/**
@@ -477,10 +455,6 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 				if (mathematicalModel != null)
 					msgs = ((InternalEObject)mathematicalModel).eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS, MathematicalModel.class, msgs);
 				return basicSetMathematicalModel((MathematicalModel)otherEnd, msgs);
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				if (performance != null)
-					msgs = ((InternalEObject)performance).eInverseRemove(this, RequirementsPackage.PERFORMANCE__NUMERICAL_METHOD, Performance.class, msgs);
-				return basicSetPerformance((Performance)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -503,8 +477,6 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 				return basicSetRealizingRequirement(null, msgs);
 			case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 				return basicSetMathematicalModel(null, msgs);
-			case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
-				return basicSetPerformance(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -518,7 +490,7 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD, ScientificProblem.class, msgs);
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS, ScientificProblem.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

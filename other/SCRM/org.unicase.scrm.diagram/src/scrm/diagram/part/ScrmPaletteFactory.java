@@ -1,6 +1,7 @@
 package scrm.diagram.part;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gef.Tool;
@@ -10,6 +11,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
@@ -71,10 +73,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createScientificProblem1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.ScientificProblem_2007);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.ScientificProblem1CreationTool_title, null, types);
+				Messages.ScientificProblem1CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.ScientificProblem_2007));
 		entry.setId("createScientificProblem1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.ScientificProblem_2007));
@@ -86,10 +88,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createMathematicalModel2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.MathematicalModel_2005);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.MathematicalModel2CreationTool_title, null, types);
+				Messages.MathematicalModel2CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.MathematicalModel_2005));
 		entry.setId("createMathematicalModel2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.MathematicalModel_2005));
@@ -101,10 +103,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNumericalMethod3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.NumericalMethod_2006);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.NumericalMethod3CreationTool_title, null, types);
+				Messages.NumericalMethod3CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.NumericalMethod_2006));
 		entry.setId("createNumericalMethod3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.NumericalMethod_2006));
@@ -116,10 +118,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createAssumption4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Assumption_2008);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Assumption4CreationTool_title, null, types);
+				Messages.Assumption4CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.Assumption_2008));
 		entry.setId("createAssumption4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Assumption_2008));
@@ -131,10 +132,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFeature1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Feature_2009);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Feature1CreationTool_title, null, types);
+				Messages.Feature1CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.Feature_2009));
 		entry.setId("createFeature1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Feature_2009));
@@ -146,10 +146,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createHardware2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Hardware_2010);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Hardware2CreationTool_title, null, types);
+				Messages.Hardware2CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.Hardware_2010));
 		entry.setId("createHardware2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Hardware_2010));
@@ -161,10 +160,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createConstraint3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Constraint_2011);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Constraint3CreationTool_title, null, types);
+				Messages.Constraint3CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.Constraint_2011));
 		entry.setId("createConstraint3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Constraint_2011));
@@ -176,10 +174,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createUserInterface4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.UserInterface_2012);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.UserInterface4CreationTool_title, null, types);
+				Messages.UserInterface4CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.UserInterface_2012));
 		entry.setId("createUserInterface4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.UserInterface_2012));
@@ -191,10 +188,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createSoftwareInterface5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.SoftwareInterface_2013);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.SoftwareInterface5CreationTool_title, null, types);
+				Messages.SoftwareInterface5CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.SoftwareInterface_2013));
 		entry.setId("createSoftwareInterface5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.SoftwareInterface_2013));
@@ -206,11 +203,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createProcess6CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Process_2014);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Process6CreationTool_title,
-				Messages.Process6CreationTool_desc, types);
+				Messages.Process6CreationTool_desc,
+				Collections.singletonList(ScrmElementTypes.Process_2014));
 		entry.setId("createProcess6CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Process_2014));
@@ -222,10 +218,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createPerformance7CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.Performance_2015);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Performance7CreationTool_title, null, types);
+				Messages.Performance7CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.Performance_2015));
 		entry.setId("createPerformance7CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.Performance_2015));
@@ -237,10 +232,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDataFlow8CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.DataFlow_2016);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.DataFlow8CreationTool_title, null, types);
+				Messages.DataFlow8CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.DataFlow_2016));
 		entry.setId("createDataFlow8CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.DataFlow_2016));
@@ -252,10 +246,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDataDefinition9CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.DataDefinition_2017);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.DataDefinition9CreationTool_title, null, types);
+				Messages.DataDefinition9CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.DataDefinition_2017));
 		entry.setId("createDataDefinition9CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.DataDefinition_2017));
@@ -267,10 +260,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInputDataReading10CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.InputDataReading_2018);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.InputDataReading10CreationTool_title, null, types);
+				Messages.InputDataReading10CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.InputDataReading_2018));
 		entry.setId("createInputDataReading10CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.InputDataReading_2018));
@@ -282,10 +275,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDataHandling11CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.DataHandling_2019);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.DataHandling11CreationTool_title, null, types);
+				Messages.DataHandling11CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.DataHandling_2019));
 		entry.setId("createDataHandling11CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.DataHandling_2019));
@@ -297,10 +289,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createResultsOutput12CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.ResultsOutput_2020);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.ResultsOutput12CreationTool_title, null, types);
+				Messages.ResultsOutput12CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.ResultsOutput_2020));
 		entry.setId("createResultsOutput12CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.ResultsOutput_2020));
@@ -312,10 +303,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createErrorHandling13CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.ErrorHandling_2021);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.ErrorHandling13CreationTool_title, null, types);
+				Messages.ErrorHandling13CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.ErrorHandling_2021));
 		entry.setId("createErrorHandling13CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.ErrorHandling_2021));
@@ -327,10 +317,10 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStatusMonitoring14CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ScrmElementTypes.StatusMonitoring_2022);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.StatusMonitoring14CreationTool_title, null, types);
+				Messages.StatusMonitoring14CreationTool_title, null,
+				Collections
+						.singletonList(ScrmElementTypes.StatusMonitoring_2022));
 		entry.setId("createStatusMonitoring14CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
 				.getImageDescriptor(ScrmElementTypes.StatusMonitoring_2022));
@@ -346,13 +336,13 @@ public class ScrmPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private final List elementTypes;
+		private final List<IElementType> elementTypes;
 
 		/**
 		 * @generated
 		 */
 		private NodeToolEntry(String title, String description,
-				List elementTypes) {
+				List<IElementType> elementTypes) {
 			super(title, description, null, null);
 			this.elementTypes = elementTypes;
 		}

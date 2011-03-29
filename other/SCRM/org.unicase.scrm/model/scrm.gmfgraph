@@ -46,55 +46,141 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="244"
             green="119"
             blue="36"/>
+        <preferredSize
+            dx="200"
+            dy="90"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="MathematicalModelLabel"
-            text="MathematicalModel"/>
+            name="MathematicalModel_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MathematicalModel_description"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MathematicalModel_theory"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MathematicalModel_mathematicalExpression"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureMathematicalModelLabel"
+          accessor="getFigureMathematicalModel_name"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureMathematicalModel_description"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureMathematicalModel_theory"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureMathematicalModel_mathematicalExpression"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.3"/>
     </descriptors>
     <descriptors
         name="NumericalMethodFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="240"
             green="240"/>
+        <preferredSize
+            dx="200"
+            dy="90"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="NumericalMethodLabel"
-            text="NumericalMethod"/>
+            name="NumericalMethod_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="NumericalMethod_description"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="NumericalMethod_theory"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="NumericalMethod_algorithm"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureNumericalMethodLabel"
+          accessor="getFigureNumericalMethod_name"
           figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureNumericalMethod_description"
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureNumericalMethod_theory"
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureNumericalMethod_algorithm"
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.3"/>
     </descriptors>
     <descriptors
         name="AssumptionFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="255"
             green="200"
             blue="100"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="AssumptionLabel"
+            name="AssumptionLabel_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="AssumptionLabel_description"
             text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureAssumptionLabel"
+          accessor="getFigureAssumption_name"
           figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureAssumption_description"
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
     </descriptors>
   </figures>
   <figures
@@ -103,21 +189,42 @@
         name="FeatureFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             green="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="FeatureLabel"/>
+            name="Feature_name">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Feature_description"/>
       </actualFigure>
       <accessors
-          accessor="getFigureFeatureLabel"
+          accessor="getFigureFeature_name"
           figure="//@figures.1/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureFeature_description"
+          figure="//@figures.1/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="HardwareFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -125,17 +232,54 @@
             blue="167"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="HardwareLabel"
-            text="Hardware"/>
+            name="Hardware_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Hardware_description"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Hardware_processor"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Hardware_platform"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Hardware_memory"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureHardwareLabel"
+          accessor="getFigureHardware_name"
           figure="//@figures.1/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureHardware_description"
+          figure="//@figures.1/@descriptors.1/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureHardware_processor"
+          figure="//@figures.1/@descriptors.1/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureHardware_platform"
+          figure="//@figures.1/@descriptors.1/@actualFigure/@children.3"/>
+      <accessors
+          accessor="getFigureHardware_memory"
+          figure="//@figures.1/@descriptors.1/@actualFigure/@children.4"/>
     </descriptors>
     <descriptors
         name="ConstraintFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -143,17 +287,33 @@
             blue="167"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="ConstraintLabel"
-            text="Constraint"/>
+            name="Constraint_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Constraint_description"/>
       </actualFigure>
       <accessors
-          accessor="getFigureConstraintLabel"
+          accessor="getFigureConstraint_name"
           figure="//@figures.1/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureConstraint_description"
+          figure="//@figures.1/@descriptors.2/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="UserInterfaceFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -161,17 +321,33 @@
             blue="167"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="UserInterfaceLabel"
-            text="UserInterface"/>
+            name="UserInterface_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="UserInterface_description"/>
       </actualFigure>
       <accessors
-          accessor="getFigureUserInterfaceLabel"
+          accessor="getFigureUserInterface_name"
           figure="//@figures.1/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureUserInterface_description"
+          figure="//@figures.1/@descriptors.3/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="SoftwareInterfaceFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -179,17 +355,39 @@
             blue="167"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="SoftwareInterfaceLabel"
-            text="SoftwareInterface"/>
+            name="SoftwareInterface_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="SoftwareInterface_description"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="SoftwareInterface_dataTypes"/>
       </actualFigure>
       <accessors
-          accessor="getFigureSoftwareInterfaceLabel"
+          accessor="getFigureSoftwareInterface_name"
           figure="//@figures.1/@descriptors.4/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureSoftwareInterface_description"
+          figure="//@figures.1/@descriptors.4/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureSoftwareInterface_dataTypes"
+          figure="//@figures.1/@descriptors.4/@actualFigure/@children.2"/>
     </descriptors>
     <descriptors
         name="ProcessFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -197,17 +395,34 @@
             blue="231"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="ProcessLabel"
-            text="Process"/>
+            name="Process_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Process_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureProcessLabel"
+          accessor="getFigureProcess_name"
           figure="//@figures.1/@descriptors.5/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureProcess_description"
+          figure="//@figures.1/@descriptors.5/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="PerformanceFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -215,17 +430,41 @@
             blue="231"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="PerformanceLabel"
-            text="Performance"/>
+            name="Performance_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Performance_description"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Performance_problemSize"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigurePerformanceLabel"
+          accessor="getFigurePerformance_name"
           figure="//@figures.1/@descriptors.6/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigurePerformance_description"
+          figure="//@figures.1/@descriptors.6/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigurePerformance_problemSize"
+          figure="//@figures.1/@descriptors.6/@actualFigure/@children.2"/>
     </descriptors>
     <descriptors
         name="DataFlowFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -233,17 +472,34 @@
             blue="242"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="DataFlowLabel"
-            text="DataFlow"/>
+            name="DataFlow_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataFlow_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureDataFlowLabel"
+          accessor="getFigureDataFlow_name"
           figure="//@figures.1/@descriptors.7/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureDataFlow_description"
+          figure="//@figures.1/@descriptors.7/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DataDefinitionFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -251,92 +507,217 @@
             blue="242"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="DataDefinitionLabel"
-            text="DataDefinition"/>
+            name="DataDefinition_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataDefinition_description"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataDefinition_accuracy"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataDefinition_format"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataDefinition_range"
+            text=""/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataDefinition_dataType"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureDataDefinitionLabel"
+          accessor="getFigureDataDefinition_name"
           figure="//@figures.1/@descriptors.8/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureDataDefinition_description"
+          figure="//@figures.1/@descriptors.8/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getFigureDataDefinition_accuracy"
+          figure="//@figures.1/@descriptors.8/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getFigureDataDefinition_format"
+          figure="//@figures.1/@descriptors.8/@actualFigure/@children.3"/>
+      <accessors
+          accessor="getFigureDataDefinition_range"
+          figure="//@figures.1/@descriptors.8/@actualFigure/@children.4"/>
+      <accessors
+          accessor="getFigureDataDefinition_dataType"
+          figure="//@figures.1/@descriptors.8/@actualFigure/@children.5"/>
     </descriptors>
     <descriptors
         name="InputDataReadingFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             blue="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="InputDataReadingLabel"
-            text="InputDataReading"/>
+            name="InputDataReading_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="InputDataReading_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureInputDataReadingLabel"
+          accessor="getFigureInputDataReading_name"
           figure="//@figures.1/@descriptors.9/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureInputDataReading_description"
+          figure="//@figures.1/@descriptors.9/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DataHandlingFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             blue="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="DataHandlingLabel"
-            text="DataHandling"/>
+            name="DataHandling_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataHandling_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureDataHandlingLabel"
+          accessor="getFigureDataHandling_name"
           figure="//@figures.1/@descriptors.10/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureDataHandling_description"
+          figure="//@figures.1/@descriptors.10/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ResultsOutputFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             blue="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="ResultsOutputLabel"
-            text="ResultsOutput"/>
+            name="ResultsOutput_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ResultsOutput_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureResultsOutputLabel"
+          accessor="getFigureResultsOutput_name"
           figure="//@figures.1/@descriptors.11/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureResultsOutput_description"
+          figure="//@figures.1/@descriptors.11/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="ErrorHandlingFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             blue="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="ErrorHandlingLabel"
-            text="ErrorHandling"/>
+            name="ErrorHandling_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ErrorHandling_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureErrorHandlingLabel"
+          accessor="getFigureErrorHandling_name"
           figure="//@figures.1/@descriptors.12/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureErrorHandling_description"
+          figure="//@figures.1/@descriptors.12/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="StatusMonitoringFigure">
       <actualFigure
           xsi:type="gmfgraph:Ellipse">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             blue="255"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="StatusMonitoringLabel"
-            text="StatusMonitoring"/>
+            name="StatusMonitoring_name"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="StatusMonitoring_description"
+            text=""/>
       </actualFigure>
       <accessors
-          accessor="getFigureStatusMonitoringLabel"
+          accessor="getFigureStatusMonitoring_name"
           figure="//@figures.1/@descriptors.13/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureStatusMonitoring_description"
+          figure="//@figures.1/@descriptors.13/@actualFigure/@children.1"/>
     </descriptors>
   </figures>
   <figures
@@ -368,16 +749,16 @@
           figure="//@figures.2/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="ScientificProblem_SolvingMethodFigure">
+        name="ScientificProblem_SolvingMethodsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
-            name="ScientificProblem_SolvingMethodLabel"
+            name="ScientificProblem_SolvingMethodsLabel"
             text="solves"/>
       </actualFigure>
       <accessors
-          accessor="getFigureScientificProblem_SolvingMethodLabel"
+          accessor="getFigureScientificProblem_SolvingMethodsLabel"
           figure="//@figures.2/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
@@ -926,8 +1307,8 @@
       name="ScientificProblem_RepresentingModelConnection"
       figure="ScientificProblem_RepresentingModelFigure"/>
   <connections
-      name="ScientificProblem_SolvingMethodConnection"
-      figure="ScientificProblem_SolvingMethodFigure"/>
+      name="ScientificProblem_SolvingMethodsConnection"
+      figure="ScientificProblem_SolvingMethodsFigure"/>
   <connections
       name="ScientificProblem_InfluencedFeatureConnection"
       figure="ScientificProblem_InfluencedFeatureFigure"/>
@@ -1040,13 +1421,43 @@
       name="DataDefinition_DefinedRequirementConnection"
       figure="DataDefinition_DefinedRequirementFigure"/>
   <labels
-      name="MathematicalModelNodeLabel"
+      name="MathematicalModelNode_name"
       figure="MathematicalModelFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
-      name="NumericalMethodNodeLabel"
+      name="MathematicalModelNode_description"
+      figure="MathematicalModelFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <labels
+      name="MathematicalModelNode_theory"
+      figure="MathematicalModelFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.2"/>
+  <labels
+      name="MathematicalModelNode_mathematicalExpression"
+      figure="MathematicalModelFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.3"/>
+  <labels
+      name="NumericalMethodNode_name"
       figure="NumericalMethodFigure"
       accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels
+      name="NumericalMethodNode_description"
+      figure="NumericalMethodFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <labels
+      name="NumericalMethodNode_theory"
+      figure="NumericalMethodFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.2/@accessors.2"/>
+  <labels
+      name="NumericalMethodNode_algorithm"
+      figure="NumericalMethodFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.2/@accessors.3"/>
   <labels
       name="ScientificProblemNode_name"
       figure="ScientificProblemFigure"
@@ -1057,269 +1468,663 @@
       elementIcon="false"
       accessor="//@figures.0/@descriptors.0/@accessors.1"/>
   <labels
-      name="AssumptionNodeLabel"
+      name="AssumptionNode_name"
       figure="AssumptionFigure"
       accessor="//@figures.0/@descriptors.3/@accessors.0"/>
   <labels
-      name="FeatureNodeLabel"
+      name="AssumptionNode_description"
+      figure="AssumptionFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <labels
+      name="FeatureNode_name"
       figure="FeatureFigure"
       accessor="//@figures.1/@descriptors.0/@accessors.0"/>
   <labels
-      name="HardwareNodeLabel"
+      name="FeatureNode_description"
+      figure="FeatureFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.0/@accessors.1"/>
+  <labels
+      name="HardwareNode_name"
       figure="HardwareFigure"
       accessor="//@figures.1/@descriptors.1/@accessors.0"/>
   <labels
-      name="ConstraintNodeLabel"
+      name="HardwareNode_description"
+      figure="HardwareFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.1/@accessors.1"/>
+  <labels
+      name="HardwareNode_processor"
+      figure="HardwareFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.1/@accessors.2"/>
+  <labels
+      name="HardwareNode_platform"
+      figure="HardwareFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.1/@accessors.3"/>
+  <labels
+      name="HardwareNode_memory"
+      figure="HardwareFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.1/@accessors.4"/>
+  <labels
+      name="ConstraintNode_name"
       figure="ConstraintFigure"
       accessor="//@figures.1/@descriptors.2/@accessors.0"/>
   <labels
-      name="UserInterfaceNodeLabel"
+      name="ConstraintNode_description"
+      figure="ConstraintFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.2/@accessors.1"/>
+  <labels
+      name="UserInterfaceNode_name"
       figure="UserInterfaceFigure"
       accessor="//@figures.1/@descriptors.3/@accessors.0"/>
   <labels
-      name="SoftwareInterfaceNodeLabel"
+      name="UserInterfaceNode_description"
+      figure="UserInterfaceFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.3/@accessors.1"/>
+  <labels
+      name="SoftwareInterfaceNode_name"
       figure="SoftwareInterfaceFigure"
       accessor="//@figures.1/@descriptors.4/@accessors.0"/>
   <labels
-      name="ProcessNodeLabel"
+      name="SoftwareInterfaceNode_description"
+      figure="SoftwareInterfaceFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.4/@accessors.1"/>
+  <labels
+      name="SoftwareInterfaceNode_dataTypes"
+      figure="SoftwareInterfaceFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.4/@accessors.2"/>
+  <labels
+      name="ProcessNode_name"
       figure="ProcessFigure"
       accessor="//@figures.1/@descriptors.5/@accessors.0"/>
   <labels
-      name="PerformanceNodeLabel"
+      name="ProcessNode_description"
+      figure="ProcessFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.5/@accessors.1"/>
+  <labels
+      name="PerformanceNode_name"
       figure="PerformanceFigure"
       accessor="//@figures.1/@descriptors.6/@accessors.0"/>
   <labels
-      name="DataFlowNodeLabel"
+      name="PerformanceNode_description"
+      figure="PerformanceFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.6/@accessors.1"/>
+  <labels
+      name="PerformanceNode_problemSize"
+      figure="PerformanceFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.6/@accessors.2"/>
+  <labels
+      name="DataFlowNode_name"
       figure="DataFlowFigure"
       accessor="//@figures.1/@descriptors.7/@accessors.0"/>
   <labels
-      name="DataDefinitionNodeLabel"
+      name="DataFlowNode_description"
+      figure="DataFlowFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.7/@accessors.1"/>
+  <labels
+      name="DataDefinitionNode_name"
       figure="DataDefinitionFigure"
       accessor="//@figures.1/@descriptors.8/@accessors.0"/>
   <labels
-      name="InputDataReadingNodeLabel"
+      name="DataDefinitionNode_description"
+      figure="DataDefinitionFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.8/@accessors.1"/>
+  <labels
+      name="DataDefinitionNode_accuracy"
+      figure="DataDefinitionFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.8/@accessors.2"/>
+  <labels
+      name="DataDefinitionNode_format"
+      figure="DataDefinitionFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.8/@accessors.3"/>
+  <labels
+      name="DataDefinitionNode_range"
+      figure="DataDefinitionFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.8/@accessors.4"/>
+  <labels
+      name="DataDefinitionNode_dataType"
+      figure="DataDefinitionFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.8/@accessors.5"/>
+  <labels
+      name="InputDataReadingNode_name"
       figure="InputDataReadingFigure"
       accessor="//@figures.1/@descriptors.9/@accessors.0"/>
   <labels
-      name="DataHandlingNodeLabel"
+      name="InputDataReadingNode_description"
+      figure="InputDataReadingFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.9/@accessors.1"/>
+  <labels
+      name="DataHandlingNode_name"
       figure="DataHandlingFigure"
       accessor="//@figures.1/@descriptors.10/@accessors.0"/>
   <labels
-      name="ResultsOutputNodeLabel"
+      name="DataHandlingNode_description"
+      figure="DataHandlingFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.10/@accessors.1"/>
+  <labels
+      name="ResultsOutputNode_name"
       figure="ResultsOutputFigure"
       accessor="//@figures.1/@descriptors.11/@accessors.0"/>
   <labels
-      name="ErrorHandlingNodeLabel"
+      name="ResultsOutputNode_description"
+      figure="ResultsOutputFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.11/@accessors.1"/>
+  <labels
+      name="ErrorHandlingNode_name"
       figure="ErrorHandlingFigure"
       accessor="//@figures.1/@descriptors.12/@accessors.0"/>
   <labels
-      name="StatusMonitoringNodeLabel"
+      name="ErrorHandlingNode_description"
+      figure="ErrorHandlingFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.12/@accessors.1"/>
+  <labels
+      name="StatusMonitoringNode_name"
       figure="StatusMonitoringFigure"
       accessor="//@figures.1/@descriptors.13/@accessors.0"/>
+  <labels
+      name="StatusMonitoringNode_description"
+      figure="StatusMonitoringFigure"
+      elementIcon="false"
+      accessor="//@figures.1/@descriptors.13/@accessors.1"/>
   <labels
       name="ScientificKnowledge_RequirementsConnectionLabel"
       figure="ScientificKnowledge_RequirementsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.0/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.0/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="ScientificProblem_RepresentingModelConnectionLabel"
       figure="ScientificProblem_RepresentingModelFigure"
       elementIcon="false"
       accessor="//@figures.2/@descriptors.1/@accessors.0">
     <facets
-        xsi:type="gmfgraph:LabelOffsetFacet"/>
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
   </labels>
   <labels
-      name="ScientificProblem_SolvingMethodConnectionLabel"
-      figure="ScientificProblem_SolvingMethodFigure"
+      name="ScientificProblem_SolvingMethodsConnectionLabel"
+      figure="ScientificProblem_SolvingMethodsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.2/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.2/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="ScientificProblem_InfluencedFeatureConnectionLabel"
       figure="ScientificProblem_InfluencedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.3/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.3/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="MathematicalModel_RepresentedProblemConnectionLabel"
       figure="MathematicalModel_RepresentedProblemFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.4/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.4/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="MathematicalModel_RefinementsConnectionLabel"
       figure="MathematicalModel_RefinementsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.5/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.5/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="MathematicalModel_SubMathematicalModelsConnectionLabel"
       figure="MathematicalModel_SubMathematicalModelsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.6/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.6/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="MathematicalModel_NumericalMethodsConnectionLabel"
       figure="MathematicalModel_NumericalMethodsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.7/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.7/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="MathematicalModel_DependenciesConnectionLabel"
       figure="MathematicalModel_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.8/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.8/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="NumericalMethod_SolvedProblemConnectionLabel"
       figure="NumericalMethod_SolvedProblemFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.9/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.9/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="NumericalMethod_MathematicalModelConnectionLabel"
       figure="NumericalMethod_MathematicalModelFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.10/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.10/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="NumericalMethod_DependenciesConnectionLabel"
       figure="NumericalMethod_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.11/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.11/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="NumericalMethod_RealizingRequirementConnectionLabel"
       figure="NumericalMethod_RealizingRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.12/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.12/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="NumericalMethod_PerformanceConnectionLabel"
       figure="NumericalMethod_PerformanceFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.13/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.13/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Assumption_DependingModelConnectionLabel"
       figure="Assumption_DependingModelFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.14/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.14/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Assumption_DependingMethodConnectionLabel"
       figure="Assumption_DependingMethodFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.15/@accessors.0"/>
+      accessor="//@figures.2/@descriptors.15/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="IRequirement_UsedKnowledgeConnectionLabel"
       figure="IRequirement_UsedKnowledgeFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.0/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.0/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Interface_ProvidingFeatureConnectionLabel"
       figure="Interface_ProvidingFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.1/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.1/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Interface_RequiringFeaturesConnectionLabel"
       figure="Interface_RequiringFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.2/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.2/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_RequiredInterfacesConnectionLabel"
       figure="Feature_RequiredInterfacesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.3/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.3/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_ProvidedInterfacesConnectionLabel"
       figure="Feature_ProvidedInterfacesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.4/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.4/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_ConstraintsConnectionLabel"
       figure="Feature_ConstraintsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.5/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.5/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_DependenciesConnectionLabel"
       figure="Feature_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.6/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.6/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_DetailedRequirementsConnectionLabel"
       figure="Feature_DetailedRequirementsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.7/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.7/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_InfluencingProblemConnectionLabel"
       figure="Feature_InfluencingProblemFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.8/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.8/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_SubFeaturesConnectionLabel"
       figure="Feature_SubFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.9/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.9/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_RequiredFeaturesConnectionLabel"
       figure="Feature_RequiredFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.10/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.10/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_RequiringFeaturesConnectionLabel"
       figure="Feature_RequiringFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.11/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.11/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_ExcludedFeaturesConnectionLabel"
       figure="Feature_ExcludedFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.12/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.12/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Feature_ExcludingFeaturesConnectionLabel"
       figure="Feature_ExcludingFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.13/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.13/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Hardware_DependendingFeatureConnectionLabel"
       figure="Hardware_DependendingFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.14/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.14/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Constraint_RestrictedFeatureConnectionLabel"
       figure="Constraint_RestrictedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.15/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.15/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Requirements_RefinementsConnectionLabel"
       figure="Requirements_RefinementsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.16/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.16/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Requirements_SpecifiedFeatureConnectionLabel"
       figure="Requirements_SpecifiedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.17/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.17/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Requirements_DefiningDataConnectionLabel"
       figure="Requirements_DefiningDataFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.18/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.18/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Requirements_RealizedMethodConnectionLabel"
       figure="Requirements_RealizedMethodFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.19/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.19/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Process_DataFlowConnectionLabel"
       figure="Process_DataFlowFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.20/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.20/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="Performance_NumericalMethodConnectionLabel"
       figure="Performance_NumericalMethodFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.21/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.21/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="DataFlow_SpecifiedProcessConnectionLabel"
       figure="DataFlow_SpecifiedProcessFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.22/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.22/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
   <labels
       name="DataDefinition_DefinedRequirementsConnectionLabel"
       figure="DataDefinition_DefinedRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.23/@accessors.0"/>
+      accessor="//@figures.3/@descriptors.23/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
 </gmfgraph:Canvas>

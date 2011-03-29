@@ -72,7 +72,7 @@ public class FeatureRequiredFeaturesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureRequiredFeatures_4030(getNewSource(),
 						getOldTarget());
 	}
@@ -84,7 +84,7 @@ public class FeatureRequiredFeaturesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureRequiredFeatures_4030(getOldSource(),
 						getNewTarget());
 	}

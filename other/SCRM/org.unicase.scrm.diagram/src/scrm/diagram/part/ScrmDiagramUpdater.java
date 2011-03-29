@@ -51,7 +51,7 @@ import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
@@ -84,24 +84,26 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getSemanticChildren(View view) {
+	public static List<ScrmNodeDescriptor> getSemanticChildren(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
 		case SCRMDiagramEditPart.VISUAL_ID:
 			return getSCRMDiagram_1000SemanticChildren(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSCRMDiagram_1000SemanticChildren(View view) {
+	public static List<ScrmNodeDescriptor> getSCRMDiagram_1000SemanticChildren(
+			View view) {
 		if (!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		SCRMDiagram modelElement = (SCRMDiagram) view.getElement();
-		List result = new LinkedList();
-		for (Iterator it = modelElement.getElements().iterator(); it.hasNext();) {
+		LinkedList<ScrmNodeDescriptor> result = new LinkedList<ScrmNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getElements().iterator(); it
+				.hasNext();) {
 			SCRMModelElement childElement = (SCRMModelElement) it.next();
 			int visualID = ScrmVisualIDRegistry.getNodeVisualID(view,
 					childElement);
@@ -184,7 +186,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getContainedLinks(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
 		case SCRMDiagramEditPart.VISUAL_ID:
 			return getSCRMDiagram_1000ContainedLinks(view);
@@ -233,13 +235,13 @@ public class ScrmDiagramUpdater {
 		case RequirementEditPart.VISUAL_ID:
 			return getRequirement_4036ContainedLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getIncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getIncomingLinks(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
 		case ScientificProblemEditPart.VISUAL_ID:
 			return getScientificProblem_2007IncomingLinks(view);
@@ -286,13 +288,13 @@ public class ScrmDiagramUpdater {
 		case RequirementEditPart.VISUAL_ID:
 			return getRequirement_4036IncomingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getOutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getOutgoingLinks(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
 		case ScientificProblemEditPart.VISUAL_ID:
 			return getScientificProblem_2007OutgoingLinks(view);
@@ -339,351 +341,314 @@ public class ScrmDiagramUpdater {
 		case RequirementEditPart.VISUAL_ID:
 			return getRequirement_4036OutgoingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSCRMDiagram_1000ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getSCRMDiagram_1000ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getScientificProblem_2007ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getScientificProblem_2007ContainedLinks(
+			View view) {
 		ScientificProblem modelElement = (ScientificProblem) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethod_4007(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethods_4041(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_2005ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_2005ContainedLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getNumericalMethod_2006ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getNumericalMethod_2006ContainedLinks(
+			View view) {
 		NumericalMethod modelElement = (NumericalMethod) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssumption_2008ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getAssumption_2008ContainedLinks(
+			View view) {
 		Assumption modelElement = (Assumption) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getFeature_2009ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_2009ContainedLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Feature_4029(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Feature_4029(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getHardware_2010ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getHardware_2010ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2011ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getConstraint_2011ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUserInterface_2012ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getUserInterface_2012ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSoftwareInterface_2013ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getSoftwareInterface_2013ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProcess_2014ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getProcess_2014ContainedLinks(
+			View view) {
 		Process modelElement = (Process) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getPerformance_2015ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getPerformance_2015ContainedLinks(
+			View view) {
 		Performance modelElement = (Performance) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataFlow_2016ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataFlow_2016ContainedLinks(
+			View view) {
 		DataFlow modelElement = (DataFlow) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataDefinition_2017ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataDefinition_2017ContainedLinks(
+			View view) {
 		DataDefinition modelElement = (DataDefinition) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInputDataReading_2018ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getInputDataReading_2018ContainedLinks(
+			View view) {
 		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataHandling_2019ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataHandling_2019ContainedLinks(
+			View view) {
 		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getResultsOutput_2020ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getResultsOutput_2020ContainedLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getErrorHandling_2021ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getErrorHandling_2021ContainedLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getStatusMonitoring_2022ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022ContainedLinks(
+			View view) {
 		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4004ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4004ContainedLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4010ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4010ContainedLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getFeature_4029ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_4029ContainedLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Feature_4029(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Feature_4029(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getRequirement_4036ContainedLinks(View view) {
+	public static List<ScrmLinkDescriptor> getRequirement_4036ContainedLinks(
+			View view) {
 		Requirement modelElement = (Requirement) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getScientificProblem_2007IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getScientificProblem_2007IncomingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_2005IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_2005IncomingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4004(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4010(
@@ -694,153 +659,140 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getNumericalMethod_2006IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getNumericalMethod_2006IncomingLinks(
+			View view) {
 		NumericalMethod modelElement = (NumericalMethod) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_SolvingMethod_4007(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_SolvingMethods_4041(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssumption_2008IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getAssumption_2008IncomingLinks(
+			View view) {
 		Assumption modelElement = (Assumption) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getFeature_2009IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_2009IncomingLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Feature_4029(modelElement,
 				crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
-						modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getHardware_2010IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getHardware_2010IncomingLinks(
+			View view) {
 		Hardware modelElement = (Hardware) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_Dependencies_4026(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_Dependencies_4026(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2011IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getConstraint_2011IncomingLinks(
+			View view) {
 		Constraint modelElement = (Constraint) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_Constraints_4025(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_Constraints_4025(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUserInterface_2012IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getUserInterface_2012IncomingLinks(
+			View view) {
 		UserInterface modelElement = (UserInterface) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSoftwareInterface_2013IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getSoftwareInterface_2013IncomingLinks(
+			View view) {
 		SoftwareInterface modelElement = (SoftwareInterface) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProcess_2014IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getProcess_2014IncomingLinks(
+			View view) {
 		Process modelElement = (Process) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -849,23 +801,20 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getPerformance_2015IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getPerformance_2015IncomingLinks(
+			View view) {
 		Performance modelElement = (Performance) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -874,20 +823,18 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getDataFlow_2016IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataFlow_2016IncomingLinks(
+			View view) {
 		DataFlow modelElement = (DataFlow) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Process_DataFlow_4040(
@@ -898,46 +845,41 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getDataDefinition_2017IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataDefinition_2017IncomingLinks(
+			View view) {
 		DataDefinition modelElement = (DataDefinition) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Requirement_DefiningData_4038(
-						modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_DefiningData_4038(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInputDataReading_2018IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getInputDataReading_2018IncomingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
 				.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -946,21 +888,19 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getDataHandling_2019IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataHandling_2019IncomingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
 				.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -969,21 +909,19 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getResultsOutput_2020IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getResultsOutput_2020IncomingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
 				.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -992,21 +930,19 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getErrorHandling_2021IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getErrorHandling_2021IncomingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
 				.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -1015,21 +951,19 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getStatusMonitoring_2022IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022IncomingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
 				.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -1038,14 +972,14 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4004IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4004IncomingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4004(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4010(
@@ -1056,14 +990,14 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4010IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4010IncomingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4004(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_MathematicalModel_4010(
@@ -1074,45 +1008,40 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getFeature_4029IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_4029IncomingLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Feature_4029(modelElement,
 				crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
-						modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getRequirement_4036IncomingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getRequirement_4036IncomingLinks(
+			View view) {
 		Requirement modelElement = (Requirement) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-						modelElement, crossReferences));
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
 				modelElement, crossReferences));
 		return result;
@@ -1121,327 +1050,288 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getScientificProblem_2007OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getScientificProblem_2007OutgoingLinks(
+			View view) {
 		ScientificProblem modelElement = (ScientificProblem) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethod_4007(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethods_4041(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_2005OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_2005OutgoingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getNumericalMethod_2006OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getNumericalMethod_2006OutgoingLinks(
+			View view) {
 		NumericalMethod modelElement = (NumericalMethod) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getAssumption_2008OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getAssumption_2008OutgoingLinks(
+			View view) {
 		Assumption modelElement = (Assumption) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getFeature_2009OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_2009OutgoingLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Feature_4029(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Feature_4029(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getHardware_2010OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getHardware_2010OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraint_2011OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getConstraint_2011OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUserInterface_2012OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getUserInterface_2012OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSoftwareInterface_2013OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ScrmLinkDescriptor> getSoftwareInterface_2013OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProcess_2014OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getProcess_2014OutgoingLinks(
+			View view) {
 		Process modelElement = (Process) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getPerformance_2015OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getPerformance_2015OutgoingLinks(
+			View view) {
 		Performance modelElement = (Performance) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataFlow_2016OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataFlow_2016OutgoingLinks(
+			View view) {
 		DataFlow modelElement = (DataFlow) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataDefinition_2017OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataDefinition_2017OutgoingLinks(
+			View view) {
 		DataDefinition modelElement = (DataDefinition) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getInputDataReading_2018OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getInputDataReading_2018OutgoingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDataHandling_2019OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getDataHandling_2019OutgoingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getResultsOutput_2020OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getResultsOutput_2020OutgoingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getErrorHandling_2021OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getErrorHandling_2021OutgoingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getStatusMonitoring_2022OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022OutgoingLinks(
+			View view) {
 		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
 				.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4004OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4004OutgoingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getMathematicalModel_4010OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getMathematicalModel_4010OutgoingLinks(
+			View view) {
 		MathematicalModel modelElement = (MathematicalModel) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_MathematicalModel_4010(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getFeature_4029OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getFeature_4029OutgoingLinks(
+			View view) {
 		Feature modelElement = (Feature) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Feature_4029(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Feature_4029(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getRequirement_4036OutgoingLinks(View view) {
+	public static List<ScrmLinkDescriptor> getRequirement_4036OutgoingLinks(
+			View view) {
 		Requirement modelElement = (Requirement) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_MathematicalModel_4004(
+	private static Collection<ScrmLinkDescriptor> getContainedTypeModelFacetLinks_MathematicalModel_4004(
 			MathematicalModel container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getRefinements().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getRefinements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof MathematicalModel) {
@@ -1469,11 +1359,11 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_MathematicalModel_4010(
+	private static Collection<ScrmLinkDescriptor> getContainedTypeModelFacetLinks_MathematicalModel_4010(
 			MathematicalModel container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getSubMathematicalModels().iterator(); links
-				.hasNext();) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getSubMathematicalModels()
+				.iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof MathematicalModel) {
 				continue;
@@ -1500,10 +1390,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Feature_4029(
+	private static Collection<ScrmLinkDescriptor> getContainedTypeModelFacetLinks_Feature_4029(
 			Feature container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getSubFeatures().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getSubFeatures().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Feature) {
@@ -1530,10 +1420,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Requirement_4036(
+	private static Collection<ScrmLinkDescriptor> getContainedTypeModelFacetLinks_Requirement_4036(
 			Requirement container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getRefinements().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getRefinements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Requirement) {
@@ -1561,13 +1451,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
-			IRequirement target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+			IRequirement target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getScientificKnowledge_Requirements()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1581,21 +1471,20 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
-			MathematicalModel target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
+			MathematicalModel target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getScientificProblem_RepresentingModel()) {
-				result
-						.add(new ScrmLinkDescriptor(
-								setting.getEObject(),
-								target,
-								ScrmElementTypes.ScientificProblemRepresentingModel_4006,
-								ScientificProblemRepresentingModelEditPart.VISUAL_ID));
+				result.add(new ScrmLinkDescriptor(
+						setting.getEObject(),
+						target,
+						ScrmElementTypes.ScientificProblemRepresentingModel_4006,
+						ScientificProblemRepresentingModelEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1604,18 +1493,18 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ScientificProblem_SolvingMethod_4007(
-			NumericalMethod target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_ScientificProblem_SolvingMethods_4041(
+			NumericalMethod target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
-					.getScientificProblem_SolvingMethod()) {
+					.getScientificProblem_SolvingMethods()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
-						ScrmElementTypes.ScientificProblemSolvingMethod_4007,
-						ScientificProblemSolvingMethodEditPart.VISUAL_ID));
+						ScrmElementTypes.ScientificProblemSolvingMethods_4041,
+						ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1624,21 +1513,20 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
-			Feature target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
+			Feature target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getScientificProblem_InfluencedFeature()) {
-				result
-						.add(new ScrmLinkDescriptor(
-								setting.getEObject(),
-								target,
-								ScrmElementTypes.ScientificProblemInfluencedFeature_4008,
-								ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
+				result.add(new ScrmLinkDescriptor(
+						setting.getEObject(),
+						target,
+						ScrmElementTypes.ScientificProblemInfluencedFeature_4008,
+						ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1647,13 +1535,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_MathematicalModel_4004(
-			MathematicalModel target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingTypeModelFacetLinks_MathematicalModel_4004(
+			MathematicalModel target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != KnowledgePackage.eINSTANCE
 					.getMathematicalModel_Refinements()
 					|| false == setting.getEObject() instanceof MathematicalModel) {
@@ -1675,13 +1563,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_MathematicalModel_4010(
-			MathematicalModel target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingTypeModelFacetLinks_MathematicalModel_4010(
+			MathematicalModel target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != KnowledgePackage.eINSTANCE
 					.getMathematicalModel_SubMathematicalModels()
 					|| false == setting.getEObject() instanceof MathematicalModel) {
@@ -1703,21 +1591,20 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
-			NumericalMethod target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
+			NumericalMethod target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getMathematicalModel_NumericalMethods()) {
-				result
-						.add(new ScrmLinkDescriptor(
-								setting.getEObject(),
-								target,
-								ScrmElementTypes.MathematicalModelNumericalMethods_4011,
-								MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
+				result.add(new ScrmLinkDescriptor(
+						setting.getEObject(),
+						target,
+						ScrmElementTypes.MathematicalModelNumericalMethods_4011,
+						MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1726,13 +1613,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
-			Assumption target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
+			Assumption target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getMathematicalModel_Dependencies()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1746,13 +1633,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
-			Assumption target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
+			Assumption target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getNumericalMethod_Dependencies()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1766,21 +1653,20 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-			Requirement target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+			Requirement target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getNumericalMethod_RealizingRequirement()) {
-				result
-						.add(new ScrmLinkDescriptor(
-								setting.getEObject(),
-								target,
-								ScrmElementTypes.NumericalMethodRealizingRequirement_4016,
-								NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+				result.add(new ScrmLinkDescriptor(
+						setting.getEObject(),
+						target,
+						ScrmElementTypes.NumericalMethodRealizingRequirement_4016,
+						NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1789,13 +1675,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-			Performance target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
+			Performance target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == KnowledgePackage.eINSTANCE
 					.getNumericalMethod_Performance()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1809,13 +1695,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
-			Interface target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
+			Interface target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_RequiredInterfaces()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1829,13 +1715,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
-			Interface target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
+			Interface target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_ProvidedInterfaces()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1849,13 +1735,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_Constraints_4025(
-			Constraint target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_Constraints_4025(
+			Constraint target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_Constraints()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1869,13 +1755,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_Dependencies_4026(
-			Hardware target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_Dependencies_4026(
+			Hardware target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_Dependencies()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1889,13 +1775,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-			Requirement target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+			Requirement target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_DetailedRequirements()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1909,13 +1795,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Feature_4029(
-			Feature target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingTypeModelFacetLinks_Feature_4029(
+			Feature target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != RequirementsPackage.eINSTANCE
 					.getFeature_SubFeatures()
 					|| false == setting.getEObject() instanceof Feature) {
@@ -1936,13 +1822,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
-			Feature target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
+			Feature target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_RequiredFeatures()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1956,13 +1842,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
-			Feature target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
+			Feature target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getFeature_ExcludedFeatures()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -1976,13 +1862,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Requirement_4036(
-			Requirement target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingTypeModelFacetLinks_Requirement_4036(
+			Requirement target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != RequirementsPackage.eINSTANCE
 					.getRequirement_Refinements()
 					|| false == setting.getEObject() instanceof Requirement) {
@@ -2004,13 +1890,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Requirement_DefiningData_4038(
-			DataDefinition target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Requirement_DefiningData_4038(
+			DataDefinition target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getRequirement_DefiningData()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -2024,13 +1910,13 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Process_DataFlow_4040(
-			DataFlow target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_Process_DataFlow_4040(
+			DataFlow target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == RequirementsPackage.eINSTANCE
 					.getProcess_DataFlow()) {
 				result.add(new ScrmLinkDescriptor(setting.getEObject(), target,
@@ -2044,10 +1930,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_ScientificKnowledge_Requirements_4005(
 			ScientificKnowledge source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getRequirements().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getRequirements().iterator(); destinations
 				.hasNext();) {
 			IRequirement destination = (IRequirement) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2060,9 +1946,9 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_ScientificProblem_RepresentingModel_4006(
 			ScientificProblem source) {
-		Collection result = new LinkedList();
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		MathematicalModel destination = source.getRepresentingModel();
 		if (destination == null) {
 			return result;
@@ -2076,25 +1962,25 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethod_4007(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_ScientificProblem_SolvingMethods_4041(
 			ScientificProblem source) {
-		Collection result = new LinkedList();
-		NumericalMethod destination = source.getSolvingMethod();
-		if (destination == null) {
-			return result;
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getSolvingMethods().iterator(); destinations
+				.hasNext();) {
+			NumericalMethod destination = (NumericalMethod) destinations.next();
+			result.add(new ScrmLinkDescriptor(source, destination,
+					ScrmElementTypes.ScientificProblemSolvingMethods_4041,
+					ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
 		}
-		result.add(new ScrmLinkDescriptor(source, destination,
-				ScrmElementTypes.ScientificProblemSolvingMethod_4007,
-				ScientificProblemSolvingMethodEditPart.VISUAL_ID));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_ScientificProblem_InfluencedFeature_4008(
 			ScientificProblem source) {
-		Collection result = new LinkedList();
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		Feature destination = source.getInfluencedFeature();
 		if (destination == null) {
 			return result;
@@ -2108,7 +1994,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_MathematicalModel_4004(
+	private static Collection<ScrmLinkDescriptor> getOutgoingTypeModelFacetLinks_MathematicalModel_4004(
 			MathematicalModel source) {
 		MathematicalModel container = null;
 		// Find container element for the link.
@@ -2121,10 +2007,10 @@ public class ScrmDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getRefinements().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getRefinements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof MathematicalModel) {
@@ -2155,7 +2041,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_MathematicalModel_4010(
+	private static Collection<ScrmLinkDescriptor> getOutgoingTypeModelFacetLinks_MathematicalModel_4010(
 			MathematicalModel source) {
 		MathematicalModel container = null;
 		// Find container element for the link.
@@ -2168,11 +2054,11 @@ public class ScrmDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getSubMathematicalModels().iterator(); links
-				.hasNext();) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getSubMathematicalModels()
+				.iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof MathematicalModel) {
 				continue;
@@ -2202,10 +2088,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_MathematicalModel_NumericalMethods_4011(
 			MathematicalModel source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getNumericalMethods().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getNumericalMethods().iterator(); destinations
 				.hasNext();) {
 			NumericalMethod destination = (NumericalMethod) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2218,10 +2104,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_MathematicalModel_Dependencies_4012(
 			MathematicalModel source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getDependencies().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getDependencies().iterator(); destinations
 				.hasNext();) {
 			Assumption destination = (Assumption) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2234,10 +2120,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(
 			NumericalMethod source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getDependencies().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getDependencies().iterator(); destinations
 				.hasNext();) {
 			Assumption destination = (Assumption) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2250,9 +2136,9 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
 			NumericalMethod source) {
-		Collection result = new LinkedList();
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		Requirement destination = source.getRealizingRequirement();
 		if (destination == null) {
 			return result;
@@ -2266,9 +2152,9 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
 			NumericalMethod source) {
-		Collection result = new LinkedList();
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		Performance destination = source.getPerformance();
 		if (destination == null) {
 			return result;
@@ -2282,11 +2168,11 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_RequiredInterfaces_4023(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getRequiredInterfaces().iterator(); destinations
-				.hasNext();) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getRequiredInterfaces()
+				.iterator(); destinations.hasNext();) {
 			Interface destination = (Interface) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
 					ScrmElementTypes.FeatureRequiredInterfaces_4023,
@@ -2298,11 +2184,11 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_ProvidedInterfaces_4024(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getProvidedInterfaces().iterator(); destinations
-				.hasNext();) {
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getProvidedInterfaces()
+				.iterator(); destinations.hasNext();) {
 			Interface destination = (Interface) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
 					ScrmElementTypes.FeatureProvidedInterfaces_4024,
@@ -2314,10 +2200,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_Constraints_4025(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getConstraints().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getConstraints().iterator(); destinations
 				.hasNext();) {
 			Constraint destination = (Constraint) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2330,10 +2216,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_Dependencies_4026(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getDependencies().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getDependencies().iterator(); destinations
 				.hasNext();) {
 			Hardware destination = (Hardware) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2346,10 +2232,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getDetailedRequirements()
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getDetailedRequirements()
 				.iterator(); destinations.hasNext();) {
 			Requirement destination = (Requirement) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2362,7 +2248,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Feature_4029(
+	private static Collection<ScrmLinkDescriptor> getOutgoingTypeModelFacetLinks_Feature_4029(
 			Feature source) {
 		Feature container = null;
 		// Find container element for the link.
@@ -2375,10 +2261,10 @@ public class ScrmDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getSubFeatures().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getSubFeatures().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Feature) {
@@ -2408,10 +2294,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_RequiredFeatures_4030(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getRequiredFeatures().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getRequiredFeatures().iterator(); destinations
 				.hasNext();) {
 			Feature destination = (Feature) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2424,10 +2310,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Feature_ExcludedFeatures_4032(
 			Feature source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getExcludedFeatures().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getExcludedFeatures().iterator(); destinations
 				.hasNext();) {
 			Feature destination = (Feature) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2440,7 +2326,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Requirement_4036(
+	private static Collection<ScrmLinkDescriptor> getOutgoingTypeModelFacetLinks_Requirement_4036(
 			Requirement source) {
 		Requirement container = null;
 		// Find container element for the link.
@@ -2453,10 +2339,10 @@ public class ScrmDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getRefinements().iterator(); links
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> links = container.getRefinements().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Requirement) {
@@ -2487,10 +2373,10 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(
 			Requirement source) {
-		Collection result = new LinkedList();
-		for (Iterator destinations = source.getDefiningData().iterator(); destinations
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
+		for (Iterator<?> destinations = source.getDefiningData().iterator(); destinations
 				.hasNext();) {
 			DataDefinition destination = (DataDefinition) destinations.next();
 			result.add(new ScrmLinkDescriptor(source, destination,
@@ -2503,9 +2389,9 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(
+	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_Process_DataFlow_4040(
 			Process source) {
-		Collection result = new LinkedList();
+		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		DataFlow destination = source.getDataFlow();
 		if (destination == null) {
 			return result;

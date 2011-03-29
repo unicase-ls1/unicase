@@ -61,32 +61,9 @@ public class PerformanceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNumericalMethodPropertyDescriptor(object);
 			addProblemSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Numerical Method feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNumericalMethodPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Performance_numericalMethod_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Performance_numericalMethod_feature", "_UI_Performance_type"),
-				 RequirementsPackage.Literals.PERFORMANCE__NUMERICAL_METHOD,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

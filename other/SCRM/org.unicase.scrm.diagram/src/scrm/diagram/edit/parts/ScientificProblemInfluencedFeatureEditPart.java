@@ -57,7 +57,7 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		 * @generated
 		 */
 		public ScientificProblem_InfluencedFeatureFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

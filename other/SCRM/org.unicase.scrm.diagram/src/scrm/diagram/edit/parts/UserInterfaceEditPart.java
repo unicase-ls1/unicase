@@ -1,21 +1,21 @@
 package scrm.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -23,10 +23,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.edit.policies.UserInterfaceItemSemanticEditPolicy;
+import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -58,15 +62,14 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new UserInterfaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -75,23 +78,16 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new ScrmTextSelectionEditPolicy();
+					}
 				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -101,8 +97,7 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		UserInterfaceFigure figure = new UserInterfaceFigure();
-		return primaryShape = figure;
+		return primaryShape = new UserInterfaceFigure();
 	}
 
 	/**
@@ -116,9 +111,15 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof UserInterfaceDescriptionNameEditPart) {
-			((UserInterfaceDescriptionNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureUserInterfaceLabel());
+		if (childEditPart instanceof UserInterfaceNameEditPart) {
+			((UserInterfaceNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureUserInterface_name());
+			return true;
+		}
+		if (childEditPart instanceof UserInterfaceDescriptionEditPart) {
+			((UserInterfaceDescriptionEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureUserInterface_description());
 			return true;
 		}
 		return false;
@@ -128,7 +129,10 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof UserInterfaceDescriptionNameEditPart) {
+		if (childEditPart instanceof UserInterfaceNameEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof UserInterfaceDescriptionEditPart) {
 			return true;
 		}
 		return false;
@@ -252,14 +256,14 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(ScrmVisualIDRegistry
-				.getType(UserInterfaceDescriptionNameEditPart.VISUAL_ID));
+				.getType(UserInterfaceNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
 		types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
@@ -269,25 +273,16 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.ScientificProblem_2007);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Assumption_2008);
-		}
-		if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
+		} else if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
 			types.add(ScrmElementTypes.Feature_2009);
-		}
-		if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
+		} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
 			types.add(ScrmElementTypes.Feature_2009);
 		}
 		return types;
@@ -301,13 +296,26 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureUserInterfaceLabel;
+		private WrappingLabel fFigureUserInterface_name;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureUserInterface_description;
 
 		/**
 		 * @generated
 		 */
 		public UserInterfaceFigure() {
-			this.setLineWidth(1);
+
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+
+			layoutThis.setSpacing(5);
+			layoutThis.setVertical(true);
+
+			this.setLayoutManager(layoutThis);
+
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -317,37 +325,34 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureUserInterfaceLabel = new WrappingLabel();
-			fFigureUserInterfaceLabel.setText("UserInterface");
+			fFigureUserInterface_name = new WrappingLabel();
+			fFigureUserInterface_name.setText("");
+			fFigureUserInterface_name.setTextWrap(true);
 
-			this.add(fFigureUserInterfaceLabel);
+			fFigureUserInterface_name.setFont(FFIGUREUSERINTERFACE_NAME_FONT);
+
+			this.add(fFigureUserInterface_name);
+
+			fFigureUserInterface_description = new WrappingLabel();
+			fFigureUserInterface_description.setText("");
+			fFigureUserInterface_description.setTextWrap(true);
+
+			this.add(fFigureUserInterface_description);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
+		public WrappingLabel getFigureUserInterface_name() {
+			return fFigureUserInterface_name;
 		}
 
 		/**
 		 * @generated
 		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getFigureUserInterfaceLabel() {
-			return fFigureUserInterfaceLabel;
+		public WrappingLabel getFigureUserInterface_description() {
+			return fFigureUserInterface_description;
 		}
 
 	}
@@ -356,5 +361,11 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 16, 240, 167);
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGUREUSERINTERFACE_NAME_FONT = new Font(
+			Display.getCurrent(), "Arial", 9, SWT.BOLD);
 
 }

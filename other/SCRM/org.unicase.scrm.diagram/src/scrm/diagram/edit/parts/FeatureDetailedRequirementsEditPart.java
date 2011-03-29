@@ -58,7 +58,7 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -116,7 +116,6 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public Feature_DetailedRequirementsFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

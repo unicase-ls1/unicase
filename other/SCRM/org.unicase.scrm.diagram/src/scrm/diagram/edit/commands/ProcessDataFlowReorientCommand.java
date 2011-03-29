@@ -73,7 +73,7 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataFlow && newEnd instanceof Process)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistProcessDataFlow_4040(getNewSource(), getOldTarget());
 	}
 
@@ -84,7 +84,7 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataFlow && newEnd instanceof DataFlow)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistProcessDataFlow_4040(getOldSource(), getNewTarget());
 	}
 

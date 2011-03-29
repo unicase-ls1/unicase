@@ -1,21 +1,22 @@
 package scrm.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -23,10 +24,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import scrm.diagram.edit.policies.NumericalMethodItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
+import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -58,15 +63,14 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new NumericalMethodItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -75,23 +79,16 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new ScrmTextSelectionEditPolicy();
+					}
 				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -101,8 +98,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		NumericalMethodFigure figure = new NumericalMethodFigure();
-		return primaryShape = figure;
+		return primaryShape = new NumericalMethodFigure();
 	}
 
 	/**
@@ -116,9 +112,27 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof NumericalMethodDescriptionNameEditPart) {
-			((NumericalMethodDescriptionNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureNumericalMethodLabel());
+		if (childEditPart instanceof NumericalMethodNameEditPart) {
+			((NumericalMethodNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureNumericalMethod_name());
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodDescriptionEditPart) {
+			((NumericalMethodDescriptionEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureNumericalMethod_description());
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodTheoryEditPart) {
+			((NumericalMethodTheoryEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureNumericalMethod_theory());
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodAlgorithmEditPart) {
+			((NumericalMethodAlgorithmEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureNumericalMethod_algorithm());
 			return true;
 		}
 		return false;
@@ -128,7 +142,16 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof NumericalMethodDescriptionNameEditPart) {
+		if (childEditPart instanceof NumericalMethodNameEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodDescriptionEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodTheoryEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof NumericalMethodAlgorithmEditPart) {
 			return true;
 		}
 		return false;
@@ -165,7 +188,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(200, 90);
 		return result;
 	}
 
@@ -252,14 +275,14 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(ScrmVisualIDRegistry
-				.getType(NumericalMethodDescriptionNameEditPart.VISUAL_ID));
+				.getType(NumericalMethodNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
 		types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
@@ -270,9 +293,9 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		}
@@ -319,40 +342,31 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 			types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
 		}
 		if (targetEditPart instanceof ProcessEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof PerformanceEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof DataFlowEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof DataDefinitionEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof InputDataReadingEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof DataHandlingEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof ResultsOutputEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			types
-					.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof PerformanceEditPart) {
 			types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
@@ -363,82 +377,36 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Feature_2009);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Hardware_2010);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Constraint_2011);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.UserInterface_2012);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.SoftwareInterface_2013);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Process_2014);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.Performance_2015);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataFlow_2016);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataDefinition_2017);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.InputDataReading_2018);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.DataHandling_2019);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.ResultsOutput_2020);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.ErrorHandling_2021);
-		}
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
 			types.add(ScrmElementTypes.StatusMonitoring_2022);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
+		} else if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
 			types.add(ScrmElementTypes.Assumption_2008);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
+		} else if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.Process_2014);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.Performance_2015);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.DataFlow_2016);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.DataDefinition_2017);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.InputDataReading_2018);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.DataHandling_2019);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.ResultsOutput_2020);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.ErrorHandling_2021);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.StatusMonitoring_2022);
-		}
-		if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
+		} else if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
 			types.add(ScrmElementTypes.Performance_2015);
 		}
 		return types;
@@ -447,9 +415,9 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(ScrmElementTypes.ScientificProblemSolvingMethod_4007);
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
 		types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
 		return types;
 	}
@@ -457,13 +425,11 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethod_4007) {
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethods_4041) {
 			types.add(ScrmElementTypes.ScientificProblem_2007);
-		}
-		if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
+		} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
 		}
 		return types;
@@ -477,14 +443,37 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureNumericalMethodLabel;
+		private WrappingLabel fFigureNumericalMethod_name;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureNumericalMethod_description;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureNumericalMethod_theory;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureNumericalMethod_algorithm;
 
 		/**
 		 * @generated
 		 */
 		public NumericalMethodFigure() {
-			this.setLineWidth(1);
+
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+
+			layoutThis.setSpacing(5);
+			layoutThis.setVertical(true);
+
+			this.setLayoutManager(layoutThis);
+
 			this.setBackgroundColor(THIS_BACK);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(200),
+					getMapMode().DPtoLP(90)));
 			createContents();
 		}
 
@@ -493,37 +482,61 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureNumericalMethodLabel = new WrappingLabel();
-			fFigureNumericalMethodLabel.setText("NumericalMethod");
+			fFigureNumericalMethod_name = new WrappingLabel();
+			fFigureNumericalMethod_name.setText("");
+			fFigureNumericalMethod_name.setTextWrap(true);
 
-			this.add(fFigureNumericalMethodLabel);
+			fFigureNumericalMethod_name
+					.setFont(FFIGURENUMERICALMETHOD_NAME_FONT);
+
+			this.add(fFigureNumericalMethod_name);
+
+			fFigureNumericalMethod_description = new WrappingLabel();
+			fFigureNumericalMethod_description.setText("");
+			fFigureNumericalMethod_description.setTextWrap(true);
+
+			this.add(fFigureNumericalMethod_description);
+
+			fFigureNumericalMethod_theory = new WrappingLabel();
+			fFigureNumericalMethod_theory.setText("");
+			fFigureNumericalMethod_theory.setTextWrap(true);
+
+			this.add(fFigureNumericalMethod_theory);
+
+			fFigureNumericalMethod_algorithm = new WrappingLabel();
+			fFigureNumericalMethod_algorithm.setText("");
+			fFigureNumericalMethod_algorithm.setTextWrap(true);
+
+			this.add(fFigureNumericalMethod_algorithm);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
+		public WrappingLabel getFigureNumericalMethod_name() {
+			return fFigureNumericalMethod_name;
 		}
 
 		/**
 		 * @generated
 		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
+		public WrappingLabel getFigureNumericalMethod_description() {
+			return fFigureNumericalMethod_description;
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureNumericalMethodLabel() {
-			return fFigureNumericalMethodLabel;
+		public WrappingLabel getFigureNumericalMethod_theory() {
+			return fFigureNumericalMethod_theory;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureNumericalMethod_algorithm() {
+			return fFigureNumericalMethod_algorithm;
 		}
 
 	}
@@ -532,5 +545,11 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 240, 240, 0);
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGURENUMERICALMETHOD_NAME_FONT = new Font(
+			Display.getCurrent(), "Arial", 9, SWT.BOLD);
 
 }

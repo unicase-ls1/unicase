@@ -57,7 +57,7 @@ public class MathematicalModelNumericalMethodsEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class MathematicalModelNumericalMethodsEditPart extends
 		 * @generated
 		 */
 		public MathematicalModel_NumericalMethodsFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

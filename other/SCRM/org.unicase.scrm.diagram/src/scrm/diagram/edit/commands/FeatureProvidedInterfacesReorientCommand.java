@@ -74,7 +74,7 @@ public class FeatureProvidedInterfacesReorientCommand extends
 		if (!(oldEnd instanceof Interface && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureProvidedInterfaces_4024(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class FeatureProvidedInterfacesReorientCommand extends
 		if (!(oldEnd instanceof Interface && newEnd instanceof Interface)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureProvidedInterfaces_4024(getOldSource(),
 						getNewTarget());
 	}

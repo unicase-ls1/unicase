@@ -72,8 +72,9 @@ public class FeatureReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Feature container = (Feature) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistFeature_4029(container, getNewSource(), target);
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistFeature_4029(container, getLink(), getNewSource(),
+						target);
 	}
 
 	/**
@@ -88,8 +89,9 @@ public class FeatureReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Feature container = (Feature) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistFeature_4029(container, source, getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistFeature_4029(container, getLink(), source,
+						getNewTarget());
 	}
 
 	/**

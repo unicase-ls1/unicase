@@ -74,7 +74,7 @@ public class NumericalMethodPerformanceReorientCommand extends
 		if (!(oldEnd instanceof Performance && newEnd instanceof NumericalMethod)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodPerformance_4017(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class NumericalMethodPerformanceReorientCommand extends
 		if (!(oldEnd instanceof Performance && newEnd instanceof Performance)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodPerformance_4017(getOldSource(),
 						getNewTarget());
 	}

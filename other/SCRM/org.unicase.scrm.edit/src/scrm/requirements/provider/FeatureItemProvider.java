@@ -318,11 +318,6 @@ public class FeatureItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
 				 RequirementsFactory.eINSTANCE.createUserInterface()));
 
 		newChildDescriptors.add

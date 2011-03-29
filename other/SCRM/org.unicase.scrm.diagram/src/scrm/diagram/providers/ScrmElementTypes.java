@@ -54,7 +54,7 @@ import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
@@ -65,7 +65,7 @@ import scrm.requirements.RequirementsPackage;
 /**
  * @generated
  */
-public class ScrmElementTypes extends ElementInitializers {
+public class ScrmElementTypes {
 
 	/**
 	 * @generated
@@ -76,7 +76,7 @@ public class ScrmElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Map elements;
+	private static Map<IElementType, ENamedElement> elements;
 
 	/**
 	 * @generated
@@ -86,7 +86,7 @@ public class ScrmElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Set KNOWN_ELEMENT_TYPES;
+	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
 	 * @generated
@@ -175,7 +175,8 @@ public class ScrmElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ScientificProblemSolvingMethod_4007 = getElementType("org.unicase.scrm.diagram.ScientificProblemSolvingMethod_4007"); //$NON-NLS-1$
+	public static final IElementType ScientificProblemSolvingMethods_4041 = getElementType("org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -362,79 +363,74 @@ public class ScrmElementTypes extends ElementInitializers {
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap();
+			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(SCRMDiagram_1000, ScrmPackage.eINSTANCE
-					.getSCRMDiagram());
+			elements.put(SCRMDiagram_1000,
+					ScrmPackage.eINSTANCE.getSCRMDiagram());
 
-			elements.put(ScientificProblem_2007, KnowledgePackage.eINSTANCE
-					.getScientificProblem());
+			elements.put(ScientificProblem_2007,
+					KnowledgePackage.eINSTANCE.getScientificProblem());
 
-			elements.put(MathematicalModel_2005, KnowledgePackage.eINSTANCE
-					.getMathematicalModel());
+			elements.put(MathematicalModel_2005,
+					KnowledgePackage.eINSTANCE.getMathematicalModel());
 
-			elements.put(NumericalMethod_2006, KnowledgePackage.eINSTANCE
-					.getNumericalMethod());
+			elements.put(NumericalMethod_2006,
+					KnowledgePackage.eINSTANCE.getNumericalMethod());
 
-			elements.put(Assumption_2008, KnowledgePackage.eINSTANCE
-					.getAssumption());
+			elements.put(Assumption_2008,
+					KnowledgePackage.eINSTANCE.getAssumption());
 
-			elements.put(Feature_2009, RequirementsPackage.eINSTANCE
-					.getFeature());
+			elements.put(Feature_2009,
+					RequirementsPackage.eINSTANCE.getFeature());
 
-			elements.put(Hardware_2010, RequirementsPackage.eINSTANCE
-					.getHardware());
+			elements.put(Hardware_2010,
+					RequirementsPackage.eINSTANCE.getHardware());
 
-			elements.put(Constraint_2011, RequirementsPackage.eINSTANCE
-					.getConstraint());
+			elements.put(Constraint_2011,
+					RequirementsPackage.eINSTANCE.getConstraint());
 
-			elements.put(UserInterface_2012, RequirementsPackage.eINSTANCE
-					.getUserInterface());
+			elements.put(UserInterface_2012,
+					RequirementsPackage.eINSTANCE.getUserInterface());
 
-			elements.put(SoftwareInterface_2013, RequirementsPackage.eINSTANCE
-					.getSoftwareInterface());
+			elements.put(SoftwareInterface_2013,
+					RequirementsPackage.eINSTANCE.getSoftwareInterface());
 
-			elements.put(Process_2014, RequirementsPackage.eINSTANCE
-					.getProcess());
+			elements.put(Process_2014,
+					RequirementsPackage.eINSTANCE.getProcess());
 
-			elements.put(Performance_2015, RequirementsPackage.eINSTANCE
-					.getPerformance());
+			elements.put(Performance_2015,
+					RequirementsPackage.eINSTANCE.getPerformance());
 
-			elements.put(DataFlow_2016, RequirementsPackage.eINSTANCE
-					.getDataFlow());
+			elements.put(DataFlow_2016,
+					RequirementsPackage.eINSTANCE.getDataFlow());
 
-			elements.put(DataDefinition_2017, RequirementsPackage.eINSTANCE
-					.getDataDefinition());
+			elements.put(DataDefinition_2017,
+					RequirementsPackage.eINSTANCE.getDataDefinition());
 
-			elements
-					.put(
-							InputDataReading_2018,
-							scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
-									.getInputDataReading());
+			elements.put(
+					InputDataReading_2018,
+					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+							.getInputDataReading());
 
-			elements
-					.put(
-							DataHandling_2019,
-							scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
-									.getDataHandling());
+			elements.put(
+					DataHandling_2019,
+					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+							.getDataHandling());
 
-			elements
-					.put(
-							ResultsOutput_2020,
-							scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
-									.getResultsOutput());
+			elements.put(
+					ResultsOutput_2020,
+					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+							.getResultsOutput());
 
-			elements
-					.put(
-							ErrorHandling_2021,
-							scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
-									.getErrorHandling());
+			elements.put(
+					ErrorHandling_2021,
+					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+							.getErrorHandling());
 
-			elements
-					.put(
-							StatusMonitoring_2022,
-							scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
-									.getStatusMonitoring());
+			elements.put(
+					StatusMonitoring_2022,
+					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+							.getStatusMonitoring());
 
 			elements.put(ScientificKnowledgeRequirements_4005,
 					KnowledgePackage.eINSTANCE
@@ -444,19 +440,19 @@ public class ScrmElementTypes extends ElementInitializers {
 					KnowledgePackage.eINSTANCE
 							.getScientificProblem_RepresentingModel());
 
-			elements.put(ScientificProblemSolvingMethod_4007,
+			elements.put(ScientificProblemSolvingMethods_4041,
 					KnowledgePackage.eINSTANCE
-							.getScientificProblem_SolvingMethod());
+							.getScientificProblem_SolvingMethods());
 
 			elements.put(ScientificProblemInfluencedFeature_4008,
 					KnowledgePackage.eINSTANCE
 							.getScientificProblem_InfluencedFeature());
 
-			elements.put(MathematicalModel_4004, KnowledgePackage.eINSTANCE
-					.getMathematicalModel());
+			elements.put(MathematicalModel_4004,
+					KnowledgePackage.eINSTANCE.getMathematicalModel());
 
-			elements.put(MathematicalModel_4010, KnowledgePackage.eINSTANCE
-					.getMathematicalModel());
+			elements.put(MathematicalModel_4010,
+					KnowledgePackage.eINSTANCE.getMathematicalModel());
 
 			elements.put(MathematicalModelNumericalMethods_4011,
 					KnowledgePackage.eINSTANCE
@@ -474,10 +470,8 @@ public class ScrmElementTypes extends ElementInitializers {
 					KnowledgePackage.eINSTANCE
 							.getNumericalMethod_RealizingRequirement());
 
-			elements
-					.put(NumericalMethodPerformance_4017,
-							KnowledgePackage.eINSTANCE
-									.getNumericalMethod_Performance());
+			elements.put(NumericalMethodPerformance_4017,
+					KnowledgePackage.eINSTANCE.getNumericalMethod_Performance());
 
 			elements.put(FeatureRequiredInterfaces_4023,
 					RequirementsPackage.eINSTANCE
@@ -487,8 +481,8 @@ public class ScrmElementTypes extends ElementInitializers {
 					RequirementsPackage.eINSTANCE
 							.getFeature_ProvidedInterfaces());
 
-			elements.put(FeatureConstraints_4025, RequirementsPackage.eINSTANCE
-					.getFeature_Constraints());
+			elements.put(FeatureConstraints_4025,
+					RequirementsPackage.eINSTANCE.getFeature_Constraints());
 
 			elements.put(FeatureDependencies_4026,
 					RequirementsPackage.eINSTANCE.getFeature_Dependencies());
@@ -497,29 +491,23 @@ public class ScrmElementTypes extends ElementInitializers {
 					RequirementsPackage.eINSTANCE
 							.getFeature_DetailedRequirements());
 
-			elements.put(Feature_4029, RequirementsPackage.eINSTANCE
-					.getFeature());
+			elements.put(Feature_4029,
+					RequirementsPackage.eINSTANCE.getFeature());
 
-			elements
-					.put(FeatureRequiredFeatures_4030,
-							RequirementsPackage.eINSTANCE
-									.getFeature_RequiredFeatures());
+			elements.put(FeatureRequiredFeatures_4030,
+					RequirementsPackage.eINSTANCE.getFeature_RequiredFeatures());
 
-			elements
-					.put(FeatureExcludedFeatures_4032,
-							RequirementsPackage.eINSTANCE
-									.getFeature_ExcludedFeatures());
+			elements.put(FeatureExcludedFeatures_4032,
+					RequirementsPackage.eINSTANCE.getFeature_ExcludedFeatures());
 
-			elements.put(Requirement_4036, RequirementsPackage.eINSTANCE
-					.getRequirement());
+			elements.put(Requirement_4036,
+					RequirementsPackage.eINSTANCE.getRequirement());
 
-			elements
-					.put(RequirementDefiningData_4038,
-							RequirementsPackage.eINSTANCE
-									.getRequirement_DefiningData());
+			elements.put(RequirementDefiningData_4038,
+					RequirementsPackage.eINSTANCE.getRequirement_DefiningData());
 
-			elements.put(ProcessDataFlow_4040, RequirementsPackage.eINSTANCE
-					.getProcess_DataFlow());
+			elements.put(ProcessDataFlow_4040,
+					RequirementsPackage.eINSTANCE.getProcess_DataFlow());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -536,7 +524,7 @@ public class ScrmElementTypes extends ElementInitializers {
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet();
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(SCRMDiagram_1000);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblem_2007);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModel_2005);
@@ -558,7 +546,7 @@ public class ScrmElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_2022);
 			KNOWN_ELEMENT_TYPES.add(ScientificKnowledgeRequirements_4005);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemRepresentingModel_4006);
-			KNOWN_ELEMENT_TYPES.add(ScientificProblemSolvingMethod_4007);
+			KNOWN_ELEMENT_TYPES.add(ScientificProblemSolvingMethods_4041);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemInfluencedFeature_4008);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModel_4004);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModel_4010);
@@ -629,8 +617,8 @@ public class ScrmElementTypes extends ElementInitializers {
 			return ScientificKnowledgeRequirements_4005;
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return ScientificProblemRepresentingModel_4006;
-		case ScientificProblemSolvingMethodEditPart.VISUAL_ID:
-			return ScientificProblemSolvingMethod_4007;
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return ScientificProblemSolvingMethods_4041;
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return ScientificProblemInfluencedFeature_4008;
 		case MathematicalModel2EditPart.VISUAL_ID:

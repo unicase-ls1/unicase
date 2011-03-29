@@ -53,7 +53,8 @@ public class FeatureExcludedFeaturesCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy
+				.getLinkConstraints()
 				.canCreateFeatureExcludedFeatures_4032(getSource(), getTarget());
 	}
 

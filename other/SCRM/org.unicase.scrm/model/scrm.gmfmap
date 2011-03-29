@@ -56,11 +56,39 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#MathematicalModelNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#MathematicalModelNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#MathematicalModelNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Theory: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#MathematicalModelNode_theory"/>
+        <features
+            href="scrm.ecore#//knowledge/MathematicalModel/theory"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Mathematical Expression: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#MathematicalModelNode_mathematicalExpression"/>
+        <features
+            href="scrm.ecore#//knowledge/MathematicalModel/mathematicalExpression"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -81,11 +109,39 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
-            href="scrm.gmfgraph#NumericalMethodNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#NumericalMethodNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#NumericalMethodNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Theory: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#NumericalMethodNode_theory"/>
+        <features
+            href="scrm.ecore#//knowledge/NumericalMethod/theory"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Algorithm: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#NumericalMethodNode_algorithm"/>
+        <features
+            href="scrm.ecore#//knowledge/NumericalMethod/algorithm"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -109,11 +165,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#AssumptionNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#AssumptionNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#AssumptionNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -137,11 +201,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#FeatureNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#FeatureNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#FeatureNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -165,11 +237,49 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#HardwareNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#HardwareNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#HardwareNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Processor: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#HardwareNode_processor"/>
+        <features
+            href="scrm.ecore#//requirements/Hardware/processor"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Platform: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#HardwareNode_platform"/>
+        <features
+            href="scrm.ecore#//requirements/Hardware/platform"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Memory: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#HardwareNode_memory"/>
+        <features
+            href="scrm.ecore#//requirements/Hardware/memory"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -193,11 +303,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#ConstraintNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#ConstraintNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ConstraintNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -221,11 +339,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#UserInterfaceNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#UserInterfaceNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#UserInterfaceNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -249,11 +375,29 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#SoftwareInterfaceNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#SoftwareInterfaceNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SoftwareInterfaceNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Data Types: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SoftwareInterfaceNode_dataTypes"/>
+        <features
+            href="scrm.ecore#//requirements/SoftwareInterface/dataTypes"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -277,11 +421,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#ProcessNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#ProcessNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ProcessNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -305,11 +457,29 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#PerformanceNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#PerformanceNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#PerformanceNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Problem Size: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#PerformanceNode_problemSize"/>
+        <features
+            href="scrm.ecore#//requirements/Performance/problemSize"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -333,11 +503,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#DataFlowNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#DataFlowNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataFlowNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -361,11 +539,59 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#DataDefinitionNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/DataDefinition/range"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Data Type: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_dataType"/>
+        <features
+            href="scrm.ecore#//requirements/DataDefinition/dataType"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -389,11 +615,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#InputDataReadingNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#InputDataReadingNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#InputDataReadingNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -417,11 +651,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#DataHandlingNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#DataHandlingNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataHandlingNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -445,11 +687,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#ResultsOutputNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#ResultsOutputNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ResultsOutputNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -473,11 +723,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#ErrorHandlingNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#ErrorHandlingNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ErrorHandlingNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -501,11 +759,19 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#StatusMonitoringNodeLabel"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
+            href="scrm.gmfgraph#StatusMonitoringNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#StatusMonitoringNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -542,13 +808,13 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#ScientificProblem_SolvingMethodConnectionLabel"/>
+          href="scrm.gmfgraph#ScientificProblem_SolvingMethodsConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#ScientificProblem_SolvingMethodConnection"/>
+        href="scrm.gmfgraph#ScientificProblem_SolvingMethodsConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/ScientificProblem/solvingMethod"/>
+        href="scrm.ecore#//knowledge/ScientificProblem/solvingMethods"/>
   </links>
   <links
       relatedDiagrams="//@diagram">

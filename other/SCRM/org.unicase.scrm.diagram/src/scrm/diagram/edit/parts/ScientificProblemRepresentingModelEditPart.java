@@ -57,7 +57,7 @@ public class ScientificProblemRepresentingModelEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class ScientificProblemRepresentingModelEditPart extends
 		 * @generated
 		 */
 		public ScientificProblem_RepresentingModelFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

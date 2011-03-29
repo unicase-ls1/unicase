@@ -57,7 +57,7 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -115,7 +115,6 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public NumericalMethod_DependenciesFigure() {
-			this.setLineWidth(1);
 
 			createContents();
 		}

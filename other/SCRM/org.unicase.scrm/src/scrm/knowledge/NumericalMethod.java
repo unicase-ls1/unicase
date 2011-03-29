@@ -36,7 +36,7 @@ import scrm.requirements.Requirement;
 public interface NumericalMethod extends ScientificKnowledge {
 	/**
 	 * Returns the value of the '<em><b>Solved Problem</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethod <em>Solving Method</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Solved Problem</em>' container reference isn't clear,
@@ -46,8 +46,8 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Solved Problem</em>' container reference.
 	 * @see #setSolvedProblem(ScientificProblem)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_SolvedProblem()
-	 * @see scrm.knowledge.ScientificProblem#getSolvingMethod
-	 * @model opposite="solvingMethod" transient="false"
+	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods
+	 * @model opposite="solvingMethods" transient="false"
 	 * @generated
 	 */
 	ScientificProblem getSolvedProblem();
@@ -138,7 +138,6 @@ public interface NumericalMethod extends ScientificKnowledge {
 
 	/**
 	 * Returns the value of the '<em><b>Performance</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
@@ -148,8 +147,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Performance</em>' reference.
 	 * @see #setPerformance(Performance)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
-	 * @see scrm.requirements.Performance#getNumericalMethod
-	 * @model opposite="numericalMethod"
+	 * @model
 	 * @generated
 	 */
 	Performance getPerformance();

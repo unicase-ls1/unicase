@@ -73,7 +73,7 @@ public class FeatureDependenciesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Hardware && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureDependencies_4026(getNewSource(),
 						getOldTarget());
 	}
@@ -85,7 +85,7 @@ public class FeatureDependenciesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Hardware && newEnd instanceof Hardware)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistFeatureDependencies_4026(getOldSource(),
 						getNewTarget());
 	}

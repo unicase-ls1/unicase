@@ -96,10 +96,9 @@ public class ScrmDomainNavigatorItem extends PlatformObject {
 		if (obj instanceof scrm.diagram.navigator.ScrmDomainNavigatorItem) {
 			return EcoreUtil
 					.getURI(getEObject())
-					.equals(
-							EcoreUtil
-									.getURI(((scrm.diagram.navigator.ScrmDomainNavigatorItem) obj)
-											.getEObject()));
+					.equals(EcoreUtil
+							.getURI(((scrm.diagram.navigator.ScrmDomainNavigatorItem) obj)
+									.getEObject()));
 		}
 		return super.equals(obj);
 	}

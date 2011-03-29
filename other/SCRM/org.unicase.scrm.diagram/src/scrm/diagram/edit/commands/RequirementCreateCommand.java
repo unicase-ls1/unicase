@@ -67,7 +67,7 @@ public class RequirementCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateRequirement_4036(getContainer(), getSource(),
 						getTarget());
 	}

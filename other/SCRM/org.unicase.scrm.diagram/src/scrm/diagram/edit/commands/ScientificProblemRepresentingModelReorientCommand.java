@@ -74,7 +74,7 @@ public class ScientificProblemRepresentingModelReorientCommand extends
 		if (!(oldEnd instanceof MathematicalModel && newEnd instanceof ScientificProblem)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificProblemRepresentingModel_4006(
 						getNewSource(), getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class ScientificProblemRepresentingModelReorientCommand extends
 		if (!(oldEnd instanceof MathematicalModel && newEnd instanceof MathematicalModel)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistScientificProblemRepresentingModel_4006(
 						getOldSource(), getNewTarget());
 	}

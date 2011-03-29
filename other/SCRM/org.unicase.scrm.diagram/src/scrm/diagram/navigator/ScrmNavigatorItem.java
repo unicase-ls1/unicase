@@ -73,10 +73,9 @@ public class ScrmNavigatorItem extends ScrmAbstractNavigatorItem {
 		if (obj instanceof scrm.diagram.navigator.ScrmNavigatorItem) {
 			return EcoreUtil
 					.getURI(getView())
-					.equals(
-							EcoreUtil
-									.getURI(((scrm.diagram.navigator.ScrmNavigatorItem) obj)
-											.getView()));
+					.equals(EcoreUtil
+							.getURI(((scrm.diagram.navigator.ScrmNavigatorItem) obj)
+									.getView()));
 		}
 		return super.equals(obj);
 	}

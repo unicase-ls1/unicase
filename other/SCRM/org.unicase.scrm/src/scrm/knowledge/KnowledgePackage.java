@@ -172,13 +172,13 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_PROBLEM__REPRESENTING_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Solving Method</b></em>' containment reference.
+	 * The feature id for the '<em><b>Solving Methods</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCIENTIFIC_PROBLEM__SOLVING_METHOD = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 1;
+	int SCIENTIFIC_PROBLEM__SOLVING_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Influenced Feature</b></em>' reference.
@@ -569,15 +569,15 @@ public interface KnowledgePackage extends EPackage {
 	EReference getScientificProblem_RepresentingModel();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link scrm.knowledge.ScientificProblem#getSolvingMethod <em>Solving Method</em>}'.
+	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Solving Method</em>'.
-	 * @see scrm.knowledge.ScientificProblem#getSolvingMethod()
+	 * @return the meta object for the containment reference list '<em>Solving Methods</em>'.
+	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods()
 	 * @see #getScientificProblem()
 	 * @generated
 	 */
-	EReference getScientificProblem_SolvingMethod();
+	EReference getScientificProblem_SolvingMethods();
 
 	/**
 	 * Returns the meta object for the reference '{@link scrm.knowledge.ScientificProblem#getInfluencedFeature <em>Influenced Feature</em>}'.
@@ -877,12 +877,12 @@ public interface KnowledgePackage extends EPackage {
 		EReference SCIENTIFIC_PROBLEM__REPRESENTING_MODEL = eINSTANCE.getScientificProblem_RepresentingModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Solving Method</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Solving Methods</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SCIENTIFIC_PROBLEM__SOLVING_METHOD = eINSTANCE.getScientificProblem_SolvingMethod();
+		EReference SCIENTIFIC_PROBLEM__SOLVING_METHODS = eINSTANCE.getScientificProblem_SolvingMethods();
 
 		/**
 		 * The meta object literal for the '<em><b>Influenced Feature</b></em>' reference feature.

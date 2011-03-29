@@ -23,6 +23,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import org.unicase.metamodel.provider.MetamodelItemProviderAdapterFactory;
+import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
+import scrm.diagram.providers.ElementInitializers;
 import scrm.knowledge.provider.KnowledgeItemProviderAdapterFactory;
 import scrm.provider.ScrmItemProviderAdapterFactory;
 import scrm.requirements.provider.RequirementsItemProviderAdapterFactory;
@@ -61,6 +63,16 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	private ScrmBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
+
+	/**
+	 * @generated
+	 */
+	private ElementInitializers initializers;
+
+	/**
+	 * @generated
+	 */
 	public ScrmDiagramEditorPlugin() {
 	}
 
@@ -81,6 +93,8 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		linkConstraints = null;
+		initializers = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -96,7 +110,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List factories = new ArrayList();
+		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -104,7 +118,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	protected void fillItemProviderFactories(List factories) {
+	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new ScrmItemProviderAdapterFactory());
 		factories.add(new KnowledgeItemProviderAdapterFactory());
 		factories.add(new RequirementsItemProviderAdapterFactory());
@@ -202,6 +216,35 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 			documentProvider = new ScrmDocumentProvider();
 		}
 		return documentProvider;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ScrmBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
+		return linkConstraints;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLinkConstraints(
+			ScrmBaseItemSemanticEditPolicy.LinkConstraints lc) {
+		this.linkConstraints = lc;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ElementInitializers getElementInitializers() {
+		return initializers;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setElementInitializers(ElementInitializers i) {
+		this.initializers = i;
 	}
 
 	/**

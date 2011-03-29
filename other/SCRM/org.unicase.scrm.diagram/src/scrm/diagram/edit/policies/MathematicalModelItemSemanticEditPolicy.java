@@ -64,7 +64,7 @@ public class MathematicalModelItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificProblemRepresentingModelEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -102,7 +102,7 @@ public class MathematicalModelItemSemanticEditPolicy extends
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -206,12 +206,12 @@ public class MathematicalModelItemSemanticEditPolicy extends
 			return null;
 		}
 		if (ScrmElementTypes.MathematicalModel_4004 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel2CreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new MathematicalModel2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModel_4010 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel3CreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new MathematicalModel3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
 				.getElementType()) {
@@ -241,12 +241,12 @@ public class MathematicalModelItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModel_4004 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel2CreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new MathematicalModel2CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModel_4010 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel3CreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new MathematicalModel3CreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
 				.getElementType()) {

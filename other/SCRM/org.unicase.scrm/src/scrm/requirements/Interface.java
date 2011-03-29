@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see scrm.requirements.RequirementsPackage#getInterface()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface Interface extends IRequirement {

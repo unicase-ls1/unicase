@@ -117,10 +117,10 @@ public interface RequirementsPackage extends EPackage {
 	int IREQUIREMENT_FEATURE_COUNT = ScrmPackage.SCRM_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.InterfaceImpl <em>Interface</em>}' class.
+	 * The meta object id for the '{@link scrm.requirements.Interface <em>Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.InterfaceImpl
+	 * @see scrm.requirements.Interface
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getInterface()
 	 * @generated
 	 */
@@ -963,22 +963,13 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__REALIZED_METHOD = REQUIREMENT__REALIZED_METHOD;
 
 	/**
-	 * The feature id for the '<em><b>Numerical Method</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORMANCE__NUMERICAL_METHOD = REQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Problem Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE__PROBLEM_SIZE = REQUIREMENT_FEATURE_COUNT + 1;
+	int PERFORMANCE__PROBLEM_SIZE = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Performance</em>' class.
@@ -987,7 +978,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 2;
+	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
@@ -1642,17 +1633,6 @@ public interface RequirementsPackage extends EPackage {
 	EClass getPerformance();
 
 	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Numerical Method</em>'.
-	 * @see scrm.requirements.Performance#getNumericalMethod()
-	 * @see #getPerformance()
-	 * @generated
-	 */
-	EReference getPerformance_NumericalMethod();
-
-	/**
 	 * Returns the meta object for the attribute '{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1790,10 +1770,10 @@ public interface RequirementsPackage extends EPackage {
 		EReference IREQUIREMENT__USED_KNOWLEDGE = eINSTANCE.getIRequirement_UsedKnowledge();
 
 		/**
-		 * The meta object literal for the '{@link scrm.requirements.impl.InterfaceImpl <em>Interface</em>}' class.
+		 * The meta object literal for the '{@link scrm.requirements.Interface <em>Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see scrm.requirements.impl.InterfaceImpl
+		 * @see scrm.requirements.Interface
 		 * @see scrm.requirements.impl.RequirementsPackageImpl#getInterface()
 		 * @generated
 		 */
@@ -2086,14 +2066,6 @@ public interface RequirementsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PERFORMANCE = eINSTANCE.getPerformance();
-
-		/**
-		 * The meta object literal for the '<em><b>Numerical Method</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PERFORMANCE__NUMERICAL_METHOD = eINSTANCE.getPerformance_NumericalMethod();
 
 		/**
 		 * The meta object literal for the '<em><b>Problem Size</b></em>' attribute feature.

@@ -74,7 +74,7 @@ public class NumericalMethodDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof NumericalMethod)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodDependencies_4015(getNewSource(),
 						getOldTarget());
 	}
@@ -86,7 +86,7 @@ public class NumericalMethodDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof Assumption)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistNumericalMethodDependencies_4015(getOldSource(),
 						getNewTarget());
 	}

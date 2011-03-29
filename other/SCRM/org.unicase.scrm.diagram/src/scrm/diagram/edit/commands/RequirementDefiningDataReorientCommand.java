@@ -73,7 +73,7 @@ public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataDefinition && newEnd instanceof Requirement)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistRequirementDefiningData_4038(getNewSource(),
 						getOldTarget());
 	}
@@ -85,7 +85,7 @@ public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataDefinition && newEnd instanceof DataDefinition)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.LinkConstraints
+		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistRequirementDefiningData_4038(getOldSource(),
 						getNewTarget());
 	}

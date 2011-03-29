@@ -76,7 +76,7 @@ public class FeatureItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -131,7 +131,7 @@ public class FeatureItemSemanticEditPolicy extends
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureRequiredInterfacesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
@@ -295,12 +295,12 @@ public class FeatureItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
-			return getGEFWrapper(new FeatureConstraintsCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
-			return getGEFWrapper(new FeatureDependenciesCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureDependenciesCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
 				.getElementType()) {

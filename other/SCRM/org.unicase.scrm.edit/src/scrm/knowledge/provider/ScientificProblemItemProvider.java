@@ -113,7 +113,7 @@ public class ScientificProblemItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
 			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHOD);
+			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS);
 		}
 		return childrenFeatures;
 	}
@@ -170,7 +170,7 @@ public class ScientificProblemItemProvider
 		switch (notification.getFeatureID(ScientificProblem.class)) {
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REQUIREMENTS:
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHOD:
+			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -187,11 +187,6 @@ public class ScientificProblemItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createInterface()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -275,7 +270,7 @@ public class ScientificProblemItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHOD,
+				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
 				 KnowledgeFactory.eINSTANCE.createNumericalMethod()));
 	}
 
