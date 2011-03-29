@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Set;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
@@ -1618,7 +1617,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		Set<EObject> modelElements = this.getProject().getAllModelElements();
+		List<EObject> modelElements = this.getProject().getModelElements();
 
 		// TODO: OW, MK: make configurable
 		boolean crossResourceProxy = true;
