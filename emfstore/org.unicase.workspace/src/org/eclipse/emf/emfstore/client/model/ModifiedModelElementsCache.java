@@ -84,7 +84,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationExecuted(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationExecuted(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public void operationExecuted(AbstractOperation abstractOperation) {
 		// cache the model element and the operation, as well as the modified parents recursively
@@ -171,7 +171,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationUnDone(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 * @see org.eclipse.emf.emfstore.client.model.observers.OperationListener#operationUnDone(org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation)
 	 */
 	public void operationUnDone(AbstractOperation operation) {
 		// remove from cache
@@ -194,7 +194,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec)
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
 		// do the same as when project has been shared
@@ -205,7 +205,7 @@ public class ModifiedModelElementsCache implements OperationListener, CommitObse
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
+	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		return true;

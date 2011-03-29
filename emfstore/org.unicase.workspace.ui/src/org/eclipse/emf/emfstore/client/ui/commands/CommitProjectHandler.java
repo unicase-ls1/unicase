@@ -149,7 +149,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
+	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		if (changePackage.getOperations().isEmpty()) {
