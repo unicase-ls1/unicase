@@ -477,7 +477,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
 			// add plugin start event
 			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
-			event.setPluginId("org.unicase.workspace");
+			event.setPluginId("org.eclipse.emf.emfstore.client");
 			event.setTimestamp(new Date());
 			projectSpace.addEvent(event);
 		}
