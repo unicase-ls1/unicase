@@ -55,7 +55,7 @@ public class Activator extends AbstractUnicaseUIPlugin {
 
 		});
 
-		Platform.getLog(Platform.getBundle("org.unicase.workspace")).addLogListener(new ILogListener() {
+		Platform.getLog(Platform.getBundle("org.eclipse.emf.emfstore.client")).addLogListener(new ILogListener() {
 
 			public void logging(IStatus status, String plugin) {
 				if (status.getSeverity() == Status.ERROR) {
@@ -98,7 +98,7 @@ public class Activator extends AbstractUnicaseUIPlugin {
 	}
 
 	/**
-	 *Logs exception.
+	 * Logs exception.
 	 * 
 	 * @param e the exception
 	 */
