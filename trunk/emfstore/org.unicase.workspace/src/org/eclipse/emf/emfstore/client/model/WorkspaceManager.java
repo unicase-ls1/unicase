@@ -39,8 +39,8 @@ import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.MalformedModelVersionException;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
-import org.unicase.emfstore.migration.EMFStoreMigrationException;
-import org.unicase.emfstore.migration.EMFStoreMigratorUtil;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigrationException;
+import org.eclipse.emf.emfstore.migration.EMFStoreMigratorUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
