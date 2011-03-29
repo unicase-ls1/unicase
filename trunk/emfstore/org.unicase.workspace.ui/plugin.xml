@@ -807,7 +807,7 @@
                  <test
                        forcePluginActivation="true"
                        property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                       value="org.unicase.workspace.ServerInfo">
+                       value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                  </test>
                  <test
                        forcePluginActivation="true"
@@ -830,7 +830,7 @@
                  <test
                        forcePluginActivation="true"
                        property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                       value="org.unicase.workspace.ServerInfo">
+                       value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                  </test>
                  <test
                        forcePluginActivation="true"
@@ -873,7 +873,7 @@
 	                <test
 	                    forcePluginActivation="true"
                         property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                        value="org.unicase.workspace.ServerInfo">
+                        value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                     </test>
                  <test
                        forcePluginActivation="true"
@@ -901,7 +901,7 @@
                  <test
                        forcePluginActivation="true"
                        property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                       value="org.unicase.workspace.ServerInfo">
+                       value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                  </test>
                  <test
                        forcePluginActivation="true"
@@ -999,7 +999,7 @@
                  <test
                        forcePluginActivation="true"
                        property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                       value="org.unicase.workspace.ServerInfo">
+                       value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                  </test>
               </iterate>
            </visibleWhen>
@@ -1042,7 +1042,7 @@
                  <test
                        forcePluginActivation="true"
                        property="org.eclipse.emf.emfstore.client.ui.commands.treeNodeClassTester"
-                       value="org.unicase.workspace.ServerInfo">
+                       value="org.eclipse.emf.emfstore.client.model.ServerInfo">
                  </test>
               </iterate>
            </visibleWhen>
