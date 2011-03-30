@@ -32,11 +32,13 @@ public class ProjectPropertiesHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		PreferenceDialog propertyDialog = PreferencesUtil
-				.createPropertyDialogOn(Display.getCurrent().getActiveShell(),
-						WorkspaceManager.getInstance().getCurrentWorkspace()
-								.getActiveProjectSpace().getProject(), null,
-						null, null);
-		propertyDialog.open();
+			.createPropertyDialogOn(Display.getCurrent().getActiveShell(), WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace().getProject(), null, null, null);
+
+		if (propertyDialog != null) {
+			propertyDialog.open();
+		}
+
 		return null;
 	}
 
