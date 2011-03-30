@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Unicase Workspace UI Plug-in
+Bundle-Name: Workspace UI Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.ui;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.emfstore.client.ui.Activator
 Require-Bundle: org.eclipse.emf.emfstore.client.model.edit;visibility:=reexport,
- org.unicase.ui.util
+ org.eclipse.emf.ecp.common.util
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: diff.match.patch,
@@ -130,6 +130,6 @@ Export-Package: diff.match.patch,
    org.eclipse.emf.emfstore.client.ui.views.changes,
    org.eclipse.emf.emfstore.server.model.versioning,
    org.eclipse.emf.emfstore.client.model"
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org
 Bundle-ClassPath: .,
  lib/dmp.jar
