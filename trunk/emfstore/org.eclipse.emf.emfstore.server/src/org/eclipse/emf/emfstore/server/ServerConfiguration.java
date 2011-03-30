@@ -64,6 +64,11 @@ public final class ServerConfiguration {
 	public static final String XML_RPC_PORT_DEFAULT = "8080";
 
 	/**
+	 * Default name of server keystore file.
+	 */
+	public static final String SERVER_KEYSTORE_FILE = "emfstoreServer.keystore";
+
+	/**
 	 * Password of keystore, in which the certificate for rmi encryption and password decryption is saved.
 	 * 
 	 * @see #KEYSTORE_ALIAS
@@ -546,7 +551,7 @@ public final class ServerConfiguration {
 	 * @return path to keystore
 	 */
 	public static String getServerKeyStorePath() {
-		return getServerHome() + "unicaseServer.keystore";
+		return getServerHome() + SERVER_KEYSTORE_FILE;
 	}
 
 	/**
