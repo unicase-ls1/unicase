@@ -124,7 +124,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
 
 		// copy keystore file to workspace if not existent
-		copyFileToWorkspace(ServerConfiguration.getServerKeyStorePath(), "unicaseServer.keystore",
+		copyFileToWorkspace(ServerConfiguration.getServerKeyStorePath(), ServerConfiguration.SERVER_KEYSTORE_FILE,
 			"Failed to copy keystore.", "Keystore was copied to server workspace.");
 
 		connectionHandlers = initConnectionHandlers();

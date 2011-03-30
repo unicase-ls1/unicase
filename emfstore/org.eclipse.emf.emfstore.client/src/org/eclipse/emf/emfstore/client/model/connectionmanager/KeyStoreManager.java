@@ -61,7 +61,7 @@ public final class KeyStoreManager {
 	/**
 	 * Name of keyStore file.
 	 */
-	public static final String KEYSTORENAME = "unicaseClient.keystore";
+	public static final String KEYSTORENAME = "emfstoreClient.keystore";
 
 	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
 
