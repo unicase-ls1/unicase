@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ecpemfstorebridge
-Bundle-SymbolicName: org.unicase.ecpemfstorebridge;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.ecp.emfstorebridge;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.unicase.ecpemfstorebridge.Activator
 Require-Bundle: org.eclipse.ui,
