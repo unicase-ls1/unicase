@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ ****************************************************************************/
 package org.eclipse.emf.emfstore.common;
 
 import java.util.HashSet;
@@ -17,7 +26,7 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 
 
-public class UnicaseUtil {
+public class CommonUtil {
 	
 	private static Set<EClass> modelElementEClasses;
 
@@ -104,7 +113,6 @@ public class UnicaseUtil {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 			catch (RuntimeException exception) {
-				// TODO: ChainSaw logging done
 				Activator.getDefault().logException("Failed to load model package " + entry.getKey(), exception);
 				// END SUPRESS CATCH EXCEPTION
 			}
@@ -249,7 +257,7 @@ public class UnicaseUtil {
 					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
 					result.addAll(referencesList);
 					for (EObject ref : referencesList) {
-						if (UnicaseUtil.isSingletonEObject(ref)) {
+						if (CommonUtil.isSingletonEObject(ref)) {
 							continue;
 						}
 
@@ -258,7 +266,7 @@ public class UnicaseUtil {
 
 				} else {
 					EObject crossReference = (EObject) referenceObject;
-					if (crossReference == null || UnicaseUtil.isSingletonEObject(crossReference)) {
+					if (crossReference == null || CommonUtil.isSingletonEObject(crossReference)) {
 						continue;
 					}
 					result.add(crossReference);
@@ -308,7 +316,7 @@ public class UnicaseUtil {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!UnicaseUtil.isSelfContained(rootNode)) {
+			if (!CommonUtil.isSelfContained(rootNode)) {
 				errorStrings.add(rootNode + " is not self contained\n");
 				notSelfContained.add(rootNode);
 			}

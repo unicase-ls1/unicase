@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -153,7 +153,7 @@ public class ImportModelHandler extends AbstractHandler {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!UnicaseUtil.isSelfContained(rootNode)) {
+			if (!CommonUtil.isSelfContained(rootNode)) {
 				// TODO: Report to Console //System.out.println(rootNode + " is not selfcontained");
 				notSelfContained.add(rootNode);
 			}

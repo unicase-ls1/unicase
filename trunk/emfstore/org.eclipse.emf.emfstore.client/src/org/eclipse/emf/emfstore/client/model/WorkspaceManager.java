@@ -32,7 +32,7 @@ import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcConn
 import org.eclipse.emf.emfstore.client.model.util.EditingDomainProvider;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
@@ -76,7 +76,7 @@ public final class WorkspaceManager {
 			}
 
 			// init ecore packages
-			UnicaseUtil.getAllModelElementEClasses();
+			CommonUtil.getAllModelElementEClasses();
 
 			// notify post workspace observers
 			instance.notifyPostWorkspaceInitiators();

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -64,7 +64,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		}
 
 		// 2. get its containments
-		Set<EClass> eClazz = UnicaseUtil.getAllEContainments(selectedME.eClass());
+		Set<EClass> eClazz = CommonUtil.getAllEContainments(selectedME.eClass());
 		if (eClazz.size() > 5) {
 			return createNewWizard(selectedME.eClass());
 		}
@@ -174,7 +174,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		// return;
 		// }
 
-		Set<EClass> eClazz = UnicaseUtil.getAllSubEClasses(refClass);
+		Set<EClass> eClazz = CommonUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);
 		for (EClass eClass : eClazz) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
