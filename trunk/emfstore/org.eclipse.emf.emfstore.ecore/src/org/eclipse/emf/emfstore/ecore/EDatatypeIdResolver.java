@@ -28,6 +28,9 @@ public class EDatatypeIdResolver implements SingletonIdResolver {
 
 	private Map<String, EDataType> datatypes = new HashMap<String, EDataType>();
 	
+	/**
+	 * Default constructor.
+	 */
 	public EDatatypeIdResolver() {
 		datatypes.put("Literal",        EcorePackage.eINSTANCE.getEString());
 		// String
