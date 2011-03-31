@@ -13,8 +13,14 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.emfstore.common.model.*;
+import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelVersion;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc -->

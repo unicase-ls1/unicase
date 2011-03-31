@@ -29,6 +29,9 @@ public class ProjectCopier extends Copier {
 	private HashMap<EObject, ModelElementId> eObjectToIdMap;
 	private HashMap<ModelElementId, EObject> idToEObjectMap;
 
+	/**
+	 * Default constructor.
+	 */
 	public ProjectCopier() {
 		eObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		idToEObjectMap = new HashMap<ModelElementId, EObject>();

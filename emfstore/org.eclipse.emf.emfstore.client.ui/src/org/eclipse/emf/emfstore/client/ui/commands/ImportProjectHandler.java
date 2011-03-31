@@ -74,6 +74,7 @@ public class ImportProjectHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
+		// BEGIN SURPRESS CATCH EXCEPTION
 		try {
 			new UnicaseCommand() {
 				@Override
@@ -84,9 +85,7 @@ public class ImportProjectHandler extends AbstractHandler {
 						progressDialog.getProgressMonitor().worked(10);
 						Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 						ProjectSpace projectSpace = currentWorkspace.importProject(absoluteFileName);
-
 						projectSpace.setProjectName(projectName);
-
 					} catch (IOException e) {
 						DialogHandler.showExceptionDialog(e);
 					} finally {
@@ -95,7 +94,6 @@ public class ImportProjectHandler extends AbstractHandler {
 					}
 				}
 			}.run(false);
-			// TODO: EM
 		} catch (Throwable t) {
 			new UnicaseCommand() {
 				@Override
@@ -115,6 +113,7 @@ public class ImportProjectHandler extends AbstractHandler {
 				}
 			}.run();
 		}
+		// END SURPRESS CATCH EXCEPTION
 
 		MessageDialog.openInformation(null, "Import", "Imported project from file: " + absoluteFileName);
 		return null;
