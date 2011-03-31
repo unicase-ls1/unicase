@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
@@ -29,10 +28,10 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RoleImpl extends EObjectImpl implements Role {
@@ -48,6 +47,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RoleImpl() {
@@ -56,6 +56,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,13 +149,14 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RolesPackage.ROLE__PROJECTS:
-				return ((InternalEList<?>)getProjects()).basicRemove(otherEnd, msgs);
+		case RolesPackage.ROLE__PROJECTS:
+			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,51 +170,54 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RolesPackage.ROLE__PROJECTS:
-				return getProjects();
+		case RolesPackage.ROLE__PROJECTS:
+			return getProjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RolesPackage.ROLE__PROJECTS:
-				getProjects().clear();
-				getProjects().addAll((Collection<? extends ProjectId>)newValue);
-				return;
+		case RolesPackage.ROLE__PROJECTS:
+			getProjects().clear();
+			getProjects().addAll((Collection<? extends ProjectId>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RolesPackage.ROLE__PROJECTS:
-				getProjects().clear();
-				return;
+		case RolesPackage.ROLE__PROJECTS:
+			getProjects().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RolesPackage.ROLE__PROJECTS:
-				return projects != null && !projects.isEmpty();
+		case RolesPackage.ROLE__PROJECTS:
+			return projects != null && !projects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.server.model.notification.*;
 import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.notification.NotificationPackage;

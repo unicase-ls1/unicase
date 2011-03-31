@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.*;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
@@ -25,22 +24,24 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AccesscontrolFactoryImpl extends EFactoryImpl implements AccesscontrolFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AccesscontrolFactory init() {
 		try {
-			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/accesscontrol"); 
+			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://eclipse.org/emf/emfstore/server/model/accesscontrol");
 			if (theAccesscontrolFactory != null) {
 				return theAccesscontrolFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new AccesscontrolFactoryImpl();
@@ -49,6 +50,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolFactoryImpl() {
@@ -57,23 +59,30 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case AccesscontrolPackage.AC_USER: return createACUser();
-			case AccesscontrolPackage.AC_ORG_UNIT: return createACOrgUnit();
-			case AccesscontrolPackage.AC_GROUP: return createACGroup();
-			case AccesscontrolPackage.AC_ORG_UNIT_ID: return createACOrgUnitId();
-			case AccesscontrolPackage.ORG_UNIT_PROPERTY: return createOrgUnitProperty();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case AccesscontrolPackage.AC_USER:
+			return createACUser();
+		case AccesscontrolPackage.AC_ORG_UNIT:
+			return createACOrgUnit();
+		case AccesscontrolPackage.AC_GROUP:
+			return createACGroup();
+		case AccesscontrolPackage.AC_ORG_UNIT_ID:
+			return createACOrgUnitId();
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY:
+			return createOrgUnitProperty();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACUser createACUser() {
@@ -83,6 +92,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnit createACOrgUnit() {
@@ -92,6 +102,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACGroup createACGroup() {
@@ -101,6 +112,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId createACOrgUnitId() {
@@ -110,6 +122,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnitProperty createOrgUnitProperty() {
@@ -119,14 +132,16 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolPackage getAccesscontrolPackage() {
-		return (AccesscontrolPackage)getEPackage();
+		return (AccesscontrolPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
