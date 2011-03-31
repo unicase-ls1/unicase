@@ -32,7 +32,7 @@ import scrm.requirements.RequirementsPackage;
  */
 public class ProcessImpl extends RequirementImpl implements scrm.requirements.Process {
 	/**
-	 * The cached value of the '{@link #getDataFlow() <em>Data Flow</em>}' containment reference.
+	 * The cached value of the '{@link #getDataFlow() <em>Data Flow</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDataFlow()
@@ -66,6 +66,23 @@ public class ProcessImpl extends RequirementImpl implements scrm.requirements.Pr
 	 * @generated
 	 */
 	public DataFlow getDataFlow() {
+		if (dataFlow != null && dataFlow.eIsProxy()) {
+			InternalEObject oldDataFlow = (InternalEObject)dataFlow;
+			dataFlow = (DataFlow)eResolveProxy(oldDataFlow);
+			if (dataFlow != oldDataFlow) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.PROCESS__DATA_FLOW, oldDataFlow, dataFlow));
+			}
+		}
+		return dataFlow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataFlow basicGetDataFlow() {
 		return dataFlow;
 	}
 
@@ -113,7 +130,7 @@ public class ProcessImpl extends RequirementImpl implements scrm.requirements.Pr
 		switch (featureID) {
 			case RequirementsPackage.PROCESS__DATA_FLOW:
 				if (dataFlow != null)
-					msgs = ((InternalEObject)dataFlow).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RequirementsPackage.PROCESS__DATA_FLOW, null, msgs);
+					msgs = ((InternalEObject)dataFlow).eInverseRemove(this, RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS, DataFlow.class, msgs);
 				return basicSetDataFlow((DataFlow)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -142,7 +159,8 @@ public class ProcessImpl extends RequirementImpl implements scrm.requirements.Pr
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RequirementsPackage.PROCESS__DATA_FLOW:
-				return getDataFlow();
+				if (resolve) return getDataFlow();
+				return basicGetDataFlow();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

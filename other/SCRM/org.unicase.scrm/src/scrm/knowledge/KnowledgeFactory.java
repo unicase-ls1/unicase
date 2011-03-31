@@ -62,6 +62,15 @@ public interface KnowledgeFactory extends EFactory {
 	Assumption createAssumption();
 
 	/**
+	 * Returns a new object of class '<em>Space</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Space</em>'.
+	 * @generated
+	 */
+	KnowledgeSpace createKnowledgeSpace();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -116,6 +116,15 @@ public interface RequirementsFactory extends EFactory {
 	DataDefinition createDataDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Requirement Space</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Space</em>'.
+	 * @generated
+	 */
+	RequirementSpace createRequirementSpace();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

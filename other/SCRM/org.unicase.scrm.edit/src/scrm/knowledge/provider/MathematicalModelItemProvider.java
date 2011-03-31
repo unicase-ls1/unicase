@@ -158,9 +158,7 @@ public class MathematicalModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
 			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS);
-			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS);
 			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES);
 		}
 		return childrenFeatures;
@@ -220,9 +218,7 @@ public class MathematicalModelItemProvider
 			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -243,116 +239,13 @@ public class MathematicalModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createHardware()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createProcess()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createPerformance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createDataHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
-				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS,
 				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
 				 KnowledgeFactory.eINSTANCE.createAssumption()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS ||
-			childFeature == KnowledgePackage.Literals.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

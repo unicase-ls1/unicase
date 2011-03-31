@@ -19,8 +19,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinedModel <em>Refined Model</em>}</li>
- *   <li>{@link scrm.knowledge.MathematicalModel#getSubMathematicalModels <em>Sub Mathematical Models</em>}</li>
- *   <li>{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}</li>
@@ -34,28 +32,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface MathematicalModel extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Represented Problem</b></em>' container reference.
+	 * Returns the value of the '<em><b>Represented Problem</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Represented Problem</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Represented Problem</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Represented Problem</em>' container reference.
+	 * @return the value of the '<em>Represented Problem</em>' reference.
 	 * @see #setRepresentedProblem(ScientificProblem)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_RepresentedProblem()
 	 * @see scrm.knowledge.ScientificProblem#getRepresentingModel
-	 * @model opposite="representingModel" transient="false"
+	 * @model opposite="representingModel"
 	 * @generated
 	 */
 	ScientificProblem getRepresentedProblem();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}' container reference.
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Represented Problem</em>' container reference.
+	 * @param value the new value of the '<em>Represented Problem</em>' reference.
 	 * @see #getRepresentedProblem()
 	 * @generated
 	 */
@@ -108,52 +106,6 @@ public interface MathematicalModel extends ScientificKnowledge {
 	void setRefinedModel(MathematicalModel value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Mathematical Models</b></em>' containment reference list.
-	 * The list contents are of type {@link scrm.knowledge.MathematicalModel}.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sub Mathematical Models</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Mathematical Models</em>' containment reference list.
-	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_SubMathematicalModels()
-	 * @see scrm.knowledge.MathematicalModel#getSuperMathematicalModel
-	 * @model opposite="superMathematicalModel" containment="true"
-	 * @generated
-	 */
-	EList<MathematicalModel> getSubMathematicalModels();
-
-	/**
-	 * Returns the value of the '<em><b>Super Mathematical Model</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getSubMathematicalModels <em>Sub Mathematical Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Super Mathematical Model</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Mathematical Model</em>' container reference.
-	 * @see #setSuperMathematicalModel(MathematicalModel)
-	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_SuperMathematicalModel()
-	 * @see scrm.knowledge.MathematicalModel#getSubMathematicalModels
-	 * @model opposite="subMathematicalModels" transient="false"
-	 * @generated
-	 */
-	MathematicalModel getSuperMathematicalModel();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Super Mathematical Model</em>' container reference.
-	 * @see #getSuperMathematicalModel()
-	 * @generated
-	 */
-	void setSuperMathematicalModel(MathematicalModel value);
-
-	/**
 	 * Returns the value of the '<em><b>Numerical Methods</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
@@ -172,19 +124,19 @@ public interface MathematicalModel extends ScientificKnowledge {
 	EList<NumericalMethod> getNumericalMethods();
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.Assumption}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Assumption#getDependingModel <em>Depending Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' containment reference list.
+	 * @return the value of the '<em>Dependencies</em>' reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingModel
-	 * @model opposite="dependingModel" containment="true"
+	 * @model opposite="dependingModel"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();

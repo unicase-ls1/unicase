@@ -237,6 +237,11 @@ public class SCRMDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 KnowledgeFactory.eINSTANCE.createKnowledgeSpace()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 RequirementsFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add
@@ -283,6 +288,11 @@ public class SCRMDiagramItemProvider
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				 RequirementsFactory.eINSTANCE.createRequirementSpace()));
 
 		newChildDescriptors.add
 			(createChildParameter

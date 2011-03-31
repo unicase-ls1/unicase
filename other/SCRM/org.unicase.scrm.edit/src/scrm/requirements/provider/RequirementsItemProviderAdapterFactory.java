@@ -306,6 +306,29 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link scrm.requirements.RequirementSpace} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RequirementSpaceItemProvider requirementSpaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link scrm.requirements.RequirementSpace}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRequirementSpaceAdapter() {
+		if (requirementSpaceItemProvider == null) {
+			requirementSpaceItemProvider = new RequirementSpaceItemProvider(this);
+		}
+
+		return requirementSpaceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -414,6 +437,7 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 		if (performanceItemProvider != null) performanceItemProvider.dispose();
 		if (dataFlowItemProvider != null) dataFlowItemProvider.dispose();
 		if (dataDefinitionItemProvider != null) dataDefinitionItemProvider.dispose();
+		if (requirementSpaceItemProvider != null) requirementSpaceItemProvider.dispose();
 	}
 
 }

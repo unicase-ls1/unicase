@@ -34,6 +34,7 @@ import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.Interface;
 import scrm.requirements.Requirement;
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -43,7 +44,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.FeatureImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getRequiredInterfaces <em>Required Interfaces</em>}</li>
@@ -63,7 +64,7 @@ import scrm.requirements.RequirementsPackage;
  */
 public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraints()
@@ -73,7 +74,7 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	protected EList<Constraint> constraints;
 
 	/**
-	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDependencies()
@@ -196,9 +197,9 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScientificKnowledge getUsedKnowledge() {
-		if (eContainerFeatureID() != RequirementsPackage.FEATURE__USED_KNOWLEDGE) return null;
-		return (ScientificKnowledge)eContainer();
+	public RequirementSpace getContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eContainer();
 	}
 
 	/**
@@ -206,8 +207,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.FEATURE__USED_KNOWLEDGE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
 	}
 
@@ -216,20 +217,20 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
-		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.FEATURE__USED_KNOWLEDGE && newUsedKnowledge != null)) {
-			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
+	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newUsedKnowledge != null)
-				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
-			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
+			if (newContainingRequirementSpace != null)
+				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
 	}
 
 	/**
@@ -239,7 +240,7 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 */
 	public EList<Constraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, RequirementsPackage.FEATURE__CONSTRAINTS, RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE);
+			constraints = new EObjectWithInverseResolvingEList<Constraint>(Constraint.class, this, RequirementsPackage.FEATURE__CONSTRAINTS, RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE);
 		}
 		return constraints;
 	}
@@ -251,7 +252,7 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 */
 	public EList<Hardware> getDependencies() {
 		if (dependencies == null) {
-			dependencies = new EObjectContainmentWithInverseEList<Hardware>(Hardware.class, this, RequirementsPackage.FEATURE__DEPENDENCIES, RequirementsPackage.HARDWARE__DEPENDING_FEATURE);
+			dependencies = new EObjectWithInverseResolvingEList<Hardware>(Hardware.class, this, RequirementsPackage.FEATURE__DEPENDENCIES, RequirementsPackage.HARDWARE__DEPENDING_FEATURE);
 		}
 		return dependencies;
 	}
@@ -462,10 +463,10 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
+				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 			case RequirementsPackage.FEATURE__DEPENDENCIES:
@@ -506,8 +507,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				return basicSetUsedKnowledge(null, msgs);
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				return basicSetContainingRequirementSpace(null, msgs);
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case RequirementsPackage.FEATURE__DEPENDENCIES:
@@ -544,8 +545,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
 			case RequirementsPackage.FEATURE__SUPE_FEATURE:
 				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__SUB_FEATURES, Feature.class, msgs);
 		}
@@ -560,8 +561,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				return getUsedKnowledge();
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace();
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				return getConstraints();
 			case RequirementsPackage.FEATURE__DEPENDENCIES:
@@ -600,8 +601,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				setUsedKnowledge((ScientificKnowledge)newValue);
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)newValue);
 				return;
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				getConstraints().clear();
@@ -661,8 +662,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				setUsedKnowledge((ScientificKnowledge)null);
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)null);
 				return;
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				getConstraints().clear();
@@ -712,8 +713,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.FEATURE__USED_KNOWLEDGE:
-				return getUsedKnowledge() != null;
+			case RequirementsPackage.FEATURE__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace() != null;
 			case RequirementsPackage.FEATURE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 			case RequirementsPackage.FEATURE__DEPENDENCIES:

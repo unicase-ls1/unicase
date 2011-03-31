@@ -343,16 +343,6 @@ public class FeatureItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
 				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
 
 		newChildDescriptors.add

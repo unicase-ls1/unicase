@@ -6,7 +6,6 @@
  */
 package scrm.requirements;
 
-import scrm.knowledge.NumericalMethod;
 
 /**
  * <!-- begin-user-doc -->

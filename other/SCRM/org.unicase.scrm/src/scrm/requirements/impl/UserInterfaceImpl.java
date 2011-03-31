@@ -7,20 +7,28 @@
 package scrm.requirements.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import scrm.impl.SCRMModelElementImpl;
+
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.ScientificKnowledge;
+
 import scrm.requirements.Feature;
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.UserInterface;
 
@@ -31,7 +39,7 @@ import scrm.requirements.UserInterface;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
+ *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getProvidingFeature <em>Providing Feature</em>}</li>
  *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getRequiringFeatures <em>Requiring Features</em>}</li>
  * </ul>
@@ -74,9 +82,9 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScientificKnowledge getUsedKnowledge() {
-		if (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE) return null;
-		return (ScientificKnowledge)eContainer();
+	public RequirementSpace getContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eContainer();
 	}
 
 	/**
@@ -84,8 +92,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
 	}
 
@@ -94,20 +102,20 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
-		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE && newUsedKnowledge != null)) {
-			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
+	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newUsedKnowledge != null)
-				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
-			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
+			if (newContainingRequirementSpace != null)
+				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
 	}
 
 	/**
@@ -172,10 +180,10 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
+				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -194,8 +202,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				return basicSetUsedKnowledge(null, msgs);
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				return basicSetContainingRequirementSpace(null, msgs);
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				return basicSetProvidingFeature(null, msgs);
 			case RequirementsPackage.USER_INTERFACE__REQUIRING_FEATURES:
@@ -212,8 +220,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__PROVIDED_INTERFACES, Feature.class, msgs);
 		}
@@ -228,8 +236,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				return getUsedKnowledge();
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace();
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				return getProvidingFeature();
 			case RequirementsPackage.USER_INTERFACE__REQUIRING_FEATURES:
@@ -247,8 +255,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				setUsedKnowledge((ScientificKnowledge)newValue);
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)newValue);
 				return;
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				setProvidingFeature((Feature)newValue);
@@ -269,8 +277,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				setUsedKnowledge((ScientificKnowledge)null);
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)null);
 				return;
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				setProvidingFeature((Feature)null);
@@ -290,8 +298,8 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.USER_INTERFACE__USED_KNOWLEDGE:
-				return getUsedKnowledge() != null;
+			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace() != null;
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
 				return getProvidingFeature() != null;
 			case RequirementsPackage.USER_INTERFACE__REQUIRING_FEATURES:

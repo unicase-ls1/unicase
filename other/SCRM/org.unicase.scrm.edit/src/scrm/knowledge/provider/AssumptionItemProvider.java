@@ -75,36 +75,6 @@ public class AssumptionItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
 	 * This returns Assumption.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,12 +109,6 @@ public class AssumptionItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Assumption.class)) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -158,81 +122,6 @@ public class AssumptionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createHardware()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createProcess()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createPerformance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createDataHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
 	}
 
 	/**

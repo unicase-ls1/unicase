@@ -39,7 +39,7 @@ import scrm.knowledge.ScientificProblem;
  */
 public interface Feature extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
 	 * The list contents are of type {@link scrm.requirements.Constraint}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Constraint#getRestrictedFeature <em>Restricted Feature</em>}'.
 	 * <!-- begin-user-doc -->
@@ -48,16 +48,16 @@ public interface Feature extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @return the value of the '<em>Constraints</em>' reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Constraints()
 	 * @see scrm.requirements.Constraint#getRestrictedFeature
-	 * @model opposite="restrictedFeature" containment="true"
+	 * @model opposite="restrictedFeature"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
 	 * The list contents are of type {@link scrm.requirements.Hardware}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}'.
 	 * <!-- begin-user-doc -->
@@ -66,10 +66,10 @@ public interface Feature extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' containment reference list.
+	 * @return the value of the '<em>Dependencies</em>' reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Dependencies()
 	 * @see scrm.requirements.Hardware#getDependingFeature
-	 * @model opposite="dependingFeature" containment="true"
+	 * @model opposite="dependingFeature"
 	 * @generated
 	 */
 	EList<Hardware> getDependencies();

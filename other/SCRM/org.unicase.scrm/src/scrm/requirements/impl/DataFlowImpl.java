@@ -16,7 +16,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import scrm.impl.SCRMModelElementImpl;
+import scrm.knowledge.KnowledgePackage;
+import scrm.knowledge.ScientificKnowledge;
 import scrm.requirements.DataFlow;
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -26,13 +30,24 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.requirements.impl.DataFlowImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataFlowImpl#getSpecifiedProcess <em>Specified Process</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DataFlowImpl extends RequirementImpl implements DataFlow {
+public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
+	/**
+	 * The cached value of the '{@link #getSpecifiedProcess() <em>Specified Process</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecifiedProcess()
+	 * @generated
+	 * @ordered
+	 */
+	protected scrm.requirements.Process specifiedProcess;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,9 +72,66 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementSpace getContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingRequirementSpace != null)
+				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public scrm.requirements.Process getSpecifiedProcess() {
-		if (eContainerFeatureID() != RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS) return null;
-		return (scrm.requirements.Process)eContainer();
+		if (specifiedProcess != null && specifiedProcess.eIsProxy()) {
+			InternalEObject oldSpecifiedProcess = (InternalEObject)specifiedProcess;
+			specifiedProcess = (scrm.requirements.Process)eResolveProxy(oldSpecifiedProcess);
+			if (specifiedProcess != oldSpecifiedProcess) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS, oldSpecifiedProcess, specifiedProcess));
+			}
+		}
+		return specifiedProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public scrm.requirements.Process basicGetSpecifiedProcess() {
+		return specifiedProcess;
 	}
 
 	/**
@@ -68,7 +140,12 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	 * @generated
 	 */
 	public NotificationChain basicSetSpecifiedProcess(scrm.requirements.Process newSpecifiedProcess, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSpecifiedProcess, RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS, msgs);
+		scrm.requirements.Process oldSpecifiedProcess = specifiedProcess;
+		specifiedProcess = newSpecifiedProcess;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS, oldSpecifiedProcess, newSpecifiedProcess);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -78,12 +155,10 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	 * @generated
 	 */
 	public void setSpecifiedProcess(scrm.requirements.Process newSpecifiedProcess) {
-		if (newSpecifiedProcess != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS && newSpecifiedProcess != null)) {
-			if (EcoreUtil.isAncestor(this, newSpecifiedProcess))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newSpecifiedProcess != specifiedProcess) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (specifiedProcess != null)
+				msgs = ((InternalEObject)specifiedProcess).eInverseRemove(this, RequirementsPackage.PROCESS__DATA_FLOW, scrm.requirements.Process.class, msgs);
 			if (newSpecifiedProcess != null)
 				msgs = ((InternalEObject)newSpecifiedProcess).eInverseAdd(this, RequirementsPackage.PROCESS__DATA_FLOW, scrm.requirements.Process.class, msgs);
 			msgs = basicSetSpecifiedProcess(newSpecifiedProcess, msgs);
@@ -101,9 +176,13 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
+			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
+				if (specifiedProcess != null)
+					msgs = ((InternalEObject)specifiedProcess).eInverseRemove(this, RequirementsPackage.PROCESS__DATA_FLOW, scrm.requirements.Process.class, msgs);
 				return basicSetSpecifiedProcess((scrm.requirements.Process)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -117,6 +196,8 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				return basicSetContainingRequirementSpace(null, msgs);
 			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
 				return basicSetSpecifiedProcess(null, msgs);
 		}
@@ -131,8 +212,8 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.PROCESS__DATA_FLOW, scrm.requirements.Process.class, msgs);
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -145,8 +226,11 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace();
 			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
-				return getSpecifiedProcess();
+				if (resolve) return getSpecifiedProcess();
+				return basicGetSpecifiedProcess();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,6 +243,9 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)newValue);
+				return;
 			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
 				setSpecifiedProcess((scrm.requirements.Process)newValue);
 				return;
@@ -174,6 +261,9 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				setContainingRequirementSpace((RequirementSpace)null);
+				return;
 			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
 				setSpecifiedProcess((scrm.requirements.Process)null);
 				return;
@@ -189,8 +279,10 @@ public class DataFlowImpl extends RequirementImpl implements DataFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case RequirementsPackage.DATA_FLOW__CONTAINING_REQUIREMENT_SPACE:
+				return getContainingRequirementSpace() != null;
 			case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
-				return getSpecifiedProcess() != null;
+				return specifiedProcess != null;
 		}
 		return super.eIsSet(featureID);
 	}

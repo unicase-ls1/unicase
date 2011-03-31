@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import scrm.provider.SCRMModelElementItemProvider;
+import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.RequirementsPackage;
 
@@ -33,7 +36,7 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class DataDefinitionItemProvider
-	extends RequirementItemProvider
+	extends SCRMModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -217,26 +220,14 @@ public class DataDefinitionItemProvider
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
-			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+	public ResourceLocator getResourceLocator() {
+		return ScrmEditPlugin.INSTANCE;
 	}
 
 }

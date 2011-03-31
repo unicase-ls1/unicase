@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.unicase.metamodel.IdentifiableElement;
+
 import scrm.SCRMModelElement;
 
 import scrm.knowledge.*;
@@ -93,6 +94,10 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAssumption(Assumption object) {
 				return createAssumptionAdapter();
+			}
+			@Override
+			public Adapter caseKnowledgeSpace(KnowledgeSpace object) {
+				return createKnowledgeSpaceAdapter();
 			}
 			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
@@ -189,6 +194,20 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssumptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link scrm.knowledge.KnowledgeSpace <em>Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see scrm.knowledge.KnowledgeSpace
+	 * @generated
+	 */
+	public Adapter createKnowledgeSpaceAdapter() {
 		return null;
 	}
 

@@ -202,16 +202,6 @@ public class RequirementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
 				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
 
 		newChildDescriptors.add
@@ -238,29 +228,6 @@ public class RequirementItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA,
 				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
-			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

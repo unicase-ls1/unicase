@@ -106,7 +106,7 @@ public interface Requirement extends IRequirement {
 	void setSpecifiedFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>Defining Data</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Defining Data</b></em>' reference list.
 	 * The list contents are of type {@link scrm.requirements.DataDefinition}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
@@ -115,10 +115,10 @@ public interface Requirement extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defining Data</em>' containment reference list.
+	 * @return the value of the '<em>Defining Data</em>' reference list.
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_DefiningData()
 	 * @see scrm.requirements.DataDefinition#getDefinedRequirement
-	 * @model opposite="definedRequirement" containment="true"
+	 * @model opposite="definedRequirement"
 	 * @generated
 	 */
 	EList<DataDefinition> getDefiningData();
