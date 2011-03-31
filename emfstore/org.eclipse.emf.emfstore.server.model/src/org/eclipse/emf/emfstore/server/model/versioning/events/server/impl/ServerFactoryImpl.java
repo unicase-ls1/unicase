@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.server.model.versioning.events.server.*;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ProjectUpdatedEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPackage;

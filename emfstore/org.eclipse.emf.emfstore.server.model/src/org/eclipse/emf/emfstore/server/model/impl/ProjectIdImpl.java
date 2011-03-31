@@ -18,12 +18,13 @@ import org.eclipse.emf.emfstore.server.model.ProjectId;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectIdImpl() {
@@ -32,6 +33,7 @@ public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
