@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 
 import scrm.SCRMModelElement;
@@ -74,11 +75,10 @@ public abstract class SCRMModelElementImpl extends IdentifiableElementImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected SCRMModelElementImpl() {
 		super();
-		this.name = "new " + eClass().getName();
 	}
 
 	/**

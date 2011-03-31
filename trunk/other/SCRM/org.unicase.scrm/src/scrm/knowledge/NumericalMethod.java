@@ -35,47 +35,47 @@ import scrm.requirements.Requirement;
  */
 public interface NumericalMethod extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Solved Problem</b></em>' container reference.
+	 * Returns the value of the '<em><b>Solved Problem</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Solved Problem</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Solved Problem</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Solved Problem</em>' container reference.
+	 * @return the value of the '<em>Solved Problem</em>' reference.
 	 * @see #setSolvedProblem(ScientificProblem)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_SolvedProblem()
 	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods
-	 * @model opposite="solvingMethods" transient="false"
+	 * @model opposite="solvingMethods"
 	 * @generated
 	 */
 	ScientificProblem getSolvedProblem();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}' container reference.
+	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Solved Problem</em>' container reference.
+	 * @param value the new value of the '<em>Solved Problem</em>' reference.
 	 * @see #getSolvedProblem()
 	 * @generated
 	 */
 	void setSolvedProblem(ScientificProblem value);
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.Assumption}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Assumption#getDependingMethod <em>Depending Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' containment reference list.
+	 * @return the value of the '<em>Dependencies</em>' reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingMethod
-	 * @model opposite="dependingMethod" containment="true"
+	 * @model opposite="dependingMethod"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();

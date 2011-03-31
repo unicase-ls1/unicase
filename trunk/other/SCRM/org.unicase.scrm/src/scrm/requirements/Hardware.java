@@ -28,7 +28,7 @@ package scrm.requirements;
  */
 public interface Hardware extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Depending Feature</b></em>' container reference.
+	 * Returns the value of the '<em><b>Depending Feature</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -36,20 +36,20 @@ public interface Hardware extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Depending Feature</em>' container reference.
+	 * @return the value of the '<em>Depending Feature</em>' reference.
 	 * @see #setDependingFeature(Feature)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_DependingFeature()
 	 * @see scrm.requirements.Feature#getDependencies
-	 * @model opposite="dependencies" transient="false"
+	 * @model opposite="dependencies"
 	 * @generated
 	 */
 	Feature getDependingFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Depending Feature</em>' container reference.
+	 * @param value the new value of the '<em>Depending Feature</em>' reference.
 	 * @see #getDependingFeature()
 	 * @generated
 	 */

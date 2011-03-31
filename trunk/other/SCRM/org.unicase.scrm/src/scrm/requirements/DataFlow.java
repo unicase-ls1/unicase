@@ -23,9 +23,9 @@ package scrm.requirements;
  * @model
  * @generated
  */
-public interface DataFlow extends Requirement {
+public interface DataFlow extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Specified Process</b></em>' container reference.
+	 * Returns the value of the '<em><b>Specified Process</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Process#getDataFlow <em>Data Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,20 +33,20 @@ public interface DataFlow extends Requirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specified Process</em>' container reference.
+	 * @return the value of the '<em>Specified Process</em>' reference.
 	 * @see #setSpecifiedProcess(scrm.requirements.Process)
 	 * @see scrm.requirements.RequirementsPackage#getDataFlow_SpecifiedProcess()
 	 * @see scrm.requirements.Process#getDataFlow
-	 * @model opposite="dataFlow" transient="false"
+	 * @model opposite="dataFlow"
 	 * @generated
 	 */
 	scrm.requirements.Process getSpecifiedProcess();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specified Process</em>' container reference.
+	 * @param value the new value of the '<em>Specified Process</em>' reference.
 	 * @see #getSpecifiedProcess()
 	 * @generated
 	 */

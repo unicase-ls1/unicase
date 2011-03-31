@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,6 +26,7 @@ import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
+import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
 
@@ -39,7 +40,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getContainingKnowledgeSpace <em>Containing Knowledge Space</em>}</li>
  *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getDependingModel <em>Depending Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.AssumptionImpl#getDependingMethod <em>Depending Method</em>}</li>
  * </ul>
@@ -49,14 +50,24 @@ import scrm.requirements.RequirementsPackage;
  */
 public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
+	 * The cached value of the '{@link #getDependingModel() <em>Depending Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequirements()
+	 * @see #getDependingModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IRequirement> requirements;
+	protected MathematicalModel dependingModel;
+
+	/**
+	 * The cached value of the '{@link #getDependingMethod() <em>Depending Method</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependingMethod()
+	 * @generated
+	 * @ordered
+	 */
+	protected NumericalMethod dependingMethod;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,11 +93,40 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IRequirement> getRequirements() {
-		if (requirements == null) {
-			requirements = new EObjectContainmentWithInverseEList<IRequirement>(IRequirement.class, this, KnowledgePackage.ASSUMPTION__REQUIREMENTS, RequirementsPackage.IREQUIREMENT__USED_KNOWLEDGE);
+	public KnowledgeSpace getContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace) {
+		if (newContainingKnowledgeSpace != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingKnowledgeSpace))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingKnowledgeSpace != null)
+				msgs = ((InternalEObject)newContainingKnowledgeSpace).eInverseAdd(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
+			msgs = basicSetContainingKnowledgeSpace(newContainingKnowledgeSpace, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return requirements;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE, newContainingKnowledgeSpace, newContainingKnowledgeSpace));
 	}
 
 	/**
@@ -95,8 +135,24 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public MathematicalModel getDependingModel() {
-		if (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__DEPENDING_MODEL) return null;
-		return (MathematicalModel)eContainer();
+		if (dependingModel != null && dependingModel.eIsProxy()) {
+			InternalEObject oldDependingModel = (InternalEObject)dependingModel;
+			dependingModel = (MathematicalModel)eResolveProxy(oldDependingModel);
+			if (dependingModel != oldDependingModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KnowledgePackage.ASSUMPTION__DEPENDING_MODEL, oldDependingModel, dependingModel));
+			}
+		}
+		return dependingModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MathematicalModel basicGetDependingModel() {
+		return dependingModel;
 	}
 
 	/**
@@ -105,7 +161,12 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public NotificationChain basicSetDependingModel(MathematicalModel newDependingModel, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDependingModel, KnowledgePackage.ASSUMPTION__DEPENDING_MODEL, msgs);
+		MathematicalModel oldDependingModel = dependingModel;
+		dependingModel = newDependingModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__DEPENDING_MODEL, oldDependingModel, newDependingModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -115,12 +176,10 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public void setDependingModel(MathematicalModel newDependingModel) {
-		if (newDependingModel != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__DEPENDING_MODEL && newDependingModel != null)) {
-			if (EcoreUtil.isAncestor(this, newDependingModel))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newDependingModel != dependingModel) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (dependingModel != null)
+				msgs = ((InternalEObject)dependingModel).eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, MathematicalModel.class, msgs);
 			if (newDependingModel != null)
 				msgs = ((InternalEObject)newDependingModel).eInverseAdd(this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, MathematicalModel.class, msgs);
 			msgs = basicSetDependingModel(newDependingModel, msgs);
@@ -136,8 +195,24 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public NumericalMethod getDependingMethod() {
-		if (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__DEPENDING_METHOD) return null;
-		return (NumericalMethod)eContainer();
+		if (dependingMethod != null && dependingMethod.eIsProxy()) {
+			InternalEObject oldDependingMethod = (InternalEObject)dependingMethod;
+			dependingMethod = (NumericalMethod)eResolveProxy(oldDependingMethod);
+			if (dependingMethod != oldDependingMethod) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KnowledgePackage.ASSUMPTION__DEPENDING_METHOD, oldDependingMethod, dependingMethod));
+			}
+		}
+		return dependingMethod;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NumericalMethod basicGetDependingMethod() {
+		return dependingMethod;
 	}
 
 	/**
@@ -146,7 +221,12 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public NotificationChain basicSetDependingMethod(NumericalMethod newDependingMethod, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDependingMethod, KnowledgePackage.ASSUMPTION__DEPENDING_METHOD, msgs);
+		NumericalMethod oldDependingMethod = dependingMethod;
+		dependingMethod = newDependingMethod;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.ASSUMPTION__DEPENDING_METHOD, oldDependingMethod, newDependingMethod);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -156,12 +236,10 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public void setDependingMethod(NumericalMethod newDependingMethod) {
-		if (newDependingMethod != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__DEPENDING_METHOD && newDependingMethod != null)) {
-			if (EcoreUtil.isAncestor(this, newDependingMethod))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newDependingMethod != dependingMethod) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (dependingMethod != null)
+				msgs = ((InternalEObject)dependingMethod).eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES, NumericalMethod.class, msgs);
 			if (newDependingMethod != null)
 				msgs = ((InternalEObject)newDependingMethod).eInverseAdd(this, KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES, NumericalMethod.class, msgs);
 			msgs = basicSetDependingMethod(newDependingMethod, msgs);
@@ -180,15 +258,17 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRequirements()).basicAdd(otherEnd, msgs);
-			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingKnowledgeSpace((KnowledgeSpace)otherEnd, msgs);
+			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
+				if (dependingModel != null)
+					msgs = ((InternalEObject)dependingModel).eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, MathematicalModel.class, msgs);
 				return basicSetDependingModel((MathematicalModel)otherEnd, msgs);
 			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
+				if (dependingMethod != null)
+					msgs = ((InternalEObject)dependingMethod).eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES, NumericalMethod.class, msgs);
 				return basicSetDependingMethod((NumericalMethod)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -202,8 +282,8 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				return basicSetContainingKnowledgeSpace(null, msgs);
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 				return basicSetDependingModel(null, msgs);
 			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
@@ -220,10 +300,8 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, MathematicalModel.class, msgs);
-			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES, NumericalMethod.class, msgs);
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -236,12 +314,14 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				return getRequirements();
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				return getContainingKnowledgeSpace();
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
-				return getDependingModel();
+				if (resolve) return getDependingModel();
+				return basicGetDependingModel();
 			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
-				return getDependingMethod();
+				if (resolve) return getDependingMethod();
+				return basicGetDependingMethod();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,9 +335,8 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				getRequirements().clear();
-				getRequirements().addAll((Collection<? extends IRequirement>)newValue);
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				setContainingKnowledgeSpace((KnowledgeSpace)newValue);
 				return;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 				setDependingModel((MathematicalModel)newValue);
@@ -277,8 +356,8 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				getRequirements().clear();
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				setContainingKnowledgeSpace((KnowledgeSpace)null);
 				return;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 				setDependingModel((MathematicalModel)null);
@@ -298,12 +377,12 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.ASSUMPTION__REQUIREMENTS:
-				return requirements != null && !requirements.isEmpty();
+			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
+				return getContainingKnowledgeSpace() != null;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
-				return getDependingModel() != null;
+				return dependingModel != null;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
-				return getDependingMethod() != null;
+				return dependingMethod != null;
 		}
 		return super.eIsSet(featureID);
 	}

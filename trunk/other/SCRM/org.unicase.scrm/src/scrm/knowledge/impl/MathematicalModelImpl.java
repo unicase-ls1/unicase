@@ -27,6 +27,7 @@ import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
+import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
@@ -41,12 +42,10 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getContainingKnowledgeSpace <em>Containing Knowledge Space</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinedModel <em>Refined Model</em>}</li>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getSubMathematicalModels <em>Sub Mathematical Models</em>}</li>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getSuperMathematicalModel <em>Super Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getNumericalMethods <em>Numerical Methods</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getTheory <em>Theory</em>}</li>
@@ -58,14 +57,14 @@ import scrm.requirements.RequirementsPackage;
  */
 public class MathematicalModelImpl extends SCRMModelElementImpl implements MathematicalModel {
 	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
+	 * The cached value of the '{@link #getRepresentedProblem() <em>Represented Problem</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequirements()
+	 * @see #getRepresentedProblem()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IRequirement> requirements;
+	protected ScientificProblem representedProblem;
 
 	/**
 	 * The cached value of the '{@link #getRefinements() <em>Refinements</em>}' containment reference list.
@@ -78,16 +77,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	protected EList<MathematicalModel> refinements;
 
 	/**
-	 * The cached value of the '{@link #getSubMathematicalModels() <em>Sub Mathematical Models</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubMathematicalModels()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<MathematicalModel> subMathematicalModels;
-
-	/**
 	 * The cached value of the '{@link #getNumericalMethods() <em>Numerical Methods</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,7 +87,7 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	protected EList<NumericalMethod> numericalMethods;
 
 	/**
-	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDependencies()
@@ -171,11 +160,40 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IRequirement> getRequirements() {
-		if (requirements == null) {
-			requirements = new EObjectContainmentWithInverseEList<IRequirement>(IRequirement.class, this, KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS, RequirementsPackage.IREQUIREMENT__USED_KNOWLEDGE);
+	public KnowledgeSpace getContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace) {
+		if (newContainingKnowledgeSpace != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
+			if (EcoreUtil.isAncestor(this, newContainingKnowledgeSpace))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainingKnowledgeSpace != null)
+				msgs = ((InternalEObject)newContainingKnowledgeSpace).eInverseAdd(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
+			msgs = basicSetContainingKnowledgeSpace(newContainingKnowledgeSpace, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return requirements;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE, newContainingKnowledgeSpace, newContainingKnowledgeSpace));
 	}
 
 	/**
@@ -184,8 +202,24 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * @generated
 	 */
 	public ScientificProblem getRepresentedProblem() {
-		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM) return null;
-		return (ScientificProblem)eContainer();
+		if (representedProblem != null && representedProblem.eIsProxy()) {
+			InternalEObject oldRepresentedProblem = (InternalEObject)representedProblem;
+			representedProblem = (ScientificProblem)eResolveProxy(oldRepresentedProblem);
+			if (representedProblem != oldRepresentedProblem) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, oldRepresentedProblem, representedProblem));
+			}
+		}
+		return representedProblem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScientificProblem basicGetRepresentedProblem() {
+		return representedProblem;
 	}
 
 	/**
@@ -194,7 +228,12 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * @generated
 	 */
 	public NotificationChain basicSetRepresentedProblem(ScientificProblem newRepresentedProblem, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newRepresentedProblem, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, msgs);
+		ScientificProblem oldRepresentedProblem = representedProblem;
+		representedProblem = newRepresentedProblem;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, oldRepresentedProblem, newRepresentedProblem);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -204,12 +243,10 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * @generated
 	 */
 	public void setRepresentedProblem(ScientificProblem newRepresentedProblem) {
-		if (newRepresentedProblem != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM && newRepresentedProblem != null)) {
-			if (EcoreUtil.isAncestor(this, newRepresentedProblem))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newRepresentedProblem != representedProblem) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (representedProblem != null)
+				msgs = ((InternalEObject)representedProblem).eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, ScientificProblem.class, msgs);
 			if (newRepresentedProblem != null)
 				msgs = ((InternalEObject)newRepresentedProblem).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, ScientificProblem.class, msgs);
 			msgs = basicSetRepresentedProblem(newRepresentedProblem, msgs);
@@ -277,59 +314,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MathematicalModel> getSubMathematicalModels() {
-		if (subMathematicalModels == null) {
-			subMathematicalModels = new EObjectContainmentWithInverseEList<MathematicalModel>(MathematicalModel.class, this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS, KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL);
-		}
-		return subMathematicalModels;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MathematicalModel getSuperMathematicalModel() {
-		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL) return null;
-		return (MathematicalModel)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSuperMathematicalModel(MathematicalModel newSuperMathematicalModel, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSuperMathematicalModel, KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSuperMathematicalModel(MathematicalModel newSuperMathematicalModel) {
-		if (newSuperMathematicalModel != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL && newSuperMathematicalModel != null)) {
-			if (EcoreUtil.isAncestor(this, newSuperMathematicalModel))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newSuperMathematicalModel != null)
-				msgs = ((InternalEObject)newSuperMathematicalModel).eInverseAdd(this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS, MathematicalModel.class, msgs);
-			msgs = basicSetSuperMathematicalModel(newSuperMathematicalModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL, newSuperMathematicalModel, newSuperMathematicalModel));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<NumericalMethod> getNumericalMethods() {
 		if (numericalMethods == null) {
 			numericalMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(NumericalMethod.class, this, KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS, KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL);
@@ -344,7 +328,7 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 */
 	public EList<Assumption> getDependencies() {
 		if (dependencies == null) {
-			dependencies = new EObjectContainmentWithInverseEList<Assumption>(Assumption.class, this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, KnowledgePackage.ASSUMPTION__DEPENDING_MODEL);
+			dependencies = new EObjectWithInverseResolvingEList<Assumption>(Assumption.class, this, KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES, KnowledgePackage.ASSUMPTION__DEPENDING_MODEL);
 		}
 		return dependencies;
 	}
@@ -400,11 +384,13 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRequirements()).basicAdd(otherEnd, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContainingKnowledgeSpace((KnowledgeSpace)otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
+				if (representedProblem != null)
+					msgs = ((InternalEObject)representedProblem).eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, ScientificProblem.class, msgs);
 				return basicSetRepresentedProblem((ScientificProblem)otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefinements()).basicAdd(otherEnd, msgs);
@@ -412,12 +398,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetRefinedModel((MathematicalModel)otherEnd, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubMathematicalModels()).basicAdd(otherEnd, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSuperMathematicalModel((MathematicalModel)otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNumericalMethods()).basicAdd(otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
@@ -434,18 +414,14 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				return basicSetContainingKnowledgeSpace(null, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
 				return basicSetRepresentedProblem(null, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return ((InternalEList<?>)getRefinements()).basicRemove(otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				return basicSetRefinedModel(null, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				return ((InternalEList<?>)getSubMathematicalModels()).basicRemove(otherEnd, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				return basicSetSuperMathematicalModel(null, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return ((InternalEList<?>)getNumericalMethods()).basicRemove(otherEnd, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
@@ -462,12 +438,10 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, ScientificProblem.class, msgs);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				return eInternalContainer().eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS, MathematicalModel.class, msgs);
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS, MathematicalModel.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -480,18 +454,15 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				return getRequirements();
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				return getContainingKnowledgeSpace();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
-				return getRepresentedProblem();
+				if (resolve) return getRepresentedProblem();
+				return basicGetRepresentedProblem();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return getRefinements();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				return getRefinedModel();
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				return getSubMathematicalModels();
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				return getSuperMathematicalModel();
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return getNumericalMethods();
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
@@ -513,9 +484,8 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				getRequirements().clear();
-				getRequirements().addAll((Collection<? extends IRequirement>)newValue);
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				setContainingKnowledgeSpace((KnowledgeSpace)newValue);
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
 				setRepresentedProblem((ScientificProblem)newValue);
@@ -526,13 +496,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				setRefinedModel((MathematicalModel)newValue);
-				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				getSubMathematicalModels().clear();
-				getSubMathematicalModels().addAll((Collection<? extends MathematicalModel>)newValue);
-				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				setSuperMathematicalModel((MathematicalModel)newValue);
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				getNumericalMethods().clear();
@@ -560,8 +523,8 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				getRequirements().clear();
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				setContainingKnowledgeSpace((KnowledgeSpace)null);
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
 				setRepresentedProblem((ScientificProblem)null);
@@ -571,12 +534,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				setRefinedModel((MathematicalModel)null);
-				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				getSubMathematicalModels().clear();
-				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				setSuperMathematicalModel((MathematicalModel)null);
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				getNumericalMethods().clear();
@@ -602,18 +559,14 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__REQUIREMENTS:
-				return requirements != null && !requirements.isEmpty();
+			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
+				return getContainingKnowledgeSpace() != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
-				return getRepresentedProblem() != null;
+				return representedProblem != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return refinements != null && !refinements.isEmpty();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 				return getRefinedModel() != null;
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUB_MATHEMATICAL_MODELS:
-				return subMathematicalModels != null && !subMathematicalModels.isEmpty();
-			case KnowledgePackage.MATHEMATICAL_MODEL__SUPER_MATHEMATICAL_MODEL:
-				return getSuperMathematicalModel() != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return numericalMethods != null && !numericalMethods.isEmpty();
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:

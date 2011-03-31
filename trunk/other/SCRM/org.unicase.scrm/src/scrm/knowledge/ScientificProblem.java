@@ -7,6 +7,7 @@
 package scrm.knowledge;
 
 import org.eclipse.emf.common.util.EList;
+
 import scrm.requirements.Feature;
 
 /**
@@ -29,47 +30,47 @@ import scrm.requirements.Feature;
  */
 public interface ScientificProblem extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Representing Model</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Representing Model</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Representing Model</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Representing Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Representing Model</em>' containment reference.
+	 * @return the value of the '<em>Representing Model</em>' reference.
 	 * @see #setRepresentingModel(MathematicalModel)
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_RepresentingModel()
 	 * @see scrm.knowledge.MathematicalModel#getRepresentedProblem
-	 * @model opposite="representedProblem" containment="true"
+	 * @model opposite="representedProblem"
 	 * @generated
 	 */
 	MathematicalModel getRepresentingModel();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}' containment reference.
+	 * Sets the value of the '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Representing Model</em>' containment reference.
+	 * @param value the new value of the '<em>Representing Model</em>' reference.
 	 * @see #getRepresentingModel()
 	 * @generated
 	 */
 	void setRepresentingModel(MathematicalModel value);
 
 	/**
-	 * Returns the value of the '<em><b>Solving Methods</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Solving Methods</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Solving Methods</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Solving Methods</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Solving Methods</em>' containment reference list.
+	 * @return the value of the '<em>Solving Methods</em>' reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_SolvingMethods()
 	 * @see scrm.knowledge.NumericalMethod#getSolvedProblem
-	 * @model opposite="solvedProblem" containment="true"
+	 * @model opposite="solvedProblem"
 	 * @generated
 	 */
 	EList<NumericalMethod> getSolvingMethods();

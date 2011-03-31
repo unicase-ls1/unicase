@@ -204,7 +204,6 @@ public class NumericalMethodItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS);
 			childrenFeatures.add(KnowledgePackage.Literals.NUMERICAL_METHOD__DEPENDENCIES);
 		}
 		return childrenFeatures;
@@ -264,7 +263,6 @@ public class NumericalMethodItemProvider
 			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case KnowledgePackage.NUMERICAL_METHOD__REQUIREMENTS:
 			case KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -282,81 +280,6 @@ public class NumericalMethodItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createHardware()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createProcess()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createPerformance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createDataHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
 
 		newChildDescriptors.add
 			(createChildParameter

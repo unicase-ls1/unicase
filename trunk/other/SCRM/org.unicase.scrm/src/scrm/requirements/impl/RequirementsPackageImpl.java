@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 import org.unicase.metamodel.MetamodelPackage;
+
 import scrm.ScrmPackage;
 
 import scrm.impl.ScrmPackageImpl;
@@ -34,6 +35,7 @@ import scrm.requirements.IRequirement;
 import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
@@ -135,6 +137,13 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	private EClass dataDefinitionEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass requirementSpaceEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -224,7 +233,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIRequirement_UsedKnowledge() {
+	public EReference getIRequirement_ContainingRequirementSpace() {
 		return (EReference)iRequirementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -629,6 +638,24 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRequirementSpace() {
+		return requirementSpaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementSpace_ContainedInformationofRequirements() {
+		return (EReference)requirementSpaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RequirementsFactory getRequirementsFactory() {
 		return (RequirementsFactory)getEFactoryInstance();
 	}
@@ -653,7 +680,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 		// Create classes and their features
 		iRequirementEClass = createEClass(IREQUIREMENT);
-		createEReference(iRequirementEClass, IREQUIREMENT__USED_KNOWLEDGE);
+		createEReference(iRequirementEClass, IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
 
 		interfaceEClass = createEClass(INTERFACE);
 		createEReference(interfaceEClass, INTERFACE__PROVIDING_FEATURE);
@@ -709,6 +736,9 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__FORMAT);
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__RANGE);
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__DATA_TYPE);
+
+		requirementSpaceEClass = createEClass(REQUIREMENT_SPACE);
+		createEReference(requirementSpaceEClass, REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS);
 	}
 
 	/**
@@ -758,20 +788,21 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		softwareInterfaceEClass.getESuperTypes().add(this.getInterface());
 		processEClass.getESuperTypes().add(this.getRequirement());
 		performanceEClass.getESuperTypes().add(this.getRequirement());
-		dataFlowEClass.getESuperTypes().add(this.getRequirement());
-		dataDefinitionEClass.getESuperTypes().add(this.getRequirement());
+		dataFlowEClass.getESuperTypes().add(this.getIRequirement());
+		dataDefinitionEClass.getESuperTypes().add(this.getIRequirement());
+		requirementSpaceEClass.getESuperTypes().add(this.getIRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(iRequirementEClass, IRequirement.class, "IRequirement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIRequirement_UsedKnowledge(), theKnowledgePackage.getScientificKnowledge(), theKnowledgePackage.getScientificKnowledge_Requirements(), "usedKnowledge", null, 0, 1, IRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIRequirement_ContainingRequirementSpace(), this.getRequirementSpace(), this.getRequirementSpace_ContainedInformationofRequirements(), "containingRequirementSpace", null, 0, 1, IRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(interfaceEClass, Interface.class, "Interface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInterface_ProvidingFeature(), this.getFeature(), this.getFeature_ProvidedInterfaces(), "providingFeature", null, 0, 1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInterface_RequiringFeatures(), this.getFeature(), this.getFeature_RequiredInterfaces(), "requiringFeatures", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Constraints(), this.getConstraint(), this.getConstraint_RestrictedFeature(), "constraints", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_Dependencies(), this.getHardware(), this.getHardware_DependingFeature(), "dependencies", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_Constraints(), this.getConstraint(), this.getConstraint_RestrictedFeature(), "constraints", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_Dependencies(), this.getHardware(), this.getHardware_DependingFeature(), "dependencies", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_RequiredInterfaces(), this.getInterface(), this.getInterface_RequiringFeatures(), "requiredInterfaces", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_ProvidedInterfaces(), this.getInterface(), this.getInterface_ProvidingFeature(), "providedInterfaces", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_DetailedRequirements(), this.getRequirement(), this.getRequirement_SpecifiedFeature(), "detailedRequirements", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -784,19 +815,19 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEReference(getFeature_ExcludingFeatures(), this.getFeature(), this.getFeature_ExcludedFeatures(), "excludingFeatures", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hardwareEClass, Hardware.class, "Hardware", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHardware_DependingFeature(), this.getFeature(), this.getFeature_Dependencies(), "dependingFeature", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHardware_DependingFeature(), this.getFeature(), this.getFeature_Dependencies(), "dependingFeature", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHardware_Processor(), ecorePackage.getEString(), "processor", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHardware_Platform(), ecorePackage.getEString(), "platform", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHardware_Memory(), theEcorePackage.getEString(), "memory", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstraint_RestrictedFeature(), this.getFeature(), this.getFeature_Constraints(), "restrictedFeature", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraint_RestrictedFeature(), this.getFeature(), this.getFeature_Constraints(), "restrictedFeature", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requirementEClass, Requirement.class, "Requirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRequirement_Refinements(), this.getRequirement(), this.getRequirement_RefinedRequirement(), "refinements", null, 0, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_RefinedRequirement(), this.getRequirement(), this.getRequirement_Refinements(), "refinedRequirement", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_SpecifiedFeature(), this.getFeature(), this.getFeature_DetailedRequirements(), "specifiedFeature", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirement_DefiningData(), this.getDataDefinition(), this.getDataDefinition_DefinedRequirement(), "definingData", null, 0, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirement_DefiningData(), this.getDataDefinition(), this.getDataDefinition_DefinedRequirement(), "definingData", null, 0, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRequirement_RealizedMethod(), theKnowledgePackage.getNumericalMethod(), theKnowledgePackage.getNumericalMethod_RealizingRequirement(), "realizedMethod", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -805,20 +836,23 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEAttribute(getSoftwareInterface_DataTypes(), ecorePackage.getEString(), "dataTypes", null, 0, 1, SoftwareInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processEClass, scrm.requirements.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcess_DataFlow(), this.getDataFlow(), this.getDataFlow_SpecifiedProcess(), "dataFlow", null, 0, 1, scrm.requirements.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcess_DataFlow(), this.getDataFlow(), this.getDataFlow_SpecifiedProcess(), "dataFlow", null, 0, 1, scrm.requirements.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(performanceEClass, Performance.class, "Performance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPerformance_ProblemSize(), theEcorePackage.getEString(), "problemSize", null, 0, 1, Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataFlow_SpecifiedProcess(), this.getProcess(), this.getProcess_DataFlow(), "specifiedProcess", null, 0, 1, DataFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataFlow_SpecifiedProcess(), this.getProcess(), this.getProcess_DataFlow(), "specifiedProcess", null, 0, 1, DataFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataDefinitionEClass, DataDefinition.class, "DataDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataDefinition_DefinedRequirement(), this.getRequirement(), this.getRequirement_DefiningData(), "definedRequirement", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataDefinition_DefinedRequirement(), this.getRequirement(), this.getRequirement_DefiningData(), "definedRequirement", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_Accuracy(), theEcorePackage.getEString(), "accuracy", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_Format(), ecorePackage.getEString(), "format", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_Range(), ecorePackage.getEString(), "range", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(requirementSpaceEClass, RequirementSpace.class, "RequirementSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirementSpace_ContainedInformationofRequirements(), this.getIRequirement(), this.getIRequirement_ContainingRequirementSpace(), "containedInformationofRequirements", null, 0, -1, RequirementSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //RequirementsPackageImpl

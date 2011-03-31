@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 import org.unicase.metamodel.MetamodelPackage;
+
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
 import scrm.ScrmFactory;

@@ -27,9 +27,9 @@ package scrm.requirements;
  * @model
  * @generated
  */
-public interface DataDefinition extends Requirement {
+public interface DataDefinition extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Defined Requirement</b></em>' container reference.
+	 * Returns the value of the '<em><b>Defined Requirement</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -37,20 +37,20 @@ public interface DataDefinition extends Requirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defined Requirement</em>' container reference.
+	 * @return the value of the '<em>Defined Requirement</em>' reference.
 	 * @see #setDefinedRequirement(Requirement)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DefinedRequirement()
 	 * @see scrm.requirements.Requirement#getDefiningData
-	 * @model opposite="definingData" transient="false"
+	 * @model opposite="definingData"
 	 * @generated
 	 */
 	Requirement getDefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Defined Requirement</em>' container reference.
+	 * @param value the new value of the '<em>Defined Requirement</em>' reference.
 	 * @see #getDefinedRequirement()
 	 * @generated
 	 */

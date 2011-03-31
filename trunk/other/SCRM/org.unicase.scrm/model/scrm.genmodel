@@ -16,9 +16,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramLayout"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
     </genClasses>
-    <nestedGenPackages prefix="Knowledge" disposableProviderFactory="true" ecorePackage="scrm.ecore#//knowledge">
+    <nestedGenPackages prefix="Knowledge" basePackage="scrm" disposableProviderFactory="true"
+        ecorePackage="scrm.ecore#//knowledge">
       <genClasses image="false" ecoreClass="scrm.ecore#//knowledge/ScientificKnowledge">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificKnowledge/requirements"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificKnowledge/containingKnowledgeSpace"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//knowledge/ScientificProblem">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/representingModel"/>
@@ -30,8 +31,6 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/representedProblem"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/refinements"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/refinedModel"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/subMathematicalModels"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/superMathematicalModel"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/numericalMethods"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/MathematicalModel/dependencies"/>
@@ -54,10 +53,14 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Assumption/dependingModel"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Assumption/dependingMethod"/>
       </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/KnowledgeSpace">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/KnowledgeSpace/containedScientificProblem"/>
+      </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Requirements" disposableProviderFactory="true" ecorePackage="scrm.ecore#//requirements">
+    <nestedGenPackages prefix="Requirements" basePackage="scrm" disposableProviderFactory="true"
+        ecorePackage="scrm.ecore#//requirements">
       <genClasses image="false" ecoreClass="scrm.ecore#//requirements/IRequirement">
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/IRequirement/usedKnowledge"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/IRequirement/containingRequirementSpace"/>
       </genClasses>
       <genClasses image="false" ecoreClass="scrm.ecore#//requirements/Interface">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/providingFeature"/>
@@ -121,7 +124,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/DataDefinition/range"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/DataDefinition/dataType"/>
       </genClasses>
-      <nestedGenPackages prefix="DataProcessing" disposableProviderFactory="true"
+      <genClasses ecoreClass="scrm.ecore#//requirements/RequirementSpace">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </genClasses>
+      <nestedGenPackages prefix="DataProcessing" basePackage="scrm.requirements" disposableProviderFactory="true"
           ecorePackage="scrm.ecore#//requirements/dataProcessing">
         <genClasses image="false" ecoreClass="scrm.ecore#//requirements/dataProcessing/DataProcessing"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/InputDataReading"/>
