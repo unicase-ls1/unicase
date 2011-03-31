@@ -1264,12 +1264,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
+			AbstractOperation copy = EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 		// copy events from projectspace
 		for (Event event : getEventsFromComposite()) {
-			Event copy = (Event) EcoreUtil.copy(event);
+			Event copy = EcoreUtil.copy(event);
 			changePackage.getEvents().add(copy);
 		}
 
@@ -2248,7 +2248,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 			saveProjectSpaceOnly();
 		}
-
 	}
 
 	/**
@@ -2542,5 +2541,4 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public FileInformation getFileInfo(FileIdentifier fileIdentifier) {
 		return fileTransferManager.getFileInfo(fileIdentifier);
 	}
-
 } // ProjectContainerImpl
