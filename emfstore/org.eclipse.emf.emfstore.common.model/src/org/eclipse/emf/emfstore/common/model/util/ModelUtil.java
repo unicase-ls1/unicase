@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
@@ -149,7 +149,7 @@ public final class ModelUtil {
 		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 
 		if (!overrideContainmentCheck && !(object instanceof EClass)) {
-			if (!UnicaseUtil.isSelfContained(object)) {
+			if (!CommonUtil.isSelfContained(object)) {
 				throw new SerializationException(object);
 			}
 		}

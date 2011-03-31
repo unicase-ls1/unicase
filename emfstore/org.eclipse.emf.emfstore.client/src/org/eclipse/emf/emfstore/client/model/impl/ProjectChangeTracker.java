@@ -43,7 +43,7 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecorder;
 import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
@@ -643,7 +643,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	private void handleElementDelete(EObject deletedElement) {
 		deleteOutgoingCrossReferencesOfContainmentTree(deletedElement);
 
-		if (!UnicaseUtil.isSelfContained(deletedElement, true)) {
+		if (!CommonUtil.isSelfContained(deletedElement, true)) {
 			throw new IllegalStateException(
 				"Element was removed from containment of project but still has cross references!: "
 					+ ModelUtil.getProject(deletedElement).getModelElementId(deletedElement).getId());

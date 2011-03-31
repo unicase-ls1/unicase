@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -166,7 +166,7 @@ public class ImportXMIAction implements IActionDelegate {
 		// 3. Check if RootNodes are SelfContained -- yes: import -- no: error
 		Set<EObject> notSelfContained = new HashSet<EObject>();
 		for (EObject rootNode : rootNodes) {
-			if (!UnicaseUtil.isSelfContained(rootNode)) {
+			if (!CommonUtil.isSelfContained(rootNode)) {
 				// TODO: Report to Console //System.out.println(rootNode + " is not selfcontained");
 				notSelfContained.add(rootNode);
 			}

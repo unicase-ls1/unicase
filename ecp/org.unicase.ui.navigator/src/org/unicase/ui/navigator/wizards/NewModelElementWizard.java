@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.emfstore.common.UnicaseUtil;
+import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -83,7 +83,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				}.run(true);
 
 			} else {
-				final EReference possibleContainingReference = UnicaseUtil.getPossibleContainingReference(
+				final EReference possibleContainingReference = CommonUtil.getPossibleContainingReference(
 					newMEInstance, selectedEObject);
 				if (possibleContainingReference != null && possibleContainingReference.isMany()) {
 					ECPWorkspace workSpace;
