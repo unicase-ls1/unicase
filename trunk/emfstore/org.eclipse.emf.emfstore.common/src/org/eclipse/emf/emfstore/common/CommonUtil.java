@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- ****************************************************************************/
+ ******************************************************************************/
 package org.eclipse.emf.emfstore.common;
 
 import java.util.HashSet;
