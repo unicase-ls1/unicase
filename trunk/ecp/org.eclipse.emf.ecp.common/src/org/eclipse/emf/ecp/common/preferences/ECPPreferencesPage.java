@@ -21,34 +21,34 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * Unicase preferences root node.
+ * ECP preferences root node.
  * 
  * @author Hodaie
  */
-public class UnicasePreferencesPage extends PreferencePage implements IWorkbenchPreferencePage {
+public class ECPPreferencesPage extends PreferencePage implements IWorkbenchPreferencePage {
 
 	/**
-	 * Constructor.
+	 * Default constructor.
 	 */
-	public UnicasePreferencesPage() {
+	public ECPPreferencesPage() {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Constructor.
 	 * 
 	 * @param title title
 	 */
-	public UnicasePreferencesPage(String title) {
+	public ECPPreferencesPage(String title) {
 		super(title);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Constructor.
 	 * 
 	 * @param title title
 	 * @param image image
 	 */
-	public UnicasePreferencesPage(String title, ImageDescriptor image) {
+	public ECPPreferencesPage(String title, ImageDescriptor image) {
 		super(title, image);
 	}
 

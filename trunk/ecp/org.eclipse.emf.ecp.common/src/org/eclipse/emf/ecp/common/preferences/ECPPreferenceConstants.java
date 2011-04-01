@@ -14,7 +14,7 @@ package org.eclipse.emf.ecp.common.preferences;
  * 
  * @author Hodaie
  */
-public final class UnicasePreferenceConstants {
+public final class ECPPreferenceConstants {
 
 	/**
 	 * Assignee Recommendation.
@@ -26,7 +26,7 @@ public final class UnicasePreferenceConstants {
 	 * 
 	 * @param value constant value
 	 */
-	private UnicasePreferenceConstants(String value) {
+	private ECPPreferenceConstants(String value) {
 
 	}
 
