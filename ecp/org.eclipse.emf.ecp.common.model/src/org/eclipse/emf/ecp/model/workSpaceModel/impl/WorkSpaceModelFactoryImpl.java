@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecp.model.workSpaceModel.*;
 import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelFactory;
 import org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage;
@@ -30,7 +31,7 @@ public class WorkSpaceModelFactoryImpl extends EFactoryImpl implements WorkSpace
 	 */
 	public static WorkSpaceModelFactory init() {
 		try {
-			WorkSpaceModelFactory theWorkSpaceModelFactory = (WorkSpaceModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/workspaceModel"); 
+			WorkSpaceModelFactory theWorkSpaceModelFactory = (WorkSpaceModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/ecp/workspaceModel"); 
 			if (theWorkSpaceModelFactory != null) {
 				return theWorkSpaceModelFactory;
 			}

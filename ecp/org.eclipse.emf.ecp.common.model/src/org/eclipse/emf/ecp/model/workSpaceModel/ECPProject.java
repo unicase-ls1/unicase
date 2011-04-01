@@ -18,15 +18,15 @@ import org.eclipse.emf.ecp.model.ECPModelelementContext;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>ECP Project</b></em>'.
  * 
  * @implements ECPModelelementContext <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>
- *             {@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}</li>
- *             <li>
- *             {@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}</li>
- *             </ul>
- *             </p>
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}</li>
+ *   <li>{@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage#getECPProject()
  * @model abstract="true"
  * @generated
@@ -34,15 +34,15 @@ import org.eclipse.emf.ecp.model.ECPModelelementContext;
 public interface ECPProject extends EObject, ECPModelelementContext {
 
 	/**
-	 * Returns the value of the '<em><b>Workspace</b></em>' container reference. It is bidirectional and its opposite is
-	 * ' {@link org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Workspace</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Workspace</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Workspace</em>' container reference.
 	 * @see #setWorkspace(ECPWorkspace)
 	 * @see org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage#getECPProject_Workspace()
@@ -53,9 +53,8 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	ECPWorkspace getWorkspace();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>} '
-	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Workspace</em>' container reference.
 	 * @see #getWorkspace()
 	 * @generated
@@ -144,9 +143,8 @@ public interface ECPProject extends EObject, ECPModelelementContext {
 	EObject getRootContainer();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getRootObject
-	 * <em>Root Object</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Root Object</em>' reference.
 	 * @see #getRootObject()
 	 * @generated
