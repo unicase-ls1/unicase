@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator;
+package org.eclipse.emf.ecp.navigator;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;

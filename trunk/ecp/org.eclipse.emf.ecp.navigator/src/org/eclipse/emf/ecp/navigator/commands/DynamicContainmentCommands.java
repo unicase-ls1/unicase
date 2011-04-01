@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.commands;
+package org.eclipse.emf.ecp.navigator.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +18,12 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.navigator.Activator;
+import org.eclipse.emf.ecp.navigator.handler.CreateContainmentHandler;
+import org.eclipse.emf.ecp.navigator.handler.NewModelElementWizardHandler;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.common.CommonUtil;
@@ -28,12 +34,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.handler.CreateContainmentHandler;
-import org.unicase.ui.navigator.handler.NewModelElementWizardHandler;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.

@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator;
+package org.eclipse.emf.ecp.navigator;
 
 import java.util.Collection;
 

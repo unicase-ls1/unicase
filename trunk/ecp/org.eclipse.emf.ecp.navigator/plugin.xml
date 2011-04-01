@@ -9,7 +9,7 @@
          point="org.eclipse.ui.views">
       <view
             category="org.unicase"
-            class="org.unicase.ui.navigator.TreeView"
+            class="org.eclipse.emf.ecp.navigator.TreeView"
             icon="icons/unicase.png"
             id="org.unicase.ui.navigator.viewer"
             name="Navigator"
@@ -20,7 +20,7 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.unicase.ui.navigator.MenuConfigurationEnablementTester"
+            class="org.eclipse.emf.ecp.navigator.MenuConfigurationEnablementTester"
             id="org.unicase.ui.navigator.menucontributionenablementtester"
             namespace="org.unicase.ui.navigator"
             properties="isActionEnabled"
@@ -39,7 +39,7 @@
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <dynamic
-               class="org.unicase.ui.navigator.commands.DynamicContainmentCommands"
+               class="org.eclipse.emf.ecp.navigator.commands.DynamicContainmentCommands"
                id="org.unicase.ui.navigator.dynamicMECreationCommands">
             <visibleWhen
                   checkEnabled="false">
@@ -112,19 +112,19 @@
          point="org.eclipse.ui.commands">
               <command
             categoryId="org.unicase.ui.navigator"
-            defaultHandler="org.unicase.ui.navigator.handler.OpenMEShortcutHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.OpenMEShortcutHandler"
             id="org.unicase.ui.common.handlers.open_me_ID"
             name="Search for Modelelement">
       </command>
            <command
             categoryId="org.unicase.ui.navigator"
-            defaultHandler="org.unicase.ui.navigator.handler.DeleteModelelementHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.DeleteModelelementHandler"
             id="org.unicase.ui.common.deleteModelelement"
             name="Delete Modelelement">
       </command>
       <command
             categoryId="org.unicase.ui.navigator"
-            defaultHandler="org.unicase.ui.navigator.handler.NewModelElementWizardHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.NewModelElementWizardHandler"
             id="org.unicase.ui.navigator.newModelElementWizard"
             name="New ModelElement Wizard">
          <commandParameter
@@ -135,7 +135,7 @@
          </commandParameter>
       </command>
           <command
-            defaultHandler="org.unicase.ui.navigator.handler.CreateContainmentHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.CreateContainmentHandler"
             description="This generic command is used by dynamic commands to create containment MEs"
             id="org.unicase.ui.navigator.createContaiment"
             name="New Containment ME">
@@ -148,7 +148,7 @@
   
       </command>
              <command
-            defaultHandler="org.unicase.ui.navigator.handler.ImportModelHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.ImportModelHandler"
             id="org.unicase.ui.navigator.importModel"
             name="Import model">
       </command>
@@ -157,12 +157,12 @@
             name="Navigator">
       </category>
             <commandParameterType
-            converter="org.unicase.ui.navigator.commands.EClassTypeConverter"
+            converter="org.eclipse.emf.ecp.navigator.commands.EClassTypeConverter"
             id="org.unicase.ui.navigator.eClassType"
             type="org.eclipse.emf.ecore.EClass">
       </commandParameterType>
             <command
-                  defaultHandler="org.unicase.ui.navigator.handler.ExportModelHandler"
+                  defaultHandler="org.eclipse.emf.ecp.navigator.handler.ExportModelHandler"
                   id="org.unicase.ui.navigator.exportModel"
                   name="Export model">
             </command>
