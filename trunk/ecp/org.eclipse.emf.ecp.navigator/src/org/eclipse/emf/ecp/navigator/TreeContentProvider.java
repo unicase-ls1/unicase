@@ -109,9 +109,7 @@ public class TreeContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * default constructor.
-	 * 
-	 * @param editingDomain the transactional editing domain
+	 * Default constructor.
 	 */
 	public TreeContentProvider() {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.ui.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.ecp.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.navigator" id="menuconfiguration" name="Menu Configuration"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.navigator" id="org.eclipse.emf.ecp.navigator.menuconfiguration" name="Menu Configuration"/>
       </appinfo>
       <documentation>
          Allows to configure the menu contributions of the navigator. Unwanted contributions can be disabled.
