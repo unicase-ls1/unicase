@@ -17,6 +17,9 @@ import org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver;
 import org.eclipse.emf.ecp.common.observer.PresentationSwitchObserver;
 import org.eclipse.emf.ecp.common.observer.StatusViewDropEventObserver;
 import org.eclipse.emf.ecp.common.observer.TraceObserver;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.PostECPWorkspaceInitiator;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
@@ -27,9 +30,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.PostECPWorkspaceInitiator;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 
 /**
  * @author emueller
@@ -42,7 +42,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.PostECPWorkspaceInitiator#workspaceInitComplete(org.unicase.ecp.model.workSpaceModel.ECPWorkspace)
+	 * @see org.eclipse.emf.ecp.model.PostECPWorkspaceInitiator#workspaceInitComplete(org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace)
 	 */
 	public void workspaceInitComplete(ECPWorkspace currentWorkspace) {
 		ECPWorkspaceManager.getObserverBus().register(this);

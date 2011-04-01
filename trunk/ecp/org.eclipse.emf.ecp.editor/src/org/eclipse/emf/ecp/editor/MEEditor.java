@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.model.ModelElementContextListener;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
@@ -31,8 +33,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ModelElementContextListener;
 
 /**
  * GUI view for editing MEs.

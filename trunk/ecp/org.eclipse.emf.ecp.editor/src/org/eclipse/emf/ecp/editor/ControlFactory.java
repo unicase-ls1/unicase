@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * Factory for generating {@link AbstractMEControl}'s according to a {@link IItemPropertyDescriptor}.

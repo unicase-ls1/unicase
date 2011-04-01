@@ -12,8 +12,8 @@ package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscont
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl;
+import org.eclipse.emf.ecp.model.ECPAssociationClassElement;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ecp.model.ECPAssociationClassElement;
 
 /**
  * This class is a simple widget that do not show any delete button on source or target feature in an association. (An

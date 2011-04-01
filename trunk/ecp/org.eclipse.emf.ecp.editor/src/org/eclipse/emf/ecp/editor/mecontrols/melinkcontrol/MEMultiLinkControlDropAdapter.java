@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
-import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * @author Hodaie

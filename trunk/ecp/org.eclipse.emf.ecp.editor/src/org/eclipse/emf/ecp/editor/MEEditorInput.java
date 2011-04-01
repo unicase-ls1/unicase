@@ -11,6 +11,7 @@ package org.eclipse.emf.ecp.editor;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -24,7 +25,6 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.

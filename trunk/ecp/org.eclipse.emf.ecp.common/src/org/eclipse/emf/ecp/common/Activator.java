@@ -13,9 +13,9 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * . The activator class controls the plug-in life cycle

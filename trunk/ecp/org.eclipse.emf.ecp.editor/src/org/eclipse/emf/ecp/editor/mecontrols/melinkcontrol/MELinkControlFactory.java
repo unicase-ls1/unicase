@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.editor.Activator;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ecp.model.ECPModelelementContext;
 
 public class MELinkControlFactory {
 	private HashMap<Class<?>, ArrayList<MELinkControl>> controlRegistry;

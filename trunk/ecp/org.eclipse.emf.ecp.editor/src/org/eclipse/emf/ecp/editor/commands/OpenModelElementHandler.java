@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.editor.Activator;
 import org.eclipse.emf.ecp.editor.MEEditorInput;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecp.model.ECPModelelementContext;
 
 /**
  * @author Hodaie This handler handles openModelEelement command. This handler is to be executed indirectly using

@@ -15,14 +15,14 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 
 /**
  * Command to delete a modelelement.
