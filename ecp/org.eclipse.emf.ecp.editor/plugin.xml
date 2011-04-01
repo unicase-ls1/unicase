@@ -9,37 +9,37 @@
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MEBoolControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MEBoolControl"
             name="org.unicase.ui.meeditor.meboolcontrol"
             showLabel="true"
             type="java.lang.Boolean">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MEIntControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MEIntControl"
             name="org.unicase.ui.meeditor.meintcontrol"
             showLabel="true"
             type="java.lang.Integer">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MEDateControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MEDateControl"
             name="org.unicase.ui.meeditor.medatecontrol"
             showLabel="true"
             type="java.util.Date">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MEEnumControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MEEnumControl"
             name="org.unicase.ui.meeditor.meenumcontrol"
             showLabel="true"
             type="java.lang.Enum">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MERichTextControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MERichTextControl"
             name="org.unicase.ui.meeditor.merichtextcontrol"
             showLabel="true"
             type="java.lang.String">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.METextControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.METextControl"
             name="org.unicase.ui.meeditor.metextcontrol"
             showLabel="true"
             type="java.lang.String">
@@ -48,7 +48,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.ui.meeditor.commands.OpenModelElementHandler"
+            defaultHandler="org.eclipse.emf.ecp.editor.commands.OpenModelElementHandler"
             id="org.unicase.ui.meeditor.openModelElement"
             name="OpenModelElement">
       </command>
@@ -56,7 +56,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.unicase.ui.meeditor.MEEditor"
+            class="org.eclipse.emf.ecp.editor.MEEditor"
             default="false"
             id="org.unicase.ui.meeditor"
             name="Model Element Editor">
@@ -65,25 +65,25 @@
    <extension
          point="org.unicase.ui.meeditor.referencecontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MESingleLinkControl"
             name="org.unicase.ui.meeditor.mesinglelinkcontrol"
             showLabel="true"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEMultiLinkControl"
             name="org.unicase.ui.meeditor.memultilinkcontrol"
             showLabel="false"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControl"
             name="org.unicase.ui.meeditor.associationclasscontrol"
             showLabel="false"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControlNoNew"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassControlNoNew"
             name="org.unicase.ui.meeditor.associationclasscontrolnonew"
             showLabel="true"
             type="org.eclipse.emf.ecore.EObject">
@@ -92,17 +92,17 @@
    <extension
          point="org.unicase.ui.meeditor.melinkcontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLink"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLink"
             name="org.unicase.ui.meeditor.associationclasslink"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNoDelete"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNoDelete"
             name="org.unicase.ui.meeditor.associationclasslinknodelete"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNotShow"
+            class="org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol.AssociationClassLinkNotShow"
             name="org.unicase.ui.meeditor.associationclasslinknotshow"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
@@ -110,7 +110,7 @@
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.MEDoubleControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MEDoubleControl"
             name="org.unicase.ui.meeditor.medoublecontrol"
             showLabel="true"
             type="java.lang.Double">
@@ -119,7 +119,7 @@
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.multiattributecontrol.StringMultiAttributeControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.multiattributecontrol.StringMultiAttributeControl"
             name="org.unicase.ui.meeditor.multistringcontrol"
             showLabel="true"
             type="java.lang.String">
@@ -128,7 +128,7 @@
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
-            class="org.unicase.ui.meeditor.mecontrols.multiattributecontrol.IntegerMultiAttributeControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.multiattributecontrol.IntegerMultiAttributeControl"
             name="org.unicase.ui.meeditor.multiintegercontrol"
             showLabel="true"
             type="java.lang.Integer">
