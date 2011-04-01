@@ -3,18 +3,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: unicase Common UI Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.common;singleton:=true
 Bundle-Version: 0.7.3
-Bundle-Activator: org.unicase.ui.common.Activator
+Bundle-Activator: org.eclipse.emf.ecp.common.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.emf.ecp.model;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
- org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
- org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
- org.unicase.ui.common.dialogs,
- org.unicase.ui.common.dnd,
- org.unicase.ui.common.observer,
- org.unicase.ui.common.preferences,
- org.unicase.ui.common.util
+Export-Package: org.eclipse.emf.ecp.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
+ org.eclipse.emf.ecp.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
+ org.eclipse.emf.ecp.common.dialogs,
+ org.eclipse.emf.ecp.common.dnd,
+ org.eclipse.emf.ecp.common.observer,
+ org.eclipse.emf.ecp.common.preferences,
+ org.eclipse.emf.ecp.common.util,
+ org.eclipse.swt.nebula.widgets.cdatetime
 Bundle-ClassPath: .,
  lib/nebula_cdatetime_0.9.0.jar
