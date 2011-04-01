@@ -12,9 +12,9 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.unicase.ui.util.ActionHelper;
 
 /**
  * UndoLastOperationHandler.

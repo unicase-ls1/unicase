@@ -14,6 +14,7 @@ import java.util.Properties;
 import javax.naming.Context;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.ui.Activator;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -28,7 +29,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * @author deser

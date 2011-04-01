@@ -11,6 +11,7 @@ package org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.commands.ServerRequestCommandHandler;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
@@ -23,7 +24,6 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Handler for creating a new repository.

@@ -10,6 +10,7 @@
 package org.eclipse.emf.emfstore.client.ui.util;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ModelElementTooltip;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.unicase.ui.util.ModelElementTooltip;
 
 /**
  * This class offer helper methods for the unicase URLs.

@@ -10,6 +10,7 @@
 package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
@@ -20,7 +21,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Form;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * This is the right side of OrgUnitManagementGUI. It shows the properties of selected item.

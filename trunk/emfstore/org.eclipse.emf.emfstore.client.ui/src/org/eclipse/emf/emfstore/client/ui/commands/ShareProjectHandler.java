@@ -11,6 +11,7 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
@@ -24,7 +25,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Share a project with the server.

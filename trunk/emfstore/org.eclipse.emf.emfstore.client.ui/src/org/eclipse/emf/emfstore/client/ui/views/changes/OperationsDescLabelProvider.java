@@ -9,13 +9,13 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.client.ui.views.changes;
 
+import org.eclipse.emf.ecp.common.util.OverlayImageDescriptor;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.util.OverlayImageDescriptor;
 
 /**
  * Label provider for the operation column in the viewer.
