@@ -1,8 +1,12 @@
-/**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- */
+/*******************************************************************************
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ ******************************************************************************/
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
 import java.io.IOException;
@@ -50,7 +54,7 @@ public final class PushToEMFStoreUtil {
 	 */
 	private static EObject iFileToEObject(IFile file) throws CannotConvertToEObjectException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		// TODO: CHECK ob das wirklich nötig ist?
+		// TODO: CHECK ob das wirklich n?tig ist?
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI(file.getLocationURI()
 			.toString());
