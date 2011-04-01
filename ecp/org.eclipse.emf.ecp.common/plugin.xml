@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="org.unicase.ui.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.common.ui.modelelementopener.exsd"/>
-   <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
+   <extension-point id="org.eclipse.emf.ecp.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.eclipse.emf.ecp.common.modelelementopener.exsd"/>
+   <extension-point id="org.eclipse.emf.ecp.common.dropadapter" name="Model element drop adapter" schema="schema/org.eclipse.emf.ecp.common.dropadapter.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
         <category
-              id="org.unicase.ui.common"
-              name="org.unicase.ui.common">
+              id="org.eclipse.emf.ecp.common"
+              name="org.eclipse.emf.ecp.common">
         </category>
   </extension>
   <extension
@@ -141,7 +141,7 @@
     </page>
  </extension>
  <extension
-       point="org.unicase.ui.common.medropadapter">
+       point="org.eclipse.emf.ecp.common.dropadapter">
     <MEDropAdapter
           class="org.eclipse.emf.ecp.common.dnd.DefaultMEDropAdapter">
     </MEDropAdapter>

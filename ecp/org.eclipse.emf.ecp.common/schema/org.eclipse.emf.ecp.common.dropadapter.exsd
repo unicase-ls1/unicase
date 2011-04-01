@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.ui.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.ecp.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.unicase.ui.common" id="org.unicase.ui.common.medropadapter" name="Model element drop adapter"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.common" id="org.eclipse.emf.ecp.common.dropadapter" name="Model element drop adapter"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.ui.common.dnd.MEDropAdapter:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecp.common.dnd.MEDropAdapter:"/>
                </appInfo>
             </annotation>
          </attribute>

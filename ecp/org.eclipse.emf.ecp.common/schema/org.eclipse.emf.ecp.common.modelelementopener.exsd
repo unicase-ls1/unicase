@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.ecp.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.ecp.common" id="org.eclipse.emf.ecp.common.editors" name="Editors for Modelelements"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.common" id="org.eclipse.emf.ecp.common.modelelementopener" name="Open Handler for Modelelements"/>
       </appInfo>
       <documentation>
          A model element opener is responsible to handle the double click action in the navigator on a model element.
@@ -62,7 +62,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.ui.util.ModelElementOpener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecp.common.util.ModelElementOpener"/>
                </appInfo>
             </annotation>
          </attribute>
