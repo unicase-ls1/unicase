@@ -2,10 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ui.common.modelelementopener">
+         point="org.eclipse.emf.ecp.common.modelelementopener">
       <ModelElementOpener
             class="org.eclipse.emf.ecp.navigatoreditorbridge.ModelElementOpener"
-            name="org.unicase.ui.meeditor.MEEditor">
+            name="org.eclipse.emf.ecp.editor.MEEditor">
       </ModelElementOpener>
    </extension>
 

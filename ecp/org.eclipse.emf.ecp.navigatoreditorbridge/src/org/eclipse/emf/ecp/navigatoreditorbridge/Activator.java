@@ -9,13 +9,13 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.navigatoreditorbridge;
 
-import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
+import org.eclipse.emf.ecp.common.util.AbstractECPPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUnicaseUIPlugin {
+public class Activator extends AbstractECPPlugin {
 
 	/**
 	 * Plugin ID.
