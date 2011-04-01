@@ -7,17 +7,17 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.providers;
+package org.eclipse.emf.ecp.validation.providers;
 
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
 /**
- * ColumnLabelProvider showing the constraint name.
+ * LbaleProvider for the Description Column.
  * 
- * @author naughton
+ * @author helming
  */
-public class ConstraintLabelProvider extends ColumnLabelProvider {
+public class DescriptionLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -26,7 +26,7 @@ public class ConstraintLabelProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof IConstraintStatus) {
 			IConstraintStatus constraint = (IConstraintStatus) element;
-			return constraint.getConstraint().getDescriptor().getName();
+			return constraint.getMessage();
 		}
 		return super.getText(element);
 	}

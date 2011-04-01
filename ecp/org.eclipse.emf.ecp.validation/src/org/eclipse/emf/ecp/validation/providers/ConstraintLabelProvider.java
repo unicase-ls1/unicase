@@ -7,18 +7,17 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.providers;
+package org.eclipse.emf.ecp.validation.providers;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
 /**
- * LabelProvider for the Creator Column.
+ * ColumnLabelProvider showing the constraint name.
  * 
- * @author helming
+ * @author naughton
  */
-public class CreatorLabelProvider extends ColumnLabelProvider {
+public class ConstraintLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -26,12 +25,8 @@ public class CreatorLabelProvider extends ColumnLabelProvider {
 	@Override
 	public String getText(Object element) {
 		if (element instanceof IConstraintStatus) {
-			EObject target = ((IConstraintStatus) element).getTarget();
-			if (target instanceof EObject) {
-				// TODO: PlainEObjectMode, getCreator
-				return "getCreator() not yet implemened for plain EObjects mode!";
-				// return ((EObject) target).getCreator();
-			}
+			IConstraintStatus constraint = (IConstraintStatus) element;
+			return constraint.getConstraint().getDescriptor().getName();
 		}
 		return super.getText(element);
 	}

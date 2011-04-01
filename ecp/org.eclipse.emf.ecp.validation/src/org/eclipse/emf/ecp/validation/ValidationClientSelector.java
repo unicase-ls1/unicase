@@ -7,33 +7,33 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.refactoring.strategy;
+package org.eclipse.emf.ecp.validation;
+
+import org.eclipse.emf.validation.model.IClientSelector;
 
 /**
- * Possible refactoring outcomes.
+ * ClientSelector, necessary for validation.
  * 
- * @author pfeifferc
+ * @author wesendonk
  */
-public enum RefactoringResult {
+public class ValidationClientSelector implements IClientSelector {
+
+	private static boolean running;
 
 	/**
-	 * The refactoring was successful, finish the operation.
+	 * {@inheritDoc}
 	 */
-	SUCCESS_CREATE,
+	public boolean selects(Object object) {
+		return running;
+	}
 
 	/**
-	 * The possible violation was not a violation after all.
+	 * running ...
+	 * 
+	 * @param running ...
 	 */
-	NO_VIOLATION,
-
-	/**
-	 * The refactoring was successful, but do not create any model elements.
-	 */
-	SUCCESS_UNDO,
-
-	/**
-	 * The refactoring was cancelled.
-	 */
-	ABORT,
+	public static void setRunning(boolean running) {
+		ValidationClientSelector.running = running;
+	}
 
 }

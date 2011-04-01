@@ -7,7 +7,7 @@
          point="org.eclipse.ui.views">
 		<view
         category="org.unicase"
-        class="org.unicase.ui.validation.ValidationView"
+        class="org.eclipse.emf.ecp.validation.ValidationView"
         icon="icons/validation.png"
         id="org.unicase.ui.validation.validationView"
         name="Validation View"
@@ -17,7 +17,7 @@
  <extension
        point="org.eclipse.emf.validation.validationListeners">
     <listener
-          class="org.unicase.ui.validation.ValidationListener">
+          class="org.eclipse.emf.ecp.validation.ValidationListener">
        <clientContext
              id="context">
        </clientContext>
@@ -26,15 +26,15 @@
  <extension
        point="org.unicase.ui.validation.filters">
     <filter
-          filter="org.unicase.ui.validation.filter.impl.Severity1ValidationFilter"
+          filter="org.eclipse.emf.ecp.validation.filter.impl.Severity1ValidationFilter"
           name="Severity1ValidationFilter">
     </filter>
     <filter
-          filter="org.unicase.ui.validation.filter.impl.Severity2ValidationFilter"
+          filter="org.eclipse.emf.ecp.validation.filter.impl.Severity2ValidationFilter"
           name="Severity2ValidationFilter">
     </filter>
     <filter
-          filter="org.unicase.ui.validation.filter.impl.Severity4ValidationFilter"
+          filter="org.eclipse.emf.ecp.validation.filter.impl.Severity4ValidationFilter"
           name="Severity4ValidationFilter">
     </filter>
  </extension>
@@ -43,7 +43,7 @@
       <clientContext
             id="context">
          <selector
-               class="org.unicase.ui.validation.ValidationClientSelector">
+               class="org.eclipse.emf.ecp.validation.ValidationClientSelector">
          </selector>
       </clientContext>
    </extension>
@@ -55,7 +55,7 @@
            name="Unicase">
      </category>
       <command
-           defaultHandler="org.unicase.ui.validation.ValidateHandler"
+           defaultHandler="org.eclipse.emf.ecp.validation.ValidateHandler"
            id="org.eclipse.emf.emfstore.client.ui.validate"
            name="Validate">
                 </command>

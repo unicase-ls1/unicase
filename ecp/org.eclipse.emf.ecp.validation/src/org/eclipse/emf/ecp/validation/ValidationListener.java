@@ -7,14 +7,14 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation;
+package org.eclipse.emf.ecp.validation;
 
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.validation.service.IValidationListener;
 import org.eclipse.emf.validation.service.ValidationEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Validation listener for the table.

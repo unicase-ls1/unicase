@@ -7,12 +7,12 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.providers;
+package org.eclipse.emf.ecp.validation.providers;
 
+import org.eclipse.emf.ecp.validation.Activator;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.validation.Activator;
 
 /**
  * Label Provider to show the severity.

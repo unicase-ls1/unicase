@@ -7,11 +7,11 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation;
+package org.eclipse.emf.ecp.validation;
 
+import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle.
