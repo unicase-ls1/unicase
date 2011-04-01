@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.util;
+package org.eclipse.emf.ecp.common.util;
 
 import java.util.Collection;
 

@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.util;
+package org.eclipse.emf.ecp.common.util;
 
 import org.eclipse.emf.emfstore.common.IUnicaseLog;
 import org.eclipse.emf.emfstore.common.UnicaseLogAdapter;
