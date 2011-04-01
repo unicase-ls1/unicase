@@ -28,11 +28,12 @@ import org.eclipse.ui.handlers.IHandlerService;
  * @author helming
  */
 public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
+	
 	/**
-	 *Default constructor.
+	 * Default constructor.
 	 */
 	public ModelElementOpener() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
