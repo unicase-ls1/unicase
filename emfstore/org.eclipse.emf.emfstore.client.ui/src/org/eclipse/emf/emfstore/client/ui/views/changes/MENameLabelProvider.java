@@ -12,6 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.views.changes;
 import java.text.SimpleDateFormat;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
@@ -19,7 +20,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
-import org.unicase.ui.util.UiUtil;
 
 /**
  * Label provider for the model element column in the viewer.

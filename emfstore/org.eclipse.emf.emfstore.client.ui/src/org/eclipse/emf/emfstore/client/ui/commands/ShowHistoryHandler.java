@@ -12,6 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
@@ -22,7 +23,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Handler for viewing the history of the current project.

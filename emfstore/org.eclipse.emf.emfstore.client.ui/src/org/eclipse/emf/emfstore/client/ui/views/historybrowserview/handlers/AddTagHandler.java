@@ -11,6 +11,7 @@ package org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.commands.ServerRequestCommandHandler;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
@@ -22,7 +23,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.TreeNode;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Handler for adding a new tag.

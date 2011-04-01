@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
@@ -27,7 +28,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.window.Window;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Handler for forcing a revert operation.

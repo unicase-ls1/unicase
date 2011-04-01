@@ -17,6 +17,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
@@ -24,8 +26,6 @@ import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserve
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.unicase.ui.util.ActionHelper;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Handler for delete project menu item.

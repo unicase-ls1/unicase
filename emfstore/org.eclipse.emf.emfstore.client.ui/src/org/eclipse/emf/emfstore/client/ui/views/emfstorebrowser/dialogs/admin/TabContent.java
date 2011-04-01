@@ -12,6 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.AdminBroker;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
@@ -49,7 +50,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * This class sets the contents of tabs on the left side of OrgUnitManagmentGUI.

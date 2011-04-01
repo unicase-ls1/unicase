@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.ui.Activator;
@@ -40,7 +41,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.Abst
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.util.UiUtil;
 
 /**
  * A helper class for the visualization of change packages.

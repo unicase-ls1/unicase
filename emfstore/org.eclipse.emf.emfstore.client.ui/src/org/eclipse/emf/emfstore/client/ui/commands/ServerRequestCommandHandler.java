@@ -12,11 +12,11 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.unicase.ui.util.ActionHelper;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * A super class to handle all requests made to the server that require a RecordingCommand.

@@ -12,6 +12,8 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
@@ -19,8 +21,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.util.ActionHelper;
-import org.unicase.ui.util.DialogHandler;
 
 // MK: document whats this exactly does
 /**
