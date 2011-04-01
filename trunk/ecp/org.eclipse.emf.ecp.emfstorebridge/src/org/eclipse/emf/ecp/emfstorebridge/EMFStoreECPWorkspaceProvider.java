@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge;
+package org.eclipse.emf.ecp.emfstorebridge;
 
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
 import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
@@ -25,7 +25,7 @@ public class EMFStoreECPWorkspaceProvider implements ECPWorkspaceProvider {
 	 * @see org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace()
 	 */
 	public ECPWorkspace getECPWorkspace() {
-		return new org.unicase.ecpemfstorebridge.EMFECPWorkspace();
+		return new org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace();
 	}
 
 }

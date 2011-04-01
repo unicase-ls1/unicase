@@ -7,11 +7,11 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge;
+package org.eclipse.emf.ecp.emfstorebridge;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ModelElementOpener;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.unicase.ui.util.ModelElementOpener;
 
 public class ProjectSpaceOpener implements ModelElementOpener {
 

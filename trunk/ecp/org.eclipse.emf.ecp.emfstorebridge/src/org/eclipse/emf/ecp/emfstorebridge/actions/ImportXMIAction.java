@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge.actions;
+package org.eclipse.emf.ecp.emfstorebridge.actions;
 
 import java.util.HashSet;
 import java.util.Set;

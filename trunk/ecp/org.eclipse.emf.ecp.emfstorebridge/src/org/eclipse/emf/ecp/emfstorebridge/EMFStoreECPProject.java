@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge;
+package org.eclipse.emf.ecp.emfstorebridge;
 
 import java.util.ArrayList;
 import java.util.Collection;

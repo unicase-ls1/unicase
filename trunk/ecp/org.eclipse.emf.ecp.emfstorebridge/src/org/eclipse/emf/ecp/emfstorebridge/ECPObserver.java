@@ -7,11 +7,16 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge;
+package org.eclipse.emf.ecp.emfstorebridge;
 
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver;
+import org.eclipse.emf.ecp.common.observer.PresentationSwitchObserver;
+import org.eclipse.emf.ecp.common.observer.StatusViewDropEventObserver;
+import org.eclipse.emf.ecp.common.observer.TraceObserver;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
@@ -25,11 +30,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitc
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.PostECPWorkspaceInitiator;
 import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.common.observer.FocusEventObserver;
-import org.unicase.ui.common.observer.ModelElementOpenObserver;
-import org.unicase.ui.common.observer.PresentationSwitchObserver;
-import org.unicase.ui.common.observer.StatusViewDropEventObserver;
-import org.unicase.ui.common.observer.TraceObserver;
 
 /**
  * @author emueller
@@ -51,7 +51,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.observer.ModelElementOpenObserver#onOpen(org.eclipse.emf.ecore.EObject,
+	 * @see org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver#onOpen(org.eclipse.emf.ecore.EObject,
 	 *      java.lang.String, java.lang.String)
 	 */
 	public void onOpen(EObject opened, String sourceView, String openView) {
@@ -72,7 +72,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.common.observer.TraceObserver#onTrace(org.eclipse.emf.ecore.EObject,
+	 * @see org.eclipse.emf.ecp.common.observer.TraceObserver#onTrace(org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
 	 */
 	public void onTrace(EObject source, EObject target, String feature, String view) {
