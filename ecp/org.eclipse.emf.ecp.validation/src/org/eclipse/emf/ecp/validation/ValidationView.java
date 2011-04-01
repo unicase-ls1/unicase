@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -34,6 +33,7 @@ import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage;
+import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.ecp.validation.filter.FilterTableViewer;
 import org.eclipse.emf.ecp.validation.filter.ValidationFilter;
 import org.eclipse.emf.ecp.validation.providers.ConstraintLabelProvider;
@@ -124,14 +124,14 @@ public class ValidationView extends ViewPart {
 		try {
 			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
 		} catch (NoWorkspaceException e) {
-			// TODO Chainsaw.
+			Activator.getDefault().logException(e.getMessage(), e);
+			return;
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				// TODO Chainsaw check rewrite
-				if ((msg.getFeatureID(Workspace.class)) == WorkSpaceModelPackage.ECP_PROJECT) {
+				if ((msg.getFeatureID(ECPWorkspace.class)) == WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS) {
 					if (msg.getOldValue() != null
 						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ECPProject)) {
 						tableViewer.setInput(new ArrayList<IConstraintStatus>());
