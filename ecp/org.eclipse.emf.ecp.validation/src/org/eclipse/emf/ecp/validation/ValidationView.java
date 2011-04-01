@@ -253,7 +253,7 @@ public class ValidationView extends ViewPart {
 	private ArrayList<RefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(IConstraintStatus status) {
 		ArrayList<RefactoringStrategy> refactoringStrategies = new ArrayList<RefactoringStrategy>();
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.validation.refactoring.strategies");
+			"org.eclipse.emf.ecp.validation.refactoring.strategies");
 		for (IConfigurationElement element : config) {
 			try {
 				if (element.getAttribute("applicableFor").equals(status.getConstraint().getDescriptor().getId())) {
@@ -307,7 +307,7 @@ public class ValidationView extends ViewPart {
 		if (validationFilters == null) {
 			validationFilters = new ArrayList<ValidationFilter>();
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.validation.filters");
+				"org.eclipse.emf.ecp.validation.filters");
 			for (IConfigurationElement element : config) {
 				try {
 					Object object = element.createExecutableExtension("filter");

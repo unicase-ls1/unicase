@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-	<extension-point id="org.unicase.ui.validation.filters" name="The validation filter extension point" schema="schema/org.unicase.ui.validation.filter.exsd"/>
- <extension-point id="org.unicase.ui.validation.refactoring.strategies" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
+	<extension-point id="org.eclipse.emf.ecp.validation.filters" name="The validation filter extension point" schema="schema/org.eclipse.emf.ecp.validation.filter.exsd"/>
+ <extension-point id="org.eclipse.emf.ecp.validation.refactoring.strategies" name="Refactorings for the validation constraint violations" schema="schema/org.eclipse.emf.ecp.validation.refactorings.exsd"/>
 	<extension
          point="org.eclipse.ui.views">
 		<view
         category="org.unicase"
         class="org.eclipse.emf.ecp.validation.ValidationView"
         icon="icons/validation.png"
-        id="org.unicase.ui.validation.validationView"
+        id="org.eclipse.emf.ecp.validation.validationView"
         name="Validation View"
         restorable="true">
 		</view>
@@ -24,7 +24,7 @@
     </listener>
  </extension>
  <extension
-       point="org.unicase.ui.validation.filters">
+       point="org.eclipse.emf.ecp.validation.filters">
     <filter
           filter="org.eclipse.emf.ecp.validation.filter.impl.Severity1ValidationFilter"
           name="Severity1ValidationFilter">
@@ -65,7 +65,7 @@
  <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
             <command
               commandId="org.eclipse.emf.emfstore.client.ui.validate"
               icon="icons/validation.png"
