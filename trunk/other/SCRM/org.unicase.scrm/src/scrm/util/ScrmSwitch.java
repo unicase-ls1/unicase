@@ -92,7 +92,6 @@ public class ScrmSwitch<T> {
 			case ScrmPackage.SCRM_MODEL_ELEMENT: {
 				SCRMModelElement scrmModelElement = (SCRMModelElement)theEObject;
 				T result = caseSCRMModelElement(scrmModelElement);
-				if (result == null) result = caseIdentifiableElement(scrmModelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,21 +132,6 @@ public class ScrmSwitch<T> {
 	 * @generated
 	 */
 	public T caseSCRMDiagram(SCRMDiagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

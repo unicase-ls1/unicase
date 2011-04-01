@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
 
 import scrm.SCRMModelElement;
@@ -31,7 +32,7 @@ import scrm.ScrmPackage;
  *
  * @generated
  */
-public abstract class SCRMModelElementImpl extends IdentifiableElementImpl implements SCRMModelElement {
+public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMModelElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

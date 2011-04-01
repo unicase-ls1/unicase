@@ -140,10 +140,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 				return createRequirementSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIdentifiableElement(IdentifiableElement object) {
-				return createIdentifiableElementAdapter();
-			}
-			@Override
 			public Adapter caseSCRMModelElement(SCRMModelElement object) {
 				return createSCRMModelElementAdapter();
 			}
@@ -346,20 +342,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequirementSpaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.IdentifiableElement
-	 * @generated
-	 */
-	public Adapter createIdentifiableElementAdapter() {
 		return null;
 	}
 

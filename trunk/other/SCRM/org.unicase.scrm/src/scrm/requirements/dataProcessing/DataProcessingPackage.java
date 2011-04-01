@@ -70,15 +70,6 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_PROCESSING = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_PROCESSING__IDENTIFIER = RequirementsPackage.REQUIREMENT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,15 +159,6 @@ public interface DataProcessingPackage extends EPackage {
 	 * @generated
 	 */
 	int INPUT_DATA_READING = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_DATA_READING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -270,15 +252,6 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_HANDLING = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,15 +341,6 @@ public interface DataProcessingPackage extends EPackage {
 	 * @generated
 	 */
 	int RESULTS_OUTPUT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULTS_OUTPUT__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -470,15 +434,6 @@ public interface DataProcessingPackage extends EPackage {
 	int ERROR_HANDLING = 4;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ERROR_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -568,15 +523,6 @@ public interface DataProcessingPackage extends EPackage {
 	 * @generated
 	 */
 	int STATUS_MONITORING = 5;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATUS_MONITORING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

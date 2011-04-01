@@ -190,7 +190,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
