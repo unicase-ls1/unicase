@@ -7,10 +7,10 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigatormeeditorbridge;
+package org.eclipse.emf.ecp.navigatoreditorbridge;
 
+import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle.

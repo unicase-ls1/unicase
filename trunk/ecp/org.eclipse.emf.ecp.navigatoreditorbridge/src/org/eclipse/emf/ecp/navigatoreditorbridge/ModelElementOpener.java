@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigatormeeditorbridge;
+package org.eclipse.emf.ecp.navigatoreditorbridge;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
@@ -15,19 +15,19 @@ import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * Opener for the meeditor.
  * 
  * @author helming
  */
-public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpener {
+public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
 	/**
 	 *Default constructor.
 	 */
