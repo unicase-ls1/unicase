@@ -17,7 +17,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUnicasePlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.unicase.util";
+	public static final String PLUGIN_ID = "org.eclipse.emf.emfstore.common";
 
 	// The shared instance
 	private static Activator plugin;

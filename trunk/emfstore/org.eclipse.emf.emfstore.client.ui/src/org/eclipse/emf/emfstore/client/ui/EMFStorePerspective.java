@@ -14,7 +14,7 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
 /**
- * . This class is the perspective factory for the unicase Client. I think currently we don't need to implement this
+ * . This class is the perspective factory for the client. I think currently we don't need to implement this
  * class, because all its functionality is also available declarative in Plug-in.xml
  */
 public class EMFStorePerspective implements IPerspectiveFactory {
@@ -43,7 +43,7 @@ public class EMFStorePerspective implements IPerspectiveFactory {
 		IFolderLayout topLeft = factory.createFolder("topLeft", // NON-NLS-1
 			IPageLayout.LEFT, 0.25f, factory.getEditorArea());
 
-		topLeft.addView("org.unicase.ui.navigator.viewer"); // NON-NLS-1
+		topLeft.addView("org.eclipse.emf.ecp.navigator.viewer"); // NON-NLS-1
 
 		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
 			IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());

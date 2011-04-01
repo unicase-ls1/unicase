@@ -152,8 +152,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
-	 *      org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
+	 *      org.eclipse.emf.emfstore.common.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, EObject modelElement) {
 		// if element was just pasted from clipboard then do nothing
@@ -361,8 +361,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.emfstore.common.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
 
@@ -545,7 +545,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#projectDeleted(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	public void projectDeleted(Project project) {
 		if (emfStoreCommandStack != null) {
@@ -556,8 +556,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver, CommandObser
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.metamodel.Project,
-	 *      org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementRemoved(org.eclipse.emf.emfstore.common.model.Project,
+	 *      org.eclipse.emf.emfstore.common.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, EObject modelElement) {
 		removedElements.add(modelElement);

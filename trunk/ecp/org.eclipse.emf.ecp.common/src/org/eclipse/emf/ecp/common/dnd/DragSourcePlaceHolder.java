@@ -16,7 +16,7 @@ import java.util.List;
  * a class to keep track of dragSource. Instead we should use a transfer class. But because of following I use it: 1.
  * Using a transfer is not guaranteed to work on all platforms and always. 2. On platforms other than windows dragSource
  * is not set until drop event fires, and we need dragSource during events like dragOver. 3. We are not planning to drop
- * something out of unicase environment, i.e. form unicase navigator on file system. This class is a singleton.
+ * something out of ECP environment, i.e. form ECP navigator on file system. This class is a singleton.
  * 
  * @author Hodaie
  */

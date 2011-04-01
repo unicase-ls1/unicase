@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ecpemfstorebridge
+Bundle-Name: ECP EMFStore Bridge
 Bundle-SymbolicName: org.eclipse.emf.ecp.emfstorebridge;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.emfstorebridge.Activator
@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.ecp.emfstorebridge
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org

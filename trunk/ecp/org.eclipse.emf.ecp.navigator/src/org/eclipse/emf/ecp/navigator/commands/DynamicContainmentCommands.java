@@ -46,7 +46,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
+	private static final String COMMAND_ID = "org.eclipse.emf.ecp.navigator.createContaiment";
 	private EObject selectedME;
 
 	/**
@@ -81,7 +81,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 	private IContributionItem[] createNewWizard(EClass eClass) {
 		CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI.getWorkbench(),
-			null, "org.unicase.ui.navigator.newModelElementWizard", CommandContributionItem.STYLE_PUSH);
+			null, "org.eclipse.emf.ecp.navigator.newModelElementWizard", CommandContributionItem.STYLE_PUSH);
 		List<IContributionItem> commands = new ArrayList<IContributionItem>();
 		Map<Object, Object> commandParams = new HashMap<Object, Object>();
 

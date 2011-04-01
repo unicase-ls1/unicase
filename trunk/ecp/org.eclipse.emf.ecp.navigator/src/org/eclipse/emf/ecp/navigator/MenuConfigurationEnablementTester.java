@@ -29,7 +29,7 @@ public class MenuConfigurationEnablementTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 		if (expectedValue instanceof Boolean && args.length == 1 && args[0] instanceof String) {
 			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.navigator.menuconfiguration");
+				"org.eclipse.emf.ecp.navigator.menuconfiguration");
 			for (IConfigurationElement extension : rawExtensions) {
 				if (extension.getName().equals(args[0])) {
 					String isEnabled = extension.getAttribute("enabled");

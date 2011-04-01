@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ecp.model.ecpWorkspaceProvider">
+         point="org.eclipse.emf.ecp.model.workspaceprovider">
       <WorkspaceProvider
             class="org.eclipse.emf.ecp.emfstorebridge.EMFStoreECPWorkspaceProvider">
       </WorkspaceProvider>
@@ -11,18 +11,18 @@
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.unicase.ecpemfstorebridge.xmiAdd"
+            id="org.eclipse.emf.ecp.emfstorebridge.xmiAdd"
             nameFilter="*.library"
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.eclipse.emf.ecp.emfstorebridge.actions.AddXMIAction"
-               id="org.unicase.ecpemfstorebridge.addXMI"
+               id="org.eclipse.emf.ecp.emfstorebridge.addXMI"
                label="Add to EMF Client Platform">
          </action>
       </objectContribution>
       <objectContribution
             adaptable="false"
-            id="org.unicase.ecpemfstorebridge.xmiImport"
+            id="org.eclipse.emf.ecp.emfstorebridge.xmiImport"
             nameFilter="*.library"
             objectClass="org.eclipse.core.resources.IFile">
          <action
@@ -37,7 +37,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
-            id="org.unicase.ecpemfstorebridge.decorators.VersionDecorator"
+            id="org.eclipse.emf.ecp.emfstorebridge.decorators.VersionDecorator"
             label="Version Decorator"
             lightweight="true"
             state="true">
@@ -53,7 +53,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
-            id="org.unicase.ui.common.decorators.UsernameDecorator"
+            id="org.eclipse.emf.ecp.common.decorators.UsernameDecorator"
             label="Username Decorator"
             lightweight="true"
             state="true">
@@ -69,7 +69,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
-            id="org.unicase.ui.common.decorators.ProjectSpaceDirtyDecorator"
+            id="org.eclipse.emf.ecp.common.decorators.ProjectSpaceDirtyDecorator"
             label="ProjectSpaceDirty Decorator"
             lightweight="true"
             state="true">
@@ -85,7 +85,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
-            id="org.unicase.ui.common.decorators.ModelElementDirtyDecorator"
+            id="org.eclipse.emf.ecp.common.decorators.ModelElementDirtyDecorator"
             label="ModelElement Dirty Decorator"
             lightweight="true"
             state="true">
@@ -101,7 +101,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectDirtyDecorator"
-            id="org.unicase.ui.common.decorators.ProjectDirtyDecorator"
+            id="org.eclipse.emf.ecp.common.decorators.ProjectDirtyDecorator"
             label="Project Dirty Decorator"
             lightweight="true"
             state="true">
@@ -116,16 +116,16 @@
       </decorator>
    </extension>
    <extension
-         point="org.unicase.ecp.model.postinit">
+         point="org.eclipse.emf.ecp.model.postinit">
       <initiator
             class="org.eclipse.emf.ecp.emfstorebridge.ECPObserver">
       </initiator>
    </extension>
    <extension
-         point="org.unicase.ui.common.modelelementopener">
+         point="org.eclipse.emf.ecp.common.modelelementopener">
       <ModelElementOpener
             class="org.eclipse.emf.ecp.emfstorebridge.ProjectSpaceOpener"
-            name="org.unicase.ecpemfstorebridge.ProjectSpaceOpener">
+            name="org.eclipse.emf.ecp.ecpemfstorebridge.ProjectSpaceOpener">
       </ModelElementOpener>
    </extension>
 

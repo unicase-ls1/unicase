@@ -32,9 +32,9 @@ public final class EsModelLogger {
 	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
 	 */
 	public static void log(String message, Exception exception, int statusInt) {
-		Status status = new Status(statusInt, Platform.getBundle("org.unicase.model").getSymbolicName(), statusInt,
-			message, exception);
-		Platform.getLog(Platform.getBundle("org.unicase.esmodel")).log(status);
+		Status status = new Status(statusInt, Platform.getBundle("org.eclipse.emf.ecp.model").getSymbolicName(),
+			statusInt, message, exception);
+		Platform.getLog(Platform.getBundle("org.eclipse.emf.emfstore.server.model")).log(status);
 	}
 
 	/**

@@ -516,7 +516,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getParentElement(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getParentElement(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	public ModelElementId getParentofDeletedElement(Project project) {
 

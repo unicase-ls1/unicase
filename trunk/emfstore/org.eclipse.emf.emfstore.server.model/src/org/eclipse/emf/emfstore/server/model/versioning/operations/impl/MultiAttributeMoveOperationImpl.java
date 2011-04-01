@@ -267,7 +267,7 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#apply(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	public void apply(Project project) {
 		EObject modelElement = project.getModelElement(getModelElementId());

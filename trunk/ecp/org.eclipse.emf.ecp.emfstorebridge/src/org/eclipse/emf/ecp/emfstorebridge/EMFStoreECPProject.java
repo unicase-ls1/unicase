@@ -120,7 +120,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	public void modelElementAdded(Project project, EObject modelElement) {
 		// Do nothing
@@ -131,7 +131,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementRemoved(org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	public void modelElementRemoved(Project project, EObject modelElement) {
 		super.modelelementDeleted(modelElement);
@@ -142,7 +142,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.eclipse.emf.emfstore.common.model.Project, org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.ecore.EObject)
 	 */
 	public void notify(Notification notification, Project project, EObject modelElement) {
 		// Do nothing

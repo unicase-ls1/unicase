@@ -196,7 +196,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeature(org.eclipse.emf.emfstore.common.model.Project)
 	 * @generated NOT
 	 */
 	public EStructuralFeature getFeature(Project project) throws UnkownFeatureException {
@@ -256,7 +256,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.FeatureOperation#getFeature(org.eclipse.emf.emfstore.common.model.ModelElement)
 	 */
 	public EStructuralFeature getFeature(EObject modelElement) throws UnkownFeatureException {
 		EList<EStructuralFeature> features = modelElement.eClass().getEAllStructuralFeatures();

@@ -49,9 +49,9 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
-		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor");
+		ActionHelper.openModelElement(target, "org.eclipse.emf.ecp.editor");
 		ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class)
-			.onTrace(source, target, featureName, "org.unicase.ui.meeditor");
+			.onTrace(source, target, featureName, "org.eclipse.emf.ecp.editor");
 
 		super.linkActivated(event);
 	}

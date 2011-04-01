@@ -79,7 +79,7 @@ public final class URLSelectionListener implements SelectionListener {
 	private void logEvent(ModelElementId modelElementId, String source) {
 		final ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
 		readEvent.setModelElement(modelElementId);
-		readEvent.setReadView("org.unicase.ui.meeditor");
+		readEvent.setReadView("org.eclipse.emf.ecp.editor");
 		readEvent.setSourceView(source);
 		readEvent.setTimestamp(new Date());
 		new UnicaseCommand() {

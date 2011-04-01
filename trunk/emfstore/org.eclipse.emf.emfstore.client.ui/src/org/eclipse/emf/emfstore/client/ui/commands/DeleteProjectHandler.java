@@ -75,7 +75,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 			// notify all registered listeners
 
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.unicase.ui.common.notify.deleteprojectspace");
+				"org.eclipse.emf.ecp.common.notify.deleteprojectspace");
 
 			for (IConfigurationElement e : config) {
 				try {

@@ -43,9 +43,9 @@ public class ControlFactory {
 
 	private void initializeMEControls() {
 		IConfigurationElement[] attributecontrols = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.attributecontrols");
+			"org.eclipse.emf.ecp.editor.attributecontrols");
 		IConfigurationElement[] referencecontrols = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.referencecontrols");
+			"org.eclipse.emf.ecp.editor.referencecontrols");
 		ArrayList<IConfigurationElement> allControls = new ArrayList<IConfigurationElement>();
 		allControls.addAll(Arrays.asList(attributecontrols));
 		allControls.addAll(Arrays.asList(referencecontrols));

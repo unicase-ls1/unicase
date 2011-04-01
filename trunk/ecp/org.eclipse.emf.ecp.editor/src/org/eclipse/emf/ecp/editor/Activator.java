@@ -22,7 +22,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ui.meeditor";
+	public static final String PLUGIN_ID = "org.eclipse.emf.ecp.editor";
 
 	/**
 	 * The shared instance.

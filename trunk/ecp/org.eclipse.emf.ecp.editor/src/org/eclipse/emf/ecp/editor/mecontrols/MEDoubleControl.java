@@ -45,7 +45,7 @@ public class MEDoubleControl extends AbstractMEControl {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
 		int digits = 2; // default value
-		EAnnotation annotation = attribute.getEAnnotation("org.unicase.ui.meeditor");
+		EAnnotation annotation = attribute.getEAnnotation("org.eclipse.emf.ecp.editor");
 		if (annotation != null) {
 			String digitsSetting = annotation.getDetails().get("digits");
 			if (digitsSetting != null) {
@@ -53,7 +53,7 @@ public class MEDoubleControl extends AbstractMEControl {
 					digits = Integer.parseInt(digitsSetting);
 				} catch (NumberFormatException nfe) {
 					Activator.logException(new IllegalArgumentException(
-						"model element annotation 'digits' must be an integer"));
+						"Model element annotation 'digits' must be an integer"));
 				}
 			}
 		}

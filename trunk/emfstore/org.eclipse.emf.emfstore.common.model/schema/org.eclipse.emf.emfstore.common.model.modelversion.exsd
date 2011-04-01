@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.emf.emfstore.common.model" id="org.eclipse.emf.emfstore.common.model.modelversion" name="Model Version"/>
       </appInfo>
       <documentation>
-         Allows to register the version of the unicase model that is present in a client feature.
+         Allows to register the version of a model that is present in a client feature.
       </documentation>
    </annotation>
 

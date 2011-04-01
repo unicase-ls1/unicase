@@ -52,8 +52,8 @@ import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 
 /**
- * The KeyStoreManager manages the client's KeyStore in which the SSL certificates for multiple unicase server can be
- * stored.
+ * The KeyStoreManager manages the client's KeyStore in which the SSL certificates
+ * for multiple EMFStore servers can be stored.
  * 
  * @author Wesendonk
  */

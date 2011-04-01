@@ -33,7 +33,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	private ColumnViewer viewer;
 	private boolean isAltKeyPressed;
 	private String classname;
-	private static String meeditorid = "org.unicase.ui.meeditor";
+	private static String meeditorid = "org.eclipse.emf.ecp.editor";
 
 	/**
 	 * <pre>

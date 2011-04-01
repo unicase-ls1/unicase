@@ -31,7 +31,7 @@ public class MELinkControlFactory {
 
 	private void initializeMEControls() {
 		IConfigurationElement[] linkControls = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.melinkcontrols");
+			"org.eclipse.emf.ecp.editor.melinkcontrols");
 
 		for (IConfigurationElement e : linkControls) {
 			String type = e.getAttribute("type");

@@ -91,7 +91,7 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 
 		// open the navigator if closed
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		String viewId = "org.unicase.ui.navigator.viewer";
+		String viewId = "org.eclipse.emf.ecp.navigator.viewer";
 		try {
 			page.showView(viewId);
 		} catch (PartInitException e) {

@@ -21,4 +21,4 @@ Export-Package: org.eclipse.emf.ecp.common.util,
  org.sharemedia.ui.sat.movement
 Bundle-ClassPath: lib/org.sharemedia.ui.sat.jar,
  .
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org

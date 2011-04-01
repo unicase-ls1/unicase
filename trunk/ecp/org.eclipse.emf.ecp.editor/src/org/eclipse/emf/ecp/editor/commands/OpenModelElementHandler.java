@@ -68,7 +68,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 			}
 			try {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.openEditor(input, "org.unicase.ui.meeditor", true);
+					.openEditor(input, "org.eclipse.emf.ecp.editor", true);
 			} catch (PartInitException e) {
 				Activator.logException(e);
 			}

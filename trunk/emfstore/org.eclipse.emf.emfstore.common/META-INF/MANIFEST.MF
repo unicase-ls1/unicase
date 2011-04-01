@@ -10,5 +10,5 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.emfstore.common,
  org.eclipse.emf.emfstore.common.observer
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

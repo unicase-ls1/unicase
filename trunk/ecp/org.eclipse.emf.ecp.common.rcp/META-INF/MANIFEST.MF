@@ -4,5 +4,5 @@ Bundle-SymbolicName: org.eclipse.emf.ecp.common.rcp
 Bundle-Version: 0.7.3
 Fragment-Host: org.eclipse.emf.ecp.common
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Name: unicase Common UI Plug-in RCP
-Bundle-Vendor: unicase.org
+Bundle-Name: ECP Common UI Plug-in RCP
+Bundle-Vendor: eclipse.org

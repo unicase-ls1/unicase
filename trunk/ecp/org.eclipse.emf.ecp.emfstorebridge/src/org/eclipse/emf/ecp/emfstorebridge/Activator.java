@@ -20,7 +20,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ecpemfstorebridge";
+	public static final String PLUGIN_ID = "org.eclipse.emf.ecp.emfstorebridge";
 
 	// The shared instance
 	private static Activator plugin;
@@ -47,6 +47,8 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	// BEGIN SUPRESS CATCH EXCEPTION

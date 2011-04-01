@@ -120,7 +120,7 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					PlatformUI.getWorkbench().getDecoratorManager()
-						.update("org.unicase.ui.common.decorators.VersionDecorator");
+						.update("org.eclipse.emf.ecp.common.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {

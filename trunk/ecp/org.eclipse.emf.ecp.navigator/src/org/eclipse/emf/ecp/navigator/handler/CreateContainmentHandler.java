@@ -33,7 +33,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 	/**
 	 * The Id for EClass parameter to command. A model element of this EClass type is created in this handler.
 	 */
-	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
+	public static final String COMMAND_ECLASS_PARAM = "org.eclipse.emf.ecp.navigator.eClassParameter";
 
 	/**
 	 * . {@inheritDoc}
