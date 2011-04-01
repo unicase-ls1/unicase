@@ -29,7 +29,7 @@ public class NewModelElementWizardHandler extends AbstractHandler implements IHa
 	/**
 	 * String to pass the eclass which containments shall be shown in the new element wizard.
 	 */
-	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
+	public static final String COMMAND_ECLASS_PARAM = "org.eclipse.emf.ecp.navigator.eClassParameter";
 
 	/**
 	 * . ({@inheritDoc})

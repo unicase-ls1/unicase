@@ -13,19 +13,19 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.eclipse.emf.ecp.navigator.createModelElementCommands">
         <separator
-              name="org.unicase.ui.common.commands.modifyCommands">
+              name="org.eclipse.emf.ecp.common.commands.modifyCommands">
         </separator>
      </menuContribution>
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
         <separator
               name="beforeDeleteSeparator"
               visible="false">
         </separator>
         <command
-              commandId="org.unicase.ui.common.deleteModelelement"
+              commandId="org.eclipse.emf.ecp.common.deleteModelelement"
               icon="icons/delete.gif"
               label="Delete"
               style="push">
@@ -51,9 +51,9 @@
      </menuContribution>
      
       <menuContribution
-           locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.navigator.viewer?bofore=additions">
          <command
-               commandId="org.unicase.ui.common.handlers.open_me_ID"
+               commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
                icon="icons/magnifier.png"
                id="SearchElementButon"
                style="push"
@@ -63,9 +63,9 @@
      <menuContribution
            locationURI="toolbar:org.eclipse.ui.main.toolbar">
         <toolbar
-              id="org.unicase.ui.common.UnicaseToolbar">
+              id="org.eclipse.emf.ecp.common.UnicaseToolbar">
           <command
-                 commandId="org.unicase.ui.common.handlers.open_me_ID"
+                 commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
                  icon="icons/magnifier.png"
                  style="push"
                  tooltip="Search model element">
@@ -73,7 +73,7 @@
         </toolbar>
      </menuContribution>
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.deleteModelelement">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.eclipse.emf.ecp.common.deleteModelelement">
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.validate"
               icon="icons/validation.png"
@@ -115,7 +115,7 @@
   <extension
         point="org.eclipse.core.expressions.definitions">
         <definition
-           id="org.unicase.ui.common.commands.modelElement">
+           id="org.eclipse.emf.ecp.common.commands.modelElement">
         <and>
            <instanceof
                  value="org.eclipse.emf.ecore.EObject">
@@ -135,8 +135,8 @@
  <extension
        point="org.eclipse.ui.preferencePages">
     <page
-          class="org.eclipse.emf.ecp.common.preferences.UnicasePreferencesPage"
-          id="org.unicase.ui.common.unicase"
+          class="org.eclipse.emf.ecp.common.preferences.ECPPreferencesPage"
+          id="org.eclipse.emf.ecp"
           name="Unicase">
     </page>
  </extension>
@@ -149,7 +149,7 @@
  <extension
        point="org.eclipse.ui.bindings">
     <key
-          commandId="org.unicase.ui.common.deleteModelelement"
+          commandId="org.eclipse.emf.ecp.common.deleteModelelement"
           contextId="org.eclipse.ui.contexts.window"
           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
           sequence="Ctrl+Delete">

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * @author Hodaie This is the converter for EClass parameter passed to createME command
- *         (org.unicase.ui.navigator.createME).
+ *         (org.eclipse.emf.ecp.navigator.createME).
  */
 public class EClassTypeConverter extends AbstractParameterValueConverter {
 

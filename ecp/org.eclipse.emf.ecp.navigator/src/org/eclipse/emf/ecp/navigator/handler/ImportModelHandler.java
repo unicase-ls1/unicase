@@ -59,7 +59,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final EObject selectedModelElement = ActionHelper.getSelectedModelElement();
+		final EObject selectedModelElement = ActionHelper.getSelectedModelelement();
 		final ECPProject project = ECPWorkspaceManager.getECPProject(selectedModelElement);
 
 		if (project == null || selectedModelElement == null) {

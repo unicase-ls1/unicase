@@ -258,7 +258,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?before=additions">
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.commitProject"
               disabledIcon="icons/advanced.gif"
@@ -650,7 +650,7 @@
                  </visibleWhen>
               </command>
               <command
-                    commandId="org.unicase.ui.navigator.importModel"
+                    commandId="org.eclipse.emf.ecp.navigator.importModel"
                     icon="icons/import.gif"
                     label="Import Model Element"
                     style="push">
@@ -755,7 +755,7 @@
         </command>
      </menuContribution>
      <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowInStatusView">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.stem.ShowInStatusView">
          <command
                commandId="org.unicase.ui.stem.ShowHistory"
                icon="icons/historyview.png"
@@ -771,7 +771,7 @@
                         ifEmpty="false"
                         operator="and">
                      <reference
-                           definitionId="org.unicase.ui.common.commands.modelElement">
+                           definitionId="org.eclipse.emf.ecp.common.commands.modelElement">
                      </reference>
                   </iterate>
                </and>
@@ -783,7 +783,7 @@
          </separator>
       </menuContribution>
      <menuContribution
-           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.editor.MEEditorPage?after=additions">
         <command
               commandId="org.unicase.ui.stem.ShowHistory"
               icon="icons/historyview.png"

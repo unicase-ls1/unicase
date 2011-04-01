@@ -208,7 +208,7 @@ public class MEEditorPage extends FormPage {
 			}
 		});
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),
-			"toolbar:org.unicase.ui.meeditor.MEEditorPage");
+			"toolbar:org.eclipse.emf.ecp.editor.MEEditorPage");
 		form.getToolBarManager().update(true);
 	}
 

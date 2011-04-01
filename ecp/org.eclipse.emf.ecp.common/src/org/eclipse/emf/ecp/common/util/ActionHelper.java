@@ -49,11 +49,11 @@ public final class ActionHelper {
 	/**
 	 * The ID of the meeditor.
 	 */
-	public static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
+	public static final String MEEDITOR_ID = "org.eclipse.emf.ecp.editor";
 	/**
 	 * Constant for the open model element command.
 	 */
-	public static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
+	public static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.eclipse.emf.ecp.editor.openModelElement";
 
 	/**
 	 * Constant for the modelelement context.
@@ -132,7 +132,7 @@ public final class ActionHelper {
 			return;
 		}
 		IConfigurationElement[] modelelementopener = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.common.modelelementopener");
+			"org.eclipse.emf.ecp.common.modelelementopener");
 		ModelElementOpener bestCandidate = null;
 		int bestValue = -1;
 		String name = "";
@@ -181,7 +181,7 @@ public final class ActionHelper {
 		}
 
 		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView,
-			"org.unicase.ui.meeditor.MEEditor");
+			"org.eclipse.emf.ecp.editor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
@@ -297,31 +297,6 @@ public final class ActionHelper {
 		Object obj = getSelection();
 		if (obj instanceof EObject) {
 			return (EObject) obj;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
-	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
-	 * registered its SelectionProvider.
-	 * 
-	 * @return the selected Object or null if selection is not an IStructuredSelection
-	 * @deprecated use unicase action helper or getSelectedModelelement instead
-	 */
-	@Deprecated
-	public static EObject getSelectedModelElement() {
-		Object obj = getSelection();
-		if (obj instanceof EObject) {
-			return (EObject) obj;
-		} else if (obj instanceof DelegatingWrapperItemProvider) {
-			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof EObject) {
-				return (EObject) ((DelegatingWrapperItemProvider) obj).getValue();
-			} else {
-				return null;
-			}
-
 		} else {
 			return null;
 		}

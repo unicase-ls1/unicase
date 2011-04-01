@@ -48,7 +48,7 @@ import org.sharemedia.ui.sat.movement.SinusVariation;
  */
 public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
-	// FIXME: maybe another placeholder - e.g. unicase?
+	// FIXME: maybe another placeholder
 	// or no placeholder at all
 	/**
 	 * Constant placeholder for the password field.

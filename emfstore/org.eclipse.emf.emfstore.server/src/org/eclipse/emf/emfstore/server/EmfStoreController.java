@@ -149,7 +149,7 @@ public class EmfStoreController implements IApplication, Runnable {
 	}
 
 	private void initLogging() {
-		Platform.getLog(Platform.getBundle("org.unicase.metamodel")).addLogListener(new ILogListener() {
+		Platform.getLog(Platform.getBundle("org.eclipse.emf.emfstore.common.model")).addLogListener(new ILogListener() {
 
 			public void logging(IStatus status, String plugin) {
 				if (status.getSeverity() == IStatus.INFO) {

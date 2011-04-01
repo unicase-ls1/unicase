@@ -44,7 +44,7 @@ public final class ActionHelper {
 		// for attaching action item accordingly.
 		String partId = HandlerUtil.getActivePartId(event);
 		// TODO: ChainSaw change hard-coded string here
-		if (partId != null && partId.equals("org.unicase.ui.meeditor")) {
+		if (partId != null && partId.equals("org.eclipse.emf.ecp.editor")) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
@@ -125,31 +125,6 @@ public final class ActionHelper {
 		Object obj = getSelection();
 		if (obj instanceof EObject) {
 			return (EObject) obj;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
-	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
-	 * registered its SelectionProvider.
-	 * 
-	 * @return the selected Object or null if selection is not an IStructuredSelection
-	 * @deprecated use unicase action helper or getSelectedModelelement instead
-	 */
-	@Deprecated
-	public static EObject getSelectedModelElement() {
-		Object obj = getSelection();
-		if (obj instanceof EObject) {
-			return (EObject) obj;
-		} else if (obj instanceof DelegatingWrapperItemProvider) {
-			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof EObject) {
-				return (EObject) ((DelegatingWrapperItemProvider) obj).getValue();
-			} else {
-				return null;
-			}
-
 		} else {
 			return null;
 		}

@@ -45,7 +45,7 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.MetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
+	 * @see org.eclipse.emf.ecp.model.MetaModelElementContext#isNonDomainElement(org.eclipse.emf.ecore.EClass)
 	 */
 	public abstract boolean isNonDomainElement(EClass eClass);
 
@@ -113,7 +113,7 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 	 */
 	public boolean isGuessed() {
 		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ecp.model.ecpModelPackage");
+			"org.eclipse.emf.ecp.model.ecppackage");
 		return (packages.length == 0);
 	}
 
@@ -132,7 +132,7 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 		Set<String> registeredPackages = new HashSet<String>();
 		Registry registry = EPackage.Registry.INSTANCE;
 		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ecp.model.ecpModelPackage");
+			"org.eclipse.emf.ecp.model.ecppackage");
 		
 		for (IConfigurationElement element : packages) {
 			String packageName = element.getAttribute("modelPackage");
@@ -177,7 +177,9 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 					try {
 						EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 						guessedPackages.addAll(getAllModelElementEClasses(ePackage));
+						// BEGIN SUPRESS CATCH EXCEPTION
 					} catch (RuntimeException e) {
+						// END SUPRESS CATCH EXCEPTION
 						String message = "Failed to load model package: " + entry.getKey();
 						Activator.getDefault().logWarning(message, e);
 					}
@@ -189,7 +191,8 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 
 	private boolean isKnownPackage(String key) {
 
-		String elements[] = { "http://www.eclipse.org/m2t/xpand/Trace",
+		String[] elements = { 
+			"http://www.eclipse.org/m2t/xpand/Trace",
 			"http://www.eclipse.org/emf/eef/mapping/filters/1.0.0", "http://www.cs.tum.edu/cope/history/0.1.42",
 			"http://www.eclipse.org/acceleo/profiler/3.0", "http://www.eclipse.org/emf/compare/epatch/0.1",
 			"http://www.eclipse.org/ocl/1.1.0/UML", "http://www.eclipse.org/emf/eef/components/1.0.0",

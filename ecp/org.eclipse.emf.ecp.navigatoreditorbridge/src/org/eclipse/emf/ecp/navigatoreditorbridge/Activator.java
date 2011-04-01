@@ -20,7 +20,7 @@ public class Activator extends AbstractECPPlugin {
 	/**
 	 * Plugin ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ui.navigatormeeditorbridge";
+	public static final String PLUGIN_ID = "org.eclipse.emf.ecp.navigatormeeditorbridge";
 
 	// The shared instance
 	private static Activator plugin;

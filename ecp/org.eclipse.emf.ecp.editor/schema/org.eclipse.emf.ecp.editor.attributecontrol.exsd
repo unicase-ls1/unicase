@@ -95,24 +95,6 @@
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="examples"/>
-      </appinfo>
-      <documentation>
-         This example registers the EMail Control of the UNICASE Client
-&lt;--!
-&lt;extension
-       point=&quot;org.unicase.ui.meeditor.attributecontrols&quot;&gt;
-    &lt;widget
-          class=&quot;org.unicase.ui.unicasecommon.meeditor.MEEmailControl&quot;
-          name=&quot;org.unicase.ui.unicasecommon.meemailcontrol&quot;
-          showLabel=&quot;true&quot;
-          type=&quot;java.lang.String&quot;&gt;
-    &lt;/widget&gt;
-&lt;/extension&gt;
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>

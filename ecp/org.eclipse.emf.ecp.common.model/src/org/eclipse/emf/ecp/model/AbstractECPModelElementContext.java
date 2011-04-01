@@ -12,8 +12,6 @@ package org.eclipse.emf.ecp.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * The context of a certain {@link EObject}. 
  * Subclasses shall call modelelementDeleted and contextDeleted.
@@ -40,14 +38,5 @@ public abstract class AbstractECPModelElementContext implements ECPModelelementC
 	 */
 	public void removeModelElementContextListener(ModelElementContextListener modelElementContextListener) {
 		modelElementContextListeners.remove(modelElementContextListener);
-	}
-
-	/**
-	 * Call if a model element is deleted.
-	 */
-	protected void modelElementDeleted(EObject deleted) {
-		for (ModelElementContextListener modelElementContextListener : modelElementContextListeners) {
-			modelElementContextListener.onModelElementDeleted(deleted);
-		}
 	}
 }

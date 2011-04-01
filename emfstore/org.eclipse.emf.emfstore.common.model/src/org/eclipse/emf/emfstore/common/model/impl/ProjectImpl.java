@@ -360,7 +360,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
-	 * @see org.eclipse.emf.emfstore.common.model.Project#contains(org.unicase.model.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean contains(ModelElementId id) {
 		if (!isCacheInitialized()) {
@@ -439,8 +439,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
+	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	public void handleEMFModelElementAdded(final Project project, final EObject eObject) {
 		addModelElementAndChildrenToCache(eObject);
@@ -567,8 +567,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.eclipse.emf.emfstore.common.model.Project, org.unicase.model.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.ecore.EObject)
 	 */
 	public void handleEMFNotification(final Notification notification, final Project project, final EObject modelElement) {
 		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
@@ -598,7 +598,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#addProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		initCaches();
@@ -608,7 +608,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#removeProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
 	public void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		if (isNotifiying) {
@@ -623,7 +623,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#containsInstance(org.unicase.model.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#containsInstance(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean containsInstance(EObject modelElement) {
 		return getEObjectsCache().contains(modelElement);
@@ -632,7 +632,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#deleteModelElement(org.unicase.model.ModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#deleteModelElement(org.eclipse.emf.ecore.EObject)
 	 */
 	public void deleteModelElement(final EObject modelElement) {
 		if (!this.containsInstance(modelElement)) {

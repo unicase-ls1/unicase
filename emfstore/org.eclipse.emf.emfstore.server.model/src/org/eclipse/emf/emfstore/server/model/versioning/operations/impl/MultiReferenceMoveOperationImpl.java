@@ -35,12 +35,18 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeature
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex <em>Old Index</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex <em>New Index</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getReferencedModelElementId <em>Referenced Model Element Id</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex
+ * <em>Old Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex
+ * <em>New Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceMoveOperationImpl#getReferencedModelElementId
+ * <em>Referenced Model Element Id</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implements MultiReferenceMoveOperation {
@@ -48,6 +54,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * The default value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -58,6 +65,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * The cached value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -68,6 +76,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * The default value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -78,6 +87,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * The cached value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -85,8 +95,10 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	protected int newIndex = NEW_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' containment reference.
+	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' containment
+	 * reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferencedModelElementId()
 	 * @generated
 	 * @ordered
@@ -95,6 +107,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiReferenceMoveOperationImpl() {
@@ -103,6 +116,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,6 +126,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getOldIndex() {
@@ -120,17 +135,20 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOldIndex(int newOldIndex) {
 		int oldOldIndex = oldIndex;
 		oldIndex = newOldIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getNewIndex() {
@@ -139,32 +157,40 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNewIndex(int newNewIndex) {
 		int oldNewIndex = newIndex;
 		newIndex = newNewIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getReferencedModelElementId() {
 		if (referencedModelElementId != null && referencedModelElementId.eIsProxy()) {
-			InternalEObject oldReferencedModelElementId = (InternalEObject)referencedModelElementId;
-			referencedModelElementId = (ModelElementId)eResolveProxy(oldReferencedModelElementId);
+			InternalEObject oldReferencedModelElementId = (InternalEObject) referencedModelElementId;
+			referencedModelElementId = (ModelElementId) eResolveProxy(oldReferencedModelElementId);
 			if (referencedModelElementId != oldReferencedModelElementId) {
-				InternalEObject newReferencedModelElementId = (InternalEObject)referencedModelElementId;
-				NotificationChain msgs = oldReferencedModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, null);
+				InternalEObject newReferencedModelElementId = (InternalEObject) referencedModelElementId;
+				NotificationChain msgs = oldReferencedModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, null);
 				if (newReferencedModelElementId.eInternalContainer() == null) {
-					msgs = newReferencedModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+					msgs = newReferencedModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 				}
-				if (msgs != null) msgs.dispatch();
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, oldReferencedModelElementId, referencedModelElementId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+						oldReferencedModelElementId, referencedModelElementId));
 			}
 		}
 		return referencedModelElementId;
@@ -172,6 +198,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetReferencedModelElementId() {
@@ -180,6 +207,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetReferencedModelElementId(ModelElementId newReferencedModelElementId,
@@ -187,125 +215,143 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		ModelElementId oldReferencedModelElementId = referencedModelElementId;
 		referencedModelElementId = newReferencedModelElementId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, oldReferencedModelElementId, newReferencedModelElementId);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+				oldReferencedModelElementId, newReferencedModelElementId);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReferencedModelElementId(ModelElementId newReferencedModelElementId) {
 		if (newReferencedModelElementId != referencedModelElementId) {
 			NotificationChain msgs = null;
 			if (referencedModelElementId != null)
-				msgs = ((InternalEObject)referencedModelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject) referencedModelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 			if (newReferencedModelElementId != null)
-				msgs = ((InternalEObject)newReferencedModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject) newReferencedModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 			msgs = basicSetReferencedModelElementId(newReferencedModelElementId, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, newReferencedModelElementId, newReferencedModelElementId));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
+				newReferencedModelElementId, newReferencedModelElementId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-				return basicSetReferencedModelElementId(null, msgs);
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			return basicSetReferencedModelElementId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-				return getOldIndex();
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-				return getNewIndex();
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-				if (resolve) return getReferencedModelElementId();
-				return basicGetReferencedModelElementId();
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+			return getOldIndex();
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+			return getNewIndex();
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			if (resolve)
+				return getReferencedModelElementId();
+			return basicGetReferencedModelElementId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-				setOldIndex((Integer)newValue);
-				return;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-				setNewIndex((Integer)newValue);
-				return;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-				setReferencedModelElementId((ModelElementId)newValue);
-				return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+			setOldIndex((Integer) newValue);
+			return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+			setNewIndex((Integer) newValue);
+			return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			setReferencedModelElementId((ModelElementId) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-				setOldIndex(OLD_INDEX_EDEFAULT);
-				return;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-				setNewIndex(NEW_INDEX_EDEFAULT);
-				return;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-				setReferencedModelElementId((ModelElementId)null);
-				return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+			setOldIndex(OLD_INDEX_EDEFAULT);
+			return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+			setNewIndex(NEW_INDEX_EDEFAULT);
+			return;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			setReferencedModelElementId((ModelElementId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-				return oldIndex != OLD_INDEX_EDEFAULT;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-				return newIndex != NEW_INDEX_EDEFAULT;
-			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-				return referencedModelElementId != null;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+			return oldIndex != OLD_INDEX_EDEFAULT;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+			return newIndex != NEW_INDEX_EDEFAULT;
+		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+			return referencedModelElementId != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (oldIndex: ");
@@ -342,7 +388,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	}
 
 	/**
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.impl.FeatureOperationImpl#canApply(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.impl.FeatureOperationImpl#canApply(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	@Override
 	public boolean canApply(Project project) {

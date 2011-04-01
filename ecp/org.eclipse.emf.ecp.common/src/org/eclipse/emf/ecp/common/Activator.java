@@ -13,19 +13,19 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
+import org.eclipse.emf.ecp.common.util.AbstractECPPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
 
 /**
  * . The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUnicaseUIPlugin {
+public class Activator extends AbstractECPPlugin {
 
 	/**
 	 * . The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ui.common";
+	public static final String PLUGIN_ID = "org.eclipse.emf.ecp.common";
 
 	/**
 	 * . The shared instance
@@ -46,7 +46,7 @@ public class Activator extends AbstractUnicaseUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		Platform.getLog(Platform.getBundle("org.unicase.model")).addLogListener(new ILogListener() {
+		Platform.getLog(Platform.getBundle("org.eclipse.emf.ecp.model")).addLogListener(new ILogListener() {
 
 			public void logging(IStatus status, String plugin) {
 				if (status.getSeverity() == Status.ERROR) {

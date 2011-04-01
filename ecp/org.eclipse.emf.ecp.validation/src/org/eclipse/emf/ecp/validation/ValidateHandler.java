@@ -37,7 +37,7 @@ public class ValidateHandler extends AbstractHandler {
 	/**
 	 * The marker type.
 	 */
-	private static String markerType = "org.unicase.model.validation.marker";
+	private static String markerType = "org.eclipse.emf.ecp.model.validation.marker";
 
 	/**
 	 * {@inheritDoc}
@@ -97,7 +97,7 @@ public class ValidateHandler extends AbstractHandler {
 			for (IStatus stat : status.getChildren()) {
 				try {
 					IMarker marker = resource.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: " + stat.getMessage());
+					marker.setAttribute(IMarker.MESSAGE, "ECP: " + stat.getMessage());
 					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
 					Activator.getDefault().logException("Validate handler encountered an exception", e);

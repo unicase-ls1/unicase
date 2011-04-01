@@ -45,7 +45,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	/**
 	 * The Id for MEEditor. We need this to open a model element.
 	 */
-	public static final String ID = "org.unicase.ui.meeditor";
+	public static final String ID = "org.eclipse.emf.ecp.editor";
 
 	private EObject modelElement;
 	private EditingDomain editingDomain;
@@ -78,7 +78,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		// add pages from the extension point
 		IConfigurationElement[] configTemp = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.pages");
+			"org.eclipse.emf.ecp.editor.pages");
 		IConfigurationElement[] configIn = null;
 
 		boolean replaceMEEditor = false;
@@ -250,7 +250,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private void initStatusProvider() {
 		IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.meeditor.statusmessage");
+			"org.eclipse.emf.ecp.editor.statusmessage");
 		ArrayList<IConfigurationElement> provider = new ArrayList<IConfigurationElement>();
 		provider.addAll(Arrays.asList(configurationElements));
 		int priority = 0;

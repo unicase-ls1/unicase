@@ -105,7 +105,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role#canCreate(org.eclipse.emf.emfstore.server.model.ProjectId,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 * @generated NOT
 	 */
 	public boolean canCreate(ProjectId projectId, EObject modelElement) {
@@ -116,7 +116,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role#canDelete(org.eclipse.emf.emfstore.server.model.ProjectId,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 * @generated NOT
 	 */
 	public boolean canDelete(ProjectId projectId, EObject modelElement) {
@@ -127,7 +127,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role#canModify(org.eclipse.emf.emfstore.server.model.ProjectId,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 * @generated NOT
 	 */
 	public boolean canModify(ProjectId projectId, EObject modelElement) {
@@ -138,7 +138,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role#canRead(org.eclipse.emf.emfstore.server.model.ProjectId,
-	 *      org.unicase.metamodel.ModelElement)
+	 *      org.eclipse.emf.ecore.EObject)
 	 * @generated NOT
 	 */
 	public boolean canRead(ProjectId projectId, EObject modelElement) {

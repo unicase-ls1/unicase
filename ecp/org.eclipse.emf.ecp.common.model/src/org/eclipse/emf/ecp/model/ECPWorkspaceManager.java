@@ -48,7 +48,7 @@ public final class ECPWorkspaceManager {
 	private void init() {
 		IConfigurationElement[] confs = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(
-						"org.unicase.ecp.model.ecpWorkspaceProvider");
+						"org.eclipse.emf.ecp.model.workspaceprovider");
 		if (confs.length == 1) {
 			try {
 				currentWorkspace = ((ECPWorkspaceProvider) confs[0]
@@ -79,7 +79,7 @@ public final class ECPWorkspaceManager {
 
 	private void initObserverBus() {
 		// TODO make more general
-		if ("org.unicase.ecpemfstorebridge.EMFECPWorkspace"
+		if ("org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace"
 				.equals(currentWorkspace.getClass().getName())) {
 			try {
 				Method method = currentWorkspace.getClass().getMethod(
@@ -141,7 +141,7 @@ public final class ECPWorkspaceManager {
 	private void notifyECPPostWorkspaceInitiators() {
 		IConfigurationElement[] workspaceObservers = Platform
 				.getExtensionRegistry().getConfigurationElementsFor(
-						"org.unicase.ecp.model.postinit");
+						"org.eclipse.emf.ecp.model.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
 				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element

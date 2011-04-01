@@ -36,7 +36,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,
+ * This is the central drop adapter for ECP views. This class acts as a dispatcher. It has a map of (EClass,
  * MEDropAdapter) which contains a reference to a specific drop adapter for each model element type.
  * 
  * @author Hodaie
@@ -76,7 +76,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.common.medropadapter");
+			"org.eclipse.emf.ecp.common.medropadapter");
 		for (IConfigurationElement element : confs) {
 			try {
 				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");

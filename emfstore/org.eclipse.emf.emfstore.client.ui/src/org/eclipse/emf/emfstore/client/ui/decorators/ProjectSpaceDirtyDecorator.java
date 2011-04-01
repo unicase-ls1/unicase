@@ -47,7 +47,7 @@ public class ProjectSpaceDirtyDecorator implements ILightweightLabelDecorator {
 		if (element instanceof ProjectSpace) {
 			ProjectSpace ps = (ProjectSpace) element;
 			if (ps.isDirty()) {
-				URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+				URL url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(dirtyPath), null);
 				descriptor = ImageDescriptor.createFromURL(url);
 				decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
 			}

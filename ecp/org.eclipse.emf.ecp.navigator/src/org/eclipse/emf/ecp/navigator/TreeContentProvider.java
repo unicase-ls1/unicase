@@ -114,7 +114,7 @@ public class TreeContentProvider extends AdapterFactoryContentProvider {
 	public TreeContentProvider() {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.navigator.replaceContentProvider");
+			"org.eclipse.emf.ecp.navigator.replaceContentProvider");
 		ArrayList<IConfigurationElement> list = new ArrayList<IConfigurationElement>();
 		list.addAll(Arrays.asList(confs));
 		for (IConfigurationElement element : list) {

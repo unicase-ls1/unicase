@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 /**
- * Utility class for the unicase project.
+ * Utility class.
  * 
  * @author shterev
  * @author hodaie

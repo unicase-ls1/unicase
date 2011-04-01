@@ -35,7 +35,7 @@ public final class ElementOpenerHelper {
 	 */
 	public static void openModelElement(final EObject me, final String sourceView) {
 		IConfigurationElement[] modelelementopener = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.common.modelelementopener");
+			"org.eclipse.emf.ecp.common.modelelementopener");
 		ModelElementOpener bestCandidate = null;
 		int bestValue = -1;
 		for (IConfigurationElement element : modelelementopener) {

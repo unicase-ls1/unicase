@@ -235,7 +235,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#apply(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#apply(org.eclipse.emf.emfstore.common.model.Project)
 	 */
 	@SuppressWarnings("unchecked")
 	public void apply(Project project) {

@@ -10,7 +10,7 @@
 package org.eclipse.emf.ecp.common.preferences;
 
 /**
- * Preferences constants for unicase.
+ * Preferences constants for ECP.
  * 
  * @author Hodaie
  */

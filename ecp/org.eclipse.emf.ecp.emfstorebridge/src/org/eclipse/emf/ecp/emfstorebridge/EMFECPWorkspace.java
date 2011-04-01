@@ -85,7 +85,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.eclipse.emf
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace#getProject(org.unicase.metamodel.ModelElement)
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace#getProject(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public ECPProject getProject(EObject me) {

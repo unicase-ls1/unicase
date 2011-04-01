@@ -80,8 +80,8 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.unicase.model.UnicaseModelElement)
+	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementRemoved(org.eclipse.emf.emfstore.common.model.Project,
+	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	public final void modelElementRemoved(Project project, EObject modelElement) {
 		Set<EObject> deletedElements = ModelUtil.getAllContainedModelElements(modelElement, false);
@@ -103,9 +103,6 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public final void modelElementDeleteStarted(Project project, EObject modelElement) {
 		// uninteresting, do nothing
@@ -115,7 +112,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.eclipse.emf.emfstore.common.model.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.ecore.EObject)
 	 */
 	public final void notify(Notification notification, Project project, EObject modelElement) {
 		if (this.isObservedElement(modelElement)) {

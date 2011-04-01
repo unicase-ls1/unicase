@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: unicase Emf Store Plug-in
+Bundle-Name: EMFStore Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.server;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.emfstore.server.Activator
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org
 Require-Bundle: org.eclipse.emf.emfstore.server.model;visibility:=reexport,
  org.apache.commons.codec;bundle-version="1.3.0";visibility:=reexport,
  org.eclipse.emf.emfstore.migration;visibility:=reexport
