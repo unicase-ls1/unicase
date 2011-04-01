@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.providers;
+package org.eclipse.emf.ecp.validation.providers;
 
 import java.util.List;
 

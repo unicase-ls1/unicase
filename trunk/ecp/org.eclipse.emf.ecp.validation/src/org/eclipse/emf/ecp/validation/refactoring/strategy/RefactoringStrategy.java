@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.refactoring.strategy;
+package org.eclipse.emf.ecp.validation.refactoring.strategy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;

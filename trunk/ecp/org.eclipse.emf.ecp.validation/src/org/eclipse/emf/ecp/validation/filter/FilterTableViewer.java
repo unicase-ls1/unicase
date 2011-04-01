@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.filter;
+package org.eclipse.emf.ecp.validation.filter;
 
 import java.util.ArrayList;
 

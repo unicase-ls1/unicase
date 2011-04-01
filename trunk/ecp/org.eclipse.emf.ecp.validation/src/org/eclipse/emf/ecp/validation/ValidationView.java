@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation;
+package org.eclipse.emf.ecp.validation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +25,26 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.TableViewerColumnSorter;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage;
+import org.eclipse.emf.ecp.validation.filter.FilterTableViewer;
+import org.eclipse.emf.ecp.validation.filter.ValidationFilter;
+import org.eclipse.emf.ecp.validation.providers.ConstraintLabelProvider;
+import org.eclipse.emf.ecp.validation.providers.CreatorLabelProvider;
+import org.eclipse.emf.ecp.validation.providers.DescriptionLabelProvider;
+import org.eclipse.emf.ecp.validation.providers.SeverityLabelProvider;
+import org.eclipse.emf.ecp.validation.providers.ValidationContentProvider;
+import org.eclipse.emf.ecp.validation.providers.ValidationFilterLabelProvider;
+import org.eclipse.emf.ecp.validation.providers.ValidationLabelProvider;
+import org.eclipse.emf.ecp.validation.refactoring.strategy.RefactoringResult;
+import org.eclipse.emf.ecp.validation.refactoring.strategy.RefactoringStrategy;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -59,26 +79,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
-import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.common.observer.FocusEventObserver;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.validation.filter.FilterTableViewer;
-import org.unicase.ui.validation.filter.ValidationFilter;
-import org.unicase.ui.validation.providers.ConstraintLabelProvider;
-import org.unicase.ui.validation.providers.CreatorLabelProvider;
-import org.unicase.ui.validation.providers.DescriptionLabelProvider;
-import org.unicase.ui.validation.providers.SeverityLabelProvider;
-import org.unicase.ui.validation.providers.ValidationContentProvider;
-import org.unicase.ui.validation.providers.ValidationFilterLabelProvider;
-import org.unicase.ui.validation.providers.ValidationLabelProvider;
-import org.unicase.ui.validation.refactoring.strategy.RefactoringResult;
-import org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy;
 
 /**
  * Validation view.
@@ -112,7 +112,7 @@ public class ValidationView extends ViewPart {
 	 * Default constructor.
 	 */
 	public ValidationView() {
-		IPath path = org.unicase.ui.common.Activator.getDefault().getStateLocation();
+		IPath path = org.eclipse.emf.ecp.common.Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
 		try {

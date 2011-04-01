@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation;
+package org.eclipse.emf.ecp.validation;
 
 import java.util.HashSet;
 import java.util.Set;

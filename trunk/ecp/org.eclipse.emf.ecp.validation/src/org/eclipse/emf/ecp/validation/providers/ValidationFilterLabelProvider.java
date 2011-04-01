@@ -7,12 +7,12 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.validation.providers;
+package org.eclipse.emf.ecp.validation.providers;
 
+import org.eclipse.emf.ecp.validation.Activator;
+import org.eclipse.emf.ecp.validation.filter.ValidationFilter;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.validation.Activator;
-import org.unicase.ui.validation.filter.ValidationFilter;
 
 /**
  * The label provider for the validation filter.
