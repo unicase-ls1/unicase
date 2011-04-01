@@ -3,15 +3,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: unicase ModelElement Editor Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.editor;singleton:=true
 Bundle-Version: 0.7.3
-Bundle-Activator: org.unicase.ui.meeditor.Activator
+Bundle-Activator: org.eclipse.emf.ecp.editor.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.emf.ecp.common;visibility:=reexport,
  org.eclipse.jface.text;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.unicase.ui.meeditor,
- org.unicase.ui.meeditor.commands,
- org.unicase.ui.meeditor.mecontrols,
- org.unicase.ui.meeditor.mecontrols.melinkcontrol,
- org.unicase.ui.meeditor.mecontrols.melinkcontrol.associationclasscontrol
+Export-Package: org.eclipse.emf.ecp.editor,
+ org.eclipse.emf.ecp.editor.commands,
+ org.eclipse.emf.ecp.editor.mecontrols,
+ org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol,
+ org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol
 Bundle-ClassPath: .
