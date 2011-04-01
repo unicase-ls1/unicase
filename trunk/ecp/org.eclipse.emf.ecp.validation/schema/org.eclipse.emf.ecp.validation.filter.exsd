@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.ui.validation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.ecp.validation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.ui.validation" id="org.unicase.ui.validation.refactorings" name="Refactorings for the validation constraint violations"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.validation" id="org.eclipse.emf.ecp.validation.filter" name="org.eclipse.emf.ecp.validation.filter"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,8 +17,8 @@
          </appinfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="refactoringStrategy"/>
+         <sequence>
+            <element ref="filter" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,22 +47,22 @@
       </complexType>
    </element>
 
-   <element name="refactoringStrategy">
+   <element name="filter">
       <complexType>
-         <attribute name="applicableFor" type="string" use="required">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="strategy" type="string" use="required">
+         <attribute name="filter" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.ui.validation.refactoring.strategy.RefactoringStrategy"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecp.validation.filter.ValidationFilter:"/>
                </appinfo>
             </annotation>
          </attribute>

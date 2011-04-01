@@ -32,7 +32,7 @@ public class ValidationListener implements IValidationListener {
 		ValidationView validationView = null;
 		try {
 			validationView = (ValidationView) page
-			.showView("org.unicase.ui.validation.validationView");
+			.showView("org.eclipse.emf.ecp.validation.validationView");
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
