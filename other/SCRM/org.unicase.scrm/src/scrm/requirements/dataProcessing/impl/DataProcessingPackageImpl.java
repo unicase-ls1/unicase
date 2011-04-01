@@ -132,7 +132,6 @@ public class DataProcessingPackageImpl extends EPackageImpl implements DataProce
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

@@ -134,7 +134,6 @@ public class KnowledgePackageImpl extends EPackageImpl implements KnowledgePacka
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies

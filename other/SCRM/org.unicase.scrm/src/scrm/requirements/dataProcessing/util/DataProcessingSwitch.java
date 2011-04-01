@@ -100,7 +100,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(dataProcessing);
 				if (result == null) result = caseIRequirement(dataProcessing);
 				if (result == null) result = caseSCRMModelElement(dataProcessing);
-				if (result == null) result = caseIdentifiableElement(dataProcessing);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,7 +110,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(inputDataReading);
 				if (result == null) result = caseIRequirement(inputDataReading);
 				if (result == null) result = caseSCRMModelElement(inputDataReading);
-				if (result == null) result = caseIdentifiableElement(inputDataReading);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -122,7 +120,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(dataHandling);
 				if (result == null) result = caseIRequirement(dataHandling);
 				if (result == null) result = caseSCRMModelElement(dataHandling);
-				if (result == null) result = caseIdentifiableElement(dataHandling);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,7 +130,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(resultsOutput);
 				if (result == null) result = caseIRequirement(resultsOutput);
 				if (result == null) result = caseSCRMModelElement(resultsOutput);
-				if (result == null) result = caseIdentifiableElement(resultsOutput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -144,7 +140,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(errorHandling);
 				if (result == null) result = caseIRequirement(errorHandling);
 				if (result == null) result = caseSCRMModelElement(errorHandling);
-				if (result == null) result = caseIdentifiableElement(errorHandling);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -155,7 +150,6 @@ public class DataProcessingSwitch<T> {
 				if (result == null) result = caseRequirement(statusMonitoring);
 				if (result == null) result = caseIRequirement(statusMonitoring);
 				if (result == null) result = caseSCRMModelElement(statusMonitoring);
-				if (result == null) result = caseIdentifiableElement(statusMonitoring);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -250,21 +244,6 @@ public class DataProcessingSwitch<T> {
 	 * @generated
 	 */
 	public T caseStatusMonitoring(StatusMonitoring object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

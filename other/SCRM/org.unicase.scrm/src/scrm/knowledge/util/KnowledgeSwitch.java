@@ -95,7 +95,6 @@ public class KnowledgeSwitch<T> {
 				ScientificKnowledge scientificKnowledge = (ScientificKnowledge)theEObject;
 				T result = caseScientificKnowledge(scientificKnowledge);
 				if (result == null) result = caseSCRMModelElement(scientificKnowledge);
-				if (result == null) result = caseIdentifiableElement(scientificKnowledge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,7 +103,6 @@ public class KnowledgeSwitch<T> {
 				T result = caseScientificProblem(scientificProblem);
 				if (result == null) result = caseScientificKnowledge(scientificProblem);
 				if (result == null) result = caseSCRMModelElement(scientificProblem);
-				if (result == null) result = caseIdentifiableElement(scientificProblem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,7 +111,6 @@ public class KnowledgeSwitch<T> {
 				T result = caseMathematicalModel(mathematicalModel);
 				if (result == null) result = caseScientificKnowledge(mathematicalModel);
 				if (result == null) result = caseSCRMModelElement(mathematicalModel);
-				if (result == null) result = caseIdentifiableElement(mathematicalModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -122,7 +119,6 @@ public class KnowledgeSwitch<T> {
 				T result = caseNumericalMethod(numericalMethod);
 				if (result == null) result = caseScientificKnowledge(numericalMethod);
 				if (result == null) result = caseSCRMModelElement(numericalMethod);
-				if (result == null) result = caseIdentifiableElement(numericalMethod);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -131,7 +127,6 @@ public class KnowledgeSwitch<T> {
 				T result = caseAssumption(assumption);
 				if (result == null) result = caseScientificKnowledge(assumption);
 				if (result == null) result = caseSCRMModelElement(assumption);
-				if (result == null) result = caseIdentifiableElement(assumption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,7 +135,6 @@ public class KnowledgeSwitch<T> {
 				T result = caseKnowledgeSpace(knowledgeSpace);
 				if (result == null) result = caseScientificKnowledge(knowledgeSpace);
 				if (result == null) result = caseSCRMModelElement(knowledgeSpace);
-				if (result == null) result = caseIdentifiableElement(knowledgeSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -235,21 +229,6 @@ public class KnowledgeSwitch<T> {
 	 * @generated
 	 */
 	public T caseKnowledgeSpace(KnowledgeSpace object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

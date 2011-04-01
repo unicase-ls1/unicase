@@ -6,6 +6,7 @@
  */
 package scrm;
 
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
 
 /**
@@ -25,7 +26,7 @@ import org.unicase.metamodel.IdentifiableElement;
  * @model abstract="true"
  * @generated
  */
-public interface SCRMModelElement extends IdentifiableElement {
+public interface SCRMModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>""</code>.

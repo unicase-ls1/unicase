@@ -72,15 +72,6 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_KNOWLEDGE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCIENTIFIC_KNOWLEDGE__IDENTIFIER = ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -125,15 +116,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int SCIENTIFIC_PROBLEM = 1;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCIENTIFIC_PROBLEM__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -207,15 +189,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int MATHEMATICAL_MODEL = 2;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATHEMATICAL_MODEL__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -327,15 +300,6 @@ public interface KnowledgePackage extends EPackage {
 	int NUMERICAL_METHOD = 3;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERICAL_METHOD__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -445,15 +409,6 @@ public interface KnowledgePackage extends EPackage {
 	int ASSUMPTION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSUMPTION__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -516,15 +471,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int KNOWLEDGE_SPACE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KNOWLEDGE_SPACE__IDENTIFIER = SCIENTIFIC_KNOWLEDGE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

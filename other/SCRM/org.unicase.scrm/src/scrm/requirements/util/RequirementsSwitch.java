@@ -107,7 +107,6 @@ public class RequirementsSwitch<T> {
 				IRequirement iRequirement = (IRequirement)theEObject;
 				T result = caseIRequirement(iRequirement);
 				if (result == null) result = caseSCRMModelElement(iRequirement);
-				if (result == null) result = caseIdentifiableElement(iRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -116,7 +115,6 @@ public class RequirementsSwitch<T> {
 				T result = caseInterface(interface_);
 				if (result == null) result = caseIRequirement(interface_);
 				if (result == null) result = caseSCRMModelElement(interface_);
-				if (result == null) result = caseIdentifiableElement(interface_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -125,7 +123,6 @@ public class RequirementsSwitch<T> {
 				T result = caseFeature(feature);
 				if (result == null) result = caseIRequirement(feature);
 				if (result == null) result = caseSCRMModelElement(feature);
-				if (result == null) result = caseIdentifiableElement(feature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,7 +131,6 @@ public class RequirementsSwitch<T> {
 				T result = caseHardware(hardware);
 				if (result == null) result = caseIRequirement(hardware);
 				if (result == null) result = caseSCRMModelElement(hardware);
-				if (result == null) result = caseIdentifiableElement(hardware);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,7 +139,6 @@ public class RequirementsSwitch<T> {
 				T result = caseConstraint(constraint);
 				if (result == null) result = caseIRequirement(constraint);
 				if (result == null) result = caseSCRMModelElement(constraint);
-				if (result == null) result = caseIdentifiableElement(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,7 +147,6 @@ public class RequirementsSwitch<T> {
 				T result = caseRequirement(requirement);
 				if (result == null) result = caseIRequirement(requirement);
 				if (result == null) result = caseSCRMModelElement(requirement);
-				if (result == null) result = caseIdentifiableElement(requirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,7 +156,6 @@ public class RequirementsSwitch<T> {
 				if (result == null) result = caseInterface(userInterface);
 				if (result == null) result = caseIRequirement(userInterface);
 				if (result == null) result = caseSCRMModelElement(userInterface);
-				if (result == null) result = caseIdentifiableElement(userInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,7 +165,6 @@ public class RequirementsSwitch<T> {
 				if (result == null) result = caseInterface(softwareInterface);
 				if (result == null) result = caseIRequirement(softwareInterface);
 				if (result == null) result = caseSCRMModelElement(softwareInterface);
-				if (result == null) result = caseIdentifiableElement(softwareInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,7 +174,6 @@ public class RequirementsSwitch<T> {
 				if (result == null) result = caseRequirement(process);
 				if (result == null) result = caseIRequirement(process);
 				if (result == null) result = caseSCRMModelElement(process);
-				if (result == null) result = caseIdentifiableElement(process);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -192,7 +183,6 @@ public class RequirementsSwitch<T> {
 				if (result == null) result = caseRequirement(performance);
 				if (result == null) result = caseIRequirement(performance);
 				if (result == null) result = caseSCRMModelElement(performance);
-				if (result == null) result = caseIdentifiableElement(performance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -201,7 +191,6 @@ public class RequirementsSwitch<T> {
 				T result = caseDataFlow(dataFlow);
 				if (result == null) result = caseIRequirement(dataFlow);
 				if (result == null) result = caseSCRMModelElement(dataFlow);
-				if (result == null) result = caseIdentifiableElement(dataFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -210,7 +199,6 @@ public class RequirementsSwitch<T> {
 				T result = caseDataDefinition(dataDefinition);
 				if (result == null) result = caseIRequirement(dataDefinition);
 				if (result == null) result = caseSCRMModelElement(dataDefinition);
-				if (result == null) result = caseIdentifiableElement(dataDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -219,7 +207,6 @@ public class RequirementsSwitch<T> {
 				T result = caseRequirementSpace(requirementSpace);
 				if (result == null) result = caseIRequirement(requirementSpace);
 				if (result == null) result = caseSCRMModelElement(requirementSpace);
-				if (result == null) result = caseIdentifiableElement(requirementSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -419,21 +406,6 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseRequirementSpace(RequirementSpace object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIdentifiableElement(IdentifiableElement object) {
 		return null;
 	}
 

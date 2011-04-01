@@ -103,7 +103,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -269,7 +268,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Obtain other dependent packages
 		KnowledgePackage theKnowledgePackage = (KnowledgePackage)EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI);
 		RequirementsPackage theRequirementsPackage = (RequirementsPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
 
@@ -282,7 +280,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		scrmModelElementEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(scrmModelElementEClass, SCRMModelElement.class, "SCRMModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

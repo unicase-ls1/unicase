@@ -72,22 +72,13 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_MODEL_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_MODEL_ELEMENT__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT__NAME = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+	int SCRM_MODEL_ELEMENT__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -96,7 +87,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT__DESCRIPTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int SCRM_MODEL_ELEMENT__DESCRIPTION = 1;
 
 	/**
 	 * The number of structural features of the '<em>SCRM Model Element</em>' class.
@@ -105,7 +96,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.
