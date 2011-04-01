@@ -7,8 +7,9 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.common.util;
+package org.eclipse.emf.ecp.common.util;
 
+import org.eclipse.emf.ecp.common.util.ExtProgramFactoryFacade;
 import org.eclipse.swt.program.Program;
 
 /**
