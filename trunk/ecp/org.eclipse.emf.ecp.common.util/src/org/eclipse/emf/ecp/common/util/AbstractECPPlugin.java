@@ -13,19 +13,36 @@ import org.eclipse.emf.emfstore.common.IUnicaseLog;
 import org.eclipse.emf.emfstore.common.UnicaseLogAdapter;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-public abstract class AbstractUnicaseUIPlugin extends AbstractUIPlugin implements IUnicaseLog {
+/**
+ * Base class for ECP plugin. Provides logging capabilities.
+ * 
+ * @author emueller
+ *
+ */
+public abstract class AbstractECPPlugin extends AbstractUIPlugin implements IUnicaseLog {
+	
 	private UnicaseLogAdapter logAdapter;
 	
-	public AbstractUnicaseUIPlugin() {
+	/**
+	 * Default constructor.
+	 */
+	public AbstractECPPlugin() {
 		logAdapter = new UnicaseLogAdapter();
 	}
 
+	/**
+	 * Logs the given exception with the given message and an additional status code to the error log.
+	 * 
+	 * @param message the message to log
+	 * @param exception the exception to log
+	 * @param statusInt a status code
+	 */
 	public void log(String message, Exception exception, int statusInt) {
 		logAdapter.log(message, exception, statusInt);
 	}
 
 	/**
-	 * Log an exception to the error log.
+	 * Logs an exception to the error log.
 	 * 
 	 * @param message the message
 	 * @param e the exception
@@ -35,7 +52,7 @@ public abstract class AbstractUnicaseUIPlugin extends AbstractUIPlugin implement
 	}
 
 	/**
-	 * Log a warning to the error log.
+	 * Logs a warning to the error log.
 	 * 
 	 * @param message the message
 	 * @param e the exception

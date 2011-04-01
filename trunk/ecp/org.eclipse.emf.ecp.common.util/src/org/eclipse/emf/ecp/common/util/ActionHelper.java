@@ -182,6 +182,8 @@ public final class ActionHelper {
 	 * Extracts element from event.
 	 * 
 	 * @param event the event
+	 * @param clazz class type of the object to extract 
+	 * @param <T> the type of the object to extract
 	 * @return the object
 	 */
 	@SuppressWarnings("unchecked")
