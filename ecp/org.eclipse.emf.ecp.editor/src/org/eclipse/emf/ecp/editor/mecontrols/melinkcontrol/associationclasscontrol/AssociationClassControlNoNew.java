@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.AddReferenceAction;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MESingleLinkControl;
+import org.eclipse.emf.ecp.model.ECPAssociationClassElement;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
-import org.unicase.ecp.model.ECPAssociationClassElement;
 
 /**
  * This widget removes the new reference action for source and target from every association class. We have to do this

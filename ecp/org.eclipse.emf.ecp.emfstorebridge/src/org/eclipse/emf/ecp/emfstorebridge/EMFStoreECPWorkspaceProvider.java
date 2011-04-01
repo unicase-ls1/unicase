@@ -9,8 +9,8 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.emfstorebridge;
 
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
 
 /**
  * Provides an ECPWorkspace based on an EMFStore Workspace.
@@ -22,7 +22,7 @@ public class EMFStoreECPWorkspaceProvider implements ECPWorkspaceProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace()
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.util.ECPWorkspaceProvider#getECPWorkspace()
 	 */
 	public ECPWorkspace getECPWorkspace() {
 		return new org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace();

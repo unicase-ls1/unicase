@@ -14,6 +14,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
@@ -22,9 +25,6 @@ import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ecp.model.ECPMetaModelElementContext;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ecp.model.workSpaceModel.impl.ECPProjectImpl;
 
 /**
  * ECPproject for the EMFStore.
@@ -70,7 +70,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ECPModelelementContext#getAllModelElements()
+	 * @see org.eclipse.emf.ecp.model.ECPModelelementContext#getAllModelElements()
 	 */
 	public Collection<EObject> getAllModelElements() {
 		ArrayList<EObject> ret = new ArrayList<EObject>();
@@ -81,7 +81,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.ECPModelelementContext#getEditingDomain()
+	 * @see org.eclipse.emf.ecp.model.ECPModelelementContext#getEditingDomain()
 	 */
 	public EditingDomain getEditingDomain() {
 		return Configuration.getEditingDomain();
@@ -90,7 +90,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#contains(org.eclipse.emf.ecore.EObject)
 	 */
 	public boolean contains(EObject eObject) {
 		return projectSpace.getProject().containsInstance(eObject);
@@ -99,7 +99,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#getMetaModelElementContext()
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#getMetaModelElementContext()
 	 */
 	public ECPMetaModelElementContext getMetaModelElementContext() {
 		return EMFStoreMetaModelElementContext.getInstance();
@@ -108,7 +108,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#dispose()
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#dispose()
 	 */
 	public void dispose() {
 		projectSpace.removeOperationListener(simpleOperationListener);
@@ -162,7 +162,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ecp.model.workSpaceModel.ECPProject#addModelElementToRoot(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#addModelElementToRoot(org.eclipse.emf.ecore.EObject)
 	 */
 	public void addModelElementToRoot(EObject eObject) {
 		projectSpace.getProject().getModelElements().add(eObject);

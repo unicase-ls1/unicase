@@ -26,6 +26,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.Activator;
 import org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.ModelElementOpener;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -36,10 +40,6 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.

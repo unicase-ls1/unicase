@@ -23,6 +23,9 @@ import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl;
+import org.eclipse.emf.ecp.model.ECPAssociationClassElement;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -41,9 +44,6 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.ecp.model.ECPAssociationClassElement;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 
 /**
  * This is the association widget. It is displayed instead of the reference to the AssociationClassElement. The other
@@ -99,7 +99,7 @@ public class AssociationClassLink extends MELinkControl {
 	 * @see org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl#createControl(org.eclipse.swt.widgets.Composite,
 	 *      int, org.eclipse.emf.edit.provider.IItemPropertyDescriptor, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject, org.eclipse.ui.forms.widgets.FormToolkit,
-	 *      org.unicase.ecp.model.ECPModelelementContext)
+	 *      org.eclipse.emf.ecp.model.ECPModelelementContext)
 	 */
 	@Override
 	public Control createControl(final Composite parent, int style, IItemPropertyDescriptor itemPropertyDescriptor,
