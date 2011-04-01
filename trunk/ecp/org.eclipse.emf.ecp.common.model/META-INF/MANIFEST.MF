@@ -12,4 +12,4 @@ Export-Package: org.eclipse.emf.ecp.model,
  org.eclipse.emf.ecp.model.workSpaceModel.impl,
  org.eclipse.emf.ecp.model.workSpaceModel.provider,
  org.eclipse.emf.ecp.model.workSpaceModel.util
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org

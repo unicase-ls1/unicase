@@ -9,13 +9,13 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.model;
 
-import org.eclipse.emf.ecp.common.util.AbstractUnicaseUIPlugin;
+import org.eclipse.emf.ecp.common.util.AbstractECPPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUnicaseUIPlugin {
+public class Activator extends AbstractECPPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.unicase.ecp.model";
