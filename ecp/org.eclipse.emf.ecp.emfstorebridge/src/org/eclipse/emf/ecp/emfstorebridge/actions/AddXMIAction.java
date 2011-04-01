@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ecpemfstorebridge.actions;
+package org.eclipse.emf.ecp.emfstorebridge.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
