@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: unicase ModelElement Editor Plug-in
+Bundle-Name: ECP Editor Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.editor;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.editor.Activator
-Bundle-Vendor: unicase.org
+Bundle-Vendor: eclipse.org
 Require-Bundle: org.eclipse.emf.ecp.common;visibility:=reexport,
  org.eclipse.jface.text;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
