@@ -39,14 +39,14 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/workspaceModel";
+	String eNS_URI = "http://eclipse.org/emf/ecp/workspaceModel";
 
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.ui.navigator";
+	String eNS_PREFIX = "org.eclipse.emf.ecp.model";
 
 	/**
 	 * The singleton instance of the package.
