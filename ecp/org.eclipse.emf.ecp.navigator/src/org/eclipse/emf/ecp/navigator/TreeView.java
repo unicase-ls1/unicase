@@ -7,11 +7,20 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator;
+package org.eclipse.emf.ecp.navigator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.dnd.ComposedDropAdapter;
+import org.eclipse.emf.ecp.common.dnd.UCDragAdapter;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProjectListener;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage;
+import org.eclipse.emf.ecp.navigator.commands.AltKeyDoubleClickAction;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -45,15 +54,6 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ecp.model.workSpaceModel.ECPProjectListener;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ecp.model.workSpaceModel.WorkSpaceModelPackage;
-import org.unicase.ui.common.dnd.ComposedDropAdapter;
-import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.navigator.commands.AltKeyDoubleClickAction;
 
 /**
  * The standard navigator tree view.

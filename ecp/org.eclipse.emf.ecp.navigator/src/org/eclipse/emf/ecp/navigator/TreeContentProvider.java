@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator;
+package org.eclipse.emf.ecp.navigator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +18,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
 
 /**
  * Transactional and composed content provider with all registered label providers.

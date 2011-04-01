@@ -7,23 +7,23 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.handler;
+package org.eclipse.emf.ecp.navigator.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.navigator.Activator;
+import org.eclipse.emf.ecp.navigator.dialogs.OpenMeShortcutDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.navigator.dialogs.OpenMeShortcutDialog;
 
 /**
  * This is the (ShortcutCommand)-Handler to select model elements out of a list of elements.

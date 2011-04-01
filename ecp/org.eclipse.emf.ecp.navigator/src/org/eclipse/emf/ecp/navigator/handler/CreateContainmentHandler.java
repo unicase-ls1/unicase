@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.handler;
+package org.eclipse.emf.ecp.navigator.handler;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
 
 /**
  * . This is the generic handler for commands to create containments of a model element

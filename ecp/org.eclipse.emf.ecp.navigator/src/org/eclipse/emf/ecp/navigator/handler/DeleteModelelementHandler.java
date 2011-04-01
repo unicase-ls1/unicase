@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.handler;
+package org.eclipse.emf.ecp.navigator.handler;
 
 import java.util.Set;
 
@@ -15,11 +15,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ui.common.commands.DeleteModelElementCommand;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
+import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.navigator.Activator;
 
 /**
  * . This is the Handler to delete a ModelElement

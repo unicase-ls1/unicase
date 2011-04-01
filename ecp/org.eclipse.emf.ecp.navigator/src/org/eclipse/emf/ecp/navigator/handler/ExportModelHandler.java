@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.handler;
+package org.eclipse.emf.ecp.navigator.handler;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +24,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -32,9 +35,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.ui.util.UiUtil;
 
 /**
  * Handles the export of ModelElements from a project.

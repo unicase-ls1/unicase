@@ -7,9 +7,14 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.wizards;
+package org.eclipse.emf.ecp.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecp.common.MEClassLabelProvider;
+import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -28,11 +33,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.ecp.model.ECPMetaModelElementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.navigator.Activator;
 
 /**
  * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only

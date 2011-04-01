@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.wizards;
+package org.eclipse.emf.ecp.navigator.wizards;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,12 +16,12 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ecp.model.ECPMetaModelElementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ui.navigator.Activator;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage

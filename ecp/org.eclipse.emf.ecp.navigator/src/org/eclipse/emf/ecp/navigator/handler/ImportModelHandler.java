@@ -7,7 +7,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.handler;
+package org.eclipse.emf.ecp.navigator.handler;
 
 import java.io.File;
 import java.util.HashSet;
@@ -24,17 +24,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
-import org.unicase.ui.util.PreferenceHelper;
 
 /**
  * Handles the import of ModelElements into a project.

@@ -7,9 +7,10 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.commands;
+package org.eclipse.emf.ecp.navigator.commands;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -21,7 +22,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * listener ActionClass for the DoublclickAction and the ALT Key.
@@ -90,7 +90,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	 * This opens the selected model element.
 	 * 
 	 * @see org.eclipse.jface.action.Action#run()
-	 * @see org.unicase.ui.navigator.commands.AltKeyDoubleClickAction#openSelectedModelelement()
+	 * @see org.eclipse.emf.ecp.navigator.commands.AltKeyDoubleClickAction#openSelectedModelelement()
 	 */
 	@Override
 	public void run() {

@@ -7,26 +7,26 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.unicase.ui.navigator.wizards;
+package org.eclipse.emf.ecp.navigator.wizards;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.ECPProject;
-import org.unicase.ecp.model.workSpaceModel.ECPWorkspace;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigator.Activator;
 
 /**
  * @author Hodaie This is implementation of New Model Element wizard. This wizard is show through
