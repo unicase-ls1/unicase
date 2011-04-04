@@ -27,7 +27,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.eclipse.emf.ecp.emfstorebridge.actions.ImportXMIAction"
-               id="org.unicase.ecpemfstorebridge.xmiImport"
+               id="org.eclipse.emf.ecp.emfstorebridge.actions.xmiImport"
                label="Import to EMF Client Platform">
          </action>
       </objectContribution>
