@@ -9,7 +9,7 @@
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            class="org.eclipse.emf.ecp.model.workSpaceModel.provider.WorkSpaceModelItemProviderAdapterFactory"
+            class="org.eclipse.emf.ecp.common.model.workSpaceModel.provider.WorkSpaceModelItemProviderAdapterFactory"
             supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
             uri="http://eclipse.org/emf/ecp/workspaceModel">
       </factory>
@@ -17,7 +17,7 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipse.emf.ecp.model.workSpaceModel.WorkSpaceModelPackage"
+            class="org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage"
             genModel="model/workspaceModel.gemodel"
             uri="http://eclipse.org/emf/ecp/workspaceModel">
       </package>
