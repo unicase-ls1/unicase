@@ -42,6 +42,7 @@ public interface DataDefinition extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DefinedRequirement()
 	 * @see scrm.requirements.Requirement#getDefiningData
 	 * @model opposite="definingData"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	Requirement getDefinedRequirement();
@@ -67,7 +68,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Accuracy</em>' attribute.
 	 * @see #setAccuracy(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Accuracy()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getAccuracy();
@@ -93,7 +94,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Format</em>' attribute.
 	 * @see #setFormat(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Format()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='6'"
 	 * @generated
 	 */
 	String getFormat();
@@ -119,7 +120,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Range</em>' attribute.
 	 * @see #setRange(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Range()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
 	 * @generated
 	 */
 	String getRange();
@@ -145,7 +146,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Data Type</em>' attribute.
 	 * @see #setDataType(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DataType()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='8'"
 	 * @generated
 	 */
 	String getDataType();

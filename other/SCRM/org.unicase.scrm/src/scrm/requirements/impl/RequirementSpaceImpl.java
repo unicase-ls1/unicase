@@ -90,6 +90,16 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementSpace basicGetContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
@@ -123,7 +133,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 */
 	public EList<IRequirement> getContainedInformationofRequirements() {
 		if (containedInformationofRequirements == null) {
-			containedInformationofRequirements = new EObjectContainmentWithInverseEList<IRequirement>(IRequirement.class, this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
+			containedInformationofRequirements = new EObjectContainmentWithInverseEList.Resolving<IRequirement>(IRequirement.class, this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
 		}
 		return containedInformationofRequirements;
 	}
@@ -186,7 +196,8 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace();
+				if (resolve) return getContainingRequirementSpace();
+				return basicGetContainingRequirementSpace();
 			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
 				return getContainedInformationofRequirements();
 		}
@@ -240,7 +251,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace() != null;
+				return basicGetContainingRequirementSpace() != null;
 			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
 				return containedInformationofRequirements != null && !containedInformationofRequirements.isEmpty();
 		}

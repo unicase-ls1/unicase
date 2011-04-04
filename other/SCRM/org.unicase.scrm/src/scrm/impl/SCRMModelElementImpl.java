@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.unicase.metamodel.impl.IdentifiableElementImpl;
 
 import scrm.SCRMModelElement;
 import scrm.ScrmPackage;
@@ -76,10 +75,11 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SCRMModelElementImpl() {
 		super();
+		name = "new " + eClass().getName();
 	}
 
 	/**

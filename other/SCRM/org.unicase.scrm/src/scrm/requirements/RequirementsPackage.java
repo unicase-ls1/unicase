@@ -209,58 +209,13 @@ public interface RequirementsPackage extends EPackage {
 	int FEATURE__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__CONSTRAINTS = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__DEPENDENCIES = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Required Interfaces</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__REQUIRED_INTERFACES = IREQUIREMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Provided Interfaces</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__PROVIDED_INTERFACES = IREQUIREMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Detailed Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__DETAILED_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Influencing Problem</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__INFLUENCING_PROBLEM = IREQUIREMENT_FEATURE_COUNT + 5;
+	int FEATURE__DETAILED_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sub Features</b></em>' containment reference list.
@@ -269,16 +224,61 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__SUB_FEATURES = IREQUIREMENT_FEATURE_COUNT + 6;
+	int FEATURE__SUB_FEATURES = IREQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Supe Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Super Feature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__SUPE_FEATURE = IREQUIREMENT_FEATURE_COUNT + 7;
+	int FEATURE__SUPER_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CONSTRAINTS = IREQUIREMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__DEPENDENCIES = IREQUIREMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Required Interfaces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__REQUIRED_INTERFACES = IREQUIREMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__PROVIDED_INTERFACES = IREQUIREMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Influencing Problem</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__INFLUENCING_PROBLEM = IREQUIREMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Required Features</b></em>' reference list.
@@ -1233,15 +1233,15 @@ public interface RequirementsPackage extends EPackage {
 	EReference getFeature_SubFeatures();
 
 	/**
-	 * Returns the meta object for the container reference '{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}'.
+	 * Returns the meta object for the container reference '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Supe Feature</em>'.
-	 * @see scrm.requirements.Feature#getSupeFeature()
+	 * @return the meta object for the container reference '<em>Super Feature</em>'.
+	 * @see scrm.requirements.Feature#getSuperFeature()
 	 * @see #getFeature()
 	 * @generated
 	 */
-	EReference getFeature_SupeFeature();
+	EReference getFeature_SuperFeature();
 
 	/**
 	 * Returns the meta object for the reference list '{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}'.
@@ -1740,12 +1740,12 @@ public interface RequirementsPackage extends EPackage {
 		EReference FEATURE__SUB_FEATURES = eINSTANCE.getFeature_SubFeatures();
 
 		/**
-		 * The meta object literal for the '<em><b>Supe Feature</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Super Feature</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__SUPE_FEATURE = eINSTANCE.getFeature_SupeFeature();
+		EReference FEATURE__SUPER_FEATURE = eINSTANCE.getFeature_SuperFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Required Features</b></em>' reference list feature.

@@ -181,6 +181,16 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.NUMERICAL_METHOD__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.NUMERICAL_METHOD__CONTAINING_KNOWLEDGE_SPACE, msgs);
 		return msgs;
@@ -555,7 +565,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KnowledgePackage.NUMERICAL_METHOD__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace();
+				if (resolve) return getContainingKnowledgeSpace();
+				return basicGetContainingKnowledgeSpace();
 			case KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM:
 				if (resolve) return getSolvedProblem();
 				return basicGetSolvedProblem();
@@ -661,7 +672,7 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements Numeric
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KnowledgePackage.NUMERICAL_METHOD__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace() != null;
+				return basicGetContainingKnowledgeSpace() != null;
 			case KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM:
 				return solvedProblem != null;
 			case KnowledgePackage.NUMERICAL_METHOD__DEPENDENCIES:

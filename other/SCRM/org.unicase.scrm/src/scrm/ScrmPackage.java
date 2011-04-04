@@ -11,8 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.unicase.metamodel.MetamodelPackage;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -109,13 +107,31 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_DIAGRAM = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__NAME = SCRM_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__ELEMENTS = 0;
+	int SCRM_DIAGRAM__ELEMENTS = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>New Elements</b></em>' containment reference list.
@@ -124,7 +140,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__NEW_ELEMENTS = 1;
+	int SCRM_DIAGRAM__NEW_ELEMENTS = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
@@ -133,7 +149,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__DIAGRAM_LAYOUT = 2;
+	int SCRM_DIAGRAM__DIAGRAM_LAYOUT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference.
@@ -142,7 +158,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__GMFDIAGRAM = 3;
+	int SCRM_DIAGRAM__GMFDIAGRAM = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>SCRM Diagram</em>' class.
@@ -151,7 +167,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM_FEATURE_COUNT = 4;
+	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 
 	/**

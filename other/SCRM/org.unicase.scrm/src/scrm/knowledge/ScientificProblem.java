@@ -43,6 +43,7 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_RepresentingModel()
 	 * @see scrm.knowledge.MathematicalModel#getRepresentedProblem
 	 * @model opposite="representedProblem"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	MathematicalModel getRepresentingModel();
@@ -71,6 +72,7 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_SolvingMethods()
 	 * @see scrm.knowledge.NumericalMethod#getSolvedProblem
 	 * @model opposite="solvedProblem"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<NumericalMethod> getSolvingMethods();
@@ -89,6 +91,7 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_InfluencedFeature()
 	 * @see scrm.requirements.Feature#getInfluencingProblem
 	 * @model opposite="influencingProblem"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
 	Feature getInfluencedFeature();

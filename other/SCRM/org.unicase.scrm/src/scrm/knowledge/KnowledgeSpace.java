@@ -38,7 +38,8 @@ public interface KnowledgeSpace extends ScientificKnowledge {
 	 * @return the value of the '<em>Contained Scientific Problem</em>' containment reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getKnowledgeSpace_ContainedScientificProblem()
 	 * @see scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace
-	 * @model opposite="containingKnowledgeSpace" containment="true"
+	 * @model opposite="containingKnowledgeSpace" containment="true" resolveProxies="true"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<ScientificKnowledge> getContainedScientificProblem();

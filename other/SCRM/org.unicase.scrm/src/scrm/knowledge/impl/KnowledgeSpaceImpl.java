@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -28,9 +27,6 @@ import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.ScientificKnowledge;
-
-import scrm.requirements.IRequirement;
-import scrm.requirements.RequirementsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,6 +87,16 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE, msgs);
 		return msgs;
@@ -124,7 +130,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 */
 	public EList<ScientificKnowledge> getContainedScientificProblem() {
 		if (containedScientificProblem == null) {
-			containedScientificProblem = new EObjectContainmentWithInverseEList<ScientificKnowledge>(ScientificKnowledge.class, this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE);
+			containedScientificProblem = new EObjectContainmentWithInverseEList.Resolving<ScientificKnowledge>(ScientificKnowledge.class, this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE);
 		}
 		return containedScientificProblem;
 	}
@@ -187,7 +193,8 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace();
+				if (resolve) return getContainingKnowledgeSpace();
+				return basicGetContainingKnowledgeSpace();
 			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
 				return getContainedScientificProblem();
 		}
@@ -241,7 +248,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace() != null;
+				return basicGetContainingKnowledgeSpace() != null;
 			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
 				return containedScientificProblem != null && !containedScientificProblem.isEmpty();
 		}

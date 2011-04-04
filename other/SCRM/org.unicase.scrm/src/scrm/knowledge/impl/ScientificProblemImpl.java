@@ -115,6 +115,16 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE, msgs);
 		return msgs;
@@ -343,7 +353,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace();
+				if (resolve) return getContainingKnowledgeSpace();
+				return basicGetContainingKnowledgeSpace();
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				if (resolve) return getRepresentingModel();
 				return basicGetRepresentingModel();
@@ -415,7 +426,7 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace() != null;
+				return basicGetContainingKnowledgeSpace() != null;
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 				return representingModel != null;
 			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:

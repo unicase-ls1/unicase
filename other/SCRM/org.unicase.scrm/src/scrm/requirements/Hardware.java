@@ -41,6 +41,7 @@ public interface Hardware extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getHardware_DependingFeature()
 	 * @see scrm.requirements.Feature#getDependencies
 	 * @model opposite="dependencies"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	Feature getDependingFeature();
@@ -66,7 +67,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Processor</em>' attribute.
 	 * @see #setProcessor(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Processor()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getProcessor();
@@ -92,7 +93,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Platform</em>' attribute.
 	 * @see #setPlatform(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Platform()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='6'"
 	 * @generated
 	 */
 	String getPlatform();
@@ -118,7 +119,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Memory</em>' attribute.
 	 * @see #setMemory(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Memory()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
 	 * @generated
 	 */
 	String getMemory();

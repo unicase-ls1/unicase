@@ -167,6 +167,16 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementSpace basicGetContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
@@ -396,7 +406,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace();
+				if (resolve) return getContainingRequirementSpace();
+				return basicGetContainingRequirementSpace();
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				if (resolve) return getDefinedRequirement();
 				return basicGetDefinedRequirement();
@@ -481,7 +492,7 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace() != null;
+				return basicGetContainingRequirementSpace() != null;
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				return definedRequirement != null;
 			case RequirementsPackage.DATA_DEFINITION__ACCURACY:

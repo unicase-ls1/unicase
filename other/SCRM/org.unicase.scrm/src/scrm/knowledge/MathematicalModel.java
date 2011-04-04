@@ -45,6 +45,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_RepresentedProblem()
 	 * @see scrm.knowledge.ScientificProblem#getRepresentingModel
 	 * @model opposite="representingModel"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	ScientificProblem getRepresentedProblem();
@@ -72,7 +73,8 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Refinements</em>' containment reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Refinements()
 	 * @see scrm.knowledge.MathematicalModel#getRefinedModel
-	 * @model opposite="refinedModel" containment="true"
+	 * @model opposite="refinedModel" containment="true" resolveProxies="true"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
 	 * @generated
 	 */
 	EList<MathematicalModel> getRefinements();
@@ -91,6 +93,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_RefinedModel()
 	 * @see scrm.knowledge.MathematicalModel#getRefinements
 	 * @model opposite="refinements" transient="false"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='12'"
 	 * @generated
 	 */
 	MathematicalModel getRefinedModel();
@@ -119,6 +122,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_NumericalMethods()
 	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel
 	 * @model opposite="mathematicalModel"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<NumericalMethod> getNumericalMethods();
@@ -137,6 +141,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingModel
 	 * @model opposite="dependingModel"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='15'"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
@@ -152,7 +157,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Theory</em>' attribute.
 	 * @see #setTheory(String)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Theory()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getTheory();
@@ -178,7 +183,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Mathematical Expression</em>' attribute.
 	 * @see #setMathematicalExpression(String)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_MathematicalExpression()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
 	 * @generated
 	 */
 	String getMathematicalExpression();

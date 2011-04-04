@@ -41,6 +41,7 @@ public interface IRequirement extends SCRMModelElement {
 	 * @see scrm.requirements.RequirementsPackage#getIRequirement_ContainingRequirementSpace()
 	 * @see scrm.requirements.RequirementSpace#getContainedInformationofRequirements
 	 * @model opposite="containedInformationofRequirements" transient="false"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
 	 * @generated
 	 */
 	RequirementSpace getContainingRequirementSpace();

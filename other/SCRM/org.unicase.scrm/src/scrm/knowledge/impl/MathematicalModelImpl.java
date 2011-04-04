@@ -170,6 +170,16 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE, msgs);
 		return msgs;
@@ -263,7 +273,7 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	 */
 	public EList<MathematicalModel> getRefinements() {
 		if (refinements == null) {
-			refinements = new EObjectContainmentWithInverseEList<MathematicalModel>(MathematicalModel.class, this, KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS, KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL);
+			refinements = new EObjectContainmentWithInverseEList.Resolving<MathematicalModel>(MathematicalModel.class, this, KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS, KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL);
 		}
 		return refinements;
 	}
@@ -276,6 +286,16 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	public MathematicalModel getRefinedModel() {
 		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL) return null;
 		return (MathematicalModel)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MathematicalModel basicGetRefinedModel() {
+		if (eContainerFeatureID() != KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL) return null;
+		return (MathematicalModel)eInternalContainer();
 	}
 
 	/**
@@ -455,14 +475,16 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace();
+				if (resolve) return getContainingKnowledgeSpace();
+				return basicGetContainingKnowledgeSpace();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
 				if (resolve) return getRepresentedProblem();
 				return basicGetRepresentedProblem();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return getRefinements();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
-				return getRefinedModel();
+				if (resolve) return getRefinedModel();
+				return basicGetRefinedModel();
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return getNumericalMethods();
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
@@ -560,13 +582,13 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements Mathe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KnowledgePackage.MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace() != null;
+				return basicGetContainingKnowledgeSpace() != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM:
 				return representedProblem != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 				return refinements != null && !refinements.isEmpty();
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
-				return getRefinedModel() != null;
+				return basicGetRefinedModel() != null;
 			case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
 				return numericalMethods != null && !numericalMethods.isEmpty();
 			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:

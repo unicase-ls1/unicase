@@ -7,8 +7,6 @@
 package scrm;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.IdentifiableElement;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SCRM Model Element</b></em>'.
@@ -40,6 +38,7 @@ public interface SCRMModelElement extends EObject {
 	 * @see #setName(String)
 	 * @see scrm.ScrmPackage#getSCRMModelElement_Name()
 	 * @model default=""
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='1'"
 	 * @generated
 	 */
 	String getName();
@@ -65,7 +64,7 @@ public interface SCRMModelElement extends EObject {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see scrm.ScrmPackage#getSCRMModelElement_Description()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='2'"
 	 * @generated
 	 */
 	String getDescription();

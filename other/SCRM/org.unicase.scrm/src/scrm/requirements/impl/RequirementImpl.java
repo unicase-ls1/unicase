@@ -118,6 +118,16 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementSpace basicGetContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
@@ -151,7 +161,7 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public EList<Requirement> getRefinements() {
 		if (refinements == null) {
-			refinements = new EObjectContainmentWithInverseEList<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENT__REFINEMENTS, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
+			refinements = new EObjectContainmentWithInverseEList.Resolving<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENT__REFINEMENTS, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
 		}
 		return refinements;
 	}
@@ -164,6 +174,16 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	public Requirement getRefinedRequirement() {
 		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
 		return (Requirement)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Requirement basicGetRefinedRequirement() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
+		return (Requirement)eInternalContainer();
 	}
 
 	/**
@@ -205,6 +225,16 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	public Feature getSpecifiedFeature() {
 		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE) return null;
 		return (Feature)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetSpecifiedFeature() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE) return null;
+		return (Feature)eInternalContainer();
 	}
 
 	/**
@@ -394,13 +424,16 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace();
+				if (resolve) return getContainingRequirementSpace();
+				return basicGetContainingRequirementSpace();
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return getRefinements();
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return getRefinedRequirement();
+				if (resolve) return getRefinedRequirement();
+				return basicGetRefinedRequirement();
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return getSpecifiedFeature();
+				if (resolve) return getSpecifiedFeature();
+				return basicGetSpecifiedFeature();
 			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
 				return getDefiningData();
 			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
@@ -482,13 +515,13 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace() != null;
+				return basicGetContainingRequirementSpace() != null;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return refinements != null && !refinements.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return getRefinedRequirement() != null;
+				return basicGetRefinedRequirement() != null;
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return getSpecifiedFeature() != null;
+				return basicGetSpecifiedFeature() != null;
 			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
 				return definingData != null && !definingData.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:

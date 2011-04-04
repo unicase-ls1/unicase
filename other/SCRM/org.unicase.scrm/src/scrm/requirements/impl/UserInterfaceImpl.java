@@ -92,6 +92,16 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementSpace basicGetContainingRequirementSpace() {
+		if (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE) return null;
+		return (RequirementSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE, msgs);
 		return msgs;
@@ -126,6 +136,16 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	public Feature getProvidingFeature() {
 		if (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE) return null;
 		return (Feature)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetProvidingFeature() {
+		if (eContainerFeatureID() != RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE) return null;
+		return (Feature)eInternalContainer();
 	}
 
 	/**
@@ -237,9 +257,11 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace();
+				if (resolve) return getContainingRequirementSpace();
+				return basicGetContainingRequirementSpace();
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
-				return getProvidingFeature();
+				if (resolve) return getProvidingFeature();
+				return basicGetProvidingFeature();
 			case RequirementsPackage.USER_INTERFACE__REQUIRING_FEATURES:
 				return getRequiringFeatures();
 		}
@@ -299,9 +321,9 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements UserInter
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RequirementsPackage.USER_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				return getContainingRequirementSpace() != null;
+				return basicGetContainingRequirementSpace() != null;
 			case RequirementsPackage.USER_INTERFACE__PROVIDING_FEATURE:
-				return getProvidingFeature() != null;
+				return basicGetProvidingFeature() != null;
 			case RequirementsPackage.USER_INTERFACE__REQUIRING_FEATURES:
 				return requiringFeatures != null && !requiringFeatures.isEmpty();
 		}

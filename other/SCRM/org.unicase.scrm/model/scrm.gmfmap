@@ -784,18 +784,6 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#ScientificKnowledge_RequirementsConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#ScientificKnowledge_RequirementsConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/ScientificKnowledge/requirements"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
           href="scrm.gmfgraph#ScientificProblem_RepresentingModelConnectionLabel"/>
     </labelMappings>
     <diagramLink
@@ -846,25 +834,6 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//knowledge/MathematicalModel/refinements"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <domainMetaElement
-        href="scrm.ecore#//knowledge/MathematicalModel"/>
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#MathematicalModel_SubMathematicalModelsConnectionLabel"/>
-    </labelMappings>
-    <containmentFeature
-        href="scrm.ecore#//knowledge/MathematicalModel/subMathematicalModels"/>
-    <diagramLink
-        href="scrm.gmfgraph#MathematicalModel_SubMathematicalModelsConnection"/>
-    <sourceMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/superMathematicalModel"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/subMathematicalModels"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1000,7 +969,7 @@
         href="scrm.gmfgraph#Feature_SubFeaturesConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Feature/supeFeature"/>
+        href="scrm.ecore#//requirements/Feature/superFeature"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//requirements/Feature/subFeatures"/>
