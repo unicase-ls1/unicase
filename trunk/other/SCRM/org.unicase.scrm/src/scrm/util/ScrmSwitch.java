@@ -98,6 +98,7 @@ public class ScrmSwitch<T> {
 			case ScrmPackage.SCRM_DIAGRAM: {
 				SCRMDiagram scrmDiagram = (SCRMDiagram)theEObject;
 				T result = caseSCRMDiagram(scrmDiagram);
+				if (result == null) result = caseSCRMModelElement(scrmDiagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

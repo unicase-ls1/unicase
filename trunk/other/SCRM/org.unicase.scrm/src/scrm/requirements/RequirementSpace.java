@@ -38,7 +38,8 @@ public interface RequirementSpace extends IRequirement {
 	 * @return the value of the '<em>Contained Informationof Requirements</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getRequirementSpace_ContainedInformationofRequirements()
 	 * @see scrm.requirements.IRequirement#getContainingRequirementSpace
-	 * @model opposite="containingRequirementSpace" containment="true"
+	 * @model opposite="containingRequirementSpace" containment="true" resolveProxies="true"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<IRequirement> getContainedInformationofRequirements();

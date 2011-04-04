@@ -12,6 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 
+import scrm.impl.DiagramLoadException;
+import scrm.impl.DiagramStoreException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SCRM Diagram</b></em>'.
@@ -31,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
  * @model
  * @generated
  */
-public interface SCRMDiagram extends EObject {
+public interface SCRMDiagram extends SCRMModelElement {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
 	 * The list contents are of type {@link scrm.SCRMModelElement}.
@@ -59,7 +62,7 @@ public interface SCRMDiagram extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Elements</em>' containment reference list.
 	 * @see scrm.ScrmPackage#getSCRMDiagram_NewElements()
-	 * @model containment="true" transient="true"
+	 * @model containment="true" resolveProxies="true" transient="true"
 	 * @generated
 	 */
 	EList<SCRMModelElement> getNewElements();
@@ -101,7 +104,7 @@ public interface SCRMDiagram extends EObject {
 	 * @return the value of the '<em>Gmfdiagram</em>' containment reference.
 	 * @see #setGmfdiagram(Diagram)
 	 * @see scrm.ScrmPackage#getSCRMDiagram_Gmfdiagram()
-	 * @model containment="true" transient="true"
+	 * @model containment="true" resolveProxies="true" transient="true"
 	 * @generated
 	 */
 	Diagram getGmfdiagram();
@@ -115,5 +118,9 @@ public interface SCRMDiagram extends EObject {
 	 * @generated
 	 */
 	void setGmfdiagram(Diagram value);
+	
+	void saveDiagramLayout() throws DiagramStoreException;
+
+	void loadDiagramLayout() throws DiagramLoadException;
 
 } // SCRMDiagram

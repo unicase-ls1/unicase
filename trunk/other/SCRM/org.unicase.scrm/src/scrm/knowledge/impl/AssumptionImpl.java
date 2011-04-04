@@ -103,6 +103,16 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
+		if (eContainerFeatureID() != KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE) return null;
+		return (KnowledgeSpace)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE, msgs);
 		return msgs;
@@ -315,7 +325,8 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace();
+				if (resolve) return getContainingKnowledgeSpace();
+				return basicGetContainingKnowledgeSpace();
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 				if (resolve) return getDependingModel();
 				return basicGetDependingModel();
@@ -378,7 +389,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KnowledgePackage.ASSUMPTION__CONTAINING_KNOWLEDGE_SPACE:
-				return getContainingKnowledgeSpace() != null;
+				return basicGetContainingKnowledgeSpace() != null;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 				return dependingModel != null;
 			case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:

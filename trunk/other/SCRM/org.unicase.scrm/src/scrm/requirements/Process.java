@@ -38,6 +38,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.RequirementsPackage#getProcess_DataFlow()
 	 * @see scrm.requirements.DataFlow#getSpecifiedProcess
 	 * @model opposite="specifiedProcess"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	DataFlow getDataFlow();

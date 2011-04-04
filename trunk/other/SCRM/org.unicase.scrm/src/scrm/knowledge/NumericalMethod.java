@@ -48,6 +48,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_SolvedProblem()
 	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods
 	 * @model opposite="solvingMethods"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	ScientificProblem getSolvedProblem();
@@ -76,6 +77,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingMethod
 	 * @model opposite="dependingMethod"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
@@ -94,6 +96,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_RealizingRequirement()
 	 * @see scrm.requirements.Requirement#getRealizedMethod
 	 * @model opposite="realizedMethod"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
 	 * @generated
 	 */
 	Requirement getRealizingRequirement();
@@ -122,6 +125,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_MathematicalModel()
 	 * @see scrm.knowledge.MathematicalModel#getNumericalMethods
 	 * @model opposite="numericalMethods"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
 	MathematicalModel getMathematicalModel();
@@ -147,7 +151,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Performance</em>' reference.
 	 * @see #setPerformance(Performance)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='30'"
 	 * @generated
 	 */
 	Performance getPerformance();
@@ -173,7 +177,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Theory</em>' attribute.
 	 * @see #setTheory(String)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Theory()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getTheory();
@@ -199,7 +203,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Algorithm</em>' attribute.
 	 * @see #setAlgorithm(String)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Algorithm()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
 	 * @generated
 	 */
 	String getAlgorithm();

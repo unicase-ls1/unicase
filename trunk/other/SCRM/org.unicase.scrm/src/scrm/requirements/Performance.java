@@ -35,7 +35,7 @@ public interface Performance extends Requirement {
 	 * @return the value of the '<em>Problem Size</em>' attribute.
 	 * @see #setProblemSize(String)
 	 * @see scrm.requirements.RequirementsPackage#getPerformance_ProblemSize()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getProblemSize();

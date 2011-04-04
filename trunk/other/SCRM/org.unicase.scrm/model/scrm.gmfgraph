@@ -8,7 +8,8 @@
     <descriptors
         name="ScientificProblemFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle">
+          xsi:type="gmfgraph:Rectangle"
+          name="ScientificProblemShape">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -45,7 +46,7 @@
         name="MathematicalModelFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="">
+          name="MathematicalModelShape">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -95,7 +96,8 @@
     <descriptors
         name="NumericalMethodFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle">
+          xsi:type="gmfgraph:Rectangle"
+          name="NumericalMethodShape">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -147,7 +149,7 @@
         name="AssumptionFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="">
+          name="AssumptionShape">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -188,7 +190,10 @@
     <descriptors
         name="FeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="FeatureShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -197,6 +202,9 @@
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             green="255"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_name">
@@ -219,7 +227,10 @@
     <descriptors
         name="HardwareFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="HardwareShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -230,6 +241,9 @@
             red="16"
             green="240"
             blue="167"/>
+        <preferredSize
+            dx="140"
+            dy="110"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Hardware_name"
@@ -274,7 +288,10 @@
     <descriptors
         name="ConstraintFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ConstraintShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -285,6 +302,9 @@
             red="16"
             green="240"
             blue="167"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Constraint_name"
@@ -308,7 +328,10 @@
     <descriptors
         name="UserInterfaceFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="UserInterfaceShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -319,6 +342,9 @@
             red="16"
             green="240"
             blue="167"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="UserInterface_name"
@@ -342,7 +368,10 @@
     <descriptors
         name="SoftwareInterfaceFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="SoftwareInterfaceShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -353,6 +382,9 @@
             red="16"
             green="240"
             blue="167"/>
+        <preferredSize
+            dx="160"
+            dy="77"/>
         <children
             xsi:type="gmfgraph:Label"
             name="SoftwareInterface_name"
@@ -382,7 +414,10 @@
     <descriptors
         name="ProcessFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ProcessShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -393,6 +428,9 @@
             red="13"
             green="242"
             blue="231"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Process_name"
@@ -417,7 +455,10 @@
     <descriptors
         name="PerformanceFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="PerformanceShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -428,6 +469,9 @@
             red="13"
             green="242"
             blue="231"/>
+        <preferredSize
+            dx="160"
+            dy="77"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Performance_name"
@@ -459,7 +503,10 @@
     <descriptors
         name="DataFlowFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="DataFlowShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -470,6 +517,9 @@
             red="13"
             green="185"
             blue="242"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataFlow_name"
@@ -494,7 +544,10 @@
     <descriptors
         name="DataDefinitionFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="DataDefinitionShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -502,9 +555,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            red="13"
+            red="131"
             green="185"
             blue="242"/>
+        <preferredSize
+            dx="160"
+            dy="120"/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_name"
@@ -557,7 +613,10 @@
     <descriptors
         name="InputDataReadingFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="InputDataReadingShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -565,7 +624,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            blue="255"/>
+            red="53"
+            green="139"
+            blue="234"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="InputDataReading_name"
@@ -590,7 +654,10 @@
     <descriptors
         name="DataHandlingFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="DataHandlingShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -598,7 +665,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            blue="255"/>
+            red="53"
+            green="139"
+            blue="234"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataHandling_name"
@@ -623,7 +695,10 @@
     <descriptors
         name="ResultsOutputFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ResultsOutputShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -631,7 +706,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            blue="255"/>
+            red="53"
+            green="139"
+            blue="234"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="ResultsOutput_name"
@@ -656,7 +736,10 @@
     <descriptors
         name="ErrorHandlingFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ErrorHandlingShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -664,7 +747,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            blue="255"/>
+            red="53"
+            green="139"
+            blue="234"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="ErrorHandling_name"
@@ -689,7 +777,10 @@
     <descriptors
         name="StatusMonitoringFigure">
       <actualFigure
-          xsi:type="gmfgraph:Ellipse">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="StatusMonitoringShape"
+          cornerWidth="32"
+          cornerHeight="32">
         <layout
             xsi:type="gmfgraph:FlowLayout"
             vertical="true"
@@ -697,7 +788,12 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            blue="255"/>
+            red="53"
+            green="139"
+            blue="234"/>
+        <preferredSize
+            dx="160"
+            dy="65"/>
         <children
             xsi:type="gmfgraph:Label"
             name="StatusMonitoring_name"
