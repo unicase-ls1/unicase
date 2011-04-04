@@ -14,7 +14,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUnicasePlugin {
+public class Activator extends AbstractPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.emf.emfstore.common";

@@ -12,7 +12,7 @@ package org.eclipse.emf.emfstore.common;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class UnicaseLogAdapter {
+public class LogAdapter {
 
 	public void log(String message, Exception exception, int statusInt) {
 		Status status = new Status(statusInt, Activator.getDefault().getBundle().getSymbolicName(), statusInt, message, exception);

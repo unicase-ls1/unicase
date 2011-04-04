@@ -11,12 +11,12 @@ package org.eclipse.emf.emfstore.common;
 
 import org.eclipse.core.runtime.Plugin;
 
-public abstract class AbstractUnicasePlugin extends Plugin {
+public abstract class AbstractPlugin extends Plugin {
 	
-	private UnicaseLogAdapter logAdapter;
+	private LogAdapter logAdapter;
 	
-	public AbstractUnicasePlugin() {
-		logAdapter = new UnicaseLogAdapter();
+	public AbstractPlugin() {
+		logAdapter = new LogAdapter();
 	}
 
 	public void log(String message, Exception exception, int statusInt) {

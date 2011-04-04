@@ -9,8 +9,8 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.util;
 
-import org.eclipse.emf.emfstore.common.IUnicaseLog;
-import org.eclipse.emf.emfstore.common.UnicaseLogAdapter;
+import org.eclipse.emf.emfstore.common.ILog;
+import org.eclipse.emf.emfstore.common.LogAdapter;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -19,15 +19,15 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * @author emueller
  *
  */
-public abstract class AbstractECPPlugin extends AbstractUIPlugin implements IUnicaseLog {
+public abstract class AbstractECPPlugin extends AbstractUIPlugin implements ILog {
 	
-	private UnicaseLogAdapter logAdapter;
+	private LogAdapter logAdapter;
 	
 	/**
 	 * Default constructor.
 	 */
 	public AbstractECPPlugin() {
-		logAdapter = new UnicaseLogAdapter();
+		logAdapter = new LogAdapter();
 	}
 
 	/**
