@@ -27,7 +27,6 @@ import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
-import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
@@ -42,7 +41,6 @@ import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemDescriptionEditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
@@ -523,113 +521,103 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
+		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
 			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			if (WrappingLabel3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+		case MathematicalModel2EditPart.VISUAL_ID:
 			if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case MathematicalModel2EditPart.VISUAL_ID:
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			if (WrappingLabel5EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case MathematicalModel3EditPart.VISUAL_ID:
+		case MathematicalModelDependenciesEditPart.VISUAL_ID:
 			if (WrappingLabel6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+		case NumericalMethodDependenciesEditPart.VISUAL_ID:
 			if (WrappingLabel7EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case MathematicalModelDependenciesEditPart.VISUAL_ID:
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
 			if (WrappingLabel8EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case NumericalMethodDependenciesEditPart.VISUAL_ID:
+		case NumericalMethodPerformanceEditPart.VISUAL_ID:
 			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
 			if (WrappingLabel10EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
 			if (WrappingLabel11EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+		case FeatureConstraintsEditPart.VISUAL_ID:
 			if (WrappingLabel12EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+		case FeatureDependenciesEditPart.VISUAL_ID:
 			if (WrappingLabel13EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureConstraintsEditPart.VISUAL_ID:
+		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
 			if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureDependenciesEditPart.VISUAL_ID:
+		case Feature2EditPart.VISUAL_ID:
 			if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
 			if (WrappingLabel16EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case Feature2EditPart.VISUAL_ID:
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
 			if (WrappingLabel17EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+		case RequirementEditPart.VISUAL_ID:
 			if (WrappingLabel18EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
+		case RequirementDefiningDataEditPart.VISUAL_ID:
 			if (WrappingLabel19EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case RequirementEditPart.VISUAL_ID:
-			if (WrappingLabel20EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case RequirementDefiningDataEditPart.VISUAL_ID:
-			if (WrappingLabel21EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case ProcessDataFlowEditPart.VISUAL_ID:
-			if (WrappingLabel22EditPart.VISUAL_ID == nodeVisualID) {
+			if (WrappingLabel20EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -647,10 +635,6 @@ public class ScrmVisualIDRegistry {
 		if (KnowledgePackage.eINSTANCE.getMathematicalModel().isSuperTypeOf(
 				domainElement.eClass())) {
 			return MathematicalModel2EditPart.VISUAL_ID;
-		}
-		if (KnowledgePackage.eINSTANCE.getMathematicalModel().isSuperTypeOf(
-				domainElement.eClass())) {
-			return MathematicalModel3EditPart.VISUAL_ID;
 		}
 		if (RequirementsPackage.eINSTANCE.getFeature().isSuperTypeOf(
 				domainElement.eClass())) {

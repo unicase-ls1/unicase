@@ -23,8 +23,6 @@ import scrm.diagram.edit.commands.FeatureRequiredFeaturesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredFeaturesReorientCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesReorientCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureReorientCommand;
 import scrm.diagram.edit.parts.Feature2EditPart;
@@ -35,7 +33,6 @@ import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -74,10 +71,6 @@ public class Feature2ItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return null;
-		}
 		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
 				.getElementType()) {
 			return null;
@@ -127,11 +120,6 @@ public class Feature2ItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
-		}
 		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
 				.getElementType()) {
 			return getGEFWrapper(new ScientificProblemInfluencedFeatureCreateCommand(
@@ -196,9 +184,6 @@ public class Feature2ItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(
-					req));
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(
 					req));

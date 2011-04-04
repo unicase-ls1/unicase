@@ -42,8 +42,8 @@ public class Feature2EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel17EditPart) {
-			((WrappingLabel17EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel15EditPart) {
+			((WrappingLabel15EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureFeature_SubFeaturesLabel());
 			return true;
@@ -65,7 +65,7 @@ public class Feature2EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel17EditPart) {
+		if (childEditPart instanceof WrappingLabel15EditPart) {
 			return true;
 		}
 		return false;

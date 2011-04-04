@@ -42,10 +42,9 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel11EditPart) {
-			((WrappingLabel11EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureNumericalMethod_PerformanceLabel());
+		if (childEditPart instanceof WrappingLabel9EditPart) {
+			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureNumericalMethod_PerformanceLabel());
 			return true;
 		}
 		return false;
@@ -65,7 +64,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel11EditPart) {
+		if (childEditPart instanceof WrappingLabel9EditPart) {
 			return true;
 		}
 		return false;

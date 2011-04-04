@@ -42,8 +42,8 @@ public class MathematicalModelNumericalMethodsEditPart extends
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
-			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
+		if (childEditPart instanceof WrappingLabel5EditPart) {
+			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureMathematicalModel_NumericalMethodsLabel());
 			return true;
 		}
@@ -64,7 +64,7 @@ public class MathematicalModelNumericalMethodsEditPart extends
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
+		if (childEditPart instanceof WrappingLabel5EditPart) {
 			return true;
 		}
 		return false;

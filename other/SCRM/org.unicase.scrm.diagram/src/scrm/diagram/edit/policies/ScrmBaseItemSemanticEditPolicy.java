@@ -337,33 +337,10 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateScientificKnowledgeRequirements_4005(
-				ScientificKnowledge source, IRequirement target) {
-			if (source != null) {
-				if (source.getRequirements().contains(target)) {
-					return false;
-				}
-				if (source == target) {
-					return false;
-				}
-			}
-			if (target != null && (target.getUsedKnowledge() != null)) {
-				return false;
-			}
-
-			return canExistScientificKnowledgeRequirements_4005(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
 		public boolean canCreateScientificProblemRepresentingModel_4006(
 				ScientificProblem source, MathematicalModel target) {
 			if (source != null) {
 				if (source.getRepresentingModel() != null) {
-					return false;
-				}
-				if (source == target) {
 					return false;
 				}
 			}
@@ -382,9 +359,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				ScientificProblem source, NumericalMethod target) {
 			if (source != null) {
 				if (source.getSolvingMethods().contains(target)) {
-					return false;
-				}
-				if (source == target) {
 					return false;
 				}
 			}
@@ -426,16 +400,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMathematicalModel_4010(
-				MathematicalModel container, MathematicalModel source,
-				MathematicalModel target) {
-			return canExistMathematicalModel_4010(container, null, source,
-					target);
-		}
-
-		/**
-		 * @generated
-		 */
 		public boolean canCreateMathematicalModelNumericalMethods_4011(
 				MathematicalModel source, NumericalMethod target) {
 			if (source != null) {
@@ -460,9 +424,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source.getDependencies().contains(target)) {
 					return false;
 				}
-				if (source == target) {
-					return false;
-				}
 			}
 			if (target != null && (target.getDependingModel() != null)) {
 				return false;
@@ -478,9 +439,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				NumericalMethod source, Assumption target) {
 			if (source != null) {
 				if (source.getDependencies().contains(target)) {
-					return false;
-				}
-				if (source == target) {
 					return false;
 				}
 			}
@@ -570,9 +528,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source.getConstraints().contains(target)) {
 					return false;
 				}
-				if (source == target) {
-					return false;
-				}
 			}
 			if (target != null && (target.getRestrictedFeature() != null)) {
 				return false;
@@ -588,9 +543,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				Hardware target) {
 			if (source != null) {
 				if (source.getDependencies().contains(target)) {
-					return false;
-				}
-				if (source == target) {
 					return false;
 				}
 			}
@@ -682,9 +634,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source.getDefiningData().contains(target)) {
 					return false;
 				}
-				if (source == target) {
-					return false;
-				}
 			}
 			if (target != null && (target.getDefinedRequirement() != null)) {
 				return false;
@@ -702,23 +651,12 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source.getDataFlow() != null) {
 					return false;
 				}
-				if (source == target) {
-					return false;
-				}
 			}
 			if (target != null && (target.getSpecifiedProcess() != null)) {
 				return false;
 			}
 
 			return canExistProcessDataFlow_4040(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public boolean canExistScientificKnowledgeRequirements_4005(
-				ScientificKnowledge source, IRequirement target) {
-			return true;
 		}
 
 		/**
@@ -749,15 +687,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistMathematicalModel_4004(
-				MathematicalModel container, MathematicalModel linkInstance,
-				MathematicalModel source, MathematicalModel target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public boolean canExistMathematicalModel_4010(
 				MathematicalModel container, MathematicalModel linkInstance,
 				MathematicalModel source, MathematicalModel target) {
 			return true;

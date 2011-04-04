@@ -42,8 +42,8 @@ public class RequirementEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel20EditPart) {
-			((WrappingLabel20EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel18EditPart) {
+			((WrappingLabel18EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureRequirements_RefinementsLabel());
 			return true;
@@ -65,7 +65,7 @@ public class RequirementEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel20EditPart) {
+		if (childEditPart instanceof WrappingLabel18EditPart) {
 			return true;
 		}
 		return false;

@@ -41,7 +41,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
- org.unicase.metamodel.edit;visibility:=reexport
+ org.unicase.workspace;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Eclipse-LazyStart: true

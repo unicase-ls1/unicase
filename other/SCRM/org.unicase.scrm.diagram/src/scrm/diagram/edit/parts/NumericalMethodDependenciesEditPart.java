@@ -42,8 +42,8 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel9EditPart) {
-			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
+		if (childEditPart instanceof WrappingLabel7EditPart) {
+			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureNumericalMethod_DependenciesLabel());
 			return true;
 		}
@@ -64,7 +64,7 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel9EditPart) {
+		if (childEditPart instanceof WrappingLabel7EditPart) {
 			return true;
 		}
 		return false;

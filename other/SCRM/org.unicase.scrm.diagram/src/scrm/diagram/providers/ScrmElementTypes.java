@@ -35,7 +35,6 @@ import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
-import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
@@ -50,7 +49,6 @@ import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
@@ -167,10 +165,6 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ScientificKnowledgeRequirements_4005 = getElementType("org.unicase.scrm.diagram.ScientificKnowledgeRequirements_4005"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
 	public static final IElementType ScientificProblemRepresentingModel_4006 = getElementType("org.unicase.scrm.diagram.ScientificProblemRepresentingModel_4006"); //$NON-NLS-1$
 	/**
 	 * @generated
@@ -185,10 +179,6 @@ public class ScrmElementTypes {
 	 * @generated
 	 */
 	public static final IElementType MathematicalModel_4004 = getElementType("org.unicase.scrm.diagram.MathematicalModel_4004"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType MathematicalModel_4010 = getElementType("org.unicase.scrm.diagram.MathematicalModel_4010"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -432,10 +422,6 @@ public class ScrmElementTypes {
 					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getStatusMonitoring());
 
-			elements.put(ScientificKnowledgeRequirements_4005,
-					KnowledgePackage.eINSTANCE
-							.getScientificKnowledge_Requirements());
-
 			elements.put(ScientificProblemRepresentingModel_4006,
 					KnowledgePackage.eINSTANCE
 							.getScientificProblem_RepresentingModel());
@@ -449,9 +435,6 @@ public class ScrmElementTypes {
 							.getScientificProblem_InfluencedFeature());
 
 			elements.put(MathematicalModel_4004,
-					KnowledgePackage.eINSTANCE.getMathematicalModel());
-
-			elements.put(MathematicalModel_4010,
 					KnowledgePackage.eINSTANCE.getMathematicalModel());
 
 			elements.put(MathematicalModelNumericalMethods_4011,
@@ -544,12 +527,10 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ResultsOutput_2020);
 			KNOWN_ELEMENT_TYPES.add(ErrorHandling_2021);
 			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_2022);
-			KNOWN_ELEMENT_TYPES.add(ScientificKnowledgeRequirements_4005);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemRepresentingModel_4006);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemSolvingMethods_4041);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemInfluencedFeature_4008);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModel_4004);
-			KNOWN_ELEMENT_TYPES.add(MathematicalModel_4010);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModelNumericalMethods_4011);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModelDependencies_4012);
 			KNOWN_ELEMENT_TYPES.add(NumericalMethodDependencies_4015);
@@ -613,8 +594,6 @@ public class ScrmElementTypes {
 			return ErrorHandling_2021;
 		case StatusMonitoringEditPart.VISUAL_ID:
 			return StatusMonitoring_2022;
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-			return ScientificKnowledgeRequirements_4005;
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return ScientificProblemRepresentingModel_4006;
 		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
@@ -623,8 +602,6 @@ public class ScrmElementTypes {
 			return ScientificProblemInfluencedFeature_4008;
 		case MathematicalModel2EditPart.VISUAL_ID:
 			return MathematicalModel_4004;
-		case MathematicalModel3EditPart.VISUAL_ID:
-			return MathematicalModel_4010;
 		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			return MathematicalModelNumericalMethods_4011;
 		case MathematicalModelDependenciesEditPart.VISUAL_ID:

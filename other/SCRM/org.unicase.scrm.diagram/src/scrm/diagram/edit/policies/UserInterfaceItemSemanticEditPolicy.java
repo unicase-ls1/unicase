@@ -25,11 +25,8 @@ import scrm.diagram.edit.commands.FeatureProvidedInterfacesCreateCommand;
 import scrm.diagram.edit.commands.FeatureProvidedInterfacesReorientCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesReorientCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -56,27 +53,6 @@ public class UserInterfaceItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor progressMonitor, IAdaptable info)
-							throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(
-								progressMonitor, info);
-						if (resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == FeatureRequiredInterfacesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
@@ -134,10 +110,6 @@ public class UserInterfaceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return null;
-		}
 		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
 				.getElementType()) {
 			return null;
@@ -154,11 +126,6 @@ public class UserInterfaceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
-		}
 		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
 				.getElementType()) {
 			return getGEFWrapper(new FeatureRequiredInterfacesCreateCommand(
@@ -181,9 +148,6 @@ public class UserInterfaceItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(
-					req));
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureRequiredInterfacesReorientCommand(
 					req));

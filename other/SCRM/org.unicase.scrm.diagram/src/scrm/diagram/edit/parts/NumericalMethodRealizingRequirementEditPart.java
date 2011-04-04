@@ -42,10 +42,9 @@ public class NumericalMethodRealizingRequirementEditPart extends
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel10EditPart) {
-			((WrappingLabel10EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureNumericalMethod_RealizingRequirementLabel());
+		if (childEditPart instanceof WrappingLabel8EditPart) {
+			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureNumericalMethod_RealizingRequirementLabel());
 			return true;
 		}
 		return false;
@@ -65,7 +64,7 @@ public class NumericalMethodRealizingRequirementEditPart extends
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel10EditPart) {
+		if (childEditPart instanceof WrappingLabel8EditPart) {
 			return true;
 		}
 		return false;

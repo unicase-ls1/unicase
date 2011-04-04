@@ -13,8 +13,6 @@ import scrm.SCRMDiagram;
 
 public class SCRMDiagramOpener implements ModelElementOpener {
 	
-	public static EObject element;
-	
 	public int canOpen(EObject eObject) {
 		if(eObject instanceof SCRMDiagram) {
 			return 1;
@@ -23,8 +21,6 @@ public class SCRMDiagramOpener implements ModelElementOpener {
 	}
 
 	public void openModelElement(EObject eObject) {
-		
-		element = eObject;
 		
 		URI uri = EcoreUtil.getURI(eObject);
 		uri.appendFragment(eObject.eResource().getURIFragment(eObject));

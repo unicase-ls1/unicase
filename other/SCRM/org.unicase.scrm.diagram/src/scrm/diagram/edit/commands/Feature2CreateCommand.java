@@ -84,7 +84,7 @@ public class Feature2CreateCommand extends EditElementCommand {
 
 		Feature newElement = RequirementsFactory.eINSTANCE.createFeature();
 		getContainer().getSubFeatures().add(newElement);
-		newElement.setSupeFeature(getSource());
+		newElement.setSuperFeature(getSource());
 		newElement.getSubFeatures().add(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);

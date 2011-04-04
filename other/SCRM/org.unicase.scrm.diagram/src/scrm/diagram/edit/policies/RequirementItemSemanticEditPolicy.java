@@ -15,13 +15,10 @@ import scrm.diagram.edit.commands.RequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementReorientCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
@@ -59,10 +56,6 @@ public class RequirementItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return null;
-		}
 		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
 				.getElementType()) {
 			return null;
@@ -88,11 +81,6 @@ public class RequirementItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
-		}
 		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
 				.getElementType()) {
 			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(
@@ -138,9 +126,6 @@ public class RequirementItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(
-					req));
 		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
 			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(
 					req));

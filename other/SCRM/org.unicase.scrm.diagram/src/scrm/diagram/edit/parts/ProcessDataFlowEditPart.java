@@ -12,7 +12,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.policies.ProcessDataFlowItemSemanticEditPolicy;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
@@ -42,8 +42,8 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel22EditPart) {
-			((WrappingLabel22EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel20EditPart) {
+			((WrappingLabel20EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureProcess_DataFlowLabel());
 			return true;
@@ -65,7 +65,7 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel22EditPart) {
+		if (childEditPart instanceof WrappingLabel20EditPart) {
 			return true;
 		}
 		return false;
