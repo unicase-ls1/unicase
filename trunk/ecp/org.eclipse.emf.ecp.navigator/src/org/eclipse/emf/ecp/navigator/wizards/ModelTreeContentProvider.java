@@ -16,9 +16,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
-import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;

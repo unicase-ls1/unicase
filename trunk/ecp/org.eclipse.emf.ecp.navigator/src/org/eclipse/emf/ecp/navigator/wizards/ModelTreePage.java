@@ -11,9 +11,9 @@ package org.eclipse.emf.ecp.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecp.common.MEClassLabelProvider;
-import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
-import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;

@@ -45,7 +45,7 @@ public class ImportXMIAction implements IActionDelegate {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucm)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "ECP Project Files (*.ucm)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
