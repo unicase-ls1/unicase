@@ -91,7 +91,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
-import scrm.diagram.common.CreateViewCommand;
+import scrm.diagram.commands.CreateViewCommand;
 import scrm.diagram.common.DeleteFromDiagramAction;
 import scrm.diagram.navigator.ScrmNavigatorItem;
 import scrm.impl.DiagramStoreException;
