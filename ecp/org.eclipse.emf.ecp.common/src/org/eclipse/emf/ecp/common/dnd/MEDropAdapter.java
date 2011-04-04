@@ -38,9 +38,8 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * Init the adapter.
+	 * Initializes the adapter.
 	 * 
-	 * @param domain the editing domain
 	 * @param viewer the viewer
 	 */
 	public void init(StructuredViewer viewer) {
