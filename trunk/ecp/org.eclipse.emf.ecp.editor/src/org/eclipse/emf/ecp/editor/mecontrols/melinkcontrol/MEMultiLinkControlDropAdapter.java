@@ -36,7 +36,6 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	private final ECPModelelementContext modelElementContext;
 
 	/**
-	 * @param editingDomain editing domain
 	 * @param me MEEditor input
 	 * @param reference EReference being shown in the section
 	 * @param modelElementContext the {@link ECPModelelementContext}

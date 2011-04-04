@@ -99,7 +99,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	/**
 	 * Creates the actions for the control.
 	 * 
-	 * @return
+	 * @return list of actions 
 	 */
 	protected List<Action> initActions() {
 		List<Action> result = new ArrayList<Action>();
