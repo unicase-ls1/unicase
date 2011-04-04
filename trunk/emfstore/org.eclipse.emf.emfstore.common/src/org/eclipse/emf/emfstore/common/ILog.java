@@ -10,7 +10,7 @@
 package org.eclipse.emf.emfstore.common;
 
 
-public interface IUnicaseLog {
+public interface ILog {
 	
 	public void log(String message, Exception exception, int statusInt);
 
